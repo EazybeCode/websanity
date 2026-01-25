@@ -46,3 +46,85 @@ export async function getFooter() {
 
   return sanityClient.fetch(query)
 }
+
+export async function getPricingPage(language: string = 'en') {
+  const query = `*[_type == "pricingPage" && language == $language][0]{
+    language,
+    seo,
+    hero{
+      badge,
+      headline,
+      headlineHighlight,
+      subheadline,
+      billingToggleMonthly,
+      billingToggleAnnual,
+      saveBadgeText
+    },
+    plans[]{
+      _key,
+      name,
+      description,
+      icon,
+      monthlyPrice,
+      annualPrice,
+      currency,
+      isPopular,
+      isEnterprise,
+      features[]{
+        _key,
+        text,
+        included,
+        highlight
+      },
+      cta{
+        label,
+        url
+      }
+    },
+    trustSignals[]{
+      _key,
+      icon,
+      text
+    },
+    comparisonSection{
+      badge,
+      title,
+      subtitle,
+      features[]{
+        _key,
+        feature,
+        category,
+        starter,
+        scaler,
+        omnis
+      }
+    },
+    faqSection{
+      badge,
+      title,
+      subtitle,
+      contactLinkText,
+      faqs[]{
+        _key,
+        question,
+        answer
+      }
+    },
+    ctaSection{
+      headline,
+      headlineHighlight,
+      subheadline,
+      primaryCta{
+        label,
+        url
+      },
+      secondaryCta{
+        label,
+        url
+      },
+      footnote
+    }
+  }`
+
+  return sanityClient.fetch(query, { language })
+}
