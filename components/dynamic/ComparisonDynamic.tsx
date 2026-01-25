@@ -1,5 +1,6 @@
 import React from 'react'
 import { Check, X, Cloud } from 'lucide-react'
+import { SectionBadge } from '../ui/SectionBadge'
 import type { ComparisonSection } from '../../hooks/useLandingPage'
 
 interface Props {
@@ -8,22 +9,23 @@ interface Props {
 
 export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
   return (
-    <section className="py-24 bg-brand-muted border-y border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-brand-surface border-y border-slate-800 relative">
+      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
             {data.badge && (
-              <span className="font-mono text-xs font-bold text-brand-blue uppercase tracking-widest mb-4 block">
-                {data.badge}
-              </span>
+              <div className="mb-6">
+                <SectionBadge variant="cyan">{data.badge}</SectionBadge>
+              </div>
             )}
             {data.headline && (
-              <h2 className="text-4xl font-sans font-bold text-brand-ink mb-6">
+              <h2 className="text-4xl font-sans font-bold text-white mb-6">
                 {data.headline}
               </h2>
             )}
             {data.description && (
-              <p className="text-lg text-slate-600 font-light leading-relaxed mb-8">
+              <p className="text-lg text-slate-400 leading-relaxed mb-8">
                 {data.description}
               </p>
             )}
@@ -32,16 +34,16 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
           <div className="lg:col-span-8">
             {/* Visual Header for the Three Types */}
             <div className="grid grid-cols-3 gap-4 mb-6">
-              <div className="bg-white p-4 rounded-card border border-slate-200 shadow-sm flex flex-col items-center text-center">
+              <div className="bg-brand-card p-4 rounded-card border border-slate-700 shadow-sm flex flex-col items-center text-center">
                 <img
                   src="https://cdn.simpleicons.org/whatsapp/25D366"
                   alt="Personal WhatsApp"
                   className="w-10 h-10 mb-3"
                   referrerPolicy="no-referrer"
                 />
-                <span className="text-xs font-bold text-slate-700">Personal WhatsApp</span>
+                <span className="text-xs font-bold text-slate-300">Personal WhatsApp</span>
               </div>
-              <div className="bg-white p-4 rounded-card border border-slate-200 shadow-sm flex flex-col items-center text-center">
+              <div className="bg-brand-card p-4 rounded-card border border-slate-700 shadow-sm flex flex-col items-center text-center">
                 <div className="relative w-10 h-10 mb-3 flex items-center justify-center">
                   <img
                     src="https://cdn.simpleicons.org/whatsapp/25D366"
@@ -49,13 +51,13 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
                     className="w-10 h-10"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute -bottom-1 -right-1 bg-white rounded-full px-1 border border-slate-100 shadow-sm">
-                    <span className="text-[8px] font-bold text-slate-600">B</span>
+                  <div className="absolute -bottom-1 -right-1 bg-slate-800 rounded-full px-1 border border-slate-600 shadow-sm">
+                    <span className="text-[8px] font-bold text-slate-200">B</span>
                   </div>
                 </div>
-                <span className="text-xs font-bold text-slate-700">Business App</span>
+                <span className="text-xs font-bold text-slate-300">WhatsApp Business App</span>
               </div>
-              <div className="bg-white p-4 rounded-card border border-slate-200 shadow-sm flex flex-col items-center text-center">
+              <div className="bg-brand-card p-4 rounded-card border border-slate-700 shadow-sm flex flex-col items-center text-center">
                 <div className="relative w-10 h-10 mb-3 flex items-center justify-center">
                   <img
                     src="https://cdn.simpleicons.org/whatsapp/25D366"
@@ -63,41 +65,41 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
                     className="w-10 h-10 opacity-80"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute -top-1 -right-1 bg-brand-blue rounded-full p-1 border-2 border-white shadow-sm">
+                  <div className="absolute -top-1 -right-1 bg-brand-cyan rounded-full p-1 border-2 border-slate-900 shadow-sm">
                     <Cloud size={10} className="text-white" />
                   </div>
                 </div>
-                <span className="text-xs font-bold text-slate-700">Business API</span>
+                <span className="text-xs font-bold text-slate-300">WhatsApp Business API</span>
               </div>
             </div>
 
-            <div className="bg-white rounded-card shadow-engineering border border-slate-200 overflow-hidden">
+            <div className="bg-brand-card rounded-card shadow-xl border border-slate-700 overflow-hidden">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200">
-                    <th className="p-6 font-sans font-semibold text-slate-900 text-sm">Capability</th>
-                    <th className="p-6 font-sans font-medium text-slate-500 text-sm text-center">Other Tools</th>
-                    <th className="p-6 font-sans font-bold text-brand-blue text-sm text-center bg-blue-50/30">Eazybe</th>
+                  <tr className="bg-slate-800/50 border-b border-slate-700">
+                    <th className="p-6 font-sans font-semibold text-white text-sm">Capability</th>
+                    <th className="p-6 font-sans font-medium text-slate-400 text-sm text-center">Other Tools</th>
+                    <th className="p-6 font-sans font-bold text-brand-cyan text-sm text-center bg-cyan-950/10">Eazybe</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
+                <tbody className="divide-y divide-slate-700/50">
                   {data.comparisonRows?.map((item, idx) => (
-                    <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                      <td className="p-4 pl-6 text-sm font-medium text-slate-700">{item.capability}</td>
+                    <tr key={idx} className="hover:bg-slate-800/30 transition-colors">
+                      <td className="p-4 pl-6 text-sm font-medium text-slate-300">{item.capability}</td>
                       <td className="p-4 text-center">
                         <div className="flex justify-center">
                           {item.otherTools ? (
                             <Check className="text-brand-green w-5 h-5" strokeWidth={2.5} />
                           ) : (
-                            <X className="text-slate-300 w-5 h-5" strokeWidth={2.5} />
+                            <X className="text-slate-600 w-5 h-5" strokeWidth={2.5} />
                           )}
                         </div>
                       </td>
-                      <td className="p-4 text-center bg-blue-50/10 border-l border-blue-50">
+                      <td className="p-4 text-center bg-cyan-950/5 border-l border-slate-700/50">
                         <div className="flex justify-center">
                           {item.eazybe ? (
-                            <div className="w-6 h-6 rounded-full bg-brand-green flex items-center justify-center">
-                              <Check className="text-white w-3.5 h-3.5" strokeWidth={3} />
+                            <div className="w-6 h-6 rounded-full bg-brand-cyan/20 flex items-center justify-center border border-brand-cyan/30">
+                              <Check className="text-brand-cyan w-3.5 h-3.5" strokeWidth={3} />
                             </div>
                           ) : (
                             <X className="text-red-300 w-5 h-5" strokeWidth={2.5} />

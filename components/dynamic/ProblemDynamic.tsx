@@ -1,5 +1,6 @@
 import React from 'react'
 import { EyeOff, Clock, UserX, LogOut, AlertTriangle, XCircle } from 'lucide-react'
+import { SectionBadge } from '../ui/SectionBadge'
 import type { ProblemSection } from '../../hooks/useLandingPage'
 
 interface Props {
@@ -17,21 +18,30 @@ const iconMap: Record<string, React.FC<{ size?: number; strokeWidth?: number }>>
 
 export const ProblemDynamic: React.FC<Props> = ({ data }) => {
   return (
-    <section className="py-24 bg-brand-ink text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-brand-black text-white relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-900/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mb-16">
           {data.badge && (
-            <span className="font-mono text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 block">
-              {data.badge}
-            </span>
+            <div className="mb-6">
+              <SectionBadge variant="cyan">{data.badge}</SectionBadge>
+            </div>
           )}
           {data.headline && (
-            <h2 className="text-4xl md:text-5xl font-sans font-semibold text-white mb-6">
-              {data.headline}
+            <h2 className="text-4xl md:text-5xl font-sans font-bold text-white mb-6 tracking-tight">
+              {data.headline.split(' ').map((word, i, arr) => {
+                // Make last two words gray for visual effect
+                if (i >= arr.length - 2) {
+                  return <span key={i} className="text-slate-400">{word} </span>
+                }
+                return word + ' '
+              })}
             </h2>
           )}
           {data.subheadline && (
-            <p className="text-xl text-slate-400 font-light leading-relaxed">
+            <p className="text-xl text-slate-400 font-normal leading-relaxed">
               {data.subheadline}
             </p>
           )}
@@ -43,13 +53,15 @@ export const ProblemDynamic: React.FC<Props> = ({ data }) => {
             return (
               <div
                 key={idx}
-                className="bg-white/5 border border-white/10 p-8 rounded-card hover:bg-white/10 transition-colors duration-300 group"
+                className="bg-brand-card border border-slate-700 p-8 rounded-2xl hover:border-slate-500 hover:shadow-lg transition-all duration-300 group"
               >
-                <div className="w-10 h-10 bg-white/10 rounded-md flex items-center justify-center text-white mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                  <IconComponent size={20} strokeWidth={1.5} />
+                <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 mb-6 group-hover:bg-brand-blue group-hover:text-white transition-all shadow-inner border border-slate-700">
+                  <IconComponent size={24} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-lg font-sans font-semibold text-white mb-4">{card.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{card.description}</p>
+                <h3 className="text-lg font-sans font-bold text-white mb-4">{card.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-200 transition-colors">
+                  {card.description}
+                </p>
               </div>
             )
           })}

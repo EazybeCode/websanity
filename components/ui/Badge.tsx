@@ -8,12 +8,12 @@ interface BadgeProps {
 
 export const Badge: React.FC<BadgeProps> = ({ children, className = '', variant = 'blue' }) => {
   const colors = {
-    blue: "text-blue-600 bg-blue-50/50 border-blue-100 ring-1 ring-blue-500/10",
-    indigo: "text-indigo-600 bg-indigo-50/50 border-indigo-100 ring-1 ring-indigo-500/10",
-    rose: "text-rose-600 bg-rose-50/50 border-rose-100 ring-1 ring-rose-500/10",
-    orange: "text-orange-600 bg-orange-50/50 border-orange-100 ring-1 ring-orange-500/10",
-    purple: "text-purple-600 bg-purple-50/50 border-purple-100 ring-1 ring-purple-500/10",
-    clean: "text-slate-600 bg-slate-50 border-slate-200 ring-1 ring-slate-200"
+    blue: "text-brand-blue bg-blue-900/30 border-blue-800/50 ring-1 ring-blue-500/20",
+    indigo: "text-brand-indigo bg-indigo-900/30 border-indigo-800/50 ring-1 ring-indigo-500/20",
+    rose: "text-rose-400 bg-rose-900/30 border-rose-800/50 ring-1 ring-rose-500/20",
+    orange: "text-brand-orange bg-orange-900/30 border-orange-800/50 ring-1 ring-orange-500/20",
+    purple: "text-brand-purple bg-purple-900/30 border-purple-800/50 ring-1 ring-purple-500/20",
+    clean: "text-slate-300 bg-slate-800/50 border-slate-700 ring-1 ring-slate-700"
   };
 
   return (

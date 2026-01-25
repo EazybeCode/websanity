@@ -28,3 +28,21 @@ export async function getLandingPage() {
 
   return sanityClient.fetch(query)
 }
+
+export async function getFooter() {
+  const query = `*[_type == "footer" && _id == "footer"][0]{
+    companyName,
+    tagline,
+    socialLinks[]{...},
+    badges,
+    columns[]{
+      _key,
+      title,
+      links[]{...}
+    },
+    copyright,
+    legalLinks[]{...}
+  }`
+
+  return sanityClient.fetch(query)
+}

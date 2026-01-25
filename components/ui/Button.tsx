@@ -18,16 +18,16 @@ export const Button: React.FC<ButtonProps> = ({
   const baseStyles = "relative inline-flex items-center justify-center font-sans font-medium transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn tracking-tight active:scale-[0.98]";
   
   const variants = {
-    // Primary: Solid Brand Blue
-    primary: "bg-brand-blue text-white hover:bg-blue-700 shadow-sm border border-transparent",
-    
-    // Secondary: Dark
-    secondary: "bg-brand-ink text-white hover:bg-slate-800 shadow-sm border border-transparent",
-    
-    // Outline: Clean border
-    outline: "bg-white text-slate-700 border border-slate-300 hover:border-brand-blue hover:text-brand-blue shadow-sm",
-    
-    ghost: "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900",
+    // Primary: Solid Brand Blue with glow
+    primary: "bg-brand-blue text-white hover:bg-blue-700 shadow-glow-blue border border-brand-blue",
+
+    // Secondary: Dark surface
+    secondary: "bg-brand-card text-white hover:bg-slate-700 shadow-sm border border-slate-700",
+
+    // Outline: For dark theme
+    outline: "bg-transparent text-slate-300 border border-slate-700 hover:border-slate-500 hover:text-white shadow-sm",
+
+    ghost: "bg-transparent text-slate-400 hover:bg-white/5 hover:text-white",
   };
 
   const sizes = {

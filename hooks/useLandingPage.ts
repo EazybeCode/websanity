@@ -131,10 +131,12 @@ export interface SecuritySection extends BaseSection {
 export interface CTASection extends BaseSection {
   _type: 'ctaSection'
   headline?: string
+  headlineHighlight?: string
   subheadline?: string
   primaryCta?: Button
   secondaryCta?: Button
-  backgroundColor?: string
+  backgroundColor?: 'white' | 'blue' | 'dark' | 'gray'
+  footnote?: string
 }
 
 interface Button {
