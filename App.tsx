@@ -5,6 +5,9 @@ import { PricingPage } from './pages/PricingPage'
 import { ProductPage } from './pages/ProductPage'
 import { FeaturePage } from './pages/FeaturePage'
 import { CategoryIndexPage } from './pages/CategoryIndexPage'
+import CoexistencePage from './pages/CoexistencePage'
+import BlogPage from './pages/BlogPage'
+import BlogListingPage from './pages/BlogListingPage'
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Route path="/integrations" element={<CategoryIndexPage />} />
         <Route path="/integrations/:slug" element={<ProductPage />} />
         <Route path="/product/:slug" element={<ProductPage />} />
+        <Route path="/coexistence" element={<CoexistencePage />} />
+        <Route path="/blog" element={<BlogListingPage />} />
+        <Route path="/blog/:slug" element={<BlogPage />} />
       </Routes>
     </BrowserRouter>
   )

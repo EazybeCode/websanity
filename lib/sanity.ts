@@ -511,3 +511,170 @@ export async function getCategoryIndexPage(slug: string, language: string = 'en'
 
   return sanityClient.fetch(query, { slug, language })
 }
+
+export async function getCoexistencePage(language: string = 'en') {
+  const query = `*[_type == "productPage" && _id == "productPage-coexistence-${language}"][0]{
+    _id,
+    title,
+    language,
+    category,
+    slug,
+    seo,
+    hero{
+      badge,
+      headline,
+      headlineHighlight,
+      description,
+      primaryCta{
+        label,
+        url
+      },
+      secondaryCta{
+        label,
+        url
+      },
+      stats[]{
+        label,
+        value
+      }
+    },
+    benefits{
+      badge,
+      headline,
+      items[]{
+        icon,
+        title,
+        description
+      }
+    },
+    features[]{
+      alignRight,
+      badge,
+      headline,
+      headlineHighlight,
+      description,
+      image,
+      points[],
+      cta{
+        label,
+        url
+      }
+    },
+    howItWorks{
+      badge,
+      headline,
+      description,
+      steps[]{
+        number,
+        title,
+        description
+      }
+    },
+    useCases{
+      badge,
+      headline,
+      items[]{
+        icon,
+        title,
+        description,
+        benefits[]
+      }
+    },
+    testimonial{
+      quote,
+      author,
+      title,
+      company
+    },
+    faq{
+      badge,
+      headline,
+      items[]{
+        question,
+        answer
+      }
+    },
+    cta{
+      headline,
+      headlineHighlight,
+      description,
+      primaryCta{
+        label,
+        url
+      },
+      secondaryCta{
+        label,
+        url
+      },
+      footnote
+    }
+  }`
+
+  return sanityClient.fetch(query)
+}
+
+export async function getBlogPost(slug: string) {
+  const query = `*[_type == "blogPost" && slug.current == $slug][0]{
+    _id,
+    title,
+    slug,
+    excerpt,
+    content,
+    category,
+    featuredImage,
+    publishedAt,
+    readTime,
+    author{
+      name,
+      bio,
+      image
+    },
+    quickAnswer,
+    tableOfContents[]{
+      label,
+      id
+    },
+    faqs[]{
+      question,
+      answer
+    },
+    seo{
+      metaTitle,
+      metaDescription
+    }
+  }`
+
+  return sanityClient.fetch(query, { slug })
+}
+
+export async function getBlogPosts(limit?: number) {
+  const query = limit
+    ? `*[_type == "blogPost"] | order(publishedAt desc) [0...${limit}]{
+        _id,
+        title,
+        slug,
+        excerpt,
+        category,
+        featuredImage,
+        publishedAt,
+        readTime,
+        author{
+          name
+        }
+      }`
+    : `*[_type == "blogPost"] | order(publishedAt desc){
+        _id,
+        title,
+        slug,
+        excerpt,
+        category,
+        featuredImage,
+        publishedAt,
+        readTime,
+        author{
+          name
+        }
+      }`
+
+  return sanityClient.fetch(query)
+}
