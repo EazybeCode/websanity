@@ -266,7 +266,7 @@ export async function getSharedSections() {
 }
 
 export async function getFeaturePage(slug: string, language: string = 'en') {
-  const query = `*[_type == "productPage" && slug.current == $slug && category == "feature" && language == $language][0]{
+  const query = `*[_type == "productPage" && slug.current == $slug && category in ["feature", "whatsapp-api"] && language == $language][0]{
     "slug": slug.current,
     title,
     category,
@@ -274,6 +274,58 @@ export async function getFeaturePage(slug: string, language: string = 'en') {
       metaTitle,
       metaDescription
     },
+    // New modular sections array
+    sections[]{
+      _type,
+      _key,
+      // productHeroSection fields
+      badge,
+      headline,
+      headlineHighlight,
+      description,
+      primaryCta{ label, url },
+      secondaryCta{ label, url },
+      stats[]{ value, label },
+      // benefitsSection fields
+      items[]{
+        icon,
+        title,
+        description,
+        benefits
+      },
+      // productFeaturesSection fields
+      features[]{
+        badge,
+        headline,
+        description,
+        points,
+        visualType,
+        alignRight,
+        cta{ label, url }
+      },
+      // howItWorksSection fields
+      steps[]{
+        number,
+        title,
+        description
+      },
+      // productTestimonialSection fields
+      quote,
+      author,
+      "title": title,
+      company,
+      "avatar": avatar.asset->url,
+      // securitySection fields
+      badges[]{
+        icon,
+        title,
+        subtitle,
+        badge,
+        featured
+      },
+      footnote
+    },
+    // Legacy fields for backward compatibility
     hero{
       badge,
       headline,

@@ -120,7 +120,12 @@ const IntroSection: React.FC<{ data: any }> = ({ data }) => {
 const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ items, category }) => {
   if (!items || items.length === 0) return null
 
-  const basePath = category === 'feature' ? '/features' : '/integrations'
+  const getBasePath = () => {
+    if (category === 'feature') return '/features'
+    if (category === 'whatsapp-api') return '/whatsapp-api'
+    return '/integrations'
+  }
+  const basePath = getBasePath()
 
   // Separate featured and non-featured items
   const featuredItems = items.filter(item => item.isFeatured)
@@ -397,7 +402,13 @@ export const CategoryIndexPage: React.FC = () => {
   const { data: sharedData } = useSharedSections()
 
   // Determine slug based on current path
-  const slug = location.pathname === '/features' ? 'features' : 'integrations'
+  const getSlugFromPath = () => {
+    if (location.pathname === '/features') return 'features'
+    if (location.pathname === '/integrations') return 'integrations'
+    if (location.pathname === '/whatsapp-api') return 'whatsapp-api'
+    return 'features'
+  }
+  const slug = getSlugFromPath()
   const { data, loading, error } = useCategoryIndex(slug)
 
   if (loading) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useLocation } from 'react-router-dom'
 import {
   ArrowRight,
   CheckCircle2,
@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { FooterDynamic } from '../components/dynamic/FooterDynamic'
+import { ProductSectionRenderer } from '../components/dynamic/ProductSectionRenderer'
 import { SecuritySection, CTASection } from '../components/shared'
 import { useFooter } from '../hooks/useFooter'
 import { useFeature } from '../hooks/useFeature'
@@ -28,7 +29,11 @@ const featureColors: Record<string, { primary: string; gradient: string }> = {
   'scheduler': { primary: '#EC4899', gradient: 'from-pink-500 to-pink-600' },
   'revenue-inbox': { primary: '#14B8A6', gradient: 'from-teal-500 to-teal-600' },
   'rep-radar': { primary: '#6366F1', gradient: 'from-indigo-500 to-indigo-600' },
-  'whatsapp-copilot': { primary: '#0EA5E9', gradient: 'from-sky-500 to-sky-600' }
+  'whatsapp-copilot': { primary: '#0EA5E9', gradient: 'from-sky-500 to-sky-600' },
+  'whatsapp-api': { primary: '#25D366', gradient: 'from-green-500 to-green-600' },
+  'coexistence': { primary: '#25D366', gradient: 'from-green-500 to-green-600' },
+  'templates': { primary: '#25D366', gradient: 'from-green-500 to-green-600' },
+  'broadcast': { primary: '#25D366', gradient: 'from-green-500 to-green-600' }
 }
 
 // ================== UI Components ==================
@@ -373,12 +378,17 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
 // ================== Main FeaturePage Component ==================
 
 export const FeaturePage: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>()
+  const { slug: urlSlug } = useParams<{ slug: string }>()
+  const location = useLocation()
+
+  // Determine slug based on URL - handle /whatsapp-api route specially
+  const slug = urlSlug || (location.pathname === '/whatsapp-api' ? 'whatsapp-api' : 'cloud-backup')
+
   const { data: footerData } = useFooter()
   const { data: sharedData } = useSharedSections()
-  const { data, loading, error } = useFeature(slug || 'cloud-backup')
+  const { data, loading, error } = useFeature(slug)
 
-  const featureColor = featureColors[slug || 'cloud-backup'] || featureColors['cloud-backup']
+  const featureColor = featureColors[slug] || featureColors['cloud-backup']
   const color = featureColor.primary
 
   if (loading) {
@@ -405,21 +415,48 @@ export const FeaturePage: React.FC = () => {
     )
   }
 
+  // Check if using new modular sections or legacy fields
+  const useSections = data.sections && data.sections.length > 0
+
   return (
     <div className="min-h-screen bg-slate-950 font-sans text-slate-400 antialiased selection:bg-blue-600 selection:text-white overflow-x-hidden">
       <Navbar />
 
-      <HeroSection data={data.hero} color={color} />
-      <BenefitsSection data={data.benefits} color={color} />
-      <FeaturesSection features={data.features} color={color} slug={slug || 'cloud-backup'} />
-      <HowItWorksSection data={data.howItWorks} color={color} />
-      <UseCasesSection data={data.useCases} color={color} />
-      {data.testimonial && <TestimonialSection data={data.testimonial} color={color} />}
-      <FAQSection data={data.faq} />
+      {useSections ? (
+        // New modular section-based rendering
+        <>
+          {data.sections!.map((section, idx) => (
+            <ProductSectionRenderer
+              key={section._key || idx}
+              section={section}
+              color={color}
+              slug={slug || 'cloud-backup'}
+            />
+          ))}
+          {/* Add shared sections if not already in the sections array */}
+          {!data.sections!.some(s => s._type === 'ctaSection') && sharedData?.cta && (
+            <CTASection data={sharedData.cta} />
+          )}
+          {!data.sections!.some(s => s._type === 'securitySection') && sharedData?.security && (
+            <SecuritySection data={sharedData.security} />
+          )}
+        </>
+      ) : (
+        // Legacy field-based rendering
+        <>
+          <HeroSection data={data.hero} color={color} />
+          <BenefitsSection data={data.benefits} color={color} />
+          <FeaturesSection features={data.features} color={color} slug={slug || 'cloud-backup'} />
+          <HowItWorksSection data={data.howItWorks} color={color} />
+          <UseCasesSection data={data.useCases} color={color} />
+          {data.testimonial && <TestimonialSection data={data.testimonial} color={color} />}
+          <FAQSection data={data.faq} />
 
-      {/* Shared sections for consistency with landing page */}
-      <CTASection data={sharedData?.cta} />
-      <SecuritySection data={sharedData?.security} />
+          {/* Shared sections for consistency with landing page */}
+          <CTASection data={sharedData?.cta} />
+          <SecuritySection data={sharedData?.security} />
+        </>
+      )}
 
       {footerData && <FooterDynamic data={footerData} />}
     </div>

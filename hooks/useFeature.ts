@@ -1,6 +1,58 @@
 import { useState, useEffect } from 'react'
 import { getFeaturePage } from '../lib/sanity'
 
+// Section types for modular page builder
+export interface ProductSection {
+  _type: string
+  _key?: string
+  // Common fields
+  badge?: string
+  headline?: string
+  headlineHighlight?: string
+  description?: string
+  primaryCta?: { label: string; url: string }
+  secondaryCta?: { label: string; url: string }
+  stats?: Array<{ value: string; label: string }>
+  // Benefits/UseCases items
+  items?: Array<{
+    icon?: string
+    title: string
+    description: string
+    benefits?: string[]
+  }>
+  // Features array
+  features?: Array<{
+    badge?: string
+    headline?: string
+    description?: string
+    points?: string[]
+    visualType?: string
+    alignRight?: boolean
+    cta?: { label: string; url: string }
+  }>
+  // HowItWorks steps
+  steps?: Array<{
+    number?: string
+    title?: string
+    description?: string
+  }>
+  // Testimonial fields
+  quote?: string
+  author?: string
+  title?: string
+  company?: string
+  avatar?: string
+  // Security fields
+  badges?: Array<{
+    icon?: string
+    title?: string
+    subtitle?: string
+    badge?: string
+    featured?: boolean
+  }>
+  footnote?: string
+}
+
 export interface FeaturePageData {
   slug: string
   title: string
@@ -9,6 +61,9 @@ export interface FeaturePageData {
     metaTitle?: string
     metaDescription?: string
   }
+  // New modular sections array
+  sections?: ProductSection[]
+  // Legacy fields (for backward compatibility)
   hero: {
     badge: string
     headline: string
