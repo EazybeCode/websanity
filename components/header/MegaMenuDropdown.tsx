@@ -26,55 +26,20 @@ function getIcon(iconName: string): React.ReactNode {
   return null
 }
 
-// Color themes aligned to brand design system (see index.html Tailwind config)
-const menuThemes = {
-  platform: {
-    iconBg: 'bg-brand-cyan/10',
-    iconColor: 'text-brand-cyan',
-    linkColor: 'text-brand-cyan',
-    headerColor: 'text-brand-cyan/50',
-  },
-  integrations: {
-    iconBg: 'bg-brand-green/10',
-    iconColor: 'text-brand-green',
-    linkColor: 'text-brand-green',
-    headerColor: 'text-brand-green/50',
-  },
-  resources: {
-    iconBg: 'bg-brand-purple/10',
-    iconColor: 'text-brand-purple',
-    linkColor: 'text-brand-purple',
-    headerColor: 'text-brand-purple/50',
-  },
-  solutions: {
-    iconBg: 'bg-brand-orange/10',
-    iconColor: 'text-brand-orange',
-    linkColor: 'text-brand-orange',
-    headerColor: 'text-brand-orange/50',
-  },
-  company: {
-    iconBg: 'bg-brand-indigo/10',
-    iconColor: 'text-brand-indigo',
-    linkColor: 'text-brand-indigo',
-    headerColor: 'text-brand-indigo/50',
-  },
-  default: {
-    iconBg: 'bg-white/5',
-    iconColor: 'text-brand-blue',
-    linkColor: 'text-brand-blue',
-    headerColor: 'text-slate-500',
-  },
+// Unified brand-cyan theme across all mega menus for design consistency
+const theme = {
+  iconBg: 'bg-brand-cyan/10',
+  iconColor: 'text-brand-cyan',
+  linkColor: 'text-brand-cyan',
+  headerColor: 'text-slate-400',
 }
 
 export const MegaMenuDropdown: React.FC<MegaMenuDropdownProps> = ({
   columns,
   isOpen,
   onClose,
-  menuType = 'default',
   featured,
 }) => {
-  const theme = menuThemes[menuType] || menuThemes.default
-
   if (!isOpen) return null
 
   return (
