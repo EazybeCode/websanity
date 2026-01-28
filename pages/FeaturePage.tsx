@@ -20,6 +20,9 @@ import RoutingAnimation from '../components/animations/RoutingAnimation'
 import RepetitiveAnimation from '../components/animations/RepetitiveAnimation'
 import PersonalizationAnimation from '../components/animations/PersonalizationAnimation'
 import TeamAnimation from '../components/animations/TeamAnimation'
+import FollowUpAnimation from '../components/animations/FollowUpAnimation'
+import ScheduleAnimation from '../components/animations/ScheduleAnimation'
+import PersistenceAnimation from '../components/animations/PersistenceAnimation'
 
 // Helper to get icon with fallback to Cloud
 const getIcon = (iconName: string | undefined) => {
@@ -186,16 +189,25 @@ const quickReplyAnimations: Record<number, React.FC> = {
   2: TeamAnimation
 }
 
+// Scheduler specific animations mapping
+const schedulerAnimations: Record<number, React.FC> = {
+  0: FollowUpAnimation,
+  1: ScheduleAnimation,
+  2: PersistenceAnimation
+}
+
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
 
   const isTeamInbox = slug === 'team-inbox'
   const isQuickReply = slug === 'quick-reply'
+  const isScheduler = slug === 'scheduler'
 
   // Get animation component based on slug
   const getAnimationComponent = (index: number): React.FC | null => {
     if (isTeamInbox) return teamInboxAnimations[index] || null
     if (isQuickReply) return quickReplyAnimations[index] || null
+    if (isScheduler) return schedulerAnimations[index] || null
     return null
   }
 
