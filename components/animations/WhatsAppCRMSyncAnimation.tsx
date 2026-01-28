@@ -4,8 +4,7 @@ import { Database, RefreshCcw, ShieldCheck, Zap } from 'lucide-react'
 
 const WhatsAppCRMSyncAnimation: React.FC = () => {
   return (
-    <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-slate-900 border border-slate-700/50 flex flex-col items-center justify-center p-6 shadow-2xl">
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+    <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-slate-50 border border-slate-200 flex flex-col items-center justify-center p-6 shadow-lg">
 
       <div className="flex items-center justify-between w-full max-w-sm z-10 gap-3">
         {/* Source: WhatsApp Window Mockup */}
@@ -43,7 +42,7 @@ const WhatsAppCRMSyncAnimation: React.FC = () => {
               />
             ))}
           </div>
-          <div className="h-[2px] w-full bg-slate-800 relative overflow-hidden">
+          <div className="h-[2px] w-full bg-slate-200 relative overflow-hidden">
             <motion.div
               animate={{ x: ['-100%', '200%'] }}
               transition={{ duration: 1.5, repeat: Infinity }}
@@ -54,17 +53,17 @@ const WhatsAppCRMSyncAnimation: React.FC = () => {
         </div>
 
         {/* Destination: CRM Window Mockup */}
-        <motion.div className="w-32 bg-slate-800/80 border border-slate-700 rounded-xl overflow-hidden shadow-2xl">
-          <div className="bg-slate-800 p-1.5 flex items-center justify-between">
+        <motion.div className="w-32 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xl">
+          <div className="bg-slate-100 p-1.5 flex items-center justify-between">
             <div className="flex gap-1">
-              <div className="w-1 h-1 rounded-full bg-slate-600" />
-              <div className="w-1 h-1 rounded-full bg-slate-600" />
+              <div className="w-1 h-1 rounded-full bg-slate-300" />
+              <div className="w-1 h-1 rounded-full bg-slate-300" />
             </div>
             <Database className="w-2.5 h-2.5 text-orange-500" />
           </div>
           <div className="p-2.5 space-y-2 h-24">
-            <div className="h-1.5 w-full bg-slate-700 rounded" />
-            <div className="h-1.5 w-2/3 bg-slate-700 rounded" />
+            <div className="h-1.5 w-full bg-slate-200 rounded" />
+            <div className="h-1.5 w-2/3 bg-slate-200 rounded" />
             <div className="pt-3 flex justify-between">
               <div className="h-3 w-10 bg-[#25D366]/10 rounded border border-[#25D366]/20" />
               <div className="h-3 w-10 bg-blue-500/10 rounded border border-blue-500/20" />
@@ -77,11 +76,11 @@ const WhatsAppCRMSyncAnimation: React.FC = () => {
         <div className="flex justify-between items-end mb-2">
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="w-2.5 h-2.5 text-[#25D366]" />
-            <span className="font-mono text-[7px] text-slate-400 uppercase tracking-wider">Encrypted Data Stream</span>
+            <span className="font-mono text-[7px] text-slate-500 uppercase tracking-wider">Encrypted Data Stream</span>
           </div>
           <span className="font-mono text-[7px] text-blue-400 font-bold uppercase tracking-widest">Active Sync</span>
         </div>
-        <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+        <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden border border-slate-300">
           <motion.div
             animate={{ width: ['0%', '100%'] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}

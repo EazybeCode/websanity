@@ -4,8 +4,8 @@ import { AlertCircle, MessageSquare, MoreVertical, Search } from 'lucide-react'
 
 const WhatsAppCRMChaosAnimation: React.FC = () => {
   return (
-    <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-[#0b141a] border border-slate-700/50 shadow-2xl flex flex-col">
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
+    <div className="relative w-full aspect-[4/3] flex items-center justify-center bg-slate-50 rounded-2xl border border-slate-200 shadow-lg p-3">
+      <div className="w-full h-full bg-[#0b141a] rounded-xl overflow-hidden shadow-xl flex flex-col relative">
 
       <div className="flex h-full">
         <div className="w-full flex flex-col">
@@ -70,6 +70,7 @@ const WhatsAppCRMChaosAnimation: React.FC = () => {
             </p>
           </motion.div>
         </div>
+      </div>
       </div>
     </div>
   )

@@ -19,8 +19,8 @@ import {
 
 const WhatsAppCRMLabelAnimation: React.FC = () => {
   return (
-    <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-[#0b141a] border border-slate-700/50 shadow-2xl flex">
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+    <div className="relative w-full aspect-[4/3] flex items-center justify-center bg-slate-50 rounded-2xl border border-slate-200 shadow-lg p-3">
+      <div className="w-full h-full bg-[#0b141a] rounded-xl overflow-hidden shadow-xl flex relative">
 
       {/* Eazybe Sidebar Extension */}
       <div className="w-10 bg-[#111b21] border-r border-slate-800 flex flex-col items-center py-3 gap-3 z-20">
@@ -138,6 +138,7 @@ const WhatsAppCRMLabelAnimation: React.FC = () => {
           </div>
           <Mic className="w-3.5 h-3.5 text-slate-400" />
         </div>
+      </div>
       </div>
     </div>
   )
