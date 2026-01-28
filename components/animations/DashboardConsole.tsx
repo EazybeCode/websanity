@@ -1,25 +1,15 @@
 import React from 'react';
-import {
-  BarChart, Bar, ResponsiveContainer, Cell,
-  AreaChart, Area, PieChart, Pie
-} from 'recharts';
 
 const barData = [
-  { name: 'A', time: 2 },
-  { name: 'B', time: 14 },
-  { name: 'C', time: 5 },
-  { name: 'D', time: 1 },
+  { name: 'A', time: 20 },
+  { name: 'B', time: 85 },
+  { name: 'C', time: 45 },
+  { name: 'D', time: 10 },
+  { name: 'E', time: 65 },
+  { name: 'F', time: 30 },
 ];
 
-const areaData = [
-  { h: '1', v: 40 }, { h: '2', v: 95 }, { h: '3', v: 60 }, { h: '4', v: 120 }, { h: '5', v: 80 }
-];
-
-const pieData = [
-  { name: 'D', value: 400, fill: '#2563EB' },
-  { name: 'S', value: 300, fill: '#06B6D4' },
-  { name: 'I', value: 100, fill: '#F97316' },
-];
+const areaPoints = [40, 75, 55, 90, 60, 85, 70];
 
 const DashboardConsole: React.FC = () => {
   return (
@@ -32,59 +22,88 @@ const DashboardConsole: React.FC = () => {
       </div>
       <div className="absolute bottom-4 left-6 font-mono text-[7px] text-slate-300 uppercase tracking-[0.3em]">Engineering_Report_V3.0.4</div>
 
-      <div className="grid grid-cols-2 gap-4 relative z-10">
-        {/* 1. Response Time */}
+      <div className="grid grid-cols-2 gap-4 relative z-10 h-full">
+        {/* 1. Latency Index - Bar Chart */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col">
           <h5 className="font-mono text-[8px] text-slate-900 font-bold uppercase tracking-widest mb-3 flex items-center justify-between">
             <span>Latency_Index</span>
-            <span className="text-brand-blue text-[7px]">LIVE</span>
+            <span className="text-brand-blue text-[7px] flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
+              LIVE
+            </span>
           </h5>
-          <div className="flex-1 h-16">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={barData}>
-                <Bar dataKey="time" radius={[2, 2, 0, 0]}>
-                  {barData.map((e, i) => <Cell key={i} fill={e.time > 10 ? '#F97316' : '#2563EB'} />)}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
+          <div className="flex-1 flex items-end gap-1.5 min-h-[60px]">
+            {barData.map((item, i) => (
+              <div
+                key={i}
+                className={`flex-1 rounded-t transition-all duration-500 ${item.time > 70 ? 'bg-brand-orange' : 'bg-brand-blue'}`}
+                style={{ height: `${item.time}%` }}
+              />
+            ))}
           </div>
         </div>
 
-        {/* 2. Message Volume */}
+        {/* 2. Volume Velocity - Area Chart */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col">
-          <h5 className="font-mono text-[8px] text-slate-900 font-bold uppercase tracking-widest mb-3">Vol_Velocity</h5>
-          <div className="flex-1 h-16">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={areaData}>
-                <Area type="monotone" dataKey="v" stroke="#06B6D4" strokeWidth={2} fill="rgba(6, 182, 212, 0.1)" />
-              </AreaChart>
-            </ResponsiveContainer>
+          <h5 className="font-mono text-[8px] text-slate-900 font-bold uppercase tracking-widest mb-3 flex items-center justify-between">
+            <span>Vol_Velocity</span>
+            <span className="text-brand-cyan text-[7px]">+12.4%</span>
+          </h5>
+          <div className="flex-1 relative min-h-[60px]">
+            {/* Area fill */}
+            <svg className="w-full h-full" viewBox="0 0 100 50" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#06B6D4" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <path
+                d={`M 0 50 ${areaPoints.map((p, i) => `L ${(i / (areaPoints.length - 1)) * 100} ${50 - p * 0.45}`).join(' ')} L 100 50 Z`}
+                fill="url(#areaGradient)"
+              />
+              <path
+                d={`M 0 ${50 - areaPoints[0] * 0.45} ${areaPoints.map((p, i) => `L ${(i / (areaPoints.length - 1)) * 100} ${50 - p * 0.45}`).join(' ')}`}
+                fill="none"
+                stroke="#06B6D4"
+                strokeWidth="2"
+              />
+            </svg>
           </div>
         </div>
 
-        {/* 3. Engagement Quality */}
+        {/* 3. Engagement Mix - Donut Chart */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col">
           <h5 className="font-mono text-[8px] text-slate-900 font-bold uppercase tracking-widest mb-3">Eng_Mix</h5>
-          <div className="flex-1 h-16">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie data={pieData} innerRadius={15} outerRadius={28} paddingAngle={4} dataKey="value" />
-              </PieChart>
-            </ResponsiveContainer>
+          <div className="flex-1 flex items-center justify-center min-h-[60px]">
+            <div className="relative w-16 h-16">
+              <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="14" fill="none" stroke="#e2e8f0" strokeWidth="4" />
+                <circle cx="18" cy="18" r="14" fill="none" stroke="#2563EB" strokeWidth="4" strokeDasharray="50 100" strokeDashoffset="0" />
+                <circle cx="18" cy="18" r="14" fill="none" stroke="#06B6D4" strokeWidth="4" strokeDasharray="30 100" strokeDashoffset="-50" />
+                <circle cx="18" cy="18" r="14" fill="none" stroke="#F97316" strokeWidth="4" strokeDasharray="20 100" strokeDashoffset="-80" />
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-[10px] font-bold text-slate-700">80%</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* 4. Active Hours Timeline */}
+        {/* 4. Active Nodes Timeline */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col">
-          <h5 className="font-mono text-[8px] text-slate-900 font-bold uppercase tracking-widest mb-3">Nodes_Active</h5>
-          <div className="grid grid-cols-8 gap-0.5 h-16 items-end">
-             {[...Array(24)].map((_, i) => (
-               <div
-                 key={i}
-                 className={`rounded-[1px] transition-colors duration-1000 ${i > 8 && i < 18 ? 'bg-brand-blue' : 'bg-slate-200'}`}
-                 style={{ height: `${30 + Math.random() * 70}%` }}
-               ></div>
-             ))}
+          <h5 className="font-mono text-[8px] text-slate-900 font-bold uppercase tracking-widest mb-3 flex items-center justify-between">
+            <span>Nodes_Active</span>
+            <span className="text-brand-green text-[7px]">2,847</span>
+          </h5>
+          <div className="flex-1 flex items-end gap-0.5 min-h-[60px]">
+            {[35, 45, 30, 60, 80, 95, 85, 90, 70, 55, 40, 25].map((h, i) => (
+              <div
+                key={i}
+                className={`flex-1 rounded-t transition-all duration-300 ${i >= 4 && i <= 8 ? 'bg-brand-green' : 'bg-slate-200'}`}
+                style={{ height: `${h}%` }}
+              />
+            ))}
           </div>
         </div>
       </div>
