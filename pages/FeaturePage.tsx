@@ -5,7 +5,8 @@ import {
   CheckCircle2,
   Cloud,
   ChevronDown,
-  Check
+  Check,
+  AlertTriangle
 } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
@@ -245,9 +246,17 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
                     <ul className="space-y-4">
                       {feature.points.map((point: string, pIdx: number) => (
                         <li key={pIdx} className="flex items-start gap-4">
-                          <div className="w-6 h-6 rounded-full bg-brand-cyan/20 flex items-center justify-center border border-brand-cyan/30 flex-shrink-0 mt-0.5">
-                            <Check size={14} className="text-brand-cyan" strokeWidth={3} />
-                          </div>
+                          {idx === 0 ? (
+                            // First section (problem) - show warning triangle
+                            <div className="w-6 h-6 rounded-full bg-brand-orange/20 flex items-center justify-center border border-brand-orange/30 flex-shrink-0 mt-0.5">
+                              <AlertTriangle size={14} className="text-brand-orange" strokeWidth={2.5} />
+                            </div>
+                          ) : (
+                            // Other sections (solutions) - show checkmark
+                            <div className="w-6 h-6 rounded-full bg-brand-cyan/20 flex items-center justify-center border border-brand-cyan/30 flex-shrink-0 mt-0.5">
+                              <Check size={14} className="text-brand-cyan" strokeWidth={3} />
+                            </div>
+                          )}
                           <span className="text-slate-200 font-medium">{point}</span>
                         </li>
                       ))}
