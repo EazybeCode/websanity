@@ -20,14 +20,14 @@ export const EazybeExtensionPanel: React.FC<EazybeExtensionPanelProps> = ({
   replies
 }) => {
   return (
-    <div className="absolute bottom-0 left-0 right-0 bg-[#1a1a2e] border-t border-brand-blue/30 rounded-t-xl overflow-hidden animate-slide-up z-50">
+    <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-200 rounded-t-xl overflow-hidden animate-slide-up z-50 shadow-lg">
       {/* Panel Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-brand-blue/10 border-b border-brand-blue/20">
+      <div className="flex items-center justify-between px-4 py-2 bg-slate-50 border-b border-slate-200">
         <div className="flex items-center gap-2">
           <Zap className="w-4 h-4 text-brand-blue" />
           <span className="text-[10px] font-mono font-bold text-brand-blue uppercase tracking-widest">{titleOverride}</span>
         </div>
-        <div className="text-[8px] font-mono text-slate-500 uppercase">Eazybe</div>
+        <div className="text-[8px] font-mono text-slate-400 uppercase font-bold">Eazybe</div>
       </div>
 
       {/* Replies List */}
@@ -37,13 +37,13 @@ export const EazybeExtensionPanel: React.FC<EazybeExtensionPanelProps> = ({
             key={reply.id}
             className={`p-2.5 rounded-lg border cursor-pointer transition-all duration-200 ${
               activeId === reply.id
-                ? 'bg-brand-blue/20 border-brand-blue/50 scale-[1.02]'
-                : 'bg-slate-800/50 border-slate-700/50 hover:border-slate-600'
+                ? 'bg-blue-50 border-brand-blue/30 scale-[1.02]'
+                : 'bg-slate-50 border-slate-200 hover:border-slate-300'
             }`}
           >
             <div className="flex items-center justify-between mb-1">
               <span className={`text-[9px] font-mono font-bold uppercase tracking-wider ${
-                activeId === reply.id ? 'text-brand-blue' : 'text-slate-400'
+                activeId === reply.id ? 'text-brand-blue' : 'text-slate-600'
               }`}>
                 {reply.title}
               </span>
@@ -58,7 +58,7 @@ export const EazybeExtensionPanel: React.FC<EazybeExtensionPanelProps> = ({
               )}
             </div>
             <p className={`text-[9px] truncate ${
-              activeId === reply.id ? 'text-slate-300' : 'text-slate-500'
+              activeId === reply.id ? 'text-slate-700' : 'text-slate-500'
             }`}>
               {reply.content}
             </p>
