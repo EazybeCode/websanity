@@ -1,71 +1,51 @@
 import React from 'react';
-import { AlertTriangle, Lock, FileText, Hash } from 'lucide-react';
+import { AlertTriangle, Lock, FileText } from 'lucide-react';
 
 const ActivityGrid: React.FC = () => {
   return (
-    <div className="relative w-full aspect-[4/3] flex items-center justify-center group">
-      {/* Background Atmosphere */}
-      <div className="absolute inset-0 bg-brand-orange/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+    <div className="relative w-full aspect-[4/3] p-6 group">
+      {/* Background Shadow Glow */}
+      <div className="absolute inset-20 bg-white/10 blur-[100px] rounded-full group-hover:bg-brand-orange/10 transition-colors duration-1000"></div>
 
-      <div className="relative w-full max-w-md h-[320px]">
-        {[
-          { rot: '-6deg', delay: '0s', id: '204' },
-          { rot: '4deg', delay: '1.2s', id: '205' },
-          { rot: '-2deg', delay: '2.4s', id: '206' },
-          { rot: '1deg', delay: '0.6s', id: '207' },
-        ].map((item, i) => (
+      <div className="relative h-full grid grid-cols-2 gap-4 items-center">
+        {[...Array(4)].map((_, i) => (
           <div
             key={i}
-            className="absolute inset-0 bg-white shadow-lg border border-slate-200 rounded-xl p-6 overflow-hidden transition-transform duration-1000"
-            style={{
-              animationDelay: item.delay,
-              zIndex: 10 - i,
-              transform: `translate(${i * 8}px, ${i * 8}px) rotate(${item.rot})`
-            }}
+            className="bg-white shadow-lg border border-slate-200 rounded-lg p-4 flex flex-col overflow-hidden transition-transform hover:scale-[1.02]"
+            style={{ animationDelay: `${i * 0.8}s` }}
           >
-            <div className="flex items-center justify-between mb-6 border-b border-slate-100 pb-3">
+            <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
               <div className="flex items-center gap-2">
-                <div className="p-1.5 bg-slate-50 rounded-lg">
-                  <FileText className="w-3 h-3 text-slate-400" />
+                <div className="w-5 h-5 bg-slate-100 rounded flex items-center justify-center">
+                  <FileText className="w-2.5 h-2.5 text-slate-400" />
                 </div>
-                <div className="font-mono text-[8px] text-slate-900 font-black uppercase tracking-widest">INCIDENT_LOG_{item.id}</div>
+                <div className="font-mono text-[8px] text-slate-900 font-bold uppercase tracking-tighter">LOG_FILE_{204 + i}</div>
               </div>
-              <div className="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></div>
             </div>
 
-            <div className="space-y-3">
-              <div className="h-2.5 w-full bg-slate-900 rounded-sm"></div>
-              <div className="h-2.5 w-[85%] bg-slate-100 rounded-sm"></div>
-              <div className="h-2.5 w-full bg-slate-900 rounded-sm"></div>
-              <div className="h-2.5 w-[60%] bg-slate-100 rounded-sm"></div>
+            <div className="space-y-2">
+              <div className="h-1.5 w-full bg-slate-900 rounded"></div>
+              <div className="h-1.5 w-3/4 bg-slate-100 rounded"></div>
+              <div className="h-1.5 w-full bg-slate-900 rounded"></div>
+              <div className="h-1.5 w-1/2 bg-slate-100 rounded"></div>
             </div>
 
-            <div className="mt-8 flex items-center justify-between opacity-30">
-              <div className="flex items-center gap-2 font-mono text-[7px] text-slate-500 uppercase font-bold">
-                <Hash className="w-2 h-2" /> Unverified_Metric
-              </div>
-              <Lock className="w-3 h-3 text-slate-400" />
+            <div className="mt-auto pt-3 flex justify-between items-center opacity-40">
+              <span className="font-mono text-[7px] text-slate-400">UNVERIFIED_SOURCE</span>
+              <Lock className="w-2.5 h-2.5 text-slate-400" />
             </div>
           </div>
         ))}
+      </div>
 
-        {/* Floating Warning Tag */}
-        <div className="absolute -right-4 -bottom-4 w-56 bg-brand-orange p-4 rounded-xl shadow-lg z-50 transform rotate-3 hover:rotate-0 transition-transform duration-500">
-           <div className="flex items-center gap-2 mb-2">
-             <AlertTriangle className="text-white w-5 h-5 animate-pulse" />
-             <span className="text-white font-mono text-[8px] font-black uppercase tracking-widest">Critical_Blindspot</span>
-           </div>
-           <p className="text-white/90 text-[10px] font-mono font-bold leading-tight">
-             84.2% of customer interactions are happening outside your CRM's visibility.
-           </p>
-           <div className="mt-3 pt-3 border-t border-white/20 flex justify-between items-center opacity-60">
-              <span className="text-[7px] text-white font-mono uppercase">Status: Action Required</span>
-              <div className="flex gap-1">
-                <div className="w-1 h-1 bg-white rounded-full"></div>
-                <div className="w-1 h-1 bg-white rounded-full"></div>
-              </div>
-           </div>
+      {/* Warning Overlay Card */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 bg-brand-orange p-4 rounded-xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-500 z-10">
+        <div className="flex items-center gap-2 mb-2">
+          <AlertTriangle className="text-white w-5 h-5 animate-pulse" />
+          <h4 className="text-white font-bold text-[10px] uppercase tracking-widest font-mono">Critical_Gap</h4>
         </div>
+        <p className="text-white/90 text-[10px] font-mono leading-tight">84% of Rep interactions are currently occurring in unmonitored threads.</p>
       </div>
     </div>
   );

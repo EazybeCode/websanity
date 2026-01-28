@@ -26,6 +26,7 @@ import ScheduleAnimation from '../components/animations/ScheduleAnimation'
 import PersistenceAnimation from '../components/animations/PersistenceAnimation'
 import ActivityGrid from '../components/animations/ActivityGrid'
 import DashboardConsole from '../components/animations/DashboardConsole'
+import SkillGapAnalysis from '../components/animations/SkillGapAnalysis'
 
 // Helper to get icon with fallback to Cloud
 const getIcon = (iconName: string | undefined) => {
@@ -202,7 +203,8 @@ const schedulerAnimations: Record<number, React.FC> = {
 // Rep Radar specific animations mapping
 const repRadarAnimations: Record<number, React.FC> = {
   0: ActivityGrid,
-  1: DashboardConsole
+  1: DashboardConsole,
+  2: SkillGapAnalysis
 }
 
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
