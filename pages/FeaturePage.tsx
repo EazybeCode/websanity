@@ -27,6 +27,7 @@ import PersistenceAnimation from '../components/animations/PersistenceAnimation'
 import ActivityGrid from '../components/animations/ActivityGrid'
 import DashboardConsole from '../components/animations/DashboardConsole'
 import SkillGapAnalysis from '../components/animations/SkillGapAnalysis'
+import { CopilotProblemAnimation, CopilotSolutionAnimation, CopilotSummaryAnimation } from '../components/animations/WhatsAppCopilotMockup'
 
 // Helper to get icon with fallback to Cloud
 const getIcon = (iconName: string | undefined) => {
@@ -207,6 +208,13 @@ const repRadarAnimations: Record<number, React.FC> = {
   2: SkillGapAnalysis
 }
 
+// WhatsApp Copilot specific animations mapping
+const whatsappCopilotAnimations: Record<number, React.FC> = {
+  0: CopilotProblemAnimation,
+  1: CopilotSolutionAnimation,
+  2: CopilotSummaryAnimation
+}
+
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
 
@@ -214,6 +222,7 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
   const isQuickReply = slug === 'quick-reply'
   const isScheduler = slug === 'scheduler'
   const isRepRadar = slug === 'rep-radar'
+  const isWhatsappCopilot = slug === 'whatsapp-copilot'
 
   // Get animation component based on slug
   const getAnimationComponent = (index: number): React.FC | null => {
@@ -221,6 +230,7 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
     if (isQuickReply) return quickReplyAnimations[index] || null
     if (isScheduler) return schedulerAnimations[index] || null
     if (isRepRadar) return repRadarAnimations[index] || null
+    if (isWhatsappCopilot) return whatsappCopilotAnimations[index] || null
     return null
   }
 
