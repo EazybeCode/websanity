@@ -34,8 +34,13 @@ const BlogCard: React.FC<{ post: any; minReadSuffix?: string }> = ({ post, minRe
           {post.excerpt}
         </p>
         <div className="flex items-center gap-4 pt-4 border-t border-slate-800 font-mono text-[10px] uppercase text-slate-500 font-bold">
+          {post.author?.name && (
+            <span className="text-slate-400">
+              {post.author.name}
+            </span>
+          )}
           <span className="flex items-center gap-1">
-            <Clock size={12} /> {post.readTime} {minReadSuffix}
+            <Clock size={12} /> {post.readTime || 5} {minReadSuffix}
           </span>
           <span className="flex items-center gap-1">
             <Calendar size={12} /> {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -82,8 +87,13 @@ const FeaturedBlogCard: React.FC<{ post: any; badgeText?: string; minReadSuffix?
             {post.excerpt}
           </p>
           <div className="flex items-center gap-4 font-mono text-[10px] uppercase text-slate-500 font-bold">
+            {post.author?.name && (
+              <span className="text-slate-400">
+                By {post.author.name}
+              </span>
+            )}
             <span className="flex items-center gap-1">
-              <Clock size={12} /> {post.readTime} {minReadSuffix}
+              <Clock size={12} /> {post.readTime || 5} {minReadSuffix}
             </span>
             <span className="flex items-center gap-1">
               <Calendar size={12} /> {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -98,18 +108,22 @@ const FeaturedBlogCard: React.FC<{ post: any; badgeText?: string; minReadSuffix?
 const BlogListingPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const { data: allPosts, loading: postsLoading, error: postsError } = useBlogPosts();
-  const { data: blogIndex, loading: indexLoading } = useBlogIndex('en');
+  // TODO: Get language from URL path or context (e.g., /br/blog, /es/blog)
+  const language = 'en';
+  const { data: allPosts, loading: postsLoading, error: postsError } = useBlogPosts(undefined, language);
+  const { data: blogIndex, loading: indexLoading } = useBlogIndex(language);
 
-  // Get categories from Sanity or use defaults
-  const categories: BlogCategory[] = blogIndex?.categories || [
+  // Get categories from Sanity and always include "All" first
+  const categories: BlogCategory[] = [
     { name: 'All', value: 'All' },
-    { name: 'Sales', value: 'Sales' },
-    { name: 'Product', value: 'Product' },
-    { name: 'Automation', value: 'Automation' },
-    { name: 'Best Practices', value: 'Best Practices' },
-    { name: 'Case Studies', value: 'Case Studies' },
-    { name: 'Security', value: 'Security' },
+    ...(blogIndex?.categories || [
+      { name: 'Sales', value: 'Sales' },
+      { name: 'Product', value: 'Product' },
+      { name: 'Automation', value: 'Automation' },
+      { name: 'Best Practices', value: 'Best Practices' },
+      { name: 'Case Studies', value: 'Case Studies' },
+      { name: 'Security', value: 'Security' },
+    ])
   ];
 
   const filteredPosts = React.useMemo(() => {

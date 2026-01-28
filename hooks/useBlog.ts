@@ -7,6 +7,17 @@ export interface BlogAuthor {
   image?: string
 }
 
+export interface PortableTextBlock {
+  _type: string
+  _key: string
+  style?: string
+  listItem?: string
+  level?: number
+  markDefs?: any[]
+  children?: any[]
+  url?: string // For image blocks
+}
+
 export interface BlogPost {
   _id: string
   title: string
@@ -14,8 +25,9 @@ export interface BlogPost {
     current: string
   }
   excerpt: string
-  content: string
+  content: PortableTextBlock[]
   category: string
+  language?: string
   featuredImage?: string
   publishedAt: string
   readTime: number
@@ -35,7 +47,7 @@ export interface BlogPost {
   }
 }
 
-export function useBlogPost(slug: string) {
+export function useBlogPost(slug: string, language: string = 'en') {
   const [data, setData] = useState<BlogPost | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
@@ -46,7 +58,7 @@ export function useBlogPost(slug: string) {
       return
     }
 
-    getBlogPost(slug)
+    getBlogPost(slug, language)
       .then((result) => {
         setData(result)
         setLoading(false)
@@ -55,18 +67,18 @@ export function useBlogPost(slug: string) {
         setError(err)
         setLoading(false)
       })
-  }, [slug])
+  }, [slug, language])
 
   return { data, loading, error }
 }
 
-export function useBlogPosts(limit?: number) {
+export function useBlogPosts(limit?: number, language: string = 'en') {
   const [data, setData] = useState<BlogPost[] | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    getBlogPosts(limit)
+    getBlogPosts(limit, language)
       .then((result) => {
         setData(result)
         setLoading(false)
@@ -75,7 +87,7 @@ export function useBlogPosts(limit?: number) {
         setError(err)
         setLoading(false)
       })
-  }, [limit])
+  }, [limit, language])
 
   return { data, loading, error }
 }

@@ -15,11 +15,74 @@ import {
   BookOpen,
   Rocket
 } from 'lucide-react';
+import { PortableText, PortableTextComponents } from '@portabletext/react';
 import { Navbar } from '../components/Navbar';
 import { ChunkyFooter } from '../components/footer/ChunkyFooter';
 import { useBlogPost, useBlogPosts, useBlogIndex, BlogIndexSidebarCta, BlogIndexNewsletterCta, BlogIndexDetailLabels, BlogIndexRelatedPostsSection } from '../hooks/useBlog';
 import { Button } from '../components/ui/Button';
 import { SectionBadge } from '../components/ui/SectionBadge';
+
+// Portable Text components for rendering blog content
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    h1: ({ children }) => <h1 className="text-4xl font-extrabold text-white mt-16 mb-6 first:mt-0">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-3xl font-bold text-white mt-12 mb-4 pt-8 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-2xl font-semibold text-slate-100 mt-10 mb-4">{children}</h3>,
+    h4: ({ children }) => <h4 className="text-xl font-semibold text-slate-200 mt-8 mb-3">{children}</h4>,
+    normal: ({ children }) => <p className="text-lg text-slate-300 leading-relaxed mb-6">{children}</p>,
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-brand-cyan pl-6 my-8 italic text-slate-400 text-xl">
+        {children}
+      </blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => <ul className="my-6 space-y-3">{children}</ul>,
+    number: ({ children }) => <ol className="my-6 space-y-3 list-decimal list-inside">{children}</ol>,
+  },
+  listItem: {
+    bullet: ({ children }) => (
+      <li className="text-lg text-slate-300 leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
+        {children}
+      </li>
+    ),
+    number: ({ children }) => <li className="text-lg text-slate-300 leading-relaxed">{children}</li>,
+  },
+  marks: {
+    strong: ({ children }) => <strong className="font-bold text-white">{children}</strong>,
+    em: ({ children }) => <em className="italic">{children}</em>,
+    code: ({ children }) => (
+      <code className="bg-slate-800 text-brand-cyan px-2 py-1 rounded text-sm font-mono">{children}</code>
+    ),
+    link: ({ children, value }) => (
+      <a
+        href={value?.href}
+        className="text-brand-cyan hover:text-brand-blue underline underline-offset-4 transition-colors"
+        target={value?.href?.startsWith('http') ? '_blank' : undefined}
+        rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+      >
+        {children}
+      </a>
+    ),
+  },
+  types: {
+    image: ({ value }) => {
+      if (!value?.url) return null;
+      return (
+        <figure className="my-10">
+          <img
+            src={value.url}
+            alt={value.alt || ''}
+            className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
+          />
+          {value.caption && (
+            <figcaption className="text-center text-slate-500 text-sm mt-4">{value.caption}</figcaption>
+          )}
+        </figure>
+      );
+    },
+  },
+};
 
 // Reading progress bar
 const ReadingProgress: React.FC = () => {
@@ -186,9 +249,11 @@ const RelatedPostCard: React.FC<{
 const BlogPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const { data: post, loading, error } = useBlogPost(slug || '');
-  const { data: relatedPosts } = useBlogPosts(4);
-  const { data: blogIndex } = useBlogIndex('en');
+  // TODO: Get language from URL path or context (e.g., /br/blog, /es/blog)
+  const language = 'en';
+  const { data: post, loading, error } = useBlogPost(slug || '', language);
+  const { data: relatedPosts } = useBlogPosts(4, language);
+  const { data: blogIndex } = useBlogIndex(language);
 
   // Get content from Sanity with fallbacks
   const sidebarCta = blogIndex?.sidebarCta;
@@ -339,8 +404,13 @@ const BlogPage: React.FC = () => {
               )}
 
               {/* Main Article Content */}
-              <article className="blog-content">
-                <style dangerouslySetInnerHTML={{ __html: `
+              <article className="blog-content prose prose-invert max-w-none">
+                {/* Render Portable Text content if it's an array, otherwise render as HTML for legacy content */}
+                {Array.isArray(post.content) ? (
+                  <PortableText value={post.content} components={portableTextComponents} />
+                ) : (
+                  <>
+                    <style dangerouslySetInnerHTML={{ __html: `
                 .blog-content {
                   font-size: 1.25rem;
                   line-height: 1.9;
@@ -575,7 +645,9 @@ const BlogPage: React.FC = () => {
                   color: #06b6d4;
                 }
                 ` }} />
-                <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                    <div dangerouslySetInnerHTML={{ __html: post.content as unknown as string }} />
+                  </>
+                )}
               </article>
 
               {/* FAQs Section */}

@@ -622,21 +622,28 @@ export async function getCoexistencePage(language: string = 'en') {
   return sanityClient.fetch(query)
 }
 
-export async function getBlogPost(slug: string) {
-  const query = `*[_type == "blogPost" && slug.current == $slug][0]{
+export async function getBlogPost(slug: string, language: string = 'en') {
+  const query = `*[_type == "blogPost" && slug.current == $slug && language == $language][0]{
     _id,
     title,
     slug,
     excerpt,
-    content,
+    content[]{
+      ...,
+      _type == "image" => {
+        ...,
+        "url": asset->url
+      }
+    },
     category,
-    featuredImage,
+    language,
+    "featuredImage": featuredImage.asset->url,
     publishedAt,
     readTime,
-    author{
+    author->{
       name,
       bio,
-      image
+      "image": image.asset->url
     },
     quickAnswer,
     tableOfContents[]{
@@ -653,39 +660,41 @@ export async function getBlogPost(slug: string) {
     }
   }`
 
-  return sanityClient.fetch(query, { slug })
+  return sanityClient.fetch(query, { slug, language })
 }
 
-export async function getBlogPosts(limit?: number) {
+export async function getBlogPosts(limit?: number, language: string = 'en') {
   const query = limit
-    ? `*[_type == "blogPost"] | order(publishedAt desc) [0...${limit}]{
+    ? `*[_type == "blogPost" && language == $language] | order(publishedAt desc) [0...${limit}]{
         _id,
         title,
         slug,
         excerpt,
         category,
-        featuredImage,
+        language,
+        "featuredImage": featuredImage.asset->url,
         publishedAt,
         readTime,
-        author{
+        author->{
           name
         }
       }`
-    : `*[_type == "blogPost"] | order(publishedAt desc){
+    : `*[_type == "blogPost" && language == $language] | order(publishedAt desc){
         _id,
         title,
         slug,
         excerpt,
         category,
-        featuredImage,
+        language,
+        "featuredImage": featuredImage.asset->url,
         publishedAt,
         readTime,
-        author{
+        author->{
           name
         }
       }`
 
-  return sanityClient.fetch(query)
+  return sanityClient.fetch(query, { language })
 }
 
 export async function getNavigation(slug: string = 'main-nav') {
