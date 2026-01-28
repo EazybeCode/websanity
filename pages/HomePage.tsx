@@ -32,9 +32,11 @@ export const HomePage: React.FC = () => {
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       <Navbar />
       <main>
-        {data?.sections?.map((section) => (
-          <SectionRenderer key={section._key} section={section} />
-        ))}
+        {data?.sections
+          ?.filter((section) => section._type !== 'securitySection' && section._type !== 'ctaSection')
+          .map((section) => (
+            <SectionRenderer key={section._key} section={section} />
+          ))}
       </main>
       <ChunkyFooter />
     </div>

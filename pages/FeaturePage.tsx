@@ -340,7 +340,7 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
                   ) : (
                     <div className="aspect-[4/3] bg-brand-card rounded-2xl border border-slate-700 shadow-card p-2 flex items-center justify-center relative overflow-hidden group hover:shadow-card-hover hover:border-slate-600 transition-all duration-500">
                       <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
-                      {feature.image ? (
+                      {feature.image && typeof feature.image === 'object' && feature.image.asset ? (
                         <img
                           src={urlFor(feature.image).width(800).height(600).url()}
                           alt={feature.headline || feature.badge || 'Feature illustration'}

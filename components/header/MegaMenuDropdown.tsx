@@ -26,31 +26,43 @@ function getIcon(iconName: string): React.ReactNode {
   return null
 }
 
-// Color themes for different menu types
+// Color themes aligned to brand design system (see index.html Tailwind config)
 const menuThemes = {
   platform: {
-    iconBg: 'bg-blue-500/10',
-    iconColor: 'text-blue-400',
+    iconBg: 'bg-brand-cyan/10',
+    iconColor: 'text-brand-cyan',
+    linkColor: 'text-brand-cyan',
+    headerColor: 'text-brand-cyan/50',
   },
   integrations: {
-    iconBg: 'bg-emerald-500/10',
-    iconColor: 'text-emerald-400',
+    iconBg: 'bg-brand-green/10',
+    iconColor: 'text-brand-green',
+    linkColor: 'text-brand-green',
+    headerColor: 'text-brand-green/50',
   },
   resources: {
-    iconBg: 'bg-purple-500/10',
-    iconColor: 'text-purple-400',
+    iconBg: 'bg-brand-purple/10',
+    iconColor: 'text-brand-purple',
+    linkColor: 'text-brand-purple',
+    headerColor: 'text-brand-purple/50',
   },
   solutions: {
-    iconBg: 'bg-amber-500/10',
-    iconColor: 'text-amber-400',
+    iconBg: 'bg-brand-orange/10',
+    iconColor: 'text-brand-orange',
+    linkColor: 'text-brand-orange',
+    headerColor: 'text-brand-orange/50',
   },
   company: {
-    iconBg: 'bg-rose-500/10',
-    iconColor: 'text-rose-400',
+    iconBg: 'bg-brand-indigo/10',
+    iconColor: 'text-brand-indigo',
+    linkColor: 'text-brand-indigo',
+    headerColor: 'text-brand-indigo/50',
   },
   default: {
     iconBg: 'bg-white/5',
-    iconColor: 'text-blue-400',
+    iconColor: 'text-brand-blue',
+    linkColor: 'text-brand-blue',
+    headerColor: 'text-slate-500',
   },
 }
 
@@ -82,7 +94,7 @@ export const MegaMenuDropdown: React.FC<MegaMenuDropdownProps> = ({
                 {columns.map((column) => (
                   <div key={column._key} className="w-[200px]">
                     {column.title && (
-                      <h3 className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 mb-3 px-2">
+                      <h3 className={`text-[10px] font-semibold uppercase tracking-wider ${theme.headerColor} mb-3 px-2`}>
                         {column.title}
                       </h3>
                     )}
@@ -101,7 +113,7 @@ export const MegaMenuDropdown: React.FC<MegaMenuDropdownProps> = ({
                               <LinkComponent
                                 {...(linkProps as any)}
                                 onClick={onClose}
-                                className="inline-flex items-center gap-1 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                                className={`inline-flex items-center gap-1 text-xs font-medium ${theme.linkColor} hover:text-white transition-colors`}
                               >
                                 <span>{link.label}</span>
                                 <ArrowRight size={12} />
@@ -147,9 +159,9 @@ export const MegaMenuDropdown: React.FC<MegaMenuDropdownProps> = ({
                 {/* Featured Card */}
                 {featured && (
                   <div className="w-[180px] pl-4 border-l border-white/10">
-                    <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg p-3 border border-white/5">
+                    <div className={`bg-gradient-to-br ${theme.iconBg} rounded-lg p-3 border border-white/5`}>
                       {featured.badge && (
-                        <span className="inline-block px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-blue-400 bg-blue-500/10 rounded mb-2">
+                        <span className={`inline-block px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider ${theme.iconColor} ${theme.iconBg} rounded mb-2`}>
                           {featured.badge}
                         </span>
                       )}
@@ -162,7 +174,7 @@ export const MegaMenuDropdown: React.FC<MegaMenuDropdownProps> = ({
                       <Link
                         to={featured.href}
                         onClick={onClose}
-                        className="inline-flex items-center gap-1 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                        className={`inline-flex items-center gap-1 text-xs font-medium ${theme.linkColor} hover:text-white transition-colors`}
                       >
                         Learn more
                         <ArrowRight size={11} />
