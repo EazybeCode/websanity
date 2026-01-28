@@ -28,6 +28,9 @@ import ActivityGrid from '../components/animations/ActivityGrid'
 import DashboardConsole from '../components/animations/DashboardConsole'
 import SkillGapAnalysis from '../components/animations/SkillGapAnalysis'
 import { CopilotProblemAnimation, CopilotSolutionAnimation, CopilotSummaryAnimation } from '../components/animations/WhatsAppCopilotMockup'
+import CloudBackupProblemAnimation from '../components/animations/CloudBackupProblemAnimation'
+import CloudBackupSyncAnimation from '../components/animations/CloudBackupSyncAnimation'
+import CloudBackupSearchAnimation from '../components/animations/CloudBackupSearchAnimation'
 
 // Helper to get icon with fallback to Cloud
 const getIcon = (iconName: string | undefined) => {
@@ -215,6 +218,13 @@ const whatsappCopilotAnimations: Record<number, React.FC> = {
   2: CopilotSummaryAnimation
 }
 
+// Cloud Backup specific animations mapping
+const cloudBackupAnimations: Record<number, React.FC> = {
+  0: CloudBackupProblemAnimation,
+  1: CloudBackupSyncAnimation,
+  2: CloudBackupSearchAnimation
+}
+
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
 
@@ -223,6 +233,7 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
   const isScheduler = slug === 'scheduler'
   const isRepRadar = slug === 'rep-radar'
   const isWhatsappCopilot = slug === 'whatsapp-copilot'
+  const isCloudBackup = slug === 'cloud-backup'
 
   // Get animation component based on slug
   const getAnimationComponent = (index: number): React.FC | null => {
@@ -231,6 +242,7 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
     if (isScheduler) return schedulerAnimations[index] || null
     if (isRepRadar) return repRadarAnimations[index] || null
     if (isWhatsappCopilot) return whatsappCopilotAnimations[index] || null
+    if (isCloudBackup) return cloudBackupAnimations[index] || null
     return null
   }
 

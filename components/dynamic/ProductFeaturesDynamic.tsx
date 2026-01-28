@@ -15,6 +15,9 @@ import ActivityGrid from '../animations/ActivityGrid'
 import DashboardConsole from '../animations/DashboardConsole'
 import SkillGapAnalysis from '../animations/SkillGapAnalysis'
 import { CopilotProblemAnimation, CopilotSolutionAnimation, CopilotSummaryAnimation } from '../animations/WhatsAppCopilotMockup'
+import CloudBackupProblemAnimation from '../animations/CloudBackupProblemAnimation'
+import CloudBackupSyncAnimation from '../animations/CloudBackupSyncAnimation'
+import CloudBackupSearchAnimation from '../animations/CloudBackupSearchAnimation'
 
 // Animation mappings by slug
 const animationsBySlug: Record<string, Record<number, React.FC>> = {
@@ -42,6 +45,11 @@ const animationsBySlug: Record<string, Record<number, React.FC>> = {
     0: CopilotProblemAnimation,
     1: CopilotSolutionAnimation,
     2: CopilotSummaryAnimation
+  },
+  'cloud-backup': {
+    0: CloudBackupProblemAnimation,
+    1: CloudBackupSyncAnimation,
+    2: CloudBackupSearchAnimation
   }
 }
 
