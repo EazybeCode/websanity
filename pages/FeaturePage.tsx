@@ -31,6 +31,9 @@ import { CopilotProblemAnimation, CopilotSolutionAnimation, CopilotSummaryAnimat
 import CloudBackupProblemAnimation from '../components/animations/CloudBackupProblemAnimation'
 import CloudBackupSyncAnimation from '../components/animations/CloudBackupSyncAnimation'
 import CloudBackupSearchAnimation from '../components/animations/CloudBackupSearchAnimation'
+import WhatsAppCRMChaosAnimation from '../components/animations/WhatsAppCRMChaosAnimation'
+import WhatsAppCRMLabelAnimation from '../components/animations/WhatsAppCRMLabelAnimation'
+import WhatsAppCRMSyncAnimation from '../components/animations/WhatsAppCRMSyncAnimation'
 
 // Helper to get icon with fallback to Cloud
 const getIcon = (iconName: string | undefined) => {
@@ -225,6 +228,13 @@ const cloudBackupAnimations: Record<number, React.FC> = {
   2: CloudBackupSearchAnimation
 }
 
+// WhatsApp CRM specific animations mapping
+const whatsappCrmAnimations: Record<number, React.FC> = {
+  0: WhatsAppCRMChaosAnimation,
+  1: WhatsAppCRMLabelAnimation,
+  2: WhatsAppCRMSyncAnimation
+}
+
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
 
@@ -234,6 +244,7 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
   const isRepRadar = slug === 'rep-radar'
   const isWhatsappCopilot = slug === 'whatsapp-copilot'
   const isCloudBackup = slug === 'cloud-backup'
+  const isWhatsappCrm = slug === 'whatsapp-crm'
 
   // Get animation component based on slug
   const getAnimationComponent = (index: number): React.FC | null => {
@@ -243,6 +254,7 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
     if (isRepRadar) return repRadarAnimations[index] || null
     if (isWhatsappCopilot) return whatsappCopilotAnimations[index] || null
     if (isCloudBackup) return cloudBackupAnimations[index] || null
+    if (isWhatsappCrm) return whatsappCrmAnimations[index] || null
     return null
   }
 

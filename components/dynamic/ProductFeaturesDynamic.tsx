@@ -18,6 +18,9 @@ import { CopilotProblemAnimation, CopilotSolutionAnimation, CopilotSummaryAnimat
 import CloudBackupProblemAnimation from '../animations/CloudBackupProblemAnimation'
 import CloudBackupSyncAnimation from '../animations/CloudBackupSyncAnimation'
 import CloudBackupSearchAnimation from '../animations/CloudBackupSearchAnimation'
+import WhatsAppCRMChaosAnimation from '../animations/WhatsAppCRMChaosAnimation'
+import WhatsAppCRMLabelAnimation from '../animations/WhatsAppCRMLabelAnimation'
+import WhatsAppCRMSyncAnimation from '../animations/WhatsAppCRMSyncAnimation'
 
 // Animation mappings by slug
 const animationsBySlug: Record<string, Record<number, React.FC>> = {
@@ -50,6 +53,11 @@ const animationsBySlug: Record<string, Record<number, React.FC>> = {
     0: CloudBackupProblemAnimation,
     1: CloudBackupSyncAnimation,
     2: CloudBackupSearchAnimation
+  },
+  'whatsapp-crm': {
+    0: WhatsAppCRMChaosAnimation,
+    1: WhatsAppCRMLabelAnimation,
+    2: WhatsAppCRMSyncAnimation
   }
 }
 
