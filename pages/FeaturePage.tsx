@@ -215,6 +215,43 @@ const whatsappCopilotAnimations: Record<number, React.FC> = {
   2: CopilotSummaryAnimation
 }
 
+// Fallback features for whatsapp-copilot page
+const whatsappCopilotFallbackFeatures = [
+  {
+    badge: 'The Problem',
+    headline: 'Reps waste time crafting messages manually',
+    description: 'Without deep product knowledge, employees send hesitant, unstructured messages. This manual process creates friction and slows down the entire sales cycle.',
+    points: [
+      'Time wasted manually crafting responses',
+      'Inconsistent message quality across teams',
+      'Context lost in sprawling chat threads',
+      'Sales best practices remain unshared'
+    ]
+  },
+  {
+    badge: 'The Solution',
+    headline: 'AI-powered responses, human approved',
+    description: 'Eazybe reads chat history and suggests relevant, high-quality answers. With one click, your team sends polished, accurate responses every time.',
+    points: [
+      'AI reads and understands previous context',
+      'Generates relevant, product-specific answers',
+      'Human review: Edit or approve in one click',
+      'Consistent quality for every customer'
+    ]
+  },
+  {
+    badge: 'Context Engine',
+    headline: 'Catch up on any conversation instantly',
+    description: 'Inheriting a customer from another rep? Returning to a chat after a week? Copilot summarizes key points in seconds.',
+    points: [
+      'What was discussed: Core conversation topics',
+      'What was promised: Pricing, deadlines, features',
+      'What is pending: Required follow-ups',
+      'Quick handoffs: Full context in seconds'
+    ]
+  }
+]
+
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
 
@@ -541,6 +578,17 @@ export const FeaturePage: React.FC = () => {
 
   const currentSlug = slug || 'cloud-backup'
 
+  // For whatsapp-copilot, check if we have features with animations
+  const isWhatsappCopilot = currentSlug === 'whatsapp-copilot'
+  const hasProductFeatures = useSections
+    ? data.sections!.some(s => s._type === 'productFeaturesSection' && s.features && s.features.length >= 3)
+    : data.features && data.features.length >= 3
+
+  // Use fallback features for whatsapp-copilot if not enough features exist
+  const whatsappCopilotFeatures = isWhatsappCopilot && !hasProductFeatures
+    ? whatsappCopilotFallbackFeatures
+    : null
+
   return (
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       <Navbar />
@@ -556,13 +604,17 @@ export const FeaturePage: React.FC = () => {
               slug={currentSlug}
             />
           ))}
+          {/* Add fallback features for whatsapp-copilot if needed */}
+          {whatsappCopilotFeatures && (
+            <FeaturesSection features={whatsappCopilotFeatures} slug={currentSlug} />
+          )}
         </>
       ) : (
         // Legacy field-based rendering
         <>
           <HeroSection data={data.hero} />
           <BenefitsSection data={data.benefits} />
-          <FeaturesSection features={data.features} slug={currentSlug} />
+          <FeaturesSection features={whatsappCopilotFeatures || data.features} slug={currentSlug} />
           <HowItWorksSection data={data.howItWorks} />
           <UseCasesSection data={data.useCases} />
           {data.testimonial && <TestimonialSection data={data.testimonial} />}
