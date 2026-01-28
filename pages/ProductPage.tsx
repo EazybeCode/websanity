@@ -1,33 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import {
-  ArrowRight,
   Check,
   X,
   CheckCircle2,
   MessageSquare,
   RefreshCw,
-  History,
-  Layout,
   Users,
   TrendingUp,
   CheckSquare,
   Search,
   MoreVertical,
-  Paperclip,
-  Mic,
-  Database,
   Activity,
-  Clock,
-  BarChart3,
-  UserCheck,
-  BrainCircuit,
   Workflow,
   Zap,
-  Bot,
   PieChart,
   Users2,
-  Cloud
+  Cloud,
+  Plus,
+  Share2
 } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { FooterDynamic } from '../components/dynamic/FooterDynamic'
@@ -71,15 +62,88 @@ const crmConfig: Record<string, {
   }
 }
 
-// Property fields for the Properties section
-const PROPERTY_FIELDS = [
-  { label: 'Last Message Sent', type: 'DateTime', value: 'Today, 2:34 PM' },
-  { label: 'Avg Response Time', type: 'Number', value: '4m 12s' },
-  { label: 'AI Chat Summary', type: 'String', value: 'Customer interested in Enterprise plan...' },
-  { label: 'Total Message Count', type: 'Integer', value: '142' },
-  { label: 'Last Message by', type: 'Enum', value: 'Agent' },
-  { label: 'Sentiment', type: 'AI Analysis', value: 'Positive' },
-]
+// CRM-specific property fields for the Properties section
+const CRM_PROPERTY_FIELDS = {
+  hubspot: [
+    { label: 'AVG_RESPONSE_TIME', type: 'ANALYTICS', value: '1m 12s', desc: 'Calculated based on rolling 30-day window.' },
+    { label: 'TOTAL_MESSAGES', type: 'METER', value: '1,242', desc: 'Aggregate sum of all logged WhatsApp segments.' },
+    { label: 'FOLLOWUP_PRIORITY', type: 'STATUS', value: 'CRITICAL', desc: 'Heuristic-based intent scoring from chat history.', color: 'text-orange-500' },
+    { label: 'LEAD_ENGAGEMENT_SCORE', type: 'ENGINE', value: '94.8', desc: 'Real-time sync of engagement signals.' },
+    { label: 'SYNC_PROTOCOL_STATUS', type: 'PROTOCOL', value: 'ESTABLISHED', desc: 'End-to-end encrypted channel with HubSpot.', color: 'text-emerald-500' },
+    { label: 'LATEST_CHAT_INTENT', type: 'SIGNAL', value: 'UPSELL_READY', desc: 'NLP-extracted conversation state.', color: 'text-cyan-500' },
+  ],
+  salesforce: [
+    { label: 'OPPORTUNITY_STAGE', type: 'PIPELINE', value: 'Proposal', desc: 'Auto-updated from conversation signals.', color: 'text-blue-500' },
+    { label: 'DEAL_VALUE', type: 'CURRENCY', value: '$45,000', desc: 'Extracted from quote discussions.' },
+    { label: 'CLOSE_PROBABILITY', type: 'FORECAST', value: '85%', desc: 'AI-predicted based on engagement patterns.', color: 'text-emerald-500' },
+    { label: 'LAST_ACTIVITY', type: 'TIMESTAMP', value: '2 hrs ago', desc: 'Most recent WhatsApp interaction.' },
+    { label: 'ACCOUNT_HEALTH', type: 'HEALTH', value: 'STRONG', desc: 'Composite score from all touchpoints.', color: 'text-cyan-500' },
+    { label: 'NEXT_BEST_ACTION', type: 'AI_SUGGEST', value: 'SEND_CONTRACT', desc: 'Recommended based on conversation flow.', color: 'text-orange-500' },
+  ],
+  zoho: [
+    { label: 'LEAD_SCORE', type: 'SCORING', value: '87/100', desc: 'Weighted score from WhatsApp engagement.', color: 'text-cyan-500' },
+    { label: 'RESPONSE_RATE', type: 'PERCENTAGE', value: '94%', desc: 'Customer reply rate on WhatsApp.' },
+    { label: 'CONVERSION_STAGE', type: 'FUNNEL', value: 'HOT_LEAD', desc: 'Automated lead classification.', color: 'text-orange-500' },
+    { label: 'MSG_SENTIMENT', type: 'NLP', value: 'POSITIVE', desc: 'Real-time sentiment from last 10 messages.', color: 'text-emerald-500' },
+    { label: 'DEAL_POTENTIAL', type: 'REVENUE', value: '₹3.2L', desc: 'Estimated deal value from context.' },
+    { label: 'FOLLOW_UP_DUE', type: 'ALERT', value: 'TODAY', desc: 'Smart reminder based on conversation gaps.', color: 'text-red-500' },
+  ]
+}
+
+// Default property fields (used for type reference)
+const PROPERTY_FIELDS = CRM_PROPERTY_FIELDS.hubspot
+
+// Animated Property Card with Sparkline
+const PropertyCard: React.FC<{ field: typeof PROPERTY_FIELDS[0], index: number }> = ({ field, index }) => {
+  const [dataPoints, setDataPoints] = useState(Array.from({ length: 15 }, () => Math.random() * 40 + 20))
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDataPoints(prev => [...prev.slice(1), Math.random() * 40 + 20])
+    }, 1500 + index * 200)
+    return () => clearInterval(timer)
+  }, [index])
+
+  return (
+    <div className="bg-[#0f172a] border border-slate-800 p-8 rounded-xl font-mono hover:border-blue-600/50 transition-all group relative overflow-hidden">
+      {/* Background Animated Pulse */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none">
+         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-transparent to-cyan-500 animate-pulse"></div>
+      </div>
+
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2 text-[10px] text-slate-600 font-bold tracking-[0.2em]">
+          <div className="w-1.5 h-1.5 rounded-full bg-slate-700 group-hover:bg-blue-600 animate-pulse"></div>
+          {field.type}
+        </div>
+        <TrendingUp size={12} className="text-slate-700 group-hover:text-cyan-500 transition-colors" />
+      </div>
+
+      <h4 className="text-slate-400 text-xs font-bold mb-1 tracking-wider uppercase group-hover:text-slate-300 transition-colors">{field.label}</h4>
+      <div className={`text-3xl font-bold tracking-tight mb-4 transition-all duration-300 group-hover:translate-x-1 ${field.color || 'text-white'}`}>
+        {field.value}
+      </div>
+
+      {/* Sparkline Visualizer */}
+      <div className="h-8 flex items-end gap-1 mb-4 opacity-30 group-hover:opacity-100 transition-all">
+         {dataPoints.map((p, i) => (
+           <div
+             key={i}
+             className="flex-1 rounded-t-sm transition-all duration-700"
+             style={{
+               height: `${p}%`,
+               backgroundColor: i === dataPoints.length - 1 ? '#22d3ee' : '#2563eb'
+             }}
+           ></div>
+         ))}
+      </div>
+
+      <p className="text-[10px] text-slate-500 leading-relaxed border-t border-slate-800 pt-4 group-hover:text-slate-400 transition-colors">
+        {field.desc}
+      </p>
+    </div>
+  )
+}
 
 // ================== UI Components ==================
 
@@ -221,71 +285,49 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string }>
             </div>
           </div>
 
-          {/* Dashboard Mock */}
+          {/* Simple Chat Mock */}
           <div className="relative hidden lg:block">
-             <div className="relative rounded-2xl bg-slate-800 border border-slate-700 shadow-2xl overflow-hidden p-1">
-                {/* Mock Browser Header */}
-                <div className="bg-slate-900 px-4 py-3 border-b border-slate-700 flex items-center gap-2">
+             <div className="bg-slate-900/80 backdrop-blur-xl border border-white/5 rounded-3xl p-6 shadow-2xl relative z-10">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                      <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
                    </div>
-                   <div className="mx-auto bg-slate-950/50 px-3 py-1 rounded text-[10px] font-mono text-slate-500 border border-slate-700/50 flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: crmColor }}></div>
-                      {crm.name.toLowerCase()}.com/contacts/jason-bourne
-                   </div>
+                   <div className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">{crm.name.toLowerCase()}.com/contacts/sarah-chen</div>
                 </div>
 
-                {/* Content Area */}
-                <div className="p-6 grid gap-6 bg-slate-950/40">
-                   {/* Activity Feed Mock */}
-                   <div className="flex gap-4">
-                      <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold shrink-0">
-                         JB
-                      </div>
-                      <div className="flex-1 space-y-2">
-                         <div className="bg-slate-900 border border-slate-700 p-4 rounded-tr-xl rounded-br-xl rounded-bl-xl text-sm text-slate-300">
-                            <p>Just reviewed the proposal. Can we discuss the enterprise tier?</p>
+                {/* Chat Messages */}
+                <div className="space-y-4">
+                   {/* Incoming Message */}
+                   <div className="flex items-start gap-4">
+                      <img src="https://i.pravatar.cc/100?u=sarah" alt="Sarah" className="w-10 h-10 rounded-full border-2" style={{ borderColor: crmColor }} />
+                      <div className="flex-1">
+                         <div className="bg-slate-800 rounded-2xl rounded-tl-none p-4 text-sm text-slate-200">
+                            Hi! Following up on the enterprise quote.
                          </div>
-                         <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
-                            <MessageSquare size={12} />
-                            <span>WhatsApp • Today 2:34 PM</span>
-                            <span className="text-emerald-500 flex items-center gap-1">
-                               <RefreshCw size={10} className="animate-spin" style={{animationDuration: '3s'}}/> Synced to {crm.name}
-                            </span>
+                         <div className="mt-2 flex items-center gap-2 text-[10px] font-mono text-slate-500">
+                            <MessageSquare size={10} className="text-green-500" /> WhatsApp • 10:02 AM • <span style={{ color: crmColor }}>Synced to {crm.name}</span>
                          </div>
                       </div>
                    </div>
 
-                   <div className="flex gap-4 flex-row-reverse">
-                      <div className="w-10 h-10 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-slate-400 font-bold shrink-0">
-                         Me
-                      </div>
-                      <div className="flex-1 space-y-2">
-                         <div className="p-4 rounded-tl-xl rounded-bl-xl rounded-br-xl text-sm text-white" style={{ backgroundColor: `${crmColor}15`, borderColor: `${crmColor}30`, borderWidth: 1 }}>
-                            <p>Absolutely, Jason. I'm available at 4 PM EST. Does that work?</p>
+                   {/* Outgoing Message */}
+                   <div className="flex items-start gap-4 flex-row-reverse">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shrink-0 text-xs" style={{ backgroundColor: crmColor }}>ME</div>
+                      <div className="flex-1 text-right">
+                         <div className="rounded-2xl rounded-tr-none p-4 text-sm text-white inline-block text-left" style={{ backgroundColor: crmColor }}>
+                            Just sent it over to your email, Sarah.
                          </div>
-                         <div className="flex justify-end items-center gap-2 text-xs font-mono text-slate-500">
-                             <span>Sent via {crm.name} • Today 2:36 PM</span>
-                             <History size={12} />
-                         </div>
+                         <div className="mt-2 text-[10px] font-mono text-slate-500">Sent via {crm.name} • 10:03 AM</div>
                       </div>
-                   </div>
-
-                   {/* Log Notification */}
-                   <div className="mt-4 p-3 rounded-lg flex items-center gap-3" style={{ backgroundColor: `${crmColor}08`, borderColor: `${crmColor}30`, borderWidth: 1 }}>
-                      <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: crmColor, boxShadow: `0 0 10px ${crmColor}` }}></div>
-                      <span className="text-xs font-mono" style={{ color: crmColor }}>
-                         ACTIVITY LOGGED TO DEAL: "ENTERPRISE LICENSE Q3"
-                      </span>
                    </div>
                 </div>
              </div>
 
-             {/* Decor elements */}
-             <div className="absolute -top-10 -right-10 w-24 h-24 rounded-full blur-2xl" style={{ backgroundColor: `${crmColor}30` }}></div>
-             <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-blue-600/20 rounded-full blur-2xl"></div>
+             {/* Blur effect behind */}
+             <div className="absolute inset-0 blur-[80px] rounded-full -z-0" style={{ backgroundColor: `${crmColor}20` }}></div>
           </div>
 
         </div>
@@ -399,41 +441,74 @@ const FeatureComparisonSection: React.FC = () => {
 // ================== Mini CRM Section ==================
 
 const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string }> = ({ crm, crmColor }) => {
-  // Chat list data
-  const chatList = [
-    { name: "Jason Bourne", time: "10:33 AM", msg: "Can we schedule a call...", active: true },
-    { name: "Sarah Connor", time: "Yesterday", msg: "Term sheet looks good.", active: false },
-    { name: "Tony Stark", time: "Tuesday", msg: "Payment processed.", active: false },
-    { name: "Bruce Wayne", time: "Monday", msg: "Let's review the contract.", active: false },
-  ]
+  const crmSlug = crm.name.toLowerCase()
 
-  // CRM-specific field labels
-  const crmFields = {
-    hubspot: [
-      { label: "First Name", value: "Jason" },
-      { label: "Last Name", value: "Bourne" },
-      { label: "Company", value: "Treadstone Inc." },
-      { label: "Email", value: "jason@treadstone.com" },
-      { label: "Website", value: "treadstone.com" },
-    ],
-    salesforce: [
-      { label: "First Name", value: "Jason" },
-      { label: "Last Name", value: "Bourne" },
-      { label: "Account", value: "Treadstone Inc." },
-      { label: "Email", value: "jason@treadstone.com" },
-      { label: "Lead Source", value: "Website" },
-    ],
-    zoho: [
-      { label: "First Name", value: "Jason" },
-      { label: "Last Name", value: "Bourne" },
-      { label: "Company", value: "Treadstone Inc." },
-      { label: "Email", value: "jason@treadstone.com" },
-      { label: "Lead Status", value: "Contacted" },
-    ]
+  // CRM-specific chat data with unique contacts and conversations
+  const crmChatData = {
+    hubspot: {
+      activeContact: { name: "Sarah Chen", avatar: "https://i.pravatar.cc/100?u=sarah" },
+      chatList: [
+        { name: "Sarah Chen", time: "10:33 AM", msg: "Following up on the quote...", active: true, avatar: "https://i.pravatar.cc/100?u=sarah" },
+        { name: "James Wilson", time: "Yesterday", msg: "Term sheet looks good.", active: false, avatar: "https://i.pravatar.cc/100?u=james" },
+        { name: "Emma Davis", time: "Tuesday", msg: "Payment processed.", active: false, avatar: "https://i.pravatar.cc/100?u=emma" },
+        { name: "Michael Brown", time: "Monday", msg: "Let's review the contract.", active: false, avatar: "https://i.pravatar.cc/100?u=michael" },
+      ],
+      messages: [
+        { from: "contact", text: "Hi! Following up on the enterprise quote.", time: "10:02 AM" },
+        { from: "me", text: "Just sent it over to your email, Sarah.", time: "10:03 AM" },
+      ],
+      fields: [
+        { label: "First Name", value: "Sarah" },
+        { label: "Last Name", value: "Chen" },
+        { label: "Company", value: "Enterprise Solutions Inc." },
+        { label: "Email", value: "sarah@enterprise.com" },
+        { label: "Website", value: "enterprise.com" },
+      ]
+    },
+    salesforce: {
+      activeContact: { name: "Marcus Johnson", avatar: "https://i.pravatar.cc/100?u=marcus" },
+      chatList: [
+        { name: "Marcus Johnson", time: "2:15 PM", msg: "Ready to close the deal...", active: true, avatar: "https://i.pravatar.cc/100?u=marcus" },
+        { name: "Lisa Wang", time: "Yesterday", msg: "Demo went great!", active: false, avatar: "https://i.pravatar.cc/100?u=lisa" },
+        { name: "David Kim", time: "Tuesday", msg: "Contract signed.", active: false, avatar: "https://i.pravatar.cc/100?u=david" },
+        { name: "Rachel Green", time: "Monday", msg: "Budget approved.", active: false, avatar: "https://i.pravatar.cc/100?u=rachel" },
+      ],
+      messages: [
+        { from: "contact", text: "We're ready to move forward with the annual plan.", time: "2:12 PM" },
+        { from: "me", text: "Great news, Marcus! I'll prepare the contract.", time: "2:15 PM" },
+      ],
+      fields: [
+        { label: "First Name", value: "Marcus" },
+        { label: "Last Name", value: "Johnson" },
+        { label: "Account", value: "CloudTech Systems" },
+        { label: "Email", value: "marcus@cloudtech.io" },
+        { label: "Lead Source", value: "LinkedIn" },
+      ]
+    },
+    zoho: {
+      activeContact: { name: "Priya Sharma", avatar: "https://i.pravatar.cc/100?u=priya" },
+      chatList: [
+        { name: "Priya Sharma", time: "11:45 AM", msg: "Interested in premium tier...", active: true, avatar: "https://i.pravatar.cc/100?u=priya" },
+        { name: "Raj Patel", time: "Yesterday", msg: "Thanks for the demo!", active: false, avatar: "https://i.pravatar.cc/100?u=raj" },
+        { name: "Anita Desai", time: "Tuesday", msg: "Need more info.", active: false, avatar: "https://i.pravatar.cc/100?u=anita" },
+        { name: "Vikram Singh", time: "Monday", msg: "Will discuss internally.", active: false, avatar: "https://i.pravatar.cc/100?u=vikram" },
+      ],
+      messages: [
+        { from: "contact", text: "Can you explain the premium features?", time: "11:40 AM" },
+        { from: "me", text: "Of course, Priya! Let me send you the feature comparison.", time: "11:45 AM" },
+      ],
+      fields: [
+        { label: "First Name", value: "Priya" },
+        { label: "Last Name", value: "Sharma" },
+        { label: "Company", value: "Global Innovations Ltd." },
+        { label: "Email", value: "priya@globalinnovations.com" },
+        { label: "Lead Status", value: "Qualified" },
+      ]
+    }
   }
 
-  const crmSlug = crm.name.toLowerCase() as keyof typeof crmFields
-  const fields = crmFields[crmSlug] || crmFields.hubspot
+  const currentData = crmChatData[crmSlug as keyof typeof crmChatData] || crmChatData.hubspot
+  const { activeContact, messages, fields } = currentData
 
   return (
     <section className="py-24 bg-slate-900 border-t border-slate-700 relative overflow-hidden">
@@ -465,190 +540,119 @@ const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string
           </div>
         </div>
 
-        {/* Visual Representation - Full Width WhatsApp + CRM Mockup */}
-        <div className="relative mx-auto max-w-[1100px]">
+        {/* Visual Representation - WhatsApp + CRM Sidebar (Light Theme) */}
+        <div className="relative mx-auto max-w-5xl">
           {/* Glow Effect */}
           <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-3/4 h-32 blur-[100px] rounded-full pointer-events-none" style={{ backgroundColor: `${crmColor}30` }}></div>
 
-          {/* Main Window Frame */}
-          <div className="bg-[#111b21] rounded-xl border border-slate-700 shadow-2xl flex h-[650px] overflow-hidden font-sans antialiased relative z-10 text-left">
+          {/* Main Window Frame - Light Theme */}
+          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl flex overflow-hidden font-sans antialiased relative z-10 text-left" style={{ height: '600px' }}>
 
-            {/* 1. Left Panel: WhatsApp Chat List */}
-            <div className="w-[280px] flex flex-col border-r border-[#2f3b43] bg-[#111b21] shrink-0 hidden md:flex">
-              {/* Header */}
-              <div className="h-[60px] bg-[#202c33] flex items-center justify-between px-4 shrink-0">
-                <div className="w-10 h-10 rounded-full bg-slate-500 overflow-hidden">
-                  <img src="https://ui-avatars.com/api/?name=Me&background=64748b&color=fff" alt="Me" />
-                </div>
-                <div className="flex gap-6 text-[#aebac1]">
-                  <MoreVertical size={20} />
-                </div>
-              </div>
-              {/* Search */}
-              <div className="p-2 shrink-0 border-b border-[#202c33]">
-                <div className="bg-[#202c33] rounded-lg h-9 flex items-center px-3 gap-3">
-                  <Search size={14} className="text-[#aebac1]" />
-                  <span className="text-[#aebac1] text-xs">Search or start new chat</span>
-                </div>
-              </div>
-              {/* Chat List Items */}
-              <div className="flex-1 overflow-y-auto">
-                {chatList.map((chat, i) => (
-                  <div key={i} className={`h-[72px] flex items-center px-3 cursor-pointer group hover:bg-[#202c33] ${chat.active ? 'bg-[#2a3942]' : ''}`}>
-                    <div className="w-12 h-12 rounded-full bg-slate-600 shrink-0 mr-3 overflow-hidden">
-                      <img src={`https://ui-avatars.com/api/?name=${chat.name.replace(' ', '+')}&background=random`} alt={chat.name} />
-                    </div>
-                    <div className="flex-1 border-b border-[#2f3b43] h-full flex flex-col justify-center group-hover:border-transparent">
-                      <div className="flex justify-between items-baseline mb-1">
-                        <span className="text-[#e9edef] font-normal text-[15px]">{chat.name}</span>
-                        <span className={`text-xs ${chat.active ? 'text-[#00a884]' : 'text-[#8696a0]'}`}>{chat.time}</span>
-                      </div>
-                      <span className="text-[#8696a0] text-sm truncate">{chat.msg}</span>
-                    </div>
+            {/* Left: WhatsApp Chat (Light Theme) */}
+            <div className="flex-1 flex flex-col bg-[#e5ddd5] min-w-0">
+              {/* WhatsApp Header */}
+              <div className="h-14 bg-[#f0f2f5] flex items-center px-4 justify-between shrink-0 border-b border-slate-200">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-[#25D366]/10 flex items-center justify-center">
+                    <MessageSquare size={18} className="text-[#25D366]" fill="#25D366" />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 2. Middle Panel: Chat Window */}
-            <div className="flex-1 flex flex-col bg-[#0b141a] relative min-w-0 border-r border-[#2f3b43]">
-              {/* Chat Header */}
-              <div className="h-[60px] bg-[#202c33] flex items-center px-4 justify-between shrink-0">
-                <div className="flex items-center gap-3 cursor-pointer">
-                  <div className="w-10 h-10 rounded-full bg-indigo-500 overflow-hidden">
-                    <img src="https://ui-avatars.com/api/?name=Jason+Bourne&background=6366f1&color=fff" alt="JB" />
-                  </div>
-                  <div>
-                    <div className="text-[#e9edef] font-medium text-base">Jason Bourne</div>
-                    <div className="text-[#8696a0] text-xs">click here for contact info</div>
-                  </div>
+                  <span className="font-semibold text-slate-800 text-sm">WhatsApp chats</span>
                 </div>
-                <div className="flex gap-5 text-[#aebac1] items-center">
-                  <Search size={20} />
-                  <MoreVertical size={20} />
+                <div className="flex items-center gap-4 text-slate-400">
+                  <Search size={18} />
+                  <MoreVertical size={18} />
                 </div>
               </div>
 
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-[0.06] bg-[url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')] pointer-events-none"></div>
+              {/* Chat Messages Area */}
+              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                {/* Incoming Message 1 */}
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <img src={activeContact.avatar} className="w-5 h-5 rounded-full" alt={activeContact.name} />
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{activeContact.name}</span>
+                  </div>
+                  <div className="max-w-[85%] bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-slate-800">
+                    {messages[0]?.text || "Hi! Following up on the enterprise quote."}
+                    <div className="text-[9px] text-slate-400 mt-1 flex items-center justify-end gap-1">10:02:15 <Check size={10} className="text-blue-400" /></div>
+                  </div>
+                </div>
 
-              {/* Messages */}
-              <div className="flex-1 p-6 overflow-y-auto space-y-3 relative z-10">
-                <div className="flex justify-center mb-4">
-                  <span className="bg-[#182229] text-[#8696a0] text-xs py-1.5 px-3 rounded-lg uppercase shadow-sm font-medium">Today</span>
+                {/* Outgoing Message */}
+                <div className="space-y-1 flex flex-col items-end">
+                  <div className="max-w-[85%] bg-[#d9fdd3] p-3 rounded-lg rounded-tr-none shadow-sm text-sm text-slate-800">
+                    {messages[1]?.text || "Just sent it over to your email."}
+                    <div className="text-[9px] text-slate-400 mt-1 flex items-center justify-end gap-1">10:03:42 <Check size={10} className="text-blue-400" /></div>
+                  </div>
                 </div>
 
-                <div className="flex justify-start">
-                  <div className="bg-[#202c33] text-[#e9edef] p-2 px-3 rounded-lg rounded-tl-none max-w-[80%] text-[14px] shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] relative leading-snug">
-                    <p className="mr-12">Hi, just checking in on the proposal.</p>
-                    <span className="text-[10px] text-[#8696a0] absolute bottom-1 right-2">10:30 AM</span>
+                {/* Incoming Message 2 */}
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <img src={activeContact.avatar} className="w-5 h-5 rounded-full" alt={activeContact.name} />
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{activeContact.name}</span>
+                  </div>
+                  <div className="max-w-[85%] bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-slate-800">
+                    Received! Let's schedule the kickoff.
+                    <div className="text-[9px] text-slate-400 mt-1 flex items-center justify-end gap-1">10:05:10 <Check size={10} className="text-blue-400" /></div>
                   </div>
                 </div>
-                <div className="flex justify-end">
-                  <div className="bg-[#005c4b] text-[#e9edef] p-2 px-3 rounded-lg rounded-tr-none max-w-[80%] text-[14px] shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] relative leading-snug">
-                    <p className="mr-14">Hey Jason! Yes, I've reviewed it.</p>
-                    <span className="text-[10px] text-[#8696a0] absolute bottom-1 right-2 flex items-center gap-1">
-                      10:32 AM <span className="text-[#53bdeb]">✓✓</span>
-                    </span>
-                  </div>
-                </div>
-                <div className="flex justify-end">
-                  <div className="bg-[#005c4b] text-[#e9edef] p-2 px-3 rounded-lg rounded-tr-none max-w-[80%] text-[14px] shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] relative leading-snug">
-                    <p className="mr-14">Looks solid, but I have a question about the Enterprise seats.</p>
-                    <span className="text-[10px] text-[#8696a0] absolute bottom-1 right-2 flex items-center gap-1">
-                      10:32 AM <span className="text-[#53bdeb]">✓✓</span>
-                    </span>
-                  </div>
-                </div>
-                <div className="flex justify-start">
-                  <div className="bg-[#202c33] text-[#e9edef] p-2 px-3 rounded-lg rounded-tl-none max-w-[80%] text-[14px] shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] relative leading-snug">
-                    <p className="mr-12">Can we schedule a call to discuss the enterprise tier?</p>
-                    <span className="text-[10px] text-[#8696a0] absolute bottom-1 right-2">10:33 AM</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Input Area */}
-              <div className="h-[62px] bg-[#202c33] flex items-center px-4 gap-3 shrink-0 z-20">
-                <div className="text-[#8696a0] cursor-pointer"><Paperclip size={24} /></div>
-                <div className="flex-1 bg-[#2a3942] rounded-lg h-10 flex items-center px-4 text-[#d1d7db] text-[15px]">
-                  Type a message
-                </div>
-                <div className="text-[#8696a0] cursor-pointer"><Mic size={24} /></div>
               </div>
             </div>
 
-            {/* 3. Right Panel: CRM Integration (Light Theme) */}
-            <div className="w-[300px] bg-white flex flex-col shrink-0 border-l border-slate-200 hidden lg:flex">
+            {/* Right: CRM Sidebar (Light Theme) */}
+            <div className="w-[320px] bg-white border-l border-slate-200 flex flex-col shrink-0">
               {/* CRM Header */}
-              <div className="h-[60px] flex items-center justify-center px-4 border-b border-gray-100 bg-white relative">
-                <div className="flex items-center gap-2">
-                  <span className="text-slate-800 font-bold text-xl tracking-tight">{crm.name}</span>
-                  <div className="flex items-center">
-                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: crmColor }}></span>
-                    <span className="w-2 h-2 rounded-full -ml-0.5 opacity-70" style={{ backgroundColor: crmColor }}></span>
-                    <span className="w-2 h-2 rounded-full -ml-0.5 opacity-40" style={{ backgroundColor: crmColor }}></span>
-                  </div>
+              <div className="h-14 flex items-center px-4 justify-between border-b border-slate-100">
+                {crmSlug === 'hubspot' && (
+                  <img src="https://static.hsappstatic.net/Hubspot_Logos/static-1.74/logos/hubspot-sprocket.svg" className="h-6" alt="HubSpot" />
+                )}
+                {crmSlug === 'salesforce' && (
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg" className="h-5" alt="Salesforce" />
+                )}
+                {crmSlug === 'zoho' && (
+                  <img src="https://www.zohowebstatic.com/sites/zweb/images/zoho_general_pages/zoho-logo-web.svg" className="h-5" alt="Zoho" />
+                )}
+                <div className="flex items-center gap-3 text-slate-400">
+                  <RefreshCw size={16} />
                 </div>
               </div>
 
               {/* Tabs */}
-              <div className="flex border-b border-gray-100 bg-white">
-                <div className="flex-1 flex justify-center py-3 border-b-2 cursor-pointer" style={{ color: crmColor, borderColor: crmColor }}>
-                  <Users size={20} />
-                </div>
-                <div className="flex-1 flex justify-center py-3 text-slate-300 hover:text-slate-500 cursor-pointer border-b-2 border-transparent">
-                  <Layout size={20} />
-                </div>
-                <div className="flex-1 flex justify-center py-3 text-slate-300 hover:text-slate-500 cursor-pointer border-b-2 border-transparent">
-                  <CheckSquare size={20} />
-                </div>
+              <div className="flex border-b border-slate-100">
+                <button className="flex-1 py-3 text-[10px] font-bold uppercase tracking-wider border-b-2" style={{ color: crmColor, borderColor: crmColor }}>Contact</button>
+                <button className="flex-1 py-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b-2 border-transparent">Deals</button>
+                <button className="flex-1 py-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b-2 border-transparent">Tickets</button>
               </div>
 
-              {/* CRM Content */}
-              <div className="flex-1 overflow-y-auto bg-white">
-                {/* Contact Profile Header */}
-                <div className="p-5 flex items-center gap-4 border-b border-gray-50" style={{ backgroundColor: `${crmColor}08` }}>
-                  <div className="relative">
-                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-md">
-                      <img src="https://ui-avatars.com/api/?name=Jason+Bourne&background=6366f1&color=fff" alt="JB" />
-                    </div>
-                    <div className="absolute bottom-0 right-0 bg-white rounded-full p-0.5 shadow-sm">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: crmColor }}></div>
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-slate-800 font-bold text-base">Jason Bourne</div>
-                    <button className="text-xs font-semibold flex items-center gap-1 hover:underline" style={{ color: crmColor }}>
-                      Not the right contact? <ArrowRight size={10} />
-                    </button>
+              {/* Contact Info */}
+              <div className="flex-1 overflow-y-auto">
+                {/* Contact Header */}
+                <div className="flex items-center gap-3 p-4 border-b border-slate-100" style={{ backgroundColor: `${crmColor}08` }}>
+                  <img src={activeContact.avatar} className="w-12 h-12 rounded-full border-2" style={{ borderColor: crmColor }} alt={activeContact.name} />
+                  <div>
+                    <h4 className="font-bold text-slate-800 text-sm">{activeContact.name}</h4>
+                    <div className="text-[9px] font-bold uppercase" style={{ color: crmColor }}>Not the right contact?</div>
                   </div>
                 </div>
 
                 {/* Fields */}
-                <div className="p-5 space-y-4 bg-white">
+                <div className="p-4 space-y-4">
                   {fields.map((field, i) => (
-                    <div key={i} className="flex flex-col gap-1">
-                      <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-wide">
-                        <Layout size={10} />
-                        {field.label}
-                      </div>
-                      <div className="h-9 bg-gray-50 rounded-lg border border-gray-200 w-full flex items-center px-3 text-sm text-slate-700 font-medium hover:border-gray-300 transition-colors">
-                        {field.value}
-                      </div>
+                    <div key={i}>
+                      <label className="text-[9px] font-bold text-slate-400 uppercase block mb-1">{field.label}</label>
+                      <div className="text-sm text-slate-800 border-b border-slate-100 pb-2">{field.value}</div>
                     </div>
                   ))}
                 </div>
+              </div>
 
-                {/* Save Button */}
-                <div className="p-5 pt-2">
-                  <button
-                    className="w-full text-white font-bold py-3 rounded-lg text-base shadow-lg transition-all transform hover:-translate-y-0.5 hover:shadow-xl"
-                    style={{ backgroundColor: crmColor, boxShadow: `0 10px 15px -3px ${crmColor}30` }}
-                  >
-                    Save
-                  </button>
-                </div>
+              {/* Save Button */}
+              <div className="p-4 border-t border-slate-100">
+                <button className="w-full text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg" style={{ backgroundColor: crmColor }}>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" /></svg>
+                  SAVE
+                </button>
               </div>
             </div>
           </div>
@@ -659,69 +663,361 @@ const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string
   )
 }
 
-// ================== Properties Section ==================
+// ================== Properties Section (Animated) ==================
 
-const PropertiesSection: React.FC<{ crm: typeof crmConfig.hubspot }> = ({ crm }) => {
-  const getIcon = (label: string) => {
-    if (label.includes('Time')) return Clock
-    if (label.includes('Count')) return BarChart3
-    if (label.includes('AI')) return BrainCircuit
-    if (label.includes('Sent')) return MessageSquare
-    if (label.includes('Sentiment')) return Activity
-    return UserCheck
-  }
+const PropertiesSection: React.FC<{ crm: typeof crmConfig.hubspot, crmSlug: string }> = ({ crm, crmSlug }) => {
+  const propertyFields = CRM_PROPERTY_FIELDS[crmSlug as keyof typeof CRM_PROPERTY_FIELDS] || CRM_PROPERTY_FIELDS.hubspot
 
   return (
     <section className="py-24 bg-slate-950 relative">
-       {/* Glow */}
-       <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-slate-900 to-transparent opacity-50 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-50 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-           <SectionKicker label="WhatsApp Properties" className="mx-auto" />
-           <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-4">
-             On Contacts, Deals & Tickets
-           </h2>
-           <p className="text-lg text-slate-400">
-             We don't just log messages; we turn activity into actionable data fields. Use WhatsApp engagement like any other {crm.name} property.
-           </p>
+          <SectionKicker label="System Intelligence" className="mx-auto" />
+          <h2 className="text-4xl font-sans font-bold text-white tracking-tight leading-tight mb-4">
+            Sync High-Intent <br />
+            <span className="text-cyan-500">Engagement Fields</span>
+          </h2>
+          <p className="text-lg text-slate-400">
+            Directly mapped WhatsApp engagement signals rendered in your {crm.name} environment. Active monitoring enabled.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-           {PROPERTY_FIELDS.map((prop, idx) => {
-             const Icon = getIcon(prop.label)
-             return (
-               <div key={idx} className="bg-slate-800 border border-slate-700 hover:border-blue-600/50 transition-colors rounded-xl p-6 group">
-                 <div className="flex justify-between items-start mb-4">
-                    <div className="p-2 bg-slate-900 rounded-lg border border-slate-700 text-slate-400 group-hover:text-blue-600 transition-colors">
-                       <Icon size={20} />
-                    </div>
-                    <span className="font-mono text-[10px] text-slate-500 uppercase border border-slate-700 rounded px-2 py-0.5">
-                       {prop.type}
-                    </span>
-                 </div>
-
-                 <div className="text-xs font-mono text-slate-500 uppercase tracking-wider mb-1">
-                    Property Name
-                 </div>
-                 <div className="text-white font-semibold mb-4">{prop.label}</div>
-
-                 <div className="bg-slate-950/50 rounded border border-slate-700/50 p-3 flex items-center gap-3">
-                    <Database size={14} className="text-slate-600" />
-                    <span className="text-sm font-mono text-cyan-500">{prop.value}</span>
-                 </div>
-               </div>
-             )
-           })}
+          {propertyFields.map((field, i) => (
+            <PropertyCard key={i} field={field} index={i} />
+          ))}
         </div>
       </div>
     </section>
   )
 }
 
+// ================== Workflow Animation Components (CRM-Specific) ==================
+
+// HubSpot Workflow UI - Sequence-based enrollment trigger style
+const HubSpotWorkflowUI: React.FC<{ step: number }> = ({ step }) => {
+  const crmColor = '#FF7A59'
+
+  return (
+    <div className="relative w-full aspect-[4/3] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col">
+       {/* HubSpot Workflow Header */}
+       <div className="h-12 bg-[#2d3e50] flex items-center px-4 justify-between shrink-0">
+          <div className="flex items-center gap-4">
+            <button className="bg-white/10 text-white text-[10px] font-bold px-2 py-1 rounded">BACK</button>
+            <span className="text-white text-xs font-bold">WhatsApp Lead Sequence</span>
+          </div>
+          <button className="text-white text-[10px] font-bold px-3 py-1 rounded" style={{ backgroundColor: crmColor }}>Turn On</button>
+       </div>
+
+       {/* Canvas Area */}
+       <div className="flex-1 bg-[#f5f8fa] relative overflow-hidden flex flex-col items-center pt-12">
+          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+
+          {/* Enrollment Trigger */}
+          <div className="relative z-10 w-64 bg-white border border-slate-200 rounded shadow-sm">
+             <div className="h-10 border-b border-slate-100 flex items-center px-3 gap-2">
+                <Share2 size={14} style={{ color: crmColor }} />
+                <span className="text-[10px] font-bold text-slate-700">Enrollment Trigger</span>
+             </div>
+             <div className="p-3">
+                <p className="text-[10px] text-slate-500">Contact is in stage <span className="font-bold text-slate-800">SQL</span></p>
+             </div>
+          </div>
+
+          {/* Connection Line */}
+          <div className="h-12 w-0.5 bg-slate-300 relative shrink-0">
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-400">
+                <Plus size={10} />
+             </div>
+          </div>
+
+          {/* Send WhatsApp Block */}
+          <div className={`relative z-10 w-72 bg-white border border-emerald-400/50 rounded shadow-lg transition-all duration-700 ${step >= 1 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'}`}>
+             <div className="h-10 border-b border-slate-100 flex items-center px-3 justify-between">
+                <div className="flex items-center gap-2">
+                   <MessageSquare size={14} className="text-emerald-500" />
+                   <span className="text-[10px] font-bold text-slate-700">Send WhatsApp Template</span>
+                </div>
+                <Workflow size={12} className="text-emerald-300" />
+             </div>
+             <div className="p-4 space-y-3">
+                <div className="flex justify-between items-center text-[10px]">
+                   <span className="text-slate-400 font-bold uppercase tracking-wider text-[8px]">Template</span>
+                   <span className="bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded font-mono border border-emerald-100">welcome_ad_offer</span>
+                </div>
+                <div className="flex justify-between items-center text-[10px]">
+                   <span className="text-slate-400 font-bold uppercase tracking-wider text-[8px]">Recipient</span>
+                   <span className="text-slate-800 font-bold">(contact.phone)</span>
+                </div>
+             </div>
+          </div>
+
+          {/* Dispatched Toast */}
+          <div className={`absolute bottom-6 left-1/2 -translate-x-1/2 w-[280px] bg-slate-900 text-white rounded-lg p-3 shadow-2xl flex items-center gap-3 border border-white/10 transition-all duration-500 ${step >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+             <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0" style={{ backgroundColor: crmColor }}>
+                <Activity size={18} />
+             </div>
+             <div>
+                <div className="text-[10px] font-bold">Eazybe Dispatched</div>
+                <div className="text-[8px] font-mono text-slate-400">US-T-1 • Budget Contact → WhatsApp</div>
+             </div>
+          </div>
+       </div>
+    </div>
+  )
+}
+
+// Salesforce Flow Builder UI - Lightning Design System horizontal path style
+const SalesforceFlowBuilderUI: React.FC<{ step: number }> = ({ step }) => {
+  return (
+    <div className="relative w-full aspect-[4/3] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col">
+       {/* Salesforce Flow Builder Header - Lightning style */}
+       <div className="h-14 bg-[#032D60] flex items-center px-4 justify-between shrink-0 border-b-4 border-[#0176D3]">
+          <div className="flex items-center gap-3">
+             <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
+                <Workflow size={18} className="text-[#0176D3]" />
+             </div>
+             <div>
+                <span className="text-white text-xs font-bold block">Opportunity Follow-up Flow</span>
+                <span className="text-blue-300 text-[9px]">Record-Triggered Flow</span>
+             </div>
+          </div>
+          <div className="flex items-center gap-2">
+             <button className="bg-white text-[#032D60] text-[10px] font-bold px-3 py-1.5 rounded">Debug</button>
+             <button className="bg-[#0176D3] text-white text-[10px] font-bold px-3 py-1.5 rounded">Activate</button>
+          </div>
+       </div>
+
+       {/* Toolbox Sidebar */}
+       <div className="flex flex-1">
+          <div className="w-12 bg-[#F3F3F3] border-r border-slate-200 flex flex-col items-center py-3 gap-3">
+             <div className="w-8 h-8 bg-white rounded shadow-sm flex items-center justify-center text-[#0176D3] cursor-pointer hover:bg-blue-50">
+                <Plus size={16} />
+             </div>
+             <div className="w-8 h-8 bg-white rounded shadow-sm flex items-center justify-center text-slate-400 cursor-pointer hover:bg-slate-50">
+                <Search size={14} />
+             </div>
+          </div>
+
+          {/* Flow Canvas - Horizontal Layout */}
+          <div className="flex-1 bg-[#FAFAF9] relative overflow-hidden p-8">
+             {/* Grid Background */}
+             <div className="absolute inset-0 opacity-30 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e5e5e5 1px, transparent 1px), linear-gradient(90deg, #e5e5e5 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+
+             {/* Horizontal Flow Path */}
+             <div className="relative z-10 flex items-center gap-4 h-full">
+
+                {/* Start Node */}
+                <div className="flex flex-col items-center">
+                   <div className="w-12 h-12 rounded-full bg-[#0176D3] flex items-center justify-center shadow-lg">
+                      <Zap size={20} className="text-white" />
+                   </div>
+                   <span className="text-[9px] text-slate-600 mt-2 font-medium">Start</span>
+                </div>
+
+                {/* Connector */}
+                <div className="w-16 h-0.5 bg-[#0176D3]"></div>
+
+                {/* Record Trigger Node */}
+                <div className="bg-white rounded-lg border-2 border-[#0176D3] shadow-md w-44 overflow-hidden">
+                   <div className="bg-[#0176D3] px-3 py-2 flex items-center gap-2">
+                      <Share2 size={12} className="text-white" />
+                      <span className="text-[10px] text-white font-bold">Record Trigger</span>
+                   </div>
+                   <div className="p-3 text-[9px] text-slate-600">
+                      <div className="mb-1"><span className="text-slate-400">Object:</span> Opportunity</div>
+                      <div><span className="text-slate-400">When:</span> Stage = Proposal</div>
+                   </div>
+                </div>
+
+                {/* Connector */}
+                <div className="w-12 h-0.5 bg-slate-300 relative">
+                   <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-5 h-5 bg-white border border-slate-300 rounded-full flex items-center justify-center">
+                      <Plus size={10} className="text-slate-400" />
+                   </div>
+                </div>
+
+                {/* WhatsApp Action Node */}
+                <div className={`bg-white rounded-lg border-2 border-emerald-500 shadow-lg w-48 overflow-hidden transition-all duration-700 ${step >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                   <div className="bg-emerald-500 px-3 py-2 flex items-center gap-2">
+                      <MessageSquare size={12} className="text-white" />
+                      <span className="text-[10px] text-white font-bold">Send WhatsApp</span>
+                   </div>
+                   <div className="p-3 space-y-2">
+                      <div className="flex items-center gap-2 text-[9px]">
+                         <span className="text-slate-400">Template:</span>
+                         <span className="bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded text-[8px] font-mono">proposal_followup</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-[9px]">
+                         <span className="text-slate-400">To:</span>
+                         <span className="text-slate-700">{'{!$Record.Phone}'}</span>
+                      </div>
+                   </div>
+                </div>
+
+                {/* Connector */}
+                <div className={`w-12 h-0.5 bg-slate-300 transition-all duration-500 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}></div>
+
+                {/* End Node */}
+                <div className={`flex flex-col items-center transition-all duration-700 ${step >= 1 ? 'opacity-100' : 'opacity-30'}`}>
+                   <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center">
+                      <div className="w-4 h-4 rounded-full bg-slate-400"></div>
+                   </div>
+                   <span className="text-[9px] text-slate-600 mt-2 font-medium">End</span>
+                </div>
+             </div>
+
+             {/* Success Toast */}
+             <div className={`absolute bottom-4 right-4 w-[240px] bg-[#032D60] text-white rounded-lg p-3 shadow-2xl flex items-center gap-3 transition-all duration-500 ${step >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                   <Check size={16} className="text-white" />
+                </div>
+                <div>
+                   <div className="text-[10px] font-bold">Flow Executed</div>
+                   <div className="text-[8px] text-blue-300">WhatsApp sent to Deal Owner</div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+  )
+}
+
+// Zoho Workflow UI - Blueprint/Deluge style with tabbed interface
+const ZohoWorkflowUI: React.FC<{ step: number }> = ({ step }) => {
+  return (
+    <div className="relative w-full aspect-[4/3] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col">
+       {/* Zoho CRM Header - Dark with tabs */}
+       <div className="h-12 bg-[#1B2838] flex items-center px-4 justify-between shrink-0">
+          <div className="flex items-center gap-4">
+             <div className="flex items-center gap-2">
+                <div className="w-6 h-6 bg-red-500 rounded flex items-center justify-center">
+                   <Zap size={14} className="text-white" />
+                </div>
+                <span className="text-white text-xs font-bold">Lead Nurture Automation</span>
+             </div>
+          </div>
+          <div className="flex items-center gap-2">
+             <span className="text-[9px] text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded">Active</span>
+             <button className="bg-[#E42527] text-white text-[10px] font-bold px-3 py-1.5 rounded">Save & Enable</button>
+          </div>
+       </div>
+
+       {/* Tabs Bar */}
+       <div className="h-10 bg-[#243447] flex items-center px-4 gap-6 border-b border-slate-700">
+          <span className="text-white text-[11px] font-medium border-b-2 border-red-500 pb-2.5 pt-2.5">Workflow Rules</span>
+          <span className="text-slate-400 text-[11px] hover:text-white cursor-pointer">Actions</span>
+          <span className="text-slate-400 text-[11px] hover:text-white cursor-pointer">Schedules</span>
+       </div>
+
+       {/* Workflow Content */}
+       <div className="flex-1 bg-[#F5F5F5] p-6 overflow-hidden">
+          <div className="bg-white rounded-lg border border-slate-200 shadow-sm h-full flex flex-col">
+
+             {/* Rule Configuration */}
+             <div className="p-4 border-b border-slate-100">
+                <div className="flex items-center gap-3 mb-4">
+                   <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center">
+                      <Activity size={16} className="text-red-500" />
+                   </div>
+                   <div>
+                      <div className="text-sm font-bold text-slate-800">When Lead Score Reaches 80+</div>
+                      <div className="text-[10px] text-slate-400">Module: Leads • Trigger: Field Update</div>
+                   </div>
+                </div>
+
+                {/* Condition Pills */}
+                <div className="flex items-center gap-2 flex-wrap">
+                   <span className="bg-blue-50 text-blue-700 text-[10px] px-2.5 py-1 rounded-full font-medium">Lead Score ≥ 80</span>
+                   <span className="text-slate-400 text-[10px]">AND</span>
+                   <span className="bg-purple-50 text-purple-700 text-[10px] px-2.5 py-1 rounded-full font-medium">Lead Status = Active</span>
+                </div>
+             </div>
+
+             {/* Actions Section */}
+             <div className="flex-1 p-4">
+                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-3">Instant Actions</div>
+
+                {/* Action Card */}
+                <div className={`bg-slate-50 rounded-lg border border-slate-200 p-4 mb-3 transition-all duration-700 ${step >= 1 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
+                   <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0">
+                         <MessageSquare size={18} className="text-white" />
+                      </div>
+                      <div className="flex-1">
+                         <div className="flex items-center justify-between mb-1">
+                            <span className="text-sm font-bold text-slate-800">Send WhatsApp via Eazybe</span>
+                            <span className="text-[9px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">Webhook</span>
+                         </div>
+                         <div className="space-y-1">
+                            <div className="flex items-center text-[10px] text-slate-500">
+                               <span className="w-16 text-slate-400">Template:</span>
+                               <code className="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700">hot_lead_outreach</code>
+                            </div>
+                            <div className="flex items-center text-[10px] text-slate-500">
+                               <span className="w-16 text-slate-400">To Field:</span>
+                               <span className="text-slate-700">${'{'}Leads.Phone{'}'}</span>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+                {/* Secondary Action */}
+                <div className={`bg-slate-50 rounded-lg border border-dashed border-slate-300 p-3 transition-all duration-700 delay-200 ${step >= 1 ? 'opacity-100' : 'opacity-50'}`}>
+                   <div className="flex items-center gap-2 text-slate-400">
+                      <Plus size={14} />
+                      <span className="text-[10px]">Add another action</span>
+                   </div>
+                </div>
+             </div>
+
+             {/* Execution Log Toast */}
+             <div className={`mx-4 mb-4 bg-[#1B2838] rounded-lg p-3 flex items-center gap-3 transition-all duration-500 ${step >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+                <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                   <Check size={14} className="text-white" />
+                </div>
+                <div className="flex-1">
+                   <div className="text-[10px] font-bold text-white">Workflow Executed Successfully</div>
+                   <div className="text-[8px] text-slate-400">WhatsApp sent via Eazybe • Lead: Priya Sharma</div>
+                </div>
+                <span className="text-[9px] text-emerald-400">Just now</span>
+             </div>
+          </div>
+       </div>
+    </div>
+  )
+}
+
+// Main Workflow Animation wrapper that selects the right UI
+const WorkflowAnimation: React.FC<{ crmColor: string, crmSlug: string }> = ({ crmSlug }) => {
+  const [step, setStep] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStep(prev => (prev + 1) % 4)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [])
+
+  // Render CRM-specific workflow UI
+  if (crmSlug === 'salesforce') {
+    return <SalesforceFlowBuilderUI step={step} />
+  }
+
+  if (crmSlug === 'zoho') {
+    return <ZohoWorkflowUI step={step} />
+  }
+
+  // Default: HubSpot
+  return <HubSpotWorkflowUI step={step} />
+}
+
 // ================== Automation Section ==================
 
-const AutomationSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string }> = ({ crm, crmColor }) => {
+const AutomationSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string, crmSlug: string }> = ({ crm, crmColor, crmSlug }) => {
   return (
     <section className="py-24 bg-slate-900 border-y border-slate-700 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -738,91 +1034,22 @@ const AutomationSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: str
                 Add "Send WhatsApp Message" as a native action in your {crm.name} Workflows. Scale your outreach without losing the personal touch.
               </p>
 
-              <div className="space-y-6">
-                 <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${crmColor}15`, color: crmColor }}>
-                       <Bot size={20} />
-                    </div>
-                    <div>
-                       <h4 className="text-white font-bold">Native Chatbots</h4>
-                       <p className="text-slate-400 text-sm">Trigger chatbots based on {crm.name} property changes.</p>
-                    </div>
-                 </div>
-                 <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${crmColor}15`, color: crmColor }}>
-                       <Zap size={20} />
-                    </div>
-                    <div>
-                       <h4 className="text-white font-bold">Automated Follow-ups</h4>
-                       <p className="text-slate-400 text-sm">Ideal for abandoned carts or form submissions.</p>
-                    </div>
-                 </div>
-                 <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${crmColor}15`, color: crmColor }}>
-                       <Clock size={20} />
-                    </div>
-                    <div>
-                       <h4 className="text-white font-bold">Smart Delays</h4>
-                       <p className="text-slate-400 text-sm">Time-delayed sequences that stop once they reply.</p>
-                    </div>
-                 </div>
+              <div className="mt-10 grid grid-cols-2 gap-6">
+                <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-2xl group hover:border-orange-500/40 transition-all">
+                   <Zap className="text-orange-500 mb-4 group-hover:scale-110 transition-transform" size={24} />
+                   <h4 className="text-white font-bold mb-2">Auto-Triggers</h4>
+                   <p className="text-xs text-slate-500">Send WhatsApp templates based on any {crm.name} enrollment trigger.</p>
+                </div>
+                <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-2xl group hover:border-blue-600/40 transition-all">
+                   <Workflow className="text-blue-600 mb-4 group-hover:scale-110 transition-transform" size={24} />
+                   <h4 className="text-white font-bold mb-2">Native Actions</h4>
+                   <p className="text-xs text-slate-500">Eazybe appears as a standard action within your workflow builder.</p>
+                </div>
               </div>
            </div>
 
-           {/* Workflow Diagram */}
-           <div className="relative">
-              <div className="absolute inset-0 blur-3xl rounded-full" style={{ backgroundColor: `${crmColor}08` }}></div>
-
-              <div className="relative bg-slate-950 border border-slate-700 rounded-xl p-8 space-y-6 shadow-2xl">
-                 {/* Step 1 */}
-                 <div className="flex items-center gap-4 group">
-                    <div className="w-12 h-12 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 group-hover:text-white transition-all" style={{ ['--hover-border' as string]: crmColor }}>
-                       <Workflow size={24} />
-                    </div>
-                    <div className="flex-1 bg-slate-800 border border-slate-700 p-3 rounded-lg">
-                       <div className="text-xs font-mono text-slate-500 mb-1">TRIGGER</div>
-                       <div className="text-sm font-semibold text-white">Deal Stage Changed to "Negotiation"</div>
-                    </div>
-                 </div>
-
-                 {/* Connector */}
-                 <div className="h-8 w-0.5 bg-slate-700 mx-auto ml-[23px]"></div>
-
-                 {/* Step 2 */}
-                 <div className="flex items-center gap-4 group">
-                    <div className="w-12 h-12 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 group-hover:text-emerald-500 transition-all">
-                       <Bot size={24} />
-                    </div>
-                    <div className="flex-1 bg-slate-800 border border-slate-700 p-3 rounded-lg">
-                       <div className="text-xs font-mono text-slate-500 mb-1">ACTION</div>
-                       <div className="text-sm font-semibold text-white">Send WhatsApp Template: "Quote Follow-up"</div>
-                    </div>
-                 </div>
-
-                 {/* Connector */}
-                 <div className="h-8 w-0.5 bg-slate-700 mx-auto ml-[23px]"></div>
-
-                 {/* Step 3 */}
-                 <div className="flex items-center gap-4 group">
-                    <div className="w-12 h-12 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 group-hover:text-blue-600 transition-all">
-                       <Clock size={24} />
-                    </div>
-                    <div className="flex-1 bg-slate-800 border border-slate-700 p-3 rounded-lg">
-                       <div className="text-xs font-mono text-slate-500 mb-1">WAIT</div>
-                       <div className="text-sm font-semibold text-white">Wait 2 Days or Until Reply</div>
-                    </div>
-                 </div>
-              </div>
-
-              {/* Tag */}
-              <div className="absolute -right-4 top-10 bg-slate-900 border border-slate-700 p-2 rounded shadow-xl">
-                 <div className="flex items-center gap-2 text-xs font-mono" style={{ color: crmColor }}>
-                    <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: crmColor }}></div>
-                    ACTIVE WORKFLOW
-                 </div>
-              </div>
-
-           </div>
+           {/* Animated Workflow Diagram */}
+           <WorkflowAnimation crmColor={crmColor} crmSlug={crmSlug} />
         </div>
 
       </div>
@@ -933,10 +1160,10 @@ export const ProductPage: React.FC = () => {
       <MiniCRMSection crm={crm} crmColor={crmColor} />
 
       {/* Properties Section */}
-      <PropertiesSection crm={crm} />
+      <PropertiesSection crm={crm} crmSlug={crmSlug} />
 
       {/* Automation Section */}
-      <AutomationSection crm={crm} crmColor={crmColor} />
+      <AutomationSection crm={crm} crmColor={crmColor} crmSlug={crmSlug} />
 
       {/* Reports Section */}
       <ReportsSection crm={crm} />
