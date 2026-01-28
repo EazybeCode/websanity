@@ -21,6 +21,9 @@ import CloudBackupSearchAnimation from '../animations/CloudBackupSearchAnimation
 import WhatsAppCRMChaosAnimation from '../animations/WhatsAppCRMChaosAnimation'
 import WhatsAppCRMLabelAnimation from '../animations/WhatsAppCRMLabelAnimation'
 import WhatsAppCRMSyncAnimation from '../animations/WhatsAppCRMSyncAnimation'
+import RevenueInboxComparisonAnimation from '../animations/RevenueInboxComparisonAnimation'
+import RevenueInboxScoringAnimation from '../animations/RevenueInboxScoringAnimation'
+import RevenueInboxAlertsAnimation from '../animations/RevenueInboxAlertsAnimation'
 
 // Animation mappings by slug
 const animationsBySlug: Record<string, Record<number, React.FC>> = {
@@ -58,6 +61,11 @@ const animationsBySlug: Record<string, Record<number, React.FC>> = {
     0: WhatsAppCRMChaosAnimation,
     1: WhatsAppCRMLabelAnimation,
     2: WhatsAppCRMSyncAnimation
+  },
+  'revenue-inbox': {
+    0: RevenueInboxComparisonAnimation,
+    1: RevenueInboxScoringAnimation,
+    2: RevenueInboxAlertsAnimation
   }
 }
 

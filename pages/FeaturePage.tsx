@@ -34,6 +34,9 @@ import CloudBackupSearchAnimation from '../components/animations/CloudBackupSear
 import WhatsAppCRMChaosAnimation from '../components/animations/WhatsAppCRMChaosAnimation'
 import WhatsAppCRMLabelAnimation from '../components/animations/WhatsAppCRMLabelAnimation'
 import WhatsAppCRMSyncAnimation from '../components/animations/WhatsAppCRMSyncAnimation'
+import RevenueInboxComparisonAnimation from '../components/animations/RevenueInboxComparisonAnimation'
+import RevenueInboxScoringAnimation from '../components/animations/RevenueInboxScoringAnimation'
+import RevenueInboxAlertsAnimation from '../components/animations/RevenueInboxAlertsAnimation'
 
 // Helper to get icon with fallback to Cloud
 const getIcon = (iconName: string | undefined) => {
@@ -235,6 +238,13 @@ const whatsappCrmAnimations: Record<number, React.FC> = {
   2: WhatsAppCRMSyncAnimation
 }
 
+// Revenue Inbox specific animations mapping
+const revenueInboxAnimations: Record<number, React.FC> = {
+  0: RevenueInboxComparisonAnimation,
+  1: RevenueInboxScoringAnimation,
+  2: RevenueInboxAlertsAnimation
+}
+
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
 
@@ -245,6 +255,7 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
   const isWhatsappCopilot = slug === 'whatsapp-copilot'
   const isCloudBackup = slug === 'cloud-backup'
   const isWhatsappCrm = slug === 'whatsapp-crm'
+  const isRevenueInbox = slug === 'revenue-inbox'
 
   // Get animation component based on slug
   const getAnimationComponent = (index: number): React.FC | null => {
@@ -255,6 +266,7 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
     if (isWhatsappCopilot) return whatsappCopilotAnimations[index] || null
     if (isCloudBackup) return cloudBackupAnimations[index] || null
     if (isWhatsappCrm) return whatsappCrmAnimations[index] || null
+    if (isRevenueInbox) return revenueInboxAnimations[index] || null
     return null
   }
 
