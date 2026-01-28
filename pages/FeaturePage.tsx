@@ -215,43 +215,6 @@ const whatsappCopilotAnimations: Record<number, React.FC> = {
   2: CopilotSummaryAnimation
 }
 
-// Fallback features for whatsapp-copilot page
-const whatsappCopilotFallbackFeatures = [
-  {
-    badge: 'The Problem',
-    headline: 'Reps waste time crafting messages manually',
-    description: 'Without deep product knowledge, employees send hesitant, unstructured messages. This manual process creates friction and slows down the entire sales cycle.',
-    points: [
-      'Time wasted manually crafting responses',
-      'Inconsistent message quality across teams',
-      'Context lost in sprawling chat threads',
-      'Sales best practices remain unshared'
-    ]
-  },
-  {
-    badge: 'The Solution',
-    headline: 'AI-powered responses, human approved',
-    description: 'Eazybe reads chat history and suggests relevant, high-quality answers. With one click, your team sends polished, accurate responses every time.',
-    points: [
-      'AI reads and understands previous context',
-      'Generates relevant, product-specific answers',
-      'Human review: Edit or approve in one click',
-      'Consistent quality for every customer'
-    ]
-  },
-  {
-    badge: 'Context Engine',
-    headline: 'Catch up on any conversation instantly',
-    description: 'Inheriting a customer from another rep? Returning to a chat after a week? Copilot summarizes key points in seconds.',
-    points: [
-      'What was discussed: Core conversation topics',
-      'What was promised: Pricing, deadlines, features',
-      'What is pending: Required follow-ups',
-      'Quick handoffs: Full context in seconds'
-    ]
-  }
-]
-
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
 
@@ -561,18 +524,6 @@ export const FeaturePage: React.FC = () => {
   }
 
   const currentSlug = slug || 'cloud-backup'
-  const isWhatsappCopilot = currentSlug === 'whatsapp-copilot'
-
-  // For whatsapp-copilot, render fallback page even if no Sanity data
-  if (isWhatsappCopilot && (error || !data)) {
-    return (
-      <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
-        <Navbar />
-        <FeaturesSection features={whatsappCopilotFallbackFeatures} slug={currentSlug} />
-        <ChunkyFooter />
-      </div>
-    )
-  }
 
   if (error || !data) {
     return (
@@ -589,14 +540,6 @@ export const FeaturePage: React.FC = () => {
 
   // Check if using new modular sections or legacy fields
   const useSections = data.sections && data.sections.length > 0
-  const hasProductFeatures = useSections
-    ? data.sections!.some(s => s._type === 'productFeaturesSection' && s.features && s.features.length >= 3)
-    : data.features && data.features.length >= 3
-
-  // Use fallback features for whatsapp-copilot if not enough features exist
-  const whatsappCopilotFeatures = isWhatsappCopilot && !hasProductFeatures
-    ? whatsappCopilotFallbackFeatures
-    : null
 
   return (
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
@@ -605,31 +548,21 @@ export const FeaturePage: React.FC = () => {
       {useSections ? (
         // New modular section-based rendering
         <>
-          {data.sections!.map((section, idx) => {
-            // For whatsapp-copilot, skip productFeaturesSection from Sanity and use fallback instead
-            if (isWhatsappCopilot && section._type === 'productFeaturesSection') {
-              return <FeaturesSection key={section._key || idx} features={whatsappCopilotFallbackFeatures} slug={currentSlug} />
-            }
-            return (
-              <ProductSectionRenderer
-                key={section._key || idx}
-                section={section}
-                color={color}
-                slug={currentSlug}
-              />
-            )
-          })}
-          {/* Add fallback features for whatsapp-copilot if no productFeaturesSection exists */}
-          {isWhatsappCopilot && !data.sections!.some(s => s._type === 'productFeaturesSection') && (
-            <FeaturesSection features={whatsappCopilotFallbackFeatures} slug={currentSlug} />
-          )}
+          {data.sections!.map((section, idx) => (
+            <ProductSectionRenderer
+              key={section._key || idx}
+              section={section}
+              color={color}
+              slug={currentSlug}
+            />
+          ))}
         </>
       ) : (
         // Legacy field-based rendering
         <>
           <HeroSection data={data.hero} />
           <BenefitsSection data={data.benefits} />
-          <FeaturesSection features={whatsappCopilotFeatures || data.features} slug={currentSlug} />
+          <FeaturesSection features={data.features} slug={currentSlug} />
           <HowItWorksSection data={data.howItWorks} />
           <UseCasesSection data={data.useCases} />
           {data.testimonial && <TestimonialSection data={data.testimonial} />}
