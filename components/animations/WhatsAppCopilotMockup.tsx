@@ -13,11 +13,11 @@ import {
   AlertCircle
 } from 'lucide-react';
 
-interface WhatsAppCopilotMockupProps {
+interface WhatsAppMockupProps {
   mode: 'problem' | 'solution' | 'summary';
 }
 
-const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) => {
+const WhatsAppCopilotMockup: React.FC<WhatsAppMockupProps> = ({ mode }) => {
   const [typing, setTyping] = useState('');
   const [messages, setMessages] = useState<any[]>([]);
   const [isAiLoading, setIsAiLoading] = useState(false);
@@ -25,6 +25,7 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) =
   const [showSummary, setShowSummary] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const mountedRef = useRef(true);
 
   // Initial messages common to all
   const baseMessages = [
@@ -33,12 +34,8 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) =
   ];
 
   useEffect(() => {
+    mountedRef.current = true;
     setMessages(baseMessages);
-    setTyping('');
-    setSuggestion('');
-    setShowSummary(false);
-    setIsScanning(false);
-    setIsAiLoading(false);
 
     if (mode === 'problem') {
       runProblemAnimation();
@@ -47,6 +44,10 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) =
     } else if (mode === 'summary') {
       runSummaryAnimation();
     }
+
+    return () => {
+      mountedRef.current = false;
+    };
   }, [mode]);
 
   useEffect(() => {
@@ -58,48 +59,81 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) =
   const runProblemAnimation = async () => {
     const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
-    await sleep(800);
-    const phrase1 = "Hi, let me check our HubSpot docs...";
-    let cur = "";
-    for (const char of phrase1) { cur += char; setTyping(cur); await sleep(40); }
-    await sleep(1000);
-    for (let i = cur.length; i >= 0; i--) { setTyping(cur.substring(0, i)); await sleep(20); }
-    await sleep(500);
+    while (mountedRef.current) {
+      setMessages(baseMessages);
+      setTyping('');
 
-    const phrase2 = "HubSpot sync is... ummm... automatic I think? Checking with my manager about the setup fee.";
-    cur = "";
-    for (const char of phrase2) { cur += char; setTyping(cur); await sleep(60); }
-    await sleep(1200);
+      await sleep(800);
+      if (!mountedRef.current) break;
 
-    setTyping("");
-    setMessages(prev => [...prev, { id: Date.now(), text: phrase2, sender: 'rep', time: '10:22 AM' }]);
+      const phrase1 = "Hi, let me check our HubSpot docs...";
+      let cur = "";
+      for (const char of phrase1) {
+        if (!mountedRef.current) break;
+        cur += char;
+        setTyping(cur);
+        await sleep(40);
+      }
+      await sleep(1000);
+      for (let i = cur.length; i >= 0; i--) {
+        if (!mountedRef.current) break;
+        setTyping(cur.substring(0, i));
+        await sleep(20);
+      }
+      await sleep(500);
 
-    await sleep(2500);
-    setMessages(baseMessages);
-    runProblemAnimation();
+      const phrase2 = "HubSpot sync is... ummm... automatic I think? Checking with my manager about the setup fee.";
+      cur = "";
+      for (const char of phrase2) {
+        if (!mountedRef.current) break;
+        cur += char;
+        setTyping(cur);
+        await sleep(60);
+      }
+      await sleep(1200);
+
+      if (!mountedRef.current) break;
+      setTyping("");
+      setMessages(prev => [...prev, { id: Date.now(), text: phrase2, sender: 'rep', time: '10:22 AM' }]);
+
+      await sleep(2500);
+    }
   };
 
   const runSolutionAnimation = async () => {
     const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
-    await sleep(1000);
-    setIsAiLoading(true);
-    await sleep(1500);
-    setIsAiLoading(false);
+    while (mountedRef.current) {
+      setMessages(baseMessages);
+      setTyping('');
+      setSuggestion('');
+      setIsAiLoading(false);
 
-    const suggestedText = "Hi! Our HubSpot sync is bi-directional: it tracks all WhatsApp messages as activities in HubSpot contacts instantly. For 20 users, we waive the setup fee entirely. Would you like a quick demo?";
-    setSuggestion(suggestedText);
+      await sleep(1000);
+      if (!mountedRef.current) break;
 
-    await sleep(1800);
-    setTyping(suggestedText);
-    setSuggestion("");
-    await sleep(800);
-    setTyping("");
-    setMessages(prev => [...prev, { id: Date.now(), text: suggestedText, sender: 'rep', time: '10:17 AM' }]);
+      setIsAiLoading(true);
+      await sleep(1500);
+      if (!mountedRef.current) break;
 
-    await sleep(4000);
-    setMessages(baseMessages);
-    runSolutionAnimation();
+      setIsAiLoading(false);
+
+      const suggestedText = "Hi! Our HubSpot sync is bi-directional: it tracks all WhatsApp messages as activities in HubSpot contacts instantly. For 20 users, we waive the setup fee entirely. Would you like a quick demo?";
+      setSuggestion(suggestedText);
+
+      await sleep(1800);
+      if (!mountedRef.current) break;
+
+      setTyping(suggestedText);
+      setSuggestion("");
+      await sleep(800);
+      if (!mountedRef.current) break;
+
+      setTyping("");
+      setMessages(prev => [...prev, { id: Date.now(), text: suggestedText, sender: 'rep', time: '10:17 AM' }]);
+
+      await sleep(4000);
+    }
   };
 
   const runSummaryAnimation = async () => {
@@ -110,31 +144,41 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) =
       { id: 4, text: "Yes, we include two 60-min sessions.", sender: 'rep', time: '10:20 AM' },
       { id: 5, text: "Perfect. Send me the contract for review.", sender: 'customer', time: '10:22 AM' },
     ];
-    setMessages(fullHistory);
 
-    await sleep(1000);
-    setIsScanning(true);
-    await sleep(1500);
-    setIsScanning(false);
-    setShowSummary(true);
+    while (mountedRef.current) {
+      setMessages(fullHistory);
+      setShowSummary(false);
+      setIsScanning(false);
 
-    await sleep(5000);
-    setShowSummary(false);
-    await sleep(1000);
-    runSummaryAnimation();
+      await sleep(1000);
+      if (!mountedRef.current) break;
+
+      setIsScanning(true);
+      await sleep(1500);
+      if (!mountedRef.current) break;
+
+      setIsScanning(false);
+      setShowSummary(true);
+
+      await sleep(5000);
+      if (!mountedRef.current) break;
+
+      setShowSummary(false);
+      await sleep(1000);
+    }
   };
 
   return (
-    <div className="relative w-full aspect-[4/3] flex items-center justify-center p-4">
-      <div className="w-full max-w-[420px] h-full bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xl flex flex-col font-sans ring-1 ring-slate-900/5">
+    <div className="relative w-full aspect-[4/3] flex items-center justify-center">
+      <div className="w-full h-full max-w-[600px] max-h-[450px] bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xl flex flex-col font-sans ring-1 ring-slate-900/5">
         {/* WhatsApp Header (Light Mode) */}
-        <div className="bg-[#f0f2f5] px-3 py-2 flex items-center justify-between border-b border-slate-300/50">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center border border-slate-300 overflow-hidden">
+        <div className="bg-[#f0f2f5] px-4 py-2 flex items-center justify-between border-b border-slate-300/50">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center border border-slate-300">
               <img src={`https://api.dicebear.com/7.x/initials/svg?seed=EP&backgroundColor=2563EB`} alt="Avatar" className="w-full h-full rounded-full" />
             </div>
             <div>
-              <div className="text-[#111b21] font-bold text-[11px] tracking-tight">Enterprise Client #042</div>
+              <div className="text-[#111b21] font-bold text-xs tracking-tight">Enterprise Client #042</div>
               <div className="text-brand-green text-[8px] font-mono uppercase tracking-widest flex items-center gap-1">
                 <span className="w-1 h-1 rounded-full bg-brand-green animate-pulse"></span>
                 online
@@ -154,7 +198,7 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) =
         >
           {isScanning && (
             <div className="absolute inset-0 z-10 bg-brand-blue/5 flex flex-col items-center justify-center backdrop-blur-[1px]">
-               <div className="flex flex-col items-center gap-2 bg-white/80 p-4 rounded-xl shadow-xl border border-brand-blue/20">
+               <div className="flex flex-col items-center gap-2 bg-white/80 p-4 rounded-2xl shadow-xl border border-brand-blue/20">
                  <Bot size={24} className="text-brand-blue animate-bounce" />
                  <div className="font-mono text-[8px] font-bold text-brand-blue uppercase tracking-[0.2em] animate-pulse">
                    Synthesizing Context...
@@ -167,9 +211,9 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) =
           {messages.map((msg) => (
             <div
               key={msg.id}
-              className={`flex ${msg.sender === 'customer' ? 'justify-start' : 'justify-end'} animate-in fade-in slide-in-from-bottom-2 duration-300`}
+              className={`flex ${msg.sender === 'customer' ? 'justify-start' : 'justify-end'}`}
             >
-              <div className={`max-w-[85%] px-3 py-2 rounded-xl text-[10px] shadow-sm relative leading-relaxed ${
+              <div className={`max-w-[85%] px-3 py-2 rounded-xl text-[11px] shadow-sm relative leading-relaxed ${
                 msg.sender === 'customer'
                 ? 'bg-white text-[#111b21] rounded-tl-none border border-slate-200'
                 : 'bg-[#d9fdd3] text-[#111b21] rounded-tr-none'
@@ -186,11 +230,11 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) =
           {/* Problem Indicator */}
           {mode === 'problem' && typing && (
             <div className="flex flex-col items-end gap-1">
-              <div className="flex items-center gap-1.5 mb-0.5">
+              <div className="flex items-center gap-1 mb-0.5">
                 <AlertCircle size={8} className="text-brand-orange animate-pulse" />
                 <span className="text-[8px] font-mono font-bold text-brand-orange uppercase">Manual Lookup...</span>
               </div>
-              <div className="max-w-[85%] px-3 py-2 rounded-xl text-[10px] bg-slate-100 text-slate-500 italic rounded-tr-none border border-brand-orange/20 animate-pulse">
+              <div className="max-w-[85%] px-3 py-2 rounded-xl text-[11px] bg-slate-100 text-slate-500 italic rounded-tr-none border border-brand-orange/20 animate-pulse">
                 {typing}
               </div>
             </div>
@@ -198,13 +242,13 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) =
 
           {/* AI Overlay Layer (Light) */}
           {mode === 'solution' && (isAiLoading || suggestion) && (
-            <div className="sticky bottom-0 z-20 animate-in slide-in-from-bottom-4 duration-500">
+            <div className="sticky bottom-0 z-20">
               <div className="bg-white border border-brand-cyan rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.1)]">
-                <div className="flex items-center gap-1.5 mb-2">
+                <div className="flex items-center gap-2 mb-2">
                   <div className="w-5 h-5 bg-brand-cyan/10 rounded-full flex items-center justify-center">
                     <Bot size={12} className="text-brand-cyan" />
                   </div>
-                  <span className="text-[8px] font-mono font-bold text-brand-cyan uppercase tracking-wider">Copilot Recommendation</span>
+                  <span className="text-[9px] font-mono font-bold text-brand-cyan uppercase tracking-wider">Copilot Recommendation</span>
                   {isAiLoading && <Loader2 size={10} className="animate-spin text-brand-cyan ml-auto" />}
                 </div>
 
@@ -235,42 +279,42 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppCopilotMockupProps> = ({ mode }) =
 
           {/* Summary Overlay (Light) */}
           {mode === 'summary' && showSummary && (
-            <div className="absolute inset-x-4 top-1/4 z-30 animate-in fade-in zoom-in-95 duration-500">
+            <div className="absolute inset-x-4 top-1/4 z-30">
               <div className="bg-white border border-brand-green/30 rounded-xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-6 h-6 rounded-lg bg-brand-green/10 flex items-center justify-center">
                     <Zap size={14} className="text-brand-green" />
                   </div>
                   <div>
-                    <h4 className="text-[#111b21] font-bold text-[11px] tracking-tight">AI Thread Summary</h4>
+                    <h4 className="text-[#111b21] font-bold text-xs tracking-tight">AI Thread Summary</h4>
                     <div className="text-[8px] font-mono text-brand-green uppercase tracking-widest">Context Synchronized</div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   <div className="space-y-1">
-                    <div className="text-[8px] font-mono font-bold text-[#667781] uppercase flex items-center gap-1.5">
+                    <div className="text-[8px] font-mono font-bold text-[#667781] uppercase flex items-center gap-1">
                       <span className="w-1 h-1 rounded-full bg-brand-blue"></span> DISCUSSED
                     </div>
-                    <p className="text-[9px] text-[#111b21] leading-relaxed pl-2.5 border-l-2 border-brand-blue/30">
+                    <p className="text-[10px] text-[#111b21] leading-relaxed pl-2 border-l-2 border-brand-blue/30">
                       Pro plan HubSpot integration details for 20 users.
                     </p>
                   </div>
 
                   <div className="space-y-1">
-                    <div className="text-[8px] font-mono font-bold text-[#667781] uppercase flex items-center gap-1.5">
+                    <div className="text-[8px] font-mono font-bold text-[#667781] uppercase flex items-center gap-1">
                       <span className="w-1 h-1 rounded-full bg-brand-orange"></span> PROMISED
                     </div>
-                    <p className="text-[9px] text-[#111b21] leading-relaxed pl-2.5 border-l-2 border-brand-orange/30">
+                    <p className="text-[10px] text-[#111b21] leading-relaxed pl-2 border-l-2 border-brand-orange/30">
                       Onboarding sessions; Setup fee waived.
                     </p>
                   </div>
 
                   <div className="space-y-1">
-                    <div className="text-[8px] font-mono font-bold text-[#667781] uppercase flex items-center gap-1.5">
+                    <div className="text-[8px] font-mono font-bold text-[#667781] uppercase flex items-center gap-1">
                       <span className="w-1 h-1 rounded-full bg-brand-green"></span> PENDING
                     </div>
-                    <p className="text-[9px] text-[#111b21] leading-relaxed pl-2.5 border-l-2 border-brand-green/30 font-bold">
+                    <p className="text-[10px] text-[#111b21] leading-relaxed pl-2 border-l-2 border-brand-green/30 font-bold">
                       Contract delivery.
                     </p>
                   </div>
