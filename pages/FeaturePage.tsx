@@ -14,6 +14,12 @@ import { useFeature } from '../hooks/useFeature'
 import { getIcon as getIconFromMap, getFeatureIcon } from '../lib/iconMap'
 import { urlFor } from '../lib/sanity'
 import { SectionBadge } from '../components/ui/SectionBadge'
+import LabelAnimation from '../components/animations/LabelAnimation'
+import UnifiedDashboardAnimation from '../components/animations/UnifiedDashboardAnimation'
+import RoutingAnimation from '../components/animations/RoutingAnimation'
+import RepetitiveAnimation from '../components/animations/RepetitiveAnimation'
+import PersonalizationAnimation from '../components/animations/PersonalizationAnimation'
+import TeamAnimation from '../components/animations/TeamAnimation'
 
 // Helper to get icon with fallback to Cloud
 const getIcon = (iconName: string | undefined) => {
@@ -166,14 +172,39 @@ const BenefitsSection: React.FC<{ data: any }> = ({ data }) => {
 
 // ================== Features Section ==================
 
+// Team Inbox specific animations mapping
+const teamInboxAnimations: Record<number, React.FC> = {
+  0: LabelAnimation,
+  1: UnifiedDashboardAnimation,
+  2: RoutingAnimation
+}
+
+// Quick Reply specific animations mapping
+const quickReplyAnimations: Record<number, React.FC> = {
+  0: RepetitiveAnimation,
+  1: PersonalizationAnimation,
+  2: TeamAnimation
+}
+
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
+
+  const isTeamInbox = slug === 'team-inbox'
+  const isQuickReply = slug === 'quick-reply'
+
+  // Get animation component based on slug
+  const getAnimationComponent = (index: number): React.FC | null => {
+    if (isTeamInbox) return teamInboxAnimations[index] || null
+    if (isQuickReply) return quickReplyAnimations[index] || null
+    return null
+  }
 
   return (
     <div id="features">
       {features.map((feature, idx) => {
         const isEven = idx % 2 === 0
         const alignRight = idx % 2 === 1
+        const AnimationComponent = getAnimationComponent(idx)
 
         return (
           <section
@@ -223,30 +254,34 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
                   )}
                 </div>
 
-                {/* Image */}
+                {/* Image or Animation */}
                 <div className="flex-1 w-full relative">
-                  <div className="aspect-[4/3] bg-brand-card rounded-2xl border border-slate-700 shadow-card p-2 flex items-center justify-center relative overflow-hidden group hover:shadow-card-hover hover:border-slate-600 transition-all duration-500">
-                    <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
-                    {feature.image ? (
-                      <img
-                        src={urlFor(feature.image).width(800).height(600).url()}
-                        alt={feature.headline || feature.badge || 'Feature illustration'}
-                        className="w-full h-full object-cover rounded-xl z-10"
-                      />
-                    ) : (
-                      <div className="text-center text-slate-500 z-10">
-                        {(() => {
-                          const FeatureIcon = getFeatureIcon(slug, Cloud)
-                          return (
-                            <div className="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center bg-brand-cyan/15 shadow-glow-cyan">
-                              <FeatureIcon size={48} className="text-brand-cyan" />
-                            </div>
-                          )
-                        })()}
-                        <p className="text-sm font-mono">{feature.badge || 'Feature visualization'}</p>
-                      </div>
-                    )}
-                  </div>
+                  {AnimationComponent ? (
+                    <AnimationComponent />
+                  ) : (
+                    <div className="aspect-[4/3] bg-brand-card rounded-2xl border border-slate-700 shadow-card p-2 flex items-center justify-center relative overflow-hidden group hover:shadow-card-hover hover:border-slate-600 transition-all duration-500">
+                      <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
+                      {feature.image ? (
+                        <img
+                          src={urlFor(feature.image).width(800).height(600).url()}
+                          alt={feature.headline || feature.badge || 'Feature illustration'}
+                          className="w-full h-full object-cover rounded-xl z-10"
+                        />
+                      ) : (
+                        <div className="text-center text-slate-500 z-10">
+                          {(() => {
+                            const FeatureIcon = getFeatureIcon(slug, Cloud)
+                            return (
+                              <div className="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center bg-brand-cyan/15 shadow-glow-cyan">
+                                <FeatureIcon size={48} className="text-brand-cyan" />
+                              </div>
+                            )
+                          })()}
+                          <p className="text-sm font-mono">{feature.badge || 'Feature visualization'}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
                   {/* Glow effect - using brand blue */}
                   <div className="absolute -top-6 -right-6 w-40 h-40 rounded-full blur-3xl -z-10 bg-brand-blue/15"></div>
                 </div>

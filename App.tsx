@@ -8,6 +8,7 @@ import { CategoryIndexPage } from './pages/CategoryIndexPage'
 import CoexistencePage from './pages/CoexistencePage'
 import BlogPage from './pages/BlogPage'
 import BlogListingPage from './pages/BlogListingPage'
+import TeamInboxPage from './pages/TeamInboxPage'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/coexistence" element={<CoexistencePage />} />
         <Route path="/blog" element={<BlogListingPage />} />
         <Route path="/blog/:slug" element={<BlogPage />} />
+        <Route path="/team-inbox" element={<TeamInboxPage />} />
       </Routes>
     </BrowserRouter>
   )
