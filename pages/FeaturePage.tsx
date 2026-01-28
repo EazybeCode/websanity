@@ -596,17 +596,23 @@ export const FeaturePage: React.FC = () => {
       {useSections ? (
         // New modular section-based rendering
         <>
-          {data.sections!.map((section, idx) => (
-            <ProductSectionRenderer
-              key={section._key || idx}
-              section={section}
-              color={color}
-              slug={currentSlug}
-            />
-          ))}
-          {/* Add fallback features for whatsapp-copilot if needed */}
-          {whatsappCopilotFeatures && (
-            <FeaturesSection features={whatsappCopilotFeatures} slug={currentSlug} />
+          {data.sections!.map((section, idx) => {
+            // For whatsapp-copilot, skip productFeaturesSection from Sanity and use fallback instead
+            if (isWhatsappCopilot && section._type === 'productFeaturesSection') {
+              return <FeaturesSection key={section._key || idx} features={whatsappCopilotFallbackFeatures} slug={currentSlug} />
+            }
+            return (
+              <ProductSectionRenderer
+                key={section._key || idx}
+                section={section}
+                color={color}
+                slug={currentSlug}
+              />
+            )
+          })}
+          {/* Add fallback features for whatsapp-copilot if no productFeaturesSection exists */}
+          {isWhatsappCopilot && !data.sections!.some(s => s._type === 'productFeaturesSection') && (
+            <FeaturesSection features={whatsappCopilotFallbackFeatures} slug={currentSlug} />
           )}
         </>
       ) : (
