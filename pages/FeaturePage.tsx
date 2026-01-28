@@ -560,6 +560,20 @@ export const FeaturePage: React.FC = () => {
     )
   }
 
+  const currentSlug = slug || 'cloud-backup'
+  const isWhatsappCopilot = currentSlug === 'whatsapp-copilot'
+
+  // For whatsapp-copilot, render fallback page even if no Sanity data
+  if (isWhatsappCopilot && (error || !data)) {
+    return (
+      <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
+        <Navbar />
+        <FeaturesSection features={whatsappCopilotFallbackFeatures} slug={currentSlug} />
+        <ChunkyFooter />
+      </div>
+    )
+  }
+
   if (error || !data) {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
@@ -575,11 +589,6 @@ export const FeaturePage: React.FC = () => {
 
   // Check if using new modular sections or legacy fields
   const useSections = data.sections && data.sections.length > 0
-
-  const currentSlug = slug || 'cloud-backup'
-
-  // For whatsapp-copilot, check if we have features with animations
-  const isWhatsappCopilot = currentSlug === 'whatsapp-copilot'
   const hasProductFeatures = useSections
     ? data.sections!.some(s => s._type === 'productFeaturesSection' && s.features && s.features.length >= 3)
     : data.features && data.features.length >= 3
