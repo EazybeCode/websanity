@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="revGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#14B8A6;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#14B8A6;stop-opacity:0.05"/>
+    </linearGradient>
+    <filter id="glow4">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="500" fill="#0f172a"/>
+
+  <!-- Inbox container -->
+  <rect x="100" y="50" width="600" height="400" rx="15" fill="url(#revGrad)" stroke="#14B8A6" stroke-width="2" filter="url(#glow4)"/>
+
+  <!-- Inbox rows with health indicators -->
+  <g filter="url(#glow4)">
+    <!-- Hot deal - red/orange -->
+    <rect x="120" y="80" width="560" height="70" rx="10" fill="#1e293b"/>
+    <circle cx="160" cy="115" r="20" fill="#ef4444" opacity="0.8"/>
+    <text x="160" y="122" fill="white" font-size="20" text-anchor="middle">🔥</text>
+    <rect x="200" y="95" width="300" height="12" rx="4" fill="#14B8A6" opacity="0.3"/>
+    <rect x="200" y="115" width="200" height="8" rx="4" fill="#14B8A6" opacity="0.15"/>
+    <text x="640" y="120" fill="#22c55e" font-size="16" font-family="Arial" text-anchor="end">$45,000</text>
+
+    <!-- Warm deal - yellow -->
+    <rect x="120" y="165" width="560" height="70" rx="10" fill="#1e293b"/>
+    <circle cx="160" cy="200" r="20" fill="#f59e0b" opacity="0.8"/>
+    <rect x="200" y="180" width="280" height="12" rx="4" fill="#14B8A6" opacity="0.3"/>
+    <rect x="200" y="200" width="180" height="8" rx="4" fill="#14B8A6" opacity="0.15"/>
+    <text x="640" y="205" fill="#22c55e" font-size="16" font-family="Arial" text-anchor="end">$28,500</text>
+
+    <!-- Cooling deal - blue -->
+    <rect x="120" y="250" width="560" height="70" rx="10" fill="#1e293b"/>
+    <circle cx="160" cy="285" r="20" fill="#3b82f6" opacity="0.8"/>
+    <rect x="200" y="265" width="260" height="12" rx="4" fill="#14B8A6" opacity="0.3"/>
+    <rect x="200" y="285" width="160" height="8" rx="4" fill="#14B8A6" opacity="0.15"/>
+    <text x="640" y="290" fill="#f59e0b" font-size="16" font-family="Arial" text-anchor="end">$12,000</text>
+
+    <!-- Cold deal - gray/blue -->
+    <rect x="120" y="335" width="560" height="70" rx="10" fill="#1e293b"/>
+    <circle cx="160" cy="370" r="20" fill="#64748b" opacity="0.8"/>
+    <rect x="200" y="350" width="240" height="12" rx="4" fill="#14B8A6" opacity="0.3"/>
+    <rect x="200" y="370" width="140" height="8" rx="4" fill="#14B8A6" opacity="0.15"/>
+    <text x="640" y="375" fill="#ef4444" font-size="16" font-family="Arial" text-anchor="end">$8,200</text>
+  </g>
+
+  <!-- Trending up arrow -->
+  <g transform="translate(720, 70)" filter="url(#glow4)">
+    <path d="M0 30 L15 0 L30 30 M15 0 L15 40" stroke="#14B8A6" stroke-width="3" fill="none"/>
+  </g>
+</svg>

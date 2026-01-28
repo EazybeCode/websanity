@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 import { ArrowRight, Shield, Zap, Clock, MessageSquare, HelpCircle } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
-import { FooterDynamic } from '../components/dynamic/FooterDynamic'
-import { SecuritySection } from '../components/shared'
+import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { SectionBadge } from '../components/ui/SectionBadge'
 import { Button } from '../components/ui/Button'
 import { PricingToggle, PricingCard, FeatureComparisonTable, PricingFAQ } from '../components/pricing'
 import type { PricingPlan, FAQItem } from '../components/pricing'
-import { useFooter } from '../hooks/useFooter'
 import { usePricing } from '../hooks/usePricing'
-import { useSharedSections } from '../hooks/useSharedSections'
 
 // Default/Fallback Data
 const defaultPricingPlans: PricingPlan[] = [
@@ -160,8 +157,6 @@ const trustIconMap: Record<string, React.ReactNode> = {
 
 export const PricingPage: React.FC = () => {
   const [isAnnual, setIsAnnual] = useState(true)
-  const { data: footerData } = useFooter()
-  const { data: sharedData } = useSharedSections()
   const { data: pricingData, loading } = usePricing('en')
 
   // Use Sanity data if available, otherwise use defaults
@@ -377,11 +372,8 @@ export const PricingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Security Section for consistency */}
-      <SecuritySection data={sharedData?.security} />
-
-      {/* Footer */}
-      {footerData && <FooterDynamic data={footerData} />}
+      {/* Footer with CTA and Security sections */}
+      <ChunkyFooter />
     </div>
   )
 }

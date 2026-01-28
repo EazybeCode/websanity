@@ -1,4 +1,5 @@
 import { createClient } from '@sanity/client'
+import imageUrlBuilder from '@sanity/image-url'
 
 export const sanityClient = createClient({
   projectId: '5awzi0t4',
@@ -6,6 +7,13 @@ export const sanityClient = createClient({
   useCdn: true,
   apiVersion: '2024-01-01',
 })
+
+// Image URL builder for Sanity images
+const builder = imageUrlBuilder(sanityClient)
+
+export function urlFor(source: any) {
+  return builder.image(source)
+}
 
 export async function getLandingPage() {
   const query = `*[_type == "landingPage" && _id == "landingPage"][0]{
@@ -359,6 +367,7 @@ export async function getFeaturePage(slug: string, language: string = 'en') {
       description,
       points,
       visualType,
+      image,
       cta{
         label,
         url
@@ -677,4 +686,127 @@ export async function getBlogPosts(limit?: number) {
       }`
 
   return sanityClient.fetch(query)
+}
+
+export async function getNavigation(slug: string = 'main-nav') {
+  const query = `*[_type == "navigation" && slug.current == $slug][0]{
+    title,
+    "slug": slug.current,
+    items[]{
+      _key,
+      label,
+      href,
+      isMegaMenu,
+      isExternal,
+      columns[]{
+        _key,
+        title,
+        links[]{
+          _key,
+          label,
+          href,
+          description,
+          icon,
+          isExternal
+        }
+      }
+    },
+    ctaButton{
+      label,
+      href,
+      variant
+    },
+    signInButton{
+      label,
+      href
+    }
+  }`
+
+  return sanityClient.fetch(query, { slug })
+}
+
+export async function getBlogIndexPage(language: string = 'en') {
+  const query = `*[_type == "blogIndex" && language == $language][0]{
+    language,
+    title,
+    seo,
+    hero{
+      badge,
+      headline,
+      headlineHighlight,
+      description,
+      searchPlaceholder
+    },
+    categories[]{
+      name,
+      value
+    },
+    featuredSection{
+      title,
+      badgeText,
+      featuredPosts[]->{
+        _id,
+        title,
+        slug,
+        excerpt,
+        category,
+        featuredImage,
+        publishedAt,
+        readTime,
+        author->{
+          name
+        }
+      }
+    },
+    allArticlesSection{
+      badge,
+      title,
+      emptyStateTitle,
+      emptyStateButton
+    },
+    sidebarCta{
+      badge,
+      headline,
+      description,
+      buttonText,
+      buttonUrl,
+      footnote
+    },
+    newsletterCta{
+      headline,
+      description,
+      placeholder,
+      buttonText
+    },
+    relatedPostsSection{
+      badge,
+      title,
+      viewAllText
+    },
+    detailLabels{
+      backToBlog,
+      tocTitle,
+      summaryTitle,
+      summarySubtitle,
+      faqTitle,
+      authorLabel,
+      minReadSuffix
+    },
+    ctaSection{
+      headline,
+      headlineHighlight,
+      description,
+      primaryCta{
+        label,
+        url
+      },
+      secondaryCta{
+        label,
+        url
+      },
+      footnote
+    }
+  }`
+
+  return sanityClient.fetch(query, { language })
 }

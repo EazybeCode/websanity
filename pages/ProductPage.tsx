@@ -30,11 +30,8 @@ import {
   Cloud
 } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
-import { FooterDynamic } from '../components/dynamic/FooterDynamic'
-import { SecuritySection, CTASection } from '../components/shared'
-import { useFooter } from '../hooks/useFooter'
+import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { useProduct } from '../hooks/useProduct'
-import { useSharedSections } from '../hooks/useSharedSections'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -891,8 +888,6 @@ const ReportsSection: React.FC<{ crm: typeof crmConfig.hubspot }> = ({ crm }) =>
 
 export const ProductPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>()
-  const { data: footerData } = useFooter()
-  const { data: sharedData } = useSharedSections()
   const { loading } = useProduct(slug || 'hubspot-whatsapp-integration')
 
   // Determine which CRM based on slug
@@ -941,12 +936,8 @@ export const ProductPage: React.FC = () => {
       {/* Reports Section */}
       <ReportsSection crm={crm} />
 
-      {/* Shared sections for consistency with landing page */}
-      <CTASection data={sharedData?.cta} />
-      <SecuritySection data={sharedData?.security} />
-
-      {/* Footer */}
-      {footerData && <FooterDynamic data={footerData} />}
+      {/* Footer with CTA and Security sections */}
+      <ChunkyFooter />
     </div>
   )
 }

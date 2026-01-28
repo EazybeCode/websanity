@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="teamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#10B981;stop-opacity:0.05"/>
+    </linearGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="500" fill="#0f172a"/>
+
+  <!-- Dashboard frame -->
+  <rect x="100" y="60" width="600" height="380" rx="20" fill="url(#teamGrad)" stroke="#10B981" stroke-width="2" filter="url(#glow2)"/>
+
+  <!-- Header bar -->
+  <rect x="100" y="60" width="600" height="50" rx="20" fill="#10B981" opacity="0.2"/>
+  <circle cx="140" cy="85" r="8" fill="#ef4444"/>
+  <circle cx="170" cy="85" r="8" fill="#f59e0b"/>
+  <circle cx="200" cy="85" r="8" fill="#22c55e"/>
+
+  <!-- Sidebar -->
+  <rect x="100" y="110" width="150" height="330" fill="#10B981" opacity="0.1"/>
+
+  <!-- Team avatars in sidebar -->
+  <g filter="url(#glow2)">
+    <circle cx="175" cy="160" r="20" fill="#10B981" opacity="0.5"/>
+    <circle cx="175" cy="220" r="20" fill="#10B981" opacity="0.4"/>
+    <circle cx="175" cy="280" r="20" fill="#10B981" opacity="0.3"/>
+    <circle cx="175" cy="340" r="20" fill="#10B981" opacity="0.2"/>
+  </g>
+
+  <!-- Message threads -->
+  <g opacity="0.6">
+    <rect x="270" y="130" width="400" height="60" rx="10" fill="#10B981" opacity="0.15"/>
+    <rect x="270" y="200" width="400" height="60" rx="10" fill="#10B981" opacity="0.1"/>
+    <rect x="270" y="270" width="400" height="60" rx="10" fill="#10B981" opacity="0.15"/>
+    <rect x="270" y="340" width="400" height="60" rx="10" fill="#10B981" opacity="0.1"/>
+  </g>
+
+  <!-- Activity indicators -->
+  <g filter="url(#glow2)">
+    <circle cx="640" cy="160" r="6" fill="#10B981"/>
+    <circle cx="640" cy="300" r="6" fill="#10B981"/>
+  </g>
+
+  <!-- Routing arrows -->
+  <g stroke="#10B981" stroke-width="2" fill="none" filter="url(#glow2)" opacity="0.7">
+    <path d="M175 180 Q 220 195 270 160"/>
+    <path d="M175 240 Q 220 265 270 230"/>
+    <path d="M175 300 Q 220 325 270 300"/>
+  </g>
+</svg>

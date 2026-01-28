@@ -18,16 +18,16 @@ interface HowItWorksDynamicProps {
   color?: string
 }
 
-export const HowItWorksDynamic: React.FC<HowItWorksDynamicProps> = ({ data, color = '#25D366' }) => {
+export const HowItWorksDynamic: React.FC<HowItWorksDynamicProps> = ({ data }) => {
   if (!data || !data.steps || data.steps.length === 0) return null
 
   return (
-    <section className="py-24 bg-slate-950">
+    <section className="py-24 bg-brand-surface border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           {data.badge && (
-            <span className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.1em] px-3 py-1.5 rounded-full border text-cyan-500 border-cyan-500/20 bg-cyan-500/10 mb-6 select-none">
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-cyan-500"></span>
+            <span className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.1em] px-3 py-1.5 rounded-full border text-brand-cyan border-brand-cyan/20 bg-brand-cyan/10 mb-6 select-none">
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-brand-cyan"></span>
               {data.badge}
             </span>
           )}
@@ -41,20 +41,18 @@ export const HowItWorksDynamic: React.FC<HowItWorksDynamicProps> = ({ data, colo
           )}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 relative">
-          {/* Connection line */}
-          <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
-
+        <div className="grid md:grid-cols-3 gap-8">
           {data.steps.map((step, idx) => (
-            <div key={idx} className="relative text-center">
-              <div
-                className="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl font-bold text-white relative z-10"
-                style={{ backgroundColor: `${color}20`, border: `2px solid ${color}` }}
-              >
+            <div key={idx} className="relative bg-brand-card rounded-2xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-300">
+              <div className="text-5xl font-black mb-4 text-brand-cyan/40" style={{ textShadow: '0 0 30px rgba(6, 182, 212, 0.2)' }}>
                 {step.number || idx + 1}
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{step.description}</p>
+              <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+              <p className="text-slate-400">{step.description}</p>
+
+              {idx < data.steps.length - 1 && (
+                <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-slate-600 to-transparent"></div>
+              )}
             </div>
           ))}
         </div>

@@ -1,37 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Globe, ChevronDown, Calendar, Clock, Zap } from 'lucide-react';
+import { Search, Calendar, Clock, Zap } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
-import { FooterDynamic } from '../components/dynamic/FooterDynamic';
-import { useFooter } from '../hooks/useFooter';
-import { useBlogPosts } from '../hooks/useBlog';
-import { Button } from '../components/ui/Button';
+import { ChunkyFooter } from '../components/footer/ChunkyFooter';
+import { useBlogPosts, useBlogIndex, BlogCategory } from '../hooks/useBlog';
+import { SectionBadge } from '../components/ui/SectionBadge';
 
-enum Category {
-  ALL = 'All',
-  SALES = 'Sales',
-  PRODUCT = 'Product',
-  AUTOMATION = 'Automation',
-  BEST_PRACTICES = 'Best Practices',
-  CASE_STUDIES = 'Case Studies',
-  SECURITY = 'Security',
-}
-
-const SectionKicker: React.FC<{ label: string; color?: string }> = ({ label, color = 'cyan' }) => {
-  const colorClasses = {
-    cyan: 'text-brand-cyan border-cyan-500/20 bg-cyan-950/10',
-    blue: 'text-brand-blue border-brand-blue/20 bg-blue-950/10'
-  };
-
-  return (
-    <span className={`inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.1em] px-3 py-1.5 rounded-full border ${colorClasses[color as keyof typeof colorClasses] || colorClasses.cyan}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${color === 'cyan' ? 'bg-brand-cyan' : 'bg-brand-blue'} shadow-glow-cyan animate-pulse`}></span>
-      {label}
-    </span>
-  );
-};
-
-const BlogCard: React.FC<{ post: any; layout?: 'vertical' | 'horizontal' }> = ({ post, layout = 'horizontal' }) => {
+const BlogCard: React.FC<{ post: any; minReadSuffix?: string }> = ({ post, minReadSuffix = 'min read' }) => {
   const navigate = useNavigate();
 
   return (
@@ -39,28 +14,28 @@ const BlogCard: React.FC<{ post: any; layout?: 'vertical' | 'horizontal' }> = ({
       onClick={() => navigate(`/blog/${post.slug.current}`)}
       className="group bg-brand-card border border-slate-700 rounded-2xl overflow-hidden hover:border-slate-500 transition-all duration-300 cursor-pointer shadow-xl hover:shadow-2xl h-full flex flex-col"
     >
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-56 overflow-hidden">
         <img
           src={post.featuredImage || 'https://picsum.photos/800/450'}
           alt={post.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute top-4 left-4">
-          <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2 py-1 rounded text-white">
+          <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2.5 py-1 rounded text-white">
             {post.category}
           </span>
         </div>
       </div>
-      <div className="p-8 flex-1 flex flex-col">
-        <h3 className="text-2xl font-bold text-white mb-4 line-clamp-2 leading-tight group-hover:text-brand-cyan transition-colors">
+      <div className="p-6 flex-1 flex flex-col">
+        <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 leading-snug group-hover:text-brand-cyan transition-colors">
           {post.title}
         </h3>
-        <p className="text-slate-400 mb-6 line-clamp-3 leading-relaxed flex-1">
+        <p className="text-slate-400 mb-6 line-clamp-2 leading-relaxed text-sm flex-1">
           {post.excerpt}
         </p>
-        <div className="flex items-center gap-6 pt-6 border-t border-slate-800 font-mono text-[10px] uppercase text-slate-500 font-bold">
+        <div className="flex items-center gap-4 pt-4 border-t border-slate-800 font-mono text-[10px] uppercase text-slate-500 font-bold">
           <span className="flex items-center gap-1">
-            <Clock size={12} /> {post.readTime} min read
+            <Clock size={12} /> {post.readTime} {minReadSuffix}
           </span>
           <span className="flex items-center gap-1">
             <Calendar size={12} /> {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -71,11 +46,71 @@ const BlogCard: React.FC<{ post: any; layout?: 'vertical' | 'horizontal' }> = ({
   );
 };
 
+const FeaturedBlogCard: React.FC<{ post: any; badgeText?: string; minReadSuffix?: string }> = ({
+  post,
+  badgeText = 'Featured',
+  minReadSuffix = 'min read'
+}) => {
+  const navigate = useNavigate();
+
+  return (
+    <div
+      onClick={() => navigate(`/blog/${post.slug.current}`)}
+      className="group bg-brand-card border border-slate-700 rounded-2xl overflow-hidden hover:border-slate-500 transition-all duration-300 cursor-pointer shadow-xl hover:shadow-2xl h-full"
+    >
+      <div className="grid md:grid-cols-2 h-full">
+        <div className="relative h-64 md:h-full overflow-hidden">
+          <img
+            src={post.featuredImage || 'https://picsum.photos/800/600'}
+            alt={post.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute top-4 left-4">
+            <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2.5 py-1 rounded text-white">
+              {badgeText}
+            </span>
+          </div>
+        </div>
+        <div className="p-8 flex flex-col justify-center">
+          <span className="font-mono text-[10px] uppercase font-bold text-brand-cyan mb-3">
+            {post.category}
+          </span>
+          <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight group-hover:text-brand-cyan transition-colors">
+            {post.title}
+          </h3>
+          <p className="text-slate-400 mb-6 leading-relaxed line-clamp-3">
+            {post.excerpt}
+          </p>
+          <div className="flex items-center gap-4 font-mono text-[10px] uppercase text-slate-500 font-bold">
+            <span className="flex items-center gap-1">
+              <Clock size={12} /> {post.readTime} {minReadSuffix}
+            </span>
+            <span className="flex items-center gap-1">
+              <Calendar size={12} /> {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const BlogListingPage: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<Category>(Category.ALL);
+  const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const { data: allPosts, loading } = useBlogPosts();
-  const { data: footerData } = useFooter();
+  const { data: allPosts, loading: postsLoading, error: postsError } = useBlogPosts();
+  const { data: blogIndex, loading: indexLoading } = useBlogIndex('en');
+
+  // Get categories from Sanity or use defaults
+  const categories: BlogCategory[] = blogIndex?.categories || [
+    { name: 'All', value: 'All' },
+    { name: 'Sales', value: 'Sales' },
+    { name: 'Product', value: 'Product' },
+    { name: 'Automation', value: 'Automation' },
+    { name: 'Best Practices', value: 'Best Practices' },
+    { name: 'Case Studies', value: 'Case Studies' },
+    { name: 'Security', value: 'Security' },
+  ];
 
   const filteredPosts = React.useMemo(() => {
     if (!allPosts) return [];
@@ -83,7 +118,7 @@ const BlogListingPage: React.FC = () => {
     let filtered = allPosts;
 
     // Filter by category
-    if (activeCategory !== Category.ALL) {
+    if (activeCategory !== 'All') {
       filtered = filtered.filter(post => post.category === activeCategory);
     }
 
@@ -98,9 +133,24 @@ const BlogListingPage: React.FC = () => {
     return filtered;
   }, [allPosts, activeCategory, searchQuery]);
 
-  const featuredPosts = React.useMemo(() => {
-    return allPosts?.slice(0, 2) || [];
-  }, [allPosts]);
+  // Use featured posts from Sanity if available, otherwise use first post
+  const featuredPost = React.useMemo(() => {
+    if (blogIndex?.featuredSection?.featuredPosts && blogIndex.featuredSection.featuredPosts.length > 0) {
+      return blogIndex.featuredSection.featuredPosts[0];
+    }
+    return allPosts?.[0] || null;
+  }, [allPosts, blogIndex?.featuredSection?.featuredPosts]);
+
+  const regularPosts = React.useMemo(() => {
+    if (!filteredPosts) return [];
+    // If showing all and no search, skip the featured post
+    if (activeCategory === 'All' && !searchQuery && filteredPosts.length > 0 && featuredPost) {
+      return filteredPosts.filter(post => post._id !== featuredPost._id);
+    }
+    return filteredPosts;
+  }, [filteredPosts, activeCategory, searchQuery, featuredPost]);
+
+  const loading = postsLoading || indexLoading;
 
   if (loading) {
     return (
@@ -113,33 +163,52 @@ const BlogListingPage: React.FC = () => {
     );
   }
 
+  if (postsError) {
+    return (
+      <div className="min-h-screen bg-brand-black flex items-center justify-center">
+        <div className="text-center text-red-400">
+          <p>Error loading blog posts</p>
+          <p className="text-sm mt-2">{postsError.message}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Get content from Sanity with fallbacks
+  const hero = blogIndex?.hero || {};
+  const allArticlesSection = blogIndex?.allArticlesSection || {};
+  const featuredSection = blogIndex?.featuredSection || {};
+  const minReadSuffix = blogIndex?.detailLabels?.minReadSuffix || 'min read';
+
   return (
-    <div className="min-h-screen font-sans selection:bg-brand-blue selection:text-white bg-brand-black">
+    <div className="min-h-screen font-sans bg-brand-black text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20">
-        <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+      <section className="relative pt-32 pb-16">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/10 blur-[120px] rounded-full -z-10"></div>
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-cyan/5 blur-[100px] rounded-full -z-10"></div>
 
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <SectionKicker label="Knowledge Hub" color="cyan" />
-          <h1 className="text-5xl lg:text-7xl font-sans font-extrabold tracking-tight text-white leading-[1.05] mt-6 mb-8">
-            Blog & <span className="text-brand-cyan">Resources</span>
+          <SectionBadge variant="cyan" className="mb-6">
+            {hero.badge || 'Knowledge Hub'}
+          </SectionBadge>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1] mb-6">
+            {hero.headline || 'Blog &'}{' '}
+            <span className="text-brand-cyan">{hero.headlineHighlight || 'Resources'}</span>
           </h1>
-          <p className="max-w-2xl mx-auto text-lg lg:text-xl text-slate-400 leading-relaxed mb-12">
-            Expert insights, guides, and best practices for WhatsApp CRM success.
-            Master the art of agentic sales automation.
+          <p className="max-w-2xl mx-auto text-lg text-slate-400 leading-relaxed mb-10">
+            {hero.description || 'Expert insights, guides, and best practices for WhatsApp CRM success. Master the art of conversational sales.'}
           </p>
 
-          <div className="max-w-2xl mx-auto relative group">
+          <div className="max-w-xl mx-auto relative group">
             <div className="absolute inset-y-0 left-4 flex items-center text-slate-500 group-focus-within:text-brand-cyan transition-colors">
               <Search size={20} />
             </div>
             <input
               type="text"
-              placeholder="Search articles, guides, or case studies..."
+              placeholder={hero.searchPlaceholder || 'Search articles...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-brand-surface border border-slate-700 focus:border-brand-cyan focus:outline-none focus:ring-1 focus:ring-brand-cyan rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-slate-500 transition-all shadow-xl"
@@ -151,124 +220,85 @@ const BlogListingPage: React.FC = () => {
       {/* Filters */}
       <section className="pb-12">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {Object.values(Category).map((cat) => (
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {categories.map((cat) => (
               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-widest transition-all border ${
-                  activeCategory === cat
+                key={cat.value}
+                onClick={() => setActiveCategory(cat.value)}
+                className={`px-4 py-2 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-all border ${
+                  activeCategory === cat.value
                   ? 'bg-brand-blue border-brand-blue text-white shadow-glow-blue'
-                  : 'bg-transparent border-slate-800 text-slate-400 hover:border-slate-500 hover:text-white'
+                  : 'bg-transparent border-slate-800 text-slate-400 hover:border-slate-600 hover:text-white'
                 }`}
               >
-                {cat}
+                {cat.name}
               </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Articles */}
-      {featuredPosts.length > 0 && (
-        <section className="py-16">
+      {/* Featured Article */}
+      {featuredPost && activeCategory === 'All' && !searchQuery && (
+        <section className="pb-16">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex items-center gap-3 mb-10">
-              <Zap className="text-brand-cyan" size={24} />
-              <h2 className="text-3xl font-bold text-white tracking-tight">Featured Articles</h2>
+            <div className="flex items-center gap-3 mb-8">
+              <Zap className="text-brand-cyan" size={20} />
+              <h2 className="text-2xl font-bold text-white tracking-tight">
+                {featuredSection.title || 'Featured Article'}
+              </h2>
             </div>
-            <div className="grid lg:grid-cols-2 gap-8">
-              {featuredPosts.map((post) => (
-                <BlogCard key={post._id} post={post} layout="vertical" />
-              ))}
-            </div>
+            <FeaturedBlogCard
+              post={featuredPost}
+              badgeText={featuredSection.badgeText || 'Featured'}
+              minReadSuffix={minReadSuffix}
+            />
           </div>
         </section>
       )}
 
       {/* All Articles */}
-      <section className="bg-brand-surface py-24 relative overflow-hidden">
+      <section className="bg-brand-surface py-20 border-t border-slate-800 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-12">
+          <div className="flex items-center justify-between mb-10">
             <div>
-              <SectionKicker label="Exploration" color="blue" />
-              <h2 className="text-4xl font-bold text-white tracking-tight mt-4">All Articles</h2>
+              <SectionBadge variant="cyan" className="mb-4">
+                {allArticlesSection.badge || 'Browse'}
+              </SectionBadge>
+              <h2 className="text-3xl font-bold text-white tracking-tight">
+                {allArticlesSection.title || 'All Articles'}
+              </h2>
             </div>
             <p className="hidden md:block text-slate-500 font-mono text-xs font-bold uppercase tracking-widest">
-              Showing {filteredPosts.length} Results
+              {filteredPosts.length} {filteredPosts.length === 1 ? 'Article' : 'Articles'}
             </p>
           </div>
 
           {filteredPosts.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-slate-400 text-lg">No articles found matching your criteria.</p>
+              <p className="text-slate-400 text-lg mb-4">
+                {allArticlesSection.emptyStateTitle || 'No articles found matching your criteria.'}
+              </p>
+              <button
+                onClick={() => { setActiveCategory('All'); setSearchQuery(''); }}
+                className="px-6 py-2 rounded-lg border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition-all"
+              >
+                {allArticlesSection.emptyStateButton || 'Clear Filters'}
+              </button>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post) => (
-                <BlogCard key={post._id} post={post} />
+              {regularPosts.map((post) => (
+                <BlogCard key={post._id} post={post} minReadSuffix={minReadSuffix} />
               ))}
             </div>
           )}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-brand-black py-24">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="relative bg-gradient-to-br from-brand-surface to-slate-900 border border-slate-700 rounded-3xl p-10 lg:p-20 text-center shadow-2xl overflow-hidden group">
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-blue/10 blur-[80px] rounded-full group-hover:bg-brand-blue/20 transition-all duration-700"></div>
-            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-brand-cyan/10 blur-[80px] rounded-full group-hover:bg-brand-cyan/20 transition-all duration-700"></div>
-
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight relative z-10">
-              Ready to Transform Your Sales?
-            </h2>
-            <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed relative z-10">
-              Join 50,000+ businesses using Eazybe to manage WhatsApp conversations into conversions with seamless CRM integration.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto px-8 py-4 text-lg">
-                Install for Free →
-              </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto px-8 py-4 text-lg">
-                Book a Demo
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter */}
-      <section className="bg-brand-surface border-y border-slate-800 py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-white tracking-tight mb-4">Never Miss an Update</h2>
-              <p className="text-lg text-slate-400 leading-relaxed">
-                Get the latest WhatsApp CRM tips, product updates, and exclusive insights delivered to your inbox weekly.
-              </p>
-            </div>
-            <div className="relative">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  placeholder="Enter your work email"
-                  className="flex-grow bg-brand-black border border-slate-700 focus:border-brand-blue focus:outline-none rounded-xl py-4 px-6 text-white placeholder:text-slate-600 transition-all"
-                />
-                <Button variant="primary" size="lg" className="px-8 py-4 whitespace-nowrap">
-                  Subscribe Now
-                </Button>
-              </div>
-              <p className="mt-4 text-xs font-mono text-slate-500 uppercase tracking-widest">
-                Join 10,000+ professionals. No spam, unsubscribe anytime.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {footerData && <FooterDynamic data={footerData} />}
+      {/* Footer with CTA and Security sections */}
+      <ChunkyFooter />
     </div>
   );
 };
