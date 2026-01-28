@@ -3,6 +3,28 @@ import { Button } from '../ui/Button'
 import { SectionBadge } from '../ui/SectionBadge'
 import { Check, ArrowRight } from 'lucide-react'
 import type { FeatureSection } from '../../hooks/useLandingPage'
+import HomeSyncAnimation from '../animations/HomeSyncAnimation'
+import HomeMiniCRMAnimation from '../animations/HomeMiniCRMAnimation'
+import HomeWorkflowAnimation from '../animations/HomeWorkflowAnimation'
+import HomeRevenueInboxAnimation from '../animations/HomeRevenueInboxAnimation'
+import HomeAnalyticsAnimation from '../animations/HomeAnalyticsAnimation'
+import HomeAiAgentAnimation from '../animations/HomeAiAgentAnimation'
+
+// Map badge names to animation components
+const homeAnimationsByBadge: Record<string, React.FC> = {
+  'Conversation Capture': HomeSyncAnimation,
+  'Sync Engine': HomeSyncAnimation,
+  'Mini CRM View': HomeMiniCRMAnimation,
+  'Embedded Intelligence': HomeMiniCRMAnimation,
+  'Workflow Automations': HomeWorkflowAnimation,
+  'Trigger & Flow': HomeWorkflowAnimation,
+  'Revenue Inbox': HomeRevenueInboxAnimation,
+  'Conversation Intelligence': HomeRevenueInboxAnimation,
+  'Rep Radar': HomeAnalyticsAnimation,
+  'Team Performance': HomeAnalyticsAnimation,
+  'WhatsApp Copilot': HomeAiAgentAnimation,
+  'Next-Gen Agents': HomeAiAgentAnimation,
+}
 
 interface Props {
   data: FeatureSection
@@ -13,6 +35,7 @@ export const FeaturesDynamic: React.FC<Props> = ({ data }) => {
     <div id="features">
       {data.features?.map((feature, index) => {
         const isEven = index % 2 === 0
+        const AnimationComponent = feature.badge ? homeAnimationsByBadge[feature.badge] : null
 
         return (
           <section
@@ -68,10 +91,14 @@ export const FeaturesDynamic: React.FC<Props> = ({ data }) => {
                 </div>
 
                 <div className="flex-1 w-full">
-                  <div className="aspect-[4/3] bg-brand-card rounded-2xl border border-slate-700 shadow-card p-2 flex items-center justify-center relative overflow-hidden group hover:shadow-card-hover hover:border-slate-600 transition-all duration-500">
-                    <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
-                    <div className="text-slate-500 font-mono text-xs z-10">Feature Visual: {feature.badge}</div>
-                  </div>
+                  {AnimationComponent ? (
+                    <AnimationComponent />
+                  ) : (
+                    <div className="aspect-[4/3] bg-brand-card rounded-2xl border border-slate-700 shadow-card p-2 flex items-center justify-center relative overflow-hidden group hover:shadow-card-hover hover:border-slate-600 transition-all duration-500">
+                      <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
+                      <div className="text-slate-500 font-mono text-xs z-10">Feature Visual: {feature.badge}</div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
