@@ -32,12 +32,10 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { useCoexistence } from '../hooks/useCoexistence';
 import { Navbar } from '../components/Navbar';
-import { FooterDynamic } from '../components/dynamic/FooterDynamic';
-import { useFooter } from '../hooks/useFooter';
+import { ChunkyFooter } from '../components/footer/ChunkyFooter';
 
 const CoexistencePage: React.FC = () => {
   const { data, loading, error } = useCoexistence();
-  const { data: footerData } = useFooter();
 
   if (loading) {
     return (
@@ -496,7 +494,7 @@ const CoexistencePage: React.FC = () => {
       </section>
       </main>
 
-      {footerData && <FooterDynamic data={footerData} />}
+      <ChunkyFooter />
     </div>
   );
 };

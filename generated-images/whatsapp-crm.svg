@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="funnelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:0.1"/>
+    </linearGradient>
+    <filter id="glow3">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="500" fill="#0f172a"/>
+
+  <!-- Pipeline stages (kanban style) -->
+  <g filter="url(#glow3)">
+    <rect x="80" y="100" width="150" height="300" rx="10" fill="#8B5CF6" opacity="0.1" stroke="#8B5CF6" stroke-width="1"/>
+    <rect x="250" y="100" width="150" height="300" rx="10" fill="#8B5CF6" opacity="0.15" stroke="#8B5CF6" stroke-width="1"/>
+    <rect x="420" y="100" width="150" height="300" rx="10" fill="#8B5CF6" opacity="0.2" stroke="#8B5CF6" stroke-width="1"/>
+    <rect x="590" y="100" width="150" height="300" rx="10" fill="#8B5CF6" opacity="0.25" stroke="#8B5CF6" stroke-width="1"/>
+  </g>
+
+  <!-- Stage labels -->
+  <g fill="#8B5CF6" font-family="Arial" font-size="14" opacity="0.8">
+    <text x="155" y="80" text-anchor="middle">NEW</text>
+    <text x="325" y="80" text-anchor="middle">CONTACTED</text>
+    <text x="495" y="80" text-anchor="middle">QUALIFIED</text>
+    <text x="665" y="80" text-anchor="middle">WON</text>
+  </g>
+
+  <!-- Deal cards with labels -->
+  <g filter="url(#glow3)">
+    <!-- New stage cards -->
+    <rect x="95" y="120" width="120" height="50" rx="8" fill="#1e293b"/>
+    <rect x="95" y="120" width="8" height="50" rx="4" fill="#22c55e"/>
+    <rect x="95" y="185" width="120" height="50" rx="8" fill="#1e293b"/>
+    <rect x="95" y="185" width="8" height="50" rx="4" fill="#f59e0b"/>
+    <rect x="95" y="250" width="120" height="50" rx="8" fill="#1e293b"/>
+    <rect x="95" y="250" width="8" height="50" rx="4" fill="#3b82f6"/>
+
+    <!-- Contacted cards -->
+    <rect x="265" y="120" width="120" height="50" rx="8" fill="#1e293b"/>
+    <rect x="265" y="120" width="8" height="50" rx="4" fill="#8B5CF6"/>
+    <rect x="265" y="185" width="120" height="50" rx="8" fill="#1e293b"/>
+    <rect x="265" y="185" width="8" height="50" rx="4" fill="#22c55e"/>
+
+    <!-- Qualified cards -->
+    <rect x="435" y="120" width="120" height="50" rx="8" fill="#1e293b"/>
+    <rect x="435" y="120" width="8" height="50" rx="4" fill="#f59e0b"/>
+    <rect x="435" y="185" width="120" height="50" rx="8" fill="#1e293b"/>
+    <rect x="435" y="185" width="8" height="50" rx="4" fill="#8B5CF6"/>
+
+    <!-- Won cards -->
+    <rect x="605" y="120" width="120" height="50" rx="8" fill="#1e293b"/>
+    <rect x="605" y="120" width="8" height="50" rx="4" fill="#22c55e"/>
+  </g>
+
+  <!-- WhatsApp icon hint -->
+  <g filter="url(#glow3)" transform="translate(650, 420)">
+    <circle cx="0" cy="0" r="30" fill="#8B5CF6" opacity="0.2"/>
+    <path d="M-10 -5 Q -15 -15 0 -15 Q 15 -15 10 -5 L 5 5 L 0 0 L -5 5 Z" fill="#8B5CF6" opacity="0.6"/>
+  </g>
+
+  <!-- Connection lines -->
+  <g stroke="#8B5CF6" stroke-width="1" stroke-dasharray="4,4" opacity="0.4">
+    <line x1="215" y1="145" x2="265" y2="145"/>
+    <line x1="385" y1="145" x2="435" y2="145"/>
+    <line x1="555" y1="145" x2="605" y2="145"/>
+  </g>
+</svg>

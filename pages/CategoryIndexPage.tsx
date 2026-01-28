@@ -9,11 +9,8 @@ import {
   ChevronDown
 } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
-import { FooterDynamic } from '../components/dynamic/FooterDynamic'
-import { SecuritySection, CTASection } from '../components/shared'
-import { useFooter } from '../hooks/useFooter'
+import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { useCategoryIndex } from '../hooks/useCategoryIndex'
-import { useSharedSections } from '../hooks/useSharedSections'
 import { getIcon, getFeatureIcon } from '../lib/iconMap'
 
 // ================== UI Components ==================
@@ -398,8 +395,6 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
 
 export const CategoryIndexPage: React.FC = () => {
   const location = useLocation()
-  const { data: footerData } = useFooter()
-  const { data: sharedData } = useSharedSections()
 
   // Determine slug based on current path
   const getSlugFromPath = () => {
@@ -450,11 +445,8 @@ export const CategoryIndexPage: React.FC = () => {
       <HowItWorksSection data={data.howItWorks} />
       <FAQSection data={data.faq} />
 
-      {/* Shared sections for consistency with landing page */}
-      <CTASection data={sharedData?.cta} />
-      <SecuritySection data={sharedData?.security} />
-
-      {footerData && <FooterDynamic data={footerData} />}
+      {/* Footer with CTA and Security sections */}
+      <ChunkyFooter />
     </div>
   )
 }

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="schedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:0.05"/>
+    </linearGradient>
+    <filter id="glow6">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="500" fill="#0f172a"/>
+
+  <!-- Calendar -->
+  <g transform="translate(100, 80)" filter="url(#glow6)">
+    <rect x="0" y="0" width="300" height="280" rx="15" fill="url(#schedGrad)" stroke="#EC4899" stroke-width="2"/>
+    <rect x="0" y="0" width="300" height="50" rx="15" fill="#EC4899" opacity="0.3"/>
+
+    <!-- Calendar grid -->
+    <rect x="25" y="80" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="25" y="125" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="25" y="170" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="25" y="215" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="63" y="80" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="63" y="125" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="63" y="170" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="63" y="215" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="101" y="80" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="101" y="125" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="101" y="170" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="101" y="215" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="139" y="80" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="139" y="125" width="30" height="30" rx="5" fill="#EC4899" opacity="0.8"/><rect x="139" y="170" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="139" y="215" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="177" y="80" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="177" y="125" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="177" y="170" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="177" y="215" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="215" y="80" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="215" y="125" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="215" y="170" width="30" height="30" rx="5" fill="#EC4899" opacity="0.8"/><rect x="215" y="215" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="253" y="80" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="253" y="125" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="253" y="170" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/><rect x="253" y="215" width="30" height="30" rx="5" fill="#1e293b" opacity="0.5"/>
+  </g>
+
+  <!-- Clock -->
+  <g transform="translate(550, 150)" filter="url(#glow6)">
+    <circle cx="0" cy="0" r="100" fill="url(#schedGrad)" stroke="#EC4899" stroke-width="2"/>
+    <circle cx="0" cy="0" r="5" fill="#EC4899"/>
+    <!-- Hour marks -->
+    <line x1="4.898587196589413e-15" y1="-80" x2="5.5109105961630896e-15" y2="-90" stroke="#EC4899" stroke-width="2"/><line x1="40.00000000000001" y1="-69.28203230275508" x2="45.00000000000001" y2="-77.94228634059948" stroke="#EC4899" stroke-width="2"/><line x1="69.2820323027551" y1="-39.99999999999999" x2="77.94228634059948" y2="-44.99999999999999" stroke="#EC4899" stroke-width="2"/><line x1="80" y1="0" x2="90" y2="0" stroke="#EC4899" stroke-width="2"/><line x1="69.2820323027551" y1="39.99999999999999" x2="77.94228634059948" y2="44.99999999999999" stroke="#EC4899" stroke-width="2"/><line x1="40.00000000000001" y1="69.28203230275508" x2="45.00000000000001" y2="77.94228634059948" stroke="#EC4899" stroke-width="2"/><line x1="4.898587196589413e-15" y1="80" x2="5.5109105961630896e-15" y2="90" stroke="#EC4899" stroke-width="2"/><line x1="-39.999999999999986" y1="69.2820323027551" x2="-44.99999999999998" y2="77.94228634059948" stroke="#EC4899" stroke-width="2"/><line x1="-69.2820323027551" y1="39.99999999999999" x2="-77.94228634059948" y2="44.99999999999999" stroke="#EC4899" stroke-width="2"/><line x1="-80" y1="9.797174393178826e-15" x2="-90" y2="1.1021821192326179e-14" stroke="#EC4899" stroke-width="2"/><line x1="-69.28203230275508" y1="-40.00000000000001" x2="-77.94228634059948" y2="-45.00000000000001" stroke="#EC4899" stroke-width="2"/><line x1="-40.000000000000036" y1="-69.28203230275508" x2="-45.00000000000004" y2="-77.94228634059947" stroke="#EC4899" stroke-width="2"/>
+    <!-- Clock hands -->
+    <line x1="0" y1="0" x2="40" y2="-40" stroke="#EC4899" stroke-width="4" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="60" y2="20" stroke="#EC4899" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Scheduled messages queue -->
+  <g transform="translate(450, 320)" filter="url(#glow6)">
+    <rect x="0" y="0" width="250" height="50" rx="10" fill="#1e293b" stroke="#EC4899" stroke-width="1"/>
+    <rect x="15" y="15" width="100" height="8" rx="4" fill="#EC4899" opacity="0.4"/>
+    <rect x="15" y="28" width="60" height="6" rx="3" fill="#EC4899" opacity="0.2"/>
+    <text x="200" y="32" fill="#EC4899" font-size="12" font-family="Arial" opacity="0.6">9:00 AM</text>
+
+    <rect x="0" y="60" width="250" height="50" rx="10" fill="#1e293b" stroke="#EC4899" stroke-width="1"/>
+    <rect x="15" y="75" width="80" height="8" rx="4" fill="#EC4899" opacity="0.4"/>
+    <rect x="15" y="88" width="50" height="6" rx="3" fill="#EC4899" opacity="0.2"/>
+    <text x="200" y="92" fill="#EC4899" font-size="12" font-family="Arial" opacity="0.6">2:30 PM</text>
+  </g>
+</svg>

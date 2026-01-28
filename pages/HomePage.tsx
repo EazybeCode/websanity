@@ -1,13 +1,11 @@
 import React from 'react'
 import { Navbar } from '../components/Navbar'
-import { FooterDynamic } from '../components/dynamic/FooterDynamic'
+import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { SectionRenderer } from '../components/SectionRenderer'
 import { useLandingPage } from '../hooks/useLandingPage'
-import { useFooter } from '../hooks/useFooter'
 
 export const HomePage: React.FC = () => {
   const { data, loading, error } = useLandingPage()
-  const { data: footerData } = useFooter()
 
   if (loading) {
     return (
@@ -38,7 +36,7 @@ export const HomePage: React.FC = () => {
           <SectionRenderer key={section._key} section={section} />
         ))}
       </main>
-      {footerData && <FooterDynamic data={footerData} />}
+      <ChunkyFooter />
     </div>
   )
 }

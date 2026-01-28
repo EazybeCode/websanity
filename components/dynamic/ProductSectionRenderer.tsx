@@ -17,36 +17,35 @@ export interface ProductSection {
 
 interface ProductSectionRendererProps {
   section: ProductSection
-  color?: string
+  color?: string // Kept for backward compatibility but no longer used
   slug?: string
 }
 
 export const ProductSectionRenderer: React.FC<ProductSectionRendererProps> = ({
   section,
-  color = '#25D366',
   slug = ''
 }) => {
   switch (section._type) {
     case 'productHeroSection':
-      return <ProductHeroDynamic data={section} color={color} />
+      return <ProductHeroDynamic data={section} />
 
     case 'benefitsSection':
-      return <BenefitsDynamic data={section} color={color} />
+      return <BenefitsDynamic data={section} />
 
     case 'productFeaturesSection':
-      return <ProductFeaturesDynamic data={section} color={color} slug={slug} />
+      return <ProductFeaturesDynamic data={section} slug={slug} />
 
     case 'howItWorksSection':
-      return <HowItWorksDynamic data={section} color={color} />
+      return <HowItWorksDynamic data={section} />
 
     case 'useCasesSection':
-      return <UseCasesDynamic data={section} color={color} />
+      return <UseCasesDynamic data={section} />
 
     case 'productTestimonialSection':
-      return <ProductTestimonialDynamic data={section} color={color} />
+      return <ProductTestimonialDynamic data={section} />
 
     case 'faqSection':
-      return <FAQDynamic data={section} color={color} />
+      return <FAQDynamic data={section} />
 
     case 'securitySection':
       return <SecurityDynamic data={section} />
