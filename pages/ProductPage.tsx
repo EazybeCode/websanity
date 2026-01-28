@@ -1116,6 +1116,351 @@ const ZohoWorkflowUI: React.FC<{ step: number }> = ({ step }) => {
   )
 }
 
+// Bitrix24 Workflow UI - Robot-based automation pipeline style
+const Bitrix24WorkflowUI: React.FC<{ step: number }> = ({ step }) => {
+  const crmColor = '#2FC6F6'
+
+  return (
+    <div className="relative w-full aspect-[4/3] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col">
+       {/* Bitrix24 Header */}
+       <div className="h-12 flex items-center px-4 justify-between shrink-0" style={{ backgroundColor: '#2B3A4E' }}>
+          <div className="flex items-center gap-3">
+            <div className="w-7 h-7 rounded flex items-center justify-center" style={{ backgroundColor: crmColor }}>
+               <Zap size={16} className="text-white" />
+            </div>
+            <div>
+               <span className="text-white text-xs font-bold block">WhatsApp Automation Robot</span>
+               <span className="text-[9px] text-slate-400">CRM &gt; Automation Rules</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+             <span className="text-[9px] text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded font-medium">Active</span>
+          </div>
+       </div>
+
+       {/* Robot Pipeline Canvas */}
+       <div className="flex-1 bg-[#F8FAFB] relative overflow-hidden p-6 flex flex-col items-center justify-start gap-3 pt-8">
+          <div className="absolute inset-0 opacity-15 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+
+          {/* Trigger Robot */}
+          <div className="relative z-10 w-60 bg-white border-2 rounded-lg shadow-sm overflow-hidden" style={{ borderColor: `${crmColor}40` }}>
+             <div className="h-9 flex items-center px-3 gap-2" style={{ backgroundColor: `${crmColor}15` }}>
+                <div className="w-5 h-5 rounded flex items-center justify-center" style={{ backgroundColor: crmColor }}>
+                   <Zap size={11} className="text-white" />
+                </div>
+                <span className="text-[10px] font-bold text-slate-700">Trigger: New WhatsApp Chat</span>
+             </div>
+             <div className="p-3 text-[9px] text-slate-500">
+                <div className="flex items-center justify-between">
+                   <span className="text-slate-400">Source:</span>
+                   <span className="font-medium text-slate-700">WhatsApp Business</span>
+                </div>
+             </div>
+          </div>
+
+          {/* Connector Arrow */}
+          <div className="h-6 w-0.5 bg-slate-300 relative z-10">
+             <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[5px] border-l-transparent border-r-transparent border-t-slate-300"></div>
+          </div>
+
+          {/* Robot 1: Create Activity */}
+          <div className={`relative z-10 w-64 bg-white border-2 border-blue-400/30 rounded-lg shadow-md overflow-hidden transition-all duration-700 ${step >= 1 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'}`}>
+             <div className="h-9 bg-blue-50 flex items-center px-3 gap-2">
+                <div className="w-5 h-5 rounded bg-blue-500 flex items-center justify-center">
+                   <Activity size={11} className="text-white" />
+                </div>
+                <span className="text-[10px] font-bold text-slate-700">Robot: Create CRM Activity</span>
+             </div>
+             <div className="p-3 space-y-1.5">
+                <div className="flex items-center justify-between text-[9px]">
+                   <span className="text-slate-400">Entity:</span>
+                   <span className="bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded font-mono text-[8px]">Lead</span>
+                </div>
+                <div className="flex items-center justify-between text-[9px]">
+                   <span className="text-slate-400">Activity:</span>
+                   <span className="font-medium text-slate-700">WhatsApp Conversation</span>
+                </div>
+             </div>
+          </div>
+
+          {/* Connector Arrow */}
+          <div className={`h-6 w-0.5 bg-slate-300 relative z-10 transition-all duration-500 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+             <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[5px] border-l-transparent border-r-transparent border-t-slate-300"></div>
+          </div>
+
+          {/* Robot 2: Send WhatsApp */}
+          <div className={`relative z-10 w-68 bg-white border-2 border-emerald-400/50 rounded-lg shadow-lg overflow-hidden transition-all duration-700 ${step >= 2 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'}`}>
+             <div className="h-9 bg-emerald-50 flex items-center px-3 justify-between">
+                <div className="flex items-center gap-2">
+                   <div className="w-5 h-5 rounded bg-emerald-500 flex items-center justify-center">
+                      <MessageSquare size={11} className="text-white" />
+                   </div>
+                   <span className="text-[10px] font-bold text-slate-700">Robot: Send WhatsApp</span>
+                </div>
+                <Workflow size={10} className="text-emerald-300" />
+             </div>
+             <div className="p-3 space-y-1.5">
+                <div className="flex items-center justify-between text-[9px]">
+                   <span className="text-slate-400 font-bold uppercase tracking-wider text-[8px]">Template</span>
+                   <span className="bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded font-mono text-[8px] border border-emerald-100">lead_welcome_v2</span>
+                </div>
+                <div className="flex items-center justify-between text-[9px]">
+                   <span className="text-slate-400 font-bold uppercase tracking-wider text-[8px]">Phone</span>
+                   <span className="text-slate-700 font-medium text-[8px]">{'{'}Lead.PHONE{'}'}</span>
+                </div>
+             </div>
+          </div>
+
+          {/* Execution Toast */}
+          <div className={`absolute bottom-4 left-1/2 -translate-x-1/2 w-[270px] text-white rounded-lg p-3 shadow-2xl flex items-center gap-3 border border-white/10 transition-all duration-500 ${step >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ backgroundColor: '#2B3A4E' }}>
+             <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0" style={{ backgroundColor: crmColor }}>
+                <Check size={16} className="text-white" />
+             </div>
+             <div>
+                <div className="text-[10px] font-bold">Robot Executed</div>
+                <div className="text-[8px] font-mono text-slate-400">Activity + WhatsApp sent via Eazybe</div>
+             </div>
+          </div>
+       </div>
+    </div>
+  )
+}
+
+// LeadSquared Workflow UI - Marketing automation / drip campaign style
+const LeadSquaredWorkflowUI: React.FC<{ step: number }> = ({ step }) => {
+  const crmColor = '#0066CC'
+
+  return (
+    <div className="relative w-full aspect-[4/3] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col">
+       {/* LeadSquared Header */}
+       <div className="h-14 flex items-center px-4 justify-between shrink-0 border-b-4" style={{ backgroundColor: '#003366', borderBottomColor: crmColor }}>
+          <div className="flex items-center gap-3">
+             <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
+                <Workflow size={18} style={{ color: crmColor }} />
+             </div>
+             <div>
+                <span className="text-white text-xs font-bold block">Lead Nurture Automation</span>
+                <span className="text-blue-300 text-[9px]">Drip Campaign &bull; Responsive Action</span>
+             </div>
+          </div>
+          <div className="flex items-center gap-2">
+             <button className="text-white text-[10px] font-bold px-3 py-1.5 rounded" style={{ backgroundColor: crmColor }}>Activate</button>
+          </div>
+       </div>
+
+       {/* Automation Canvas */}
+       <div className="flex-1 bg-[#F5F7FA] relative overflow-hidden p-5 flex flex-col items-center justify-start gap-2 pt-6">
+          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(90deg, #e5e7eb 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+
+          {/* Entry Trigger */}
+          <div className="relative z-10 w-56 bg-white border-2 rounded-lg shadow-sm overflow-hidden" style={{ borderColor: `${crmColor}50` }}>
+             <div className="h-9 flex items-center px-3 gap-2" style={{ backgroundColor: `${crmColor}10` }}>
+                <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: crmColor }}>
+                   <Users size={11} className="text-white" />
+                </div>
+                <span className="text-[10px] font-bold text-slate-700">Lead Captured</span>
+             </div>
+             <div className="p-3 text-[9px] text-slate-500">
+                <div className="flex items-center justify-between">
+                   <span className="text-slate-400">Source:</span>
+                   <span className="font-medium text-slate-700">WhatsApp Inbound</span>
+                </div>
+                <div className="flex items-center justify-between mt-1">
+                   <span className="text-slate-400">Score:</span>
+                   <span className="font-mono font-bold" style={{ color: crmColor }}>&gt; 50</span>
+                </div>
+             </div>
+          </div>
+
+          {/* Connector */}
+          <div className="h-5 w-0.5 bg-slate-300 relative z-10">
+             <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[5px] border-l-transparent border-r-transparent border-t-slate-300"></div>
+          </div>
+
+          {/* Condition: Lead Score Check */}
+          <div className={`relative z-10 w-48 transition-all duration-700 ${step >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+             <div className="bg-amber-50 border-2 border-amber-300/50 rounded-lg p-3 flex items-center gap-2 shadow-sm">
+                <div className="w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center shrink-0">
+                   <Share2 size={12} className="text-white" />
+                </div>
+                <div>
+                   <span className="text-[10px] font-bold text-slate-700 block">Score Check</span>
+                   <span className="text-[8px] text-amber-600 font-mono">IF score ≥ 80 → HOT</span>
+                </div>
+             </div>
+          </div>
+
+          {/* Branch connectors */}
+          <div className={`h-5 w-0.5 bg-slate-300 relative z-10 transition-all duration-500 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+             <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[5px] border-l-transparent border-r-transparent border-t-slate-300"></div>
+          </div>
+
+          {/* Action: Send WhatsApp */}
+          <div className={`relative z-10 w-64 bg-white border-2 border-emerald-400/50 rounded-lg shadow-lg overflow-hidden transition-all duration-700 ${step >= 2 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'}`}>
+             <div className="h-9 bg-emerald-50 flex items-center px-3 justify-between">
+                <div className="flex items-center gap-2">
+                   <div className="w-5 h-5 rounded bg-emerald-500 flex items-center justify-center">
+                      <MessageSquare size={11} className="text-white" />
+                   </div>
+                   <span className="text-[10px] font-bold text-slate-700">Send WhatsApp via Eazybe</span>
+                </div>
+             </div>
+             <div className="p-3 space-y-1.5">
+                <div className="flex items-center justify-between text-[9px]">
+                   <span className="text-slate-400 font-bold uppercase tracking-wider text-[8px]">Template</span>
+                   <span className="bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded font-mono text-[8px] border border-emerald-100">hot_lead_outreach</span>
+                </div>
+                <div className="flex items-center justify-between text-[9px]">
+                   <span className="text-slate-400 font-bold uppercase tracking-wider text-[8px]">Recipient</span>
+                   <span className="text-slate-700 font-medium text-[8px]">{'{'}Lead.Mobile{'}'}</span>
+                </div>
+                <div className="flex items-center justify-between text-[9px]">
+                   <span className="text-slate-400 font-bold uppercase tracking-wider text-[8px]">Activity</span>
+                   <span className="bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-mono text-[8px]">Auto-Log</span>
+                </div>
+             </div>
+          </div>
+
+          {/* Execution Toast */}
+          <div className={`absolute bottom-4 left-1/2 -translate-x-1/2 w-[260px] text-white rounded-lg p-3 shadow-2xl flex items-center gap-3 transition-all duration-500 ${step >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ backgroundColor: '#003366' }}>
+             <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: crmColor }}>
+                <Check size={16} className="text-white" />
+             </div>
+             <div>
+                <div className="text-[10px] font-bold">Automation Triggered</div>
+                <div className="text-[8px] text-blue-300">Hot lead → WhatsApp sent via Eazybe</div>
+             </div>
+          </div>
+       </div>
+    </div>
+  )
+}
+
+// Google Sheets Workflow UI - Spreadsheet-style with Apps Script automation
+const GoogleSheetsWorkflowUI: React.FC<{ step: number }> = ({ step }) => {
+  const crmColor = '#0F9D58'
+
+  return (
+    <div className="relative w-full aspect-[4/3] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col">
+       {/* Google Sheets Header */}
+       <div className="h-12 bg-white flex items-center px-4 justify-between shrink-0 border-b border-slate-200">
+          <div className="flex items-center gap-3">
+             <div className="w-7 h-7 rounded flex items-center justify-center" style={{ backgroundColor: crmColor }}>
+                <Cloud size={15} className="text-white" />
+             </div>
+             <div>
+                <span className="text-slate-800 text-xs font-bold block">WhatsApp Lead Tracker</span>
+                <span className="text-[9px] text-slate-400">Automated via Eazybe + Apps Script</span>
+             </div>
+          </div>
+          <div className="flex items-center gap-2">
+             <div className="flex items-center gap-1 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded-full">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                <span className="text-[8px] font-bold text-emerald-700 uppercase">Syncing</span>
+             </div>
+          </div>
+       </div>
+
+       {/* Toolbar */}
+       <div className="h-8 bg-[#F9FBFD] flex items-center px-3 gap-4 border-b border-slate-100 shrink-0">
+          <span className="text-[9px] font-bold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded">Eazybe Trigger</span>
+          <span className="text-[9px] text-slate-400">Extensions &gt; Apps Script &gt; WhatsApp Sync</span>
+       </div>
+
+       {/* Spreadsheet Grid */}
+       <div className="flex-1 relative overflow-hidden">
+          {/* Column Headers */}
+          <div className="flex border-b border-slate-200 bg-[#F8F9FA]">
+             <div className="w-8 h-7 border-r border-slate-200 flex items-center justify-center shrink-0">
+                <span className="text-[8px] text-slate-400"></span>
+             </div>
+             {['A', 'B', 'C', 'D', 'E'].map((col) => (
+                <div key={col} className="flex-1 h-7 border-r border-slate-200 flex items-center justify-center">
+                   <span className="text-[9px] font-medium text-slate-500">{col}</span>
+                </div>
+             ))}
+          </div>
+
+          {/* Header Row */}
+          <div className="flex border-b border-slate-200 bg-[#E8F0FE]">
+             <div className="w-8 h-7 border-r border-slate-200 flex items-center justify-center bg-[#F8F9FA] shrink-0">
+                <span className="text-[8px] text-slate-400">1</span>
+             </div>
+             {['Name', 'Phone', 'Message', 'Status', 'Timestamp'].map((header) => (
+                <div key={header} className="flex-1 h-7 border-r border-slate-100 flex items-center px-2">
+                   <span className="text-[8px] font-bold text-slate-700">{header}</span>
+                </div>
+             ))}
+          </div>
+
+          {/* Existing Rows */}
+          {[
+            { row: 2, data: ['Sarah J.', '+1 555-012', 'Hi, interested in...', 'Replied', '10:24 AM'] },
+            { row: 3, data: ['Amit P.', '+91 98765', 'Can you send pri...', 'New', '10:31 AM'] },
+          ].map(({ row, data }) => (
+            <div key={row} className="flex border-b border-slate-100">
+               <div className="w-8 h-7 border-r border-slate-200 flex items-center justify-center bg-[#F8F9FA] shrink-0">
+                  <span className="text-[8px] text-slate-400">{row}</span>
+               </div>
+               {data.map((cell, ci) => (
+                  <div key={ci} className="flex-1 h-7 border-r border-slate-50 flex items-center px-2">
+                     <span className={`text-[8px] ${ci === 3 ? (cell === 'Replied' ? 'text-emerald-600 font-bold' : 'text-blue-600 font-bold') : 'text-slate-600'}`}>{cell}</span>
+                  </div>
+               ))}
+            </div>
+          ))}
+
+          {/* New Row Being Added (animated) */}
+          <div className={`flex border-b border-emerald-200 transition-all duration-700 ${step >= 1 ? 'opacity-100 bg-emerald-50/50' : 'opacity-0'}`}>
+             <div className="w-8 h-7 border-r border-slate-200 flex items-center justify-center bg-[#F8F9FA] shrink-0">
+                <span className="text-[8px] text-slate-400">4</span>
+             </div>
+             {['Priya K.', '+91 87654', 'Need a demo fo...', 'New', 'Just now'].map((cell, ci) => (
+                <div key={ci} className={`flex-1 h-7 border-r border-emerald-100 flex items-center px-2 transition-all duration-500 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: `${ci * 100}ms` }}>
+                   <span className={`text-[8px] ${ci === 3 ? 'text-blue-600 font-bold' : ci === 4 ? 'text-emerald-600 font-bold' : 'text-slate-700 font-medium'}`}>{cell}</span>
+                </div>
+             ))}
+          </div>
+
+          {/* Another New Row */}
+          <div className={`flex border-b border-emerald-200 transition-all duration-700 ${step >= 2 ? 'opacity-100 bg-emerald-50/30' : 'opacity-0'}`}>
+             <div className="w-8 h-7 border-r border-slate-200 flex items-center justify-center bg-[#F8F9FA] shrink-0">
+                <span className="text-[8px] text-slate-400">5</span>
+             </div>
+             {['Mike R.', '+44 7700', 'Pricing for ente...', 'New', 'Just now'].map((cell, ci) => (
+                <div key={ci} className={`flex-1 h-7 border-r border-emerald-100 flex items-center px-2 transition-all duration-500 ${step >= 2 ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: `${ci * 100}ms` }}>
+                   <span className={`text-[8px] ${ci === 3 ? 'text-blue-600 font-bold' : ci === 4 ? 'text-emerald-600 font-bold' : 'text-slate-700 font-medium'}`}>{cell}</span>
+                </div>
+             ))}
+          </div>
+
+          {/* Empty rows */}
+          {[6, 7, 8].map((row) => (
+             <div key={row} className="flex border-b border-slate-50">
+                <div className="w-8 h-7 border-r border-slate-200 flex items-center justify-center bg-[#F8F9FA] shrink-0">
+                   <span className="text-[8px] text-slate-300">{row}</span>
+                </div>
+                {Array.from({ length: 5 }).map((_, ci) => (
+                   <div key={ci} className="flex-1 h-7 border-r border-slate-50"></div>
+                ))}
+             </div>
+          ))}
+
+          {/* Apps Script Toast */}
+          <div className={`absolute bottom-4 right-4 w-[230px] bg-slate-900 text-white rounded-lg p-3 shadow-2xl flex items-center gap-3 border border-white/10 transition-all duration-500 ${step >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+             <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0" style={{ backgroundColor: crmColor }}>
+                <CheckSquare size={16} className="text-white" />
+             </div>
+             <div>
+                <div className="text-[10px] font-bold">Rows Auto-Synced</div>
+                <div className="text-[8px] font-mono text-slate-400">WhatsApp → Sheet via Eazybe</div>
+             </div>
+          </div>
+       </div>
+    </div>
+  )
+}
+
 // Main Workflow Animation wrapper that selects the right UI
 const WorkflowAnimation: React.FC<{ crmColor: string, crmSlug: string }> = ({ crmSlug }) => {
   const [step, setStep] = useState(0)
@@ -1134,6 +1479,18 @@ const WorkflowAnimation: React.FC<{ crmColor: string, crmSlug: string }> = ({ cr
 
   if (crmSlug === 'zoho') {
     return <ZohoWorkflowUI step={step} />
+  }
+
+  if (crmSlug === 'bitrix24') {
+    return <Bitrix24WorkflowUI step={step} />
+  }
+
+  if (crmSlug === 'leadsquared') {
+    return <LeadSquaredWorkflowUI step={step} />
+  }
+
+  if (crmSlug === 'google-sheets') {
+    return <GoogleSheetsWorkflowUI step={step} />
   }
 
   // Default: HubSpot
