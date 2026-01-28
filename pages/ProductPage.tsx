@@ -56,6 +56,70 @@ const crmConfig: Record<string, {
     gradient: 'from-[#E42527] to-[#C41E3A]',
     partnerText: 'Zoho Partner',
     certified: true
+  },
+  bitrix24: {
+    name: 'Bitrix24',
+    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.bitrix24.com&size=256',
+    color: '#2FC6F6',
+    gradient: 'from-[#2FC6F6] to-[#1AA3D0]',
+    partnerText: 'Bitrix24 Partner',
+    certified: false
+  },
+  leadsquared: {
+    name: 'LeadSquared',
+    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.leadsquared.com&size=256',
+    color: '#0066CC',
+    gradient: 'from-[#0066CC] to-[#004C99]',
+    partnerText: 'LeadSquared Partner',
+    certified: false
+  },
+  freshdesk: {
+    name: 'Freshdesk',
+    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.freshdesk.com&size=256',
+    color: '#25C16F',
+    gradient: 'from-[#25C16F] to-[#1A9E58]',
+    partnerText: 'Freshdesk Partner',
+    certified: false
+  },
+  'google-sheets': {
+    name: 'Google Sheets',
+    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://sheets.google.com&size=256',
+    color: '#0F9D58',
+    gradient: 'from-[#0F9D58] to-[#0B7A43]',
+    partnerText: 'Google Partner',
+    certified: false
+  },
+  webhooks: {
+    name: 'Webhooks',
+    logo: 'https://cdn.simpleicons.org/webhook/6B7280',
+    color: '#6B7280',
+    gradient: 'from-[#6B7280] to-[#4B5563]',
+    partnerText: 'Custom Integration',
+    certified: false
+  },
+  pipedrive: {
+    name: 'Pipedrive',
+    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.pipedrive.com&size=256',
+    color: '#017737',
+    gradient: 'from-[#017737] to-[#015A2A]',
+    partnerText: 'Pipedrive Partner',
+    certified: false
+  },
+  monday: {
+    name: 'Monday.com',
+    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.monday.com&size=256',
+    color: '#FF3D57',
+    gradient: 'from-[#FF3D57] to-[#E02040]',
+    partnerText: 'Monday.com Partner',
+    certified: false
+  },
+  'google-calendar': {
+    name: 'Google Calendar',
+    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://calendar.google.com&size=256',
+    color: '#4285F4',
+    gradient: 'from-[#4285F4] to-[#2A6FDB]',
+    partnerText: 'Google Partner',
+    certified: false
   }
 }
 
@@ -84,6 +148,70 @@ const CRM_PROPERTY_FIELDS = {
     { label: 'MSG_SENTIMENT', type: 'NLP', value: 'POSITIVE', desc: 'Real-time sentiment from last 10 messages.', color: 'text-emerald-500' },
     { label: 'DEAL_POTENTIAL', type: 'REVENUE', value: '₹3.2L', desc: 'Estimated deal value from context.' },
     { label: 'FOLLOW_UP_DUE', type: 'ALERT', value: 'TODAY', desc: 'Smart reminder based on conversation gaps.', color: 'text-red-500' },
+  ],
+  bitrix24: [
+    { label: 'CONTACT_STATUS', type: 'CRM', value: 'SYNCED', desc: 'Contact matched to Bitrix24 record.', color: 'text-emerald-500' },
+    { label: 'TOTAL_MESSAGES', type: 'METER', value: '847', desc: 'Aggregate WhatsApp messages logged.' },
+    { label: 'CHAT_BACKUP_STATUS', type: 'PROTOCOL', value: 'ACTIVE', desc: 'Real-time backup to Bitrix24.', color: 'text-cyan-500' },
+    { label: 'LAST_INTERACTION', type: 'TIMESTAMP', value: '14m ago', desc: 'Most recent WhatsApp message synced.' },
+    { label: 'DEAL_STAGE', type: 'PIPELINE', value: 'NEGOTIATION', desc: 'Current deal stage in Bitrix24.', color: 'text-orange-500' },
+    { label: 'SYNC_HEALTH', type: 'STATUS', value: 'OPTIMAL', desc: 'Connection status with Bitrix24.', color: 'text-emerald-500' },
+  ],
+  leadsquared: [
+    { label: 'LEAD_SCORE', type: 'SCORING', value: '91/100', desc: 'Weighted from WhatsApp engagement signals.', color: 'text-cyan-500' },
+    { label: 'ACTIVITY_COUNT', type: 'METER', value: '1,089', desc: 'Total activities logged from WhatsApp.' },
+    { label: 'WORKFLOW_STATUS', type: 'AUTOMATION', value: 'TRIGGERED', desc: 'LeadSquared workflow active.', color: 'text-emerald-500' },
+    { label: 'LEAD_STAGE', type: 'FUNNEL', value: 'QUALIFIED', desc: 'Auto-updated from conversation signals.', color: 'text-orange-500' },
+    { label: 'RESPONSE_TIME', type: 'ANALYTICS', value: '2m 30s', desc: 'Average rep response time on WhatsApp.' },
+    { label: 'CAPTURE_MODE', type: 'PROTOCOL', value: 'AUTO', desc: 'New leads captured automatically.', color: 'text-cyan-500' },
+  ],
+  freshdesk: [
+    { label: 'TICKET_CONTEXT', type: 'SUPPORT', value: 'LINKED', desc: 'WhatsApp chat linked to ticket.', color: 'text-emerald-500' },
+    { label: 'TOTAL_MESSAGES', type: 'METER', value: '623', desc: 'Support messages backed up.' },
+    { label: 'CONTACT_STATUS', type: 'CRM', value: 'MATCHED', desc: 'Contact synced to Freshdesk.', color: 'text-cyan-500' },
+    { label: 'RESPONSE_SLA', type: 'TIMER', value: 'ON_TRACK', desc: 'SLA compliance for WhatsApp channel.', color: 'text-emerald-500' },
+    { label: 'BACKUP_STATUS', type: 'PROTOCOL', value: 'ACTIVE', desc: 'Real-time chat backup enabled.' },
+    { label: 'AGENT_LOAD', type: 'CAPACITY', value: '12 ACTIVE', desc: 'Active WhatsApp conversations.', color: 'text-orange-500' },
+  ],
+  'google-sheets': [
+    { label: 'CONTACTS_SYNCED', type: 'COUNTER', value: '2,341', desc: 'Total contacts exported to Sheets.' },
+    { label: 'LAST_EXPORT', type: 'TIMESTAMP', value: '3m ago', desc: 'Most recent data sync to spreadsheet.' },
+    { label: 'SHEET_STATUS', type: 'CONNECTION', value: 'CONNECTED', desc: 'Google Sheets link active.', color: 'text-emerald-500' },
+    { label: 'DATA_ROWS', type: 'METER', value: '5,892', desc: 'Total rows of WhatsApp data.' },
+    { label: 'TEAM_MEMBERS', type: 'USERS', value: '8 ACTIVE', desc: 'Team members syncing to same sheet.', color: 'text-cyan-500' },
+    { label: 'EXPORT_MODE', type: 'PROTOCOL', value: 'REAL-TIME', desc: 'Continuous data export enabled.', color: 'text-orange-500' },
+  ],
+  webhooks: [
+    { label: 'EVENTS_SENT', type: 'COUNTER', value: '14,203', desc: 'Total webhook events delivered.' },
+    { label: 'DELIVERY_RATE', type: 'PERCENTAGE', value: '99.97%', desc: 'Successful event delivery rate.', color: 'text-emerald-500' },
+    { label: 'AVG_LATENCY', type: 'TIMER', value: '142ms', desc: 'Average event delivery time.' },
+    { label: 'ENDPOINT_STATUS', type: 'CONNECTION', value: 'HEALTHY', desc: 'HTTP endpoint responding correctly.', color: 'text-emerald-500' },
+    { label: 'EVENT_TYPES', type: 'CONFIG', value: '6 ACTIVE', desc: 'Configured event subscriptions.', color: 'text-cyan-500' },
+    { label: 'RETRY_QUEUE', type: 'BUFFER', value: '0 PENDING', desc: 'No failed deliveries in queue.', color: 'text-orange-500' },
+  ],
+  pipedrive: [
+    { label: 'DEAL_VALUE', type: 'CURRENCY', value: '$38,500', desc: 'Active deal value from conversations.' },
+    { label: 'PIPELINE_STAGE', type: 'PIPELINE', value: 'PROPOSAL', desc: 'Auto-updated from chat signals.', color: 'text-blue-500' },
+    { label: 'ACTIVITY_LOG', type: 'METER', value: '956', desc: 'WhatsApp activities logged to Pipedrive.' },
+    { label: 'WIN_PROBABILITY', type: 'FORECAST', value: '78%', desc: 'AI-predicted from engagement data.', color: 'text-emerald-500' },
+    { label: 'WORKFLOW_STATUS', type: 'AUTOMATION', value: 'RUNNING', desc: 'Pipedrive automation triggered.', color: 'text-cyan-500' },
+    { label: 'NEXT_ACTION', type: 'AI_SUGGEST', value: 'FOLLOW_UP', desc: 'Recommended based on conversation.', color: 'text-orange-500' },
+  ],
+  monday: [
+    { label: 'BOARD_ITEMS', type: 'COUNTER', value: '1,245', desc: 'Contacts synced to Monday.com boards.' },
+    { label: 'MESSAGES_BACKED', type: 'METER', value: '3,891', desc: 'WhatsApp messages archived.' },
+    { label: 'SYNC_STATUS', type: 'CONNECTION', value: 'ACTIVE', desc: 'Real-time sync to Monday.com.', color: 'text-emerald-500' },
+    { label: 'TEAM_ACTIVITY', type: 'USERS', value: '15 MEMBERS', desc: 'Active team members syncing.', color: 'text-cyan-500' },
+    { label: 'LAST_UPDATE', type: 'TIMESTAMP', value: '1m ago', desc: 'Most recent board update.' },
+    { label: 'CONVERSATION_STATUS', type: 'STATUS', value: 'TRACKING', desc: 'All conversations being tracked.', color: 'text-orange-500' },
+  ],
+  'google-calendar': [
+    { label: 'MEETINGS_SCHEDULED', type: 'COUNTER', value: '156', desc: 'Events created from WhatsApp chats.' },
+    { label: 'FOLLOW_UPS_DUE', type: 'ALERT', value: '3 TODAY', desc: 'Pending follow-ups from conversations.', color: 'text-orange-500' },
+    { label: 'REMINDER_STATUS', type: 'STATUS', value: 'ACTIVE', desc: 'Conversation-based reminders enabled.', color: 'text-emerald-500' },
+    { label: 'COMPLETION_RATE', type: 'PERCENTAGE', value: '94%', desc: 'Follow-ups completed on time.', color: 'text-cyan-500' },
+    { label: 'TEAM_BOOKINGS', type: 'USERS', value: '8 THIS WEEK', desc: 'Team meetings scheduled from WhatsApp.' },
+    { label: 'CALENDAR_SYNC', type: 'CONNECTION', value: 'CONNECTED', desc: 'Google Calendar linked and active.', color: 'text-emerald-500' },
   ]
 }
 
@@ -1120,9 +1248,17 @@ export const ProductPage: React.FC = () => {
   // Determine which CRM based on slug
   const getCrmSlug = (slug: string | undefined): string => {
     if (!slug) return 'hubspot'
+    if (slug.includes('google-sheets')) return 'google-sheets'
+    if (slug.includes('google-calendar')) return 'google-calendar'
     if (slug.includes('salesforce')) return 'salesforce'
     if (slug.includes('zoho')) return 'zoho'
     if (slug.includes('hubspot')) return 'hubspot'
+    if (slug.includes('bitrix24')) return 'bitrix24'
+    if (slug.includes('leadsquared')) return 'leadsquared'
+    if (slug.includes('freshdesk')) return 'freshdesk'
+    if (slug.includes('webhooks')) return 'webhooks'
+    if (slug.includes('pipedrive')) return 'pipedrive'
+    if (slug.includes('monday')) return 'monday'
     return 'hubspot'
   }
 
