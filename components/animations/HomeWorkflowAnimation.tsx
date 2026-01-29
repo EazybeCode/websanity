@@ -1,96 +1,79 @@
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Zap, MessageSquare, Clock, ArrowDown } from 'lucide-react'
+import React from 'react'
+import { motion } from 'framer-motion'
+import { CheckCircle2, Zap, Database, MessageCircle } from 'lucide-react'
 
 const HomeWorkflowAnimation: React.FC = () => {
-  const [step, setStep] = useState(0)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setStep((prev) => (prev + 1) % 6)
-    }, 2000)
-    return () => clearInterval(timer)
-  }, [])
-
   return (
-    <div className="w-full aspect-[4/3] bg-[#f9fafb] rounded-xl overflow-hidden flex flex-col relative shadow-inner border border-slate-200">
-      <div className="h-8 bg-[#2d3e50] flex items-center px-3 justify-between shrink-0">
-        <span className="text-white text-[8px] font-bold">WhatsApp Lead Sequence</span>
-        <div className="flex items-center gap-1">
-          <div className={`w-1.5 h-1.5 rounded-full ${step >= 2 ? 'bg-emerald-400 animate-pulse' : 'bg-slate-600'}`}></div>
-          <span className="text-[6px] text-white/60 font-mono uppercase">{step >= 2 ? 'Active' : 'Ready'}</span>
-        </div>
-      </div>
+    <div className="w-full aspect-[4/3] bg-slate-50 rounded-2xl border border-slate-200 shadow-lg p-4 overflow-hidden relative">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/10 blur-3xl rounded-full pointer-events-none" />
 
-      <div className="flex-1 relative bg-white flex flex-col items-center justify-center gap-3 p-4">
-        {/* Trigger Node */}
+      <div className="flex flex-col gap-4 relative h-full justify-center">
+        {/* Trigger */}
         <motion.div
-          animate={{ borderColor: step === 0 ? '#2563eb' : '#e2e8f0' }}
-          className="w-48 bg-white border-2 rounded-lg shadow-sm p-2.5 flex items-center gap-2"
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 w-fit shadow-sm"
         >
-          <div className="w-5 h-5 rounded bg-blue-50 flex items-center justify-center">
-            <Zap className="w-3 h-3 text-blue-600" />
+          <div className="w-8 h-8 rounded-lg bg-brand-orange/10 flex items-center justify-center">
+            <Database className="w-4 h-4 text-brand-orange" />
           </div>
           <div>
-            <span className="text-[7px] font-bold text-slate-800 block">Enrollment Trigger</span>
-            <span className="text-[5px] text-slate-400">New WhatsApp contact detected</span>
+            <div className="text-[8px] font-mono font-bold text-slate-500 uppercase">Trigger</div>
+            <div className="text-slate-800 font-bold text-[10px]">Deal Stage changed to "Closed"</div>
           </div>
         </motion.div>
 
+        {/* Connection Line */}
+        <div className="flex justify-center ml-16">
+          <motion.div
+            initial={{ height: 0 }}
+            animate={{ height: 40 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="w-0.5 bg-gradient-to-b from-brand-orange to-brand-cyan relative"
+          >
+            <motion.div
+              animate={{ y: [0, 40] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="absolute top-0 -left-[3px] w-2 h-2 rounded-full bg-white shadow-glow-cyan border border-brand-cyan"
+            />
+          </motion.div>
+        </div>
+
+        {/* Action */}
         <motion.div
-          animate={{ opacity: step >= 1 ? 1 : 0.3 }}
-          className="flex flex-col items-center"
+          initial={{ x: 20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="flex items-center gap-3 bg-white p-3 rounded-xl border border-brand-cyan/40 w-fit ml-auto shadow-sm"
         >
-          <ArrowDown className="w-3 h-3 text-slate-300" />
+          <div className="w-8 h-8 rounded-lg bg-brand-cyan/10 flex items-center justify-center">
+            <Zap className="w-4 h-4 text-brand-cyan" />
+          </div>
+          <div>
+            <div className="text-[8px] font-mono font-bold text-slate-500 uppercase">Action</div>
+            <div className="text-slate-800 font-bold text-[10px]">Send "Onboarding" Message</div>
+          </div>
         </motion.div>
 
-        {/* Send Message Node */}
-        <AnimatePresence>
-          {step >= 2 && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="w-52 bg-white border-2 border-emerald-500/30 rounded-lg shadow-md p-2.5 flex items-center gap-2"
-            >
-              <div className="w-5 h-5 rounded bg-emerald-50 flex items-center justify-center">
-                <MessageSquare className="w-3 h-3 text-emerald-600" />
-              </div>
-              <div>
-                <span className="text-[7px] font-bold text-slate-800 block">Send WhatsApp Template</span>
-                <span className="text-[5px] text-emerald-600 font-mono uppercase">Sending...</span>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {step >= 2 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: step >= 3 ? 1 : 0.3 }}
-            className="flex flex-col items-center"
-          >
-            <ArrowDown className="w-3 h-3 text-slate-300" />
-          </motion.div>
-        )}
-
-        {/* Wait Node */}
-        <AnimatePresence>
-          {step >= 4 && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="w-48 bg-white border-2 border-amber-500/30 rounded-lg shadow-md p-2.5 flex items-center gap-2"
-            >
-              <div className="w-5 h-5 rounded bg-amber-50 flex items-center justify-center">
-                <Clock className="w-3 h-3 text-amber-600" />
-              </div>
-              <div>
-                <span className="text-[7px] font-bold text-slate-800 block">Wait 24 Hours</span>
-                <span className="text-[5px] text-amber-600 font-mono uppercase">If no reply</span>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* WhatsApp Result */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="bg-slate-900 border border-slate-700 p-3 rounded-xl mt-2"
+        >
+          <div className="flex items-center gap-1.5 mb-2">
+            <MessageCircle className="w-3 h-3 text-brand-green" />
+            <span className="text-[8px] font-mono text-slate-400 uppercase">Preview</span>
+          </div>
+          <div className="bg-brand-blue/20 border border-brand-blue/30 p-2 rounded-lg text-[10px] text-slate-100">
+            Welcome to the team! Your account is ready. Click here to begin onboarding...
+          </div>
+          <div className="mt-2 flex items-center gap-1">
+            <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+            <span className="text-[8px] text-emerald-400 font-mono uppercase">Sent via Eazybe</span>
+          </div>
+        </motion.div>
       </div>
     </div>
   )

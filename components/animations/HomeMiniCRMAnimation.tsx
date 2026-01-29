@@ -1,77 +1,128 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { MessageSquare, RefreshCcw } from 'lucide-react'
+import {
+  DollarSign,
+  Target,
+  Search,
+  Phone,
+  Video,
+  Plus,
+  Paperclip,
+  Smile,
+  Mic
+} from 'lucide-react'
 
 const HomeMiniCRMAnimation: React.FC = () => {
   return (
-    <div className="w-full aspect-[4/3] bg-white rounded-xl overflow-hidden flex flex-row relative shadow-xl border border-slate-200">
-      <div className="w-[55%] bg-[#efeae2] flex flex-col border-r border-slate-200">
-        <div className="h-10 bg-[#f0f2f5] flex items-center px-3 justify-between border-b border-slate-300/50">
+    <div className="w-full aspect-[4/3] bg-slate-50 rounded-2xl border border-slate-200 shadow-lg overflow-hidden flex">
+      {/* Center: Main Chat Area */}
+      <div className="flex-1 flex flex-col bg-[#e5ddd5] relative">
+        <div className="absolute inset-0 opacity-40 pointer-events-none bg-[url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')] bg-repeat" />
+
+        {/* Chat Header */}
+        <div className="p-2 bg-[#f0f2f5] border-b border-slate-200 flex items-center justify-between relative z-10">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center">
-              <MessageSquare className="text-emerald-500 w-3.5 h-3.5" />
+            <div className="w-8 h-8 rounded-full bg-slate-300 overflow-hidden border border-slate-200">
+              <img src="https://picsum.photos/seed/James Wilson/40/40" alt="" />
             </div>
-            <span className="text-slate-800 text-[8px] font-bold">WhatsApp chats</span>
-          </div>
-        </div>
-
-        <div className="flex-1 p-3 space-y-3 overflow-hidden">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col gap-1"
-          >
-            <div className="flex items-center gap-1 mb-0.5">
-              <div className="w-3 h-3 rounded-full bg-slate-300 flex items-center justify-center text-[5px] font-bold text-slate-600">S</div>
-              <span className="text-[6px] font-bold text-slate-500 uppercase tracking-tighter">Sarah Chen</span>
-            </div>
-            <div className="bg-white p-2 rounded-lg rounded-tl-none shadow-sm max-w-[85%]">
-              <p className="text-[8px] text-slate-800 leading-tight">Hi! Following up on the enterprise quote.</p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col gap-1"
-          >
-            <div className="bg-[#dcf8c6] p-2 rounded-lg rounded-tr-none shadow-sm max-w-[85%] ml-auto">
-              <p className="text-[8px] text-slate-800 leading-tight">Sure, sending it now!</p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      <div className="w-[45%] bg-white flex flex-col">
-        <div className="h-10 flex items-center px-3 justify-between border-b border-slate-100">
-          <div className="w-5 h-5 bg-[#ff7a59] rounded-md flex items-center justify-center">
-            <RefreshCcw className="text-white w-3 h-3" />
-          </div>
-          <span className="text-[6px] font-mono text-slate-400 font-bold uppercase">CRM Panel</span>
-        </div>
-        <div className="flex-1 flex flex-col p-3">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500">SC</div>
             <div>
-              <span className="text-[9px] font-bold text-slate-800 block">Sarah Chen</span>
-              <span className="text-[6px] text-slate-400">Enterprise Lead</span>
+              <div className="text-[10px] font-bold text-slate-900 leading-tight">James Wilson</div>
+              <div className="text-[8px] text-green-600 font-mono uppercase font-bold">Syncing to HubSpot...</div>
             </div>
           </div>
-          <div className="space-y-3">
-            {[
-              { field: 'Company', value: 'TechCorp Inc.' },
-              { field: 'Deal Stage', value: 'Negotiation' },
-              { field: 'Value', value: '$24,500' },
-            ].map((item, i) => (
-              <div key={i} className="border-b border-slate-100 pb-1">
-                <label className="text-[6px] font-bold text-slate-400 uppercase">{item.field}</label>
-                <div className="text-[8px] text-slate-800 font-medium">{item.value}</div>
-              </div>
-            ))}
+          <div className="flex gap-3 text-slate-500">
+            <Video className="w-4 h-4 cursor-pointer hover:text-slate-700" />
+            <Phone className="w-4 h-4 cursor-pointer hover:text-slate-700" />
+            <Search className="w-4 h-4 cursor-pointer hover:text-slate-700" />
           </div>
         </div>
+
+        {/* Messages */}
+        <div className="flex-1 p-3 space-y-3 overflow-y-auto relative z-10">
+          <div className="mx-auto w-fit bg-white/90 text-[8px] font-mono text-slate-500 px-2 py-0.5 rounded-full uppercase tracking-widest shadow-sm border border-slate-100">
+            Today
+          </div>
+
+          <div className="flex gap-2">
+            <div className="bg-white p-2 rounded-xl rounded-tl-none text-[10px] text-slate-800 max-w-[80%] shadow-sm border border-slate-100">
+              Hi, wanted to check on the status of our enterprise agreement.
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+            className="flex gap-2 justify-end"
+          >
+            <div className="bg-[#d9fdd3] p-2 rounded-xl rounded-tr-none text-[10px] text-slate-800 max-w-[80%] shadow-sm border border-[#c0e8ba]">
+              Looking into it now, James! Let me pull up your deal details.
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Input Area */}
+        <div className="p-2 bg-[#f0f2f5] border-t border-slate-200 flex items-center gap-2 relative z-10">
+          <div className="flex gap-2 text-slate-500">
+            <Smile className="w-4 h-4 cursor-pointer" />
+            <Paperclip className="w-4 h-4 cursor-pointer" />
+          </div>
+          <div className="flex-1 bg-white rounded-xl px-3 py-1.5 text-[10px] text-slate-600 border border-white font-sans shadow-sm">
+            Type a message
+          </div>
+          <Mic className="w-4 h-4 text-slate-500 cursor-pointer" />
+        </div>
       </div>
+
+      {/* Right: Eazybe CRM Sidebar */}
+      <motion.div
+        initial={{ x: 200 }}
+        animate={{ x: 0 }}
+        className="w-[45%] bg-brand-surface border-l border-slate-200 flex flex-col shadow-[-10px_0_30px_rgba(0,0,0,0.05)] z-20"
+      >
+        <div className="p-3 bg-brand-card/20 border-b border-slate-800/20 flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            <div className="w-4 h-4 bg-orange-500 rounded flex items-center justify-center">
+              <span className="text-[8px] font-bold text-white">H</span>
+            </div>
+            <span className="font-mono text-[9px] uppercase font-bold text-slate-300">HubSpot Live</span>
+          </div>
+          <Plus className="w-3 h-3 text-slate-500 cursor-pointer" />
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-3 space-y-4">
+          {/* Section: Deal Info */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-1.5 text-[8px] font-mono font-bold text-slate-500 uppercase tracking-widest">
+              <DollarSign className="w-3 h-3 text-brand-cyan" />
+              Primary Deal
+            </div>
+            <div className="bg-brand-black/40 border border-slate-800 p-2 rounded-lg">
+              <div className="text-white font-bold text-[10px]">Enterprise Tier 1</div>
+              <div className="text-brand-cyan text-sm font-bold">$45,000</div>
+              <div className="text-[8px] text-slate-500 mt-1">Stage: Negotiation</div>
+            </div>
+          </div>
+
+          {/* Section: Next Steps */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-1.5 text-[8px] font-mono font-bold text-slate-500 uppercase tracking-widest">
+              <Target className="w-3 h-3 text-brand-orange" />
+              Next Steps
+            </div>
+            <div className="bg-brand-black/40 border border-slate-800 p-2 rounded-lg space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-brand-orange"></div>
+                <span className="text-[9px] text-slate-300">Send proposal</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+                <span className="text-[9px] text-slate-400">Schedule demo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </div>
   )
 }
