@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ExternalLink } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../ui/Button'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { ThemeToggle } from './ThemeToggle'
+import { LocalizedLink } from '../LocalizedLink'
 import type { NavItem, NavigationData } from '../../hooks/useNavigation'
 
 interface MobileMenuProps {
@@ -69,21 +69,33 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, onClose }) => {
 
   if (!item.isMegaMenu || !item.columns?.length) {
     const isExternal = item.isExternal || item.href?.startsWith('http')
-    const LinkComponent = isExternal ? 'a' : Link
-    const linkProps = isExternal
-      ? { href: item.href || '#', target: '_blank', rel: 'noopener noreferrer' }
-      : { to: item.href || '#' }
+
+    if (isExternal) {
+      return (
+        <motion.div variants={itemVariants}>
+          <a
+            href={item.href || '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onClose}
+            className="flex items-center justify-between px-4 py-4 text-lg font-medium text-white hover:bg-white/5 hover:text-brand-blue rounded-lg transition-colors"
+          >
+            {item.label}
+            <ExternalLink size={16} className="text-slate-500" />
+          </a>
+        </motion.div>
+      )
+    }
 
     return (
       <motion.div variants={itemVariants}>
-        <LinkComponent
-          {...(linkProps as any)}
+        <LocalizedLink
+          to={item.href || '/'}
           onClick={onClose}
           className="flex items-center justify-between px-4 py-4 text-lg font-medium text-white hover:bg-white/5 hover:text-brand-blue rounded-lg transition-colors"
         >
           {item.label}
-          {isExternal && <ExternalLink size={16} className="text-slate-500" />}
-        </LinkComponent>
+        </LocalizedLink>
       </motion.div>
     )
   }
@@ -123,23 +135,33 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, onClose }) => {
                   <ul className="space-y-1">
                     {column.links.map((link) => {
                       const isExternal = link.isExternal || link.href.startsWith('http')
-                      const LinkComponent = isExternal ? 'a' : Link
-                      const linkProps = isExternal
-                        ? { href: link.href, target: '_blank', rel: 'noopener noreferrer' }
-                        : { to: link.href }
+
+                      if (isExternal) {
+                        return (
+                          <li key={link._key}>
+                            <a
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={onClose}
+                              className="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-brand-blue hover:bg-white/5 rounded-lg transition-colors"
+                            >
+                              {link.label}
+                              <ExternalLink size={12} className="text-slate-500" />
+                            </a>
+                          </li>
+                        )
+                      }
 
                       return (
                         <li key={link._key}>
-                          <LinkComponent
-                            {...(linkProps as any)}
+                          <LocalizedLink
+                            to={link.href}
                             onClick={onClose}
                             className="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-brand-blue hover:bg-white/5 rounded-lg transition-colors"
                           >
                             {link.label}
-                            {isExternal && (
-                              <ExternalLink size={12} className="text-slate-500" />
-                            )}
-                          </LinkComponent>
+                          </LocalizedLink>
                         </li>
                       )
                     })}

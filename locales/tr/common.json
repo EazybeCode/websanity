@@ -73,6 +73,10 @@
       "webinarsDesc": "Canlı demolar ve eğitimler",
       "helpCenter": "Yardım Merkezi",
       "helpCenterDesc": "Kılavuzlar ve öğreticiler",
+      "contact": "Bize Ulaşın",
+      "contactDesc": "WhatsApp'ta bizimle sohbet edin",
+      "email": "E-posta",
+      "emailDesc": "Bize e-posta gönderin",
       "docsDesc": "Teknik referans",
       "apiReference": "API Referansı",
       "apiReferenceDesc": "Geliştiriciler için"
@@ -354,6 +358,91 @@
       "messagesSynced": "Senkronize mesajlar",
       "fasterResponse": "Daha hızlı yanıt",
       "setupTime": "Kurulum süresi"
+    },
+    "problem": {
+      "badge": "Tanıdık Geliyor mu?",
+      "headline": "WhatsApp yöneticiler için kara kutu",
+      "subheadline": "Ekibiniz WhatsApp'ta anlaşma kapatıyor, ama siz neler olduğunu göremiyorsunuz.",
+      "cards": [
+        {
+          "title": "Sıfır Görünürlük",
+          "description": "Yöneticiler WhatsApp'ta konuşmaları, anlaşma ilerlemesini veya ekip performansını göremez."
+        },
+        {
+          "title": "Yavaş Yanıt Süreleri",
+          "description": "Sıcak leadler soğurken satış temsilcileri WhatsApp ve CRM arasında gidip geliyor."
+        },
+        {
+          "title": "Kayıp Bağlam",
+          "description": "Temsilciler ayrıldığında, müşteri ilişkileri ve konuşma geçmişi de gidiyor."
+        },
+        {
+          "title": "Manuel Veri Girişi",
+          "description": "Temsilciler WhatsApp'tan CRM'e mesaj kopyalayarak saatler kaybediyor. Çoğu tamamen atlıyor."
+        }
+      ]
+    },
+    "features": {
+      "syncEngine": {
+        "badge": "Senkronizasyon Motoru",
+        "headline": "Her mesaj, otomatik olarak yakalanır",
+        "description": "Tüm WhatsApp konuşmaları CRM'inize gerçek zamanlı senkronize olur. Manuel giriş yok, kaçırılan mesaj yok.",
+        "points": [
+          "Gerçek zamanlı çift yönlü senkronizasyon",
+          "Kişisel ve ticari WhatsApp ile çalışır",
+          "Tam konuşma geçmişi korunur"
+        ]
+      },
+      "miniCrm": {
+        "badge": "Mini CRM Görünümü",
+        "headline": "CRM verileriniz, WhatsApp içinde",
+        "description": "Anlaşma aşamalarını, kişi bilgilerini ve notları doğrudan sohbet penceresinde görün. Sekme değiştirmeden kayıtları güncelleyin.",
+        "points": [
+          "Kişi ve anlaşma bilgisi bir bakışta",
+          "CRM kayıtlarını satır içi güncelleyin",
+          "Özel alanlar ve özellikler"
+        ]
+      },
+      "workflows": {
+        "badge": "İş Akışı Otomasyonları",
+        "headline": "Takiplerinizi otomatikleştirin",
+        "description": "CRM olaylarından WhatsApp mesajları tetikleyin. Hatırlatmalar, besleyici diziler ve uyarıları otomatik gönderin.",
+        "points": [
+          "CRM tarafından tetiklenen WhatsApp mesajları",
+          "Zamanlanmış takip dizileri",
+          "Özel otomasyon kuralları"
+        ]
+      },
+      "revenueInbox": {
+        "badge": "Gelir Gelen Kutusu",
+        "headline": "Önemli anlaşmalara odaklanın",
+        "description": "Yapay zeka yüksek niyetli konuşmaları ve risk altındaki anlaşmaları ortaya çıkarır. Zamanınızı nereye odaklayacağınızı tam olarak bilin.",
+        "points": [
+          "Yapay zeka destekli anlaşma önceliklendirme",
+          "Risk altındaki anlaşma uyarıları",
+          "Konuşma içgörüleri"
+        ]
+      },
+      "repRadar": {
+        "badge": "Temsilci Radarı",
+        "headline": "Ekip aktivitesine tam görünürlük",
+        "description": "Yanıt sürelerini, konuşma hacimlerini ve performans metriklerini görün. Ekibinizi verilerle koçluk yapın.",
+        "points": [
+          "Yanıt süresi takibi",
+          "Konuşma analitiği",
+          "Performans sıralamaları"
+        ]
+      },
+      "aiAgent": {
+        "badge": "WhatsApp Copilot",
+        "headline": "Yapay zeka destekli satış yardımı",
+        "description": "Akıllı yanıt önerileri, konuşma özetleri ve en iyi sonraki eylem önerileri alın.",
+        "points": [
+          "Yapay zeka yanıt önerileri",
+          "Konuşma özetleri",
+          "En iyi sonraki eylem ipuçları"
+        ]
+      }
     }
   },
   "security": {
@@ -1646,5 +1735,167 @@
       "secondaryCta": "Satış ile Konuş",
       "footnote": "14 günlük ücretsiz deneme • Kredi kartı gerekmez"
     }
+  },
+  "msa": {
+    "title": "Ana Hizmet Sözleşmesi",
+    "lastRevised": "Son güncelleme: 12 Haziran 2024",
+    "contact": "Sorularınız için hey@eazybe.com adresinden bize ulaşabilirsiniz",
+    "intro": "Bu Eazybe Ana Abonelik Sözleşmesi (\"MSA\"), geçerli bir imzalanmış sipariş formu (bu form bir \"Sipariş Formu\" ve bu tarih \"Yürürlük Tarihi\") yürürlük tarihinden itibaren geçerlidir ve Eazybe Inc 8, The Green STE B Dover, Delaware -19901 ile Sipariş Formunda belirtilen müşteri (\"Müşteri\") arasında yapılmıştır (her biri bir \"Taraf\" ve birlikte \"Taraflar\"). MSA şartları ile herhangi bir Sipariş Formu şartları arasında herhangi bir tutarsızlık veya çelişki olması durumunda, Sipariş Formu şartları geçerlidir.",
+    "section1": {
+      "title": "SAAS HİZMETLERİ VE DESTEK",
+      "p1": "Bu Sözleşme şartlarına tabi olarak, Şirket Müşteriye Hizmetleri sağlamak için ticari olarak makul çabaları kullanacaktır. Kayıt sürecinin bir parçası olarak, Müşteri, Müşterinin Şirket hesabı için bir yönetici kullanıcı adı ve şifre belirleyecektir. Şirket, uygunsuz gördüğü kayıtları reddetme veya şifreleri iptal etme hakkını saklı tutar.",
+      "p2": "Burada yer alan şartlara tabi olarak, Şirket Müşteriye Ek A'da belirtilen şartlara uygun olarak makul teknik destek hizmetleri sağlayacaktır."
+    },
+    "section2": {
+      "title": "KISITLAMALAR VE SORUMLULUKLAR",
+      "p1": "Müşteri, doğrudan veya dolaylı olarak: Hizmetler veya Hizmetlerle ilgili herhangi bir yazılım, dokümantasyon veya verilerle (\"Yazılım\") ilgili kaynak kodunu, nesne kodunu veya temel yapıyı, fikirleri, bilgi birikimini veya algoritmaları tersine mühendislik yapmayacak, kaynak koduna dönüştürmeyecek, parçalara ayırmayacak veya başka bir şekilde keşfetmeye çalışmayacaktır; Hizmetleri veya herhangi bir Yazılımı değiştirmeyecek, tercüme etmeyecek veya türev çalışmalar oluşturmayacaktır (Şirket tarafından açıkça izin verilen veya Hizmetler içinde yetkilendirilen durumlar hariç); Hizmetleri veya herhangi bir Yazılımı zaman paylaşımı veya hizmet bürosu amaçları için veya başka bir şekilde üçüncü tarafın yararına kullanmayacaktır; veya herhangi bir mülkiyet bildirimi veya etiketi kaldırmayacaktır. Müşteri tesislerinde veya cihazlarında kullanım için Müşteriye dağıtılan veya sağlanan herhangi bir Yazılım için, Şirket bu vesileyle Müşteriye yalnızca Hizmetlerle bağlantılı olarak Dönem süresince bu Yazılımı kullanması için münhasır olmayan, devredilemez, alt lisanslanamaz bir lisans verir.",
+      "p2": "Müşteri, Hizmetleri yalnızca Şirketin o zaman yürürlükte olan standart yayınlanmış politikalarına (\"Politika\") ve tüm geçerli yasa ve düzenlemelere uygun olarak kullanacağını beyan eder, taahhüt eder ve garanti eder. Müşteri, yukarıdakilerin ihlal edildiği iddiasından veya Müşterinin Hizmetleri kullanmasından kaynaklanan herhangi bir talep veya davada Şirketi tüm zararlar, kayıplar, yükümlülükler, anlaşmalar ve masraflara (sınırlama olmaksızın masraflar ve avukatlık ücretleri dahil) karşı tazmin etmeyi ve zararsız tutmayı kabul eder. Şirketin Müşterinin Hizmetleri kullanımını izleme yükümlülüğü olmamasına rağmen, Şirket bunu yapabilir ve yukarıdakileri ihlal ettiğine inandığı (veya ihlal ettiği iddia edilen) herhangi bir Hizmet kullanımını yasaklayabilir.",
+      "p3": "Müşteri, Hizmetlere bağlanmak, erişmek veya başka bir şekilde kullanmak için gereken herhangi bir ekipman ve yardımcı hizmeti elde etmekten ve sürdürmekten sorumlu olacaktır; bunlara sınırlama olmaksızın modemler, donanım, sunucular, yazılım, işletim sistemleri, ağ, web sunucuları ve benzerleri (toplu olarak \"Ekipman\") dahildir. Müşteri ayrıca Ekipmanın, Müşteri hesabının, şifrelerin (yönetici ve kullanıcı şifreleri dahil ancak bunlarla sınırlı olmaksızın) ve dosyaların güvenliğini sürdürmekten ve Müşteri hesabının veya Ekipmanın Müşterinin bilgisi veya rızası olsun ya da olmasın tüm kullanımlarından sorumlu olacaktır."
+    },
+    "section3": {
+      "title": "GİZLİLİK; MÜLKİYET HAKLARI",
+      "p1": "Her taraf (\"Alıcı Taraf\"), diğer tarafın (\"Açıklayan Taraf\") Açıklayan Tarafın işiyle ilgili ticari, teknik veya mali bilgileri açıkladığını veya açıklayabileceğini anlar (bundan böyle Açıklayan Tarafın \"Mülkiyet Bilgileri\" olarak anılacaktır). Şirketin Mülkiyet Bilgileri, Hizmetin özellikleri, işlevselliği ve performansına ilişkin kamuya açık olmayan bilgileri içerir. Müşterinin Mülkiyet Bilgileri, Hizmetlerin sağlanmasını mümkün kılmak için Müşteri tarafından Şirkete sağlanan kamuya açık olmayan verileri içerir (\"Müşteri Verileri\"). Alıcı Taraf şunları kabul eder: (i) bu tür Mülkiyet Bilgilerini korumak için makul önlemler almak ve (ii) bu tür Mülkiyet Bilgilerini kullanmamak (Hizmetlerin ifası veya burada izin verildiği şekilde hariç) veya herhangi bir üçüncü kişiye ifşa etmemek. Açıklayan Taraf, yukarıdakilerin ifşasından beş (5) yıl sonra veya Alıcı Tarafın (a) kamuya genel olarak açık olduğunu veya olduğunu, (b) Açıklayan Taraftan almadan önce elinde olduğunu veya bildiğini, (c) bir üçüncü tarafça kısıtlama olmaksızın kendisine yasal olarak ifşa edildiğini, (d) Açıklayan Tarafın herhangi bir Mülkiyet Bilgisi kullanılmadan bağımsız olarak geliştirildiğini veya (e) yasayla ifşa edilmesinin gerektiğini belgeleyebildiği herhangi bir bilgi için geçerli olmayacağını kabul eder.",
+      "p2": "Müşteri, Müşteri Verilerindeki tüm hak, unvan ve menfaatin sahibi olacaktır. Şirket, (a) Hizmetler ve Yazılım, bunlardaki tüm iyileştirmeler, geliştirmeler veya değişiklikler, (b) Uygulama Hizmetleri veya destek ile bağlantılı olarak geliştirilen herhangi bir yazılım, uygulama, buluş veya diğer teknoloji ve (c) yukarıdakilerden herhangi biriyle ilgili tüm fikri mülkiyet haklarındaki tüm hak, unvan ve menfaatin sahibi olacak ve bunları elinde tutacaktır.",
+      "p3": "Aksi belirtilmesine rağmen, Şirket, Hizmetlerin ve ilgili sistemlerin ve teknolojilerin çeşitli yönlerinin sağlanması, kullanımı ve performansına ilişkin verileri ve diğer bilgileri toplama ve analiz etme hakkına sahip olacaktır (sınırlama olmaksızın Müşteri Verileri ve bunlardan türetilen verilerle ilgili bilgiler dahil) ve Şirket (bu süre boyunca ve sonrasında) (i) Hizmetleri geliştirmek ve iyileştirmek ve Hizmetler ve diğer Şirket teklifleriyle bağlantılı olarak diğer geliştirme, teşhis ve düzeltme amaçları için bu bilgi ve verileri kullanmakta ve (ii) bu verileri yalnızca işiyle bağlantılı olarak toplu veya başka bir şekilde kimliksizleştirilmiş biçimde ifşa etmekte özgür olacaktır. Burada açıkça belirtilen durumlar dışında hiçbir hak veya lisans verilmez."
+    },
+    "section4": {
+      "title": "ÜCRET ÖDEMESİ",
+      "p1": "Müşteri, Hizmetler ve Uygulama Hizmetleri için Sipariş Formunda açıklanan o zaman geçerli ücretleri orada yer alan şartlara uygun olarak Şirkete ödeyecektir (\"Ücretler\"). Müşterinin Hizmetleri kullanımı Sipariş Formunda belirtilen Hizmet Kapasitesini aşarsa veya başka bir şekilde ek ücretlerin ödenmesini gerektirirse (bu Sözleşmenin şartlarına göre), Müşteri bu kullanım için faturalandırılacak ve Müşteri burada belirtilen şekilde ek ücretleri ödemeyi kabul eder. Şirket, İlk Hizmet Süresi veya o zaman geçerli yenileme süresinin sonunda Müşteriye otuz (30) gün önceden bildirimde bulunarak (e-posta ile gönderilebilir) Ücretleri veya geçerli masrafları değiştirme ve yeni masraflar ve Ücretler oluşturma hakkını saklı tutar. Müşteri, Şirketin yanlış faturalandırdığına inanıyorsa, Müşteri hata veya sorunun göründüğü ilk fatura ekstresinin kapanış tarihinden en geç 60 gün sonra bir düzeltme veya kredi almak için Şirketle iletişime geçmelidir. Sorular Şirketin müşteri destek departmanına yönlendirilmelidir.",
+      "p2": "Şirket fatura yoluyla faturalandırmayı seçebilir, bu durumda herhangi bir ayda düzenlenen faturalar için tam ödeme, faturanın posta tarihinden otuz (30) gün sonra Şirket tarafından alınmalıdır. Ödenmemiş tutarlar, herhangi bir ödenmemiş bakiye üzerinden aylık %1,5 veya yasaların izin verdiği maksimum tutar (hangisi daha düşükse) artı tüm tahsilat masraflarına tabidir ve Hizmetin derhal feshedilmesiyle sonuçlanabilir. Müşteri, Şirketin net gelirine dayanan ABD vergileri dışındaki Hizmetlerle ilişkili tüm vergilerden sorumlu olacaktır."
+    },
+    "section5": {
+      "title": "SÜRE VE FESİH",
+      "p1": "Aşağıda belirtildiği gibi daha erken feshe tabi olarak, bu Sözleşme Sipariş Formunda belirtilen İlk Hizmet Süresi içindir ve taraflardan biri o zaman geçerli sürenin bitiminden en az otuz (30) gün önce fesih talep etmedikçe, İlk Hizmet Süresiyle aynı sürede ek süreler için otomatik olarak yenilenecektir (toplu olarak \"Süre\").",
+      "p2": "Sahip olabileceği diğer çözüm yollarına ek olarak, taraflardan biri, diğer taraf bu Sözleşmenin şartlarından veya koşullarından herhangi birini önemli ölçüde ihlal ederse, otuz (30) gün önceden bildirimde bulunarak (veya ödeme yapılmaması durumunda bildirim olmaksızın) bu Sözleşmeyi feshedebilir. Müşteri, Hizmetlerin sağlandığı son gün dahil olmak üzere Hizmetler için tam ödeme yapacaktır. Herhangi bir fesih üzerine, Şirket tüm Müşteri Verilerini otuz (30) günlük bir süre için elektronik olarak alınmak üzere Müşteriye sunacaktır, ancak bundan sonra Şirket saklanan Müşteri Verilerini silebilir, ancak bunu yapmak zorunda değildir. Bu Sözleşmenin doğası gereği fesihten sonra da geçerli olması gereken tüm bölümleri, sınırlama olmaksızın ödemeye ilişkin tahakkuk eden haklar, gizlilik yükümlülükleri, garanti feragatnameleri ve sorumluluk sınırlamaları dahil olmak üzere fesihten sonra da geçerli olacaktır."
+    },
+    "section6": {
+      "title": "GARANTİ VE FERAGATNAME",
+      "p1": "Şirket, Hizmetlerdeki hataları ve kesintileri en aza indirecek şekilde Hizmetleri sürdürmek için geçerli endüstri standartlarıyla tutarlı makul çabaları kullanacak ve Uygulama Hizmetlerini profesyonel ve ustalıklı bir şekilde gerçekleştirecektir. Hizmetler, Şirket veya üçüncü taraf sağlayıcılar tarafından planlı bakım veya planlanmamış acil bakım için veya Şirketin makul kontrolü dışındaki diğer nedenlerle geçici olarak kullanılamaz olabilir, ancak Şirket planlı herhangi bir hizmet kesintisinin önceden yazılı veya e-posta ile bildirilmesi için makul çabaları kullanacaktır.",
+      "p2": "ANCAK, ŞİRKET HİZMETLERİN KESİNTİSİZ VEYA HATASIZ OLACAĞINI GARANTİ ETMEZ; NE DE HİZMETLERİN KULLANIMINDAN ELDE EDİLEBİLECEK SONUÇLAR HAKKINDA HERHANGİ BİR GARANTİ VERİR. BU BÖLÜMDE AÇIKÇA BELİRTİLENLER HARİCİNDE, HİZMETLER VE UYGULAMA HİZMETLERİ \"OLDUĞU GİBİ\" SAĞLANIR VE ŞİRKET, TİCARİ ELVERİŞLİLİK VE BELİRLİ BİR AMACA UYGUNLUK VE İHLAL ETMEME ZIMNİ GARANTİLERİ DAHİL ANCAK BUNLARLA SINIRLI OLMAKSIZIN TÜM GARANTİLERDEN, AÇIK VEYA ZIMNİ, FERAGAT EDER."
+    },
+    "section7": {
+      "title": "SORUMLULUK SINIRLAMASI",
+      "intro": "AKSİ BELİRTİLMESİNE RAĞMEN, BİR KİŞİNİN BEDENSEL YARALANMASI HARİÇ, ŞİRKET VE TEDARİKÇİLERİ (TÜM EKİPMAN VE TEKNOLOJİ TEDARİKÇİLERİ DAHİL ANCAK BUNLARLA SINIRLI OLMAKSIZIN), YETKİLİLER, BAĞLI KURULUŞLAR, TEMSİLCİLER, YÜKLE​NİCİLER VE ÇALIŞANLAR HERHANGİ BİR SÖZLEŞME, İHMAL, KATI SORUMLULUK VEYA DİĞER TEORİ ALTINDA BU SÖZLEŞMENİN VEYA BUNUNLA İLGİLİ ŞARTLAR VE KOŞULLARIN HERHANGİ BİR KONUSUNA İLİŞKİN SORUMLU VEYA YÜKÜMLÜ OLMAYACAKTIR:",
+      "a": "KULLANIM HATASI VEYA KESİNTİSİ İÇİN VEYA VERİ KAYBI VEYA YAN​LIŞLIĞI VEYA BOZULMASI VEYA İKAME MAL, HİZMET VEYA TEKNOLOJİ TEMİN MALİYETİ VEYA İŞ KAYBI İÇİN;",
+      "b": "HERHANGİ BİR DOLAYLI, ÖRNEK NİTELİĞİNDE, ARIZİ, ÖZEL VEYA DOLAYLI ZARARLAR İÇİN;",
+      "c": "ŞİRKETİN MAKUL KONTROLÜ DIŞINDAKİ HERHANGİ BİR KONU İÇİN; VEYA",
+      "d": "DİĞER TÜM TALEPLERLİ İLİŞKİLİ TUTARLARLA BİRLİKTE, SORUMLULUĞA YOL AÇAN EYLEMDEN ÖNCEKİ 12 AYDA MÜŞTERİ TARAFINDAN ŞİRKETE BU SÖZLEŞME KAPSAMINDAKİ HİZMETLER İÇİN ÖDENEN ÜCRETLERİ AŞAN HERHANGİ BİR TUTAR İÇİN, HER DURUMDA, ŞİRKETİN BU TÜR ZARARLARIN OLASILIĞI KONUSUNDA TAVSİYE EDİLİP EDİLMEDİĞİNE BAKILMAKSIZIN."
+    },
+    "section8": {
+      "title": "ÇEŞİTLİ HÜKÜMLER",
+      "p1": "Bu Sözleşmenin herhangi bir hükmünün uygulanamaz veya geçersiz bulunması halinde, bu Sözleşmenin aksi takdirde tam olarak yürürlükte ve uygulanabilir kalması için o hüküm gerekli minimum ölçüde sınırlandırılacak veya ortadan kaldırılacaktır. Bu Sözleşme, Şirketin önceden yazılı onayı olmaksızın Müşteri tarafından devredilemez, aktarılamaz veya alt lisanslanamaz. Şirket, bu Sözleşme kapsamındaki hak ve yükümlülüklerinden herhangi birini rıza olmaksızın devredebilir ve atayabilir. Bu Sözleşme, tarafların karşılıklı anlayışının tam ve münhasır beyanıdır ve bu Sözleşmenin konusuyla ilgili tüm önceki yazılı ve sözlü anlaşmaları, iletişimleri ve diğer anlayışları geçersiz kılar ve iptal eder ve burada aksi belirtilmediği sürece tüm feragatler ve değişiklikler her iki tarafça imzalanmış yazılı olmalıdır. Bu Sözleşmenin bir sonucu olarak herhangi bir acente, ortaklık, ortak girişim veya istihdam oluşturulmaz ve Müşteri, Şirketi herhangi bir şekilde bağlama yetkisine sahip değildir. Bu Sözleşme kapsamındaki hakları uygulamak için herhangi bir dava veya işlemde, kazanan taraf masrafları ve avukatlık ücretlerini tahsil etme hakkına sahip olacaktır. Bu Sözleşme kapsamındaki tüm bildirimler yazılı olacak ve şahsen teslim edilmişse alındığında; faks veya e-posta ile iletilmişse alındı elektronik olarak onaylandığında; tanınmış bir gecelik teslimat hizmeti ile ertesi gün teslim için gönderilmişse gönderildiği günün ertesi günü; ve iadeli taahhütlü veya taahhütlü posta ile gönderilmişse alındığında usulüne uygun olarak verilmiş sayılacaktır. Bu Sözleşme, kanunlar ihtilafı hükümleri dikkate alınmaksızın Kaliforniya Eyaleti yasalarına tabi olacaktır. Müşteri, talep üzerine referans hesabı olarak hizmet vermek için Şirketle makul bir şekilde işbirliği yapmayı kabul eder."
+    },
+    "exhibitA": {
+      "title": "Ek A",
+      "subtitle": "Destek Şartları",
+      "p1": "Şirket, Hindistan Resmi Tatilleri hariç olmak üzere hafta içi günlerde 10:00 - 19:00 Hindistan Saati (GMT+8) arasında (\"Destek Saatleri\") hem telefon hem de elektronik posta yoluyla Müşteriye Teknik Destek sağlayacaktır.",
+      "p2": "Müşteri, destek saatleri içinde hey@eazybe.com adresine e-posta göndererek bir yardım masası bileti başlatabilir",
+      "p3": "Şirket, tüm Yardım Masası biletlerine bir (1) iş günü içinde yanıt vermek için ticari olarak makul çabaları kullanacaktır."
+    },
+    "download": {
+      "title": "MSA İndir",
+      "description": "Ana Hizmet Sözleşmesini buradan indirebilirsiniz",
+      "button": "İndir"
+    }
+  },
+  "privacy": {
+    "title": "Gizlilik Politikası",
+    "tagline": "Gizliliğinizi ciddiye alıyoruz",
+    "intro": "Bilgilerinizi başka hiç kimseye satmıyor, paylaşmıyor, kiralamıyor veya değiş tokuş etmiyoruz. Veri topladığımızda, size fayda sağlamak ve deneyimlerinizi daha iyi hale getirmek için kullanıyoruz.",
+    "policyTitle": "Gizlilik Politikası",
+    "policyIntro": "Bilgilerinizi yalnızca izninizle topluyoruz; yalnızca yazılımımızı ve hizmetlerimizi işletmek için gerekli olan minimum miktarda bilgi topluyoruz; bilgilerinizi başka kimseyle satmıyor veya paylaşmıyoruz.",
+    "aboutUs": "Eazybe'de (\"Biz\", \"Bizim\"), müşterinin (\"Siz\", \"Sizin\" veya \"Kullanıcı\") gizliliğine saygı duyuyor ve korumayı ciddiye alıyoruz. Hizmetimiz aracılığıyla toplanan bilgilerin kullanımı, Müşterilerimizin bizi görevlendirdiği hizmeti sağlama amacıyla sınırlı olacaktır.",
+    "googleSigninTitle": "Google ile Giriş",
+    "googleSignin": "Google ile giriş, kimliğinizi doğrulayacak ve e-posta adresiniz gibi belirli kişisel bilgileri bizimle paylaşma seçeneği sunacaktır. Sağladığınız bilgiler kesinlikle gizli tutulmaktadır. Bu bilgileri kullanıcı lisansınızı oluşturmak, ödeme makbuzları göndermek ve kullanıcıyla ürün güncellemeleri hakkında iletişim kurmak için topluyoruz.",
+    "serviceEmails": "Ayrıca gerekli olduğunda nadir durumlarda hizmetle ilgili e-posta duyuruları da gönderebiliriz. Örneğin, bakım süreleri, faturalandırma sorunları ve hizmeti etkileyebilecek diğer konular gibi hizmetle ilgili sorunlar hakkında bildirimler gönderebiliriz.",
+    "oauthTitle": "OAuth ve Veri Güvenliği",
+    "oauth": "Hizmetlerimiz, kullanıcının oturum açma kimlik bilgilerini bizimle paylaşmasını gerektirmeden kimlik doğrulama için Google OAuth 2.0 protokolünü kullanır. OAuth ayrıca eklentilerin gerektirdiği şekilde kullanıcının verilerine güvenli erişim sağlar ve veriler kesinlikle Google hesabınızda kalır. Hesap verilerinizin hiçbirini sunucularımızda saklamıyoruz.",
+    "cookies": "Çoğu web sitesinde olduğu gibi, belirli kişisel olmayan istatistiksel bilgileri otomatik olarak topluyor ve çerezlerde ve günlük dosyalarında saklıyoruz. Bu bilgiler internet protokolü (IP) adreslerini, tarayıcı sürümünü, işletim sistemini, tarih/saat damgasını ve uygulamayla diğer etkileşimleri içerir. Bu bilgileri trendleri analiz etmek, potansiyel kötüye kullanım durumlarını belirlemek ve teknik sorunları teşhis etmeye yardımcı olmak için kullanıyoruz.",
+    "dataChangesTitle": "Veri Değişiklikleri ve İfşa",
+    "dataChanges": "Kişisel bilgileriniz değişirse veya artık hizmetimizi istemiyorsanız, Google eklentimizi kaldırarak veya bizimle iletişime geçerek silebilir veya devre dışı bırakabilirsiniz. Talebinize 5 iş günü içinde yanıt vereceğiz.",
+    "disclosure": "Kişisel bilgilerinizi, bir celp, iflas işlemleri veya benzeri yasal süreçlere uymak gibi yasaların gerektirdiği şekilde ifşa etme hakkımızı saklı tutuyoruz ve ifşanın haklarımızı korumak, sizin güvenliğinizi veya başkalarının güvenliğini korumak, dolandırıcılığı araştırmak ve/veya web sitemize sunulan bir yargı işlemi, mahkeme emri veya yasal sürece uymak için gerekli olduğuna inandığımızda.",
+    "thirdPartyPayment": "Hizmetler için size fatura kesmek için Stripe gibi üçüncü taraf ödeme işlemcileri ve web sitemizi kullanırken veya siparişinizle ilgili sorularınız varsa size yardımcı olmak için bir canlı sohbet hizmeti kullanıyoruz. Kredi kartı bilgilerinizi ne saklıyor ne de bunlara erişiyoruz.",
+    "thirdPartyTitle": "Üçüncü Taraf Gizlilik Politikaları",
+    "thirdParty": "Eazybe'nin Gizlilik Politikası diğer reklamcılar veya web siteleri için geçerli değildir. Bu nedenle, daha ayrıntılı bilgi için bu üçüncü taraf reklam sunucularının ilgili Gizlilik Politikalarına başvurmanızı tavsiye ediyoruz. Belirli seçeneklerden nasıl çıkılacağına ilişkin uygulamalarını ve talimatlarını içerebilir. Bireysel tarayıcı seçenekleriniz aracılığıyla çerezleri devre dışı bırakmayı seçebilirsiniz.",
+    "childrenTitle": "Çocuk Bilgileri",
+    "children": "Önceliğimizin bir diğer kısmı, çocuklar interneti kullanırken koruma eklemektir. Ebeveynleri ve velileri çevrimiçi etkinliklerini gözlemlemeye, katılmaya ve/veya izlemeye ve yönlendirmeye teşvik ediyoruz. Eazybe, 13 yaşın altındaki çocuklardan bilerek herhangi bir Kişisel Tanımlanabilir Bilgi toplamaz. Çocuğunuzun web sitemizde bu tür bilgiler sağladığını düşünüyorsanız, derhal bizimle iletişime geçmenizi şiddetle tavsiye ediyoruz ve bu tür bilgileri kayıtlarımızdan derhal kaldırmak için elimizden gelenin en iyisini yapacağız.",
+    "onlineOnlyTitle": "Yalnızca Çevrimiçi Gizlilik Politikası",
+    "onlineOnly": "Bu Gizlilik Politikası yalnızca çevrimiçi faaliyetlerimiz için geçerlidir ve Eazybe'de paylaştıkları ve/veya topladıkları bilgilerle ilgili olarak web sitemizin ziyaretçileri için geçerlidir. Bu politika, çevrimdışı veya bu web sitesi dışındaki kanallar aracılığıyla toplanan hiçbir bilgi için geçerli değildir.",
+    "googleDriveTitle": "Google Drive Verilerine Erişim",
+    "googleDriveIntro": "Eazybe-app, uygulamamızda belirli dosyaları seçmenizi ve yönetmenizi sağlamak için Google Drive'ınıza erişim talep eder. Kaydettiğimiz tek veri, seçtiğiniz dosyanın kimliğidir.",
+    "fileId": "Dosya Kimliği:",
+    "fileIdDesc": "Seçtiğiniz dosyanın benzersiz kimliğine erişiyor ve saklıyoruz.",
+    "purposeTitle": "Veri Erişiminin Amacı:",
+    "purpose1": "Seçilen dosyayı uygulamamızda almak ve görüntülemek.",
+    "purpose2": "Seçilen dosyayla ilgili belirli özellikleri etkinleştirmek, örneğin uygulamamızda açmak veya düzenlemek.",
+    "noContentAccess": "Dosyalarınızın gerçek içeriğine erişmiyor, saklamıyor veya paylaşmıyoruz ve kullandığınız özellikler tarafından açıkça gerekli olmadıkça dosyayla ilişkili diğer meta verilere de erişmiyoruz.",
+    "dataSharingTitle": "Veri Paylaşımı:",
+    "dataSharing": "Dosya kimliği dahil Google Drive verilerinizi üçüncü taraflarla paylaşmıyoruz. Veriler yalnızca eazybe-app içinde talep ettiğiniz işlevleri sağlamak için kullanılır.",
+    "dataProtectionTitle": "Veri Koruma Önlemleri",
+    "encryptionTitle": "Şifreleme:",
+    "encryption1": "Cihazınız ve sunucularımız arasında iletilen tüm veriler, endüstri standardı şifreleme protokolleri (örneğin, HTTPS) kullanılarak şifrelenir.",
+    "encryption2": "Dosya kimliği dahil hassas veriler, yetkisiz erişimi önlemek için beklemede şifrelenir.",
+    "accessControlTitle": "Erişim Kontrolü:",
+    "accessControl1": "Verilerinize erişim yalnızca yetkili personelle sınırlıdır ve verilerinizin güvende kalmasını sağlamak için erişim politikalarımızı düzenli olarak gözden geçirip güncelleriz.",
+    "accessControl2": "Yalnızca yetkili kullanıcıların uygulamamızdaki belirli özelliklere erişebilmesini sağlamak için güçlü kimlik doğrulama mekanizmaları kullanıyoruz.",
+    "securityAuditsTitle": "Düzenli Güvenlik Denetimleri:",
+    "securityAudits1": "Sistemlerimizdeki potansiyel güvenlik açıklarını belirlemek ve azaltmak için düzenli güvenlik denetimleri ve değerlendirmeleri gerçekleştiriyoruz.",
+    "securityAudits2": "Güvenlik uygulamalarımız, endüstri standartları ve en iyi uygulamalara uymak için düzenli olarak güncellenmektedir.",
+    "dataMinimizationTitle": "Veri Minimizasyonu:",
+    "dataMinimization1": "Hizmetlerimizi sağlamak için gerekli olan verileri yalnızca topluyoruz ve saklıyoruz. Bu durumda, yalnızca seçilen dosyanın dosya kimliği saklanır.",
+    "dataMinimization2": "Verileri yalnızca hizmetlerimizi sağlamak için gerekli olduğu süre boyunca veya yasaların gerektirdiği şekilde saklamamızı sağlamak için veri saklama politikaları yürürlüktedir.",
+    "californiaTitle": "Kaliforniya Gizlilik Hakları Bildirimi",
+    "california": "Kaliforniya Gizlilik Haklarınız: Kaliforniya Shine the Light yasası (Kaliforniya Medeni Kanunu Bölüm 1798.83) kapsamında, esas olarak kişisel, aile veya ev amaçları için bizimle yerleşik bir iş ilişkisi olan Kaliforniya sakinleri, doğrudan pazarlama amaçları için üçüncü taraflarla paylaştığımız kişisel bilgiler hakkında takvim yılı başına bir kez bilgi talep edebilir. Bu talepler, paylaşılan kişisel bilgi kategorilerini ve paylaşıldığı üçüncü tarafların adlarını içerebilir. Eazybe'den bu bilgileri talep etmek için lütfen hey@eazybe.com adresine konu satırında \"Shine the Light Request\" yazarak bir e-posta gönderin. Talebiniz adınızı, soyadınızı, posta adresinizi ve Kaliforniya sakini olduğunuzu doğrulayan bir beyanı içermelidir. Kimliğinizi ve ikametgahınızı doğrulamak için ek bilgi isteyebiliriz.",
+    "californiaNote": "Not: Telefon, posta veya faks yoluyla talep kabul etmiyoruz. Ayrıca yanlış etiketlenmiş, yanlış gönderilmiş veya eksik talepler için de sorumlu değiliz.",
+    "europeanTitle": "Avrupa Kullanıcılarına Bildirim",
+    "europeanIntro": "Bu bölüm, \"Avrupa Kullanıcılarına Bildirim\", özellikle Birleşik Krallık, İsviçre ve Avrupa Ekonomik Alanı'nda (toplu olarak \"Avrupa\" olarak anılır) ikamet eden bireyler için tasarlanmıştır.",
+    "personalInfoTitle": "Kişisel Bilgiler:",
+    "personalInfo": "Bu Gizlilik Politikasında, \"kişisel bilgiler\" terimi, Avrupa veri koruma mevzuatı kapsamında tanımlanan \"kişisel veriler\" ile birbirinin yerine kullanılmaktadır.",
+    "dataControllerTitle": "Veri Sorumlusu:",
+    "dataController": "Avrupa veri koruma mevzuatı amaçları doğrultusunda, Eazybe bu Gizlilik Politikasında açıklanan kişisel bilgilerin sorumlusudur.",
+    "legalBasesTitle": "İşleme için Yasal Dayanaklar:",
+    "legalBases": "Kişisel bilgilerinizi yasal düzenlemelere kesinlikle uygun olarak işliyoruz. Kişisel bilgilerinizi işlemenin belirli amaçları bu Gizlilik Politikasında ayrıntılı olarak açıklanmaktadır.",
+    "newPurposesTitle": "Yeni Amaçlar İçin Kullanım",
+    "newPurposes": "Eazybe'de, yasa tarafından izin verilmesi ve başlangıçta toplandığı nedenlerle uyumlu olması koşuluyla, bu Gizlilik Politikasında belirtilmeyen nedenlerle kişisel bilgilerinizi kullanabiliriz. Kişisel bilgilerinizi orijinal nedenlerle ilgisi olmayan bir amaç için kullanmamız gerekirse, sizi bilgilendireceğiz ve böyle bir kullanım için yasal dayanağı açıklayacağız.",
+    "retentionTitle": "Kişisel Bilgilerin Saklanması",
+    "retention": "Eazybe, kişisel bilgilerinizi yalnızca toplandığı amaçları yerine getirmek için gerekli olduğu sürece saklar; bu, yasal, muhasebe veya raporlama yükümlülüklerini karşılamayı, yasal talepleri oluşturmayı veya savunmayı veya uyum ve koruma amaçlarını içerir.",
+    "retentionFactors": "Uygun saklama süresini belirlemek için kişisel bilgilerin hacmi, niteliği ve hassasiyeti, yetkisiz kullanım veya ifşa potansiyel riski, işleme amaçlarının başka yollarla gerçekleştirilip gerçekleştirilemeyeceği ve geçerli yasal gereklilikler gibi faktörleri dikkate alıyoruz.",
+    "retentionDeletion": "Kişisel bilgilere artık ihtiyaç duyulmadığında, sileceğiz veya anonimleştireceğiz. Silme mümkün değilse (örneğin, bilgiler yedekleme arşivlerinde saklandığından), silme mümkün olana kadar kişisel bilgileri güvenli bir şekilde saklayacak ve daha fazla işlemeden izole edeceğiz. Kişisel bilgilerinizi anonimleştirirsek (tanımlanamaz hale getirirsek), daha fazla bildirimde bulunmadan süresiz olarak kullanabiliriz.",
+    "sensitiveTitle": "Hassas Kişisel Bilgiler",
+    "sensitive": "Hizmetlerimiz aracılığıyla veya doğrudan bize herhangi bir hassas kişisel bilgi (sosyal güvenlik numaraları veya ırk veya etnik köken, siyasi görüşler, din, sağlık, biyometri, sabıka kaydı veya sendika üyeliği ile ilgili bilgiler gibi) sağlamamanızı tavsiye ederiz. Hassas kişisel bilgi sağlamayı seçerseniz, bu Gizlilik Politikasında açıklandığı şekilde işleme ve kullanımımıza onay vermelisiniz. Bu tür hassas bilgilerin işlenmesini ve kullanılmasını kabul etmiyorsanız, lütfen hizmetlerimiz aracılığıyla sağlamayın.",
+    "rightsTitle": "Haklarınız",
+    "rightsIntro": "Avrupa veri koruma yasaları, kişisel bilgilerinizle ilgili belirli haklar tanır. Avrupa'da bulunuyorsanız, tuttuğumuz kişisel bilgilerinizle ilgili olarak aşağıdaki işlemleri yapmamızı isteyebilirsiniz:",
+    "accessRight": "Erişim.",
+    "accessRightDesc": "Kişisel bilgilerinizin işlenmesi hakkında size bilgi sağlamak ve kişisel bilgilerinize erişim vermek.",
+    "correctRight": "Düzeltme.",
+    "correctRightDesc": "Kişisel bilgilerinizdeki yanlışlıkları güncellemek veya düzeltmek.",
+    "deleteRight": "Silme.",
+    "deleteRightDesc": "Kişisel bilgilerinizi silmek.",
+    "transferRight": "Transfer.",
+    "transferRightDesc": "Kişisel bilgilerinizin makine tarafından okunabilir bir kopyasını size veya seçtiğiniz bir üçüncü tarafa aktarmak.",
+    "restrictRight": "Kısıtlama.",
+    "restrictRightDesc": "Kişisel bilgilerinizin işlenmesini kısıtlamak.",
+    "objectRight": "İtiraz.",
+    "objectRightDesc": "Haklarınızı etkileyen kişisel bilgilerinizin işlenmesinin temeli olarak meşru çıkarlarımıza güvenmemize itiraz etmek.",
+    "rightsContact": "Bu talepleri hey@eazybe.com adresine e-posta ile gönderebilirsiniz. Kimliğinizi doğrulamamıza ve talebinizi işlememize yardımcı olmak için sizden belirli bilgiler isteyebiliriz. Geçerli yasa, talebinizi reddetmemizi gerektirebilir veya izin verebilir. Talebinizi reddedersek, yasal kısıtlamalara tabi olarak nedenini size bildireceğiz. Kişisel bilgilerinizin kullanımı veya kişisel bilgilerinizle ilgili taleplerinize verdiğimiz yanıt hakkında şikayette bulunmak isterseniz, bizimle iletişime geçebilir veya yargı alanınızdaki veri koruma düzenleyicisine şikayette bulunabilirsiniz."
+  },
+  "terms": {
+    "title": "Hizmet Şartları",
+    "intro": "Eazybe (\"biz\" veya \"bizim\") tarafından işletilen https://eazybe.com web sitesini (\"Hizmet\") kullanmadan önce lütfen bu Hizmet Şartlarını (\"Şartlar\") dikkatlice okuyun.",
+    "acceptanceTitle": "Şartların Kabulü",
+    "acceptance": "Hizmete erişiminiz ve kullanımınız, bu Şartları kabul etmenize ve bunlara uymanıza bağlıdır. Bu Şartlar, Hizmete erişen veya kullanan tüm ziyaretçiler, kullanıcılar ve diğer kişiler için geçerlidir. Hizmete erişerek veya kullanarak bu Şartlara bağlı olmayı kabul edersiniz. Şartların herhangi bir kısmına katılmıyorsanız, Hizmete erişemezsiniz.",
+    "accountsTitle": "Hesaplar",
+    "accounts": "Bizimle bir hesap oluşturduğunuzda, bize her zaman doğru, eksiksiz ve güncel bilgiler sağlamalısınız. Bunu yapmamak, Şartların ihlali anlamına gelir ve bu, Hizmetimizdeki hesabınızın derhal feshedilmesiyle sonuçlanabilir. Hizmete erişmek için kullandığınız şifreyi korumaktan ve şifreniz altındaki tüm etkinlikler veya eylemlerden, şifreniz ister Hizmetimizle ister üçüncü taraf bir hizmetle olsun, siz sorumlusunuz. Şifrenizi herhangi bir üçüncü tarafa ifşa etmemeyi kabul edersiniz. Herhangi bir güvenlik ihlali veya hesabınızın yetkisiz kullanımından haberdar olduğunuzda bizi derhal bilgilendirmelisiniz.",
+    "linksTitle": "Diğer Web Sitelerine Bağlantılar",
+    "links": "Hizmetimiz, Eazybe'nin sahibi olmadığı veya kontrol etmediği üçüncü taraf web sitelerine veya hizmetlere bağlantılar içerebilir. Eazybe, herhangi bir üçüncü taraf web sitesinin veya hizmetinin içeriği, gizlilik politikaları veya uygulamaları üzerinde hiçbir kontrole sahip değildir ve hiçbir sorumluluk kabul etmez. Ayrıca, Eazybe'nin bu tür web siteleri veya hizmetler aracılığıyla veya üzerinden mevcut olan herhangi bir içerik, mal veya hizmetin kullanımı veya bunlara güvenilmesiyle bağlantılı olarak neden olduğu veya neden olduğu iddia edilen herhangi bir hasar veya kayıptan doğrudan veya dolaylı olarak sorumlu olmayacağını kabul ve beyan edersiniz. Ziyaret ettiğiniz herhangi bir üçüncü taraf web sitesinin veya hizmetinin hüküm ve koşullarını ve gizlilik politikalarını okumanızı şiddetle tavsiye ederiz.",
+    "terminationTitle": "Fesih",
+    "termination": "Şartları ihlal etmeniz de dahil olmak üzere herhangi bir nedenle, önceden haber vermeksizin veya sorumluluk almaksızın Hizmetimize erişiminizi derhal feshedebilir veya askıya alabiliriz. Doğası gereği fesihten sonra da geçerli olması gereken tüm Şartlar hükümleri, mülkiyet hükümleri, garanti feragatnameleri, tazminat ve sorumluluk sınırlamaları dahil ancak bunlarla sınırlı olmamak üzere fesihten sonra da geçerli kalacaktır.",
+    "terminationAccount": "Şartları ihlal etmeniz de dahil olmak üzere herhangi bir nedenle, önceden haber vermeksizin veya sorumluluk almaksızın hesabınızı derhal feshedebilir veya askıya alabiliriz. Fesih üzerine, Hizmeti kullanma hakkınız derhal sona erecektir. Hesabınızı feshetmek istiyorsanız, Hizmeti kullanmayı bırakmanız yeterlidir. Doğası gereği fesihten sonra da geçerli olması gereken tüm Şartlar hükümleri, mülkiyet hükümleri, garanti feragatnameleri, tazminat ve sorumluluk sınırlamaları dahil ancak bunlarla sınırlı olmamak üzere fesihten sonra da geçerli kalacaktır.",
+    "governingLawTitle": "Geçerli Yasa",
+    "governingLaw": "Bu Şartlar, kanun ihtilafı hükümlerine bakılmaksızın Yeni Delhi, Hindistan yasalarına göre yönetilecek ve yorumlanacaktır. Bu Şartların herhangi bir hakkını veya hükmünü uygulamamız, bu haklardan feragat olarak kabul edilmeyecektir. Bu Şartların herhangi bir hükmünün bir mahkeme tarafından geçersiz veya uygulanamaz bulunması halinde, bu Şartların geri kalan hükümleri yürürlükte kalacaktır.",
+    "entireAgreementTitle": "Tam Sözleşme",
+    "entireAgreement": "Bu Şartlar, Hizmetimizle ilgili aramızdaki tam sözleşmeyi oluşturur ve Hizmetle ilgili aramızda daha önce yapılmış olabilecek tüm anlaşmaların yerini alır ve onları geçersiz kılar.",
+    "changesTitle": "Değişiklikler",
+    "changes": "Tamamen kendi takdirimize bağlı olarak, bu Şartları herhangi bir zamanda değiştirme veya değiştirme hakkını saklı tutuyoruz. Bir revizyon önemliyse, yeni şartlar yürürlüğe girmeden en az 15 gün önce bildirimde bulunmaya çalışacağız. Önemli bir değişikliğin ne olduğu tamamen bizim takdirimize bağlı olarak belirlenecektir. Bu revizyonlar yürürlüğe girdikten sonra Hizmetimize erişmeye veya kullanmaya devam ederek, revize edilmiş şartlara bağlı olmayı kabul edersiniz. Yeni şartları kabul etmiyorsanız, lütfen Hizmeti kullanmayı bırakın."
   }
 }

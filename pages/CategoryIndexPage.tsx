@@ -75,12 +75,21 @@ const HeroSection: React.FC<{ data: any }> = ({ data }) => {
 
           <div className="flex flex-wrap justify-center gap-4">
             {data.primaryCta && (
-              <Link to={data.primaryCta.url}>
-                <Button variant="primary" className="h-14 px-8 text-base">
-                  {data.primaryCta.label}
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
+              data.primaryCta.url.startsWith('http') ? (
+                <a href={data.primaryCta.url} target="_blank" rel="noopener noreferrer">
+                  <Button variant="primary" className="h-14 px-8 text-base">
+                    {data.primaryCta.label}
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </a>
+              ) : (
+                <Link to={data.primaryCta.url}>
+                  <Button variant="primary" className="h-14 px-8 text-base">
+                    {data.primaryCta.label}
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+              )
             )}
             {data.secondaryCta && (
               <Link to={data.secondaryCta.url}>
@@ -118,12 +127,20 @@ const IntroSection: React.FC<{ data: any }> = ({ data }) => {
 const FeaturedItemsSection: React.FC<{ items: any[]; category: string; t: (key: string) => string }> = ({ items, category, t }) => {
   if (!items || items.length === 0) return null
 
-  const getBasePath = () => {
-    if (category === 'feature') return '/features'
-    if (category === 'whatsapp-api') return '/whatsapp-api'
-    return '/integrations'
+  // Generate the correct URL for each item based on category
+  const getItemUrl = (item: any) => {
+    if (category === 'feature') return `/features/${item.slug}`
+    if (category === 'whatsapp-api') return `/whatsapp-api/${item.slug}`
+    // For integrations, use the URL format: /{slug}-whatsapp-integration
+    // Check if slug already has the suffix to avoid duplication
+    if (category === 'integration') {
+      if (item.slug.endsWith('-whatsapp-integration')) {
+        return `/${item.slug}`
+      }
+      return `/${item.slug}-whatsapp-integration`
+    }
+    return `/${item.slug}`
   }
-  const basePath = getBasePath()
 
   // Separate featured and non-featured items
   const featuredItems = items.filter(item => item.isFeatured)
@@ -142,7 +159,7 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string; t: (key: 
               {featuredItems.map((item, idx) => (
                 <Link
                   key={idx}
-                  to={`${basePath}/${item.slug}`}
+                  to={getItemUrl(item)}
                   className="group bg-slate-900 border border-slate-700 hover:border-slate-500 transition-all rounded-xl p-6 relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: item.color }}></div>
@@ -189,7 +206,7 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string; t: (key: 
               {otherItems.map((item, idx) => (
                 <Link
                   key={idx}
-                  to={`${basePath}/${item.slug}`}
+                  to={getItemUrl(item)}
                   className="group bg-slate-800/50 border border-slate-700 hover:border-slate-500 transition-all rounded-lg p-5"
                 >
                   <div className="flex items-center gap-3 mb-3">
@@ -414,7 +431,7 @@ const getTranslatedCategoryData = (slug: string, t: (key: string, options?: any)
       headline: t(`categoryIndex.${categoryKey}.hero.headline`),
       headlineHighlight: t(`categoryIndex.${categoryKey}.hero.headlineHighlight`),
       description: t(`categoryIndex.${categoryKey}.hero.description`),
-      primaryCta: { label: t(`categoryIndex.${categoryKey}.hero.primaryCta`), url: '/signup' },
+      primaryCta: { label: t(`categoryIndex.${categoryKey}.hero.primaryCta`), url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
       secondaryCta: { label: t(`categoryIndex.${categoryKey}.hero.secondaryCta`), url: '#features' }
     },
     intro: categoryKey === 'features' ? {
@@ -446,11 +463,14 @@ export const CategoryIndexPage: React.FC = () => {
   const { t } = useTranslation()
   const location = useLocation()
 
-  // Determine slug based on current path
+  // Determine slug based on current path (strip language prefix first)
   const getSlugFromPath = () => {
-    if (location.pathname === '/features') return 'features'
-    if (location.pathname === '/integrations') return 'integrations'
-    if (location.pathname === '/whatsapp-api') return 'whatsapp-api'
+    // Remove language prefix (/pt, /es, /tr) from pathname
+    const cleanPath = location.pathname.replace(/^\/(pt|es|tr)\//, '/').replace(/^\/(pt|es|tr)$/, '/')
+
+    if (cleanPath === '/features' || cleanPath.startsWith('/features')) return 'features'
+    if (cleanPath === '/integrations' || cleanPath.startsWith('/integrations')) return 'integrations'
+    if (cleanPath === '/whatsapp-api' || cleanPath.startsWith('/whatsapp-api')) return 'whatsapp-api'
     return 'features'
   }
   const slug = getSlugFromPath()

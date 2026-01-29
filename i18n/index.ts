@@ -25,6 +25,16 @@ export const languageFlags: Record<SupportedLanguage, string> = {
   tr: '🇹🇷',
 }
 
+// Custom path detector for language from URL
+const pathLanguageDetector = {
+  name: 'path',
+  lookup() {
+    const path = window.location.pathname
+    const match = path.match(/^\/(pt|es|tr)(\/|$)/)
+    return match ? match[1] : 'en'
+  },
+}
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -44,7 +54,7 @@ i18n
     },
 
     detection: {
-      order: ['localStorage', 'navigator'],
+      order: ['path', 'localStorage', 'navigator'],
       caches: ['localStorage'],
       lookupLocalStorage: 'i18nextLng',
     },
@@ -52,5 +62,11 @@ i18n
     ns: ['common'],
     defaultNS: 'common',
   })
+
+// Add custom detector
+const languageDetector = i18n.services.languageDetector as any
+if (languageDetector?.addDetector) {
+  languageDetector.addDetector(pathLanguageDetector)
+}
 
 export default i18n

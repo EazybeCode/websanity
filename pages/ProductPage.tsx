@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   Check,
@@ -368,12 +368,16 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string, t
             </div>
 
             <div className="flex flex-wrap gap-4 mb-10">
-              <Button variant="primary" className="h-14 px-8 text-base shadow-none hover:shadow-lg" style={{ backgroundColor: crmColor, borderColor: crmColor }}>
-                {t('integrations.hero.startTrial')}
-              </Button>
-              <Button variant="outline" className="h-14 px-8 text-base">
-                {t('integrations.hero.bookDemo')}
-              </Button>
+              <a href="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd" target="_blank" rel="noopener noreferrer">
+                <Button variant="primary" className="h-14 px-8 text-base shadow-none hover:shadow-lg" style={{ backgroundColor: crmColor, borderColor: crmColor }}>
+                  {t('integrations.hero.startTrial')}
+                </Button>
+              </a>
+              <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="h-14 px-8 text-base">
+                  {t('integrations.hero.bookDemo')}
+                </Button>
+              </a>
             </div>
 
             <div className="flex items-center gap-8 pt-8 border-t border-slate-800/50">
@@ -1602,27 +1606,30 @@ const ReportsSection: React.FC<{ crm: typeof crmConfig.hubspot, t: (key: string)
 export const ProductPage: React.FC = () => {
   const { t, i18n } = useTranslation()
   const language = i18n.language || 'en'
-  const { slug } = useParams<{ slug: string }>()
-  const { loading } = useProduct(slug || 'hubspot-whatsapp-integration')
+  const location = useLocation()
 
-  // Determine which CRM based on slug
-  const getCrmSlug = (slug: string | undefined): string => {
-    if (!slug) return 'hubspot'
-    if (slug.includes('google-sheets')) return 'google-sheets'
-    if (slug.includes('google-calendar')) return 'google-calendar'
-    if (slug.includes('salesforce')) return 'salesforce'
-    if (slug.includes('zoho')) return 'zoho'
-    if (slug.includes('hubspot')) return 'hubspot'
-    if (slug.includes('bitrix24')) return 'bitrix24'
-    if (slug.includes('leadsquared')) return 'leadsquared'
-    if (slug.includes('freshdesk')) return 'freshdesk'
-    if (slug.includes('webhooks')) return 'webhooks'
-    if (slug.includes('pipedrive')) return 'pipedrive'
-    if (slug.includes('monday')) return 'monday'
+  // Extract CRM slug from pathname (e.g., /hubspot-whatsapp-integration or /pt/hubspot-whatsapp-integration)
+  const getCrmSlugFromPath = (pathname: string): string => {
+    // Remove language prefix if present (e.g., /pt/, /es/, /tr/)
+    const cleanPath = pathname.replace(/^\/(pt|es|tr)\//, '/').replace(/^\/(pt|es|tr)$/, '/')
+
+    // Extract CRM name from URL pattern like /hubspot-whatsapp-integration
+    if (cleanPath.includes('google-sheets')) return 'google-sheets'
+    if (cleanPath.includes('google-calendar')) return 'google-calendar'
+    if (cleanPath.includes('salesforce')) return 'salesforce'
+    if (cleanPath.includes('zoho')) return 'zoho'
+    if (cleanPath.includes('hubspot')) return 'hubspot'
+    if (cleanPath.includes('bitrix24')) return 'bitrix24'
+    if (cleanPath.includes('leadsquared')) return 'leadsquared'
+    if (cleanPath.includes('freshdesk')) return 'freshdesk'
+    if (cleanPath.includes('webhooks')) return 'webhooks'
+    if (cleanPath.includes('pipedrive')) return 'pipedrive'
+    if (cleanPath.includes('monday')) return 'monday'
     return 'hubspot'
   }
 
-  const crmSlug = getCrmSlug(slug)
+  const crmSlug = getCrmSlugFromPath(location.pathname)
+  const { loading } = useProduct(`${crmSlug}-whatsapp-integration`)
   const crm = crmConfig[crmSlug] || crmConfig.hubspot
   const crmColor = crm.color
 

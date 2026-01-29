@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { EyeOff, Clock, UserX, LogOut, AlertTriangle, XCircle } from 'lucide-react'
 import { SectionBadge } from '../ui/SectionBadge'
 import type { ProblemSection } from '../../hooks/useLandingPage'
@@ -16,7 +17,25 @@ const iconMap: Record<string, React.FC<{ size?: number; strokeWidth?: number }>>
   'x-circle': XCircle,
 }
 
+const defaultIcons = ['eye-off', 'clock', 'user-x', 'log-out']
+
 export const ProblemDynamic: React.FC<Props> = ({ data }) => {
+  const { t } = useTranslation()
+
+  // Use translations with Sanity data as fallback
+  const badge = t('home.problem.badge', { defaultValue: data.badge || '' })
+  const headline = t('home.problem.headline', { defaultValue: data.headline || '' })
+  const subheadline = t('home.problem.subheadline', { defaultValue: data.subheadline || '' })
+
+  // Get translated cards or use Sanity data
+  const translatedCards = t('home.problem.cards', { returnObjects: true }) as Array<{ title: string; description: string }> | string
+  const cards = Array.isArray(translatedCards)
+    ? translatedCards.map((card, i) => ({
+        ...card,
+        icon: data.problems?.[i]?.icon || defaultIcons[i] || 'eye-off'
+      }))
+    : data.problems || []
+
   return (
     <section className="py-24 bg-brand-black text-white relative overflow-hidden">
       {/* Background Glows */}
@@ -24,14 +43,14 @@ export const ProblemDynamic: React.FC<Props> = ({ data }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mb-16">
-          {data.badge && (
+          {badge && (
             <div className="mb-6">
-              <SectionBadge variant="cyan">{data.badge}</SectionBadge>
+              <SectionBadge variant="cyan">{badge}</SectionBadge>
             </div>
           )}
-          {data.headline && (
+          {headline && (
             <h2 className="text-4xl md:text-5xl font-sans font-bold text-white mb-6 tracking-tight">
-              {data.headline.split(' ').map((word, i, arr) => {
+              {headline.split(' ').map((word, i, arr) => {
                 // Make last two words gray for visual effect
                 if (i >= arr.length - 2) {
                   return <span key={i} className="text-slate-400">{word} </span>
@@ -40,15 +59,15 @@ export const ProblemDynamic: React.FC<Props> = ({ data }) => {
               })}
             </h2>
           )}
-          {data.subheadline && (
+          {subheadline && (
             <p className="text-xl text-slate-400 font-normal leading-relaxed">
-              {data.subheadline}
+              {subheadline}
             </p>
           )}
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {data.problems?.map((card, idx) => {
+          {cards.map((card, idx) => {
             const IconComponent = iconMap[card.icon] || EyeOff
             return (
               <div

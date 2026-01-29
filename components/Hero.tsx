@@ -25,12 +25,16 @@ export const Hero: React.FC = () => {
              </p>
 
              <div className="flex flex-col sm:flex-row gap-4 items-start mb-12">
-               <Button variant="primary" size="lg" icon={<ArrowRight size={18} />}>
-                 Start Free Trial
-               </Button>
-               <Button variant="outline" size="lg">
-                 Book a Demo
-               </Button>
+               <a href="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd" target="_blank" rel="noopener noreferrer">
+                 <Button variant="primary" size="lg" icon={<ArrowRight size={18} />}>
+                   Start Free Trial
+                 </Button>
+               </a>
+               <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer">
+                 <Button variant="outline" size="lg">
+                   Book a Demo
+                 </Button>
+               </a>
              </div>
 
              <div className="flex items-center gap-2 text-sm text-slate-500 font-medium">

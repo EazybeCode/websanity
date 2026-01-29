@@ -8,12 +8,14 @@ import { Button } from '../components/ui/Button'
 import { PricingToggle, PricingCard, FeatureComparisonTable, PricingFAQ } from '../components/pricing'
 import type { PricingPlan, FAQItem } from '../components/pricing'
 import { usePricing } from '../hooks/usePricing'
+import { useDynamicPricing } from '../hooks/useDynamicPricing'
 import { useLanguage } from '../hooks/useLanguage'
 
 // Default/Fallback Data
 const defaultPricingPlans: PricingPlan[] = [
   {
     name: 'Starter',
+    planKey: 'starter',
     description: 'Perfect for individuals and small teams getting started with WhatsApp CRM integration.',
     monthlyPrice: 13,
     annualPrice: 10,
@@ -30,10 +32,11 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Salesforce integration', included: false },
       { text: 'Revenue Inbox', included: false },
     ],
-    cta: { label: 'Start Free Trial', url: '/signup?plan=starter' },
+    cta: { label: 'Start Free Trial', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
   },
   {
     name: 'Scaler',
+    planKey: 'scaler',
     description: 'For growing teams that need advanced integrations and AI-powered automation.',
     monthlyPrice: 19,
     annualPrice: 15,
@@ -51,10 +54,11 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'CRM workflow integration', included: true },
       { text: 'RevOps Agent', included: false },
     ],
-    cta: { label: 'Start Free Trial', url: '/signup?plan=scaler' },
+    cta: { label: 'Start Free Trial', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
   },
   {
     name: 'Omnis',
+    planKey: 'omnis',
     description: 'Full-stack revenue operations with AI agents and complete WhatsApp intelligence.',
     monthlyPrice: 0,
     annualPrice: 0,
@@ -162,6 +166,7 @@ export const PricingPage: React.FC = () => {
   const { currentLanguage } = useLanguage()
   const [isAnnual, setIsAnnual] = useState(true)
   const { data: pricingData, loading } = usePricing(currentLanguage)
+  const { userCurrency, getDynamicPrice, loading: dynamicPricingLoading } = useDynamicPricing()
 
   // Use Sanity data if available, otherwise use translated defaults
   const hero = pricingData?.hero || {
@@ -178,6 +183,7 @@ export const PricingPage: React.FC = () => {
   const translatedDefaultPlans: PricingPlan[] = [
     {
       name: t('pricing.plans.starter.name'),
+      planKey: 'starter',
       description: t('pricing.plans.starter.description'),
       monthlyPrice: 13,
       annualPrice: 10,
@@ -194,10 +200,11 @@ export const PricingPage: React.FC = () => {
         { text: t('pricing.plans.starter.features.salesforce'), included: false },
         { text: t('pricing.plans.starter.features.revenueInbox'), included: false },
       ],
-      cta: { label: t('pricing.plans.starter.cta'), url: '/signup?plan=starter' },
+      cta: { label: t('pricing.plans.starter.cta'), url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
     },
     {
       name: t('pricing.plans.scaler.name'),
+      planKey: 'scaler',
       description: t('pricing.plans.scaler.description'),
       monthlyPrice: 19,
       annualPrice: 15,
@@ -215,10 +222,11 @@ export const PricingPage: React.FC = () => {
         { text: t('pricing.plans.scaler.features.crmWorkflow'), included: true },
         { text: t('pricing.plans.scaler.features.revOpsAgent'), included: false },
       ],
-      cta: { label: t('pricing.plans.scaler.cta'), url: '/signup?plan=scaler' },
+      cta: { label: t('pricing.plans.scaler.cta'), url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
     },
     {
       name: t('pricing.plans.omnis.name'),
+      planKey: 'omnis',
       description: t('pricing.plans.omnis.description'),
       monthlyPrice: 0,
       annualPrice: 0,
@@ -239,8 +247,16 @@ export const PricingPage: React.FC = () => {
     },
   ]
 
+  // Derive planKey from icon type for Sanity data
+  const iconToPlanKey = (icon: string): 'starter' | 'scaler' | 'omnis' => {
+    if (icon === 'starter') return 'starter'
+    if (icon === 'growth') return 'scaler'
+    return 'omnis'
+  }
+
   const pricingPlans: PricingPlan[] = pricingData?.plans?.map((plan) => ({
     name: plan.name,
+    planKey: iconToPlanKey(plan.icon),
     description: plan.description,
     monthlyPrice: plan.monthlyPrice,
     annualPrice: plan.annualPrice,
@@ -331,12 +347,12 @@ export const PricingPage: React.FC = () => {
     headline: t('hero.headline'),
     headlineHighlight: t('hero.headlineHighlight'),
     subheadline: t('hero.subheadline'),
-    primaryCta: { label: t('cta.startFreeTrial'), url: '/signup' },
-    secondaryCta: { label: t('cta.bookDemo'), url: '/demo' },
+    primaryCta: { label: t('cta.startFreeTrial'), url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+    secondaryCta: { label: t('cta.bookDemo'), url: 'https://calendly.com/d/cw67-pt3-y2m' },
     footnote: t('hero.noCreditCard'),
   }
 
-  if (loading) {
+  if (loading || dynamicPricingLoading) {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center">
@@ -384,9 +400,20 @@ export const PricingPage: React.FC = () => {
       <section className="py-12 lg:py-16 bg-brand-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 lg:gap-6">
-            {pricingPlans.map((plan) => (
-              <PricingCard key={plan.name} plan={plan} isAnnual={isAnnual} />
-            ))}
+            {pricingPlans.map((plan) => {
+              // Get dynamic pricing for this plan using planKey (language-independent)
+              const dynamicPrice = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
+              return (
+                <PricingCard
+                  key={plan.name}
+                  plan={plan}
+                  isAnnual={isAnnual}
+                  dynamicCurrency={dynamicPrice.currency}
+                  dynamicMonthlyPrice={dynamicPrice.monthlyPrice}
+                  dynamicAnnualPrice={dynamicPrice.annualPrice}
+                />
+              )
+            })}
           </div>
 
           {/* Trust Signals */}

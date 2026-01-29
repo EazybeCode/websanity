@@ -28,11 +28,11 @@ const defaultData: CTASectionData = {
   description: 'Join 2,000+ teams who finally see what\'s happening in chat. Sync conversations, automate workflows, and close deals faster.',
   primaryCta: {
     label: 'Start 7-Day Free Trial',
-    url: '/signup'
+    url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd'
   },
   secondaryCta: {
     label: 'Book a Demo',
-    url: '/demo'
+    url: 'https://calendly.com/d/cw67-pt3-y2m'
   },
   footnote: 'Free 7-day trial • No credit card required • GDPR Ready'
 }
@@ -64,6 +64,8 @@ export const CTASection: React.FC<Props> = ({ data = defaultData }) => {
           {primaryCta && (
             <a
               href={primaryCta.url}
+              target={primaryCta.url.startsWith('http') ? '_blank' : undefined}
+              rel={primaryCta.url.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="inline-flex items-center justify-center font-bold text-base px-10 py-4 rounded-lg bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] border border-blue-600 hover:bg-blue-700 hover:scale-105 transform transition-all"
             >
               {primaryCta.label}

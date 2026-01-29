@@ -33,6 +33,10 @@ import {
   Filter,
   Megaphone,
   Settings,
+  CircleDot,
+  Layers,
+  Table,
+  Webhook,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -85,6 +89,22 @@ export const iconMap: Record<string, LucideIcon> = {
   'sales': DollarSign,
   'marketing': Megaphone,
   'settings': Settings,
+
+  // CRM/Integration icons (by name)
+  'hubspot': CircleDot,
+  'salesforce': Cloud,
+  'zoho': Database,
+  'bitrix24': Layers,
+  'leadsquared': BarChart2,
+  'freshdesk': HeadphonesIcon,
+  'pipedrive': TrendingUp,
+  'google-sheets': Table,
+  'webhooks': Webhook,
+  'circle-dot': CircleDot,
+  'layers': Layers,
+  'table': Table,
+  'webhook': Webhook,
+  'headphones': HeadphonesIcon,
 }
 
 // Feature icon mapping for quick lookup by feature slug
@@ -97,6 +117,25 @@ export const featureIconMap: Record<string, LucideIcon> = {
   'scheduler': Calendar,
   'rep-radar': Radar,
   'whatsapp-copilot': Bot,
+  // Integration icons
+  'hubspot': CircleDot,
+  'hubspot-whatsapp-integration': CircleDot,
+  'salesforce': Cloud,
+  'salesforce-whatsapp-integration': Cloud,
+  'zoho': Database,
+  'zoho-whatsapp-integration': Database,
+  'bitrix24': Layers,
+  'bitrix24-whatsapp-integration': Layers,
+  'leadsquared': BarChart2,
+  'leadsquared-whatsapp-integration': BarChart2,
+  'freshdesk': HeadphonesIcon,
+  'freshdesk-whatsapp-integration': HeadphonesIcon,
+  'pipedrive': TrendingUp,
+  'pipedrive-whatsapp-integration': TrendingUp,
+  'google-sheets': Table,
+  'google-sheets-whatsapp-integration': Table,
+  'webhooks': Webhook,
+  'webhooks-whatsapp-integration': Webhook,
 }
 
 // Get icon by name with fallback

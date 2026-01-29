@@ -73,6 +73,10 @@
       "webinarsDesc": "Demos y capacitaciones",
       "helpCenter": "Centro de Ayuda",
       "helpCenterDesc": "Guías y tutoriales",
+      "contact": "Contáctenos",
+      "contactDesc": "Chatea con nosotros en WhatsApp",
+      "email": "Correo",
+      "emailDesc": "Envíenos un correo electrónico",
       "docsDesc": "Referencia técnica",
       "apiReference": "Referencia de API",
       "apiReferenceDesc": "Para desarrolladores"
@@ -119,7 +123,8 @@
     "select": "Idioma",
     "en": "English",
     "pt": "Português",
-    "es": "Español"
+    "es": "Español",
+    "tr": "Türkçe"
   },
   "common": {
     "loading": "Cargando...",
@@ -353,6 +358,91 @@
       "messagesSynced": "Mensajes sincronizados",
       "fasterResponse": "Respuesta más rápida",
       "setupTime": "Tiempo de configuración"
+    },
+    "problem": {
+      "badge": "¿Te Suena Familiar?",
+      "headline": "WhatsApp es una caja negra para los gerentes",
+      "subheadline": "Tu equipo cierra negocios en WhatsApp, pero no tienes visibilidad de lo que está pasando.",
+      "cards": [
+        {
+          "title": "Cero Visibilidad",
+          "description": "Los gerentes no pueden ver conversaciones, progreso de negocios o rendimiento del equipo en WhatsApp."
+        },
+        {
+          "title": "Tiempos de Respuesta Lentos",
+          "description": "Los leads calientes se enfrían mientras los vendedores alternan entre WhatsApp y CRM."
+        },
+        {
+          "title": "Contexto Perdido",
+          "description": "Cuando los vendedores se van, las relaciones con clientes y el historial de conversaciones se van con ellos."
+        },
+        {
+          "title": "Entrada Manual de Datos",
+          "description": "Los vendedores pierden horas copiando mensajes de WhatsApp al CRM. La mayoría simplemente lo omite."
+        }
+      ]
+    },
+    "features": {
+      "syncEngine": {
+        "badge": "Motor de Sincronización",
+        "headline": "Cada mensaje, capturado automáticamente",
+        "description": "Todas las conversaciones de WhatsApp se sincronizan con tu CRM en tiempo real. Sin entrada manual, sin mensajes perdidos.",
+        "points": [
+          "Sincronización bidireccional en tiempo real",
+          "Funciona con WhatsApp personal y comercial",
+          "Historial completo de conversaciones preservado"
+        ]
+      },
+      "miniCrm": {
+        "badge": "Vista Mini CRM",
+        "headline": "Tus datos del CRM, dentro de WhatsApp",
+        "description": "Ve etapas de negocios, info de contactos y notas directamente en la ventana de chat. Actualiza registros sin cambiar de pestaña.",
+        "points": [
+          "Info de contacto y negocio a la vista",
+          "Actualiza registros del CRM en línea",
+          "Campos y propiedades personalizados"
+        ]
+      },
+      "workflows": {
+        "badge": "Automatizaciones de Workflow",
+        "headline": "Automatiza tus seguimientos",
+        "description": "Dispara mensajes de WhatsApp desde eventos del CRM. Envía recordatorios, secuencias de nurturing y alertas automáticamente.",
+        "points": [
+          "Mensajes WhatsApp disparados por CRM",
+          "Secuencias de seguimiento programadas",
+          "Reglas de automatización personalizadas"
+        ]
+      },
+      "revenueInbox": {
+        "badge": "Bandeja de Ingresos",
+        "headline": "Enfócate en los negocios que importan",
+        "description": "La IA destaca conversaciones de alta intención y negocios en riesgo. Sabe exactamente dónde enfocar tu tiempo.",
+        "points": [
+          "Priorización de negocios por IA",
+          "Alertas de negocios en riesgo",
+          "Insights de conversación"
+        ]
+      },
+      "repRadar": {
+        "badge": "Radar de Representantes",
+        "headline": "Visibilidad completa de la actividad del equipo",
+        "description": "Ve tiempos de respuesta, volúmenes de conversaciones y métricas de rendimiento. Entrena a tu equipo con datos.",
+        "points": [
+          "Seguimiento de tiempo de respuesta",
+          "Análisis de conversaciones",
+          "Rankings de rendimiento"
+        ]
+      },
+      "aiAgent": {
+        "badge": "WhatsApp Copilot",
+        "headline": "Asistencia de ventas con IA",
+        "description": "Recibe sugerencias inteligentes de respuesta, resúmenes de conversaciones y recomendaciones de próxima mejor acción.",
+        "points": [
+          "Sugerencias de respuesta con IA",
+          "Resúmenes de conversaciones",
+          "Prompts de próxima mejor acción"
+        ]
+      }
     }
   },
   "security": {
@@ -1645,5 +1735,167 @@
       "secondaryCta": "Hablar con Ventas",
       "footnote": "Prueba gratis de 14 días • Sin tarjeta de crédito"
     }
+  },
+  "msa": {
+    "title": "Acuerdo de Servicio Maestro",
+    "lastRevised": "Última revisión: 12 de junio de 2024",
+    "contact": "Si tiene alguna pregunta, contáctenos en hey@eazybe.com",
+    "intro": "Este Acuerdo de Suscripción Maestro de Eazybe (\"MSA\") entra en vigor a partir de la fecha efectiva de un formulario de pedido firmado aplicable (dicho formulario un \"Formulario de Pedido\" y dicha fecha la \"Fecha Efectiva\") y se celebra entre Eazybe Inc 8, The Green STE B Dover, Delaware -19901, y el cliente establecido en el Formulario de Pedido (\"Cliente\") (cada uno una \"Parte\" y juntos las \"Partes\"). En caso de cualquier inconsistencia o conflicto entre los términos del MSA y los términos de cualquier Formulario de Pedido, los términos del Formulario de Pedido prevalecen.",
+    "section1": {
+      "title": "SERVICIOS SAAS Y SOPORTE",
+      "p1": "Sujeto a los términos de este Acuerdo, la Empresa utilizará esfuerzos comercialmente razonables para proporcionar al Cliente los Servicios. Como parte del proceso de registro, el Cliente identificará un nombre de usuario administrativo y contraseña para la cuenta de la Empresa del Cliente. La Empresa se reserva el derecho de rechazar el registro o cancelar contraseñas que considere inapropiadas.",
+      "p2": "Sujeto a los términos aquí establecidos, la Empresa proporcionará al Cliente servicios de soporte técnico razonables de acuerdo con los términos establecidos en el Anexo A."
+    },
+    "section2": {
+      "title": "RESTRICCIONES Y RESPONSABILIDADES",
+      "p1": "El Cliente no podrá, directa o indirectamente: realizar ingeniería inversa, descompilar, desensamblar o de otra manera intentar descubrir el código fuente, código objeto o estructura subyacente, ideas, know-how o algoritmos relevantes para los Servicios o cualquier software, documentación o datos relacionados con los Servicios (\"Software\"); modificar, traducir o crear trabajos derivados basados en los Servicios o cualquier Software (excepto en la medida expresamente permitida por la Empresa o autorizada dentro de los Servicios); usar los Servicios o cualquier Software para fines de tiempo compartido o bureau de servicios o de otra manera para beneficio de un tercero; o eliminar cualquier aviso o etiqueta propietaria. Con respecto a cualquier Software que se distribuya o proporcione al Cliente para uso en las instalaciones o dispositivos del Cliente, la Empresa otorga al Cliente una licencia no exclusiva, intransferible y no sublicenciable para usar dicho Software durante el Plazo solo en conexión con los Servicios.",
+      "p2": "El Cliente declara, garantiza y asegura que usará los Servicios solo en cumplimiento con las políticas publicadas estándar de la Empresa entonces vigentes (la \"Política\") y todas las leyes y regulaciones aplicables. El Cliente acepta indemnizar y mantener indemne a la Empresa contra cualquier daño, pérdida, responsabilidad, acuerdo y gastos (incluyendo sin limitación costos y honorarios de abogados) en conexión con cualquier reclamo o acción que surja de una supuesta violación de lo anterior o de otra manera del uso de los Servicios por parte del Cliente. Aunque la Empresa no tiene obligación de monitorear el uso de los Servicios por parte del Cliente, la Empresa puede hacerlo y puede prohibir cualquier uso de los Servicios que crea que puede estar (o se alegue que está) en violación de lo anterior.",
+      "p3": "El Cliente será responsable de obtener y mantener cualquier equipo y servicios auxiliares necesarios para conectar, acceder o de otra manera usar los Servicios, incluyendo, sin limitación, módems, hardware, servidores, software, sistemas operativos, redes, servidores web y similares (colectivamente, \"Equipo\"). El Cliente también será responsable de mantener la seguridad del Equipo, cuenta del Cliente, contraseñas (incluyendo pero no limitado a contraseñas administrativas y de usuario) y archivos, y por todos los usos de la cuenta del Cliente o el Equipo con o sin el conocimiento o consentimiento del Cliente."
+    },
+    "section3": {
+      "title": "CONFIDENCIALIDAD; DERECHOS PROPIETARIOS",
+      "p1": "Cada parte (la \"Parte Receptora\") entiende que la otra parte (la \"Parte Divulgadora\") ha divulgado o puede divulgar información comercial, técnica o financiera relacionada con el negocio de la Parte Divulgadora (en adelante referida como \"Información Propietaria\" de la Parte Divulgadora). La Información Propietaria de la Empresa incluye información no pública sobre características, funcionalidad y rendimiento del Servicio. La Información Propietaria del Cliente incluye datos no públicos proporcionados por el Cliente a la Empresa para permitir la prestación de los Servicios (\"Datos del Cliente\"). La Parte Receptora acepta: (i) tomar precauciones razonables para proteger dicha Información Propietaria, y (ii) no usar (excepto en la ejecución de los Servicios o como se permite aquí) o divulgar a terceros cualquier Información Propietaria. La Parte Divulgadora acepta que lo anterior no se aplicará a ninguna información después de cinco (5) años después de su divulgación o cualquier información que la Parte Receptora pueda documentar (a) es o se vuelve generalmente disponible al público, o (b) estaba en su posesión o era conocida por ella antes de recibirla de la Parte Divulgadora, o (c) fue legítimamente divulgada a ella sin restricción por un tercero, o (d) fue desarrollada independientemente sin uso de ninguna Información Propietaria de la Parte Divulgadora o (e) se requiere que sea divulgada por ley.",
+      "p2": "El Cliente será propietario de todos los derechos, títulos e intereses en los Datos del Cliente. La Empresa será propietaria y retendrá todos los derechos, títulos e intereses en (a) los Servicios y Software, todas las mejoras, mejoras o modificaciones de los mismos, (b) cualquier software, aplicaciones, invenciones u otra tecnología desarrollada en conexión con Servicios de Implementación o soporte, y (c) todos los derechos de propiedad intelectual relacionados con cualquiera de los anteriores.",
+      "p3": "No obstante cualquier disposición en contrario, la Empresa tendrá el derecho de recopilar y analizar datos y otra información relacionada con la provisión, uso y rendimiento de varios aspectos de los Servicios y sistemas y tecnologías relacionados (incluyendo, sin limitación, información sobre Datos del Cliente y datos derivados de ellos), y la Empresa será libre (durante y después del plazo de este) para (i) usar dicha información y datos para mejorar y mejorar los Servicios y para otros fines de desarrollo, diagnóstico y corrección en conexión con los Servicios y otras ofertas de la Empresa, y (ii) divulgar dichos datos solo en forma agregada u otra forma desidentificada en conexión con su negocio. No se otorgan derechos o licencias excepto como se establece expresamente aquí."
+    },
+    "section4": {
+      "title": "PAGO DE TARIFAS",
+      "p1": "El Cliente pagará a la Empresa las tarifas entonces aplicables descritas en el Formulario de Pedido para los Servicios y Servicios de Implementación de acuerdo con los términos en él contenidos (las \"Tarifas\"). Si el uso de los Servicios por parte del Cliente excede la Capacidad de Servicio establecida en el Formulario de Pedido o de otra manera requiere el pago de tarifas adicionales (según los términos de este Acuerdo), el Cliente será facturado por dicho uso y el Cliente acepta pagar las tarifas adicionales de la manera prevista aquí. La Empresa se reserva el derecho de cambiar las Tarifas o cargos aplicables e instituir nuevos cargos y Tarifas al final del Plazo de Servicio Inicial o plazo de renovación entonces vigente, mediante aviso previo de treinta (30) días al Cliente (que puede ser enviado por correo electrónico). Si el Cliente cree que la Empresa ha facturado incorrectamente, el Cliente debe contactar a la Empresa no más tarde de 60 días después de la fecha de cierre de la primera factura en la que apareció el error o problema, para recibir un ajuste o crédito. Las consultas deben dirigirse al departamento de soporte al cliente de la Empresa.",
+      "p2": "La Empresa puede optar por facturar a través de una factura, en cuyo caso, el pago completo de las facturas emitidas en cualquier mes dado debe ser recibido por la Empresa treinta (30) días después de la fecha de envío de la factura. Los montos no pagados están sujetos a un cargo financiero del 1.5% por mes sobre cualquier saldo pendiente, o el máximo permitido por ley, lo que sea menor, más todos los gastos de cobranza y pueden resultar en la terminación inmediata del Servicio. El Cliente será responsable de todos los impuestos asociados con los Servicios que no sean impuestos de EE.UU. basados en los ingresos netos de la Empresa."
+    },
+    "section5": {
+      "title": "PLAZO Y TERMINACIÓN",
+      "p1": "Sujeto a terminación anticipada como se establece a continuación, este Acuerdo es por el Plazo de Servicio Inicial como se especifica en el Formulario de Pedido, y se renovará automáticamente por períodos adicionales de la misma duración que el Plazo de Servicio Inicial (colectivamente, el \"Plazo\"), a menos que cualquiera de las partes solicite la terminación con al menos treinta (30) días de anticipación al final del plazo entonces vigente.",
+      "p2": "Además de cualquier otro recurso que pueda tener, cualquiera de las partes también puede terminar este Acuerdo mediante aviso de treinta (30) días (o sin aviso en caso de falta de pago), si la otra parte incumple materialmente cualquiera de los términos o condiciones de este Acuerdo. El Cliente pagará en su totalidad por los Servicios hasta e incluyendo el último día en que se presten los Servicios. Tras cualquier terminación, la Empresa pondrá a disposición del Cliente todos los Datos del Cliente para recuperación electrónica por un período de treinta (30) días, pero después de eso la Empresa puede, pero no está obligada a, eliminar los Datos del Cliente almacenados. Todas las secciones de este Acuerdo que por su naturaleza deban sobrevivir a la terminación sobrevivirán a la terminación, incluyendo, sin limitación, derechos acumulados al pago, obligaciones de confidencialidad, renuncias de garantía y limitaciones de responsabilidad."
+    },
+    "section6": {
+      "title": "GARANTÍA Y RENUNCIA",
+      "p1": "La Empresa utilizará esfuerzos razonables consistentes con los estándares prevalecientes de la industria para mantener los Servicios de una manera que minimice errores e interrupciones en los Servicios y realizará los Servicios de Implementación de manera profesional y competente. Los Servicios pueden estar temporalmente no disponibles para mantenimiento programado o para mantenimiento de emergencia no programado, ya sea por la Empresa o por proveedores terceros, o por otras causas fuera del control razonable de la Empresa, pero la Empresa utilizará esfuerzos razonables para proporcionar aviso previo por escrito o por correo electrónico de cualquier interrupción de servicio programada.",
+      "p2": "SIN EMBARGO, LA EMPRESA NO GARANTIZA QUE LOS SERVICIOS SERÁN ININTERRUMPIDOS O LIBRES DE ERRORES; NI HACE NINGUNA GARANTÍA EN CUANTO A LOS RESULTADOS QUE PUEDAN OBTENERSE DEL USO DE LOS SERVICIOS. EXCEPTO COMO SE ESTABLECE EXPRESAMENTE EN ESTA SECCIÓN, LOS SERVICIOS Y SERVICIOS DE IMPLEMENTACIÓN SE PROPORCIONAN \"TAL CUAL\" Y LA EMPRESA RENUNCIA A TODAS LAS GARANTÍAS, EXPRESAS O IMPLÍCITAS, INCLUYENDO, PERO NO LIMITADO A, GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD Y APTITUD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN."
+    },
+    "section7": {
+      "title": "LIMITACIÓN DE RESPONSABILIDAD",
+      "intro": "NO OBSTANTE CUALQUIER DISPOSICIÓN EN CONTRARIO, EXCEPTO POR LESIÓN CORPORAL DE UNA PERSONA, LA EMPRESA Y SUS PROVEEDORES (INCLUYENDO PERO NO LIMITADO A TODOS LOS PROVEEDORES DE EQUIPOS Y TECNOLOGÍA), FUNCIONARIOS, AFILIADOS, REPRESENTANTES, CONTRATISTAS Y EMPLEADOS NO SERÁN RESPONSABLES CON RESPECTO A CUALQUIER MATERIA DE ESTE ACUERDO O TÉRMINOS Y CONDICIONES RELACIONADOS CON ÉL BAJO CUALQUIER TEORÍA DE CONTRATO, NEGLIGENCIA, RESPONSABILIDAD ESTRICTA U OTRA:",
+      "a": "POR ERROR O INTERRUPCIÓN DE USO O POR PÉRDIDA O INEXACTITUD O CORRUPCIÓN DE DATOS O COSTO DE ADQUISICIÓN DE BIENES, SERVICIOS O TECNOLOGÍA SUSTITUTOS O PÉRDIDA DE NEGOCIO;",
+      "b": "POR CUALQUIER DAÑO INDIRECTO, EJEMPLAR, INCIDENTAL, ESPECIAL O CONSECUENTE;",
+      "c": "POR CUALQUIER ASUNTO FUERA DEL CONTROL RAZONABLE DE LA EMPRESA; O",
+      "d": "POR CUALQUIER MONTO QUE, JUNTO CON MONTOS ASOCIADOS CON TODOS LOS DEMÁS RECLAMOS, EXCEDAN LAS TARIFAS PAGADAS POR EL CLIENTE A LA EMPRESA POR LOS SERVICIOS BAJO ESTE ACUERDO EN LOS 12 MESES ANTERIORES AL ACTO QUE DIO LUGAR A LA RESPONSABILIDAD, EN CADA CASO, HAYA O NO LA EMPRESA SIDO AVISADA DE LA POSIBILIDAD DE TALES DAÑOS."
+    },
+    "section8": {
+      "title": "MISCELÁNEOS",
+      "p1": "Si alguna disposición de este Acuerdo se considera inaplicable o inválida, esa disposición se limitará o eliminará en la medida mínima necesaria para que este Acuerdo permanezca en pleno vigor y efecto y sea ejecutable. Este Acuerdo no es cedible, transferible o sublicenciable por el Cliente excepto con el consentimiento previo por escrito de la Empresa. La Empresa puede transferir y ceder cualquiera de sus derechos y obligaciones bajo este Acuerdo sin consentimiento. Este Acuerdo es la declaración completa y exclusiva del entendimiento mutuo de las partes y reemplaza y cancela todos los acuerdos, comunicaciones y otros entendimientos escritos y orales anteriores relacionados con el objeto de este Acuerdo, y que todas las renuncias y modificaciones deben ser por escrito y firmadas por ambas partes, excepto como se dispone de otra manera aquí. No se crea ninguna agencia, sociedad, empresa conjunta o empleo como resultado de este Acuerdo y el Cliente no tiene ninguna autoridad de ningún tipo para vincular a la Empresa de ninguna manera. En cualquier acción o procedimiento para hacer valer derechos bajo este Acuerdo, la parte ganadora tendrá derecho a recuperar costos y honorarios de abogados. Todas las notificaciones bajo este Acuerdo serán por escrito y se considerarán debidamente dadas cuando se reciban, si se entregan personalmente; cuando se confirme electrónicamente el recibo, si se transmiten por fax o correo electrónico; el día siguiente al envío, si se envían para entrega al día siguiente por servicio de entrega nocturna reconocido; y al recibirse, si se envían por correo certificado o registrado, con acuse de recibo solicitado. Este Acuerdo se regirá por las leyes del Estado de California sin considerar sus disposiciones sobre conflictos de leyes. El Cliente acepta cooperar razonablemente con la Empresa para servir como cuenta de referencia a solicitud."
+    },
+    "exhibitA": {
+      "title": "Anexo A",
+      "subtitle": "Términos de Soporte",
+      "p1": "La Empresa proporcionará Soporte Técnico al Cliente vía teléfono y correo electrónico en días hábiles durante las horas de 10:00 am a 7:00 pm Hora de India (GMT+8), con exclusión de los Días Festivos Públicos de India (\"Horas de Soporte\").",
+      "p2": "El Cliente puede iniciar un ticket de helpdesk durante las horas de soporte enviando un correo electrónico a hey@eazybe.com",
+      "p3": "La Empresa utilizará esfuerzos comercialmente razonables para responder a todos los tickets de Helpdesk dentro de un (1) día hábil."
+    },
+    "download": {
+      "title": "Descargar MSA",
+      "description": "Puede descargar el Acuerdo de Servicio Maestro aquí",
+      "button": "Descargar"
+    }
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "tagline": "Tomamos su privacidad en serio",
+    "intro": "No vendemos, compartimos, alquilamos ni intercambiamos su información con nadie más. Cuando recopilamos datos, los utilizamos para beneficiarlo y mejorar sus experiencias.",
+    "policyTitle": "Política de Privacidad",
+    "policyIntro": "Recopilamos su información solo con su consentimiento; solo recopilamos la cantidad mínima de información necesaria para operar nuestro software y servicios; no vendemos ni compartimos su información con nadie más.",
+    "aboutUs": "En Eazybe (\"Nosotros\", \"Nuestro\"), respetamos la privacidad del cliente (\"Usted\", \"Su\" o \"Usuario\") y tomamos su protección en serio. El uso de la información recopilada a través de nuestro servicio se limitará al propósito de proporcionar el servicio para el cual nuestros Clientes nos han contratado.",
+    "googleSigninTitle": "Inicio de Sesión con Google",
+    "googleSignin": "El inicio de sesión con Google autenticará su identidad y le proporcionará la opción de compartir cierta información personal con nosotros, como su dirección de correo electrónico. La información que proporciona se mantiene en estricta confidencialidad. Recopilamos esta información para generar su licencia de usuario, enviar recibos de pago y comunicarnos con el usuario sobre actualizaciones del producto.",
+    "serviceEmails": "También podemos enviarle anuncios por correo electrónico relacionados con el servicio en raras ocasiones cuando sea necesario hacerlo. Por ejemplo, podemos enviar notificaciones sobre problemas relacionados con el servicio, como períodos de mantenimiento, problemas de facturación y otros elementos que pueden afectar el servicio.",
+    "oauthTitle": "OAuth y Seguridad de Datos",
+    "oauth": "Nuestros servicios utilizan el protocolo Google OAuth 2.0 para autenticación sin requerir que el usuario comparta sus credenciales de inicio de sesión con nosotros. OAuth también permite el acceso seguro a los datos del usuario, según lo requieran los complementos, y los datos residen estrictamente dentro de su cuenta de Google. No almacenamos ninguno de sus datos de cuenta en nuestros servidores.",
+    "cookies": "Como es cierto para la mayoría de los sitios web, recopilamos automáticamente cierta información estadística no personal y la almacenamos en cookies y archivos de registro. Esta información incluye direcciones de protocolo de internet (IP), versión del navegador, sistema operativo, fecha/hora y otras interacciones con la aplicación. Utilizamos esta información para analizar tendencias, identificar casos potenciales de abuso y ayudar a diagnosticar problemas técnicos.",
+    "dataChangesTitle": "Cambios de Datos y Divulgación",
+    "dataChanges": "Si su información personal cambia, o si ya no desea nuestro servicio, puede eliminarla o desactivarla desinstalando nuestro complemento de Google o contactándonos. Responderemos a su solicitud dentro de 5 días hábiles.",
+    "disclosure": "Nos reservamos el derecho de divulgar su información personal según lo requiera la ley, como para cumplir con una citación, procedimientos de bancarrota o proceso legal similar, y cuando creemos que la divulgación es necesaria para proteger nuestros derechos, proteger su seguridad o la seguridad de otros, investigar fraude y/o cumplir con un procedimiento judicial, orden judicial o proceso legal servido en nuestro sitio web.",
+    "thirdPartyPayment": "Utilizamos procesadores de pago de terceros, como Stripe, para cobrarle por los servicios y un servicio de chat en vivo para ayudarlo si tiene preguntas mientras usa nuestro sitio web o sobre su pedido. No almacenamos ni tenemos acceso a los detalles de su tarjeta de crédito.",
+    "thirdPartyTitle": "Políticas de Privacidad de Terceros",
+    "thirdParty": "La Política de Privacidad de Eazybe no se aplica a otros anunciantes o sitios web. Por lo tanto, le aconsejamos que consulte las respectivas Políticas de Privacidad de estos servidores de anuncios de terceros para obtener información más detallada. Puede incluir sus prácticas e instrucciones sobre cómo optar por no participar en ciertas opciones. Puede optar por deshabilitar las cookies a través de las opciones individuales de su navegador.",
+    "childrenTitle": "Información de Niños",
+    "children": "Otra parte de nuestra prioridad es agregar protección para los niños mientras usan internet. Alentamos a los padres y tutores a observar, participar y/o monitorear y guiar su actividad en línea. Eazybe no recopila conscientemente ninguna Información de Identificación Personal de niños menores de 13 años. Si cree que su hijo proporcionó este tipo de información en nuestro sitio web, le recomendamos encarecidamente que se comunique con nosotros de inmediato y haremos nuestros mejores esfuerzos para eliminar rápidamente dicha información de nuestros registros.",
+    "onlineOnlyTitle": "Política de Privacidad Solo en Línea",
+    "onlineOnly": "Esta Política de Privacidad se aplica solo a nuestras actividades en línea y es válida para los visitantes de nuestro sitio web con respecto a la información que compartieron y/o recopilan en Eazybe. Esta política no es aplicable a ninguna información recopilada fuera de línea o a través de canales distintos a este sitio web.",
+    "googleDriveTitle": "Acceso a Datos de Google Drive",
+    "googleDriveIntro": "Eazybe-app solicita acceso a su Google Drive para permitirle seleccionar y administrar archivos específicos dentro de nuestra aplicación. El único dato que guardamos es el ID del archivo que ha seleccionado.",
+    "fileId": "ID del Archivo:",
+    "fileIdDesc": "Accedemos y almacenamos el ID único del archivo que selecciona.",
+    "purposeTitle": "Propósito del Acceso a Datos:",
+    "purpose1": "Recuperar y mostrar el archivo seleccionado dentro de nuestra aplicación.",
+    "purpose2": "Habilitar funciones específicas relacionadas con el archivo seleccionado, como abrirlo o editarlo dentro de nuestra aplicación.",
+    "noContentAccess": "No accedemos, almacenamos ni compartimos el contenido real de sus archivos, ni accedemos a otros metadatos asociados con el archivo a menos que sea explícitamente requerido por las funciones que utiliza.",
+    "dataSharingTitle": "Compartir Datos:",
+    "dataSharing": "No compartimos sus datos de Google Drive, incluido el ID del archivo, con terceros. Los datos se utilizan únicamente dentro de eazybe-app para proporcionarle las funcionalidades solicitadas.",
+    "dataProtectionTitle": "Medidas de Protección de Datos",
+    "encryptionTitle": "Encriptación:",
+    "encryption1": "Todos los datos transmitidos entre su dispositivo y nuestros servidores están encriptados utilizando protocolos de encriptación estándar de la industria (por ejemplo, HTTPS).",
+    "encryption2": "Los datos sensibles, incluido el ID del archivo, están encriptados en reposo para evitar el acceso no autorizado.",
+    "accessControlTitle": "Control de Acceso:",
+    "accessControl1": "El acceso a sus datos está restringido solo al personal autorizado, y revisamos y actualizamos regularmente nuestras políticas de acceso para garantizar que sus datos permanezcan seguros.",
+    "accessControl2": "Utilizamos mecanismos de autenticación robustos para garantizar que solo los usuarios autorizados puedan acceder a funciones específicas dentro de nuestra aplicación.",
+    "securityAuditsTitle": "Auditorías de Seguridad Regulares:",
+    "securityAudits1": "Realizamos auditorías y evaluaciones de seguridad regulares para identificar y mitigar vulnerabilidades potenciales en nuestros sistemas.",
+    "securityAudits2": "Nuestras prácticas de seguridad se actualizan regularmente para cumplir con los estándares y mejores prácticas de la industria.",
+    "dataMinimizationTitle": "Minimización de Datos:",
+    "dataMinimization1": "Solo recopilamos y almacenamos los datos necesarios para proporcionar nuestros servicios. En este caso, solo se almacena el ID del archivo seleccionado.",
+    "dataMinimization2": "Las políticas de retención de datos están vigentes para garantizar que retengamos los datos solo durante el tiempo necesario para proporcionar nuestros servicios o según lo requiera la ley.",
+    "californiaTitle": "Aviso de Derechos de Privacidad de California",
+    "california": "Sus Derechos de Privacidad en California: Bajo la ley California Shine the Light (Código Civil de California Sección 1798.83), los residentes de California que tienen una relación comercial establecida con nosotros, principalmente para fines personales, familiares o domésticos, pueden solicitar información una vez por año calendario sobre la información personal que hemos compartido con terceros para sus propósitos de marketing directo. Estas solicitudes pueden incluir las categorías de información personal compartida y los nombres de los terceros con quienes se compartió. Para solicitar esta información de Eazybe, envíe un correo electrónico a hey@eazybe.com con \"Shine the Light Request\" en el asunto. Su solicitud debe incluir su nombre completo, dirección postal y una declaración que confirme que es residente de California. Podemos solicitar información adicional para verificar su identidad y residencia.",
+    "californiaNote": "Nota: No aceptamos solicitudes por teléfono, correo postal o fax. Tampoco somos responsables de solicitudes etiquetadas incorrectamente, enviadas incorrectamente o incompletas.",
+    "europeanTitle": "Aviso para Usuarios Europeos",
+    "europeanIntro": "Esta sección, \"Aviso para Usuarios Europeos\", está específicamente destinada a personas que residen en el Reino Unido, Suiza y el Área Económica Europea (colectivamente denominados \"Europa\").",
+    "personalInfoTitle": "Información Personal:",
+    "personalInfo": "En esta Política de Privacidad, el término \"información personal\" se usa indistintamente con \"datos personales\", que se define según la legislación europea de protección de datos.",
+    "dataControllerTitle": "Controlador de Datos:",
+    "dataController": "Para los propósitos de la legislación europea de protección de datos, Eazybe es el controlador de la información personal descrita en esta Política de Privacidad.",
+    "legalBasesTitle": "Bases Legales para el Procesamiento:",
+    "legalBases": "Procesamos su información personal estrictamente de acuerdo con las regulaciones legales. Los propósitos específicos para procesar su información personal se detallan en esta Política de Privacidad.",
+    "newPurposesTitle": "Uso para Nuevos Propósitos",
+    "newPurposes": "En Eazybe, podemos usar su información personal por razones no descritas en esta Política de Privacidad, siempre que esté permitido por la ley y se alinee con las razones por las cuales se recopiló inicialmente. Si hay necesidad de usar su información personal para un propósito no relacionado con las razones originales, le informaremos y aclararemos la base legal para dicho uso.",
+    "retentionTitle": "Retención de Información Personal",
+    "retention": "Eazybe retiene su información personal solo durante el tiempo necesario para cumplir los propósitos para los cuales fue recopilada, incluido el cumplimiento de obligaciones legales, contables o de informes, establecer o defender reclamos legales, o para fines de cumplimiento y protección.",
+    "retentionFactors": "Para determinar el período de retención adecuado, consideramos factores como el volumen, naturaleza y sensibilidad de la información personal, el riesgo potencial de uso o divulgación no autorizada, si los propósitos del procesamiento pueden lograrse por otros medios y los requisitos legales aplicables.",
+    "retentionDeletion": "Cuando la información personal ya no sea necesaria, la eliminaremos o anonimizaremos. Si la eliminación no es factible (por ejemplo, porque la información está almacenada en archivos de respaldo), almacenaremos y aislaremos de manera segura la información personal del procesamiento adicional hasta que la eliminación sea posible. Si anonimizamos su información personal (haciéndola no identificable), podemos usarla indefinidamente sin notificación adicional.",
+    "sensitiveTitle": "Información Personal Sensible",
+    "sensitive": "Aconsejamos no proporcionar ninguna información personal sensible (como números de seguro social o información relacionada con origen racial o étnico, opiniones políticas, religión, salud, biometría, antecedentes penales o afiliación sindical) a través de nuestros servicios o directamente a nosotros. Si elige proporcionar información personal sensible, debe dar su consentimiento para nuestro procesamiento y uso según lo descrito en esta Política de Privacidad. Si no está de acuerdo con nuestro procesamiento y uso de dicha información sensible, por favor no la proporcione a través de nuestros servicios.",
+    "rightsTitle": "Sus Derechos",
+    "rightsIntro": "Las leyes europeas de protección de datos le otorgan ciertos derechos con respecto a su información personal. Si se encuentra en Europa, puede solicitarnos que tomemos las siguientes acciones en relación con su información personal que mantenemos:",
+    "accessRight": "Acceso.",
+    "accessRightDesc": "Proporcionarle información sobre nuestro procesamiento de su información personal y darle acceso a su información personal.",
+    "correctRight": "Corrección.",
+    "correctRightDesc": "Actualizar o corregir inexactitudes en su información personal.",
+    "deleteRight": "Eliminación.",
+    "deleteRightDesc": "Eliminar su información personal.",
+    "transferRight": "Transferencia.",
+    "transferRightDesc": "Transferir una copia legible por máquina de su información personal a usted o a un tercero de su elección.",
+    "restrictRight": "Restricción.",
+    "restrictRightDesc": "Restringir el procesamiento de su información personal.",
+    "objectRight": "Objeción.",
+    "objectRightDesc": "Objetar nuestra dependencia de nuestros intereses legítimos como base de nuestro procesamiento de su información personal que impacta sus derechos.",
+    "rightsContact": "Puede enviar estas solicitudes por correo electrónico a hey@eazybe.com. Podemos solicitar información específica para ayudarnos a confirmar su identidad y procesar su solicitud. La ley aplicable puede requerir o permitirnos rechazar su solicitud. Si rechazamos su solicitud, le diremos por qué, sujeto a restricciones legales. Si desea presentar una queja sobre nuestro uso de su información personal o nuestra respuesta a sus solicitudes con respecto a su información personal, puede contactarnos o presentar una queja ante el regulador de protección de datos en su jurisdicción."
+  },
+  "terms": {
+    "title": "Términos de Servicio",
+    "intro": "Por favor, lea estos Términos de Servicio (\"Términos\") cuidadosamente antes de usar el sitio web https://eazybe.com (el \"Servicio\") operado por Eazybe (\"nosotros\" o \"nuestro\").",
+    "acceptanceTitle": "Aceptación de los Términos",
+    "acceptance": "Su acceso y uso del Servicio está condicionado a su aceptación y cumplimiento de estos Términos. Estos Términos se aplican a todos los visitantes, usuarios y otros que acceden o usan el Servicio. Al acceder o usar el Servicio, usted acepta estar sujeto a estos Términos. Si no está de acuerdo con alguna parte de los términos, entonces no puede acceder al Servicio.",
+    "accountsTitle": "Cuentas",
+    "accounts": "Cuando crea una cuenta con nosotros, debe proporcionarnos información que sea precisa, completa y actual en todo momento. No hacerlo constituye una violación de los Términos, lo que puede resultar en la terminación inmediata de su cuenta en nuestro Servicio. Usted es responsable de proteger la contraseña que usa para acceder al Servicio y de cualquier actividad o acción bajo su contraseña, ya sea que su contraseña sea con nuestro Servicio o un servicio de terceros. Acepta no divulgar su contraseña a ningún tercero. Debe notificarnos inmediatamente al tener conocimiento de cualquier violación de seguridad o uso no autorizado de su cuenta.",
+    "linksTitle": "Enlaces a Otros Sitios Web",
+    "links": "Nuestro Servicio puede contener enlaces a sitios web o servicios de terceros que no son propiedad ni están controlados por Eazybe. Eazybe no tiene control sobre, y no asume responsabilidad por, el contenido, las políticas de privacidad o las prácticas de cualquier sitio web o servicio de terceros. Además reconoce y acepta que Eazybe no será responsable, directa o indirectamente, de ningún daño o pérdida causada o supuestamente causada por o en conexión con el uso o la confianza en dicho contenido, bienes o servicios disponibles en o a través de dichos sitios web o servicios. Le recomendamos encarecidamente que lea los términos y condiciones y las políticas de privacidad de cualquier sitio web o servicio de terceros que visite.",
+    "terminationTitle": "Terminación",
+    "termination": "Podemos terminar o suspender el acceso a nuestro Servicio inmediatamente, sin previo aviso ni responsabilidad, por cualquier motivo, incluido, sin limitación, si incumple los Términos. Todas las disposiciones de los Términos que por su naturaleza deban sobrevivir a la terminación sobrevivirán a la terminación, incluidas, sin limitación, las disposiciones de propiedad, las exenciones de garantía, la indemnización y las limitaciones de responsabilidad.",
+    "terminationAccount": "Podemos terminar o suspender su cuenta inmediatamente, sin previo aviso ni responsabilidad, por cualquier motivo, incluido, sin limitación, si incumple los Términos. Tras la terminación, su derecho a usar el Servicio cesará inmediatamente. Si desea terminar su cuenta, simplemente puede dejar de usar el Servicio. Todas las disposiciones de los Términos que por su naturaleza deban sobrevivir a la terminación sobrevivirán a la terminación, incluidas, sin limitación, las disposiciones de propiedad, las exenciones de garantía, la indemnización y las limitaciones de responsabilidad.",
+    "governingLawTitle": "Ley Aplicable",
+    "governingLaw": "Estos Términos se regirán e interpretarán de acuerdo con las leyes de Nueva Delhi, India, sin tener en cuenta sus disposiciones sobre conflictos de leyes. Nuestra falta de hacer cumplir cualquier derecho o disposición de estos Términos no se considerará una renuncia a esos derechos. Si alguna disposición de estos Términos se considera inválida o inaplicable por un tribunal, las disposiciones restantes de estos Términos permanecerán en vigor.",
+    "entireAgreementTitle": "Acuerdo Completo",
+    "entireAgreement": "Estos Términos constituyen el acuerdo completo entre nosotros con respecto a nuestro Servicio, y reemplazan y sustituyen cualquier acuerdo anterior que pudiéramos tener entre nosotros con respecto al Servicio.",
+    "changesTitle": "Cambios",
+    "changes": "Nos reservamos el derecho, a nuestra sola discreción, de modificar o reemplazar estos Términos en cualquier momento. Si una revisión es material, intentaremos proporcionar al menos 15 días de aviso antes de que los nuevos términos entren en vigor. Lo que constituye un cambio material se determinará a nuestra sola discreción. Al continuar accediendo o usando nuestro Servicio después de que esas revisiones entren en vigor, usted acepta estar sujeto a los términos revisados. Si no está de acuerdo con los nuevos términos, por favor deje de usar el Servicio."
   }
 }

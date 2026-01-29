@@ -124,19 +124,36 @@ const HeroSection: React.FC<{ data: any }> = ({ data }) => {
 
           <div className="flex flex-wrap justify-center gap-4 mb-10">
             {data.primaryCta && (
-              <Link to={data.primaryCta.url}>
-                <Button variant="primary" className="h-14 px-8 text-base bg-brand-blue border-brand-blue hover:bg-brand-blue/90">
-                  {data.primaryCta.label}
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
+              data.primaryCta.url.startsWith('http') ? (
+                <a href={data.primaryCta.url} target="_blank" rel="noopener noreferrer">
+                  <Button variant="primary" className="h-14 px-8 text-base bg-brand-blue border-brand-blue hover:bg-brand-blue/90">
+                    {data.primaryCta.label}
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </a>
+              ) : (
+                <Link to={data.primaryCta.url}>
+                  <Button variant="primary" className="h-14 px-8 text-base bg-brand-blue border-brand-blue hover:bg-brand-blue/90">
+                    {data.primaryCta.label}
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+              )
             )}
             {data.secondaryCta && (
-              <Link to={data.secondaryCta.url}>
-                <Button variant="outline" className="h-14 px-8 text-base">
-                  {data.secondaryCta.label}
-                </Button>
-              </Link>
+              data.secondaryCta.url.startsWith('http') ? (
+                <a href={data.secondaryCta.url} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="h-14 px-8 text-base">
+                    {data.secondaryCta.label}
+                  </Button>
+                </a>
+              ) : (
+                <Link to={data.secondaryCta.url}>
+                  <Button variant="outline" className="h-14 px-8 text-base">
+                    {data.secondaryCta.label}
+                  </Button>
+                </Link>
+              )
             )}
           </div>
 
@@ -590,8 +607,8 @@ const getTranslatedFallbackData = (slug: string, t: (key: string, options?: any)
       headline: t(`features.${featureKey}.hero.headline`),
       headlineHighlight: t(`features.${featureKey}.hero.headlineHighlight`),
       description: t(`features.${featureKey}.hero.description`),
-      primaryCta: { label: t(`features.${featureKey}.hero.primaryCta`), url: '/signup' },
-      secondaryCta: { label: t(`features.${featureKey}.hero.secondaryCta`), url: '#features' }
+      primaryCta: { label: t(`features.${featureKey}.hero.primaryCta`), url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+      secondaryCta: { label: t(`features.${featureKey}.hero.secondaryCta`), url: 'https://help.eazybe.com/en/' }
     },
     benefits: {
       badge: t(`features.${featureKey}.benefits.badge`),

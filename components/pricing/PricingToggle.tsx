@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTheme } from '../../hooks/useTheme'
 
 interface PricingToggleProps {
   isAnnual: boolean
@@ -6,11 +7,15 @@ interface PricingToggleProps {
 }
 
 export const PricingToggle: React.FC<PricingToggleProps> = ({ isAnnual, onToggle }) => {
+  const { isDark } = useTheme()
+
   return (
     <div className="flex items-center justify-center gap-4">
       <span
         className={`text-sm font-semibold transition-colors cursor-pointer ${
-          !isAnnual ? 'text-white' : 'text-slate-500 hover:text-slate-400'
+          !isAnnual
+            ? isDark ? 'text-white' : 'text-slate-900'
+            : isDark ? 'text-slate-500 hover:text-slate-400' : 'text-slate-400 hover:text-slate-600'
         }`}
         onClick={() => onToggle(false)}
       >
@@ -19,7 +24,11 @@ export const PricingToggle: React.FC<PricingToggleProps> = ({ isAnnual, onToggle
 
       <button
         onClick={() => onToggle(!isAnnual)}
-        className="relative w-16 h-8 rounded-full bg-brand-surface border border-slate-700 transition-colors hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 focus:ring-offset-brand-black"
+        className={`relative w-16 h-8 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 ${
+          isDark
+            ? 'bg-brand-surface border border-slate-700 hover:border-slate-600 focus:ring-offset-brand-black'
+            : 'bg-slate-100 border border-slate-300 hover:border-slate-400 focus:ring-offset-white'
+        }`}
         aria-label="Toggle billing period"
       >
         <span
@@ -32,7 +41,9 @@ export const PricingToggle: React.FC<PricingToggleProps> = ({ isAnnual, onToggle
       <div className="flex items-center gap-2">
         <span
           className={`text-sm font-semibold transition-colors cursor-pointer ${
-            isAnnual ? 'text-white' : 'text-slate-500 hover:text-slate-400'
+            isAnnual
+              ? isDark ? 'text-white' : 'text-slate-900'
+              : isDark ? 'text-slate-500 hover:text-slate-400' : 'text-slate-400 hover:text-slate-600'
           }`}
           onClick={() => onToggle(true)}
         >

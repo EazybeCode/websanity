@@ -508,8 +508,8 @@ const getTranslatedCoexistenceData = (t: (key: string, options?: any) => any) =>
       headline: hero.headline,
       headlineHighlight: hero.headlineHighlight,
       description: hero.description,
-      primaryCta: hero.primaryCta ? { label: hero.primaryCta, url: '/signup' } : undefined,
-      secondaryCta: hero.secondaryCta ? { label: hero.secondaryCta, url: '#features' } : undefined
+      primaryCta: hero.primaryCta ? { label: hero.primaryCta, url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' } : undefined,
+      secondaryCta: hero.secondaryCta ? { label: hero.secondaryCta, url: 'https://calendly.com/d/cw67-pt3-y2m' } : undefined
     },
     benefits: {
       badge: benefits.badge,

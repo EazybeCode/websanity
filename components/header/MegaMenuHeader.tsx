@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
@@ -9,6 +8,9 @@ import { MobileMenu } from './MobileMenu'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { ThemeToggle } from './ThemeToggle'
 import { useNavigation, type NavItem } from '../../hooks/useNavigation'
+import { useTheme } from '../../hooks/useTheme'
+import { LocalizedLink } from '../LocalizedLink'
+import { useLanguage } from '../../hooks/useLanguage'
 
 // Featured content for Platform menu only
 const platformFeatured = {
@@ -69,55 +71,27 @@ const getFallbackNavigation = (t: (key: string) => string) => ({
           _key: 'popular',
           title: t('nav.menu.popularCrms'),
           links: [
-            { _key: 'hs', label: 'HubSpot', href: '/integrations/hubspot', icon: 'CircleDot', description: t('nav.menu.hubspotDesc') },
-            { _key: 'sf', label: 'Salesforce', href: '/integrations/salesforce', icon: 'Cloud', description: t('nav.menu.salesforceDesc') },
-            { _key: 'zo', label: 'Zoho CRM', href: '/integrations/zoho', icon: 'Database', description: t('nav.menu.zohoDesc') },
-            { _key: 'pd', label: 'Pipedrive', href: '/integrations/pipedrive', icon: 'Target', description: t('nav.menu.pipedriveDesc') },
+            { _key: 'hs', label: 'HubSpot', href: '/hubspot-whatsapp-integration', icon: 'CircleDot', description: t('nav.menu.hubspotDesc') },
+            { _key: 'sf', label: 'Salesforce', href: '/salesforce-whatsapp-integration', icon: 'Cloud', description: t('nav.menu.salesforceDesc') },
+            { _key: 'zo', label: 'Zoho CRM', href: '/zoho-whatsapp-integration', icon: 'Database', description: t('nav.menu.zohoDesc') },
           ],
         },
         {
           _key: 'more-crms',
           title: t('nav.menu.moreCrms'),
           links: [
-            { _key: 'bi', label: 'Bitrix24', href: '/integrations/bitrix24', icon: 'Layers', description: t('nav.menu.bitrix24Desc') },
-            { _key: 'ls', label: 'LeadSquared', href: '/integrations/leadsquared', icon: 'BarChart2', description: t('nav.menu.leadsquaredDesc') },
-            { _key: 'fd', label: 'Freshdesk', href: '/integrations/freshdesk', icon: 'Headphones', description: t('nav.menu.freshdeskDesc') },
+            { _key: 'bi', label: 'Bitrix24', href: '/bitrix24-whatsapp-integration', icon: 'Layers', description: t('nav.menu.bitrix24Desc') },
+            { _key: 'ls', label: 'LeadSquared', href: '/leadsquared-whatsapp-integration', icon: 'BarChart2', description: t('nav.menu.leadsquaredDesc') },
+            { _key: 'fd', label: 'Freshdesk', href: '/freshdesk-whatsapp-integration', icon: 'Headphones', description: t('nav.menu.freshdeskDesc') },
           ],
         },
         {
           _key: 'productivity',
           title: t('nav.menu.productivity'),
           links: [
-            { _key: 'gs', label: 'Google Sheets', href: '/integrations/google-sheets', icon: 'Table', description: t('nav.menu.googleSheetsDesc') },
-            { _key: 'gc', label: 'Google Calendar', href: '/integrations/google-calendar', icon: 'Calendar', description: t('nav.menu.googleCalendarDesc') },
-            { _key: 'wh', label: 'Webhooks', href: '/integrations/webhooks', icon: 'Webhook', description: t('nav.menu.webhooksDesc') },
+            { _key: 'gs', label: 'Google Sheets', href: '/google-sheets-whatsapp-integration', icon: 'Table', description: t('nav.menu.googleSheetsDesc') },
+            { _key: 'wh', label: 'Webhooks', href: '/webhooks-whatsapp-integration', icon: 'Webhook', description: t('nav.menu.webhooksDesc') },
             { _key: 'all', label: t('nav.menu.viewAllIntegrations'), href: '/integrations' },
-          ],
-        },
-      ],
-    },
-    {
-      _key: 'solutions',
-      label: t('nav.solutions'),
-      isMegaMenu: true,
-      menuType: 'solutions' as const,
-      columns: [
-        {
-          _key: 'by-team',
-          title: t('nav.menu.byTeam'),
-          links: [
-            { _key: 'sales', label: t('nav.menu.salesTeams'), href: '/solutions/sales', icon: 'TrendingUp', description: t('nav.menu.salesTeamsDesc') },
-            { _key: 'support', label: t('nav.menu.customerSupport'), href: '/solutions/support', icon: 'HeartHandshake', description: t('nav.menu.customerSupportDesc') },
-            { _key: 'marketing', label: t('nav.menu.marketing'), href: '/solutions/marketing', icon: 'Megaphone', description: t('nav.menu.marketingDesc') },
-          ],
-        },
-        {
-          _key: 'by-size',
-          title: t('nav.menu.byCompanySize'),
-          links: [
-            { _key: 'startup', label: t('nav.menu.startups'), href: '/solutions/startups', icon: 'Rocket', description: t('nav.menu.startupsDesc') },
-            { _key: 'smb', label: t('nav.menu.smallBusiness'), href: '/solutions/small-business', icon: 'Building', description: t('nav.menu.smallBusinessDesc') },
-            { _key: 'enterprise', label: t('nav.menu.enterprise'), href: '/solutions/enterprise', icon: 'Building2', description: t('nav.menu.enterpriseDesc') },
           ],
         },
       ],
@@ -142,8 +116,8 @@ const getFallbackNavigation = (t: (key: string) => string) => ({
           title: t('nav.support'),
           links: [
             { _key: 'help', label: t('nav.menu.helpCenter'), href: 'https://help.eazybe.com', icon: 'HelpCircle', description: t('nav.menu.helpCenterDesc'), isExternal: true },
-            { _key: 'docs', label: t('nav.docs'), href: 'https://docs.eazybe.com', icon: 'BookOpen', description: t('nav.menu.docsDesc'), isExternal: true },
-            { _key: 'api', label: t('nav.menu.apiReference'), href: 'https://api.eazybe.com', icon: 'Code', description: t('nav.menu.apiReferenceDesc'), isExternal: true },
+            { _key: 'contact', label: t('nav.menu.contact'), href: 'https://api.whatsapp.com/send/?phone=916364346419&text=I%20want%20to%20know%20more%20about%20Eazybe&type=phone_number&app_absent=0', icon: 'MessageCircle', description: t('nav.menu.contactDesc'), isExternal: true },
+            { _key: 'email', label: t('nav.menu.email'), href: 'mailto:hey@eazybe.com', icon: 'Mail', description: t('nav.menu.emailDesc'), isExternal: true },
           ],
         },
       ],
@@ -155,7 +129,7 @@ const getFallbackNavigation = (t: (key: string) => string) => ({
       isMegaMenu: false,
     },
   ],
-  ctaButton: { label: t('nav.startFreeTrial'), href: 'https://app.eazybe.com/signup', variant: 'primary' as const },
+  ctaButton: { label: t('nav.startFreeTrial'), href: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd', variant: 'primary' as const },
   signInButton: { label: t('nav.signIn'), href: 'https://app.eazybe.com/login' },
 })
 
@@ -178,19 +152,29 @@ const NavItemWithDropdown: React.FC<NavItemWithDropdownProps> = ({
 
   if (!isMegaMenu && item.href) {
     const isExternal = item.isExternal || item.href.startsWith('http')
-    const LinkComponent = isExternal ? 'a' : Link
-    const linkProps = isExternal
-      ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
-      : { to: item.href }
+
+    if (isExternal) {
+      return (
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-slate-300 hover:text-white transition-colors relative group px-4 py-2"
+        >
+          {item.label}
+          <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-blue scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+        </a>
+      )
+    }
 
     return (
-      <LinkComponent
-        {...(linkProps as any)}
+      <LocalizedLink
+        to={item.href}
         className="text-sm font-medium text-slate-300 hover:text-white transition-colors relative group px-4 py-2"
       >
         {item.label}
         <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-blue scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-      </LinkComponent>
+      </LocalizedLink>
     )
   }
 
@@ -240,6 +224,7 @@ const NavItemWithDropdown: React.FC<NavItemWithDropdownProps> = ({
 export const MegaMenuHeader: React.FC = () => {
   const { t } = useTranslation()
   const { data: cmsNavigation } = useNavigation('main-nav')
+  const { isDark } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
@@ -308,11 +293,17 @@ export const MegaMenuHeader: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link
+          <LocalizedLink
             to="/"
             className="flex-shrink-0 flex items-center gap-2.5 cursor-pointer group"
           >
-            <div className="w-9 h-9 bg-brand-surface rounded-lg flex items-center justify-center border border-white/10 group-hover:border-brand-blue/30 transition-colors duration-300 p-1.5">
+            <div
+              className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors duration-300 p-1.5 border"
+              style={isDark
+                ? { backgroundColor: '#0F172A', borderColor: 'rgba(255,255,255,0.1)' }
+                : { backgroundColor: '#1e293b', borderColor: '#334155' }
+              }
+            >
               <img
                 src="/logo.png"
                 alt="Eazybe Logo"
@@ -322,7 +313,7 @@ export const MegaMenuHeader: React.FC = () => {
             <span className="font-sans font-bold text-xl tracking-tight text-white group-hover:text-brand-blue transition-colors">
               Eazybe
             </span>
-          </Link>
+          </LocalizedLink>
 
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center">
@@ -340,14 +331,14 @@ export const MegaMenuHeader: React.FC = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-2">
-            {navigation.signInButton && (
-              <a
-                href={navigation.signInButton.href || '#'}
-                className="font-medium text-sm text-slate-300 hover:text-white px-4 py-2 transition-colors"
-              >
-                {t('cta.bookDemo')}
-              </a>
-            )}
+            <a
+              href="https://calendly.com/d/cw67-pt3-y2m"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-sm text-slate-300 hover:text-white px-4 py-2 transition-colors"
+            >
+              {t('cta.bookDemo')}
+            </a>
             {navigation.ctaButton && (
               <Button
                 variant="primary"

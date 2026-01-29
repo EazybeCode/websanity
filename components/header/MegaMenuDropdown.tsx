@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import * as LucideIcons from 'lucide-react'
 import { ArrowRight, ExternalLink } from 'lucide-react'
 import type { NavColumn } from '../../hooks/useNavigation'
+import { LocalizedLink } from '../LocalizedLink'
 
 interface MegaMenuDropdownProps {
   columns: NavColumn[]
@@ -67,30 +67,71 @@ export const MegaMenuDropdown: React.FC<MegaMenuDropdownProps> = ({
                       {column.links.map((link) => {
                         const isExternal = link.isExternal || link.href.startsWith('http')
                         const isViewAll = link.label.toLowerCase().includes('view all')
-                        const LinkComponent = isExternal ? 'a' : Link
-                        const linkProps = isExternal
-                          ? { href: link.href, target: '_blank', rel: 'noopener noreferrer' }
-                          : { to: link.href }
 
                         if (isViewAll) {
                           return (
                             <div key={link._key} className="pt-2 mt-2 border-t border-white/5 px-2">
-                              <LinkComponent
-                                {...(linkProps as any)}
-                                onClick={onClose}
-                                className={`inline-flex items-center gap-1 text-xs font-medium ${theme.linkColor} hover:text-white transition-colors`}
-                              >
-                                <span>{link.label}</span>
-                                <ArrowRight size={12} />
-                              </LinkComponent>
+                              {isExternal ? (
+                                <a
+                                  href={link.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={onClose}
+                                  className={`inline-flex items-center gap-1 text-xs font-medium ${theme.linkColor} hover:text-white transition-colors`}
+                                >
+                                  <span>{link.label}</span>
+                                  <ArrowRight size={12} />
+                                </a>
+                              ) : (
+                                <LocalizedLink
+                                  to={link.href}
+                                  onClick={onClose}
+                                  className={`inline-flex items-center gap-1 text-xs font-medium ${theme.linkColor} hover:text-white transition-colors`}
+                                >
+                                  <span>{link.label}</span>
+                                  <ArrowRight size={12} />
+                                </LocalizedLink>
+                              )}
                             </div>
                           )
                         }
 
+                        if (isExternal) {
+                          return (
+                            <a
+                              key={link._key}
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={onClose}
+                              className="flex items-start gap-2.5 px-2 py-2 rounded-md hover:bg-white/5 transition-colors group"
+                            >
+                              {link.icon && (
+                                <span className={`flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-md ${theme.iconBg} ${theme.iconColor}`}>
+                                  {getIcon(link.icon)}
+                                </span>
+                              )}
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-1">
+                                  <span className="text-sm font-medium text-slate-200 group-hover:text-white">
+                                    {link.label}
+                                  </span>
+                                  <ExternalLink size={10} className="text-slate-500" />
+                                </div>
+                                {link.description && (
+                                  <p className="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                                    {link.description}
+                                  </p>
+                                )}
+                              </div>
+                            </a>
+                          )
+                        }
+
                         return (
-                          <LinkComponent
+                          <LocalizedLink
                             key={link._key}
-                            {...(linkProps as any)}
+                            to={link.href}
                             onClick={onClose}
                             className="flex items-start gap-2.5 px-2 py-2 rounded-md hover:bg-white/5 transition-colors group"
                           >
@@ -104,9 +145,6 @@ export const MegaMenuDropdown: React.FC<MegaMenuDropdownProps> = ({
                                 <span className="text-sm font-medium text-slate-200 group-hover:text-white">
                                   {link.label}
                                 </span>
-                                {isExternal && (
-                                  <ExternalLink size={10} className="text-slate-500" />
-                                )}
                               </div>
                               {link.description && (
                                 <p className="text-[11px] text-slate-500 mt-0.5 leading-snug">
@@ -114,7 +152,7 @@ export const MegaMenuDropdown: React.FC<MegaMenuDropdownProps> = ({
                                 </p>
                               )}
                             </div>
-                          </LinkComponent>
+                          </LocalizedLink>
                         )
                       })}
                     </div>
@@ -136,14 +174,14 @@ export const MegaMenuDropdown: React.FC<MegaMenuDropdownProps> = ({
                       <p className="text-[11px] text-slate-400 mb-3 leading-relaxed">
                         {featured.description}
                       </p>
-                      <Link
+                      <LocalizedLink
                         to={featured.href}
                         onClick={onClose}
                         className={`inline-flex items-center gap-1 text-xs font-medium ${theme.linkColor} hover:text-white transition-colors`}
                       >
                         Learn more
                         <ArrowRight size={11} />
-                      </Link>
+                      </LocalizedLink>
                     </div>
                   </div>
                 )}

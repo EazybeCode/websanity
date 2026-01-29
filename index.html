@@ -161,8 +161,14 @@
       html.light .bg-brand-black\/50 { background-color: #ffffff !important; background: #ffffff !important; }
       html.light .border-slate-700 { border-color: #e2e8f0 !important; }
       html.light .border-slate-800 { border-color: #e2e8f0 !important; }
-      /* Text white - exclude SVG icons and images */
-      html.light .text-white:not(svg):not(svg *):not(img) { color: #0f172a !important; }
+      /* Text white - exclude SVG icons, images, and colored buttons */
+      html.light .text-white:not(svg):not(svg *):not(img):not(.bg-brand-blue):not(.bg-blue-600):not(.bg-brand-cyan):not(.bg-green-500) { color: #0f172a !important; }
+      /* But children of bg-brand-blue should stay white */
+      html.light .bg-brand-blue .text-white,
+      html.light .bg-blue-600 .text-white,
+      html.light .bg-brand-cyan .text-white,
+      html.light button.bg-brand-blue .text-white,
+      html.light button.bg-blue-600 .text-white { color: #ffffff !important; }
       html.light .text-slate-200:not(svg):not(svg *) { color: #334155 !important; }
       html.light .text-slate-300:not(svg):not(svg *) { color: #475569 !important; }
       html.light .text-slate-400:not(svg):not(svg *) { color: #64748b !important; }
@@ -172,8 +178,15 @@
       html.light img { filter: none !important; }
       html.light svg { color: inherit; }
 
-      /* Logo needs to stay visible - invert for light backgrounds if it's a dark logo */
-      html.light img[src*="logo.png"] {
+      /* Logo container needs dark background in light mode to show white logo */
+      html.light .bg-brand-surface.rounded-lg.flex.items-center.justify-center {
+        background-color: #1e293b !important;
+        border-color: #334155 !important;
+      }
+      /* Or if it's a white logo, keep the image visible */
+      html.light img[src*="logo.png"],
+      html.light img[src="/logo.png"],
+      html.light img[alt*="Logo"] {
         filter: none !important;
       }
       html.light .bg-slate-800 { background-color: #f1f5f9 !important; }
@@ -342,17 +355,27 @@
       html.light button[class*="bg-brand-blue"],
       html.light button[class*="bg-blue-600"],
       html.light a[class*="bg-brand-blue"],
-      html.light a[class*="bg-blue-600"] {
+      html.light a[class*="bg-blue-600"],
+      html.light .bg-brand-blue,
+      html.light .bg-blue-600 {
         color: #ffffff !important;
       }
       html.light button[class*="bg-brand-blue"] *,
       html.light button[class*="bg-blue-600"] *,
       html.light a[class*="bg-brand-blue"] *,
-      html.light a[class*="bg-blue-600"] * {
+      html.light a[class*="bg-blue-600"] *,
+      html.light .bg-brand-blue *,
+      html.light .bg-blue-600 *,
+      html.light .bg-brand-blue .text-white,
+      html.light .bg-blue-600 .text-white,
+      html.light .bg-brand-blue span,
+      html.light .bg-blue-600 span {
         color: #ffffff !important;
       }
       html.light button[class*="bg-brand-blue"] svg,
-      html.light button[class*="bg-blue-600"] svg {
+      html.light button[class*="bg-blue-600"] svg,
+      html.light .bg-brand-blue svg,
+      html.light .bg-blue-600 svg {
         color: #ffffff !important;
         stroke: #ffffff !important;
       }

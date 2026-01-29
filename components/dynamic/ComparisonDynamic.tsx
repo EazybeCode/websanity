@@ -10,25 +10,31 @@ interface Props {
 
 export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
   const { t } = useTranslation()
+
+  // Use translations with Sanity data as fallback
+  const badge = t('integrations.comparison.badge', { defaultValue: data.badge || '' })
+  const headline = data.headline || ''
+  const description = t('integrations.comparison.description', { defaultValue: data.description || '' })
+
   return (
     <section className="py-24 bg-brand-surface border-y border-slate-800 relative">
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
-            {data.badge && (
+            {badge && (
               <div className="mb-6">
-                <SectionBadge variant="cyan">{data.badge}</SectionBadge>
+                <SectionBadge variant="cyan">{badge}</SectionBadge>
               </div>
             )}
-            {data.headline && (
+            {headline && (
               <h2 className="text-4xl font-sans font-bold text-white mb-6">
-                {data.headline}
+                {headline}
               </h2>
             )}
-            {data.description && (
+            {description && (
               <p className="text-lg text-slate-400 leading-relaxed mb-8">
-                {data.description}
+                {description}
               </p>
             )}
           </div>
