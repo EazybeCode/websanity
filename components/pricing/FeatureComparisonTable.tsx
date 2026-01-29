@@ -72,7 +72,7 @@ export const FeatureComparisonTable: React.FC<FeatureComparisonTableProps> = ({ 
       </div>
 
       {/* Table Body */}
-      {Object.entries(groupedFeatures).map(([category, categoryFeatures]) => (
+      {(Object.entries(groupedFeatures) as [string, FeatureRow[]][]).map(([category, categoryFeatures]) => (
         <div key={category}>
           {/* Category Header */}
           <div className="grid grid-cols-4 border-b border-slate-800 bg-slate-900/50">

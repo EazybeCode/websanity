@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation, Trans } from 'react-i18next'
 import { Button } from '../ui/Button'
 import { ArrowRight, MessageSquare, Database, AlertCircle } from 'lucide-react'
 import type { HeroSection } from '../../hooks/useLandingPage'
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export const HeroDynamic: React.FC<Props> = ({ data }) => {
+  const { t } = useTranslation()
+
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden bg-brand-black border-b border-slate-800">
       {/* Dynamic Background */}
@@ -105,7 +108,7 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                 <div className="h-12 bg-[#00A884] rounded-t-card flex items-center px-4 justify-between shadow-[0_0_20px_rgba(0,168,132,0.3)]">
                   <div className="flex items-center gap-2 text-white">
                     <MessageSquare size={16} fill="currentColor" />
-                    <span className="font-bold text-sm">WhatsApp</span>
+                    <span className="font-bold text-sm">{t('home.heroVisual.whatsapp')}</span>
                   </div>
                   <div className="flex gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-white/30"></div>
@@ -114,10 +117,10 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                 </div>
                 <div className="p-4 space-y-4 bg-slate-800/50">
                   <div className="bg-slate-800 p-3 rounded-2xl rounded-tl-none text-xs text-slate-200 w-5/6 border border-slate-700">
-                    Can you send over the Enterprise pricing? We're looking to close this week.
+                    {t('home.heroVisual.chatMessage1')}
                   </div>
                   <div className="bg-[#005c4b] p-3 rounded-2xl rounded-tr-none text-xs text-white ml-auto w-5/6 border border-[#007a63]">
-                    Absolutely! Sending the PDF now. Let's schedule a call for Friday?
+                    {t('home.heroVisual.chatMessage2')}
                   </div>
                 </div>
               </div>
@@ -148,7 +151,7 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                 <div className="h-12 bg-gradient-to-r from-brand-blue to-brand-indigo rounded-t-card flex items-center px-4 justify-between shadow-glow-blue">
                   <div className="flex items-center gap-2 text-white">
                     <Database size={16} />
-                    <span className="font-bold text-sm">HubSpot CRM</span>
+                    <span className="font-bold text-sm">{t('home.heroVisual.hubspotCrm')}</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -163,18 +166,18 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                   </div>
                   <div className="space-y-3">
                     <div className="flex justify-between text-xs items-center">
-                      <span className="text-slate-400 font-medium">Deal Stage</span>
+                      <span className="text-slate-400 font-medium">{t('home.heroVisual.dealStage')}</span>
                       <span className="font-bold text-brand-blue bg-blue-900/30 px-2 py-0.5 rounded border border-blue-800/50">
-                        Negotiation
+                        {t('home.heroVisual.negotiation')}
                       </span>
                     </div>
                     <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
                       <div className="w-3/4 h-full bg-brand-blue rounded-full shadow-[0_0_10px_rgba(37,99,235,0.5)]"></div>
                     </div>
                     <div className="pt-2 flex justify-between items-center">
-                      <span className="text-[10px] font-mono text-slate-500 uppercase">Last Activity</span>
+                      <span className="text-[10px] font-mono text-slate-500 uppercase">{t('home.heroVisual.lastActivity')}</span>
                       <span className="text-[10px] font-bold text-brand-green flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span> JUST NOW
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span> {t('home.heroVisual.justNow')}
                       </span>
                     </div>
                   </div>
@@ -188,16 +191,15 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
               >
                 <div className="p-3 border-b border-red-900/50 bg-red-900/20 flex items-center justify-between rounded-t-card">
                   <span className="text-xs font-bold text-red-500 uppercase tracking-wider flex items-center gap-2">
-                    <AlertCircle size={14} fill="currentColor" /> Signal Detected
+                    <AlertCircle size={14} fill="currentColor" /> {t('home.heroVisual.signalDetected')}
                   </span>
                 </div>
                 <div className="p-4">
                   <p className="text-sm font-medium text-slate-200 mb-3 leading-snug">
-                    Lead mentioned <span className="text-red-400 font-bold">pricing</span> but hasn't received a reply
-                    in 2 hours.
+                    <Trans i18nKey="home.heroVisual.alertMessage" components={{ bold: <span className="text-red-400 font-bold" /> }} />
                   </p>
                   <button className="w-full py-2 bg-gradient-to-r from-red-600 to-red-700 text-white text-xs font-bold rounded-btn hover:shadow-[0_0_15px_rgba(239,68,68,0.5)] transition-all transform hover:scale-[1.02]">
-                    Create Task: Send Pricing
+                    {t('home.heroVisual.createTask')}
                   </button>
                 </div>
               </div>

@@ -19,11 +19,11 @@ function App() {
         <Route path="/features" element={<CategoryIndexPage />} />
         <Route path="/features/:slug" element={<FeaturePage />} />
         <Route path="/whatsapp-api" element={<CategoryIndexPage />} />
+        <Route path="/whatsapp-api/coexistence" element={<CoexistencePage />} />
         <Route path="/whatsapp-api/:slug" element={<FeaturePage />} />
         <Route path="/integrations" element={<CategoryIndexPage />} />
         <Route path="/integrations/:slug" element={<ProductPage />} />
         <Route path="/product/:slug" element={<ProductPage />} />
-        <Route path="/coexistence" element={<CoexistencePage />} />
         <Route path="/blog" element={<BlogListingPage />} />
         <Route path="/blog/:slug" element={<BlogPage />} />
         <Route path="/team-inbox" element={<TeamInboxPage />} />

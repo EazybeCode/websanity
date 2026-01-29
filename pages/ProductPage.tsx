@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import {
   Check,
   X,
@@ -324,7 +325,7 @@ const Button: React.FC<ButtonProps> = ({ variant = 'primary', children, classNam
 
 // ================== Hero Section ==================
 
-const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string }> = ({ crm, crmColor }) => {
+const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string, t: (key: string) => string }> = ({ crm, crmColor, t }) => {
   return (
     <section className="relative pt-32 pb-24 overflow-hidden bg-slate-950">
       {/* Background Effects */}
@@ -337,27 +338,27 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string }>
           {/* Content */}
           <div className="max-w-3xl">
             <div className="flex gap-3 mb-8">
-              <SectionKicker label="WhatsApp Integration" variant="cyan" className="mb-0" />
-              <SectionKicker label={`${crm.name} Certified`} variant="orange" className="mb-0" />
+              <SectionKicker label={t('integrations.badges.whatsappIntegration')} variant="cyan" className="mb-0" />
+              <SectionKicker label={`${crm.name} ${t('integrations.badges.certified')}`} variant="orange" className="mb-0" />
             </div>
 
             <h1 className="text-5xl lg:text-7xl font-sans font-extrabold tracking-tight text-white leading-[1.05] mb-6">
-              The Official <br />
+              {t('integrations.hero.headlinePrefix')} <br />
               <span className="inline-flex items-baseline gap-3" style={{ color: crmColor }}>
                  {crm.name}
               </span> <br />
-              WhatsApp Integration
+              {t('integrations.hero.headlineSuffix')}
             </h1>
 
             <p className="text-lg text-slate-400 leading-relaxed mb-8 max-w-xl">
-              Stop letting deal intelligence die on personal phones. Every message, image, and voice note is automatically logged to the {crm.name} Activity Timeline.
+              {t('integrations.hero.description').replace('{crmName}', crm.name)}
             </p>
 
             <div className="space-y-4 mb-10">
               {[
-                "Real-time sync for 1-on-1 and Group Chats.",
-                "Automatic association with open Deals and Tickets.",
-                "Complete conversation history retained when reps leave."
+                t('integrations.hero.feature1'),
+                t('integrations.hero.feature2'),
+                t('integrations.hero.feature3')
               ].map((item, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <CheckCircle2 className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
@@ -368,10 +369,10 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string }>
 
             <div className="flex flex-wrap gap-4 mb-10">
               <Button variant="primary" className="h-14 px-8 text-base shadow-none hover:shadow-lg" style={{ backgroundColor: crmColor, borderColor: crmColor }}>
-                Start 7-Day Free Trial
+                {t('integrations.hero.startTrial')}
               </Button>
               <Button variant="outline" className="h-14 px-8 text-base">
-                Book a Demo
+                {t('integrations.hero.bookDemo')}
               </Button>
             </div>
 
@@ -388,7 +389,7 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string }>
                   </div>
                   <div className="flex flex-col">
                      <span className="text-white font-bold text-sm">Meta</span>
-                     <span className="text-slate-400 text-xs">Business Partner</span>
+                     <span className="text-slate-400 text-xs">{t('integrations.hero.metaPartner')}</span>
                   </div>
                </div>
 
@@ -404,7 +405,7 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string }>
                   </div>
                   <div className="flex flex-col">
                      <span className="text-white font-bold text-sm">{crm.name}</span>
-                     <span className="text-slate-400 text-xs">App Partner</span>
+                     <span className="text-slate-400 text-xs">{t('integrations.hero.appPartner')}</span>
                   </div>
                </div>
             </div>
@@ -463,20 +464,20 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string }>
 
 // ================== Feature Comparison Section ==================
 
-const FeatureComparisonSection: React.FC = () => {
+const FeatureComparisonSection: React.FC<{ t: (key: string) => string }> = ({ t }) => {
   return (
     <section className="py-24 bg-slate-950 relative border-t border-slate-800/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid lg:grid-cols-2 gap-16 mb-16">
           <div>
-            <SectionKicker label="Why teams switch to Eazybe" variant="cyan" />
+            <SectionKicker label={t('integrations.comparison.badge')} variant="cyan" />
             <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-6">
-              Works with the <br />
-              WhatsApp you <span className="text-cyan-500">already use</span>
+              {t('integrations.comparison.headline1')} <br />
+              {t('integrations.comparison.headline2')} <span className="text-cyan-500">{t('integrations.comparison.headline3')}</span>
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed">
-              Other tools force you to abandon WhatsApp Business App and migrate to API-only. Eazybe works with both—keep your existing setup, your chat history, and your workflow.
+              {t('integrations.comparison.description')}
             </p>
           </div>
 
@@ -491,7 +492,7 @@ const FeatureComparisonSection: React.FC = () => {
                       referrerPolicy="no-referrer"
                    />
                 </div>
-                <div className="text-sm font-bold text-slate-200">Personal WhatsApp</div>
+                <div className="text-sm font-bold text-slate-200">{t('integrations.comparison.personalWhatsApp')}</div>
              </div>
              {/* Business App Card */}
              <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 flex flex-col items-center justify-center text-center relative overflow-hidden hover:border-cyan-500/30 transition-colors min-h-[140px]">
@@ -506,7 +507,7 @@ const FeatureComparisonSection: React.FC = () => {
                       B
                    </div>
                 </div>
-                <div className="text-sm font-bold text-slate-200">WhatsApp Business App</div>
+                <div className="text-sm font-bold text-slate-200">{t('integrations.comparison.businessApp')}</div>
              </div>
              {/* API Card */}
              <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:border-blue-500/30 transition-colors min-h-[140px]">
@@ -521,7 +522,7 @@ const FeatureComparisonSection: React.FC = () => {
                       <Cloud size={10} />
                    </div>
                 </div>
-                <div className="text-sm font-bold text-slate-200">WhatsApp Business API</div>
+                <div className="text-sm font-bold text-slate-200">{t('integrations.comparison.businessApi')}</div>
              </div>
           </div>
         </div>
@@ -529,17 +530,17 @@ const FeatureComparisonSection: React.FC = () => {
         {/* Comparison Table */}
         <div className="bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl">
           <div className="grid grid-cols-4 bg-slate-800 p-6 border-b border-slate-700">
-             <div className="col-span-2 font-mono text-sm font-bold text-slate-400 uppercase tracking-wider">Capability</div>
-             <div className="text-center font-mono text-sm font-bold text-slate-500 uppercase tracking-wider">Other Tools</div>
+             <div className="col-span-2 font-mono text-sm font-bold text-slate-400 uppercase tracking-wider">{t('integrations.comparison.capability')}</div>
+             <div className="text-center font-mono text-sm font-bold text-slate-500 uppercase tracking-wider">{t('integrations.comparison.otherTools')}</div>
              <div className="text-center font-mono text-sm font-bold text-cyan-500 uppercase tracking-wider">Eazybe</div>
           </div>
 
           {[
-             { name: "WhatsApp Business App", other: false, eazybe: true },
-             { name: "WhatsApp Business API", other: true, eazybe: true },
-             { name: "Keep existing chat history", other: false, eazybe: true },
-             { name: "Track personal WhatsApp numbers", other: false, eazybe: true },
-             { name: "Live in 30 minutes", other: false, eazybe: true },
+             { name: t('integrations.comparison.feature1'), other: false, eazybe: true },
+             { name: t('integrations.comparison.feature2'), other: true, eazybe: true },
+             { name: t('integrations.comparison.feature3'), other: false, eazybe: true },
+             { name: t('integrations.comparison.feature4'), other: false, eazybe: true },
+             { name: t('integrations.comparison.feature5'), other: false, eazybe: true },
           ].map((row, idx) => (
              <div key={idx} className="grid grid-cols-4 p-6 border-b border-slate-700/50 hover:bg-slate-800/50 transition-colors">
                 <div className="col-span-2 font-medium text-slate-200">{row.name}</div>
@@ -565,7 +566,7 @@ const FeatureComparisonSection: React.FC = () => {
 
 // ================== Mini CRM Section ==================
 
-const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string }> = ({ crm, crmColor }) => {
+const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string, t: (key: string) => string }> = ({ crm, crmColor, t }) => {
   const crmSlug = crm.name.toLowerCase()
 
   // CRM-specific chat data with unique contacts and conversations
@@ -643,24 +644,24 @@ const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string
 
         {/* Header Content - Centered */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionKicker label="Mini CRM" className="mx-auto" />
+          <SectionKicker label={t('integrations.miniCrm.badge')} className="mx-auto" />
           <h2 className="text-4xl lg:text-5xl font-sans font-bold text-white tracking-tight mb-6">
-            {crm.name} Mini CRM in <br />
+            {crm.name} {t('integrations.miniCrm.headline')} <br />
             <span className="text-cyan-500">WhatsApp Web</span>
           </h2>
           <p className="text-lg text-slate-400 leading-relaxed mb-8">
-            Access your entire {crm.name} CRM directly inside WhatsApp. No tab switching, no guessing, no friction.
+            {t('integrations.miniCrm.description').replace('{crmName}', crm.name)}
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-slate-300">
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-              <Users size={16} className="text-blue-500" /> Instant Context
+              <Users size={16} className="text-blue-500" /> {t('integrations.miniCrm.instantContext')}
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-              <TrendingUp size={16} className="text-emerald-500" /> Pipeline Management
+              <TrendingUp size={16} className="text-emerald-500" /> {t('integrations.miniCrm.pipelineManagement')}
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-              <CheckSquare size={16} className="text-orange-500" /> Quick Actions
+              <CheckSquare size={16} className="text-orange-500" /> {t('integrations.miniCrm.quickActions')}
             </div>
           </div>
         </div>
@@ -790,7 +791,7 @@ const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string
 
 // ================== Properties Section (Animated) ==================
 
-const PropertiesSection: React.FC<{ crm: typeof crmConfig.hubspot, crmSlug: string }> = ({ crm, crmSlug }) => {
+const PropertiesSection: React.FC<{ crm: typeof crmConfig.hubspot, crmSlug: string, t: (key: string) => string }> = ({ crm, crmSlug, t }) => {
   const propertyFields = CRM_PROPERTY_FIELDS[crmSlug as keyof typeof CRM_PROPERTY_FIELDS] || CRM_PROPERTY_FIELDS.hubspot
 
   return (
@@ -799,13 +800,13 @@ const PropertiesSection: React.FC<{ crm: typeof crmConfig.hubspot, crmSlug: stri
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionKicker label="System Intelligence" className="mx-auto" />
+          <SectionKicker label={t('integrations.properties.badge')} className="mx-auto" />
           <h2 className="text-4xl font-sans font-bold text-white tracking-tight leading-tight mb-4">
-            Sync High-Intent <br />
-            <span className="text-cyan-500">Engagement Fields</span>
+            {t('integrations.properties.headline1')} <br />
+            <span className="text-cyan-500">{t('integrations.properties.headline2')}</span>
           </h2>
           <p className="text-lg text-slate-400">
-            Directly mapped WhatsApp engagement signals rendered in your {crm.name} environment. Active monitoring enabled.
+            {t('integrations.properties.description').replace('{crmName}', crm.name)}
           </p>
         </div>
 
@@ -1499,7 +1500,7 @@ const WorkflowAnimation: React.FC<{ crmColor: string, crmSlug: string }> = ({ cr
 
 // ================== Automation Section ==================
 
-const AutomationSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string, crmSlug: string }> = ({ crm, crmColor, crmSlug }) => {
+const AutomationSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string, crmSlug: string, t: (key: string) => string }> = ({ crm, crmColor, crmSlug, t }) => {
   return (
     <section className="py-24 bg-slate-900 border-y border-slate-700 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1507,25 +1508,25 @@ const AutomationSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: str
         <div className="grid lg:grid-cols-2 gap-20 items-center">
            {/* Text */}
            <div>
-              <SectionKicker label="Workflow Automation" variant="cyan" />
+              <SectionKicker label={t('integrations.workflow.badge')} variant="cyan" />
               <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-6">
-                Native Chatbots & <br />
-                <span style={{ color: crmColor }}>{crm.name} Workflows</span>
+                {t('integrations.workflow.headline1')} <br />
+                <span style={{ color: crmColor }}>{crm.name} {t('integrations.workflow.headline2')}</span>
               </h2>
               <p className="text-lg text-slate-400 leading-relaxed mb-8">
-                Add "Send WhatsApp Message" as a native action in your {crm.name} Workflows. Scale your outreach without losing the personal touch.
+                {t('integrations.workflow.description').replace('{crmName}', crm.name)}
               </p>
 
               <div className="mt-10 grid grid-cols-2 gap-6">
                 <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-2xl group hover:border-orange-500/40 transition-all">
                    <Zap className="text-orange-500 mb-4 group-hover:scale-110 transition-transform" size={24} />
-                   <h4 className="text-white font-bold mb-2">Auto-Triggers</h4>
-                   <p className="text-xs text-slate-500">Send WhatsApp templates based on any {crm.name} enrollment trigger.</p>
+                   <h4 className="text-white font-bold mb-2">{t('integrations.workflow.autoTriggers')}</h4>
+                   <p className="text-xs text-slate-500">{t('integrations.workflow.autoTriggersDesc').replace('{crmName}', crm.name)}</p>
                 </div>
                 <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-2xl group hover:border-blue-600/40 transition-all">
                    <Workflow className="text-blue-600 mb-4 group-hover:scale-110 transition-transform" size={24} />
-                   <h4 className="text-white font-bold mb-2">Native Actions</h4>
-                   <p className="text-xs text-slate-500">Eazybe appears as a standard action within your workflow builder.</p>
+                   <h4 className="text-white font-bold mb-2">{t('integrations.workflow.nativeActions')}</h4>
+                   <p className="text-xs text-slate-500">{t('integrations.workflow.nativeActionsDesc')}</p>
                 </div>
               </div>
            </div>
@@ -1541,39 +1542,39 @@ const AutomationSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: str
 
 // ================== Reports Section ==================
 
-const ReportsSection: React.FC<{ crm: typeof crmConfig.hubspot }> = ({ crm }) => {
+const ReportsSection: React.FC<{ crm: typeof crmConfig.hubspot, t: (key: string) => string }> = ({ crm, t }) => {
   return (
     <section className="py-24 bg-slate-950 relative">
        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
          <div className="text-center max-w-3xl mx-auto mb-16">
-           <SectionKicker label="Visibility" className="mx-auto" />
+           <SectionKicker label={t('integrations.reports.badge')} className="mx-auto" />
            <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-4">
-             WhatsApp Data in <span className="text-cyan-500">{crm.name} Reports</span>
+             {t('integrations.reports.headline1')} <span className="text-cyan-500">{crm.name} {t('integrations.reports.headline2')}</span>
            </h2>
            <p className="text-lg text-slate-400">
-             One source of truth. Report on WhatsApp engagement across Contacts, Deals, and Tickets using {crm.name}'s standard reporting tools.
+             {t('integrations.reports.description').replace('{crmName}', crm.name)}
            </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
            {[
              {
-               title: "Team Performance",
-               desc: "Analyze response times by Owner across all WhatsApp chats.",
+               title: t('integrations.reports.teamPerformance'),
+               desc: t('integrations.reports.teamPerformanceDesc'),
                icon: Users2,
                color: "text-blue-600"
              },
              {
-               title: "Deal Attribution",
-               desc: "Correlate WhatsApp message volume with deal win rates.",
+               title: t('integrations.reports.dealAttribution'),
+               desc: t('integrations.reports.dealAttributionDesc'),
                icon: TrendingUp,
                color: "text-emerald-500"
              },
              {
-               title: "Ticket Resolution",
-               desc: "Measure support efficiency through the WhatsApp channel.",
+               title: t('integrations.reports.ticketResolution'),
+               desc: t('integrations.reports.ticketResolutionDesc'),
                icon: PieChart,
                color: "text-orange-500"
              }
@@ -1599,6 +1600,8 @@ const ReportsSection: React.FC<{ crm: typeof crmConfig.hubspot }> = ({ crm }) =>
 // ================== Main ProductPage Component ==================
 
 export const ProductPage: React.FC = () => {
+  const { t, i18n } = useTranslation()
+  const language = i18n.language || 'en'
   const { slug } = useParams<{ slug: string }>()
   const { loading } = useProduct(slug || 'hubspot-whatsapp-integration')
 
@@ -1628,7 +1631,7 @@ export const ProductPage: React.FC = () => {
       <div className="min-h-screen bg-slate-950 flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-400">Loading...</p>
+          <p className="text-slate-400">{t('integrations.loading')}</p>
         </div>
       </div>
     )
@@ -1639,22 +1642,22 @@ export const ProductPage: React.FC = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <HeroSection crm={crm} crmColor={crmColor} />
+      <HeroSection crm={crm} crmColor={crmColor} t={t} />
 
       {/* Feature Comparison Section */}
-      <FeatureComparisonSection />
+      <FeatureComparisonSection t={t} />
 
       {/* Mini CRM Section */}
-      <MiniCRMSection crm={crm} crmColor={crmColor} />
+      <MiniCRMSection crm={crm} crmColor={crmColor} t={t} />
 
       {/* Properties Section */}
-      <PropertiesSection crm={crm} crmSlug={crmSlug} />
+      <PropertiesSection crm={crm} crmSlug={crmSlug} t={t} />
 
       {/* Automation Section */}
-      <AutomationSection crm={crm} crmColor={crmColor} crmSlug={crmSlug} />
+      <AutomationSection crm={crm} crmColor={crmColor} crmSlug={crmSlug} t={t} />
 
       {/* Reports Section */}
-      <ReportsSection crm={crm} />
+      <ReportsSection crm={crm} t={t} />
 
       {/* Footer with CTA and Security sections */}
       <ChunkyFooter />

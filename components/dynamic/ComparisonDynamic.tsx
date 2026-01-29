@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Check, X, Cloud } from 'lucide-react'
 import { SectionBadge } from '../ui/SectionBadge'
 import type { ComparisonSection } from '../../hooks/useLandingPage'
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
+  const { t } = useTranslation()
   return (
     <section className="py-24 bg-brand-surface border-y border-slate-800 relative">
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
@@ -37,17 +39,17 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
               <div className="bg-brand-card p-4 rounded-card border border-slate-700 shadow-sm flex flex-col items-center text-center">
                 <img
                   src="https://cdn.simpleicons.org/whatsapp/25D366"
-                  alt="Personal WhatsApp"
+                  alt={t('home.comparison.personalWhatsApp')}
                   className="w-10 h-10 mb-3"
                   referrerPolicy="no-referrer"
                 />
-                <span className="text-xs font-bold text-slate-300">Personal WhatsApp</span>
+                <span className="text-xs font-bold text-slate-300">{t('home.comparison.personalWhatsApp')}</span>
               </div>
               <div className="bg-brand-card p-4 rounded-card border border-slate-700 shadow-sm flex flex-col items-center text-center">
                 <div className="relative w-10 h-10 mb-3 flex items-center justify-center">
                   <img
                     src="https://cdn.simpleicons.org/whatsapp/25D366"
-                    alt="WhatsApp Business"
+                    alt={t('home.comparison.businessApp')}
                     className="w-10 h-10"
                     referrerPolicy="no-referrer"
                   />
@@ -55,13 +57,13 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
                     <span className="text-[8px] font-bold text-slate-200">B</span>
                   </div>
                 </div>
-                <span className="text-xs font-bold text-slate-300">WhatsApp Business App</span>
+                <span className="text-xs font-bold text-slate-300">{t('home.comparison.businessApp')}</span>
               </div>
               <div className="bg-brand-card p-4 rounded-card border border-slate-700 shadow-sm flex flex-col items-center text-center">
                 <div className="relative w-10 h-10 mb-3 flex items-center justify-center">
                   <img
                     src="https://cdn.simpleicons.org/whatsapp/25D366"
-                    alt="WhatsApp API"
+                    alt={t('home.comparison.businessApi')}
                     className="w-10 h-10 opacity-80"
                     referrerPolicy="no-referrer"
                   />
@@ -69,7 +71,7 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
                     <Cloud size={10} className="text-white" />
                   </div>
                 </div>
-                <span className="text-xs font-bold text-slate-300">WhatsApp Business API</span>
+                <span className="text-xs font-bold text-slate-300">{t('home.comparison.businessApi')}</span>
               </div>
             </div>
 
@@ -77,8 +79,8 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-slate-800/50 border-b border-slate-700">
-                    <th className="p-6 font-sans font-semibold text-white text-sm">Capability</th>
-                    <th className="p-6 font-sans font-medium text-slate-400 text-sm text-center">Other Tools</th>
+                    <th className="p-6 font-sans font-semibold text-white text-sm">{t('home.comparison.capability')}</th>
+                    <th className="p-6 font-sans font-medium text-slate-400 text-sm text-center">{t('home.comparison.otherTools')}</th>
                     <th className="p-6 font-sans font-bold text-brand-cyan text-sm text-center bg-cyan-950/10">Eazybe</th>
                   </tr>
                 </thead>

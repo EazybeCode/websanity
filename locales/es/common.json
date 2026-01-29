@@ -1,0 +1,1649 @@
+{
+  "nav": {
+    "startFreeTrial": "Iniciar Prueba Gratis",
+    "signIn": "Iniciar Sesión",
+    "pricing": "Precios",
+    "platform": "Plataforma",
+    "integrations": "Integraciones",
+    "solutions": "Soluciones",
+    "resources": "Recursos",
+    "blog": "Blog",
+    "docs": "Documentación",
+    "support": "Soporte",
+    "menu": {
+      "productivityTools": "Herramientas de Productividad",
+      "cloudBackup": "Respaldo en la Nube",
+      "cloudBackupDesc": "Nunca pierdas una conversación",
+      "teamInbox": "Bandeja de Equipo",
+      "teamInboxDesc": "Colabora en chats de clientes",
+      "quickReply": "Respuesta Rápida",
+      "quickReplyDesc": "Plantillas para respuestas rápidas",
+      "messageScheduler": "Programador de Mensajes",
+      "messageSchedulerDesc": "Envía mensajes en el momento correcto",
+      "salesIntelligence": "Inteligencia de Ventas",
+      "revenueInbox": "Bandeja de Ingresos",
+      "revenueInboxDesc": "Insights de negocios con IA",
+      "repRadar": "Rep Radar",
+      "repRadarDesc": "Monitorea al equipo",
+      "whatsappCopilot": "WhatsApp Copilot",
+      "whatsappCopilotDesc": "Asistente de IA para ventas",
+      "whatsappCrm": "WhatsApp CRM",
+      "whatsappCrmDesc": "Etiquetas, embudos y pipelines",
+      "whatsappApi": "WhatsApp API",
+      "coexistence": "Coexistencia",
+      "coexistenceDesc": "WhatsApp Personal + Business",
+      "messageTemplates": "Plantillas de Mensajes",
+      "messageTemplatesDesc": "Formatos pre-aprobados",
+      "broadcastMessages": "Mensajes Masivos",
+      "broadcastMessagesDesc": "Alcanza a miles instantáneamente",
+      "viewAllFeatures": "Ver todas las funciones",
+      "popularCrms": "CRMs Populares",
+      "hubspotDesc": "Sincronización bidireccional",
+      "salesforceDesc": "Integración empresarial",
+      "zohoDesc": "Sincronización de contactos",
+      "pipedriveDesc": "Automatización de pipeline",
+      "moreCrms": "Más CRMs",
+      "bitrix24Desc": "Espacio de trabajo completo",
+      "leadsquaredDesc": "CRM de ejecución de ventas",
+      "freshdeskDesc": "Sincronización de tickets",
+      "productivity": "Productividad",
+      "googleSheetsDesc": "Exporta y analiza datos",
+      "googleCalendarDesc": "Programa seguimientos",
+      "webhooksDesc": "Automatizaciones personalizadas",
+      "viewAllIntegrations": "Ver todas las integraciones",
+      "byTeam": "Por Equipo",
+      "salesTeams": "Equipos de Ventas",
+      "salesTeamsDesc": "Cierra negocios más rápido",
+      "customerSupport": "Soporte al Cliente",
+      "customerSupportDesc": "Resuelve en tiempo real",
+      "marketing": "Marketing",
+      "marketingDesc": "Campañas que convierten",
+      "byCompanySize": "Por Tamaño",
+      "startups": "Startups",
+      "startupsDesc": "Escala tu alcance",
+      "smallBusiness": "Pequeñas Empresas",
+      "smallBusinessDesc": "Herramientas profesionales",
+      "enterprise": "Empresarial",
+      "enterpriseDesc": "Seguridad y cumplimiento",
+      "learn": "Aprender",
+      "blogDesc": "Tips, guías y novedades",
+      "caseStudies": "Casos de Éxito",
+      "caseStudiesDesc": "Historias de clientes",
+      "webinars": "Webinars",
+      "webinarsDesc": "Demos y capacitaciones",
+      "helpCenter": "Centro de Ayuda",
+      "helpCenterDesc": "Guías y tutoriales",
+      "docsDesc": "Referencia técnica",
+      "apiReference": "Referencia de API",
+      "apiReferenceDesc": "Para desarrolladores"
+    }
+  },
+  "cta": {
+    "startFreeTrial": "Iniciar Prueba Gratis",
+    "bookDemo": "Reservar Demo",
+    "contactSales": "Contactar Ventas",
+    "learnMore": "Más Información",
+    "getStarted": "Empezar",
+    "seeDemo": "Ver Demo",
+    "tryFree": "Prueba Gratis",
+    "viewAll": "Ver Todo",
+    "startNow": "Empezar Ahora",
+    "talkToSales": "Hablar con Ventas"
+  },
+  "footer": {
+    "copyright": "Eazybe, Inc. Todos los derechos reservados.",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio",
+    "company": "Empresa",
+    "product": "Producto",
+    "resources": "Recursos",
+    "legal": "Legal",
+    "aboutUs": "Sobre Nosotros",
+    "careers": "Carreras",
+    "contact": "Contacto",
+    "tagline": "La Plataforma de Ventas WhatsApp para equipos de CRM.",
+    "trustedBy": "Confiado por industrias reguladas: servicios financieros, salud, seguros",
+    "platform": "Plataforma",
+    "integrations": "Integraciones",
+    "whatsappApi": "WhatsApp API",
+    "viewAllFeatures": "Ver Todas las Funciones →",
+    "viewAllIntegrations": "Ver Todas las Integraciones →",
+    "metaBusinessPartner": "Meta Business Partner",
+    "verifiedIntegration": "Integración Verificada",
+    "compliant": "Compatible",
+    "gdprReady": "GDPR Listo",
+    "metaPartner": "Socio Meta",
+    "encrypted": "Cifrado"
+  },
+  "language": {
+    "select": "Idioma",
+    "en": "English",
+    "pt": "Português",
+    "es": "Español"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Algo salió mal",
+    "notFound": "Página no encontrada",
+    "tryAgain": "Intentar de Nuevo",
+    "goBack": "Volver",
+    "goHome": "Ir al Inicio",
+    "readMore": "Leer Más",
+    "seeAll": "Ver Todo",
+    "new": "Nuevo",
+    "popular": "Popular",
+    "featured": "Destacado",
+    "all": "Todo",
+    "search": "Buscar",
+    "noResults": "No se encontraron resultados",
+    "perUser": "por usuario",
+    "perMonth": "/ mes",
+    "monthly": "Mensual",
+    "annual": "Anual",
+    "save": "Ahorra"
+  },
+  "pricing": {
+    "badge": "Precios Simples y Transparentes",
+    "headline": "Empieza gratis. Escala mientras",
+    "headlineHighlight": "creces.",
+    "subheadline": "Sin tarifas ocultas. Sin cargos por mensaje. Solo precios simples por usuario que escalan con tu equipo.",
+    "mostPopular": "Más Popular",
+    "enterprise": "Empresarial",
+    "custom": "Personalizado",
+    "contactUs": "Contáctanos",
+    "includes": "Incluye:",
+    "everythingIn": "Todo en {{plan}}, más:",
+    "free": "Gratis",
+    "trustSignals": {
+      "gdprCompliant": "Compatible con GDPR",
+      "setupTime": "Configuración en 5 minutos",
+      "freeTrial": "Prueba gratis de 14 días",
+      "noCreditCard": "Sin tarjeta de crédito"
+    },
+    "comparison": {
+      "badge": "Comparación Completa",
+      "title": "Compara todas las funciones",
+      "subtitle": "Todo lo que necesitas saber sobre lo que está incluido en cada plan."
+    },
+    "faq": {
+      "badge": "Preguntas y Respuestas",
+      "title": "Preguntas frecuentes",
+      "subtitle": "¿No encuentras lo que buscas?",
+      "contactLinkText": "Contacta a nuestro equipo"
+    },
+    "plans": {
+      "starter": {
+        "name": "Inicial",
+        "description": "Perfecto para individuos y pequeños equipos comenzando con integración WhatsApp CRM.",
+        "features": {
+          "teamInbox": "Bandeja de Entrada del Equipo",
+          "unlimitedLabels": "Etiquetas y embudos ilimitados",
+          "unlimitedQuickReplies": "Respuestas rápidas ilimitadas",
+          "unlimitedScheduledMessages": "Mensajes programados ilimitados",
+          "whatsappBackup": "Respaldo de chat WhatsApp",
+          "crmIntegrations": "HubSpot, Zoho, Bitrix, Google Sheets",
+          "sendFromCrm": "Enviar mensajes desde CRM",
+          "salesforce": "Integración Salesforce",
+          "revenueInbox": "Bandeja de Ingresos"
+        },
+        "cta": "Iniciar Prueba Gratis"
+      },
+      "scaler": {
+        "name": "Escalador",
+        "description": "Para equipos en crecimiento que necesitan integraciones avanzadas y automatización con IA.",
+        "features": {
+          "everythingInStarter": "Todo del Inicial",
+          "salesforce": "Integración Salesforce",
+          "webhooks": "Integraciones via webhook",
+          "customObjects": "Objetos personalizados en vista mini CRM",
+          "crmLabeling": "Etiquetado CRM-a-WhatsApp",
+          "aiUnreplied": "Agente de IA para chats no respondidos",
+          "dedicatedApis": "APIs dedicadas",
+          "crmWorkflow": "Integración de workflow CRM",
+          "revOpsAgent": "Agente RevOps"
+        },
+        "cta": "Iniciar Prueba Gratis"
+      },
+      "omnis": {
+        "name": "Omnis",
+        "description": "Operaciones de ingresos completas con agentes de IA e inteligencia WhatsApp completa.",
+        "features": {
+          "everythingInScaler": "Todo del Escalador",
+          "revenueInbox": "Bandeja de Ingresos",
+          "revOpsAgent": "Agente RevOps (IA)",
+          "copilot": "WhatsApp Web Copilot",
+          "groupBackup": "Respaldo de chat grupal WhatsApp",
+          "unlimitedSync": "Sincronización ilimitada de mensajes",
+          "syncToDeals": "Sincronizar mensajes a negocios/tickets",
+          "accountManager": "Gerente de cuenta dedicado"
+        },
+        "cta": "Contactar Ventas"
+      }
+    },
+    "comparisonFeatures": {
+      "teamInbox": "Bandeja de Entrada del Equipo",
+      "unlimitedLabels": "Etiquetas y embudos ilimitados",
+      "unlimitedQuickReplies": "Respuestas rápidas ilimitadas",
+      "unlimitedScheduledMessages": "Mensajes programados ilimitados",
+      "whatsappBackup": "Respaldo de chat WhatsApp",
+      "groupBackup": "Respaldo de chat grupal WhatsApp",
+      "unlimitedSync": "Sincronización ilimitada de mensajes",
+      "hubspot": "HubSpot",
+      "zoho": "Zoho CRM",
+      "bitrix": "Bitrix24",
+      "googleSheets": "Google Sheets",
+      "salesforce": "Salesforce",
+      "webhooks": "Integraciones via webhook",
+      "dedicatedApis": "APIs dedicadas",
+      "syncToDeals": "Sincronizar a negocios/tickets",
+      "sendFromCrm": "Enviar mensajes desde CRM",
+      "crmLabeling": "Etiquetado CRM-a-WhatsApp",
+      "customObjects": "Objetos personalizados en vista mini CRM",
+      "aiUnreplied": "Agente de IA para chats no respondidos",
+      "revenueInbox": "Bandeja de Ingresos",
+      "revOpsAgent": "Agente RevOps (IA)",
+      "copilot": "WhatsApp Web Copilot",
+      "crmWorkflow": "Integración de workflow CRM",
+      "bulkMessaging": "Mensajes masivos",
+      "autoCreateContacts": "Crear contactos automáticamente",
+      "emailSupport": "Soporte por email",
+      "prioritySupport": "Soporte prioritario",
+      "accountManager": "Gerente de cuenta dedicado",
+      "groupAssistance": "Asistencia de grupo WhatsApp",
+      "limited": "Limitado",
+      "categories": {
+        "coreFeatures": "Funciones Principales",
+        "crmIntegrations": "Integraciones CRM",
+        "intelligenceAi": "Inteligencia e IA",
+        "automation": "Automatización",
+        "support": "Soporte"
+      }
+    },
+    "faqItems": [
+      {
+        "question": "¿Puedo probar Eazybe gratis?",
+        "answer": "¡Sí! Ofrecemos una prueba gratis de 14 días en los planes Inicial y Escalador. Sin tarjeta de crédito. Puedes explorar todas las funciones y ver cómo Eazybe se integra con tu flujo de trabajo antes de comprometerte."
+      },
+      {
+        "question": "¿Qué es Bandeja de Ingresos?",
+        "answer": "Bandeja de Ingresos es nuestro dashboard inteligente que destaca las conversaciones de WhatsApp más importantes que necesitan atención. Usa IA para identificar negocios calientes, escalaciones y oportunidades que podrías perder en una bandeja de entrada ocupada."
+      },
+      {
+        "question": "¿Qué es Agente RevOps?",
+        "answer": "Agente RevOps es nuestro asistente con IA que automatiza tareas de operaciones de ingresos. Puede analizar conversaciones, actualizar registros del CRM, identificar riesgos de negocios y proporcionar insights accionables para ayudarte a cerrar más negocios."
+      },
+      {
+        "question": "¿Qué es WhatsApp Web Copilot?",
+        "answer": "WhatsApp Web Copilot es nuestro asistente de IA que funciona directamente en tu interfaz de WhatsApp Web. Te ayuda a redactar respuestas, resumir conversaciones y proporciona sugerencias en tiempo real para mejorar tu comunicación con clientes."
+      },
+      {
+        "question": "¿Cómo funciona el precio por usuario?",
+        "answer": "Pagas por cada miembro del equipo que usa activamente Eazybe. Un usuario es cualquiera que sincroniza sus conversaciones de WhatsApp con tu CRM. Los admins que solo ven datos no cuentan como usuarios."
+      },
+      {
+        "question": "¿Con qué CRMs se integran?",
+        "answer": "El plan Inicial se integra con HubSpot, Zoho CRM, Bitrix24 y Google Sheets. Escalador agrega Salesforce e integraciones via webhook para CRMs personalizados. Omnis incluye APIs dedicadas y sincronización a negocios/tickets."
+      },
+      {
+        "question": "¿Puedo cambiar de plan después?",
+        "answer": "¡Por supuesto! Puedes hacer upgrade o downgrade de tu plan en cualquier momento. Al hacer upgrade, obtienes acceso inmediato a las nuevas funciones. Al hacer downgrade, el cambio entra en efecto en tu próximo ciclo de facturación."
+      },
+      {
+        "question": "¿Mis datos están seguros?",
+        "answer": "Sí. Usamos encriptación de nivel bancario de 256 bits para todos los datos en tránsito y en reposo. Cumplimos con GDPR, somos socios verificados de Meta y pasamos por auditorías de seguridad regulares."
+      }
+    ],
+    "starter": {
+      "name": "Inicial",
+      "price": "0",
+      "description": "Perfecto para individuos comenzando con WhatsApp CRM",
+      "features": ["1 Usuario", "Respaldo en la Nube", "Plantillas de Respuesta Rápida", "Analíticas Básicas"]
+    },
+    "professional": {
+      "name": "Profesional",
+      "price": "15",
+      "description": "Para equipos en crecimiento que necesitan más poder",
+      "features": ["Hasta 10 Usuarios", "Bandeja de Entrada del Equipo", "Integraciones CRM", "Programador de Mensajes", "Analíticas Avanzadas"]
+    },
+    "business": {
+      "name": "Empresarial",
+      "price": "29",
+      "description": "Para empresas que necesitan funciones empresariales",
+      "features": ["Usuarios Ilimitados", "Acceso a API WhatsApp", "Bandeja de Ingresos", "Radar de Representantes", "Soporte Prioritario"]
+    }
+  },
+  "hero": {
+    "badge": "Listo para Despegar",
+    "headline": "Convierte WhatsApp en tu",
+    "headlineHighlight": "Motor de Ingresos",
+    "subheadline": "Únete a más de 2,000 equipos que finalmente ven lo que está pasando en el chat. Sincroniza conversaciones, automatiza flujos de trabajo y cierra tratos más rápido.",
+    "noCreditCard": "No se requiere tarjeta de crédito"
+  },
+  "home": {
+    "clientLogos": {
+      "trustedBy": "Confiado por Equipos de Ventas en"
+    },
+    "heroVisual": {
+      "whatsapp": "WhatsApp",
+      "hubspotCrm": "HubSpot CRM",
+      "dealStage": "Etapa del Negocio",
+      "negotiation": "Negociación",
+      "lastActivity": "Última Actividad",
+      "justNow": "AHORA MISMO",
+      "signalDetected": "Señal Detectada",
+      "alertMessage": "Lead mencionó <bold>precio</bold> pero no ha recibido respuesta en 2 horas.",
+      "createTask": "Crear Tarea: Enviar Precio",
+      "chatMessage1": "¿Puedes enviar el precio Enterprise? Queremos cerrar esta semana.",
+      "chatMessage2": "¡Claro! Enviando el PDF ahora. ¿Programamos una llamada para el viernes?"
+    },
+    "comparison": {
+      "personalWhatsApp": "WhatsApp Personal",
+      "businessApp": "WhatsApp Business App",
+      "businessApi": "WhatsApp Business API",
+      "capability": "Capacidad",
+      "otherTools": "Otras Herramientas"
+    },
+    "testimonial": {
+      "quote": "Pasamos de cero visibilidad en WhatsApp a ver cada chat sin responder y negocio caliente en un panel. Los tiempos de respuesta bajaron <highlight>40% en el primer mes.</highlight>",
+      "name": "Alex Richardson",
+      "title": "VP de Ventas • Servicios Financieros Empresariales"
+    },
+    "stats": {
+      "salesTeams": "Equipos de ventas",
+      "messagesSynced": "Mensajes sincronizados",
+      "fasterResponse": "Respuesta más rápida",
+      "setupTime": "Tiempo de configuración"
+    }
+  },
+  "security": {
+    "title": "Seguridad de Nivel Empresarial",
+    "subtitle": "Tus datos están protegidos con encriptación de nivel bancario y cumplimiento",
+    "gdpr": "Listo para GDPR",
+    "gdprDesc": "Procesamiento de Datos en Cumplimiento",
+    "encryption": "Seguridad Bancaria",
+    "encryptionDesc": "SSL y Encriptación de 256 bits",
+    "soc2": "SOC 2 Tipo II",
+    "soc2Desc": "Controles de Seguridad Auditados"
+  },
+  "features": {
+    "cloudBackup": {
+      "hero": {
+        "badge": "Respaldo en la Nube",
+        "headline": "Nunca Pierdas una",
+        "headlineHighlight": "Conversación Otra Vez",
+        "description": "Haz respaldo automático de todas tus conversaciones de WhatsApp en la nube. Accede a tu historial de chat desde cualquier lugar, en cualquier momento.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué Respaldo en la Nube?",
+        "headline": "Tus Conversaciones, Siempre Seguras",
+        "items": [
+          {
+            "title": "Sincronización Automática",
+            "description": "Todas las conversaciones se respaldan automáticamente en tiempo real en nuestros servidores seguros en la nube."
+          },
+          {
+            "title": "Acceso Multi-Dispositivo",
+            "description": "Accede a tu historial completo de conversaciones desde cualquier dispositivo, en cualquier parte del mundo."
+          },
+          {
+            "title": "Búsqueda Fácil",
+            "description": "Encuentra cualquier mensaje instantáneamente con nuestra potente búsqueda en todas tus conversaciones."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "Las Conversaciones Perdidas Te Cuestan Negocios",
+          "description": "Cuando pierdes conversaciones de WhatsApp, pierdes contexto valioso del cliente, historial de negocios e información de relaciones.",
+          "points": [
+            "¿Teléfono perdido o dañado? Todos los chats perdidos para siempre",
+            "¿Cambiaste de dispositivo? El respaldo manual es tedioso e incompleto",
+            "¿Se fue un miembro del equipo? Sus relaciones con clientes también se van"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Respaldo Automático y Seguro en la Nube",
+          "description": "Cada mensaje, archivo multimedia y conversación se sincroniza automáticamente en la nube en tiempo real.",
+          "points": [
+            "Sincronización en tiempo real - sin respaldos manuales",
+            "Encriptación de 256 bits para todos tus datos",
+            "Restaura conversaciones en cualquier dispositivo instantáneamente"
+          ]
+        },
+        {
+          "badge": "Búsqueda Avanzada",
+          "headline": "Encuentra Cualquier Mensaje en Segundos",
+          "description": "Nuestra potente búsqueda te permite encontrar cualquier conversación, contacto o mensaje instantáneamente.",
+          "points": [
+            "Búsqueda de texto completo en todas las conversaciones",
+            "Filtra por fecha, contacto o palabras clave",
+            "Busca dentro de archivos adjuntos y multimedia"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Mis datos están seguros?",
+            "answer": "Sí, todos los datos están encriptados con encriptación de 256 bits tanto en tránsito como en reposo. Cumplimos con GDPR y tenemos certificación SOC 2 Tipo II."
+          },
+          {
+            "question": "¿Con qué frecuencia se hacen los respaldos?",
+            "answer": "Los respaldos ocurren en tiempo real. Cada mensaje se sincroniza en la nube tan pronto como se envía o recibe."
+          },
+          {
+            "question": "¿Puedo restaurar en un teléfono nuevo?",
+            "answer": "Sí, puedes restaurar tu historial completo de conversaciones en cualquier dispositivo nuevo simplemente iniciando sesión en tu cuenta de Eazybe."
+          }
+        ]
+      }
+    },
+    "teamInbox": {
+      "hero": {
+        "badge": "Bandeja de Entrada del Equipo",
+        "headline": "Una Bandeja de Entrada para",
+        "headlineHighlight": "Todo Tu Equipo",
+        "description": "Colabora en conversaciones de WhatsApp como equipo. Asigna chats, agrega notas y nunca dejes escapar a un cliente.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué Bandeja de Entrada del Equipo?",
+        "headline": "Colabora Como Nunca Antes",
+        "items": [
+          {
+            "title": "Bandeja de Entrada Compartida",
+            "description": "Todos los miembros del equipo pueden ver y responder a las conversaciones de clientes desde una bandeja de entrada unificada."
+          },
+          {
+            "title": "Asignación Inteligente",
+            "description": "Asigna conversaciones automática o manualmente al miembro del equipo adecuado."
+          },
+          {
+            "title": "Notas Internas",
+            "description": "Agrega notas privadas a las conversaciones que solo tu equipo puede ver."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "Caos Sin Coordinación",
+          "description": "Cuando varios miembros del equipo manejan WhatsApp, las cosas se complican rápido.",
+          "points": [
+            "Respuestas duplicadas de diferentes miembros del equipo",
+            "Clientes que se escapan entre las grietas",
+            "Sin visibilidad de quién está manejando qué"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Colaboración Unificada del Equipo",
+          "description": "Una bandeja de entrada donde todos ven el panorama completo y saben exactamente quién está manejando qué.",
+          "points": [
+            "Ve todas las conversaciones en un solo lugar",
+            "Propiedad clara con asignaciones de chat",
+            "Actualizaciones en tiempo real cuando los compañeros responden"
+          ]
+        },
+        {
+          "badge": "Enrutamiento Inteligente",
+          "headline": "Lleva los Chats a la Persona Correcta",
+          "description": "Enruta conversaciones automáticamente basándote en reglas, palabras clave o asignación rotativa.",
+          "points": [
+            "Asignación automática basada en palabras clave o etiquetas de contacto",
+            "Distribución rotativa para carga de trabajo equitativa",
+            "Reglas de escalamiento para clientes prioritarios"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Cuántos miembros del equipo pueden usar la bandeja de entrada?",
+            "answer": "Depende de tu plan. Inicial soporta 1 usuario, Profesional hasta 10, y Empresarial ofrece usuarios ilimitados."
+          },
+          {
+            "question": "¿Los clientes pueden ver con quién están hablando?",
+            "answer": "No, los clientes tienen una experiencia perfecta. No saben si uno o varios miembros del equipo están manejando su conversación."
+          },
+          {
+            "question": "¿Puedo ver los tiempos de respuesta de mi equipo?",
+            "answer": "Sí, la Bandeja de Entrada del Equipo incluye análisis que muestran tiempos de respuesta, tasas de resolución y rendimiento individual de los miembros."
+          }
+        ]
+      }
+    },
+    "whatsappCrm": {
+      "hero": {
+        "badge": "WhatsApp CRM",
+        "headline": "Tu CRM, Dentro de",
+        "headlineHighlight": "WhatsApp",
+        "description": "Deja de cambiar entre aplicaciones. Gestiona contactos, rastrea negocios y cierra ventas directamente desde WhatsApp Web.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué WhatsApp CRM?",
+        "headline": "Todo Lo Que Necesitas, En Un Lugar",
+        "items": [
+          {
+            "title": "Gestión de Contactos",
+            "description": "Organiza contactos con etiquetas, notas y campos personalizados sin salir de WhatsApp."
+          },
+          {
+            "title": "Seguimiento de Negocios",
+            "description": "Rastrea negocios a través de tu pipeline y nunca pierdas de vista las oportunidades."
+          },
+          {
+            "title": "Sincronización CRM",
+            "description": "Sincronización bidireccional con Salesforce, HubSpot, Pipedrive y más."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "Cambiar de Contexto Mata la Productividad",
+          "description": "Saltar entre WhatsApp y tu CRM desperdicia tiempo y pierde contexto valioso.",
+          "points": [
+            "Copiar y pegar información de contactos entre apps",
+            "Perder actualizaciones de negocios mientras chateas",
+            "Sin contexto sobre con quién estás hablando"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Poder del CRM en WhatsApp",
+          "description": "Ve todo sobre un contacto directamente en tu ventana de chat. Actualiza negocios, agrega notas y gestiona relaciones sin cambiar de pestaña.",
+          "points": [
+            "Detalles del contacto visibles mientras chateas",
+            "Actualiza registros del CRM con un clic",
+            "Historial completo de conversaciones sincronizado con CRM"
+          ]
+        },
+        {
+          "badge": "Integraciones",
+          "headline": "Funciona Con Tus Herramientas",
+          "description": "Conecta con las herramientas que ya usas. La sincronización bidireccional mantiene todo en perfecta armonía.",
+          "points": [
+            "Salesforce, HubSpot, Pipedrive, Zoho",
+            "Google Sheets y Excel",
+            "Zapier para flujos personalizados"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Con qué CRMs se integran?",
+            "answer": "Nos integramos con Salesforce, HubSpot, Pipedrive, Zoho CRM y muchos más. También soportamos integraciones personalizadas vía Zapier."
+          },
+          {
+            "question": "¿La sincronización es en tiempo real?",
+            "answer": "Sí, los cambios se sincronizan instantáneamente entre WhatsApp y tu CRM. Sin retrasos, sin actualizaciones manuales."
+          },
+          {
+            "question": "¿Puedo personalizar los campos del CRM?",
+            "answer": "Por supuesto. Puedes crear campos, etiquetas y propiedades personalizadas para coincidir con tu proceso de ventas."
+          }
+        ]
+      }
+    },
+    "quickReply": {
+      "hero": {
+        "badge": "Plantillas de Respuesta Rápida",
+        "headline": "Responde Más Rápido con",
+        "headlineHighlight": "Plantillas Inteligentes",
+        "description": "Ahorra horas cada día con plantillas de mensajes preconstruidas. Personaliza instantáneamente con variables dinámicas.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué Respuesta Rápida?",
+        "headline": "Velocidad Sin Sacrificar Calidad",
+        "items": [
+          {
+            "title": "Respuestas Instantáneas",
+            "description": "Inserta mensajes completos con un solo atajo de teclado."
+          },
+          {
+            "title": "Personalización",
+            "description": "Variables dinámicas como {nombre} y {empresa} hacen que cada mensaje se sienta personal."
+          },
+          {
+            "title": "Consistencia del Equipo",
+            "description": "Plantillas compartidas aseguran que todos envíen mensajes alineados con la marca."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "Escribir Repetidamente Desperdicia Tiempo",
+          "description": "¿Cuántas veces escribes el mismo saludo, información de precios o mensaje de seguimiento?",
+          "points": [
+            "Escribiendo las mismas respuestas docenas de veces al día",
+            "Mensajes inconsistentes entre miembros del equipo",
+            "Tiempos de respuesta lentos perjudican conversiones"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Un Clic, Mensajes Perfectos",
+          "description": "Crea plantillas una vez, úsalas para siempre. Las variables dinámicas personalizan automáticamente cada mensaje.",
+          "points": [
+            "Escribe /plantilla para insertar cualquier mensaje guardado",
+            "Las variables se llenan automáticamente con datos del contacto",
+            "Organiza plantillas por categoría"
+          ]
+        },
+        {
+          "badge": "Plantillas de Equipo",
+          "headline": "Voz de Marca Consistente",
+          "description": "Comparte plantillas con tu equipo. Todos envían mensajes profesionales y alineados con la marca.",
+          "points": [
+            "Plantillas aprobadas por admin para control de calidad",
+            "Rastrea qué plantillas funcionan mejor",
+            "Prueba A/B diferentes variaciones de mensaje"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Cuántas plantillas puedo crear?",
+            "answer": "Plantillas ilimitadas en todos los planes. Organízalas con carpetas y categorías para fácil acceso."
+          },
+          {
+            "question": "¿Qué variables están disponibles?",
+            "answer": "Soportamos nombre del contacto, empresa, teléfono, email y cualquier campo personalizado que hayas creado en tu CRM."
+          },
+          {
+            "question": "¿Puedo compartir plantillas con mi equipo?",
+            "answer": "Sí, las plantillas de equipo se comparten entre todos los miembros. Los admins pueden aprobar plantillas antes de que estén disponibles para todos."
+          }
+        ]
+      }
+    },
+    "scheduler": {
+      "hero": {
+        "badge": "Programador de Mensajes",
+        "headline": "Envía Mensajes en el",
+        "headlineHighlight": "Momento Perfecto",
+        "description": "Programa mensajes de WhatsApp para enviar en el momento óptimo. Nunca pierdas un seguimiento otra vez.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué Programador de Mensajes?",
+        "headline": "El Timing es Todo",
+        "items": [
+          {
+            "title": "Timing Óptimo",
+            "description": "Programa mensajes para cuando tus clientes tienen más probabilidad de responder."
+          },
+          {
+            "title": "Nunca Olvides",
+            "description": "Configura seguimientos y recordatorios que se envían automáticamente."
+          },
+          {
+            "title": "Zonas Horarias",
+            "description": "Envía mensajes en la hora local correcta, en cualquier parte del mundo."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "Los Seguimientos Manuales Fallan",
+          "description": "Planeas hacer seguimiento, pero la vida se interpone. Los negocios se enfrían, las oportunidades se pierden.",
+          "points": [
+            "Olvidar hacer seguimiento en el momento correcto",
+            "Enviar mensajes cuando los clientes están durmiendo",
+            "Sin sistema para alcance consistente"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Programa y Olvida",
+          "description": "Escribe tu mensaje ahora, prográmalo para después. Nuestro sistema lo envía exactamente en el momento correcto.",
+          "points": [
+            "Elige cualquier fecha y hora para entrega",
+            "Mensajes recurrentes para check-ins regulares",
+            "Cancela o edita antes de que se envíe"
+          ]
+        },
+        {
+          "badge": "Timing Inteligente",
+          "headline": "Horarios de Envío con IA",
+          "description": "Nuestra IA analiza patrones de respuesta para sugerir el mejor momento para alcanzar a cada contacto.",
+          "points": [
+            "Aprende cuándo cada contacto está más activo",
+            "Detección automática de zona horaria",
+            "Tasas de respuesta más altas con timing óptimo"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Con cuánta anticipación puedo programar?",
+            "answer": "Puedes programar mensajes hasta con 1 año de anticipación. Perfecto para deseos de cumpleaños, recordatorios de renovación y check-ins anuales."
+          },
+          {
+            "question": "¿Qué pasa si necesito cancelar un mensaje programado?",
+            "answer": "Puedes ver, editar o cancelar cualquier mensaje programado en cualquier momento antes de que se envíe."
+          },
+          {
+            "question": "¿Funciona con chats grupales?",
+            "answer": "Sí, puedes programar mensajes para contactos individuales o chats grupales."
+          }
+        ]
+      }
+    },
+    "revenueInbox": {
+      "hero": {
+        "badge": "Bandeja de Ingresos",
+        "headline": "Prioriza Chats por",
+        "headlineHighlight": "Valor del Negocio",
+        "description": "Ve qué conversaciones valen más. Enfócate en oportunidades de alto valor y cierra negocios más grandes.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué Bandeja de Ingresos?",
+        "headline": "Enfócate en Lo Que Más Importa",
+        "items": [
+          {
+            "title": "Visibilidad de Valor",
+            "description": "Ve el valor potencial de cada conversación de un vistazo."
+          },
+          {
+            "title": "Priorización Inteligente",
+            "description": "Las conversaciones de alto valor automáticamente suben al tope."
+          },
+          {
+            "title": "Seguimiento de Ingresos",
+            "description": "Rastrea los ingresos generados a través de conversaciones de WhatsApp."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "No Todos los Chats Son Iguales",
+          "description": "Estás tratando una consulta de $100 igual que una oportunidad de $100,000. Eso te está costando dinero.",
+          "points": [
+            "Sin visibilidad del valor de la conversación",
+            "Pequeños negocios recibiendo la misma atención que grandes",
+            "Perdiendo oportunidades de alto valor en el ruido"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Bandeja de Entrada por Ingresos",
+          "description": "Cada conversación muestra su valor de negocio. Las grandes oportunidades reciben la atención que merecen.",
+          "points": [
+            "Valor del negocio mostrado en cada chat",
+            "Ordena la bandeja por potencial de ingresos",
+            "Indicadores VIP para cuentas principales"
+          ]
+        },
+        {
+          "badge": "Análisis de Ingresos",
+          "headline": "Rastrea Ingresos de WhatsApp",
+          "description": "Finalmente ve cuántos ingresos fluyen por WhatsApp. Rastrea negocios cerrados, valor del pipeline y tendencias.",
+          "points": [
+            "Atribución de ingresos a WhatsApp",
+            "Valor del pipeline en tiempo real",
+            "Tendencias mensuales y trimestrales"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Cómo sabe el valor del negocio?",
+            "answer": "Bandeja de Ingresos sincroniza con tu CRM para obtener valores de negocios automáticamente. También puedes etiquetar conversaciones con valores manualmente."
+          },
+          {
+            "question": "¿Puedo personalizar las reglas de priorización?",
+            "answer": "Sí, puedes configurar reglas personalizadas basadas en valor del negocio, etapa, tipo de contacto u cualquier otro criterio."
+          },
+          {
+            "question": "¿Funciona sin un CRM?",
+            "answer": "Sí, puedes asignar valores manualmente a las conversaciones o usar nuestro seguimiento de negocios integrado."
+          }
+        ]
+      }
+    },
+    "repRadar": {
+      "hero": {
+        "badge": "Radar de Representantes",
+        "headline": "Ve Lo Que Tu Equipo Está",
+        "headlineHighlight": "Realmente Haciendo",
+        "description": "Obtén visibilidad completa de la actividad de tu equipo de ventas en WhatsApp. Entrena efectivamente, mejora el rendimiento.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué Radar de Representantes?",
+        "headline": "La Visibilidad Impulsa el Rendimiento",
+        "items": [
+          {
+            "title": "Seguimiento de Actividad",
+            "description": "Ve mensajes enviados, tiempos de respuesta y resultados de conversaciones."
+          },
+          {
+            "title": "Métricas de Rendimiento",
+            "description": "Rastrea KPIs individuales y de equipo en tiempo real."
+          },
+          {
+            "title": "Insights de Coaching",
+            "description": "Identifica brechas de habilidades y oportunidades de coaching."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "WhatsApp es una Caja Negra",
+          "description": "Tu equipo pasa horas en WhatsApp pero no tienes idea de qué está pasando o cómo ayudarlos a mejorar.",
+          "points": [
+            "Sin visibilidad de la actividad diaria",
+            "No puedes medir el rendimiento de WhatsApp",
+            "Incapaz de entrenar efectivamente"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Visibilidad Completa de Actividad",
+          "description": "Ve cada métrica que importa. Tiempos de respuesta, conteo de mensajes, resultados de conversaciones y más.",
+          "points": [
+            "Dashboards de actividad en tiempo real",
+            "Scorecards individuales de representantes",
+            "Leaderboards y benchmarks del equipo"
+          ]
+        },
+        {
+          "badge": "Herramientas de Coaching",
+          "headline": "Convierte Datos en Mejora",
+          "description": "Usa insights para entrenar a tu equipo. Identifica top performers, comparte mejores prácticas y eleva a todos.",
+          "points": [
+            "Identifica performers altos y bajos",
+            "Ve qué plantillas funcionan mejor",
+            "Rastrea mejora a lo largo del tiempo"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Los representantes pueden ver sus propias métricas?",
+            "answer": "Sí, cada representante tiene su propio dashboard mostrando su rendimiento. Los gerentes ven la vista completa del equipo."
+          },
+          {
+            "question": "¿Qué métricas se rastrean?",
+            "answer": "Mensajes enviados, tiempo de respuesta, conversaciones manejadas, tasa de resolución, satisfacción del cliente y KPIs personalizados."
+          },
+          {
+            "question": "¿Es esto compatible con GDPR?",
+            "answer": "Sí, Radar de Representantes es totalmente compatible con GDPR. Puedes configurar qué datos se rastrean y por cuánto tiempo se retienen."
+          }
+        ]
+      }
+    },
+    "whatsappCopilot": {
+      "hero": {
+        "badge": "WhatsApp Copilot",
+        "headline": "IA Que Te Ayuda a",
+        "headlineHighlight": "Vender Mejor",
+        "description": "Obtén sugerencias, resúmenes e insights con IA directamente en WhatsApp. Cierra negocios más rápido con tu asistente de IA.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué WhatsApp Copilot?",
+        "headline": "Asistencia de Ventas con IA",
+        "items": [
+          {
+            "title": "Sugerencias Inteligentes",
+            "description": "Recibe sugerencias de respuesta generadas por IA basadas en el contexto de la conversación."
+          },
+          {
+            "title": "Resúmenes de Conversación",
+            "description": "Resume instantáneamente conversaciones largas para ponerte al día."
+          },
+          {
+            "title": "Análisis de Sentimiento",
+            "description": "Sabe cómo se sienten los clientes y adapta tu enfoque."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "Sobrecarga de Información",
+          "description": "Largos hilos de conversación, productos complejos y clientes exigentes hacen las conversaciones de ventas agotadoras.",
+          "points": [
+            "Desplazándote por historial de chat interminable",
+            "Olvidando detalles importantes en medio de la conversación",
+            "Sin saber qué decir"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Tu Asistente de Ventas con IA",
+          "description": "Copilot lee la conversación y sugiere la respuesta perfecta. Es como tener un coach de ventas en tu oído.",
+          "points": [
+            "Sugerencias de respuesta conscientes del contexto",
+            "Resúmenes de conversación con un clic",
+            "Sugerencias de manejo de objeciones"
+          ]
+        },
+        {
+          "badge": "Insights Inteligentes",
+          "headline": "Entiende a Cada Cliente",
+          "description": "Copilot analiza sentimiento, identifica señales de compra y sugiere la mejor siguiente acción.",
+          "points": [
+            "Análisis de sentimiento en tiempo real",
+            "Detección de señales de compra",
+            "Sugerencia de mejor siguiente acción"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Mis datos de conversación se usan para entrenar IA?",
+            "answer": "No, tus datos nunca se usan para entrenamiento. Todo el procesamiento de IA se hace de forma segura y privada."
+          },
+          {
+            "question": "¿Puedo personalizar las sugerencias de IA?",
+            "answer": "Sí, puedes entrenar a Copilot con tus productos, servicios y playbook de ventas para sugerencias más relevantes."
+          },
+          {
+            "question": "¿Qué idiomas soporta Copilot?",
+            "answer": "Copilot soporta más de 50 idiomas y puede incluso traducir mensajes en tiempo real."
+          }
+        ]
+      }
+    },
+    "whatsappApi": {
+      "hero": {
+        "badge": "Acceso a API WhatsApp",
+        "headline": "Integración WhatsApp",
+        "headlineHighlight": "de Nivel Empresarial",
+        "description": "Conéctate a la API oficial de WhatsApp Business. Envía notificaciones, automatiza flujos de trabajo y escala tus mensajes.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué API WhatsApp?",
+        "headline": "Escala Tus Operaciones WhatsApp",
+        "items": [
+          {
+            "title": "API Oficial",
+            "description": "Conéctate a la API oficial de WhatsApp Business de Meta con total cumplimiento."
+          },
+          {
+            "title": "Automatización",
+            "description": "Construye flujos de trabajo automatizados, chatbots y sistemas de notificación."
+          },
+          {
+            "title": "Alto Volumen",
+            "description": "Envía miles de mensajes por día sin restricciones."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "WhatsApp Web Tiene Límites",
+          "description": "WhatsApp regular no puede manejar volúmenes empresariales, automatización o requisitos de cumplimiento.",
+          "points": [
+            "Límites de tasa en mensajes",
+            "Sin API para automatización",
+            "Riesgos de cumplimiento para empresas"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "API Oficial, Cero Complicación",
+          "description": "Nosotros manejamos la complejidad de la API. Tú obtienes un dashboard simple para WhatsApp empresarial.",
+          "points": [
+            "Sin configuración técnica necesaria",
+            "Cuenta comercial verificada incluida",
+            "Total cumplimiento con políticas de Meta"
+          ]
+        },
+        {
+          "badge": "Herramientas de Desarrollador",
+          "headline": "Construye Lo Que Necesites",
+          "description": "API REST completa, webhooks y SDKs para integraciones personalizadas.",
+          "points": [
+            "API RESTful con documentación completa",
+            "Webhooks para eventos en tiempo real",
+            "SDKs para Node.js, Python y más"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Necesito aprobación de Meta?",
+            "answer": "Nosotros manejamos el proceso de aprobación por ti. La mayoría de las empresas son aprobadas en 24-48 horas."
+          },
+          {
+            "question": "¿Cuánto cuesta la API?",
+            "answer": "El precio de la API WhatsApp incluye tarifas basadas en conversación de Meta más nuestra tarifa de plataforma. Contáctanos para precios detallados."
+          },
+          {
+            "question": "¿Puedo usar plantillas para notificaciones?",
+            "answer": "Sí, puedes crear plantillas de mensaje pre-aprobadas para notificaciones, alertas y mensajes de marketing."
+          }
+        ]
+      }
+    },
+    "coexistence": {
+      "hero": {
+        "badge": "Modo de Coexistencia",
+        "headline": "Mantén Tus Chats Personales y",
+        "headlineHighlight": "de Trabajo Separados",
+        "description": "Usa Eazybe junto con tu WhatsApp personal. Las funciones de negocio solo se activan para contactos de trabajo.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué Coexistencia?",
+        "headline": "Lo Mejor de Ambos Mundos",
+        "items": [
+          {
+            "title": "Privacidad Primero",
+            "description": "Los chats personales permanecen completamente privados y sin rastrear."
+          },
+          {
+            "title": "Detección Inteligente",
+            "description": "Distingue automáticamente entre contactos personales y de trabajo."
+          },
+          {
+            "title": "App Única",
+            "description": "Sin necesidad de teléfono de trabajo separado o app WhatsApp Business."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "Trabajo y Vida Colisionan",
+          "description": "No quieres que tu empleador vea chats personales, pero necesitas herramientas de negocio para contactos de trabajo.",
+          "points": [
+            "Preocupaciones de privacidad con software de monitoreo",
+            "Llevar dos teléfonos es molesto",
+            "WhatsApp Business pierde tu historial de chat"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Separación Inteligente",
+          "description": "Eazybe solo se activa para contactos que designas como negocio. Los chats personales permanecen completamente intocados.",
+          "points": [
+            "Marca contactos como personales o de trabajo",
+            "Funciones de negocio solo para chats de trabajo",
+            "Conversaciones personales nunca sincronizadas"
+          ]
+        },
+        {
+          "badge": "Tu Privacidad",
+          "headline": "Tú Controlas Tus Datos",
+          "description": "Tú decides qué es negocio y qué es personal. Nosotros respetamos ese límite completamente.",
+          "points": [
+            "Controles de privacidad granulares",
+            "Log de auditoría de lo que se sincroniza",
+            "Fácil cambiar estado del contacto en cualquier momento"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Mi empleador puede ver chats personales?",
+            "answer": "No, absolutamente no. Los chats personales nunca se sincronizan, respaldan o son visibles para nadie más que tú."
+          },
+          {
+            "question": "¿Cómo marco contactos como personales?",
+            "answer": "Por defecto, los contactos son personales. Tú explícitamente optas contactos al modo de negocio para habilitar rastreo y funciones."
+          },
+          {
+            "question": "¿Qué pasa si accidentalmente marco un chat personal como negocio?",
+            "answer": "Puedes cambiar el estado en cualquier momento. Los datos sincronizados previamente pueden ser eliminados bajo solicitud."
+          }
+        ]
+      }
+    },
+    "templates": {
+      "hero": {
+        "badge": "Plantillas de Mensaje",
+        "headline": "Mensajes Profesionales",
+        "headlineHighlight": "Siempre",
+        "description": "Crea, gestiona y comparte plantillas de mensaje con tu equipo. Asegura comunicación consistente y profesional.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué Plantillas de Mensaje?",
+        "headline": "La Consistencia Construye Confianza",
+        "items": [
+          {
+            "title": "Consistencia de Marca",
+            "description": "Cada miembro del equipo envía mensajes profesionales y alineados con la marca."
+          },
+          {
+            "title": "Ahorro de Tiempo",
+            "description": "Deja de escribir los mismos mensajes una y otra vez."
+          },
+          {
+            "title": "Control de Calidad",
+            "description": "Los admins aprueban plantillas antes de que se usen."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "Mensajes Inconsistentes Perjudican",
+          "description": "Cada representante escribe sus propios mensajes. La calidad varía mucho y la voz de marca se pierde.",
+          "points": [
+            "Errores tipográficos y mensajes no profesionales",
+            "Diferentes representantes diciendo cosas diferentes",
+            "Sin forma de imponer estándares de calidad"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Biblioteca de Plantillas Centralizada",
+          "description": "Crea mensajes perfectos una vez. Compártelos con tu equipo. Asegura calidad cada vez.",
+          "points": [
+            "Plantillas con texto enriquecido y medios",
+            "Organiza por categoría y caso de uso",
+            "Historial de versiones y rollback"
+          ]
+        },
+        {
+          "badge": "Análisis de Plantillas",
+          "headline": "Ve Lo Que Funciona Mejor",
+          "description": "Rastrea qué plantillas obtienen las mejores respuestas. Duplica lo que funciona.",
+          "points": [
+            "Tasa de respuesta por plantilla",
+            "Prueba A/B de diferentes versiones",
+            "Análisis de uso del equipo"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Puedo incluir imágenes y archivos en plantillas?",
+            "answer": "Sí, las plantillas pueden incluir texto, imágenes, documentos e incluso compartir ubicación."
+          },
+          {
+            "question": "¿Cómo funcionan los flujos de aprobación?",
+            "answer": "Los admins pueden requerir aprobación para nuevas plantillas. Una vez aprobadas, están disponibles para todo el equipo."
+          },
+          {
+            "question": "¿Puedo importar plantillas existentes?",
+            "answer": "Sí, puedes importar plantillas desde archivos CSV o copiarlas de WhatsApp Business."
+          }
+        ]
+      }
+    },
+    "broadcast": {
+      "hero": {
+        "badge": "Mensajes de Difusión",
+        "headline": "Alcanza a Miles",
+        "headlineHighlight": "Personalmente",
+        "description": "Envía mensajes personalizados a miles de contactos a la vez. Marketing que se siente personal, a escala.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Cómo Funciona"
+      },
+      "benefits": {
+        "badge": "¿Por Qué Difusión?",
+        "headline": "Escala el Toque Personal",
+        "items": [
+          {
+            "title": "Personalización Masiva",
+            "description": "Cada mensaje se personaliza con detalles del contacto."
+          },
+          {
+            "title": "Segmentación Inteligente",
+            "description": "Alcanza la audiencia correcta con filtros y etiquetas."
+          },
+          {
+            "title": "Seguimiento de Entrega",
+            "description": "Ve quién recibió, leyó y respondió a tus mensajes."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "El Problema",
+          "headline": "Mensajes Masivos Se Sienten Spam",
+          "description": "Los mensajes genéricos de blast se ignoran o bloquean. Los mensajes personales no escalan.",
+          "points": [
+            "Bajas tasas de apertura en mensajes genéricos",
+            "Siendo bloqueado por contenido spam",
+            "No puedes personalizar a escala manualmente"
+          ]
+        },
+        {
+          "badge": "La Solución",
+          "headline": "Personalizado a Escala",
+          "description": "Envía a miles, pero cada mensaje está personalizado. Parece que lo escribiste solo para ellos.",
+          "points": [
+            "Campos de personalización dinámica",
+            "Tiempos de envío individuales por contacto",
+            "Las respuestas van a tu bandeja de entrada, no un blast"
+          ]
+        },
+        {
+          "badge": "Cumplimiento",
+          "headline": "Difunde Responsablemente",
+          "description": "Mantén cumplimiento con políticas de WhatsApp y regulaciones locales.",
+          "points": [
+            "Gestión de opt-in integrada",
+            "Manejo fácil de cancelaciones",
+            "Limitación de tasa para evitar baneos"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿A cuántas personas puedo enviar mensajes a la vez?",
+            "answer": "Con la API WhatsApp, puedes enviar a contactos ilimitados. Con WhatsApp Web, estás limitado a 256 por lista de difusión."
+          },
+          {
+            "question": "¿Seré baneado por hacer difusión?",
+            "answer": "No si sigues las mejores prácticas. Incluimos limitación de tasa, gestión de opt-in y herramientas de cumplimiento para mantenerte seguro."
+          },
+          {
+            "question": "¿Puedo programar difusiones?",
+            "answer": "Sí, puedes programar difusiones para cualquier fecha y hora futura, con sugerencias de horario óptimo de envío."
+          }
+        ]
+      }
+    }
+  },
+  "categoryIndex": {
+    "featuredTitle": "Destacado",
+    "moreOptions": "Más Opciones",
+    "learnMore": "Más información",
+    "features": {
+      "hero": {
+        "badge": "Funciones de la Plataforma",
+        "headline": "Todo Lo Que Necesitas para",
+        "headlineHighlight": "Ganar en WhatsApp",
+        "description": "Un conjunto completo de herramientas para convertir WhatsApp en tu canal de ventas más poderoso.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Demo"
+      },
+      "intro": {
+        "badge": "¿Por Qué Eazybe?",
+        "headline": "Hecho para Equipos de Ventas",
+        "description": "Cada función está diseñada para ayudarte a vender más y más rápido. Sin excesos, sin complejidad—solo las herramientas que necesitas."
+      },
+      "benefits": {
+        "badge": "Beneficios Clave",
+        "headline": "Lo Que Ganarás",
+        "items": [
+          {
+            "title": "Aumenta Conversiones",
+            "description": "Cierra más negocios con respuestas instantáneas y seguimientos personalizados."
+          },
+          {
+            "title": "Ahorra Tiempo",
+            "description": "Automatiza tareas repetitivas y enfócate en conversaciones de alto valor."
+          },
+          {
+            "title": "Visibilidad Total",
+            "description": "Ve cada conversación, rastrea cada negocio, entrena a cada representante."
+          }
+        ]
+      },
+      "howItWorks": {
+        "badge": "Cómo Funciona",
+        "headline": "Empieza en Minutos",
+        "steps": [
+          {
+            "title": "Conecta WhatsApp",
+            "description": "Vincula tu WhatsApp Web en menos de 2 minutos. Sin configuración de API."
+          },
+          {
+            "title": "Configura Tus Herramientas",
+            "description": "Configura plantillas, automatizaciones y roles del equipo."
+          },
+          {
+            "title": "Empieza a Vender",
+            "description": "Tu equipo está listo para cerrar más negocios en WhatsApp."
+          }
+        ]
+      },
+      "faq": {
+        "badge": "FAQ",
+        "headline": "Preguntas Frecuentes",
+        "items": [
+          {
+            "question": "¿Necesito una Cuenta WhatsApp Business?",
+            "answer": "No, Eazybe funciona con tu cuenta WhatsApp normal. No se necesita cuenta business separada."
+          },
+          {
+            "question": "¿Cuánto tiempo toma la configuración?",
+            "answer": "La mayoría de los equipos están funcionando en menos de 5 minutos. Solo escanea un código QR y listo."
+          },
+          {
+            "question": "¿Mis datos están seguros?",
+            "answer": "Sí, usamos encriptación de nivel bancario y cumplimos totalmente con GDPR."
+          }
+        ]
+      }
+    },
+    "integrations": {
+      "hero": {
+        "badge": "Integraciones",
+        "headline": "Conecta Tus",
+        "headlineHighlight": "Herramientas Favoritas",
+        "description": "Integra perfectamente WhatsApp con tu CRM, help desk y herramientas de negocio.",
+        "primaryCta": "Explorar Integraciones",
+        "secondaryCta": "Solicitar Integración"
+      }
+    },
+    "whatsappApi": {
+      "hero": {
+        "badge": "Soluciones de API WhatsApp",
+        "headline": "WhatsApp Empresarial",
+        "headlineHighlight": "Simplificado",
+        "description": "Accede al poder de la API WhatsApp Business sin la complejidad. Escala tus operaciones de mensajería.",
+        "primaryCta": "Empezar",
+        "secondaryCta": "Más Información"
+      }
+    }
+  },
+  "coexistencePage": {
+    "hero": {
+      "badge": "Modo de Coexistencia",
+      "headline": "Lo Mejor de Ambos",
+      "headlineHighlight": "Mundos de WhatsApp",
+      "description": "Obtén poder de nivel API mientras mantienes acceso a tu app WhatsApp. Sin compromisos, sin restricciones.",
+      "primaryCta": "Iniciar Prueba Gratis",
+      "secondaryCta": "Ver Cómo Funciona"
+    },
+    "benefits": {
+      "badge": "¿Por Qué Coexistencia?",
+      "headline": "Tenlo Todo",
+      "items": [
+        {
+          "title": "Mantén Tu App",
+          "description": "Continúa usando WhatsApp en tu teléfono mientras accedes a funciones de negocio."
+        },
+        {
+          "title": "Poder de API",
+          "description": "Obtén automatizaciones, integraciones y mensajes masivos sin perder acceso a la app."
+        },
+        {
+          "title": "Cero Tiempo Muerto",
+          "description": "Cambia instantáneamente. Sin esperar aprobación de Meta o configuración de API."
+        }
+      ]
+    },
+    "features": [
+      {
+        "badge": "Acceso Dual-Channel",
+        "headline": "Usa Ambos",
+        "headlineHighlight": "Simultáneamente",
+        "description": "Accede a WhatsApp desde tu teléfono Y a través de Eazybe. Ve todos los mensajes en todas partes.",
+        "points": [
+          "Los mensajes se sincronizan en todos los dispositivos",
+          "Responde desde el teléfono o escritorio",
+          "Nunca pierdas una conversación"
+        ]
+      },
+      {
+        "badge": "Difusión Sin Baneo",
+        "headline": "Difunde Sin",
+        "headlineHighlight": "Riesgo",
+        "description": "Envía mensajes masivos de forma segura usando nuestro sistema de envío inteligente que protege tu número.",
+        "points": [
+          "Limitación de tasa inteligente",
+          "Protección anti-baneo integrada",
+          "Envía miles de forma segura"
+        ]
+      },
+      {
+        "badge": "Conectado al CRM",
+        "headline": "Integración Completa",
+        "headlineHighlight": "con CRM",
+        "description": "Conecta con Salesforce, HubSpot y más mientras mantienes tu app WhatsApp activa.",
+        "points": [
+          "Sincronización bidireccional de datos",
+          "Log automático de conversaciones",
+          "Actualiza negocios desde el chat"
+        ]
+      }
+    ],
+    "comparison": {
+      "badge": "Comparación",
+      "headline": "Ve la Diferencia",
+      "description": "Cómo se compara la Coexistencia con los modelos tradicionales de WhatsApp.",
+      "features": {
+        "bulkBroadcasting": "Difusión Masiva",
+        "appAccess": "Acceso a la App",
+        "crmIntegration": "Integración CRM",
+        "seeMessagesOnPhone": "Ver Mensajes en el Teléfono",
+        "numberBanProtection": "Protección Contra Baneo",
+        "whatsappWebAccess": "Acceso a WhatsApp Web",
+        "setupTime": "Tiempo de Configuración"
+      },
+      "columns": {
+        "regular": "WhatsApp Normal",
+        "api": "API Estándar",
+        "coexistence": "Coexistencia"
+      },
+      "values": {
+        "risky": "Riesgoso",
+        "instant": "Instantáneo",
+        "weeks": "Días/Semanas",
+        "minutes": "Minutos",
+        "protected": "Protegido"
+      }
+    },
+    "faq": {
+      "badge": "FAQ",
+      "headline": "Preguntas Comunes",
+      "items": [
+        {
+          "question": "¿Qué es el modo Coexistencia?",
+          "answer": "Coexistencia te permite usar funciones de WhatsApp Business a través de nuestra plataforma mientras mantienes acceso total a tu app WhatsApp en el teléfono. Obtienes lo mejor de ambos mundos."
+        },
+        {
+          "question": "¿Perderé el acceso a mi app WhatsApp?",
+          "answer": "No, ¡ese es el punto! A diferencia de la API estándar que desconecta tu teléfono, la Coexistencia mantiene tu app totalmente funcional."
+        },
+        {
+          "question": "¿Es seguro para mi número de WhatsApp?",
+          "answer": "Sí, usamos patrones de envío inteligentes y limitación de tasa para mantener tu número seguro. Miles de usuarios hacen difusión diariamente sin problemas."
+        }
+      ]
+    }
+  },
+  "blog": {
+    "loading": "Cargando...",
+    "error": "Error al cargar posts del blog",
+    "errorPost": "Error al cargar post del blog",
+    "hero": {
+      "badge": "Centro de Conocimiento",
+      "headline": "Blog y",
+      "headlineHighlight": "Recursos",
+      "description": "Perspectivas de expertos, guías y mejores prácticas para el éxito con WhatsApp CRM. Domina el arte de las ventas conversacionales.",
+      "searchPlaceholder": "Buscar artículos..."
+    },
+    "featured": {
+      "title": "Artículo Destacado",
+      "badge": "Destacado"
+    },
+    "allArticles": {
+      "badge": "Explorar",
+      "title": "Todos los Artículos",
+      "articleSingular": "Artículo",
+      "articlePlural": "Artículos",
+      "emptyTitle": "No se encontraron artículos con tus criterios.",
+      "clearFilters": "Limpiar Filtros"
+    },
+    "categories": {
+      "all": "Todos"
+    },
+    "detail": {
+      "backToBlog": "Volver al Blog",
+      "minRead": "min de lectura",
+      "by": "Por",
+      "tocTitle": "En Este Artículo",
+      "summaryTitle": "Resumen",
+      "summarySubtitle": "Puntos clave de este artículo",
+      "faqTitle": "Preguntas Frecuentes",
+      "authorLabel": "Escrito por",
+      "authorFallback": "Equipo Editorial Eazybe",
+      "authorBioFallback": "Ayudando a empresas a transformar su comunicación por WhatsApp en ingresos."
+    },
+    "sidebar": {
+      "badge": "Prueba Gratis",
+      "headline": "Transforma Tus Ventas en WhatsApp",
+      "description": "Únete a más de 1,000 empresas usando Eazybe para gestionar conversaciones.",
+      "buttonText": "Iniciar Prueba Gratis",
+      "footnote": "Sin tarjeta de crédito"
+    },
+    "newsletter": {
+      "headline": "¿Te gustó este artículo?",
+      "description": "Recibe insights semanales sobre ventas en WhatsApp, tips de CRM y estrategias de crecimiento.",
+      "placeholder": "tu@email.com",
+      "buttonText": "Suscribirse"
+    },
+    "relatedPosts": {
+      "badge": "Sigue Leyendo",
+      "title": "Artículos Relacionados",
+      "viewAll": "Ver Todos"
+    }
+  },
+  "integrations": {
+    "loading": "Cargando...",
+    "badges": {
+      "whatsappIntegration": "Integración WhatsApp",
+      "certified": "Certificado"
+    },
+    "hero": {
+      "headlinePrefix": "La Integración Oficial",
+      "headlineSuffix": "con WhatsApp",
+      "description": "Deja de perder inteligencia de negocios en teléfonos personales. Cada mensaje, imagen y nota de voz se registra automáticamente en la Línea de Tiempo de Actividad de {crmName}.",
+      "feature1": "Sincronización en tiempo real para chats 1-1 y grupales.",
+      "feature2": "Asociación automática con Negocios y Tickets abiertos.",
+      "feature3": "Historial completo de conversaciones retenido cuando los representantes se van.",
+      "startTrial": "Iniciar Prueba Gratis de 7 Días",
+      "bookDemo": "Agendar Demo",
+      "metaPartner": "Socio de Negocios",
+      "appPartner": "Socio de App"
+    },
+    "miniCrm": {
+      "badge": "Mini CRM",
+      "headline": "Mini CRM en",
+      "description": "Accede a todo tu CRM {crmName} directamente en WhatsApp. Sin cambiar de pestaña, sin adivinar, sin fricción.",
+      "instantContext": "Contexto Instantáneo",
+      "pipelineManagement": "Gestión de Pipeline",
+      "quickActions": "Acciones Rápidas"
+    },
+    "properties": {
+      "badge": "Inteligencia del Sistema",
+      "headline1": "Sincroniza Campos de",
+      "headline2": "Engagement de Alta Intención",
+      "description": "Señales de engagement de WhatsApp mapeadas directamente en tu entorno {crmName}. Monitoreo activo habilitado."
+    },
+    "workflow": {
+      "badge": "Automatización de Workflow",
+      "headline1": "Chatbots Nativos y",
+      "headline2": "Workflows",
+      "description": "Agrega \"Enviar Mensaje WhatsApp\" como acción nativa en tus Workflows de {crmName}. Escala tu alcance sin perder el toque personal.",
+      "autoTriggers": "Disparadores Automáticos",
+      "autoTriggersDesc": "Envía plantillas de WhatsApp basadas en cualquier disparador de inscripción de {crmName}.",
+      "nativeActions": "Acciones Nativas",
+      "nativeActionsDesc": "Eazybe aparece como una acción estándar dentro de tu constructor de workflows."
+    },
+    "reports": {
+      "badge": "Visibilidad",
+      "headline1": "Datos de WhatsApp en",
+      "headline2": "Reportes",
+      "description": "Una única fuente de verdad. Reporta el engagement de WhatsApp en Contactos, Negocios y Tickets usando las herramientas de reportes estándar de {crmName}.",
+      "teamPerformance": "Rendimiento del Equipo",
+      "teamPerformanceDesc": "Analiza tiempos de respuesta por Propietario en todos los chats de WhatsApp.",
+      "dealAttribution": "Atribución de Negocios",
+      "dealAttributionDesc": "Correlaciona el volumen de mensajes de WhatsApp con las tasas de cierre.",
+      "ticketResolution": "Resolución de Tickets",
+      "ticketResolutionDesc": "Mide la eficiencia del soporte a través del canal de WhatsApp."
+    },
+    "comparison": {
+      "badge": "Por qué equipos cambian a Eazybe",
+      "headline1": "Funciona con el",
+      "headline2": "WhatsApp que",
+      "headline3": "ya usas",
+      "description": "Otras herramientas te obligan a abandonar WhatsApp Business App y migrar solo a API. Eazybe funciona con ambos—mantén tu configuración existente, tu historial de chat y tu flujo de trabajo.",
+      "personalWhatsApp": "WhatsApp Personal",
+      "businessApp": "WhatsApp Business App",
+      "businessApi": "WhatsApp Business API",
+      "capability": "Capacidad",
+      "otherTools": "Otras Herramientas",
+      "feature1": "WhatsApp Business App",
+      "feature2": "WhatsApp Business API",
+      "feature3": "Mantener historial de chat existente",
+      "feature4": "Rastrear números personales de WhatsApp",
+      "feature5": "Listo en 30 minutos"
+    },
+    "faq": {
+      "badge": "FAQ",
+      "headline": "Preguntas Comunes"
+    },
+    "cta": {
+      "badge": "Empezar",
+      "headline": "¿Listo para Transformar Tu",
+      "headlineHighlight": "Flujo de WhatsApp?",
+      "description": "Únete a miles de empresas usando Eazybe para integración con {crmName}.",
+      "primaryCta": "Iniciar Prueba Gratis",
+      "secondaryCta": "Hablar con Ventas",
+      "footnote": "Prueba gratis de 14 días • Sin tarjeta de crédito"
+    }
+  }
+}

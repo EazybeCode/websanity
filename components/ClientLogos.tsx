@@ -1,16 +1,19 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const logos = [
-  "Apollo Hospitals", "University Living", "Jodopay", "Avendus", 
+  "Apollo Hospitals", "University Living", "Jodopay", "Avendus",
   "Lion Parcel", "Casita", "Hurst Capital", "Insuright"
 ];
 
 export const ClientLogos: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="py-12 border-b border-slate-100 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400 font-bold">
-          Trusted by Sales Teams at
+          {t('home.clientLogos.trustedBy')}
         </p>
       </div>
       

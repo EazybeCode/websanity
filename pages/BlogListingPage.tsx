@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Search, Calendar, Clock, Zap } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { ChunkyFooter } from '../components/footer/ChunkyFooter';
@@ -106,10 +107,11 @@ const FeaturedBlogCard: React.FC<{ post: any; badgeText?: string; minReadSuffix?
 };
 
 const BlogListingPage: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  // TODO: Get language from URL path or context (e.g., /br/blog, /es/blog)
-  const language = 'en';
+  // Get language from i18n
+  const language = i18n.language || 'en';
   const { data: allPosts, loading: postsLoading, error: postsError } = useBlogPosts(undefined, language);
   const { data: blogIndex, loading: indexLoading } = useBlogIndex(language);
 
@@ -171,7 +173,7 @@ const BlogListingPage: React.FC = () => {
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-400">Loading...</p>
+          <p className="text-slate-400">{t('blog.loading')}</p>
         </div>
       </div>
     );
@@ -181,18 +183,18 @@ const BlogListingPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center text-red-400">
-          <p>Error loading blog posts</p>
+          <p>{t('blog.error')}</p>
           <p className="text-sm mt-2">{postsError.message}</p>
         </div>
       </div>
     );
   }
 
-  // Get content from Sanity with fallbacks
+  // Get content from Sanity with translation fallbacks
   const hero = blogIndex?.hero || {};
   const allArticlesSection = blogIndex?.allArticlesSection || {};
   const featuredSection = blogIndex?.featuredSection || {};
-  const minReadSuffix = blogIndex?.detailLabels?.minReadSuffix || 'min read';
+  const minReadSuffix = blogIndex?.detailLabels?.minReadSuffix || t('blog.detail.minRead');
 
   return (
     <div className="min-h-screen font-sans bg-brand-black text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
@@ -206,14 +208,14 @@ const BlogListingPage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 text-center">
           <SectionBadge variant="cyan" className="mb-6">
-            {hero.badge || 'Knowledge Hub'}
+            {hero.badge || t('blog.hero.badge')}
           </SectionBadge>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1] mb-6">
-            {hero.headline || 'Blog &'}{' '}
-            <span className="text-brand-cyan">{hero.headlineHighlight || 'Resources'}</span>
+            {hero.headline || t('blog.hero.headline')}{' '}
+            <span className="text-brand-cyan">{hero.headlineHighlight || t('blog.hero.headlineHighlight')}</span>
           </h1>
           <p className="max-w-2xl mx-auto text-lg text-slate-400 leading-relaxed mb-10">
-            {hero.description || 'Expert insights, guides, and best practices for WhatsApp CRM success. Master the art of conversational sales.'}
+            {hero.description || t('blog.hero.description')}
           </p>
 
           <div className="max-w-xl mx-auto relative group">
@@ -222,7 +224,7 @@ const BlogListingPage: React.FC = () => {
             </div>
             <input
               type="text"
-              placeholder={hero.searchPlaceholder || 'Search articles...'}
+              placeholder={hero.searchPlaceholder || t('blog.hero.searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-brand-surface border border-slate-700 focus:border-brand-cyan focus:outline-none focus:ring-1 focus:ring-brand-cyan rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-slate-500 transition-all shadow-xl"
@@ -259,12 +261,12 @@ const BlogListingPage: React.FC = () => {
             <div className="flex items-center gap-3 mb-8">
               <Zap className="text-brand-cyan" size={20} />
               <h2 className="text-2xl font-bold text-white tracking-tight">
-                {featuredSection.title || 'Featured Article'}
+                {featuredSection.title || t('blog.featured.title')}
               </h2>
             </div>
             <FeaturedBlogCard
               post={featuredPost}
-              badgeText={featuredSection.badgeText || 'Featured'}
+              badgeText={featuredSection.badgeText || t('blog.featured.badge')}
               minReadSuffix={minReadSuffix}
             />
           </div>
@@ -278,27 +280,27 @@ const BlogListingPage: React.FC = () => {
           <div className="flex items-center justify-between mb-10">
             <div>
               <SectionBadge variant="cyan" className="mb-4">
-                {allArticlesSection.badge || 'Browse'}
+                {allArticlesSection.badge || t('blog.allArticles.badge')}
               </SectionBadge>
               <h2 className="text-3xl font-bold text-white tracking-tight">
-                {allArticlesSection.title || 'All Articles'}
+                {allArticlesSection.title || t('blog.allArticles.title')}
               </h2>
             </div>
             <p className="hidden md:block text-slate-500 font-mono text-xs font-bold uppercase tracking-widest">
-              {filteredPosts.length} {filteredPosts.length === 1 ? 'Article' : 'Articles'}
+              {filteredPosts.length} {filteredPosts.length === 1 ? t('blog.allArticles.articleSingular') : t('blog.allArticles.articlePlural')}
             </p>
           </div>
 
           {filteredPosts.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-slate-400 text-lg mb-4">
-                {allArticlesSection.emptyStateTitle || 'No articles found matching your criteria.'}
+                {allArticlesSection.emptyStateTitle || t('blog.allArticles.emptyTitle')}
               </p>
               <button
                 onClick={() => { setActiveCategory('All'); setSearchQuery(''); }}
                 className="px-6 py-2 rounded-lg border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition-all"
               >
-                {allArticlesSection.emptyStateButton || 'Clear Filters'}
+                {allArticlesSection.emptyStateButton || t('blog.allArticles.clearFilters')}
               </button>
             </div>
           ) : (

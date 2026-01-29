@@ -1,13 +1,16 @@
 import React from 'react';
-
-const stats = [
-    { value: "2,000+", label: "Sales teams" },
-    { value: "10M+", label: "Messages synced" },
-    { value: "40%", label: "Faster response" },
-    { value: "30 min", label: "Setup time" }
-];
+import { useTranslation } from 'react-i18next';
 
 export const Stats: React.FC = () => {
+  const { t } = useTranslation();
+
+  const stats = [
+    { value: "2,000+", label: t('home.stats.salesTeams') },
+    { value: "10M+", label: t('home.stats.messagesSynced') },
+    { value: "40%", label: t('home.stats.fasterResponse') },
+    { value: "30 min", label: t('home.stats.setupTime') }
+  ];
+
   return (
     <section className="py-20 border-y border-slate-200 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ExternalLink } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '../ui/Button'
+import { LanguageSwitcher } from './LanguageSwitcher'
+import { ThemeToggle } from './ThemeToggle'
 import type { NavItem, NavigationData } from '../../hooks/useNavigation'
 
 interface MobileMenuProps {
@@ -158,6 +161,8 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   ctaButton,
   signInButton,
 }) => {
+  const { t } = useTranslation()
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -172,6 +177,13 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
             {items.map((item) => (
               <AccordionItem key={item._key} item={item} onClose={onClose} />
             ))}
+
+            <motion.div variants={itemVariants} className="flex gap-3 px-2 pt-4">
+              <div className="flex-1">
+                <LanguageSwitcher variant="mobile" />
+              </div>
+              <ThemeToggle variant="mobile" />
+            </motion.div>
 
             <motion.div
               variants={itemVariants}
@@ -189,7 +201,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                     onClose()
                   }}
                 >
-                  {signInButton.label || 'Sign In'}
+                  {t('nav.signIn')}
                 </Button>
               )}
               {ctaButton && (
@@ -204,7 +216,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                     onClose()
                   }}
                 >
-                  {ctaButton.label || 'Get Started'}
+                  {t('nav.startFreeTrial')}
                 </Button>
               )}
             </motion.div>

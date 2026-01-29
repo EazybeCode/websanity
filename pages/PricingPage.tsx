@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ArrowRight, Shield, Zap, Clock, MessageSquare, HelpCircle } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
@@ -7,6 +8,7 @@ import { Button } from '../components/ui/Button'
 import { PricingToggle, PricingCard, FeatureComparisonTable, PricingFAQ } from '../components/pricing'
 import type { PricingPlan, FAQItem } from '../components/pricing'
 import { usePricing } from '../hooks/usePricing'
+import { useLanguage } from '../hooks/useLanguage'
 
 // Default/Fallback Data
 const defaultPricingPlans: PricingPlan[] = [
@@ -156,19 +158,86 @@ const trustIconMap: Record<string, React.ReactNode> = {
 }
 
 export const PricingPage: React.FC = () => {
+  const { t } = useTranslation()
+  const { currentLanguage } = useLanguage()
   const [isAnnual, setIsAnnual] = useState(true)
-  const { data: pricingData, loading } = usePricing('en')
+  const { data: pricingData, loading } = usePricing(currentLanguage)
 
-  // Use Sanity data if available, otherwise use defaults
+  // Use Sanity data if available, otherwise use translated defaults
   const hero = pricingData?.hero || {
-    badge: 'Simple, Transparent Pricing',
-    headline: 'Start free. Scale as',
-    headlineHighlight: 'you grow.',
-    subheadline: 'No hidden fees. No per-message charges. Just simple per-user pricing that scales with your team.',
-    billingToggleMonthly: 'Monthly',
-    billingToggleAnnual: 'Annual',
-    saveBadgeText: 'Save 20%',
+    badge: t('pricing.badge'),
+    headline: t('pricing.headline'),
+    headlineHighlight: t('pricing.headlineHighlight'),
+    subheadline: t('pricing.subheadline'),
+    billingToggleMonthly: t('common.monthly'),
+    billingToggleAnnual: t('common.annual'),
+    saveBadgeText: `${t('common.save')} 20%`,
   }
+
+  // Create translated default pricing plans
+  const translatedDefaultPlans: PricingPlan[] = [
+    {
+      name: t('pricing.plans.starter.name'),
+      description: t('pricing.plans.starter.description'),
+      monthlyPrice: 13,
+      annualPrice: 10,
+      currency: '$',
+      icon: 'starter',
+      features: [
+        { text: t('pricing.plans.starter.features.teamInbox'), included: true, highlight: true },
+        { text: t('pricing.plans.starter.features.unlimitedLabels'), included: true },
+        { text: t('pricing.plans.starter.features.unlimitedQuickReplies'), included: true },
+        { text: t('pricing.plans.starter.features.unlimitedScheduledMessages'), included: true },
+        { text: t('pricing.plans.starter.features.whatsappBackup'), included: true },
+        { text: t('pricing.plans.starter.features.crmIntegrations'), included: true, highlight: true },
+        { text: t('pricing.plans.starter.features.sendFromCrm'), included: true },
+        { text: t('pricing.plans.starter.features.salesforce'), included: false },
+        { text: t('pricing.plans.starter.features.revenueInbox'), included: false },
+      ],
+      cta: { label: t('pricing.plans.starter.cta'), url: '/signup?plan=starter' },
+    },
+    {
+      name: t('pricing.plans.scaler.name'),
+      description: t('pricing.plans.scaler.description'),
+      monthlyPrice: 19,
+      annualPrice: 15,
+      currency: '$',
+      icon: 'growth',
+      popular: true,
+      features: [
+        { text: t('pricing.plans.scaler.features.everythingInStarter'), included: true },
+        { text: t('pricing.plans.scaler.features.salesforce'), included: true, highlight: true },
+        { text: t('pricing.plans.scaler.features.webhooks'), included: true, highlight: true },
+        { text: t('pricing.plans.scaler.features.customObjects'), included: true },
+        { text: t('pricing.plans.scaler.features.crmLabeling'), included: true },
+        { text: t('pricing.plans.scaler.features.aiUnreplied'), included: true, highlight: true },
+        { text: t('pricing.plans.scaler.features.dedicatedApis'), included: true },
+        { text: t('pricing.plans.scaler.features.crmWorkflow'), included: true },
+        { text: t('pricing.plans.scaler.features.revOpsAgent'), included: false },
+      ],
+      cta: { label: t('pricing.plans.scaler.cta'), url: '/signup?plan=scaler' },
+    },
+    {
+      name: t('pricing.plans.omnis.name'),
+      description: t('pricing.plans.omnis.description'),
+      monthlyPrice: 0,
+      annualPrice: 0,
+      currency: '$',
+      icon: 'enterprise',
+      enterprise: true,
+      features: [
+        { text: t('pricing.plans.omnis.features.everythingInScaler'), included: true },
+        { text: t('pricing.plans.omnis.features.revenueInbox'), included: true, highlight: true },
+        { text: t('pricing.plans.omnis.features.revOpsAgent'), included: true, highlight: true },
+        { text: t('pricing.plans.omnis.features.copilot'), included: true, highlight: true },
+        { text: t('pricing.plans.omnis.features.groupBackup'), included: true },
+        { text: t('pricing.plans.omnis.features.unlimitedSync'), included: true },
+        { text: t('pricing.plans.omnis.features.syncToDeals'), included: true },
+        { text: t('pricing.plans.omnis.features.accountManager'), included: true },
+      ],
+      cta: { label: t('pricing.plans.omnis.cta'), url: '/contact?plan=omnis' },
+    },
+  ]
 
   const pricingPlans: PricingPlan[] = pricingData?.plans?.map((plan) => ({
     name: plan.name,
@@ -185,20 +254,53 @@ export const PricingPage: React.FC = () => {
       highlight: f.highlight,
     })),
     cta: plan.cta,
-  })) || defaultPricingPlans
+  })) || translatedDefaultPlans
 
   const trustSignals = pricingData?.trustSignals || [
-    { icon: 'shield', text: 'GDPR Compliant' },
-    { icon: 'zap', text: 'Setup in 5 minutes' },
-    { icon: 'clock', text: '14-day free trial' },
-    { icon: 'message', text: 'No credit card required' },
+    { icon: 'shield', text: t('pricing.trustSignals.gdprCompliant') },
+    { icon: 'zap', text: t('pricing.trustSignals.setupTime') },
+    { icon: 'clock', text: t('pricing.trustSignals.freeTrial') },
+    { icon: 'message', text: t('pricing.trustSignals.noCreditCard') },
   ]
 
   const comparisonSection = pricingData?.comparisonSection || {
-    badge: 'Full Comparison',
-    title: 'Compare all features',
-    subtitle: "Everything you need to know about what's included in each plan.",
+    badge: t('pricing.comparison.badge'),
+    title: t('pricing.comparison.title'),
+    subtitle: t('pricing.comparison.subtitle'),
   }
+
+  // Create translated default comparison features
+  const translatedDefaultComparisonFeatures = [
+    { feature: t('pricing.comparisonFeatures.teamInbox'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.coreFeatures') },
+    { feature: t('pricing.comparisonFeatures.unlimitedLabels'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.coreFeatures') },
+    { feature: t('pricing.comparisonFeatures.unlimitedQuickReplies'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.coreFeatures') },
+    { feature: t('pricing.comparisonFeatures.unlimitedScheduledMessages'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.coreFeatures') },
+    { feature: t('pricing.comparisonFeatures.whatsappBackup'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.coreFeatures') },
+    { feature: t('pricing.comparisonFeatures.groupBackup'), starter: 'false', scaler: 'false', omnis: 'true', category: t('pricing.comparisonFeatures.categories.coreFeatures') },
+    { feature: t('pricing.comparisonFeatures.unlimitedSync'), starter: t('pricing.comparisonFeatures.limited'), scaler: t('pricing.comparisonFeatures.limited'), omnis: 'true', category: t('pricing.comparisonFeatures.categories.coreFeatures') },
+    { feature: t('pricing.comparisonFeatures.hubspot'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.crmIntegrations') },
+    { feature: t('pricing.comparisonFeatures.zoho'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.crmIntegrations') },
+    { feature: t('pricing.comparisonFeatures.bitrix'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.crmIntegrations') },
+    { feature: t('pricing.comparisonFeatures.googleSheets'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.crmIntegrations') },
+    { feature: t('pricing.comparisonFeatures.salesforce'), starter: 'false', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.crmIntegrations') },
+    { feature: t('pricing.comparisonFeatures.webhooks'), starter: 'false', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.crmIntegrations') },
+    { feature: t('pricing.comparisonFeatures.dedicatedApis'), starter: 'false', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.crmIntegrations') },
+    { feature: t('pricing.comparisonFeatures.syncToDeals'), starter: 'false', scaler: 'false', omnis: 'true', category: t('pricing.comparisonFeatures.categories.crmIntegrations') },
+    { feature: t('pricing.comparisonFeatures.sendFromCrm'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.intelligenceAi') },
+    { feature: t('pricing.comparisonFeatures.crmLabeling'), starter: 'false', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.intelligenceAi') },
+    { feature: t('pricing.comparisonFeatures.customObjects'), starter: 'false', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.intelligenceAi') },
+    { feature: t('pricing.comparisonFeatures.aiUnreplied'), starter: 'false', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.intelligenceAi') },
+    { feature: t('pricing.comparisonFeatures.revenueInbox'), starter: 'false', scaler: 'false', omnis: 'true', category: t('pricing.comparisonFeatures.categories.intelligenceAi') },
+    { feature: t('pricing.comparisonFeatures.revOpsAgent'), starter: 'false', scaler: 'false', omnis: 'true', category: t('pricing.comparisonFeatures.categories.intelligenceAi') },
+    { feature: t('pricing.comparisonFeatures.copilot'), starter: 'false', scaler: 'false', omnis: 'true', category: t('pricing.comparisonFeatures.categories.intelligenceAi') },
+    { feature: t('pricing.comparisonFeatures.crmWorkflow'), starter: 'false', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.automation') },
+    { feature: t('pricing.comparisonFeatures.bulkMessaging'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.automation') },
+    { feature: t('pricing.comparisonFeatures.autoCreateContacts'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.automation') },
+    { feature: t('pricing.comparisonFeatures.emailSupport'), starter: 'true', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.support') },
+    { feature: t('pricing.comparisonFeatures.prioritySupport'), starter: 'false', scaler: 'true', omnis: 'true', category: t('pricing.comparisonFeatures.categories.support') },
+    { feature: t('pricing.comparisonFeatures.accountManager'), starter: 'false', scaler: 'false', omnis: 'true', category: t('pricing.comparisonFeatures.categories.support') },
+    { feature: t('pricing.comparisonFeatures.groupAssistance'), starter: 'false', scaler: 'false', omnis: 'true', category: t('pricing.comparisonFeatures.categories.support') },
+  ]
 
   const comparisonFeatures = pricingData?.comparisonSection?.features?.map((f) => ({
     feature: f.feature,
@@ -206,7 +308,7 @@ export const PricingPage: React.FC = () => {
     starter: parseComparisonValue(f.starter),
     scaler: parseComparisonValue(f.scaler),
     omnis: parseComparisonValue(f.omnis),
-  })) || defaultComparisonFeatures.map((f) => ({
+  })) || translatedDefaultComparisonFeatures.map((f) => ({
     ...f,
     starter: parseComparisonValue(f.starter),
     scaler: parseComparisonValue(f.scaler),
@@ -214,24 +316,24 @@ export const PricingPage: React.FC = () => {
   }))
 
   const faqSection = pricingData?.faqSection || {
-    badge: 'Questions & Answers',
-    title: 'Frequently asked questions',
-    subtitle: "Can't find what you're looking for?",
-    contactLinkText: 'Contact our team',
+    badge: t('pricing.faq.badge'),
+    title: t('pricing.faq.title'),
+    subtitle: t('pricing.faq.subtitle'),
+    contactLinkText: t('pricing.faq.contactLinkText'),
   }
 
   const faqItems: FAQItem[] = pricingData?.faqSection?.faqs?.map((f) => ({
     question: f.question,
     answer: f.answer,
-  })) || defaultFaqItems
+  })) || (t('pricing.faqItems', { returnObjects: true }) as FAQItem[])
 
   const ctaSection = pricingData?.ctaSection || {
-    headline: 'Ready to turn WhatsApp into your',
-    headlineHighlight: 'revenue engine?',
-    subheadline: 'Join 2,000+ teams who sync every conversation, automate follow-ups, and close deals faster.',
-    primaryCta: { label: 'Start Free Trial', url: '/signup' },
-    secondaryCta: { label: 'Book a Demo', url: '/demo' },
-    footnote: 'Free 14-day trial • No credit card required • Cancel anytime',
+    headline: t('hero.headline'),
+    headlineHighlight: t('hero.headlineHighlight'),
+    subheadline: t('hero.subheadline'),
+    primaryCta: { label: t('cta.startFreeTrial'), url: '/signup' },
+    secondaryCta: { label: t('cta.bookDemo'), url: '/demo' },
+    footnote: t('hero.noCreditCard'),
   }
 
   if (loading) {
@@ -239,7 +341,7 @@ export const PricingPage: React.FC = () => {
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-400">Loading...</p>
+          <p className="text-slate-400">{t('common.loading')}</p>
         </div>
       </div>
     )

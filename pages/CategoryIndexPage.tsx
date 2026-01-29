@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import {
   ArrowRight,
@@ -114,7 +115,7 @@ const IntroSection: React.FC<{ data: any }> = ({ data }) => {
 
 // ================== Featured Items Grid ==================
 
-const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ items, category }) => {
+const FeaturedItemsSection: React.FC<{ items: any[]; category: string; t: (key: string) => string }> = ({ items, category, t }) => {
   if (!items || items.length === 0) return null
 
   const getBasePath = () => {
@@ -135,7 +136,7 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
         {featuredItems.length > 0 && (
           <>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white">Featured</h2>
+              <h2 className="text-3xl font-bold text-white">{t('categoryIndex.featuredTitle')}</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {featuredItems.map((item, idx) => (
@@ -170,7 +171,7 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
                   <p className="text-slate-400 mb-4">{item.description}</p>
 
                   <div className="flex items-center text-cyan-500 font-medium text-sm group-hover:translate-x-1 transition-transform">
-                    Learn more <ArrowRight className="ml-2 w-4 h-4" />
+                    {t('categoryIndex.learnMore')} <ArrowRight className="ml-2 w-4 h-4" />
                   </div>
                 </Link>
               ))}
@@ -182,7 +183,7 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
         {otherItems.length > 0 && (
           <>
             <div className="text-center mb-12">
-              <h2 className="text-2xl font-bold text-white">More Options</h2>
+              <h2 className="text-2xl font-bold text-white">{t('categoryIndex.moreOptions')}</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {otherItems.map((item, idx) => (
@@ -391,9 +392,58 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
+// ================== Translation Helper ==================
+
+const getTranslatedCategoryData = (slug: string, t: (key: string, options?: any) => any) => {
+  const categoryKeyMap: Record<string, string> = {
+    'features': 'features',
+    'integrations': 'integrations',
+    'whatsapp-api': 'whatsappApi'
+  }
+
+  const categoryKey = categoryKeyMap[slug]
+  if (!categoryKey) return null
+
+  // Check if translations exist
+  const heroData = t(`categoryIndex.${categoryKey}.hero`, { returnObjects: true })
+  if (typeof heroData === 'string') return null
+
+  return {
+    hero: {
+      badge: t(`categoryIndex.${categoryKey}.hero.badge`),
+      headline: t(`categoryIndex.${categoryKey}.hero.headline`),
+      headlineHighlight: t(`categoryIndex.${categoryKey}.hero.headlineHighlight`),
+      description: t(`categoryIndex.${categoryKey}.hero.description`),
+      primaryCta: { label: t(`categoryIndex.${categoryKey}.hero.primaryCta`), url: '/signup' },
+      secondaryCta: { label: t(`categoryIndex.${categoryKey}.hero.secondaryCta`), url: '#features' }
+    },
+    intro: categoryKey === 'features' ? {
+      badge: t(`categoryIndex.${categoryKey}.intro.badge`),
+      headline: t(`categoryIndex.${categoryKey}.intro.headline`),
+      description: t(`categoryIndex.${categoryKey}.intro.description`)
+    } : null,
+    benefits: categoryKey === 'features' ? {
+      badge: t(`categoryIndex.${categoryKey}.benefits.badge`),
+      headline: t(`categoryIndex.${categoryKey}.benefits.headline`),
+      items: t(`categoryIndex.${categoryKey}.benefits.items`, { returnObjects: true }) || []
+    } : null,
+    howItWorks: categoryKey === 'features' ? {
+      badge: t(`categoryIndex.${categoryKey}.howItWorks.badge`),
+      headline: t(`categoryIndex.${categoryKey}.howItWorks.headline`),
+      steps: t(`categoryIndex.${categoryKey}.howItWorks.steps`, { returnObjects: true }) || []
+    } : null,
+    faq: categoryKey === 'features' ? {
+      badge: t(`categoryIndex.${categoryKey}.faq.badge`),
+      headline: t(`categoryIndex.${categoryKey}.faq.headline`),
+      items: t(`categoryIndex.${categoryKey}.faq.items`, { returnObjects: true }) || []
+    } : null
+  }
+}
+
 // ================== Main CategoryIndexPage Component ==================
 
 export const CategoryIndexPage: React.FC = () => {
+  const { t } = useTranslation()
   const location = useLocation()
 
   // Determine slug based on current path
@@ -404,29 +454,41 @@ export const CategoryIndexPage: React.FC = () => {
     return 'features'
   }
   const slug = getSlugFromPath()
-  const { data, loading, error } = useCategoryIndex(slug)
+  const { data: sanityData, loading, error } = useCategoryIndex(slug)
 
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-400">Loading...</p>
+          <p className="text-slate-400">{t('common.loading')}</p>
         </div>
       </div>
     )
   }
+
+  // Get translated data and merge with Sanity data
+  const translatedData = getTranslatedCategoryData(slug, t)
+
+  // Use translations for hero/intro/benefits/faq, but keep Sanity data for featuredItems
+  const data = sanityData ? {
+    ...sanityData,
+    hero: translatedData?.hero || sanityData.hero,
+    intro: translatedData?.intro || sanityData.intro,
+    benefits: translatedData?.benefits || sanityData.benefits,
+    howItWorks: translatedData?.howItWorks || sanityData.howItWorks,
+    faq: translatedData?.faq || sanityData.faq
+  } : translatedData
 
   if (error || !data) {
     console.error('CategoryIndexPage error:', error, 'data:', data, 'slug:', slug)
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Page not found</h1>
+          <h1 className="text-2xl font-bold text-white mb-4">{t('common.notFound')}</h1>
           {error && <p className="text-red-400 mb-4">{error.message}</p>}
-          <p className="text-slate-500 mb-4">Slug: {slug}</p>
           <Link to="/" className="text-blue-500 hover:underline">
-            Go home
+            {t('common.goHome')}
           </Link>
         </div>
       </div>
@@ -439,7 +501,7 @@ export const CategoryIndexPage: React.FC = () => {
 
       <HeroSection data={data.hero} />
       <IntroSection data={data.intro} />
-      <FeaturedItemsSection items={data.featuredItems} category={data.category} />
+      <FeaturedItemsSection items={data.featuredItems} category={data.category} t={t} />
       {data.comparisonTable && <ComparisonSection data={data.comparisonTable} />}
       <BenefitsSection data={data.benefits} />
       <HowItWorksSection data={data.howItWorks} />

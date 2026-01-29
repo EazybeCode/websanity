@@ -1,0 +1,1650 @@
+{
+  "nav": {
+    "startFreeTrial": "Ücretsiz Denemeyi Başlat",
+    "signIn": "Giriş Yap",
+    "pricing": "Fiyatlandırma",
+    "platform": "Platform",
+    "integrations": "Entegrasyonlar",
+    "solutions": "Çözümler",
+    "resources": "Kaynaklar",
+    "blog": "Blog",
+    "docs": "Dokümantasyon",
+    "support": "Destek",
+    "menu": {
+      "productivityTools": "Üretkenlik Araçları",
+      "cloudBackup": "Bulut Yedekleme",
+      "cloudBackupDesc": "Hiçbir konuşmayı kaybetmeyin",
+      "teamInbox": "Ekip Gelen Kutusu",
+      "teamInboxDesc": "Müşteri sohbetlerinde işbirliği yapın",
+      "quickReply": "Hızlı Yanıt",
+      "quickReplyDesc": "Hızlı yanıtlar için şablonlar",
+      "messageScheduler": "Mesaj Zamanlayıcı",
+      "messageSchedulerDesc": "Doğru zamanda mesaj gönderin",
+      "salesIntelligence": "Satış Zekası",
+      "revenueInbox": "Gelir Gelen Kutusu",
+      "revenueInboxDesc": "Yapay zeka destekli anlaşma içgörüleri",
+      "repRadar": "Rep Radar",
+      "repRadarDesc": "Ekip performansını izleyin",
+      "whatsappCopilot": "WhatsApp Copilot",
+      "whatsappCopilotDesc": "Satış temsilcileri için AI asistan",
+      "whatsappCrm": "WhatsApp CRM",
+      "whatsappCrmDesc": "Etiketler, huniler ve hatlar",
+      "whatsappApi": "WhatsApp API",
+      "coexistence": "Bir Arada Yaşam",
+      "coexistenceDesc": "Kişisel + İş WhatsApp",
+      "messageTemplates": "Mesaj Şablonları",
+      "messageTemplatesDesc": "Önceden onaylanmış formatlar",
+      "broadcastMessages": "Toplu Mesajlar",
+      "broadcastMessagesDesc": "Binlere anında ulaşın",
+      "viewAllFeatures": "Tüm özellikleri gör",
+      "popularCrms": "Popüler CRM'ler",
+      "hubspotDesc": "Çift yönlü senkronizasyon",
+      "salesforceDesc": "Kurumsal düzey entegrasyon",
+      "zohoDesc": "Tam kişi senkronizasyonu",
+      "pipedriveDesc": "Pipeline otomasyonu",
+      "moreCrms": "Diğer CRM'ler",
+      "bitrix24Desc": "Hepsi bir arada çalışma alanı",
+      "leadsquaredDesc": "Satış yürütme CRM'i",
+      "freshdeskDesc": "Destek bileti senkronizasyonu",
+      "productivity": "Üretkenlik",
+      "googleSheetsDesc": "Veri dışa aktarma ve analiz",
+      "googleCalendarDesc": "Takipleri zamanlayın",
+      "webhooksDesc": "Özel otomasyonlar",
+      "viewAllIntegrations": "Tüm entegrasyonları gör",
+      "byTeam": "Ekibe Göre",
+      "salesTeams": "Satış Ekipleri",
+      "salesTeamsDesc": "WhatsApp'ta daha hızlı anlaşma kapayın",
+      "customerSupport": "Müşteri Desteği",
+      "customerSupportDesc": "Sorunları gerçek zamanlı çözün",
+      "marketing": "Pazarlama",
+      "marketingDesc": "Dönüştüren kampanyalar",
+      "byCompanySize": "Şirket Büyüklüğüne Göre",
+      "startups": "Startuplar",
+      "startupsDesc": "Erişiminizi ölçeklendirin",
+      "smallBusiness": "Küçük İşletmeler",
+      "smallBusinessDesc": "Profesyonel WhatsApp araçları",
+      "enterprise": "Kurumsal",
+      "enterpriseDesc": "Güvenlik ve uyumluluk hazır",
+      "learn": "Öğrenin",
+      "blogDesc": "İpuçları, kılavuzlar ve güncellemeler",
+      "caseStudies": "Vaka Çalışmaları",
+      "caseStudiesDesc": "Müşteri başarı hikayeleri",
+      "webinars": "Webinarlar",
+      "webinarsDesc": "Canlı demolar ve eğitimler",
+      "helpCenter": "Yardım Merkezi",
+      "helpCenterDesc": "Kılavuzlar ve öğreticiler",
+      "docsDesc": "Teknik referans",
+      "apiReference": "API Referansı",
+      "apiReferenceDesc": "Geliştiriciler için"
+    }
+  },
+  "cta": {
+    "startFreeTrial": "Ücretsiz Denemeyi Başlat",
+    "bookDemo": "Demo Rezervasyonu Yap",
+    "contactSales": "Satış ile İletişime Geç",
+    "learnMore": "Daha Fazla Bilgi",
+    "getStarted": "Başla",
+    "seeDemo": "Demoyu Gör",
+    "tryFree": "Ücretsiz Dene",
+    "viewAll": "Tümünü Gör",
+    "startNow": "Şimdi Başla",
+    "talkToSales": "Satış ile Konuş"
+  },
+  "footer": {
+    "copyright": "Eazybe, Inc. Tüm hakları saklıdır.",
+    "privacyPolicy": "Gizlilik Politikası",
+    "termsOfService": "Hizmet Şartları",
+    "company": "Şirket",
+    "product": "Ürün",
+    "resources": "Kaynaklar",
+    "legal": "Yasal",
+    "aboutUs": "Hakkımızda",
+    "careers": "Kariyer",
+    "contact": "İletişim",
+    "tagline": "CRM ekipleri için WhatsApp Satış Platformu.",
+    "trustedBy": "Düzenlenmiş sektörler tarafından güvenilir: finansal hizmetler, sağlık, sigorta",
+    "platform": "Platform",
+    "integrations": "Entegrasyonlar",
+    "whatsappApi": "WhatsApp API",
+    "viewAllFeatures": "Tüm Özellikleri Gör →",
+    "viewAllIntegrations": "Tüm Entegrasyonları Gör →",
+    "metaBusinessPartner": "Meta İş Ortağı",
+    "verifiedIntegration": "Doğrulanmış Entegrasyon",
+    "compliant": "Uyumlu",
+    "gdprReady": "KVKK Hazır",
+    "metaPartner": "Meta Ortağı",
+    "encrypted": "Şifreli"
+  },
+  "language": {
+    "select": "Dil",
+    "en": "English",
+    "pt": "Português",
+    "es": "Español",
+    "tr": "Türkçe"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir şeyler ters gitti",
+    "notFound": "Sayfa bulunamadı",
+    "tryAgain": "Tekrar Dene",
+    "goBack": "Geri Dön",
+    "goHome": "Ana Sayfaya Git",
+    "readMore": "Daha Fazla Oku",
+    "seeAll": "Tümünü Gör",
+    "new": "Yeni",
+    "popular": "Popüler",
+    "featured": "Öne Çıkan",
+    "all": "Tümü",
+    "search": "Ara",
+    "noResults": "Sonuç bulunamadı",
+    "perUser": "kullanıcı başına",
+    "perMonth": "/ ay",
+    "monthly": "Aylık",
+    "annual": "Yıllık",
+    "save": "Tasarruf"
+  },
+  "pricing": {
+    "badge": "Basit, Şeffaf Fiyatlandırma",
+    "headline": "Ücretsiz başla.",
+    "headlineHighlight": "Büyüdükçe ölçekle.",
+    "subheadline": "Gizli ücret yok. Mesaj başına ücret yok. Ekibinizle birlikte ölçeklenen basit kullanıcı başına fiyatlandırma.",
+    "mostPopular": "En Popüler",
+    "enterprise": "Kurumsal",
+    "custom": "Özel",
+    "contactUs": "Bize Ulaşın",
+    "includes": "İçerir:",
+    "everythingIn": "{{plan}} dahil her şey, artı:",
+    "free": "Ücretsiz",
+    "trustSignals": {
+      "gdprCompliant": "KVKK Uyumlu",
+      "setupTime": "5 dakikada kurulum",
+      "freeTrial": "14 günlük ücretsiz deneme",
+      "noCreditCard": "Kredi kartı gerekmez"
+    },
+    "comparison": {
+      "badge": "Tam Karşılaştırma",
+      "title": "Tüm özellikleri karşılaştır",
+      "subtitle": "Her planda neyin dahil olduğu hakkında bilmeniz gereken her şey."
+    },
+    "faq": {
+      "badge": "Sorular ve Cevaplar",
+      "title": "Sıkça sorulan sorular",
+      "subtitle": "Aradığınızı bulamıyor musunuz?",
+      "contactLinkText": "Ekibimizle iletişime geçin"
+    },
+    "plans": {
+      "starter": {
+        "name": "Başlangıç",
+        "description": "WhatsApp CRM entegrasyonuna başlayan bireyler ve küçük ekipler için mükemmel.",
+        "features": {
+          "teamInbox": "Ekip Gelen Kutusu",
+          "unlimitedLabels": "Sınırsız etiket ve huniler",
+          "unlimitedQuickReplies": "Sınırsız hızlı yanıtlar",
+          "unlimitedScheduledMessages": "Sınırsız zamanlanmış mesajlar",
+          "whatsappBackup": "WhatsApp sohbet yedeği",
+          "crmIntegrations": "HubSpot, Zoho, Bitrix, Google Sheets",
+          "sendFromCrm": "CRM'den mesaj gönder",
+          "salesforce": "Salesforce entegrasyonu",
+          "revenueInbox": "Gelir Gelen Kutusu"
+        },
+        "cta": "Ücretsiz Denemeyi Başlat"
+      },
+      "scaler": {
+        "name": "Ölçekleyici",
+        "description": "Gelişmiş entegrasyonlar ve yapay zeka destekli otomasyona ihtiyaç duyan büyüyen ekipler için.",
+        "features": {
+          "everythingInStarter": "Başlangıç'taki her şey",
+          "salesforce": "Salesforce entegrasyonu",
+          "webhooks": "Webhook entegrasyonları",
+          "customObjects": "Mini CRM görünümünde özel nesneler",
+          "crmLabeling": "CRM özelliği-WhatsApp etiketleme",
+          "aiUnreplied": "Yapay zeka yanıtlanmamış sohbet aracısı",
+          "dedicatedApis": "Özel API'ler",
+          "crmWorkflow": "CRM iş akışı entegrasyonu",
+          "revOpsAgent": "RevOps Aracısı"
+        },
+        "cta": "Ücretsiz Denemeyi Başlat"
+      },
+      "omnis": {
+        "name": "Omnis",
+        "description": "Yapay zeka aracıları ve tam WhatsApp zekası ile tam yığın gelir operasyonları.",
+        "features": {
+          "everythingInScaler": "Ölçekleyici'deki her şey",
+          "revenueInbox": "Gelir Gelen Kutusu",
+          "revOpsAgent": "RevOps Aracısı (YZ)",
+          "copilot": "WhatsApp Web Copilot",
+          "groupBackup": "WhatsApp grup sohbeti yedeği",
+          "unlimitedSync": "Sınırsız mesaj senkronizasyonu",
+          "syncToDeals": "Mesajları anlaşmalara/biletlere senkronize et",
+          "accountManager": "Özel hesap yöneticisi"
+        },
+        "cta": "Satış ile İletişime Geç"
+      }
+    },
+    "comparisonFeatures": {
+      "teamInbox": "Ekip Gelen Kutusu",
+      "unlimitedLabels": "Sınırsız etiketler ve huniler",
+      "unlimitedQuickReplies": "Sınırsız hızlı yanıtlar",
+      "unlimitedScheduledMessages": "Sınırsız zamanlanmış mesajlar",
+      "whatsappBackup": "WhatsApp sohbet yedeği",
+      "groupBackup": "WhatsApp grup sohbeti yedeği",
+      "unlimitedSync": "Sınırsız mesaj senkronizasyonu",
+      "hubspot": "HubSpot",
+      "zoho": "Zoho CRM",
+      "bitrix": "Bitrix24",
+      "googleSheets": "Google Sheets",
+      "salesforce": "Salesforce",
+      "webhooks": "Webhook entegrasyonları",
+      "dedicatedApis": "Özel API'ler",
+      "syncToDeals": "Anlaşmalara/biletlere senkronize et",
+      "sendFromCrm": "CRM'den mesaj gönder",
+      "crmLabeling": "CRM özelliği-WhatsApp etiketleme",
+      "customObjects": "Mini CRM görünümünde özel nesneler",
+      "aiUnreplied": "Yapay zeka yanıtlanmamış sohbet aracısı",
+      "revenueInbox": "Gelir Gelen Kutusu",
+      "revOpsAgent": "RevOps Aracısı (YZ)",
+      "copilot": "WhatsApp Web Copilot",
+      "crmWorkflow": "CRM iş akışı entegrasyonu",
+      "bulkMessaging": "Toplu mesajlaşma",
+      "autoCreateContacts": "Otomatik kişi oluştur",
+      "emailSupport": "E-posta desteği",
+      "prioritySupport": "Öncelikli destek",
+      "accountManager": "Özel hesap yöneticisi",
+      "groupAssistance": "WhatsApp grup yardımı",
+      "limited": "Sınırlı",
+      "categories": {
+        "coreFeatures": "Temel Özellikler",
+        "crmIntegrations": "CRM Entegrasyonları",
+        "intelligenceAi": "Zeka ve YZ",
+        "automation": "Otomasyon",
+        "support": "Destek"
+      }
+    },
+    "faqItems": [
+      {
+        "question": "Eazybe'yi ücretsiz deneyebilir miyim?",
+        "answer": "Evet! Başlangıç ve Ölçekleyici planlarında 14 günlük ücretsiz deneme sunuyoruz. Kredi kartı gerekmez. Taahhüt etmeden önce tüm özellikleri keşfedebilir ve Eazybe'nin mevcut iş akışınızla nasıl entegre olduğunu görebilirsiniz."
+      },
+      {
+        "question": "Gelir Gelen Kutusu nedir?",
+        "answer": "Gelir Gelen Kutusu, dikkat gerektiren en önemli WhatsApp konuşmalarını ortaya çıkaran akıllı kontrol panelimizdir. Yoğun bir gelen kutusunda kaçırabileceğiniz sıcak anlaşmaları, yükseltmeleri ve fırsatları belirlemek için yapay zeka kullanır."
+      },
+      {
+        "question": "RevOps Aracısı nedir?",
+        "answer": "RevOps Aracısı, gelir operasyonları görevlerini otomatikleştiren yapay zeka destekli asistanımızdır. Konuşmaları analiz edebilir, CRM kayıtlarını güncelleyebilir, anlaşma risklerini belirleyebilir ve daha fazla anlaşma kapatmanıza yardımcı olmak için eyleme geçirilebilir içgörüler sağlayabilir."
+      },
+      {
+        "question": "WhatsApp Web Copilot nedir?",
+        "answer": "WhatsApp Web Copilot, doğrudan WhatsApp Web arayüzünüzde çalışan yapay zeka asistanımızdır. Yanıt taslağı oluşturmanıza, konuşmaları özetlemenize yardımcı olur ve müşteri iletişiminizi iyileştirmek için gerçek zamanlı öneriler sunar."
+      },
+      {
+        "question": "Kullanıcı başına fiyatlandırma nasıl çalışır?",
+        "answer": "Eazybe'yi aktif olarak kullanan her ekip üyesi için ödeme yaparsınız. Kullanıcı, WhatsApp konuşmalarını CRM'inize senkronize eden herhangi biridir. Yalnızca verileri görüntüleyen yöneticiler kullanıcı olarak sayılmaz."
+      },
+      {
+        "question": "Hangi CRM'lerle entegre oluyorsunuz?",
+        "answer": "Başlangıç, HubSpot, Zoho CRM, Bitrix24 ve Google Sheets ile entegre olur. Ölçekleyici, özel CRM'ler için Salesforce ve webhook entegrasyonları ekler. Omnis, özel API'ler ve anlaşmalara/biletlere senkronizasyon içerir."
+      },
+      {
+        "question": "Daha sonra plan değiştirebilir miyim?",
+        "answer": "Kesinlikle! Planınızı istediğiniz zaman yükseltebilir veya düşürebilirsiniz. Yükseltme yaptığınızda, yeni özelliklere anında erişim elde edersiniz. Düşürme yaptığınızda, değişiklik bir sonraki fatura döngünüzde geçerli olur."
+      },
+      {
+        "question": "Verilerim güvende mi?",
+        "answer": "Evet. Aktarımda ve beklemede tüm veriler için banka düzeyinde 256 bit şifreleme kullanıyoruz. KVKK uyumluyuz, Meta İş Ortağı onaylıyız ve düzenli güvenlik denetimleri yapıyoruz."
+      }
+    ],
+    "starter": {
+      "name": "Başlangıç",
+      "price": "0",
+      "description": "WhatsApp CRM'e başlayan bireyler için mükemmel",
+      "features": ["1 Kullanıcı", "Bulut Yedeği", "Hızlı Yanıt Şablonları", "Temel Analizler"]
+    },
+    "professional": {
+      "name": "Profesyonel",
+      "price": "15",
+      "description": "Daha fazla güce ihtiyaç duyan büyüyen ekipler için",
+      "features": ["10 Kullanıcıya Kadar", "Ekip Gelen Kutusu", "CRM Entegrasyonları", "Mesaj Zamanlayıcı", "Gelişmiş Analizler"]
+    },
+    "business": {
+      "name": "İşletme",
+      "price": "29",
+      "description": "Kurumsal özelliklere ihtiyaç duyan işletmeler için",
+      "features": ["Sınırsız Kullanıcı", "WhatsApp API Erişimi", "Gelir Gelen Kutusu", "Temsilci Radarı", "Öncelikli Destek"]
+    }
+  },
+  "hero": {
+    "badge": "Başlamaya Hazır",
+    "headline": "WhatsApp'ı",
+    "headlineHighlight": "Gelir Motorunuza Dönüştürün",
+    "subheadline": "Sohbette neler olduğunu nihayet gören 2.000'den fazla ekibe katılın. Konuşmaları senkronize edin, iş akışlarını otomatikleştirin ve anlaşmaları daha hızlı kapatın.",
+    "noCreditCard": "Kredi kartı gerekmez"
+  },
+  "home": {
+    "clientLogos": {
+      "trustedBy": "Satış Ekiplerinin Güvendiği"
+    },
+    "heroVisual": {
+      "whatsapp": "WhatsApp",
+      "hubspotCrm": "HubSpot CRM",
+      "dealStage": "Anlaşma Aşaması",
+      "negotiation": "Müzakere",
+      "lastActivity": "Son Aktivite",
+      "justNow": "AZ ÖNCE",
+      "signalDetected": "Sinyal Algılandı",
+      "alertMessage": "Lead <bold>fiyat</bold> belirtti ama 2 saattir yanıt almadı.",
+      "createTask": "Görev Oluştur: Fiyat Gönder",
+      "chatMessage1": "Enterprise fiyatını gönderebilir misiniz? Bu hafta kapatmak istiyoruz.",
+      "chatMessage2": "Tabii! PDF'i şimdi gönderiyorum. Cuma için bir görüşme ayarlayalım mı?"
+    },
+    "comparison": {
+      "personalWhatsApp": "Kişisel WhatsApp",
+      "businessApp": "WhatsApp Business Uygulaması",
+      "businessApi": "WhatsApp Business API",
+      "capability": "Yetenek",
+      "otherTools": "Diğer Araçlar"
+    },
+    "testimonial": {
+      "quote": "WhatsApp'ta sıfır görünürlükten, yanıtsız her sohbeti ve sıcak anlaşmayı tek bir panoda görmeye geçtik. Yanıt süreleri <highlight>ilk ayda %40 düştü.</highlight>",
+      "name": "Alex Richardson",
+      "title": "Satış Başkan Yardımcısı • Kurumsal Finans Hizmetleri"
+    },
+    "stats": {
+      "salesTeams": "Satış ekipleri",
+      "messagesSynced": "Senkronize mesajlar",
+      "fasterResponse": "Daha hızlı yanıt",
+      "setupTime": "Kurulum süresi"
+    }
+  },
+  "security": {
+    "title": "Kurumsal Düzey Güvenlik",
+    "subtitle": "Verileriniz banka düzeyinde şifreleme ve uyumluluk ile korunuyor",
+    "gdpr": "KVKK Hazır",
+    "gdprDesc": "Uyumlu Veri İşleme",
+    "encryption": "Banka Güvenliği",
+    "encryptionDesc": "SSL ve 256-bit Şifreleme",
+    "soc2": "SOC 2 Tip II",
+    "soc2Desc": "Denetlenmiş Güvenlik Kontrolleri"
+  },
+  "features": {
+    "cloudBackup": {
+      "hero": {
+        "badge": "Bulut Yedeği",
+        "headline": "Bir Daha Asla",
+        "headlineHighlight": "Konuşma Kaybetmeyin",
+        "description": "Tüm WhatsApp konuşmalarınızı otomatik olarak buluta yedekleyin. Sohbet geçmişinize her yerden, her zaman erişin.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden Bulut Yedeği?",
+        "headline": "Konuşmalarınız, Her Zaman Güvende",
+        "items": [
+          {
+            "title": "Otomatik Senkronizasyon",
+            "description": "Tüm konuşmalar güvenli bulut sunucularımıza gerçek zamanlı olarak otomatik olarak yedeklenir."
+          },
+          {
+            "title": "Çoklu Cihaz Erişimi",
+            "description": "Tam konuşma geçmişinize dünyanın herhangi bir yerinden, herhangi bir cihazdan erişin."
+          },
+          {
+            "title": "Kolay Arama",
+            "description": "Güçlü aramamız ile tüm konuşmalarınızda herhangi bir mesajı anında bulun."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "Kaybedilen Konuşmalar İş Kaybettirir",
+          "description": "WhatsApp konuşmalarını kaybettiğinizde, değerli müşteri bağlamını, anlaşma geçmişini ve ilişki içgörülerini kaybedersiniz.",
+          "points": [
+            "Telefon kayboldu veya hasar gördü mü? Tüm sohbetler sonsuza dek kayboldu",
+            "Cihaz değiştirdiniz mi? Manuel yedekleme sıkıcı ve eksik",
+            "Ekip üyesi ayrıldı mı? Müşteri ilişkileri de gidiyor"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "Otomatik, Güvenli Bulut Yedeği",
+          "description": "Her mesaj, medya dosyası ve konuşma gerçek zamanlı olarak otomatik olarak buluta senkronize edilir.",
+          "points": [
+            "Gerçek zamanlı senkronizasyon - manuel yedekleme yok",
+            "Tüm verileriniz için 256-bit şifreleme",
+            "Konuşmaları herhangi bir cihazda anında geri yükleyin"
+          ]
+        },
+        {
+          "badge": "Gelişmiş Arama",
+          "headline": "Herhangi Bir Mesajı Saniyeler İçinde Bulun",
+          "description": "Güçlü aramamız, herhangi bir konuşmayı, kişiyi veya mesajı anında bulmanızı sağlar.",
+          "points": [
+            "Tüm konuşmalarda tam metin arama",
+            "Tarih, kişi veya anahtar kelimeye göre filtreleme",
+            "Ekler ve medya içinde arama"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Verilerim güvende mi?",
+            "answer": "Evet, tüm veriler hem aktarımda hem de beklemede 256-bit şifreleme ile şifrelenir. KVKK uyumluyuz ve SOC 2 Tip II sertifikalıyız."
+          },
+          {
+            "question": "Yedeklemeler ne sıklıkla yapılıyor?",
+            "answer": "Yedeklemeler gerçek zamanlı olarak yapılır. Her mesaj gönderilir veya alınır alınmaz buluta senkronize edilir."
+          },
+          {
+            "question": "Yeni bir telefona geri yükleyebilir miyim?",
+            "answer": "Evet, Eazybe hesabınıza giriş yaparak tam konuşma geçmişinizi herhangi bir yeni cihaza geri yükleyebilirsiniz."
+          }
+        ]
+      }
+    },
+    "teamInbox": {
+      "hero": {
+        "badge": "Ekip Gelen Kutusu",
+        "headline": "Tüm Ekibiniz İçin",
+        "headlineHighlight": "Tek Gelen Kutusu",
+        "description": "Ekip olarak WhatsApp konuşmalarında işbirliği yapın. Sohbetleri atayın, notlar ekleyin ve asla bir müşteriyi kaçırmayın.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden Ekip Gelen Kutusu?",
+        "headline": "Daha Önce Hiç Olmadığı Gibi İşbirliği Yapın",
+        "items": [
+          {
+            "title": "Paylaşılan Gelen Kutusu",
+            "description": "Tüm ekip üyeleri birleşik bir gelen kutusundan müşteri konuşmalarını görebilir ve yanıtlayabilir."
+          },
+          {
+            "title": "Akıllı Atama",
+            "description": "Konuşmaları doğru ekip üyesine otomatik veya manuel olarak atayın."
+          },
+          {
+            "title": "Dahili Notlar",
+            "description": "Konuşmalara yalnızca ekibinizin görebileceği özel notlar ekleyin."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "Koordinasyon Olmadan Kaos",
+          "description": "Birden fazla ekip üyesi WhatsApp'ı yönettiğinde, işler hızla karmaşıklaşır.",
+          "points": [
+            "Farklı ekip üyelerinden yinelenen yanıtlar",
+            "Çatlaklardan düşen müşteriler",
+            "Kimin neyle ilgilendiği konusunda görünürlük yok"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "Birleşik Ekip İşbirliği",
+          "description": "Herkesin tam resmi gördüğü ve tam olarak kimin neyle ilgilendiğini bildiği tek bir gelen kutusu.",
+          "points": [
+            "Tüm konuşmaları tek bir yerde görün",
+            "Sohbet atamaları ile net sahiplik",
+            "İş arkadaşları yanıt verdiğinde gerçek zamanlı güncellemeler"
+          ]
+        },
+        {
+          "badge": "Akıllı Yönlendirme",
+          "headline": "Sohbetleri Doğru Kişiye Ulaştırın",
+          "description": "Kurallara, anahtar kelimelere veya döngüsel atamaya göre konuşmaları otomatik olarak yönlendirin.",
+          "points": [
+            "Anahtar kelimeler veya kişi etiketlerine göre otomatik atama",
+            "Eşit iş yükü için döngüsel dağıtım",
+            "Öncelikli müşteriler için yükseltme kuralları"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Kaç ekip üyesi gelen kutusunu kullanabilir?",
+            "answer": "Planınıza bağlıdır. Başlangıç 1 kullanıcıyı destekler, Profesyonel 10'a kadar ve İşletme sınırsız kullanıcı sunar."
+          },
+          {
+            "question": "Müşteriler kiminle konuştuklarını görebilir mi?",
+            "answer": "Hayır, müşteriler kusursuz bir deneyim yaşar. Bir veya birden fazla ekip üyesinin konuşmalarını yönetip yönetmediğini bilmezler."
+          },
+          {
+            "question": "Ekibimin yanıt süresini görebilir miyim?",
+            "answer": "Evet, Ekip Gelen Kutusu yanıt sürelerini, çözüm oranlarını ve bireysel üye performansını gösteren analizler içerir."
+          }
+        ]
+      }
+    },
+    "whatsappCrm": {
+      "hero": {
+        "badge": "WhatsApp CRM",
+        "headline": "CRM'iniz,",
+        "headlineHighlight": "WhatsApp İçinde",
+        "description": "Uygulamalar arasında geçiş yapmayı bırakın. Kişileri yönetin, anlaşmaları takip edin ve satışları doğrudan WhatsApp Web'den kapatın.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden WhatsApp CRM?",
+        "headline": "İhtiyacınız Olan Her Şey, Tek Bir Yerde",
+        "items": [
+          {
+            "title": "Kişi Yönetimi",
+            "description": "WhatsApp'tan çıkmadan etiketler, notlar ve özel alanlarla kişileri düzenleyin."
+          },
+          {
+            "title": "Anlaşma Takibi",
+            "description": "Boru hattınız boyunca anlaşmaları takip edin ve fırsatları asla gözden kaçırmayın."
+          },
+          {
+            "title": "CRM Senkronizasyonu",
+            "description": "Salesforce, HubSpot, Pipedrive ve daha fazlasıyla çift yönlü senkronizasyon."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "Bağlam Değiştirme Üretkenliği Öldürür",
+          "description": "WhatsApp ve CRM'iniz arasında atlamak zaman kaybettirir ve değerli bağlamı kaybeder.",
+          "points": [
+            "Uygulamalar arasında kişi bilgilerini kopyala yapıştır",
+            "Sohbet ederken anlaşma güncellemelerini kaçırma",
+            "Kiminle konuştuğunuz hakkında bağlam yok"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "WhatsApp'ta CRM Gücü",
+          "description": "Bir kişi hakkında her şeyi doğrudan sohbet penceresinden görün. Anlaşmaları güncelleyin, notlar ekleyin ve sekme değiştirmeden ilişkileri yönetin.",
+          "points": [
+            "Sohbet ederken görünür kişi ayrıntıları",
+            "Tek tıkla CRM kayıtlarını güncelleyin",
+            "CRM ile senkronize tam konuşma geçmişi"
+          ]
+        },
+        {
+          "badge": "Entegrasyonlar",
+          "headline": "Araçlarınızla Çalışır",
+          "description": "Zaten kullandığınız araçlara bağlanın. Çift yönlü senkronizasyon her şeyi mükemmel uyum içinde tutar.",
+          "points": [
+            "Salesforce, HubSpot, Pipedrive, Zoho",
+            "Google Sheets ve Excel",
+            "Özel akışlar için Zapier"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Hangi CRM'lerle entegre oluyorsunuz?",
+            "answer": "Salesforce, HubSpot, Pipedrive, Zoho CRM ve çok daha fazlasıyla entegre oluyoruz. Ayrıca Zapier aracılığıyla özel entegrasyonları da destekliyoruz."
+          },
+          {
+            "question": "Senkronizasyon gerçek zamanlı mı?",
+            "answer": "Evet, değişiklikler WhatsApp ve CRM'iniz arasında anında senkronize olur. Gecikme yok, manuel güncelleme yok."
+          },
+          {
+            "question": "CRM alanlarını özelleştirebilir miyim?",
+            "answer": "Kesinlikle. Satış sürecinize uyacak özel alanlar, etiketler ve özellikler oluşturabilirsiniz."
+          }
+        ]
+      }
+    },
+    "quickReply": {
+      "hero": {
+        "badge": "Hızlı Yanıt Şablonları",
+        "headline": "Akıllı Şablonlarla",
+        "headlineHighlight": "Daha Hızlı Yanıtlayın",
+        "description": "Önceden oluşturulmuş mesaj şablonları ile her gün saatler kazanın. Dinamik değişkenlerle anında kişiselleştirin.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden Hızlı Yanıt?",
+        "headline": "Kaliteden Ödün Vermeden Hız",
+        "items": [
+          {
+            "title": "Anında Yanıtlar",
+            "description": "Tek bir klavye kısayoluyla tam mesajlar ekleyin."
+          },
+          {
+            "title": "Kişiselleştirme",
+            "description": "{ad} ve {şirket} gibi dinamik değişkenler her mesajı kişisel hissettirir."
+          },
+          {
+            "title": "Ekip Tutarlılığı",
+            "description": "Paylaşılan şablonlar herkesin marka uyumlu mesajlar göndermesini sağlar."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "Tekrarlayan Yazma Zaman Kaybettirir",
+          "description": "Aynı selamlama, fiyat bilgisi veya takip mesajını kaç kez yazıyorsunuz?",
+          "points": [
+            "Günde düzinelerce kez aynı yanıtları yazma",
+            "Ekip üyeleri arasında tutarsız mesajlar",
+            "Yavaş yanıt süreleri dönüşümleri etkiler"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "Tek Tıklama, Mükemmel Mesajlar",
+          "description": "Şablonları bir kez oluşturun, sonsuza kadar kullanın. Dinamik değişkenler her mesajı otomatik olarak kişiselleştirir.",
+          "points": [
+            "Kaydedilmiş herhangi bir mesajı eklemek için /şablon yazın",
+            "Değişkenler kişi verileriyle otomatik doldurulur",
+            "Şablonları kategoriye göre düzenleyin"
+          ]
+        },
+        {
+          "badge": "Ekip Şablonları",
+          "headline": "Tutarlı Marka Sesi",
+          "description": "Şablonları ekibinizle paylaşın. Herkes profesyonel, marka uyumlu mesajlar gönderir.",
+          "points": [
+            "Kalite kontrolü için yönetici onaylı şablonlar",
+            "Hangi şablonların en iyi performans gösterdiğini takip edin",
+            "Farklı mesaj varyasyonlarını A/B test edin"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Kaç şablon oluşturabilirim?",
+            "answer": "Tüm planlarda sınırsız şablon. Kolay erişim için klasörler ve kategorilerle düzenleyin."
+          },
+          {
+            "question": "Hangi değişkenler mevcut?",
+            "answer": "Kişi adı, şirket, telefon, e-posta ve CRM'inizde oluşturduğunuz özel alanları destekliyoruz."
+          },
+          {
+            "question": "Şablonları ekibimle paylaşabilir miyim?",
+            "answer": "Evet, ekip şablonları tüm üyeler arasında paylaşılır. Yöneticiler şablonları herkes için kullanılabilir olmadan önce onaylayabilir."
+          }
+        ]
+      }
+    },
+    "scheduler": {
+      "hero": {
+        "badge": "Mesaj Zamanlayıcı",
+        "headline": "Mesajları",
+        "headlineHighlight": "Mükemmel Zamanda Gönderin",
+        "description": "WhatsApp mesajlarını en uygun zamanda gönderilmek üzere zamanlayın. Bir daha asla takip kaçırmayın.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden Mesaj Zamanlayıcı?",
+        "headline": "Zamanlama Her Şeydir",
+        "items": [
+          {
+            "title": "Optimal Zamanlama",
+            "description": "Müşterilerinizin yanıt verme olasılığının en yüksek olduğu zamanda mesajları zamanlayın."
+          },
+          {
+            "title": "Asla Unutmayın",
+            "description": "Otomatik gönderilen takipler ve hatırlatıcılar ayarlayın."
+          },
+          {
+            "title": "Saat Dilimleri",
+            "description": "Dünyanın her yerinde doğru yerel saatte mesajlar gönderin."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "Manuel Takipler Başarısız Olur",
+          "description": "Takip etmeyi planlıyorsunuz, ama hayat araya giriyor. Anlaşmalar soğuyor, fırsatlar kaçırılıyor.",
+          "points": [
+            "Doğru zamanda takip etmeyi unutma",
+            "Müşteriler uyurken mesaj gönderme",
+            "Tutarlı erişim için sistem yok"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "Zamanla ve Unut",
+          "description": "Mesajınızı şimdi yazın, daha sonra için zamanlayın. Sistemimiz tam olarak doğru zamanda gönderir.",
+          "points": [
+            "Teslimat için herhangi bir tarih ve saat seçin",
+            "Düzenli kontroller için tekrarlayan mesajlar",
+            "Gönderilmeden önce iptal edin veya düzenleyin"
+          ]
+        },
+        {
+          "badge": "Akıllı Zamanlama",
+          "headline": "Yapay Zeka Destekli Gönderim Zamanları",
+          "description": "Yapay zekamız, her kişiye ulaşmak için en iyi zamanı önermek üzere yanıt kalıplarını analiz eder.",
+          "points": [
+            "Her kişinin en aktif olduğu zamanı öğrenin",
+            "Otomatik saat dilimi algılama",
+            "Optimal zamanlamayla daha yüksek yanıt oranları"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Ne kadar önceden zamanlayabilirim?",
+            "answer": "Mesajları 1 yıl öncesine kadar zamanlayabilirsiniz. Doğum günü dilekleri, yenileme hatırlatıcıları ve yıllık kontroller için mükemmel."
+          },
+          {
+            "question": "Zamanlanmış bir mesajı iptal etmem gerekirse ne olur?",
+            "answer": "Gönderilmeden önce herhangi bir zamanda zamanlanmış mesajları görüntüleyebilir, düzenleyebilir veya iptal edebilirsiniz."
+          },
+          {
+            "question": "Grup sohbetleriyle çalışır mı?",
+            "answer": "Evet, bireysel kişilere veya grup sohbetlerine mesaj zamanlayabilirsiniz."
+          }
+        ]
+      }
+    },
+    "revenueInbox": {
+      "hero": {
+        "badge": "Gelir Gelen Kutusu",
+        "headline": "Sohbetleri",
+        "headlineHighlight": "Anlaşma Değerine Göre Önceliklendirin",
+        "description": "Hangi konuşmaların daha değerli olduğunu görün. Yüksek değerli fırsatlara odaklanın ve daha büyük anlaşmalar kapatın.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden Gelir Gelen Kutusu?",
+        "headline": "En Önemli Olana Odaklanın",
+        "items": [
+          {
+            "title": "Değer Görünürlüğü",
+            "description": "Her konuşmanın potansiyel değerini bir bakışta görün."
+          },
+          {
+            "title": "Akıllı Önceliklendirme",
+            "description": "Yüksek değerli konuşmalar otomatik olarak en üste çıkar."
+          },
+          {
+            "title": "Gelir Takibi",
+            "description": "WhatsApp konuşmaları aracılığıyla elde edilen geliri takip edin."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "Tüm Sohbetler Eşit Değildir",
+          "description": "500₺'lik bir soruyu 500.000₺'lik bir fırsatla aynı şekilde ele alıyorsunuz. Bu size para kaybettiriyor.",
+          "points": [
+            "Konuşma değeri hakkında görünürlük yok",
+            "Küçük anlaşmalar büyüklerle aynı ilgiyi alıyor",
+            "Gürültüde yüksek değerli fırsatları kaçırma"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "Gelire Göre Gelen Kutusu",
+          "description": "Her konuşma anlaşma değerini gösterir. Büyük fırsatlar hak ettikleri ilgiyi alır.",
+          "points": [
+            "Her sohbette görüntülenen anlaşma değeri",
+            "Gelen kutusunu gelir potansiyeline göre sıralayın",
+            "Üst hesaplar için VIP göstergeleri"
+          ]
+        },
+        {
+          "badge": "Gelir Analitiği",
+          "headline": "WhatsApp Gelirini Takip Edin",
+          "description": "WhatsApp üzerinden ne kadar gelir aktığını nihayet görün. Kapanan anlaşmaları, boru hattı değerini ve trendleri takip edin.",
+          "points": [
+            "WhatsApp'a gelir atfı",
+            "Gerçek zamanlı boru hattı değeri",
+            "Aylık ve üç aylık trendler"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Anlaşma değerini nasıl biliyor?",
+            "answer": "Gelir Gelen Kutusu, anlaşma değerlerini otomatik olarak çekmek için CRM'inizle senkronize olur. Ayrıca konuşmaları manuel olarak değerlerle etiketleyebilirsiniz."
+          },
+          {
+            "question": "Önceliklendirme kurallarını özelleştirebilir miyim?",
+            "answer": "Evet, anlaşma değeri, aşama, kişi türü veya herhangi bir kritere göre özel kurallar belirleyebilirsiniz."
+          },
+          {
+            "question": "CRM olmadan çalışır mı?",
+            "answer": "Evet, konuşmalara manuel olarak değer atayabilir veya yerleşik anlaşma takibimizi kullanabilirsiniz."
+          }
+        ]
+      }
+    },
+    "repRadar": {
+      "hero": {
+        "badge": "Temsilci Radarı",
+        "headline": "Ekibinizin",
+        "headlineHighlight": "Gerçekten Ne Yaptığını Görün",
+        "description": "Satış ekibinizin WhatsApp aktivitesinin tam görünürlüğünü elde edin. Etkili bir şekilde koçluk yapın, performansı artırın.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden Temsilci Radarı?",
+        "headline": "Görünürlük Performansı Artırır",
+        "items": [
+          {
+            "title": "Aktivite Takibi",
+            "description": "Gönderilen mesajları, yanıt sürelerini ve konuşma sonuçlarını görün."
+          },
+          {
+            "title": "Performans Metrikleri",
+            "description": "Bireysel ve ekip KPI'larını gerçek zamanlı takip edin."
+          },
+          {
+            "title": "Koçluk İçgörüleri",
+            "description": "Beceri boşluklarını ve koçluk fırsatlarını belirleyin."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "WhatsApp Bir Kara Kutu",
+          "description": "Ekibiniz WhatsApp'ta saatler harcıyor ama neler olduğu veya onlara nasıl yardımcı olacağınız hakkında hiçbir fikriniz yok.",
+          "points": [
+            "Günlük aktivite hakkında görünürlük yok",
+            "WhatsApp performansını ölçememe",
+            "Etkili koçluk yapamama"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "Tam Aktivite Görünürlüğü",
+          "description": "Önemli olan her metriği görün. Yanıt süreleri, mesaj sayıları, konuşma sonuçları ve daha fazlası.",
+          "points": [
+            "Gerçek zamanlı aktivite panoları",
+            "Bireysel temsilci skor kartları",
+            "Ekip lider tabloları ve kıyaslamalar"
+          ]
+        },
+        {
+          "badge": "Koçluk Araçları",
+          "headline": "Verileri İyileştirmeye Dönüştürün",
+          "description": "Ekibinize koçluk yapmak için içgörüleri kullanın. Üst performans gösterenleri belirleyin, en iyi uygulamaları paylaşın ve herkesi yükseltin.",
+          "points": [
+            "Yüksek ve düşük performans gösterenleri belirleyin",
+            "Hangi şablonların en iyi çalıştığını görün",
+            "Zaman içinde iyileşmeyi takip edin"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Temsilciler kendi metriklerini görebilir mi?",
+            "answer": "Evet, her temsilcinin performansını gösteren kendi panosu vardır. Yöneticiler tam ekip görünümünü görür."
+          },
+          {
+            "question": "Hangi metrikler takip ediliyor?",
+            "answer": "Gönderilen mesajlar, yanıt süresi, işlenen konuşmalar, çözüm oranı, müşteri memnuniyeti ve özel KPI'lar."
+          },
+          {
+            "question": "Bu KVKK uyumlu mu?",
+            "answer": "Evet, Temsilci Radarı tamamen KVKK uyumludur. Hangi verilerin takip edildiğini ve ne kadar süre saklandığını yapılandırabilirsiniz."
+          }
+        ]
+      }
+    },
+    "whatsappCopilot": {
+      "hero": {
+        "badge": "WhatsApp Copilot",
+        "headline": "Daha İyi Satmanıza",
+        "headlineHighlight": "Yardımcı Olan YZ",
+        "description": "Doğrudan WhatsApp'ta YZ destekli öneriler, özetler ve içgörüler alın. YZ asistanınızla anlaşmaları daha hızlı kapatın.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden WhatsApp Copilot?",
+        "headline": "YZ Destekli Satış Yardımı",
+        "items": [
+          {
+            "title": "Akıllı Öneriler",
+            "description": "Konuşma bağlamına göre YZ tarafından oluşturulan yanıt önerileri alın."
+          },
+          {
+            "title": "Konuşma Özetleri",
+            "description": "Hızlıca bilgi edinmek için uzun konuşmaları anında özetleyin."
+          },
+          {
+            "title": "Duygu Analizi",
+            "description": "Müşterilerin nasıl hissettiğini bilin ve yaklaşımınızı buna göre ayarlayın."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "Bilgi Aşırı Yükü",
+          "description": "Uzun konuşma dizileri, karmaşık ürünler ve talepkar müşteriler satış konuşmalarını yorucu hale getirir.",
+          "points": [
+            "Sonsuz sohbet geçmişinde gezinme",
+            "Konuşma ortasında önemli detayları unutma",
+            "Ne söyleyeceğini bilememe"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "YZ Satış Asistanınız",
+          "description": "Copilot konuşmayı okur ve mükemmel yanıtı önerir. Kulağınızda bir satış koçu olması gibi.",
+          "points": [
+            "Bağlama duyarlı yanıt önerileri",
+            "Tek tıkla konuşma özetleri",
+            "İtiraz işleme önerileri"
+          ]
+        },
+        {
+          "badge": "Akıllı İçgörüler",
+          "headline": "Her Müşteriyi Anlayın",
+          "description": "Copilot duyguları analiz eder, satın alma sinyallerini belirler ve en iyi sonraki eylemi önerir.",
+          "points": [
+            "Gerçek zamanlı duygu analizi",
+            "Satın alma sinyali algılama",
+            "En iyi sonraki eylem önerisi"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Konuşma verilerim YZ'yi eğitmek için kullanılıyor mu?",
+            "answer": "Hayır, verileriniz asla eğitim için kullanılmaz. Tüm YZ işleme güvenli ve özeldir."
+          },
+          {
+            "question": "YZ önerilerini özelleştirebilir miyim?",
+            "answer": "Evet, daha alakalı öneriler için Copilot'u ürünleriniz, hizmetleriniz ve satış el kitabınızla eğitebilirsiniz."
+          },
+          {
+            "question": "Copilot hangi dilleri destekliyor?",
+            "answer": "Copilot 50'den fazla dili destekler ve mesajları gerçek zamanlı olarak çevirebilir."
+          }
+        ]
+      }
+    },
+    "whatsappApi": {
+      "hero": {
+        "badge": "WhatsApp API Erişimi",
+        "headline": "Kurumsal Düzey",
+        "headlineHighlight": "WhatsApp Entegrasyonu",
+        "description": "Resmi WhatsApp Business API'sine bağlanın. Bildirimler gönderin, iş akışlarını otomatikleştirin ve mesajlaşmanızı ölçeklendirin.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden WhatsApp API?",
+        "headline": "WhatsApp Operasyonlarınızı Ölçeklendirin",
+        "items": [
+          {
+            "title": "Resmi API",
+            "description": "Tam uyumlulukla Meta'nın resmi WhatsApp Business API'sine bağlanın."
+          },
+          {
+            "title": "Otomasyon",
+            "description": "Otomatik iş akışları, sohbet botları ve bildirim sistemleri oluşturun."
+          },
+          {
+            "title": "Yüksek Hacim",
+            "description": "Kısıtlama olmadan günde binlerce mesaj gönderin."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "WhatsApp Web'in Limitleri Var",
+          "description": "Normal WhatsApp, kurumsal hacimleri, otomasyonu veya uyumluluk gereksinimlerini karşılayamaz.",
+          "points": [
+            "Mesajlarda hız limitleri",
+            "Otomasyon için API yok",
+            "İşletmeler için uyumluluk riskleri"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "Resmi API, Sıfır Zorluk",
+          "description": "API karmaşıklığını biz hallediyoruz. Siz kurumsal WhatsApp için basit bir pano alıyorsunuz.",
+          "points": [
+            "Teknik kurulum gerekmez",
+            "Doğrulanmış iş hesabı dahil",
+            "Meta politikalarıyla tam uyumluluk"
+          ]
+        },
+        {
+          "badge": "Geliştirici Araçları",
+          "headline": "İhtiyacınız Olanı Oluşturun",
+          "description": "Özel entegrasyonlar için tam REST API, webhooklar ve SDK'lar.",
+          "points": [
+            "Tam dokümantasyonlu RESTful API",
+            "Gerçek zamanlı olaylar için webhooklar",
+            "Node.js, Python ve daha fazlası için SDK'lar"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Meta onayına ihtiyacım var mı?",
+            "answer": "Onay sürecini sizin için hallediyoruz. Çoğu işletme 24-48 saat içinde onaylanır."
+          },
+          {
+            "question": "API ne kadara mal oluyor?",
+            "answer": "WhatsApp API fiyatlandırması Meta'nın konuşma bazlı ücretlerini ve platform ücretimizi içerir. Ayrıntılı fiyatlandırma için bizimle iletişime geçin."
+          },
+          {
+            "question": "Bildirimler için şablon kullanabilir miyim?",
+            "answer": "Evet, bildirimler, uyarılar ve pazarlama mesajları için önceden onaylanmış mesaj şablonları oluşturabilirsiniz."
+          }
+        ]
+      }
+    },
+    "coexistence": {
+      "hero": {
+        "badge": "Bir Arada Yaşam Modu",
+        "headline": "Kişisel ve İş",
+        "headlineHighlight": "Sohbetlerinizi Ayrı Tutun",
+        "description": "Eazybe'yi kişisel WhatsApp'ınızla birlikte kullanın. İş özellikleri yalnızca iş kişileri için etkinleşir.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden Bir Arada Yaşam?",
+        "headline": "Her İki Dünyanın En İyisi",
+        "items": [
+          {
+            "title": "Önce Gizlilik",
+            "description": "Kişisel sohbetler tamamen özel ve takip edilmemiş kalır."
+          },
+          {
+            "title": "Akıllı Algılama",
+            "description": "Kişisel ve iş kişileri arasında otomatik olarak ayrım yapar."
+          },
+          {
+            "title": "Tek Uygulama",
+            "description": "Ayrı iş telefonu veya WhatsApp Business uygulaması gerekmez."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "İş ve Yaşam Çatışıyor",
+          "description": "İşvereninizin kişisel sohbetleri görmesini istemiyorsunuz, ancak iş kişileri için iş araçlarına ihtiyacınız var.",
+          "points": [
+            "İzleme yazılımıyla gizlilik endişeleri",
+            "İki telefon taşımak can sıkıcı",
+            "WhatsApp Business sohbet geçmişinizi kaybeder"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "Akıllı Ayrım",
+          "description": "Eazybe yalnızca iş olarak belirlediğiniz kişiler için etkinleşir. Kişisel sohbetler tamamen dokunulmamış kalır.",
+          "points": [
+            "Kişileri kişisel veya iş olarak işaretleyin",
+            "İş özellikleri yalnızca iş sohbetleri için",
+            "Kişisel konuşmalar asla senkronize edilmez"
+          ]
+        },
+        {
+          "badge": "Gizliliğiniz",
+          "headline": "Verilerinizi Siz Kontrol Edersiniz",
+          "description": "Neyin iş neyin kişisel olduğuna siz karar verirsiniz. Bu sınıra tamamen saygı duyarız.",
+          "points": [
+            "Ayrıntılı gizlilik kontrolleri",
+            "Neyin senkronize edildiğinin denetim günlüğü",
+            "Kişi durumunu istediğiniz zaman kolayca değiştirin"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "İşverenim kişisel sohbetleri görebilir mi?",
+            "answer": "Hayır, kesinlikle hayır. Kişisel sohbetler asla senkronize edilmez, yedeklenmez veya sizden başka kimse tarafından görülmez."
+          },
+          {
+            "question": "Kişileri kişisel olarak nasıl işaretlerim?",
+            "answer": "Varsayılan olarak kişiler kişiseldir. Takip ve özellikleri etkinleştirmek için kişileri açıkça iş moduna dahil edersiniz."
+          },
+          {
+            "question": "Yanlışlıkla kişisel bir sohbeti iş olarak işaretlersem ne olur?",
+            "answer": "Durumu istediğiniz zaman değiştirebilirsiniz. Daha önce senkronize edilen veriler talep üzerine silinebilir."
+          }
+        ]
+      }
+    },
+    "templates": {
+      "hero": {
+        "badge": "Mesaj Şablonları",
+        "headline": "Her Zaman",
+        "headlineHighlight": "Profesyonel Mesajlar",
+        "description": "Ekibinizle mesaj şablonları oluşturun, yönetin ve paylaşın. Tutarlı, profesyonel iletişim sağlayın.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden Mesaj Şablonları?",
+        "headline": "Tutarlılık Güven İnşa Eder",
+        "items": [
+          {
+            "title": "Marka Tutarlılığı",
+            "description": "Her ekip üyesi profesyonel, marka uyumlu mesajlar gönderir."
+          },
+          {
+            "title": "Zaman Tasarrufu",
+            "description": "Aynı mesajları tekrar tekrar yazmayı bırakın."
+          },
+          {
+            "title": "Kalite Kontrolü",
+            "description": "Yöneticiler şablonları kullanılmadan önce onaylar."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "Tutarsız Mesajlar Zarar Verir",
+          "description": "Her temsilci kendi mesajlarını yazar. Kalite büyük ölçüde değişir ve marka sesi kaybolur.",
+          "points": [
+            "Yazım hataları ve profesyonel olmayan mesajlar",
+            "Farklı temsilciler farklı şeyler söylüyor",
+            "Kalite standartlarını uygulama yolu yok"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "Merkezi Şablon Kütüphanesi",
+          "description": "Mükemmel mesajları bir kez oluşturun. Ekibinizle paylaşın. Her seferinde kaliteyi sağlayın.",
+          "points": [
+            "Zengin metin ve medya içeren şablonlar",
+            "Kategori ve kullanım durumuna göre düzenleme",
+            "Sürüm geçmişi ve geri alma"
+          ]
+        },
+        {
+          "badge": "Şablon Analitiği",
+          "headline": "En İyi Neyin Çalıştığını Görün",
+          "description": "Hangi şablonların en iyi yanıtları aldığını takip edin. Çalışana iki katına çıkın.",
+          "points": [
+            "Şablon başına yanıt oranı",
+            "Farklı sürümlerin A/B testi",
+            "Ekip kullanım analitiği"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Şablonlara resim ve dosya ekleyebilir miyim?",
+            "answer": "Evet, şablonlar metin, resim, belge ve hatta konum paylaşımı içerebilir."
+          },
+          {
+            "question": "Onay iş akışları nasıl çalışır?",
+            "answer": "Yöneticiler yeni şablonlar için onay gerektirebilir. Onaylandıktan sonra tüm ekip için kullanılabilir hale gelirler."
+          },
+          {
+            "question": "Mevcut şablonları içe aktarabilir miyim?",
+            "answer": "Evet, CSV dosyalarından şablonları içe aktarabilir veya WhatsApp Business'tan kopyalayabilirsiniz."
+          }
+        ]
+      }
+    },
+    "broadcast": {
+      "hero": {
+        "badge": "Toplu Mesajlar",
+        "headline": "Binlere Kişisel Olarak",
+        "headlineHighlight": "Ulaşın",
+        "description": "Binlerce kişiye aynı anda kişiselleştirilmiş mesajlar gönderin. Kişisel hissettiren, ölçekte pazarlama.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Nasıl Çalıştığını Görün"
+      },
+      "benefits": {
+        "badge": "Neden Toplu Mesaj?",
+        "headline": "Kişisel Dokunuşu Ölçeklendirin",
+        "items": [
+          {
+            "title": "Toplu Kişiselleştirme",
+            "description": "Her mesaj kişi ayrıntılarıyla kişiselleştirilir."
+          },
+          {
+            "title": "Akıllı Segmentasyon",
+            "description": "Filtreler ve etiketlerle doğru kitleye ulaşın."
+          },
+          {
+            "title": "Teslimat Takibi",
+            "description": "Kimin aldığını, okuduğunu ve yanıtladığını görün."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "badge": "Sorun",
+          "headline": "Toplu Mesajlar Spam Gibi Hissettiriyor",
+          "description": "Genel toplu mesajlar görmezden gelinir veya engellenir. Kişisel mesajlar ölçeklenmez.",
+          "points": [
+            "Genel mesajlarda düşük açılma oranları",
+            "Spam içerik nedeniyle engellenmek",
+            "Ölçekte manuel olarak kişiselleştirememe"
+          ]
+        },
+        {
+          "badge": "Çözüm",
+          "headline": "Ölçekte Kişiselleştirilmiş",
+          "description": "Binlere gönderin, ancak her mesaj kişiselleştirilmiş. Sadece onlar için yazmış gibi hissettiriyor.",
+          "points": [
+            "Dinamik kişiselleştirme alanları",
+            "Kişi başına bireysel gönderim zamanları",
+            "Yanıtlar toplu gönderime değil gelen kutunuza gider"
+          ]
+        },
+        {
+          "badge": "Uyumluluk",
+          "headline": "Sorumlu Toplu Gönderim",
+          "description": "WhatsApp politikaları ve yerel düzenlemelerle uyumlu kalın.",
+          "points": [
+            "Yerleşik opt-in yönetimi",
+            "Kolay abonelik iptali işleme",
+            "Yasaklanmayı önlemek için hız sınırlaması"
+          ]
+        }
+      ],
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Aynı anda kaç kişiye mesaj gönderebilirim?",
+            "answer": "WhatsApp API ile sınırsız kişiye gönderebilirsiniz. WhatsApp Web ile yayın listesi başına 256 ile sınırlısınız."
+          },
+          {
+            "question": "Toplu gönderim yaptığımda yasaklanır mıyım?",
+            "answer": "En iyi uygulamaları takip ederseniz hayır. Sizi güvende tutmak için hız sınırlaması, opt-in yönetimi ve uyumluluk araçları dahildir."
+          },
+          {
+            "question": "Toplu gönderimleri zamanlayabilir miyim?",
+            "answer": "Evet, optimal gönderim zamanı önerileriyle gelecekteki herhangi bir tarih ve saat için toplu gönderimler zamanlayabilirsiniz."
+          }
+        ]
+      }
+    }
+  },
+  "categoryIndex": {
+    "featuredTitle": "Öne Çıkan",
+    "moreOptions": "Daha Fazla Seçenek",
+    "learnMore": "Daha fazla bilgi",
+    "features": {
+      "hero": {
+        "badge": "Platform Özellikleri",
+        "headline": "WhatsApp'ta Kazanmak İçin",
+        "headlineHighlight": "İhtiyacınız Olan Her Şey",
+        "description": "WhatsApp'ı en güçlü satış kanalınıza dönüştürmek için eksiksiz bir araç seti.",
+        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "secondaryCta": "Demoyu Gör"
+      },
+      "intro": {
+        "badge": "Neden Eazybe?",
+        "headline": "Satış Ekipleri İçin Yapıldı",
+        "description": "Her özellik, daha fazla ve daha hızlı satmanıza yardımcı olmak için tasarlanmıştır. Şişkinlik yok, karmaşıklık yok—sadece ihtiyacınız olan araçlar."
+      },
+      "benefits": {
+        "badge": "Temel Faydalar",
+        "headline": "Ne Kazanacaksınız",
+        "items": [
+          {
+            "title": "Dönüşümleri Artırın",
+            "description": "Anında yanıtlar ve kişiselleştirilmiş takiplerle daha fazla anlaşma kapatın."
+          },
+          {
+            "title": "Zaman Tasarrufu",
+            "description": "Tekrarlayan görevleri otomatikleştirin ve yüksek değerli konuşmalara odaklanın."
+          },
+          {
+            "title": "Tam Görünürlük",
+            "description": "Her konuşmayı görün, her anlaşmayı takip edin, her temsilciye koçluk yapın."
+          }
+        ]
+      },
+      "howItWorks": {
+        "badge": "Nasıl Çalışır",
+        "headline": "Dakikalar İçinde Başlayın",
+        "steps": [
+          {
+            "title": "WhatsApp'ı Bağlayın",
+            "description": "WhatsApp Web'inizi 2 dakikadan kısa sürede bağlayın. API kurulumu yok."
+          },
+          {
+            "title": "Araçlarınızı Ayarlayın",
+            "description": "Şablonları, otomasyonları ve ekip rollerini yapılandırın."
+          },
+          {
+            "title": "Satmaya Başlayın",
+            "description": "Ekibiniz WhatsApp'ta daha fazla anlaşma kapatmaya hazır."
+          }
+        ]
+      },
+      "faq": {
+        "badge": "SSS",
+        "headline": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "WhatsApp Business Hesabına ihtiyacım var mı?",
+            "answer": "Hayır, Eazybe normal WhatsApp hesabınızla çalışır. Ayrı iş hesabı gerekmez."
+          },
+          {
+            "question": "Kurulum ne kadar sürer?",
+            "answer": "Çoğu ekip 5 dakikadan kısa sürede çalışmaya başlar. Sadece bir QR kodu tarayın ve başlayın."
+          },
+          {
+            "question": "Verilerim güvende mi?",
+            "answer": "Evet, banka düzeyinde şifreleme kullanıyoruz ve tamamen KVKK uyumluyuz."
+          }
+        ]
+      }
+    },
+    "integrations": {
+      "hero": {
+        "badge": "Entegrasyonlar",
+        "headline": "Favori Araçlarınızla",
+        "headlineHighlight": "Bağlanın",
+        "description": "WhatsApp'ı CRM'iniz, yardım masanız ve iş araçlarınızla sorunsuz bir şekilde entegre edin.",
+        "primaryCta": "Entegrasyonları Keşfedin",
+        "secondaryCta": "Entegrasyon Talep Edin"
+      }
+    },
+    "whatsappApi": {
+      "hero": {
+        "badge": "WhatsApp API Çözümleri",
+        "headline": "Kurumsal WhatsApp",
+        "headlineHighlight": "Basitleştirildi",
+        "description": "Karmaşıklık olmadan WhatsApp Business API'sinin gücüne erişin. Mesajlaşma operasyonlarınızı ölçeklendirin.",
+        "primaryCta": "Başla",
+        "secondaryCta": "Daha Fazla Bilgi"
+      }
+    }
+  },
+  "coexistencePage": {
+    "hero": {
+      "badge": "Bir Arada Yaşam Modu",
+      "headline": "Her İki WhatsApp",
+      "headlineHighlight": "Dünyasının En İyisi",
+      "description": "WhatsApp uygulamanıza erişimi korurken API düzeyinde güç elde edin. Taviz yok, kısıtlama yok.",
+      "primaryCta": "Ücretsiz Denemeyi Başlat",
+      "secondaryCta": "Nasıl Çalıştığını Görün"
+    },
+    "benefits": {
+      "badge": "Neden Bir Arada Yaşam?",
+      "headline": "Her Şeye Sahip Olun",
+      "items": [
+        {
+          "title": "Uygulamanızı Koruyun",
+          "description": "İş özelliklerine erişirken telefonunuzda WhatsApp kullanmaya devam edin."
+        },
+        {
+          "title": "API Gücü",
+          "description": "Uygulama erişimini kaybetmeden otomasyonlar, entegrasyonlar ve toplu mesajlaşma alın."
+        },
+        {
+          "title": "Sıfır Kesinti",
+          "description": "Anında geçiş yapın. Meta onayı veya API kurulumu beklemeye gerek yok."
+        }
+      ]
+    },
+    "features": [
+      {
+        "badge": "Çift Kanal Erişimi",
+        "headline": "Her İkisini",
+        "headlineHighlight": "Aynı Anda Kullanın",
+        "description": "WhatsApp'a telefonunuzdan VE Eazybe üzerinden erişin. Tüm mesajları her yerde görün.",
+        "points": [
+          "Mesajlar tüm cihazlarda senkronize olur",
+          "Telefondan veya masaüstünden yanıtlayın",
+          "Asla bir konuşmayı kaçırmayın"
+        ]
+      },
+      {
+        "badge": "Yasaklanmadan Toplu Gönderim",
+        "headline": "Risk Olmadan",
+        "headlineHighlight": "Toplu Gönderim Yapın",
+        "description": "Numaranızı koruyan akıllı gönderim sistemimizi kullanarak güvenli bir şekilde toplu mesaj gönderin.",
+        "points": [
+          "Akıllı hız sınırlaması",
+          "Yerleşik yasaklanma koruması",
+          "Binleri güvenle gönderin"
+        ]
+      },
+      {
+        "badge": "CRM Bağlantılı",
+        "headline": "Tam CRM",
+        "headlineHighlight": "Entegrasyonu",
+        "description": "WhatsApp uygulamanızı aktif tutarken Salesforce, HubSpot ve daha fazlasına bağlanın.",
+        "points": [
+          "Çift yönlü veri senkronizasyonu",
+          "Otomatik konuşma günlüğü",
+          "Sohbetten anlaşmaları güncelleyin"
+        ]
+      }
+    ],
+    "comparison": {
+      "badge": "Karşılaştırma",
+      "headline": "Farkı Görün",
+      "description": "Bir Arada Yaşam'ın geleneksel WhatsApp modelleriyle karşılaştırması.",
+      "features": {
+        "bulkBroadcasting": "Toplu Yayın",
+        "appAccess": "Uygulama Erişimi",
+        "crmIntegration": "CRM Entegrasyonu",
+        "seeMessagesOnPhone": "Telefonda Mesajları Gör",
+        "numberBanProtection": "Numara Yasaklanma Koruması",
+        "whatsappWebAccess": "WhatsApp Web Erişimi",
+        "setupTime": "Kurulum Süresi"
+      },
+      "columns": {
+        "regular": "Normal WhatsApp",
+        "api": "Standart API",
+        "coexistence": "Bir Arada Yaşam"
+      },
+      "values": {
+        "risky": "Riskli",
+        "instant": "Anında",
+        "weeks": "Gün/Haftalar",
+        "minutes": "Dakikalar",
+        "protected": "Korumalı"
+      }
+    },
+    "faq": {
+      "badge": "SSS",
+      "headline": "Yaygın Sorular",
+      "items": [
+        {
+          "question": "Bir Arada Yaşam modu nedir?",
+          "answer": "Bir Arada Yaşam, telefonunuzdaki WhatsApp uygulamanıza tam erişimi korurken platformumuz aracılığıyla WhatsApp Business özelliklerini kullanmanızı sağlar. Her iki dünyanın en iyisini alırsınız."
+        },
+        {
+          "question": "WhatsApp uygulamamı kaybedecek miyim?",
+          "answer": "Hayır, asıl nokta bu! Telefonunuzun bağlantısını kesen standart API'nin aksine, Bir Arada Yaşam uygulamanızı tamamen işlevsel tutar."
+        },
+        {
+          "question": "Bu WhatsApp numaram için güvenli mi?",
+          "answer": "Evet, numaranızı güvende tutmak için akıllı gönderim kalıpları ve hız sınırlaması kullanıyoruz. Binlerce kullanıcı sorunsuz bir şekilde günlük toplu gönderim yapıyor."
+        }
+      ]
+    }
+  },
+  "blog": {
+    "loading": "Yükleniyor...",
+    "error": "Blog yazıları yüklenirken hata oluştu",
+    "errorPost": "Blog yazısı yüklenirken hata oluştu",
+    "hero": {
+      "badge": "Bilgi Merkezi",
+      "headline": "Blog &",
+      "headlineHighlight": "Kaynaklar",
+      "description": "WhatsApp CRM başarısı için uzman içgörüleri, kılavuzlar ve en iyi uygulamalar. Konuşmalı satış sanatında ustalaşın.",
+      "searchPlaceholder": "Makalelerde ara..."
+    },
+    "featured": {
+      "title": "Öne Çıkan Makale",
+      "badge": "Öne Çıkan"
+    },
+    "allArticles": {
+      "badge": "Keşfedin",
+      "title": "Tüm Makaleler",
+      "articleSingular": "Makale",
+      "articlePlural": "Makale",
+      "emptyTitle": "Kriterlerinize uyan makale bulunamadı.",
+      "clearFilters": "Filtreleri Temizle"
+    },
+    "categories": {
+      "all": "Tümü"
+    },
+    "detail": {
+      "backToBlog": "Bloga Dön",
+      "minRead": "dk okuma",
+      "by": "Yazan",
+      "tocTitle": "Bu Makalede",
+      "summaryTitle": "Özet",
+      "summarySubtitle": "Bu makaleden önemli noktalar",
+      "faqTitle": "Sıkça Sorulan Sorular",
+      "authorLabel": "Yazan",
+      "authorFallback": "Eazybe Editör Ekibi",
+      "authorBioFallback": "İşletmelerin WhatsApp iletişimini gelire dönüştürmesine yardımcı oluyoruz."
+    },
+    "sidebar": {
+      "badge": "Ücretsiz Deneme",
+      "headline": "WhatsApp Satışlarınızı Dönüştürün",
+      "description": "Konuşmaları yönetmek için Eazybe kullanan 1.000'den fazla işletmeye katılın.",
+      "buttonText": "Ücretsiz Denemeyi Başlat",
+      "footnote": "Kredi kartı gerekmez"
+    },
+    "newsletter": {
+      "headline": "Bu makaleyi beğendiniz mi?",
+      "description": "WhatsApp satışları, CRM ipuçları ve büyüme stratejileri hakkında haftalık içgörüler alın.",
+      "placeholder": "email@adresiniz.com",
+      "buttonText": "Abone Ol"
+    },
+    "relatedPosts": {
+      "badge": "Okumaya Devam Edin",
+      "title": "İlgili Makaleler",
+      "viewAll": "Tümünü Gör"
+    }
+  },
+  "integrations": {
+    "loading": "Yükleniyor...",
+    "badges": {
+      "whatsappIntegration": "WhatsApp Entegrasyonu",
+      "certified": "Sertifikalı"
+    },
+    "hero": {
+      "headlinePrefix": "Resmi",
+      "headlineSuffix": "WhatsApp Entegrasyonu",
+      "description": "Anlaşma zekasının kişisel telefonlarda ölmesine izin vermeyi bırakın. Her mesaj, resim ve sesli not otomatik olarak {crmName} Aktivite Zaman Çizelgesine kaydedilir.",
+      "feature1": "Bire bir ve Grup Sohbetleri için gerçek zamanlı senkronizasyon.",
+      "feature2": "Açık Anlaşmalar ve Biletlerle otomatik ilişkilendirme.",
+      "feature3": "Temsilciler ayrıldığında tam konuşma geçmişi korunur.",
+      "startTrial": "7 Günlük Ücretsiz Denemeyi Başlat",
+      "bookDemo": "Demo Rezervasyonu Yap",
+      "metaPartner": "İş Ortağı",
+      "appPartner": "Uygulama Ortağı"
+    },
+    "miniCrm": {
+      "badge": "Mini CRM",
+      "headline": "içinde Mini CRM",
+      "description": "Tüm {crmName} CRM'inize doğrudan WhatsApp içinden erişin. Sekme değiştirme yok, tahmin yok, sürtünme yok.",
+      "instantContext": "Anında Bağlam",
+      "pipelineManagement": "Boru Hattı Yönetimi",
+      "quickActions": "Hızlı Eylemler"
+    },
+    "properties": {
+      "badge": "Sistem Zekası",
+      "headline1": "Yüksek Niyet",
+      "headline2": "Etkileşim Alanlarını Senkronize Et",
+      "description": "WhatsApp etkileşim sinyalleri doğrudan {crmName} ortamınıza haritalandı. Aktif izleme etkinleştirildi."
+    },
+    "workflow": {
+      "badge": "İş Akışı Otomasyonu",
+      "headline1": "Yerli Sohbet Botları &",
+      "headline2": "İş Akışları",
+      "description": "{crmName} İş Akışlarınızda yerel bir eylem olarak \"WhatsApp Mesajı Gönder\" ekleyin. Kişisel dokunuşu kaybetmeden erişiminizi ölçeklendirin.",
+      "autoTriggers": "Otomatik Tetikleyiciler",
+      "autoTriggersDesc": "Herhangi bir {crmName} kayıt tetikleyicisine göre WhatsApp şablonları gönderin.",
+      "nativeActions": "Yerel Eylemler",
+      "nativeActionsDesc": "Eazybe, iş akışı oluşturucunuzda standart bir eylem olarak görünür."
+    },
+    "reports": {
+      "badge": "Görünürlük",
+      "headline1": "Raporlarda",
+      "headline2": "WhatsApp Verileri",
+      "description": "Tek gerçek kaynağı. {crmName}'nin standart raporlama araçlarını kullanarak Kişiler, Anlaşmalar ve Biletler genelinde WhatsApp etkileşimini raporlayın.",
+      "teamPerformance": "Ekip Performansı",
+      "teamPerformanceDesc": "Tüm WhatsApp sohbetlerinde Sahip bazında yanıt sürelerini analiz edin.",
+      "dealAttribution": "Anlaşma Atfı",
+      "dealAttributionDesc": "WhatsApp mesaj hacmini kapanış oranlarıyla ilişkilendirin.",
+      "ticketResolution": "Bilet Çözümü",
+      "ticketResolutionDesc": "WhatsApp kanalı üzerinden destek verimliliğini ölçün."
+    },
+    "comparison": {
+      "badge": "Ekipler neden Eazybe'ye geçiyor",
+      "headline1": "Zaten kullandığınız",
+      "headline2": "WhatsApp ile",
+      "headline3": "çalışır",
+      "description": "Diğer araçlar sizi WhatsApp Business Uygulamasını bırakıp yalnızca API'ye geçmeye zorlar. Eazybe her ikisiyle de çalışır—mevcut kurulumunuzu, sohbet geçmişinizi ve iş akışınızı koruyun.",
+      "personalWhatsApp": "Kişisel WhatsApp",
+      "businessApp": "WhatsApp Business Uygulaması",
+      "businessApi": "WhatsApp Business API",
+      "capability": "Yetenek",
+      "otherTools": "Diğer Araçlar",
+      "feature1": "WhatsApp Business Uygulaması",
+      "feature2": "WhatsApp Business API",
+      "feature3": "Mevcut sohbet geçmişini koru",
+      "feature4": "Kişisel WhatsApp numaralarını takip et",
+      "feature5": "30 dakikada hazır"
+    },
+    "faq": {
+      "badge": "SSS",
+      "headline": "Yaygın Sorular"
+    },
+    "cta": {
+      "badge": "Başla",
+      "headline": "WhatsApp'ınızı Dönüştürmeye",
+      "headlineHighlight": "Hazır mısınız?",
+      "description": "{crmName} entegrasyonu için Eazybe kullanan binlerce işletmeye katılın.",
+      "primaryCta": "Ücretsiz Denemeyi Başlat",
+      "secondaryCta": "Satış ile Konuş",
+      "footnote": "14 günlük ücretsiz deneme • Kredi kartı gerekmez"
+    }
+  }
+}

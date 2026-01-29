@@ -8,11 +8,22 @@ import {
   Cloud,
   X
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { useCoexistence } from '../hooks/useCoexistence'
 import { getIcon as getIconFromMap } from '../lib/iconMap'
 import { SectionBadge } from '../components/ui/SectionBadge'
+import CoexistenceDualChannelAnimation from '../components/animations/CoexistenceDualChannelAnimation'
+import CoexistenceBulkSafeAnimation from '../components/animations/CoexistenceBulkSafeAnimation'
+import CoexistenceCRMSyncAnimation from '../components/animations/CoexistenceCRMSyncAnimation'
+
+// Map badge names to animation components
+const animationsByBadge: Record<string, React.FC> = {
+  'Dual-Channel Access': CoexistenceDualChannelAnimation,
+  'Ban-Free Broadcasting': CoexistenceBulkSafeAnimation,
+  'CRM-Connected': CoexistenceCRMSyncAnimation,
+}
 
 const BADGE_VARIANT: 'cyan' | 'orange' | 'green' | 'default' = 'cyan'
 
@@ -149,6 +160,7 @@ const FeaturesSection: React.FC<{ features: any[] }> = ({ features }) => {
     <div id="features">
       {features.map((feature, idx) => {
         const alignRight = feature.alignRight || idx % 2 === 1
+        const AnimationComponent = feature.badge ? animationsByBadge[feature.badge] : null
 
         return (
           <section
@@ -201,17 +213,21 @@ const FeaturesSection: React.FC<{ features: any[] }> = ({ features }) => {
                   )}
                 </div>
 
-                {/* Visual placeholder */}
+                {/* Visual - Animation or placeholder */}
                 <div className="flex-1 w-full relative">
-                  <div className="aspect-[4/3] bg-brand-card rounded-2xl border border-slate-700 shadow-card p-2 flex items-center justify-center relative overflow-hidden group hover:shadow-card-hover hover:border-slate-600 transition-all duration-500">
-                    <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
-                    <div className="text-center text-slate-500 z-10">
-                      <div className="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center bg-brand-cyan/15 shadow-glow-cyan">
-                        <Cloud size={48} className="text-brand-cyan" />
+                  {AnimationComponent ? (
+                    <AnimationComponent />
+                  ) : (
+                    <div className="aspect-[4/3] bg-brand-card rounded-2xl border border-slate-700 shadow-card p-2 flex items-center justify-center relative overflow-hidden group hover:shadow-card-hover hover:border-slate-600 transition-all duration-500">
+                      <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
+                      <div className="text-center text-slate-500 z-10">
+                        <div className="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center bg-brand-cyan/15 shadow-glow-cyan">
+                          <Cloud size={48} className="text-brand-cyan" />
+                        </div>
+                        <p className="text-sm font-mono">{feature.badge || 'Feature visualization'}</p>
                       </div>
-                      <p className="text-sm font-mono">{feature.badge || 'Feature visualization'}</p>
                     </div>
-                  </div>
+                  )}
                   <div className="absolute -top-6 -right-6 w-40 h-40 rounded-full blur-3xl -z-10 bg-brand-blue/15"></div>
                 </div>
               </div>
@@ -225,7 +241,7 @@ const FeaturesSection: React.FC<{ features: any[] }> = ({ features }) => {
 
 // ================== Comparison Table ==================
 
-const comparisonData = [
+const defaultComparisonData = [
   { feature: 'Bulk Broadcasting', regular: 'risk', api: 'yes', coexistence: 'Yes' },
   { feature: 'App Access', regular: 'yes', api: 'no', coexistence: 'Yes' },
   { feature: 'CRM Integration', regular: 'no', api: 'yes', coexistence: 'Yes' },
@@ -234,6 +250,13 @@ const comparisonData = [
   { feature: 'WhatsApp Web Access', regular: 'yes', api: 'no', coexistence: 'Yes' },
   { feature: 'Setup Time', regular: 'instant', api: 'weeks', coexistence: 'Minutes' },
 ]
+
+const defaultColumnHeaders = {
+  feature: 'Feature',
+  regular: 'Regular WhatsApp',
+  api: 'Standard API',
+  coexistence: 'Coexistence'
+}
 
 const renderStatus = (status: string) => {
   if (status === 'yes') return <Check className="mx-auto text-emerald-400" size={18} />
@@ -246,19 +269,25 @@ const renderStatus = (status: string) => {
   return <span className="text-sm text-slate-400">{status === 'instant' ? 'Instant' : status === 'weeks' ? 'Days/Weeks' : status}</span>
 }
 
-const ComparisonSection: React.FC = () => {
+const ComparisonSection: React.FC<{ data?: any }> = ({ data }) => {
+  const comparisonData = data?.rows || defaultComparisonData
+  const columnHeaders = data?.columnHeaders || defaultColumnHeaders
+  const badge = data?.badge || 'Comparison'
+  const headline = data?.headline || 'See the Difference'
+  const description = data?.description || 'How Coexistence stacks up against traditional WhatsApp models.'
+
   return (
     <section className="py-24 bg-brand-surface border-b border-slate-800">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="mb-6">
-            <SectionBadge variant="orange">Comparison</SectionBadge>
+            <SectionBadge variant="orange">{badge}</SectionBadge>
           </div>
           <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-4">
-            See the Difference
+            {headline}
           </h2>
           <p className="text-lg text-slate-400">
-            How Coexistence stacks up against traditional WhatsApp models.
+            {description}
           </p>
         </div>
 
@@ -267,14 +296,14 @@ const ComparisonSection: React.FC = () => {
             <table className="w-full text-left border-collapse min-w-[600px]">
               <thead>
                 <tr className="border-b border-slate-700">
-                  <th className="px-6 py-5 text-xs font-bold text-slate-500 uppercase tracking-wider">Feature</th>
-                  <th className="px-6 py-5 text-xs font-bold text-slate-500 uppercase tracking-wider text-center border-x border-slate-700/50">Regular WhatsApp</th>
-                  <th className="px-6 py-5 text-xs font-bold text-slate-500 uppercase tracking-wider text-center border-r border-slate-700/50">Standard API</th>
-                  <th className="px-6 py-5 text-xs font-bold text-brand-cyan uppercase tracking-wider text-center bg-brand-cyan/5">Coexistence</th>
+                  <th className="px-6 py-5 text-xs font-bold text-slate-500 uppercase tracking-wider">{columnHeaders.feature}</th>
+                  <th className="px-6 py-5 text-xs font-bold text-slate-500 uppercase tracking-wider text-center border-x border-slate-700/50">{columnHeaders.regular}</th>
+                  <th className="px-6 py-5 text-xs font-bold text-slate-500 uppercase tracking-wider text-center border-r border-slate-700/50">{columnHeaders.api}</th>
+                  <th className="px-6 py-5 text-xs font-bold text-brand-cyan uppercase tracking-wider text-center bg-brand-cyan/5">{columnHeaders.coexistence}</th>
                 </tr>
               </thead>
               <tbody>
-                {comparisonData.map((row, idx) => (
+                {comparisonData.map((row: any, idx: number) => (
                   <tr key={idx} className="border-b border-slate-700/50 last:border-0 hover:bg-white/[0.02] transition-colors">
                     <td className="px-6 py-4 text-sm text-white font-medium">{row.feature}</td>
                     <td className="px-6 py-4 text-center border-x border-slate-700/50">{renderStatus(row.regular)}</td>
@@ -459,9 +488,60 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
+// ================== Translation Helper ==================
+
+const getTranslatedCoexistenceData = (t: (key: string, options?: any) => any) => {
+  const hero = t('coexistencePage.hero', { returnObjects: true })
+  const benefits = t('coexistencePage.benefits', { returnObjects: true })
+  const features = t('coexistencePage.features', { returnObjects: true })
+  const comparison = t('coexistencePage.comparison', { returnObjects: true })
+  const faq = t('coexistencePage.faq', { returnObjects: true })
+
+  // Check if translations exist (not just the key returned as string)
+  if (typeof hero === 'string' || typeof benefits === 'string') {
+    return null
+  }
+
+  return {
+    hero: {
+      badge: hero.badge,
+      headline: hero.headline,
+      headlineHighlight: hero.headlineHighlight,
+      description: hero.description,
+      primaryCta: hero.primaryCta ? { label: hero.primaryCta, url: '/signup' } : undefined,
+      secondaryCta: hero.secondaryCta ? { label: hero.secondaryCta, url: '#features' } : undefined
+    },
+    benefits: {
+      badge: benefits.badge,
+      headline: benefits.headline,
+      items: benefits.items
+    },
+    features: Array.isArray(features) ? features.map((f: any) => ({
+      badge: f.badge,
+      headline: f.headline,
+      headlineHighlight: f.headlineHighlight,
+      description: f.description,
+      points: f.points
+    })) : [],
+    comparison: typeof comparison === 'object' ? {
+      badge: comparison.badge,
+      headline: comparison.headline,
+      description: comparison.description,
+      columnHeaders: comparison.columnHeaders,
+      rows: comparison.rows
+    } : null,
+    faq: {
+      badge: faq.badge,
+      headline: faq.headline,
+      items: faq.items
+    }
+  }
+}
+
 // ================== Main Page ==================
 
 const CoexistencePage: React.FC = () => {
+  const { t } = useTranslation()
   const { data, loading, error } = useCoexistence()
 
   if (loading) {
@@ -488,18 +568,32 @@ const CoexistencePage: React.FC = () => {
     )
   }
 
+  // Get translated data and merge with Sanity data
+  const translatedData = getTranslatedCoexistenceData(t)
+
+  const mergedData = translatedData ? {
+    hero: { ...data.hero, ...translatedData.hero },
+    benefits: { ...data.benefits, ...translatedData.benefits },
+    features: translatedData.features.length > 0 ? translatedData.features : data.features,
+    comparison: translatedData.comparison,
+    howItWorks: data.howItWorks, // Keep Sanity data for how it works
+    useCases: data.useCases, // Keep Sanity data for use cases
+    testimonial: data.testimonial, // Keep Sanity data for testimonial
+    faq: { ...data.faq, ...translatedData.faq }
+  } : data
+
   return (
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       <Navbar />
 
-      <HeroSection data={data.hero} />
-      <BenefitsSection data={data.benefits} />
-      <FeaturesSection features={data.features} />
-      <ComparisonSection />
-      <HowItWorksSection data={data.howItWorks} />
-      <UseCasesSection data={data.useCases} />
-      {data.testimonial && <TestimonialSection data={data.testimonial} />}
-      <FAQSection data={data.faq} />
+      <HeroSection data={mergedData.hero} />
+      <BenefitsSection data={mergedData.benefits} />
+      <FeaturesSection features={mergedData.features} />
+      <ComparisonSection data={mergedData.comparison} />
+      <HowItWorksSection data={mergedData.howItWorks} />
+      <UseCasesSection data={mergedData.useCases} />
+      {mergedData.testimonial && <TestimonialSection data={mergedData.testimonial} />}
+      <FAQSection data={mergedData.faq} />
 
       <ChunkyFooter />
     </div>

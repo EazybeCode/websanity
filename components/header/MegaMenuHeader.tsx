@@ -2,9 +2,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { Button } from '../ui/Button'
 import { MegaMenuDropdown } from './MegaMenuDropdown'
 import { MobileMenu } from './MobileMenu'
+import { LanguageSwitcher } from './LanguageSwitcher'
+import { ThemeToggle } from './ThemeToggle'
 import { useNavigation, type NavItem } from '../../hooks/useNavigation'
 
 // Featured content for Platform menu only
@@ -16,145 +19,145 @@ const platformFeatured = {
 }
 
 // Fallback navigation data when CMS is not configured
-const fallbackNavigation = {
+const getFallbackNavigation = (t: (key: string) => string) => ({
   items: [
     {
       _key: 'platform',
-      label: 'Platform',
+      label: t('nav.platform'),
       isMegaMenu: true,
       menuType: 'platform' as const,
       columns: [
         {
           _key: 'productivity',
-          title: 'Productivity Tools',
+          title: t('nav.menu.productivityTools'),
           links: [
-            { _key: 'cb', label: 'Cloud Backup', href: '/features/cloud-backup', icon: 'CloudUpload', description: 'Never lose a conversation again' },
-            { _key: 'ti', label: 'Team Inbox', href: '/features/team-inbox', icon: 'Inbox', description: 'Collaborate on customer chats' },
-            { _key: 'qr', label: 'Quick Reply', href: '/features/quick-reply', icon: 'Zap', description: 'Templates for faster responses' },
-            { _key: 'ms', label: 'Message Scheduler', href: '/features/scheduler', icon: 'Clock', description: 'Send messages at the right time' },
+            { _key: 'cb', label: t('nav.menu.cloudBackup'), href: '/features/cloud-backup', icon: 'CloudUpload', description: t('nav.menu.cloudBackupDesc') },
+            { _key: 'ti', label: t('nav.menu.teamInbox'), href: '/features/team-inbox', icon: 'Inbox', description: t('nav.menu.teamInboxDesc') },
+            { _key: 'qr', label: t('nav.menu.quickReply'), href: '/features/quick-reply', icon: 'Zap', description: t('nav.menu.quickReplyDesc') },
+            { _key: 'ms', label: t('nav.menu.messageScheduler'), href: '/features/scheduler', icon: 'Clock', description: t('nav.menu.messageSchedulerDesc') },
           ],
         },
         {
           _key: 'intelligence',
-          title: 'Sales Intelligence',
+          title: t('nav.menu.salesIntelligence'),
           links: [
-            { _key: 'ri', label: 'Revenue Inbox', href: '/features/revenue-inbox', icon: 'TrendingUp', description: 'AI-powered deal insights' },
-            { _key: 'rr', label: 'Rep Radar', href: '/features/rep-radar', icon: 'Activity', description: 'Monitor team performance' },
-            { _key: 'wc', label: 'WhatsApp Copilot', href: '/features/whatsapp-copilot', icon: 'Sparkles', description: 'AI assistant for sales reps' },
-            { _key: 'crm', label: 'WhatsApp CRM', href: '/features/whatsapp-crm', icon: 'LayoutGrid', description: 'Labels, funnels & pipelines' },
+            { _key: 'ri', label: t('nav.menu.revenueInbox'), href: '/features/revenue-inbox', icon: 'TrendingUp', description: t('nav.menu.revenueInboxDesc') },
+            { _key: 'rr', label: t('nav.menu.repRadar'), href: '/features/rep-radar', icon: 'Activity', description: t('nav.menu.repRadarDesc') },
+            { _key: 'wc', label: t('nav.menu.whatsappCopilot'), href: '/features/whatsapp-copilot', icon: 'Sparkles', description: t('nav.menu.whatsappCopilotDesc') },
+            { _key: 'crm', label: t('nav.menu.whatsappCrm'), href: '/features/whatsapp-crm', icon: 'LayoutGrid', description: t('nav.menu.whatsappCrmDesc') },
           ],
         },
         {
           _key: 'api',
-          title: 'WhatsApp API',
+          title: t('nav.menu.whatsappApi'),
           links: [
-            { _key: 'co', label: 'Coexistence', href: '/coexistence', icon: 'GitMerge', description: 'Personal + Business WhatsApp' },
-            { _key: 'tp', label: 'Message Templates', href: '/whatsapp-api/templates', icon: 'FileText', description: 'Pre-approved message formats' },
-            { _key: 'bc', label: 'Broadcast Messages', href: '/whatsapp-api/broadcast', icon: 'Send', description: 'Reach thousands instantly' },
-            { _key: 'all', label: 'View all features', href: '/features' },
+            { _key: 'co', label: t('nav.menu.coexistence'), href: '/whatsapp-api/coexistence', icon: 'GitMerge', description: t('nav.menu.coexistenceDesc') },
+            { _key: 'tp', label: t('nav.menu.messageTemplates'), href: '/whatsapp-api/templates', icon: 'FileText', description: t('nav.menu.messageTemplatesDesc') },
+            { _key: 'bc', label: t('nav.menu.broadcastMessages'), href: '/whatsapp-api/broadcast', icon: 'Send', description: t('nav.menu.broadcastMessagesDesc') },
+            { _key: 'all', label: t('nav.menu.viewAllFeatures'), href: '/features' },
           ],
         },
       ],
     },
     {
       _key: 'integrations',
-      label: 'Integrations',
+      label: t('nav.integrations'),
       isMegaMenu: true,
       menuType: 'integrations' as const,
       columns: [
         {
           _key: 'popular',
-          title: 'Popular CRMs',
+          title: t('nav.menu.popularCrms'),
           links: [
-            { _key: 'hs', label: 'HubSpot', href: '/integrations/hubspot', icon: 'CircleDot', description: 'Bi-directional sync' },
-            { _key: 'sf', label: 'Salesforce', href: '/integrations/salesforce', icon: 'Cloud', description: 'Enterprise-grade integration' },
-            { _key: 'zo', label: 'Zoho CRM', href: '/integrations/zoho', icon: 'Database', description: 'Full contact sync' },
-            { _key: 'pd', label: 'Pipedrive', href: '/integrations/pipedrive', icon: 'Target', description: 'Pipeline automation' },
+            { _key: 'hs', label: 'HubSpot', href: '/integrations/hubspot', icon: 'CircleDot', description: t('nav.menu.hubspotDesc') },
+            { _key: 'sf', label: 'Salesforce', href: '/integrations/salesforce', icon: 'Cloud', description: t('nav.menu.salesforceDesc') },
+            { _key: 'zo', label: 'Zoho CRM', href: '/integrations/zoho', icon: 'Database', description: t('nav.menu.zohoDesc') },
+            { _key: 'pd', label: 'Pipedrive', href: '/integrations/pipedrive', icon: 'Target', description: t('nav.menu.pipedriveDesc') },
           ],
         },
         {
           _key: 'more-crms',
-          title: 'More CRMs',
+          title: t('nav.menu.moreCrms'),
           links: [
-            { _key: 'bi', label: 'Bitrix24', href: '/integrations/bitrix24', icon: 'Layers', description: 'All-in-one workspace' },
-            { _key: 'ls', label: 'LeadSquared', href: '/integrations/leadsquared', icon: 'BarChart2', description: 'Sales execution CRM' },
-            { _key: 'fd', label: 'Freshdesk', href: '/integrations/freshdesk', icon: 'Headphones', description: 'Support ticket sync' },
+            { _key: 'bi', label: 'Bitrix24', href: '/integrations/bitrix24', icon: 'Layers', description: t('nav.menu.bitrix24Desc') },
+            { _key: 'ls', label: 'LeadSquared', href: '/integrations/leadsquared', icon: 'BarChart2', description: t('nav.menu.leadsquaredDesc') },
+            { _key: 'fd', label: 'Freshdesk', href: '/integrations/freshdesk', icon: 'Headphones', description: t('nav.menu.freshdeskDesc') },
           ],
         },
         {
           _key: 'productivity',
-          title: 'Productivity',
+          title: t('nav.menu.productivity'),
           links: [
-            { _key: 'gs', label: 'Google Sheets', href: '/integrations/google-sheets', icon: 'Table', description: 'Export & analyze data' },
-            { _key: 'gc', label: 'Google Calendar', href: '/integrations/google-calendar', icon: 'Calendar', description: 'Schedule follow-ups' },
-            { _key: 'wh', label: 'Webhooks', href: '/integrations/webhooks', icon: 'Webhook', description: 'Custom automations' },
-            { _key: 'all', label: 'View all integrations', href: '/integrations' },
+            { _key: 'gs', label: 'Google Sheets', href: '/integrations/google-sheets', icon: 'Table', description: t('nav.menu.googleSheetsDesc') },
+            { _key: 'gc', label: 'Google Calendar', href: '/integrations/google-calendar', icon: 'Calendar', description: t('nav.menu.googleCalendarDesc') },
+            { _key: 'wh', label: 'Webhooks', href: '/integrations/webhooks', icon: 'Webhook', description: t('nav.menu.webhooksDesc') },
+            { _key: 'all', label: t('nav.menu.viewAllIntegrations'), href: '/integrations' },
           ],
         },
       ],
     },
     {
       _key: 'solutions',
-      label: 'Solutions',
+      label: t('nav.solutions'),
       isMegaMenu: true,
       menuType: 'solutions' as const,
       columns: [
         {
           _key: 'by-team',
-          title: 'By Team',
+          title: t('nav.menu.byTeam'),
           links: [
-            { _key: 'sales', label: 'Sales Teams', href: '/solutions/sales', icon: 'TrendingUp', description: 'Close deals faster on WhatsApp' },
-            { _key: 'support', label: 'Customer Support', href: '/solutions/support', icon: 'HeartHandshake', description: 'Resolve issues in real-time' },
-            { _key: 'marketing', label: 'Marketing', href: '/solutions/marketing', icon: 'Megaphone', description: 'Campaigns that convert' },
+            { _key: 'sales', label: t('nav.menu.salesTeams'), href: '/solutions/sales', icon: 'TrendingUp', description: t('nav.menu.salesTeamsDesc') },
+            { _key: 'support', label: t('nav.menu.customerSupport'), href: '/solutions/support', icon: 'HeartHandshake', description: t('nav.menu.customerSupportDesc') },
+            { _key: 'marketing', label: t('nav.menu.marketing'), href: '/solutions/marketing', icon: 'Megaphone', description: t('nav.menu.marketingDesc') },
           ],
         },
         {
           _key: 'by-size',
-          title: 'By Company Size',
+          title: t('nav.menu.byCompanySize'),
           links: [
-            { _key: 'startup', label: 'Startups', href: '/solutions/startups', icon: 'Rocket', description: 'Scale your outreach' },
-            { _key: 'smb', label: 'Small Business', href: '/solutions/small-business', icon: 'Building', description: 'Professional WhatsApp tools' },
-            { _key: 'enterprise', label: 'Enterprise', href: '/solutions/enterprise', icon: 'Building2', description: 'Security & compliance ready' },
+            { _key: 'startup', label: t('nav.menu.startups'), href: '/solutions/startups', icon: 'Rocket', description: t('nav.menu.startupsDesc') },
+            { _key: 'smb', label: t('nav.menu.smallBusiness'), href: '/solutions/small-business', icon: 'Building', description: t('nav.menu.smallBusinessDesc') },
+            { _key: 'enterprise', label: t('nav.menu.enterprise'), href: '/solutions/enterprise', icon: 'Building2', description: t('nav.menu.enterpriseDesc') },
           ],
         },
       ],
     },
     {
       _key: 'resources',
-      label: 'Resources',
+      label: t('nav.resources'),
       isMegaMenu: true,
       menuType: 'resources' as const,
       columns: [
         {
           _key: 'learn',
-          title: 'Learn',
+          title: t('nav.menu.learn'),
           links: [
-            { _key: 'blog', label: 'Blog', href: '/blog', icon: 'FileText', description: 'Tips, guides & updates' },
-            { _key: 'cs', label: 'Case Studies', href: '/blog?category=case-studies', icon: 'Award', description: 'Customer success stories' },
-            { _key: 'webinars', label: 'Webinars', href: 'https://eazybe.com/webinars', icon: 'Video', description: 'Live demos & training', isExternal: true },
+            { _key: 'blog', label: t('nav.blog'), href: '/blog', icon: 'FileText', description: t('nav.menu.blogDesc') },
+            { _key: 'cs', label: t('nav.menu.caseStudies'), href: '/blog?category=case-studies', icon: 'Award', description: t('nav.menu.caseStudiesDesc') },
+            { _key: 'webinars', label: t('nav.menu.webinars'), href: 'https://eazybe.com/webinars', icon: 'Video', description: t('nav.menu.webinarsDesc'), isExternal: true },
           ],
         },
         {
           _key: 'support',
-          title: 'Support',
+          title: t('nav.support'),
           links: [
-            { _key: 'help', label: 'Help Center', href: 'https://help.eazybe.com', icon: 'HelpCircle', description: 'Guides & tutorials', isExternal: true },
-            { _key: 'docs', label: 'Documentation', href: 'https://docs.eazybe.com', icon: 'BookOpen', description: 'Technical reference', isExternal: true },
-            { _key: 'api', label: 'API Reference', href: 'https://api.eazybe.com', icon: 'Code', description: 'For developers', isExternal: true },
+            { _key: 'help', label: t('nav.menu.helpCenter'), href: 'https://help.eazybe.com', icon: 'HelpCircle', description: t('nav.menu.helpCenterDesc'), isExternal: true },
+            { _key: 'docs', label: t('nav.docs'), href: 'https://docs.eazybe.com', icon: 'BookOpen', description: t('nav.menu.docsDesc'), isExternal: true },
+            { _key: 'api', label: t('nav.menu.apiReference'), href: 'https://api.eazybe.com', icon: 'Code', description: t('nav.menu.apiReferenceDesc'), isExternal: true },
           ],
         },
       ],
     },
     {
       _key: 'pricing',
-      label: 'Pricing',
+      label: t('nav.pricing'),
       href: '/pricing',
       isMegaMenu: false,
     },
   ],
-  ctaButton: { label: 'Start Free Trial', href: 'https://app.eazybe.com/signup', variant: 'primary' as const },
-  signInButton: { label: 'Sign In', href: 'https://app.eazybe.com/login' },
-}
+  ctaButton: { label: t('nav.startFreeTrial'), href: 'https://app.eazybe.com/signup', variant: 'primary' as const },
+  signInButton: { label: t('nav.signIn'), href: 'https://app.eazybe.com/login' },
+})
 
 interface NavItemWithDropdownProps {
   item: NavItem & { menuType?: string }
@@ -235,6 +238,7 @@ const NavItemWithDropdown: React.FC<NavItemWithDropdownProps> = ({
 }
 
 export const MegaMenuHeader: React.FC = () => {
+  const { t } = useTranslation()
   const { data: cmsNavigation } = useNavigation('main-nav')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
@@ -243,7 +247,7 @@ export const MegaMenuHeader: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null)
 
   // Use CMS data with fallback
-  const navigation = cmsNavigation || fallbackNavigation
+  const navigation = cmsNavigation || getFallbackNavigation(t)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -341,7 +345,7 @@ export const MegaMenuHeader: React.FC = () => {
                 href={navigation.signInButton.href || '#'}
                 className="font-medium text-sm text-slate-300 hover:text-white px-4 py-2 transition-colors"
               >
-                {navigation.signInButton.label || 'Sign In'}
+                {t('cta.bookDemo')}
               </a>
             )}
             {navigation.ctaButton && (
@@ -355,9 +359,11 @@ export const MegaMenuHeader: React.FC = () => {
                   }
                 }}
               >
-                {navigation.ctaButton.label || 'Get Started'}
+                {t('nav.startFreeTrial')}
               </Button>
             )}
+            <LanguageSwitcher variant="desktop" />
+            <ThemeToggle variant="desktop" />
           </div>
 
           {/* Mobile Toggle */}

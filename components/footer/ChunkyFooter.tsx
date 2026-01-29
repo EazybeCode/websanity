@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Linkedin, Twitter, Youtube, Shield, Lock, Rocket, ShieldCheck } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { FooterColumn, type FooterLink } from './FooterColumn'
 
 // Meta infinity logo component for consistent branding
@@ -14,7 +15,7 @@ const MetaLogo: React.FC<{ size?: number }> = ({ size = 40 }) => (
   />
 )
 
-const platformLinks: FooterLink[] = [
+const getPlatformLinks = (t: (key: string) => string): FooterLink[] => [
   { label: 'Cloud Backup', href: '/features/cloud-backup' },
   { label: 'Team Inbox', href: '/features/team-inbox' },
   { label: 'Revenue Inbox', href: '/features/revenue-inbox' },
@@ -23,10 +24,10 @@ const platformLinks: FooterLink[] = [
   { label: 'Message Scheduler', href: '/features/scheduler' },
   { label: 'WhatsApp CRM', href: '/features/whatsapp-crm' },
   { label: 'WhatsApp Copilot', href: '/features/whatsapp-copilot' },
-  { label: 'View All Features →', href: '/features' },
+  { label: t('footer.viewAllFeatures'), href: '/features' },
 ]
 
-const integrationLinks: FooterLink[] = [
+const getIntegrationLinks = (t: (key: string) => string): FooterLink[] => [
   { label: 'HubSpot', href: '/integrations/hubspot' },
   { label: 'Salesforce', href: '/integrations/salesforce' },
   { label: 'Zoho CRM', href: '/integrations/zoho' },
@@ -36,11 +37,11 @@ const integrationLinks: FooterLink[] = [
   { label: 'Pipedrive', href: '/integrations/pipedrive' },
   { label: 'Google Sheets', href: '/integrations/google-sheets' },
   { label: 'Webhooks', href: '/integrations/webhooks' },
-  { label: 'View All Integrations →', href: '/integrations' },
+  { label: t('footer.viewAllIntegrations'), href: '/integrations' },
 ]
 
 const whatsappApiLinks: FooterLink[] = [
-  { label: 'Coexistence', href: '/coexistence' },
+  { label: 'Coexistence', href: '/whatsapp-api/coexistence' },
   { label: 'Message Templates', href: '/whatsapp-api/templates' },
   { label: 'Broadcast Messages', href: '/whatsapp-api/broadcast' },
   { label: 'API Documentation', href: 'https://docs.eazybe.com/api', isExternal: true },
@@ -79,6 +80,8 @@ const socialLinks = [
 ]
 
 export const ChunkyFooter: React.FC = () => {
+  const { t } = useTranslation()
+
   return (
     <>
       {/* CTA Section - Ready for Lift Off */}
@@ -89,16 +92,16 @@ export const ChunkyFooter: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-500 font-mono text-sm font-bold mb-8">
             <Rocket size={16} />
-            READY FOR LIFT OFF
+            {t('hero.badge')}
           </div>
 
           <h2 className="text-5xl md:text-6xl font-sans font-extrabold text-white tracking-tight leading-tight mb-6">
-            Turn WhatsApp into your <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Revenue Engine</span>
+            {t('hero.headline')} <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">{t('hero.headlineHighlight')}</span>
           </h2>
 
           <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-            Join 2,000+ teams who finally see what is happening in chat. Sync conversations, automate workflows, and close deals faster.
+            {t('hero.subheadline')}
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -106,18 +109,18 @@ export const ChunkyFooter: React.FC = () => {
               href="/signup"
               className="inline-flex items-center justify-center font-bold text-base px-10 py-4 rounded-lg bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] border border-blue-600 hover:bg-blue-700 hover:scale-105 transform transition-all"
             >
-              Start Free Trial
+              {t('cta.startFreeTrial')}
             </a>
             <a
               href="/demo"
               className="inline-flex items-center justify-center font-bold text-base px-10 py-4 rounded-lg bg-transparent text-slate-300 border border-slate-700 hover:border-slate-500 hover:text-white transition-all"
             >
-              Book a Demo
+              {t('cta.bookDemo')}
             </a>
           </div>
 
           <p className="mt-6 text-sm text-slate-500">
-            Free 14-day trial • No credit card required
+            {t('hero.noCreditCard')}
           </p>
         </div>
       </section>
@@ -128,7 +131,7 @@ export const ChunkyFooter: React.FC = () => {
           <div className="flex justify-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/20 bg-slate-900/50 text-cyan-500 font-mono text-xs font-bold uppercase tracking-widest shadow-[0_0_20px_-5px_rgba(6,182,212,0.3)]">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
-              ENTERPRISE-READY SECURITY
+              {t('security.title')}
             </div>
           </div>
 
@@ -138,8 +141,8 @@ export const ChunkyFooter: React.FC = () => {
               <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <MetaLogo size={44} />
               </div>
-              <h3 className="text-white text-xl font-bold mb-2">Meta Business Partner</h3>
-              <p className="text-slate-400 text-sm">Verified Integration</p>
+              <h3 className="text-white text-xl font-bold mb-2">{t('footer.metaBusinessPartner')}</h3>
+              <p className="text-slate-400 text-sm">{t('footer.verifiedIntegration')}</p>
             </div>
 
             {/* GDPR Ready Card */}
@@ -149,13 +152,13 @@ export const ChunkyFooter: React.FC = () => {
                 <ShieldCheck size={32} />
                 <div className="absolute inset-0 border-2 border-emerald-500/20 rounded-full border-dashed animate-[spin_10s_linear_infinite]"></div>
               </div>
-              <h3 className="text-white text-xl font-bold mb-2">GDPR Ready</h3>
-              <p className="text-slate-400 text-sm mb-6">Fully Compliant Data Processing</p>
+              <h3 className="text-white text-xl font-bold mb-2">{t('security.gdpr')}</h3>
+              <p className="text-slate-400 text-sm mb-6">{t('security.gdprDesc')}</p>
               <div className="px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 text-[10px] font-mono font-bold uppercase tracking-widest flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full border border-current flex items-center justify-center">
                   <div className="w-1.5 h-1.5 rounded-full bg-current"></div>
                 </div>
-                Compliant
+                {t('footer.compliant')}
               </div>
             </div>
 
@@ -164,13 +167,13 @@ export const ChunkyFooter: React.FC = () => {
               <div className="w-20 h-20 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center mb-6 text-cyan-500 group-hover:scale-110 transition-transform duration-300">
                 <Lock size={32} />
               </div>
-              <h3 className="text-white text-xl font-bold mb-2">Bank-Grade Security</h3>
-              <p className="text-slate-400 text-sm">SSL & 256-bit Encryption</p>
+              <h3 className="text-white text-xl font-bold mb-2">{t('security.encryption')}</h3>
+              <p className="text-slate-400 text-sm">{t('security.encryptionDesc')}</p>
             </div>
           </div>
 
           <div className="mt-16 text-center">
-            <p className="text-slate-500 text-sm">Trusted by regulated industries: financial services, healthcare, insurance</p>
+            <p className="text-slate-500 text-sm">{t('footer.trustedBy')}</p>
           </div>
         </div>
       </section>
@@ -198,7 +201,7 @@ export const ChunkyFooter: React.FC = () => {
               </span>
             </Link>
             <p className="text-slate-400 mb-5 leading-relaxed text-xs">
-              The WhatsApp Sales Platform for CRM teams.
+              {t('footer.tagline')}
             </p>
 
             {/* Social Links */}
@@ -223,7 +226,7 @@ export const ChunkyFooter: React.FC = () => {
               <div className="flex flex-col items-center justify-center p-3 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-colors">
                 <Shield size={20} className="text-brand-cyan mb-1.5" />
                 <span className="text-[10px] font-semibold text-slate-400 text-center leading-tight">
-                  GDPR<br />Ready
+                  {t('footer.gdprReady')}
                 </span>
               </div>
 
@@ -233,7 +236,7 @@ export const ChunkyFooter: React.FC = () => {
                   <MetaLogo size={22} />
                 </div>
                 <span className="text-[10px] font-semibold text-slate-400 text-center leading-tight">
-                  Meta<br />Partner
+                  {t('footer.metaPartner')}
                 </span>
               </div>
 
@@ -241,32 +244,32 @@ export const ChunkyFooter: React.FC = () => {
               <div className="flex flex-col items-center justify-center p-3 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-colors">
                 <Lock size={20} className="text-brand-green mb-1.5" />
                 <span className="text-[10px] font-semibold text-slate-400 text-center leading-tight">
-                  Encrypted
+                  {t('footer.encrypted')}
                 </span>
               </div>
             </div>
           </div>
 
           {/* Platform Column */}
-          <FooterColumn title="Platform" links={platformLinks} />
+          <FooterColumn title={t('footer.platform')} links={getPlatformLinks(t)} />
 
           {/* Integrations Column */}
-          <FooterColumn title="Integrations" links={integrationLinks} />
+          <FooterColumn title={t('footer.integrations')} links={getIntegrationLinks(t)} />
 
           {/* WhatsApp API Column */}
-          <FooterColumn title="WhatsApp API" links={whatsappApiLinks} />
+          <FooterColumn title={t('footer.whatsappApi')} links={whatsappApiLinks} />
 
           {/* Resources Column */}
-          <FooterColumn title="Resources" links={resourceLinks} />
+          <FooterColumn title={t('footer.resources')} links={resourceLinks} />
 
           {/* Company Column */}
-          <FooterColumn title="Company" links={companyLinks} />
+          <FooterColumn title={t('footer.company')} links={companyLinks} />
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-slate-500 text-xs text-center md:text-left">
-            © {new Date().getFullYear()} Eazybe, Inc. All rights reserved.
+            © {new Date().getFullYear()} {t('footer.copyright')}
             <span className="hidden md:inline"> · </span>
             <span className="block md:inline mt-1 md:mt-0">
               8, The Green STE B, Dover Delaware - 19901

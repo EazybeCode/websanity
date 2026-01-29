@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useParams, Link, useLocation } from 'react-router-dom'
 import {
   ArrowRight,
@@ -37,6 +38,12 @@ import WhatsAppCRMSyncAnimation from '../components/animations/WhatsAppCRMSyncAn
 import RevenueInboxComparisonAnimation from '../components/animations/RevenueInboxComparisonAnimation'
 import RevenueInboxScoringAnimation from '../components/animations/RevenueInboxScoringAnimation'
 import RevenueInboxAlertsAnimation from '../components/animations/RevenueInboxAlertsAnimation'
+import TemplatesProblemAnimation from '../components/animations/TemplatesProblemAnimation'
+import TemplatesSolutionAnimation from '../components/animations/TemplatesSolutionAnimation'
+import TemplatesAutomationAnimation from '../components/animations/TemplatesAutomationAnimation'
+import BroadcastProblemAnimation from '../components/animations/BroadcastProblemAnimation'
+import BroadcastSolutionAnimation from '../components/animations/BroadcastSolutionAnimation'
+import BroadcastAutomationAnimation from '../components/animations/BroadcastAutomationAnimation'
 
 // Helper to get icon with fallback to Cloud
 const getIcon = (iconName: string | undefined) => {
@@ -245,6 +252,20 @@ const revenueInboxAnimations: Record<number, React.FC> = {
   2: RevenueInboxAlertsAnimation
 }
 
+// Templates specific animations mapping
+const templatesAnimations: Record<number, React.FC> = {
+  0: TemplatesProblemAnimation,
+  1: TemplatesSolutionAnimation,
+  2: TemplatesAutomationAnimation
+}
+
+// Broadcast specific animations mapping
+const broadcastAnimations: Record<number, React.FC> = {
+  0: BroadcastProblemAnimation,
+  1: BroadcastSolutionAnimation,
+  2: BroadcastAutomationAnimation
+}
+
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
 
@@ -256,6 +277,8 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
   const isCloudBackup = slug === 'cloud-backup'
   const isWhatsappCrm = slug === 'whatsapp-crm'
   const isRevenueInbox = slug === 'revenue-inbox'
+  const isTemplates = slug === 'templates'
+  const isBroadcast = slug === 'broadcast'
 
   // Get animation component based on slug
   const getAnimationComponent = (index: number): React.FC | null => {
@@ -267,6 +290,8 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
     if (isCloudBackup) return cloudBackupAnimations[index] || null
     if (isWhatsappCrm) return whatsappCrmAnimations[index] || null
     if (isRevenueInbox) return revenueInboxAnimations[index] || null
+    if (isTemplates) return templatesAnimations[index] || null
+    if (isBroadcast) return broadcastAnimations[index] || null
     return null
   }
 
@@ -534,16 +559,71 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
+// ================== Translation Fallback Helper ==================
+
+const getTranslatedFallbackData = (slug: string, t: (key: string, options?: any) => any) => {
+  const featureKeyMap: Record<string, string> = {
+    'cloud-backup': 'cloudBackup',
+    'team-inbox': 'teamInbox',
+    'whatsapp-crm': 'whatsappCrm',
+    'quick-reply': 'quickReply',
+    'scheduler': 'scheduler',
+    'revenue-inbox': 'revenueInbox',
+    'rep-radar': 'repRadar',
+    'whatsapp-copilot': 'whatsappCopilot',
+    'whatsapp-api': 'whatsappApi',
+    'coexistence': 'coexistence',
+    'templates': 'templates',
+    'broadcast': 'broadcast'
+  }
+
+  const featureKey = featureKeyMap[slug]
+  if (!featureKey) return null
+
+  // Check if translations exist for this feature
+  const heroData = t(`features.${featureKey}.hero`, { returnObjects: true })
+  if (typeof heroData === 'string') return null // Translation key not found
+
+  return {
+    hero: {
+      badge: t(`features.${featureKey}.hero.badge`),
+      headline: t(`features.${featureKey}.hero.headline`),
+      headlineHighlight: t(`features.${featureKey}.hero.headlineHighlight`),
+      description: t(`features.${featureKey}.hero.description`),
+      primaryCta: { label: t(`features.${featureKey}.hero.primaryCta`), url: '/signup' },
+      secondaryCta: { label: t(`features.${featureKey}.hero.secondaryCta`), url: '#features' }
+    },
+    benefits: {
+      badge: t(`features.${featureKey}.benefits.badge`),
+      headline: t(`features.${featureKey}.benefits.headline`),
+      items: t(`features.${featureKey}.benefits.items`, { returnObjects: true }) || []
+    },
+    features: (t(`features.${featureKey}.sections`, { returnObjects: true }) || []).map((section: any, idx: number) => ({
+      badge: section.badge,
+      headline: section.headline,
+      description: section.description,
+      points: section.points || [],
+      _key: `section-${idx}`
+    })),
+    faq: {
+      badge: t(`features.${featureKey}.faq.badge`),
+      headline: t(`features.${featureKey}.faq.headline`),
+      items: t(`features.${featureKey}.faq.items`, { returnObjects: true }) || []
+    }
+  }
+}
+
 // ================== Main FeaturePage Component ==================
 
 export const FeaturePage: React.FC = () => {
+  const { t } = useTranslation()
   const { slug: urlSlug } = useParams<{ slug: string }>()
   const location = useLocation()
 
   // Determine slug based on URL - handle /whatsapp-api route specially
   const slug = urlSlug || (location.pathname === '/whatsapp-api' ? 'whatsapp-api' : 'cloud-backup')
 
-  const { data, loading, error } = useFeature(slug)
+  const { data: sanityData, loading, error } = useFeature(slug)
 
   const featureColor = featureColors[slug] || featureColors['cloud-backup']
   const color = featureColor.primary
@@ -553,7 +633,7 @@ export const FeaturePage: React.FC = () => {
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-400">Loading...</p>
+          <p className="text-slate-400">{t('common.loading')}</p>
         </div>
       </div>
     )
@@ -561,13 +641,19 @@ export const FeaturePage: React.FC = () => {
 
   const currentSlug = slug || 'cloud-backup'
 
+  // For cloud-backup and team-inbox, prioritize translations over Sanity data
+  // This allows content to change when switching languages
+  const translatedData = getTranslatedFallbackData(currentSlug, t)
+  const hasTranslations = translatedData !== null
+  const data = hasTranslations ? translatedData : sanityData
+
   if (error || !data) {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Feature not found</h1>
+          <h1 className="text-2xl font-bold text-white mb-4">{t('common.notFound')}</h1>
           <Link to="/features" className="text-brand-blue hover:underline">
-            View all features
+            {t('cta.viewAll')}
           </Link>
         </div>
       </div>

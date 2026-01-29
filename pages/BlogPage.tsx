@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Calendar,
   Clock,
@@ -115,7 +116,8 @@ const StickyTableOfContents: React.FC<{
   sections: Array<{ label: string; id: string }>;
   sidebarCta?: BlogIndexSidebarCta;
   tocTitle?: string;
-}> = ({ sections, sidebarCta, tocTitle }) => {
+  t: (key: string) => string;
+}> = ({ sections, sidebarCta, tocTitle, t }) => {
   const [activeSection, setActiveSection] = useState<string>('');
 
   useEffect(() => {
@@ -149,7 +151,7 @@ const StickyTableOfContents: React.FC<{
         <div className="bg-brand-card border border-slate-700/50 rounded-2xl p-5 shadow-xl">
           <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-700/50">
             <BookOpen size={16} className="text-brand-cyan" />
-            <h4 className="font-semibold text-white text-sm">{tocTitle || 'In This Article'}</h4>
+            <h4 className="font-semibold text-white text-sm">{tocTitle || t('blog.detail.tocTitle')}</h4>
           </div>
           <nav>
             <ol className="space-y-1">
@@ -194,20 +196,20 @@ const StickyTableOfContents: React.FC<{
             <Rocket size={16} className="text-brand-cyan" />
           </div>
           <span className="font-mono text-[10px] uppercase tracking-widest text-brand-cyan font-bold">
-            {sidebarCta?.badge || 'Free Trial'}
+            {sidebarCta?.badge || t('blog.sidebar.badge')}
           </span>
         </div>
         <h4 className="text-white font-bold mb-2">
-          {sidebarCta?.headline || 'Transform Your WhatsApp Sales'}
+          {sidebarCta?.headline || t('blog.sidebar.headline')}
         </h4>
         <p className="text-slate-400 text-sm mb-4 leading-relaxed">
-          {sidebarCta?.description || 'Join 1,000+ businesses using Eazybe to manage conversations.'}
+          {sidebarCta?.description || t('blog.sidebar.description')}
         </p>
         <Button variant="primary" size="md" className="w-full">
-          {sidebarCta?.buttonText || 'Start Free Trial'}
+          {sidebarCta?.buttonText || t('blog.sidebar.buttonText')}
         </Button>
         <p className="text-[10px] text-center mt-3 font-mono text-slate-500 uppercase tracking-widest">
-          {sidebarCta?.footnote || 'No credit card required'}
+          {sidebarCta?.footnote || t('blog.sidebar.footnote')}
         </p>
       </div>
     </div>
@@ -247,15 +249,16 @@ const RelatedPostCard: React.FC<{
 };
 
 const BlogPage: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  // TODO: Get language from URL path or context (e.g., /br/blog, /es/blog)
-  const language = 'en';
+  // Get language from i18n
+  const language = i18n.language || 'en';
   const { data: post, loading, error } = useBlogPost(slug || '', language);
   const { data: relatedPosts } = useBlogPosts(4, language);
   const { data: blogIndex } = useBlogIndex(language);
 
-  // Get content from Sanity with fallbacks
+  // Get content from Sanity with translation fallbacks
   const sidebarCta = blogIndex?.sidebarCta;
   const newsletterCta = blogIndex?.newsletterCta;
   const relatedPostsSection = blogIndex?.relatedPostsSection;
@@ -266,7 +269,7 @@ const BlogPage: React.FC = () => {
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-400">Loading...</p>
+          <p className="text-slate-400">{t('blog.loading')}</p>
         </div>
       </div>
     );
@@ -276,7 +279,7 @@ const BlogPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center text-red-400">
-          <p>Error loading blog post</p>
+          <p>{t('blog.errorPost')}</p>
         </div>
       </div>
     );
@@ -300,7 +303,7 @@ const BlogPage: React.FC = () => {
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             <span className="font-mono text-xs uppercase tracking-widest">
-              {detailLabels?.backToBlog || 'Back to Blog'}
+              {detailLabels?.backToBlog || t('blog.detail.backToBlog')}
             </span>
           </button>
 
@@ -328,7 +331,7 @@ const BlogPage: React.FC = () => {
                 {post.author?.name?.[0] || <User size={24} />}
               </div>
               <div>
-                <p className="font-semibold text-white text-lg">{post.author?.name || 'Eazybe Editorial'}</p>
+                <p className="font-semibold text-white text-lg">{post.author?.name || t('blog.detail.authorFallback')}</p>
                 <div className="flex items-center gap-4 text-sm text-slate-500 mt-1">
                   <span className="flex items-center gap-1.5">
                     <Calendar size={14} />
@@ -336,7 +339,7 @@ const BlogPage: React.FC = () => {
                   </span>
                   <span className="flex items-center gap-1.5">
                     <Clock size={14} />
-                    {post.readTime} {detailLabels?.minReadSuffix || 'min read'}
+                    {post.readTime} {detailLabels?.minReadSuffix || t('blog.detail.minRead')}
                   </span>
                 </div>
               </div>
@@ -389,10 +392,10 @@ const BlogPage: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-bold text-white text-lg">
-                        {detailLabels?.summaryTitle || 'Summary'}
+                        {detailLabels?.summaryTitle || t('blog.detail.summaryTitle')}
                       </h4>
                       <p className="text-sm text-slate-500">
-                        {detailLabels?.summarySubtitle || 'Quick takeaways from this article'}
+                        {detailLabels?.summarySubtitle || t('blog.detail.summarySubtitle')}
                       </p>
                     </div>
                   </div>
@@ -654,7 +657,7 @@ const BlogPage: React.FC = () => {
               {post.faqs && post.faqs.length > 0 && (
                 <div className="mt-20 pt-12 border-t border-slate-800">
                   <h2 className="text-3xl font-bold text-white tracking-tight mb-8">
-                    {detailLabels?.faqTitle || 'Frequently Asked Questions'}
+                    {detailLabels?.faqTitle || t('blog.detail.faqTitle')}
                   </h2>
                   <div className="space-y-4">
                     {post.faqs.map((faq, i) => (
@@ -681,11 +684,11 @@ const BlogPage: React.FC = () => {
                     </div>
                     <div className="flex-1">
                       <p className="text-sm text-brand-cyan uppercase tracking-wider font-semibold mb-2">
-                        {detailLabels?.authorLabel || 'Written by'}
+                        {detailLabels?.authorLabel || t('blog.detail.authorLabel')}
                       </p>
                       <h4 className="text-2xl font-bold text-white mb-4">{post.author.name}</h4>
                       <p className="text-lg text-slate-400 leading-relaxed">
-                        {post.author.bio || 'Helping businesses transform their WhatsApp communication into revenue.'}
+                        {post.author.bio || t('blog.detail.authorBioFallback')}
                       </p>
                     </div>
                   </div>
@@ -695,19 +698,19 @@ const BlogPage: React.FC = () => {
               {/* Newsletter CTA - Inline */}
               <div className="mt-20 p-10 bg-gradient-to-br from-brand-blue/10 to-brand-cyan/10 rounded-3xl border border-brand-cyan/20 text-center">
                 <h3 className="text-2xl font-bold text-white mb-3">
-                  {newsletterCta?.headline || 'Enjoyed this article?'}
+                  {newsletterCta?.headline || t('blog.newsletter.headline')}
                 </h3>
                 <p className="text-lg text-slate-400 mb-8 max-w-md mx-auto">
-                  {newsletterCta?.description || 'Get weekly insights on WhatsApp sales, CRM tips, and business growth strategies.'}
+                  {newsletterCta?.description || t('blog.newsletter.description')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                   <input
                     type="email"
-                    placeholder={newsletterCta?.placeholder || 'your@email.com'}
+                    placeholder={newsletterCta?.placeholder || t('blog.newsletter.placeholder')}
                     className="flex-1 bg-brand-black border border-slate-700 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:border-brand-cyan outline-none transition-colors text-lg"
                   />
                   <Button variant="primary" size="lg">
-                    {newsletterCta?.buttonText || 'Subscribe'}
+                    {newsletterCta?.buttonText || t('blog.newsletter.buttonText')}
                   </Button>
                 </div>
               </div>
@@ -719,6 +722,7 @@ const BlogPage: React.FC = () => {
                 sections={post.tableOfContents || []}
                 sidebarCta={sidebarCta}
                 tocTitle={detailLabels?.tocTitle}
+                t={t}
               />
             </aside>
           </div>
@@ -732,14 +736,14 @@ const BlogPage: React.FC = () => {
             <div className="flex items-center justify-between mb-12">
               <div>
                 <SectionBadge variant="cyan" className="mb-4">
-                  {relatedPostsSection?.badge || 'Keep Reading'}
+                  {relatedPostsSection?.badge || t('blog.relatedPosts.badge')}
                 </SectionBadge>
                 <h2 className="text-3xl font-bold text-white">
-                  {relatedPostsSection?.title || 'Related Articles'}
+                  {relatedPostsSection?.title || t('blog.relatedPosts.title')}
                 </h2>
               </div>
               <Button variant="outline" onClick={() => navigate('/blog')} className="hidden sm:flex" icon={<ChevronRight size={16} />}>
-                {relatedPostsSection?.viewAllText || 'View All'}
+                {relatedPostsSection?.viewAllText || t('blog.relatedPosts.viewAll')}
               </Button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -749,7 +753,7 @@ const BlogPage: React.FC = () => {
                   category={relatedPost.category}
                   title={relatedPost.title}
                   date={new Date(relatedPost.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                  readTime={`${relatedPost.readTime} ${detailLabels?.minReadSuffix || 'min'}`}
+                  readTime={`${relatedPost.readTime} ${detailLabels?.minReadSuffix || t('blog.detail.minRead')}`}
                   image={relatedPost.featuredImage}
                   slug={relatedPost.slug.current}
                 />
