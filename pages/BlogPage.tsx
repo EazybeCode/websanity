@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -19,70 +19,130 @@ import {
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import { Navbar } from '../components/Navbar';
 import { ChunkyFooter } from '../components/footer/ChunkyFooter';
-import { useBlogPost, useBlogPosts, useBlogIndex, BlogIndexSidebarCta, BlogIndexNewsletterCta, BlogIndexDetailLabels, BlogIndexRelatedPostsSection } from '../hooks/useBlog';
+import { useBlogPost, useBlogPosts, useBlogIndex, BlogIndexSidebarCta, BlogIndexNewsletterCta, BlogIndexDetailLabels, BlogIndexRelatedPostsSection, PortableTextBlock } from '../hooks/useBlog';
 import { Button } from '../components/ui/Button';
 import { SectionBadge } from '../components/ui/SectionBadge';
 
-// Portable Text components for rendering blog content
-const portableTextComponents: PortableTextComponents = {
-  block: {
-    h1: ({ children }) => <h1 className="text-4xl font-extrabold text-white mt-16 mb-6 first:mt-0">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-3xl font-bold text-white mt-12 mb-4 pt-8 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-2xl font-semibold text-slate-100 mt-10 mb-4">{children}</h3>,
-    h4: ({ children }) => <h4 className="text-xl font-semibold text-slate-200 mt-8 mb-3">{children}</h4>,
-    normal: ({ children }) => <p className="text-lg text-slate-300 leading-relaxed mb-6">{children}</p>,
-    blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-brand-cyan pl-6 my-8 italic text-slate-400 text-xl">
-        {children}
-      </blockquote>
-    ),
-  },
-  list: {
-    bullet: ({ children }) => <ul className="my-6 space-y-3">{children}</ul>,
-    number: ({ children }) => <ol className="my-6 space-y-3 list-decimal list-inside">{children}</ol>,
-  },
-  listItem: {
-    bullet: ({ children }) => (
-      <li className="text-lg text-slate-300 leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
-        {children}
-      </li>
-    ),
-    number: ({ children }) => <li className="text-lg text-slate-300 leading-relaxed">{children}</li>,
-  },
-  marks: {
-    strong: ({ children }) => <strong className="font-bold text-white">{children}</strong>,
-    em: ({ children }) => <em className="italic">{children}</em>,
-    code: ({ children }) => (
-      <code className="bg-slate-800 text-brand-cyan px-2 py-1 rounded text-sm font-mono">{children}</code>
-    ),
-    link: ({ children, value }) => (
-      <a
-        href={value?.href}
-        className="text-brand-cyan hover:text-brand-blue underline underline-offset-4 transition-colors"
-        target={value?.href?.startsWith('http') ? '_blank' : undefined}
-        rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-      >
-        {children}
-      </a>
-    ),
-  },
-  types: {
-    image: ({ value }) => {
-      if (!value?.url) return null;
-      return (
-        <figure className="my-10">
-          <img
-            src={value.url}
-            alt={value.alt || ''}
-            className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
-          />
-          {value.caption && (
-            <figcaption className="text-center text-slate-500 text-sm mt-4">{value.caption}</figcaption>
-          )}
-        </figure>
-      );
+// Generate a URL-friendly slug from text
+const generateSlug = (text: string): string => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+};
+
+// Extract text content from Portable Text block children
+const extractTextFromBlock = (block: PortableTextBlock): string => {
+  if (!block.children) return '';
+  return block.children
+    .filter((child: any) => child._type === 'span')
+    .map((child: any) => child.text || '')
+    .join('');
+};
+
+// Extract headings from Portable Text content for dynamic TOC
+const extractHeadingsFromContent = (content: PortableTextBlock[]): Array<{ label: string; id: string }> => {
+  if (!Array.isArray(content)) return [];
+
+  return content
+    .filter((block) => block._type === 'block' && (block.style === 'h2' || block.style === 'h3'))
+    .map((block) => {
+      const text = extractTextFromBlock(block);
+      return {
+        label: text,
+        id: generateSlug(text),
+      };
+    })
+    .filter((item) => item.label.length > 0);
+};
+
+// Create Portable Text components with dynamic IDs for headings
+const createPortableTextComponents = (content: PortableTextBlock[]): PortableTextComponents => {
+  // Pre-generate heading IDs to ensure consistency
+  const headingIds = new Map<string, string>();
+  if (Array.isArray(content)) {
+    content
+      .filter((block) => block._type === 'block' && ['h1', 'h2', 'h3', 'h4'].includes(block.style || ''))
+      .forEach((block) => {
+        const text = extractTextFromBlock(block);
+        headingIds.set(block._key, generateSlug(text));
+      });
+  }
+
+  return {
+    block: {
+      h1: ({ children, value }) => {
+        const id = headingIds.get(value._key) || generateSlug(String(children));
+        return <h1 id={id} className="text-4xl font-extrabold text-white mt-16 mb-6 first:mt-0 scroll-mt-28">{children}</h1>;
+      },
+      h2: ({ children, value }) => {
+        const id = headingIds.get(value._key) || generateSlug(String(children));
+        return <h2 id={id} className="text-3xl font-bold text-white mt-12 mb-4 pt-8 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28">{children}</h2>;
+      },
+      h3: ({ children, value }) => {
+        const id = headingIds.get(value._key) || generateSlug(String(children));
+        return <h3 id={id} className="text-2xl font-semibold text-slate-100 mt-10 mb-4 scroll-mt-28">{children}</h3>;
+      },
+      h4: ({ children, value }) => {
+        const id = headingIds.get(value._key) || generateSlug(String(children));
+        return <h4 id={id} className="text-xl font-semibold text-slate-200 mt-8 mb-3 scroll-mt-28">{children}</h4>;
+      },
+      normal: ({ children }) => <p className="text-lg text-slate-300 leading-relaxed mb-6">{children}</p>,
+      blockquote: ({ children }) => (
+        <blockquote className="border-l-4 border-brand-cyan pl-6 my-8 italic text-slate-400 text-xl">
+          {children}
+        </blockquote>
+      ),
     },
-  },
+    list: {
+      bullet: ({ children }) => <ul className="my-6 space-y-3">{children}</ul>,
+      number: ({ children }) => <ol className="my-6 space-y-3 list-decimal list-inside">{children}</ol>,
+    },
+    listItem: {
+      bullet: ({ children }) => (
+        <li className="text-lg text-slate-300 leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
+          {children}
+        </li>
+      ),
+      number: ({ children }) => <li className="text-lg text-slate-300 leading-relaxed">{children}</li>,
+    },
+    marks: {
+      strong: ({ children }) => <strong className="font-bold text-white">{children}</strong>,
+      em: ({ children }) => <em className="italic">{children}</em>,
+      code: ({ children }) => (
+        <code className="bg-slate-800 text-brand-cyan px-2 py-1 rounded text-sm font-mono">{children}</code>
+      ),
+      link: ({ children, value }) => (
+        <a
+          href={value?.href}
+          className="text-brand-cyan hover:text-brand-blue underline underline-offset-4 transition-colors"
+          target={value?.href?.startsWith('http') ? '_blank' : undefined}
+          rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+        >
+          {children}
+        </a>
+      ),
+    },
+    types: {
+      image: ({ value }) => {
+        if (!value?.url) return null;
+        return (
+          <figure className="my-10">
+            <img
+              src={value.url}
+              alt={value.alt || ''}
+              className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
+            />
+            {value.caption && (
+              <figcaption className="text-center text-slate-500 text-sm mt-4">{value.caption}</figcaption>
+            )}
+          </figure>
+        );
+      },
+    },
+  };
 };
 
 // Reading progress bar
@@ -264,6 +324,18 @@ const BlogPage: React.FC = () => {
   const relatedPostsSection = blogIndex?.relatedPostsSection;
   const detailLabels = blogIndex?.detailLabels;
 
+  // Dynamically extract TOC from content headings
+  const dynamicToc = useMemo(() => {
+    if (!post?.content || !Array.isArray(post.content)) return [];
+    return extractHeadingsFromContent(post.content);
+  }, [post?.content]);
+
+  // Create portable text components with heading IDs
+  const portableTextComponents = useMemo(() => {
+    if (!post?.content || !Array.isArray(post.content)) return createPortableTextComponents([]);
+    return createPortableTextComponents(post.content);
+  }, [post?.content]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
@@ -432,6 +504,7 @@ const BlogPage: React.FC = () => {
                   letter-spacing: -0.025em;
                   padding-top: 2rem;
                   border-top: 1px solid rgba(51, 65, 85, 0.5);
+                  scroll-margin-top: 7rem;
                 }
 
                 .blog-content h2:first-child {
@@ -447,6 +520,7 @@ const BlogPage: React.FC = () => {
                   margin-top: 3rem;
                   margin-bottom: 1.25rem;
                   line-height: 1.35;
+                  scroll-margin-top: 7rem;
                 }
 
                 .blog-content h4 {
@@ -455,6 +529,7 @@ const BlogPage: React.FC = () => {
                   color: #e2e8f0;
                   margin-top: 2.5rem;
                   margin-bottom: 1rem;
+                  scroll-margin-top: 7rem;
                   line-height: 1.4;
                 }
 
@@ -719,7 +794,7 @@ const BlogPage: React.FC = () => {
             {/* Right Column - Sticky Sidebar (hidden on mobile) */}
             <aside className="hidden lg:block w-[300px] flex-shrink-0 sticky top-24 self-start">
               <StickyTableOfContents
-                sections={post.tableOfContents || []}
+                sections={dynamicToc}
                 sidebarCta={sidebarCta}
                 tocTitle={detailLabels?.tocTitle}
                 t={t}
