@@ -1,5 +1,17 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+
+// Component to redirect trailing slashes
+const TrailingSlashRedirect: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const location = useLocation()
+
+  // Redirect /br/ to /br, /es/ to /es, etc.
+  if (location.pathname !== '/' && location.pathname.endsWith('/')) {
+    return <Navigate to={location.pathname.slice(0, -1) + location.search} replace />
+  }
+
+  return <>{children}</>
+}
 import { LanguageProvider } from './components/LanguageProvider'
 import { HomePage } from './pages/HomePage'
 import { PricingPage } from './pages/PricingPage'
@@ -116,9 +128,11 @@ const AppRoutes = () => (
 function App() {
   return (
     <BrowserRouter>
-      <LanguageProvider>
-        <AppRoutes />
-      </LanguageProvider>
+      <TrailingSlashRedirect>
+        <LanguageProvider>
+          <AppRoutes />
+        </LanguageProvider>
+      </TrailingSlashRedirect>
     </BrowserRouter>
   )
 }
