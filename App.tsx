@@ -29,6 +29,7 @@ import IntegrateHubspotCrmPage from './pages/IntegrateHubspotCrmPage'
 import IntegrateZohoCrmPage from './pages/IntegrateZohoCrmPage'
 import IntegrateSalesforceCrmPage from './pages/IntegrateSalesforceCrmPage'
 import IntegrateBitrixCrmPage from './pages/IntegrateBitrixCrmPage'
+import FbPage from './pages/FbPage'
 
 // Integration routes helper - generates routes for all integrations
 const integrationSlugs = [
@@ -70,6 +71,7 @@ const AppRoutes = () => (
     <Route path="/integrate-zoho-crm" element={<IntegrateZohoCrmPage />} />
     <Route path="/integrate-salesforce-crm" element={<IntegrateSalesforceCrmPage />} />
     <Route path="/integrate-bitrix-crm" element={<IntegrateBitrixCrmPage />} />
+    <Route path="/fb" element={<FbPage />} />
 
     {/* Portuguese/Brazil routes (/br) */}
     <Route path="/br" element={<HomePage />} />
