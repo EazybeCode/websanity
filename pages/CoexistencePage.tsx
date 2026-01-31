@@ -571,15 +571,16 @@ const CoexistencePage: React.FC = () => {
   // Get translated data and merge with Sanity data
   const translatedData = getTranslatedCoexistenceData(t)
 
+  // Use Sanity data as primary, translations as fallback (spread order matters - later overwrites earlier)
   const mergedData = translatedData ? {
-    hero: { ...data.hero, ...translatedData.hero },
-    benefits: { ...data.benefits, ...translatedData.benefits },
-    features: translatedData.features.length > 0 ? translatedData.features : data.features,
-    comparison: translatedData.comparison,
-    howItWorks: data.howItWorks, // Keep Sanity data for how it works
-    useCases: data.useCases, // Keep Sanity data for use cases
-    testimonial: data.testimonial, // Keep Sanity data for testimonial
-    faq: { ...data.faq, ...translatedData.faq }
+    hero: { ...translatedData.hero, ...data.hero },
+    benefits: { ...translatedData.benefits, ...data.benefits },
+    features: data.features?.length > 0 ? data.features : translatedData.features,
+    comparison: data.comparison || translatedData.comparison,
+    howItWorks: data.howItWorks,
+    useCases: data.useCases,
+    testimonial: data.testimonial,
+    faq: { ...translatedData.faq, ...data.faq }
   } : data
 
   return (

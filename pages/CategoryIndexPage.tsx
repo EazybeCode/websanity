@@ -490,14 +490,14 @@ export const CategoryIndexPage: React.FC = () => {
   // Get translated data and merge with Sanity data
   const translatedData = getTranslatedCategoryData(slug, t)
 
-  // Use translations for hero/intro/benefits/faq, but keep Sanity data for featuredItems
+  // Use Sanity data as primary, translations as fallback
   const data = sanityData ? {
     ...sanityData,
-    hero: translatedData?.hero || sanityData.hero,
-    intro: translatedData?.intro || sanityData.intro,
-    benefits: translatedData?.benefits || sanityData.benefits,
-    howItWorks: translatedData?.howItWorks || sanityData.howItWorks,
-    faq: translatedData?.faq || sanityData.faq
+    hero: sanityData.hero || translatedData?.hero,
+    intro: sanityData.intro || translatedData?.intro,
+    benefits: sanityData.benefits || translatedData?.benefits,
+    howItWorks: sanityData.howItWorks || translatedData?.howItWorks,
+    faq: sanityData.faq || translatedData?.faq
   } : translatedData
 
   if (error || !data) {

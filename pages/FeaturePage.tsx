@@ -658,11 +658,9 @@ export const FeaturePage: React.FC = () => {
 
   const currentSlug = slug || 'cloud-backup'
 
-  // For cloud-backup and team-inbox, prioritize translations over Sanity data
-  // This allows content to change when switching languages
+  // Use Sanity data as primary source, fallback to translations only if Sanity has no data
   const translatedData = getTranslatedFallbackData(currentSlug, t)
-  const hasTranslations = translatedData !== null
-  const data = hasTranslations ? translatedData : sanityData
+  const data = sanityData || translatedData
 
   if (error || !data) {
     return (
