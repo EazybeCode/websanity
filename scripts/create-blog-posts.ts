@@ -692,7 +692,7 @@ async function createBlogPosts() {
   console.log('\nBlog posts creation complete!')
   console.log('\nYou can now access these blog posts at:')
   blogPosts.forEach(post => {
-    console.log(`  http://localhost:3000/blog/${post.slug.current}`)
+    console.log(`  http://localhost:3001/blog/${post.slug.current}`)
   })
 }
 
