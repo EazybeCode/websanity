@@ -27,6 +27,7 @@ import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
 import IntegrateHubspotCrmPage from './pages/IntegrateHubspotCrmPage'
 import IntegrateZohoCrmPage from './pages/IntegrateZohoCrmPage'
+import IntegrateSalesforceCrmPage from './pages/IntegrateSalesforceCrmPage'
 
 // Integration routes helper - generates routes for all integrations
 const integrationSlugs = [
@@ -66,6 +67,7 @@ const AppRoutes = () => (
     <Route path="/terms" element={<TermsPage />} />
     <Route path="/integrate-hubspot-crm" element={<IntegrateHubspotCrmPage />} />
     <Route path="/integrate-zoho-crm" element={<IntegrateZohoCrmPage />} />
+    <Route path="/integrate-salesforce-crm" element={<IntegrateSalesforceCrmPage />} />
 
     {/* Portuguese/Brazil routes (/br) */}
     <Route path="/br" element={<HomePage />} />
