@@ -25,6 +25,7 @@ import TeamInboxPage from './pages/TeamInboxPage'
 import MSAPage from './pages/MSAPage'
 import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
+import IntegrateHubspotCrmPage from './pages/IntegrateHubspotCrmPage'
 
 // Integration routes helper - generates routes for all integrations
 const integrationSlugs = [
@@ -62,6 +63,7 @@ const AppRoutes = () => (
     <Route path="/msa" element={<MSAPage />} />
     <Route path="/privacy" element={<PrivacyPage />} />
     <Route path="/terms" element={<TermsPage />} />
+    <Route path="/integrate-hubspot-crm" element={<IntegrateHubspotCrmPage />} />
 
     {/* Portuguese/Brazil routes (/br) */}
     <Route path="/br" element={<HomePage />} />
