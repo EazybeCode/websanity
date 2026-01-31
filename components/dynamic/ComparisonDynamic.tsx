@@ -11,10 +11,10 @@ interface Props {
 export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
   const { t } = useTranslation()
 
-  // Use translations with Sanity data as fallback
-  const badge = t('integrations.comparison.badge', { defaultValue: data.badge || '' })
+  // Use Sanity data as primary, translations as fallback
+  const badge = data.badge || t('integrations.comparison.badge', '')
   const headline = data.headline || ''
-  const description = t('integrations.comparison.description', { defaultValue: data.description || '' })
+  const description = data.description || t('integrations.comparison.description', '')
 
   return (
     <section className="py-24 bg-brand-surface border-y border-slate-800 relative">

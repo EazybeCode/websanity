@@ -12,14 +12,14 @@ interface Props {
 export const HeroDynamic: React.FC<Props> = ({ data }) => {
   const { t } = useTranslation()
 
-  // Use translations with Sanity data as fallback
-  const badge = t('hero.badge', { defaultValue: data.badge || '' })
-  const headline = t('hero.headline', { defaultValue: data.headline || '' })
-  const headlineHighlight = t('hero.headlineHighlight', { defaultValue: data.headlineHighlight || '' })
-  const subheadline = t('hero.subheadline', { defaultValue: data.subheadline || '' })
-  const noCreditCard = t('hero.noCreditCard', { defaultValue: data.socialProof || '' })
-  const primaryCtaLabel = t('cta.startFreeTrial', { defaultValue: data.primaryCta?.label || '' })
-  const secondaryCtaLabel = t('cta.bookDemo', { defaultValue: data.secondaryCta?.label || '' })
+  // Use Sanity data as primary, translations as fallback
+  const badge = data.badge || t('hero.badge', '')
+  const headline = data.headline || t('hero.headline', '')
+  const headlineHighlight = data.headlineHighlight || t('hero.headlineHighlight', '')
+  const subheadline = data.subheadline || t('hero.subheadline', '')
+  const noCreditCard = data.socialProof || t('hero.noCreditCard', '')
+  const primaryCtaLabel = data.primaryCta?.label || t('cta.startFreeTrial', '')
+  const secondaryCtaLabel = data.secondaryCta?.label || t('cta.bookDemo', '')
 
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden bg-slate-950 border-b border-slate-800">

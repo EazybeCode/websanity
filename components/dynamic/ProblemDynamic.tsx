@@ -22,19 +22,21 @@ const defaultIcons = ['eye-off', 'clock', 'user-x', 'log-out']
 export const ProblemDynamic: React.FC<Props> = ({ data }) => {
   const { t } = useTranslation()
 
-  // Use translations with Sanity data as fallback
-  const badge = t('home.problem.badge', { defaultValue: data.badge || '' })
-  const headline = t('home.problem.headline', { defaultValue: data.headline || '' })
-  const subheadline = t('home.problem.subheadline', { defaultValue: data.subheadline || '' })
+  // Use Sanity data as primary, translations as fallback
+  const badge = data.badge || t('home.problem.badge', '')
+  const headline = data.headline || t('home.problem.headline', '')
+  const subheadline = data.subheadline || t('home.problem.subheadline', '')
 
-  // Get translated cards or use Sanity data
+  // Use Sanity problems data, fallback to translated cards
   const translatedCards = t('home.problem.cards', { returnObjects: true }) as Array<{ title: string; description: string }> | string
-  const cards = Array.isArray(translatedCards)
-    ? translatedCards.map((card, i) => ({
-        ...card,
-        icon: data.problems?.[i]?.icon || defaultIcons[i] || 'eye-off'
-      }))
-    : data.problems || []
+  const cards = data.problems && data.problems.length > 0
+    ? data.problems
+    : Array.isArray(translatedCards)
+      ? translatedCards.map((card, i) => ({
+          ...card,
+          icon: defaultIcons[i] || 'eye-off'
+        }))
+      : []
 
   return (
     <section className="py-24 bg-brand-black text-white relative overflow-hidden">
