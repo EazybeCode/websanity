@@ -4,17 +4,17 @@ import { useTranslation } from 'react-i18next'
 import { supportedLanguages, type SupportedLanguage } from '../i18n'
 
 // Non-English languages that use URL prefixes
-const prefixedLanguages = ['pt', 'es', 'tr'] as const
+const prefixedLanguages = ['br', 'es', 'tr'] as const
 
 // Extract language from path
 export function getLanguageFromPath(pathname: string): SupportedLanguage {
-  const match = pathname.match(/^\/(pt|es|tr)(\/|$)/)
+  const match = pathname.match(/^\/(br|es|tr)(\/|$)/)
   return match ? (match[1] as SupportedLanguage) : 'en'
 }
 
 // Remove language prefix from path
 export function removeLanguagePrefix(pathname: string): string {
-  return pathname.replace(/^\/(pt|es|tr)(\/|$)/, '/').replace(/^$/, '/')
+  return pathname.replace(/^\/(br|es|tr)(\/|$)/, '/').replace(/^$/, '/')
 }
 
 // Add language prefix to path

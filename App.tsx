@@ -51,25 +51,25 @@ const AppRoutes = () => (
     <Route path="/privacy" element={<PrivacyPage />} />
     <Route path="/terms" element={<TermsPage />} />
 
-    {/* Portuguese routes (/pt) */}
-    <Route path="/pt" element={<HomePage />} />
-    <Route path="/pt/pricing" element={<PricingPage />} />
-    <Route path="/pt/features" element={<CategoryIndexPage />} />
-    <Route path="/pt/features/:slug" element={<FeaturePage />} />
-    <Route path="/pt/whatsapp-api" element={<CategoryIndexPage />} />
-    <Route path="/pt/whatsapp-api/coexistence" element={<CoexistencePage />} />
-    <Route path="/pt/whatsapp-api/:slug" element={<FeaturePage />} />
-    <Route path="/pt/integrations" element={<CategoryIndexPage />} />
+    {/* Portuguese/Brazil routes (/br) */}
+    <Route path="/br" element={<HomePage />} />
+    <Route path="/br/pricing" element={<PricingPage />} />
+    <Route path="/br/features" element={<CategoryIndexPage />} />
+    <Route path="/br/features/:slug" element={<FeaturePage />} />
+    <Route path="/br/whatsapp-api" element={<CategoryIndexPage />} />
+    <Route path="/br/whatsapp-api/coexistence" element={<CoexistencePage />} />
+    <Route path="/br/whatsapp-api/:slug" element={<FeaturePage />} />
+    <Route path="/br/integrations" element={<CategoryIndexPage />} />
     {integrationSlugs.map((slug) => (
-      <Route key={`pt-${slug}`} path={`/pt/${slug}-whatsapp-integration`} element={<ProductPage />} />
+      <Route key={`br-${slug}`} path={`/br/${slug}-whatsapp-integration`} element={<ProductPage />} />
     ))}
-    <Route path="/pt/product/:slug" element={<ProductPage />} />
-    <Route path="/pt/blog" element={<BlogListingPage />} />
-    <Route path="/pt/blog/:slug" element={<BlogPage />} />
-    <Route path="/pt/team-inbox" element={<TeamInboxPage />} />
-    <Route path="/pt/msa" element={<MSAPage />} />
-    <Route path="/pt/privacy" element={<PrivacyPage />} />
-    <Route path="/pt/terms" element={<TermsPage />} />
+    <Route path="/br/product/:slug" element={<ProductPage />} />
+    <Route path="/br/blog" element={<BlogListingPage />} />
+    <Route path="/br/blog/:slug" element={<BlogPage />} />
+    <Route path="/br/team-inbox" element={<TeamInboxPage />} />
+    <Route path="/br/msa" element={<MSAPage />} />
+    <Route path="/br/privacy" element={<PrivacyPage />} />
+    <Route path="/br/terms" element={<TermsPage />} />
 
     {/* Spanish routes (/es) */}
     <Route path="/es" element={<HomePage />} />

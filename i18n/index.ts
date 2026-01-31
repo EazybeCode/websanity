@@ -8,19 +8,19 @@ import ptCommon from '../locales/pt/common.json'
 import esCommon from '../locales/es/common.json'
 import trCommon from '../locales/tr/common.json'
 
-export const supportedLanguages = ['en', 'pt', 'es', 'tr'] as const
+export const supportedLanguages = ['en', 'br', 'es', 'tr'] as const
 export type SupportedLanguage = (typeof supportedLanguages)[number]
 
 export const languageNames: Record<SupportedLanguage, string> = {
   en: 'English',
-  pt: 'Português',
+  br: 'Português',
   es: 'Español',
   tr: 'Türkçe',
 }
 
 export const languageFlags: Record<SupportedLanguage, string> = {
   en: '🇺🇸',
-  pt: '🇧🇷',
+  br: '🇧🇷',
   es: '🇪🇸',
   tr: '🇹🇷',
 }
@@ -30,7 +30,7 @@ const pathLanguageDetector = {
   name: 'path',
   lookup() {
     const path = window.location.pathname
-    const match = path.match(/^\/(pt|es|tr)(\/|$)/)
+    const match = path.match(/^\/(br|es|tr)(\/|$)/)
     return match ? match[1] : 'en'
   },
 }
@@ -41,7 +41,7 @@ i18n
   .init({
     resources: {
       en: { common: enCommon },
-      pt: { common: ptCommon },
+      br: { common: ptCommon },
       es: { common: esCommon },
       tr: { common: trCommon },
     },
