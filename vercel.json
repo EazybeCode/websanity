@@ -1,11 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/br/blog/unlock-productivity-with-tasks-hubspot-whatsapp-integration",
-      "destination": "/hubspot-whatsapp-integration",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]
