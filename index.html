@@ -55,6 +55,7 @@
             },
             animation: {
               'loop-scroll': 'loop-scroll 40s linear infinite',
+              'loop-scroll-reverse': 'loop-scroll-reverse 40s linear infinite',
               'float': 'float 6s ease-in-out infinite',
               'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
@@ -65,6 +66,10 @@
               'loop-scroll': {
                 from: { transform: 'translateX(0)' },
                 to: { transform: 'translateX(-100%)' },
+              },
+              'loop-scroll-reverse': {
+                from: { transform: 'translateX(-100%)' },
+                to: { transform: 'translateX(0)' },
               },
               'float': {
                 '0%, 100%': { transform: 'translateY(0)' },
