@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run generate-sitemap && vite build",
     "preview": "vite preview",
+    "generate-sitemap": "tsx scripts/generate-sitemap.ts",
     "add-coexistence": "tsx scripts/add-coexistence-page.ts",
     "generate-images": "tsx scripts/generate-feature-images.ts",
     "upload-images": "tsx scripts/upload-feature-images.ts",

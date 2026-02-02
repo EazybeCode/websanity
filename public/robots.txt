@@ -1,0 +1,84 @@
+# Robots.txt for EazyBe - WhatsApp Sales Platform
+# https://eazybe.com
+
+# AI Crawlers & Large Language Models
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# Social Media Crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+# Default rule for all other crawlers
+User-agent: *
+Allow: /
+
+# Disallow crawling of API endpoints or admin areas (if needed)
+# Disallow: /api/
+# Disallow: /admin/
+# Disallow: /_next/
+# Disallow: /dist/
+
+# Sitemap location (dynamically generated during build)
+Sitemap: https://eazybe.com/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
+# Crawl-delay: 1
+
+# Host (specify your primary domain)
+Host: https://eazybe.com

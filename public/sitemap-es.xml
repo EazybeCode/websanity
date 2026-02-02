@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://eazybe.com/es</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/pricing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/pricing" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/pricing" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/pricing" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/pricing" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/features</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/features" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/features" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/features" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/features" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/whatsapp-api</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/whatsapp-api" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/whatsapp-api" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/whatsapp-api" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/whatsapp-api" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/whatsapp-api/coexistence</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7000000000000001</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/whatsapp-api/coexistence" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/whatsapp-api/coexistence" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/whatsapp-api/coexistence" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/whatsapp-api/coexistence" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/integrations</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/integrations" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/integrations" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/integrations" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/integrations" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7000000000000001</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/blog" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/blog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/blog" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/blog" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/team-inbox</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7000000000000001</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/team-inbox" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/team-inbox" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/team-inbox" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/team-inbox" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/msa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/msa" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/msa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/msa" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/msa" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/privacy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/privacy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/privacy" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/privacy" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/terms</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/terms" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/terms" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/terms" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/terms" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/hubspot-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/hubspot-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/hubspot-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/hubspot-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/hubspot-whatsapp-integration" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/salesforce-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/salesforce-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/salesforce-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/salesforce-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/salesforce-whatsapp-integration" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/zoho-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/zoho-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/zoho-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/zoho-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/zoho-whatsapp-integration" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/bitrix24-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/bitrix24-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/bitrix24-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/bitrix24-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/bitrix24-whatsapp-integration" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/leadsquared-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/leadsquared-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/leadsquared-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/leadsquared-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/leadsquared-whatsapp-integration" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/freshdesk-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/freshdesk-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/freshdesk-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/freshdesk-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/freshdesk-whatsapp-integration" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/pipedrive-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/pipedrive-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/pipedrive-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/pipedrive-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/pipedrive-whatsapp-integration" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/google-sheets-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/google-sheets-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/google-sheets-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/google-sheets-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/google-sheets-whatsapp-integration" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/webhooks-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/webhooks-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="br" href="https://eazybe.com/br/webhooks-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/webhooks-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/webhooks-whatsapp-integration" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/analisis-de-conversaciones-de-hubspot</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/analisis-del-rendimiento-de-ventas-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/automatizacion-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/bandeja-de-entrada-del-equipo-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/como-aumentar-las-ventas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/como-leer-mensajes-eliminados-en-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/desconectarse-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/eficiencia-de-ventas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/habilitacion-de-ventas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/herramientas-de-whatsapp-business</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/informes-de-hubspot-para-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/seguimiento-de-ventas-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/sincronizacion-de-chat-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/analisis-de-conversaciones-de-hubspot</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/analisis-del-rendimiento-de-ventas-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/automatizacion-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/bandeja-de-entrada-del-equipo-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/como-aumentar-las-ventas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/como-leer-mensajes-eliminados-en-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/desconectarse-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/eficiencia-de-ventas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/habilitacion-de-ventas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/herramientas-de-whatsapp-business</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/informes-de-hubspot-para-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/seguimiento-de-ventas-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/blog/sincronizacion-de-chat-de-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/whatsapp-api/broadcast</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/features/scheduler</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/features/team-inbox</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/features/cloud-backup</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/features/rep-radar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/product/zoho-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-26</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/product/google-sheets-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/product/bitrix24-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/product/webhooks-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/product/leadsquared-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/whatsapp-api/templates</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/product/google-calendar-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/features/revenue-inbox</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/product/freshdesk-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/features/whatsapp-crm</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/product/salesforce-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-26</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/product/hubspot-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-26</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/features/quick-reply</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+  <url>
+    <loc>https://eazybe.com/es/features/whatsapp-copilot</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-01-28</lastmod>
+  </url>
+
+</urlset>
