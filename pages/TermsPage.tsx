@@ -1,11 +1,55 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { ScrollText } from 'lucide-react'
+import { getLanguageFromPath } from '../components/LanguageProvider'
 
 export const TermsPage: React.FC = () => {
   const { t } = useTranslation()
+  const location = useLocation()
+  const currentLanguage = getLanguageFromPath(location.pathname)
+
+  // Add noindex meta tag for ALL language versions
+  useEffect(() => {
+    // Check if there's already a meta robots tag
+    let metaRobots = document.querySelector('meta[name="robots"]') as HTMLMetaElement
+
+    if (metaRobots) {
+      // Update existing meta robots tag
+      metaRobots.content = 'noindex, nofollow'
+      metaRobots.setAttribute('data-terms-noindex', 'true')
+    } else {
+      // Create new meta robots tag
+      metaRobots = document.createElement('meta')
+      metaRobots.name = 'robots'
+      metaRobots.content = 'noindex, nofollow'
+      metaRobots.setAttribute('data-terms-noindex', 'true')
+
+      // Insert at the beginning of head for visibility
+      if (document.head.firstChild) {
+        document.head.insertBefore(metaRobots, document.head.firstChild)
+      } else {
+        document.head.appendChild(metaRobots)
+      }
+    }
+
+    console.log('✅ Terms Page: Meta robots tag added/updated ->', metaRobots.content)
+
+    return () => {
+      // Cleanup: remove or restore the meta tag when component unmounts
+      const existingMeta = document.querySelector('meta[data-terms-noindex="true"]')
+      if (existingMeta) {
+        existingMeta.removeAttribute('data-terms-noindex')
+        // If we created the tag, remove it; otherwise just remove our marker
+        if (!existingMeta.hasAttribute('data-original')) {
+          existingMeta.remove()
+        }
+        console.log('🧹 Terms Page: Meta robots tag cleaned up')
+      }
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-slate-950 font-sans text-slate-300 antialiased">
