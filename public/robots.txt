@@ -1,13 +1,16 @@
-# ============================================================================
-# Ultra-Advanced Robots.txt for EazyBe - WhatsApp Sales Platform
-# https://eazybe.com
-# Optimized for Maximum SEO Visibility & AI Crawler Access
-# ============================================================================
+User-agent: *
+Allow: /
+Crawl-delay: 2
 
-# ----------------------------------------------------------------------------
-# AI CRAWLERS & LARGE LANGUAGE MODELS
-# ----------------------------------------------------------------------------
-# OpenAI GPT Bots
+Sitemap: https://eazybe.com/sitemap.xml
+
+Sitemap: https://eazybe.com/sitemap-en.xml
+Sitemap: https://eazybe.com/sitemap-br.xml
+Sitemap: https://eazybe.com/sitemap-es.xml
+Sitemap: https://eazybe.com/sitemap-tr.xml
+
+Host: https://eazybe.com/
+
 User-agent: GPTBot
 Allow: /
 Crawl-delay: 1
@@ -73,9 +76,6 @@ User-agent: Diffbot
 Allow: /
 Crawl-delay: 1
 
-# ----------------------------------------------------------------------------
-# MAJOR SEARCH ENGINES
-# ----------------------------------------------------------------------------
 # Google (Primary Search Engine)
 User-agent: Googlebot
 Allow: /
@@ -179,9 +179,6 @@ User-agent: Sogou
 Allow: /
 Crawl-delay: 2
 
-# ----------------------------------------------------------------------------
-# SOCIAL MEDIA CRAWLERS
-# ----------------------------------------------------------------------------
 # Facebook & Instagram
 User-agent: facebookexternalhit
 Allow: /
@@ -249,9 +246,6 @@ Crawl-delay: 2
 User-agent: Snapchat
 Allow: /
 
-# ----------------------------------------------------------------------------
-# SEO & ANALYTICS TOOLS
-# ----------------------------------------------------------------------------
 # Ahrefs
 User-agent: AhrefsBot
 Allow: /
@@ -289,9 +283,6 @@ Allow: /
 User-agent: Google-Site-Verification
 Allow: /
 
-# ----------------------------------------------------------------------------
-# OTHER LEGITIMATE CRAWLERS
-# ----------------------------------------------------------------------------
 # Archive.org
 User-agent: ia_archiver
 Allow: /
@@ -329,13 +320,6 @@ Allow: /
 Crawl-delay: 1
 
 # ----------------------------------------------------------------------------
-# DEFAULT RULE FOR ALL OTHER BOTS
-# ----------------------------------------------------------------------------
-User-agent: *
-Allow: /
-Crawl-delay: 2
-
-# ----------------------------------------------------------------------------
 # BLOCKED PATHS (Optional - Uncomment if needed)
 # ----------------------------------------------------------------------------
 # Disallow: /api/            # Block API endpoints
@@ -347,46 +331,5 @@ Crawl-delay: 2
 # Disallow: /*.json$         # Block JSON files
 # Disallow: /*?*utm_*        # Block tracking parameters
 
-# ----------------------------------------------------------------------------
-# SITEMAP REFERENCES (Multi-Language Support)
-# ----------------------------------------------------------------------------
-# Main Sitemap Index
-Sitemap: https://eazybe.com/sitemap.xml
-
-# Language-Specific Sitemaps (Direct access for faster indexing)
-Sitemap: https://eazybe.com/sitemap-en.xml
-Sitemap: https://eazybe.com/sitemap-br.xml
-Sitemap: https://eazybe.com/sitemap-es.xml
-Sitemap: https://eazybe.com/sitemap-tr.xml
-
-# ----------------------------------------------------------------------------
-# ADDITIONAL DIRECTIVES
-# ----------------------------------------------------------------------------
-# Primary domain (helps consolidate ranking signals)
-Host: https://eazybe.com
-
-# Request crawlers visit at reasonable intervals
-# Note: Not all crawlers respect this directive
 Request-rate: 1/10
 
-# Clean-param: Remove tracking parameters for cleaner URLs
-# Clean-param: utm_source&utm_medium&utm_campaign /
-
-# ----------------------------------------------------------------------------
-# NOTES FOR SEO OPTIMIZATION
-# ----------------------------------------------------------------------------
-# 1. All major AI crawlers are explicitly allowed for AI training & indexing
-# 2. Search engine crawlers have lower crawl delays for faster indexing
-# 3. Social media crawlers have no delay for instant link preview generation
-# 4. SEO tool crawlers have moderate delays to prevent server overload
-# 5. All language-specific sitemaps are referenced for complete coverage
-# 6. Crawl-delay is balanced to allow thorough crawling without overwhelming server
-#
-# Benefits:
-# - Maximum visibility across all platforms (Search, AI, Social Media)
-# - Optimized crawl rates prevent server overload while ensuring complete indexing
-# - Multi-language sitemap support for international SEO
-# - Ready for future AI systems and new search engines
-#
-# Last Updated: 2026-02-02
-# ============================================================================
