@@ -326,7 +326,10 @@
   },
   "home": {
     "clientLogos": {
-      "trustedBy": "Confiado por Equipes de Vendas em"
+      "trustedBy": "Confiado por",
+      "trustedBadge": "Confiança Mundial",
+      "salesTeams": "Equipes de Vendas",
+      "subtitle": "De startups a grandes empresas, equipes confiam no EazyBe para nunca perder uma conversa no WhatsApp"
     },
     "heroVisual": {
       "whatsapp": "WhatsApp",
@@ -334,12 +337,24 @@
       "dealStage": "Etapa do Negócio",
       "negotiation": "Negociação",
       "lastActivity": "Última Atividade",
-      "justNow": "AGORA MESMO",
+      "justNow": "Agora mesmo",
       "signalDetected": "Sinal Detectado",
       "alertMessage": "Lead mencionou <bold>preço</bold> mas não recebeu resposta em 2 horas.",
       "createTask": "Criar Tarefa: Enviar Preço",
       "chatMessage1": "Você pode enviar o preço Enterprise? Queremos fechar esta semana.",
-      "chatMessage2": "Claro! Enviando o PDF agora. Vamos agendar uma ligação para sexta?"
+      "chatMessage2": "Claro! Enviando o PDF agora. Vamos agendar uma ligação para sexta?",
+      "msg1": "Negócio fechado! 🎉",
+      "msg2": "Enviar preço?",
+      "msg3": "Reunião sexta",
+      "syncingToCrm": "SINCRONIZANDO COM CRM",
+      "revenueDashboard": "Painel de Receita",
+      "live": "Ao vivo",
+      "responseRate": "Taxa de Resposta",
+      "dealsClosed": "Negócios Fechados",
+      "revenue": "Receita",
+      "dealMoved": "Negócio movido para Negociação",
+      "newMessageSynced": "Nova mensagem sincronizada",
+      "twoMinAgo": "2m atrás"
     },
     "comparison": {
       "personalWhatsApp": "WhatsApp Pessoal",

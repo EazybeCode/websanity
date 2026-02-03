@@ -47,22 +47,22 @@ export const ClientLogos: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-brand-cyan/10 to-brand-blue/10 border border-brand-cyan/30 dark:border-brand-cyan/20 backdrop-blur-sm">
             <Award className="w-4 h-4 text-brand-cyan dark:text-brand-cyan" />
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand-cyan dark:text-brand-cyan font-semibold">
-              Trusted Worldwide
+              {t('home.clientLogos.trustedBadge', 'Trusted Worldwide')}
             </span>
           </div>
 
           {/* Main Title */}
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
-            Trusted By{' '}
+            {t('home.clientLogos.trustedBy', 'Trusted By')}{' '}
             <span className="bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-indigo bg-clip-text text-transparent">
               500+
             </span>{' '}
-            Sales Teams
+            {t('home.clientLogos.salesTeams', 'Sales Teams')}
           </h2>
 
           {/* Subtitle */}
           <p className="text-slate-600 dark:text-slate-400 text-base max-w-2xl mx-auto">
-            From startups to enterprises, teams rely on EazyBe to never miss a WhatsApp conversation
+            {t('home.clientLogos.subtitle', 'From startups to enterprises, teams rely on EazyBe to never miss a WhatsApp conversation')}
           </p>
         </div>
       </div>

@@ -157,7 +157,7 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                {['Deal closed! 🎉', 'Send pricing?', 'Meeting Friday'].map((msg, i) => (
+                {[t('home.heroVisual.msg1', 'Deal closed! 🎉'), t('home.heroVisual.msg2', 'Send pricing?'), t('home.heroVisual.msg3', 'Meeting Friday')].map((msg, i) => (
                   <motion.div
                     key={i}
                     className="bg-[#25D366]/20 border border-[#25D366]/40 px-3 py-2 rounded-xl"
@@ -195,7 +195,7 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                   transition={{ duration: 2, repeat: Infinity }}
                 >
                   <Zap size={14} className="text-cyan-400" />
-                  <span className="text-xs font-bold text-cyan-400">SYNCING TO CRM</span>
+                  <span className="text-xs font-bold text-cyan-400">{t('home.heroVisual.syncingToCrm', 'SYNCING TO CRM')}</span>
                 </motion.div>
               </div>
 
@@ -210,7 +210,7 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                 <div className="flex items-center justify-between px-4 py-3 bg-slate-900/50 border-b border-slate-700/50">
                   <div className="flex items-center gap-2">
                     <Database size={14} className="text-blue-400" />
-                    <span className="text-xs font-bold text-slate-300">Revenue Dashboard</span>
+                    <span className="text-xs font-bold text-slate-300">{t('home.heroVisual.revenueDashboard', 'Revenue Dashboard')}</span>
                   </div>
                   <motion.div
                     className="flex items-center gap-1.5"
@@ -218,16 +218,16 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                     transition={{ duration: 2, repeat: Infinity }}
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    <span className="text-[10px] text-emerald-400">Live</span>
+                    <span className="text-[10px] text-emerald-400">{t('home.heroVisual.live', 'Live')}</span>
                   </motion.div>
                 </div>
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-3 gap-3 p-4">
                   {[
-                    { label: 'Response Rate', value: '+47%', color: 'emerald' },
-                    { label: 'Deals Closed', value: '156', color: 'blue' },
-                    { label: 'Revenue', value: '$2.4M', color: 'cyan' }
+                    { label: t('home.heroVisual.responseRate', 'Response Rate'), value: '+47%', color: 'emerald' },
+                    { label: t('home.heroVisual.dealsClosed', 'Deals Closed'), value: '156', color: 'blue' },
+                    { label: t('home.heroVisual.revenue', 'Revenue'), value: 'R$2.4M', color: 'cyan' }
                   ].map((stat, i) => (
                     <motion.div
                       key={i}
@@ -253,8 +253,8 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                 <div className="px-4 pb-4">
                   <div className="space-y-2">
                     {[
-                      { name: 'Sarah K.', action: 'Deal moved to Negotiation', time: 'Just now' },
-                      { name: 'Mike T.', action: 'New message synced', time: '2m ago' }
+                      { name: 'Sarah K.', action: t('home.heroVisual.dealMoved', 'Deal moved to Negotiation'), time: t('home.heroVisual.justNow', 'Just now') },
+                      { name: 'Mike T.', action: t('home.heroVisual.newMessageSynced', 'New message synced'), time: t('home.heroVisual.twoMinAgo', '2m ago') }
                     ].map((activity, i) => (
                       <motion.div
                         key={i}
