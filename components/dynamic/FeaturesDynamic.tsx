@@ -66,7 +66,8 @@ interface TranslatedFeature {
 }
 
 export const FeaturesDynamic: React.FC<Props> = ({ data }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isNonEnglish = i18n.language !== 'en'
 
   // Translated CTA label
   const ctaLabel = t('cta.learnMore')
@@ -75,15 +76,16 @@ export const FeaturesDynamic: React.FC<Props> = ({ data }) => {
   const getFeatureContent = (feature: NonNullable<FeatureSection['features']>[number], index: number) => {
     const translationKey = feature.badge ? featureKeyMap[feature.badge] : null
 
+    // For non-English languages, always try translations first
     if (translationKey) {
       const translatedFeature = t(`home.features.${translationKey}`, { returnObjects: true }) as TranslatedFeature | string
 
-      if (typeof translatedFeature === 'object' && translatedFeature.badge) {
+      if (typeof translatedFeature === 'object' && (translatedFeature.badge || isNonEnglish)) {
         return {
-          badge: translatedFeature.badge,
-          headline: translatedFeature.headline,
-          description: translatedFeature.description,
-          points: translatedFeature.points?.map(text => ({ text })) || [],
+          badge: translatedFeature.badge || feature.badge,
+          headline: translatedFeature.headline || feature.headline,
+          description: translatedFeature.description || feature.description,
+          points: translatedFeature.points?.map(text => ({ text })) || feature.points || [],
           ctaLabel: ctaLabel,
           ctaUrl: featureUrlMap[translationKey] || feature.ctaUrl,
           alignRight: feature.alignRight,

@@ -20,23 +20,29 @@ const iconMap: Record<string, React.FC<{ size?: number; strokeWidth?: number }>>
 const defaultIcons = ['eye-off', 'clock', 'user-x', 'log-out']
 
 export const ProblemDynamic: React.FC<Props> = ({ data }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isNonEnglish = i18n.language !== 'en'
 
-  // Use Sanity data as primary, translations as fallback
-  const badge = data.badge || t('home.problem.badge', '')
-  const headline = data.headline || t('home.problem.headline', '')
-  const subheadline = data.subheadline || t('home.problem.subheadline', '')
+  // For non-English languages, prioritize translations
+  const badge = isNonEnglish ? t('home.problem.badge', data.badge || '') : (data.badge || t('home.problem.badge', ''))
+  const headline = isNonEnglish ? t('home.problem.headline', data.headline || '') : (data.headline || t('home.problem.headline', ''))
+  const subheadline = isNonEnglish ? t('home.problem.subheadline', data.subheadline || '') : (data.subheadline || t('home.problem.subheadline', ''))
 
-  // Use Sanity problems data, fallback to translated cards
+  // Use translated cards for non-English, Sanity data for English
   const translatedCards = t('home.problem.cards', { returnObjects: true }) as Array<{ title: string; description: string }> | string
-  const cards = data.problems && data.problems.length > 0
-    ? data.problems
-    : Array.isArray(translatedCards)
-      ? translatedCards.map((card, i) => ({
-          ...card,
-          icon: defaultIcons[i] || 'eye-off'
-        }))
-      : []
+  const cards = isNonEnglish && Array.isArray(translatedCards)
+    ? translatedCards.map((card, i) => ({
+        ...card,
+        icon: defaultIcons[i] || 'eye-off'
+      }))
+    : data.problems && data.problems.length > 0
+      ? data.problems
+      : Array.isArray(translatedCards)
+        ? translatedCards.map((card, i) => ({
+            ...card,
+            icon: defaultIcons[i] || 'eye-off'
+          }))
+        : []
 
   return (
     <section className="py-24 bg-brand-black text-white relative overflow-hidden">

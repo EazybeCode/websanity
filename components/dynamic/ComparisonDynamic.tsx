@@ -9,12 +9,13 @@ interface Props {
 }
 
 export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isNonEnglish = i18n.language !== 'en'
 
-  // Use Sanity data as primary, translations as fallback
-  const badge = data.badge || t('integrations.comparison.badge', '')
-  const headline = data.headline || ''
-  const description = data.description || t('integrations.comparison.description', '')
+  // For non-English languages, prioritize translations
+  const badge = isNonEnglish ? t('integrations.comparison.badge', data.badge || '') : (data.badge || t('integrations.comparison.badge', ''))
+  const headline = isNonEnglish ? t('integrations.comparison.headline', data.headline || '') : (data.headline || '')
+  const description = isNonEnglish ? t('integrations.comparison.description', data.description || '') : (data.description || t('integrations.comparison.description', ''))
 
   return (
     <section className="py-24 bg-brand-surface border-y border-slate-800 relative">
