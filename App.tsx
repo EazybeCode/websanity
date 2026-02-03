@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { SEOHead } from './components/SEOHead'
 
 // Component to redirect trailing slashes
 const TrailingSlashRedirect: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -140,6 +141,7 @@ function App() {
     <BrowserRouter>
       <TrailingSlashRedirect>
         <LanguageProvider>
+          <SEOHead />
           <AppRoutes />
         </LanguageProvider>
       </TrailingSlashRedirect>
