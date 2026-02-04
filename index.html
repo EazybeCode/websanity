@@ -65,6 +65,7 @@
             animation: {
               'loop-scroll': 'loop-scroll 40s linear infinite',
               'loop-scroll-reverse': 'loop-scroll-reverse 40s linear infinite',
+              'scroll-hover': 'scroll-hover 60s linear infinite',
               'float': 'float 6s ease-in-out infinite',
               'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
@@ -79,6 +80,10 @@
               'loop-scroll-reverse': {
                 from: { transform: 'translateX(-100%)' },
                 to: { transform: 'translateX(0)' },
+              },
+              'scroll-hover': {
+                from: { transform: 'translateX(0)' },
+                to: { transform: 'translateX(-33.333%)' },
               },
               'float': {
                 '0%, 100%': { transform: 'translateY(0)' },
@@ -1268,6 +1273,15 @@
       /* Check and X icons */
       html.light .text-green-500 { color: #22c55e !important; }
       html.light .text-red-500 { color: #ef4444 !important; }
+    </style>
+    <style>
+      /* Infinite Scroll Animation for Testimonials */
+      .animate-scroll-hover {
+        animation: scroll-hover 60s linear infinite;
+      }
+      .hover\:pause-scroll:hover {
+        animation-play-state: paused;
+      }
     </style>
   <script type="importmap">
 {

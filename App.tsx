@@ -22,6 +22,8 @@ import { CategoryIndexPage } from './pages/CategoryIndexPage'
 import CoexistencePage from './pages/CoexistencePage'
 import BlogPage from './pages/BlogPage'
 import BlogListingPage from './pages/BlogListingPage'
+import BlogPageRedesigned from './pages/BlogPageRedesigned'
+import BlogListingPageRedesigned from './pages/BlogListingPageRedesigned'
 import TeamInboxPage from './pages/TeamInboxPage'
 import MSAPage from './pages/MSAPage'
 import PrivacyPage from './pages/PrivacyPage'
@@ -64,6 +66,9 @@ const AppRoutes = () => (
     <Route path="/product/:slug" element={<ProductPage />} />
     <Route path="/blog" element={<BlogListingPage />} />
     <Route path="/blog/:slug" element={<BlogPage />} />
+    {/* Redesigned Blog Routes - for testing */}
+    <Route path="/blog-new" element={<BlogListingPageRedesigned />} />
+    <Route path="/blog-new/:slug" element={<BlogPageRedesigned />} />
     <Route path="/team-inbox" element={<TeamInboxPage />} />
     <Route path="/msa" element={<MSAPage />} />
     <Route path="/privacy" element={<PrivacyPage />} />
