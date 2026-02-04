@@ -1,12 +1,9 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { Shield } from 'lucide-react'
 
 export const PrivacyPage: React.FC = () => {
-  const { t } = useTranslation()
-
   return (
     <div className="min-h-screen bg-slate-950 font-sans text-slate-300 antialiased">
       <Navbar />
@@ -20,15 +17,15 @@ export const PrivacyPage: React.FC = () => {
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-white">
-                {t('privacy.title')}
+                Eazybe Privacy Policy
               </h1>
             </div>
           </div>
           <p className="text-xl text-emerald-400 font-medium mb-4">
-            {t('privacy.tagline')}
+            Revised 2026
           </p>
           <p className="text-slate-400">
-            {t('privacy.intro')}
+            Your privacy and data security are our top priorities. This policy explains how we handle your information.
           </p>
         </div>
       </section>
@@ -36,219 +33,106 @@ export const PrivacyPage: React.FC = () => {
       {/* Content Section */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Privacy Policy Section */}
+
+          {/* Introduction */}
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">1</span>
-              {t('privacy.policyTitle')}
+              Introduction
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.policyIntro')}</p>
-              <p>{t('privacy.aboutUs')}</p>
+              <p>
+                At Eazybe, Inc., we provide a RevOps and CRM integration layer for WhatsApp Web. This Privacy Policy explains how we collect, handle, and protect your data when you use the Eazybe Chrome Extension and our associated services.
+              </p>
             </div>
           </div>
 
-          {/* Google Sign-in Section */}
+          {/* Google API Disclosure */}
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">2</span>
-              {t('privacy.googleSigninTitle')}
+              Google API Disclosure (Mandatory for Chrome Web Store)
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.googleSignin')}</p>
-              <p>{t('privacy.serviceEmails')}</p>
+              <p>
+                Eazybe's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline">Google API Services User Data Policy</a>, including the Limited Use requirements.
+              </p>
             </div>
           </div>
 
-          {/* OAuth Section */}
+          {/* Data Collection and Handling */}
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">3</span>
-              {t('privacy.oauthTitle')}
+              Data Collection and Handling
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.oauth')}</p>
-              <p>{t('privacy.cookies')}</p>
+              <p>To provide our CRM sync and AI classification features, Eazybe processes the following data:</p>
+              <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
+                <li><strong className="text-white">Identity Data:</strong> We use Google OAuth to authenticate your identity and collect your email address for licensing and communication.</li>
+                <li><strong className="text-white">WhatsApp Data:</strong> To enable CRM integration, we access contact names, phone numbers, and message timestamps from your WhatsApp Web interface.</li>
+                <li><strong className="text-white">CRM Data:</strong> If you connect a CRM (HubSpot, Zoho, Salesforce, etc.), we process data required to sync contacts, tasks, and notes between WhatsApp and your CRM.</li>
+                <li><strong className="text-white">AI & Classification Data:</strong> We process message metadata (and message content if AI features are enabled) to provide conversation summaries, sentiment analysis, and intent scoring.</li>
+              </ul>
             </div>
           </div>
 
-          {/* Data Changes Section */}
+          {/* Data Storage and Security */}
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">4</span>
-              {t('privacy.dataChangesTitle')}
+              Data Storage and Security
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.dataChanges')}</p>
-              <p>{t('privacy.disclosure')}</p>
-              <p>{t('privacy.thirdPartyPayment')}</p>
+              <p>We follow a strict "Privacy by Design" architecture:</p>
+              <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
+                <li><strong className="text-white">Browser-Level:</strong> Most WhatsApp interactions are processed locally in your browser.</li>
+                <li><strong className="text-white">Server-Level:</strong> Metadata required for team collaboration (tags, CRM deal values, sentiment scores) is stored securely on our servers (AWS/Hetzner) and databases (MongoDB/BigQuery).</li>
+                <li><strong className="text-white">Encryption:</strong> All data in transit is encrypted via HTTPS/TLS. Data at rest is encrypted using industry-standard AES-256 protocols.</li>
+              </ul>
             </div>
           </div>
 
-          {/* Third Party Privacy */}
+          {/* Data Sharing and Disclosure */}
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">5</span>
-              {t('privacy.thirdPartyTitle')}
+              Data Sharing and Disclosure
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.thirdParty')}</p>
+              <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
+                <li><strong className="text-white">No Sale of Data:</strong> We do not sell, rent, or trade your personal data to third parties.</li>
+                <li><strong className="text-white">Third-Party Integrations:</strong> Data is only shared with third-party services (like your CRM provider or payment processor like Stripe) that you explicitly authorize.</li>
+                <li><strong className="text-white">Limited Use:</strong> We do not use your data for advertising, creditworthiness, or any purpose outside of providing the Eazybe service.</li>
+              </ul>
             </div>
           </div>
 
-          {/* Children's Information */}
+          {/* User Rights and Data Deletion */}
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">6</span>
-              {t('privacy.childrenTitle')}
+              User Rights and Data Deletion
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.children')}</p>
+              <p>You have the right to access, correct, or delete your data at any time.</p>
+              <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
+                <li><strong className="text-white">Uninstalling:</strong> You can stop data collection by uninstalling the Chrome Extension.</li>
+                <li><strong className="text-white">Deletion Request:</strong> To permanently delete your account and all associated data from our databases, please contact us at <a href="mailto:hey@eazybe.com" className="text-emerald-400 hover:text-emerald-300 underline">hey@eazybe.com</a>. Requests are processed within 5 business days.</li>
+              </ul>
             </div>
           </div>
 
-          {/* Online Privacy Policy Only */}
-          <div className="mb-12">
+          {/* Contact Information */}
+          <div className="mb-12 p-6 bg-slate-900/50 rounded-xl border border-slate-800">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">7</span>
-              {t('privacy.onlineOnlyTitle')}
+              Contact Information
             </h2>
-            <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.onlineOnly')}</p>
-            </div>
-          </div>
-
-          {/* Google Drive Access */}
-          <div className="mb-12 p-6 bg-slate-900/50 rounded-xl border border-slate-800">
-            <h2 className="text-xl font-bold text-white mb-4">{t('privacy.googleDriveTitle')}</h2>
-            <div className="space-y-4 text-slate-300">
-              <p>{t('privacy.googleDriveIntro')}</p>
-              <p><strong className="text-white">{t('privacy.fileId')}</strong> {t('privacy.fileIdDesc')}</p>
-              <div>
-                <p className="font-semibold text-white mb-2">{t('privacy.purposeTitle')}</p>
-                <ul className="list-disc list-inside space-y-1 text-slate-400">
-                  <li>{t('privacy.purpose1')}</li>
-                  <li>{t('privacy.purpose2')}</li>
-                </ul>
-                <p className="mt-2">{t('privacy.noContentAccess')}</p>
-              </div>
-              <div>
-                <p className="font-semibold text-white mb-2">{t('privacy.dataSharingTitle')}</p>
-                <p>{t('privacy.dataSharing')}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Data Protection Measures */}
-          <div className="mb-12">
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">8</span>
-              {t('privacy.dataProtectionTitle')}
-            </h2>
-            <div className="pl-10 space-y-6 text-slate-300">
-              <div>
-                <p className="font-semibold text-white mb-2">{t('privacy.encryptionTitle')}</p>
-                <ul className="list-disc list-inside space-y-1 text-slate-400">
-                  <li>{t('privacy.encryption1')}</li>
-                  <li>{t('privacy.encryption2')}</li>
-                </ul>
-              </div>
-              <div>
-                <p className="font-semibold text-white mb-2">{t('privacy.accessControlTitle')}</p>
-                <ul className="list-disc list-inside space-y-1 text-slate-400">
-                  <li>{t('privacy.accessControl1')}</li>
-                  <li>{t('privacy.accessControl2')}</li>
-                </ul>
-              </div>
-              <div>
-                <p className="font-semibold text-white mb-2">{t('privacy.securityAuditsTitle')}</p>
-                <ul className="list-disc list-inside space-y-1 text-slate-400">
-                  <li>{t('privacy.securityAudits1')}</li>
-                  <li>{t('privacy.securityAudits2')}</li>
-                </ul>
-              </div>
-              <div>
-                <p className="font-semibold text-white mb-2">{t('privacy.dataMinimizationTitle')}</p>
-                <ul className="list-disc list-inside space-y-1 text-slate-400">
-                  <li>{t('privacy.dataMinimization1')}</li>
-                  <li>{t('privacy.dataMinimization2')}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* California Privacy Rights */}
-          <div className="mb-12">
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">9</span>
-              {t('privacy.californiaTitle')}
-            </h2>
-            <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.california')}</p>
-              <p className="text-slate-400 italic">{t('privacy.californiaNote')}</p>
-            </div>
-          </div>
-
-          {/* Notice to European Users */}
-          <div className="mb-12 p-6 bg-slate-900/50 rounded-xl border border-slate-800">
-            <h2 className="text-xl font-bold text-white mb-4">{t('privacy.europeanTitle')}</h2>
-            <div className="space-y-4 text-slate-300">
-              <p>{t('privacy.europeanIntro')}</p>
-              <p><strong className="text-white">{t('privacy.personalInfoTitle')}</strong> {t('privacy.personalInfo')}</p>
-              <p><strong className="text-white">{t('privacy.dataControllerTitle')}</strong> {t('privacy.dataController')}</p>
-              <p><strong className="text-white">{t('privacy.legalBasesTitle')}</strong> {t('privacy.legalBases')}</p>
-            </div>
-          </div>
-
-          {/* Use for New Purposes */}
-          <div className="mb-12">
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">10</span>
-              {t('privacy.newPurposesTitle')}
-            </h2>
-            <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.newPurposes')}</p>
-            </div>
-          </div>
-
-          {/* Retention */}
-          <div className="mb-12">
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">11</span>
-              {t('privacy.retentionTitle')}
-            </h2>
-            <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.retention')}</p>
-              <p>{t('privacy.retentionFactors')}</p>
-              <p>{t('privacy.retentionDeletion')}</p>
-            </div>
-          </div>
-
-          {/* Sensitive Information */}
-          <div className="mb-12">
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">12</span>
-              {t('privacy.sensitiveTitle')}
-            </h2>
-            <div className="pl-10 space-y-4 text-slate-300">
-              <p>{t('privacy.sensitive')}</p>
-            </div>
-          </div>
-
-          {/* Your Rights */}
-          <div className="mb-12 p-6 bg-gradient-to-r from-emerald-600/10 to-cyan-600/10 rounded-xl border border-emerald-500/20">
-            <h2 className="text-xl font-bold text-white mb-4">{t('privacy.rightsTitle')}</h2>
-            <div className="space-y-3 text-slate-300">
-              <p>{t('privacy.rightsIntro')}</p>
-              <ul className="space-y-2">
-                <li><strong className="text-emerald-400">{t('privacy.accessRight')}</strong> {t('privacy.accessRightDesc')}</li>
-                <li><strong className="text-emerald-400">{t('privacy.correctRight')}</strong> {t('privacy.correctRightDesc')}</li>
-                <li><strong className="text-emerald-400">{t('privacy.deleteRight')}</strong> {t('privacy.deleteRightDesc')}</li>
-                <li><strong className="text-emerald-400">{t('privacy.transferRight')}</strong> {t('privacy.transferRightDesc')}</li>
-                <li><strong className="text-emerald-400">{t('privacy.restrictRight')}</strong> {t('privacy.restrictRightDesc')}</li>
-                <li><strong className="text-emerald-400">{t('privacy.objectRight')}</strong> {t('privacy.objectRightDesc')}</li>
-              </ul>
-              <p className="mt-4">{t('privacy.rightsContact')}</p>
+            <div className="space-y-2 text-slate-300">
+              <p><strong className="text-white">Eazybe, Inc.</strong></p>
+              <p>8, The Green STE B, Dover, Delaware - 19901</p>
+              <p>Email: <a href="mailto:hey@eazybe.com" className="text-emerald-400 hover:text-emerald-300 underline">hey@eazybe.com</a></p>
             </div>
           </div>
 
