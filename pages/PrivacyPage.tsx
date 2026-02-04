@@ -252,6 +252,52 @@ export const PrivacyPage: React.FC = () => {
             </div>
           </div>
 
+          {/* Chrome Web Store Data Disclosure */}
+          <div className="mb-12 p-6 bg-slate-900/50 rounded-xl border border-slate-800">
+            <h2 className="text-xl font-bold text-white mb-4">Chrome Web Store Data Disclosure & Limited Use Policy</h2>
+            <div className="space-y-6 text-slate-300">
+              <p>
+                To maintain transparency with our users and comply with the Google Chrome Web Store User Data Policy, Eazybe provides the following disclosures regarding the collection and use of your data.
+              </p>
+
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-3">1. Data Collection & Usage Disclosure</h3>
+                <p className="mb-3">
+                  Eazybe collects and processes specific user data to provide our CRM integration and productivity services. This includes:
+                </p>
+                <p className="mb-2">
+                  <strong className="text-white">Web Browsing Activity:</strong> Our extension accesses specific website content (primarily web.whatsapp.com and your connected CRM domains) to synchronize messages, contacts, and tasks.
+                </p>
+                <p className="mb-2">
+                  <strong className="text-white">Purpose:</strong> This data is used solely to facilitate the core functionality of Eazybe, such as organizing chats, scheduling follow-ups, and integrating your browser-based workflows with your CRM.
+                </p>
+                <p>
+                  <strong className="text-white">Minimal Permissions:</strong> We only request the minimum permissions necessary. We do not track your general browsing history across unrelated websites.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-3">2. Google API "Limited Use" Compliance</h3>
+                <p className="mb-3">
+                  Eazybe's use and transfer of information received from Google APIs to any other app will adhere to Google API Services User Data Policy, including the Limited Use requirements:
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-slate-400">
+                  <li><strong className="text-slate-300">No Advertising:</strong> We do not use your data to serve, personalize, or even target advertisements.</li>
+                  <li><strong className="text-slate-300">No Data Selling:</strong> We do not sell your personal data or browsing activity to any third parties, data brokers, or ad networks.</li>
+                  <li><strong className="text-slate-300">Restricted Transfers:</strong> We do not transfer your data to third parties unless it is necessary to provide or improve our core features, to comply with applicable laws, or as part of a merger/acquisition.</li>
+                  <li><strong className="text-slate-300">Human Review Limits:</strong> Our team will not view your private user data unless you provide explicit consent for troubleshooting, it is necessary for security purposes, or it is required to comply with legal obligations.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-3">3. Privacy & Security Measures</h3>
+                <p>
+                  All data transmitted between the Eazybe extension and our servers is protected using industry-standard encryption (e.g., HTTPS). We implement strict access controls to ensure your data remains confidential and secure.
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
