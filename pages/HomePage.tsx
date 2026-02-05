@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
@@ -9,8 +9,13 @@ import { LeadMobileButton } from '../components/LeadMobileButton'
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
-  // Check if we're on English page by URL path (not /br, /es, /tr)
-  const isEnglish = typeof window !== 'undefined' && !window.location.pathname.match(/^\/(br|es|tr)(\/|$)/)
+  const [isEnglish, setIsEnglish] = useState(false)
+
+  useEffect(() => {
+    // Check if we're on English page by URL path (not /br, /es, /tr)
+    const isEn = !window.location.pathname.match(/^\/(br|es|tr)(\/|$)/)
+    setIsEnglish(isEn)
+  }, [])
   const { data, loading, error } = useLandingPage()
 
   if (loading) {
