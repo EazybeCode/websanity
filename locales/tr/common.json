@@ -1897,5 +1897,33 @@
     "entireAgreement": "Bu Şartlar, Hizmetimizle ilgili aramızdaki tam sözleşmeyi oluşturur ve Hizmetle ilgili aramızda daha önce yapılmış olabilecek tüm anlaşmaların yerini alır ve onları geçersiz kılar.",
     "changesTitle": "Değişiklikler",
     "changes": "Tamamen kendi takdirimize bağlı olarak, bu Şartları herhangi bir zamanda değiştirme veya değiştirme hakkını saklı tutuyoruz. Bir revizyon önemliyse, yeni şartlar yürürlüğe girmeden en az 15 gün önce bildirimde bulunmaya çalışacağız. Önemli bir değişikliğin ne olduğu tamamen bizim takdirimize bağlı olarak belirlenecektir. Bu revizyonlar yürürlüğe girdikten sonra Hizmetimize erişmeye veya kullanmaya devam ederek, revize edilmiş şartlara bağlı olmayı kabul edersiniz. Yeni şartları kabul etmiyorsanız, lütfen Hizmeti kullanmayı bırakın."
+  },
+  "leadForm": {
+    "introTitle": "WhatsApp Satış Sistemleri Araç Kiti",
+    "introDescription": "Tüm ekip sohbetlerini görme ve temsilciler ayrıldığında müşterilerinizi koruma sistemini edinin.",
+    "introSubtext": "10+ kişilik yüksek performanslı satış ekipleri için tasarlandı.",
+    "downloadButton": "Ücretsiz İndir →",
+    "emailLabel": "İş E-postası",
+    "emailPlaceholder": "ahmet@sirket.com",
+    "emailRequired": "E-posta gerekli",
+    "emailInvalid": "Lütfen geçerli bir e-posta girin",
+    "workEmailRequired": "Lütfen iş e-postanızı kullanın (Gmail, Yahoo vb. değil)",
+    "phoneLabel": "Telefon",
+    "phonePlaceholder": "532 123 4567",
+    "phoneRequired": "Telefon numarası gerekli",
+    "phoneInvalid": "Lütfen geçerli bir telefon numarası girin",
+    "crmLabel": "Hangi CRM'i kullanıyorsunuz?",
+    "crmPlaceholder": "CRM'inizi seçin",
+    "crmRequired": "Lütfen bir CRM seçin",
+    "crmHubspot": "HubSpot",
+    "crmSalesforce": "Salesforce",
+    "crmZoho": "Zoho CRM",
+    "crmOther": "Diğer",
+    "crmNone": "CRM kullanmıyorum",
+    "submitButton": "Başla →",
+    "submitting": "İşleniyor...",
+    "thankYouTitle": "Teşekkürler!",
+    "thankYouMessage": "Size kısa süre içinde bir e-posta göndereceğiz.",
+    "thankYouSubtext": "Gelen kutunuzu kontrol edin."
   }
 }

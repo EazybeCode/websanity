@@ -1,0 +1,1 @@
+export { LeadGenerationForm } from './LeadGenerationForm';

@@ -1897,5 +1897,33 @@
     "entireAgreement": "These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have between us regarding the Service.",
     "changesTitle": "Changes",
     "changes": "We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 15 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service."
+  },
+  "leadForm": {
+    "introTitle": "The WhatsApp Sales Systems Toolkit",
+    "introDescription": "Get the exact system to see every team chat and keep your clients when reps leave.",
+    "introSubtext": "Built for high-performance sales teams of 10+ people.",
+    "downloadButton": "Download for free →",
+    "emailLabel": "Work Email",
+    "emailPlaceholder": "john@company.com",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email",
+    "workEmailRequired": "Please use your work email (not Gmail, Yahoo, etc.)",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "234 567 8900",
+    "phoneRequired": "Phone number is required",
+    "phoneInvalid": "Please enter a valid phone number",
+    "crmLabel": "Which CRM do you use?",
+    "crmPlaceholder": "Select your CRM",
+    "crmRequired": "Please select a CRM",
+    "crmHubspot": "HubSpot",
+    "crmSalesforce": "Salesforce",
+    "crmZoho": "Zoho CRM",
+    "crmOther": "Other",
+    "crmNone": "I don't use a CRM",
+    "submitButton": "Get Started →",
+    "submitting": "Processing...",
+    "thankYouTitle": "Thank You!",
+    "thankYouMessage": "We'll send you an email shortly.",
+    "thankYouSubtext": "Check your inbox for our message."
   }
 }

@@ -1897,5 +1897,33 @@
     "entireAgreement": "Estos Términos constituyen el acuerdo completo entre nosotros con respecto a nuestro Servicio, y reemplazan y sustituyen cualquier acuerdo anterior que pudiéramos tener entre nosotros con respecto al Servicio.",
     "changesTitle": "Cambios",
     "changes": "Nos reservamos el derecho, a nuestra sola discreción, de modificar o reemplazar estos Términos en cualquier momento. Si una revisión es material, intentaremos proporcionar al menos 15 días de aviso antes de que los nuevos términos entren en vigor. Lo que constituye un cambio material se determinará a nuestra sola discreción. Al continuar accediendo o usando nuestro Servicio después de que esas revisiones entren en vigor, usted acepta estar sujeto a los términos revisados. Si no está de acuerdo con los nuevos términos, por favor deje de usar el Servicio."
+  },
+  "leadForm": {
+    "introTitle": "El Kit de Herramientas de Ventas por WhatsApp",
+    "introDescription": "Obtén el sistema exacto para ver todos los chats del equipo y mantener a tus clientes cuando los representantes se vayan.",
+    "introSubtext": "Diseñado para equipos de ventas de alto rendimiento de 10+ personas.",
+    "downloadButton": "Descargar gratis →",
+    "emailLabel": "Correo de Trabajo",
+    "emailPlaceholder": "juan@empresa.com",
+    "emailRequired": "El correo es obligatorio",
+    "emailInvalid": "Por favor, ingresa un correo válido",
+    "workEmailRequired": "Por favor, usa tu correo de trabajo (no Gmail, Yahoo, etc.)",
+    "phoneLabel": "Teléfono",
+    "phonePlaceholder": "612 345 678",
+    "phoneRequired": "El teléfono es obligatorio",
+    "phoneInvalid": "Por favor, ingresa un teléfono válido",
+    "crmLabel": "¿Qué CRM usas?",
+    "crmPlaceholder": "Selecciona tu CRM",
+    "crmRequired": "Por favor, selecciona un CRM",
+    "crmHubspot": "HubSpot",
+    "crmSalesforce": "Salesforce",
+    "crmZoho": "Zoho CRM",
+    "crmOther": "Otro",
+    "crmNone": "No uso CRM",
+    "submitButton": "Comenzar →",
+    "submitting": "Procesando...",
+    "thankYouTitle": "¡Gracias!",
+    "thankYouMessage": "Te enviaremos un correo pronto.",
+    "thankYouSubtext": "Revisa tu bandeja de entrada."
   }
 }

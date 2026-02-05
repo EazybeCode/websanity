@@ -1913,5 +1913,33 @@
     "entireAgreement": "Estes Termos constituem o acordo integral entre nós em relação ao nosso Serviço e substituem e substituem quaisquer acordos anteriores que possamos ter entre nós em relação ao Serviço.",
     "changesTitle": "Alterações",
     "changes": "Reservamo-nos o direito, a nosso exclusivo critério, de modificar ou substituir estes Termos a qualquer momento. Se uma revisão for material, tentaremos fornecer pelo menos 15 dias de aviso antes que quaisquer novos termos entrem em vigor. O que constitui uma mudança material será determinado a nosso exclusivo critério. Ao continuar a acessar ou usar nosso Serviço após essas revisões entrarem em vigor, você concorda em ficar vinculado aos termos revisados. Se você não concordar com os novos termos, por favor pare de usar o Serviço."
+  },
+  "leadForm": {
+    "introTitle": "O Kit de Ferramentas de Vendas WhatsApp",
+    "introDescription": "Obtenha o sistema exato para ver todas as conversas da equipe e manter seus clientes quando os representantes saírem.",
+    "introSubtext": "Desenvolvido para equipes de vendas de alto desempenho com 10+ pessoas.",
+    "downloadButton": "Baixar gratuitamente →",
+    "emailLabel": "E-mail de Trabalho",
+    "emailPlaceholder": "joao@empresa.com",
+    "emailRequired": "E-mail é obrigatório",
+    "emailInvalid": "Por favor, insira um e-mail válido",
+    "workEmailRequired": "Por favor, use seu e-mail de trabalho (não Gmail, Yahoo, etc.)",
+    "phoneLabel": "Telefone",
+    "phonePlaceholder": "11 99999-9999",
+    "phoneRequired": "Telefone é obrigatório",
+    "phoneInvalid": "Por favor, insira um telefone válido",
+    "crmLabel": "Qual CRM você usa?",
+    "crmPlaceholder": "Selecione seu CRM",
+    "crmRequired": "Por favor, selecione um CRM",
+    "crmHubspot": "HubSpot",
+    "crmSalesforce": "Salesforce",
+    "crmZoho": "Zoho CRM",
+    "crmOther": "Outro",
+    "crmNone": "Não uso CRM",
+    "submitButton": "Começar →",
+    "submitting": "Processando...",
+    "thankYouTitle": "Obrigado!",
+    "thankYouMessage": "Enviaremos um e-mail em breve.",
+    "thankYouSubtext": "Verifique sua caixa de entrada."
   }
 }

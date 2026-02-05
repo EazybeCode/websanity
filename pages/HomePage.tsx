@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { SectionRenderer } from '../components/SectionRenderer'
 import { useLandingPage } from '../hooks/useLandingPage'
+import { LeadSidebar } from '../components/LeadSidebar'
+import { LeadMobileButton } from '../components/LeadMobileButton'
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
+  const [isEnglish, setIsEnglish] = useState(false)
+
+  useEffect(() => {
+    // Check if we're on English page by URL path (not /br, /es, /tr)
+    const isEn = !window.location.pathname.match(/^\/(br|es|tr)(\/|$)/)
+    setIsEnglish(isEn)
+  }, [])
   const { data, loading, error } = useLandingPage()
 
   if (loading) {
@@ -33,6 +42,13 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       <Navbar />
+
+      {/* Desktop sticky sidebar - English only */}
+      {isEnglish && <LeadSidebar />}
+
+      {/* Mobile sticky bottom button - English only */}
+      {isEnglish && <LeadMobileButton />}
+
       <main>
         {data?.sections
           ?.filter((section) => section._type !== 'securitySection' && section._type !== 'ctaSection')
