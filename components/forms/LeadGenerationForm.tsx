@@ -6,9 +6,55 @@ import { Button } from '../ui/Button';
 
 interface FormData {
   email: string;
+  countryCode: string;
   phone: string;
   crm: string;
 }
+
+// List of personal email domains to block
+const PERSONAL_EMAIL_DOMAINS = [
+  'gmail.com',
+  'yahoo.com',
+  'yahoo.co.in',
+  'hotmail.com',
+  'outlook.com',
+  'live.com',
+  'msn.com',
+  'aol.com',
+  'icloud.com',
+  'me.com',
+  'mac.com',
+  'protonmail.com',
+  'proton.me',
+  'mail.com',
+  'zoho.com',
+  'yandex.com',
+  'gmx.com',
+  'rediffmail.com',
+];
+
+// Common country codes
+const COUNTRY_CODES = [
+  { code: '+1', country: 'US/CA', flag: '🇺🇸' },
+  { code: '+44', country: 'UK', flag: '🇬🇧' },
+  { code: '+91', country: 'IN', flag: '🇮🇳' },
+  { code: '+55', country: 'BR', flag: '🇧🇷' },
+  { code: '+34', country: 'ES', flag: '🇪🇸' },
+  { code: '+90', country: 'TR', flag: '🇹🇷' },
+  { code: '+49', country: 'DE', flag: '🇩🇪' },
+  { code: '+33', country: 'FR', flag: '🇫🇷' },
+  { code: '+61', country: 'AU', flag: '🇦🇺' },
+  { code: '+971', country: 'UAE', flag: '🇦🇪' },
+  { code: '+966', country: 'SA', flag: '🇸🇦' },
+  { code: '+65', country: 'SG', flag: '🇸🇬' },
+  { code: '+60', country: 'MY', flag: '🇲🇾' },
+  { code: '+62', country: 'ID', flag: '🇮🇩' },
+  { code: '+63', country: 'PH', flag: '🇵🇭' },
+  { code: '+52', country: 'MX', flag: '🇲🇽' },
+  { code: '+27', country: 'ZA', flag: '🇿🇦' },
+  { code: '+234', country: 'NG', flag: '🇳🇬' },
+  { code: '+254', country: 'KE', flag: '🇰🇪' },
+];
 
 interface FormErrors {
   email?: string;
@@ -24,6 +70,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
   const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     email: '',
+    countryCode: '+91',
     phone: '',
     crm: '',
   });
@@ -51,6 +98,11 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
     return emailRegex.test(email);
   };
 
+  const isPersonalEmail = (email: string): boolean => {
+    const domain = email.split('@')[1]?.toLowerCase();
+    return PERSONAL_EMAIL_DOMAINS.includes(domain);
+  };
+
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
@@ -59,10 +111,14 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       newErrors.email = t('leadForm.emailRequired');
     } else if (!validateEmail(formData.email)) {
       newErrors.email = t('leadForm.emailInvalid');
+    } else if (isPersonalEmail(formData.email)) {
+      newErrors.email = t('leadForm.workEmailRequired');
     }
 
-    // Phone validation (optional - only validate if provided)
-    if (formData.phone.trim() && formData.phone.trim().length < 10) {
+    // Phone validation (required)
+    if (!formData.phone.trim()) {
+      newErrors.phone = t('leadForm.phoneRequired');
+    } else if (formData.phone.trim().length < 7) {
       newErrors.phone = t('leadForm.phoneInvalid');
     }
 
@@ -114,11 +170,9 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
         { name: "source_name", value: "website" },
       ];
 
-      // Add phone if provided
-      if (formData.phone.trim()) {
-        const formattedPhone = formatPhoneNumber(formData.phone);
-        fields.push({ name: "phone", value: formattedPhone });
-      }
+      // Add phone with country code
+      const formattedPhone = formData.countryCode.replace('+', '') + formatPhoneNumber(formData.phone);
+      fields.push({ name: "phone", value: formattedPhone });
 
       const payload = {
         fields,
@@ -242,16 +296,52 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
               disabled={isSubmitting}
             />
 
-            <Input
-              label={t('leadForm.phoneLabel')}
-              type="tel"
-              name="phone"
-              placeholder={t('leadForm.phonePlaceholder')}
-              value={formData.phone}
-              onChange={handleChange}
-              error={errors.phone}
-              disabled={isSubmitting}
-            />
+            <div className="w-full">
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-slate-300 mb-2"
+              >
+                {t('leadForm.phoneLabel')}
+                <span className="text-red-500 ml-1">*</span>
+              </label>
+              <div className="flex gap-2">
+                <select
+                  name="countryCode"
+                  value={formData.countryCode}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className="w-24 font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-2 py-2.5 text-sm h-11 bg-brand-card text-white border border-slate-700 hover:border-slate-600 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20"
+                >
+                  {COUNTRY_CODES.map((cc) => (
+                    <option key={cc.code} value={cc.code}>
+                      {cc.flag} {cc.code}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  id="phone"
+                  type="tel"
+                  name="phone"
+                  placeholder={t('leadForm.phonePlaceholder')}
+                  value={formData.phone}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className={`flex-1 font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-4 py-2.5 text-sm h-11 ${
+                    errors.phone
+                      ? 'bg-brand-card text-white border-2 border-red-500 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
+                      : 'bg-brand-card text-white border border-slate-700 hover:border-slate-600 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20'
+                  }`}
+                />
+              </div>
+              {errors.phone && (
+                <p className="mt-1.5 text-sm text-red-500 flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                  {errors.phone}
+                </p>
+              )}
+            </div>
 
             <div className="w-full">
               <label
