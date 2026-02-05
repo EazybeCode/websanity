@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { FooterColumn, type FooterLink } from './FooterColumn'
 import { LocalizedLink } from '../LocalizedLink'
 import { useTheme } from '../../hooks/useTheme'
+import { useFAQs } from '../../hooks/useFAQs'
 
 // Meta infinity logo component for consistent branding
 const MetaLogo: React.FC<{ size?: number }> = ({ size = 40 }) => (
@@ -77,6 +78,7 @@ export const ChunkyFooter: React.FC = () => {
   const { t, i18n } = useTranslation()
   const { isDark } = useTheme()
   const location = useLocation()
+  const { data: faqDataFromSanity, loading: faqsLoading } = useFAQs(i18n.language)
 
   // Get current language from i18n
   const currentLang = i18n.language as 'en' | 'br' | 'es' | 'tr'
@@ -629,7 +631,8 @@ export const ChunkyFooter: React.FC = () => {
 
   // Get content for current language
   const testimonials = testimonialsData[currentLang] || testimonialsData.en
-  const faqs = faqData[currentLang] || faqData.en
+  // Use FAQs from Sanity if available, otherwise fallback to hardcoded data
+  const faqs = faqDataFromSanity?.faqs || faqData[currentLang] || faqData.en
   const titles = sectionTitles[currentLang] || sectionTitles.en
 
   return (

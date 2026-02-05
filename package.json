@@ -12,7 +12,9 @@
     "generate-images": "tsx scripts/generate-feature-images.ts",
     "upload-images": "tsx scripts/upload-feature-images.ts",
     "generate-images-v3": "tsx scripts/generate-images-gemini3.ts",
-    "upload-all-images": "tsx scripts/upload-all-feature-images.ts"
+    "upload-all-images": "tsx scripts/upload-all-feature-images.ts",
+    "push-content": "tsx scripts/push-content-to-sanity.ts",
+    "migrate-faqs": "tsx scripts/migrate-faqs-to-sanity.ts"
   },
   "dependencies": {
     "@portabletext/react": "^6.0.2",

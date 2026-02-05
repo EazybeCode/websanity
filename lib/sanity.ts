@@ -819,3 +819,22 @@ export async function getBlogIndexPage(language: string = 'en') {
 
   return sanityClient.fetch(query, { language })
 }
+
+export async function getFAQs(language: string = 'en') {
+  const query = `*[_type == "faq" && language == $language] | order(order asc) {
+    _id,
+    question,
+    answer,
+    language,
+    order,
+    category
+  }`
+
+  const faqs = await sanityClient.fetch(query, { language })
+
+  return {
+    faqs: faqs || [],
+    title: language === 'en' ? 'Frequently Asked Questions' : 'FAQ',
+    badge: 'FAQ'
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Calendar,
@@ -11,6 +11,7 @@ import {
   Zap,
   Plus,
   ChevronRight,
+  ChevronDown,
   ArrowLeft,
   User,
   BookOpen,
@@ -42,12 +43,12 @@ const extractTextFromBlock = (block: PortableTextBlock): string => {
     .join('');
 };
 
-// Extract headings from Portable Text content for dynamic TOC
+// Extract headings from Portable Text content for dynamic TOC - H2 only
 const extractHeadingsFromContent = (content: PortableTextBlock[]): Array<{ label: string; id: string }> => {
   if (!Array.isArray(content)) return [];
 
   return content
-    .filter((block) => block._type === 'block' && (block.style === 'h2' || block.style === 'h3'))
+    .filter((block) => block._type === 'block' && block.style === 'h2')
     .map((block) => {
       const text = extractTextFromBlock(block);
       return {
@@ -330,6 +331,33 @@ const BlogPage: React.FC = () => {
     return extractHeadingsFromContent(post.content);
   }, [post?.content]);
 
+  // Mobile active section state
+  const [mobileActiveSection, setMobileActiveSection] = useState<string>('');
+
+  // Mobile scroll spy for active section highlighting
+  useEffect(() => {
+    if (!dynamicToc || dynamicToc.length === 0) return;
+
+    const handleScroll = () => {
+      let currentSection = '';
+      for (const section of dynamicToc) {
+        const element = document.getElementById(section.id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150) {
+            currentSection = section.id;
+          }
+        }
+      }
+      setMobileActiveSection(currentSection);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [dynamicToc]);
+
   // Create portable text components with heading IDs
   const portableTextComponents = useMemo(() => {
     if (!post?.content || !Array.isArray(post.content)) return createPortableTextComponents([]);
@@ -362,22 +390,26 @@ const BlogPage: React.FC = () => {
       <ReadingProgress />
       <Navbar />
 
-      {/* Hero Section - Centered, Clean */}
+      {/* Hero Section - Left Aligned */}
       <header className="pt-32 pb-12 relative overflow-x-clip">
         <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
         <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-brand-blue/5 blur-[150px] rounded-full -z-10"></div>
 
-        <div className="max-w-3xl mx-auto px-6">
-          {/* Back link */}
-          <button
-            onClick={() => navigate('/blog')}
-            className="flex items-center gap-2 text-slate-500 hover:text-white transition-colors mb-10 group"
-          >
-            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-            <span className="font-mono text-xs uppercase tracking-widest">
-              {detailLabels?.backToBlog || t('blog.detail.backToBlog')}
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Breadcrumb Navigation */}
+          <nav className="flex items-center gap-2 text-sm mb-10">
+            <Link to="/" className="text-slate-500 hover:text-white transition-colors">
+              Home
+            </Link>
+            <ChevronRight size={14} className="text-slate-600" />
+            <Link to="/blog" className="text-slate-500 hover:text-white transition-colors">
+              Blog
+            </Link>
+            <ChevronRight size={14} className="text-slate-600" />
+            <span className="text-brand-cyan font-medium truncate max-w-[200px] sm:max-w-md" title={post.title}>
+              {post.title}
             </span>
-          </button>
+          </nav>
 
           {/* Category Badge */}
           <div className="mb-8">
@@ -387,7 +419,7 @@ const BlogPage: React.FC = () => {
           </div>
 
           {/* Title - Large, Bold, Readable */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.1] tracking-tight mb-8">
+          <h1 className="text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-8">
             {post.title}
           </h1>
 
@@ -436,9 +468,9 @@ const BlogPage: React.FC = () => {
         </div>
       </header>
 
-      {/* Featured Image - Full width with max constraint */}
+      {/* Featured Image - Left Aligned */}
       {post.featuredImage && (
-        <div className="max-w-5xl mx-auto px-6 mb-16">
+        <div className="max-w-7xl mx-auto px-6 mb-16">
           <div className="relative rounded-3xl overflow-hidden aspect-[2/1] shadow-2xl border border-slate-800/50">
             <img
               src={post.featuredImage}
@@ -449,12 +481,12 @@ const BlogPage: React.FC = () => {
         </div>
       )}
 
-      {/* Main Content Area - Two Column Layout */}
+      {/* Main Content Area - Left Aligned */}
       <main className="pb-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex gap-12 items-start">
-            {/* Left Column - Main Content */}
-            <div className="flex-1 max-w-3xl">
+            {/* Left Column - Main Content - Left Aligned */}
+            <div className="flex-1">
               {/* Summary Box - Prominent */}
               {post.quickAnswer && (
                 <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-2xl p-8 mb-12">
@@ -478,6 +510,53 @@ const BlogPage: React.FC = () => {
                 </div>
               )}
 
+              {/* Mobile TOC Dropdown - Visible on mobile only */}
+              {dynamicToc && dynamicToc.length > 0 && (
+                <div className="lg:hidden mb-8">
+                  <details className="bg-brand-card border border-slate-700/50 rounded-xl overflow-hidden">
+                    <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-800/50 transition-colors">
+                      <div className="flex items-center gap-2">
+                        <BookOpen size={18} className="text-brand-cyan" />
+                        <span className="font-semibold text-white">Table of Contents</span>
+                      </div>
+                      <ChevronDown size={20} className="text-slate-400 open:rotate-180 transition-transform" />
+                    </summary>
+                    <nav className="p-4 pt-0 border-t border-slate-700/50">
+                      <ul className="space-y-1">
+                        {dynamicToc.map((item, i) => {
+                          const isActive = mobileActiveSection === item.id;
+                          return (
+                            <li key={i}>
+                              <a
+                                href={`#${item.id}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  const element = document.getElementById(item.id);
+                                  if (element) {
+                                    const offset = 100;
+                                    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                                    window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+                                    // Close the details element
+                                    (e.target.closest('details') as HTMLDetailsElement).open = false;
+                                  }
+                                }}
+                                className={`block py-2 px-3 rounded-lg text-sm transition-all ${
+                                  isActive
+                                    ? 'bg-brand-cyan/10 text-brand-cyan font-medium'
+                                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                                }`}
+                              >
+                                {item.label}
+                              </a>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </nav>
+                  </details>
+                </div>
+              )}
+
               {/* Main Article Content */}
               <article className="blog-content prose prose-invert max-w-none">
                 {/* Render Portable Text content if it's an array, otherwise render as HTML for legacy content */}
@@ -495,7 +574,7 @@ const BlogPage: React.FC = () => {
 
                 /* Headings - Clear hierarchy */
                 .blog-content h2 {
-                  font-size: 2rem;
+                  font-size: 30px;
                   font-weight: 800;
                   color: #ffffff;
                   margin-top: 4rem;
