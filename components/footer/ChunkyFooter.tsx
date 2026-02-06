@@ -79,6 +79,7 @@ export const ChunkyFooter: React.FC = () => {
   const { isDark } = useTheme()
   const location = useLocation()
   const { data: faqDataFromSanity, loading: faqsLoading } = useFAQs(i18n.language)
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
 
   // Get current language from i18n
   const currentLang = i18n.language as 'en' | 'br' | 'es' | 'tr'
@@ -731,7 +732,7 @@ export const ChunkyFooter: React.FC = () => {
               {/* FAQ Items */}
               <div className="space-y-4">
                 {faqs.map((faq, index) => {
-                  const [isOpen, setIsOpen] = useState(false)
+                  const isOpen = openFaqIndex === index
                   return (
                     <div
                       key={index}
@@ -740,7 +741,7 @@ export const ChunkyFooter: React.FC = () => {
                       }`}
                     >
                       <button
-                        onClick={() => setIsOpen(!isOpen)}
+                        onClick={() => setOpenFaqIndex(isOpen ? null : index)}
                         className="w-full px-6 py-5 flex items-center justify-between text-left"
                       >
                         <span className="text-white font-semibold pr-4">{faq.question}</span>
