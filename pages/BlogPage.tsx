@@ -364,6 +364,126 @@ const BlogPage: React.FC = () => {
     return createPortableTextComponents(post.content);
   }, [post?.content]);
 
+  // SEO Meta Tags for specific blog post
+  useEffect(() => {
+    if (!post) return;
+
+    const slug = post.slug?.current || '';
+
+    // Special meta tags for "how-to-read-deleted-messages-on-whatsapp" post
+    if (slug === 'how-to-read-deleted-messages-on-whatsapp') {
+      const updateMetaTags = () => {
+        // Update or create title
+        document.title = 'How to Read Deleted Messages On WhatsApp | Proven Method';
+
+        // Helper function to set or update meta tag
+        const setMetaTag = (name: string, content: string, isProperty = false) => {
+          let element: HTMLMetaElement | null = document.querySelector(
+            isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`
+          );
+          if (!element) {
+            element = document.createElement('meta');
+            if (isProperty) {
+              (element as any).setAttribute('property', name);
+            } else {
+              element.name = name;
+            }
+            document.head.appendChild(element);
+          }
+          element.setAttribute('content', content);
+        };
+
+        // Primary Meta Tags
+        setMetaTag('description', 'Know how to read deleted messages on WhatsApp (Android, iPhone, Web). Get step-by-step guidance to recover deleted chats on WhatsApp effortlessly.');
+        setMetaTag('keywords', 'how to read deleted messages on WhatsApp, read deleted messages on WhatsApp, how to read deleted messages');
+        setMetaTag('author', 'Vikash');
+        setMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+        setMetaTag('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+        setMetaTag('bingbot', 'index, follow');
+
+        // Google Discover & News
+        setMetaTag('thumbnail', 'https://cdn.sanity.io/images/5awzi0t4/production/ae2f43e2dce48963e01c4dd39a1c7b24dc8efb7c-1280x720.webp');
+
+        // Article meta tags
+        setMetaTag('article:published_time', '2025-02-03T08:00:00+00:00', true);
+        setMetaTag('article:modified_time', '2025-02-03T10:30:00+00:00', true);
+        setMetaTag('article:section', 'Technology', true);
+        setMetaTag('article:tag', 'how to read deleted messages on WhatsApp', true);
+
+        // Open Graph / Facebook
+        setMetaTag('og:type', 'website', true);
+        setMetaTag('og:url', 'https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp', true);
+        setMetaTag('og:title', 'Easily Read Deleted Messages On WhatsApp | Expert Method', true);
+        setMetaTag('og:description', 'Proven method to easily read deleted messages on WhatsApp with Eazybe. Get access to deleted chats hassle-free and stay in the loop!', true);
+        setMetaTag('og:image', 'https://cdn.sanity.io/images/5awzi0t4/production/ae2f43e2dce48963e01c4dd39a1c7b24dc8efb7c-1280x720.webp', true);
+        setMetaTag('og:image:width', '1200', true);
+        setMetaTag('og:image:height', '630', true);
+        setMetaTag('og:image:alt', 'how to read deleted messages on WhatsApp', true);
+        setMetaTag('og:locale', 'en_US', true);
+        setMetaTag('og:site_name', 'Eazybe', true);
+
+        // Twitter Card
+        setMetaTag('twitter:card', 'summary_large_image');
+        setMetaTag('twitter:site', '@eazybe');
+        setMetaTag('twitter:creator', '@eazybe');
+        setMetaTag('twitter:title', 'Easily Read Deleted Messages On WhatsApp | Expert Method');
+        setMetaTag('twitter:description', 'Proven method to easily read deleted messages on WhatsApp with Eazybe. Get access to deleted chats hassle-free and stay in the loop!');
+        setMetaTag('twitter:image', 'https://cdn.sanity.io/images/5awzi0t4/production/ae2f43e2dce48963e01c4dd39a1c7b24dc8efb7c-1280x720.webp');
+        setMetaTag('twitter:image:alt', 'how to read deleted messages on WhatsApp');
+
+        // Set canonical URL
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+          canonical = document.createElement('link');
+          canonical.rel = 'canonical';
+          document.head.appendChild(canonical);
+        }
+        (canonical as HTMLLinkElement).href = 'https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp';
+      };
+
+      updateMetaTags();
+
+      // Cleanup function to remove meta tags when unmounting
+      return () => {
+        const metaTags = [
+          'name="description"',
+          'name="keywords"',
+          'name="author"',
+          'name="robots"',
+          'name="googlebot"',
+          'name="bingbot"',
+          'name="thumbnail"',
+          'property="article:published_time"',
+          'property="article:modified_time"',
+          'property="article:section"',
+          'property="article:tag"',
+          'property="og:type"',
+          'property="og:url"',
+          'property="og:title"',
+          'property="og:description"',
+          'property="og:image"',
+          'property="og:image:width"',
+          'property="og:image:height"',
+          'property="og:image:alt"',
+          'property="og:locale"',
+          'property="og:site_name"',
+          'name="twitter:card"',
+          'name="twitter:site"',
+          'name="twitter:creator"',
+          'name="twitter:title"',
+          'name="twitter:description"',
+          'name="twitter:image"',
+          'name="twitter:image:alt"',
+        ];
+
+        metaTags.forEach(selector => {
+          const meta = document.querySelector(`meta[${selector}]`);
+          if (meta) meta.remove();
+        });
+      };
+    }
+  }, [post]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
