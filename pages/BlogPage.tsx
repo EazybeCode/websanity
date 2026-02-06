@@ -419,7 +419,7 @@ const BlogPage: React.FC = () => {
           </div>
 
           {/* Title - Large, Bold, Readable */}
-          <h1 className="text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-8">
+          <h1 className="text-[22px] md:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-8">
             {post.title}
           </h1>
 
@@ -574,7 +574,7 @@ const BlogPage: React.FC = () => {
 
                 /* Headings - Clear hierarchy */
                 .blog-content h2 {
-                  font-size: 30px;
+                  font-size: 20px;
                   font-weight: 800;
                   color: #ffffff;
                   margin-top: 4rem;
@@ -584,6 +584,12 @@ const BlogPage: React.FC = () => {
                   padding-top: 2rem;
                   border-top: 1px solid rgba(51, 65, 85, 0.5);
                   scroll-margin-top: 7rem;
+                }
+
+                @media (min-width: 768px) {
+                  .blog-content h2 {
+                    font-size: 30px;
+                  }
                 }
 
                 .blog-content h2:first-child {
