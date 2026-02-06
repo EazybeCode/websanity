@@ -391,58 +391,63 @@ const BlogPage: React.FC = () => {
       <Navbar />
 
       {/* Hero Section - Left Aligned */}
-      <header className="pt-32 pb-12 relative overflow-x-clip">
+      <header className="pt-20 md:pt-24 lg:pt-32 pb-6 md:pb-8 lg:pb-12 relative overflow-x-clip">
         <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
-        <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-brand-blue/5 blur-[150px] rounded-full -z-10"></div>
+        <div className="absolute top-0 right-1/4 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-brand-blue/5 blur-[100px] md:blur-[150px] rounded-full -z-10"></div>
 
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           {/* Breadcrumb Navigation */}
-          <nav className="flex items-center gap-2 text-sm mb-10">
+          <nav className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm mb-6 md:mb-10">
             <Link to="/" className="text-slate-500 hover:text-white transition-colors">
               Home
             </Link>
-            <ChevronRight size={14} className="text-slate-600" />
+            <ChevronRight size={12} className="text-slate-600 md:hidden" />
+            <ChevronRight size={14} className="text-slate-600 hidden md:block" />
             <Link to="/blog" className="text-slate-500 hover:text-white transition-colors">
               Blog
             </Link>
-            <ChevronRight size={14} className="text-slate-600" />
-            <span className="text-brand-cyan font-medium truncate max-w-[200px] sm:max-w-md" title={post.title}>
+            <ChevronRight size={12} className="text-slate-600 md:hidden" />
+            <ChevronRight size={14} className="text-slate-600 hidden md:block" />
+            <span className="text-brand-cyan font-medium truncate max-w-[150px] sm:max-w-[200px] md:max-w-md" title={post.title}>
               {post.title}
             </span>
           </nav>
 
           {/* Category Badge */}
-          <div className="mb-8">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-sm font-medium">
+          <div className="mb-5 md:mb-8">
+            <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs md:text-sm font-medium">
               {post.category || 'Blog'}
             </span>
           </div>
 
           {/* Title - Large, Bold, Readable */}
-          <h1 className="text-[22px] md:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-8">
+          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-5 md:mb-8">
             {post.title}
           </h1>
 
           {/* Excerpt - Generous size */}
-          <p className="text-xl md:text-2xl text-slate-400 leading-relaxed mb-10">
+          <p className="text-base md:text-xl lg:text-2xl text-slate-400 leading-relaxed mb-8 md:mb-10">
             {post.excerpt}
           </p>
 
           {/* Author & Meta - Clean horizontal layout */}
-          <div className="flex flex-wrap items-center gap-6 py-8 border-y border-slate-800/50">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-xl">
-                {post.author?.name?.[0] || <User size={24} />}
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 py-6 md:py-8 border-y border-slate-800/50">
+            <div className="flex items-center gap-3 md:gap-4">
+              <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg md:text-xl">
+                {post.author?.name?.[0] || <User size={20} className="md:hidden" />}
+                {post.author?.name?.[0] || <User size={24} className="hidden md:block" />}
               </div>
               <div>
-                <p className="font-semibold text-white text-lg">{post.author?.name || t('blog.detail.authorFallback')}</p>
-                <div className="flex items-center gap-4 text-sm text-slate-500 mt-1">
-                  <span className="flex items-center gap-1.5">
-                    <Calendar size={14} />
+                <p className="font-semibold text-white text-base md:text-lg">{post.author?.name || t('blog.detail.authorFallback')}</p>
+                <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
+                  <span className="flex items-center gap-1">
+                    <Calendar size={12} className="md:hidden" />
+                    <Calendar size={14} className="hidden md:inline" />
                     {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                   </span>
-                  <span className="flex items-center gap-1.5">
-                    <Clock size={14} />
+                  <span className="flex items-center gap-1">
+                    <Clock size={12} className="md:hidden" />
+                    <Clock size={14} className="hidden md:inline" />
                     {post.readTime} {detailLabels?.minReadSuffix || t('blog.detail.minRead')}
                   </span>
                 </div>
@@ -450,18 +455,22 @@ const BlogPage: React.FC = () => {
             </div>
 
             {/* Share buttons */}
-            <div className="flex items-center gap-1 ml-auto">
-              <button className="p-3 rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all" title="Share on Twitter">
-                <Twitter size={18} />
+            <div className="flex items-center gap-1 sm:ml-auto w-full sm:w-auto justify-start sm:justify-end">
+              <button className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all" title="Share on Twitter">
+                <Twitter size={16} className="md:hidden" />
+                <Twitter size={18} className="hidden md:block" />
               </button>
-              <button className="p-3 rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all" title="Share on LinkedIn">
-                <Linkedin size={18} />
+              <button className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all" title="Share on LinkedIn">
+                <Linkedin size={16} className="md:hidden" />
+                <Linkedin size={18} className="hidden md:block" />
               </button>
-              <button className="p-3 rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all" title="Share via Email">
-                <Mail size={18} />
+              <button className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all" title="Share via Email">
+                <Mail size={16} className="md:hidden" />
+                <Mail size={18} className="hidden md:block" />
               </button>
-              <button className="p-3 rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all" title="Copy Link">
-                <LinkIcon size={18} />
+              <button className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all" title="Copy Link">
+                <LinkIcon size={16} className="md:hidden" />
+                <LinkIcon size={18} className="hidden md:block" />
               </button>
             </div>
           </div>
@@ -470,8 +479,8 @@ const BlogPage: React.FC = () => {
 
       {/* Featured Image - Left Aligned */}
       {post.featuredImage && (
-        <div className="max-w-7xl mx-auto px-6 mb-16">
-          <div className="relative rounded-3xl overflow-hidden aspect-[2/1] shadow-2xl border border-slate-800/50">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 mb-6 md:mb-12 lg:mb-16">
+          <div className="relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden aspect-[16/9] md:aspect-[2/1] shadow-xl md:shadow-2xl border border-slate-800/50">
             <img
               src={post.featuredImage}
               alt={post.title}
@@ -482,29 +491,30 @@ const BlogPage: React.FC = () => {
       )}
 
       {/* Main Content Area - Left Aligned */}
-      <main className="pb-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex gap-12 items-start">
+      <main className="pb-12 md:pb-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
             {/* Left Column - Main Content - Left Aligned */}
-            <div className="flex-1">
+            <div className="w-full lg:flex-1">
               {/* Summary Box - Prominent */}
               {post.quickAnswer && (
-                <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-2xl p-8 mb-12">
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-brand-cyan/10 flex items-center justify-center">
-                      <Zap size={24} className="text-brand-cyan" />
+                <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 mb-8 md:mb-12">
+                  <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-5">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-brand-cyan/10 flex items-center justify-center">
+                      <Zap size={18} className="text-brand-cyan md:hidden" />
+                      <Zap size={24} className="text-brand-cyan hidden md:block" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-white text-lg">
+                      <h4 className="font-bold text-white text-sm md:text-base lg:text-lg">
                         {detailLabels?.summaryTitle || t('blog.detail.summaryTitle')}
                       </h4>
-                      <p className="text-sm text-slate-500">
+                      <p className="text-xs md:text-sm text-slate-500">
                         {detailLabels?.summarySubtitle || t('blog.detail.summarySubtitle')}
                       </p>
                     </div>
                   </div>
                   <div
-                    className="text-lg text-slate-300 leading-relaxed [&>p]:mb-3 [&>ul]:space-y-2 [&>ul>li]:flex [&>ul>li]:gap-2 [&>ul>li]:before:content-['→'] [&>ul>li]:before:text-brand-cyan"
+                    className="text-sm md:text-base lg:text-lg text-slate-300 leading-relaxed [&>p]:mb-3 [&>ul]:space-y-2 [&>ul>li]:flex [&>ul>li]:gap-2 [&>ul>li]:before:content-['→'] [&>ul>li]:before:text-brand-cyan"
                     dangerouslySetInnerHTML={{ __html: post.quickAnswer }}
                   />
                 </div>
@@ -566,10 +576,23 @@ const BlogPage: React.FC = () => {
                   <>
                     <style dangerouslySetInnerHTML={{ __html: `
                 .blog-content {
-                  font-size: 1.25rem;
-                  line-height: 1.9;
+                  font-size: 15px;
+                  line-height: 1.8;
                   color: #d1d5db;
                   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+                }
+
+                @media (min-width: 768px) {
+                  .blog-content {
+                    font-size: 1.1rem;
+                    line-height: 1.9;
+                  }
+                }
+
+                @media (min-width: 1024px) {
+                  .blog-content {
+                    font-size: 1.25rem;
+                  }
                 }
 
                 /* Headings - Clear hierarchy */
@@ -577,18 +600,22 @@ const BlogPage: React.FC = () => {
                   font-size: 20px;
                   font-weight: 800;
                   color: #ffffff;
-                  margin-top: 4rem;
-                  margin-bottom: 1.5rem;
+                  margin-top: 2rem;
+                  margin-bottom: 1rem;
                   line-height: 1.25;
                   letter-spacing: -0.025em;
-                  padding-top: 2rem;
+                  padding-top: 1.5rem;
                   border-top: 1px solid rgba(51, 65, 85, 0.5);
-                  scroll-margin-top: 7rem;
+                  scroll-margin-top: 5rem;
                 }
 
                 @media (min-width: 768px) {
                   .blog-content h2 {
                     font-size: 30px;
+                    margin-top: 4rem;
+                    margin-bottom: 1.5rem;
+                    padding-top: 2rem;
+                    scroll-margin-top: 7rem;
                   }
                 }
 
@@ -620,8 +647,14 @@ const BlogPage: React.FC = () => {
 
                 /* Paragraphs - Generous spacing */
                 .blog-content p {
-                  margin-bottom: 2rem;
-                  line-height: 1.9;
+                  margin-bottom: 1rem;
+                  line-height: 1.8;
+                }
+
+                @media (min-width: 768px) {
+                  .blog-content p {
+                    margin-bottom: 2rem;
+                  }
                 }
 
                 /* First paragraph after heading - no extra top margin */

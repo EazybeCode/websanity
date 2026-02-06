@@ -1,0 +1,5 @@
+# 301 Redirects
+# Format: [old-path] [new-path] [status-code]
+
+# Integration URL redirects
+/integrations/zoho-crm /zoho-whatsapp-integration 301
