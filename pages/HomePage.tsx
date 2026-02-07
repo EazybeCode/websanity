@@ -95,20 +95,35 @@ export const HomePage: React.FC = () => {
         "@context": "https://schema.org",
         "@type": "Organization",
         "@id": "https://eazybe.com/#organization",
-        "url": "https://eazybe.com/",
         "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 600,
+          "height": 60
+        },
+        "image": "https://eazybe.com/logo.png",
         "description": "Eazybe is a WhatsApp CRM integration platform that helps sales teams sync conversations with their CRM, schedule messages, and boost customer engagement - all inside WhatsApp Web.",
-        "logo": "https://eazybe.com/logo.png",
+        "foundingDate": "2024",
         "sameAs": [
-          "https://www.linkedin.com/company/eazybe",
           "https://twitter.com/eazybe",
-          "https://www.facebook.com/eazybe"
+          "https://linkedin.com/company/eazybe",
+          "https://youtube.com/@eazybe"
         ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "customer support",
-          "email": "support@eazybe.com",
-          "url": "https://eazybe.com"
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "support@eazybe.com",
+            "url": "https://eazybe.com",
+            "areaServed": "US",
+            "availableLanguage": "en"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "US"
         }
       }
 
