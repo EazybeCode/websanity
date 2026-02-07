@@ -149,17 +149,44 @@ export const HomePage: React.FC = () => {
         ]
       }
 
+      // WebPage Schema
+      const webpageSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://eazybe.com/#webpage",
+        "url": "https://eazybe.com/",
+        "name": "WhatsApp CRM Integration | WhatsApp Sales Platform - Eazybe",
+        "description": "WhatsApp CRM integration for (HubSpot, Zoho, Salesforce, Sheets). CRM integration with WhatsApp sync chats with your CRM, AI replies, & shared inboxes.",
+        "isPartOf": {
+          "@id": "https://eazybe.com/#website"
+        },
+        "about": {
+          "@id": "https://eazybe.com/#organization"
+        },
+        "inLanguage": "en",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png"
+        },
+        "datePublished": "2026-01-15T08:00:00+00:00",
+        "dateModified": "2026-02-01T10:30:00+00:00",
+        "breadcrumb": {
+          "@id": "https://eazybe.com/#breadcrumb"
+        }
+      }
+
       // Add all schemas
       addJsonLdSchema(faqSchema, 'faq')
       addJsonLdSchema(orgSchema, 'organization')
       addJsonLdSchema(websiteSchema, 'website')
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb')
+      addJsonLdSchema(webpageSchema, 'webpage')
     }
 
     // Cleanup function
     return () => {
       // Remove all JSON-LD schemas
-      const schemas = ['faq', 'organization', 'website', 'breadcrumb']
+      const schemas = ['faq', 'organization', 'website', 'breadcrumb', 'webpage']
       schemas.forEach(id => {
         const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
         if (script) script.remove()
