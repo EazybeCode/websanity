@@ -160,7 +160,10 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
 
       // HubSpot Form API config
       const portalId = "40009480";
-      const formId = "470166e7-1418-4bd9-9e1e-7252ad54070b";
+      // Use different form IDs based on language
+      const formId = i18n.language === 'br' || i18n.language === 'pt'
+        ? "922fbde6-ba79-4c8e-b784-a7bf67ef3708"  // Brazilian Portuguese form
+        : "470166e7-1418-4bd9-9e1e-7252ad54070b"; // English form
 
       // Build fields array for HubSpot
       const fields: { name: string; value: string }[] = [

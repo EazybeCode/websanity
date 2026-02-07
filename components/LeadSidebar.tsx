@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { LeadGenerationForm } from './forms/LeadGenerationForm';
 
 export const LeadSidebar: React.FC = () => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(true);
   const [isCalendlyShowing, setIsCalendlyShowing] = useState(false);
 
@@ -67,7 +69,7 @@ export const LeadSidebar: React.FC = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
             <span className="text-xs font-semibold whitespace-nowrap [writing-mode:vertical-lr]">
-              Get Free Toolkit
+              {t('leadForm.downloadButton').replace(' →', '')}
             </span>
           </motion.button>
         )}

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { LeadGenerationForm } from './forms/LeadGenerationForm';
 
 export const LeadMobileButton: React.FC = () => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
@@ -60,7 +62,7 @@ export const LeadMobileButton: React.FC = () => {
             className="fixed bottom-4 right-4 z-40 block lg:hidden bg-brand-blue hover:bg-blue-700 text-white px-4 py-3 rounded-full shadow-glow-blue transition-all duration-200"
             aria-label="Open lead form"
           >
-            <span className="text-sm font-semibold">Get Free Toolkit</span>
+            <span className="text-sm font-semibold">{t('leadForm.downloadButton').replace(' →', '')}</span>
           </motion.button>
         )}
       </AnimatePresence>
