@@ -13,8 +13,224 @@ export const HomePage: React.FC = () => {
   const location = useLocation()
   const [showForm, setShowForm] = useState(false)
 
-  // Note: JSON-LD schemas are now in index.html as static markup for better SEO
-  // They are immediately crawlable without waiting for JavaScript execution
+  // Homepage-specific JSON-LD Schemas - ONLY for root path (/)
+  // Organization and WebSite schemas are in index.html (site-wide)
+  useEffect(() => {
+    if (location.pathname === '/') {
+      // Helper function to add JSON-LD schema
+      const addJsonLdSchema = (schema: any, id: string) => {
+        let script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
+        if (!script) {
+          script = document.createElement('script')
+          script.type = 'application/ld+json'
+          ;(script as HTMLScriptElement).setAttribute('data-schema', id)
+          document.head.appendChild(script)
+        }
+        script.textContent = JSON.stringify(schema)
+      }
+
+      // FAQPage Schema
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Eazybe WhatsApp CRM Integration?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe is a WhatsApp CRM integration tool that syncs your WhatsApp Web conversations directly with your CRM like HubSpot, Zoho, Salesforce, and Google Sheets. It helps sales teams manage leads, schedule messages, and never miss follow-ups - all inside WhatsApp Web.",
+              "inLanguage": "en"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does WhatsApp CRM integration work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe integrates directly with WhatsApp Web as a Chrome extension. It automatically syncs incoming and outgoing messages to your CRM in real-time. You can schedule messages, use AI-powered smart replies, and manage shared team inboxes without leaving WhatsApp Web.",
+              "inLanguage": "en"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which CRMs does Eazybe integrate with?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe supports WhatsApp CRM integration with HubSpot, Zoho CRM, Salesforce, Bitrix24, Freshdesk, Pipedrive, Leadsquared, and Google Sheets. The integration is one-click setup and works instantly.",
+              "inLanguage": "en"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Eazybe WhatsApp CRM integration free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Eazybe offers a free plan with basic WhatsApp CRM integration features. Premium plans start with advanced features like AI replies, scheduled messages, and team collaboration tools.",
+              "inLanguage": "en"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I schedule WhatsApp messages with Eazybe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Eazybe allows you to schedule WhatsApp messages in advance. You can set date and time for follow-ups, birthday messages, promotional campaigns, and more. Messages are sent automatically even when you're offline.",
+              "inLanguage": "en"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Eazybe support shared team inboxes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Eazybe provides shared team inbox functionality. Multiple team members can access and manage WhatsApp conversations from a single dashboard. Assign chats, add notes, and collaborate seamlessly.",
+              "inLanguage": "en"
+            }
+          }
+        ]
+      }
+
+      // BreadcrumbList Schema
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "@id": "https://eazybe.com/#breadcrumb",
+        "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Eazybe", "item": "https://eazybe.com/" }]
+      }
+
+      // WebPage Schema
+      const webpageSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://eazybe.com/#webpage",
+        "url": "https://eazybe.com/",
+        "name": "WhatsApp CRM Integration | WhatsApp Sales Platform - Eazybe",
+        "description": "WhatsApp CRM integration for (HubSpot, Zoho, Salesforce, Sheets). CRM integration with WhatsApp sync chats with your CRM, AI replies, & shared inboxes.",
+        "isPartOf": { "@id": "https://eazybe.com/#website" },
+        "about": { "@id": "https://eazybe.com/#organization" },
+        "inLanguage": "en",
+        "primaryImageOfPage": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png" },
+        "datePublished": "2026-01-15T08:00:00+00:00",
+        "dateModified": "2026-02-01T10:30:00+00:00",
+        "breadcrumb": { "@id": "https://eazybe.com/#breadcrumb" }
+      }
+
+      // SoftwareApplication Schema
+      const softwareApplicationSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "@id": "https://eazybe.com/#softwareapplication",
+        "name": "Eazybe",
+        "operatingSystem": "Web",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM, Messaging, WhatsApp Automation",
+        "image": ["https://eazybe.com/logo.png"],
+        "description": "Eazybe is a WhatsApp Chrome Extension that transforms WhatsApp Web into a powerful CRM tool. It integrates with HubSpot, Zoho, Salesforce, and Google Sheets to help sales, marketing, and support teams manage conversations and customer data more effectively.",
+        "softwareVersion": "latest",
+        "url": "https://eazybe.com/",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 10,
+          "highPrice": 50,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 53978
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe"
+        }
+      }
+
+      // ProfessionalService Schema
+      const professionalServiceSchema = {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://eazybe.com/#professionalservice",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "image": ["https://eazybe.com/logo.png"],
+        "logo": "https://eazybe.com/logo.png",
+        "telephone": "+13099294280",
+        "priceRange": "From $10/month",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8 The Green, Ste B",
+          "addressLocality": "Dover",
+          "addressRegion": "DE",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 38.692045,
+          "longitude": -75.401331
+        },
+        "openingHoursSpecification": [{
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }]
+      }
+
+      // Product Schema
+      const productSchema = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Eazybe",
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe is a WhatsApp Chrome Extension that transforms WhatsApp Web into a powerful CRM tool. It integrates seamlessly with HubSpot, Zoho, Salesforce, and Google Sheets to help sales, marketing, and support teams manage conversations and customer data more effectively.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Eazybe"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 10,
+          "highPrice": 50,
+          "offerCount": 5
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5.0,
+          "worstRating": 4.7,
+          "ratingCount": 30766
+        }
+      }
+
+      // Add all homepage-only schemas
+      addJsonLdSchema(faqSchema, 'faq')
+      addJsonLdSchema(breadcrumbSchema, 'breadcrumb')
+      addJsonLdSchema(webpageSchema, 'webpage')
+      addJsonLdSchema(softwareApplicationSchema, 'softwareapplication')
+      addJsonLdSchema(professionalServiceSchema, 'professionalservice')
+      addJsonLdSchema(productSchema, 'product')
+    }
+
+    // Cleanup function
+    return () => {
+      const schemas = ['faq', 'breadcrumb', 'webpage', 'softwareapplication', 'professionalservice', 'product']
+      schemas.forEach(id => {
+        const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
+        if (script) script.remove()
+      })
+    }
+  }, [location.pathname])
 
   // Homepage Meta Tags - ONLY for root path (/)
   useEffect(() => {
