@@ -12,8 +12,10 @@ export const HomePage: React.FC = () => {
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
-    // Show form on English (/) and Brazilian Portuguese (/br) pages
-    const shouldShow = window.location.pathname === '/' || window.location.pathname === '/br'
+    // Show form on English (/), Brazilian Portuguese (/br), and Spanish (/es) pages
+    const shouldShow = window.location.pathname === '/' ||
+                       window.location.pathname === '/br' ||
+                       window.location.pathname === '/es'
     setShowForm(shouldShow)
   }, [])
   const { data, loading, error } = useLandingPage()
@@ -43,10 +45,10 @@ export const HomePage: React.FC = () => {
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       <Navbar />
 
-      {/* Desktop sticky sidebar - English and Brazilian Portuguese */}
+      {/* Desktop sticky sidebar - English, Brazilian Portuguese, and Spanish */}
       {showForm && <LeadSidebar />}
 
-      {/* Mobile sticky bottom button - English and Brazilian Portuguese */}
+      {/* Mobile sticky bottom button - English, Brazilian Portuguese, and Spanish */}
       {showForm && <LeadMobileButton />}
 
       <main>
