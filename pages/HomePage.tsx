@@ -13,8 +13,7 @@ export const HomePage: React.FC = () => {
   const location = useLocation()
   const [showForm, setShowForm] = useState(false)
 
-  // Homepage-specific JSON-LD Schemas - ONLY for root path (/)
-  // Organization and WebSite schemas are in index.html (site-wide)
+  // Homepage SEO - ONLY for root path (/)
   useEffect(() => {
     if (location.pathname === '/') {
       // Helper function to add JSON-LD schema
@@ -27,6 +26,60 @@ export const HomePage: React.FC = () => {
           document.head.appendChild(script)
         }
         script.textContent = JSON.stringify(schema)
+      }
+
+      // Organization Schema
+      const orgSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://eazybe.com/#organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 600,
+          "height": 60
+        },
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe is a WhatsApp CRM integration platform that helps sales teams sync conversations with their CRM, schedule messages, and boost customer engagement - all inside WhatsApp Web.",
+        "foundingDate": "2024",
+        "sameAs": [
+          "https://twitter.com/eazybe",
+          "https://linkedin.com/company/eazybe",
+          "https://youtube.com/@eazybe"
+        ],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "support@eazybe.com",
+            "url": "https://eazybe.com",
+            "areaServed": "US",
+            "availableLanguage": "en"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "US"
+        }
+      }
+
+      // WebSite Schema (with search action)
+      const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://eazybe.com/#website",
+        "url": "https://eazybe.com/",
+        "name": "Eazybe",
+        "description": "WhatsApp CRM Integration | Eazybe - WhatsApp Sales Platform. CRM integration with WhatsApp for HubSpot, Zoho, Salesforce, and more.",
+        "publisher": { "@id": "https://eazybe.com/#organization" },
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": { "@type": "EntryPoint", "urlTemplate": "https://eazybe.com/search?q={search_term_string}" },
+          "query-input": "required name=search_term_string"
+        }
       }
 
       // FAQPage Schema
@@ -109,6 +162,7 @@ export const HomePage: React.FC = () => {
         "description": "WhatsApp CRM integration for (HubSpot, Zoho, Salesforce, Sheets). CRM integration with WhatsApp sync chats with your CRM, AI replies, & shared inboxes.",
         "isPartOf": { "@id": "https://eazybe.com/#website" },
         "about": { "@id": "https://eazybe.com/#organization" },
+        "publisher": { "@id": "https://eazybe.com/#organization" },
         "inLanguage": "en",
         "primaryImageOfPage": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png" },
         "datePublished": "2026-01-15T08:00:00+00:00",
@@ -213,7 +267,9 @@ export const HomePage: React.FC = () => {
         }
       }
 
-      // Add all homepage-only schemas
+      // Add all homepage schemas
+      addJsonLdSchema(orgSchema, 'organization')
+      addJsonLdSchema(websiteSchema, 'website')
       addJsonLdSchema(faqSchema, 'faq')
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb')
       addJsonLdSchema(webpageSchema, 'webpage')
@@ -224,7 +280,7 @@ export const HomePage: React.FC = () => {
 
     // Cleanup function
     return () => {
-      const schemas = ['faq', 'breadcrumb', 'webpage', 'softwareapplication', 'professionalservice', 'product']
+      const schemas = ['organization', 'website', 'faq', 'breadcrumb', 'webpage', 'softwareapplication', 'professionalservice', 'product']
       schemas.forEach(id => {
         const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
         if (script) script.remove()
