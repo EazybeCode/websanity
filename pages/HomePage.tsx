@@ -169,18 +169,118 @@ export const HomePage: React.FC = () => {
         "breadcrumb": { "@id": "https://eazybe.com/#" }
       }
 
+      // SoftwareApplication Schema
+      const softwareApplicationSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "@id": "https://eazybe.com/",
+        "name": "Eazybe",
+        "operatingSystem": "Web",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM, Messaging, WhatsApp Automation",
+        "image": ["https://eazybe.com/logo.png"],
+        "description": "Eazybe is a WhatsApp Chrome Extension that transforms WhatsApp Web into a powerful CRM tool. It integrates with HubSpot, Zoho, Salesforce, and Google Sheets to help sales, marketing, and support teams manage conversations and customer data more effectively.",
+        "softwareVersion": "latest",
+        "url": "https://eazybe.com/",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 10,
+          "highPrice": 50,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 53978
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe"
+        }
+      }
+
+      // ProfessionalService Schema
+      const professionalServiceSchema = {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://eazybe.com/#professionalservice",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "image": ["https://eazybe.com/logo.png"],
+        "logo": "https://eazybe.com/logo.png",
+        "telephone": "+13099294280",
+        "priceRange": "From $10/month",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8 The Green, Ste B",
+          "addressLocality": "Dover",
+          "addressRegion": "DE",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 38.692045,
+          "longitude": -75.401331
+        },
+        "openingHoursSpecification": [{
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }]
+      }
+
+      // Product Schema
+      const productSchema = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Eazybe",
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe is a WhatsApp Chrome Extension that transforms WhatsApp Web into a powerful CRM tool. It integrates seamlessly with HubSpot, Zoho, Salesforce, and Google Sheets to help sales, marketing, and support teams manage conversations and customer data more effectively.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Eazybe"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 10,
+          "highPrice": 50,
+          "offerCount": 5
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5.0,
+          "worstRating": 4.7,
+          "ratingCount": 30766
+        }
+      }
+
       // Add all schemas
       addJsonLdSchema(faqSchema, 'faq')
       addJsonLdSchema(orgSchema, 'organization')
       addJsonLdSchema(websiteSchema, 'website')
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb')
       addJsonLdSchema(webpageSchema, 'webpage')
+      addJsonLdSchema(softwareApplicationSchema, 'softwareapplication')
+      addJsonLdSchema(professionalServiceSchema, 'professionalservice')
+      addJsonLdSchema(productSchema, 'product')
     }
 
     // Cleanup function
     return () => {
       // Remove all JSON-LD schemas
-      const schemas = ['faq', 'organization', 'website', 'breadcrumb', 'webpage']
+      const schemas = ['faq', 'organization', 'website', 'breadcrumb', 'webpage', 'softwareapplication', 'professionalservice', 'product']
       schemas.forEach(id => {
         const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
         if (script) script.remove()
