@@ -160,7 +160,13 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
 
       // HubSpot Form API config
       const portalId = "40009480";
-      const formId = "470166e7-1418-4bd9-9e1e-7252ad54070b";
+      // Use different form IDs based on language
+      let formId = "470166e7-1418-4bd9-9e1e-7252ad54070b"; // Default: English form
+      if (i18n.language === 'br' || i18n.language === 'pt') {
+        formId = "922fbde6-ba79-4c8e-b784-a7bf67ef3708"; // Brazilian Portuguese form
+      } else if (i18n.language === 'es') {
+        formId = "e6630d0e-f941-42e0-abd5-c3686e4ce16c"; // Spanish form
+      }
 
       // Build fields array for HubSpot
       const fields: { name: string; value: string }[] = [
