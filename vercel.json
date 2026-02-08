@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/integrations/zoho-crm",
+      "destination": "/zoho-whatsapp-integration",
+      "permanent": true
+    },
+    {
       "source": "/br/blog/unlock-productivity-with-tasks-hubspot-whatsapp-integration",
       "destination": "/br/hubspot-whatsapp-integration",
       "permanent": true
