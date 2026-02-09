@@ -71,6 +71,29 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      build: {
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              // Core React - rarely changes, cached long-term
+              'vendor-react': ['react', 'react-dom'],
+              // Router - separate chunk
+              'vendor-router': ['react-router-dom'],
+              // Heavy UI libraries - load on demand
+              'vendor-motion': ['framer-motion'],
+              'vendor-charts': ['recharts'],
+              // Icons - tree-shake and split
+              'vendor-icons': ['lucide-react'],
+              // i18n
+              'vendor-i18n': ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
+              // Sanity CMS
+              'vendor-sanity': ['@sanity/client', '@sanity/image-url', '@portabletext/react'],
+            }
+          }
+        },
+        // Increase chunk size warning limit
+        chunkSizeWarningLimit: 500,
       }
     };
 });
