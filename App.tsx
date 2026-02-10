@@ -72,6 +72,7 @@ const AppRoutes = () => (
       {/* Redirect old integration URLs to new format */}
       <Route path="/integrations/zoho-crm" element={<Navigate to="/zoho-whatsapp-integration" replace />} />
       <Route path="/zoho-crm" element={<Navigate to="/zoho-whatsapp-integration" replace />} />
+      <Route path="/integrations/hubspot" element={<Navigate to="/hubspot-whatsapp-integration" replace />} />
       {/* Integration pages with new URL format: /hubspot-whatsapp-integration */}
       {integrationSlugs.map((slug) => (
         <Route key={slug} path={`/${slug}-whatsapp-integration`} element={<ProductPage />} />
