@@ -131,6 +131,22 @@ export default defineConfig(({ mode }) => {
                 return 'vendor-router';
               }
 
+              // i18n - separate chunk (needed early)
+              if (id.includes('/i18next') || id.includes('/react-i18next/')) {
+                return 'vendor-i18n';
+              }
+
+              // Sanity CMS - separate chunk (needed early for data)
+              if (id.includes('/@sanity/') || id.includes('/@portabletext/')) {
+                return 'vendor-sanity';
+              }
+
+              // DEFER THESE - Load only when needed
+              // Icons - HUGE, load async
+              if (id.includes('/lucide-react/')) {
+                return 'vendor-icons';
+              }
+
               // Heavy UI libraries - load on demand
               if (id.includes('/framer-motion/')) {
                 return 'vendor-motion';
@@ -138,21 +154,6 @@ export default defineConfig(({ mode }) => {
 
               if (id.includes('/recharts/')) {
                 return 'vendor-charts';
-              }
-
-              // Icons - tree-shake and split
-              if (id.includes('/lucide-react/')) {
-                return 'vendor-icons';
-              }
-
-              // i18n - separate chunk
-              if (id.includes('/i18next') || id.includes('/react-i18next/')) {
-                return 'vendor-i18n';
-              }
-
-              // Sanity CMS - separate chunk
-              if (id.includes('/@sanity/') || id.includes('/@portabletext/')) {
-                return 'vendor-sanity';
               }
             }
           }
