@@ -161,18 +161,37 @@ export function useLandingPage() {
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    // Try to load from localStorage cache immediately
+    let hasFetchedData = false
+
+    // 1. Try to load from prebuilt static JSON first (fastest - instant on mobile)
+    fetch('/landing-data.json')
+      .then(res => res.json())
+      .then(prebuiltData => {
+        if (!hasFetchedData) {
+          setData(prebuiltData)
+          setLoading(false)
+          hasFetchedData = true
+        }
+      })
+      .catch(() => {
+        console.warn('Prebuilt data not available, falling back to cache/API')
+      })
+
+    // 2. Try to load from localStorage cache
     try {
       const cached = localStorage.getItem(CACHE_KEY)
       if (cached) {
         const { data: cachedData, timestamp }: CachedData = JSON.parse(cached)
         const age = Date.now() - timestamp
 
-        // Show cached data immediately (stale-while-revalidate pattern)
-        setData(cachedData)
-        setLoading(false)
+        // Show cached data if we don't have prebuilt data yet
+        if (!hasFetchedData) {
+          setData(cachedData)
+          setLoading(false)
+          hasFetchedData = true
+        }
 
-        // Skip network request if cache is fresh (less than 1 hour old)
+        // Skip API request if cache is fresh (less than 1 hour old)
         if (age < CACHE_DURATION) {
           return
         }
@@ -181,16 +200,10 @@ export function useLandingPage() {
       console.warn('Failed to load from cache:', err)
     }
 
-    // Fetch fresh data from Sanity with timeout
-    const fetchWithTimeout = async (timeoutMs: number = 8000) => {
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), timeoutMs)
-
-      try {
-        const result = await getLandingPage()
-        clearTimeout(timeoutId)
-
-        // Update state
+    // 3. Fetch fresh data from Sanity API in background
+    getLandingPage()
+      .then((result) => {
+        // Update with fresh data
         setData(result)
         setLoading(false)
 
@@ -204,16 +217,10 @@ export function useLandingPage() {
         } catch (err) {
           console.warn('Failed to cache data:', err)
         }
-      } catch (err) {
-        clearTimeout(timeoutId)
-        throw err
-      }
-    }
-
-    fetchWithTimeout()
+      })
       .catch((err) => {
-        // Only set error if we don't have cached data
-        if (!data) {
+        // Only set error if we don't have any data (prebuilt or cached)
+        if (!hasFetchedData) {
           setError(err)
           setLoading(false)
         }
