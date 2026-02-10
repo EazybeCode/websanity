@@ -14,10 +14,15 @@ export const HomePage: React.FC = () => {
   const [showForm, setShowForm] = useState(false)
 
   // Homepage SEO - ONLY for root path (/)
+  // Deferred to run after initial paint for better performance
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null
+
     if (location.pathname === '/') {
-      // Helper function to add JSON-LD schema
-      const addJsonLdSchema = (schema: any, id: string) => {
+      // Defer SEO operations until after initial paint
+      timeoutId = setTimeout(() => {
+        // Helper function to add JSON-LD schema
+        const addJsonLdSchema = (schema: any, id: string) => {
         let script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
         if (!script) {
           script = document.createElement('script')
@@ -267,19 +272,21 @@ export const HomePage: React.FC = () => {
         }
       }
 
-      // Add all homepage schemas
-      addJsonLdSchema(orgSchema, 'organization')
-      addJsonLdSchema(websiteSchema, 'website')
-      addJsonLdSchema(faqSchema, 'faq')
-      addJsonLdSchema(breadcrumbSchema, 'breadcrumb')
-      addJsonLdSchema(webpageSchema, 'webpage')
-      addJsonLdSchema(softwareApplicationSchema, 'softwareapplication')
-      addJsonLdSchema(professionalServiceSchema, 'professionalservice')
-      addJsonLdSchema(productSchema, 'product')
+        // Add all homepage schemas
+        addJsonLdSchema(orgSchema, 'organization')
+        addJsonLdSchema(websiteSchema, 'website')
+        addJsonLdSchema(faqSchema, 'faq')
+        addJsonLdSchema(breadcrumbSchema, 'breadcrumb')
+        addJsonLdSchema(webpageSchema, 'webpage')
+        addJsonLdSchema(softwareApplicationSchema, 'softwareapplication')
+        addJsonLdSchema(professionalServiceSchema, 'professionalservice')
+        addJsonLdSchema(productSchema, 'product')
+      }, 100) // Defer by 100ms for better initial paint
     }
 
     // Cleanup function
     return () => {
+      if (timeoutId) clearTimeout(timeoutId)
       const schemas = ['organization', 'website', 'faq', 'breadcrumb', 'webpage', 'softwareapplication', 'professionalservice', 'product']
       schemas.forEach(id => {
         const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
