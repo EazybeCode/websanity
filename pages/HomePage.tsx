@@ -1,14 +1,12 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
+import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { SectionRenderer } from '../components/SectionRenderer'
 import { useLandingPage } from '../hooks/useLandingPage'
-
-// Lazy load non-critical components for better initial load
-const ChunkyFooter = lazy(() => import('../components/footer/ChunkyFooter').then(m => ({ default: m.ChunkyFooter })))
-const LeadSidebar = lazy(() => import('../components/LeadSidebar').then(m => ({ default: m.LeadSidebar })))
-const LeadMobileButton = lazy(() => import('../components/LeadMobileButton').then(m => ({ default: m.LeadMobileButton })))
+import { LeadSidebar } from '../components/LeadSidebar'
+import { LeadMobileButton } from '../components/LeadMobileButton'
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
@@ -16,15 +14,10 @@ export const HomePage: React.FC = () => {
   const [showForm, setShowForm] = useState(false)
 
   // Homepage SEO - ONLY for root path (/)
-  // Deferred to run after initial paint for better performance
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null
-
     if (location.pathname === '/') {
-      // Defer SEO operations until after initial paint
-      timeoutId = setTimeout(() => {
-        // Helper function to add JSON-LD schema
-        const addJsonLdSchema = (schema: any, id: string) => {
+      // Helper function to add JSON-LD schema
+      const addJsonLdSchema = (schema: any, id: string) => {
         let script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
         if (!script) {
           script = document.createElement('script')
@@ -274,21 +267,19 @@ export const HomePage: React.FC = () => {
         }
       }
 
-        // Add all homepage schemas
-        addJsonLdSchema(orgSchema, 'organization')
-        addJsonLdSchema(websiteSchema, 'website')
-        addJsonLdSchema(faqSchema, 'faq')
-        addJsonLdSchema(breadcrumbSchema, 'breadcrumb')
-        addJsonLdSchema(webpageSchema, 'webpage')
-        addJsonLdSchema(softwareApplicationSchema, 'softwareapplication')
-        addJsonLdSchema(professionalServiceSchema, 'professionalservice')
-        addJsonLdSchema(productSchema, 'product')
-      }, 100) // Defer by 100ms for better initial paint
+      // Add all homepage schemas
+      addJsonLdSchema(orgSchema, 'organization')
+      addJsonLdSchema(websiteSchema, 'website')
+      addJsonLdSchema(faqSchema, 'faq')
+      addJsonLdSchema(breadcrumbSchema, 'breadcrumb')
+      addJsonLdSchema(webpageSchema, 'webpage')
+      addJsonLdSchema(softwareApplicationSchema, 'softwareapplication')
+      addJsonLdSchema(professionalServiceSchema, 'professionalservice')
+      addJsonLdSchema(productSchema, 'product')
     }
 
     // Cleanup function
     return () => {
-      if (timeoutId) clearTimeout(timeoutId)
       const schemas = ['organization', 'website', 'faq', 'breadcrumb', 'webpage', 'softwareapplication', 'professionalservice', 'product']
       schemas.forEach(id => {
         const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
@@ -450,19 +441,11 @@ export const HomePage: React.FC = () => {
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       <Navbar />
 
-      {/* Desktop sticky sidebar - Lazy loaded for better performance */}
-      {showForm && (
-        <Suspense fallback={null}>
-          <LeadSidebar />
-        </Suspense>
-      )}
+      {/* Desktop sticky sidebar - English, Brazilian Portuguese, and Spanish */}
+      {showForm && <LeadSidebar />}
 
-      {/* Mobile sticky bottom button - Lazy loaded for better performance */}
-      {showForm && (
-        <Suspense fallback={null}>
-          <LeadMobileButton />
-        </Suspense>
-      )}
+      {/* Mobile sticky bottom button - English, Brazilian Portuguese, and Spanish */}
+      {showForm && <LeadMobileButton />}
 
       <main>
         {data?.sections
@@ -471,11 +454,7 @@ export const HomePage: React.FC = () => {
             <SectionRenderer key={section._key} section={section} />
           ))}
       </main>
-
-      {/* Footer - Lazy loaded for better initial page load */}
-      <Suspense fallback={<div className="min-h-[200px] bg-brand-black" />}>
-        <ChunkyFooter />
-      </Suspense>
+      <ChunkyFooter />
     </div>
   )
 }
