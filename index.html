@@ -26,13 +26,25 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#020617" />
 
-    <!-- Preload Critical Fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" /></noscript>
+    <!-- Critical inline CSS for instant render -->
+    <style>
+      /* Critical CSS - Inline for instant rendering */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { background-color: #020617; color: #94a3b8; font-family: system-ui, -apple-system, sans-serif; }
+      #root { min-height: 100vh; }
+      .animate-spin { animation: spin 1s linear infinite; }
+      @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
 
-    <!-- Preload Critical CSS -->
-    <link rel="preload" href="/index.css" as="style" />
-    <link rel="stylesheet" href="/index.css" />
+    <!-- Load fonts asynchronously with font-display swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
+
+    <!-- Load main CSS asynchronously -->
+    <link rel="preload" href="/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/index.css" /></noscript>
 
 <!-- Google Tag Manager - Deferred for performance -->
 <script>
@@ -52,7 +64,15 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4C7HNNN"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant loading skeleton -->
+      <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#020617;">
+        <div style="text-align:center;">
+          <div style="width:48px;height:48px;border:4px solid #3b82f6;border-top-color:transparent;border-radius:50%;margin:0 auto 16px;animation:spin 1s linear infinite;"></div>
+          <p style="color:#94a3b8;font-size:14px;">Loading Eazybe...</p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
