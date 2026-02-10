@@ -109,6 +109,8 @@ const AppRoutes = () => (
       <Route path="/br/product/:slug" element={<ProductPage />} />
       <Route path="/br/blog" element={<BlogListingPage />} />
       <Route path="/br/blog/:slug" element={<BlogPage />} />
+      {/* Redirect old Portuguese blog URLs */}
+      <Route path="/br/blog/integrate-hubspot-with-whatsapp-easiest-method" element={<Navigate to="/br" replace />} />
       <Route path="/br/team-inbox" element={<TeamInboxPage />} />
       <Route path="/br/msa" element={<MSAPage />} />
       <Route path="/br/privacy" element={<PrivacyPage />} />

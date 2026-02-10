@@ -6,3 +6,7 @@
 /zoho-crm /zoho-whatsapp-integration 301
 /integrations/hubspot /hubspot-whatsapp-integration 301
 /hubspot /hubspot-whatsapp-integration 301
+
+# Portuguese blog redirects
+/br/blog/unlock-productivity-with-tasks-hubspot-whatsapp-integration /br/hubspot-whatsapp-integration 301
+/br/blog/integrate-hubspot-with-whatsapp-easiest-method /br 301
