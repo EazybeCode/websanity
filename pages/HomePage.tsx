@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
-import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { SectionRenderer } from '../components/SectionRenderer'
 import { useLandingPage } from '../hooks/useLandingPage'
-import { LeadSidebar } from '../components/LeadSidebar'
-import { LeadMobileButton } from '../components/LeadMobileButton'
+
+// Lazy load non-critical components for better initial load
+const ChunkyFooter = lazy(() => import('../components/footer/ChunkyFooter').then(m => ({ default: m.ChunkyFooter })))
+const LeadSidebar = lazy(() => import('../components/LeadSidebar').then(m => ({ default: m.LeadSidebar })))
+const LeadMobileButton = lazy(() => import('../components/LeadMobileButton').then(m => ({ default: m.LeadMobileButton })))
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
@@ -448,11 +450,19 @@ export const HomePage: React.FC = () => {
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       <Navbar />
 
-      {/* Desktop sticky sidebar - English, Brazilian Portuguese, and Spanish */}
-      {showForm && <LeadSidebar />}
+      {/* Desktop sticky sidebar - Lazy loaded for better performance */}
+      {showForm && (
+        <Suspense fallback={null}>
+          <LeadSidebar />
+        </Suspense>
+      )}
 
-      {/* Mobile sticky bottom button - English, Brazilian Portuguese, and Spanish */}
-      {showForm && <LeadMobileButton />}
+      {/* Mobile sticky bottom button - Lazy loaded for better performance */}
+      {showForm && (
+        <Suspense fallback={null}>
+          <LeadMobileButton />
+        </Suspense>
+      )}
 
       <main>
         {data?.sections
@@ -461,7 +471,11 @@ export const HomePage: React.FC = () => {
             <SectionRenderer key={section._key} section={section} />
           ))}
       </main>
-      <ChunkyFooter />
+
+      {/* Footer - Lazy loaded for better initial page load */}
+      <Suspense fallback={<div className="min-h-[200px] bg-brand-black" />}>
+        <ChunkyFooter />
+      </Suspense>
     </div>
   )
 }

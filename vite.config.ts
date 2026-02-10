@@ -3,6 +3,7 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteCompression from 'vite-plugin-compression';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
@@ -15,6 +16,32 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [
         react(),
+        // PWA for caching and offline support
+        VitePWA({
+          registerType: 'autoUpdate',
+          workbox: {
+            globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff,woff2}'],
+            runtimeCaching: [
+              {
+                urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+                handler: 'CacheFirst',
+                options: {
+                  cacheName: 'google-fonts-cache',
+                  expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+                  cacheableResponse: { statuses: [0, 200] }
+                }
+              },
+              {
+                urlPattern: /^https:\/\/cdn\.sanity\.io\/.*/i,
+                handler: 'StaleWhileRevalidate',
+                options: {
+                  cacheName: 'sanity-images-cache',
+                  expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 30 }
+                }
+              }
+            ]
+          }
+        }),
         // Gzip compression
         viteCompression({
           algorithm: 'gzip',
@@ -53,7 +80,15 @@ export default defineConfig(({ mode }) => {
           compress: {
             drop_console: isProd, // Remove console logs in production
             drop_debugger: true,
-            pure_funcs: isProd ? ['console.log', 'console.info'] : []
+            pure_funcs: isProd ? ['console.log', 'console.info'] : [],
+            passes: 2, // Multiple passes for better compression
+            unsafe: true, // More aggressive but safe optimizations
+            unsafe_comps: true,
+            unsafe_math: true,
+            unsafe_methods: true
+          },
+          mangle: {
+            safari10: true
           }
         },
         // Optimize CSS
@@ -61,7 +96,7 @@ export default defineConfig(({ mode }) => {
         cssCodeSplit: true,
 
         // Target modern browsers for smaller bundle
-        target: 'es2020',
+        target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
 
         rollupOptions: {
           output: {
@@ -136,7 +171,15 @@ export default defineConfig(({ mode }) => {
           'react-i18next',
           '@sanity/client'
         ],
-        exclude: ['framer-motion'] // Heavy library, load on demand
+        exclude: ['framer-motion', 'recharts'] // Heavy libraries, load on demand
+      },
+
+      // Performance optimizations
+      experimental: {
+        renderBuiltUrl(filename: string) {
+          // Enable immutable caching for hashed assets
+          return { relative: true }
+        }
       }
     };
 });
