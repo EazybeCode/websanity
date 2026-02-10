@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../ui/Button'
-import { MegaMenuDropdown } from './MegaMenuDropdown'
 import { MobileMenu } from './MobileMenu'
+
+// Lazy load MegaMenuDropdown - only loads when user opens dropdown (contains lots of icons)
+const MegaMenuDropdown = lazy(() => import('./MegaMenuDropdown').then(m => ({ default: m.MegaMenuDropdown })))
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { ThemeToggle } from './ThemeToggle'
 import { useNavigation, type NavItem } from '../../hooks/useNavigation'
@@ -209,13 +211,15 @@ const NavItemWithDropdown: React.FC<NavItemWithDropdownProps> = ({
       </button>
 
       {isMegaMenu && item.columns && (
-        <MegaMenuDropdown
-          columns={item.columns}
-          isOpen={isActive}
-          onClose={() => {}}
-          menuType={menuType || 'default'}
-          featured={menuType === 'platform' ? platformFeatured : undefined}
-        />
+        <Suspense fallback={null}>
+          <MegaMenuDropdown
+            columns={item.columns}
+            isOpen={isActive}
+            onClose={() => {}}
+            menuType={menuType || 'default'}
+            featured={menuType === 'platform' ? platformFeatured : undefined}
+          />
+        </Suspense>
       )}
     </div>
   )
