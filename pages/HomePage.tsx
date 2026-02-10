@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
-import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { SectionRenderer } from '../components/SectionRenderer'
 import { useLandingPage } from '../hooks/useLandingPage'
 import { LeadSidebar } from '../components/LeadSidebar'
 import { LeadMobileButton } from '../components/LeadMobileButton'
+
+// Lazy load footer - it's below the fold (saves 20 KB on initial load)
+const ChunkyFooter = lazy(() => import('../components/footer/ChunkyFooter').then(m => ({ default: m.ChunkyFooter })))
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
@@ -454,7 +456,9 @@ export const HomePage: React.FC = () => {
             <SectionRenderer key={section._key} section={section} />
           ))}
       </main>
-      <ChunkyFooter />
+      <Suspense fallback={<div className="h-96" />}>
+        <ChunkyFooter />
+      </Suspense>
     </div>
   )
 }

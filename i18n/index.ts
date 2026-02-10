@@ -2,11 +2,21 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-// Import translation files directly for bundling
-import enCommon from '../locales/en/common.json'
-import ptCommon from '../locales/pt/common.json'
-import esCommon from '../locales/es/common.json'
-import trCommon from '../locales/tr/common.json'
+// Lazy load translations on demand
+const loadLanguage = async (lang: string) => {
+  switch (lang) {
+    case 'en':
+      return (await import('../locales/en/common.json')).default
+    case 'br':
+      return (await import('../locales/pt/common.json')).default
+    case 'es':
+      return (await import('../locales/es/common.json')).default
+    case 'tr':
+      return (await import('../locales/tr/common.json')).default
+    default:
+      return (await import('../locales/en/common.json')).default
+  }
+}
 
 export const supportedLanguages = ['en', 'br', 'es', 'tr'] as const
 export type SupportedLanguage = (typeof supportedLanguages)[number]
@@ -35,16 +45,12 @@ const pathLanguageDetector = {
   },
 }
 
+// Initialize with empty resources, load on demand
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources: {
-      en: { common: enCommon },
-      br: { common: ptCommon },
-      es: { common: esCommon },
-      tr: { common: trCommon },
-    },
+    resources: {}, // Start empty, load lazily
     fallbackLng: 'en',
     supportedLngs: supportedLanguages,
     debug: false,
@@ -68,5 +74,14 @@ const languageDetector = i18n.services.languageDetector as any
 if (languageDetector?.addDetector) {
   languageDetector.addDetector(pathLanguageDetector)
 }
+
+// Load the detected language asynchronously
+const detectedLang = pathLanguageDetector.lookup() || 'en'
+loadLanguage(detectedLang).then((translations) => {
+  i18n.addResourceBundle(detectedLang, 'common', translations, true, true)
+  if (i18n.language !== detectedLang) {
+    i18n.changeLanguage(detectedLang)
+  }
+})
 
 export default i18n
