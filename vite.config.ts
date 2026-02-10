@@ -3,6 +3,48 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteCompression from 'vite-plugin-compression';
 import { visualizer } from 'rollup-plugin-visualizer';
+import fs from 'fs';
+
+// Custom plugin to handle redirects like Cloudflare Pages
+function redirectsPlugin() {
+  return {
+    name: 'vite-redirects-plugin',
+    configureServer(server) {
+      // Parse the _redirects file once
+      const redirectsFile = fs.readFileSync('public/_redirects', 'utf-8');
+      const redirects = [];
+
+      redirectsFile.split('\n').forEach(line => {
+        const trimmed = line.trim();
+        if (trimmed && !trimmed.startsWith('#')) {
+          const parts = trimmed.split(/\s+/);
+          if (parts.length >= 2) {
+            redirects.push({
+              from: parts[0],
+              to: parts[1],
+              code: parts.length >= 3 ? parseInt(parts[2]) : 301
+            });
+          }
+        }
+      });
+
+      // Add redirect middleware
+      server.middlewares.use((req, res, next) => {
+        const pathname = req.url ? new URL(req.url, `http://${req.headers.host}`).pathname : '/';
+        const redirect = redirects.find(r => pathname === r.from);
+
+        if (redirect) {
+          res.statusCode = redirect.code;
+          res.setHeader('Location', redirect.to);
+          res.setHeader('Content-Type', 'text/html');
+          res.end(`<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=${redirect.to}"></head><body>Moved to <a href="${redirect.to}">${redirect.to}</a></body></html>`);
+          return;
+        }
+        next();
+      });
+    }
+  };
+}
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
@@ -15,6 +57,7 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [
         react(),
+        redirectsPlugin(),
         // Gzip compression
         viteCompression({
           algorithm: 'gzip',

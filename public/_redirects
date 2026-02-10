@@ -3,3 +3,4 @@
 
 # Integration URL redirects
 /integrations/zoho-crm /zoho-whatsapp-integration 301
+/zoho-crm /zoho-whatsapp-integration 301
