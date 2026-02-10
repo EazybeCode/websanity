@@ -147,20 +147,77 @@ interface Button {
   showIcon?: boolean
 }
 
+const CACHE_KEY = 'landingPage_cache'
+const CACHE_DURATION = 60 * 60 * 1000 // 1 hour in milliseconds
+
+interface CachedData {
+  data: LandingPageData
+  timestamp: number
+}
+
 export function useLandingPage() {
   const [data, setData] = useState<LandingPageData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    getLandingPage()
-      .then((result) => {
+    // Try to load from localStorage cache immediately
+    try {
+      const cached = localStorage.getItem(CACHE_KEY)
+      if (cached) {
+        const { data: cachedData, timestamp }: CachedData = JSON.parse(cached)
+        const age = Date.now() - timestamp
+
+        // Show cached data immediately (stale-while-revalidate pattern)
+        setData(cachedData)
+        setLoading(false)
+
+        // Skip network request if cache is fresh (less than 1 hour old)
+        if (age < CACHE_DURATION) {
+          return
+        }
+      }
+    } catch (err) {
+      console.warn('Failed to load from cache:', err)
+    }
+
+    // Fetch fresh data from Sanity with timeout
+    const fetchWithTimeout = async (timeoutMs: number = 8000) => {
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), timeoutMs)
+
+      try {
+        const result = await getLandingPage()
+        clearTimeout(timeoutId)
+
+        // Update state
         setData(result)
         setLoading(false)
-      })
+
+        // Cache the result
+        try {
+          const cacheData: CachedData = {
+            data: result,
+            timestamp: Date.now()
+          }
+          localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData))
+        } catch (err) {
+          console.warn('Failed to cache data:', err)
+        }
+      } catch (err) {
+        clearTimeout(timeoutId)
+        throw err
+      }
+    }
+
+    fetchWithTimeout()
       .catch((err) => {
-        setError(err)
-        setLoading(false)
+        // Only set error if we don't have cached data
+        if (!data) {
+          setError(err)
+          setLoading(false)
+        }
+        console.warn('Failed to fetch fresh data:', err)
       })
   }, [])
 

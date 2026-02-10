@@ -38,6 +38,16 @@ export default defineConfig(({ mode }) => {
                   cacheName: 'sanity-images-cache',
                   expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 30 }
                 }
+              },
+              {
+                urlPattern: /^https:\/\/5awzi0t4\.api\.sanity\.io\/.*/i,
+                handler: 'NetworkFirst',
+                options: {
+                  cacheName: 'sanity-api-cache',
+                  networkTimeoutSeconds: 5,
+                  expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 * 7 },
+                  cacheableResponse: { statuses: [0, 200] }
+                }
               }
             ]
           }
