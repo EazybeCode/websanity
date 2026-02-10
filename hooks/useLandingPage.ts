@@ -147,20 +147,84 @@ interface Button {
   showIcon?: boolean
 }
 
+const CACHE_KEY = 'landingPage_cache'
+const CACHE_DURATION = 60 * 60 * 1000 // 1 hour in milliseconds
+
+interface CachedData {
+  data: LandingPageData
+  timestamp: number
+}
+
 export function useLandingPage() {
   const [data, setData] = useState<LandingPageData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
+    let hasFetchedData = false
+
+    // 1. Try to load from prebuilt static JSON first (fastest - instant on mobile)
+    fetch('/landing-data.json')
+      .then(res => res.json())
+      .then(prebuiltData => {
+        if (!hasFetchedData) {
+          setData(prebuiltData)
+          setLoading(false)
+          hasFetchedData = true
+        }
+      })
+      .catch(() => {
+        console.warn('Prebuilt data not available, falling back to cache/API')
+      })
+
+    // 2. Try to load from localStorage cache
+    try {
+      const cached = localStorage.getItem(CACHE_KEY)
+      if (cached) {
+        const { data: cachedData, timestamp }: CachedData = JSON.parse(cached)
+        const age = Date.now() - timestamp
+
+        // Show cached data if we don't have prebuilt data yet
+        if (!hasFetchedData) {
+          setData(cachedData)
+          setLoading(false)
+          hasFetchedData = true
+        }
+
+        // Skip API request if cache is fresh (less than 1 hour old)
+        if (age < CACHE_DURATION) {
+          return
+        }
+      }
+    } catch (err) {
+      console.warn('Failed to load from cache:', err)
+    }
+
+    // 3. Fetch fresh data from Sanity API in background
     getLandingPage()
       .then((result) => {
+        // Update with fresh data
         setData(result)
         setLoading(false)
+
+        // Cache the result
+        try {
+          const cacheData: CachedData = {
+            data: result,
+            timestamp: Date.now()
+          }
+          localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData))
+        } catch (err) {
+          console.warn('Failed to cache data:', err)
+        }
       })
       .catch((err) => {
-        setError(err)
-        setLoading(false)
+        // Only set error if we don't have any data (prebuilt or cached)
+        if (!hasFetchedData) {
+          setError(err)
+          setLoading(false)
+        }
+        console.warn('Failed to fetch fresh data:', err)
       })
   }, [])
 
