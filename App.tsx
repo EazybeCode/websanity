@@ -18,6 +18,7 @@ const TeamInboxPage = lazy(() => import('./pages/TeamInboxPage'))
 const MSAPage = lazy(() => import('./pages/MSAPage'))
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage'))
 const TermsPage = lazy(() => import('./pages/TermsPage'))
+const ThankYouPage = lazy(() => import('./pages/ThankYouPage').then(m => ({ default: m.ThankYouPage })))
 const IntegrateHubspotCrmPage = lazy(() => import('./pages/IntegrateHubspotCrmPage'))
 const IntegrateZohoCrmPage = lazy(() => import('./pages/IntegrateZohoCrmPage'))
 const IntegrateSalesforceCrmPage = lazy(() => import('./pages/IntegrateSalesforceCrmPage'))
@@ -93,6 +94,7 @@ const AppRoutes = () => (
       <Route path="/integrate-salesforce-crm" element={<IntegrateSalesforceCrmPage />} />
       <Route path="/integrate-bitrix-crm" element={<IntegrateBitrixCrmPage />} />
       <Route path="/fb" element={<FbPage />} />
+      <Route path="/thank-you" element={<ThankYouPage />} />
 
       {/* Portuguese/Brazil routes (/br) */}
       <Route path="/br" element={<HomePage />} />
@@ -115,6 +117,7 @@ const AppRoutes = () => (
       <Route path="/br/msa" element={<MSAPage />} />
       <Route path="/br/privacy" element={<PrivacyPage />} />
       <Route path="/br/terms" element={<TermsPage />} />
+      <Route path="/br/thank-you" element={<ThankYouPage />} />
 
       {/* Spanish routes (/es) */}
       <Route path="/es" element={<HomePage />} />
@@ -135,6 +138,7 @@ const AppRoutes = () => (
       <Route path="/es/msa" element={<MSAPage />} />
       <Route path="/es/privacy" element={<PrivacyPage />} />
       <Route path="/es/terms" element={<TermsPage />} />
+      <Route path="/es/thank-you" element={<ThankYouPage />} />
 
       {/* Turkish routes (/tr) */}
       <Route path="/tr" element={<HomePage />} />
@@ -155,6 +159,7 @@ const AppRoutes = () => (
       <Route path="/tr/msa" element={<MSAPage />} />
       <Route path="/tr/privacy" element={<PrivacyPage />} />
       <Route path="/tr/terms" element={<TermsPage />} />
+      <Route path="/tr/thank-you" element={<ThankYouPage />} />
     </Routes>
   </Suspense>
 )

@@ -86,12 +86,24 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
   }, []);
 
   React.useEffect(() => {
-    // Change URL to /thank-you when form is successfully submitted
+    // Change URL to language-specific thank-you page when form is successfully submitted
     if (isSuccess) {
-      window.history.pushState({}, '', '/thank-you');
+      // Determine the thank-you page path based on current language
+      const lang = i18n.language;
+      let thankYouPath = '/thank-you'; // Default: English
+
+      if (lang === 'br' || lang === 'pt') {
+        thankYouPath = '/br/thank-you';
+      } else if (lang === 'es') {
+        thankYouPath = '/es/thank-you';
+      } else if (lang === 'tr') {
+        thankYouPath = '/tr/thank-you';
+      }
+
+      window.history.pushState({}, '', thankYouPath);
       onCalendlyShow?.(true);
     }
-  }, [isSuccess, onCalendlyShow]);
+  }, [isSuccess, onCalendlyShow, i18n.language]);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
