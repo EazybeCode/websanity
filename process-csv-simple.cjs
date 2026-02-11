@@ -68,8 +68,8 @@ console.log('Generating App routes...');
 function generateRoute(src, dest) {
   // Remove trailing slashes from source only
   src = src.replace(/\/+$/, '');
-  // Keep dest as-is, but if it's just "/" convert to empty for homepage
-  dest = dest === '/' ? '' : dest.replace(/\/+$/, '');
+  // Keep dest as-is, but if it's just "/" convert to "/" for homepage (React Router needs "/")
+  dest = dest === '/' ? '/' : dest.replace(/\/+$/, '');
 
   return `      <Route path="${src}" element={<Navigate to="${dest}" replace />} />`;
 }

@@ -155,6 +155,9 @@ const AppRoutes = () => (
       <Route path="/tr/msa" element={<MSAPage />} />
       <Route path="/tr/privacy" element={<PrivacyPage />} />
       <Route path="/tr/terms" element={<TermsPage />} />
+
+      {/* 301 SEO Redirects - See src/routes/redirect-routes.txt */}
+      {/* To enable all 986 redirects, copy contents of src/routes/redirect-routes.txt and paste here */}
     </Routes>
   </Suspense>
 )
