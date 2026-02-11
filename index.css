@@ -1,6 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Explicit source paths for Tailwind v4 class detection */
+@source "./index.html";
+@source "./index.tsx";
+@source "./App.tsx";
+@source "./pages/**/*.{js,ts,jsx,tsx}";
+@source "./components/**/*.{js,ts,jsx,tsx}";
+@source "./lib/**/*.{js,ts,jsx,tsx}";
 
 /* Base body styles */
 body {
