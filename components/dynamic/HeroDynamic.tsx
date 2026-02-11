@@ -44,54 +44,30 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
           {/* Left: Copy */}
           <div className="max-w-2xl relative z-10">
             {badge && (
-              <motion.div
-                className="mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
+              <div className="mb-8">
                 <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-[0.1em] bg-slate-900/80 backdrop-blur px-4 py-2 rounded-full border border-cyan-500/30 shadow-lg shadow-cyan-500/10 whitespace-normal leading-relaxed max-w-full">
-                  <motion.span
-                    className="w-2 h-2 rounded-full bg-emerald-400"
-                    animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
+                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
                   {badge}
                 </span>
-              </motion.div>
+              </div>
             )}
 
-            <motion.h1
-              className="text-5xl lg:text-7xl font-sans font-extrabold tracking-tight text-white mb-8 leading-[1.05]"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
+            <h1 className="text-5xl lg:text-7xl font-sans font-extrabold tracking-tight text-white mb-8 leading-[1.05]">
               {headline}{' '}
               {headlineHighlight && (
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400">
                   {headlineHighlight}
                 </span>
               )}
-            </motion.h1>
+            </h1>
 
             {subheadline && (
-              <motion.p
-                className="text-xl font-sans text-slate-300 mb-10 max-w-lg leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
+              <p className="text-xl font-sans text-slate-300 mb-10 max-w-lg leading-relaxed">
                 {subheadline}
-              </motion.p>
+              </p>
             )}
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 items-start mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
+            <div className="flex flex-col sm:flex-row gap-4 items-start mb-12">
               <a href="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd" target="_blank" rel="noopener noreferrer">
                 <Button
                   variant="primary"
@@ -111,15 +87,10 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                   {secondaryCtaLabel}
                 </Button>
               </a>
-            </motion.div>
+            </div>
 
             {noCreditCard && (
-              <motion.div
-                className="flex items-center gap-2 text-sm text-slate-400 font-medium"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
+              <div className="flex items-center gap-2 text-sm text-slate-400 font-medium">
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4].map((i) => (
                     <div
@@ -137,7 +108,7 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                 <span className="ml-3">
                   <span className="text-white font-bold">{noCreditCard}</span>
                 </span>
-              </motion.div>
+              </div>
             )}
           </div>
 
