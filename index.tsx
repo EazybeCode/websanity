@@ -1,9 +1,8 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+// Import i18n synchronously to ensure it's initialized before app renders
+import './i18n';
 import App from './App';
-
-// Lazy load i18n to defer 21 KB language bundle
-import('./i18n');
 
 const LoadingFallback = () => (
   <div className="min-h-screen bg-[#0a0a14] flex items-center justify-center">
