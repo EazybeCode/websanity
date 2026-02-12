@@ -32,3 +32,18 @@ export interface StatProps {
   value: string;
   label: string;
 }
+
+// Trial Modal Types
+export enum CRMType {
+  HUBSPOT = 'HubSpot',
+  SALESFORCE = 'Salesforce',
+  ZOHO = 'Zoho CRM',
+  OTHER = 'Other',
+  NONE = "I don't use any CRM"
+}
+
+export interface TrialFormData {
+  workEmail: string;
+  phoneNumber: string;
+  crmProvider: CRMType;
+}

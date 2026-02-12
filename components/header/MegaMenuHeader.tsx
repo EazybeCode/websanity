@@ -13,6 +13,7 @@ import { useNavigation, type NavItem } from '../../hooks/useNavigation'
 import { useTheme } from '../../hooks/useTheme'
 import { LocalizedLink } from '../LocalizedLink'
 import { useLanguage } from '../../hooks/useLanguage'
+import { useTrialModal } from '../../contexts/TrialModalContext'
 
 // Featured content for Platform menu only
 const platformFeatured = {
@@ -229,6 +230,7 @@ export const MegaMenuHeader: React.FC = () => {
   const { t } = useTranslation()
   const { data: cmsNavigation } = useNavigation('main-nav')
   const { isDark } = useTheme()
+  const { openModal } = useTrialModal()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
@@ -348,11 +350,7 @@ export const MegaMenuHeader: React.FC = () => {
                 variant="primary"
                 size="md"
                 className="font-semibold px-5 py-2 text-sm"
-                onClick={() => {
-                  if (navigation.ctaButton?.href) {
-                    window.location.href = navigation.ctaButton.href
-                  }
-                }}
+                onClick={openModal}
               >
                 {t('nav.startFreeTrial')}
               </Button>

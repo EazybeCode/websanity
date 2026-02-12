@@ -2,6 +2,10 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { SEOHead } from './components/SEOHead'
 import { LanguageProvider } from './components/LanguageProvider'
+import { TrialModalProvider } from './contexts/TrialModalContext'
+import { TrialModalWrapper } from './components/modals/TrialModalWrapper'
+import { LeadSidebar } from './components/LeadSidebar'
+import { LeadMobileButton } from './components/LeadMobileButton'
 
 // Lazy load all page components for code splitting
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })))
@@ -168,12 +172,17 @@ const AppRoutes = () => (
 function App() {
   return (
     <BrowserRouter>
-      <TrailingSlashRedirect>
-        <LanguageProvider>
-          <SEOHead />
-          <AppRoutes />
-        </LanguageProvider>
-      </TrailingSlashRedirect>
+      <TrialModalProvider>
+        <TrailingSlashRedirect>
+          <LanguageProvider>
+            <SEOHead />
+            <AppRoutes />
+            <TrialModalWrapper />
+            <LeadSidebar />
+            <LeadMobileButton />
+          </LanguageProvider>
+        </TrailingSlashRedirect>
+      </TrialModalProvider>
     </BrowserRouter>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Check, X, Zap, Building2, Rocket } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { useTheme } from '../../hooks/useTheme'
+import { useTrialModal } from '../../contexts/TrialModalContext'
 
 export interface PricingPlan {
   name: string
@@ -47,6 +48,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
 }) => {
   const Icon = iconMap[plan.icon]
   const { isDark } = useTheme()
+  const { openModal } = useTrialModal()
 
   // Use dynamic pricing if available, otherwise fall back to plan defaults
   const currency = dynamicCurrency || plan.currency
@@ -150,15 +152,30 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         </ul>
 
         {/* CTA */}
-        <Button
-          variant={isPopular ? 'primary' : 'outline'}
-          size="lg"
-          className={`w-full justify-center font-bold ${
-            isPopular ? 'shadow-glow-blue' : ''
-          }`}
-        >
-          {plan.cta.label}
-        </Button>
+        {plan.cta.label === 'Start Free Trial' ? (
+          <Button
+            variant={isPopular ? 'primary' : 'outline'}
+            size="lg"
+            className={`w-full justify-center font-bold ${
+              isPopular ? 'shadow-glow-blue' : ''
+            }`}
+            onClick={openModal}
+          >
+            {plan.cta.label}
+          </Button>
+        ) : (
+          <a href={plan.cta.url}>
+            <Button
+              variant={isPopular ? 'primary' : 'outline'}
+              size="lg"
+              className={`w-full justify-center font-bold ${
+                isPopular ? 'shadow-glow-blue' : ''
+              }`}
+            >
+              {plan.cta.label}
+            </Button>
+          </a>
+        )}
       </div>
     </div>
   )

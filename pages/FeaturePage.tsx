@@ -13,6 +13,7 @@ import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { ProductSectionRenderer } from '../components/dynamic/ProductSectionRenderer'
 import { useFeature } from '../hooks/useFeature'
+import { useTrialModal } from '../contexts/TrialModalContext'
 import { getIcon as getIconFromMap, getFeatureIcon } from '../lib/iconMap'
 import { urlFor } from '../lib/sanity'
 import { SectionBadge } from '../components/ui/SectionBadge'
@@ -94,7 +95,7 @@ const Button: React.FC<ButtonProps> = ({ variant = 'primary', children, classNam
 
 // ================== Hero Section ==================
 
-const HeroSection: React.FC<{ data: any }> = ({ data }) => {
+const HeroSection: React.FC<{ data: any; openModal: () => void }> = ({ data, openModal }) => {
   if (!data) return null
 
   return (
@@ -124,21 +125,14 @@ const HeroSection: React.FC<{ data: any }> = ({ data }) => {
 
           <div className="flex flex-wrap justify-center gap-4 mb-10">
             {data.primaryCta && (
-              data.primaryCta.url.startsWith('http') ? (
-                <a href={data.primaryCta.url} target="_blank" rel="noopener noreferrer">
-                  <Button variant="primary" className="h-14 px-8 text-base bg-brand-blue border-brand-blue hover:bg-brand-blue/90">
-                    {data.primaryCta.label}
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </a>
-              ) : (
-                <Link to={data.primaryCta.url}>
-                  <Button variant="primary" className="h-14 px-8 text-base bg-brand-blue border-brand-blue hover:bg-brand-blue/90">
-                    {data.primaryCta.label}
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-              )
+              <Button
+                variant="primary"
+                className="h-14 px-8 text-base bg-brand-blue border-brand-blue hover:bg-brand-blue/90"
+                onClick={openModal}
+              >
+                {data.primaryCta.label}
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
             )}
             {data.secondaryCta && (
               data.secondaryCta.url.startsWith('http') ? (
@@ -634,6 +628,7 @@ const getTranslatedFallbackData = (slug: string, t: (key: string, options?: any)
 
 export const FeaturePage: React.FC = () => {
   const { t } = useTranslation()
+  const { openModal } = useTrialModal()
   const { slug: urlSlug } = useParams<{ slug: string }>()
   const location = useLocation()
 
@@ -697,7 +692,7 @@ export const FeaturePage: React.FC = () => {
       ) : (
         // Legacy field-based rendering
         <>
-          <HeroSection data={data.hero} />
+          <HeroSection data={data.hero} openModal={openModal} />
           <BenefitsSection data={data.benefits} />
           <FeaturesSection features={data.features} slug={currentSlug} />
           <HowItWorksSection data={data.howItWorks} />

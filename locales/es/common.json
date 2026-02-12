@@ -1925,5 +1925,27 @@
     "thankYouTitle": "¡Gracias!",
     "thankYouMessage": "Te enviaremos un correo pronto.",
     "thankYouSubtext": "Revisa tu bandeja de entrada."
+  },
+  "trialModal": {
+    "heading": "Vamos a Empezar",
+    "headingHighlight": "Tu Viaje",
+    "feature1": "Sincronización Inteligente",
+    "feature2": "Detección de Intención",
+    "feature3": "Flujos Agénticos",
+    "testimonialQuote": "Eazybe revolucionó nuestra comunicación. Los ciclos de ventas cayeron un 40%.",
+    "testimonialName": "Marcus Chen",
+    "testimonialRole": "VP RevOps",
+    "workEmailLabel": "Correo Corporativo",
+    "workEmailPlaceholder": "alex@empresa.com",
+    "workEmailError": "Por favor, usa tu correo corporativo, no una dirección personal",
+    "phoneLabel": "Número de Teléfono",
+    "phonePlaceholder": "555 000 0000",
+    "crmLabel": "Qué CRM usas",
+    "submitButton": "Iniciar Prueba Gratuita",
+    "submitting": "Procesando...",
+    "disclaimer": "Sin Tarjeta de Crédito • Activación Instantánea",
+    "successTitle": "¡Éxito!",
+    "successMessage": "Confirmación enviada a",
+    "redirecting": "Redirigiendo a Chrome Web Store..."
   }
 }

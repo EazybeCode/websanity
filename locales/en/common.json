@@ -1925,5 +1925,27 @@
     "thankYouTitle": "Thank You!",
     "thankYouMessage": "We'll send you an email shortly.",
     "thankYouSubtext": "Check your inbox for our message."
+  },
+  "trialModal": {
+    "heading": "Let's Get You",
+    "headingHighlight": "Started",
+    "feature1": "Sync Intelligence",
+    "feature2": "Intent Detection",
+    "feature3": "Agentic Flows",
+    "testimonialQuote": "Eazybe re-engineered our communication. Sales cycles dropped by 40%.",
+    "testimonialName": "Marcus Chen",
+    "testimonialRole": "VP RevOps",
+    "workEmailLabel": "Work Email",
+    "workEmailPlaceholder": "alex@company.io",
+    "workEmailError": "Please use your work email, not a personal email address",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "555 000 0000",
+    "crmLabel": "Which CRM do u use",
+    "submitButton": "Start Free Trial",
+    "submitting": "Processing...",
+    "disclaimer": "No Credit Card • Instant Activation",
+    "successTitle": "Success!",
+    "successMessage": "Confirmation sent to",
+    "redirecting": "Redirecting to Chrome Web Store..."
   }
 }

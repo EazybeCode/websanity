@@ -1,7 +1,10 @@
 import React from 'react';
 import { Button } from './ui/Button';
+import { useTrialModal } from '../contexts/TrialModalContext';
 
 export const FinalCTA: React.FC = () => {
+  const { openModal } = useTrialModal();
+
   return (
     <section className="py-32 bg-white relative overflow-hidden border-t border-slate-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -13,9 +16,7 @@ export const FinalCTA: React.FC = () => {
           Join 2,000+ teams who finally see what's happening in chat.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-          <a href="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd" target="_blank" rel="noopener noreferrer">
-            <Button variant="primary" size="lg" className="px-10">Start Free Trial</Button>
-          </a>
+          <Button variant="primary" size="lg" className="px-10" onClick={openModal}>Start Free Trial</Button>
           <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="lg" className="px-10">Book a Demo</Button>
           </a>
