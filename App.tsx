@@ -60,6 +60,9 @@ const integrationSlugs = [
 const AppRoutes = () => (
   <Suspense fallback={<PageLoader />}>
     <Routes>
+      {/* Fix /index.html SEO redirect */}
+      <Route path="/index.html" element={<Navigate to="/" replace />} />
+
       {/* English routes (default, no prefix) */}
       <Route path="/" element={<HomePage />} />
       <Route path="/pricing" element={<PricingPage />} />
