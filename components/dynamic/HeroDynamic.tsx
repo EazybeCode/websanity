@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Button } from '../ui/Button'
 import { ArrowRight, MessageSquare, Database, AlertCircle, Zap, TrendingUp } from 'lucide-react'
 import type { HeroSection } from '../../hooks/useLandingPage'
+import { useTrialModal } from '../../contexts/TrialModalContext'
 
 interface Props {
   data: HeroSection
@@ -11,6 +12,7 @@ interface Props {
 
 export const HeroDynamic: React.FC<Props> = ({ data }) => {
   const { t, i18n } = useTranslation()
+  const { openModal } = useTrialModal()
   const currentLang = i18n.language
 
   // For non-English languages, prioritize translations; for English, use Sanity data
@@ -92,16 +94,15 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <a href="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd" target="_blank" rel="noopener noreferrer">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  icon={<ArrowRight size={18} />}
-                  className="shadow-lg shadow-blue-500/25 border-none font-bold hover:shadow-blue-500/40 transition-shadow"
-                >
-                  {primaryCtaLabel}
-                </Button>
-              </a>
+              <Button
+                onClick={openModal}
+                variant="primary"
+                size="lg"
+                icon={<ArrowRight size={18} />}
+                className="shadow-lg shadow-blue-500/25 border-none font-bold hover:shadow-blue-500/40 transition-shadow cursor-pointer"
+              >
+                {primaryCtaLabel}
+              </Button>
               <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer">
                 <Button
                   variant="outline"

@@ -2,21 +2,11 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-// Lazy load translations on demand
-const loadLanguage = async (lang: string) => {
-  switch (lang) {
-    case 'en':
-      return (await import('../locales/en/common.json')).default
-    case 'br':
-      return (await import('../locales/pt/common.json')).default
-    case 'es':
-      return (await import('../locales/es/common.json')).default
-    case 'tr':
-      return (await import('../locales/tr/common.json')).default
-    default:
-      return (await import('../locales/en/common.json')).default
-  }
-}
+// Import all translations upfront
+import enTranslations from '../locales/en/common.json'
+import ptTranslations from '../locales/pt/common.json'
+import esTranslations from '../locales/es/common.json'
+import trTranslations from '../locales/tr/common.json'
 
 export const supportedLanguages = ['en', 'br', 'es', 'tr'] as const
 export type SupportedLanguage = (typeof supportedLanguages)[number]
@@ -45,12 +35,17 @@ const pathLanguageDetector = {
   },
 }
 
-// Initialize with empty resources, load on demand
+// Initialize with all translations preloaded
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources: {}, // Start empty, load lazily
+    resources: {
+      en: { common: enTranslations },
+      br: { common: ptTranslations },
+      es: { common: esTranslations },
+      tr: { common: trTranslations },
+    },
     fallbackLng: 'en',
     supportedLngs: supportedLanguages,
     debug: false,
@@ -75,13 +70,10 @@ if (languageDetector?.addDetector) {
   languageDetector.addDetector(pathLanguageDetector)
 }
 
-// Load the detected language asynchronously
+// Set the initial language based on URL path
 const detectedLang = pathLanguageDetector.lookup() || 'en'
-loadLanguage(detectedLang).then((translations) => {
-  i18n.addResourceBundle(detectedLang, 'common', translations, true, true)
-  if (i18n.language !== detectedLang) {
-    i18n.changeLanguage(detectedLang)
-  }
-})
+if (i18n.language !== detectedLang) {
+  i18n.changeLanguage(detectedLang)
+}
 
 export default i18n

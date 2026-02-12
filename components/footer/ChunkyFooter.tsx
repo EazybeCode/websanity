@@ -6,6 +6,7 @@ import { FooterColumn, type FooterLink } from './FooterColumn'
 import { LocalizedLink } from '../LocalizedLink'
 import { useTheme } from '../../hooks/useTheme'
 import { useFAQs } from '../../hooks/useFAQs'
+import { useTrialModal } from '../../contexts/TrialModalContext'
 
 // Meta infinity logo component for consistent branding
 const MetaLogo: React.FC<{ size?: number }> = ({ size = 40 }) => (
@@ -77,6 +78,7 @@ const socialLinks = [
 export const ChunkyFooter: React.FC = () => {
   const { t, i18n } = useTranslation()
   const { isDark } = useTheme()
+  const { openModal } = useTrialModal()
   const location = useLocation()
   const { data: faqDataFromSanity, loading: faqsLoading } = useFAQs(i18n.language)
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
@@ -807,14 +809,12 @@ export const ChunkyFooter: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a
-              href="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center font-bold text-base px-10 py-4 rounded-lg bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] border border-blue-600 hover:bg-blue-700 hover:scale-105 transform transition-all"
+            <button
+              onClick={openModal}
+              className="inline-flex items-center justify-center font-bold text-base px-10 py-4 rounded-lg bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] border border-blue-600 hover:bg-blue-700 hover:scale-105 transform transition-all cursor-pointer"
             >
               {t('cta.startFreeTrial')}
-            </a>
+            </button>
             <a
               href="https://calendly.com/d/cw67-pt3-y2m"
               target="_blank"

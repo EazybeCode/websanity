@@ -1,11 +1,9 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react'
+import React, { useEffect, lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
 import { SectionRenderer } from '../components/SectionRenderer'
 import { useLandingPage } from '../hooks/useLandingPage'
-import { LeadSidebar } from '../components/LeadSidebar'
-import { LeadMobileButton } from '../components/LeadMobileButton'
 
 // Lazy load footer - it's below the fold (saves 20 KB on initial load)
 const ChunkyFooter = lazy(() => import('../components/footer/ChunkyFooter').then(m => ({ default: m.ChunkyFooter })))
@@ -13,7 +11,6 @@ const ChunkyFooter = lazy(() => import('../components/footer/ChunkyFooter').then
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
   const location = useLocation()
-  const [showForm, setShowForm] = useState(false)
 
   // Homepage SEO - ONLY for root path (/)
   useEffect(() => {
@@ -409,13 +406,6 @@ export const HomePage: React.FC = () => {
     }
   }, [location.pathname])
 
-  useEffect(() => {
-    // Show form on English (/), Brazilian Portuguese (/br), and Spanish (/es) pages
-    const shouldShow = window.location.pathname === '/' ||
-                       window.location.pathname === '/br' ||
-                       window.location.pathname === '/es'
-    setShowForm(shouldShow)
-  }, [])
   const { data, loading, error } = useLandingPage()
 
   if (loading) {
@@ -442,12 +432,6 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       <Navbar />
-
-      {/* Desktop sticky sidebar - English, Brazilian Portuguese, and Spanish */}
-      {showForm && <LeadSidebar />}
-
-      {/* Mobile sticky bottom button - English, Brazilian Portuguese, and Spanish */}
-      {showForm && <LeadMobileButton />}
 
       <main>
         {data?.sections

@@ -1,12 +1,15 @@
 import React from 'react';
 import { Button } from './ui/Button';
 import { ArrowRight } from 'lucide-react';
+import { useTrialModal } from '../contexts/TrialModalContext';
 
 export const Hero: React.FC = () => {
+  const { openModal } = useTrialModal();
+
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden bg-brand-paper border-b border-brand-muted">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Authority Copy */}
           <div className="max-w-2xl">
@@ -15,21 +18,19 @@ export const Hero: React.FC = () => {
                   For HubSpot, Salesforce, Zoho, In-house CRMs and many more
                 </span>
              </div>
-             
+
              <h1 className="text-5xl lg:text-7xl font-sans font-semibold tracking-tight text-brand-ink mb-8 leading-[1.05]">
                The WhatsApp Sales Platform for <span className="text-brand-blue">CRM Teams</span>
              </h1>
-             
+
              <p className="text-xl font-sans text-slate-600 font-light leading-relaxed mb-10 max-w-lg">
                Sync every WhatsApp conversation to your CRM. Automate follow-ups. See which deals need attention. Works with WhatsApp Business App and API—no migration required.
              </p>
 
              <div className="flex flex-col sm:flex-row gap-4 items-start mb-12">
-               <a href="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd" target="_blank" rel="noopener noreferrer">
-                 <Button variant="primary" size="lg" icon={<ArrowRight size={18} />}>
-                   Start Free Trial
-                 </Button>
-               </a>
+               <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} onClick={openModal}>
+                 Start Free Trial
+               </Button>
                <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer">
                  <Button variant="outline" size="lg">
                    Book a Demo

@@ -24,6 +24,7 @@ import {
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { useProduct } from '../hooks/useProduct'
+import { useTrialModal } from '../contexts/TrialModalContext'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -325,7 +326,7 @@ const Button: React.FC<ButtonProps> = ({ variant = 'primary', children, classNam
 
 // ================== Hero Section ==================
 
-const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string, t: (key: string) => string }> = ({ crm, crmColor, t }) => {
+const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string, t: (key: string) => string, openModal: () => void }> = ({ crm, crmColor, t, openModal }) => {
   return (
     <section className="relative pt-32 pb-24 overflow-hidden bg-slate-950">
       {/* Background Effects */}
@@ -368,11 +369,14 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string, t
             </div>
 
             <div className="flex flex-wrap gap-4 mb-10">
-              <a href="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd" target="_blank" rel="noopener noreferrer">
-                <Button variant="primary" className="h-14 px-8 text-base shadow-none hover:shadow-lg" style={{ backgroundColor: crmColor, borderColor: crmColor }}>
-                  {t('integrations.hero.startTrial')}
-                </Button>
-              </a>
+              <Button
+                variant="primary"
+                className="h-14 px-8 text-base shadow-none hover:shadow-lg"
+                style={{ backgroundColor: crmColor, borderColor: crmColor }}
+                onClick={openModal}
+              >
+                {t('integrations.hero.startTrial')}
+              </Button>
               <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" className="h-14 px-8 text-base">
                   {t('integrations.hero.bookDemo')}
@@ -1605,6 +1609,7 @@ const ReportsSection: React.FC<{ crm: typeof crmConfig.hubspot, t: (key: string)
 
 export const ProductPage: React.FC = () => {
   const { t, i18n } = useTranslation()
+  const { openModal } = useTrialModal()
   const language = i18n.language || 'en'
   const location = useLocation()
 
@@ -1649,7 +1654,7 @@ export const ProductPage: React.FC = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <HeroSection crm={crm} crmColor={crmColor} t={t} />
+      <HeroSection crm={crm} crmColor={crmColor} t={t} openModal={openModal} />
 
       {/* Feature Comparison Section */}
       <FeatureComparisonSection t={t} />

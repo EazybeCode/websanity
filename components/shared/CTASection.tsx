@@ -1,5 +1,6 @@
 import React from 'react'
 import { Rocket } from 'lucide-react'
+import { useTrialModal } from '../../contexts/TrialModalContext'
 
 export interface CTASectionData {
   badge?: string
@@ -39,6 +40,7 @@ const defaultData: CTASectionData = {
 
 export const CTASection: React.FC<Props> = ({ data = defaultData }) => {
   const { badge, headline, headlineHighlight, description, primaryCta, secondaryCta, footnote } = { ...defaultData, ...data }
+  const { openModal } = useTrialModal()
 
   return (
     <section className="py-24 bg-slate-950 relative overflow-hidden border-t border-slate-700">
@@ -62,14 +64,12 @@ export const CTASection: React.FC<Props> = ({ data = defaultData }) => {
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           {primaryCta && (
-            <a
-              href={primaryCta.url}
-              target={primaryCta.url.startsWith('http') ? '_blank' : undefined}
-              rel={primaryCta.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="inline-flex items-center justify-center font-bold text-base px-10 py-4 rounded-lg bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] border border-blue-600 hover:bg-blue-700 hover:scale-105 transform transition-all"
+            <button
+              onClick={openModal}
+              className="inline-flex items-center justify-center font-bold text-base px-10 py-4 rounded-lg bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] border border-blue-600 hover:bg-blue-700 hover:scale-105 transform transition-all cursor-pointer"
             >
               {primaryCta.label}
-            </a>
+            </button>
           )}
           {secondaryCta && (
             <a

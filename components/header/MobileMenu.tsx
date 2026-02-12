@@ -7,6 +7,7 @@ import { LanguageSwitcher } from './LanguageSwitcher'
 import { ThemeToggle } from './ThemeToggle'
 import { LocalizedLink } from '../LocalizedLink'
 import type { NavItem, NavigationData } from '../../hooks/useNavigation'
+import { useTrialModal } from '../../contexts/TrialModalContext'
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -184,6 +185,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   signInButton,
 }) => {
   const { t } = useTranslation()
+  const { openModal } = useTrialModal()
 
   return (
     <AnimatePresence>
@@ -232,9 +234,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                   size="lg"
                   className="w-full justify-center text-base"
                   onClick={() => {
-                    if (ctaButton.href) {
-                      window.location.href = ctaButton.href
-                    }
+                    openModal()
                     onClose()
                   }}
                 >
