@@ -1,12 +1,10 @@
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 
-const isDev = typeof window !== 'undefined' && window.location.hostname === 'localhost'
-
 export const sanityClient = createClient({
   projectId: '5awzi0t4',
   dataset: 'production',
-  useCdn: !isDev, // Disable CDN for localhost to avoid network issues
+  useCdn: true,
   apiVersion: '2024-01-01',
 })
 
