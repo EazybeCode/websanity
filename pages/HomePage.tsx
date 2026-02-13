@@ -714,13 +714,13 @@ export const HomePage: React.FC = () => {
         "name": "CRM integrado com WhatsApp | Plataforma de Vendas WhatsApp - Eazybe",
         "description": "Integração de CRM com WhatsApp para (HubSpot, Zoho, Salesforce, Sheets). Sincronize conversas com seu CRM, use respostas de IA e caixas de entrada compartilhadas.",
         "isPartOf": {
-          "@id": "https://eazybe.com/br/#website"
+          "@id": "https://eazybe.com/br"
         },
         "about": {
-          "@id": "https://eazybe.com/br/#organization"
+          "@id": "https://eazybe.com/br"
         },
         "publisher": {
-          "@id": "https://eazybe.com/br/#organization"
+          "@id": "https://eazybe.com/br"
         },
         "inLanguage": "pt-BR",
         "primaryImageOfPage": {
@@ -730,7 +730,7 @@ export const HomePage: React.FC = () => {
         "datePublished": "2026-02-03T08:00:00+00:00",
         "dateModified": "2026-02-13T10:30:00+00:00",
         "breadcrumb": {
-          "@id": "https://eazybe.com/br#breadcrumb"
+          "@id": "https://eazybe.com/br#"
         }
       }
 
@@ -776,7 +776,7 @@ export const HomePage: React.FC = () => {
           "ratingCount": 53978
         },
         "publisher": {
-          "@id": "https://eazybe.com/br/#organization"
+          "@id": "https://eazybe.com/br/#"
         }
       }
 
