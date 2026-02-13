@@ -590,6 +590,36 @@ export const HomePage: React.FC = () => {
         document.head.appendChild(faqScript)
       }
       faqScript.textContent = JSON.stringify(faqSchema)
+
+      // BreadcrumbList Schema for /br
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Eazybe",
+            "item": "https://eazybe.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "BR",
+            "item": "https://eazybe.com/br"
+          }
+        ]
+      }
+
+      // Add breadcrumb schema to head
+      let breadcrumbScript = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-br"]')
+      if (!breadcrumbScript) {
+        breadcrumbScript = document.createElement('script')
+        breadcrumbScript.type = 'application/ld+json'
+        breadcrumbScript.setAttribute('data-schema', 'breadcrumb-br')
+        document.head.appendChild(breadcrumbScript)
+      }
+      breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema)
     }
 
     // Cleanup function - remove meta tags and schema when leaving /br homepage
@@ -597,6 +627,9 @@ export const HomePage: React.FC = () => {
       // Remove FAQ schema
       const faqScript = document.querySelector('script[type="application/ld+json"][data-schema="faq-br"]')
       if (faqScript) faqScript.remove()
+      // Remove breadcrumb schema
+      const breadcrumbScript = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-br"]')
+      if (breadcrumbScript) breadcrumbScript.remove()
       // Optionally reset title when leaving /br homepage
       // document.title = 'Eazybe'
     }
