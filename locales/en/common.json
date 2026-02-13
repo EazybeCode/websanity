@@ -1927,8 +1927,10 @@
     "thankYouSubtext": "Check your inbox for our message."
   },
   "trialModal": {
-    "heading": "Let's Get You",
-    "headingHighlight": "Started",
+    "heading": "The WhatsApp Sales",
+    "headingHighlight": "Systems Toolkit",
+    "subheading": "Get the exact system to see every team chat and keep your clients when reps leave.",
+    "tagline": "Built for high-performance sales teams of 10+ people.",
     "feature1": "Sync Intelligence",
     "feature2": "Intent Detection",
     "feature3": "Agentic Flows",

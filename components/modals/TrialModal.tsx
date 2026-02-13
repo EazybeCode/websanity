@@ -282,10 +282,16 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
           <div className="absolute inset-0 opacity-[0.05] pointer-events-none"></div>
 
           <div className="relative z-10 pt-2">
-            <h2 className="text-2xl lg:text-3xl font-sans font-extrabold text-white leading-[1.2] mb-6 tracking-tighter">
+            <h2 className="text-2xl lg:text-3xl font-sans font-extrabold text-white leading-[1.2] mb-3 tracking-tighter">
               {t('trialModal.heading')}<br />
               <span className="text-brand-blue">{t('trialModal.headingHighlight')}</span>
             </h2>
+            <p className="text-sm text-slate-400 mb-2 leading-relaxed">
+              {t('trialModal.subheading')}
+            </p>
+            <p className="text-xs text-slate-500 mb-6 font-mono uppercase tracking-wider">
+              {t('trialModal.tagline')}
+            </p>
 
             <div className="space-y-3">
               {[

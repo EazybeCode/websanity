@@ -1927,8 +1927,10 @@
     "thankYouSubtext": "Gelen kutunuzu kontrol edin."
   },
   "trialModal": {
-    "heading": "Hadi Başlayalım",
-    "headingHighlight": "Yolculuğunuza",
+    "heading": "WhatsApp Satış",
+    "headingHighlight": "Sistemleri Araç Seti",
+    "subheading": "Her ekip sohbetini görmek ve temsilciler ayrıldığında müşterilerinizi korumak için tam sistemi edinin.",
+    "tagline": "10+ kişilik yüksek performanslı satış ekipleri için tasarlandı.",
     "feature1": "Akıllı Senkronizasyon",
     "feature2": "Niyet Tespiti",
     "feature3": "Ajantik Akışlar",
