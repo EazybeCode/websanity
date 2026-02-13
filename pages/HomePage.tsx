@@ -516,10 +516,87 @@ export const HomePage: React.FC = () => {
 
       // Referrer meta tag
       setMetaTag('referrer', 'origin-when-cross-origin')
+
+      // Portuguese FAQ JSON-LD Schema
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "O que é o Eazybe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O Eazybe é uma plataforma de CRM e vendas para WhatsApp que ajuda empresas a gerenciar conversas com clientes, automatizar respostas, rastrear receita e integrar o WhatsApp com ferramentas de CRM populares como HubSpot, Salesforce e mais."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que é Coexistência de API do WhatsApp?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A coexistência permite que você use o WhatsApp Web e a API do WhatsApp simultaneamente. Isso significa que você pode manter suas conversas manuais enquanto automatiza mensagens em massa e modelos através da API."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quais integrações o Eazybe suporta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O Eazybe se integra com HubSpot, Salesforce, Zoho CRM, Bitrix24, LeadSquared, Freshdesk, Google Sheets e webhooks personalizados. Estamos constantemente adicionando novas integrações."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O Eazybe é seguro de usar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim! O Eazybe é parceiro de negócios da Meta e compatível com LGPD/GDPR. Usamos criptografia de nível bancário para proteger seus dados e nunca armazenamos suas credenciais do WhatsApp em nossos servidores."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como funciona o teste gratuito?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Você pode começar com nosso teste gratuito de 14 dias sem necessidade de cartão de crédito. Após o teste, você pode escolher um plano que atenda às suas necessidades - de usuários individuais a equipes empresariais."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso usar o Eazybe para colaboração em equipe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Com certeza! O Eazybe inclui uma caixa de entrada de equipe compartilhada, modelos de resposta rápida, agendador de mensagens e WhatsApp Copilot para ajudar toda a sua equipe a trabalhar de forma eficiente."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como funciona a Caixa de Entrada de Receita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A Caixa de Entrada de Receita rastreia e atribui receita a conversas específicas do WhatsApp, dando visibilidade sobre quais mensagens levam a vendas e ajudando sua equipe a focar em leads de alto valor."
+            }
+          }
+        ]
+      }
+
+      // Add FAQ schema to head
+      let faqScript = document.querySelector('script[type="application/ld+json"][data-schema="faq-br"]')
+      if (!faqScript) {
+        faqScript = document.createElement('script')
+        faqScript.type = 'application/ld+json'
+        faqScript.setAttribute('data-schema', 'faq-br')
+        document.head.appendChild(faqScript)
+      }
+      faqScript.textContent = JSON.stringify(faqSchema)
     }
 
-    // Cleanup function - remove meta tags when leaving /br homepage
+    // Cleanup function - remove meta tags and schema when leaving /br homepage
     return () => {
+      // Remove FAQ schema
+      const faqScript = document.querySelector('script[type="application/ld+json"][data-schema="faq-br"]')
+      if (faqScript) faqScript.remove()
       // Optionally reset title when leaving /br homepage
       // document.title = 'Eazybe'
     }
