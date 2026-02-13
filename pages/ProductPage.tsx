@@ -373,15 +373,13 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot, crmColor: string, t
                 variant="primary"
                 className="h-14 px-8 text-base shadow-none hover:shadow-lg"
                 style={{ backgroundColor: crmColor, borderColor: crmColor }}
-                onClick={openModal}
+                onClick={() => openModal('trial')}
               >
                 {t('integrations.hero.startTrial')}
               </Button>
-              <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="h-14 px-8 text-base">
+              <Button variant="outline" className="h-14 px-8 text-base" onClick={() => openModal('demo')}>
                   {t('integrations.hero.bookDemo')}
                 </Button>
-              </a>
             </div>
 
             <div className="flex items-center gap-8 pt-8 border-t border-slate-800/50">

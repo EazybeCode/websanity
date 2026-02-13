@@ -159,7 +159,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
             className={`w-full justify-center font-bold ${
               isPopular ? 'shadow-glow-blue' : ''
             }`}
-            onClick={openModal}
+            onClick={() => openModal('trial')}
           >
             {plan.cta.label}
           </Button>

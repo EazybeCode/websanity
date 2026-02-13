@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Send, Loader2, CheckCircle2, Zap, Target, Bot, Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CRMType, TrialFormData } from '../../types';
+import { ModalMode } from '../../contexts/TrialModalContext';
+
+// Declare Calendly global type
+declare global {
+  interface Window {
+    Calendly?: {
+      initInlineWidget: (options: { url: string; parentElement: Element; prefill?: object }) => void;
+    };
+  }
+}
 
 interface TrialModalProps {
   isOpen: boolean;
+  mode: ModalMode;
   onClose: () => void;
 }
 
@@ -107,7 +118,7 @@ const PERSONAL_EMAIL_DOMAINS = [
   'gmx.com',
 ];
 
-export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, onClose }) => {
+export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose }) => {
   const { t } = useTranslation();
   const [selectedCountry, setSelectedCountry] = useState(COUNTRY_CODES[0].code);
   const [phoneValue, setPhoneValue] = useState('');
@@ -118,7 +129,40 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, onClose }) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false); // Track if form was submitted in this session
   const [emailError, setEmailError] = useState('');
+
+  // When modal opens, if user already submitted before, skip to success state
+  useEffect(() => {
+    if (isOpen) {
+      setIsSubmitting(false);
+      setEmailError('');
+      if (hasSubmitted) {
+        // User already submitted, skip form and go to success state
+        setIsSuccess(true);
+        // If trial mode, redirect immediately
+        if (mode === 'trial') {
+          window.location.href = 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd';
+        }
+      } else {
+        setIsSuccess(false);
+      }
+    }
+  }, [isOpen, mode, hasSubmitted]);
+
+  // Load Calendly widget script when form is submitted successfully (only for demo mode)
+  useEffect(() => {
+    if (isSuccess && mode === 'demo') {
+      // Load Calendly script if not already loaded
+      const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+      if (!existingScript) {
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }
+  }, [isSuccess]);
 
   if (!isOpen) return null;
 
@@ -193,11 +237,14 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, onClose }) => {
 
       setIsSubmitting(false);
       setIsSuccess(true);
+      setHasSubmitted(true); // Mark as submitted for future modal opens
 
-      // Redirect to Chrome Web Store after 2 seconds
-      setTimeout(() => {
-        window.location.href = 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd';
-      }, 2000);
+      // If trial mode, redirect to Chrome Web Store after 2 seconds
+      if (mode === 'trial') {
+        setTimeout(() => {
+          window.location.href = 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd';
+        }, 2000);
+      }
 
     } catch (error) {
       console.error('Form submission error:', error);
@@ -211,14 +258,18 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, onClose }) => {
     if (e.target === e.currentTarget) onClose();
   };
 
+  // Only expand modal for Calendly (demo mode)
+  const showCalendly = isSuccess && mode === 'demo';
+
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-lg transition-all duration-500"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-lg transition-all duration-500 overflow-y-auto"
       onClick={handleBackdropClick}
     >
-      <div className="relative w-full max-w-2xl bg-brand-surface border border-brand-border rounded-xl shadow-[0_0_80px_-20px_rgba(37,99,235,0.3)] overflow-hidden flex flex-col lg:flex-row min-h-[380px]">
+      <div className={`relative w-full ${showCalendly ? 'max-w-4xl' : 'max-w-2xl'} bg-brand-surface border border-brand-border rounded-xl shadow-[0_0_80px_-20px_rgba(37,99,235,0.3)] overflow-hidden flex flex-col lg:flex-row ${showCalendly ? 'min-h-[750px]' : 'min-h-[380px]'} transition-all duration-300`}>
 
-        {/* Left Side */}
+        {/* Left Side - Hidden when showing Calendly */}
+        {!showCalendly && (
         <div className="lg:w-[45%] relative bg-brand-black p-6 lg:p-8 flex flex-col justify-between overflow-hidden border-r border-slate-800/50">
           <div className="absolute inset-0 opacity-[0.05] pointer-events-none"></div>
 
@@ -268,9 +319,10 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, onClose }) => {
 
           <div className="absolute bottom-[-10%] right-[-10%] w-full h-[30%] bg-brand-blue/10 blur-[100px] rounded-full"></div>
         </div>
+        )}
 
-        {/* Right Side */}
-        <div className="lg:w-[55%] p-6 lg:p-8 relative flex flex-col justify-center">
+        {/* Right Side - Full width when showing Calendly */}
+        <div className={`${showCalendly ? 'w-full' : 'lg:w-[55%]'} p-6 lg:p-8 relative flex flex-col justify-center`}>
           <button
             onClick={onClose}
             className="absolute top-4 right-4 p-1 text-slate-500 hover:text-white transition-all hover:rotate-90 duration-300 z-10"
@@ -361,7 +413,8 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, onClose }) => {
                 </div>
               </form>
             </div>
-          ) : (
+          ) : mode === 'trial' ? (
+            // Trial mode: Show success message with redirect
             <div className="flex flex-col items-center justify-center py-12 text-center space-y-8">
               <div className="relative w-24 h-24 bg-brand-green/10 border-2 border-brand-green/30 rounded-full flex items-center justify-center text-brand-green">
                 <CheckCircle2 size={48} />
@@ -373,6 +426,27 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, onClose }) => {
               <div className="font-mono text-[9px] text-slate-700 uppercase tracking-widest animate-pulse">
                 {t('trialModal.redirecting')}
               </div>
+            </div>
+          ) : (
+            // Demo mode: Show Calendly embed
+            <div className="flex flex-col items-center w-full">
+              {/* Success Header */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-brand-green/10 border-2 border-brand-green/30 rounded-full flex items-center justify-center text-brand-green">
+                  <CheckCircle2 size={20} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-sans font-extrabold text-white tracking-tight">{t('trialModal.successTitle')}</h3>
+                  <p className="text-slate-400 text-xs">Book a demo call with our team</p>
+                </div>
+              </div>
+
+              {/* Calendly Embed */}
+              <div
+                className="calendly-inline-widget w-full rounded-lg overflow-hidden"
+                data-url="https://calendly.com/d/cw67-pt3-y2m"
+                style={{ minWidth: '320px', height: '650px' }}
+              />
             </div>
           )}
         </div>

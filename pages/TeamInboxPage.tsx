@@ -19,6 +19,7 @@ import SectionKicker from '../components/shared/SectionKicker';
 import LabelAnimation from '../components/animations/LabelAnimation';
 import UnifiedDashboardAnimation from '../components/animations/UnifiedDashboardAnimation';
 import RoutingAnimation from '../components/animations/RoutingAnimation';
+import { useTrialModal } from '../contexts/TrialModalContext';
 
 // Helper Components
 const LayoutDashboardIcon = () => (
@@ -28,6 +29,8 @@ const LayoutDashboardIcon = () => (
 );
 
 const TeamInboxPage: React.FC = () => {
+  const { openModal } = useTrialModal();
+
   return (
     <div className="min-h-screen font-sans bg-slate-950 text-slate-300 overflow-x-hidden">
       {/* Hero Section */}
@@ -286,12 +289,12 @@ const TeamInboxPage: React.FC = () => {
             Join 2,000+ teams who finally see what is happening in chat. Sync conversations, automate workflows, and close deals faster.
           </p>
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a href="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd" target="_blank" rel="noopener noreferrer" className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-5 rounded-xl shadow-lg shadow-blue-500/25 text-lg transition-all">
+            <button onClick={() => openModal('trial')} className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-5 rounded-xl shadow-lg shadow-blue-500/25 text-lg transition-all cursor-pointer">
               Start Free Trial
-            </a>
-            <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="bg-transparent border border-slate-700 hover:border-slate-500 text-slate-300 font-bold px-10 py-5 rounded-xl text-lg transition-colors">
+            </button>
+            <button onClick={() => openModal('demo')} className="bg-transparent border border-slate-700 hover:border-slate-500 text-slate-300 font-bold px-10 py-5 rounded-xl text-lg transition-colors cursor-pointer">
               Book a Demo
-            </a>
+            </button>
           </div>
           <p className="mt-6 text-slate-500 text-sm font-mono uppercase tracking-widest">
             Free 14-day trial • No credit card required

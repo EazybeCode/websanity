@@ -1,8 +1,11 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
+export type ModalMode = 'trial' | 'demo';
+
 interface TrialModalContextType {
   isOpen: boolean;
-  openModal: () => void;
+  mode: ModalMode;
+  openModal: (mode?: ModalMode) => void;
   closeModal: () => void;
 }
 
@@ -22,12 +25,16 @@ interface TrialModalProviderProps {
 
 export const TrialModalProvider: React.FC<TrialModalProviderProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [mode, setMode] = useState<ModalMode>('trial');
 
-  const openModal = () => setIsOpen(true);
+  const openModal = (modalMode: ModalMode = 'trial') => {
+    setMode(modalMode);
+    setIsOpen(true);
+  };
   const closeModal = () => setIsOpen(false);
 
   return (
-    <TrialModalContext.Provider value={{ isOpen, openModal, closeModal }}>
+    <TrialModalContext.Provider value={{ isOpen, mode, openModal, closeModal }}>
       {children}
     </TrialModalContext.Provider>
   );

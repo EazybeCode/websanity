@@ -95,7 +95,7 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Button
-                onClick={openModal}
+                onClick={() => openModal('trial')}
                 variant="primary"
                 size="lg"
                 icon={<ArrowRight size={18} />}
@@ -103,15 +103,14 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
               >
                 {primaryCtaLabel}
               </Button>
-              <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer">
-                <Button
+              <Button
                   variant="outline"
                   size="lg"
                   className="bg-white/5 text-white backdrop-blur border-slate-700 hover:bg-white/10 hover:border-slate-500 font-semibold"
+                  onClick={() => openModal('demo')}
                 >
                   {secondaryCtaLabel}
                 </Button>
-              </a>
             </motion.div>
 
             {noCreditCard && (

@@ -95,7 +95,7 @@ const Button: React.FC<ButtonProps> = ({ variant = 'primary', children, classNam
 
 // ================== Hero Section ==================
 
-const HeroSection: React.FC<{ data: any; openModal: () => void }> = ({ data, openModal }) => {
+const HeroSection: React.FC<{ data: any; openModal: (mode?: 'trial' | 'demo') => void }> = ({ data, openModal }) => {
   if (!data) return null
 
   return (
@@ -128,26 +128,20 @@ const HeroSection: React.FC<{ data: any; openModal: () => void }> = ({ data, ope
               <Button
                 variant="primary"
                 className="h-14 px-8 text-base bg-brand-blue border-brand-blue hover:bg-brand-blue/90"
-                onClick={openModal}
+                onClick={() => openModal('trial')}
               >
                 {data.primaryCta.label}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             )}
             {data.secondaryCta && (
-              data.secondaryCta.url.startsWith('http') ? (
-                <a href={data.secondaryCta.url} target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="h-14 px-8 text-base">
-                    {data.secondaryCta.label}
-                  </Button>
-                </a>
-              ) : (
-                <Link to={data.secondaryCta.url}>
-                  <Button variant="outline" className="h-14 px-8 text-base">
-                    {data.secondaryCta.label}
-                  </Button>
-                </Link>
-              )
+              <Button
+                variant="outline"
+                className="h-14 px-8 text-base"
+                onClick={() => openModal('demo')}
+              >
+                {data.secondaryCta.label}
+              </Button>
             )}
           </div>
 
