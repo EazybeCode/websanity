@@ -810,19 +810,17 @@ export const ChunkyFooter: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button
-              onClick={openModal}
+              onClick={() => openModal('trial')}
               className="inline-flex items-center justify-center font-bold text-base px-10 py-4 rounded-lg bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] border border-blue-600 hover:bg-blue-700 hover:scale-105 transform transition-all cursor-pointer"
             >
               {t('cta.startFreeTrial')}
             </button>
-            <a
-              href="https://calendly.com/d/cw67-pt3-y2m"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center font-bold text-base px-10 py-4 rounded-lg bg-transparent text-slate-300 border border-slate-700 hover:border-slate-500 hover:text-white transition-all"
+            <button
+              onClick={() => openModal('demo')}
+              className="inline-flex items-center justify-center font-bold text-base px-10 py-4 rounded-lg bg-transparent text-slate-300 border border-slate-700 hover:border-slate-500 hover:text-white transition-all cursor-pointer"
             >
               {t('cta.bookDemo')}
-            </a>
+            </button>
           </div>
 
           <p className="mt-6 text-sm text-slate-500">

@@ -234,7 +234,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                   size="lg"
                   className="w-full justify-center text-base"
                   onClick={() => {
-                    openModal()
+                    openModal('trial')
                     onClose()
                   }}
                 >

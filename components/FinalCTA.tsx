@@ -16,10 +16,8 @@ export const FinalCTA: React.FC = () => {
           Join 2,000+ teams who finally see what's happening in chat.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-          <Button variant="primary" size="lg" className="px-10" onClick={openModal}>Start Free Trial</Button>
-          <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="lg" className="px-10">Book a Demo</Button>
-          </a>
+          <Button variant="primary" size="lg" className="px-10" onClick={() => openModal('trial')}>Start Free Trial</Button>
+          <Button variant="outline" size="lg" className="px-10" onClick={() => openModal('demo')}>Book a Demo</Button>
         </div>
         <p className="text-xs font-mono text-slate-400 uppercase tracking-wide">
           Free 14-day trial. No credit card required.

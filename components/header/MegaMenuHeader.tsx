@@ -337,20 +337,18 @@ export const MegaMenuHeader: React.FC = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-2">
-            <a
-              href="https://calendly.com/d/cw67-pt3-y2m"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-sm text-slate-300 hover:text-white px-4 py-2 transition-colors"
+            <button
+              onClick={() => openModal('demo')}
+              className="font-medium text-sm text-slate-300 hover:text-white px-4 py-2 transition-colors cursor-pointer"
             >
               {t('cta.bookDemo')}
-            </a>
+            </button>
             {navigation.ctaButton && (
               <Button
                 variant="primary"
                 size="md"
                 className="font-semibold px-5 py-2 text-sm"
-                onClick={openModal}
+                onClick={() => openModal('trial')}
               >
                 {t('nav.startFreeTrial')}
               </Button>

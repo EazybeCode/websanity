@@ -28,14 +28,12 @@ export const Hero: React.FC = () => {
              </p>
 
              <div className="flex flex-col sm:flex-row gap-4 items-start mb-12">
-               <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} onClick={openModal}>
+               <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} onClick={() => openModal('trial')}>
                  Start Free Trial
                </Button>
-               <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer">
-                 <Button variant="outline" size="lg">
+               <Button variant="outline" size="lg" onClick={() => openModal('demo')}>
                    Book a Demo
                  </Button>
-               </a>
              </div>
 
              <div className="flex items-center gap-2 text-sm text-slate-500 font-medium">
