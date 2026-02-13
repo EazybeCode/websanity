@@ -672,6 +672,38 @@ export const HomePage: React.FC = () => {
         document.head.appendChild(orgScript)
       }
       orgScript.textContent = JSON.stringify(organizationSchema)
+
+      // WebSite Schema for /br
+      const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://eazybe.com/br/#website",
+        "url": "https://eazybe.com/br",
+        "name": "Eazybe",
+        "description": "Integração CRM com WhatsApp | Eazybe - Plataforma de Vendas. Integração com HubSpot, Zoho, Salesforce, Google Sheets e mais.",
+        "publisher": {
+          "@id": "https://eazybe.com/br/#organization"
+        },
+        "inLanguage": "pt-BR",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://eazybe.com/br/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+
+      // Add website schema to head
+      let websiteScript = document.querySelector('script[type="application/ld+json"][data-schema="website-br"]')
+      if (!websiteScript) {
+        websiteScript = document.createElement('script')
+        websiteScript.type = 'application/ld+json'
+        websiteScript.setAttribute('data-schema', 'website-br')
+        document.head.appendChild(websiteScript)
+      }
+      websiteScript.textContent = JSON.stringify(websiteSchema)
     }
 
     // Cleanup function - remove meta tags and schema when leaving /br homepage
@@ -685,6 +717,9 @@ export const HomePage: React.FC = () => {
       // Remove organization schema
       const orgScript = document.querySelector('script[type="application/ld+json"][data-schema="organization-br"]')
       if (orgScript) orgScript.remove()
+      // Remove website schema
+      const websiteScript = document.querySelector('script[type="application/ld+json"][data-schema="website-br"]')
+      if (websiteScript) websiteScript.remove()
       // Optionally reset title when leaving /br homepage
       // document.title = 'Eazybe'
     }
