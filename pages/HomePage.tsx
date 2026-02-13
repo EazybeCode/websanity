@@ -743,6 +743,52 @@ export const HomePage: React.FC = () => {
         document.head.appendChild(webpageScript)
       }
       webpageScript.textContent = JSON.stringify(webpageSchema)
+
+      // SoftwareApplication Schema for /br
+      const softwareApplicationSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "@id": "https://eazybe.com/br/#softwareapplication",
+        "name": "Eazybe",
+        "operatingSystem": "Web, Chrome Extension",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM, Mensageria, Automação de WhatsApp",
+        "image": ["https://eazybe.com/logo.png"],
+        "description": "Eazybe é uma extensão para Chrome que transforma o WhatsApp Web em uma poderosa ferramenta de CRM. Integra-se ao HubSpot, Zoho, Salesforce e Google Sheets para ajudar equipes de vendas, marketing e suporte no Brasil a gerenciar conversas e dados de clientes com eficiência.",
+        "softwareVersion": "latest",
+        "url": "https://eazybe.com/br",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/br",
+          "priceCurrency": "BRL",
+          "lowPrice": 92,
+          "highPrice": 126,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 53978
+        },
+        "publisher": {
+          "@id": "https://eazybe.com/br/#organization"
+        }
+      }
+
+      // Add software application schema to head
+      let softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="softwareapplication-br"]')
+      if (!softwareAppScript) {
+        softwareAppScript = document.createElement('script')
+        softwareAppScript.type = 'application/ld+json'
+        softwareAppScript.setAttribute('data-schema', 'softwareapplication-br')
+        document.head.appendChild(softwareAppScript)
+      }
+      softwareAppScript.textContent = JSON.stringify(softwareApplicationSchema)
     }
 
     // Cleanup function - remove meta tags and schema when leaving /br homepage
@@ -762,6 +808,9 @@ export const HomePage: React.FC = () => {
       // Remove webpage schema
       const webpageScript = document.querySelector('script[type="application/ld+json"][data-schema="webpage-br"]')
       if (webpageScript) webpageScript.remove()
+      // Remove software application schema
+      const softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="softwareapplication-br"]')
+      if (softwareAppScript) softwareAppScript.remove()
       // Optionally reset title when leaving /br homepage
       // document.title = 'Eazybe'
     }
