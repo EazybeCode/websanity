@@ -125,7 +125,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
   const [formData, setFormData] = useState<TrialFormData>({
     workEmail: '',
     phoneNumber: '',
-    crmProvider: CRMType.HUBSPOT,
+    crmProvider: '' as CRMType,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -398,6 +398,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
                         onChange={(e) => setFormData({ ...formData, crmProvider: e.target.value as CRMType })}
                         className="w-full bg-brand-black/40 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand-blue transition-all font-sans appearance-none cursor-pointer text-xs"
                       >
+                        <option value="" disabled className="bg-brand-surface">Select your CRM</option>
                         {Object.values(CRMType).map((crm) => (
                           <option key={crm} value={crm} className="bg-brand-surface">{crm}</option>
                         ))}
