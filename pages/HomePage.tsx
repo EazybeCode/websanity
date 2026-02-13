@@ -406,6 +406,125 @@ export const HomePage: React.FC = () => {
     }
   }, [location.pathname])
 
+  // Brazilian Portuguese Homepage Meta Tags - ONLY for /br path
+  useEffect(() => {
+    if (location.pathname === '/br') {
+      // Helper function to set/update meta tag
+      const setMetaTag = (nameOrProperty: string, content: string, isProperty = false) => {
+        const attr = isProperty ? 'property' : 'name'
+        let meta = document.querySelector(`meta[${attr}="${nameOrProperty}"]`)
+        if (!meta) {
+          meta = document.createElement('meta')
+          meta.setAttribute(attr, nameOrProperty)
+          document.head.appendChild(meta)
+        }
+        meta.setAttribute('content', content)
+      }
+
+      // Helper function to set document title
+      const setDocumentTitle = (title: string) => {
+        document.title = title
+      }
+
+      // Helper function to set link tag
+      const setLinkTag = (rel: string, href: string) => {
+        let link = document.querySelector(`link[rel="${rel}"]`)
+        if (!link) {
+          link = document.createElement('link')
+          link.setAttribute('rel', rel)
+          document.head.appendChild(link)
+        }
+        link.setAttribute('href', href)
+      }
+
+      // Set document title
+      setDocumentTitle('CRM integrado com WhatsApp para equipes | Eazybe')
+
+      // Basic meta tags
+      setMetaTag('title', 'CRM integrado com WhatsApp para equipes | Eazybe')
+      setMetaTag('description', 'Integre WhatsApp ao CRM (HubSpot, Zoho, Salesforce e Sheets). Sincronize chats, use IA e caixa compartilhada para vender mais.')
+      setMetaTag('keywords', 'crm integrado com whatsapp, crm com whatsapp integrado, crm com integração whatsapp, crm integrado com whatsapp grátis, crm with whatsapp integration, best crm with whatsapp integration, crm gratuito com integração whatsapp')
+      setMetaTag('author', 'Eazybe')
+      setMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
+      setMetaTag('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
+      setMetaTag('bingbot', 'index, follow')
+      setMetaTag('thumbnail', 'https://eazybe.com/logo.png')
+
+      // Article meta tags
+      setMetaTag('article:published_time', '2026-02-03T08:00:00+00:00', true)
+      setMetaTag('article:modified_time', '2026-02-03T10:30:00+00:00', true)
+      setMetaTag('article:section', 'Technology', true)
+      setMetaTag('article:tag', 'crm integrado com whatsapp', true)
+
+      // Open Graph meta tags
+      setMetaTag('og:type', 'website', true)
+      setMetaTag('og:url', 'https://eazybe.com/br', true)
+      setMetaTag('og:title', 'Melhor CRM integrado com WhatsApp? Conheça Eazybe', true)
+      setMetaTag('og:description', 'CRM integrado com WhatsApp: sincronize chats, respostas com IA e inbox compartilhado para HubSpot, Zoho, Salesforce e Sheets.', true)
+      setMetaTag('og:image', 'https://eazybe.com/logo.png', true)
+      setMetaTag('og:image:width', '1200', true)
+      setMetaTag('og:image:height', '630', true)
+      setMetaTag('og:image:alt', 'Eazybe – CRM integrado com WhatsApp para equipes', true)
+      setMetaTag('og:locale', 'PT-BR', true)
+      setMetaTag('og:site_name', 'Eazybe', true)
+
+      // Twitter Card meta tags
+      setMetaTag('twitter:card', 'summary_large_image')
+      setMetaTag('twitter:site', '@eazybe')
+      setMetaTag('twitter:creator', '@eazybe')
+      setMetaTag('twitter:title', 'Integração CRM com WhatsApp simplificada | Eazybe')
+      setMetaTag('twitter:description', 'CRM com integração WhatsApp para HubSpot, Zoho, Salesforce e Sheets. Sincronize conversas, IA e inbox compartilhado.')
+      setMetaTag('twitter:image', 'https://eazybe.com/logo.png')
+      setMetaTag('twitter:image:alt', 'Extensão de integração do Eazybe com o WhatsApp para CRM')
+      setMetaTag('twitter:label1', 'Rating')
+      setMetaTag('twitter:data1', '4.7/5')
+      setMetaTag('twitter:label2', 'Price')
+      setMetaTag('twitter:data2', 'Free')
+
+      // Mobile web app meta tags
+      setMetaTag('mobile-web-app-capable', 'yes')
+      setMetaTag('apple-mobile-web-app-capable', 'yes')
+      setMetaTag('apple-mobile-web-app-status-bar-style', 'default')
+      setMetaTag('apple-mobile-web-app-title', 'Eazybe')
+
+      // Custom SEO meta tags
+      setMetaTag('answer-type', 'tutorial, informações do produto, comparação de recursos')
+      setMetaTag('target-audience', 'equipes de vendas, donos de empresas, gestores de CRM, profissionais B2B, suporte ao cliente, desenvolvimento de negócios')
+      setMetaTag('content-intent', 'informativo, investigação comercial, transacional')
+      setMetaTag('conversational-query', 'como gerenciar leads do whatsapp no crm, melhor integração whatsapp crm, agentes de IA para suporte ao cliente, como acompanhar desempenho de vendas no crm, agentes de vendas com IA, como fazer backup de conversas do whatsapp no crm')
+      setMetaTag('ai-readability', 'conversacional, profissional, focado em solução')
+      setMetaTag('context-window', 'automação de vendas, comunicação com cliente, rastreamento de leads, integração de CRM, mensagens de negócios, acompanhamento de performance de vendas, automação de fluxo de trabalho de CRM, CRM dentro do WhatsApp')
+      setMetaTag('user-problem', 'perda de leads no WhatsApp, esquecimento de follow-ups, fluxo de trabalho de vendas desconectado')
+      setMetaTag('solution-summary', 'sincronização automática do WhatsApp com o CRM')
+      setMetaTag('primary-benefit', 'nunca mais perca um lead ou um acompanhamento')
+      setMetaTag('use-case', 'equipes de vendas gerenciando conversas com clientes entre o WhatsApp e o CRM')
+      setMetaTag('implementation-difficulty', 'fácil, instalação em um clique')
+      setMetaTag('time-to-value', 'imediato, sincronização instantânea')
+
+      // Link tags
+      setLinkTag('preconnect', 'https://fonts.googleapis.com')
+      setLinkTag('dns-prefetch', 'https://fonts.googleapis.com')
+
+      // HTTP equiv meta tags
+      let httpEquiv = document.querySelector('meta[http-equiv="X-UA-Compatible"]')
+      if (!httpEquiv) {
+        httpEquiv = document.createElement('meta')
+        httpEquiv.setAttribute('http-equiv', 'X-UA-Compatible')
+        document.head.appendChild(httpEquiv)
+      }
+      httpEquiv.setAttribute('content', 'IE=edge')
+
+      // Referrer meta tag
+      setMetaTag('referrer', 'origin-when-cross-origin')
+    }
+
+    // Cleanup function - remove meta tags when leaving /br homepage
+    return () => {
+      // Optionally reset title when leaving /br homepage
+      // document.title = 'Eazybe'
+    }
+  }, [location.pathname])
+
   const { data, loading, error } = useLandingPage()
 
   if (loading) {
