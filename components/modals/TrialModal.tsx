@@ -162,7 +162,22 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
         document.body.appendChild(script);
       }
     }
-  }, [isSuccess]);
+  }, [isSuccess, mode]);
+
+  // Redirect to Chrome Web Store after success (trial mode only)
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    if (isSuccess && mode === 'trial') {
+      timeoutId = setTimeout(() => {
+        window.location.href = 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd';
+      }, 2000);
+    }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [isSuccess, mode]);
 
   if (!isOpen) return null;
 
@@ -238,13 +253,6 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
       setIsSubmitting(false);
       setIsSuccess(true);
       setHasSubmitted(true); // Mark as submitted for future modal opens
-
-      // If trial mode, redirect to Chrome Web Store after 2 seconds
-      if (mode === 'trial') {
-        setTimeout(() => {
-          window.location.href = 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd';
-        }, 2000);
-      }
 
     } catch (error) {
       console.error('Form submission error:', error);
