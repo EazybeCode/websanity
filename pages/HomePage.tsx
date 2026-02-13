@@ -789,6 +789,45 @@ export const HomePage: React.FC = () => {
         document.head.appendChild(softwareAppScript)
       }
       softwareAppScript.textContent = JSON.stringify(softwareApplicationSchema)
+
+      // Product Schema for /br
+      const productSchema = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Eazybe - CRM para WhatsApp",
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe é uma extensão de CRM para WhatsApp que transforma o WhatsApp Web em uma ferramenta de vendas. Integração nativa com HubSpot, Zoho, Salesforce e Google Sheets.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Eazybe"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/br/precos",
+          "priceCurrency": "BRL",
+          "lowPrice": 92,
+          "highPrice": 126,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 53766
+        }
+      }
+
+      // Add product schema to head
+      let productScript = document.querySelector('script[type="application/ld+json"][data-schema="product-br"]')
+      if (!productScript) {
+        productScript = document.createElement('script')
+        productScript.type = 'application/ld+json'
+        productScript.setAttribute('data-schema', 'product-br')
+        document.head.appendChild(productScript)
+      }
+      productScript.textContent = JSON.stringify(productSchema)
     }
 
     // Cleanup function - remove meta tags and schema when leaving /br homepage
@@ -811,6 +850,9 @@ export const HomePage: React.FC = () => {
       // Remove software application schema
       const softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="softwareapplication-br"]')
       if (softwareAppScript) softwareAppScript.remove()
+      // Remove product schema
+      const productScript = document.querySelector('script[type="application/ld+json"][data-schema="product-br"]')
+      if (productScript) productScript.remove()
       // Optionally reset title when leaving /br homepage
       // document.title = 'Eazybe'
     }
