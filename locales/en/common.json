@@ -1941,6 +1941,7 @@
     "phoneLabel": "Phone Number",
     "phonePlaceholder": "555 000 0000",
     "crmLabel": "Which CRM do you use?",
+    "crmPlaceholder": "Select your CRM",
     "submitButton": "Install for Free",
     "submitting": "Processing...",
     "disclaimer": "No Credit Card • Instant Activation",

@@ -1941,6 +1941,7 @@
     "phoneLabel": "Telefon Numarası",
     "phonePlaceholder": "555 000 0000",
     "crmLabel": "Hangi CRM'i kullanıyorsunuz?",
+    "crmPlaceholder": "CRM'inizi seçin",
     "submitButton": "Ücretsiz Yükle",
     "submitting": "İşleniyor...",
     "disclaimer": "Kredi Kartı Gerekmez • Anında Aktivasyon",

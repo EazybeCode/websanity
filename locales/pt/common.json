@@ -1957,6 +1957,7 @@
     "phoneLabel": "Número de Telefone",
     "phonePlaceholder": "555 000 0000",
     "crmLabel": "Qual CRM você usa?",
+    "crmPlaceholder": "Selecione seu CRM",
     "submitButton": "Instalar Grátis",
     "submitting": "Processando...",
     "disclaimer": "Sem Cartão de Crédito • Ativação Instantânea",
