@@ -898,6 +898,68 @@ export const HomePage: React.FC = () => {
         document.head.appendChild(howToScript)
       }
       howToScript.textContent = JSON.stringify(howToSchema)
+
+      // ProfessionalService Schema for /br
+      const professionalServiceSchema = {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://eazybe.com/br/#professionalservice",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/br",
+        "image": ["https://eazybe.com/logo.png"],
+        "logo": "https://eazybe.com/logo.png",
+        "telephone": "+13099294280",
+        "priceRange": "A partir de $92/mês",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "R. Q, quadra 60 - lote 29",
+          "addressLocality": "Guapimirim - Rio de janeiro",
+          "addressRegion": "RJ",
+          "postalCode": "25943-380",
+          "addressCountry": "BR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 38.692045,
+          "longitude": -75.401331
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "10:00",
+            "closes": "14:00"
+          }
+        ],
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brazil"
+        },
+        "availableLanguage": ["Portuguese", "English"],
+        "description": "Eazybe é uma plataforma de CRM para WhatsApp que oferece integração com HubSpot, Zoho, Salesforce e outros CRMs populares."
+      }
+
+      // Add professional service schema to head
+      let professionalServiceScript = document.querySelector('script[type="application/ld+json"][data-schema="professionalservice-br"]')
+      if (!professionalServiceScript) {
+        professionalServiceScript = document.createElement('script')
+        professionalServiceScript.type = 'application/ld+json'
+        professionalServiceScript.setAttribute('data-schema', 'professionalservice-br')
+        document.head.appendChild(professionalServiceScript)
+      }
+      professionalServiceScript.textContent = JSON.stringify(professionalServiceSchema)
     }
 
     // Cleanup function - remove meta tags and schema when leaving /br homepage
@@ -926,6 +988,9 @@ export const HomePage: React.FC = () => {
       // Remove how-to schema
       const howToScript = document.querySelector('script[type="application/ld+json"][data-schema="howto-br"]')
       if (howToScript) howToScript.remove()
+      // Remove professional service schema
+      const professionalServiceScript = document.querySelector('script[type="application/ld+json"][data-schema="professionalservice-br"]')
+      if (professionalServiceScript) professionalServiceScript.remove()
       // Optionally reset title when leaving /br homepage
       // document.title = 'Eazybe'
     }
