@@ -32,7 +32,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Salesforce integration', included: false },
       { text: 'Revenue Inbox', included: false },
     ],
-    cta: { label: 'Start Free Trial', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+    cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
   },
   {
     name: 'Scaler',
@@ -54,7 +54,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'CRM workflow integration', included: true },
       { text: 'RevOps Agent', included: false },
     ],
-    cta: { label: 'Start Free Trial', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+    cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
   },
   {
     name: 'Omnis',

@@ -1,6 +1,6 @@
 {
   "nav": {
-    "startFreeTrial": "Iniciar Teste Grátis",
+    "startFreeTrial": "Instalar Grátis",
     "signIn": "Entrar",
     "pricing": "Preços",
     "platform": "Plataforma",
@@ -83,7 +83,7 @@
     }
   },
   "cta": {
-    "startFreeTrial": "Iniciar Teste Grátis",
+    "startFreeTrial": "Instalar Grátis",
     "bookDemo": "Agendar Demo",
     "contactSales": "Falar com Vendas",
     "learnMore": "Saiba Mais",
@@ -477,7 +477,7 @@
         "headline": "Nunca Perca uma",
         "headlineHighlight": "Conversa Novamente",
         "description": "Faça backup automático de todas as suas conversas do WhatsApp na nuvem. Acesse seu histórico de chat de qualquer lugar, a qualquer momento.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -555,7 +555,7 @@
         "headline": "Uma Caixa de Entrada para",
         "headlineHighlight": "Toda Sua Equipe",
         "description": "Colabore em conversas do WhatsApp como uma equipe. Atribua chats, adicione notas e nunca deixe um cliente escapar.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -633,7 +633,7 @@
         "headline": "Seu CRM, Dentro do",
         "headlineHighlight": "WhatsApp",
         "description": "Pare de alternar entre aplicativos. Gerencie contatos, acompanhe negócios e feche vendas diretamente do WhatsApp Web.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -711,7 +711,7 @@
         "headline": "Responda Mais Rápido com",
         "headlineHighlight": "Templates Inteligentes",
         "description": "Economize horas todos os dias com templates de mensagens pré-construídos. Personalize instantaneamente com variáveis dinâmicas.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -789,7 +789,7 @@
         "headline": "Envie Mensagens no",
         "headlineHighlight": "Momento Perfeito",
         "description": "Agende mensagens do WhatsApp para enviar no momento ideal. Nunca mais perca um follow-up.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -867,7 +867,7 @@
         "headline": "Priorize Chats por",
         "headlineHighlight": "Valor do Negócio",
         "description": "Veja quais conversas valem mais. Foque em oportunidades de alto valor e feche negócios maiores.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -945,7 +945,7 @@
         "headline": "Veja o Que Sua Equipe Está",
         "headlineHighlight": "Realmente Fazendo",
         "description": "Tenha visibilidade completa da atividade da sua equipe de vendas no WhatsApp. Treine efetivamente, melhore o desempenho.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -1023,7 +1023,7 @@
         "headline": "IA Que Ajuda Você a",
         "headlineHighlight": "Vender Melhor",
         "description": "Obtenha sugestões, resumos e insights com IA diretamente no WhatsApp. Feche negócios mais rápido com seu assistente de IA.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -1101,7 +1101,7 @@
         "headline": "Integração WhatsApp",
         "headlineHighlight": "de Nível Empresarial",
         "description": "Conecte-se à API oficial do WhatsApp Business. Envie notificações, automatize fluxos de trabalho e escale suas mensagens.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -1179,7 +1179,7 @@
         "headline": "Mantenha Seus Chats Pessoais e",
         "headlineHighlight": "de Trabalho Separados",
         "description": "Use o Eazybe junto com seu WhatsApp pessoal. Recursos de negócios só ativam para contatos de trabalho.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -1257,7 +1257,7 @@
         "headline": "Mensagens Profissionais",
         "headlineHighlight": "Sempre",
         "description": "Crie, gerencie e compartilhe templates de mensagem com sua equipe. Garanta comunicação consistente e profissional.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -1335,7 +1335,7 @@
         "headline": "Alcance Milhares",
         "headlineHighlight": "Pessoalmente",
         "description": "Envie mensagens personalizadas para milhares de contatos de uma vez. Marketing que parece pessoal, em escala.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "benefits": {
@@ -1418,7 +1418,7 @@
         "headline": "Tudo Que Você Precisa para",
         "headlineHighlight": "Vencer no WhatsApp",
         "description": "Um conjunto completo de ferramentas para transformar o WhatsApp no seu canal de vendas mais poderoso.",
-        "primaryCta": "Iniciar Teste Grátis",
+        "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo"
       },
       "intro": {
@@ -1508,7 +1508,7 @@
       "headline": "O Melhor dos Dois",
       "headlineHighlight": "Mundos do WhatsApp",
       "description": "Obtenha poder de nível API enquanto mantém acesso ao seu app WhatsApp. Sem compromissos, sem restrições.",
-      "primaryCta": "Iniciar Teste Grátis",
+      "primaryCta": "Instalar Grátis",
       "secondaryCta": "Agendar Demo"
     },
     "benefits": {
@@ -1747,7 +1747,7 @@
       "headline": "Pronto para Transformar Seu",
       "headlineHighlight": "Fluxo de WhatsApp?",
       "description": "Junte-se a milhares de empresas usando Eazybe para integração com {crmName}.",
-      "primaryCta": "Iniciar Teste Grátis",
+      "primaryCta": "Instalar Grátis",
       "secondaryCta": "Falar com Vendas",
       "footnote": "Teste grátis de 14 dias • Sem cartão de crédito"
     }
@@ -1957,7 +1957,7 @@
     "phoneLabel": "Número de Telefone",
     "phonePlaceholder": "555 000 0000",
     "crmLabel": "Qual CRM você usa?",
-    "submitButton": "Iniciar Teste Gratuito",
+    "submitButton": "Instalar Grátis",
     "submitting": "Processando...",
     "disclaimer": "Sem Cartão de Crédito • Ativação Instantânea",
     "successTitle": "Sucesso!",

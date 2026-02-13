@@ -1,6 +1,6 @@
 {
   "nav": {
-    "startFreeTrial": "Start Free Trial",
+    "startFreeTrial": "Install for Free",
     "signIn": "Sign In",
     "pricing": "Pricing",
     "platform": "Platform",
@@ -83,7 +83,7 @@
     }
   },
   "cta": {
-    "startFreeTrial": "Start Free Trial",
+    "startFreeTrial": "Install for Free",
     "bookDemo": "Book a Demo",
     "contactSales": "Contact Sales",
     "learnMore": "Learn More",
@@ -191,7 +191,7 @@
           "salesforce": "Salesforce integration",
           "revenueInbox": "Revenue Inbox"
         },
-        "cta": "Start Free Trial"
+        "cta": "Install for Free"
       },
       "scaler": {
         "name": "Scaler",
@@ -207,7 +207,7 @@
           "crmWorkflow": "CRM workflow integration",
           "revOpsAgent": "RevOps Agent"
         },
-        "cta": "Start Free Trial"
+        "cta": "Install for Free"
       },
       "omnis": {
         "name": "Omnis",
@@ -462,7 +462,7 @@
         "headline": "Never Lose a",
         "headlineHighlight": "Conversation Again",
         "description": "Automatically backup all your WhatsApp conversations to the cloud. Access your chat history from anywhere, anytime.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -540,7 +540,7 @@
         "headline": "One Inbox for Your",
         "headlineHighlight": "Entire Team",
         "description": "Collaborate on WhatsApp conversations as a team. Assign chats, add notes, and never let a customer slip through the cracks.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -618,7 +618,7 @@
         "headline": "Your CRM, Inside",
         "headlineHighlight": "WhatsApp",
         "description": "Stop switching between apps. Manage contacts, track deals, and close sales directly from WhatsApp Web.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -696,7 +696,7 @@
         "headline": "Respond Faster with",
         "headlineHighlight": "Smart Templates",
         "description": "Save hours every day with pre-built message templates. Personalize instantly with dynamic variables.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -774,7 +774,7 @@
         "headline": "Send Messages at the",
         "headlineHighlight": "Perfect Time",
         "description": "Schedule WhatsApp messages to send at the optimal time. Never miss a follow-up again.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -852,7 +852,7 @@
         "headline": "Prioritize Chats by",
         "headlineHighlight": "Deal Value",
         "description": "See which conversations are worth the most. Focus on high-value opportunities and close bigger deals.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -930,7 +930,7 @@
         "headline": "See What Your Team is",
         "headlineHighlight": "Really Doing",
         "description": "Get complete visibility into your sales team's WhatsApp activity. Coach effectively, improve performance.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -1008,7 +1008,7 @@
         "headline": "AI That Helps You",
         "headlineHighlight": "Sell Smarter",
         "description": "Get AI-powered suggestions, summaries, and insights right inside WhatsApp. Close deals faster with your AI assistant.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -1086,7 +1086,7 @@
         "headline": "Enterprise-Grade",
         "headlineHighlight": "WhatsApp Integration",
         "description": "Connect to the official WhatsApp Business API. Send notifications, automate workflows, and scale your messaging.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -1164,7 +1164,7 @@
         "headline": "Keep Your Personal and",
         "headlineHighlight": "Business Chats Separate",
         "description": "Use Eazybe alongside your personal WhatsApp. Business features only activate for business contacts.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -1242,7 +1242,7 @@
         "headline": "Professional Messages",
         "headlineHighlight": "Every Time",
         "description": "Create, manage, and share message templates across your team. Ensure consistent, professional communication.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -1320,7 +1320,7 @@
         "headline": "Reach Thousands",
         "headlineHighlight": "Personally",
         "description": "Send personalized messages to thousands of contacts at once. Marketing that feels personal, at scale.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "benefits": {
@@ -1403,7 +1403,7 @@
         "headline": "Everything You Need to",
         "headlineHighlight": "Win on WhatsApp",
         "description": "A complete suite of tools to turn WhatsApp into your most powerful sales channel.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo"
       },
       "intro": {
@@ -1493,7 +1493,7 @@
       "headline": "The Best of Both",
       "headlineHighlight": "WhatsApp Worlds",
       "description": "Get API-level power while keeping your WhatsApp app access. No compromises, no restrictions.",
-      "primaryCta": "Start Free Trial",
+      "primaryCta": "Install for Free",
       "secondaryCta": "Book a Demo"
     },
     "benefits": {
@@ -1636,7 +1636,7 @@
       "badge": "Free Trial",
       "headline": "Transform Your WhatsApp Sales",
       "description": "Join 1,000+ businesses using Eazybe to manage conversations.",
-      "buttonText": "Start Free Trial",
+      "buttonText": "Install for Free",
       "footnote": "No credit card required"
     },
     "newsletter": {
@@ -1731,7 +1731,7 @@
       "headline": "Ready to Transform Your",
       "headlineHighlight": "WhatsApp Workflow?",
       "description": "Join thousands of businesses using Eazybe for {crmName} integration.",
-      "primaryCta": "Start Free Trial",
+      "primaryCta": "Install for Free",
       "secondaryCta": "Talk to Sales",
       "footnote": "14-day free trial • No credit card required"
     }
@@ -1941,7 +1941,7 @@
     "phoneLabel": "Phone Number",
     "phonePlaceholder": "555 000 0000",
     "crmLabel": "Which CRM do you use?",
-    "submitButton": "Start Free Trial",
+    "submitButton": "Install for Free",
     "submitting": "Processing...",
     "disclaimer": "No Credit Card • Instant Activation",
     "successTitle": "Success!",

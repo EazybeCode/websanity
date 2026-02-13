@@ -16,7 +16,7 @@ export const FinalCTA: React.FC = () => {
           Join 2,000+ teams who finally see what's happening in chat.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-          <Button variant="primary" size="lg" className="px-10" onClick={() => openModal('trial')}>Start Free Trial</Button>
+          <Button variant="primary" size="lg" className="px-10" onClick={() => openModal('trial')}>Install for Free</Button>
           <Button variant="outline" size="lg" className="px-10" onClick={() => openModal('demo')}>Book a Demo</Button>
         </div>
         <p className="text-xs font-mono text-slate-400 uppercase tracking-wide">
