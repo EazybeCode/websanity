@@ -50,7 +50,7 @@ const TeamInboxPage: React.FC = () => {
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
             <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-blue-500/25 flex items-center gap-2 group transition-all">
-              Start Free Trial <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              Install for Free <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button className="bg-transparent border border-slate-700 hover:border-slate-500 text-slate-300 font-bold px-8 py-4 rounded-xl transition-colors">
               See Team Inbox
@@ -290,7 +290,7 @@ const TeamInboxPage: React.FC = () => {
           </p>
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
             <button onClick={() => openModal('trial')} className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-5 rounded-xl shadow-lg shadow-blue-500/25 text-lg transition-all cursor-pointer">
-              Start Free Trial
+              Install for Free
             </button>
             <button onClick={() => openModal('demo')} className="bg-transparent border border-slate-700 hover:border-slate-500 text-slate-300 font-bold px-10 py-5 rounded-xl text-lg transition-colors cursor-pointer">
               Book a Demo

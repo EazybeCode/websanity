@@ -340,11 +340,8 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
               <h2 className="text-xl font-semibold text-white mb-3">
                 {t('leadForm.introTitle')}
               </h2>
-              <p className="text-slate-300 mb-2">
+              <p className="text-slate-300 mb-4">
                 {t('leadForm.introDescription')}
-              </p>
-              <p className="text-slate-400 text-sm">
-                {t('leadForm.introSubtext')}
               </p>
             </div>
             <Button

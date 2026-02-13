@@ -10,6 +10,7 @@ import type { PricingPlan, FAQItem } from '../components/pricing'
 import { usePricing } from '../hooks/usePricing'
 import { useDynamicPricing } from '../hooks/useDynamicPricing'
 import { useLanguage } from '../hooks/useLanguage'
+import { useTrialModal } from '../contexts/TrialModalContext'
 
 // Default/Fallback Data
 const defaultPricingPlans: PricingPlan[] = [
@@ -32,7 +33,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Salesforce integration', included: false },
       { text: 'Revenue Inbox', included: false },
     ],
-    cta: { label: 'Start Free Trial', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+    cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
   },
   {
     name: 'Scaler',
@@ -54,7 +55,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'CRM workflow integration', included: true },
       { text: 'RevOps Agent', included: false },
     ],
-    cta: { label: 'Start Free Trial', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+    cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
   },
   {
     name: 'Omnis',
@@ -167,6 +168,7 @@ export const PricingPage: React.FC = () => {
   const [isAnnual, setIsAnnual] = useState(true)
   const { data: pricingData, loading } = usePricing(currentLanguage)
   const { userCurrency, getDynamicPrice, loading: dynamicPricingLoading } = useDynamicPricing()
+  const { openModal } = useTrialModal()
 
   // Use Sanity data if available, otherwise use translated defaults
   const hero = pricingData?.hero || {
@@ -467,37 +469,6 @@ export const PricingPage: React.FC = () => {
           </div>
 
           <PricingFAQ faqs={faqItems} />
-        </div>
-      </section>
-
-      {/* Bottom CTA Section */}
-      <section className="py-24 bg-brand-surface border-t border-slate-800 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[300px] bg-brand-blue/10 rounded-full blur-[100px] -z-10"></div>
-        <div className="absolute top-0 right-0 w-[400px] h-[300px] bg-brand-cyan/10 rounded-full blur-[100px] -z-10"></div>
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl lg:text-5xl font-sans font-extrabold text-white mb-6 leading-tight">
-            {ctaSection.headline}{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-cyan">
-              {ctaSection.headlineHighlight}
-            </span>
-          </h2>
-          <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
-            {ctaSection.subheadline}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} className="shadow-glow-blue">
-              {ctaSection.primaryCta.label}
-            </Button>
-            <Button variant="outline" size="lg">
-              {ctaSection.secondaryCta.label}
-            </Button>
-          </div>
-          <p className="mt-6 text-sm text-slate-500">
-            {ctaSection.footnote}
-          </p>
         </div>
       </section>
 

@@ -152,7 +152,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         </ul>
 
         {/* CTA */}
-        {plan.cta.label === 'Start Free Trial' ? (
+        {plan.cta.label === 'Install for Free' ? (
           <Button
             variant={isPopular ? 'primary' : 'outline'}
             size="lg"

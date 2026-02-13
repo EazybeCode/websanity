@@ -29,7 +29,7 @@ export const Hero: React.FC = () => {
 
              <div className="flex flex-col sm:flex-row gap-4 items-start mb-12">
                <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} onClick={() => openModal('trial')}>
-                 Start Free Trial
+                 Install for Free
                </Button>
                <Button variant="outline" size="lg" onClick={() => openModal('demo')}>
                    Book a Demo

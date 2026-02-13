@@ -1,6 +1,6 @@
 {
   "nav": {
-    "startFreeTrial": "Ücretsiz Denemeyi Başlat",
+    "startFreeTrial": "Ücretsiz Yükle",
     "signIn": "Giriş Yap",
     "pricing": "Fiyatlandırma",
     "platform": "Platform",
@@ -83,7 +83,7 @@
     }
   },
   "cta": {
-    "startFreeTrial": "Ücretsiz Denemeyi Başlat",
+    "startFreeTrial": "Ücretsiz Yükle",
     "bookDemo": "Demo Rezervasyonu Yap",
     "contactSales": "Satış ile İletişime Geç",
     "learnMore": "Daha Fazla Bilgi",
@@ -462,7 +462,7 @@
         "headline": "Bir Daha Asla",
         "headlineHighlight": "Konuşma Kaybetmeyin",
         "description": "Tüm WhatsApp konuşmalarınızı otomatik olarak buluta yedekleyin. Sohbet geçmişinize her yerden, her zaman erişin.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -540,7 +540,7 @@
         "headline": "Tüm Ekibiniz İçin",
         "headlineHighlight": "Tek Gelen Kutusu",
         "description": "Ekip olarak WhatsApp konuşmalarında işbirliği yapın. Sohbetleri atayın, notlar ekleyin ve asla bir müşteriyi kaçırmayın.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -618,7 +618,7 @@
         "headline": "CRM'iniz,",
         "headlineHighlight": "WhatsApp İçinde",
         "description": "Uygulamalar arasında geçiş yapmayı bırakın. Kişileri yönetin, anlaşmaları takip edin ve satışları doğrudan WhatsApp Web'den kapatın.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -696,7 +696,7 @@
         "headline": "Akıllı Şablonlarla",
         "headlineHighlight": "Daha Hızlı Yanıtlayın",
         "description": "Önceden oluşturulmuş mesaj şablonları ile her gün saatler kazanın. Dinamik değişkenlerle anında kişiselleştirin.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -774,7 +774,7 @@
         "headline": "Mesajları",
         "headlineHighlight": "Mükemmel Zamanda Gönderin",
         "description": "WhatsApp mesajlarını en uygun zamanda gönderilmek üzere zamanlayın. Bir daha asla takip kaçırmayın.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -852,7 +852,7 @@
         "headline": "Sohbetleri",
         "headlineHighlight": "Anlaşma Değerine Göre Önceliklendirin",
         "description": "Hangi konuşmaların daha değerli olduğunu görün. Yüksek değerli fırsatlara odaklanın ve daha büyük anlaşmalar kapatın.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -930,7 +930,7 @@
         "headline": "Ekibinizin",
         "headlineHighlight": "Gerçekten Ne Yaptığını Görün",
         "description": "Satış ekibinizin WhatsApp aktivitesinin tam görünürlüğünü elde edin. Etkili bir şekilde koçluk yapın, performansı artırın.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -1008,7 +1008,7 @@
         "headline": "Daha İyi Satmanıza",
         "headlineHighlight": "Yardımcı Olan YZ",
         "description": "Doğrudan WhatsApp'ta YZ destekli öneriler, özetler ve içgörüler alın. YZ asistanınızla anlaşmaları daha hızlı kapatın.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -1086,7 +1086,7 @@
         "headline": "Kurumsal Düzey",
         "headlineHighlight": "WhatsApp Entegrasyonu",
         "description": "Resmi WhatsApp Business API'sine bağlanın. Bildirimler gönderin, iş akışlarını otomatikleştirin ve mesajlaşmanızı ölçeklendirin.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -1164,7 +1164,7 @@
         "headline": "Kişisel ve İş",
         "headlineHighlight": "Sohbetlerinizi Ayrı Tutun",
         "description": "Eazybe'yi kişisel WhatsApp'ınızla birlikte kullanın. İş özellikleri yalnızca iş kişileri için etkinleşir.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -1242,7 +1242,7 @@
         "headline": "Her Zaman",
         "headlineHighlight": "Profesyonel Mesajlar",
         "description": "Ekibinizle mesaj şablonları oluşturun, yönetin ve paylaşın. Tutarlı, profesyonel iletişim sağlayın.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -1320,7 +1320,7 @@
         "headline": "Binlere Kişisel Olarak",
         "headlineHighlight": "Ulaşın",
         "description": "Binlerce kişiye aynı anda kişiselleştirilmiş mesajlar gönderin. Kişisel hissettiren, ölçekte pazarlama.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "benefits": {
@@ -1403,7 +1403,7 @@
         "headline": "WhatsApp'ta Kazanmak İçin",
         "headlineHighlight": "İhtiyacınız Olan Her Şey",
         "description": "WhatsApp'ı en güçlü satış kanalınıza dönüştürmek için eksiksiz bir araç seti.",
-        "primaryCta": "Ücretsiz Denemeyi Başlat",
+        "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
       "intro": {
@@ -1493,7 +1493,7 @@
       "headline": "Her İki WhatsApp",
       "headlineHighlight": "Dünyasının En İyisi",
       "description": "WhatsApp uygulamanıza erişimi korurken API düzeyinde güç elde edin. Taviz yok, kısıtlama yok.",
-      "primaryCta": "Ücretsiz Denemeyi Başlat",
+      "primaryCta": "Ücretsiz Yükle",
       "secondaryCta": "Demo Rezervasyonu Yap"
     },
     "benefits": {
@@ -1731,7 +1731,7 @@
       "headline": "WhatsApp'ınızı Dönüştürmeye",
       "headlineHighlight": "Hazır mısınız?",
       "description": "{crmName} entegrasyonu için Eazybe kullanan binlerce işletmeye katılın.",
-      "primaryCta": "Ücretsiz Denemeyi Başlat",
+      "primaryCta": "Ücretsiz Yükle",
       "secondaryCta": "Satış ile Konuş",
       "footnote": "14 günlük ücretsiz deneme • Kredi kartı gerekmez"
     }
@@ -1899,8 +1899,8 @@
     "changes": "Tamamen kendi takdirimize bağlı olarak, bu Şartları herhangi bir zamanda değiştirme veya değiştirme hakkını saklı tutuyoruz. Bir revizyon önemliyse, yeni şartlar yürürlüğe girmeden en az 15 gün önce bildirimde bulunmaya çalışacağız. Önemli bir değişikliğin ne olduğu tamamen bizim takdirimize bağlı olarak belirlenecektir. Bu revizyonlar yürürlüğe girdikten sonra Hizmetimize erişmeye veya kullanmaya devam ederek, revize edilmiş şartlara bağlı olmayı kabul edersiniz. Yeni şartları kabul etmiyorsanız, lütfen Hizmeti kullanmayı bırakın."
   },
   "leadForm": {
-    "introTitle": "WhatsApp Satış Sistemleri Araç Kiti",
-    "introDescription": "Tüm ekip sohbetlerini görme ve temsilciler ayrıldığında müşterilerinizi koruma sistemini edinin.",
+    "introTitle": "7/24 Satış Genişleme Oyun Kitabını Alın",
+    "introDescription": "WhatsApp satışlarını otomatikleştirmek ve ayda 10 kat büyümek için tam sisteme sahip olun.",
     "introSubtext": "10+ kişilik yüksek performanslı satış ekipleri için tasarlandı.",
     "downloadButton": "Ücretsiz İndir →",
     "emailLabel": "İş E-postası",
@@ -1941,7 +1941,8 @@
     "phoneLabel": "Telefon Numarası",
     "phonePlaceholder": "555 000 0000",
     "crmLabel": "Hangi CRM'i kullanıyorsunuz?",
-    "submitButton": "Ücretsiz Denemeyi Başlat",
+    "crmPlaceholder": "CRM'inizi seçin",
+    "submitButton": "Ücretsiz Yükle",
     "submitting": "İşleniyor...",
     "disclaimer": "Kredi Kartı Gerekmez • Anında Aktivasyon",
     "successTitle": "Başarılı!",
