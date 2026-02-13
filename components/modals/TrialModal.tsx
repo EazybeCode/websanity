@@ -150,14 +150,25 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
   useEffect(() => {
     const detectCountry = async () => {
       try {
-        const response = await fetch('https://ipapi.co/json/');
+        // Use api.country.is which supports CORS
+        const response = await fetch('https://api.country.is/');
         const data = await response.json();
-        if (data.country_code && COUNTRY_TO_PHONE[data.country_code]) {
-          setSelectedCountry(COUNTRY_TO_PHONE[data.country_code]);
+        if (data.country && COUNTRY_TO_PHONE[data.country]) {
+          setSelectedCountry(COUNTRY_TO_PHONE[data.country]);
         }
       } catch (error) {
-        // Silently fail, keep default country code
-        console.log('Could not detect country, using default');
+        // Fallback: try to detect from browser locale (e.g., "en-IN" -> "IN")
+        try {
+          const locale = navigator.language || (navigator as any).userLanguage;
+          if (locale && locale.includes('-')) {
+            const countryCode = locale.split('-')[1]?.toUpperCase();
+            if (countryCode && COUNTRY_TO_PHONE[countryCode]) {
+              setSelectedCountry(COUNTRY_TO_PHONE[countryCode]);
+            }
+          }
+        } catch {
+          // Keep default country code
+        }
       }
     };
     detectCountry();
