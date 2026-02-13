@@ -1899,8 +1899,8 @@
     "changes": "We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 15 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service."
   },
   "leadForm": {
-    "introTitle": "The WhatsApp Sales Systems Toolkit",
-    "introDescription": "Get the exact system to see every team chat and keep your clients when reps leave.",
+    "introTitle": "Get the 24/7 Sales Expansion Playbook",
+    "introDescription": "Have the exact system to automate WhatsApp sales and grow 10x per month.",
     "introSubtext": "Built for high-performance sales teams of 10+ people.",
     "downloadButton": "Download for free →",
     "emailLabel": "Work Email",
@@ -1927,10 +1927,8 @@
     "thankYouSubtext": "Check your inbox for our message."
   },
   "trialModal": {
-    "heading": "The WhatsApp Sales",
-    "headingHighlight": "Systems Toolkit",
-    "subheading": "Get the exact system to see every team chat and keep your clients when reps leave.",
-    "tagline": "Built for high-performance sales teams of 10+ people.",
+    "heading": "Let's Get You",
+    "headingHighlight": "Started",
     "feature1": "Sync Intelligence",
     "feature2": "Intent Detection",
     "feature3": "Agentic Flows",
