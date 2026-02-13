@@ -828,6 +828,76 @@ export const HomePage: React.FC = () => {
         document.head.appendChild(productScript)
       }
       productScript.textContent = JSON.stringify(productSchema)
+
+      // HowTo Schema for /br
+      const howToSchema = {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Como configurar o Eazybe para sincronizar o WhatsApp com seu CRM",
+        "description": "Siga este guia passo a passo para instalar a extensão Eazybe e conectar suas conversas do WhatsApp ao HubSpot, Zoho ou Salesforce em minutos.",
+        "totalTime": "PT5M",
+        "estimatedCost": {
+          "@type": "MonetaryAmount",
+          "currency": "BRL",
+          "value": "0"
+        },
+        "supply": [
+          {
+            "@type": "HowToSupply",
+            "name": "Conta ativa em um CRM (HubSpot, Zoho ou Salesforce)"
+          }
+        ],
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Navegador Google Chrome"
+          },
+          {
+            "@type": "HowToTool",
+            "name": "Extensão Eazybe"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/br#step1",
+            "name": "Instale a Extensão",
+            "text": "Acesse a Chrome Web Store e instale a extensão oficial do Eazybe em seu navegador.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/br#step2",
+            "name": "Conecte seu WhatsApp",
+            "text": "Abra o WhatsApp Web em seu computador. O painel do Eazybe aparecerá automaticamente no lado direito.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/br#step3",
+            "name": "Vincule seu CRM",
+            "text": "Clique no ícone de configurações no painel do Eazybe e escolha seu CRM (ex: HubSpot). Siga as instruções de login para autorizar a conexão.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/br#step4",
+            "name": "Inicie a Sincronização",
+            "text": "Selecione um contato ou conversa e ative a sincronização automática. Agora, todas as mensagens e dados serão salvos diretamente no seu CRM.",
+            "image": "https://eazybe.com/logo.png"
+          }
+        ]
+      }
+
+      // Add how-to schema to head
+      let howToScript = document.querySelector('script[type="application/ld+json"][data-schema="howto-br"]')
+      if (!howToScript) {
+        howToScript = document.createElement('script')
+        howToScript.type = 'application/ld+json'
+        howToScript.setAttribute('data-schema', 'howto-br')
+        document.head.appendChild(howToScript)
+      }
+      howToScript.textContent = JSON.stringify(howToSchema)
     }
 
     // Cleanup function - remove meta tags and schema when leaving /br homepage
@@ -853,6 +923,9 @@ export const HomePage: React.FC = () => {
       // Remove product schema
       const productScript = document.querySelector('script[type="application/ld+json"][data-schema="product-br"]')
       if (productScript) productScript.remove()
+      // Remove how-to schema
+      const howToScript = document.querySelector('script[type="application/ld+json"][data-schema="howto-br"]')
+      if (howToScript) howToScript.remove()
       // Optionally reset title when leaving /br homepage
       // document.title = 'Eazybe'
     }
