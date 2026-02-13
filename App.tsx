@@ -28,6 +28,7 @@ const IntegrateZohoCrmPage = lazy(() => import('./pages/IntegrateZohoCrmPage'))
 const IntegrateSalesforceCrmPage = lazy(() => import('./pages/IntegrateSalesforceCrmPage'))
 const IntegrateBitrixCrmPage = lazy(() => import('./pages/IntegrateBitrixCrmPage'))
 const FbPage = lazy(() => import('./pages/FbPage'))
+const PartnerPage = lazy(() => import('./pages/PartnerPage').then(m => ({ default: m.PartnerPage })))
 
 // Loading fallback for lazy-loaded pages
 const PageLoader = () => (
@@ -101,6 +102,7 @@ const AppRoutes = () => (
       <Route path="/integrate-salesforce-crm" element={<IntegrateSalesforceCrmPage />} />
       <Route path="/integrate-bitrix-crm" element={<IntegrateBitrixCrmPage />} />
       <Route path="/fb" element={<FbPage />} />
+      <Route path="/become-our-partner" element={<PartnerPage />} />
 
       {/* Portuguese/Brazil routes (/br) */}
       <Route path="/br" element={<HomePage />} />
@@ -123,6 +125,7 @@ const AppRoutes = () => (
       <Route path="/br/msa" element={<MSAPage />} />
       <Route path="/br/privacy" element={<PrivacyPage />} />
       <Route path="/br/terms" element={<TermsPage />} />
+      <Route path="/br/become-our-partner" element={<PartnerPage />} />
 
       {/* Spanish routes (/es) */}
       <Route path="/es" element={<HomePage />} />
@@ -143,6 +146,7 @@ const AppRoutes = () => (
       <Route path="/es/msa" element={<MSAPage />} />
       <Route path="/es/privacy" element={<PrivacyPage />} />
       <Route path="/es/terms" element={<TermsPage />} />
+      <Route path="/es/become-our-partner" element={<PartnerPage />} />
 
       {/* Turkish routes (/tr) */}
       <Route path="/tr" element={<HomePage />} />
@@ -163,6 +167,7 @@ const AppRoutes = () => (
       <Route path="/tr/msa" element={<MSAPage />} />
       <Route path="/tr/privacy" element={<PrivacyPage />} />
       <Route path="/tr/terms" element={<TermsPage />} />
+      <Route path="/tr/become-our-partner" element={<PartnerPage />} />
 
       {/* 301 SEO Redirects - Programmatically loaded from redirectRoutes.tsx */}
       {redirectMappings.map((redirect, index) => (
