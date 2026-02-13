@@ -620,6 +620,58 @@ export const HomePage: React.FC = () => {
         document.head.appendChild(breadcrumbScript)
       }
       breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema)
+
+      // Organization Schema for /br
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://eazybe.com/br/#organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/br",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 600,
+          "height": 60
+        },
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe é uma plataforma de integração de CRM para WhatsApp que ajuda equipes de vendas a sincronizar conversas, agendar mensagens e aumentar o engajamento de clientes diretamente no WhatsApp Web.",
+        "foundingDate": "2021",
+        "sameAs": [
+          "https://twitter.com/eazybe",
+          "https://linkedin.com/company/eazybe",
+          "https://youtube.com/@eazybe"
+        ],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "support@eazybe.com",
+            "url": "https://eazybe.com/br",
+            "areaServed": "Brazil",
+            "availableLanguage": ["Portuguese"]
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "knowsAbout": ["WhatsApp CRM", "Sales Automation", "CRM Integration", "CRM AI Agents", "Customer Engagement"]
+      }
+
+      // Add organization schema to head
+      let orgScript = document.querySelector('script[type="application/ld+json"][data-schema="organization-br"]')
+      if (!orgScript) {
+        orgScript = document.createElement('script')
+        orgScript.type = 'application/ld+json'
+        orgScript.setAttribute('data-schema', 'organization-br')
+        document.head.appendChild(orgScript)
+      }
+      orgScript.textContent = JSON.stringify(organizationSchema)
     }
 
     // Cleanup function - remove meta tags and schema when leaving /br homepage
@@ -630,6 +682,9 @@ export const HomePage: React.FC = () => {
       // Remove breadcrumb schema
       const breadcrumbScript = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-br"]')
       if (breadcrumbScript) breadcrumbScript.remove()
+      // Remove organization schema
+      const orgScript = document.querySelector('script[type="application/ld+json"][data-schema="organization-br"]')
+      if (orgScript) orgScript.remove()
       // Optionally reset title when leaving /br homepage
       // document.title = 'Eazybe'
     }
