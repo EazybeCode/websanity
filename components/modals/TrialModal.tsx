@@ -19,6 +19,20 @@ interface TrialModalProps {
   onClose: () => void;
 }
 
+// Map ISO country codes to phone codes
+const COUNTRY_TO_PHONE: Record<string, string> = {
+  US: '+1', CA: '+1', MX: '+52',
+  GB: '+44', DE: '+49', FR: '+33', ES: '+34', IT: '+39', NL: '+31', BE: '+32', CH: '+41', AT: '+43',
+  DK: '+45', SE: '+46', NO: '+47', PL: '+48', PT: '+351', IE: '+353', IS: '+354', FI: '+358',
+  GR: '+30', CZ: '+420', HU: '+36', RO: '+40', UA: '+380', RU: '+7', TR: '+90',
+  BR: '+55', AR: '+54', CL: '+56', CO: '+57', PE: '+51', VE: '+58', EC: '+593',
+  IN: '+91', CN: '+86', JP: '+81', KR: '+82', HK: '+852', TW: '+886', SG: '+65', MY: '+60',
+  ID: '+62', PH: '+63', TH: '+66', VN: '+84', BD: '+880', PK: '+92', LK: '+94', NP: '+977',
+  AE: '+971', SA: '+966', QA: '+974', BH: '+973', OM: '+968', KW: '+965', IL: '+972', JO: '+962', LB: '+961', IR: '+98', IQ: '+964',
+  AU: '+61', NZ: '+64',
+  ZA: '+27', NG: '+234', KE: '+254', EG: '+20', MA: '+212', DZ: '+213', TN: '+216', GH: '+233', UG: '+256', TZ: '+255', ET: '+251',
+};
+
 const COUNTRY_CODES = [
   // North America
   { code: '+1', label: 'US/CA', icon: '🇺🇸' },
@@ -131,6 +145,23 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
   const [isSuccess, setIsSuccess] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false); // Track if form was submitted in this session
   const [emailError, setEmailError] = useState('');
+
+  // Auto-detect user's country on mount
+  useEffect(() => {
+    const detectCountry = async () => {
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        if (data.country_code && COUNTRY_TO_PHONE[data.country_code]) {
+          setSelectedCountry(COUNTRY_TO_PHONE[data.country_code]);
+        }
+      } catch (error) {
+        // Silently fail, keep default country code
+        console.log('Could not detect country, using default');
+      }
+    };
+    detectCountry();
+  }, []);
 
   // When modal opens, if user already submitted before, skip to success state
   useEffect(() => {
