@@ -6,6 +6,7 @@ import { TrialModalProvider } from './contexts/TrialModalContext'
 import { TrialModalWrapper } from './components/modals/TrialModalWrapper'
 import { LeadSidebar } from './components/LeadSidebar'
 import { LeadMobileButton } from './components/LeadMobileButton'
+import { redirectMappings } from './src/routes/redirectRoutes'
 
 // Lazy load all page components for code splitting
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })))
@@ -163,8 +164,15 @@ const AppRoutes = () => (
       <Route path="/tr/privacy" element={<PrivacyPage />} />
       <Route path="/tr/terms" element={<TermsPage />} />
 
-      {/* 301 SEO Redirects - See src/routes/redirect-routes.txt */}
-      {/* To enable all 986 redirects, copy contents of src/routes/redirect-routes.txt and paste here */}
+      {/* 301 SEO Redirects - Programmatically loaded from redirectRoutes.tsx */}
+      {redirectMappings.map((redirect, index) => (
+        <React.Fragment key={`redirect-${index}`}>
+          <Route
+            path={redirect.from}
+            element={<Navigate to={redirect.to} replace />}
+          />
+        </React.Fragment>
+      ))}
     </Routes>
   </Suspense>
 )

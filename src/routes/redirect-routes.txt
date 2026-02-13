@@ -234,229 +234,30 @@
       <Route path="/post/chatgpt-4-0-on-whatsapp-latest-update-with-eazybe-chrome-extension" element={<Navigate to="/blog" replace />} />
       <Route path="/post/%20chatgpt-4-0-on-whatsapp-latest-update-with-eazybe-chrome-extension" element={<Navigate to="/blog" replace />} />
       <Route path="/post/manage-your-hubspot-crm-on-whatsapp-with-eazybe-experience-real-time-changes-much-more" element={<Navigate to="/" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?12f4b55b_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?77c48d22_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?12f4b55b_page=2&daf7a484_page=4" element={<Navigate to="/blog" replace />} />
       <Route path="/post/read-deleted-messages-on-whatsapp-easiest-methods" element={<Navigate to="/blog/how-to-read-deleted-messages-on-whatsapp" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?77c48d22_page=2&daf7a484_page=7" element={<Navigate to="/blog" replace />} />
       <Route path="/comparison/comparison-between-eazybe-and-prime-sender" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/hubspot-crm-form" element={<Navigate to="/hubspot-whatsapp-integration" replace />} />
       <Route path="/integrate-zoho-copy" element={<Navigate to="/zoho-whatsapp-integration" replace />} />
       <Route path="/enquiry-thanks" element={<Navigate to="/" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5" element={<Navigate to="/comparison" replace />} />
       <Route path="/hubspot-crm-form-es" element={<Navigate to="/es/hubspot-whatsapp-integration" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=8" element={<Navigate to="/comparison" replace />} />
       <Route path="/blog/es/negocio-de-whatsapp/mensaje-de-difusion-de-whatsapp-todo-lo-que-necesita-saber" element={<Navigate to="/es/blog" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=1&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?12f4b55b_page=1&77c48d22_page=2&daf7a484_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?5190b58a_page=1" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?5190b58a_page=3&77c48d22_page=2&daf7a484_page=7" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?5190b58a_page=2&77c48d22_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/blog?77c48d22_page=2&daf7a484_page=2" element={<Navigate to="/blog" replace />} />
       <Route path="/go-offline-on-whatsapp-without-turning-off-the-internet-whatsapp-proxy-setting" element={<Navigate to="/blog/how-to-appear-offline-on-whatsapp" replace />} />
-      <Route path="/blog?12f4b55b_page=1&5190b58a_page=2&77c48d22_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/blog?daf7a484_page=3" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=6" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/%20go-offline-without-turning-off-internet-how-to-turn-off-whatsapp" element={<Navigate to="/blog/how-to-appear-offline-on-whatsapp" replace />} />
       <Route path="/post/go-offline-on-whatsapp-without-turning-off-the-internet-whatsapp-proxy-setting" element={<Navigate to="/blog/how-to-appear-offline-on-whatsapp" replace />} />
-      <Route path="/blog?12f4b55b_page=1&77c48d22_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=5&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=7&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=6&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=4&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=8&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=5&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?12f4b55b_page=1" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=4&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=5&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=1&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=6&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=6&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=7&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=6&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=2&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=6&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=7&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=5&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=1&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=7&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=6&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
       <Route path="/comparison/comparison-between-eazybe-and-wa-plus" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=3&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/go-offline-without-turning-off-internet-how-to-turn-off-whatsapp" element={<Navigate to="/blog/how-to-appear-offline-on-whatsapp" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?daf7a484_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=1&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=7&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=1&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/?ref=producthunt" element={<Navigate to="/" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
       <Route path="/index.html" element={<Navigate to="/" replace />} />
-      <Route path="/comparison?bf4a41f9_page=3&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=4&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=2&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=7&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=1&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=3&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/%20how-to-set-birthday-reminders-on-whatsapp" element={<Navigate to="/blog" replace />} />
       <Route path="/post/%20read-deleted-messages-on-whatsapp-easiest-methods" element={<Navigate to="/blog" replace />} />
-      <Route path="/pricing?eco_language=hindi" element={<Navigate to="/pricing" replace />} />
       <Route path="/comparison/comparison-between-eazybe-and-cooby" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/how-to-read-deleted-messages-on-whatsapp-easiest-methods-ios-android-whatsapp-web" element={<Navigate to="/blog/how-to-read-deleted-messages-on-whatsapp" replace />} />
       <Route path="/post/whatsapp-automation-for-business-free-tools-use-cases" element={<Navigate to="/blog" replace />} />
       <Route path="/post/beginners-guide-mastering-whatsapp-automation-for-sales" element={<Navigate to="/" replace />} />
       <Route path="/blog/whatsapp/how-to-read-deleted-messages-on-whatsapp-easiest-methods-ios-android-whatsapp-web" element={<Navigate to="/blog/how-to-read-deleted-messages-on-whatsapp" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=4&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/beginners-guide-how-to-recover-deleted-whatsapp-photos" element={<Navigate to="/blog" replace />} />
-      <Route path="/pricing?eco_budget=none" element={<Navigate to="/pricing" replace />} />
       <Route path="/post/how-to-see-deleted-messages-on-whatsapp-revealed" element={<Navigate to="/blog" replace />} />
       <Route path="/comparison/comparison-between-eazybe-and-wa-web-plus" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/pricing?eco_onlyCertified=true" element={<Navigate to="/pricing" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=1&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/comparison/comparison-between-eazybe-and-wa-sender" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=7&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=1&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=1&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/7-wa-deck-alternatives-which-one-should-you-choose" element={<Navigate to="/blog" replace />} />
       <Route path="/post/boost-sales-efficiency-eazybes-hubspot-whatsapp-integration" element={<Navigate to="/blog" replace />} />
       <Route path="/post/boost-your-crm-efficiency-a-comprehensive-guide-to-integrating-whatsapp-with-hubspot-using-eazybe" element={<Navigate to="/blog" replace />} />
@@ -466,13 +267,11 @@
       <Route path="/post/15-whatsapp-business-description-samples-templates-2023" element={<Navigate to="/blog" replace />} />
       <Route path="/post/essential-glossary-of-artificial-intelligence-ai-terms" element={<Navigate to="/blog" replace />} />
       <Route path="/post/boost-your-sales-process-with-these-15-automation-tools" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025" element={<Navigate to="/" replace />} />
       <Route path="/post/effective-approaches-for-balancing-customer-retention-acquisition" element={<Navigate to="/" replace />} />
       <Route path="/post/15-best-ai-driven-sales-tools-for-b2c-companies" element={<Navigate to="/" replace />} />
       <Route path="/post/whatsapp-vs-whatsapp-business-vs-whatsapp-api" element={<Navigate to="/" replace />} />
       <Route path="/post/create-whatsapp-channel-boost-communication-strategy" element={<Navigate to="/" replace />} />
-      <Route path="/blog?12f4b55b_page=1&daf7a484_page=2" element={<Navigate to="/blog" replace />} />
       <Route path="/post/get-started-with-chatgpt-on-whatsapp" element={<Navigate to="/" replace />} />
       <Route path="/post/beginners-guide-mastering-whatsapp-crm-for-beginners" element={<Navigate to="/" replace />} />
       <Route path="/post/schedule-message-whatsapp-unlocking-the-power-of-automation" element={<Navigate to="/" replace />} />
@@ -488,11 +287,9 @@
       <Route path="/post/10-whatsapp-crm-hacks-for-explosive-sales-results" element={<Navigate to="/" replace />} />
       <Route path="/post/all-you-need-to-know-about-zoho-crm" element={<Navigate to="/" replace />} />
       <Route path="/post/9-ways-to-use-whatsapp-for-customer-service-2023" element={<Navigate to="/" replace />} />
-      <Route path="/blog?12f4b55b_page=2&daf7a484_page=2" element={<Navigate to="/blog" replace />} />
       <Route path="/post/chatgpt-4-0-on-whatsapp-install-eazybe-send-ai-whatsapp-messages" element={<Navigate to="/" replace />} />
       <Route path="/post/boost-your-workflow-with-webhooks-integration-with-whatsapp" element={<Navigate to="/" replace />} />
       <Route path="/post/5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions" element={<Navigate to="/" replace />} />
-      <Route path="/blog?daf7a484_page=2" element={<Navigate to="/blog" replace />} />
       <Route path="/post/guide-to-building-an-effective-b2b-sales-strategy" element={<Navigate to="/" replace />} />
       <Route path="/post/mastering-b2b-sales-prospecting-a-beginners-guide" element={<Navigate to="/" replace />} />
       <Route path="/post/discover-the-best-whatsapp-business-api-alternatives" element={<Navigate to="/" replace />} />
@@ -610,7 +407,6 @@
       <Route path="/post/step-by-step-guide-view-names-on-whatsapp-without-saving-numbers" element={<Navigate to="/" replace />} />
       <Route path="/post/start-chat-without-saving-the-number-on-whatsapp" element={<Navigate to="/" replace />} />
       <Route path="/post/test-blog" element={<Navigate to="/" replace />} />
-      <Route path="/?r=0" element={<Navigate to="/" replace />} />
       <Route path="/post/will-ai-replace-sales-agents-heres-what-the-latest-data-and-trends-reveal" element={<Navigate to="/" replace />} />
       <Route path="/post/zoho-crm-free-your-ultimate-crm-solution" element={<Navigate to="/zoho-whatsapp-integration" replace />} />
       <Route path="/post/whatsapp-verification-call-stopped-the-impact-solutions-and-account-security" element={<Navigate to="/" replace />} />
@@ -634,16 +430,7 @@
       <Route path="/blog/schedule-messages-on-whatsapp-with-eazybe-chrome-extension" element={<Navigate to="/" replace />} />
       <Route path="/blog/how-whatsapp-reminder-makes-you-productive" element={<Navigate to="/" replace />} />
       <Route path="/blog/15-whatsapp-business-description-samples-templates-2023" element={<Navigate to="/blog/15-whatsapp-business-description-samples-templates" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1&daf7a484_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/pricing?eco_language=french&eco_agency_tier=diamond&eco_certification=AcademySalesCertification" element={<Navigate to="/pricing" replace />} />
-      <Route path="/pricing?eco_features=PAGE_MANAGEMENT" element={<Navigate to="/pricing" replace />} />
       <Route path="/pricing-es" element={<Navigate to="/es/pricing" replace />} />
-      <Route path="/pricing?eco_budget=upper" element={<Navigate to="/pricing" replace />} />
-      <Route path="/privacy?eco_budget=none" element={<Navigate to="/pricing" replace />} />
-      <Route path="/privacy?eco_budget=upper" element={<Navigate to="/pricing" replace />} />
-      <Route path="/privacy?eco_language=dutch" element={<Navigate to="/pricing" replace />} />
       <Route path="/blog/ultimate-guide-to-whatsapp-team-inbox-backup" element={<Navigate to="/" replace />} />
       <Route path="/blog-es/conectese-mejor-la-forma-mas-sencilla-de-iniciar-sesion-en-whatsapp-web" element={<Navigate to="/es" replace />} />
       <Route path="/blog/5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions" element={<Navigate to="/es" replace />} />
@@ -681,7 +468,6 @@
       <Route path="/post/ access-chatgpt-on-whatsapp-with-this-top-3-whatsapp-chrome-extensions" element={<Navigate to="/" replace />} />
       <Route path="/the-complete-guide-to-pricing-for-whatsapp-business-api-2023" element={<Navigate to="/" replace />} />
       <Route path="/communities-in-whatsapp-interesting-ways-to-use-them" element={<Navigate to="/" replace />} />
-      <Route path="post/ add-whatsapp-on-your-wordpress-website" element={<Navigate to="/blog" replace />} />
       <Route path="/post/ whatsapp-companion-mode-use-whatsapp-on-two-phones-with-same-number" element={<Navigate to="/" replace />} />
       <Route path="/post/ set-up-google-calendar-on-whatsapp-with-eazybe-chrome-extension" element={<Navigate to="/" replace />} />
       <Route path="/post/ manage-google-calendar-through-eazybe-whatsapp-chrome-extensions" element={<Navigate to="/" replace />} />
@@ -1149,229 +935,30 @@
       <Route path="/post/chatgpt-4-0-on-whatsapp-latest-update-with-eazybe-chrome-extension" element={<Navigate to="/blog" replace />} />
       <Route path="/post/%20chatgpt-4-0-on-whatsapp-latest-update-with-eazybe-chrome-extension" element={<Navigate to="/blog" replace />} />
       <Route path="/post/manage-your-hubspot-crm-on-whatsapp-with-eazybe-experience-real-time-changes-much-more" element={<Navigate to="/" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?12f4b55b_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?77c48d22_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?12f4b55b_page=2&daf7a484_page=4" element={<Navigate to="/blog" replace />} />
       <Route path="/post/read-deleted-messages-on-whatsapp-easiest-methods" element={<Navigate to="/blog/how-to-read-deleted-messages-on-whatsapp" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?77c48d22_page=2&daf7a484_page=7" element={<Navigate to="/blog" replace />} />
       <Route path="/comparison/comparison-between-eazybe-and-prime-sender" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/hubspot-crm-form" element={<Navigate to="/hubspot-whatsapp-integration" replace />} />
       <Route path="/integrate-zoho-copy" element={<Navigate to="/zoho-whatsapp-integration" replace />} />
       <Route path="/enquiry-thanks" element={<Navigate to="/" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5" element={<Navigate to="/comparison" replace />} />
       <Route path="/hubspot-crm-form-es" element={<Navigate to="/es/hubspot-whatsapp-integration" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=8" element={<Navigate to="/comparison" replace />} />
       <Route path="/blog/es/negocio-de-whatsapp/mensaje-de-difusion-de-whatsapp-todo-lo-que-necesita-saber" element={<Navigate to="/es/blog" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=1&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?12f4b55b_page=1&77c48d22_page=2&daf7a484_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?5190b58a_page=1" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?5190b58a_page=3&77c48d22_page=2&daf7a484_page=7" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?5190b58a_page=2&77c48d22_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/blog?77c48d22_page=2&daf7a484_page=2" element={<Navigate to="/blog" replace />} />
       <Route path="/go-offline-on-whatsapp-without-turning-off-the-internet-whatsapp-proxy-setting" element={<Navigate to="/blog/how-to-appear-offline-on-whatsapp" replace />} />
-      <Route path="/blog?12f4b55b_page=1&5190b58a_page=2&77c48d22_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/blog?daf7a484_page=3" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=6" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/%20go-offline-without-turning-off-internet-how-to-turn-off-whatsapp" element={<Navigate to="/blog/how-to-appear-offline-on-whatsapp" replace />} />
       <Route path="/post/go-offline-on-whatsapp-without-turning-off-the-internet-whatsapp-proxy-setting" element={<Navigate to="/blog/how-to-appear-offline-on-whatsapp" replace />} />
-      <Route path="/blog?12f4b55b_page=1&77c48d22_page=2" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=5&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=7&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=6&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=4&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=8&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=5&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/blog?12f4b55b_page=1" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=4&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=5&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=1&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=6&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=6&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=7&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=6&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=2&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=6&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=7&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=5&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=1&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=7&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=6&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
       <Route path="/comparison/comparison-between-eazybe-and-wa-plus" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=3&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/go-offline-without-turning-off-internet-how-to-turn-off-whatsapp" element={<Navigate to="/blog/how-to-appear-offline-on-whatsapp" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?daf7a484_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=1&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=7&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=1&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=1" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/?ref=producthunt" element={<Navigate to="/" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
       <Route path="/index.html" element={<Navigate to="/" replace />} />
-      <Route path="/comparison?bf4a41f9_page=3&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=4&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=3" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=1&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=3&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=4&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=6&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=4&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&77c48d22_page=2&bf4a41f9_page=2&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=7&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=1&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=3&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=8&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?daf7a484_page=8" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=5&daf7a484_page=7" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&bf4a41f9_page=3&daf7a484_page=5" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?77c48d22_page=2&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/%20how-to-set-birthday-reminders-on-whatsapp" element={<Navigate to="/blog" replace />} />
       <Route path="/post/%20read-deleted-messages-on-whatsapp-easiest-methods" element={<Navigate to="/blog" replace />} />
-      <Route path="/pricing?eco_language=hindi" element={<Navigate to="/pricing" replace />} />
       <Route path="/comparison/comparison-between-eazybe-and-cooby" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/how-to-read-deleted-messages-on-whatsapp-easiest-methods-ios-android-whatsapp-web" element={<Navigate to="/blog/how-to-read-deleted-messages-on-whatsapp" replace />} />
       <Route path="/post/whatsapp-automation-for-business-free-tools-use-cases" element={<Navigate to="/blog" replace />} />
       <Route path="/post/beginners-guide-mastering-whatsapp-automation-for-sales" element={<Navigate to="/" replace />} />
       <Route path="/blog/whatsapp/how-to-read-deleted-messages-on-whatsapp-easiest-methods-ios-android-whatsapp-web" element={<Navigate to="/blog/how-to-read-deleted-messages-on-whatsapp" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=4&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/beginners-guide-how-to-recover-deleted-whatsapp-photos" element={<Navigate to="/blog" replace />} />
-      <Route path="/pricing?eco_budget=none" element={<Navigate to="/pricing" replace />} />
       <Route path="/post/how-to-see-deleted-messages-on-whatsapp-revealed" element={<Navigate to="/blog" replace />} />
       <Route path="/comparison/comparison-between-eazybe-and-wa-web-plus" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=8&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=7&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/pricing?eco_onlyCertified=true" element={<Navigate to="/pricing" replace />} />
-      <Route path="/comparison?bf4a41f9_page=2&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=1&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/comparison/comparison-between-eazybe-and-wa-sender" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&bf4a41f9_page=7&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=1&daf7a484_page=6" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?12f4b55b_page=1&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=6&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=4&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
-      <Route path="/comparison?bf4a41f9_page=1&daf7a484_page=4" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/7-wa-deck-alternatives-which-one-should-you-choose" element={<Navigate to="/blog" replace />} />
       <Route path="/post/boost-sales-efficiency-eazybes-hubspot-whatsapp-integration" element={<Navigate to="/blog" replace />} />
       <Route path="/post/boost-your-crm-efficiency-a-comprehensive-guide-to-integrating-whatsapp-with-hubspot-using-eazybe" element={<Navigate to="/blog" replace />} />
@@ -1381,13 +968,11 @@
       <Route path="/post/15-whatsapp-business-description-samples-templates-2023" element={<Navigate to="/blog" replace />} />
       <Route path="/post/essential-glossary-of-artificial-intelligence-ai-terms" element={<Navigate to="/blog" replace />} />
       <Route path="/post/boost-your-sales-process-with-these-15-automation-tools" element={<Navigate to="/blog" replace />} />
-      <Route path="/comparison?12f4b55b_page=2&bf4a41f9_page=3&daf7a484_page=2" element={<Navigate to="/comparison" replace />} />
       <Route path="/post/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025" element={<Navigate to="/" replace />} />
       <Route path="/post/effective-approaches-for-balancing-customer-retention-acquisition" element={<Navigate to="/" replace />} />
       <Route path="/post/15-best-ai-driven-sales-tools-for-b2c-companies" element={<Navigate to="/" replace />} />
       <Route path="/post/whatsapp-vs-whatsapp-business-vs-whatsapp-api" element={<Navigate to="/" replace />} />
       <Route path="/post/create-whatsapp-channel-boost-communication-strategy" element={<Navigate to="/" replace />} />
-      <Route path="/blog?12f4b55b_page=1&daf7a484_page=2" element={<Navigate to="/blog" replace />} />
       <Route path="/post/get-started-with-chatgpt-on-whatsapp" element={<Navigate to="/" replace />} />
       <Route path="/post/beginners-guide-mastering-whatsapp-crm-for-beginners" element={<Navigate to="/" replace />} />
       <Route path="/post/schedule-message-whatsapp-unlocking-the-power-of-automation" element={<Navigate to="/" replace />} />
@@ -1403,11 +988,9 @@
       <Route path="/post/10-whatsapp-crm-hacks-for-explosive-sales-results" element={<Navigate to="/" replace />} />
       <Route path="/post/all-you-need-to-know-about-zoho-crm" element={<Navigate to="/" replace />} />
       <Route path="/post/9-ways-to-use-whatsapp-for-customer-service-2023" element={<Navigate to="/" replace />} />
-      <Route path="/blog?12f4b55b_page=2&daf7a484_page=2" element={<Navigate to="/blog" replace />} />
       <Route path="/post/chatgpt-4-0-on-whatsapp-install-eazybe-send-ai-whatsapp-messages" element={<Navigate to="/" replace />} />
       <Route path="/post/boost-your-workflow-with-webhooks-integration-with-whatsapp" element={<Navigate to="/" replace />} />
       <Route path="/post/5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions" element={<Navigate to="/" replace />} />
-      <Route path="/blog?daf7a484_page=2" element={<Navigate to="/blog" replace />} />
       <Route path="/post/guide-to-building-an-effective-b2b-sales-strategy" element={<Navigate to="/" replace />} />
       <Route path="/post/mastering-b2b-sales-prospecting-a-beginners-guide" element={<Navigate to="/" replace />} />
       <Route path="/post/discover-the-best-whatsapp-business-api-alternatives" element={<Navigate to="/" replace />} />
@@ -1474,5 +1057,3 @@
       <Route path="/post/how-to-schedule-messages-on-whatsapp-a-simple-guide" element={<Navigate to="/" replace />} />
       <Route path="/post/how-to-setup-a-whatsapp-chatbot-for-your-business" element={<Navigate to="/" replace />} />
       <Route path="/post/the-ultimate-guide-to-using-whatsapp-automation-for-sales" element={<Navigate to="/" replace />} />
-      <Route path="/comparison" element={<Navigate to="/comparison" replace />} />
-      <Route path="/?ref=producthunt" element={<Navigate to="/" replace />} />
