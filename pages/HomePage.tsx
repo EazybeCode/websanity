@@ -912,16 +912,14 @@ export const HomePage: React.FC = () => {
         "priceRange": "A partir de $92/mês",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "R. Q, quadra 60 - lote 29",
-          "addressLocality": "Guapimirim - Rio de janeiro",
           "addressRegion": "RJ",
           "postalCode": "25943-380",
           "addressCountry": "BR"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 38.692045,
-          "longitude": -75.401331
+          "latitude": -22.870241,
+          "longitude": -43.232622
         },
         "openingHoursSpecification": [
           {
@@ -931,24 +929,14 @@ export const HomePage: React.FC = () => {
               "Tuesday",
               "Wednesday",
               "Thursday",
-              "Friday"
+              "Friday",
+              "Saturday",
+              "Sunday"
             ],
-            "opens": "09:00",
-            "closes": "18:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "10:00",
-            "closes": "14:00"
+            "opens": "00:00",
+            "closes": "23:59"
           }
-        ],
-        "areaServed": {
-          "@type": "Country",
-          "name": "Brazil"
-        },
-        "availableLanguage": ["Portuguese", "English"],
-        "description": "Eazybe é uma plataforma de CRM para WhatsApp que oferece integração com HubSpot, Zoho, Salesforce e outros CRMs populares."
+        ]
       }
 
       // Add professional service schema to head
