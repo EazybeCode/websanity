@@ -129,7 +129,11 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                       <img
                         src={`https://i.pravatar.cc/100?img=${i + 10}`}
                         alt="User"
+                        width="36"
+                        height="36"
                         className="w-full h-full rounded-full grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+                        fetchpriority="high"
+                        decoding="async"
                       />
                     </div>
                   ))}
