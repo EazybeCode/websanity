@@ -654,11 +654,9 @@ export const HomePage: React.FC = () => {
         ],
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "8, The Green STE B",
-          "addressLocality": "Dover",
-          "addressRegion": "Delaware",
-          "postalCode": "19901",
-          "addressCountry": "US"
+          "addressRegion": "RJ",
+          "postalCode": "25943-380",
+          "addressCountry": "BR"
         },
         "knowsAbout": ["WhatsApp CRM", "Sales Automation", "CRM Integration", "CRM AI Agents", "Customer Engagement"]
       }
