@@ -1,9 +1,9 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import * as LucideIcons from 'lucide-react'
 import { ArrowRight, ExternalLink } from 'lucide-react'
 import type { NavColumn } from '../../hooks/useNavigation'
 import { LocalizedLink } from '../LocalizedLink'
+import iconMap from './IconMap'
 
 interface MegaMenuDropdownProps {
   columns: NavColumn[]
@@ -19,7 +19,7 @@ interface MegaMenuDropdownProps {
 }
 
 function getIcon(iconName: string): React.ReactNode {
-  const IconComponent = (LucideIcons as Record<string, React.FC<{ className?: string; size?: number }>>)[iconName]
+  const IconComponent = iconMap[iconName]
   if (IconComponent) {
     return <IconComponent size={16} />
   }

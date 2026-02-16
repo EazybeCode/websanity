@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react'
+import React, { useState, useEffect, useRef, useCallback, lazy, Suspense, useTransition } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
@@ -14,6 +14,17 @@ import { useTheme } from '../../hooks/useTheme'
 import { LocalizedLink } from '../LocalizedLink'
 import { useLanguage } from '../../hooks/useLanguage'
 import { useTrialModal } from '../../contexts/TrialModalContext'
+
+// Debounce utility for better INP
+function useDebounce<T extends (...args: unknown[]) => void>(callback: T, delay: number): T {
+  const timeoutRef = useRef<NodeJS.Timeout>()
+  return useCallback((...args: Parameters<T>) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+    timeoutRef.current = setTimeout(() => callback(...args), delay)
+  }, [callback, delay]) as T
+}
 
 // Featured content for Platform menu only
 const platformFeatured = {
@@ -236,15 +247,24 @@ export const MegaMenuHeader: React.FC = () => {
   const [scrolled, setScrolled] = useState(false)
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const headerRef = useRef<HTMLElement>(null)
+  const [isPending, startTransition] = useTransition()
 
   // Use CMS data with fallback
   const navigation = cmsNavigation || getFallbackNavigation(t)
 
+  // Optimized scroll handler with passive listener
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 10)
+          ticking = false
+        })
+        ticking = true
+      }
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -274,17 +294,24 @@ export const MegaMenuHeader: React.FC = () => {
       clearTimeout(closeTimeoutRef.current)
       closeTimeoutRef.current = null
     }
-    setActiveDropdown(key)
+    // Use startTransition for non-urgent updates to improve INP
+    startTransition(() => {
+      setActiveDropdown(key)
+    })
   }, [])
 
   const handleMouseLeave = useCallback(() => {
     closeTimeoutRef.current = setTimeout(() => {
-      setActiveDropdown(null)
+      startTransition(() => {
+        setActiveDropdown(null)
+      })
     }, 100)
   }, [])
 
   const handleClick = useCallback((key: string) => {
-    setActiveDropdown((prev) => (prev === key ? null : key))
+    startTransition(() => {
+      setActiveDropdown((prev) => (prev === key ? null : key))
+    })
   }, [])
 
   return (
@@ -313,7 +340,10 @@ export const MegaMenuHeader: React.FC = () => {
               <img
                 src="/logo.png"
                 alt="Eazybe Logo"
+                width="24"
+                height="24"
                 className="w-full h-full object-contain"
+                decoding="async"
               />
             </div>
             <span className="font-sans font-bold text-xl tracking-tight text-white group-hover:text-brand-blue transition-colors">

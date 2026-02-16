@@ -27,20 +27,23 @@ export default defineConfig(({ mode }) => {
           compress: {
             drop_console: isProd, // Remove console logs in production
             drop_debugger: true,
-            pure_funcs: isProd ? ['console.log', 'console.info'] : [],
-            passes: 2, // Multiple passes for better compression
+            pure_funcs: isProd ? ['console.log', 'console.info', 'console.debug'] : [],
+            passes: 3, // More passes for better compression
             unsafe: true, // More aggressive but safe optimizations
             unsafe_comps: true,
             unsafe_math: true,
-            unsafe_methods: true
+            unsafe_methods: true,
+            inline: 2 // Inline small functions
           },
           mangle: {
-            safari10: true
+            safari10: true,
+            properties: {
+              regex: /^_/, // Mangle private properties
+            }
           }
         },
         // Optimize CSS
-        cssMinify: true,
-        cssCodeSplit: true,
+        cssMinify: 'lightningcss', // Faster CSS minification
 
         // Target modern browsers for smaller bundle
         target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
@@ -58,8 +61,8 @@ export default defineConfig(({ mode }) => {
                 return;
               }
 
-              // Core React - rarely changes, cached long-term (check first)
-              if (id.includes('/react/') || id.includes('/react-dom/')) {
+              // Core React - rarely changes, cached long-term
+              if (id.includes('/react/') || id.includes('/react-dom/') || id.includes('/react/jsx-runtime')) {
                 return 'vendor-react';
               }
 
@@ -68,8 +71,12 @@ export default defineConfig(({ mode }) => {
                 return 'vendor-router';
               }
 
-              // Heavy UI libraries - load on demand
+              // Heavy animation library - split further
               if (id.includes('/framer-motion/')) {
+                // Split motion components into smaller chunks
+                if (id.includes('/dist/')) {
+                  return 'vendor-motion-core';
+                }
                 return 'vendor-motion';
               }
 
@@ -77,37 +84,43 @@ export default defineConfig(({ mode }) => {
                 return 'vendor-charts';
               }
 
-              // DON'T bundle lucide-react into vendor-icons
-              // Let Vite automatically split icons per lazy-loaded page
-              // This way HomePage gets only its icons, BlogPage gets only its icons, etc.
+              // Icons - don't bundle, let each page load its own icons
+              if (id.includes('/lucide-react/')) {
+                return;
+              }
 
-              // i18n - separate chunk
+              // i18n - separate chunk (loaded per language)
               if (id.includes('/i18next') || id.includes('/react-i18next/')) {
                 return 'vendor-i18n';
               }
 
-              // Sanity CMS - separate chunk
+              // Sanity CMS - defer loading
               if (id.includes('/@sanity/') || id.includes('/@portabletext/')) {
                 return 'vendor-sanity';
+              }
+
+              // Other vendors - group by package
+              if (id.includes('node_modules')) {
+                return 'vendor-misc';
               }
             }
           }
         },
 
-        // Chunk size limits
-        chunkSizeWarningLimit: 500,
+        // Chunk size limits - reduce for faster loading
+        chunkSizeWarningLimit: 400,
 
         // Enable source maps for production debugging (optional)
         sourcemap: false,
 
-        // Optimize assets
-        assetsInlineLimit: 4096, // Inline assets smaller than 4kb
+        // Optimize assets - reduce inline limit
+        assetsInlineLimit: 2048, // Inline assets smaller than 2kb
 
         // Report compressed size
-        reportCompressedSize: true,
+        reportCompressedSize: true
       },
 
-      // Optimize dependencies
+      // Optimize dependencies - pre-bundle for faster dev
       optimizeDeps: {
         include: [
           'react',
