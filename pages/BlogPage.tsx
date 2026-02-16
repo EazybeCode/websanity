@@ -151,14 +151,30 @@ const ReadingProgress: React.FC = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
+    let cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
+
     const updateProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setProgress(Math.min(progress, 100));
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+
+          // Cache document height and only recalculate when significantly changed
+          const currentDocHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (Math.abs(currentDocHeight - cachedDocHeight) > 100) {
+            cachedDocHeight = currentDocHeight;
+          }
+
+          const progress = cachedDocHeight > 0 ? (scrollTop / cachedDocHeight) * 100 : 0;
+          setProgress(Math.min(progress, 100));
+
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('scroll', updateProgress, { passive: true });
     return () => window.removeEventListener('scroll', updateProgress);
   }, []);
 
@@ -184,22 +200,41 @@ const StickyTableOfContents: React.FC<{
   useEffect(() => {
     if (!sections || sections.length === 0) return;
 
+    let ticking = false;
+
     const handleScroll = () => {
-      // Find active section based on scroll position
-      let currentSection = '';
-      for (const section of sections) {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150) {
-            currentSection = section.id;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          // Batch all DOM reads together to avoid layout thrashing
+          let currentSection = '';
+
+          // Cache elements to avoid repeated DOM queries
+          const elements = sections.map(section => ({
+            id: section.id,
+            element: document.getElementById(section.id)
+          }));
+
+          // Do all getBoundingClientRect calls in one batch
+          const rects = elements.map(e => ({
+            id: e.id,
+            rect: e.element ? e.element.getBoundingClientRect() : null
+          }));
+
+          // Process the cached rects
+          for (const { id, rect } of rects) {
+            if (rect && rect.top <= 150) {
+              currentSection = id;
+            }
           }
-        }
+
+          setActiveSection(currentSection);
+          ticking = false;
+        });
+        ticking = true;
       }
-      setActiveSection(currentSection);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
 
     return () => window.removeEventListener('scroll', handleScroll);
@@ -338,21 +373,41 @@ const BlogPage: React.FC = () => {
   useEffect(() => {
     if (!dynamicToc || dynamicToc.length === 0) return;
 
+    let ticking = false;
+
     const handleScroll = () => {
-      let currentSection = '';
-      for (const section of dynamicToc) {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150) {
-            currentSection = section.id;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          // Batch all DOM reads together to avoid layout thrashing
+          let currentSection = '';
+
+          // Cache elements to avoid repeated DOM queries
+          const elements = dynamicToc.map(section => ({
+            id: section.id,
+            element: document.getElementById(section.id)
+          }));
+
+          // Do all getBoundingClientRect calls in one batch
+          const rects = elements.map(e => ({
+            id: e.id,
+            rect: e.element ? e.element.getBoundingClientRect() : null
+          }));
+
+          // Process the cached rects
+          for (const { id, rect } of rects) {
+            if (rect && rect.top <= 150) {
+              currentSection = id;
+            }
           }
-        }
+
+          setMobileActiveSection(currentSection);
+          ticking = false;
+        });
+        ticking = true;
       }
-      setMobileActiveSection(currentSection);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
