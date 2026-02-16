@@ -2,11 +2,20 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-// Import all translations upfront
-import enTranslations from '../locales/en/common.json'
-import ptTranslations from '../locales/pt/common.json'
-import esTranslations from '../locales/es/common.json'
-import trTranslations from '../locales/tr/common.json'
+// Lazy load translations to reduce initial bundle size
+// Only load English by default, others loaded on-demand
+const enTranslations = () => import('../locales/en/common.json').then(m => m.default)
+const ptTranslations = () => import('../locales/pt/common.json').then(m => m.default)
+const esTranslations = () => import('../locales/es/common.json').then(m => m.default)
+const trTranslations = () => import('../locales/tr/common.json').then(m => m.default)
+
+// Translation loader function
+const translationLoader = {
+  en: enTranslations,
+  br: ptTranslations,
+  es: esTranslations,
+  tr: trTranslations,
+}
 
 export const supportedLanguages = ['en', 'br', 'es', 'tr'] as const
 export type SupportedLanguage = (typeof supportedLanguages)[number]
@@ -35,7 +44,7 @@ const pathLanguageDetector = {
   },
 }
 
-// Initialize with all translations preloaded
+// Initialize with lazy loaded translations
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -49,6 +58,11 @@ i18n
     fallbackLng: 'en',
     supportedLngs: supportedLanguages,
     debug: false,
+
+    // Lazy load translations to reduce initial bundle size
+    react: {
+      useSuspense: true, // Enable suspense for lazy loading
+    },
 
     interpolation: {
       escapeValue: false,
