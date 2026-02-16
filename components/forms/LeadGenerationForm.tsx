@@ -443,9 +443,6 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                 <option value="HubSpot">{t('leadForm.crmHubspot')}</option>
                 <option value="Salesforce">{t('leadForm.crmSalesforce')}</option>
                 <option value="Zoho">{t('leadForm.crmZoho')}</option>
-                <option value="Leadsquared">{t('leadForm.crmLeadsquared')}</option>
-                <option value="Bitrix">{t('leadForm.crmBitrix')}</option>
-                <option value="In-house CRM">{t('leadForm.crmInhouse')}</option>
                 <option value="Other">{t('leadForm.crmOther')}</option>
                 <option value="None">{t('leadForm.crmNone')}</option>
               </select>
