@@ -149,37 +149,26 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
   // Auto-detect user's country on mount
   useEffect(() => {
     const detectCountry = async () => {
-      // Try IP-based detection first (most accurate for actual location)
       try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000); // 3s timeout
-
-        const response = await fetch('https://api.country.is/', { signal: controller.signal });
-        clearTimeout(timeoutId);
-
+        // Use api.country.is which supports CORS
+        const response = await fetch('https://api.country.is/');
         const data = await response.json();
         if (data.country && COUNTRY_TO_PHONE[data.country]) {
           setSelectedCountry(COUNTRY_TO_PHONE[data.country]);
-          return; // Success, no need for fallback
         }
-      } catch {
-        // IP detection failed, try locale fallback
-      }
-
-      // Fallback: try browser locale (works offline)
-      try {
-        const locales = navigator.languages || [navigator.language];
-        for (const locale of locales) {
+      } catch (error) {
+        // Fallback: try to detect from browser locale (e.g., "en-IN" -> "IN")
+        try {
+          const locale = navigator.language || (navigator as any).userLanguage;
           if (locale && locale.includes('-')) {
             const countryCode = locale.split('-')[1]?.toUpperCase();
             if (countryCode && COUNTRY_TO_PHONE[countryCode]) {
               setSelectedCountry(COUNTRY_TO_PHONE[countryCode]);
-              return;
             }
           }
+        } catch {
+          // Keep default country code
         }
-      } catch {
-        // Keep default country code
       }
     };
     detectCountry();
