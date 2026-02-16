@@ -9,6 +9,10 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
+        // Phase 2 CWV: Add Early Hints for critical resources
+        headers: {
+          'X-Early-Hints': '</assets/index-C2LN-Xnl.css>; rel=preload; as=style, </logo.png>; rel=preload; as=image'
+        }
       },
       plugins: [react()],
       define: {
