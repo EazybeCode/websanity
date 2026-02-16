@@ -52,12 +52,7 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppMockupProps> = ({ mode }) => {
 
   useEffect(() => {
     if (scrollRef.current) {
-      // Use requestAnimationFrame to avoid forced reflow
-      requestAnimationFrame(() => {
-        if (scrollRef.current) {
-          scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-        }
-      });
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, typing, suggestion]);
 

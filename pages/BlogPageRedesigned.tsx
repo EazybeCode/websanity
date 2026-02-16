@@ -72,39 +72,23 @@ const ReadingProgress: React.FC<{ sections: Array<{ id: string }> }> = ({ sectio
   const [activeChapter, setActiveChapter] = useState(0);
 
   useEffect(() => {
-    let ticking = false;
-    let cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
-
     const updateProgress = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const scrollTop = window.scrollY;
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setProgress(Math.min(progress, 100));
 
-          // Cache document height and only recalculate periodically
-          const currentDocHeight = document.documentElement.scrollHeight - window.innerHeight;
-          if (Math.abs(currentDocHeight - cachedDocHeight) > 100) {
-            cachedDocHeight = currentDocHeight;
-          }
-
-          const progress = cachedDocHeight > 0 ? (scrollTop / cachedDocHeight) * 100 : 0;
-          setProgress(Math.min(progress, 100));
-
-          // Determine active chapter - batch all DOM reads together
-          const chapterIndex = sections.findIndex((_, index) => {
-            const element = document.getElementById(sections[index]?.id || '');
-            if (!element) return false;
-            const rect = element.getBoundingClientRect();
-            return rect.top > 100 && rect.top < 500;
-          });
-          if (chapterIndex !== -1) setActiveChapter(chapterIndex);
-
-          ticking = false;
-        });
-        ticking = true;
-      }
+      // Determine active chapter
+      const chapterIndex = sections.findIndex((_, index) => {
+        const element = document.getElementById(sections[index]?.id || '');
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.top > 100 && rect.top < 500;
+      });
+      if (chapterIndex !== -1) setActiveChapter(chapterIndex);
     };
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('scroll', updateProgress);
     return () => window.removeEventListener('scroll', updateProgress);
   }, [sections]);
 
@@ -132,41 +116,21 @@ const StickyTableOfContents: React.FC<{
   useEffect(() => {
     if (!sections || sections.length === 0) return;
 
-    let ticking = false;
-
     const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          // Batch all DOM reads together to avoid layout thrashing
-          let currentSection = '';
-
-          // Cache elements to avoid repeated DOM queries
-          const elements = sections.map(section => ({
-            id: section.id,
-            element: document.getElementById(section.id)
-          }));
-
-          // Do all getBoundingClientRect calls in one batch
-          const rects = elements.map(e => ({
-            id: e.id,
-            rect: e.element ? e.element.getBoundingClientRect() : null
-          }));
-
-          // Process the cached rects
-          for (const { id, rect } of rects) {
-            if (rect && rect.top <= 150) {
-              currentSection = id;
-            }
+      let currentSection = '';
+      for (const section of sections) {
+        const element = document.getElementById(section.id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150) {
+            currentSection = section.id;
           }
-
-          setActiveSection(currentSection);
-          ticking = false;
-        });
-        ticking = true;
+        }
       }
+      setActiveSection(currentSection);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);

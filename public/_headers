@@ -1,0 +1,57 @@
+# Netlify caching headers - place this file in your publish directory
+# https://docs.netlify.com/routing/headers/
+
+# Hashed assets with content hash - cache for 1 year, immutable
+/assets/*-[a-f0-9]{8,}.js
+  Cache-Control: public, immutable, max-age=31536000
+
+/assets/*-[a-f0-9]{8,}.css
+  Cache-Control: public, immutable, max-age=31536000
+
+# Images - cache for 1 year, immutable
+*.png
+  Cache-Control: public, immutable, max-age=31536000
+*.jpg
+  Cache-Control: public, immutable, max-age=31536000
+*.jpeg
+  Cache-Control: public, immutable, max-age=31536000
+*.gif
+  Cache-Control: public, immutable, max-age=31536000
+*.webp
+  Cache-Control: public, immutable, max-age=31536000
+*.avif
+  Cache-Control: public, immutable, max-age=31536000
+*.ico
+  Cache-Control: public, immutable, max-age=31536000
+
+# SVG - cache for 1 year, immutable
+*.svg
+  Cache-Control: public, immutable, max-age=31536000
+
+# Fonts - cache for 1 year, immutable
+*.woff
+  Cache-Control: public, immutable, max-age=31536000
+*.woff2
+  Cache-Control: public, immutable, max-age=31536000
+*.ttf
+  Cache-Control: public, immutable, max-age=31536000
+*.otf
+  Cache-Control: public, immutable, max-age=31536000
+
+# Media files - cache for 1 year
+*.mp4
+  Cache-Control: public, immutable, max-age=31536000
+*.webm
+  Cache-Control: public, immutable, max-age=31536000
+*.mp3
+  Cache-Control: public, immutable, max-age=31536000
+
+# HTML - short cache, revalidate
+*.html
+  Cache-Control: public, must-revalidate, max-age=3600
+
+# Sitemap and robots
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+/robots.txt
+  Cache-Control: public, max-age=86400

@@ -343,7 +343,6 @@ export const MegaMenuHeader: React.FC = () => {
                 width="24"
                 height="24"
                 className="w-full h-full object-contain"
-                fetchpriority="high"
                 decoding="async"
               />
             </div>
