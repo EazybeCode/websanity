@@ -43,7 +43,7 @@ export default defineConfig(({ mode }) => {
           }
         },
         // Optimize CSS
-        cssMinify: 'lightningcss', // Faster CSS minification
+        cssMinify: true, // Use default CSS minification (lightningcss may not be available)
 
         // Target modern browsers for smaller bundle
         target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
