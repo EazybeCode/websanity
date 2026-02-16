@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react'
+import React, { useState, useEffect, useRef, useCallback, lazy, Suspense, useTransition } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
@@ -212,7 +212,7 @@ const NavItemWithDropdown: React.FC<NavItemWithDropdownProps> = ({
       </button>
 
       {isMegaMenu && item.columns && (
-        <Suspense fallback={null}>
+        <Suspense fallback={<div className="min-h-[400px] w-full bg-slate-900/50 backdrop-blur-sm" />}>
           <MegaMenuDropdown
             columns={item.columns}
             isOpen={isActive}
@@ -235,16 +235,25 @@ export const MegaMenuHeader: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const hoverTimerRef = useRef<NodeJS.Timeout | null>(null)
   const headerRef = useRef<HTMLElement>(null)
+  const [isPending, startTransition] = useTransition()
 
   // Use CMS data with fallback
   const navigation = cmsNavigation || getFallbackNavigation(t)
 
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 10)
+          ticking = false
+        })
+        ticking = true
+      }
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -270,16 +279,37 @@ export const MegaMenuHeader: React.FC = () => {
   }, [])
 
   const handleMouseEnter = useCallback((key: string) => {
+    // Clear existing timeouts
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current)
       closeTimeoutRef.current = null
     }
-    setActiveDropdown(key)
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current)
+      hoverTimerRef.current = null
+    }
+
+    // Use hover intent delay (150ms) to prevent accidental loads
+    // This reduces unnecessary bundle downloads
+    hoverTimerRef.current = setTimeout(() => {
+      startTransition(() => {
+        setActiveDropdown(key)
+      })
+    }, 150)
   }, [])
 
   const handleMouseLeave = useCallback(() => {
+    // Clear hover timer
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current)
+      hoverTimerRef.current = null
+    }
+
+    // Delay closing to prevent flicker
     closeTimeoutRef.current = setTimeout(() => {
-      setActiveDropdown(null)
+      startTransition(() => {
+        setActiveDropdown(null)
+      })
     }, 100)
   }, [])
 
@@ -313,7 +343,10 @@ export const MegaMenuHeader: React.FC = () => {
               <img
                 src="/logo.png"
                 alt="Eazybe Logo"
+                width="24"
+                height="24"
                 className="w-full h-full object-contain"
+                decoding="async"
               />
             </div>
             <span className="font-sans font-bold text-xl tracking-tight text-white group-hover:text-brand-blue transition-colors">
