@@ -5,6 +5,7 @@ import { Navbar } from '../components/Navbar'
 import { SectionRenderer } from '../components/SectionRenderer'
 import { useLandingPage } from '../hooks/useLandingPage'
 import { useSpanishHomepageSEO } from '../hooks/useSpanishHomepageSEO'
+import { useTurkishHomepageSEO } from '../hooks/useTurkishHomepageSEO'
 
 // Lazy load footer - it's below the fold (saves 20 KB on initial load)
 const ChunkyFooter = lazy(() => import('../components/footer/ChunkyFooter').then(m => ({ default: m.ChunkyFooter })))
@@ -950,6 +951,9 @@ export const HomePage: React.FC = () => {
 
   // Spanish Homepage SEO - ONLY for /es path
   useSpanishHomepageSEO()
+
+  // Turkish Homepage SEO - ONLY for /tr path
+  useTurkishHomepageSEO()
 
   const { data, loading, error } = useLandingPage()
 
