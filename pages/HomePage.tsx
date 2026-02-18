@@ -599,7 +599,6 @@ export const HomePage: React.FC = () => {
       const breadcrumbSchema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        "@id": "https://eazybe.com/br/#breadcrumb",
         "itemListElement": [
           {
             "@type": "ListItem",
