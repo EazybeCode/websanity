@@ -708,45 +708,6 @@ export const HomePage: React.FC = () => {
       }
       websiteScript.textContent = JSON.stringify(websiteSchema)
 
-      // WebPage Schema for /br
-      const webpageSchema = {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "@id": "https://eazybe.com/br/#webpage",
-        "url": "https://eazybe.com/br",
-        "name": "CRM integrado com WhatsApp | Plataforma de Vendas WhatsApp - Eazybe",
-        "description": "Integração de CRM com WhatsApp para (HubSpot, Zoho, Salesforce, Sheets). Sincronize conversas com seu CRM, use respostas de IA e caixas de entrada compartilhadas.",
-        "isPartOf": {
-          "@id": "https://eazybe.com/br"
-        },
-        "about": {
-          "@id": "https://eazybe.com/br"
-        },
-        "publisher": {
-          "@id": "https://eazybe.com/br"
-        },
-        "inLanguage": "pt-BR",
-        "primaryImageOfPage": {
-          "@type": "ImageObject",
-          "url": "https://eazybe.com/logo.png"
-        },
-        "datePublished": "2026-02-03T08:00:00+00:00",
-        "dateModified": "2026-02-13T10:30:00+00:00",
-        "breadcrumb": {
-          "@id": "https://eazybe.com/br/#breadcrumb"
-        }
-      }
-
-      // Add webpage schema to head
-      let webpageScript = document.querySelector('script[type="application/ld+json"][data-schema="webpage-br"]')
-      if (!webpageScript) {
-        webpageScript = document.createElement('script')
-        webpageScript.type = 'application/ld+json'
-        webpageScript.setAttribute('data-schema', 'webpage-br')
-        document.head.appendChild(webpageScript)
-      }
-      webpageScript.textContent = JSON.stringify(webpageSchema)
-
       // SoftwareApplication Schema for /br
       const softwareApplicationSchema = {
         "@context": "https://schema.org",
@@ -967,9 +928,6 @@ export const HomePage: React.FC = () => {
       // Remove website schema
       const websiteScript = document.querySelector('script[type="application/ld+json"][data-schema="website-br"]')
       if (websiteScript) websiteScript.remove()
-      // Remove webpage schema
-      const webpageScript = document.querySelector('script[type="application/ld+json"][data-schema="webpage-br"]')
-      if (webpageScript) webpageScript.remove()
       // Remove software application schema
       const softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="softwareapplication-br"]')
       if (softwareAppScript) softwareAppScript.remove()
