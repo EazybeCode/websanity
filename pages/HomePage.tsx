@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
 import { SectionRenderer } from '../components/SectionRenderer'
 import { useLandingPage } from '../hooks/useLandingPage'
+import { useSpanishHomepageSEO } from '../hooks/useSpanishHomepageSEO'
 
 // Lazy load footer - it's below the fold (saves 20 KB on initial load)
 const ChunkyFooter = lazy(() => import('../components/footer/ChunkyFooter').then(m => ({ default: m.ChunkyFooter })))
@@ -946,6 +947,9 @@ export const HomePage: React.FC = () => {
       // document.title = 'Eazybe'
     }
   }, [location.pathname])
+
+  // Spanish Homepage SEO - ONLY for /es path
+  useSpanishHomepageSEO()
 
   const { data, loading, error } = useLandingPage()
 
