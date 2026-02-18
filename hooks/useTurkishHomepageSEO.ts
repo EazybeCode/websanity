@@ -405,35 +405,6 @@ export const useTurkishHomepageSEO = () => {
         "inLanguage": "tr-TR"
       }
 
-      // ProfessionalService Schema
-      const professionalServiceSchema = {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Eazybe",
-        "url": "https://eazybe.com/tr",
-        "image": ["https://eazybe.com/logo.png"],
-        "logo": "https://eazybe.com/logo.png",
-        "telephone": "+13099294280",
-        "priceRange": "Aylık €92'den başlayan",
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday"
-            ],
-            "opens": "00:00",
-            "closes": "23:59"
-          }
-        ],
-        "inLanguage": "tr-TR"
-      }
-
       // Add all schemas to head
       addJsonLdSchema(faqSchema, 'faq-tr')
       addJsonLdSchema(organizationSchema, 'organization-tr')
@@ -442,7 +413,6 @@ export const useTurkishHomepageSEO = () => {
       addJsonLdSchema(softwareApplicationSchema, 'softwareapplication-tr')
       addJsonLdSchema(productSchema, 'product-tr')
       addJsonLdSchema(howToSchema, 'howto-tr')
-      addJsonLdSchema(professionalServiceSchema, 'professionalservice-tr')
 
       // Cleanup function - remove meta tags and schema when leaving /tr homepage
       return () => {
@@ -467,9 +437,6 @@ export const useTurkishHomepageSEO = () => {
         // Remove how-to schema
         const howToScript = document.querySelector('script[type="application/ld+json"][data-schema="howto-tr"]')
         if (howToScript) howToScript.remove()
-        // Remove professional service schema
-        const professionalServiceScript = document.querySelector('script[type="application/ld+json"][data-schema="professionalservice-tr"]')
-        if (professionalServiceScript) professionalServiceScript.remove()
       }
     }
   }, [location.pathname])
