@@ -629,7 +629,6 @@ export const HomePage: React.FC = () => {
       const organizationSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "@id": "https://eazybe.com/br/#organization",
         "name": "Eazybe",
         "url": "https://eazybe.com/br",
         "logo": {
@@ -658,9 +657,11 @@ export const HomePage: React.FC = () => {
         ],
         "address": {
           "@type": "PostalAddress",
-          "addressRegion": "RJ",
-          "postalCode": "25943-380",
-          "addressCountry": "BR"
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
         },
         "knowsAbout": ["WhatsApp CRM", "Sales Automation", "CRM Integration", "CRM AI Agents", "Customer Engagement"]
       }
@@ -684,7 +685,9 @@ export const HomePage: React.FC = () => {
         "name": "Eazybe",
         "description": "Integração CRM com WhatsApp | Eazybe - Plataforma de Vendas. Integração com HubSpot, Zoho, Salesforce, Google Sheets e mais.",
         "publisher": {
-          "@id": "https://eazybe.com/br/#organization"
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/br"
         },
         "inLanguage": "pt-BR",
         "potentialAction": {
