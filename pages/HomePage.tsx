@@ -591,10 +591,15 @@ export const HomePage: React.FC = () => {
       }
       faqScript.textContent = JSON.stringify(faqSchema)
 
+      // Remove the original breadcrumb schema (from / path) to avoid duplicates
+      const originalBreadcrumbScript = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb"]')
+      if (originalBreadcrumbScript) originalBreadcrumbScript.remove()
+
       // BreadcrumbList Schema for /br
       const breadcrumbSchema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
+        "@id": "https://eazybe.com/br/#breadcrumb",
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -728,7 +733,7 @@ export const HomePage: React.FC = () => {
         "datePublished": "2026-02-03T08:00:00+00:00",
         "dateModified": "2026-02-13T10:30:00+00:00",
         "breadcrumb": {
-          "@id": "https://eazybe.com/br#"
+          "@id": "https://eazybe.com/br/#breadcrumb"
         }
       }
 
