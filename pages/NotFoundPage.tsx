@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Home, ArrowLeft, Calendar, MessageCircle } from 'lucide-react'
+import { Home, ArrowLeft, Calendar } from 'lucide-react'
 
 /**
  * Custom 404 Not Found Page
@@ -13,7 +13,7 @@ import { Home, ArrowLeft, Calendar, MessageCircle } from 'lucide-react'
 const NotFoundPage: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
 
   // Set 404 status code and noindex meta tag for SEO
   useEffect(() => {
@@ -51,7 +51,6 @@ const NotFoundPage: React.FC = () => {
       description: string
       goToHome: string
       viewPricing: string
-      bookDemo: string
       suggestedPages: string
       integrations: string
       blog: string
@@ -62,7 +61,6 @@ const NotFoundPage: React.FC = () => {
         description: "Don't worry! You can find what you're looking for from our main sections below.",
         goToHome: "Go to Homepage",
         viewPricing: "View Pricing",
-        bookDemo: "Book a Demo",
         suggestedPages: "Suggested Pages",
         integrations: "Integrations",
         blog: "Blog"
@@ -73,7 +71,6 @@ const NotFoundPage: React.FC = () => {
         description: "¡No te preocupes! Puedes encontrar lo que buscas en nuestras secciones principales abajo.",
         goToHome: "Ir al Inicio",
         viewPricing: "Ver Precios",
-        bookDemo: "Reservar Demo",
         suggestedPages: "Páginas Sugeridas",
         integrations: "Integraciones",
         blog: "Blog"
@@ -84,7 +81,6 @@ const NotFoundPage: React.FC = () => {
         description: "Não se preocupe! Você pode encontrar o que procura em nossas principais seções abaixo.",
         goToHome: "Ir para o Início",
         viewPricing: "Ver Preços",
-        bookDemo: "Agendar Demo",
         suggestedPages: "Páginas Sugeridas",
         integrations: "Integrações",
         blog: "Blog"
@@ -95,7 +91,6 @@ const NotFoundPage: React.FC = () => {
         description: "Endişelenmeyin! Aşağıdaki ana bölümlerimizden aradığınızı bulabilirsiniz.",
         goToHome: "Ana Sayfaya Git",
         viewPricing: "Fiyatları Gör",
-        bookDemo: "Demo Talep Et",
         suggestedPages: "Önerilen Sayfalar",
         integrations: "Entegrasyonlar",
         blog: "Blog"
@@ -163,14 +158,6 @@ const NotFoundPage: React.FC = () => {
           >
             <Calendar size={20} />
             {content.viewPricing}
-          </button>
-
-          <button
-            onClick={() => navigate(`${basePath}/become-our-partner`)}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-brand-blue to-cyan-500 hover:from-brand-blue/90 hover:to-cyan-500/90 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105"
-          >
-            <MessageCircle size={20} />
-            {content.bookDemo}
           </button>
         </div>
 
