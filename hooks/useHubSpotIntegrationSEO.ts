@@ -198,7 +198,7 @@ export const useHubSpotIntegrationSEO = () => {
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "Home",
+            "name": "Eazybe",
             "item": "https://eazybe.com/"
           },
           {
@@ -215,14 +215,40 @@ export const useHubSpotIntegrationSEO = () => {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Eazybe",
-        "url": "https://eazybe.com",
+        "url": "https://eazybe.com/",
         "logo": {
           "@type": "ImageObject",
           "url": "https://eazybe.com/logo.png",
           "width": 600,
           "height": 60
         },
-        "description": "Eazybe is a HubSpot App Partner that provides WhatsApp CRM integration, helping sales teams sync WhatsApp conversations, AI Agents with HubSpot automatically."
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe helps sales teams connect WhatsApp with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets to sync conversations, automate follow-ups, and improve customer engagement.",
+        "foundingDate": "2021",
+        "sameAs": [
+          "https://twitter.com/eazybe",
+          "https://linkedin.com/company/eazybe",
+          "https://youtube.com/@eazybe"
+        ],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "support@eazybe.com",
+            "url": "https://eazybe.com/hubspot-whatsapp-integration",
+            "areaServed": "US",
+            "availableLanguage": ["English"]
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "knowsAbout": ["WhatsApp CRM", "HubSpot WhatsApp integration", "Sales automation", "CRM integration", "AI agents for CRM", "Customer engagement"]
       }
 
       // WebPage Schema (without @id)
@@ -255,7 +281,7 @@ export const useHubSpotIntegrationSEO = () => {
           "ratingValue": "4.7",
           "bestRating": "5",
           "worstRating": "1",
-          "ratingCount": "53978"
+          "ratingCount": "53,978"
         },
         "featureList": [
           "Automatic WhatsApp to HubSpot sync",
@@ -263,7 +289,8 @@ export const useHubSpotIntegrationSEO = () => {
           "Shared inbox for team collaboration",
           "Deal tracking from WhatsApp",
           "Contact synchronization",
-          "Message scheduling"
+          "Message scheduling",
+          "AI Agents for Hubspot"
         ]
       }
 
