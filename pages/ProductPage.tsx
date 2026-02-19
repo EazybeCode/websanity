@@ -34,6 +34,7 @@ import { useLeadSquaredIntegrationSEO } from '../hooks/useLeadSquaredIntegration
 import { useFreshdeskIntegrationSEO } from '../hooks/useFreshdeskIntegrationSEO'
 import { useWebhooksIntegrationSEO } from '../hooks/useWebhooksIntegrationSEO'
 import { useGoogleCalendarIntegrationSEO } from '../hooks/useGoogleCalendarIntegrationSEO'
+import { useMondayIntegrationSEO } from '../hooks/useMondayIntegrationSEO'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1646,6 +1647,9 @@ export const ProductPage: React.FC = () => {
 
   // Google Calendar Integration Page SEO
   useGoogleCalendarIntegrationSEO()
+
+  // Monday Integration Page SEO
+  useMondayIntegrationSEO()
 
   // Extract CRM slug from pathname (e.g., /hubspot-whatsapp-integration or /pt/hubspot-whatsapp-integration)
   const getCrmSlugFromPath = (pathname: string): string => {
