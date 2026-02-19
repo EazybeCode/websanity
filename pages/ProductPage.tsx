@@ -29,6 +29,7 @@ import { useHubSpotIntegrationSEO } from '../hooks/useHubSpotIntegrationSEO'
 import { useZohoIntegrationSEO } from '../hooks/useZohoIntegrationSEO'
 import { useSalesforceIntegrationSEO } from '../hooks/useSalesforceIntegrationSEO'
 import { useBitrix24IntegrationSEO } from '../hooks/useBitrix24IntegrationSEO'
+import { useGoogleSheetsIntegrationSEO } from '../hooks/useGoogleSheetsIntegrationSEO'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1626,6 +1627,9 @@ export const ProductPage: React.FC = () => {
 
   // Bitrix24 Integration Page SEO
   useBitrix24IntegrationSEO()
+
+  // Google Sheets Integration Page SEO
+  useGoogleSheetsIntegrationSEO()
 
   // Extract CRM slug from pathname (e.g., /hubspot-whatsapp-integration or /pt/hubspot-whatsapp-integration)
   const getCrmSlugFromPath = (pathname: string): string => {
