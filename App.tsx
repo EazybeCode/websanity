@@ -59,6 +59,7 @@ const integrationSlugs = [
   'freshdesk',
   'pipedrive',
   'google-sheets',
+  'google-calendar',
   'webhooks',
 ]
 
