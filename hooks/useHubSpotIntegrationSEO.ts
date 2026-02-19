@@ -272,9 +272,13 @@ export const useHubSpotIntegrationSEO = () => {
         "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
         "operatingSystem": "Web, Chrome Extension",
         "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 1160,
+          "highPrice": 1960,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
         },
         "aggregateRating": {
           "@type": "AggregateRating",
