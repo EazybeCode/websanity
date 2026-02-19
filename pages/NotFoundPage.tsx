@@ -21,10 +21,15 @@ const NotFoundPage: React.FC = () => {
   useEffect(() => {
     document.title = 'Page Not Found | Eazybe'
 
-    // Set noindex meta tag to prevent indexing of 404 page
-    let noIndexMeta = document.querySelector('meta[name="robots"][content="noindex"]')
-    if (!noIndexMeta) {
-      noIndexMeta = document.createElement('meta')
+    // Store original robots meta tag content for restoration
+    const originalRobotsMeta = document.querySelector('meta[name="robots"]')
+    const originalContent = originalRobotsMeta?.getAttribute('content')
+
+    // Remove or update existing robots meta tag to noindex, nofollow
+    if (originalRobotsMeta) {
+      originalRobotsMeta.setAttribute('content', 'noindex, nofollow')
+    } else {
+      const noIndexMeta = document.createElement('meta')
       noIndexMeta.setAttribute('name', 'robots')
       noIndexMeta.setAttribute('content', 'noindex, nofollow')
       document.head.appendChild(noIndexMeta)
@@ -35,10 +40,15 @@ const NotFoundPage: React.FC = () => {
       window.history.replaceState(null, '', location.pathname)
     }
 
-    // Cleanup function
+    // Cleanup function - restore original robots meta tag
     return () => {
-      if (noIndexMeta) {
-        noIndexMeta.remove()
+      const robotsMeta = document.querySelector('meta[name="robots"]')
+      if (originalRobotsMeta && originalContent) {
+        robotsMeta?.setAttribute('content', originalContent)
+      } else if (originalContent) {
+        robotsMeta?.setAttribute('content', originalContent)
+      } else if (robotsMeta) {
+        robotsMeta.remove()
       }
     }
   }, [location.pathname])
