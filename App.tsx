@@ -29,6 +29,7 @@ const IntegrateSalesforceCrmPage = lazy(() => import('./pages/IntegrateSalesforc
 const IntegrateBitrixCrmPage = lazy(() => import('./pages/IntegrateBitrixCrmPage'))
 const FbPage = lazy(() => import('./pages/FbPage'))
 const PartnerPage = lazy(() => import('./pages/PartnerPage').then(m => ({ default: m.PartnerPage })))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 // Loading fallback for lazy-loaded pages
 const PageLoader = () => (
@@ -180,6 +181,16 @@ const AppRoutes = () => (
           />
         </React.Fragment>
       ))}
+
+      {/* 404 Not Found Pages - Must be last routes (catch-all) */}
+      {/* English 404 */}
+      <Route path="*" element={<NotFoundPage />} />
+      {/* Portuguese 404 */}
+      <Route path="/br/*" element={<NotFoundPage />} />
+      {/* Spanish 404 */}
+      <Route path="/es/*" element={<NotFoundPage />} />
+      {/* Turkish 404 */}
+      <Route path="/tr/*" element={<NotFoundPage />} />
     </Routes>
   </Suspense>
 )
