@@ -27,6 +27,7 @@ import { useProduct } from '../hooks/useProduct'
 import { useTrialModal } from '../contexts/TrialModalContext'
 import { useHubSpotIntegrationSEO } from '../hooks/useHubSpotIntegrationSEO'
 import { useZohoIntegrationSEO } from '../hooks/useZohoIntegrationSEO'
+import { useSalesforceIntegrationSEO } from '../hooks/useSalesforceIntegrationSEO'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1618,6 +1619,9 @@ export const ProductPage: React.FC = () => {
 
   // Zoho Integration Page SEO
   useZohoIntegrationSEO()
+
+  // Salesforce Integration Page SEO
+  useSalesforceIntegrationSEO()
 
   // Extract CRM slug from pathname (e.g., /hubspot-whatsapp-integration or /pt/hubspot-whatsapp-integration)
   const getCrmSlugFromPath = (pathname: string): string => {
