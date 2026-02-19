@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Home, ArrowLeft, Calendar } from 'lucide-react'
+import { Navbar } from '../components/Navbar'
+import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 
 /**
  * Custom 404 Not Found Page
@@ -114,7 +116,9 @@ const NotFoundPage: React.FC = () => {
   const basePath = getBasePath()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-black via-brand-dark to-brand-black flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-br from-brand-black via-brand-dark to-brand-black flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
       {/* Animated background pattern */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-brand-blue/10 rounded-full blur-3xl animate-pulse" />
@@ -220,6 +224,8 @@ const NotFoundPage: React.FC = () => {
         </button>
       </div>
     </div>
+    <ChunkyFooter />
+  </>
   )
 }
 
