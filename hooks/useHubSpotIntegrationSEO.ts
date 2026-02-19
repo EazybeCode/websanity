@@ -319,11 +319,20 @@ export const useHubSpotIntegrationSEO = () => {
           "audienceType": "Sales teams, HubSpot users, CRM managers, B2B businesses"
         },
         "offers": {
-          "@type": "Offer",
+          "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "USD",
-          "price": "0",
+          "lowPrice": 1160,
+          "highPrice": 1960,
+          "offerCount": 5,
           "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 53766
         }
       }
 
