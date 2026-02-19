@@ -259,8 +259,8 @@ export const useBitrix24IntegrationSEO = () => {
         "name": "Bitrix24 WhatsApp Integration With AI Agents | Sync WhatsApp CRM",
         "description": "Connect WhatsApp with Bitrix24 CRM. Sync chats automatically, use AI agents, track deals, and manage sales conversations directly inside Bitrix24.",
         "inLanguage": "en",
-        "datePublished": "2026-02-03T08:00:00+00:00',
-        "dateModified": "2026-02-03T10:30:00+00:00'
+        "datePublished": "2026-02-03T08:00:00+00:00",
+        "dateModified": "2026-02-03T10:30:00+00:00"
       }
 
       // SoftwareApplication Schema (without @id)
@@ -285,7 +285,7 @@ export const useBitrix24IntegrationSEO = () => {
           "ratingValue": "4.7",
           "bestRating": "5",
           "worstRating": "1",
-          "ratingCount": "53,978"
+          "ratingCount": "53978"
         },
         "featureList": [
           "Automatic WhatsApp to Bitrix24 sync",
