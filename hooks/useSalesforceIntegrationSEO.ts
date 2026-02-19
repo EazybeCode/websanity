@@ -285,7 +285,7 @@ export const useSalesforceIntegrationSEO = () => {
           "ratingValue": "4.7",
           "bestRating": "5",
           "worstRating": "1",
-          "ratingCount": "53,978"
+          "ratingCount": 53766
         },
         "featureList": [
           "Automatic WhatsApp to Salesforce sync",
