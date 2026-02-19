@@ -268,29 +268,34 @@ export const useZohoIntegrationSEO = () => {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Zoho WhatsApp Integration - Eazybe",
+        "url": "https://eazybe.com/zoho-whatsapp-integration",
+        "image": ["https://eazybe.com/logo.png"],
         "applicationCategory": "BusinessApplication",
         "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
         "operatingSystem": "Web, Chrome Extension",
         "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 1160,
+          "highPrice": 1960,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
         },
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.7",
           "bestRating": "5",
           "worstRating": "1",
-          "ratingCount": "53,978"
+          "ratingCount": 53978
         },
         "featureList": [
-          "Automatic WhatsApp to Zoho sync",
+          "Automatic WhatsApp to HubSpot sync",
           "AI-powered reply suggestions",
           "Shared inbox for team collaboration",
           "Deal tracking from WhatsApp",
           "Contact synchronization",
-          "Message scheduling",
-          "AI Agents for Zoho"
+          "Message scheduling"
         ]
       }
 
