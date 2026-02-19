@@ -58,6 +58,7 @@ const integrationSlugs = [
   'leadsquared',
   'freshdesk',
   'pipedrive',
+  'monday',
   'google-sheets',
   'google-calendar',
   'webhooks',
