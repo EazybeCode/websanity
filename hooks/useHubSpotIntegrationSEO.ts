@@ -294,12 +294,119 @@ export const useHubSpotIntegrationSEO = () => {
         ]
       }
 
+      // Product Schema (without @id)
+      const productSchema = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "HubSpot WhatsApp Integration - Eazybe",
+        "url": "https://eazybe.com/hubspot-whatsapp-integration",
+        "image": [
+          "https://eazybe.com/logo.png"
+        ],
+        "description": "Eazybe connects WhatsApp with HubSpot CRM to automatically sync chats, help sales teams respond faster with AI, and manage customer conversations with shared inbox workflows.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Eazybe"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/"
+        },
+        "category": "CRM Integration Software",
+        "audience": {
+          "@type": "BusinessAudience",
+          "audienceType": "Sales teams, HubSpot users, CRM managers, B2B businesses"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "price": "0",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+
+      // HowTo Schema (without @id)
+      const howToSchema = {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to connect WhatsApp to HubSpot CRM using Eazybe",
+        "description": "Follow these steps to install Eazybe and sync WhatsApp conversations with HubSpot CRM so your team can track chats, speed up follow-ups, and keep CRM records up to date.",
+        "totalTime": "PT5M",
+        "estimatedCost": {
+          "@type": "MonetaryAmount",
+          "currency": "USD",
+          "value": "0"
+        },
+        "supply": [
+          {
+            "@type": "HowToSupply",
+            "name": "Active HubSpot account"
+          },
+          {
+            "@type": "HowToSupply",
+            "name": "WhatsApp account with access to WhatsApp Web"
+          }
+        ],
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Google Chrome (or Chromium-based browser)"
+          },
+          {
+            "@type": "HowToTool",
+            "name": "Eazybe Chrome Extension"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/hubspot-whatsapp-integration#step1",
+            "name": "Install the Eazybe extension",
+            "text": "Open the Chrome Web Store and install the official Eazybe extension in your browser.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/hubspot-whatsapp-integration#step2",
+            "name": "Open WhatsApp Web",
+            "text": "Go to WhatsApp Web on your computer and sign in. The Eazybe panel will appear inside WhatsApp Web.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/hubspot-whatsapp-integration#step3",
+            "name": "Connect your HubSpot account",
+            "text": "In the Eazybe panel, choose HubSpot and complete the authorization flow to connect your CRM securely.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/hubspot-whatsapp-integration#step4",
+            "name": "Enable chat sync to HubSpot",
+            "text": "Select a contact or conversation and enable syncing. WhatsApp messages and customer context will start syncing to HubSpot automatically.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/hubspot-whatsapp-integration#step5",
+            "name": "Use AI replies and team workflows",
+            "text": "Use AI-assisted replies to respond faster and shared inbox workflows to collaborate with your team while keeping HubSpot updated.",
+            "image": "https://eazybe.com/logo.png"
+          }
+        ],
+        "inLanguage": "en-US"
+      }
+
       // Add all schemas to head
       addJsonLdSchema(faqSchema, 'faq-hubspot')
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb-hubspot')
       addJsonLdSchema(organizationSchema, 'organization-hubspot')
       addJsonLdSchema(webpageSchema, 'webpage-hubspot')
       addJsonLdSchema(softwareApplicationSchema, 'software-hubspot')
+      addJsonLdSchema(productSchema, 'product-hubspot')
+      addJsonLdSchema(howToSchema, 'howto-hubspot')
 
       // Cleanup function - remove meta tags and schema when leaving the page
       return () => {
@@ -318,6 +425,12 @@ export const useHubSpotIntegrationSEO = () => {
         // Remove software application schema
         const softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="software-hubspot"]')
         if (softwareAppScript) softwareAppScript.remove()
+        // Remove product schema
+        const productScript = document.querySelector('script[type="application/ld+json"][data-schema="product-hubspot"]')
+        if (productScript) productScript.remove()
+        // Remove how-to schema
+        const howToScript = document.querySelector('script[type="application/ld+json"][data-schema="howto-hubspot"]')
+        if (howToScript) howToScript.remove()
       }
     }
   }, [location.pathname])
