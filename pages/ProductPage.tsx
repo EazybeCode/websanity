@@ -35,6 +35,7 @@ import { useFreshdeskIntegrationSEO } from '../hooks/useFreshdeskIntegrationSEO'
 import { useWebhooksIntegrationSEO } from '../hooks/useWebhooksIntegrationSEO'
 import { useGoogleCalendarIntegrationSEO } from '../hooks/useGoogleCalendarIntegrationSEO'
 import { useMondayIntegrationSEO } from '../hooks/useMondayIntegrationSEO'
+import { usePipedriveIntegrationSEO } from '../hooks/usePipedriveIntegrationSEO'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1650,6 +1651,9 @@ export const ProductPage: React.FC = () => {
 
   // Monday Integration Page SEO
   useMondayIntegrationSEO()
+
+  // Pipedrive Integration Page SEO
+  usePipedriveIntegrationSEO()
 
   // Extract CRM slug from pathname (e.g., /hubspot-whatsapp-integration or /pt/hubspot-whatsapp-integration)
   const getCrmSlugFromPath = (pathname: string): string => {
