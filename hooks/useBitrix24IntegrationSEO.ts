@@ -11,9 +11,8 @@ export const useBitrix24IntegrationSEO = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Check if we're on the Bitrix24 integration page (with or without language prefix)
-    const isBitrix24Page = /^\/[a-z]{2}\/?bitrix24-whatsapp-integration/.test(location.pathname) ||
-                          location.pathname === '/bitrix24-whatsapp-integration'
+    // Check if we're on the Bitrix24 integration page (English only - exclude BR which has its own hook)
+    const isBitrix24Page = location.pathname === '/bitrix24-whatsapp-integration'
 
     if (isBitrix24Page) {
       // ==================== META TAGS ====================

@@ -39,6 +39,7 @@ import { usePipedriveIntegrationSEO } from '../hooks/usePipedriveIntegrationSEO'
 import { useHubSpotIntegrationSEOBr } from '../hooks/useHubSpotIntegrationSEOBr'
 import { useZohoIntegrationSEOBr } from '../hooks/useZohoIntegrationSEOBr'
 import { useSalesforceIntegrationSEOBr } from '../hooks/useSalesforceIntegrationSEOBr'
+import { useBitrix24IntegrationSEOBr } from '../hooks/useBitrix24IntegrationSEOBr'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1639,6 +1640,7 @@ export const ProductPage: React.FC = () => {
 
   // Bitrix24 Integration Page SEO
   useBitrix24IntegrationSEO()
+  useBitrix24IntegrationSEOBr()
 
   // Google Sheets Integration Page SEO
   useGoogleSheetsIntegrationSEO()
