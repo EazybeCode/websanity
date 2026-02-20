@@ -1063,7 +1063,6 @@ export const redirectMappings: Array<{ from: string; to: string }> = [
 { from: "/post/the-ultimate-guide-to-using-whatsapp-automation-for-sales", to: "/" },
 { from: "/br/blog/discover-the-best-whatsapp-business-api-alternatives", to: "/br/blog" },
 { from: "/br/blog/apply-for-green-tick-on-whatsapp-business", to: "/br/blog" },
-{ from: "/br/blog/discover-the-best-whatsapp-business-api-alternatives", to: "/br/blog" },
 { from: "/tr/blog/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025", to: "/tr/blog" },
 { from: "/tr/blog/how-to-edit-andriod-contacts-on-whatsapp-without-leaving-the-app", to: "/tr/blog" }
 
