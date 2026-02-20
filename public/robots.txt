@@ -9,8 +9,6 @@ Sitemap: https://eazybe.com/sitemap-br.xml
 Sitemap: https://eazybe.com/sitemap-es.xml
 Sitemap: https://eazybe.com/sitemap-tr.xml
 
-Host: https://eazybe.com/
-
 User-agent: GPTBot
 Allow: /
 Crawl-delay: 1
@@ -330,6 +328,3 @@ Crawl-delay: 1
 # Disallow: /.git/           # Block git repository
 # Disallow: /*.json$         # Block JSON files
 # Disallow: /*?*utm_*        # Block tracking parameters
-
-Request-rate: 1/10
-
