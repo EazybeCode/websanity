@@ -9,11 +9,17 @@ export const MSAPage: React.FC = () => {
   const { t } = useTranslation()
   const location = useLocation()
   const isBr = location.pathname.startsWith('/br')
+  const isEs = location.pathname.startsWith('/es')
+  const isTr = location.pathname.startsWith('/tr')
 
   useEffect(() => {
     // Set document title based on language
     if (isBr) {
       document.title = 'Contrato de Prestação de Serviços | Eazybe'
+    } else if (isEs) {
+      document.title = 'Acuerdo Marco de Servicios | Eazybe'
+    } else if (isTr) {
+      document.title = 'Hizmet Sözleşmesi | Eazybe'
     } else {
       document.title = 'Master Service Agreement | Eazybe'
     }
