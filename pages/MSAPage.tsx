@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
@@ -6,6 +6,31 @@ import { FileText, Download } from 'lucide-react'
 
 export const MSAPage: React.FC = () => {
   const { t } = useTranslation()
+
+  useEffect(() => {
+    // Store original robots meta tag content for restoration
+    const originalRobotsMeta = document.querySelector('meta[name="robots"]')
+    const originalContent = originalRobotsMeta?.getAttribute('content')
+
+    // Override to noindex, nofollow on MSA page
+    if (originalRobotsMeta) {
+      originalRobotsMeta.setAttribute('content', 'noindex, nofollow')
+    } else {
+      // Create robots meta tag if it doesn't exist
+      const meta = document.createElement('meta')
+      meta.name = 'robots'
+      meta.content = 'noindex, nofollow'
+      document.head.appendChild(meta)
+    }
+
+    // Cleanup - restore original when leaving
+    return () => {
+      const robotsMeta = document.querySelector('meta[name="robots"]')
+      if (originalRobotsMeta && originalContent) {
+        robotsMeta?.setAttribute('content', originalContent)
+      }
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-slate-950 font-sans text-slate-300 antialiased">
