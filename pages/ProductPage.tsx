@@ -36,6 +36,7 @@ import { useWebhooksIntegrationSEO } from '../hooks/useWebhooksIntegrationSEO'
 import { useGoogleCalendarIntegrationSEO } from '../hooks/useGoogleCalendarIntegrationSEO'
 import { useMondayIntegrationSEO } from '../hooks/useMondayIntegrationSEO'
 import { usePipedriveIntegrationSEO } from '../hooks/usePipedriveIntegrationSEO'
+import { useHubSpotIntegrationSEOBr } from '../hooks/useHubSpotIntegrationSEOBr'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1624,6 +1625,7 @@ export const ProductPage: React.FC = () => {
 
   // HubSpot Integration Page SEO
   useHubSpotIntegrationSEO()
+  useHubSpotIntegrationSEOBr()
 
   // Zoho Integration Page SEO
   useZohoIntegrationSEO()
