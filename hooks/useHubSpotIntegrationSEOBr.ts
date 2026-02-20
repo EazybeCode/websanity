@@ -60,7 +60,7 @@ export const useHubSpotIntegrationSEOBr = () => {
 
       // Open Graph tags
       setMetaTag('og:type', 'website', true)
-      setMetaTag('og:url', 'https://eazybe.com/hubspot-whatsapp-integration', true)
+      setMetaTag('og:url', 'https://eazybe.com/br/hubspot-whatsapp-integration', true)
       setMetaTag('og:title', 'HubSpot WhatsApp Integration | Sincronize CRM do WhatsApp', true)
       setMetaTag('og:description', 'Conecte WhatsApp ao HubSpot CRM. Sincronize conversas, use agentes de IA, acompanhe negócios e gerencie vendas sem sair do HubSpot.', true)
       setMetaTag('og:image', 'https://eazybe.com/logo.png', true)
@@ -194,7 +194,7 @@ export const useHubSpotIntegrationSEOBr = () => {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Eazybe",
-        "url": "https://eazybe.com/",
+        "url": "https://eazybe.com/br",
         "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
         "image": "https://eazybe.com/logo.png",
         "description": "A Eazybe ajuda equipes de vendas a conectar WhatsApp com plataformas de CRM como HubSpot, Zoho, Salesforce e Google Sheets para sincronizar conversas, automatizar follow-ups e melhorar o engajamento do cliente.",
@@ -276,7 +276,7 @@ export const useHubSpotIntegrationSEOBr = () => {
         "operatingSystem": "Web, Chrome Extension",
         "offers": {
           "@type": "AggregateOffer",
-          "url": "https://eazybe.com/pricing",
+          "url": "https://eazybe.com/br/pricing",
           "priceCurrency": "BRL",
           "lowPrice": 1160,
           "highPrice": 1960,
