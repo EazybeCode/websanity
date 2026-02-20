@@ -8,6 +8,9 @@ export const MSAPage: React.FC = () => {
   const { t } = useTranslation()
 
   useEffect(() => {
+    // Set document title for MSA page
+    document.title = 'Master Service Agreement | Eazybe'
+
     // Store original robots meta tag content for restoration
     const originalRobotsMeta = document.querySelector('meta[name="robots"]')
     const originalContent = originalRobotsMeta?.getAttribute('content')
