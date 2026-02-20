@@ -11,9 +11,8 @@ export const useFreshdeskIntegrationSEO = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Check if we're on the Freshdesk integration page (with or without language prefix)
-    const isFreshdeskPage = /^\/[a-z]{2}\/?freshdesk-whatsapp-integration/.test(location.pathname) ||
-                             location.pathname === '/freshdesk-whatsapp-integration'
+    // Check if we're on the Freshdesk integration page (English only - exclude BR which has its own hook)
+    const isFreshdeskPage = location.pathname === '/freshdesk-whatsapp-integration'
 
     if (isFreshdeskPage) {
       // ==================== META TAGS ====================

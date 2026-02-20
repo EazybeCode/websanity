@@ -41,6 +41,7 @@ import { useZohoIntegrationSEOBr } from '../hooks/useZohoIntegrationSEOBr'
 import { useSalesforceIntegrationSEOBr } from '../hooks/useSalesforceIntegrationSEOBr'
 import { useBitrix24IntegrationSEOBr } from '../hooks/useBitrix24IntegrationSEOBr'
 import { useLeadSquaredIntegrationSEOBr } from '../hooks/useLeadSquaredIntegrationSEOBr'
+import { useFreshdeskIntegrationSEOBr } from '../hooks/useFreshdeskIntegrationSEOBr'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1652,6 +1653,7 @@ export const ProductPage: React.FC = () => {
 
   // Freshdesk Integration Page SEO
   useFreshdeskIntegrationSEO()
+  useFreshdeskIntegrationSEOBr()
 
   // Webhooks Integration Page SEO
   useWebhooksIntegrationSEO()
