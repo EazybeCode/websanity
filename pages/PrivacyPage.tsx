@@ -23,9 +23,11 @@ export const PrivacyPage: React.FC = () => {
       document.head.appendChild(meta)
     }
 
-    // Update title for BR page
+    // Update title for BR and EN pages
     if (isBr) {
       document.title = 'Política de Privacidade | Eazybe'
+    } else {
+      document.title = 'Privacy Policy | Eazybe'
     }
 
     // Cleanup - restore original when leaving
