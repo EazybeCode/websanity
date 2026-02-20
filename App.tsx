@@ -73,6 +73,8 @@ const AppRoutes = () => (
       <Route path="/index.html" element={<Navigate to="/" replace />} />
 
       {/* English routes (default, no prefix) */}
+      {/* Redirect old categories-intregrations URL */}
+      <Route path="/categories-intregrations/account-management" element={<Navigate to="/" replace />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/pricing" element={<PricingPage />} />
       <Route path="/features" element={<CategoryIndexPage />} />
@@ -141,6 +143,10 @@ const AppRoutes = () => (
       <Route path="/es/whatsapp-api/coexistence" element={<CoexistencePage />} />
       <Route path="/es/whatsapp-api/:slug" element={<FeaturePage />} />
       <Route path="/es/integrations" element={<CategoryIndexPage />} />
+      {/* Redirect old Spanish integration URLs */}
+      <Route path="/es/integrations/google-sheet" element={<Navigate to="/es/google-sheets-whatsapp-integration" replace />} />
+      <Route path="/es/integrations/fresh-desk" element={<Navigate to="/es/freshdesk-whatsapp-integration" replace />} />
+      <Route path="/es/salesforce" element={<Navigate to="/es/salesforce-whatsapp-integration" replace />} />
       {integrationSlugs.map((slug) => (
         <Route key={`es-${slug}`} path={`/es/${slug}-whatsapp-integration`} element={<ProductPage />} />
       ))}
@@ -162,6 +168,8 @@ const AppRoutes = () => (
       <Route path="/tr/whatsapp-api/coexistence" element={<CoexistencePage />} />
       <Route path="/tr/whatsapp-api/:slug" element={<FeaturePage />} />
       <Route path="/tr/integrations" element={<CategoryIndexPage />} />
+      {/* Redirect old Turkish integration URLs */}
+      <Route path="/tr/integrations/fresh-desk" element={<Navigate to="/tr/freshdesk-whatsapp-integration" replace />} />
       {integrationSlugs.map((slug) => (
         <Route key={`tr-${slug}`} path={`/tr/${slug}-whatsapp-integration`} element={<ProductPage />} />
       ))}
@@ -171,6 +179,14 @@ const AppRoutes = () => (
       <Route path="/tr/blog-pt" element={<Navigate to="/tr/blog" replace />} />
       <Route path="/tr/blog/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025" element={<Navigate to="/tr/blog" replace />} />
       <Route path="/tr/blog/how-to-edit-andriod-contacts-on-whatsapp-without-leaving-the-app" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/get-organized-with-hubspot-free-crm-start-now" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/how-whatapp-will-take-over-email-by-2030" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/whatsapp-hacks-how-to-message-without-saving-contact" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/boost-your-sales-process-with-these-15-automation-tools" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/top-3-chrome-extensions-that-you-must-install-right-now" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/use-these-7-proven-strategies-to-grow-your-business" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/essential-glossary-of-artificial-intelligence-ai-terms" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/whatsapp-companion-mode-how-to-use-whatsapp-on-two-phones" element={<Navigate to="/tr/blog" replace />} />
       <Route path="/tr/blog/:slug" element={<BlogPage />} />
       <Route path="/tr/team-inbox" element={<TeamInboxPage />} />
       <Route path="/tr/msa" element={<MSAPage />} />
