@@ -42,6 +42,7 @@ import { useSalesforceIntegrationSEOBr } from '../hooks/useSalesforceIntegration
 import { useBitrix24IntegrationSEOBr } from '../hooks/useBitrix24IntegrationSEOBr'
 import { useLeadSquaredIntegrationSEOBr } from '../hooks/useLeadSquaredIntegrationSEOBr'
 import { useFreshdeskIntegrationSEOBr } from '../hooks/useFreshdeskIntegrationSEOBr'
+import { useWebhooksIntegrationSEOBr } from '../hooks/useWebhooksIntegrationSEOBr'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1657,6 +1658,7 @@ export const ProductPage: React.FC = () => {
 
   // Webhooks Integration Page SEO
   useWebhooksIntegrationSEO()
+  useWebhooksIntegrationSEOBr()
 
   // Google Calendar Integration Page SEO
   useGoogleCalendarIntegrationSEO()

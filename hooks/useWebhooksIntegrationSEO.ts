@@ -11,9 +11,8 @@ export const useWebhooksIntegrationSEO = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Check if we're on the Webhooks integration page (with or without language prefix)
-    const isWebhooksPage = /^\/[a-z]{2}\/?webhooks-whatsapp-integration/.test(location.pathname) ||
-                            location.pathname === '/webhooks-whatsapp-integration'
+    // Check if we're on the Webhooks integration page (English only - exclude BR which has its own hook)
+    const isWebhooksPage = location.pathname === '/webhooks-whatsapp-integration'
 
     if (isWebhooksPage) {
       // ==================== META TAGS ====================
