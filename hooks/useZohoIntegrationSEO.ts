@@ -11,9 +11,8 @@ export const useZohoIntegrationSEO = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Check if we're on the Zoho integration page (with or without language prefix)
-    const isZohoPage = /^\/[a-z]{2}\/?zoho-whatsapp-integration/.test(location.pathname) ||
-                       location.pathname === '/zoho-whatsapp-integration'
+    // Check if we're on the Zoho integration page (English only - exclude BR which has its own hook)
+    const isZohoPage = location.pathname === '/zoho-whatsapp-integration'
 
     if (isZohoPage) {
       // ==================== META TAGS ====================
