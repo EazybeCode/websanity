@@ -168,6 +168,7 @@ const AppRoutes = () => (
       <Route path="/tr/product/:slug" element={<ProductPage />} />
       <Route path="/tr/blog" element={<BlogListingPage />} />
       {/* Redirect old Turkish blog URLs */}
+      <Route path="/tr/blog-pt" element={<Navigate to="/tr/blog" replace />} />
       <Route path="/tr/blog/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025" element={<Navigate to="/tr/blog" replace />} />
       <Route path="/tr/blog/how-to-edit-andriod-contacts-on-whatsapp-without-leaving-the-app" element={<Navigate to="/tr/blog" replace />} />
       <Route path="/tr/blog/:slug" element={<BlogPage />} />
