@@ -73,7 +73,10 @@ const AppRoutes = () => (
       <Route path="/index.html" element={<Navigate to="/" replace />} />
 
       {/* English routes (default, no prefix) */}
-      {/* Redirect old categories-intregrations URL */}
+      {/* Redirect old URLs with query parameters */}
+      <Route path="/search" element={<Navigate to="/" replace />} />
+      <Route path="/lp/hubspot-demo" element={<Navigate to="/" replace />} />
+      <Route path="/all-crm-form" element={<Navigate to="/" replace />} />
       <Route path="/categories-intregrations/account-management" element={<Navigate to="/" replace />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/pricing" element={<PricingPage />} />
@@ -94,6 +97,7 @@ const AppRoutes = () => (
       ))}
       <Route path="/product/:slug" element={<ProductPage />} />
       <Route path="/blog" element={<BlogListingPage />} />
+      {/* Redirect blog URLs with query parameters */}
       <Route path="/blog/:slug" element={<BlogPage />} />
       {/* Redesigned Blog Routes - for testing */}
       <Route path="/blog-new" element={<BlogListingPageRedesigned />} />
