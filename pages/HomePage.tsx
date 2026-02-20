@@ -321,10 +321,10 @@ export const HomePage: React.FC = () => {
       }
 
       // Set document title
-      setDocumentTitle('WhatsApp CRM Integration | Eazybe - WhatsApp Sales Platform')
+      setDocumentTitle('WhatsApp CRM Integration | WhatsApp Sales Platform - Eazybe')
 
       // Basic meta tags
-      setMetaTag('title', 'WhatsApp CRM Integration | Eazybe - WhatsApp Sales Platform')
+      setMetaTag('title', 'WhatsApp CRM Integration | WhatsApp Sales Platform - Eazybe')
       setMetaTag('description', 'WhatsApp CRM integration for (HubSpot, Zoho, Salesforce, Sheets). CRM integration with WhatsApp sync chats with your CRM, AI replies, & shared inboxes.')
       setMetaTag('keywords', 'WhatsApp CRM, WhatsApp CRM Integration, CRM integration with WhatsApp, WhatsApp Web extension, CRM integration, CRM WhatsApp integration, sales productivity, WhatsApp productivity')
       setMetaTag('author', 'Eazybe')
