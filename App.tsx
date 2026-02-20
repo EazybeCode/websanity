@@ -50,6 +50,33 @@ const TrailingSlashRedirect: React.FC<{ children: React.ReactNode }> = ({ childr
   return <>{children}</>
 }
 
+// Component to redirect URLs with unwanted query parameters
+const QueryParamRedirect: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const location = useLocation()
+
+  // Redirect /blog?category=case-studies → /blog
+  if (location.pathname === '/blog' && location.search.includes('category=case-studies')) {
+    return <Navigate to="/blog" replace />
+  }
+
+  // Redirect /es/blog?daf7a484_page=2 → /es/blog
+  if (location.pathname === '/es/blog' && location.search.includes('daf7a484_page=')) {
+    return <Navigate to="/es/blog" replace />
+  }
+
+  // Redirect /br/blog?category=case-studies → /br/blog
+  if (location.pathname === '/br/blog' && location.search.includes('category=case-studies')) {
+    return <Navigate to="/br/blog" replace />
+  }
+
+  // Redirect /?utm_source=... → /
+  if (location.pathname === '/' && location.search.includes('utm_source=spotsaas.com')) {
+    return <Navigate to="/" replace />
+  }
+
+  return <>{children}</>
+}
+
 // Integration routes helper - generates routes for all integrations
 const integrationSlugs = [
   'hubspot',
@@ -216,13 +243,15 @@ function App() {
     <BrowserRouter>
       <TrialModalProvider>
         <TrailingSlashRedirect>
-          <LanguageProvider>
-            <SEOHead />
-            <AppRoutes />
-            <TrialModalWrapper />
-            <LeadSidebar />
-            <LeadMobileButton />
-          </LanguageProvider>
+          <QueryParamRedirect>
+            <LanguageProvider>
+              <SEOHead />
+              <AppRoutes />
+              <TrialModalWrapper />
+              <LeadSidebar />
+              <LeadMobileButton />
+            </LanguageProvider>
+          </QueryParamRedirect>
         </TrailingSlashRedirect>
       </TrialModalProvider>
     </BrowserRouter>
