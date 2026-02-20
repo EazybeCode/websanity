@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { Shield } from 'lucide-react'
 
 export const PrivacyPage: React.FC = () => {
+  const location = useLocation()
+  const isBr = location.pathname.startsWith('/br')
   useEffect(() => {
     // Store original robots meta tag content for restoration
     const originalRobotsMeta = document.querySelector('meta[name="robots"]')
@@ -42,15 +45,18 @@ export const PrivacyPage: React.FC = () => {
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-white">
-                Eazybe Privacy Policy
+                {isBr ? 'Política de Privacidade da Eazybe' : 'Eazybe Privacy Policy'}
               </h1>
             </div>
           </div>
           <p className="text-xl text-emerald-400 font-medium mb-4">
-            Revised 2026
+            {isBr ? 'Revisado 2026' : 'Revised 2026'}
           </p>
           <p className="text-slate-400">
-            Your privacy and data security are our top priorities. This policy explains how we handle your information.
+            {isBr
+              ? 'Sua privacidade e segurança de dados são nossas principais prioridades. Esta política explica como lidamos com suas informações.'
+              : 'Your privacy and data security are our top priorities. This policy explains how we handle your information.'
+            }
           </p>
         </div>
       </section>
@@ -63,11 +69,14 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">1</span>
-              Introduction
+              {isBr ? 'Introdução' : 'Introduction'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
               <p>
-                At Eazybe, Inc., we provide a RevOps and CRM integration layer for WhatsApp Web. This Privacy Policy explains how we collect, handle, and protect your data when you use the Eazybe Chrome Extension and our associated services.
+                {isBr
+                  ? 'Na Eazybe, Inc., fornecemos uma camada de integração de RevOps e CRM para o WhatsApp Web. Esta Política de Privacidade explica como coletamos, tratamos e protegemos seus dados quando você usa a Extensão Chrome da Eazybe e nossos serviços associados.'
+                  : 'At Eazybe, Inc., we provide a RevOps and CRM integration layer for WhatsApp Web. This Privacy Policy explains how we collect, handle, and protect your data when you use the Eazybe Chrome Extension and our associated services.'
+                }
               </p>
             </div>
           </div>
@@ -76,11 +85,20 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">2</span>
-              Google API Disclosure (Mandatory for Chrome Web Store)
+              {isBr ? 'Divulgação da API do Google (Obrigatório para Chrome Web Store)' : 'Google API Disclosure (Mandatory for Chrome Web Store)'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
               <p>
-                Eazybe's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline">Google API Services User Data Policy</a>, including the Limited Use requirements.
+                {isBr
+                  ? 'O uso e transferência pela Eazybe de informações recebidas das APIs do Google para qualquer outro aplicativo seguirá a '
+                  : 'Eazybe\'s use and transfer to any other app of information received from Google APIs will adhere to the '}
+                <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline">
+                  {isBr ? 'Política de Dados do Usuário dos Serviços de API do Google' : 'Google API Services User Data Policy'}
+                </a>
+                {isBr
+                  ? ', incluindo os requisitos de Uso Limitado.'
+                  : ', including the Limited Use requirements.'
+                }
               </p>
             </div>
           </div>
@@ -89,15 +107,15 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">3</span>
-              Data Collection and Handling
+              {isBr ? 'Coleta e Tratamento de Dados' : 'Data Collection and Handling'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>To provide our CRM sync and AI classification features, Eazybe processes the following data:</p>
+              <p>{isBr ? 'Para fornecer nossos recursos de sincronização de CRM e classificação de IA, a Eazybe processa os seguintes dados:' : 'To provide our CRM sync and AI classification features, Eazybe processes the following data:'}</p>
               <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
-                <li><strong className="text-white">Identity Data:</strong> We use Google OAuth to authenticate your identity and collect your email address for licensing and communication.</li>
-                <li><strong className="text-white">WhatsApp Data:</strong> To enable CRM integration, we access contact names, phone numbers, and message timestamps from your WhatsApp Web interface.</li>
-                <li><strong className="text-white">CRM Data:</strong> If you connect a CRM (HubSpot, Zoho, Salesforce, etc.), we process data required to sync contacts, tasks, and notes between WhatsApp and your CRM.</li>
-                <li><strong className="text-white">AI & Classification Data:</strong> We process message metadata (and message content if AI features are enabled) to provide conversation summaries, sentiment analysis, and intent scoring.</li>
+                <li><strong className="text-white">{isBr ? 'Dados de Identidade:' : 'Identity Data:'}</strong> {isBr ? 'Usamos o Google OAuth para autenticar sua identidade e coletar seu endereço de e-mail para licenciamento e comunicação.' : 'We use Google OAuth to authenticate your identity and collect your email address for licensing and communication.'}</li>
+                <li><strong className="text-white">{isBr ? 'Dados do WhatsApp:' : 'WhatsApp Data:'}</strong> {isBr ? 'Para habilitar a integração com CRM, acessamos nomes de contatos, números de telefone e timestamps de mensagens da sua interface do WhatsApp Web.' : 'To enable CRM integration, we access contact names, phone numbers, and message timestamps from your WhatsApp Web interface.'}</li>
+                <li><strong className="text-white">{isBr ? 'Dados de CRM:' : 'CRM Data:'}</strong> {isBr ? 'Se você conectar um CRM (HubSpot, Zoho, Salesforce, etc.), processamos os dados necessários para sincronizar contatos, tarefas e notas entre o WhatsApp e seu CRM.' : 'If you connect a CRM (HubSpot, Zoho, Salesforce, etc.), we process data required to sync contacts, tasks, and notes between WhatsApp and your CRM.'}</li>
+                <li><strong className="text-white">{isBr ? 'Dados de IA e Classificação:' : 'AI & Classification Data:'}</strong> {isBr ? 'Processamos metadados de mensagens (e conteúdo de mensagens se os recursos de IA estiverem ativados) para fornecer resumos de conversas, análise de sentimentos e pontuação de intenção.' : 'We process message metadata (and message content if AI features are enabled) to provide conversation summaries, sentiment analysis, and intent scoring.'}</li>
               </ul>
             </div>
           </div>
@@ -106,14 +124,14 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">4</span>
-              Data Storage and Security
+              {isBr ? 'Armazenamento e Segurança de Dados' : 'Data Storage and Security'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>We follow a strict "Privacy by Design" architecture:</p>
+              <p>{isBr ? 'Seguimos uma arquitetura estrita de "Privacidade desde o Projeto" (Privacy by Design):' : 'We follow a strict "Privacy by Design" architecture:'}</p>
               <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
-                <li><strong className="text-white">Browser-Level:</strong> Most WhatsApp interactions are processed locally in your browser.</li>
-                <li><strong className="text-white">Server-Level:</strong> Metadata required for team collaboration (tags, CRM deal values, sentiment scores) is stored securely on our servers (AWS/Hetzner) and databases (MongoDB/BigQuery).</li>
-                <li><strong className="text-white">Encryption:</strong> All data in transit is encrypted via HTTPS/TLS. Data at rest is encrypted using industry-standard AES-256 protocols.</li>
+                <li><strong className="text-white">{isBr ? 'Nível do Navegador:' : 'Browser-Level:'}</strong> {isBr ? 'A maioria das interações do WhatsApp é processada localmente no seu navegador.' : 'Most WhatsApp interactions are processed locally in your browser.'}</li>
+                <li><strong className="text-white">{isBr ? 'Nível do Servidor:' : 'Server-Level:'}</strong> {isBr ? 'Metadados necessários para colaboração em equipe (tags, valores de negociações de CRM, pontuações de sentimento) são armazenados com segurança em nossos servidores (AWS/Hetzner) e bancos de dados (MongoDB/BigQuery).' : 'Metadata required for team collaboration (tags, CRM deal values, sentiment scores) is stored securely on our servers (AWS/Hetzner) and databases (MongoDB/BigQuery).'}</li>
+                <li><strong className="text-white">{isBr ? 'Criptografia:' : 'Encryption:'}</strong> {isBr ? 'Todos os dados em trânsito são criptografados via HTTPS/TLS. Dados em repouso são criptografados usando protocolos padrão da indústria AES-256.' : 'All data in transit is encrypted via HTTPS/TLS. Data at rest is encrypted using industry-standard AES-256 protocols.'}</li>
               </ul>
             </div>
           </div>
@@ -122,13 +140,13 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">5</span>
-              Data Sharing and Disclosure
+              {isBr ? 'Compartilhamento e Divulgação de Dados' : 'Data Sharing and Disclosure'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
               <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
-                <li><strong className="text-white">No Sale of Data:</strong> We do not sell, rent, or trade your personal data to third parties.</li>
-                <li><strong className="text-white">Third-Party Integrations:</strong> Data is only shared with third-party services (like your CRM provider or payment processor like Stripe) that you explicitly authorize.</li>
-                <li><strong className="text-white">Limited Use:</strong> We do not use your data for advertising, creditworthiness, or any purpose outside of providing the Eazybe service.</li>
+                <li><strong className="text-white">{isBr ? 'Sem Venda de Dados:' : 'No Sale of Data:'}</strong> {isBr ? 'Não vendemos, alugamos ou trocamos seus dados pessoais com terceiros.' : 'We do not sell, rent, or trade your personal data to third parties.'}</li>
+                <li><strong className="text-white">{isBr ? 'Integrações de Terceiros:' : 'Third-Party Integrations:'}</strong> {isBr ? 'Os dados são compartilhados apenas com serviços de terceiros (como seu provedor de CRM ou processador de pagamento como Stripe) que você autoriza explicitamente.' : 'Data is only shared with third-party services (like your CRM provider or payment processor like Stripe) that you explicitly authorize.'}</li>
+                <li><strong className="text-white">{isBr ? 'Uso Limitado:' : 'Limited Use:'}</strong> {isBr ? 'Não usamos seus dados para publicidade, análise de crédito ou qualquer finalidade além de fornecer o serviço Eazybe.' : 'We do not use your data for advertising, creditworthiness, or any purpose outside of providing the Eazybe service.'}</li>
               </ul>
             </div>
           </div>
@@ -137,13 +155,13 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">6</span>
-              User Rights and Data Deletion
+              {isBr ? 'Direitos do Usuário e Exclusão de Dados' : 'User Rights and Data Deletion'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>You have the right to access, correct, or delete your data at any time.</p>
+              <p>{isBr ? 'Você tem o direito de acessar, corrigir ou excluir seus dados a qualquer momento.' : 'You have the right to access, correct, or delete your data at any time.'}</p>
               <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
-                <li><strong className="text-white">Uninstalling:</strong> You can stop data collection by uninstalling the Chrome Extension.</li>
-                <li><strong className="text-white">Deletion Request:</strong> To permanently delete your account and all associated data from our databases, please contact us at <a href="mailto:hey@eazybe.com" className="text-emerald-400 hover:text-emerald-300 underline">hey@eazybe.com</a>. Requests are processed within 5 business days.</li>
+                <li><strong className="text-white">{isBr ? 'Desinstalando:' : 'Uninstalling:'}</strong> {isBr ? 'Você pode parar a coleta de dados desinstalando a Extensão do Chrome.' : 'You can stop data collection by uninstalling the Chrome Extension.'}</li>
+                <li><strong className="text-white">{isBr ? 'Solicitação de Exclusão:' : 'Deletion Request:'}</strong> {isBr ? 'Para excluir permanentemente sua conta e todos os dados associados de nossos bancos de dados, entre em contato conosico em ' : 'To permanently delete your account and all associated data from our databases, please contact us at '}<a href="mailto:hey@eazybe.com" className="text-emerald-400 hover:text-emerald-300 underline">hey@eazybe.com</a>. {isBr ? 'As solicitações são processadas em até 5 dias úteis.' : 'Requests are processed within 5 business days.'}</li>
               </ul>
             </div>
           </div>
@@ -152,56 +170,89 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12 p-6 bg-slate-900/50 rounded-xl border border-slate-800">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">7</span>
-              Contact Information
+              {isBr ? 'Informações de Contato' : 'Contact Information'}
             </h2>
             <div className="space-y-2 text-slate-300">
               <p><strong className="text-white">Eazybe, Inc.</strong></p>
               <p>8, The Green STE B, Dover, Delaware - 19901</p>
-              <p>Email: <a href="mailto:hey@eazybe.com" className="text-emerald-400 hover:text-emerald-300 underline">hey@eazybe.com</a></p>
+              <p>{isBr ? 'E-mail: ' : 'Email: '}<a href="mailto:hey@eazybe.com" className="text-emerald-400 hover:text-emerald-300 underline">hey@eazybe.com</a></p>
             </div>
           </div>
 
           {/* Chrome Web Store Data Disclosure */}
           <div className="mb-12 p-6 bg-slate-900/50 rounded-xl border border-slate-800">
-            <h2 className="text-xl font-bold text-white mb-4">Chrome Web Store Data Disclosure & Limited Use Policy</h2>
+            <h2 className="text-xl font-bold text-white mb-4">{isBr ? 'Divulgação de Dados da Chrome Web Store e Política de Uso Limitado' : 'Chrome Web Store Data Disclosure & Limited Use Policy'}</h2>
             <div className="space-y-6 text-slate-300">
               <p>
-                To maintain transparency with our users and comply with the Google Chrome Web Store User Data Policy, Eazybe provides the following disclosures regarding the collection and use of your data.
+                {isBr
+                  ? 'Para manter a transparência com nossos usuários e cumprir a Política de Dados do Usuário da Google Chrome Web Store, a Eazybe fornece as seguintes divulgações sobre a coleta e uso de seus dados.'
+                  : 'To maintain transparency with our users and comply with the Google Chrome Web Store User Data Policy, Eazybe provides the following disclosures regarding the collection and use of your data.'
+                }
               </p>
 
               <div>
-                <h3 className="text-lg font-semibold text-white mb-3">1. Data Collection & Usage Disclosure</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">{isBr ? '1. Divulgação de Coleta e Uso de Dados' : '1. Data Collection & Usage Disclosure'}</h3>
                 <p className="mb-3">
-                  Eazybe collects and processes specific user data to provide our CRM integration and productivity services. This includes:
+                  {isBr
+                    ? 'A Eazybe coleta e processa dados específicos do usuário para fornecer nossos serviços de integração de CRM e produtividade. Isso inclui:'
+                    : 'Eazybe collects and processes specific user data to provide our CRM integration and productivity services. This includes:'
+                  }
                 </p>
                 <p className="mb-2">
-                  <strong className="text-white">Web Browsing Activity:</strong> Our extension accesses specific website content (primarily web.whatsapp.com and your connected CRM domains) to synchronize messages, contacts, and tasks.
+                  <strong className="text-white">{isBr ? 'Atividade de Navegação na Web:' : 'Web Browsing Activity:'}</strong> {isBr
+                    ? 'Nossa extensão acessa conteúdo específico de sites (principalmente web.whatsapp.com e domínios de CRM conectados) para sincronizar mensagens, contatos e tarefas.'
+                    : 'Our extension accesses specific website content (primarily web.whatsapp.com and your connected CRM domains) to synchronize messages, contacts, and tasks.'
+                  }
                 </p>
                 <p className="mb-2">
-                  <strong className="text-white">Purpose:</strong> This data is used solely to facilitate the core functionality of Eazybe, such as organizing chats, scheduling follow-ups, and integrating your browser-based workflows with your CRM.
+                  <strong className="text-white">{isBr ? 'Finalidade:' : 'Purpose:'}</strong> {isBr
+                    ? 'Esses dados são usados exclusivamente para facilitar a funcionalidade principal da Eazybe, como organizar conversas, aguar acompanhamentos e integrar seus fluxos de trabalho baseados em navegador com seu CRM.'
+                    : 'This data is used solely to facilitate the core functionality of Eazybe, such as organizing chats, scheduling follow-ups, and integrating your browser-based workflows with your CRM.'
+                  }
                 </p>
                 <p>
-                  <strong className="text-white">Minimal Permissions:</strong> We only request the minimum permissions necessary. We do not track your general browsing history across unrelated websites.
+                  <strong className="text-white">{isBr ? 'Permissões Mínimas:' : 'Minimal Permissions:'}</strong> {isBr
+                    ? 'Solicitamos apenas as permissões mínimas necessárias. Não rastreamos seu histórico de navegação geral em sites não relacionados.'
+                    : 'We only request the minimum permissions necessary. We do not track your general browsing history across unrelated websites.'
+                  }
                 </p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-white mb-3">2. Google API "Limited Use" Compliance</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">{isBr ? '2. Conformidade com "Uso Limitado" da API do Google' : '2. Google API "Limited Use" Compliance'}</h3>
                 <p className="mb-3">
-                  Eazybe's use and transfer of information received from Google APIs to any other app will adhere to Google API Services User Data Policy, including the Limited Use requirements:
+                  {isBr
+                    ? 'O uso e transferência pela Eazybe de informações recebidas das APIs do Google para qualquer outro aplicativo seguirá a Política de Dados do Usuário dos Serviços de API do Google, incluindo os requisitos de Uso Limitado:'
+                    : 'Eazybe\'s use and transfer of information received from Google APIs to any other app will adhere to Google API Services User Data Policy, including the Limited Use requirements:'
+                  }
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-slate-400">
-                  <li><strong className="text-slate-300">No Advertising:</strong> We do not use your data to serve, personalize, or even target advertisements.</li>
-                  <li><strong className="text-slate-300">No Data Selling:</strong> We do not sell your personal data or browsing activity to any third parties, data brokers, or ad networks.</li>
-                  <li><strong className="text-slate-300">Restricted Transfers:</strong> We do not transfer your data to third parties unless it is necessary to provide or improve our core features, to comply with applicable laws, or as part of a merger/acquisition.</li>
-                  <li><strong className="text-slate-300">Human Review Limits:</strong> Our team will not view your private user data unless you provide explicit consent for troubleshooting, it is necessary for security purposes, or it is required to comply with legal obligations.</li>
+                  <li><strong className="text-slate-300">{isBr ? 'Sem Publicidade:' : 'No Advertising:'}</strong> {isBr
+                    ? 'Não usamos seus dados para veicular, personalizar ou mesmo direcionar anúncios.'
+                    : 'We do not use your data to serve, personalize, or even target advertisements.'
+                  }</li>
+                  <li><strong className="text-slate-300">{isBr ? 'Sem Venda de Dados:' : 'No Data Selling:'}</strong> {isBr
+                    ? 'Não vendemos seus dados pessoais ou atividade de navegação para terceiros, corretores de dados ou redes de anúncios.'
+                    : 'We do not sell your personal data or browsing activity to any third parties, data brokers, or ad networks.'
+                  }</li>
+                  <li><strong className="text-slate-300">{isBr ? 'Transferências Restritas:' : 'Restricted Transfers:'}</strong> {isBr
+                    ? 'Não transferimos seus dados para terceiros, a menos que seja necessário para fornecer ou melhorar nossos recursos principais, cumprir leis aplicáveis ou como parte de uma fusão/aquisição.'
+                    : 'We do not transfer your data to third parties unless it is necessary to provide or improve our core features, to comply with applicable laws, or as part of a merger/acquisition.'
+                  }</li>
+                  <li><strong className="text-slate-300">{isBr ? 'Limites de Revisão Humana:' : 'Human Review Limits:'}</strong> {isBr
+                    ? 'Nossa equipe não visualizará seus dados privados de usuário, a menos que você forneça consentimento explícito para solução de problemas, seja necessário para fins de segurança ou seja necessário para cumprir obrigações legais.'
+                    : 'Our team will not view your private user data unless you provide explicit consent for troubleshooting, it is necessary for security purposes, or it is required to comply with legal obligations.'
+                  }</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-white mb-3">3. Privacy & Security Measures</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">{isBr ? '3. Medidas de Privacidade e Segurança' : '3. Privacy & Security Measures'}</h3>
                 <p>
-                  All data transmitted between the Eazybe extension and our servers is protected using industry-standard encryption (e.g., HTTPS). We implement strict access controls to ensure your data remains confidential and secure.
+                  {isBr
+                    ? 'Todos os dados transmitidos entre a extensão Eazybe e nossos servidores são protegidos usando criptografia padrão da indústria (por exemplo, HTTPS). Implementamos controles de acesso estritos para garantir que seus dados permaneçam confidenciais e seguros.'
+                    : 'All data transmitted between the Eazybe extension and our servers is protected using industry-standard encryption (e.g., HTTPS). We implement strict access controls to ensure your data remains confidential and secure.'
+                  }
                 </p>
               </div>
             </div>
