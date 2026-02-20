@@ -121,9 +121,11 @@ const AppRoutes = () => (
       ))}
       <Route path="/br/product/:slug" element={<ProductPage />} />
       <Route path="/br/blog" element={<BlogListingPage />} />
-      <Route path="/br/blog/:slug" element={<BlogPage />} />
       {/* Redirect old Portuguese blog URLs */}
       <Route path="/br/blog/integrate-hubspot-with-whatsapp-easiest-method" element={<Navigate to="/br" replace />} />
+      <Route path="/br/blog/discover-the-best-whatsapp-business-api-alternatives" element={<Navigate to="/br/blog" replace />} />
+      <Route path="/br/blog/apply-for-green-tick-on-whatsapp-business" element={<Navigate to="/br/blog" replace />} />
+      <Route path="/br/blog/:slug" element={<BlogPage />} />
       <Route path="/br/team-inbox" element={<TeamInboxPage />} />
       <Route path="/br/msa" element={<MSAPage />} />
       <Route path="/br/privacy" element={<PrivacyPage />} />
@@ -165,6 +167,9 @@ const AppRoutes = () => (
       ))}
       <Route path="/tr/product/:slug" element={<ProductPage />} />
       <Route path="/tr/blog" element={<BlogListingPage />} />
+      {/* Redirect old Turkish blog URLs */}
+      <Route path="/tr/blog/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/how-to-edit-andriod-contacts-on-whatsapp-without-leaving-the-app" element={<Navigate to="/tr/blog" replace />} />
       <Route path="/tr/blog/:slug" element={<BlogPage />} />
       <Route path="/tr/team-inbox" element={<TeamInboxPage />} />
       <Route path="/tr/msa" element={<MSAPage />} />
