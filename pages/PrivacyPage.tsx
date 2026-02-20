@@ -23,6 +23,11 @@ export const PrivacyPage: React.FC = () => {
       document.head.appendChild(meta)
     }
 
+    // Update title for BR page
+    if (isBr) {
+      document.title = 'Política de Privacidade | Eazybe'
+    }
+
     // Cleanup - restore original when leaving
     return () => {
       const robotsMeta = document.querySelector('meta[name="robots"]')
@@ -30,7 +35,7 @@ export const PrivacyPage: React.FC = () => {
         robotsMeta?.setAttribute('content', originalContent)
       }
     }
-  }, [])
+  }, [isBr])
 
   return (
     <div className="min-h-screen bg-slate-950 font-sans text-slate-300 antialiased">
