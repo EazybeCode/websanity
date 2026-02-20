@@ -8,6 +8,7 @@ export const PrivacyPage: React.FC = () => {
   const location = useLocation()
   const isBr = location.pathname.startsWith('/br')
   const isEs = location.pathname.startsWith('/es')
+  const isTr = location.pathname.startsWith('/tr')
   useEffect(() => {
     // Store original robots meta tag content for restoration
     const originalRobotsMeta = document.querySelector('meta[name="robots"]')
@@ -24,11 +25,13 @@ export const PrivacyPage: React.FC = () => {
       document.head.appendChild(meta)
     }
 
-    // Update title for BR, ES and EN pages
+    // Update title for BR, ES, TR and EN pages
     if (isBr) {
       document.title = 'Política de Privacidade | Eazybe'
     } else if (isEs) {
       document.title = 'Política de privacidad | Eazybe'
+    } else if (isTr) {
+      document.title = 'Gizlilik Politikası | Eazybe'
     } else {
       document.title = 'Privacy Policy | Eazybe'
     }
@@ -40,7 +43,7 @@ export const PrivacyPage: React.FC = () => {
         robotsMeta?.setAttribute('content', originalContent)
       }
     }
-  }, [isBr, isEs])
+  }, [isBr, isEs, isTr])
 
   return (
     <div className="min-h-screen bg-slate-950 font-sans text-slate-300 antialiased">
@@ -55,18 +58,20 @@ export const PrivacyPage: React.FC = () => {
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-white">
-                {isBr ? 'Política de Privacidade da Eazybe' : isEs ? 'Política de Privacidad de Eazybe' : 'Eazybe Privacy Policy'}
+                {isBr ? 'Política de Privacidade da Eazybe' : isEs ? 'Política de Privacidad de Eazybe' : isTr ? 'Eazybe Gizlilik Politikası' : 'Eazybe Privacy Policy'}
               </h1>
             </div>
           </div>
           <p className="text-xl text-emerald-400 font-medium mb-4">
-            {isBr ? 'Revisado 2026' : isEs ? 'Revisado 2026' : 'Revised 2026'}
+            {isBr ? 'Revisado 2026' : isEs ? 'Revisado 2026' : isTr ? '2026 Revize Edildi' : 'Revised 2026'}
           </p>
           <p className="text-slate-400">
             {isBr
               ? 'Sua privacidade e segurança de dados são nossas principais prioridades. Esta política explica como lidamos com suas informações.'
               : isEs
               ? 'Su privacidad y seguridad de datos son nuestras principales prioridades. Esta política explica cómo manejamos su información.'
+              : isTr
+              ? 'Gizliliğiniz ve veri güvenliğiniz en yüksek önceliğimizdir. Bu politika, bilgilerinizi nasıl işlediğimizi açıklar.'
               : 'Your privacy and data security are our top priorities. This policy explains how we handle your information.'
             }
           </p>
@@ -81,7 +86,7 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">1</span>
-              {isBr ? 'Introdução' : isEs ? 'Introducción' : 'Introduction'}
+              {isBr ? 'Introdução' : isEs ? 'Introducción' : isTr ? 'Giriş' : 'Introduction'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
               <p>
@@ -89,6 +94,8 @@ export const PrivacyPage: React.FC = () => {
                   ? 'Na Eazybe, Inc., fornecemos uma camada de integração de RevOps e CRM para o WhatsApp Web. Esta Política de Privacidade explica como coletamos, tratamos e protegemos seus dados quando você usa a Extensão Chrome da Eazybe e nossos serviços associados.'
                   : isEs
                   ? 'En Eazybe, Inc., proporcionamos una capa de integración de RevOps y CRM para WhatsApp Web. Esta Política de Privacidad explica cómo recopilamos, manejamos y protegemos sus datos cuando utiliza la Extensión de Chrome de Eazybe y nuestros servicios asociados.'
+                  : isTr
+                  ? 'Eazybe, Inc. olarak, WhatsApp Web için RevOps ve CRM entegrasyon katmanı sağlıyoruz. Bu Gizlilik Politikası, Eazybe Chrome Uzantısını ve ilgili hizmetlerimizi kullandığınızda verilerinizi nasıl topladığımızı, işlediğimizi ve koruduğumuzu açıklar.'
                   : 'At Eazybe, Inc., we provide a RevOps and CRM integration layer for WhatsApp Web. This Privacy Policy explains how we collect, handle, and protect your data when you use the Eazybe Chrome Extension and our associated services.'
                 }
               </p>
@@ -99,7 +106,7 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">2</span>
-              {isBr ? 'Divulgação da API do Google (Obrigatório para Chrome Web Store)' : isEs ? 'Divulgación de la API de Google (Obligatorio para Chrome Web Store)' : 'Google API Disclosure (Mandatory for Chrome Web Store)'}
+              {isBr ? 'Divulgação da API do Google (Obrigatório para Chrome Web Store)' : isEs ? 'Divulgación de la API de Google (Obligatorio para Chrome Web Store)' : isTr ? 'Google API Açıklaması (Chrome Web Store İçin Zorunlu)' : 'Google API Disclosure (Mandatory for Chrome Web Store)'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
               <p>
@@ -107,14 +114,18 @@ export const PrivacyPage: React.FC = () => {
                   ? 'O uso e transferência pela Eazybe de informações recebidas das APIs do Google para qualquer outro aplicativo seguirá a '
                   : isEs
                   ? 'El uso y transferencia por parte de Eazybe de información recibida de las API de Google a cualquier otra aplicación se adherirá a la '
+                  : isTr
+                  ? 'Eazybe\'nin Google API\'lerinden alınan bilgilerin herhangi bir başka uygulamaya kullanımı ve aktarımı '
                   : 'Eazybe\'s use and transfer to any other app of information received from Google APIs will adhere to the '}
                 <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline">
-                  {isBr ? 'Política de Dados do Usuário dos Serviços de API do Google' : isEs ? 'Política de Datos del Usuario de los Servicios de API de Google' : 'Google API Services User Data Policy'}
+                  {isBr ? 'Política de Dados do Usuário dos Serviços de API do Google' : isEs ? 'Política de Datos del Usuario de los Servicios de API de Google' : isTr ? 'Google API Hizmetleri Kullanıcı Veri Politikası' : 'Google API Services User Data Policy'}
                 </a>
                 {isBr
                   ? ', incluindo os requisitos de Uso Limitado.'
                   : isEs
                   ? ', incluyendo los requisitos de Uso Limitado.'
+                  : isTr
+                  ? ', Sınırlı Kullanım gereklilikleri dahil.'
                   : ', including the Limited Use requirements.'
                 }
               </p>
@@ -125,15 +136,15 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">3</span>
-              {isBr ? 'Coleta e Tratamento de Dados' : isEs ? 'Recopilación y Manejo de Datos' : 'Data Collection and Handling'}
+              {isBr ? 'Coleta e Tratamento de Dados' : isEs ? 'Recopilación y Manejo de Datos' : isTr ? 'Veri Toplama ve İşleme' : 'Data Collection and Handling'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>{isBr ? 'Para fornecer nossos recursos de sincronização de CRM e classificação de IA, a Eazybe processa os seguintes dados:' : isEs ? 'Para proporcionar nuestras funciones de sincronización de CRM y clasificación de IA, Eazybe procesa los siguientes datos:' : 'To provide our CRM sync and AI classification features, Eazybe processes the following data:'}</p>
+              <p>{isBr ? 'Para fornecer nossos recursos de sincronização de CRM e classificação de IA, a Eazybe processa os seguintes dados:' : isEs ? 'Para proporcionar nuestras funciones de sincronización de CRM y clasificación de IA, Eazybe procesa los siguientes datos:' : isTr ? 'CRM senkronizasyonu ve AI sınıflandırma özelliklerimizi sağlamak için, Eazybe aşağıdaki verileri işler:' : 'To provide our CRM sync and AI classification features, Eazybe processes the following data:'}</p>
               <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
-                <li><strong className="text-white">{isBr ? 'Dados de Identidade:' : isEs ? 'Datos de Identidad:' : 'Identity Data:'}</strong> {isBr ? 'Usamos o Google OAuth para autenticar sua identidade e coletar seu endereço de e-mail para licenciamento e comunicação.' : isEs ? 'Usamos Google OAuth para autenticar su identidad y recopilar su dirección de correo electrónico para licencias y comunicación.' : 'We use Google OAuth to authenticate your identity and collect your email address for licensing and communication.'}</li>
-                <li><strong className="text-white">{isBr ? 'Dados do WhatsApp:' : isEs ? 'Datos de WhatsApp:' : 'WhatsApp Data:'}</strong> {isBr ? 'Para habilitar a integração com CRM, acessamos nomes de contatos, números de telefone e timestamps de mensagens da sua interface do WhatsApp Web.' : isEs ? 'Para habilitar la integración con CRM, accedemos a nombres de contactos, números de teléfono y marcas de tiempo de mensajes de su interfaz de WhatsApp Web.' : 'To enable CRM integration, we access contact names, phone numbers, and message timestamps from your WhatsApp Web interface.'}</li>
-                <li><strong className="text-white">{isBr ? 'Dados de CRM:' : isEs ? 'Datos de CRM:' : 'CRM Data:'}</strong> {isBr ? 'Se você conectar um CRM (HubSpot, Zoho, Salesforce, etc.), processamos os dados necessários para sincronizar contatos, tarefas e notas entre o WhatsApp e seu CRM.' : isEs ? 'Si conecta un CRM (HubSpot, Zoho, Salesforce, etc.), procesamos los datos necesarios para sincronizar contactos, tareas y notas entre WhatsApp y su CRM.' : 'If you connect a CRM (HubSpot, Zoho, Salesforce, etc.), we process data required to sync contacts, tasks, and notes between WhatsApp and your CRM.'}</li>
-                <li><strong className="text-white">{isBr ? 'Dados de IA e Classificação:' : isEs ? 'Datos de IA y Clasificación:' : 'AI & Classification Data:'}</strong> {isBr ? 'Processamos metadados de mensagens (e conteúdo de mensagens se os recursos de IA estiverem ativados) para fornecer resumos de conversas, análise de sentimentos e pontuação de intenção.' : isEs ? 'Procesamos metadatos de mensajes (y contenido de mensajes si las funciones de IA están activadas) para proporcionar resúmenes de conversaciones, análisis de sentimientos y puntuación de intenciones.' : 'We process message metadata (and message content if AI features are enabled) to provide conversation summaries, sentiment analysis, and intent scoring.'}</li>
+                <li><strong className="text-white">{isBr ? 'Dados de Identidade:' : isEs ? 'Datos de Identidad:' : isTr ? 'Kimlik Verileri:' : 'Identity Data:'}</strong> {isBr ? 'Usamos o Google OAuth para autenticar sua identidade e coletar seu endereço de e-mail para licenciamento e comunicação.' : isEs ? 'Usamos Google OAuth para autenticar su identidad y recopilar su dirección de correo electrónico para licencias y comunicación.' : isTr ? 'Kimliğinizi doğrulamak ve lisanslama ve iletişim için e-posta adresinizi toplamak için Google OAuth kullanıyoruz.' : 'We use Google OAuth to authenticate your identity and collect your email address for licensing and communication.'}</li>
+                <li><strong className="text-white">{isBr ? 'Dados do WhatsApp:' : isEs ? 'Datos de WhatsApp:' : isTr ? 'WhatsApp Verileri:' : 'WhatsApp Data:'}</strong> {isBr ? 'Para habilitar a integração com CRM, acessamos nomes de contatos, números de telefone e timestamps de mensagens da sua interface do WhatsApp Web.' : isEs ? 'Para habilitar la integración con CRM, accedemos a nombres de contactos, números de teléfono y marcas de tiempo de mensajes de su interfaz de WhatsApp Web.' : isTr ? 'CRM entegrasyonunu etkinleştirmek için, WhatsApp Web arayüzünüzdeki kişi adlarını, telefon numaralarını ve mesaj zaman damgalarını erişiriz.' : 'To enable CRM integration, we access contact names, phone numbers, and message timestamps from your WhatsApp Web interface.'}</li>
+                <li><strong className="text-white">{isBr ? 'Dados de CRM:' : isEs ? 'Datos de CRM:' : isTr ? 'CRM Verileri:' : 'CRM Data:'}</strong> {isBr ? 'Se você conectar um CRM (HubSpot, Zoho, Salesforce, etc.), processamos os dados necessários para sincronizar contatos, tarefas e notas entre o WhatsApp e seu CRM.' : isEs ? 'Si conecta un CRM (HubSpot, Zoho, Salesforce, etc.), procesamos los datos necesarios para sincronizar contactos, tareas y notas entre WhatsApp y su CRM.' : isTr ? 'Bir CRM bağlarsanız (HubSpot, Zoho, Salesforce vb.), WhatsApp ile CRMiniz arasında kişi, görev ve notları senkronize etmek için gerekli verileri işleriz.' : 'If you connect a CRM (HubSpot, Zoho, Salesforce, etc.), we process data required to sync contacts, tasks, and notes between WhatsApp and your CRM.'}</li>
+                <li><strong className="text-white">{isBr ? 'Dados de IA e Classificação:' : isEs ? 'Datos de IA y Clasificación:' : isTr ? 'AI ve Sınıflandırma Verileri:' : 'AI & Classification Data:'}</strong> {isBr ? 'Processamos metadados de mensagens (e conteúdo de mensagens se os recursos de IA estiverem ativados) para fornecer resumos de conversas, análise de sentimentos e pontuação de intenção.' : isEs ? 'Procesamos metadatos de mensajes (y contenido de mensajes si las funciones de IA están activadas) para proporcionar resúmenes de conversaciones, análisis de sentimientos y puntuación de intenciones.' : isTr ? 'Sohbet özetleri, dugu analizi ve niyet puanlama sağlamak için mesaj meta verilerini (ve AI özellikleri etkinse mesaj içeriğini) işleriz.' : 'We process message metadata (and message content if AI features are enabled) to provide conversation summaries, sentiment analysis, and intent scoring.'}</li>
               </ul>
             </div>
           </div>
@@ -142,14 +153,14 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">4</span>
-              {isBr ? 'Armazenamento e Segurança de Dados' : isEs ? 'Almacenamiento y Seguridad de Datos' : 'Data Storage and Security'}
+              {isBr ? 'Armazenamento e Segurança de Dados' : isEs ? 'Almacenamiento y Seguridad de Datos' : isTr ? 'Veri Depolama ve Güvenliği' : 'Data Storage and Security'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>{isBr ? 'Seguimos uma arquitetura estrita de "Privacidade desde o Projeto" (Privacy by Design):' : isEs ? 'Seguimos una arquitectura estricta de "Privacidad desde el Diseño" (Privacy by Design):' : 'We follow a strict "Privacy by Design" architecture:'}</p>
+              <p>{isBr ? 'Seguimos uma arquitetura estrita de "Privacidade desde o Projeto" (Privacy by Design):' : isEs ? 'Seguimos una arquitectura estricta de "Privacidad desde el Diseño" (Privacy by Design):' : isTr ? 'Katı "Gizlilik Tasarımı" (Privacy by Design) mimarisini takip ediyoruz:' : 'We follow a strict "Privacy by Design" architecture:'}</p>
               <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
-                <li><strong className="text-white">{isBr ? 'Nível do Navegador:' : isEs ? 'Nivel del Navegador:' : 'Browser-Level:'}</strong> {isBr ? 'A maioria das interações do WhatsApp é processada localmente no seu navegador.' : isEs ? 'La mayoría de las interacciones de WhatsApp se procesan localmente en su navegador.' : 'Most WhatsApp interactions are processed locally in your browser.'}</li>
-                <li><strong className="text-white">{isBr ? 'Nível do Servidor:' : isEs ? 'Nivel del Servidor:' : 'Server-Level:'}</strong> {isBr ? 'Metadados necessários para colaboração em equipe (tags, valores de negociações de CRM, pontuações de sentimento) são armazenados com segurança em nossos servidores (AWS/Hetzner) e bancos de dados (MongoDB/BigQuery).' : isEs ? 'Los metadatos necesarios para la colaboración en equipo (etiquetas, valores de acuerdos de CRM, puntuaciones de sentimiento) se almacenan de forma segura en nuestros servidores (AWS/Hetzner) y bases de datos (MongoDB/BigQuery).' : 'Metadata required for team collaboration (tags, CRM deal values, sentiment scores) is stored securely on our servers (AWS/Hetzner) and databases (MongoDB/BigQuery).'}</li>
-                <li><strong className="text-white">{isBr ? 'Criptografia:' : isEs ? 'Cifrado:' : 'Encryption:'}</strong> {isBr ? 'Todos os dados em trânsito são criptografados via HTTPS/TLS. Dados em repouso são criptografados usando protocolos padrão da indústria AES-256.' : isEs ? 'Todos los datos en tránsito se cifran mediante HTTPS/TLS. Los datos en reposo se cifran utilizando protocolos estándar de la industria AES-256.' : 'All data in transit is encrypted via HTTPS/TLS. Data at rest is encrypted using industry-standard AES-256 protocols.'}</li>
+                <li><strong className="text-white">{isBr ? 'Nível do Navegador:' : isEs ? 'Nivel del Navegador:' : isTr ? 'Tarayıcı Seviyesi:' : 'Browser-Level:'}</strong> {isBr ? 'A maioria das interações do WhatsApp é processada localmente no seu navegador.' : isEs ? 'La mayoría de las interacciones de WhatsApp se procesan localmente en su navegador.' : isTr ? 'WhatsApp etkileşimlerinin çoğu tarayıcınızda yerel olarak işlenir.' : 'Most WhatsApp interactions are processed locally in your browser.'}</li>
+                <li><strong className="text-white">{isBr ? 'Nível do Servidor:' : isEs ? 'Nivel del Servidor:' : isTr ? 'Sunucu Seviyesi:' : 'Server-Level:'}</strong> {isBr ? 'Metadados necessários para colaboração em equipe (tags, valores de negociações de CRM, pontuações de sentimento) são armazenados com segurança em nossos servidores (AWS/Hetzner) e bancos de dados (MongoDB/BigQuery).' : isEs ? 'Los metadatos necesarios para la colaboración en equipo (etiquetas, valores de acuerdos de CRM, puntuaciones de sentimiento) se almacenan de forma segura en nuestros servidores (AWS/Hetzner) y bases de datos (MongoDB/BigQuery).' : isTr ? 'Ekip işbirliği için gerekli meta veriler (etiketler, CRM anlaşma değerleri, dugu puanları) sunucularımızda (AWS/Hetzner) ve veritabanlarımızda (MongoDB/BigQuery) güvenli bir şekilde saklanır.' : 'Metadata required for team collaboration (tags, CRM deal values, sentiment scores) is stored securely on our servers (AWS/Hetzner) and databases (MongoDB/BigQuery).'}</li>
+                <li><strong className="text-white">{isBr ? 'Criptografia:' : isEs ? 'Cifrado:' : isTr ? 'Şifreleme:' : 'Encryption:'}</strong> {isBr ? 'Todos os dados em trânsito são criptografados via HTTPS/TLS. Dados em repouso são criptografados usando protocolos padrão da indústria AES-256.' : isEs ? 'Todos los datos en tránsito se cifran mediante HTTPS/TLS. Los datos en reposo se cifran utilizando protocolos estándar de la industria AES-256.' : isTr ? 'Aktarımındaki tüm veriler HTTPS/TLS üzerinden şifrelenir. Dinlen veriler, endüri standardı AES-256 protokolleri kullanılarak şifrelenir.' : 'All data in transit is encrypted via HTTPS/TLS. Data at rest is encrypted using industry-standard AES-256 protocols.'}</li>
               </ul>
             </div>
           </div>
@@ -158,7 +169,7 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">5</span>
-              {isBr ? 'Compartilhamento e Divulgação de Dados' : isEs ? 'Uso y Divulgación de Datos' : 'Data Sharing and Disclosure'}
+              {isBr ? 'Compartilhamento e Divulgação de Dados' : isEs ? 'Uso y Divulgación de Datos' : isTr ? 'Veri Paylaşımı ve Açıklama' : 'Data Sharing and Disclosure'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
               <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
