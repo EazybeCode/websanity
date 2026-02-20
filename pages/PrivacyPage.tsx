@@ -173,9 +173,9 @@ export const PrivacyPage: React.FC = () => {
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
               <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
-                <li><strong className="text-white">{isBr ? 'Sem Venda de Dados:' : isEs ? 'Sin Venta de Datos:' : 'No Sale of Data:'}</strong> {isBr ? 'Não vendemos, alugamos ou trocamos seus dados pessoais com terceiros.' : isEs ? 'No vendemos, alquilamos ni intercambiamos sus datos personales con terceros.' : 'We do not sell, rent, or trade your personal data to third parties.'}</li>
-                <li><strong className="text-white">{isBr ? 'Integrações de Terceiros:' : isEs ? 'Integraciones de Terceros:' : 'Third-Party Integrations:'}</strong> {isBr ? 'Os dados são compartilhados apenas com serviços de terceiros (como seu provedor de CRM ou processador de pagamento como Stripe) que você autoriza explicitamente.' : isEs ? 'Los datos solo se comparten con servicios de terceros (como su proveedor de CRM o procesador de pagamentos como Stripe) que usted autoriza explícitamente.' : 'Data is only shared with third-party services (like your CRM provider or payment processor like Stripe) that you explicitly authorize.'}</li>
-                <li><strong className="text-white">{isBr ? 'Uso Limitado:' : isEs ? 'Uso Limitado:' : 'Limited Use:'}</strong> {isBr ? 'Não usamos seus dados para publicidade, análise de crédito ou qualquer finalidade além de fornecer o serviço Eazybe.' : isEs ? 'No utilizamos sus datos para publicidad, solvencia crediticia o ningún propósito fuera de proporcionar el servicio Eazybe.' : 'We do not use your data for advertising, creditworthiness, or any purpose outside of providing the Eazybe service.'}</li>
+                <li><strong className="text-white">{isBr ? 'Sem Venda de Dados:' : isEs ? 'Sin Venta de Datos:' : isTr ? 'Veri Satışı Yok:' : 'No Sale of Data:'}</strong> {isBr ? 'Não vendemos, alugamos ou trocamos seus dados pessoais com terceiros.' : isEs ? 'No vendemos, alquilamos ni intercambiamos sus datos personales con terceros.' : isTr ? 'Kişisel verilerinizi üçüncü taraflara satmıyor, kiralamıyor veya takas etmiyoruz.' : 'We do not sell, rent, or trade your personal data to third parties.'}</li>
+                <li><strong className="text-white">{isBr ? 'Integrações de Terceiros:' : isEs ? 'Integraciones de Terceros:' : isTr ? 'Üçüncü Tarafa Entegrasyonlar:' : 'Third-Party Integrations:'}</strong> {isBr ? 'Os dados são compartilhados apenas com serviços de terceiros (como seu provedor de CRM ou processador de pagamento como Stripe) que você autoriza explicitamente.' : isEs ? 'Los datos solo se comparten con servicios de terceros (como su proveedor de CRM o procesador de pagamentos como Stripe) que usted autoriza explícitamente.' : isTr ? 'Veriler yalnızca açıkça izin verdiğiniz üçüncü taraf hizmetlerle (CRM sağlayıcınız veya Stripe gibi ödeme işlemcisi gibi) paylaşılır.' : 'Data is only shared with third-party services (like your CRM provider or payment processor like Stripe) that you explicitly authorize.'}</li>
+                <li><strong className="text-white">{isBr ? 'Uso Limitado:' : isEs ? 'Uso Limitado:' : isTr ? 'Sınırlı Kullanım:' : 'Limited Use:'}</strong> {isBr ? 'Não usamos seus dados para publicidade, análise de crédito ou qualquer finalidade além de fornecer o serviço Eazybe.' : isEs ? 'No utilizamos sus datos para publicidad, solvencia crediticia o ningún propósito fuera de proporcionar el servicio Eazybe.' : isTr ? 'Verilerinizi Eazybe hizmetini sağlamanın dışında reklam, kredi durumu veya herhangi bir amaçla kullanmıyoruz.' : 'We do not use your data for advertising, creditworthiness, or any purpose outside of providing the Eazybe service.'}</li>
               </ul>
             </div>
           </div>
@@ -184,13 +184,13 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">6</span>
-              {isBr ? 'Direitos do Usuário e Exclusão de Dados' : isEs ? 'Derechos del Usuario y Eliminación de Datos' : 'User Rights and Data Deletion'}
+              {isBr ? 'Direitos do Usuário e Exclusão de Dados' : isEs ? 'Derechos del Usuario y Eliminación de Datos' : isTr ? 'Kullanıcı Hakları ve Veri Silme' : 'User Rights and Data Deletion'}
             </h2>
             <div className="pl-10 space-y-4 text-slate-300">
-              <p>{isBr ? 'Você tem o direito de acessar, corrigir ou excluir seus dados a qualquer momento.' : isEs ? 'Tiene derecho a acceder, corregir o eliminar sus datos en cualquier momento.' : 'You have the right to access, correct, or delete your data at any time.'}</p>
+              <p>{isBr ? 'Você tem o direito de acessar, corrigir ou excluir seus dados a qualquer momento.' : isEs ? 'Tiene derecho a acceder, corregir o eliminar sus datos en cualquier momento.' : isTr ? 'Verilerinize herhangi bir zamanda erişme, düzeltme veya silme hakkına sahipsiniz.' : 'You have the right to access, correct, or delete your data at any time.'}</p>
               <ul className="list-disc list-inside space-y-2 text-slate-400 ml-4">
-                <li><strong className="text-white">{isBr ? 'Desinstalando:' : isEs ? 'Desinstalando:' : 'Uninstalling:'}</strong> {isBr ? 'Você pode parar a coleta de dados desinstalando a Extensão do Chrome.' : isEs ? 'Puede detener la recopilación de datos desinstalando la Extensión de Chrome.' : 'You can stop data collection by uninstalling the Chrome Extension.'}</li>
-                <li><strong className="text-white">{isBr ? 'Solicitação de Exclusão:' : isEs ? 'Solicitud de Eliminación:' : 'Deletion Request:'}</strong> {isBr ? 'Para excluir permanentemente sua conta e todos os dados associados de nossos bancos de dados, entre em contato conosico em ' : isEs ? 'Para eliminar permanentemente su cuenta y todos los datos asociados de nuestras bases de datos, contáctenos en ' : 'To permanently delete your account and all associated data from our databases, please contact us at '}<a href="mailto:hey@eazybe.com" className="text-emerald-400 hover:text-emerald-300 underline">hey@eazybe.com</a>. {isBr ? 'As solicitações são processadas em até 5 dias úteis.' : isEs ? 'Las solicitudes se procesan dentro de 5 días hábiles.' : 'Requests are processed within 5 business days.'}</li>
+                <li><strong className="text-white">{isBr ? 'Desinstalando:' : isEs ? 'Desinstalando:' : isTr ? 'Kaldırarak:' : 'Uninstalling:'}</strong> {isBr ? 'Você pode parar a coleta de dados desinstalando a Extensão do Chrome.' : isEs ? 'Puede detener la recopilación de datos desinstalando la Extensión de Chrome.' : isTr ? 'Chrome Uzantısını kaldırarak veri toplamayı durdurabilirsiniz.' : 'You can stop data collection by uninstalling the Chrome Extension.'}</li>
+                <li><strong className="text-white">{isBr ? 'Solicitação de Exclusão:' : isEs ? 'Solicitud de Eliminación:' : isTr ? 'Silme Talebi:' : 'Deletion Request:'}</strong> {isBr ? 'Para excluir permanentemente sua conta e todos os dados associados de nossos bancos de dados, entre em contato conosico em ' : isEs ? 'Para eliminar permanentemente su cuenta y todos los datos asociados de nuestras bases de datos, contáctenos en ' : isTr ? 'Hesabınızı ve tüm ilişkili verileri veritabanlarımızdan kalıcı olarak silmek için ' : 'To permanently delete your account and all associated data from our databases, please contact us at '}<a href="mailto:hey@eazybe.com" className="text-emerald-400 hover:text-emerald-300 underline">hey@eazybe.com</a>. {isBr ? 'As solicitações são processadas em até 5 dias úteis.' : isEs ? 'Las solicitudes se procesan dentro de 5 días hábiles.' : isTr ? 'Talepler 5 iş günü içinde işlenir.' : 'Requests are processed within 5 business days.'}</li>
               </ul>
             </div>
           </div>
@@ -199,109 +199,131 @@ export const PrivacyPage: React.FC = () => {
           <div className="mb-12 p-6 bg-slate-900/50 rounded-xl border border-slate-800">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-500 text-sm font-mono">7</span>
-              {isBr ? 'Informações de Contato' : isEs ? 'Información de Contacto' : 'Contact Information'}
+              {isBr ? 'Informações de Contato' : isEs ? 'Información de Contacto' : isTr ? 'İletişim Bilgileri' : 'Contact Information'}
             </h2>
             <div className="space-y-2 text-slate-300">
               <p><strong className="text-white">Eazybe, Inc.</strong></p>
               <p>8, The Green STE B, Dover, Delaware - 19901</p>
-              <p>{isBr ? 'E-mail: ' : isEs ? 'Correo electrónico: ' : 'Email: '}<a href="mailto:hey@eazybe.com" className="text-emerald-400 hover:text-emerald-300 underline">hey@eazybe.com</a></p>
+              <p>{isBr ? 'E-mail: ' : isEs ? 'Correo electrónico: ' : isTr ? 'E-posta: ' : 'Email: '}<a href="mailto:hey@eazybe.com" className="text-emerald-400 hover:text-emerald-300 underline">hey@eazybe.com</a></p>
             </div>
           </div>
 
           {/* Chrome Web Store Data Disclosure */}
           <div className="mb-12 p-6 bg-slate-900/50 rounded-xl border border-slate-800">
-            <h2 className="text-xl font-bold text-white mb-4">{isBr ? 'Divulgação de Dados da Chrome Web Store e Política de Uso Limitado' : isEs ? 'Divulgación de Datos de Chrome Web Store y Política de Uso Limitado' : 'Chrome Web Store Data Disclosure & Limited Use Policy'}</h2>
+            <h2 className="text-xl font-bold text-white mb-4">{isBr ? 'Divulgação de Dados da Chrome Web Store e Política de Uso Limitado' : isEs ? 'Divulgación de Datos de Chrome Web Store y Política de Uso Limitado' : isTr ? 'Chrome Web Store Veri Açıklaması ve Sınırlı Kullanım Politikası' : 'Chrome Web Store Data Disclosure & Limited Use Policy'}</h2>
             <div className="space-y-6 text-slate-300">
               <p>
                 {isBr
                   ? 'Para manter a transparência com nossos usuários e cumprir a Política de Dados do Usuário da Google Chrome Web Store, a Eazybe fornece as seguintes divulgações sobre a coleta e uso de seus dados.'
                   : isEs
                   ? 'Para mantener la transparencia con nuestros usuarios y cumplir con la Política de Datos del Usuario de Google Chrome Web Store, Eazybe proporciona las siguientes divulgaciones sobre la recopilación y uso de sus datos.'
+                  : isTr
+                  ? 'Kullanıcılarımıza şeffaflığı sağlamak ve Google Chrome Web Store Kullanıcı Veri Politikasına uymak için, Eazybe verilerinizin toplanması ve kullanımı hakkında aşağıdaki açıklamaları sağlar.'
                   : 'To maintain transparency with our users and comply with the Google Chrome Web Store User Data Policy, Eazybe provides the following disclosures regarding the collection and use of your data.'
                 }
               </p>
 
               <div>
-                <h3 className="text-lg font-semibold text-white mb-3">{isBr ? '1. Divulgação de Coleta e Uso de Dados' : isEs ? '1. Divulgación de Recopilación y Uso de Datos' : '1. Data Collection & Usage Disclosure'}</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">{isBr ? '1. Divulgação de Coleta e Uso de Dados' : isEs ? '1. Divulgación de Recopilación y Uso de Datos' : isTr ? '1. Veri Toplama ve Kullanım Açıklaması' : '1. Data Collection & Usage Disclosure'}</h3>
                 <p className="mb-3">
                   {isBr
                     ? 'A Eazybe coleta e processa dados específicos do usuário para fornecer nossos serviços de integração de CRM e produtividade. Isso inclui:'
                     : isEs
                     ? 'Eazybe recopila y procesa datos específicos del usuario para proporcionar nuestros servicios de integración de CRM y productividad. Esto incluye:'
+                    : isTr
+                    ? 'Eazybe, CRM entegrasyonu ve verimlilik hizmetlerimizi sağlamak için belirli kullanıcı verilerini toplar ve işler. Bu şunları içerir:'
                     : 'Eazybe collects and processes specific user data to provide our CRM integration and productivity services. This includes:'
                   }
                 </p>
                 <p className="mb-2">
-                  <strong className="text-white">{isBr ? 'Atividade de Navegação na Web:' : isEs ? 'Actividad de Navegación Web:' : 'Web Browsing Activity:'}</strong> {isBr
+                  <strong className="text-white">{isBr ? 'Atividade de Navegação na Web:' : isEs ? 'Actividad de Navegación Web:' : isTr ? 'Web Tarama Etkinliği:' : 'Web Browsing Activity:'}</strong> {isBr
                     ? 'Nossa extensão acessa conteúdo específico de sites (principalmente web.whatsapp.com e domínios de CRM conectados) para sincronizar mensagens, contatos e tarefas.'
                     : isEs
                     ? 'Nuestra extensión accede a contenido específico de sitios web (principalmente web.whatsapp.com y dominios de CRM conectados) para sincronizar mensajes, contactos y tareas.'
+                    : isTr
+                    ? 'Uzantımız mesajları, kişileri ve görevleri senkronize etmek için belirli web sitesi içeriklerine (öncelikle web.whatsapp.com ve bağlı CRM etki alanları) erişir.'
                     : 'Our extension accesses specific website content (primarily web.whatsapp.com and your connected CRM domains) to synchronize messages, contacts, and tasks.'
                   }
                 </p>
                 <p className="mb-2">
-                  <strong className="text-white">{isBr ? 'Finalidade:' : isEs ? 'Propósito:' : 'Purpose:'}</strong> {isBr
+                  <strong className="text-white">{isBr ? 'Finalidade:' : isEs ? 'Propósito:' : isTr ? 'Amaç:' : 'Purpose:'}</strong> {isBr
                     ? 'Esses dados são usados exclusivamente para facilitar a funcionalidade principal da Eazybe, como organizar conversas, aguar acompanhamentos e integrar seus fluxos de trabalho baseados em navegador com seu CRM.'
                     : isEs
                     ? 'Estos datos se utilizan únicamente para facilitar la funcionalidad principal de Eazybe, como organizar chats, programar seguimientos e integrar sus flujos de trabajo basados en navegador con su CRM.'
+                    : isTr
+                    ? 'Bu veriler yalnızca sohbetleri organize etmek, takipleri planlamak ve tarayıcı tabanlı iş akışlarınızı CRM\'inizle entegre etmek gibi Eazybe\'nin temel işlevlerini kolaylaştırmak için kullanılır.'
                     : 'This data is used solely to facilitate the core functionality of Eazybe, such as organizing chats, scheduling follow-ups, and integrating your browser-based workflows with your CRM.'
                   }
                 </p>
                 <p>
-                  <strong className="text-white">{isBr ? 'Permissões Mínimas:' : isEs ? 'Permisos Mínimos:' : 'Minimal Permissions:'}</strong> {isBr
+                  <strong className="text-white">{isBr ? 'Permissões Mínimas:' : isEs ? 'Permisos Mínimos:' : isTr ? 'Minimum İzinler:' : 'Minimal Permissions:'}</strong> {isBr
                     ? 'Solicitamos apenas as permissões mínimas necessárias. Não rastreamos seu histórico de navegação geral em sites não relacionados.'
                     : isEs
                     ? 'Solo solicitamos los permisos mínimos necesarios. No rastreamos su historial de navegación general en sitios no relacionados.'
+                    : isTr
+                    ? 'Yalnızca minimum gerekli izinleri istiyoruz. İlgili olmayan web sitelerindeki genel tarama geçmişinizi izlemiyoruz.'
                     : 'We only request the minimum permissions necessary. We do not track your general browsing history across unrelated websites.'
                   }
                 </p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-white mb-3">{isBr ? '2. Conformidade com "Uso Limitado" da API do Google' : isEs ? '2. Cumplimiento de "Uso Limitado" de la API de Google' : '2. Google API "Limited Use" Compliance'}</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">{isBr ? '2. Conformidade com "Uso Limitado" da API do Google' : isEs ? '2. Cumplimiento de "Uso Limitado" de la API de Google' : isTr ? '2. Google API "Sınırlı Kullanım" Uyumu' : '2. Google API "Limited Use" Compliance'}</h3>
                 <p className="mb-3">
                   {isBr
                     ? 'O uso e transferência pela Eazybe de informações recebidas das APIs do Google para qualquer outro aplicativo seguirá a Política de Dados do Usuário dos Serviços de API do Google, incluindo os requisitos de Uso Limitado:'
                     : isEs
                     ? 'El uso y transferencia por parte de Eazybe de información recibida de las API de Google a cualquier otra aplicación se adherirá a la Política de Datos del Usuario de los Servicios de API de Google, incluyendo los requisitos de Uso Limitado:'
+                    : isTr
+                    ? 'Eazybe\'nin Google API\'lerinden alınan bilgilerin herhangi bir başka uygulamaya kullanımı ve aktarımı, Sınırlı Kullanım gereklilikleri dahil Google API Hizmetleri Kullanıcı Veri Politikasına uyar:'
                     : 'Eazybe\'s use and transfer of information received from Google APIs to any other app will adhere to Google API Services User Data Policy, including the Limited Use requirements:'
                   }
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-slate-400">
-                  <li><strong className="text-slate-300">{isBr ? 'Sem Publicidade:' : isEs ? 'Sin Publicidad:' : 'No Advertising:'}</strong> {isBr
+                  <li><strong className="text-slate-300">{isBr ? 'Sem Publicidade:' : isEs ? 'Sin Publicidad:' : isTr ? 'Reklam Yok:' : 'No Advertising:'}</strong> {isBr
                     ? 'Não usamos seus dados para veicular, personalizar ou mesmo direcionar anúncios.'
                     : isEs
                     ? 'No utilizamos sus datos para servir, personalizar o incluso dirigir anuncios.'
+                    : isTr
+                    ? 'Verilerinizi reklam sunmak, kişiselleştirmek veya hatta reklam hedeflemek için kullanmıyoruz.'
                     : 'We do not use your data to serve, personalize, or even target advertisements.'
                   }</li>
-                  <li><strong className="text-slate-300">{isBr ? 'Sem Venda de Dados:' : isEs ? 'Sin Venta de Datos:' : 'No Data Selling:'}</strong> {isBr
+                  <li><strong className="text-slate-300">{isBr ? 'Sem Venda de Dados:' : isEs ? 'Sin Venta de Datos:' : isTr ? 'Veri Satışı Yok:' : 'No Data Selling:'}</strong> {isBr
                     ? 'Não vendemos seus dados pessoais ou atividade de navegação para terceiros, corretores de dados ou redes de anúncios.'
                     : isEs
                     ? 'No vendemos sus datos personales o actividad de navegación a terceros, corredores de datos o redes publicitarias.'
+                    : isTr
+                    ? 'Kişisel verilerinizi veya tarama etkinliğinizi üçüncü taraflara, veri komisyoncularına veya reklam ağlarına satmıyoruz.'
                     : 'We do not sell your personal data or browsing activity to any third parties, data brokers, or ad networks.'
                   }</li>
-                  <li><strong className="text-slate-300">{isBr ? 'Transferências Restritas:' : isEs ? 'Transferencias Restringidas:' : 'Restricted Transfers:'}</strong> {isBr
+                  <li><strong className="text-slate-300">{isBr ? 'Transferências Restritas:' : isEs ? 'Transferencias Restringidas:' : isTr ? 'Kısıtlı Transferler:' : 'Restricted Transfers:'}</strong> {isBr
                     ? 'Não transferimos seus dados para terceiros, a menos que seja necessário para fornecer ou melhorar nossos recursos principais, cumprir leis aplicáveis ou como parte de uma fusão/aquisição.'
                     : isEs
                     ? 'No transferimos sus datos a terceros a menos que sea necesario para proporcionar o mejorar nuestras funciones principales, cumplir con las leyes aplicables o como parte de una fusión/adquisición.'
+                    : isTr
+                    ? 'Verilerinizi üçüncü taraflara aktarmıyoruz, bunun ana özelliklerimizi sağlamak veya iyileştirmek, geçerli yasalara uymak veya bir birleşme/satın alma'nin bir parçası olarak gerekli olmadıkça.'
                     : 'We do not transfer your data to third parties unless it is necessary to provide or improve our core features, to comply with applicable laws, or as part of a merger/acquisition.'
                   }</li>
-                  <li><strong className="text-slate-300">{isBr ? 'Limites de Revisão Humana:' : isEs ? 'Límites de Revisión Humana:' : 'Human Review Limits:'}</strong> {isBr
+                  <li><strong className="text-slate-300">{isBr ? 'Limites de Revisão Humana:' : isEs ? 'Límites de Revisión Humana:' : isTr ? 'İnsan İnceleme Sınırları:' : 'Human Review Limits:'}</strong> {isBr
                     ? 'Nossa equipe não visualizará seus dados privados de usuário, a menos que você forneça consentimento explícito para solução de problemas, seja necessário para fins de segurança ou seja necessário para cumprir obrigações legais.'
                     : isEs
                     ? 'Nuestro equipo no verá sus datos privados de usuario a menos que proporcione consentimiento explícito para solución de problemas, sea necesario para fines de seguridad o sea necesario para cumplir con obligaciones legales.'
+                    : isTr
+                    ? 'Ekibimiz, sorun giderme için açıkça rıza göstermediğiniz, güvenlik amaçları için gerekli olduğu veya yasal yükümlülüleri yerine getirmek için gerekli olmadıkça özel kullanıcı verilerinizi görmez.'
                     : 'Our team will not view your private user data unless you provide explicit consent for troubleshooting, it is necessary for security purposes, or it is required to comply with legal obligations.'
                   }</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-white mb-3">{isBr ? '3. Medidas de Privacidade e Segurança' : isEs ? '3. Medidas de Privacidad y Seguridad' : '3. Privacy & Security Measures'}</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">{isBr ? '3. Medidas de Privacidade e Segurança' : isEs ? '3. Medidas de Privacidad y Seguridad' : isTr ? '3. Gizlilik ve Güvenlik Önlemleri' : '3. Privacy & Security Measures'}</h3>
                 <p>
                   {isBr
                     ? 'Todos os dados transmitidos entre a extensão Eazybe e nossos servidores são protegidos usando criptografia padrão da indústria (por exemplo, HTTPS). Implementamos controles de acesso estritos para garantir que seus dados permaneçam confidenciais e seguros.'
                     : isEs
                     ? 'Todos los datos transmitidos entre la extensión Eazybe y nuestros servidores están protegidos utilizando cifrado estándar de la industria (por ejemplo, HTTPS). Implementamos controles de acceso estrictos para garantizar que sus datos permanezcan confidenciales y seguros.'
+                    : isTr
+                    ? 'Eazybe uzantısı ve sunucularımız arasında iletilen tüm veriler, endüri standardı şifreleme (örneğin, HTTPS) kullanılarak korunur. Verilerinizin gizli ve güvenli kalmasını sağlamak için katı erişim kontrolleri uyguluyoruz.'
                     : 'All data transmitted between the Eazybe extension and our servers is protected using industry-standard encryption (e.g., HTTPS). We implement strict access controls to ensure your data remains confidential and secure.'
                   }
                 </p>
