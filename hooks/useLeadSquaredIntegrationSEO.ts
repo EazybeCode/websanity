@@ -11,9 +11,8 @@ export const useLeadSquaredIntegrationSEO = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Check if we're on the LeadSquared integration page (with or without language prefix)
-    const isLeadSquaredPage = /^\/[a-z]{2}\/?leadsquared-whatsapp-integration/.test(location.pathname) ||
-                               location.pathname === '/leadsquared-whatsapp-integration'
+    // Check if we're on the LeadSquared integration page (English only - exclude BR which has its own hook)
+    const isLeadSquaredPage = location.pathname === '/leadsquared-whatsapp-integration'
 
     if (isLeadSquaredPage) {
       // ==================== META TAGS ====================

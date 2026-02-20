@@ -40,6 +40,7 @@ import { useHubSpotIntegrationSEOBr } from '../hooks/useHubSpotIntegrationSEOBr'
 import { useZohoIntegrationSEOBr } from '../hooks/useZohoIntegrationSEOBr'
 import { useSalesforceIntegrationSEOBr } from '../hooks/useSalesforceIntegrationSEOBr'
 import { useBitrix24IntegrationSEOBr } from '../hooks/useBitrix24IntegrationSEOBr'
+import { useLeadSquaredIntegrationSEOBr } from '../hooks/useLeadSquaredIntegrationSEOBr'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1647,6 +1648,7 @@ export const ProductPage: React.FC = () => {
 
   // LeadSquared Integration Page SEO
   useLeadSquaredIntegrationSEO()
+  useLeadSquaredIntegrationSEOBr()
 
   // Freshdesk Integration Page SEO
   useFreshdeskIntegrationSEO()
