@@ -119,9 +119,302 @@ export const useHubSpotIntegrationSEOBr = () => {
       // Referrer meta tag
       setMetaTag('referrer', 'origin-when-cross-origin')
 
-      // Cleanup function - remove meta tags when leaving the page
+      // ==================== JSON-LD SCHEMAS ====================
+
+      // Helper function to add JSON-LD schema
+      const addJsonLdSchema = (schema: any, id: string) => {
+        let script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
+        if (!script) {
+          script = document.createElement('script')
+          script.type = 'application/ld+json'
+          ;(script as HTMLScriptElement).setAttribute('data-schema', id)
+          document.head.appendChild(script)
+        }
+        script.textContent = JSON.stringify(schema)
+      }
+
+      // FAQPage Schema
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Como conecto WhatsApp ao HubSpot CRM?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Instale o Eazybe e conecte sua conta do HubSpot. O Eazybe sincroniza os chats do WhatsApp para o HubSpot para que as conversas e o contexto do cliente permaneçam vinculados aos registros certos do CRM."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O Eazybe sincroniza mensagens do WhatsApp para o HubSpot automaticamente?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. O Eazybe pode sincronizar conversas do WhatsApp para o HubSpot automaticamente, reduzindo copiar/colar manual e mantendo a atividade de vendas atualizada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Vários membros da equipe podem usar uma caixa de entrada compartilhada com HubSpot + WhatsApp?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. O Eazybe suporta fluxos de trabalho de caixa de entrada compartilhada para que as equipes possam colaborar em leads do WhatsApp enquanto mantêm os registros do HubSpot alinhados."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que agentes de IA podem fazer por conversas do HubSpot + WhatsApp?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A IA pode ajudar a elaborar respostas, resumir conversas e acelerar follow-ups—para que os representantes respondam mais rápido mantendo uma mensagem consistente."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "É seguro usar esta integração com WhatsApp e HubSpot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O Eazybe é projetado para casos de uso de negócios e foca em fluxos de trabalho seguros para sincronizar conversas do WhatsApp com registros do CRM. Sempre revise seus requisitos de segurança e conformidade antes da implementação."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quais objetos do HubSpot posso associar às conversas do WhatsApp?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A maioria das equipes associa conversas do WhatsApp a contatos e negócios para rastrear o contexto através do pipeline de vendas. O melhor mapeamento depende do seu fluxo de trabalho do HubSpot."
+            }
+          }
+        ]
+      }
+
+      // Organization Schema
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
+        "image": "https://eazybe.com/logo.png",
+        "description": "A Eazybe ajuda equipes de vendas a conectar WhatsApp com plataformas de CRM como HubSpot, Zoho, Salesforce e Google Sheets para sincronizar conversas, automatizar follow-ups e melhorar o engajamento do cliente.",
+        "foundingDate": "2021",
+        "sameAs": ["https://twitter.com/eazybe", "https://linkedin.com/company/eazybe", "https://youtube.com/@eazybe"],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "support@eazybe.com",
+            "url": "https://eazybe.com/br/hubspot-whatsapp-integration",
+            "areaServed": "BR",
+            "availableLanguage": ["Portuguese"]
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "knowsAbout": [
+          "WhatsApp CRM",
+          "integração WhatsApp HubSpot",
+          "Automação de vendas",
+          "integração CRM",
+          "agentes de IA para CRM",
+          "Engajamento do cliente"
+        ]
+      }
+
+      // BreadcrumbList Schema
+      const breadcrumbSchema = {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Eazybe",
+            "item": "https://eazybe.com/br"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Integrações",
+            "item": "https://eazybe.com/br/integrations"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "HubSpot WhatsApp Integration",
+            "item": "https://eazybe.com/br/hubspot-whatsapp-integration"
+          }
+        ]
+      }
+
+      // WebPage Schema
+      const webpageSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "url": "https://eazybe.com/br/hubspot-whatsapp-integration",
+        "name": "HubSpot WhatsApp Integration | Sincronize CRM do WhatsApp",
+        "description": "Conecte WhatsApp ao HubSpot CRM. Sincronize conversas, use agentes de IA, acompanhe negócios e gerencie vendas sem sair do HubSpot.",
+        "inLanguage": "pt-BR",
+        "datePublished": "2026-02-03T08:00:00+00:00",
+        "dateModified": "2026-02-03T10:30:00+00:00"
+      }
+
+      // SoftwareApplication Schema
+      const softwareApplicationSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Integração HubSpot WhatsApp - Eazybe",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Integração CRM, Automação WhatsApp, Agentes de IA para WhatsApp",
+        "operatingSystem": "Web, Chrome Extension",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "BRL",
+          "lowPrice": 1160,
+          "highPrice": 1960,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": 53766
+        },
+        "featureList": [
+          "Sincronização automática do WhatsApp para o HubSpot",
+          "Sugestões de resposta alimentadas por IA",
+          "Caixa de entrada compartilhada para colaboração em equipe",
+          "Acompanhamento de negócios do WhatsApp",
+          "Sincronização de contatos",
+          "Agendamento de mensagens",
+          "Agentes de IA para HubSpot"
+        ]
+      }
+
+      // Product Schema
+      const productSchema = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Integração HubSpot WhatsApp - Eazybe",
+        "url": "https://eazybe.com/br/hubspot-whatsapp-integration",
+        "image": ["https://eazybe.com/logo.png"],
+        "description": "A Eazybe conecta WhatsApp com o HubSpot CRM para sincronizar chats automaticamente, ajudar equipes de vendas a responder mais rápido com IA e gerenciar conversas do cliente com fluxos de trabalho de caixa de entrada compartilhada.",
+        "brand": { "@type": "Brand", "name": "Eazybe" },
+        "manufacturer": { "@type": "Organization", "name": "Eazybe", "url": "https://eazybe.com/br" },
+        "category": "Software de Integração CRM",
+        "audience": {
+          "@type": "BusinessAudience",
+          "audienceType": "Equipes de vendas, usuários do HubSpot, gestores de CRM, empresas B2B"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/br/pricing",
+          "priceCurrency": "BRL",
+          "lowPrice": 1160,
+          "highPrice": 1960,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 53766
+        }
+      }
+
+      // HowTo Schema
+      const howToSchema = {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Como conectar WhatsApp ao HubSpot CRM usando o Eazybe",
+        "description": "Siga estes passos para instalar o Eazybe e sincronizar conversas do WhatsApp com o HubSpot CRM para que sua equipe possa rastrear chats, acelerar follow-ups e manter registros do CRM atualizados.",
+        "totalTime": "PT5M",
+        "estimatedCost": { "@type": "MonetaryAmount", "currency": "BRL", "value": "0" },
+        "supply": [
+          { "@type": "HowToSupply", "name": "Conta HubSpot ativa" },
+          { "@type": "HowToSupply", "name": "Conta WhatsApp com acesso ao WhatsApp Web" }
+        ],
+        "tool": [
+          { "@type": "HowToTool", "name": "Google Chrome (ou navegador baseado em Chromium)" },
+          { "@type": "HowToTool", "name": "Extensão Eazybe para Chrome" }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/br/hubspot-whatsapp-integration#step1",
+            "name": "Instale a extensão Eazybe",
+            "text": "Abra a Chrome Web Store e instale a extensão oficial Eazybe no seu navegador.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/br/hubspot-whatsapp-integration#step2",
+            "name": "Abra o WhatsApp Web",
+            "text": "Vá para o WhatsApp Web no seu computador e faça login. O painel Eazybe aparecerá dentro do WhatsApp Web.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/br/hubspot-whatsapp-integration#step3",
+            "name": "Conecte sua conta do HubSpot",
+            "text": "No painel Eazybe, escolha HubSpot e complete o fluxo de autorização para conectar seu CRM com segurança.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/br/hubspot-whatsapp-integration#step4",
+            "name": "Ative a sincronização de chat para o HubSpot",
+            "text": "Selecione um contato ou conversa e ative a sincronização. As mensagens do WhatsApp e o contexto do cliente começarão a sincronizar para o HubSpot automaticamente.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/br/hubspot-whatsapp-integration#step5",
+            "name": "Use respostas de IA e fluxos de trabalho de equipe",
+            "text": "Use respostas assistidas por IA para responder mais rápido e fluxos de trabalho de caixa de entrada compartilhada para colaborar com sua equipe mantendo o HubSpot atualizado.",
+            "image": "https://eazybe.com/logo.png"
+          }
+        ],
+        "inLanguage": "pt-BR"
+      }
+
+      // Add all schemas to head
+      addJsonLdSchema(faqSchema, 'faq-hubspot-br')
+      addJsonLdSchema(organizationSchema, 'organization-hubspot-br')
+      addJsonLdSchema(breadcrumbSchema, 'breadcrumb-hubspot-br')
+      addJsonLdSchema(webpageSchema, 'webpage-hubspot-br')
+      addJsonLdSchema(softwareApplicationSchema, 'software-hubspot-br')
+      addJsonLdSchema(productSchema, 'product-hubspot-br')
+      addJsonLdSchema(howToSchema, 'howto-hubspot-br')
+
+      // Cleanup function - remove schemas when leaving the page
       return () => {
-        // Meta tags will be cleaned up naturally or by other SEO hooks
+        const faqScript = document.querySelector('script[type="application/ld+json"][data-schema="faq-hubspot-br"]')
+        if (faqScript) faqScript.remove()
+        const orgScript = document.querySelector('script[type="application/ld+json"][data-schema="organization-hubspot-br"]')
+        if (orgScript) orgScript.remove()
+        const breadcrumbScript = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-hubspot-br"]')
+        if (breadcrumbScript) breadcrumbScript.remove()
+        const webpageScript = document.querySelector('script[type="application/ld+json"][data-schema="webpage-hubspot-br"]')
+        if (webpageScript) webpageScript.remove()
+        const softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="software-hubspot-br"]')
+        if (softwareAppScript) softwareAppScript.remove()
+        const productScript = document.querySelector('script[type="application/ld+json"][data-schema="product-hubspot-br"]')
+        if (productScript) productScript.remove()
+        const howToScript = document.querySelector('script[type="application/ld+json"][data-schema="howto-hubspot-br"]')
+        if (howToScript) howToScript.remove()
       }
     }
   }, [location.pathname])
