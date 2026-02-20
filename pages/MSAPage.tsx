@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { FileText, Download } from 'lucide-react'
 
 export const MSAPage: React.FC = () => {
   const { t } = useTranslation()
+  const location = useLocation()
+  const isBr = location.pathname.startsWith('/br')
 
   useEffect(() => {
-    // Set document title for MSA page
-    document.title = 'Master Service Agreement | Eazybe'
+    // Set document title based on language
+    if (isBr) {
+      document.title = 'Contrato de Prestação de Serviços | Eazybe'
+    } else {
+      document.title = 'Master Service Agreement | Eazybe'
+    }
 
     // Store original robots meta tag content for restoration
     const originalRobotsMeta = document.querySelector('meta[name="robots"]')
