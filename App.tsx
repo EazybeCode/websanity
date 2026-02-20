@@ -100,7 +100,10 @@ const AppRoutes = () => (
       <Route path="/index.html" element={<Navigate to="/" replace />} />
 
       {/* English routes (default, no prefix) */}
-      {/* Redirect old categories-intregrations URL */}
+      {/* Redirect old URLs */}
+      <Route path="/search" element={<Navigate to="/" replace />} />
+      <Route path="/lp/hubspot-demo" element={<Navigate to="/" replace />} />
+      <Route path="/all-crm-form" element={<Navigate to="/" replace />} />
       <Route path="/categories-intregrations/account-management" element={<Navigate to="/" replace />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/pricing" element={<PricingPage />} />
