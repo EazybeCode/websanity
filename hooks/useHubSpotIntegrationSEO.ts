@@ -11,9 +11,8 @@ export const useHubSpotIntegrationSEO = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Check if we're on the HubSpot integration page (with or without language prefix)
-    const isHubSpotPage = /^\/[a-z]{2}\/?hubspot-whatsapp-integration/.test(location.pathname) ||
-                          location.pathname === '/hubspot-whatsapp-integration'
+    // Check if we're on the HubSpot integration page (English only - exclude BR which has its own hook)
+    const isHubSpotPage = location.pathname === '/hubspot-whatsapp-integration'
 
     if (isHubSpotPage) {
       // ==================== META TAGS ====================
