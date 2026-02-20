@@ -11,9 +11,8 @@ export const useSalesforceIntegrationSEO = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Check if we're on the Salesforce integration page (with or without language prefix)
-    const isSalesforcePage = /^\/[a-z]{2}\/?salesforce-whatsapp-integration/.test(location.pathname) ||
-                           location.pathname === '/salesforce-whatsapp-integration'
+    // Check if we're on the Salesforce integration page (English only - exclude BR which has its own hook)
+    const isSalesforcePage = location.pathname === '/salesforce-whatsapp-integration'
 
     if (isSalesforcePage) {
       // ==================== META TAGS ====================
