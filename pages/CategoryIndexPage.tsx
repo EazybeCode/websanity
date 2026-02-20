@@ -465,8 +465,8 @@ export const CategoryIndexPage: React.FC = () => {
 
   // Determine slug based on current path (strip language prefix first)
   const getSlugFromPath = () => {
-    // Remove language prefix (/br, /pt, /es, /tr) from pathname
-    const cleanPath = location.pathname.replace(/^\/(br|pt|es|tr)\//, '/').replace(/^\/(br|pt|es|tr)$/, '/')
+    // Remove language prefix (/pt, /es, /tr) from pathname
+    const cleanPath = location.pathname.replace(/^\/(pt|es|tr)\//, '/').replace(/^\/(pt|es|tr)$/, '/')
 
     if (cleanPath === '/features' || cleanPath.startsWith('/features')) return 'features'
     if (cleanPath === '/integrations' || cleanPath.startsWith('/integrations')) return 'integrations'
