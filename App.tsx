@@ -183,14 +183,8 @@ const AppRoutes = () => (
       ))}
 
       {/* 404 Not Found Pages - Must be last routes (catch-all) */}
-      {/* English 404 */}
+      {/* English 404 - catches everything not matched above */}
       <Route path="*" element={<NotFoundPage />} />
-      {/* Portuguese 404 */}
-      <Route path="/br/*" element={<NotFoundPage />} />
-      {/* Spanish 404 */}
-      <Route path="/es/*" element={<NotFoundPage />} />
-      {/* Turkish 404 */}
-      <Route path="/tr/*" element={<NotFoundPage />} />
     </Routes>
   </Suspense>
 )

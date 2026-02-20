@@ -4,7 +4,7 @@ import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
 import { Shield } from 'lucide-react'
 
-export const PrivacyPage: React.FC = () => {
+const PrivacyPage: React.FC = () => {
   const location = useLocation()
   const isBr = location.pathname.startsWith('/br')
   const isEs = location.pathname.startsWith('/es')
@@ -301,7 +301,7 @@ export const PrivacyPage: React.FC = () => {
                     : isEs
                     ? 'No transferimos sus datos a terceros a menos que sea necesario para proporcionar o mejorar nuestras funciones principales, cumplir con las leyes aplicables o como parte de una fusión/adquisición.'
                     : isTr
-                    ? 'Verilerinizi üçüncü taraflara aktarmıyoruz, bunun ana özelliklerimizi sağlamak veya iyileştirmek, geçerli yasalara uymak veya bir birleşme/satın alma'nin bir parçası olarak gerekli olmadıkça.'
+                    ? 'Verilerinizi üçüncü taraflara aktarmıyoruz, bunun ana özelliklerimizi sağlamak veya iyileştirmek, geçerli yasalara uymak veya bir birleşme/satın almanın bir parçası olarak gerekli olmadıkça.'
                     : 'We do not transfer your data to third parties unless it is necessary to provide or improve our core features, to comply with applicable laws, or as part of a merger/acquisition.'
                   }</li>
                   <li><strong className="text-slate-300">{isBr ? 'Limites de Revisão Humana:' : isEs ? 'Límites de Revisión Humana:' : isTr ? 'İnsan İnceleme Sınırları:' : 'Human Review Limits:'}</strong> {isBr
@@ -340,3 +340,4 @@ export const PrivacyPage: React.FC = () => {
 }
 
 export default PrivacyPage
+
