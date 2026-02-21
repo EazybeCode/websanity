@@ -661,7 +661,50 @@ export async function getBlogPost(slug: string, language: string = 'en') {
     }
   }`
 
-  return sanityClient.fetch(query, { slug, language })
+  let result = await sanityClient.fetch(query, { slug, language })
+
+  // Fallback: if no result with language filter, try without it (for posts without language field)
+  if (!result) {
+    const fallbackQuery = `*[_type == "blogPost" && slug.current == $slug][0]{
+      _id,
+      title,
+      slug,
+      excerpt,
+      content[]{
+        ...,
+        _type == "image" => {
+          ...,
+          "url": asset->url
+        }
+      },
+      category,
+      language,
+      "featuredImage": featuredImage.asset->url,
+      publishedAt,
+      readTime,
+      author->{
+        name,
+        bio,
+        "image": image.asset->url
+      },
+      quickAnswer,
+      tableOfContents[]{
+        label,
+        id
+      },
+      faqs[]{
+        question,
+        answer
+      },
+      seo{
+        metaTitle,
+        metaDescription
+      }
+    }`
+    result = await sanityClient.fetch(fallbackQuery, { slug })
+  }
+
+  return result
 }
 
 export async function getBlogPosts(limit?: number, language: string = 'en') {
