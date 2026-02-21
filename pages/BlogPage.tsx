@@ -525,6 +525,41 @@ const BlogPage: React.FC = () => {
       }
       canonical.href = 'https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp';
 
+      // Add BreadcrumbList Schema
+      const breadcrumbSchema = {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Eazybe",
+            "item": "https://eazybe.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://eazybe.com/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "How To Read Deleted Messages On WhatsApp",
+            "item": "https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp"
+          }
+        ]
+      };
+
+      let breadcrumbScript = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-deleted-whatsapp"]') as HTMLScriptElement;
+      if (!breadcrumbScript) {
+        breadcrumbScript = document.createElement('script') as HTMLScriptElement;
+        breadcrumbScript.type = 'application/ld+json';
+        breadcrumbScript.setAttribute('data-schema', 'breadcrumb-deleted-whatsapp');
+        document.head.appendChild(breadcrumbScript);
+      }
+      breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
+
       // Cleanup function to remove meta tags when unmounting
       return () => {
         const metaTags = [
@@ -587,6 +622,10 @@ const BlogPage: React.FC = () => {
         if (preconnect) preconnect.remove();
         const dnsPrefetch = document.querySelector('link[rel="dns-prefetch"]');
         if (dnsPrefetch) dnsPrefetch.remove();
+
+        // Remove BreadcrumbList schema
+        const breadcrumbSchema = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-deleted-whatsapp"]');
+        if (breadcrumbSchema) breadcrumbSchema.remove();
       };
     }
   }, [displayPost]);
