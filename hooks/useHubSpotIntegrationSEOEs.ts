@@ -191,18 +191,24 @@ export const useHubSpotIntegrationSEOEs = () => {
 
       // BreadcrumbList Schema (without @id)
       const breadcrumbSchema = {
-        "@context": "https://schema.org",
+        "@context": "https://schema.org/",
         "@type": "BreadcrumbList",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Eazybe",
-            "item": "https://eazybe.com/"
+            "item": "https://eazybe.com/es"
           },
           {
             "@type": "ListItem",
             "position": 2,
+            "name": "Integración",
+            "item": "https://eazybe.com/es/integrations"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
             "name": "Integración HubSpot WhatsApp",
             "item": "https://eazybe.com/es/hubspot-whatsapp-integration"
           }
