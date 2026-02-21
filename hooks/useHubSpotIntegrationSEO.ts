@@ -11,7 +11,7 @@ export const useHubSpotIntegrationSEO = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Check if we're on the HubSpot integration page (English only - exclude BR which has its own hook)
+    // Check if we're on the HubSpot integration page (English only - exclude BR and ES which have their own hooks)
     const isHubSpotPage = location.pathname === '/hubspot-whatsapp-integration'
 
     if (isHubSpotPage) {

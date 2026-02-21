@@ -44,6 +44,7 @@ import { useLeadSquaredIntegrationSEOBr } from '../hooks/useLeadSquaredIntegrati
 import { useFreshdeskIntegrationSEOBr } from '../hooks/useFreshdeskIntegrationSEOBr'
 import { useWebhooksIntegrationSEOBr } from '../hooks/useWebhooksIntegrationSEOBr'
 import { useGoogleSheetsIntegrationSEOBr } from '../hooks/useGoogleSheetsIntegrationSEOBr'
+import { useHubSpotIntegrationSEOEs } from '../hooks/useHubSpotIntegrationSEOEs'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1633,6 +1634,7 @@ export const ProductPage: React.FC = () => {
   // HubSpot Integration Page SEO
   useHubSpotIntegrationSEO()
   useHubSpotIntegrationSEOBr()
+  useHubSpotIntegrationSEOEs()
 
   // Zoho Integration Page SEO
   useZohoIntegrationSEO()
