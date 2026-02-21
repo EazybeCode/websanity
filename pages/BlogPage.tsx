@@ -560,6 +560,87 @@ const BlogPage: React.FC = () => {
       }
       breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
 
+      // Add FAQPage Schema
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How can I read deleted messages on WhatsApp?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can read deleted messages on WhatsApp using the notification log on Android, checking WhatsApp chat backups, or using third-party apps that store notification history. The notification history method is the most reliable way to see messages that were deleted after being received."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it possible to recover deleted WhatsApp messages on Android?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, on Android you can recover deleted WhatsApp messages by checking the notification log in your phone settings, restoring from a recent Google Drive backup, or using third-party notification history apps that archive WhatsApp notifications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I read deleted WhatsApp messages on iPhone?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On iPhone, you can read deleted WhatsApp messages by restoring from an iCloud backup. The notification log method doesn't work on iOS due to system restrictions. Make sure to back up your chats regularly to iCloud to enable recovery."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does WhatsApp notify when someone reads deleted messages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, WhatsApp does not notify the sender when you read a deleted message. Once a message is deleted for everyone, the sender has no way of knowing if you saw it before deletion or recovered it through other means."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I see messages deleted for everyone on WhatsApp Web?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Messages deleted for everyone are removed from WhatsApp Web as well. However, if you have browser extensions that cache notifications or if you're using third-party tools, you might be able to view message content before synchronization completes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I enable notification log to read deleted WhatsApp messages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On Android, go to Settings > Apps & Notifications > Notifications > Notification History and enable it. This will keep a log of all notifications including WhatsApp messages, allowing you to read message content even after it's deleted from the chat."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are third-party apps safe for reading deleted WhatsApp messages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Be cautious when using third-party apps to read deleted WhatsApp messages. Only download apps from trusted sources like Google Play Store, review permissions carefully, and avoid apps that require unnecessary access to your data or ask for your WhatsApp credentials."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long are deleted WhatsApp messages recoverable?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Deleted WhatsApp messages can be recovered if you have a recent backup. WhatsApp creates daily backups on Android (Google Drive) and iPhone (iCloud). Messages are recoverable as long as you have a backup from before the deletion occurred. Local backups on Android are also stored for the last 7 days."
+            }
+          }
+        ]
+      };
+
+      let faqScript = document.querySelector('script[type="application/ld+json"][data-schema="faq-deleted-whatsapp"]') as HTMLScriptElement;
+      if (!faqScript) {
+        faqScript = document.createElement('script') as HTMLScriptElement;
+        faqScript.type = 'application/ld+json';
+        faqScript.setAttribute('data-schema', 'faq-deleted-whatsapp');
+        document.head.appendChild(faqScript);
+      }
+      faqScript.textContent = JSON.stringify(faqSchema);
+
       // Cleanup function to remove meta tags when unmounting
       return () => {
         const metaTags = [
@@ -626,6 +707,10 @@ const BlogPage: React.FC = () => {
         // Remove BreadcrumbList schema
         const breadcrumbSchema = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-deleted-whatsapp"]');
         if (breadcrumbSchema) breadcrumbSchema.remove();
+
+        // Remove FAQ schema
+        const faqSchema = document.querySelector('script[type="application/ld+json"][data-schema="faq-deleted-whatsapp"]');
+        if (faqSchema) faqSchema.remove();
       };
     }
   }, [displayPost]);
