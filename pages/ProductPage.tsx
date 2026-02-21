@@ -45,6 +45,14 @@ import { useFreshdeskIntegrationSEOBr } from '../hooks/useFreshdeskIntegrationSE
 import { useWebhooksIntegrationSEOBr } from '../hooks/useWebhooksIntegrationSEOBr'
 import { useGoogleSheetsIntegrationSEOBr } from '../hooks/useGoogleSheetsIntegrationSEOBr'
 import { useHubSpotIntegrationSEOEs } from '../hooks/useHubSpotIntegrationSEOEs'
+import { useSalesforceIntegrationSEOEs } from '../hooks/useSalesforceIntegrationSEOEs'
+import { useZohoIntegrationSEOEs } from '../hooks/useZohoIntegrationSEOEs'
+import { useBitrix24IntegrationSEOEs } from '../hooks/useBitrix24IntegrationSEOEs'
+import { useLeadSquaredIntegrationSEOEs } from '../hooks/useLeadSquaredIntegrationSEOEs'
+import { useFreshdeskIntegrationSEOEs } from '../hooks/useFreshdeskIntegrationSEOEs'
+import { useWebhooksIntegrationSEOEs } from '../hooks/useWebhooksIntegrationSEOEs'
+import { usePipedriveIntegrationSEOEs } from '../hooks/usePipedriveIntegrationSEOEs'
+import { useMondayIntegrationSEOEs } from '../hooks/useMondayIntegrationSEOEs'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1639,29 +1647,36 @@ export const ProductPage: React.FC = () => {
   // Zoho Integration Page SEO
   useZohoIntegrationSEO()
   useZohoIntegrationSEOBr()
+  useZohoIntegrationSEOEs()
 
   // Salesforce Integration Page SEO
   useSalesforceIntegrationSEO()
   useSalesforceIntegrationSEOBr()
+  useSalesforceIntegrationSEOEs()
 
   // Bitrix24 Integration Page SEO
   useBitrix24IntegrationSEO()
   useBitrix24IntegrationSEOBr()
+  useBitrix24IntegrationSEOEs()
 
   // Google Sheets Integration Page SEO
   useGoogleSheetsIntegrationSEO()
+  useGoogleSheetsIntegrationSEOBr()
 
   // LeadSquared Integration Page SEO
   useLeadSquaredIntegrationSEO()
   useLeadSquaredIntegrationSEOBr()
+  useLeadSquaredIntegrationSEOEs()
 
   // Freshdesk Integration Page SEO
   useFreshdeskIntegrationSEO()
   useFreshdeskIntegrationSEOBr()
+  useFreshdeskIntegrationSEOEs()
 
   // Webhooks Integration Page SEO
   useWebhooksIntegrationSEO()
   useWebhooksIntegrationSEOBr()
+  useWebhooksIntegrationSEOEs()
 
   // Google Sheets Integration Page SEO
   useGoogleSheetsIntegrationSEO()
@@ -1672,9 +1687,11 @@ export const ProductPage: React.FC = () => {
 
   // Monday Integration Page SEO
   useMondayIntegrationSEO()
+  useMondayIntegrationSEOEs()
 
   // Pipedrive Integration Page SEO
   usePipedriveIntegrationSEO()
+  usePipedriveIntegrationSEOEs()
 
   // Extract CRM slug from pathname (e.g., /hubspot-whatsapp-integration or /pt/hubspot-whatsapp-integration)
   const getCrmSlugFromPath = (pathname: string): string => {
