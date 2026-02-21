@@ -60,7 +60,7 @@ export const useHubSpotIntegrationSEOEs = () => {
 
       // Open Graph tags
       setMetaTag('og:type', 'website', true)
-      setMetaTag('og:url', 'https://eazybe.com/hubspot-whatsapp-integration', true)
+      setMetaTag('og:url', 'https://eazybe.com/es/hubspot-whatsapp-integration', true)
       setMetaTag('og:title', 'Integración de HubSpot con WhatsApp y agentes de IA | Eazybe', true)
       setMetaTag('og:description', 'Integra WhatsApp con HubSpot para sincronizar conversaciones, automatizar respuestas con IA y gestionar clientes y oportunidades directamente desde el CRM.', true)
       setMetaTag('og:image', 'https://eazybe.com/logo.png', true)
