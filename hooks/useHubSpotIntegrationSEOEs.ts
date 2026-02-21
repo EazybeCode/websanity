@@ -214,7 +214,7 @@ export const useHubSpotIntegrationSEOEs = () => {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Eazybe",
-        "url": "https://eazybe.com/",
+        "url": "https://eazybe.com/es",
         "logo": {
           "@type": "ImageObject",
           "url": "https://eazybe.com/logo.png",
@@ -272,7 +272,7 @@ export const useHubSpotIntegrationSEOEs = () => {
         "operatingSystem": "Web, Extensión Chrome",
         "offers": {
           "@type": "AggregateOffer",
-          "url": "https://eazybe.com/pricing",
+          "url": "https://eazybe.com/es/pricing",
           "priceCurrency": "EUR",
           "lowPrice": 1160,
           "highPrice": 1960,
@@ -314,7 +314,7 @@ export const useHubSpotIntegrationSEOEs = () => {
         "manufacturer": {
           "@type": "Organization",
           "name": "Eazybe",
-          "url": "https://eazybe.com/"
+          "url": "https://eazybe.com/es"
         },
         "category": "Software de Integración CRM",
         "audience": {
@@ -323,7 +323,7 @@ export const useHubSpotIntegrationSEOEs = () => {
         },
         "offers": {
           "@type": "AggregateOffer",
-          "url": "https://eazybe.com/pricing",
+          "url": "https://eazybe.com/es/pricing",
           "priceCurrency": "EUR",
           "lowPrice": 1160,
           "highPrice": 1960,
