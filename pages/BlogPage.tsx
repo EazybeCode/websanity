@@ -737,12 +737,16 @@ const BlogPage: React.FC = () => {
       const articleSchema = {
         "@context": "https://schema.org",
         "@type": "Article",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp"
+        },
         "headline": "How To Read Deleted Messages On WhatsApp (Android & iPhone Guide)",
         "description": "Learn how to read deleted messages on WhatsApp Android, iPhone, and WhatsApp Web. Discover proven methods to recover deleted WhatsApp chats, notifications, and backup tricks.",
-        "image": featuredImageUrl,
+        "image": "https://cdn.sanity.io/images/5awzi0t4/production/ae2f43e2dce48963e01c4dd39a1c7b24dc8efb7c-1280x720.webp",
         "author": {
           "@type": "Organization",
-          "name": "Eazybe Team",
+          "name": "Eazybe",
           "url": "https://eazybe.com/"
         },
         "publisher": {
@@ -750,21 +754,11 @@ const BlogPage: React.FC = () => {
           "name": "Eazybe",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://eazybe.com/logo.png",
-            "width": 600,
-            "height": 60
+            "url": "https://eazybe.com/logo.png"
           }
         },
-        "datePublished": "2026-02-21T08:00:00+00:00",
-        "dateModified": "2026-02-21T10:30:00+00:00",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp"
-        },
-        "articleSection": "Technology",
-        "articleTag": ["WhatsApp Tips", "WhatsApp Tricks", "Android Tips", "iPhone Tips", "WhatsApp Recovery"],
-        "wordCount": 1500,
-        "inLanguage": "en-US"
+        "datePublished": "2026-02-20",
+        "dateModified": "2026-02-21"
       };
 
       let articleScript = document.querySelector('script[type="application/ld+json"][data-schema="article-deleted-whatsapp"]') as HTMLScriptElement;
@@ -775,50 +769,6 @@ const BlogPage: React.FC = () => {
         document.head.appendChild(articleScript);
       }
       articleScript.textContent = JSON.stringify(articleSchema);
-
-      // Add NewsArticle Schema
-      const newsArticleSchema = {
-        "@context": "https://schema.org",
-        "@type": "NewsArticle",
-        "headline": "How To Read Deleted Messages On WhatsApp (Android & iPhone Guide)",
-        "description": "Learn how to read deleted messages on WhatsApp Android, iPhone, and WhatsApp Web. Discover proven methods to recover deleted WhatsApp chats, notifications, and backup tricks.",
-        "image": featuredImageUrl,
-        "author": {
-          "@type": "Organization",
-          "name": "Eazybe Team",
-          "url": "https://eazybe.com/"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Eazybe",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://eazybe.com/logo.png",
-            "width": 600,
-            "height": 60
-          }
-        },
-        "datePublished": "2026-02-21T08:00:00+00:00",
-        "dateModified": "2026-02-21T10:30:00+00:00",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp"
-        },
-        "articleSection": "Technology",
-        "articleTag": ["WhatsApp Tips", "WhatsApp Tricks", "Android Tips", "iPhone Tips", "WhatsApp Recovery"],
-        "wordCount": 1500,
-        "inLanguage": "en-US",
-        "dateline": "Delaware, USA"
-      };
-
-      let newsArticleScript = document.querySelector('script[type="application/ld+json"][data-schema="news-deleted-whatsapp"]') as HTMLScriptElement;
-      if (!newsArticleScript) {
-        newsArticleScript = document.createElement('script') as HTMLScriptElement;
-        newsArticleScript.type = 'application/ld+json';
-        newsArticleScript.setAttribute('data-schema', 'news-deleted-whatsapp');
-        document.head.appendChild(newsArticleScript);
-      }
-      newsArticleScript.textContent = JSON.stringify(newsArticleSchema);
 
       // Cleanup function to remove meta tags when unmounting
       return () => {
@@ -902,10 +852,6 @@ const BlogPage: React.FC = () => {
         // Remove Article schema
         const articleSchema = document.querySelector('script[type="application/ld+json"][data-schema="article-deleted-whatsapp"]');
         if (articleSchema) articleSchema.remove();
-
-        // Remove NewsArticle schema
-        const newsArticleSchema = document.querySelector('script[type="application/ld+json"][data-schema="news-deleted-whatsapp"]');
-        if (newsArticleSchema) newsArticleSchema.remove();
       };
     }
   }, [displayPost]);
