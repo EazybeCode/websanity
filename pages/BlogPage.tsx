@@ -641,6 +641,98 @@ const BlogPage: React.FC = () => {
       }
       faqScript.textContent = JSON.stringify(faqSchema);
 
+      // Add Organization Schema
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe helps sales teams connect WhatsApp with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets to sync conversations, automate follow-ups, and improve customer engagement.",
+        "foundingDate": "2021",
+        "sameAs": ["https://twitter.com/eazybe", "https://linkedin.com/company/eazybe", "https://youtube.com/@eazybe"],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "support@eazybe.com",
+            "url": "https://eazybe.com/",
+            "areaServed": "US",
+            "availableLanguage": ["English"]
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "knowsAbout": [
+          "WhatsApp CRM",
+          "WhatsApp integration",
+          "Sales automation",
+          "CRM integration",
+          "AI agents for CRM",
+          "Customer engagement"
+        ]
+      };
+
+      let orgScript = document.querySelector('script[type="application/ld+json"][data-schema="org-deleted-whatsapp"]') as HTMLScriptElement;
+      if (!orgScript) {
+        orgScript = document.createElement('script') as HTMLScriptElement;
+        orgScript.type = 'application/ld+json';
+        orgScript.setAttribute('data-schema', 'org-deleted-whatsapp');
+        document.head.appendChild(orgScript);
+      }
+      orgScript.textContent = JSON.stringify(organizationSchema);
+
+      // Add SoftwareApplication Schema
+      const softwareAppSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "HubSpot WhatsApp Integration - Eazybe",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
+        "operatingSystem": "Web, Chrome Extension",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 1160,
+          "highPrice": 1960,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": 53766
+        },
+        "featureList": [
+          "Automatic WhatsApp to HubSpot sync",
+          "AI-powered reply suggestions",
+          "Shared inbox for team collaboration",
+          "Deal tracking from WhatsApp",
+          "Contact synchronization",
+          "Message scheduling",
+          "WhatsApp Chat Backup"
+        ]
+      };
+
+      let softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="software-deleted-whatsapp"]') as HTMLScriptElement;
+      if (!softwareAppScript) {
+        softwareAppScript = document.createElement('script') as HTMLScriptElement;
+        softwareAppScript.type = 'application/ld+json';
+        softwareAppScript.setAttribute('data-schema', 'software-deleted-whatsapp');
+        document.head.appendChild(softwareAppScript);
+      }
+      softwareAppScript.textContent = JSON.stringify(softwareAppSchema);
+
       // Cleanup function to remove meta tags when unmounting
       return () => {
         const metaTags = [
@@ -711,6 +803,14 @@ const BlogPage: React.FC = () => {
         // Remove FAQ schema
         const faqSchema = document.querySelector('script[type="application/ld+json"][data-schema="faq-deleted-whatsapp"]');
         if (faqSchema) faqSchema.remove();
+
+        // Remove Organization schema
+        const orgSchema = document.querySelector('script[type="application/ld+json"][data-schema="org-deleted-whatsapp"]');
+        if (orgSchema) orgSchema.remove();
+
+        // Remove SoftwareApplication schema
+        const softwareAppSchema = document.querySelector('script[type="application/ld+json"][data-schema="software-deleted-whatsapp"]');
+        if (softwareAppSchema) softwareAppSchema.remove();
       };
     }
   }, [displayPost]);
