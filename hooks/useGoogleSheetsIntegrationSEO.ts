@@ -11,9 +11,8 @@ export const useGoogleSheetsIntegrationSEO = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Check if we're on the Google Sheets integration page (with or without language prefix)
-    const isGoogleSheetsPage = /^\/[a-z]{2}\/?google-sheets-whatsapp-integration/.test(location.pathname) ||
-                               location.pathname === '/google-sheets-whatsapp-integration'
+    // Check if we're on the Google Sheets integration page (English only - exclude BR which has its own hook)
+    const isGoogleSheetsPage = location.pathname === '/google-sheets-whatsapp-integration'
 
     if (isGoogleSheetsPage) {
       // ==================== META TAGS ====================
