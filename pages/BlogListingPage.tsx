@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Search, Calendar, Clock, Zap } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { ChunkyFooter } from '../components/footer/ChunkyFooter';
 import { useBlogPosts, useBlogIndex, BlogCategory } from '../hooks/useBlog';
 import { SectionBadge } from '../components/ui/SectionBadge';
+import { getLanguageFromPath } from '../components/LanguageProvider';
 
 const BlogCard: React.FC<{ post: any; minReadSuffix?: string }> = ({ post, minReadSuffix = 'min read' }) => {
   const navigate = useNavigate();
@@ -108,10 +109,11 @@ const FeaturedBlogCard: React.FC<{ post: any; badgeText?: string; minReadSuffix?
 
 const BlogListingPage: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  // Get language from i18n
-  const language = i18n.language || 'en';
+  // Get language from URL pathname instead of i18n state
+  const language = getLanguageFromPath(location.pathname);
   const { data: allPosts, loading: postsLoading, error: postsError } = useBlogPosts(undefined, language);
   const { data: blogIndex, loading: indexLoading } = useBlogIndex(language);
 
