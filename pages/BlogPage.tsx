@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Calendar,
@@ -23,6 +23,7 @@ import { ChunkyFooter } from '../components/footer/ChunkyFooter';
 import { useBlogPost, useBlogPosts, useBlogIndex, BlogIndexSidebarCta, BlogIndexNewsletterCta, BlogIndexDetailLabels, BlogIndexRelatedPostsSection, PortableTextBlock } from '../hooks/useBlog';
 import { Button } from '../components/ui/Button';
 import { SectionBadge } from '../components/ui/SectionBadge';
+import { getLanguageFromPath } from '../components/LanguageProvider';
 
 // Generate a URL-friendly slug from text
 const generateSlug = (text: string): string => {
@@ -313,8 +314,9 @@ const BlogPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  // Get language from i18n
-  const language = i18n.language || 'en';
+  const location = useLocation();
+  // Get language from URL pathname instead of i18n state to ensure correct language content
+  const language = getLanguageFromPath(location.pathname);
   const { data: post, loading, error } = useBlogPost(slug || '', language);
   const { data: relatedPosts } = useBlogPosts(4, language);
   const { data: blogIndex } = useBlogIndex(language);
