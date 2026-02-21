@@ -24,6 +24,7 @@ import { useBlogPost, useBlogPosts, useBlogIndex, BlogIndexSidebarCta, BlogIndex
 import { Button } from '../components/ui/Button';
 import { SectionBadge } from '../components/ui/SectionBadge';
 import { getLanguageFromPath } from '../components/LanguageProvider';
+import { translateBlogPost, getUIText, SupportedLanguage } from '../lib/blogTranslations';
 
 // Generate a URL-friendly slug from text
 const generateSlug = (text: string): string => {
@@ -321,6 +322,24 @@ const BlogPage: React.FC = () => {
   const { data: relatedPosts } = useBlogPosts(4, language);
   const { data: blogIndex } = useBlogIndex(language);
 
+  // State for translated post content
+  const [translatedPost, setTranslatedPost] = useState<any>(null);
+
+  // Apply translation when post loads and needs translation
+  useEffect(() => {
+    if (!post) return;
+
+    // If post is marked as translated from English, apply translation
+    if (post._translatedFrom === 'en' && language !== 'en') {
+      translateBlogPost(post, language as SupportedLanguage).then(setTranslatedPost);
+    } else {
+      setTranslatedPost(post);
+    }
+  }, [post, language]);
+
+  // Use translated post if available, otherwise use original post
+  const displayPost = translatedPost || post;
+
   // Get content from Sanity with translation fallbacks
   const sidebarCta = blogIndex?.sidebarCta;
   const newsletterCta = blogIndex?.newsletterCta;
@@ -329,9 +348,9 @@ const BlogPage: React.FC = () => {
 
   // Dynamically extract TOC from content headings
   const dynamicToc = useMemo(() => {
-    if (!post?.content || !Array.isArray(post.content)) return [];
-    return extractHeadingsFromContent(post.content);
-  }, [post?.content]);
+    if (!displayPost?.content || !Array.isArray(displayPost.content)) return [];
+    return extractHeadingsFromContent(displayPost.content);
+  }, [displayPost?.content]);
 
   // Mobile active section state
   const [mobileActiveSection, setMobileActiveSection] = useState<string>('');
@@ -362,17 +381,17 @@ const BlogPage: React.FC = () => {
 
   // Create portable text components with heading IDs
   const portableTextComponents = useMemo(() => {
-    if (!post?.content || !Array.isArray(post.content)) return createPortableTextComponents([]);
-    return createPortableTextComponents(post.content);
-  }, [post?.content]);
+    if (!displayPost?.content || !Array.isArray(displayPost.content)) return createPortableTextComponents([]);
+    return createPortableTextComponents(displayPost.content);
+  }, [displayPost?.content]);
 
-  // SEO Meta Tags for specific blog post
+  // SEO Meta Tags for specific blog displayPost
   useEffect(() => {
-    if (!post) return;
+    if (!displayPost) return;
 
-    const slug = post.slug?.current || '';
+    const slug = displayPost.slug?.current || '';
 
-    // Special meta tags for "how-to-read-deleted-messages-on-whatsapp" post
+    // Special meta tags for "how-to-read-deleted-messages-on-whatsapp" displayPost
     if (slug === 'how-to-read-deleted-messages-on-whatsapp') {
       const updateMetaTags = () => {
         // Update or create title
@@ -484,7 +503,7 @@ const BlogPage: React.FC = () => {
         });
       };
     }
-  }, [post]);
+  }, [displayPost]);
 
   if (loading) {
     return (
@@ -497,7 +516,7 @@ const BlogPage: React.FC = () => {
     );
   }
 
-  if (error || !post) {
+  if (error || !displayPost) {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center text-red-400">
@@ -530,47 +549,47 @@ const BlogPage: React.FC = () => {
             </Link>
             <ChevronRight size={12} className="text-slate-600 md:hidden" />
             <ChevronRight size={14} className="text-slate-600 hidden md:block" />
-            <span className="text-brand-cyan font-medium truncate max-w-[150px] sm:max-w-[200px] md:max-w-md" title={post.title}>
-              {post.title}
+            <span className="text-brand-cyan font-medium truncate max-w-[150px] sm:max-w-[200px] md:max-w-md" title={displayPost.title}>
+              {displayPost.title}
             </span>
           </nav>
 
           {/* Category Badge */}
           <div className="mb-5 md:mb-8">
             <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs md:text-sm font-medium">
-              {post.category || 'Blog'}
+              {displayPost.category || 'Blog'}
             </span>
           </div>
 
           {/* Title - Large, Bold, Readable */}
           <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-5 md:mb-8">
-            {post.title}
+            {displayPost.title}
           </h1>
 
           {/* Excerpt - Generous size */}
           <p className="text-base md:text-xl lg:text-2xl text-slate-400 leading-relaxed mb-8 md:mb-10">
-            {post.excerpt}
+            {displayPost.excerpt}
           </p>
 
           {/* Author & Meta - Clean horizontal layout */}
           <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 py-6 md:py-8 border-y border-slate-800/50">
             <div className="flex items-center gap-3 md:gap-4">
               <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg md:text-xl">
-                {post.author?.name?.[0] || <User size={20} className="md:hidden" />}
-                {post.author?.name?.[0] || <User size={24} className="hidden md:block" />}
+                {displayPost.author?.name?.[0] || <User size={20} className="md:hidden" />}
+                {displayPost.author?.name?.[0] || <User size={24} className="hidden md:block" />}
               </div>
               <div>
-                <p className="font-semibold text-white text-base md:text-lg">{post.author?.name || t('blog.detail.authorFallback')}</p>
+                <p className="font-semibold text-white text-base md:text-lg">{displayPost.author?.name || t('blog.detail.authorFallback')}</p>
                 <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
                   <span className="flex items-center gap-1">
                     <Calendar size={12} className="md:hidden" />
                     <Calendar size={14} className="hidden md:inline" />
-                    {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                    {new Date(displayPost.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock size={12} className="md:hidden" />
                     <Clock size={14} className="hidden md:inline" />
-                    {post.readTime} {detailLabels?.minReadSuffix || t('blog.detail.minRead')}
+                    {displayPost.readTime} {detailLabels?.minReadSuffix || t('blog.detail.minRead')}
                   </span>
                 </div>
               </div>
@@ -600,12 +619,12 @@ const BlogPage: React.FC = () => {
       </header>
 
       {/* Featured Image - Left Aligned */}
-      {post.featuredImage && (
+      {displayPost.featuredImage && (
         <div className="max-w-7xl mx-auto px-4 md:px-6 mb-6 md:mb-12 lg:mb-16">
           <div className="relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden aspect-[16/9] md:aspect-[2/1] shadow-xl md:shadow-2xl border border-slate-800/50">
             <img
-              src={post.featuredImage}
-              alt={post.title}
+              src={displayPost.featuredImage}
+              alt={displayPost.title}
               className="w-full h-full object-cover"
             />
           </div>
@@ -619,7 +638,7 @@ const BlogPage: React.FC = () => {
             {/* Left Column - Main Content - Left Aligned */}
             <div className="w-full lg:flex-1">
               {/* Summary Box - Prominent */}
-              {post.quickAnswer && (
+              {displayPost.quickAnswer && (
                 <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 mb-8 md:mb-12">
                   <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-5">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-brand-cyan/10 flex items-center justify-center">
@@ -637,7 +656,7 @@ const BlogPage: React.FC = () => {
                   </div>
                   <div
                     className="text-sm md:text-base lg:text-lg text-slate-300 leading-relaxed [&>p]:mb-3 [&>ul]:space-y-2 [&>ul>li]:flex [&>ul>li]:gap-2 [&>ul>li]:before:content-['→'] [&>ul>li]:before:text-brand-cyan"
-                    dangerouslySetInnerHTML={{ __html: post.quickAnswer }}
+                    dangerouslySetInnerHTML={{ __html: displayPost.quickAnswer }}
                   />
                 </div>
               )}
@@ -692,8 +711,8 @@ const BlogPage: React.FC = () => {
               {/* Main Article Content */}
               <article className="blog-content prose prose-invert max-w-none">
                 {/* Render Portable Text content if it's an array, otherwise render as HTML for legacy content */}
-                {Array.isArray(post.content) ? (
-                  <PortableText value={post.content} components={portableTextComponents} />
+                {Array.isArray(displayPost.content) ? (
+                  <PortableText value={displayPost.content} components={portableTextComponents} />
                 ) : (
                   <>
                     <style dangerouslySetInnerHTML={{ __html: `
@@ -963,19 +982,19 @@ const BlogPage: React.FC = () => {
                   color: #06b6d4;
                 }
                 ` }} />
-                    <div dangerouslySetInnerHTML={{ __html: post.content as unknown as string }} />
+                    <div dangerouslySetInnerHTML={{ __html: displayPost.content as unknown as string }} />
                   </>
                 )}
               </article>
 
               {/* FAQs Section */}
-              {post.faqs && post.faqs.length > 0 && (
+              {displayPost.faqs && displayPost.faqs.length > 0 && (
                 <div className="mt-20 pt-12 border-t border-slate-800">
                   <h2 className="text-3xl font-bold text-white tracking-tight mb-8">
                     {detailLabels?.faqTitle || t('blog.detail.faqTitle')}
                   </h2>
                   <div className="space-y-4">
-                    {post.faqs.map((faq, i) => (
+                    {displayPost.faqs.map((faq, i) => (
                       <details key={i} className="group border border-slate-700/50 rounded-xl bg-slate-900/30 transition-all hover:border-slate-600">
                         <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-lg">
                           <span className="pr-6">{faq.question}</span>
@@ -991,19 +1010,19 @@ const BlogPage: React.FC = () => {
               )}
 
               {/* Author Section */}
-              {post.author && (
+              {displayPost.author && (
                 <div className="mt-20 pt-12 border-t border-slate-800">
                   <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-slate-700/30">
                     <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-3xl flex-shrink-0">
-                      {post.author.name[0]}
+                      {displayPost.author.name[0]}
                     </div>
                     <div className="flex-1">
                       <p className="text-sm text-brand-cyan uppercase tracking-wider font-semibold mb-2">
                         {detailLabels?.authorLabel || t('blog.detail.authorLabel')}
                       </p>
-                      <h4 className="text-2xl font-bold text-white mb-4">{post.author.name}</h4>
+                      <h4 className="text-2xl font-bold text-white mb-4">{displayPost.author.name}</h4>
                       <p className="text-lg text-slate-400 leading-relaxed">
-                        {post.author.bio || t('blog.detail.authorBioFallback')}
+                        {displayPost.author.bio || t('blog.detail.authorBioFallback')}
                       </p>
                     </div>
                   </div>
