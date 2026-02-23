@@ -15,9 +15,9 @@ export const Footer: React.FC = () => {
               The WhatsApp Sales Platform for CRM teams.
             </p>
             <div className="flex space-x-4 mb-6">
-                <a href="#" className="text-slate-400 hover:text-blue-600 transition-colors"><Linkedin size={18}/></a>
-                <a href="#" className="text-slate-400 hover:text-blue-600 transition-colors"><Twitter size={18}/></a>
-                <a href="#" className="text-slate-400 hover:text-blue-600 transition-colors"><Youtube size={18}/></a>
+                <a href="https://linkedin.com/company/eazybe" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors"><Linkedin size={18}/></a>
+                <a href="https://twitter.com/eazybe" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors"><Twitter size={18}/></a>
+                <a href="https://youtube.com/@eazybe" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors"><Youtube size={18}/></a>
             </div>
              <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-2">
@@ -34,52 +34,52 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold text-slate-900 mb-6">Platform</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Conversation Capture</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Workflow Automations</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Revenue Inbox</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Rep Radar</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Cloud Backup</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Mini CRM View</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Team Inbox</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">WhatsApp Copilot</a></li>
+              <li><a href="/features" className="hover:text-blue-600 transition-colors">Conversation Capture</a></li>
+              <li><a href="/features" className="hover:text-blue-600 transition-colors">Workflow Automations</a></li>
+              <li><a href="/features" className="hover:text-blue-600 transition-colors">Revenue Inbox</a></li>
+              <li><a href="/features" className="hover:text-blue-600 transition-colors">Rep Radar</a></li>
+              <li><a href="/features" className="hover:text-blue-600 transition-colors">Cloud Backup</a></li>
+              <li><a href="/features" className="hover:text-blue-600 transition-colors">Mini CRM View</a></li>
+              <li><a href="/team-inbox" className="hover:text-blue-600 transition-colors">Team Inbox</a></li>
+              <li><a href="/features" className="hover:text-blue-600 transition-colors">WhatsApp Copilot</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold text-slate-900 mb-6">Integrations</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:text-blue-600 transition-colors">HubSpot</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Salesforce</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Zoho CRM</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Bitrix24</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">LeadSquared</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Freshsales</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Pipedrive</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Google Sheets</a></li>
+              <li><a href="/hubspot-whatsapp-integration" className="hover:text-blue-600 transition-colors">HubSpot</a></li>
+              <li><a href="/salesforce-whatsapp-integration" className="hover:text-blue-600 transition-colors">Salesforce</a></li>
+              <li><a href="/zoho-whatsapp-integration" className="hover:text-blue-600 transition-colors">Zoho CRM</a></li>
+              <li><a href="/bitrix24-whatsapp-integration" className="hover:text-blue-600 transition-colors">Bitrix24</a></li>
+              <li><a href="/leadsquared-whatsapp-integration" className="hover:text-blue-600 transition-colors">LeadSquared</a></li>
+              <li><a href="/freshdesk-whatsapp-integration" className="hover:text-blue-600 transition-colors">Freshdesk</a></li>
+              <li><a href="/pipedrive-whatsapp-integration" className="hover:text-blue-600 transition-colors">Pipedrive</a></li>
+              <li><a href="/google-sheets-whatsapp-integration" className="hover:text-blue-600 transition-colors">Google Sheets</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold text-slate-900 mb-6">Resources</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Help Center</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Documentation</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">API Reference</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Case Studies</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Webinars</a></li>
+              <li><a href="https://help.eazybe.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">Help Center</a></li>
+              <li><a href="https://help.eazybe.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">Documentation</a></li>
+              <li><a href="https://help.eazybe.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">API Reference</a></li>
+              <li><a href="/blog" className="hover:text-blue-600 transition-colors">Blog</a></li>
+              <li><a href="/blog" className="hover:text-blue-600 transition-colors">Case Studies</a></li>
+              <li><a href="/blog" className="hover:text-blue-600 transition-colors">Webinars</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold text-slate-900 mb-6">Company</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:text-blue-600 transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Partners</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Security</a></li>
-              <li><a href="#" className="hover:text-blue-600 transition-colors">Status</a></li>
+              <li><a href="/about" className="hover:text-blue-600 transition-colors">About Us</a></li>
+              <li><a href="/careers" className="hover:text-blue-600 transition-colors">Careers</a></li>
+              <li><a href="/contact" className="hover:text-blue-600 transition-colors">Contact</a></li>
+              <li><a href="/partners" className="hover:text-blue-600 transition-colors">Partners</a></li>
+              <li><a href="/security" className="hover:text-blue-600 transition-colors">Security</a></li>
+              <li><a href="https://status.eazybe.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">Status</a></li>
             </ul>
           </div>
         </div>
@@ -89,10 +89,10 @@ export const Footer: React.FC = () => {
              © 2025 Eazybe, Inc. All rights reserved. 8, The Green STE B, Dover Delaware - 19901 | support@eazybe.com
           </div>
           <div className="flex space-x-6">
-            <a href="#" className="hover:text-slate-600 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-slate-600 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-slate-600 transition-colors">Cookie Policy</a>
-            <a href="#" className="hover:text-slate-600 transition-colors">DPA</a>
+            <a href="/privacy" className="hover:text-slate-600 transition-colors">Privacy Policy</a>
+            <a href="/terms" className="hover:text-slate-600 transition-colors">Terms of Service</a>
+            <a href="/cookies" className="hover:text-slate-600 transition-colors">Cookie Policy</a>
+            <a href="/dpa" className="hover:text-slate-600 transition-colors">DPA</a>
           </div>
         </div>
       </div>
