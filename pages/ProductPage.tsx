@@ -23,6 +23,7 @@ import {
 } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
+import { CRMIntegrationFAQ } from '../components/integration/CRMIntegrationFAQ'
 import { useProduct } from '../hooks/useProduct'
 import { useTrialModal } from '../contexts/TrialModalContext'
 import { useHubSpotIntegrationSEO } from '../hooks/useHubSpotIntegrationSEO'
@@ -1750,6 +1751,9 @@ export const ProductPage: React.FC = () => {
 
       {/* Reports Section */}
       <ReportsSection crm={crm} t={t} />
+
+      {/* FAQ Section - All CRM integrations */}
+      <CRMIntegrationFAQ crmSlug={crmSlug} />
 
       {/* Footer with CTA and Security sections */}
       <ChunkyFooter />
