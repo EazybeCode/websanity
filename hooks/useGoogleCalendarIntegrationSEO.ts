@@ -192,22 +192,24 @@ export const useGoogleCalendarIntegrationSEO = () => {
 
       // BreadcrumbList Schema (without @id)
       const breadcrumbSchema = {
-        "@context": "https://schema.org",
+        "@context": "https://schema.org/",
         "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Eazybe",
-            "item": "https://eazybe.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Google Calendar WhatsApp Integration",
-            "item": "https://eazybe.com/google-calendar-whatsapp-integration"
-          }
-        ]
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Eazybe",
+          "item": "https://eazybe.com/"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Integrations",
+          "item": "https://eazybe.com/integrations"
+        },{
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Google Calendar WhatsApp Integration",
+          "item": "https://eazybe.com/google-calendar-whatsapp-integration"
+        }]
       }
 
       // Organization Schema (without @id)
