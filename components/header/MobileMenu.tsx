@@ -75,7 +75,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, onClose }) => {
       return (
         <motion.div variants={itemVariants}>
           <a
-            href={item.href || '#'}
+            href={item.href || '/'}
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
