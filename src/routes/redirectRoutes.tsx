@@ -554,6 +554,7 @@ export const redirectMappings: Array<{ from: string; to: string }> = [
 { from: "/blog-pt/ catalogo-do-whatsapp-tudo-o-que-voce-precisa-saber-em-2023", to: "/br" },
 { from: "/post/ how-to-edit-andriod-contacts-on-whatsapp-without-leaving-the-app", to: "/" },
 { from: "/blog-pt/ integracao-do-whatsapp-hubspot-como-sincronizar-bate-papos-do-whatsapp-com-o-hubspot", to: "/br" },
+{ from: "/blog-pt/zoho-crm-free-started", to: "/br/zoho-whatsapp-integration" },
 { from: "/integrations-pt", to: "/br/integrations" },
 { from: "/payment-cancelled", to: "/" },
 { from: "/post/ google-calendar-on-whatsapp-eazybe-extension-guide", to: "/google-calendar-whatsapp-integration" },
