@@ -192,19 +192,39 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
     }
   }, [isOpen, mode, hasSubmitted]);
 
-  // Load Calendly widget script when form is submitted successfully (only for demo mode)
+  // Load Calendly widget script and init with prefill when form is submitted (demo mode)
   useEffect(() => {
     if (isSuccess && mode === 'demo') {
-      // Load Calendly script if not already loaded
+      const initCalendly = () => {
+        const container = document.getElementById('calendly-container');
+        if (container && window.Calendly) {
+          container.innerHTML = '';
+          const finalPhone = `${selectedCountry}${phoneValue.replace(/\s+/g, '')}`;
+          window.Calendly.initInlineWidget({
+            url: 'https://calendly.com/d/cw67-pt3-y2m',
+            parentElement: container,
+            prefill: {
+              email: formData.workEmail,
+              customAnswers: {
+                a1: finalPhone,
+              },
+            },
+          });
+        }
+      };
+
       const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
-      if (!existingScript) {
+      if (existingScript && window.Calendly) {
+        initCalendly();
+      } else {
         const script = document.createElement('script');
         script.src = 'https://assets.calendly.com/assets/external/widget.js';
         script.async = true;
+        script.onload = initCalendly;
         document.body.appendChild(script);
       }
     }
-  }, [isSuccess, mode]);
+  }, [isSuccess, mode, formData.workEmail, selectedCountry, phoneValue]);
 
   // Redirect to Chrome Web Store after success (trial mode only)
   useEffect(() => {
@@ -456,7 +476,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
                     className="w-full bg-brand-blue text-white font-bold shadow-glow-blue hover:bg-blue-600 disabled:opacity-50 rounded-lg px-4 py-2.5 text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98] group"
                   >
                     {isSubmitting ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
-                    {isSubmitting ? t('trialModal.submitting') : t('trialModal.submitButton')}
+                    {isSubmitting ? t('trialModal.submitting') : mode === 'demo' ? 'Book a Demo' : t('trialModal.submitButton')}
                   </button>
                   <p className="mt-2 text-[10px] text-center text-slate-600 font-mono uppercase tracking-widest">
                     {t('trialModal.disclaimer')}
@@ -492,10 +512,10 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
                 </div>
               </div>
 
-              {/* Calendly Embed */}
+              {/* Calendly Embed - prefilled with user's email & phone */}
               <div
-                className="calendly-inline-widget w-full rounded-lg overflow-hidden"
-                data-url="https://calendly.com/d/cw67-pt3-y2m"
+                id="calendly-container"
+                className="w-full rounded-lg overflow-hidden"
                 style={{ minWidth: '320px', height: '650px' }}
               />
             </div>
