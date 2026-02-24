@@ -25,6 +25,13 @@ import { Button } from '../components/ui/Button';
 import { SectionBadge } from '../components/ui/SectionBadge';
 import { getLanguageFromPath } from '../components/LanguageProvider';
 import { translateBlogPost, getUIText, SupportedLanguage } from '../lib/blogTranslations';
+// Import new content type components
+import { TableBlock } from '../components/blog/TableBlock';
+import { AccordionBlock } from '../components/blog/AccordionBlock';
+import { CalloutBlock } from '../components/blog/CalloutBlock';
+import { VideoEmbedBlock } from '../components/blog/VideoEmbedBlock';
+import { ButtonCTABlock } from '../components/blog/ButtonCTABlock';
+import { QuoteBlock } from '../components/blog/QuoteBlock';
 
 // Generate a URL-friendly slug from text
 const generateSlug = (text: string): string => {
@@ -142,6 +149,128 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
               <figcaption className="text-center text-slate-500 text-sm mt-4">{value.caption}</figcaption>
             )}
           </figure>
+        );
+      },
+      // NEW CONTENT TYPES
+      table: ({ value }) => {
+        if (!value) return null;
+        return <TableBlock data={value} />;
+      },
+      accordion: ({ value }) => {
+        if (!value) return null;
+        return <AccordionBlock data={value} />;
+      },
+      callout: ({ value }) => {
+        if (!value) return null;
+        return <CalloutBlock data={value} />;
+      },
+      videoEmbed: ({ value }) => {
+        if (!value) return null;
+        return <VideoEmbedBlock data={value} />;
+      },
+      buttonCTA: ({ value }) => {
+        if (!value) return null;
+        return <ButtonCTABlock data={value} />;
+      },
+      quote: ({ value }) => {
+        if (!value) return null;
+        return <QuoteBlock data={value} />;
+      },
+      codeBlock: ({ value }) => {
+        if (!value) return null;
+        return (
+          <figure className="my-8">
+            {value.filename && (
+              <div className="text-xs text-slate-500 mb-2 font-mono">{value.filename}</div>
+            )}
+            <pre className={`bg-slate-900 rounded-xl p-4 md:p-6 overflow-x-auto border border-slate-700 ${value.theme === 'light' ? 'light' : ''}`}>
+              <code className={`text-sm md:text-base ${value.language ? `language-${value.language}` : ''}`}>
+                {value.code}
+              </code>
+            </pre>
+          </figure>
+        );
+      },
+      imageGallery: ({ value }) => {
+        if (!value || !value.images?.length) return null;
+        const gridCols = value.layout === 'grid-2' ? 'grid-cols-2' : value.layout === 'grid-3' ? 'grid-cols-3' : value.layout === 'grid-4' ? 'grid-cols-4' : 'grid-cols-2 md:grid-cols-3';
+        return (
+          <figure className="my-8 md:my-12">
+            {value.caption && <figcaption className="text-center text-slate-400 mb-4">{value.caption}</figcaption>}
+            <div className={`grid ${gridCols} gap-4`}>
+              {value.images.map((img: any, i: number) => (
+                <div key={i} className="aspect-square overflow-hidden rounded-xl">
+                  <img src={img.url} alt={img.alt || ''} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                </div>
+              ))}
+            </div>
+          </figure>
+        );
+      },
+      fileDownload: ({ value }) => {
+        if (!value) return null;
+        return (
+          <a
+            href={value.file?.asset?.url}
+            download
+            className={`my-6 inline-flex items-center gap-4 p-4 md:p-6 rounded-xl border border-slate-700 hover:border-brand-cyan transition-colors ${
+              value.variant === 'button' ? 'bg-brand-cyan text-black hover:bg-brand-cyan/90' : 'bg-slate-800 text-slate-300'
+            }`}
+          >
+            <div className="w-12 h-12 rounded-lg bg-brand-cyan/20 flex items-center justify-center">
+              <span className="text-2xl">📄</span>
+            </div>
+            <div>
+              <p className="font-semibold">{value.title}</p>
+              {value.description && <p className="text-sm opacity-70">{value.description}</p>}
+            </div>
+          </a>
+        );
+      },
+      comparisonTable: ({ value }) => {
+        if (!value || !value.columns?.length) return null;
+        return (
+          <div className="my-8 md:my-12">
+            {value.title && <h3 className="text-xl font-bold text-white mb-6">{value.title}</h3>}
+            <div className="overflow-x-auto rounded-xl border border-slate-700">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-slate-800">
+                    <th className="p-4 text-left text-slate-400">Feature</th>
+                    {value.columns.map((col: any, i: number) => (
+                      <th
+                        key={i}
+                        className={`p-4 text-center ${col.highlight ? 'bg-brand-cyan text-black font-bold' : ''}`}
+                      >
+                        {col.icon && <img src={col.icon} alt="" className="w-8 h-8 mx-auto mb-2" />}
+                        {col.name}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-700">
+                  {value.rows?.map((row: any, i: number) => (
+                    <tr key={i}>
+                      <td className="p-4 font-medium text-white">{row.feature}</td>
+                      {row.values?.map((val: string, j: number) => (
+                        <td key={j} className="p-4 text-center text-slate-300">
+                          {row.checkmarks ? (val === '✓' || val === 'Yes' ? '✅' : '❌') : val}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {value.cta?.url && (
+              <div className="mt-6 text-center">
+                <a href={value.cta.url} className="inline-flex items-center gap-2 px-6 py-3 bg-brand-cyan text-black font-semibold rounded-xl hover:bg-brand-cyan/90 transition-colors">
+                  {value.cta.text || 'Learn More'}
+                  <ArrowRight size={18} />
+                </a>
+              </div>
+            )}
+          </div>
         );
       },
     },
