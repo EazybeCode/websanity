@@ -1474,7 +1474,81 @@
         "description": "Integra perfectamente WhatsApp con tu CRM, help desk y herramientas de negocio.",
         "primaryCta": "Explorar Integraciones",
         "secondaryCta": "Solicitar Integración"
-      }
+      },
+      "featuredItems": [
+        {
+          "name": "HubSpot",
+          "slug": "hubspot",
+          "description": "Sincronización bidireccional con HubSpot CRM",
+          "icon": "CircleDot",
+          "color": "#ff7a59",
+          "isFeatured": true,
+          "tags": ["CRM", "Popular"]
+        },
+        {
+          "name": "Zoho",
+          "slug": "zoho",
+          "description": "Sincronización completa de contactos Zoho",
+          "icon": "Database",
+          "color": "#008cff",
+          "isFeatured": true,
+          "tags": ["CRM"]
+        },
+        {
+          "name": "Salesforce",
+          "slug": "salesforce",
+          "description": "Integración de nivel empresarial",
+          "icon": "Cloud",
+          "color": "#00a1e0",
+          "isFeatured": true,
+          "tags": ["CRM", "Enterprise"]
+        },
+        {
+          "name": "Pipedrive",
+          "slug": "pipedrive",
+          "description": "Automatización de pipeline de ventas",
+          "icon": "TrendingUp",
+          "color": "#ff7a59",
+          "isFeatured": false,
+          "tags": ["CRM"]
+        },
+        {
+          "name": "Bitrix24",
+          "slug": "bitrix24",
+          "description": "Workspace todo-en-uno",
+          "icon": "Layers",
+          "color": "#77d42d",
+          "isFeatured": false,
+          "tags": ["CRM"]
+        },
+        {
+          "name": "Freshdesk",
+          "slug": "freshdesk",
+          "description": "Sincronización de tickets de soporte",
+          "icon": "HeadphonesIcon",
+          "color": "#283e4a",
+          "isFeatured": false,
+          "tags": ["Help Desk"]
+        },
+        {
+          "name": "Google Sheets",
+          "slug": "google-sheets",
+          "description": "Exporta y analiza datos de WhatsApp",
+          "icon": "Table",
+          "color": "#0f9d58",
+          "isFeatured": false,
+          "tags": ["Productividad"]
+        },
+        {
+          "name": "Webhooks",
+          "slug": "webhooks",
+          "description": "Automatizaciones personalizadas",
+          "icon": "Webhook",
+          "color": "#6366f1",
+          "isFeatured": true,
+          "tags": ["Developer"]
+        }
+      ]
     },
     "whatsappApi": {
       "hero": {
