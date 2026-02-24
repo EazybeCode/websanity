@@ -185,6 +185,22 @@ export const useHubSpotIntegrationSEO = () => {
               "@type": "Answer",
               "text": "Most teams associate WhatsApp conversations with contacts and deals to track context across the sales pipeline. The best mapping depends on your HubSpot workflow."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to set up the HubSpot WhatsApp integration?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most teams complete the setup in under 5 minutes. Simply install Eazybe, connect your HubSpot account, and start syncing WhatsApp conversations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use WhatsApp Business API with HubSpot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Eazybe supports both WhatsApp Web and WhatsApp Business API, giving you flexibility to choose the approach that fits your business needs."
+            }
           }
         ]
       }

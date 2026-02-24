@@ -186,6 +186,22 @@ export const useMondayIntegrationSEO = () => {
               "@type": "Answer",
               "text": "Most teams associate WhatsApp conversations with board items and updates to track context across the sales pipeline. The best mapping depends on your Monday workflow."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to set up the Monday WhatsApp integration?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most teams complete the setup in under 5 minutes. Simply install Eazybe, connect your Monday account, and start syncing WhatsApp conversations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use WhatsApp Business API with Monday?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Eazybe supports both WhatsApp Web and WhatsApp Business API, giving you flexibility to choose the approach that fits your business needs."
+            }
           }
         ]
       }

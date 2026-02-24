@@ -185,6 +185,22 @@ export const useWebhooksIntegrationSEO = () => {
               "@type": "Answer",
               "text": "You can send message content, contact information, timestamps, and metadata to your webhook endpoints. The exact data fields depend on your webhook configuration and requirements."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to set up the Webhooks WhatsApp integration?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most teams complete the setup in under 5 minutes. Simply install Eazybe, configure your webhook endpoints, and start receiving WhatsApp events."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use WhatsApp Business API with Webhooks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Eazybe supports both WhatsApp Web and WhatsApp Business API, giving you flexibility to choose the approach that fits your business needs."
+            }
           }
         ]
       }

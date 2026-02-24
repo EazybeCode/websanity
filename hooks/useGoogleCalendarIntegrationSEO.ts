@@ -186,6 +186,22 @@ export const useGoogleCalendarIntegrationSEO = () => {
               "@type": "Answer",
               "text": "Most teams sync WhatsApp conversations to create events, set reminders, and track follow-ups directly in Google Calendar. The best mapping depends on your workflow."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to set up the Google Calendar WhatsApp integration?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most teams complete the setup in under 5 minutes. Simply install Eazybe, connect your Google account, and start syncing WhatsApp conversations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use WhatsApp Business API with Google Calendar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Eazybe supports both WhatsApp Web and WhatsApp Business API, giving you flexibility to choose the approach that fits your business needs."
+            }
           }
         ]
       }
