@@ -621,15 +621,22 @@ const getTranslatedFallbackData = (slug: string, t: (key: string, options?: any)
 // ================== Main FeaturePage Component ==================
 
 export const FeaturePage: React.FC = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { openModal } = useTrialModal()
   const { slug: urlSlug } = useParams<{ slug: string }>()
   const location = useLocation()
 
+  // Determine language based on current path
+  const getLanguageFromPath = () => {
+    const match = location.pathname.match(/^\/(br|es|tr)\//)
+    return match ? match[1] : 'en'
+  }
+
   // Determine slug based on URL - handle /whatsapp-api route specially
   const slug = urlSlug || (location.pathname === '/whatsapp-api' ? 'whatsapp-api' : 'cloud-backup')
+  const language = getLanguageFromPath()
 
-  const { data: sanityData, loading, error } = useFeature(slug)
+  const { data: sanityData, loading, error } = useFeature(slug, language)
 
   const featureColor = featureColors[slug] || featureColors['cloud-backup']
   const color = featureColor.primary
