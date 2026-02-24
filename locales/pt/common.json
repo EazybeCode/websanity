@@ -1489,7 +1489,81 @@
         "description": "Integre perfeitamente o WhatsApp com seu CRM, help desk e ferramentas de negócios.",
         "primaryCta": "Explorar Integrações",
         "secondaryCta": "Solicitar Integração"
-      }
+      },
+      "featuredItems": [
+        {
+          "name": "HubSpot",
+          "slug": "hubspot",
+          "description": "Sincronização bidirecional com HubSpot CRM",
+          "icon": "CircleDot",
+          "color": "#ff7a59",
+          "isFeatured": true,
+          "tags": ["CRM", "Popular"]
+        },
+        {
+          "name": "Zoho",
+          "slug": "zoho",
+          "description": "Sincronização completa de contatos Zoho",
+          "icon": "Database",
+          "color": "#008cff",
+          "isFeatured": true,
+          "tags": ["CRM"]
+        },
+        {
+          "name": "Salesforce",
+          "slug": "salesforce",
+          "description": "Integração de nível empresarial",
+          "icon": "Cloud",
+          "color": "#00a1e0",
+          "isFeatured": true,
+          "tags": ["CRM", "Enterprise"]
+        },
+        {
+          "name": "Pipedrive",
+          "slug": "pipedrive",
+          "description": "Automação de pipeline de vendas",
+          "icon": "TrendingUp",
+          "color": "#ff7a59",
+          "isFeatured": false,
+          "tags": ["CRM"]
+        },
+        {
+          "name": "Bitrix24",
+          "slug": "bitrix24",
+          "description": "Workspace tudo-em-um",
+          "icon": "Layers",
+          "color": "#77d42d",
+          "isFeatured": false,
+          "tags": ["CRM"]
+        },
+        {
+          "name": "Freshdesk",
+          "slug": "freshdesk",
+          "description": "Sincronização de tickets de suporte",
+          "icon": "HeadphonesIcon",
+          "color": "#283e4a",
+          "isFeatured": false,
+          "tags": ["Help Desk"]
+        },
+        {
+          "name": "Google Sheets",
+          "slug": "google-sheets",
+          "description": "Exporte e analise dados do WhatsApp",
+          "icon": "Table",
+          "color": "#0f9d58",
+          "isFeatured": false,
+          "tags": ["Produtividade"]
+        },
+        {
+          "name": "Webhooks",
+          "slug": "webhooks",
+          "description": "Automações personalizadas",
+          "icon": "Webhook",
+          "color": "#6366f1",
+          "isFeatured": true,
+          "tags": ["Developer"]
+        }
+      ]
     },
     "whatsappApi": {
       "hero": {

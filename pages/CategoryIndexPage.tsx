@@ -124,22 +124,32 @@ const IntroSection: React.FC<{ data: any }> = ({ data }) => {
 
 // ================== Featured Items Grid ==================
 
-const FeaturedItemsSection: React.FC<{ items: any[]; category: string; t: (key: string) => string }> = ({ items, category, t }) => {
+const FeaturedItemsSection: React.FC<{ items: any[]; category: string; t: (key: string) => string; language: string }> = ({ items, category, t, language }) => {
   if (!items || items.length === 0) return null
+
+  // Get language prefix for URLs
+  const getLanguagePrefix = () => {
+    if (language === 'br') return '/br'
+    if (language === 'es') return '/es'
+    if (language === 'tr') return '/tr'
+    return ''
+  }
+
+  const langPrefix = getLanguagePrefix()
 
   // Generate the correct URL for each item based on category
   const getItemUrl = (item: any) => {
-    if (category === 'feature') return `/features/${item.slug}`
-    if (category === 'whatsapp-api') return `/whatsapp-api/${item.slug}`
-    // For integrations, use the URL format: /{slug}-whatsapp-integration
+    if (category === 'feature') return `${langPrefix}/features/${item.slug}`
+    if (category === 'whatsapp-api') return `${langPrefix}/whatsapp-api/${item.slug}`
+    // For integrations, use the URL format: /{lang}/{slug}-whatsapp-integration
     // Check if slug already has the suffix to avoid duplication
     if (category === 'integration') {
       if (item.slug.endsWith('-whatsapp-integration')) {
-        return `/${item.slug}`
+        return `${langPrefix}/${item.slug}`
       }
-      return `/${item.slug}-whatsapp-integration`
+      return `${langPrefix}/${item.slug}-whatsapp-integration`
     }
-    return `/${item.slug}`
+    return `${langPrefix}/${item.slug}`
   }
 
   // Separate featured and non-featured items
@@ -409,6 +419,98 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
+// ================== Integrations Grid Section ==================
+
+const IntegrationsGridSection: React.FC<{ data: any[]; t: (key: string) => string }> = ({ data, t }) => {
+  if (!data || data.length === 0) return null
+
+  // Group integrations by category
+  const categories = {
+    crmIntegrations: t('categoryIndex.integrations.categories.crmIntegrations'),
+    accountManagement: t('categoryIndex.integrations.categories.accountManagement'),
+    productivity: t('categoryIndex.integrations.categories.productivity')
+  }
+
+  const groupedData: Record<string, any[]> = {
+    crmIntegrations: [],
+    accountManagement: [],
+    productivity: []
+  }
+
+  data.forEach(item => {
+    if (groupedData[item.category]) {
+      groupedData[item.category].push(item)
+    }
+  })
+
+  return (
+    <section className="py-16 bg-slate-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {Object.entries(categories).map(([key, label]) => {
+          const items = groupedData[key]
+          if (!items || items.length === 0) return null
+
+          return (
+            <div key={key} className="mb-16 last:mb-0">
+              <h3 className="text-xl font-bold text-white mb-6">{label}</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {items.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-slate-800 border border-slate-700 hover:border-slate-500 transition-all rounded-lg p-5 group"
+                  >
+                    <h4 className="font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                      {item.name}
+                    </h4>
+                    <p className="text-sm text-slate-400">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
+// ================== Integrations CTA Section ==================
+
+const IntegrationsCtaSection: React.FC<{ data: any }> = ({ data }) => {
+  if (!data) return null
+
+  return (
+    <section className="py-24 bg-slate-950">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="text-3xl font-bold text-white mb-4">{data.headline}</h2>
+        <p className="text-lg text-slate-400 mb-8">{data.description}</p>
+        <div className="flex flex-wrap justify-center gap-4">
+          {data.primaryCta && (
+            <a
+              href={data.primaryCta.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            >
+              {data.primaryCta.label}
+            </a>
+          )}
+          {data.secondaryCta && (
+            <a
+              href={data.secondaryCta.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition-colors"
+            >
+              {data.secondaryCta.label}
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ================== Translation Helper ==================
 
 const getTranslatedCategoryData = (slug: string, t: (key: string, options?: any) => any) => {
@@ -425,6 +527,36 @@ const getTranslatedCategoryData = (slug: string, t: (key: string, options?: any)
   const heroData = t(`categoryIndex.${categoryKey}.hero`, { returnObjects: true })
   if (typeof heroData === 'string') return null
 
+  // Helper to safely get translation or return null
+  const getIntro = () => {
+    const headline = t(`categoryIndex.${categoryKey}.intro.headline`)
+    return typeof headline === 'string' ? {
+      badge: t(`categoryIndex.${categoryKey}.intro.badge`),
+      headline: headline,
+      description: t(`categoryIndex.${categoryKey}.intro.description`)
+    } : null
+  }
+
+  const getIntegrationsList = () => {
+    const list = t(`categoryIndex.${categoryKey}.integrationsList`, { returnObjects: true })
+    return Array.isArray(list) ? list : []
+  }
+
+  const getIntegrationsCta = () => {
+    const headline = t(`categoryIndex.${categoryKey}.cta.headline`)
+    return typeof headline === 'string' ? {
+      headline: headline,
+      description: t(`categoryIndex.${categoryKey}.cta.description`),
+      primaryCta: { label: t(`categoryIndex.${categoryKey}.cta.primaryCta`), url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+      secondaryCta: { label: t(`categoryIndex.${categoryKey}.cta.secondaryCta`), url: 'https://calendly.com/eazybe/demo' }
+    } : null
+  }
+
+  const getFeaturedItems = () => {
+    const items = t(`categoryIndex.${categoryKey}.featuredItems`, { returnObjects: true })
+    return Array.isArray(items) ? items : null
+  }
+
   return {
     hero: {
       badge: t(`categoryIndex.${categoryKey}.hero.badge`),
@@ -434,11 +566,10 @@ const getTranslatedCategoryData = (slug: string, t: (key: string, options?: any)
       primaryCta: { label: t(`categoryIndex.${categoryKey}.hero.primaryCta`), url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
       secondaryCta: { label: t(`categoryIndex.${categoryKey}.hero.secondaryCta`), url: '#features' }
     },
-    intro: categoryKey === 'features' ? {
-      badge: t(`categoryIndex.${categoryKey}.intro.badge`),
-      headline: t(`categoryIndex.${categoryKey}.intro.headline`),
-      description: t(`categoryIndex.${categoryKey}.intro.description`)
-    } : null,
+    intro: getIntro(),
+    featuredItems: getFeaturedItems(),
+    integrationsList: getIntegrationsList(),
+    integrationsCta: getIntegrationsCta(),
     benefits: categoryKey === 'features' ? {
       badge: t(`categoryIndex.${categoryKey}.benefits.badge`),
       headline: t(`categoryIndex.${categoryKey}.benefits.headline`),
@@ -453,28 +584,38 @@ const getTranslatedCategoryData = (slug: string, t: (key: string, options?: any)
       badge: t(`categoryIndex.${categoryKey}.faq.badge`),
       headline: t(`categoryIndex.${categoryKey}.faq.headline`),
       items: t(`categoryIndex.${categoryKey}.faq.items`, { returnObjects: true }) || []
-    } : null
+    } : null,
+    // Set category based on slug for FeaturedItemsSection
+    category: slug === 'integrations' ? 'integration' : slug === 'whatsapp-api' ? 'whatsapp-api' : 'feature'
   }
 }
 
 // ================== Main CategoryIndexPage Component ==================
 
 export const CategoryIndexPage: React.FC = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const location = useLocation()
+
+  // Determine language based on current path
+  const getLanguageFromPath = () => {
+    const match = location.pathname.match(/^\/(br|es|tr)(\/|$)/)
+    return match ? match[1] : 'en'
+  }
 
   // Determine slug based on current path (strip language prefix first)
   const getSlugFromPath = () => {
-    // Remove language prefix (/pt, /es, /tr) from pathname
-    const cleanPath = location.pathname.replace(/^\/(pt|es|tr)\//, '/').replace(/^\/(pt|es|tr)$/, '/')
+    // Remove language prefix (/br, /es, /tr) from pathname
+    const cleanPath = location.pathname.replace(/^\/(br|es|tr)\//, '/').replace(/^\/(br|es|tr)$/, '/')
 
     if (cleanPath === '/features' || cleanPath.startsWith('/features')) return 'features'
     if (cleanPath === '/integrations' || cleanPath.startsWith('/integrations')) return 'integrations'
     if (cleanPath === '/whatsapp-api' || cleanPath.startsWith('/whatsapp-api')) return 'whatsapp-api'
     return 'features'
   }
+
+  const language = getLanguageFromPath()
   const slug = getSlugFromPath()
-  const { data: sanityData, loading, error } = useCategoryIndex(slug)
+  const { data: sanityData, loading, error } = useCategoryIndex(slug, language)
 
   if (loading) {
     return (
@@ -495,6 +636,9 @@ export const CategoryIndexPage: React.FC = () => {
     ...sanityData,
     hero: sanityData.hero || translatedData?.hero,
     intro: sanityData.intro || translatedData?.intro,
+    featuredItems: sanityData.featuredItems || translatedData?.featuredItems,
+    integrationsList: sanityData.integrationsList || translatedData?.integrationsList,
+    integrationsCta: sanityData.integrationsCta || translatedData?.integrationsCta,
     benefits: sanityData.benefits || translatedData?.benefits,
     howItWorks: sanityData.howItWorks || translatedData?.howItWorks,
     faq: sanityData.faq || translatedData?.faq
@@ -521,11 +665,13 @@ export const CategoryIndexPage: React.FC = () => {
 
       <HeroSection data={data.hero} />
       <IntroSection data={data.intro} />
-      <FeaturedItemsSection items={data.featuredItems} category={data.category} t={t} />
+      <FeaturedItemsSection items={data.featuredItems} category={data.category} t={t} language={language} />
       {data.comparisonTable && <ComparisonSection data={data.comparisonTable} />}
+      <IntegrationsGridSection data={data.integrationsList} t={t} />
       <BenefitsSection data={data.benefits} />
       <HowItWorksSection data={data.howItWorks} />
       <FAQSection data={data.faq} />
+      <IntegrationsCtaSection data={data.integrationsCta} />
 
       {/* Footer with CTA and Security sections */}
       <ChunkyFooter />
