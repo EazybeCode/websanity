@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Calendar,
@@ -23,6 +23,15 @@ import { ChunkyFooter } from '../components/footer/ChunkyFooter';
 import { useBlogPost, useBlogPosts, useBlogIndex, BlogIndexSidebarCta, BlogIndexNewsletterCta, BlogIndexDetailLabels, BlogIndexRelatedPostsSection, PortableTextBlock } from '../hooks/useBlog';
 import { Button } from '../components/ui/Button';
 import { SectionBadge } from '../components/ui/SectionBadge';
+import { getLanguageFromPath } from '../components/LanguageProvider';
+import { translateBlogPost, getUIText, SupportedLanguage } from '../lib/blogTranslations';
+// Import new content type components
+import { TableBlock } from '../components/blog/TableBlock';
+import { AccordionBlock } from '../components/blog/AccordionBlock';
+import { CalloutBlock } from '../components/blog/CalloutBlock';
+import { VideoEmbedBlock } from '../components/blog/VideoEmbedBlock';
+import { ButtonCTABlock } from '../components/blog/ButtonCTABlock';
+import { QuoteBlock } from '../components/blog/QuoteBlock';
 
 // Generate a URL-friendly slug from text
 const generateSlug = (text: string): string => {
@@ -140,6 +149,128 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
               <figcaption className="text-center text-slate-500 text-sm mt-4">{value.caption}</figcaption>
             )}
           </figure>
+        );
+      },
+      // NEW CONTENT TYPES
+      table: ({ value }) => {
+        if (!value) return null;
+        return <TableBlock data={value} />;
+      },
+      accordion: ({ value }) => {
+        if (!value) return null;
+        return <AccordionBlock data={value} />;
+      },
+      callout: ({ value }) => {
+        if (!value) return null;
+        return <CalloutBlock data={value} />;
+      },
+      videoEmbed: ({ value }) => {
+        if (!value) return null;
+        return <VideoEmbedBlock data={value} />;
+      },
+      buttonCTA: ({ value }) => {
+        if (!value) return null;
+        return <ButtonCTABlock data={value} />;
+      },
+      quote: ({ value }) => {
+        if (!value) return null;
+        return <QuoteBlock data={value} />;
+      },
+      codeBlock: ({ value }) => {
+        if (!value) return null;
+        return (
+          <figure className="my-8">
+            {value.filename && (
+              <div className="text-xs text-slate-500 mb-2 font-mono">{value.filename}</div>
+            )}
+            <pre className={`bg-slate-900 rounded-xl p-4 md:p-6 overflow-x-auto border border-slate-700 ${value.theme === 'light' ? 'light' : ''}`}>
+              <code className={`text-sm md:text-base ${value.language ? `language-${value.language}` : ''}`}>
+                {value.code}
+              </code>
+            </pre>
+          </figure>
+        );
+      },
+      imageGallery: ({ value }) => {
+        if (!value || !value.images?.length) return null;
+        const gridCols = value.layout === 'grid-2' ? 'grid-cols-2' : value.layout === 'grid-3' ? 'grid-cols-3' : value.layout === 'grid-4' ? 'grid-cols-4' : 'grid-cols-2 md:grid-cols-3';
+        return (
+          <figure className="my-8 md:my-12">
+            {value.caption && <figcaption className="text-center text-slate-400 mb-4">{value.caption}</figcaption>}
+            <div className={`grid ${gridCols} gap-4`}>
+              {value.images.map((img: any, i: number) => (
+                <div key={i} className="aspect-square overflow-hidden rounded-xl">
+                  <img src={img.url} alt={img.alt || ''} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                </div>
+              ))}
+            </div>
+          </figure>
+        );
+      },
+      fileDownload: ({ value }) => {
+        if (!value) return null;
+        return (
+          <a
+            href={value.file?.asset?.url}
+            download
+            className={`my-6 inline-flex items-center gap-4 p-4 md:p-6 rounded-xl border border-slate-700 hover:border-brand-cyan transition-colors ${
+              value.variant === 'button' ? 'bg-brand-cyan text-black hover:bg-brand-cyan/90' : 'bg-slate-800 text-slate-300'
+            }`}
+          >
+            <div className="w-12 h-12 rounded-lg bg-brand-cyan/20 flex items-center justify-center">
+              <span className="text-2xl">📄</span>
+            </div>
+            <div>
+              <p className="font-semibold">{value.title}</p>
+              {value.description && <p className="text-sm opacity-70">{value.description}</p>}
+            </div>
+          </a>
+        );
+      },
+      comparisonTable: ({ value }) => {
+        if (!value || !value.columns?.length) return null;
+        return (
+          <div className="my-8 md:my-12">
+            {value.title && <h3 className="text-xl font-bold text-white mb-6">{value.title}</h3>}
+            <div className="overflow-x-auto rounded-xl border border-slate-700">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-slate-800">
+                    <th className="p-4 text-left text-slate-400">Feature</th>
+                    {value.columns.map((col: any, i: number) => (
+                      <th
+                        key={i}
+                        className={`p-4 text-center ${col.highlight ? 'bg-brand-cyan text-black font-bold' : ''}`}
+                      >
+                        {col.icon && <img src={col.icon} alt="" className="w-8 h-8 mx-auto mb-2" />}
+                        {col.name}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-700">
+                  {value.rows?.map((row: any, i: number) => (
+                    <tr key={i}>
+                      <td className="p-4 font-medium text-white">{row.feature}</td>
+                      {row.values?.map((val: string, j: number) => (
+                        <td key={j} className="p-4 text-center text-slate-300">
+                          {row.checkmarks ? (val === '✓' || val === 'Yes' ? '✅' : '❌') : val}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {value.cta?.url && (
+              <div className="mt-6 text-center">
+                <a href={value.cta.url} className="inline-flex items-center gap-2 px-6 py-3 bg-brand-cyan text-black font-semibold rounded-xl hover:bg-brand-cyan/90 transition-colors">
+                  {value.cta.text || 'Learn More'}
+                  <ArrowRight size={18} />
+                </a>
+              </div>
+            )}
+          </div>
         );
       },
     },
@@ -313,11 +444,30 @@ const BlogPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  // Get language from i18n
-  const language = i18n.language || 'en';
+  const location = useLocation();
+  // Get language from URL pathname instead of i18n state to ensure correct language content
+  const language = getLanguageFromPath(location.pathname);
   const { data: post, loading, error } = useBlogPost(slug || '', language);
   const { data: relatedPosts } = useBlogPosts(4, language);
   const { data: blogIndex } = useBlogIndex(language);
+
+  // State for translated post content
+  const [translatedPost, setTranslatedPost] = useState<any>(null);
+
+  // Apply translation when post loads and needs translation
+  useEffect(() => {
+    if (!post) return;
+
+    // If post is marked as translated from English, apply translation
+    if (post._translatedFrom === 'en' && language !== 'en') {
+      translateBlogPost(post, language as SupportedLanguage).then(setTranslatedPost);
+    } else {
+      setTranslatedPost(post);
+    }
+  }, [post, language]);
+
+  // Use translated post if available, otherwise use original post
+  const displayPost = translatedPost || post;
 
   // Get content from Sanity with translation fallbacks
   const sidebarCta = blogIndex?.sidebarCta;
@@ -327,9 +477,9 @@ const BlogPage: React.FC = () => {
 
   // Dynamically extract TOC from content headings
   const dynamicToc = useMemo(() => {
-    if (!post?.content || !Array.isArray(post.content)) return [];
-    return extractHeadingsFromContent(post.content);
-  }, [post?.content]);
+    if (!displayPost?.content || !Array.isArray(displayPost.content)) return [];
+    return extractHeadingsFromContent(displayPost.content);
+  }, [displayPost?.content]);
 
   // Mobile active section state
   const [mobileActiveSection, setMobileActiveSection] = useState<string>('');
@@ -360,88 +510,394 @@ const BlogPage: React.FC = () => {
 
   // Create portable text components with heading IDs
   const portableTextComponents = useMemo(() => {
-    if (!post?.content || !Array.isArray(post.content)) return createPortableTextComponents([]);
-    return createPortableTextComponents(post.content);
-  }, [post?.content]);
+    if (!displayPost?.content || !Array.isArray(displayPost.content)) return createPortableTextComponents([]);
+    return createPortableTextComponents(displayPost.content);
+  }, [displayPost?.content]);
 
-  // SEO Meta Tags for specific blog post
+  // SEO Meta Tags for specific blog displayPost
   useEffect(() => {
-    if (!post) return;
+    if (!displayPost) return;
 
-    const slug = post.slug?.current || '';
+    const slug = displayPost.slug?.current || '';
+    const featuredImageUrl = displayPost.featuredImage || 'https://eazybe.com/logo.png';
+    const postTitle = displayPost.title || 'Blog Post';
+    const postDescription = displayPost.excerpt || displayPost.title || 'Read this blog post on Eazybe';
+    const postUrl = `https://eazybe.com/blog/${slug}`;
 
-    // Special meta tags for "how-to-read-deleted-messages-on-whatsapp" post
-    if (slug === 'how-to-read-deleted-messages-on-whatsapp') {
-      const updateMetaTags = () => {
-        // Update or create title
-        document.title = 'How to Read Deleted Messages On WhatsApp | Proven Method';
-
-        // Helper function to set or update meta tag
-        const setMetaTag = (name: string, content: string, isProperty = false) => {
-          let element: HTMLMetaElement | null = document.querySelector(
-            isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`
-          );
-          if (!element) {
-            element = document.createElement('meta');
-            if (isProperty) {
-              (element as any).setAttribute('property', name);
-            } else {
-              element.name = name;
-            }
-            document.head.appendChild(element);
-          }
-          element.setAttribute('content', content);
-        };
-
-        // Primary Meta Tags
-        setMetaTag('description', 'Know how to read deleted messages on WhatsApp (Android, iPhone, Web). Get step-by-step guidance to recover deleted chats on WhatsApp effortlessly.');
-        setMetaTag('keywords', 'how to read deleted messages on WhatsApp, read deleted messages on WhatsApp, how to read deleted messages');
-        setMetaTag('author', 'Vikash');
-        setMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        setMetaTag('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        setMetaTag('bingbot', 'index, follow');
-
-        // Google Discover & News
-        setMetaTag('thumbnail', 'https://cdn.sanity.io/images/5awzi0t4/production/ae2f43e2dce48963e01c4dd39a1c7b24dc8efb7c-1280x720.webp');
-
-        // Article meta tags
-        setMetaTag('article:published_time', '2025-02-03T08:00:00+00:00', true);
-        setMetaTag('article:modified_time', '2025-02-03T10:30:00+00:00', true);
-        setMetaTag('article:section', 'Technology', true);
-        setMetaTag('article:tag', 'how to read deleted messages on WhatsApp', true);
-
-        // Open Graph / Facebook
-        setMetaTag('og:type', 'website', true);
-        setMetaTag('og:url', 'https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp', true);
-        setMetaTag('og:title', 'Easily Read Deleted Messages On WhatsApp | Expert Method', true);
-        setMetaTag('og:description', 'Proven method to easily read deleted messages on WhatsApp with Eazybe. Get access to deleted chats hassle-free and stay in the loop!', true);
-        setMetaTag('og:image', 'https://cdn.sanity.io/images/5awzi0t4/production/ae2f43e2dce48963e01c4dd39a1c7b24dc8efb7c-1280x720.webp', true);
-        setMetaTag('og:image:width', '1200', true);
-        setMetaTag('og:image:height', '630', true);
-        setMetaTag('og:image:alt', 'how to read deleted messages on WhatsApp', true);
-        setMetaTag('og:locale', 'en_US', true);
-        setMetaTag('og:site_name', 'Eazybe', true);
-
-        // Twitter Card
-        setMetaTag('twitter:card', 'summary_large_image');
-        setMetaTag('twitter:site', '@eazybe');
-        setMetaTag('twitter:creator', '@eazybe');
-        setMetaTag('twitter:title', 'Easily Read Deleted Messages On WhatsApp | Expert Method');
-        setMetaTag('twitter:description', 'Proven method to easily read deleted messages on WhatsApp with Eazybe. Get access to deleted chats hassle-free and stay in the loop!');
-        setMetaTag('twitter:image', 'https://cdn.sanity.io/images/5awzi0t4/production/ae2f43e2dce48963e01c4dd39a1c7b24dc8efb7c-1280x720.webp');
-        setMetaTag('twitter:image:alt', 'how to read deleted messages on WhatsApp');
-
-        // Set canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-          canonical = document.createElement('link');
-          canonical.rel = 'canonical';
-          document.head.appendChild(canonical);
+    // Helper function to set or update meta tag
+    const setMetaTag = (name: string, content: string, isProperty = false) => {
+      let element: HTMLMetaElement | null = document.querySelector(
+        isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`
+      );
+      if (!element) {
+        element = document.createElement('meta');
+        if (isProperty) {
+          (element as any).setAttribute('property', name);
+        } else {
+          element.name = name;
         }
-        (canonical as HTMLLinkElement).href = 'https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp';
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
+    };
+
+    // Set dynamic meta tags for ALL blog posts
+    document.title = `${postTitle} | Eazybe`;
+    setMetaTag('description', postDescription);
+    setMetaTag('thumbnail', featuredImageUrl);
+    setMetaTag('og:type', 'article', true);
+    setMetaTag('og:url', postUrl, true);
+    setMetaTag('og:title', postTitle, true);
+    setMetaTag('og:description', postDescription, true);
+    setMetaTag('og:image', featuredImageUrl, true);
+    setMetaTag('og:image:alt', postTitle, true);
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', postTitle);
+    setMetaTag('twitter:description', postDescription);
+    setMetaTag('twitter:image', featuredImageUrl);
+    setMetaTag('twitter:image:alt', postTitle);
+
+    // Special meta tags for "how-to-read-deleted-messages-on-whatsapp" displayPost
+    if (slug === 'how-to-read-deleted-messages-on-whatsapp') {
+      // Update title with custom title
+      document.title = 'How To Read Deleted Messages On WhatsApp (Android & iPhone Guide)';
+
+      // Helper function to set link tag
+      const setLinkTag = (rel: string, href: string) => {
+        let link = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
+        if (!link) {
+          link = document.createElement('link');
+          link.rel = rel;
+          document.head.appendChild(link);
+        }
+        link.href = href;
       };
 
-      updateMetaTags();
+      // Override with specific meta tags for this post
+      setMetaTag('description', 'Learn how to read deleted messages on WhatsApp Android, iPhone, and WhatsApp Web. Discover proven methods to recover deleted WhatsApp chats, notifications, and backup tricks.');
+      setMetaTag('keywords', 'how to read deleted messages on WhatsApp, read deleted WhatsApp messages, recover deleted WhatsApp chats, see deleted WhatsApp messages Android, iPhone WhatsApp deleted messages, WhatsApp Web deleted messages, WhatsApp notification history, WhatsApp chat recovery');
+      setMetaTag('author', 'Eazybe');
+      setMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+      setMetaTag('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+      setMetaTag('bingbot', 'index, follow');
+      setMetaTag('thumbnail', featuredImageUrl);
+
+      // Article meta tags
+      setMetaTag('article:published_time', '2026-02-21T08:00:00+00:00', true);
+      setMetaTag('article:modified_time', '2026-02-21T10:30:00+00:00', true);
+      setMetaTag('article:section', 'Technology', true);
+      setMetaTag('article:tag', 'WhatsApp Tips', true);
+      setMetaTag('article:author', 'Eazybe Team', true);
+
+      // Open Graph / Facebook - override with specific content
+      setMetaTag('og:url', 'https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp', true);
+      setMetaTag('og:title', 'How To Read Deleted Messages On WhatsApp (Android & iPhone Guide)', true);
+      setMetaTag('og:description', 'Learn how to read deleted messages on WhatsApp Android, iPhone, and WhatsApp Web. Discover proven methods to recover deleted WhatsApp chats, notifications, and backup tricks.', true);
+      setMetaTag('og:image', featuredImageUrl, true);
+      setMetaTag('og:image:width', '1200', true);
+      setMetaTag('og:image:height', '630', true);
+      setMetaTag('og:image:alt', 'How to read deleted messages on WhatsApp', true);
+      setMetaTag('og:locale', 'en_US', true);
+      setMetaTag('og:site_name', 'Eazybe', true);
+
+      // Twitter Card - override with specific content
+      setMetaTag('twitter:site', '@eazybe');
+      setMetaTag('twitter:creator', '@eazybe');
+      setMetaTag('twitter:title', 'How To Read Deleted Messages On WhatsApp (Android & iPhone)');
+      setMetaTag('twitter:description', 'Learn how to read deleted messages on WhatsApp Android, iPhone, and WhatsApp Web. Discover proven methods to recover deleted chats.');
+      setMetaTag('twitter:image', featuredImageUrl);
+      setMetaTag('twitter:image:alt', 'How to read deleted messages on WhatsApp guide');
+
+      // Mobile web app tags
+      setMetaTag('mobile-web-app-capable', 'yes');
+      setMetaTag('apple-mobile-web-app-capable', 'yes');
+      setMetaTag('apple-mobile-web-app-status-bar-style', 'default');
+      setMetaTag('apple-mobile-web-app-title', 'Eazybe');
+
+      // AI and SEO specific meta tags
+      setMetaTag('answer-type', 'how-to, troubleshooting-guide, technical-tutorial');
+      setMetaTag('target-audience', 'WhatsApp users, Android users, iPhone users, people looking to recover deleted messages');
+      setMetaTag('content-intent', 'informational, how-to-guide');
+      setMetaTag('conversational-query', 'how to read deleted messages on WhatsApp, recover deleted WhatsApp chats, see deleted messages');
+      setMetaTag('ai-readability', 'clear, step-by-step, beginner-friendly');
+      setMetaTag('context-window', 'WhatsApp messaging, deleted message recovery, Android notifications, iPhone chat backup, WhatsApp Web tricks');
+      setMetaTag('user-problem', 'WhatsApp messages were deleted and user wants to read them');
+      setMetaTag('solution-summary', 'methods to read deleted WhatsApp messages using notification log, chat backup, and third-party tools');
+      setMetaTag('primary-benefit', 'recover and read deleted WhatsApp messages on Android and iPhone');
+      setMetaTag('use-case', 'WhatsApp users who accidentally deleted messages or want to see messages sent by others');
+      setMetaTag('implementation-difficulty', 'easy to intermediate depending on method chosen');
+      setMetaTag('time-to-value', 'instant for notification log method, varies for backup method');
+
+      // Additional SEO tags
+      setMetaTag('referrer', 'origin-when-cross-origin');
+      setMetaTag('format-detection', 'telephone=no');
+
+      // Link tags
+      setLinkTag('preconnect', 'https://fonts.googleapis.com');
+      setLinkTag('dns-prefetch', 'https://fonts.googleapis.com');
+
+      // HTTP equiv meta tag
+      let httpEquiv = document.querySelector('meta[http-equiv="X-UA-Compatible"]');
+      if (!httpEquiv) {
+        httpEquiv = document.createElement('meta');
+        httpEquiv.setAttribute('http-equiv', 'X-UA-Compatible');
+        document.head.appendChild(httpEquiv);
+      }
+      httpEquiv.setAttribute('content', 'IE=edge');
+
+      // Set canonical URL
+      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        document.head.appendChild(canonical);
+      }
+      canonical.href = 'https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp';
+
+      // Add BreadcrumbList Schema
+      const breadcrumbSchema = {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Eazybe",
+            "item": "https://eazybe.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://eazybe.com/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "How To Read Deleted Messages On WhatsApp",
+            "item": "https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp"
+          }
+        ]
+      };
+
+      let breadcrumbScript = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-deleted-whatsapp"]') as HTMLScriptElement;
+      if (!breadcrumbScript) {
+        breadcrumbScript = document.createElement('script') as HTMLScriptElement;
+        breadcrumbScript.type = 'application/ld+json';
+        breadcrumbScript.setAttribute('data-schema', 'breadcrumb-deleted-whatsapp');
+        document.head.appendChild(breadcrumbScript);
+      }
+      breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
+
+      // Add FAQPage Schema
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How can I read deleted messages on WhatsApp?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can read deleted messages on WhatsApp using the notification log on Android, checking WhatsApp chat backups, or using third-party apps that store notification history. The notification history method is the most reliable way to see messages that were deleted after being received."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it possible to recover deleted WhatsApp messages on Android?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, on Android you can recover deleted WhatsApp messages by checking the notification log in your phone settings, restoring from a recent Google Drive backup, or using third-party notification history apps that archive WhatsApp notifications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I read deleted WhatsApp messages on iPhone?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On iPhone, you can read deleted WhatsApp messages by restoring from an iCloud backup. The notification log method doesn't work on iOS due to system restrictions. Make sure to back up your chats regularly to iCloud to enable recovery."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does WhatsApp notify when someone reads deleted messages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, WhatsApp does not notify the sender when you read a deleted message. Once a message is deleted for everyone, the sender has no way of knowing if you saw it before deletion or recovered it through other means."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I see messages deleted for everyone on WhatsApp Web?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Messages deleted for everyone are removed from WhatsApp Web as well. However, if you have browser extensions that cache notifications or if you're using third-party tools, you might be able to view message content before synchronization completes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I enable notification log to read deleted WhatsApp messages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On Android, go to Settings > Apps & Notifications > Notifications > Notification History and enable it. This will keep a log of all notifications including WhatsApp messages, allowing you to read message content even after it's deleted from the chat."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are third-party apps safe for reading deleted WhatsApp messages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Be cautious when using third-party apps to read deleted WhatsApp messages. Only download apps from trusted sources like Google Play Store, review permissions carefully, and avoid apps that require unnecessary access to your data or ask for your WhatsApp credentials."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long are deleted WhatsApp messages recoverable?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Deleted WhatsApp messages can be recovered if you have a recent backup. WhatsApp creates daily backups on Android (Google Drive) and iPhone (iCloud). Messages are recoverable as long as you have a backup from before the deletion occurred. Local backups on Android are also stored for the last 7 days."
+            }
+          }
+        ]
+      };
+
+      let faqScript = document.querySelector('script[type="application/ld+json"][data-schema="faq-deleted-whatsapp"]') as HTMLScriptElement;
+      if (!faqScript) {
+        faqScript = document.createElement('script') as HTMLScriptElement;
+        faqScript.type = 'application/ld+json';
+        faqScript.setAttribute('data-schema', 'faq-deleted-whatsapp');
+        document.head.appendChild(faqScript);
+      }
+      faqScript.textContent = JSON.stringify(faqSchema);
+
+      // Add Organization Schema
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe helps sales teams connect WhatsApp with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets to sync conversations, automate follow-ups, and improve customer engagement.",
+        "foundingDate": "2021",
+        "sameAs": ["https://twitter.com/eazybe", "https://linkedin.com/company/eazybe", "https://youtube.com/@eazybe"],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "support@eazybe.com",
+            "url": "https://eazybe.com/",
+            "areaServed": "US",
+            "availableLanguage": ["English"]
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "knowsAbout": [
+          "WhatsApp CRM",
+          "WhatsApp integration",
+          "Sales automation",
+          "CRM integration",
+          "AI agents for CRM",
+          "Customer engagement"
+        ]
+      };
+
+      let orgScript = document.querySelector('script[type="application/ld+json"][data-schema="org-deleted-whatsapp"]') as HTMLScriptElement;
+      if (!orgScript) {
+        orgScript = document.createElement('script') as HTMLScriptElement;
+        orgScript.type = 'application/ld+json';
+        orgScript.setAttribute('data-schema', 'org-deleted-whatsapp');
+        document.head.appendChild(orgScript);
+      }
+      orgScript.textContent = JSON.stringify(organizationSchema);
+
+      // Add SoftwareApplication Schema
+      const softwareAppSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "HubSpot WhatsApp Integration - Eazybe",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
+        "operatingSystem": "Web, Chrome Extension",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 1160,
+          "highPrice": 1960,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": 53766
+        },
+        "featureList": [
+          "Automatic WhatsApp to HubSpot sync",
+          "AI-powered reply suggestions",
+          "Shared inbox for team collaboration",
+          "Deal tracking from WhatsApp",
+          "Contact synchronization",
+          "Message scheduling",
+          "WhatsApp Chat Backup"
+        ]
+      };
+
+      let softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="software-deleted-whatsapp"]') as HTMLScriptElement;
+      if (!softwareAppScript) {
+        softwareAppScript = document.createElement('script') as HTMLScriptElement;
+        softwareAppScript.type = 'application/ld+json';
+        softwareAppScript.setAttribute('data-schema', 'software-deleted-whatsapp');
+        document.head.appendChild(softwareAppScript);
+      }
+      softwareAppScript.textContent = JSON.stringify(softwareAppSchema);
+
+      // Add Article Schema
+      const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://eazybe.com/blog/how-to-read-deleted-messages-on-whatsapp"
+        },
+        "headline": "How To Read Deleted Messages On WhatsApp (Android & iPhone Guide)",
+        "description": "Learn how to read deleted messages on WhatsApp Android, iPhone, and WhatsApp Web. Discover proven methods to recover deleted WhatsApp chats, notifications, and backup tricks.",
+        "image": "https://cdn.sanity.io/images/5awzi0t4/production/ae2f43e2dce48963e01c4dd39a1c7b24dc8efb7c-1280x720.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png"
+          }
+        },
+        "datePublished": "2026-02-20",
+        "dateModified": "2026-02-21"
+      };
+
+      let articleScript = document.querySelector('script[type="application/ld+json"][data-schema="article-deleted-whatsapp"]') as HTMLScriptElement;
+      if (!articleScript) {
+        articleScript = document.createElement('script') as HTMLScriptElement;
+        articleScript.type = 'application/ld+json';
+        articleScript.setAttribute('data-schema', 'article-deleted-whatsapp');
+        document.head.appendChild(articleScript);
+      }
+      articleScript.textContent = JSON.stringify(articleSchema);
 
       // Cleanup function to remove meta tags when unmounting
       return () => {
@@ -457,6 +913,7 @@ const BlogPage: React.FC = () => {
           'property="article:modified_time"',
           'property="article:section"',
           'property="article:tag"',
+          'property="article:author"',
           'property="og:type"',
           'property="og:url"',
           'property="og:title"',
@@ -474,15 +931,59 @@ const BlogPage: React.FC = () => {
           'name="twitter:description"',
           'name="twitter:image"',
           'name="twitter:image:alt"',
+          'name="mobile-web-app-capable"',
+          'name="apple-mobile-web-app-capable"',
+          'name="apple-mobile-web-app-status-bar-style"',
+          'name="apple-mobile-web-app-title"',
+          'name="answer-type"',
+          'name="target-audience"',
+          'name="content-intent"',
+          'name="conversational-query"',
+          'name="ai-readability"',
+          'name="context-window"',
+          'name="user-problem"',
+          'name="solution-summary"',
+          'name="primary-benefit"',
+          'name="use-case"',
+          'name="implementation-difficulty"',
+          'name="time-to-value"',
+          'name="referrer"',
+          'name="format-detection"',
         ];
 
         metaTags.forEach(selector => {
           const meta = document.querySelector(`meta[${selector}]`);
           if (meta) meta.remove();
         });
+
+        // Remove link tags
+        const preconnect = document.querySelector('link[rel="preconnect"]');
+        if (preconnect) preconnect.remove();
+        const dnsPrefetch = document.querySelector('link[rel="dns-prefetch"]');
+        if (dnsPrefetch) dnsPrefetch.remove();
+
+        // Remove BreadcrumbList schema
+        const breadcrumbSchema = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-deleted-whatsapp"]');
+        if (breadcrumbSchema) breadcrumbSchema.remove();
+
+        // Remove FAQ schema
+        const faqSchema = document.querySelector('script[type="application/ld+json"][data-schema="faq-deleted-whatsapp"]');
+        if (faqSchema) faqSchema.remove();
+
+        // Remove Organization schema
+        const orgSchema = document.querySelector('script[type="application/ld+json"][data-schema="org-deleted-whatsapp"]');
+        if (orgSchema) orgSchema.remove();
+
+        // Remove SoftwareApplication schema
+        const softwareAppSchema = document.querySelector('script[type="application/ld+json"][data-schema="software-deleted-whatsapp"]');
+        if (softwareAppSchema) softwareAppSchema.remove();
+
+        // Remove Article schema
+        const articleSchema = document.querySelector('script[type="application/ld+json"][data-schema="article-deleted-whatsapp"]');
+        if (articleSchema) articleSchema.remove();
       };
     }
-  }, [post]);
+  }, [displayPost]);
 
   if (loading) {
     return (
@@ -495,7 +996,7 @@ const BlogPage: React.FC = () => {
     );
   }
 
-  if (error || !post) {
+  if (error || !displayPost) {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center text-red-400">
@@ -528,47 +1029,47 @@ const BlogPage: React.FC = () => {
             </Link>
             <ChevronRight size={12} className="text-slate-600 md:hidden" />
             <ChevronRight size={14} className="text-slate-600 hidden md:block" />
-            <span className="text-brand-cyan font-medium truncate max-w-[150px] sm:max-w-[200px] md:max-w-md" title={post.title}>
-              {post.title}
+            <span className="text-brand-cyan font-medium truncate max-w-[150px] sm:max-w-[200px] md:max-w-md" title={displayPost.title}>
+              {displayPost.title}
             </span>
           </nav>
 
           {/* Category Badge */}
           <div className="mb-5 md:mb-8">
             <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs md:text-sm font-medium">
-              {post.category || 'Blog'}
+              {displayPost.category || 'Blog'}
             </span>
           </div>
 
           {/* Title - Large, Bold, Readable */}
           <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-5 md:mb-8">
-            {post.title}
+            {displayPost.title}
           </h1>
 
           {/* Excerpt - Generous size */}
           <p className="text-base md:text-xl lg:text-2xl text-slate-400 leading-relaxed mb-8 md:mb-10">
-            {post.excerpt}
+            {displayPost.excerpt}
           </p>
 
           {/* Author & Meta - Clean horizontal layout */}
           <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 py-6 md:py-8 border-y border-slate-800/50">
             <div className="flex items-center gap-3 md:gap-4">
               <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg md:text-xl">
-                {post.author?.name?.[0] || <User size={20} className="md:hidden" />}
-                {post.author?.name?.[0] || <User size={24} className="hidden md:block" />}
+                {displayPost.author?.name?.[0] || <User size={20} className="md:hidden" />}
+                {displayPost.author?.name?.[0] || <User size={24} className="hidden md:block" />}
               </div>
               <div>
-                <p className="font-semibold text-white text-base md:text-lg">{post.author?.name || t('blog.detail.authorFallback')}</p>
+                <p className="font-semibold text-white text-base md:text-lg">{displayPost.author?.name || t('blog.detail.authorFallback')}</p>
                 <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
                   <span className="flex items-center gap-1">
                     <Calendar size={12} className="md:hidden" />
                     <Calendar size={14} className="hidden md:inline" />
-                    {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                    {new Date(displayPost.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock size={12} className="md:hidden" />
                     <Clock size={14} className="hidden md:inline" />
-                    {post.readTime} {detailLabels?.minReadSuffix || t('blog.detail.minRead')}
+                    {displayPost.readTime} {detailLabels?.minReadSuffix || t('blog.detail.minRead')}
                   </span>
                 </div>
               </div>
@@ -598,12 +1099,12 @@ const BlogPage: React.FC = () => {
       </header>
 
       {/* Featured Image - Left Aligned */}
-      {post.featuredImage && (
+      {displayPost.featuredImage && (
         <div className="max-w-7xl mx-auto px-4 md:px-6 mb-6 md:mb-12 lg:mb-16">
           <div className="relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden aspect-[16/9] md:aspect-[2/1] shadow-xl md:shadow-2xl border border-slate-800/50">
             <img
-              src={post.featuredImage}
-              alt={post.title}
+              src={displayPost.featuredImage}
+              alt={displayPost.title}
               className="w-full h-full object-cover"
             />
           </div>
@@ -617,7 +1118,7 @@ const BlogPage: React.FC = () => {
             {/* Left Column - Main Content - Left Aligned */}
             <div className="w-full lg:flex-1">
               {/* Summary Box - Prominent */}
-              {post.quickAnswer && (
+              {displayPost.quickAnswer && (
                 <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 mb-8 md:mb-12">
                   <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-5">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-brand-cyan/10 flex items-center justify-center">
@@ -635,7 +1136,7 @@ const BlogPage: React.FC = () => {
                   </div>
                   <div
                     className="text-sm md:text-base lg:text-lg text-slate-300 leading-relaxed [&>p]:mb-3 [&>ul]:space-y-2 [&>ul>li]:flex [&>ul>li]:gap-2 [&>ul>li]:before:content-['→'] [&>ul>li]:before:text-brand-cyan"
-                    dangerouslySetInnerHTML={{ __html: post.quickAnswer }}
+                    dangerouslySetInnerHTML={{ __html: displayPost.quickAnswer }}
                   />
                 </div>
               )}
@@ -690,8 +1191,8 @@ const BlogPage: React.FC = () => {
               {/* Main Article Content */}
               <article className="blog-content prose prose-invert max-w-none">
                 {/* Render Portable Text content if it's an array, otherwise render as HTML for legacy content */}
-                {Array.isArray(post.content) ? (
-                  <PortableText value={post.content} components={portableTextComponents} />
+                {Array.isArray(displayPost.content) ? (
+                  <PortableText value={displayPost.content} components={portableTextComponents} />
                 ) : (
                   <>
                     <style dangerouslySetInnerHTML={{ __html: `
@@ -961,19 +1462,19 @@ const BlogPage: React.FC = () => {
                   color: #06b6d4;
                 }
                 ` }} />
-                    <div dangerouslySetInnerHTML={{ __html: post.content as unknown as string }} />
+                    <div dangerouslySetInnerHTML={{ __html: displayPost.content as unknown as string }} />
                   </>
                 )}
               </article>
 
               {/* FAQs Section */}
-              {post.faqs && post.faqs.length > 0 && (
+              {displayPost.faqs && displayPost.faqs.length > 0 && (
                 <div className="mt-20 pt-12 border-t border-slate-800">
                   <h2 className="text-3xl font-bold text-white tracking-tight mb-8">
                     {detailLabels?.faqTitle || t('blog.detail.faqTitle')}
                   </h2>
                   <div className="space-y-4">
-                    {post.faqs.map((faq, i) => (
+                    {displayPost.faqs.map((faq, i) => (
                       <details key={i} className="group border border-slate-700/50 rounded-xl bg-slate-900/30 transition-all hover:border-slate-600">
                         <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-lg">
                           <span className="pr-6">{faq.question}</span>
@@ -989,19 +1490,19 @@ const BlogPage: React.FC = () => {
               )}
 
               {/* Author Section */}
-              {post.author && (
+              {displayPost.author && (
                 <div className="mt-20 pt-12 border-t border-slate-800">
                   <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-slate-700/30">
                     <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-3xl flex-shrink-0">
-                      {post.author.name[0]}
+                      {displayPost.author.name[0]}
                     </div>
                     <div className="flex-1">
                       <p className="text-sm text-brand-cyan uppercase tracking-wider font-semibold mb-2">
                         {detailLabels?.authorLabel || t('blog.detail.authorLabel')}
                       </p>
-                      <h4 className="text-2xl font-bold text-white mb-4">{post.author.name}</h4>
+                      <h4 className="text-2xl font-bold text-white mb-4">{displayPost.author.name}</h4>
                       <p className="text-lg text-slate-400 leading-relaxed">
-                        {post.author.bio || t('blog.detail.authorBioFallback')}
+                        {displayPost.author.bio || t('blog.detail.authorBioFallback')}
                       </p>
                     </div>
                   </div>

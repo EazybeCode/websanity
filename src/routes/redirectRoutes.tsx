@@ -2,6 +2,7 @@ import { Route, Navigate } from 'react-router-dom'
 
 // SEO redirect mappings: from old URL to new URL
 export const redirectMappings: Array<{ from: string; to: string }> = [
+{ from: "/es/blog-es", to: "/es/blog" },
 { from: "/blog/whatsapp-hacks/go-offline-on-whatsapp-without-turning-off-the-internet-how-to-use-whatsapp-proxy-setting-for-some-me-time", to: "/blog/how-to-appear-offline-on-whatsapp" },
 { from: "/how-to-create-a-chat-gpt-3-ai-chatbot-on-whatsapp", to: "/" },
 { from: "/blog/uncatogaries/how-to-send-bulk-messages-on-whatsapp", to: "/" },
@@ -553,6 +554,7 @@ export const redirectMappings: Array<{ from: string; to: string }> = [
 { from: "/blog-pt/ catalogo-do-whatsapp-tudo-o-que-voce-precisa-saber-em-2023", to: "/br" },
 { from: "/post/ how-to-edit-andriod-contacts-on-whatsapp-without-leaving-the-app", to: "/" },
 { from: "/blog-pt/ integracao-do-whatsapp-hubspot-como-sincronizar-bate-papos-do-whatsapp-com-o-hubspot", to: "/br" },
+{ from: "/blog-pt/zoho-crm-free-started", to: "/br/zoho-whatsapp-integration" },
 { from: "/integrations-pt", to: "/br/integrations" },
 { from: "/payment-cancelled", to: "/" },
 { from: "/post/ google-calendar-on-whatsapp-eazybe-extension-guide", to: "/google-calendar-whatsapp-integration" },
@@ -1059,6 +1061,10 @@ export const redirectMappings: Array<{ from: string; to: string }> = [
 { from: "/post/how-to-export-whatsapp-chat-a-comprehensive-guide", to: "/" },
 { from: "/post/how-to-schedule-messages-on-whatsapp-a-simple-guide", to: "/" },
 { from: "/post/how-to-setup-a-whatsapp-chatbot-for-your-business", to: "/" },
-{ from: "/post/the-ultimate-guide-to-using-whatsapp-automation-for-sales", to: "/" }
+{ from: "/post/the-ultimate-guide-to-using-whatsapp-automation-for-sales", to: "/" },
+{ from: "/br/blog/discover-the-best-whatsapp-business-api-alternatives", to: "/br/blog" },
+{ from: "/br/blog/apply-for-green-tick-on-whatsapp-business", to: "/br/blog" },
+{ from: "/tr/blog/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025", to: "/tr/blog" },
+{ from: "/tr/blog/how-to-edit-andriod-contacts-on-whatsapp-without-leaving-the-app", to: "/tr/blog" }
 
 ]

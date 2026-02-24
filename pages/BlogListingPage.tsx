@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Search, Calendar, Clock, Zap } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { ChunkyFooter } from '../components/footer/ChunkyFooter';
 import { useBlogPosts, useBlogIndex, BlogCategory } from '../hooks/useBlog';
 import { SectionBadge } from '../components/ui/SectionBadge';
+import { getLanguageFromPath } from '../components/LanguageProvider';
+import { translateBlogPost, getUIText, SupportedLanguage } from '../lib/blogTranslations';
 
 const BlogCard: React.FC<{ post: any; minReadSuffix?: string }> = ({ post, minReadSuffix = 'min read' }) => {
   const navigate = useNavigate();
@@ -108,12 +110,33 @@ const FeaturedBlogCard: React.FC<{ post: any; badgeText?: string; minReadSuffix?
 
 const BlogListingPage: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  // Get language from i18n
-  const language = i18n.language || 'en';
+  // Get language from URL pathname instead of i18n state
+  const language = getLanguageFromPath(location.pathname);
   const { data: allPosts, loading: postsLoading, error: postsError } = useBlogPosts(undefined, language);
   const { data: blogIndex, loading: indexLoading } = useBlogIndex(language);
+
+  // State for translated posts
+  const [translatedPosts, setTranslatedPosts] = useState<any[]>([]);
+
+  // Apply translations to posts when language changes or posts load
+  useEffect(() => {
+    if (!allPosts || allPosts.length === 0) {
+      setTranslatedPosts([]);
+      return;
+    }
+
+    // If not English, translate all posts
+    if (language !== 'en') {
+      Promise.all(
+        allPosts.map(post => translateBlogPost(post, language as SupportedLanguage))
+      ).then(setTranslatedPosts);
+    } else {
+      setTranslatedPosts(allPosts);
+    }
+  }, [allPosts, language]);
 
   // Get categories from Sanity and always include "All" first
   const categories: BlogCategory[] = [
@@ -129,9 +152,9 @@ const BlogListingPage: React.FC = () => {
   ];
 
   const filteredPosts = React.useMemo(() => {
-    if (!allPosts) return [];
+    if (!translatedPosts) return [];
 
-    let filtered = allPosts;
+    let filtered = translatedPosts;
 
     // Filter by category
     if (activeCategory !== 'All') {
@@ -147,15 +170,15 @@ const BlogListingPage: React.FC = () => {
     }
 
     return filtered;
-  }, [allPosts, activeCategory, searchQuery]);
+  }, [translatedPosts, activeCategory, searchQuery]);
 
   // Use featured posts from Sanity if available, otherwise use first post
   const featuredPost = React.useMemo(() => {
     if (blogIndex?.featuredSection?.featuredPosts && blogIndex.featuredSection.featuredPosts.length > 0) {
-      return blogIndex.featuredSection.featuredPosts[0];
+      return translatedPosts.find(p => p._id === blogIndex.featuredSection.featuredPosts[0]._id) || blogIndex.featuredSection.featuredPosts[0];
     }
-    return allPosts?.[0] || null;
-  }, [allPosts, blogIndex?.featuredSection?.featuredPosts]);
+    return translatedPosts?.[0] || null;
+  }, [translatedPosts, blogIndex?.featuredSection?.featuredPosts]);
 
   const regularPosts = React.useMemo(() => {
     if (!filteredPosts) return [];
@@ -194,7 +217,7 @@ const BlogListingPage: React.FC = () => {
   const hero = blogIndex?.hero || {};
   const allArticlesSection = blogIndex?.allArticlesSection || {};
   const featuredSection = blogIndex?.featuredSection || {};
-  const minReadSuffix = blogIndex?.detailLabels?.minReadSuffix || t('blog.detail.minRead');
+  const minReadSuffix = getUIText('min read', language as SupportedLanguage);
 
   return (
     <div className="min-h-screen font-sans bg-brand-black text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">

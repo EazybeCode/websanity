@@ -340,28 +340,28 @@ const TeamInboxPage: React.FC = () => {
           <div>
              <h5 className="text-white font-bold mb-6 text-sm">Platform</h5>
              <ul className="space-y-4 text-sm text-slate-500">
-               <li><a href="#" className="hover:text-white transition-colors">Cloud Backup</a></li>
-               <li><a href="#" className="hover:text-white transition-colors">Team Inbox</a></li>
-               <li><a href="#" className="hover:text-white transition-colors">Revenue Inbox</a></li>
-               <li><a href="#" className="hover:text-white transition-colors">Quick Reply</a></li>
+               <li><a href="/features" className="hover:text-white transition-colors">Cloud Backup</a></li>
+               <li><a href="/team-inbox" className="hover:text-white transition-colors">Team Inbox</a></li>
+               <li><a href="/features" className="hover:text-white transition-colors">Revenue Inbox</a></li>
+               <li><a href="/features" className="hover:text-white transition-colors">Quick Reply</a></li>
              </ul>
           </div>
           <div>
              <h5 className="text-white font-bold mb-6 text-sm">Integrations</h5>
              <ul className="space-y-4 text-sm text-slate-500">
-               <li><a href="#" className="hover:text-white transition-colors">HubSpot</a></li>
-               <li><a href="#" className="hover:text-white transition-colors">Salesforce</a></li>
-               <li><a href="#" className="hover:text-white transition-colors">Zoho CRM</a></li>
-               <li><a href="#" className="hover:text-white transition-colors">Pipedrive</a></li>
+               <li><a href="/hubspot-whatsapp-integration" className="hover:text-white transition-colors">HubSpot</a></li>
+               <li><a href="/salesforce-whatsapp-integration" className="hover:text-white transition-colors">Salesforce</a></li>
+               <li><a href="/zoho-whatsapp-integration" className="hover:text-white transition-colors">Zoho CRM</a></li>
+               <li><a href="/pipedrive-whatsapp-integration" className="hover:text-white transition-colors">Pipedrive</a></li>
              </ul>
           </div>
           <div>
              <h5 className="text-white font-bold mb-6 text-sm">Company</h5>
              <ul className="space-y-4 text-sm text-slate-500">
-               <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-               <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-               <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-               <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+               <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
+               <li><a href="/careers" className="hover:text-white transition-colors">Careers</a></li>
+               <li><a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a></li>
+               <li><a href="/terms" className="hover:text-white transition-colors">Terms of Service</a></li>
              </ul>
           </div>
         </div>

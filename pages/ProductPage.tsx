@@ -23,8 +23,37 @@ import {
 } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
+import { CRMIntegrationFAQ } from '../components/integration/CRMIntegrationFAQ'
 import { useProduct } from '../hooks/useProduct'
 import { useTrialModal } from '../contexts/TrialModalContext'
+import { useHubSpotIntegrationSEO } from '../hooks/useHubSpotIntegrationSEO'
+import { useZohoIntegrationSEO } from '../hooks/useZohoIntegrationSEO'
+import { useSalesforceIntegrationSEO } from '../hooks/useSalesforceIntegrationSEO'
+import { useBitrix24IntegrationSEO } from '../hooks/useBitrix24IntegrationSEO'
+import { useGoogleSheetsIntegrationSEO } from '../hooks/useGoogleSheetsIntegrationSEO'
+import { useLeadSquaredIntegrationSEO } from '../hooks/useLeadSquaredIntegrationSEO'
+import { useFreshdeskIntegrationSEO } from '../hooks/useFreshdeskIntegrationSEO'
+import { useWebhooksIntegrationSEO } from '../hooks/useWebhooksIntegrationSEO'
+import { useGoogleCalendarIntegrationSEO } from '../hooks/useGoogleCalendarIntegrationSEO'
+import { useMondayIntegrationSEO } from '../hooks/useMondayIntegrationSEO'
+import { usePipedriveIntegrationSEO } from '../hooks/usePipedriveIntegrationSEO'
+import { useHubSpotIntegrationSEOBr } from '../hooks/useHubSpotIntegrationSEOBr'
+import { useZohoIntegrationSEOBr } from '../hooks/useZohoIntegrationSEOBr'
+import { useSalesforceIntegrationSEOBr } from '../hooks/useSalesforceIntegrationSEOBr'
+import { useBitrix24IntegrationSEOBr } from '../hooks/useBitrix24IntegrationSEOBr'
+import { useLeadSquaredIntegrationSEOBr } from '../hooks/useLeadSquaredIntegrationSEOBr'
+import { useFreshdeskIntegrationSEOBr } from '../hooks/useFreshdeskIntegrationSEOBr'
+import { useWebhooksIntegrationSEOBr } from '../hooks/useWebhooksIntegrationSEOBr'
+import { useGoogleSheetsIntegrationSEOBr } from '../hooks/useGoogleSheetsIntegrationSEOBr'
+import { useHubSpotIntegrationSEOEs } from '../hooks/useHubSpotIntegrationSEOEs'
+import { useSalesforceIntegrationSEOEs } from '../hooks/useSalesforceIntegrationSEOEs'
+import { useZohoIntegrationSEOEs } from '../hooks/useZohoIntegrationSEOEs'
+import { useBitrix24IntegrationSEOEs } from '../hooks/useBitrix24IntegrationSEOEs'
+import { useLeadSquaredIntegrationSEOEs } from '../hooks/useLeadSquaredIntegrationSEOEs'
+import { useFreshdeskIntegrationSEOEs } from '../hooks/useFreshdeskIntegrationSEOEs'
+import { useWebhooksIntegrationSEOEs } from '../hooks/useWebhooksIntegrationSEOEs'
+import { usePipedriveIntegrationSEOEs } from '../hooks/usePipedriveIntegrationSEOEs'
+import { useMondayIntegrationSEOEs } from '../hooks/useMondayIntegrationSEOEs'
 
 // CRM configuration with logos and brand colors
 const crmConfig: Record<string, {
@@ -1611,6 +1640,60 @@ export const ProductPage: React.FC = () => {
   const language = i18n.language || 'en'
   const location = useLocation()
 
+  // HubSpot Integration Page SEO
+  useHubSpotIntegrationSEO()
+  useHubSpotIntegrationSEOBr()
+  useHubSpotIntegrationSEOEs()
+
+  // Zoho Integration Page SEO
+  useZohoIntegrationSEO()
+  useZohoIntegrationSEOBr()
+  useZohoIntegrationSEOEs()
+
+  // Salesforce Integration Page SEO
+  useSalesforceIntegrationSEO()
+  useSalesforceIntegrationSEOBr()
+  useSalesforceIntegrationSEOEs()
+
+  // Bitrix24 Integration Page SEO
+  useBitrix24IntegrationSEO()
+  useBitrix24IntegrationSEOBr()
+  useBitrix24IntegrationSEOEs()
+
+  // Google Sheets Integration Page SEO
+  useGoogleSheetsIntegrationSEO()
+  useGoogleSheetsIntegrationSEOBr()
+
+  // LeadSquared Integration Page SEO
+  useLeadSquaredIntegrationSEO()
+  useLeadSquaredIntegrationSEOBr()
+  useLeadSquaredIntegrationSEOEs()
+
+  // Freshdesk Integration Page SEO
+  useFreshdeskIntegrationSEO()
+  useFreshdeskIntegrationSEOBr()
+  useFreshdeskIntegrationSEOEs()
+
+  // Webhooks Integration Page SEO
+  useWebhooksIntegrationSEO()
+  useWebhooksIntegrationSEOBr()
+  useWebhooksIntegrationSEOEs()
+
+  // Google Sheets Integration Page SEO
+  useGoogleSheetsIntegrationSEO()
+  useGoogleSheetsIntegrationSEOBr()
+
+  // Google Calendar Integration Page SEO
+  useGoogleCalendarIntegrationSEO()
+
+  // Monday Integration Page SEO
+  useMondayIntegrationSEO()
+  useMondayIntegrationSEOEs()
+
+  // Pipedrive Integration Page SEO
+  usePipedriveIntegrationSEO()
+  usePipedriveIntegrationSEOEs()
+
   // Extract CRM slug from pathname (e.g., /hubspot-whatsapp-integration or /pt/hubspot-whatsapp-integration)
   const getCrmSlugFromPath = (pathname: string): string => {
     // Remove language prefix if present (e.g., /pt/, /es/, /tr/)
@@ -1668,6 +1751,9 @@ export const ProductPage: React.FC = () => {
 
       {/* Reports Section */}
       <ReportsSection crm={crm} t={t} />
+
+      {/* FAQ Section - All CRM integrations */}
+      <CRMIntegrationFAQ crmSlug={crmSlug} />
 
       {/* Footer with CTA and Security sections */}
       <ChunkyFooter />

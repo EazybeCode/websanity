@@ -29,6 +29,7 @@ const IntegrateSalesforceCrmPage = lazy(() => import('./pages/IntegrateSalesforc
 const IntegrateBitrixCrmPage = lazy(() => import('./pages/IntegrateBitrixCrmPage'))
 const FbPage = lazy(() => import('./pages/FbPage'))
 const PartnerPage = lazy(() => import('./pages/PartnerPage').then(m => ({ default: m.PartnerPage })))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 // Loading fallback for lazy-loaded pages
 const PageLoader = () => (
@@ -49,6 +50,33 @@ const TrailingSlashRedirect: React.FC<{ children: React.ReactNode }> = ({ childr
   return <>{children}</>
 }
 
+// Component to redirect URLs with unwanted query parameters
+const QueryParamRedirect: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const location = useLocation()
+
+  // Redirect /blog?category=case-studies → /blog
+  if (location.pathname === '/blog' && location.search.includes('category=case-studies')) {
+    return <Navigate to="/blog" replace />
+  }
+
+  // Redirect /es/blog?daf7a484_page=2 → /es/blog
+  if (location.pathname === '/es/blog' && location.search.includes('daf7a484_page=')) {
+    return <Navigate to="/es/blog" replace />
+  }
+
+  // Redirect /br/blog?category=case-studies → /br/blog
+  if (location.pathname === '/br/blog' && location.search.includes('category=case-studies')) {
+    return <Navigate to="/br/blog" replace />
+  }
+
+  // Redirect /?utm_source=... → /
+  if (location.pathname === '/' && location.search.includes('utm_source=spotsaas.com')) {
+    return <Navigate to="/" replace />
+  }
+
+  return <>{children}</>
+}
+
 // Integration routes helper - generates routes for all integrations
 const integrationSlugs = [
   'hubspot',
@@ -58,7 +86,9 @@ const integrationSlugs = [
   'leadsquared',
   'freshdesk',
   'pipedrive',
+  'monday',
   'google-sheets',
+  'google-calendar',
   'webhooks',
 ]
 
@@ -70,6 +100,11 @@ const AppRoutes = () => (
       <Route path="/index.html" element={<Navigate to="/" replace />} />
 
       {/* English routes (default, no prefix) */}
+      {/* Redirect old URLs */}
+      <Route path="/search" element={<Navigate to="/" replace />} />
+      <Route path="/lp/hubspot-demo" element={<Navigate to="/" replace />} />
+      <Route path="/all-crm-form" element={<Navigate to="/" replace />} />
+      <Route path="/categories-intregrations/account-management" element={<Navigate to="/" replace />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/pricing" element={<PricingPage />} />
       <Route path="/features" element={<CategoryIndexPage />} />
@@ -118,9 +153,11 @@ const AppRoutes = () => (
       ))}
       <Route path="/br/product/:slug" element={<ProductPage />} />
       <Route path="/br/blog" element={<BlogListingPage />} />
-      <Route path="/br/blog/:slug" element={<BlogPage />} />
       {/* Redirect old Portuguese blog URLs */}
       <Route path="/br/blog/integrate-hubspot-with-whatsapp-easiest-method" element={<Navigate to="/br" replace />} />
+      <Route path="/br/blog/discover-the-best-whatsapp-business-api-alternatives" element={<Navigate to="/br/blog" replace />} />
+      <Route path="/br/blog/apply-for-green-tick-on-whatsapp-business" element={<Navigate to="/br/blog" replace />} />
+      <Route path="/br/blog/:slug" element={<BlogPage />} />
       <Route path="/br/team-inbox" element={<TeamInboxPage />} />
       <Route path="/br/msa" element={<MSAPage />} />
       <Route path="/br/privacy" element={<PrivacyPage />} />
@@ -136,6 +173,10 @@ const AppRoutes = () => (
       <Route path="/es/whatsapp-api/coexistence" element={<CoexistencePage />} />
       <Route path="/es/whatsapp-api/:slug" element={<FeaturePage />} />
       <Route path="/es/integrations" element={<CategoryIndexPage />} />
+      {/* Redirect old Spanish integration URLs */}
+      <Route path="/es/integrations/google-sheet" element={<Navigate to="/es/google-sheets-whatsapp-integration" replace />} />
+      <Route path="/es/integrations/fresh-desk" element={<Navigate to="/es/freshdesk-whatsapp-integration" replace />} />
+      <Route path="/es/salesforce" element={<Navigate to="/es/salesforce-whatsapp-integration" replace />} />
       {integrationSlugs.map((slug) => (
         <Route key={`es-${slug}`} path={`/es/${slug}-whatsapp-integration`} element={<ProductPage />} />
       ))}
@@ -157,11 +198,25 @@ const AppRoutes = () => (
       <Route path="/tr/whatsapp-api/coexistence" element={<CoexistencePage />} />
       <Route path="/tr/whatsapp-api/:slug" element={<FeaturePage />} />
       <Route path="/tr/integrations" element={<CategoryIndexPage />} />
+      {/* Redirect old Turkish integration URLs */}
+      <Route path="/tr/integrations/fresh-desk" element={<Navigate to="/tr/freshdesk-whatsapp-integration" replace />} />
       {integrationSlugs.map((slug) => (
         <Route key={`tr-${slug}`} path={`/tr/${slug}-whatsapp-integration`} element={<ProductPage />} />
       ))}
       <Route path="/tr/product/:slug" element={<ProductPage />} />
       <Route path="/tr/blog" element={<BlogListingPage />} />
+      {/* Redirect old Turkish blog URLs */}
+      <Route path="/tr/blog-pt" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/how-to-edit-andriod-contacts-on-whatsapp-without-leaving-the-app" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/get-organized-with-hubspot-free-crm-start-now" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/how-whatapp-will-take-over-email-by-2030" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/whatsapp-hacks-how-to-message-without-saving-contact" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/boost-your-sales-process-with-these-15-automation-tools" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/top-3-chrome-extensions-that-you-must-install-right-now" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/use-these-7-proven-strategies-to-grow-your-business" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/essential-glossary-of-artificial-intelligence-ai-terms" element={<Navigate to="/tr/blog" replace />} />
+      <Route path="/tr/blog/whatsapp-companion-mode-how-to-use-whatsapp-on-two-phones" element={<Navigate to="/tr/blog" replace />} />
       <Route path="/tr/blog/:slug" element={<BlogPage />} />
       <Route path="/tr/team-inbox" element={<TeamInboxPage />} />
       <Route path="/tr/msa" element={<MSAPage />} />
@@ -178,6 +233,10 @@ const AppRoutes = () => (
           />
         </React.Fragment>
       ))}
+
+      {/* 404 Not Found Pages - Must be last routes (catch-all) */}
+      {/* English 404 - catches everything not matched above */}
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </Suspense>
 )
@@ -187,13 +246,15 @@ function App() {
     <BrowserRouter>
       <TrialModalProvider>
         <TrailingSlashRedirect>
-          <LanguageProvider>
-            <SEOHead />
-            <AppRoutes />
-            <TrialModalWrapper />
-            <LeadSidebar />
-            <LeadMobileButton />
-          </LanguageProvider>
+          <QueryParamRedirect>
+            <LanguageProvider>
+              <SEOHead />
+              <AppRoutes />
+              <TrialModalWrapper />
+              <LeadSidebar />
+              <LeadMobileButton />
+            </LanguageProvider>
+          </QueryParamRedirect>
         </TrailingSlashRedirect>
       </TrialModalProvider>
     </BrowserRouter>

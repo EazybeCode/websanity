@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
 import { SectionRenderer } from '../components/SectionRenderer'
 import { useLandingPage } from '../hooks/useLandingPage'
+import { useSpanishHomepageSEO } from '../hooks/useSpanishHomepageSEO'
+import { useTurkishHomepageSEO } from '../hooks/useTurkishHomepageSEO'
 
 // Lazy load footer - it's below the fold (saves 20 KB on initial load)
 const ChunkyFooter = lazy(() => import('../components/footer/ChunkyFooter').then(m => ({ default: m.ChunkyFooter })))
@@ -27,58 +29,43 @@ export const HomePage: React.FC = () => {
         script.textContent = JSON.stringify(schema)
       }
 
-      // Organization Schema
+      // Organization Schema (without @id for better crawlability)
       const orgSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "@id": "https://eazybe.com/#organization",
         "name": "Eazybe",
         "url": "https://eazybe.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://eazybe.com/logo.png",
-          "width": 600,
-          "height": 60
-        },
+        "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
         "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe is a WhatsApp CRM integration platform that helps sales teams sync conversations with their CRM, schedule messages, and boost customer engagement - all inside WhatsApp Web.",
-        "foundingDate": "2024",
-        "sameAs": [
-          "https://twitter.com/eazybe",
-          "https://linkedin.com/company/eazybe",
-          "https://youtube.com/@eazybe"
-        ],
+        "description": "Eazybe helps sales teams connect WhatsApp with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets to sync conversations, automate follow-ups, and improve customer engagement.",
+        "foundingDate": "2021",
+        "sameAs": ["https://twitter.com/eazybe", "https://linkedin.com/company/eazybe", "https://youtube.com/@eazybe"],
         "contactPoint": [
           {
             "@type": "ContactPoint",
-            "contactType": "customer service",
+            "contactType": "customer support",
             "email": "support@eazybe.com",
-            "url": "https://eazybe.com",
+            "url": "https://eazybe.com/",
             "areaServed": "US",
-            "availableLanguage": "en"
+            "availableLanguage": ["English"]
           }
         ],
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
           "addressCountry": "US"
-        }
-      }
-
-      // WebSite Schema (with search action)
-      const websiteSchema = {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "@id": "https://eazybe.com/#website",
-        "url": "https://eazybe.com/",
-        "name": "Eazybe",
-        "description": "WhatsApp CRM Integration | Eazybe - WhatsApp Sales Platform. CRM integration with WhatsApp for HubSpot, Zoho, Salesforce, and more.",
-        "publisher": { "@id": "https://eazybe.com/#organization" },
-        "inLanguage": "en",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": { "@type": "EntryPoint", "urlTemplate": "https://eazybe.com/search?q={search_term_string}" },
-          "query-input": "required name=search_term_string"
-        }
+        },
+        "knowsAbout": [
+          "WhatsApp CRM",
+          "HubSpot WhatsApp integration",
+          "Sales automation",
+          "CRM integration",
+          "AI agents for CRM",
+          "WhatsApp chat backup"
+        ]
       }
 
       // FAQPage Schema
@@ -143,53 +130,86 @@ export const HomePage: React.FC = () => {
         ]
       }
 
-      // BreadcrumbList Schema
+      // BreadcrumbList Schema (without @id)
       const breadcrumbSchema = {
-        "@context": "https://schema.org",
+        "@context": "https://schema.org/",
         "@type": "BreadcrumbList",
-        "@id": "https://eazybe.com/#breadcrumb",
-        "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Eazybe", "item": "https://eazybe.com/" }]
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Eazybe",
+          "item": "https://eazybe.com/"
+        }]
       }
 
-      // WebPage Schema
+      // WebPage Schema (without @id)
       const webpageSchema = {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "@id": "https://eazybe.com/#webpage",
         "url": "https://eazybe.com/",
-        "name": "WhatsApp CRM Integration | WhatsApp Sales Platform - Eazybe",
-        "description": "WhatsApp CRM integration for (HubSpot, Zoho, Salesforce, Sheets). CRM integration with WhatsApp sync chats with your CRM, AI replies, & shared inboxes.",
-        "isPartOf": { "@id": "https://eazybe.com/#website" },
-        "about": { "@id": "https://eazybe.com/#organization" },
-        "publisher": { "@id": "https://eazybe.com/#organization" },
+        "name": "WhatsApp CRM Integration With  AI Agents | Sync WhatsApp To CRM",
+        "description": "Connect WhatsApp with CRM. Sync chats automatically, use AI agents, track deals, and manage sales conversations directly inside CRM.",
         "inLanguage": "en",
-        "primaryImageOfPage": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png" },
-        "datePublished": "2026-01-15T08:00:00+00:00",
-        "dateModified": "2026-02-01T10:30:00+00:00",
-        "breadcrumb": { "@id": "https://eazybe.com/#breadcrumb" }
+        "datePublished": "2026-02-03T08:00:00+00:00",
+        "dateModified": "2026-02-03T10:30:00+00:00"
       }
 
-      // SoftwareApplication Schema
+      // SoftwareApplication Schema (without @id)
       const softwareApplicationSchema = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "@id": "https://eazybe.com/#softwareapplication",
-        "name": "Eazybe",
-        "operatingSystem": "Web",
+        "name": "WhatsApp CRM Integration - Eazybe",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "CRM, Messaging, WhatsApp Automation",
-        "image": ["https://eazybe.com/logo.png"],
-        "description": "Eazybe is a WhatsApp Chrome Extension that transforms WhatsApp Web into a powerful CRM tool. It integrates with HubSpot, Zoho, Salesforce, and Google Sheets to help sales, marketing, and support teams manage conversations and customer data more effectively.",
-        "softwareVersion": "latest",
-        "url": "https://eazybe.com/",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
-        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
+        "operatingSystem": "Web, Chrome Extension",
         "offers": {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "USD",
-          "lowPrice": 10,
-          "highPrice": 50,
+          "lowPrice": 1160,
+          "highPrice": 1960,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": 53766
+        },
+        "featureList": [
+          "Automatic WhatsApp to CRM sync",
+          "AI-powered reply suggestions",
+          "Shared inbox for team collaboration",
+          "Deal tracking from WhatsApp",
+          "Contact synchronization",
+          "Message scheduling",
+          "AI Agents for CRM"
+        ]
+      }
+
+      // Product Schema (without @id)
+      const productSchema = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "WhatsApp CRM Integration - Eazybe",
+        "url": "https://eazybe.com/",
+        "image": ["https://eazybe.com/logo.png"],
+        "description": "Eazybe connects WhatsApp with CRM to automatically sync chats, help sales teams respond faster with AI, and manage customer conversations with shared inbox workflows.",
+        "brand": { "@type": "Brand", "name": "Eazybe" },
+        "manufacturer": { "@type": "Organization", "name": "Eazybe", "url": "https://eazybe.com/" },
+        "category": "CRM Integration Software",
+        "audience": {
+          "@type": "BusinessAudience",
+          "audienceType": "Sales teams, CRM users, CRM managers, B2B businesses"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 1160,
+          "highPrice": 1960,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -198,88 +218,79 @@ export const HomePage: React.FC = () => {
           "ratingValue": 4.9,
           "bestRating": 5,
           "worstRating": 1,
-          "ratingCount": 53978
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Eazybe"
+          "ratingCount": 53766
         }
       }
 
-      // ProfessionalService Schema
-      const professionalServiceSchema = {
+      // HowTo Schema (without @id)
+      const howToSchema = {
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "@id": "https://eazybe.com/#professionalservice",
-        "name": "Eazybe",
-        "url": "https://eazybe.com/",
-        "image": ["https://eazybe.com/logo.png"],
-        "logo": "https://eazybe.com/logo.png",
-        "telephone": "+13099294280",
-        "priceRange": "From $10/month",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "8 The Green, Ste B",
-          "addressLocality": "Dover",
-          "addressRegion": "DE",
-          "postalCode": "19901",
-          "addressCountry": "US"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 38.692045,
-          "longitude": -75.401331
-        },
-        "openingHoursSpecification": [{
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "00:00",
-          "closes": "23:59"
-        }]
-      }
-
-      // Product Schema
-      const productSchema = {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "Eazybe",
-        "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe is a WhatsApp Chrome Extension that transforms WhatsApp Web into a powerful CRM tool. It integrates seamlessly with HubSpot, Zoho, Salesforce, and Google Sheets to help sales, marketing, and support teams manage conversations and customer data more effectively.",
-        "brand": {
-          "@type": "Brand",
-          "name": "Eazybe"
-        },
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/pricing",
-          "priceCurrency": "USD",
-          "lowPrice": 10,
-          "highPrice": 50,
-          "offerCount": 5
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.9,
-          "bestRating": 5.0,
-          "worstRating": 4.7,
-          "ratingCount": 30766
-        }
+        "@type": "HowTo",
+        "name": "How to connect WhatsApp to CRM using Eazybe",
+        "description": "Follow these steps to install Eazybe and sync WhatsApp conversations with CRM so your team can track chats, speed up follow-ups, and keep CRM records up to date.",
+        "totalTime": "PT5M",
+        "estimatedCost": { "@type": "MonetaryAmount", "currency": "USD", "value": "0" },
+        "supply": [
+          { "@type": "HowToSupply", "name": "Active CRM account" },
+          { "@type": "HowToSupply", "name": "WhatsApp account with access to WhatsApp Web" }
+        ],
+        "tool": [
+          { "@type": "HowToTool", "name": "Google Chrome (or Chromium-based browser)" },
+          { "@type": "HowToTool", "name": "Eazybe Chrome Extension" }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/#step1",
+            "name": "Install the Eazybe extension",
+            "text": "Open the Chrome Web Store and install the official Eazybe extension in your browser.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/#step2",
+            "name": "Open WhatsApp Web",
+            "text": "Go to WhatsApp Web on your computer and sign in. The Eazybe panel will appear inside WhatsApp Web.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/#step3",
+            "name": "Connect your CRM account",
+            "text": "In the Eazybe panel, choose HubSpot and complete the authorization flow to connect your CRM securely.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/#step4",
+            "name": "Enable chat sync to CRM",
+            "text": "Select a contact or conversation and enable syncing. WhatsApp messages and customer context will start syncing to CRM automatically.",
+            "image": "https://eazybe.com/logo.png"
+          },
+          {
+            "@type": "HowToStep",
+            "url": "https://eazybe.com/#step5",
+            "name": "Use AI replies and team workflows",
+            "text": "Use AI-assisted replies to respond faster and shared inbox workflows to collaborate with your team while keeping updated.",
+            "image": "https://eazybe.com/logo.png"
+          }
+        ],
+        "inLanguage": "en-US"
       }
 
       // Add all homepage schemas
       addJsonLdSchema(orgSchema, 'organization')
-      addJsonLdSchema(websiteSchema, 'website')
       addJsonLdSchema(faqSchema, 'faq')
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb')
       addJsonLdSchema(webpageSchema, 'webpage')
       addJsonLdSchema(softwareApplicationSchema, 'softwareapplication')
-      addJsonLdSchema(professionalServiceSchema, 'professionalservice')
       addJsonLdSchema(productSchema, 'product')
+      addJsonLdSchema(howToSchema, 'howto')
     }
 
     // Cleanup function
     return () => {
-      const schemas = ['organization', 'website', 'faq', 'breadcrumb', 'webpage', 'softwareapplication', 'professionalservice', 'product']
+      const schemas = ['organization', 'faq', 'breadcrumb', 'webpage', 'softwareapplication', 'product', 'howto']
       schemas.forEach(id => {
         const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
         if (script) script.remove()
@@ -319,10 +330,10 @@ export const HomePage: React.FC = () => {
       }
 
       // Set document title
-      setDocumentTitle('WhatsApp CRM Integration | Eazybe - WhatsApp Sales Platform')
+      setDocumentTitle('WhatsApp CRM Integration | WhatsApp Sales Platform - Eazybe')
 
       // Basic meta tags
-      setMetaTag('title', 'WhatsApp CRM Integration | Eazybe - WhatsApp Sales Platform')
+      setMetaTag('title', 'WhatsApp CRM Integration | WhatsApp Sales Platform - Eazybe')
       setMetaTag('description', 'WhatsApp CRM integration for (HubSpot, Zoho, Salesforce, Sheets). CRM integration with WhatsApp sync chats with your CRM, AI replies, & shared inboxes.')
       setMetaTag('keywords', 'WhatsApp CRM, WhatsApp CRM Integration, CRM integration with WhatsApp, WhatsApp Web extension, CRM integration, CRM WhatsApp integration, sales productivity, WhatsApp productivity')
       setMetaTag('author', 'Eazybe')
@@ -591,6 +602,10 @@ export const HomePage: React.FC = () => {
       }
       faqScript.textContent = JSON.stringify(faqSchema)
 
+      // Remove the original breadcrumb schema (from / path) to avoid duplicates
+      const originalBreadcrumbScript = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb"]')
+      if (originalBreadcrumbScript) originalBreadcrumbScript.remove()
+
       // BreadcrumbList Schema for /br
       const breadcrumbSchema = {
         "@context": "https://schema.org",
@@ -625,7 +640,6 @@ export const HomePage: React.FC = () => {
       const organizationSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "@id": "https://eazybe.com/br/#organization",
         "name": "Eazybe",
         "url": "https://eazybe.com/br",
         "logo": {
@@ -654,9 +668,11 @@ export const HomePage: React.FC = () => {
         ],
         "address": {
           "@type": "PostalAddress",
-          "addressRegion": "RJ",
-          "postalCode": "25943-380",
-          "addressCountry": "BR"
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
         },
         "knowsAbout": ["WhatsApp CRM", "Sales Automation", "CRM Integration", "CRM AI Agents", "Customer Engagement"]
       }
@@ -680,7 +696,9 @@ export const HomePage: React.FC = () => {
         "name": "Eazybe",
         "description": "Integração CRM com WhatsApp | Eazybe - Plataforma de Vendas. Integração com HubSpot, Zoho, Salesforce, Google Sheets e mais.",
         "publisher": {
-          "@id": "https://eazybe.com/br/#organization"
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/br"
         },
         "inLanguage": "pt-BR",
         "potentialAction": {
@@ -702,45 +720,6 @@ export const HomePage: React.FC = () => {
         document.head.appendChild(websiteScript)
       }
       websiteScript.textContent = JSON.stringify(websiteSchema)
-
-      // WebPage Schema for /br
-      const webpageSchema = {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "@id": "https://eazybe.com/br/#webpage",
-        "url": "https://eazybe.com/br",
-        "name": "CRM integrado com WhatsApp | Plataforma de Vendas WhatsApp - Eazybe",
-        "description": "Integração de CRM com WhatsApp para (HubSpot, Zoho, Salesforce, Sheets). Sincronize conversas com seu CRM, use respostas de IA e caixas de entrada compartilhadas.",
-        "isPartOf": {
-          "@id": "https://eazybe.com/br"
-        },
-        "about": {
-          "@id": "https://eazybe.com/br"
-        },
-        "publisher": {
-          "@id": "https://eazybe.com/br"
-        },
-        "inLanguage": "pt-BR",
-        "primaryImageOfPage": {
-          "@type": "ImageObject",
-          "url": "https://eazybe.com/logo.png"
-        },
-        "datePublished": "2026-02-03T08:00:00+00:00",
-        "dateModified": "2026-02-13T10:30:00+00:00",
-        "breadcrumb": {
-          "@id": "https://eazybe.com/br#"
-        }
-      }
-
-      // Add webpage schema to head
-      let webpageScript = document.querySelector('script[type="application/ld+json"][data-schema="webpage-br"]')
-      if (!webpageScript) {
-        webpageScript = document.createElement('script')
-        webpageScript.type = 'application/ld+json'
-        webpageScript.setAttribute('data-schema', 'webpage-br')
-        document.head.appendChild(webpageScript)
-      }
-      webpageScript.textContent = JSON.stringify(webpageSchema)
 
       // SoftwareApplication Schema for /br
       const softwareApplicationSchema = {
@@ -962,9 +941,6 @@ export const HomePage: React.FC = () => {
       // Remove website schema
       const websiteScript = document.querySelector('script[type="application/ld+json"][data-schema="website-br"]')
       if (websiteScript) websiteScript.remove()
-      // Remove webpage schema
-      const webpageScript = document.querySelector('script[type="application/ld+json"][data-schema="webpage-br"]')
-      if (webpageScript) webpageScript.remove()
       // Remove software application schema
       const softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="softwareapplication-br"]')
       if (softwareAppScript) softwareAppScript.remove()
@@ -981,6 +957,12 @@ export const HomePage: React.FC = () => {
       // document.title = 'Eazybe'
     }
   }, [location.pathname])
+
+  // Spanish Homepage SEO - ONLY for /es path
+  useSpanishHomepageSEO()
+
+  // Turkish Homepage SEO - ONLY for /tr path
+  useTurkishHomepageSEO()
 
   const { data, loading, error } = useLandingPage()
 

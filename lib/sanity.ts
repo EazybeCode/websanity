@@ -6,6 +6,7 @@ export const sanityClient = createClient({
   dataset: 'production',
   useCdn: true,
   apiVersion: '2024-01-01',
+  token: import.meta.env.VITE_SANITY_API_TOKEN || '',
 })
 
 // Image URL builder for Sanity images
@@ -660,7 +661,100 @@ export async function getBlogPost(slug: string, language: string = 'en') {
     }
   }`
 
-  return sanityClient.fetch(query, { slug, language })
+  let result = await sanityClient.fetch(query, { slug, language })
+
+  // Fallback: if no result with language filter, try English version and translate
+  if (!result && language !== 'en') {
+    const fallbackQuery = `*[_type == "blogPost" && slug.current == $slug && language == "en"][0]{
+      _id,
+      title,
+      slug,
+      excerpt,
+      content[]{
+        ...,
+        _type == "image" => {
+          ...,
+          "url": asset->url
+        }
+      },
+      category,
+      language,
+      "featuredImage": featuredImage.asset->url,
+      publishedAt,
+      readTime,
+      author->{
+        name,
+        bio,
+        "image": image.asset->url
+      },
+      quickAnswer,
+      tableOfContents[]{
+        label,
+        id
+      },
+      faqs[]{
+        question,
+        answer
+      },
+      seo{
+        metaTitle,
+        metaDescription
+      }
+    }`
+    const englishResult = await sanityClient.fetch(fallbackQuery, { slug })
+
+    if (englishResult) {
+      // Mark that this is a translated post
+      result = {
+        ...englishResult,
+        _translatedFrom: 'en',
+        _targetLanguage: language
+      }
+    }
+  }
+
+  // Final fallback: try without any language filter
+  if (!result) {
+    const noLangQuery = `*[_type == "blogPost" && slug.current == $slug][0]{
+      _id,
+      title,
+      slug,
+      excerpt,
+      content[]{
+        ...,
+        _type == "image" => {
+          ...,
+          "url": asset->url
+        }
+      },
+      category,
+      language,
+      "featuredImage": featuredImage.asset->url,
+      publishedAt,
+      readTime,
+      author->{
+        name,
+        bio,
+        "image": image.asset->url
+      },
+      quickAnswer,
+      tableOfContents[]{
+        label,
+        id
+      },
+      faqs[]{
+        question,
+        answer
+      },
+      seo{
+        metaTitle,
+        metaDescription
+      }
+    }`
+    result = await sanityClient.fetch(noLangQuery, { slug })
+  }
+
+  return result
 }
 
 export async function getBlogPosts(limit?: number, language: string = 'en') {
