@@ -25,21 +25,13 @@ export default defineConfig(({ mode }) => {
         minify: 'terser',
         terserOptions: {
           compress: {
-            drop_console: isProd, // Remove console logs in production
+            drop_console: isProd,
             drop_debugger: true,
             pure_funcs: isProd ? ['console.log', 'console.info', 'console.debug'] : [],
-            passes: 3, // More passes for better compression
-            unsafe: true, // More aggressive but safe optimizations
-            unsafe_comps: true,
-            unsafe_math: true,
-            unsafe_methods: true,
-            inline: 2 // Inline small functions
+            passes: 2,
           },
           mangle: {
             safari10: true,
-            properties: {
-              regex: /^_/, // Mangle private properties
-            }
           }
         },
         // Optimize CSS
