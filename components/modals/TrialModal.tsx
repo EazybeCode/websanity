@@ -4,15 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { CRMType, TrialFormData } from '../../types';
 import { ModalMode } from '../../contexts/TrialModalContext';
 
-// Declare Calendly global type
-declare global {
-  interface Window {
-    Calendly?: {
-      initInlineWidget: (options: { url: string; parentElement: Element; prefill?: object }) => void;
-    };
-  }
-}
-
 interface TrialModalProps {
   isOpen: boolean;
   mode: ModalMode;
@@ -195,7 +186,6 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
   // Load Calendly widget script when form is submitted successfully (only for demo mode)
   useEffect(() => {
     if (isSuccess && mode === 'demo') {
-      // Load Calendly script if not already loaded
       const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
       if (!existingScript) {
         const script = document.createElement('script');
@@ -456,7 +446,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
                     className="w-full bg-brand-blue text-white font-bold shadow-glow-blue hover:bg-blue-600 disabled:opacity-50 rounded-lg px-4 py-2.5 text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98] group"
                   >
                     {isSubmitting ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
-                    {isSubmitting ? t('trialModal.submitting') : t('trialModal.submitButton')}
+                    {isSubmitting ? t('trialModal.submitting') : mode === 'demo' ? t('trialModal.bookDemoButton') : t('trialModal.submitButton')}
                   </button>
                   <p className="mt-2 text-[10px] text-center text-slate-600 font-mono uppercase tracking-widest">
                     {t('trialModal.disclaimer')}

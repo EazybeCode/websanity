@@ -1943,6 +1943,7 @@
     "crmLabel": "Which CRM do you use?",
     "crmPlaceholder": "Select your CRM",
     "submitButton": "Install for Free",
+    "bookDemoButton": "Book a Demo",
     "submitting": "Processing...",
     "disclaimer": "No Credit Card • Instant Activation",
     "successTitle": "Success!",

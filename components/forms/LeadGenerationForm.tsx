@@ -140,7 +140,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isCalendlyLoading, setIsCalendlyLoading] = useState(true); // keeping for compatibility
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
 
   React.useEffect(() => {
     console.log('LeadGenerationForm rendered');
