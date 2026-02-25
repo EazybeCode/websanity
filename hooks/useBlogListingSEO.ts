@@ -289,12 +289,48 @@ export const useBlogListingSEO = () => {
         ]
       }
 
+      // SoftwareApplication Schema for Eazybe
+      const softwareApplicationSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "WhatsApp CRM Integration - Eazybe",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
+        "operatingSystem": "Web, Chrome Extension",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 29,
+          "highPrice": 49,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": 53766
+        },
+        "featureList": [
+          "Automatic WhatsApp to CRM sync",
+          "AI-powered reply suggestions",
+          "Shared inbox for team collaboration",
+          "Deal tracking from WhatsApp",
+          "Contact synchronization",
+          "Message scheduling",
+          "AI Agents for CRM"
+        ]
+      }
+
       // Add all schemas to head
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb-blog')
       addJsonLdSchema(collectionPageSchema, 'collection-blog')
       addJsonLdSchema(organizationSchema, 'organization-blog')
       addJsonLdSchema(websiteSchema, 'website-blog')
       addJsonLdSchema(faqSchema, 'faq-blog')
+      addJsonLdSchema(softwareApplicationSchema, 'software-blog')
 
       // Cleanup function - remove meta tags and schema when leaving the page
       return () => {
@@ -313,6 +349,9 @@ export const useBlogListingSEO = () => {
         // Remove FAQ schema
         const faqScript = document.querySelector('script[type="application/ld+json"][data-schema="faq-blog"]')
         if (faqScript) faqScript.remove()
+        // Remove software application schema
+        const softwareScript = document.querySelector('script[type="application/ld+json"][data-schema="software-blog"]')
+        if (softwareScript) softwareScript.remove()
       }
     }
   }, [location.pathname])
