@@ -296,8 +296,8 @@ export const useTurkishHomepageSEO = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/tr/fiyatlar",
           "priceCurrency": "TRY",
-          "lowPrice": 1268,
-          "highPrice": 2143,
+          "lowPrice": 1272,
+          "highPrice": 2149,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -330,8 +330,8 @@ export const useTurkishHomepageSEO = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/tr/fiyatlar",
           "priceCurrency": "TRY",
-          "lowPrice": 1268,
-          "highPrice": 2143,
+          "lowPrice": 1272,
+          "highPrice": 2149,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
