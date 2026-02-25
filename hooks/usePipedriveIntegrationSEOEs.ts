@@ -280,8 +280,8 @@ export const usePipedriveIntegrationSEOEs = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/es/pricing",
           "priceCurrency": "EUR",
-          "lowPrice": 11,
-          "highPrice": 19,
+          "lowPrice": 25,
+          "highPrice": 42,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -331,8 +331,8 @@ export const usePipedriveIntegrationSEOEs = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/es/pricing",
           "priceCurrency": "EUR",
-          "lowPrice": 11,
-          "highPrice": 19,
+          "lowPrice": 25,
+          "highPrice": 42,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
