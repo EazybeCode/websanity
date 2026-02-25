@@ -292,7 +292,7 @@ export const useBitrix24IntegrationSEO = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "USD",
-          "lowPrice": 12,
+          "lowPrice": 13,
           "highPrice": 22,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
@@ -343,7 +343,7 @@ export const useBitrix24IntegrationSEO = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "USD",
-          "lowPrice": 12,
+          "lowPrice": 13,
           "highPrice": 22,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
