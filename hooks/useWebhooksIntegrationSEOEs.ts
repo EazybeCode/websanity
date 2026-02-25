@@ -280,8 +280,8 @@ export const useWebhooksIntegrationSEOEs = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/es/pricing",
           "priceCurrency": "EUR",
-          "lowPrice": 1160,
-          "highPrice": 1960,
+          "lowPrice": 11,
+          "highPrice": 19,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -331,8 +331,8 @@ export const useWebhooksIntegrationSEOEs = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/es/pricing",
           "priceCurrency": "EUR",
-          "lowPrice": 1160,
-          "highPrice": 1960,
+          "lowPrice": 11,
+          "highPrice": 19,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
