@@ -740,8 +740,8 @@ export const HomePage: React.FC = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/br",
           "priceCurrency": "BRL",
-          "lowPrice": 92,
-          "highPrice": 126,
+          "lowPrice": 96,
+          "highPrice": 162,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -782,8 +782,8 @@ export const HomePage: React.FC = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/br/precos",
           "priceCurrency": "BRL",
-          "lowPrice": 92,
-          "highPrice": 126,
+          "lowPrice": 96,
+          "highPrice": 162,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
