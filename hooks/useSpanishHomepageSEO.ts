@@ -284,8 +284,8 @@ export const useSpanishHomepageSEO = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/es/precios",
           "priceCurrency": "EUR",
-          "lowPrice": 16,
-          "highPrice": 33,
+          "lowPrice": 25,
+          "highPrice": 42,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -318,8 +318,8 @@ export const useSpanishHomepageSEO = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/es/precios",
           "priceCurrency": "EUR",
-          "lowPrice": 16,
-          "highPrice": 33,
+          "lowPrice": 25,
+          "highPrice": 42,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
