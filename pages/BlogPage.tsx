@@ -144,6 +144,8 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
               src={value.url}
               alt={value.alt || ''}
               className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
+              fetchPriority="high"
+              loading="eager"
             />
             {value.caption && (
               <figcaption className="text-center text-slate-500 text-sm mt-4">{value.caption}</figcaption>
@@ -424,7 +426,7 @@ const RelatedPostCard: React.FC<{
       className="bg-brand-card border border-slate-700 rounded-2xl overflow-hidden shadow-xl hover:border-slate-500 transition-all cursor-pointer group h-full flex flex-col"
     >
       <div className="relative h-48 overflow-hidden">
-        <img src={image || 'https://picsum.photos/600/400'} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <img src={image || 'https://picsum.photos/600/400'} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" fetchPriority="high" loading="eager" width={600} height={400} />
         <div className="absolute top-4 left-4">
           <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2 py-1 rounded text-white">{category}</span>
         </div>
@@ -1106,6 +1108,10 @@ const BlogPage: React.FC = () => {
               src={displayPost.featuredImage}
               alt={displayPost.title}
               className="w-full h-full object-cover"
+              fetchPriority="high"
+              loading="eager"
+              width={1200}
+              height={630}
             />
           </div>
         </div>

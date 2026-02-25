@@ -255,6 +255,10 @@ const RelatedPostCard: React.FC<{
           src={image || 'https://picsum.photos/600/400'}
           alt={title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          fetchPriority="high"
+          loading="eager"
+          width={600}
+          height={400}
         />
         {/* Category Badge */}
         <div className="absolute top-4 left-4 z-20">
@@ -454,6 +458,10 @@ const BlogPageRedesigned: React.FC = () => {
               src={post.featuredImage}
               alt={post.title}
               className="w-full h-full object-cover"
+              fetchPriority="high"
+              loading="eager"
+              width={1200}
+              height={630}
             />
           </div>
         </motion.div>

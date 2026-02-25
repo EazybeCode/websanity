@@ -47,6 +47,10 @@ const BlogCard: React.FC<{
           src={post.featuredImage || 'https://picsum.photos/800/600'}
           alt={post.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          fetchPriority="high"
+          loading="eager"
+          width={800}
+          height={600}
         />
         {/* Category Badge - Floating */}
         <div className="absolute top-4 left-4 z-20">
@@ -135,6 +139,10 @@ const FeaturedHeroCard: React.FC<{
             src={post.featuredImage || 'https://picsum.photos/800/800'}
             alt={post.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            fetchPriority="high"
+            loading="eager"
+            width={800}
+            height={800}
           />
           {/* Floating Badges */}
           <div className="absolute top-6 left-6 z-20 flex flex-col gap-3">

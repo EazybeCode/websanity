@@ -26,6 +26,10 @@ const BlogCard: React.FC<{ post: any; minReadSuffix?: string }> = ({ post, minRe
           src={post.featuredImage || 'https://picsum.photos/800/450'}
           alt={post.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          fetchPriority="high"
+          loading="eager"
+          width={800}
+          height={450}
         />
         <div className="absolute top-4 left-4">
           <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2.5 py-1 rounded text-white">
@@ -76,6 +80,10 @@ const FeaturedBlogCard: React.FC<{ post: any; badgeText?: string; minReadSuffix?
             src={post.featuredImage || 'https://picsum.photos/800/600'}
             alt={post.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            fetchPriority="high"
+            loading="eager"
+            width={800}
+            height={600}
           />
           <div className="absolute top-4 left-4">
             <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2.5 py-1 rounded text-white">
