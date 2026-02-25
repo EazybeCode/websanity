@@ -294,8 +294,8 @@ export const useZohoIntegrationSEO = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "USD",
-          "lowPrice": 1160,
-          "highPrice": 1960,
+          "lowPrice": 13,
+          "highPrice": 22,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -344,8 +344,8 @@ export const useZohoIntegrationSEO = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "USD",
-          "lowPrice": 1160,
-          "highPrice": 1960,
+          "lowPrice": 13,
+          "highPrice": 22,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
