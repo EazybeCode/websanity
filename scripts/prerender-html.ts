@@ -1,11 +1,73 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { createClient } from '@sanity/client'
 
 // Configuration
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const DIST_DIR = join(__dirname, '../dist')
+
+// Sanity client for build-time data fetching
+const sanityClient = createClient({
+  projectId: '5awzi0t4',
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2024-01-01',
+})
+
+// Cache for blog images per language
+const blogImagesCache = new Map<string, string[]>()
+
+/**
+ * Fetch blog post featured images from Sanity for preloading
+ * Returns unique image URLs for the given language
+ */
+async function fetchBlogPostImages(language: string = 'en'): Promise<string[]> {
+  // Check cache first
+  if (blogImagesCache.has(language)) {
+    return blogImagesCache.get(language)!
+  }
+
+  try {
+    // Fetch latest 6 blog posts with featured images
+    const query = `*[_type == "blogPost" && language == $language] | order(publishedAt desc) [0...6]{
+      "featuredImage": featuredImage.asset->url
+    }`
+
+    const posts = await sanityClient.fetch(query, { language })
+    const images = posts
+      .map((post: any) => post.featuredImage)
+      .filter((url: string | undefined) => url && url.length > 0)
+      .slice(0, 5) // Limit to 5 images for preloading
+
+    // Cache the result
+    blogImagesCache.set(language, images)
+    console.log(`📸 Fetched ${images.length} blog images for ${language}`)
+
+    return images
+  } catch (error) {
+    console.warn(`⚠️  Failed to fetch blog images for ${language}:`, error)
+    return []
+  }
+}
+
+/**
+ * Generate HTML preload link tags for blog images
+ */
+function generateImagePreloadTags(imageUrls: string[]): string {
+  if (imageUrls.length === 0) return ''
+
+  return imageUrls.map(url => {
+    // Determine image type from URL
+    const imageType = url.endsWith('.png') ? 'image/png' :
+                      url.endsWith('.jpg') || url.endsWith('.jpeg') ? 'image/jpeg' :
+                      url.endsWith('.webp') ? 'image/webp' :
+                      url.endsWith('.avif') ? 'image/avif' : 'image/jpeg'
+
+    return `    <link rel="preload" href="${url}" as="image" type="${imageType}" fetchpriority="high" />`
+  }).join('\n')
+}
 
 // Languages and their configurations
 const LANGUAGES = {
@@ -732,7 +794,7 @@ function createPrerenderedHTML(path: string, seoData: { title: string; descripti
 }
 
 // Create blog-specific pre-rendered HTML file with all custom meta tags
-function createBlogPrerenderedHTML(canonicalUrl: string, lang: { prefix: string; locale: string }, langKey: string): string {
+async function createBlogPrerenderedHTML(canonicalUrl: string, lang: { prefix: string; locale: string }, langKey: string): Promise<string> {
   // Read the original index.html
   const indexPath = join(DIST_DIR, 'index.html')
   let indexHTML = readFileSync(indexPath, 'utf-8')
@@ -746,13 +808,21 @@ function createBlogPrerenderedHTML(canonicalUrl: string, lang: { prefix: string;
   // Generate JSON-LD schemas for this language
   const schemas = generateBlogSchemas(canonicalUrl, blogSeo, langKey)
 
+  // Fetch blog post images for preloading
+  const blogImages = await fetchBlogPostImages(langKey)
+  const imagePreloadTags = generateImagePreloadTags(blogImages)
+
   // Replace title with language-specific title
   indexHTML = indexHTML.replace(/<title>.*?<\/title>/, `<title>${blogSeo.title}</title>`)
 
-  // Add meta tags and schemas before closing head
+  // Add meta tags, schemas, and image preload tags before closing head
   const headEndIndex = indexHTML.indexOf('</head>')
   if (headEndIndex !== -1) {
-    indexHTML = indexHTML.slice(0, headEndIndex) + '\n' + metaTags + '\n\n' + schemas + '\n' + indexHTML.slice(headEndIndex)
+    indexHTML = indexHTML.slice(0, headEndIndex) +
+      '\n' + metaTags + '\n\n' +
+      (imagePreloadTags ? '\n<!-- Blog Image Preloads -->\n' + imagePreloadTags + '\n' : '') +
+      '\n' + schemas + '\n' +
+      indexHTML.slice(headEndIndex)
   }
 
   return indexHTML
@@ -789,7 +859,7 @@ async function generatePrerenderedFiles() {
         // Special handling for blog page with custom meta tags
         if (routePath === 'blog') {
           const canonicalUrl = routePrefix ? `https://eazybe.com/${routePrefix}` : 'https://eazybe.com/blog'
-          html = createBlogPrerenderedHTML(canonicalUrl, langConfig, langKey)
+          html = await createBlogPrerenderedHTML(canonicalUrl, langConfig, langKey)
         } else {
           // Create SEO data for other routes
           const seoData = {
