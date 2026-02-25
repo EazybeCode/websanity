@@ -2,12 +2,35 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-// Import translations synchronously for all supported languages
-// This ensures instant rendering without blank screens
-import enTranslations from '../locales/en/common.json'
-import ptTranslations from '../locales/pt/common.json'
-import esTranslations from '../locales/es/common.json'
-import trTranslations from '../locales/tr/common.json'
+// Load only the translations we need based on URL
+const getLanguage = () => {
+  if (typeof window === 'undefined') return 'en'
+  const path = window.location.pathname
+  const match = path.match(/^\/(br|es|tr)(\/|$)/)
+  return match ? match[1] : 'en'
+}
+
+const currentLang = getLanguage()
+
+// Dynamic import for translations - only loads needed language
+let translations: any
+try {
+  switch (currentLang) {
+    case 'br':
+      translations = require('../locales/pt/common.json')
+      break
+    case 'es':
+      translations = require('../locales/es/common.json')
+      break
+    case 'tr':
+      translations = require('../locales/tr/common.json')
+      break
+    default:
+      translations = require('../locales/en/common.json')
+  }
+} catch {
+  translations = require('../locales/en/common.json')
+}
 
 export const supportedLanguages = ['en', 'br', 'es', 'tr'] as const
 export type SupportedLanguage = (typeof supportedLanguages)[number]
@@ -26,41 +49,33 @@ export const languageFlags: Record<SupportedLanguage, string> = {
   tr: '🇹🇷',
 }
 
-// Custom path detector for language from URL
+// Custom path detector
 const pathLanguageDetector = {
   name: 'path',
   lookup() {
-    const path = window.location.pathname
-    const match = path.match(/^\/(br|es|tr)(\/|$)/)
-    return match ? match[1] : 'en'
+    return currentLang
   },
 }
 
-// Initialize with all translations preloaded
+// Initialize with only the current language translations
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
-      en: { common: enTranslations },
-      br: { common: ptTranslations },
-      es: { common: esTranslations },
-      tr: { common: trTranslations },
+      [currentLang]: { common: translations }
     },
+    lng: currentLang,
     fallbackLng: 'en',
     supportedLngs: supportedLanguages,
     debug: false,
-
     interpolation: {
       escapeValue: false,
     },
-
     detection: {
-      order: ['path', 'localStorage', 'navigator'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'i18nextLng',
+      order: ['path'],
+      caches: [],
     },
-
     ns: ['common'],
     defaultNS: 'common',
   })
@@ -69,12 +84,6 @@ i18n
 const languageDetector = i18n.services.languageDetector as any
 if (languageDetector?.addDetector) {
   languageDetector.addDetector(pathLanguageDetector)
-}
-
-// Set the initial language based on URL path
-const detectedLang = pathLanguageDetector.lookup() || 'en'
-if (i18n.language !== detectedLang) {
-  i18n.changeLanguage(detectedLang)
 }
 
 export default i18n
