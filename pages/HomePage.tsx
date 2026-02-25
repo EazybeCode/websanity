@@ -167,7 +167,7 @@ export const HomePage: React.FC = () => {
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "USD",
           "lowPrice": 13,
-          "highPrice": 1960,
+          "highPrice": 22,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -209,7 +209,7 @@ export const HomePage: React.FC = () => {
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "USD",
           "lowPrice": 13,
-          "highPrice": 1960,
+          "highPrice": 22,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
