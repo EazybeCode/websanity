@@ -2,7 +2,8 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-// Import all translations upfront
+// Import translations synchronously for all supported languages
+// This ensures instant rendering without blank screens
 import enTranslations from '../locales/en/common.json'
 import ptTranslations from '../locales/pt/common.json'
 import esTranslations from '../locales/es/common.json'

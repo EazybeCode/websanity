@@ -45,6 +45,26 @@ export default defineConfig(({ mode }) => {
             chunkFileNames: 'assets/[name]-[hash].js',
             entryFileNames: 'assets/[name]-[hash].js',
             assetFileNames: 'assets/[name]-[hash].[ext]',
+            // Better code splitting - split vendor chunks (fixed circular dependency)
+            manualChunks: (id) => {
+              // Split large libraries into separate chunks
+              if (id.includes('node_modules')) {
+                // Framer Motion - heavy animation library
+                if (id.includes('framer-motion')) {
+                  return 'animation-vendor';
+                }
+                // Recharts - heavy charting library
+                if (id.includes('recharts')) {
+                  return 'charts-vendor';
+                }
+                // Spline 3D - very heavy
+                if (id.includes('@splinetool')) {
+                  return 'spline-vendor';
+                }
+                // Everything else in one vendor chunk to avoid circular dependencies
+                return 'vendor';
+              }
+            }
           }
         },
 
