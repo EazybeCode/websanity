@@ -292,8 +292,8 @@ export const useHubSpotIntegrationSEO = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "USD",
-          "lowPrice": 13,
-          "highPrice": 22,
+          "lowPrice": 29,
+          "highPrice": 49,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -343,8 +343,8 @@ export const useHubSpotIntegrationSEO = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "USD",
-          "lowPrice": 13,
-          "highPrice": 22,
+          "lowPrice": 29,
+          "highPrice": 49,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
