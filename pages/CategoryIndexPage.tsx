@@ -7,7 +7,8 @@ import {
   Check,
   X,
   Minus,
-  ChevronDown
+  ChevronDown,
+  MessageCircle
 } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { ChunkyFooter } from '../components/footer/ChunkyFooter'
@@ -311,6 +312,46 @@ const ComparisonSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
+// ================== Capabilities Section ==================
+
+const CapabilitiesSection: React.FC<{ data: any }> = ({ data }) => {
+  if (!data || !data.items) return null
+
+  return (
+    <section className="py-24 bg-slate-900 border-t border-slate-700">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          {data.badge && <SectionKicker label={data.badge} className="mx-auto" />}
+          <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-2">
+            {data.headline}{' '}
+            <span className="text-cyan-500">{data.headlineHighlight}</span>
+          </h2>
+          {data.description && (
+            <p className="text-lg text-slate-400 mt-4">
+              {data.description}
+            </p>
+          )}
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {data.items.map((item: any, idx: number) => {
+            const IconComponent = item.icon ? getIcon(item.icon, MessageCircle) : MessageCircle
+            return (
+              <div key={idx} className="bg-slate-800 border border-slate-700 rounded-xl p-6 hover:border-slate-600 transition-colors">
+                <div className="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-500 mb-4">
+                  <IconComponent size={24} />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-slate-400">{item.description}</p>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ================== Benefits Section ==================
 
 const BenefitsSection: React.FC<{ data: any }> = ({ data }) => {
@@ -605,6 +646,17 @@ const getTranslatedCategoryData = (slug: string, t: (key: string, options?: any)
     return Array.isArray(items) ? items : null
   }
 
+  const getCapabilities = () => {
+    const headline = t(`categoryIndex.${categoryKey}.capabilities.headline`)
+    return typeof headline === 'string' ? {
+      badge: t(`categoryIndex.${categoryKey}.capabilities.badge`),
+      headline: headline,
+      headlineHighlight: t(`categoryIndex.${categoryKey}.capabilities.headlineHighlight`),
+      description: t(`categoryIndex.${categoryKey}.capabilities.description`),
+      items: t(`categoryIndex.${categoryKey}.capabilities.items`, { returnObjects: true }) || []
+    } : null
+  }
+
   const getPricing = () => {
     const headline = t(`categoryIndex.${categoryKey}.pricing.headline`)
     return typeof headline === 'string' ? {
@@ -630,6 +682,7 @@ const getTranslatedCategoryData = (slug: string, t: (key: string, options?: any)
     featuredItems: getFeaturedItems(),
     integrationsList: getIntegrationsList(),
     integrationsCta: getIntegrationsCta(),
+    capabilities: categoryKey === 'features' ? getCapabilities() : null,
     pricing: categoryKey === 'features' ? getPricing() : null,
     benefits: categoryKey === 'features' ? {
       badge: t(`categoryIndex.${categoryKey}.benefits.badge`),
@@ -700,6 +753,7 @@ export const CategoryIndexPage: React.FC = () => {
     featuredItems: sanityData.featuredItems || translatedData?.featuredItems,
     integrationsList: sanityData.integrationsList || translatedData?.integrationsList,
     integrationsCta: sanityData.integrationsCta || translatedData?.integrationsCta,
+    capabilities: sanityData.capabilities || translatedData?.capabilities,
     pricing: sanityData.pricing || translatedData?.pricing,
     benefits: sanityData.benefits || translatedData?.benefits,
     howItWorks: sanityData.howItWorks || translatedData?.howItWorks,
@@ -729,6 +783,7 @@ export const CategoryIndexPage: React.FC = () => {
       <FeaturedItemsSection items={data.featuredItems} category={data.category} t={t} language={language} />
       {data.comparisonTable && <ComparisonSection data={data.comparisonTable} />}
       <IntegrationsGridSection data={data.integrationsList} t={t} />
+      <CapabilitiesSection data={data.capabilities} />
       <BenefitsSection data={data.benefits} />
       <HowItWorksSection data={data.howItWorks} />
       <FAQSection data={data.faq} />

@@ -1426,6 +1426,44 @@
         "headline": "Feito para Equipes de Vendas",
         "description": "Cada recurso é projetado para ajudá-lo a vender mais e mais rápido. Sem inchaço, sem complexidade—apenas as ferramentas que você precisa."
       },
+      "capabilities": {
+        "badge": "Recursos da Plataforma",
+        "headline": "Tudo em Um",
+        "headlineHighlight": "Lugar",
+        "description": "De conversas em tempo real a análises avançadas, temos tudo o que você precisa.",
+        "items": [
+          {
+            "icon": "MessageCircle",
+            "title": "Conversas em Tempo Real",
+            "description": "Sincronize mensagens do WhatsApp instantaneamente com sua equipe."
+          },
+          {
+            "icon": "Users",
+            "title": "Caixa de Entrada da Equipe",
+            "description": "Múltiplos membros da equipe podem colaborar no mesmo chat."
+          },
+          {
+            "icon": "BarChart3",
+            "title": "Análises Avançadas",
+            "description": "Acompanhe o desempenho da equipe com relatórios detalhados."
+          },
+          {
+            "icon": "Workflow",
+            "title": "Automação de Workflow",
+            "description": "Automatize tarefas repetitivas e economize horas todas as semanas."
+          },
+          {
+            "icon": "Database",
+            "title": "Integração CRM",
+            "description": "Conecte-se com HubSpot, Zoho, Salesforce e 50+ CRMs."
+          },
+          {
+            "icon": "Shield",
+            "title": "Segurança de Nível Empresarial",
+            "description": "Criptografia de nível bancário e conformidade com LGPD."
+          }
+        ]
+      },
       "benefits": {
         "badge": "Principais Benefícios",
         "headline": "O Que Você Vai Ganhar",

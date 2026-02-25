@@ -1411,6 +1411,44 @@
         "headline": "Satış Ekipleri İçin Yapıldı",
         "description": "Her özellik, daha fazla ve daha hızlı satmanıza yardımcı olmak için tasarlanmıştır. Şişkinlik yok, karmaşıklık yok—sadece ihtiyacınız olan araçlar."
       },
+      "capabilities": {
+        "badge": "Platform Özellikleri",
+        "headline": "Her Şey Tek",
+        "headlineHighlight": "Bir Yerde",
+        "description": "Gerçek zamanlı konuşmalardan gelişmiş analizlere kadar, ihtiyacınız olan her şey.",
+        "items": [
+          {
+            "icon": "MessageCircle",
+            "title": "Gerçek Zamanlı Konuşmalar",
+            "description": "WhatsApp mesajlarını anında ekibinizle senkronize edin."
+          },
+          {
+            "icon": "Users",
+            "title": "Takip Gelen Kutusu",
+            "description": "Birden fazla ekip üyesi aynı sohbette işbirliği yapabilir."
+          },
+          {
+            "icon": "BarChart3",
+            "title": "Gelişmiş Analizler",
+            "description": "Detaylı raporlarla ekip performansını takip edin."
+          },
+          {
+            "icon": "Workflow",
+            "title": "Workflow Otomasyonu",
+            "description": "Tekrarlayan görevleri otomatikleştirin ve her hafta saatler kazanın."
+          },
+          {
+            "icon": "Database",
+            "title": "CRM Entegrasyonu",
+            "description": "HubSpot, Zoho, Salesforce ve 50+ CRM ile bağlanın."
+          },
+          {
+            "icon": "Shield",
+            "title": "Kurumsal Düzeyde Güvenlik",
+            "description": "Banka düzeyinde şifreleme ve KVKK uyumluluğu."
+          }
+        ]
+      },
       "benefits": {
         "badge": "Temel Faydalar",
         "headline": "Ne Kazanacaksınız",

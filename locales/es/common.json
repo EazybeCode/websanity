@@ -1411,6 +1411,44 @@
         "headline": "Hecho para Equipos de Ventas",
         "description": "Cada función está diseñada para ayudarte a vender más y más rápido. Sin excesos, sin complejidad—solo las herramientas que necesitas."
       },
+      "capabilities": {
+        "badge": "Funciones de la Plataforma",
+        "headline": "Todo en Un",
+        "headlineHighlight": "Solo Lugar",
+        "description": "Desde conversaciones en tiempo real hasta análisis avanzados, tenemos todo lo que necesitas.",
+        "items": [
+          {
+            "icon": "MessageCircle",
+            "title": "Conversaciones en Tiempo Real",
+            "description": "Sincroniza mensajes de WhatsApp al instante con tu equipo."
+          },
+          {
+            "icon": "Users",
+            "title": "Bandeja de Entrada del Equipo",
+            "description": "Múltiples miembros del equipo pueden colaborar en el mismo chat."
+          },
+          {
+            "icon": "BarChart3",
+            "title": "Análisis Avanzados",
+            "description": "Rastrea el rendimiento del equipo con informes detallados."
+          },
+          {
+            "icon": "Workflow",
+            "title": "Automatización de Workflow",
+            "description": "Automatiza tareas repetitivas y ahorra horas cada semana."
+          },
+          {
+            "icon": "Database",
+            "title": "Integración CRM",
+            "description": "Conecta con HubSpot, Zoho, Salesforce y 50+ CRMs."
+          },
+          {
+            "icon": "Shield",
+            "title": "Seguridad de Nivel Empresarial",
+            "description": "Cifrado de nivel bancario y cumplimiento GDPR."
+          }
+        ]
+      },
       "benefits": {
         "badge": "Beneficios Clave",
         "headline": "Lo Que Ganarás",
