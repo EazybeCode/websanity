@@ -274,8 +274,8 @@ export const useGoogleSheetsIntegrationSEOBr = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "BRL",
-          "lowPrice": 1160,
-          "highPrice": 1960,
+          "lowPrice": 96,
+          "highPrice": 162,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -325,8 +325,8 @@ export const useGoogleSheetsIntegrationSEOBr = () => {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
           "priceCurrency": "BRL",
-          "lowPrice": 1160,
-          "highPrice": 1960,
+          "lowPrice": 96,
+          "highPrice": 162,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
