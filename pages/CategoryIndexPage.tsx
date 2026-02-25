@@ -671,7 +671,6 @@ export const CategoryIndexPage: React.FC = () => {
       <BenefitsSection data={data.benefits} />
       <HowItWorksSection data={data.howItWorks} />
       <FAQSection data={data.faq} />
-      <IntegrationsCtaSection data={data.integrationsCta} />
 
       {/* Footer with CTA and Security sections */}
       <ChunkyFooter />
