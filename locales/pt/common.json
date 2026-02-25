@@ -1563,7 +1563,15 @@
           "isFeatured": false,
           "tags": ["API", "Avançado"]
         }
-      ]
+      ],
+      "pricing": {
+        "badge": "Escolha Seu Plano",
+        "headline": "Comece Grátis,",
+        "headlineHighlight": "Cresça Conosco",
+        "description": "Sem taxas ocultas. Sem cobranças por mensagem. Preços simples por usuário que escalam com sua equipe.",
+        "primaryCta": "Ver Preços Completos",
+        "secondaryCta": "Começar Grátis"
+      }
     },
     "integrations": {
       "hero": {

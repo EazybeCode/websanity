@@ -1548,7 +1548,15 @@
           "isFeatured": false,
           "tags": ["API", "Avanzado"]
         }
-      ]
+      ],
+      "pricing": {
+        "badge": "Elige Tu Plan",
+        "headline": "Empieza Gratis,",
+        "headlineHighlight": "Crece Con Nosotros",
+        "description": "Sin tarifas ocultas. Sin cargos por mensaje. Precios simples por usuario que escalan con tu equipo.",
+        "primaryCta": "Ver Precios Completos",
+        "secondaryCta": "Empezar Gratis"
+      }
     },
     "integrations": {
       "hero": {

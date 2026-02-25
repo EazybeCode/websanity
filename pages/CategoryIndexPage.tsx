@@ -474,6 +474,54 @@ const IntegrationsGridSection: React.FC<{ data: any[]; t: (key: string) => strin
   )
 }
 
+// ================== Pricing Preview Section ==================
+
+const PricingPreviewSection: React.FC<{ data: any; language: string }> = ({ data, language }) => {
+  if (!data) return null
+
+  const getPricingPath = () => {
+    if (language === 'br') return '/br/pricing'
+    if (language === 'es') return '/es/pricing'
+    if (language === 'tr') return '/tr/pricing'
+    return '/pricing'
+  }
+
+  return (
+    <section className="py-24 bg-slate-900 border-t border-slate-700">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {data.badge && <SectionKicker label={data.badge} className="mx-auto" />}
+        <h2 className="text-4xl font-bold text-white mb-4">
+          {data.headline}{' '}
+          <span className="text-cyan-500">{data.headlineHighlight}</span>
+        </h2>
+        <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">
+          {data.description}
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          {data.primaryCta && (
+            <Link
+              to={getPricingPath()}
+              className="inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            >
+              {data.primaryCta}
+            </Link>
+          )}
+          {data.secondaryCta && (
+            <Link
+              to="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition-colors"
+            >
+              {data.secondaryCta}
+            </Link>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ================== Integrations CTA Section ==================
 
 const IntegrationsCtaSection: React.FC<{ data: any }> = ({ data }) => {
@@ -557,6 +605,18 @@ const getTranslatedCategoryData = (slug: string, t: (key: string, options?: any)
     return Array.isArray(items) ? items : null
   }
 
+  const getPricing = () => {
+    const headline = t(`categoryIndex.${categoryKey}.pricing.headline`)
+    return typeof headline === 'string' ? {
+      badge: t(`categoryIndex.${categoryKey}.pricing.badge`),
+      headline: headline,
+      headlineHighlight: t(`categoryIndex.${categoryKey}.pricing.headlineHighlight`),
+      description: t(`categoryIndex.${categoryKey}.pricing.description`),
+      primaryCta: t(`categoryIndex.${categoryKey}.pricing.primaryCta`),
+      secondaryCta: t(`categoryIndex.${categoryKey}.pricing.secondaryCta`)
+    } : null
+  }
+
   return {
     hero: {
       badge: t(`categoryIndex.${categoryKey}.hero.badge`),
@@ -570,6 +630,7 @@ const getTranslatedCategoryData = (slug: string, t: (key: string, options?: any)
     featuredItems: getFeaturedItems(),
     integrationsList: getIntegrationsList(),
     integrationsCta: getIntegrationsCta(),
+    pricing: categoryKey === 'features' ? getPricing() : null,
     benefits: categoryKey === 'features' ? {
       badge: t(`categoryIndex.${categoryKey}.benefits.badge`),
       headline: t(`categoryIndex.${categoryKey}.benefits.headline`),
@@ -639,6 +700,7 @@ export const CategoryIndexPage: React.FC = () => {
     featuredItems: sanityData.featuredItems || translatedData?.featuredItems,
     integrationsList: sanityData.integrationsList || translatedData?.integrationsList,
     integrationsCta: sanityData.integrationsCta || translatedData?.integrationsCta,
+    pricing: sanityData.pricing || translatedData?.pricing,
     benefits: sanityData.benefits || translatedData?.benefits,
     howItWorks: sanityData.howItWorks || translatedData?.howItWorks,
     faq: sanityData.faq || translatedData?.faq
@@ -670,6 +732,7 @@ export const CategoryIndexPage: React.FC = () => {
       <BenefitsSection data={data.benefits} />
       <HowItWorksSection data={data.howItWorks} />
       <FAQSection data={data.faq} />
+      <PricingPreviewSection data={data.pricing} language={language} />
 
       {/* Footer with CTA and Security sections */}
       <ChunkyFooter />

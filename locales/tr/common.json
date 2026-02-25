@@ -1548,7 +1548,15 @@
           "isFeatured": false,
           "tags": ["API", "Gelişmiş"]
         }
-      ]
+      ],
+      "pricing": {
+        "badge": "Planınızı Seçin",
+        "headline": "Ücretsiz Başlayın,",
+        "headlineHighlight": "Bizimle Büyüyün",
+        "description": "Gizli ücret yok. Mesaj başına ücret yok. Ekibinizle ölçeklenen basit kullanıcı başına fiyatlandırma.",
+        "primaryCta": "Tüm Fiyatları Gör",
+        "secondaryCta": "Ücretsiz Başla"
+      }
     },
     "integrations": {
       "hero": {
