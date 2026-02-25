@@ -1056,10 +1056,18 @@ const BlogPage: React.FC = () => {
           {/* Author & Meta - Clean horizontal layout */}
           <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 py-6 md:py-8 border-y border-slate-800/50">
             <div className="flex items-center gap-3 md:gap-4">
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg md:text-xl">
-                {displayPost.author?.name?.[0] || <User size={20} className="md:hidden" />}
-                {displayPost.author?.name?.[0] || <User size={24} className="hidden md:block" />}
-              </div>
+              {displayPost.author?.image ? (
+                <img
+                  src={displayPost.author.image}
+                  alt={displayPost.author.name}
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-brand-cyan"
+                />
+              ) : (
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg md:text-xl">
+                  {displayPost.author?.name?.[0] || <User size={20} className="md:hidden" />}
+                  {displayPost.author?.name?.[0] || <User size={24} className="hidden md:block" />}
+                </div>
+              )}
               <div>
                 <p className="font-semibold text-white text-base md:text-lg">{displayPost.author?.name || t('blog.detail.authorFallback')}</p>
                 <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
@@ -1499,9 +1507,17 @@ const BlogPage: React.FC = () => {
               {displayPost.author && (
                 <div className="mt-20 pt-12 border-t border-slate-800">
                   <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-slate-700/30">
-                    <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-3xl flex-shrink-0">
-                      {displayPost.author.name[0]}
-                    </div>
+                    {displayPost.author.image ? (
+                      <img
+                        src={displayPost.author.image}
+                        alt={displayPost.author.name}
+                        className="w-24 h-24 rounded-2xl object-cover border-2 border-brand-cyan flex-shrink-0"
+                      />
+                    ) : (
+                      <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-3xl flex-shrink-0">
+                        {displayPost.author.name[0]}
+                      </div>
+                    )}
                     <div className="flex-1">
                       <p className="text-sm text-brand-cyan uppercase tracking-wider font-semibold mb-2">
                         {detailLabels?.authorLabel || t('blog.detail.authorLabel')}

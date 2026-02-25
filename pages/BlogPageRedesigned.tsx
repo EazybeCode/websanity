@@ -624,9 +624,17 @@ const BlogPageRedesigned: React.FC = () => {
                     <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand-blue/10 blur-[80px] rounded-full" />
 
                     <div className="relative z-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left">
-                      <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-4xl flex-shrink-0 shadow-xl shadow-brand-cyan/20">
-                        {post.author.name[0]}
-                      </div>
+                      {post.author.image ? (
+                        <img
+                          src={post.author.image}
+                          alt={post.author.name}
+                          className="w-24 h-24 rounded-3xl object-cover border-2 border-brand-cyan flex-shrink-0 shadow-xl shadow-brand-cyan/20"
+                        />
+                      ) : (
+                        <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-4xl flex-shrink-0 shadow-xl shadow-brand-cyan/20">
+                          {post.author.name[0]}
+                        </div>
+                      )}
                       <div className="flex-1">
                         <p className="text-sm text-brand-cyan uppercase tracking-wider font-semibold mb-2 flex items-center justify-center sm:justify-start gap-2">
                           <User size={14} />
