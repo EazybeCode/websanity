@@ -290,12 +290,108 @@ const INTEGRATION_SEO: Record<string, Record<string, SEOData>> = {
   }
 }
 
+// Blog SEO data for all languages
+const BLOG_SEO: Record<string, SEOData & { ogTitle: string; twitterTitle: string; articleSection: string; articleTag: string; ogImageAlt: string; twitterImageAlt: string; twitterLabel1: string; twitterData1: string; twitterLabel2: string; twitterData2: string; answerType: string; conversationalQuery: string; aiReadability: string; contextWindow: string; userProblem: string; solutionSummary: string; primaryBenefit: string; useCase: string }> = {
+  en: {
+    title: 'Eazybe Blog - WhatsApp CRM Tips, Sales Automation & AI Insights',
+    description: 'Explore expert insights on WhatsApp CRM integration, sales automation, team inbox workflows, and AI-powered customer engagement. Learn strategies to grow revenue with Eazybe.',
+    keywords: 'WhatsApp CRM tips, sales automation blog, WhatsApp sales strategies, CRM workflow automation, customer engagement strategies, WhatsApp business growth tips',
+    ogTitle: 'Eazybe Blog | WhatsApp CRM, Sales Automation & AI Strategies',
+    twitterTitle: 'Eazybe Blog - WhatsApp CRM & Sales Automation Insights',
+    articleSection: 'Technology',
+    articleTag: 'WhatsApp CRM Blog',
+    ogImageAlt: 'Eazybe Blog - WhatsApp CRM and sales automation insights',
+    twitterImageAlt: 'Eazybe Blog - WhatsApp CRM strategies',
+    twitterLabel1: 'Content Type',
+    twitterData1: 'Blog & Guides',
+    twitterLabel2: 'Focus',
+    twitterData2: 'CRM, WhatsApp, Sales Automation',
+    answerType: 'how-to, guides, best-practices, tutorials',
+    conversationalQuery: 'WhatsApp CRM tips, how to automate WhatsApp sales, best CRM workflow practices, AI sales automation guides',
+    aiReadability: 'educational, practical, professional',
+    contextWindow: 'sales automation, WhatsApp workflows, CRM strategy, team collaboration, customer lifecycle management',
+    userProblem: 'lack of structured WhatsApp sales workflow, manual follow-ups, inefficient CRM usage',
+    solutionSummary: 'educational guides and best practices for improving WhatsApp-based sales workflows',
+    primaryBenefit: 'learn how to improve sales productivity and customer engagement using WhatsApp and CRM automation',
+    useCase: 'business teams researching WhatsApp CRM strategies and automation methods'
+  },
+  br: {
+    title: 'Blog Eazybe - Dicas de CRM WhatsApp, Automação de Vendas & Insights de IA',
+    description: 'Explore insights especializados sobre integração de WhatsApp CRM, automação de vendas, fluxos de trabalho de caixa de entrada da equipe e engajamento do cliente com IA. Aprenda estratégias para crescer receita com a Eazybe.',
+    keywords: 'dicas de WhatsApp CRM, blog de automação de vendas, estratégias de vendas WhatsApp, automação de fluxo de trabalho CRM, estratégias de engajamento do cliente, dicas de crescimento de negócios WhatsApp',
+    ogTitle: 'Blog Eazybe | WhatsApp CRM, Automação de Vendas e Estratégias de IA',
+    twitterTitle: 'Blog Eazybe - Insights de CRM WhatsApp e Automação de Vendas',
+    articleSection: 'Tecnologia',
+    articleTag: 'Blog WhatsApp CRM',
+    ogImageAlt: 'Blog Eazybe - insights de automação de vendas e CRM WhatsApp',
+    twitterImageAlt: 'Blog Eazybe - estratégias de CRM WhatsApp',
+    twitterLabel1: 'Tipo de Conteúdo',
+    twitterData1: 'Blog & Guias',
+    twitterLabel2: 'Foco',
+    twitterData2: 'CRM, WhatsApp, Automação de Vendas',
+    answerType: 'como fazer, guias, melhores práticas, tutoriais',
+    conversationalQuery: 'dicas de WhatsApp CRM, como automatizar vendas WhatsApp, melhores práticas de fluxo de trabalho CRM, guias de automação de vendas com IA',
+    aiReadability: 'educacional, prático, profissional',
+    contextWindow: 'automação de vendas, fluxos de trabalho WhatsApp, estratégia CRM, colaboração em equipe, gerenciamento de ciclo de vida do cliente',
+    userProblem: 'falta de fluxo de vendas WhatsApp estruturado, follow-ups manuais, uso ineficiente de CRM',
+    solutionSummary: 'guias educacionais e melhores práticas para melhorar fluxos de trabalho de vendas baseados em WhatsApp',
+    primaryBenefit: 'aprenda como melhorar a produtividade de vendas e o engajamento do cliente usando WhatsApp e automação de CRM',
+    useCase: 'equipes de negócios pesquisando estratégias de WhatsApp CRM e métodos de automação'
+  },
+  es: {
+    title: 'Blog Eazybe - Consejos CRM de WhatsApp, Automatización de Ventas e Insights de IA',
+    description: 'Explora insights expertos sobre integración de WhatsApp CRM, automatización de ventas, flujos de trabajo de bandeja de entrada del equipo y participación del cliente con IA. Aprende estrategias para crecer ingresos con Eazybe.',
+    keywords: 'consejos de WhatsApp CRM, blog de automatización de ventas, estrategias de ventas WhatsApp, automatización de flujo de trabajo CRM, estrategias de participación del cliente, consejos de crecimiento de negocios WhatsApp',
+    ogTitle: 'Blog Eazybe | WhatsApp CRM, Automatización de Ventas y Estrategias de IA',
+    twitterTitle: 'Blog Eazybe - Insights de CRM WhatsApp y Automatización de Ventas',
+    articleSection: 'Tecnología',
+    articleTag: 'Blog WhatsApp CRM',
+    ogImageAlt: 'Blog Eazybe - insights de automatización de ventas y CRM WhatsApp',
+    twitterImageAlt: 'Blog Eazybe - estrategias de CRM WhatsApp',
+    twitterLabel1: 'Tipo de Contenido',
+    twitterData1: 'Blog y Guías',
+    twitterLabel2: 'Enfoque',
+    twitterData2: 'CRM, WhatsApp, Automatización de Ventas',
+    answerType: 'cómo hacer, guías, mejores prácticas, tutoriales',
+    conversationalQuery: 'consejos de WhatsApp CRM, cómo automatizar ventas WhatsApp, mejores prácticas de flujo de trabajo CRM, guías de automatización de ventas con IA',
+    aiReadability: 'educacional, práctico, profesional',
+    contextWindow: 'automatización de ventas, flujos de trabajo WhatsApp, estrategia CRM, colaboración en equipo, gestión del ciclo de vida del cliente',
+    userProblem: 'falta de flujo de ventas WhatsApp estructurado, seguimientos manuales, uso ineficiente de CRM',
+    solutionSummary: 'guías educacionales y mejores prácticas para mejorar flujos de trabajo de ventas basados en WhatsApp',
+    primaryBenefit: 'aprende cómo mejorar la productividad de ventas y la participación del cliente usando WhatsApp y automatización de CRM',
+    useCase: 'equipos de negocios investigando estrategias de WhatsApp CRM y métodos de automatización'
+  },
+  tr: {
+    title: 'Eazybe Blog - WhatsApp CRM İpuçları, Satış Otomasyonu ve Yapay Zeka Analizleri',
+    description: 'WhatsApp CRM entegrasyonu, satış otomasyonu, takım gelen kutusu iş akışları ve yapay zeka destekli müşteri etkileşimi konusunda uzman görüşlerini keşfedin. Eazybe ile gelir büyütme stratejilerini öğrenin.',
+    keywords: 'WhatsApp CRM ipuçları, satış otomasyonu blogu, WhatsApp satış stratejileri, CRM iş akışı otomasyonu, müşteri etkileşimi stratejileri, WhatsApp iş büyüme ipuçları',
+    ogTitle: 'Eazybe Blog | WhatsApp CRM, Satış Otomasyonu ve Yapay Zeka Stratejileri',
+    twitterTitle: 'Eazybe Blog - WhatsApp CRM ve Satış Otomasyonu Analizleri',
+    articleSection: 'Teknoloji',
+    articleTag: 'WhatsApp CRM Blogu',
+    ogImageAlt: 'Eazybe Blog - WhatsApp CRM ve satış otomasyonu analizleri',
+    twitterImageAlt: 'Eazybe Blog - WhatsApp CRM stratejileri',
+    twitterLabel1: 'İçerik Türü',
+    twitterData1: 'Blog ve Rehberler',
+    twitterLabel2: 'Odak',
+    twitterData2: 'CRM, WhatsApp, Satış Otomasyonu',
+    answerType: 'nasıl yapılır, rehberler, en iyi uygulamalar, öğreticiler',
+    conversationalQuery: 'WhatsApp CRM ipuçları, WhatsApp satışlarını nasıl otomatize edilir, en iyi CRM iş akışı uygulamaları, yapay zeka satış otomasyonu rehberleri',
+    aiReadability: 'eğitimsel, pratik, profesyonel',
+    contextWindow: 'satış otomasyonu, WhatsApp iş akışları, CRM stratejisi, takım işbirliği, müşteri yaşam döngüsü yönetimi',
+    userProblem: 'yapılandırılmış WhatsApp satış iş akışı eksikliği, manuel takipler, verimsiz CRM kullanımı',
+    solutionSummary: 'WhatsApp tabanlı satış iş akışlarını iyileştirmek için eğitim rehberleri ve en iyi uygulamalar',
+    primaryBenefit: 'WhatsApp ve CRM otomasyonu kullanarak satış verimliliğini ve müşteri etkileşimini nasıl iyileştireceğinizi öğrenin',
+    useCase: 'WhatsApp CRM stratejileri ve otomasyon yöntemlerini araştıran iş takımları'
+  }
+}
+
 // Generate blog-specific meta tags HTML with all the custom tags
-function generateBlogMetaTags(locale: string, canonicalUrl: string): string {
+function generateBlogMetaTags(locale: string, canonicalUrl: string, blogSeo: typeof BLOG_SEO.en): string {
   return `
     <!-- Basic Meta Tags -->
-    <meta name="description" content="Explore expert insights on WhatsApp CRM integration, sales automation, team inbox workflows, and AI-powered customer engagement. Learn strategies to grow revenue with Eazybe." />
-    <meta name="keywords" content="WhatsApp CRM tips, sales automation blog, WhatsApp sales strategies, CRM workflow automation, customer engagement strategies, WhatsApp business growth tips" />
+    <meta name="description" content="${blogSeo.description}" />
+    <meta name="keywords" content="${blogSeo.keywords}" />
     <meta name="author" content="Eazybe" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -303,18 +399,18 @@ function generateBlogMetaTags(locale: string, canonicalUrl: string): string {
     <meta name="thumbnail" content="https://eazybe.com/logo.png" />
 
     <!-- Article Meta Tags -->
-    <meta property="article:section" content="Technology" />
-    <meta property="article:tag" content="WhatsApp CRM Blog" />
+    <meta property="article:section" content="${blogSeo.articleSection}" />
+    <meta property="article:tag" content="${blogSeo.articleTag}" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${canonicalUrl}" />
-    <meta property="og:title" content="Eazybe Blog | WhatsApp CRM, Sales Automation &amp; AI Strategies" />
-    <meta property="og:description" content="Read practical guides on WhatsApp CRM workflows, sales automation, and AI-driven customer engagement. Actionable insights for modern sales teams." />
+    <meta property="og:title" content="${blogSeo.ogTitle}" />
+    <meta property="og:description" content="${blogSeo.description}" />
     <meta property="og:image" content="https://eazybe.com/logo.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Eazybe Blog - WhatsApp CRM and sales automation insights" />
+    <meta property="og:image:alt" content="${blogSeo.ogImageAlt}" />
     <meta property="og:locale" content="${locale}" />
     <meta property="og:site_name" content="Eazybe" />
 
@@ -322,14 +418,14 @@ function generateBlogMetaTags(locale: string, canonicalUrl: string): string {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@eazybe" />
     <meta name="twitter:creator" content="@eazybe" />
-    <meta name="twitter:title" content="Eazybe Blog - WhatsApp CRM &amp; Sales Automation Insights" />
-    <meta name="twitter:description" content="Guides and insights on WhatsApp CRM workflows, AI sales automation, and customer engagement strategies for modern businesses." />
+    <meta name="twitter:title" content="${blogSeo.twitterTitle}" />
+    <meta name="twitter:description" content="${blogSeo.description}" />
     <meta name="twitter:image" content="https://eazybe.com/logo.png" />
-    <meta name="twitter:image:alt" content="Eazybe Blog - WhatsApp CRM strategies" />
-    <meta name="twitter:label1" content="Content Type" />
-    <meta name="twitter:data1" content="Blog &amp; Guides" />
-    <meta name="twitter:label2" content="Focus" />
-    <meta name="twitter:data2" content="CRM, WhatsApp, Sales Automation" />
+    <meta name="twitter:image:alt" content="${blogSeo.twitterImageAlt}" />
+    <meta name="twitter:label1" content="${blogSeo.twitterLabel1}" />
+    <meta name="twitter:data1" content="${blogSeo.twitterData1}" />
+    <meta name="twitter:label2" content="${blogSeo.twitterLabel2}" />
+    <meta name="twitter:data2" content="${blogSeo.twitterData2}" />
 
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
@@ -338,16 +434,16 @@ function generateBlogMetaTags(locale: string, canonicalUrl: string): string {
     <meta name="apple-mobile-web-app-title" content="Eazybe" />
 
     <!-- AI and SEO Specific Meta Tags -->
-    <meta name="answer-type" content="how-to, guides, best-practices, tutorials" />
+    <meta name="answer-type" content="${blogSeo.answerType}" />
     <meta name="target-audience" content="sales teams, CRM users, founders, marketing teams, support teams, B2B companies" />
     <meta name="content-intent" content="informational" />
-    <meta name="conversational-query" content="WhatsApp CRM tips, how to automate WhatsApp sales, best CRM workflow practices, AI sales automation guides" />
-    <meta name="ai-readability" content="educational, practical, professional" />
-    <meta name="context-window" content="sales automation, WhatsApp workflows, CRM strategy, team collaboration, customer lifecycle management" />
-    <meta name="user-problem" content="lack of structured WhatsApp sales workflow, manual follow-ups, inefficient CRM usage" />
-    <meta name="solution-summary" content="educational guides and best practices for improving WhatsApp-based sales workflows" />
-    <meta name="primary-benefit" content="learn how to improve sales productivity and customer engagement using WhatsApp and CRM automation" />
-    <meta name="use-case" content="business teams researching WhatsApp CRM strategies and automation methods" />
+    <meta name="conversational-query" content="${blogSeo.conversationalQuery}" />
+    <meta name="ai-readability" content="${blogSeo.aiReadability}" />
+    <meta name="context-window" content="${blogSeo.contextWindow}" />
+    <meta name="user-problem" content="${blogSeo.userProblem}" />
+    <meta name="solution-summary" content="${blogSeo.solutionSummary}" />
+    <meta name="primary-benefit" content="${blogSeo.primaryBenefit}" />
+    <meta name="use-case" content="${blogSeo.useCase}" />
     <meta name="implementation-difficulty" content="varies by guide" />
     <meta name="time-to-value" content="immediate insights from each article" />
 
@@ -357,6 +453,220 @@ function generateBlogMetaTags(locale: string, canonicalUrl: string): string {
 
     <!-- Canonical -->
     <link rel="canonical" href="${canonicalUrl}" />
+  `.trim()
+}
+
+// Generate JSON-LD schemas for blog pages
+function generateBlogSchemas(canonicalUrl: string, blogSeo: typeof BLOG_SEO.en, langKey: string): string {
+  const breadcrumbs = [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Eazybe",
+      "item": "https://eazybe.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": langKey === 'en' ? 'Blog' : langKey === 'br' ? 'Blog' : langKey === 'es' ? 'Blog' : 'Blog',
+      "item": canonicalUrl
+    }
+  ]
+
+  const faqData = {
+    en: {
+      questions: [
+        {
+          name: "What topics does the Eazybe blog cover?",
+          answer: "The Eazybe blog covers WhatsApp CRM integration tips, sales automation strategies, team inbox workflows, AI-powered customer engagement, CRM workflow automation, and WhatsApp business growth tips."
+        },
+        {
+          name: "How can I improve my WhatsApp sales workflow?",
+          answer: "You can improve your WhatsApp sales workflow by implementing CRM automation, using AI agents for faster responses, setting up team inbox workflows, and following customer engagement best practices described in our articles."
+        },
+        {
+          name: "What CRM platforms integrate with WhatsApp?",
+          answer: "Popular CRM platforms that integrate with WhatsApp include HubSpot, Salesforce, Zoho, Bitrix24, LeadSquared, Freshdesk, Pipedrive, and Monday.com. Our blog provides detailed guides for each integration."
+        }
+      ]
+    },
+    br: {
+      questions: [
+        {
+          name: "Quais tópicos o blog Eazybe cobre?",
+          answer: "O blog Eazybe cobre dicas de integração CRM WhatsApp, estratégias de automação de vendas, fluxos de trabalho de equipe compartilhada, engajamento do cliente com suporte de IA, automação de fluxos de trabalho CRM e dicas de crescimento de negócios WhatsApp."
+        },
+        {
+          name: "Como posso melhorar meu fluxo de vendas WhatsApp?",
+          answer: "Você pode melhorar seu fluxo de vendas WhatsApp implementando automação CRM, usando agentes de IA para respostas mais rápidas, configurando fluxos de trabalho de equipe compartilhada e seguindo as melhores práticas para engajamento do cliente descritas em nossos artigos."
+        },
+        {
+          name: "Quais plataformas de CRM integram com WhatsApp?",
+          answer: "Plataformas de CRM populares que integram com WhatsApp incluem HubSpot, Salesforce, Zoho, Bitrix24, LeadSquared, Freshdesk, Pipedrive e Monday.com. Nosso blog fornece guias detalhados para cada integração."
+        }
+      ]
+    },
+    es: {
+      questions: [
+        {
+          name: "¿Qué temas cubre el blog Eazybe?",
+          answer: "El blog Eazybe cubre consejos de integración CRM WhatsApp, estrategias de automatización de ventas, flujos de trabajo de equipo compartido, participación del cliente con soporte de IA, automatización de flujos de trabajo CRM y consejos de crecimiento empresarial WhatsApp."
+        },
+        {
+          name: "¿Cómo puedo mejorar mi flujo de ventas de WhatsApp?",
+          answer: "Puedes mejorar tu flujo de ventas de WhatsApp implementando automatización CRM, usando agentes de IA para respuestas más rápidas, configurando flujos de trabajo de equipo compartido y siguiendo las mejores prácticas para la participación del cliente descritas en nuestros artículos."
+        },
+        {
+          name: "¿Qué plataformas de CRM integran con WhatsApp?",
+          answer: "Las plataformas de CRM populares que integran con WhatsApp incluyen HubSpot, Salesforce, Zoho, Bitrix24, LeadSquared, Freshdesk, Pipedrive y Monday.com. Nuestro blog proporciona guías detalladas para cada integración."
+        }
+      ]
+    },
+    tr: {
+      questions: [
+        {
+          name: "Eazybe blog hangi konuları kapsıyor?",
+          answer: "Eazybe blog, WhatsApp CRM entegrasyon ipuçları, satış otomasyonu stratejileri, ekibe işbirliği iş akışları, yapay zeka destekli müşteri katılımı, CRM iş akışı otomasyonu ve WhatsApp iş büyüme ipuçlarını kapsar."
+        },
+        {
+          name: "WhatsApp satış iş akışımı nasıl geliştirebilirim?",
+          answer: "CRM otomasyonu uygulayarak, daha hızlı yanıtlar için yapay zeka ajanları kullanarak, ekibe gelen kutusu iş akışları yapılandırarak ve blog makalelerimizde özetlenen müşteri katılımı en iyi uygulamalarını takarak WhatsApp satış iş akışınızı geliştirebilirsiniz."
+        },
+        {
+          name: "Hangi CRM platformları WhatsApp ile entegre?",
+          answer: "WhatsApp ile entegre olan popüler CRM platformları HubSpot, Salesforce, Zoho, Bitrix24, LeadSquared, Freshdesk, Pipedrive ve Monday.com'ı içerir. Blogumuz her entegrasyon için detaylı rehberler sağlar."
+        }
+      ]
+    }
+  }
+
+  const orgDesc = {
+    en: "Eazybe helps sales teams connect WhatsApp with CRM platforms to sync conversations, automate follow-ups, and improve customer engagement.",
+    br: "Eazybe ajuda equipes de vendas a conectar WhatsApp com plataformas CRM para sincronizar conversas, automatizar follow-ups e melhorar engajamento do cliente.",
+    es: "Eazybe ayuda a los equipos de ventas a conectar WhatsApp con plataformas CRM para sincronizar conversaciones, automatizar seguimientos y mejorar la participación del cliente.",
+    tr: "Eazybe, satış ekiplerinin WhatsApp'ı CRM platformlarıyla bağlantı kurmasına, konuşmaları senkronize etmesine, takip otomatize etmesine ve müşteri konuşmalarını iyileştirmesine yardımcı olur."
+  }
+
+  const webDesc = {
+    en: "WhatsApp CRM & Sales Automation Platform",
+    br: "Plataforma CRM WhatsApp & Automação de Vendas",
+    es: "Plataforma CRM WhatsApp y Automatización de Ventas",
+    tr: "WhatsApp CRM ve Satış Otomasyonu Platformu"
+  }
+
+  const faq = faqData[langKey as keyof typeof faqData] || faqData.en
+
+  const schemas = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs
+      },
+      {
+        '@type': 'CollectionPage',
+        url: canonicalUrl,
+        name: blogSeo.title,
+        description: blogSeo.description,
+        inLanguage: langKey === 'en' ? 'en' : langKey === 'br' ? 'pt-BR' : langKey === 'es' ? 'es' : 'tr',
+        about: [
+          { '@type': 'Thing', name: 'WhatsApp CRM' },
+          { '@type': 'Thing', name: langKey === 'en' ? 'Sales Automation' : langKey === 'br' ? 'Automação de Vendas' : langKey === 'es' ? 'Automatización de Ventas' : 'Satış Otomasyonu' },
+          { '@type': 'Thing', name: langKey === 'en' ? 'Customer Engagement' : langKey === 'br' ? 'Engajamento do Cliente' : langKey === 'es' ? 'Participación del Cliente' : 'Müşteri Katılımı' }
+        ]
+      },
+      {
+        '@type': 'Organization',
+        name: 'Eazybe',
+        url: 'https://eazybe.com/',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://eazybe.com/logo.png',
+          width: 600,
+          height: 60
+        },
+        description: orgDesc[langKey as keyof typeof orgDesc] || orgDesc.en
+      },
+      {
+        '@type': 'WebSite',
+        url: 'https://eazybe.com/',
+        name: 'Eazybe',
+        description: webDesc[langKey as keyof typeof webDesc] || webDesc.en
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: faq.questions.map(q => ({
+          '@type': 'Question',
+          name: q.name,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: q.answer
+          }
+        }))
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: langKey === 'en' ? 'WhatsApp CRM Integration - Eazybe' : langKey === 'br' ? 'Integração CRM WhatsApp - Eazybe' : langKey === 'es' ? 'Integración CRM WhatsApp - Eazybe' : 'WhatsApp CRM Entegrasyonu - Eazybe',
+        applicationCategory: 'BusinessApplication',
+        applicationSubCategory: langKey === 'en' ? 'CRM Integration, WhatsApp Automation, AI Agents for WhatsApp' : langKey === 'br' ? 'Integração CRM, Automação WhatsApp, Agentes de IA para WhatsApp' : langKey === 'es' ? 'Integración CRM, Automatización WhatsApp, Agentes de IA para WhatsApp' : 'CRM Entegrasyonu, WhatsApp Otomasyonu, WhatsApp için Yapay Zeka Ajanları',
+        operatingSystem: 'Web, Chrome Extension',
+        offers: {
+          '@type': 'AggregateOffer',
+          url: 'https://eazybe.com/pricing',
+          priceCurrency: 'USD',
+          lowPrice: 29,
+          highPrice: 49,
+          offerCount: 5,
+          availability: 'https://schema.org/InStock'
+        },
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.7',
+          bestRating: '5',
+          worstRating: '1',
+          ratingCount: 53766
+        },
+        featureList: langKey === 'en' ? [
+          'Automatic WhatsApp to CRM sync',
+          'AI-powered response suggestions',
+          'Shared inbox for team collaboration',
+          'Deal tracking from WhatsApp',
+          'Contact sync',
+          'Message scheduling',
+          'AI Agents for CRM'
+        ] : langKey === 'br' ? [
+          'Sincronização automática WhatsApp para CRM',
+          'Sugestões de resposta alimentadas por IA',
+          'Caixa de entrada compartilhada para colaboração em equipe',
+          'Acompanhamento de negócios do WhatsApp',
+          'Sincronização de contatos',
+          'Agendamento de mensagens',
+          'Agentes de IA para CRM'
+        ] : langKey === 'es' ? [
+          'Sincronización automática de WhatsApp a CRM',
+          'Sugerencias de respuesta impulsadas por IA',
+          'Bandeja de entrada compartida para colaboración en equipo',
+          'Seguimiento de acuerdos desde WhatsApp',
+          'Sincronización de contactos',
+          'Programación de mensajes',
+          'Agentes de IA para CRM'
+        ] : [
+          'Otomatik WhatsApp\'dan CRM\'e senkronizasyon',
+          'Yapay zeka destekli yanıt önerileri',
+          'Ekibe işbirliği için paylaşılan gelen kutusu',
+          'WhatsApp\'tan anlaşma takibi',
+          'Kontakt senkronizasyonu',
+          'Mesaj planlama',
+          'CRM için Yapay Zeka Ajanları'
+        ]
+      }
+    ]
+  }
+
+  return `
+    <script type="application/ld+json">
+    ${JSON.stringify(schemas)}
+    </script>
   `.trim()
 }
 
@@ -416,22 +726,27 @@ function createPrerenderedHTML(path: string, seoData: { title: string; descripti
 }
 
 // Create blog-specific pre-rendered HTML file with all custom meta tags
-function createBlogPrerenderedHTML(canonicalUrl: string, lang: { prefix: string; locale: string }): string {
+function createBlogPrerenderedHTML(canonicalUrl: string, lang: { prefix: string; locale: string }, langKey: string): string {
   // Read the original index.html
   const indexPath = join(DIST_DIR, 'index.html')
   let indexHTML = readFileSync(indexPath, 'utf-8')
 
-  // Generate blog-specific meta tags
-  const blogTitle = 'Eazybe Blog - WhatsApp CRM Tips, Sales Automation & AI Insights'
-  const metaTags = generateBlogMetaTags(lang.locale, canonicalUrl)
+  // Get language-specific blog SEO data, fallback to English if not available
+  const blogSeo = BLOG_SEO[langKey as keyof typeof BLOG_SEO] || BLOG_SEO.en
 
-  // Replace title
-  indexHTML = indexHTML.replace(/<title>.*?<\/title>/, `<title>${blogTitle}</title>`)
+  // Generate blog-specific meta tags with language-specific content
+  const metaTags = generateBlogMetaTags(lang.locale, canonicalUrl, blogSeo)
 
-  // Add meta tags before closing head
+  // Generate JSON-LD schemas for this language
+  const schemas = generateBlogSchemas(canonicalUrl, blogSeo, langKey)
+
+  // Replace title with language-specific title
+  indexHTML = indexHTML.replace(/<title>.*?<\/title>/, `<title>${blogSeo.title}</title>`)
+
+  // Add meta tags and schemas before closing head
   const headEndIndex = indexHTML.indexOf('</head>')
   if (headEndIndex !== -1) {
-    indexHTML = indexHTML.slice(0, headEndIndex) + '\n' + metaTags + '\n' + indexHTML.slice(headEndIndex)
+    indexHTML = indexHTML.slice(0, headEndIndex) + '\n' + metaTags + '\n\n' + schemas + '\n' + indexHTML.slice(headEndIndex)
   }
 
   return indexHTML
@@ -468,7 +783,7 @@ async function generatePrerenderedFiles() {
         // Special handling for blog page with custom meta tags
         if (routePath === 'blog') {
           const canonicalUrl = routePrefix ? `https://eazybe.com/${routePrefix}` : 'https://eazybe.com/blog'
-          html = createBlogPrerenderedHTML(canonicalUrl, langConfig)
+          html = createBlogPrerenderedHTML(canonicalUrl, langConfig, langKey)
         } else {
           // Create SEO data for other routes
           const seoData = {

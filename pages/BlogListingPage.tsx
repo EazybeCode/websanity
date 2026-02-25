@@ -9,6 +9,9 @@ import { SectionBadge } from '../components/ui/SectionBadge';
 import { getLanguageFromPath } from '../components/LanguageProvider';
 import { translateBlogPost, getUIText, SupportedLanguage } from '../lib/blogTranslations';
 import { useBlogListingSEO } from '../hooks/useBlogListingSEO';
+import { useBlogListingSEOBr } from '../hooks/useBlogListingSEOBr';
+import { useBlogListingSEOEs } from '../hooks/useBlogListingSEOEs';
+import { useBlogListingSEOTr } from '../hooks/useBlogListingSEOTr';
 
 const BlogCard: React.FC<{ post: any; minReadSuffix?: string }> = ({ post, minReadSuffix = 'min read' }) => {
   const navigate = useNavigate();
@@ -113,8 +116,18 @@ const BlogListingPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
 
-  // Apply SEO meta tags for blog listing page
-  useBlogListingSEO();
+  // Apply SEO meta tags for blog listing page based on language
+  const currentPath = location.pathname;
+  if (currentPath === '/blog') {
+    useBlogListingSEO();
+  } else if (currentPath === '/br/blog') {
+    useBlogListingSEOBr();
+  } else if (currentPath === '/es/blog') {
+    useBlogListingSEOEs();
+  } else if (currentPath === '/tr/blog') {
+    useBlogListingSEOTr();
+  }
+
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [forceShowContent, setForceShowContent] = useState(false);
