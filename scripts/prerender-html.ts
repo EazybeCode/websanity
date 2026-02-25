@@ -458,12 +458,18 @@ function generateBlogMetaTags(locale: string, canonicalUrl: string, blogSeo: typ
 
 // Generate JSON-LD schemas for blog pages
 function generateBlogSchemas(canonicalUrl: string, blogSeo: typeof BLOG_SEO.en, langKey: string): string {
+  // Language-specific breadcrumb URLs
+  const breadcrumbBaseUrl = langKey === 'en' ? 'https://eazybe.com/' :
+                            langKey === 'br' ? 'https://eazybe.com/br' :
+                            langKey === 'es' ? 'https://eazybe.com/es' :
+                            'https://eazybe.com/tr'
+
   const breadcrumbs = [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Eazybe",
-      "item": "https://eazybe.com/"
+      "item": breadcrumbBaseUrl
     },
     {
       "@type": "ListItem",

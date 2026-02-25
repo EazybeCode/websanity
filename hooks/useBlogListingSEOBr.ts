@@ -107,7 +107,7 @@ export const useBlogListingSEOBr = () => {
           "@type": "ListItem",
           "position": 1,
           "name": "Eazybe",
-          "item": "https://eazybe.com/"
+          "item": "https://eazybe.com/br"
         }, {
           "@type": "ListItem",
           "position": 2,
