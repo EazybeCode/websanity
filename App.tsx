@@ -148,6 +148,10 @@ const AppRoutes = () => (
       <Route path="/br/whatsapp-api/coexistence" element={<CoexistencePage />} />
       <Route path="/br/whatsapp-api/:slug" element={<FeaturePage />} />
       <Route path="/br/integrations" element={<CategoryIndexPage />} />
+      {/* Redirect old Portuguese integration URLs */}
+      {integrationSlugs.map((slug) => (
+        <Route key={`br-redirect-${slug}`} path={`/br/${slug}`} element={<Navigate to={`/br/${slug}-whatsapp-integration`} replace />} />
+      ))}
       {integrationSlugs.map((slug) => (
         <Route key={`br-${slug}`} path={`/br/${slug}-whatsapp-integration`} element={<ProductPage />} />
       ))}
@@ -176,7 +180,9 @@ const AppRoutes = () => (
       {/* Redirect old Spanish integration URLs */}
       <Route path="/es/integrations/google-sheet" element={<Navigate to="/es/google-sheets-whatsapp-integration" replace />} />
       <Route path="/es/integrations/fresh-desk" element={<Navigate to="/es/freshdesk-whatsapp-integration" replace />} />
-      <Route path="/es/salesforce" element={<Navigate to="/es/salesforce-whatsapp-integration" replace />} />
+      {integrationSlugs.map((slug) => (
+        <Route key={`es-redirect-${slug}`} path={`/es/${slug}`} element={<Navigate to={`/es/${slug}-whatsapp-integration`} replace />} />
+      ))}
       {integrationSlugs.map((slug) => (
         <Route key={`es-${slug}`} path={`/es/${slug}-whatsapp-integration`} element={<ProductPage />} />
       ))}
@@ -200,6 +206,9 @@ const AppRoutes = () => (
       <Route path="/tr/integrations" element={<CategoryIndexPage />} />
       {/* Redirect old Turkish integration URLs */}
       <Route path="/tr/integrations/fresh-desk" element={<Navigate to="/tr/freshdesk-whatsapp-integration" replace />} />
+      {integrationSlugs.map((slug) => (
+        <Route key={`tr-redirect-${slug}`} path={`/tr/${slug}`} element={<Navigate to={`/tr/${slug}-whatsapp-integration`} replace />} />
+      ))}
       {integrationSlugs.map((slug) => (
         <Route key={`tr-${slug}`} path={`/tr/${slug}-whatsapp-integration`} element={<ProductPage />} />
       ))}
