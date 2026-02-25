@@ -664,7 +664,6 @@ export const CategoryIndexPage: React.FC = () => {
       <Navbar />
 
       <HeroSection data={data.hero} />
-      <IntroSection data={data.intro} />
       <FeaturedItemsSection items={data.featuredItems} category={data.category} t={t} language={language} />
       {data.comparisonTable && <ComparisonSection data={data.comparisonTable} />}
       <IntegrationsGridSection data={data.integrationsList} t={t} />
