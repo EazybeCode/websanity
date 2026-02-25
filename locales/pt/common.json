@@ -1481,6 +1481,90 @@
         ]
       }
     },
+    "features": {
+      "hero": {
+        "badge": "Recursos da Plataforma",
+        "headline": "Tudo Que Você Precisa para",
+        "headlineHighlight": "Vencer no WhatsApp",
+        "description": "Um conjunto completo de ferramentas para transformar o WhatsApp no seu canal de vendas mais poderoso.",
+        "primaryCta": "Instalar Grátis",
+        "secondaryCta": "Agendar Demo"
+      },
+      "featuredItems": [
+        {
+          "name": "Caixa de Entrada da Equipe",
+          "slug": "team-inbox",
+          "description": "Colabore em chats de clientes com múltiplos membros da equipe",
+          "icon": "Users",
+          "color": "#3b82f6",
+          "isFeatured": true,
+          "tags": ["Colaboração", "Popular"]
+        },
+        {
+          "name": "Backup na Nuvem",
+          "slug": "cloud-backup",
+          "description": "Nunca perca uma conversa novamente com backup automático",
+          "icon": "Cloud",
+          "color": "#06b6d4",
+          "isFeatured": true,
+          "tags": ["Segurança", "Essencial"]
+        },
+        {
+          "name": "Respostas Rápidas",
+          "slug": "quick-reply",
+          "description": "Templates para respostas mais rápidas e consistentes",
+          "icon": "MessageSquare",
+          "color": "#8b5cf6",
+          "isFeatured": true,
+          "tags": ["Produtividade"]
+        },
+        {
+          "name": "Agendador de Mensagens",
+          "slug": "message-scheduler",
+          "description": "Agende mensagens para serem enviadas no momento perfeito",
+          "icon": "Calendar",
+          "color": "#ec4899",
+          "isFeatured": false,
+          "tags": ["Automação"]
+        },
+        {
+          "name": "Rótulos e Funnels",
+          "slug": "labels-funnels",
+          "description": "Organize contatos e rastreie leads pelo funil de vendas",
+          "icon": "Tag",
+          "color": "#f59e0b",
+          "isFeatured": false,
+          "tags": ["CRM"]
+        },
+        {
+          "name": "Notas e Lembretes",
+          "slug": "notes-reminders",
+          "description": "Adicione notas a conversas e defina lembretes de follow-up",
+          "icon": "StickyNote",
+          "color": "#10b981",
+          "isFeatured": false,
+          "tags": ["Produtividade"]
+        },
+        {
+          "name": "Exportação de Dados",
+          "slug": "data-export",
+          "description": "Exporte chats e análises para CSV",
+          "icon": "Download",
+          "color": "#6366f1",
+          "isFeatured": false,
+          "tags": ["Análise"]
+        },
+        {
+          "name": "Modo Coexistência",
+          "slug": "coexistence",
+          "description": "Use WhatsApp Business e WhatsApp Web juntos",
+          "icon": "RefreshCw",
+          "color": "#14b8a6",
+          "isFeatured": false,
+          "tags": ["API", "Avançado"]
+        }
+      ]
+    },
     "integrations": {
       "hero": {
         "badge": "Integrações",

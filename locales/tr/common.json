@@ -1466,6 +1466,90 @@
         ]
       }
     },
+    "features": {
+      "hero": {
+        "badge": "Platform Özellikleri",
+        "headline": "WhatsApp'ta Kazanmak İçin",
+        "headlineHighlight": "İhtiyacınız Olan Her Şey",
+        "description": "WhatsApp'ı en güçlü satış kanalınıza dönüştürmek için eksiksiz bir araç seti.",
+        "primaryCta": "Ücretsiz Yükle",
+        "secondaryCta": "Demo Rezervasyonu Yap"
+      },
+      "featuredItems": [
+        {
+          "name": "Takip Gelen Kutusu",
+          "slug": "team-inbox",
+          "description": "Birden fazla ekip üyesiyle müşteri sohbetlerinde işbirliği yapın",
+          "icon": "Users",
+          "color": "#3b82f6",
+          "isFeatured": true,
+          "tags": ["İşbirliği", "Popüler"]
+        },
+        {
+          "name": "Bulut Yedekleme",
+          "slug": "cloud-backup",
+          "description": "Otomatik yedekleme ile asla bir konuşmayı kaybetmeyin",
+          "icon": "Cloud",
+          "color": "#06b6d4",
+          "isFeatured": true,
+          "tags": ["Güvenlik", "Essential"]
+        },
+        {
+          "name": "Hızlı Yanıt",
+          "slug": "quick-reply",
+          "description": "Daha hızlı ve tutarlı yanıtlar için şablonlar",
+          "icon": "MessageSquare",
+          "color": "#8b5cf6",
+          "isFeatured": true,
+          "tags": ["Üretkenlik"]
+        },
+        {
+          "name": "Mesaj Planlayıcı",
+          "slug": "message-scheduler",
+          "description": "Mesajları mükemmel zamanda göndermek için planlayın",
+          "icon": "Calendar",
+          "color": "#ec4899",
+          "isFeatured": false,
+          "tags": ["Otomasyon"]
+        },
+        {
+          "name": "Etiketler ve Huniler",
+          "slug": "labels-funnels",
+          "description": "İletişimleri düzenleyin ve satış hunisindeki lead'leri takip edin",
+          "icon": "Tag",
+          "color": "#f59e0b",
+          "isFeatured": false,
+          "tags": ["CRM"]
+        },
+        {
+          "name": "Notlar ve Hatırlatıcılar",
+          "slug": "notes-reminders",
+          "description": "Sohbetlere not ekleyin ve takip hatırlatıcıları ayarlayın",
+          "icon": "StickyNote",
+          "color": "#10b981",
+          "isFeatured": false,
+          "tags": ["Üretkenlik"]
+        },
+        {
+          "name": "Veri Dışa Aktarma",
+          "slug": "data-export",
+          "description": "Sohbetleri ve analizleri CSV olarak dışa aktarın",
+          "icon": "Download",
+          "color": "#6366f1",
+          "isFeatured": false,
+          "tags": ["Analiz"]
+        },
+        {
+          "name": "Birlikte Yaşam Modu",
+          "slug": "coexistence",
+          "description": "WhatsApp Business ve WhatsApp Web'i birlikte kullanın",
+          "icon": "RefreshCw",
+          "color": "#14b8a6",
+          "isFeatured": false,
+          "tags": ["API", "Gelişmiş"]
+        }
+      ]
+    },
     "integrations": {
       "hero": {
         "badge": "Entegrasyonlar",
