@@ -290,6 +290,76 @@ const INTEGRATION_SEO: Record<string, Record<string, SEOData>> = {
   }
 }
 
+// Generate blog-specific meta tags HTML with all the custom tags
+function generateBlogMetaTags(locale: string, canonicalUrl: string): string {
+  return `
+    <!-- Basic Meta Tags -->
+    <meta name="description" content="Explore expert insights on WhatsApp CRM integration, sales automation, team inbox workflows, and AI-powered customer engagement. Learn strategies to grow revenue with Eazybe." />
+    <meta name="keywords" content="WhatsApp CRM tips, sales automation blog, WhatsApp sales strategies, CRM workflow automation, customer engagement strategies, WhatsApp business growth tips" />
+    <meta name="author" content="Eazybe" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow" />
+    <meta name="thumbnail" content="https://eazybe.com/logo.png" />
+
+    <!-- Article Meta Tags -->
+    <meta property="article:section" content="Technology" />
+    <meta property="article:tag" content="WhatsApp CRM Blog" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="${canonicalUrl}" />
+    <meta property="og:title" content="Eazybe Blog | WhatsApp CRM, Sales Automation &amp; AI Strategies" />
+    <meta property="og:description" content="Read practical guides on WhatsApp CRM workflows, sales automation, and AI-driven customer engagement. Actionable insights for modern sales teams." />
+    <meta property="og:image" content="https://eazybe.com/logo.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Eazybe Blog - WhatsApp CRM and sales automation insights" />
+    <meta property="og:locale" content="${locale}" />
+    <meta property="og:site_name" content="Eazybe" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@eazybe" />
+    <meta name="twitter:creator" content="@eazybe" />
+    <meta name="twitter:title" content="Eazybe Blog - WhatsApp CRM &amp; Sales Automation Insights" />
+    <meta name="twitter:description" content="Guides and insights on WhatsApp CRM workflows, AI sales automation, and customer engagement strategies for modern businesses." />
+    <meta name="twitter:image" content="https://eazybe.com/logo.png" />
+    <meta name="twitter:image:alt" content="Eazybe Blog - WhatsApp CRM strategies" />
+    <meta name="twitter:label1" content="Content Type" />
+    <meta name="twitter:data1" content="Blog &amp; Guides" />
+    <meta name="twitter:label2" content="Focus" />
+    <meta name="twitter:data2" content="CRM, WhatsApp, Sales Automation" />
+
+    <!-- Mobile Web App -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Eazybe" />
+
+    <!-- AI and SEO Specific Meta Tags -->
+    <meta name="answer-type" content="how-to, guides, best-practices, tutorials" />
+    <meta name="target-audience" content="sales teams, CRM users, founders, marketing teams, support teams, B2B companies" />
+    <meta name="content-intent" content="informational" />
+    <meta name="conversational-query" content="WhatsApp CRM tips, how to automate WhatsApp sales, best CRM workflow practices, AI sales automation guides" />
+    <meta name="ai-readability" content="educational, practical, professional" />
+    <meta name="context-window" content="sales automation, WhatsApp workflows, CRM strategy, team collaboration, customer lifecycle management" />
+    <meta name="user-problem" content="lack of structured WhatsApp sales workflow, manual follow-ups, inefficient CRM usage" />
+    <meta name="solution-summary" content="educational guides and best practices for improving WhatsApp-based sales workflows" />
+    <meta name="primary-benefit" content="learn how to improve sales productivity and customer engagement using WhatsApp and CRM automation" />
+    <meta name="use-case" content="business teams researching WhatsApp CRM strategies and automation methods" />
+    <meta name="implementation-difficulty" content="varies by guide" />
+    <meta name="time-to-value" content="immediate insights from each article" />
+
+    <!-- Link Tags -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="${canonicalUrl}" />
+  `.trim()
+}
+
 // Generate meta tags HTML
 function generateMetaTags(title: string, description: string, keywords: string, locale: string, canonicalUrl: string): string {
   return `
@@ -345,6 +415,28 @@ function createPrerenderedHTML(path: string, seoData: { title: string; descripti
   return indexHTML
 }
 
+// Create blog-specific pre-rendered HTML file with all custom meta tags
+function createBlogPrerenderedHTML(canonicalUrl: string, lang: { prefix: string; locale: string }): string {
+  // Read the original index.html
+  const indexPath = join(DIST_DIR, 'index.html')
+  let indexHTML = readFileSync(indexPath, 'utf-8')
+
+  // Generate blog-specific meta tags
+  const blogTitle = 'Eazybe Blog - WhatsApp CRM Tips, Sales Automation & AI Insights'
+  const metaTags = generateBlogMetaTags(lang.locale, canonicalUrl)
+
+  // Replace title
+  indexHTML = indexHTML.replace(/<title>.*?<\/title>/, `<title>${blogTitle}</title>`)
+
+  // Add meta tags before closing head
+  const headEndIndex = indexHTML.indexOf('</head>')
+  if (headEndIndex !== -1) {
+    indexHTML = indexHTML.slice(0, headEndIndex) + '\n' + metaTags + '\n' + indexHTML.slice(headEndIndex)
+  }
+
+  return indexHTML
+}
+
 // Generate all pre-rendered files
 async function generatePrerenderedFiles() {
   console.log('🚀 Starting SSR pre-rendering...')
@@ -371,14 +463,22 @@ async function generatePrerenderedFiles() {
       try {
         mkdirSync(outputDir, { recursive: true })
 
-        // Create SEO data
-        const seoData = {
-          title: route.title,
-          description: `Eazybe helps sales teams connect WhatsApp with CRM platforms. ${routePath.charAt(0).toUpperCase() + routePath.slice(1)} page.`,
-          keywords: `Eazybe, WhatsApp CRM, ${routePath}`
+        let html: string
+
+        // Special handling for blog page with custom meta tags
+        if (routePath === 'blog') {
+          const canonicalUrl = routePrefix ? `https://eazybe.com/${routePrefix}` : 'https://eazybe.com/blog'
+          html = createBlogPrerenderedHTML(canonicalUrl, langConfig)
+        } else {
+          // Create SEO data for other routes
+          const seoData = {
+            title: route.title,
+            description: `Eazybe helps sales teams connect WhatsApp with CRM platforms. ${routePath.charAt(0).toUpperCase() + routePath.slice(1)} page.`,
+            keywords: `Eazybe, WhatsApp CRM, ${routePath}`
+          }
+          html = createPrerenderedHTML(routePath, seoData, langConfig)
         }
 
-        const html = createPrerenderedHTML(routePath, seoData, langConfig)
         writeFileSync(outputPath, html, 'utf-8')
         filesCreated.push(outputPath)
         console.log(`✅ Created: ${routePrefix}/index.html`)
@@ -424,13 +524,38 @@ Sitemap: https://eazybe.com/sitemap.xml
 # Crawl delay
 Crawl-delay: 1
 
-# Allow all major SEO tools
+# Allow all major SEO tools and crawlers
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
 Allow: /
 
 User-agent: ScreamingFrog
 Allow: /
 
+User-agent: SEOcentrus
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: MJ12bot
+Allow: /
+
+User-agent: DotBot
+Allow: /
+
+User-agent: BLEXBot
+Allow: /
+
+# Social media crawlers
 User-agent: facebookexternalhit
 Allow: /
 
@@ -438,6 +563,25 @@ User-agent: LinkedInBot
 Allow: /
 
 User-agent: Twitterbot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+# Other common crawlers
+User-agent: Applebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: ia_archiver
 Allow: /
 `
   writeFileSync(robotsPath, robotsContent, 'utf-8')

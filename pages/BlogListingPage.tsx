@@ -8,6 +8,7 @@ import { useBlogPosts, useBlogIndex, BlogCategory } from '../hooks/useBlog';
 import { SectionBadge } from '../components/ui/SectionBadge';
 import { getLanguageFromPath } from '../components/LanguageProvider';
 import { translateBlogPost, getUIText, SupportedLanguage } from '../lib/blogTranslations';
+import { useBlogListingSEO } from '../hooks/useBlogListingSEO';
 
 const BlogCard: React.FC<{ post: any; minReadSuffix?: string }> = ({ post, minReadSuffix = 'min read' }) => {
   const navigate = useNavigate();
@@ -111,8 +112,21 @@ const FeaturedBlogCard: React.FC<{ post: any; badgeText?: string; minReadSuffix?
 const BlogListingPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
+
+  // Apply SEO meta tags for blog listing page
+  useBlogListingSEO();
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [forceShowContent, setForceShowContent] = useState(false);
+
+  // Timeout to force show content after 5 seconds if Sanity is slow
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setForceShowContent(true);
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, []);
+
   // Get language from URL pathname instead of i18n state
   const language = getLanguageFromPath(location.pathname);
   const { data: allPosts, loading: postsLoading, error: postsError } = useBlogPosts(undefined, language);
@@ -189,25 +203,14 @@ const BlogListingPage: React.FC = () => {
     return filteredPosts;
   }, [filteredPosts, activeCategory, searchQuery, featuredPost]);
 
-  const loading = postsLoading || indexLoading;
+  const loading = (postsLoading || indexLoading) && !forceShowContent;
 
-  if (loading) {
+  if (loading && !postsError) {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400">{t('blog.loading')}</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (postsError) {
-    return (
-      <div className="min-h-screen bg-brand-black flex items-center justify-center">
-        <div className="text-center text-red-400">
-          <p>{t('blog.error')}</p>
-          <p className="text-sm mt-2">{postsError.message}</p>
         </div>
       </div>
     );
