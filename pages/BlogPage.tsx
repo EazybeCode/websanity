@@ -13,6 +13,7 @@ import {
   ChevronRight,
   ChevronDown,
   ArrowLeft,
+  ArrowRight,
   User,
   BookOpen,
   Rocket
@@ -89,17 +90,17 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
       },
       h2: ({ children, value }) => {
         const id = headingIds.get(value._key) || generateSlug(String(children));
-        return <h2 id={id} className="text-3xl font-bold text-white mt-12 mb-4 pt-8 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28">{children}</h2>;
+        return <h2 id={id} className="text-[19px] md:text-3xl font-bold text-white mt-3 mb-4 pt-3 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28">{children}</h2>;
       },
       h3: ({ children, value }) => {
         const id = headingIds.get(value._key) || generateSlug(String(children));
-        return <h3 id={id} className="text-2xl font-semibold text-slate-100 mt-10 mb-4 scroll-mt-28">{children}</h3>;
+        return <h3 id={id} className="text-[18px] md:text-2xl font-semibold text-slate-100 mt-3 mb-3 scroll-mt-28">{children}</h3>;
       },
       h4: ({ children, value }) => {
         const id = headingIds.get(value._key) || generateSlug(String(children));
         return <h4 id={id} className="text-xl font-semibold text-slate-200 mt-8 mb-3 scroll-mt-28">{children}</h4>;
       },
-      normal: ({ children }) => <p className="text-lg text-slate-300 leading-relaxed mb-6">{children}</p>,
+      normal: ({ children }) => <p className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-3">{children}</p>,
       blockquote: ({ children }) => (
         <blockquote className="border-l-4 border-brand-cyan pl-6 my-8 italic text-slate-400 text-xl">
           {children}
@@ -112,11 +113,11 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
     },
     listItem: {
       bullet: ({ children }) => (
-        <li className="text-lg text-slate-300 leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-6 mb-1.5 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
           {children}
         </li>
       ),
-      number: ({ children }) => <li className="text-lg text-slate-300 leading-relaxed">{children}</li>,
+      number: ({ children }) => <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-1.5">{children}</li>,
     },
     marks: {
       strong: ({ children }) => <strong className="font-bold text-white">{children}</strong>,
@@ -983,7 +984,433 @@ const BlogPage: React.FC = () => {
         // Remove Article schema
         const articleSchema = document.querySelector('script[type="application/ld+json"][data-schema="article-deleted-whatsapp"]');
         if (articleSchema) articleSchema.remove();
+
+        // Remove dynamic FAQ schema
+        const dynamicFaqSchema = document.querySelector('script[type="application/ld+json"][data-schema="dynamic-faq"]');
+        if (dynamicFaqSchema) dynamicFaqSchema.remove();
+
+        // Remove AI Support schemas
+        const aiOrgSchema = document.querySelector('script[type="application/ld+json"][data-schema="org-ai-support"]');
+        if (aiOrgSchema) aiOrgSchema.remove();
+        const aiSoftwareAppSchema = document.querySelector('script[type="application/ld+json"][data-schema="software-ai-support"]');
+        if (aiSoftwareAppSchema) aiSoftwareAppSchema.remove();
+        const aiBreadcrumbSchema = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-ai-support"]');
+        if (aiBreadcrumbSchema) aiBreadcrumbSchema.remove();
+        const aiWebPageSchema = document.querySelector('script[type="application/ld+json"][data-schema="webpage-ai-support"]');
+        if (aiWebPageSchema) aiWebPageSchema.remove();
+        const aiBlogPostingSchema = document.querySelector('script[type="application/ld+json"][data-schema="blogposting-ai-support"]');
+        if (aiBlogPostingSchema) aiBlogPostingSchema.remove();
+        const aiFaqPageSchema = document.querySelector('script[type="application/ld+json"][data-schema="faqpage-ai-support"]');
+        if (aiFaqPageSchema) aiFaqPageSchema.remove();
       };
+    }
+
+    // Special meta tags for "best-ai-agents-for-customer-support" blog post
+    if (slug === 'best-ai-agents-for-customer-support') {
+      // Update title with custom title
+      document.title = 'Best AI Agents for Customer Support in 2026 | Eazybe';
+
+      // Override with specific meta tags for this post
+      setMetaTag('description', 'Top AI agents for customer support in 2026. Compare leading AI chatbots, automation tools, and CX platforms that reduce costs, improve response time, and scale support teams.');
+      setMetaTag('keywords', 'best AI customer support tools, AI chatbots for support, AI agents for customer service, customer support automation tools, AI helpdesk software, CX automation platforms');
+      setMetaTag('author', 'Eazybe');
+      setMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+      setMetaTag('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+      setMetaTag('bingbot', 'index, follow');
+      setMetaTag('thumbnail', featuredImageUrl);
+
+      // Article meta tags
+      setMetaTag('article:published_time', '2026-02-03T08:00:00+00:00', true);
+      setMetaTag('article:modified_time', '2026-02-03T10:30:00+00:00', true);
+      setMetaTag('article:section', 'AI & Customer Support', true);
+      setMetaTag('article:tag', 'AI Customer Support Tools', true);
+
+      // Open Graph / Facebook - override with specific content
+      setMetaTag('og:url', 'https://eazybe.com/blog/best-ai-agents-for-customer-support', true);
+      setMetaTag('og:title', 'Best AI Agents for Customer Support in 2026', true);
+      setMetaTag('og:description', 'Discover the top AI agents and chatbots for customer support in 2026. Compare features, automation capabilities, and pricing to choose the right platform.', true);
+      setMetaTag('og:image', 'https://eazybe.com/logo.png', true);
+      setMetaTag('og:image:width', '1200', true);
+      setMetaTag('og:image:height', '630', true);
+      setMetaTag('og:image:alt', 'Best AI agents for customer support comparison', true);
+      setMetaTag('og:locale', 'en_US', true);
+      setMetaTag('og:site_name', 'Eazybe', true);
+
+      // Twitter Card - override with specific content
+      setMetaTag('twitter:site', '@eazybe');
+      setMetaTag('twitter:creator', '@eazybe');
+      setMetaTag('twitter:title', 'Best AI Agents for Customer Support in 2026');
+      setMetaTag('twitter:description', 'Compare the leading AI chatbots and automation platforms for customer support. See which tools deliver faster replies, lower costs, and better CX.');
+      setMetaTag('twitter:image', 'https://eazybe.com/logo.png');
+      setMetaTag('twitter:image:alt', 'AI customer support tools comparison');
+
+      // Twitter Card labels
+      setMetaTag('twitter:label1', 'Content Type');
+      setMetaTag('twitter:data1', 'Comparison Guide');
+      setMetaTag('twitter:label2', 'Topic');
+      setMetaTag('twitter:data2', 'AI Customer Support Tools');
+
+      // Mobile web app tags
+      setMetaTag('mobile-web-app-capable', 'yes');
+      setMetaTag('apple-mobile-web-app-capable', 'yes');
+      setMetaTag('apple-mobile-web-app-status-bar-style', 'default');
+      setMetaTag('apple-mobile-web-app-title', 'Eazybe');
+
+      // AI and SEO specific meta tags
+      setMetaTag('answer-type', 'comparison, list, guide, recommendations');
+      setMetaTag('target-audience', 'support leaders, SaaS founders, CX managers, operations teams, startups, enterprise teams');
+      setMetaTag('content-intent', 'informational, commercial-investigation');
+      setMetaTag('conversational-query', 'best AI agents for customer support, top AI chatbots for support, AI helpdesk tools comparison, automation tools for customer service');
+      setMetaTag('ai-readability', 'professional, educational, comparison-focused');
+      setMetaTag('context-window', 'customer support automation, AI chatbots, helpdesk AI, CX optimization, support scalability');
+      setMetaTag('user-problem', 'support teams overloaded with tickets, slow response time, rising support costs');
+      setMetaTag('solution-summary', 'compare AI-powered support agents to automate responses and improve customer experience');
+      setMetaTag('primary-benefit', 'find the best AI support platform to reduce workload and improve CX');
+      setMetaTag('use-case', 'businesses researching AI tools to automate customer support');
+      setMetaTag('implementation-difficulty', 'varies by platform');
+      setMetaTag('time-to-value', 'quick impact after implementation');
+
+      // Add Organization Schema
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe helps organization & sales teams connect WhatsApp with CRM platforms to sync conversations, automate follow-ups, and improve customer engagement.",
+        "foundingDate": "2021",
+        "sameAs": ["https://twitter.com/eazybe", "https://linkedin.com/company/eazybe", "https://youtube.com/@eazybe"],
+        "publishingPrinciples": "https://eazybe.com/blog",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        }
+      };
+
+      let orgScript = document.querySelector('script[type="application/ld+json"][data-schema="org-ai-support"]') as HTMLScriptElement;
+      if (!orgScript) {
+        orgScript = document.createElement('script') as HTMLScriptElement;
+        orgScript.type = 'application/ld+json';
+        orgScript.setAttribute('data-schema', 'org-ai-support');
+        document.head.appendChild(orgScript);
+      }
+      orgScript.textContent = JSON.stringify(organizationSchema);
+
+      // Add SoftwareApplication Schema
+      const softwareAppSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "WhatsApp CRM Integration - Eazybe",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
+        "operatingSystem": "Web, Chrome Extension",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 29,
+          "highPrice": 49,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": 53766
+        },
+        "featureList": [
+          "Automatic WhatsApp to CRM sync",
+          "AI-powered reply suggestions",
+          "Shared inbox for team collaboration",
+          "Deal tracking from WhatsApp",
+          "Contact synchronization",
+          "Message scheduling",
+          "AI Agents for CRM"
+        ]
+      };
+
+      let softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="software-ai-support"]') as HTMLScriptElement;
+      if (!softwareAppScript) {
+        softwareAppScript = document.createElement('script') as HTMLScriptElement;
+        softwareAppScript.type = 'application/ld+json';
+        softwareAppScript.setAttribute('data-schema', 'software-ai-support');
+        document.head.appendChild(softwareAppScript);
+      }
+      softwareAppScript.textContent = JSON.stringify(softwareAppSchema);
+
+      // Add BreadcrumbList Schema
+      const breadcrumbSchema = {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Eazybe",
+            "item": "https://eazybe.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://eazybe.com/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Best AI Agent",
+            "item": "https://eazybe.com/blog/best-ai-agents-for-customer-support"
+          }
+        ]
+      };
+
+      let breadcrumbScript = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-ai-support"]') as HTMLScriptElement;
+      if (!breadcrumbScript) {
+        breadcrumbScript = document.createElement('script') as HTMLScriptElement;
+        breadcrumbScript.type = 'application/ld+json';
+        breadcrumbScript.setAttribute('data-schema', 'breadcrumb-ai-support');
+        document.head.appendChild(breadcrumbScript);
+      }
+      breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
+
+      // Add WebPage Schema
+      const webPageSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Best AI Agents for Customer Support in 2026 | Eazybe",
+        "description": "Top AI agents for customer support in 2026. Learn which AI chatbots and automation platforms deliver faster responses, lower costs, and better CX.",
+        "url": "https://eazybe.com/blog/best-ai-agents-for-customer-support",
+        "inLanguage": "en-US",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png",
+            "width": 600,
+            "height": 60
+          }
+        },
+        "isPartOf": {
+          "@type": "Blog",
+          "name": "Eazybe Blog",
+          "url": "https://eazybe.com/blog"
+        }
+      };
+
+      let webPageScript = document.querySelector('script[type="application/ld+json"][data-schema="webpage-ai-support"]') as HTMLScriptElement;
+      if (!webPageScript) {
+        webPageScript = document.createElement('script') as HTMLScriptElement;
+        webPageScript.type = 'application/ld+json';
+        webPageScript.setAttribute('data-schema', 'webpage-ai-support');
+        document.head.appendChild(webPageScript);
+      }
+      webPageScript.textContent = JSON.stringify(webPageSchema);
+
+      // Add BlogPosting Schema
+      const blogPostingSchema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://eazybe.com/blog/best-ai-agents-for-customer-support"
+        },
+        "inLanguage": "en-US",
+        "headline": "Best AI Agents for Customer Support in 2026 | Eazybe",
+        "description": "Top AI agents for customer support in 2026. Learn which AI chatbots and automation platforms deliver faster responses, lower costs, and better CX.",
+        "keywords": [
+          "AI agents for customer support",
+          "AI customer service",
+          "AI chatbots",
+          "customer support automation",
+          "CX automation",
+          "helpdesk AI"
+        ],
+        "articleSection": "AI & Customer Support",
+        "url": "https://eazybe.com/blog/best-ai-agents-for-customer-support",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 1200,
+          "height": 630
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png",
+            "width": 600,
+            "height": 60
+          }
+        },
+        "about": [
+          { "@type": "Thing", "name": "Customer Support" },
+          { "@type": "Thing", "name": "AI Agents" },
+          { "@type": "Thing", "name": "Customer Experience" },
+          { "@type": "Thing", "name": "Automation" }
+        ]
+      };
+
+      let blogPostingScript = document.querySelector('script[type="application/ld+json"][data-schema="blogposting-ai-support"]') as HTMLScriptElement;
+      if (!blogPostingScript) {
+        blogPostingScript = document.createElement('script') as HTMLScriptElement;
+        blogPostingScript.type = 'application/ld+json';
+        blogPostingScript.setAttribute('data-schema', 'blogposting-ai-support');
+        document.head.appendChild(blogPostingScript);
+      }
+      blogPostingScript.textContent = JSON.stringify(blogPostingSchema);
+
+      // Add FAQPage Schema
+      const faqPageSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "inLanguage": "en-US",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are AI agents for customer support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An AI support agent is software that can understand customer requests, retrieve relevant answers from your knowledge base or systems, and resolve issues automatically—or escalate to a human agent when needed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How are AI agents different from traditional chatbots?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Traditional chatbots rely on scripted flows and keywords. AI agents use language models and retrieval to handle open-ended questions, follow context across messages, and take actions via integrations (e.g., create tickets, update CRM, check orders)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which features matter most when choosing an AI agent in 2026?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Key features include high answer accuracy, knowledge base syncing, multi-channel support, human handoff, integrations (helpdesk/CRM), analytics, brand tone controls, and enterprise security (SSO, audit logs, data controls)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can AI agents reduce customer support costs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. AI agents can deflect repetitive tickets, speed up first response time, and help human agents handle more volume. Cost savings depend on ticket mix, knowledge base quality, and handoff rules."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do AI agents work on WhatsApp for customer support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. AI agents can support WhatsApp workflows when connected via the WhatsApp Business Platform or approved integrations, enabling automated replies, ticket creation, and escalation to human agents while keeping conversation context."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you prevent AI agents from giving wrong answers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use grounded responses from verified sources (knowledge base), confidence thresholds, restricted actions, human review for sensitive topics, and continuous testing on real tickets. Clear escalation rules reduce risk."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What security and compliance should I look for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Look for encryption, role-based access, SSO/SAML, audit logs, data retention controls, PII redaction, and region/compliance options (e.g., GDPR/LGPD) depending on your customers and industry."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What KPIs should I track to measure AI agent performance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Track deflection rate, first response time, resolution time, CSAT, containment rate, escalation rate, recontact rate, and cost per resolved ticket. Review accuracy and failure reasons regularly to improve outcomes."
+            }
+          }
+        ]
+      };
+
+      let faqPageScript = document.querySelector('script[type="application/ld+json"][data-schema="faqpage-ai-support"]') as HTMLScriptElement;
+      if (!faqPageScript) {
+        faqPageScript = document.createElement('script') as HTMLScriptElement;
+        faqPageScript.type = 'application/ld+json';
+        faqPageScript.setAttribute('data-schema', 'faqpage-ai-support');
+        document.head.appendChild(faqPageScript);
+      }
+      faqPageScript.textContent = JSON.stringify(faqPageSchema);
+
+      // Cleanup function to remove schemas when unmounting
+      return () => {
+        // Remove Organization schema
+        const orgSchema = document.querySelector('script[type="application/ld+json"][data-schema="org-ai-support"]');
+        if (orgSchema) orgSchema.remove();
+
+        // Remove SoftwareApplication schema
+        const softwareAppSchema = document.querySelector('script[type="application/ld+json"][data-schema="software-ai-support"]');
+        if (softwareAppSchema) softwareAppSchema.remove();
+
+        // Remove BreadcrumbList schema
+        const breadcrumbSchema = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-ai-support"]');
+        if (breadcrumbSchema) breadcrumbSchema.remove();
+
+        // Remove WebPage schema
+        const webPageSchema = document.querySelector('script[type="application/ld+json"][data-schema="webpage-ai-support"]');
+        if (webPageSchema) webPageSchema.remove();
+
+        // Remove BlogPosting schema
+        const blogPostingSchema = document.querySelector('script[type="application/ld+json"][data-schema="blogposting-ai-support"]');
+        if (blogPostingSchema) blogPostingSchema.remove();
+
+        // Remove FAQPage schema
+        const faqPageSchema = document.querySelector('script[type="application/ld+json"][data-schema="faqpage-ai-support"]');
+        if (faqPageSchema) faqPageSchema.remove();
+      };
+    }
+
+    // Add Dynamic FAQPage Schema for ALL blog posts
+    if (displayPost.faqs && displayPost.faqs.length > 0) {
+      const dynamicFaqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": displayPost.faqs.map((faq: any) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      };
+
+      // Remove existing dynamic FAQ schema if any
+      const existingFaqScript = document.querySelector('script[type="application/ld+json"][data-schema="dynamic-faq"]');
+      if (existingFaqScript) {
+        existingFaqScript.remove();
+      }
+
+      const dynamicFaqScript = document.createElement('script') as HTMLScriptElement;
+      dynamicFaqScript.type = 'application/ld+json';
+      dynamicFaqScript.setAttribute('data-schema', 'dynamic-faq');
+      dynamicFaqScript.textContent = JSON.stringify(dynamicFaqSchema);
+      document.head.appendChild(dynamicFaqScript);
     }
   }, [displayPost]);
 
@@ -1020,7 +1447,7 @@ const BlogPage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           {/* Breadcrumb Navigation */}
-          <nav className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm mb-6 md:mb-10">
+          <nav className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm mb-0">
             <Link to="/" className="text-slate-500 hover:text-white transition-colors">
               Home
             </Link>
@@ -1044,12 +1471,12 @@ const BlogPage: React.FC = () => {
           </div>
 
           {/* Title - Large, Bold, Readable */}
-          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-5 md:mb-8">
+          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-3">
             {displayPost.title}
           </h1>
 
           {/* Excerpt - Generous size */}
-          <p className="text-base md:text-xl lg:text-2xl text-slate-400 leading-relaxed mb-8 md:mb-10">
+          <p className="text-base md:text-xl lg:text-2xl text-slate-400 leading-relaxed mb-3">
             {displayPost.excerpt}
           </p>
 
@@ -1110,7 +1537,7 @@ const BlogPage: React.FC = () => {
 
       {/* Featured Image - Left Aligned */}
       {displayPost.featuredImage && (
-        <div className="max-w-7xl mx-auto px-4 md:px-6 mb-6 md:mb-12 lg:mb-16">
+        <figure className="max-w-7xl mx-auto px-4 md:px-6 mb-3">
           <div className="relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden aspect-[16/9] md:aspect-[2/1] shadow-xl md:shadow-2xl border border-slate-800/50">
             <img
               src={displayPost.featuredImage}
@@ -1122,7 +1549,8 @@ const BlogPage: React.FC = () => {
               height={630}
             />
           </div>
-        </div>
+          <figcaption className="text-center text-slate-400 text-[10px] md:text-xs mt-3">{displayPost.title}</figcaption>
+        </figure>
       )}
 
       {/* Main Content Area - Left Aligned */}
@@ -1211,7 +1639,7 @@ const BlogPage: React.FC = () => {
                   <>
                     <style dangerouslySetInnerHTML={{ __html: `
                 .blog-content {
-                  font-size: 15px;
+                  font-size: 14px;
                   line-height: 1.8;
                   color: #d1d5db;
                   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -1232,14 +1660,14 @@ const BlogPage: React.FC = () => {
 
                 /* Headings - Clear hierarchy */
                 .blog-content h2 {
-                  font-size: 20px;
+                  font-size: 19px;
                   font-weight: 800;
                   color: #ffffff;
-                  margin-top: 2rem;
+                  margin-top: 0.75rem;
                   margin-bottom: 1rem;
                   line-height: 1.25;
                   letter-spacing: -0.025em;
-                  padding-top: 1.5rem;
+                  padding-top: 0.75rem;
                   border-top: 1px solid rgba(51, 65, 85, 0.5);
                   scroll-margin-top: 5rem;
                 }
@@ -1247,9 +1675,9 @@ const BlogPage: React.FC = () => {
                 @media (min-width: 768px) {
                   .blog-content h2 {
                     font-size: 30px;
-                    margin-top: 4rem;
+                    margin-top: 1.5rem;
                     margin-bottom: 1.5rem;
-                    padding-top: 2rem;
+                    padding-top: 1.5rem;
                     scroll-margin-top: 7rem;
                   }
                 }
@@ -1261,11 +1689,11 @@ const BlogPage: React.FC = () => {
                 }
 
                 .blog-content h3 {
-                  font-size: 1.5rem;
+                  font-size: 18px;
                   font-weight: 700;
                   color: #f1f5f9;
-                  margin-top: 3rem;
-                  margin-bottom: 1.25rem;
+                  margin-top: 0.75rem;
+                  margin-bottom: 0.75rem;
                   line-height: 1.35;
                   scroll-margin-top: 7rem;
                 }
@@ -1282,13 +1710,13 @@ const BlogPage: React.FC = () => {
 
                 /* Paragraphs - Generous spacing */
                 .blog-content p {
-                  margin-bottom: 1rem;
+                  margin-bottom: 0.75rem;
                   line-height: 1.8;
                 }
 
                 @media (min-width: 768px) {
                   .blog-content p {
-                    margin-bottom: 2rem;
+                    margin-bottom: 1.5rem;
                   }
                 }
 
@@ -1307,7 +1735,8 @@ const BlogPage: React.FC = () => {
                 }
 
                 .blog-content li {
-                  margin-bottom: 1rem;
+                  font-size: 14px;
+                  margin-bottom: 0.375rem;
                   padding-left: 2rem;
                   position: relative;
                   line-height: 1.8;
@@ -1344,6 +1773,12 @@ const BlogPage: React.FC = () => {
                   display: flex;
                   align-items: center;
                   justify-content: center;
+                }
+
+                @media (min-width: 768px) {
+                  .blog-content li {
+                    font-size: 1.125rem;
+                  }
                 }
 
                 /* Emphasis */
@@ -1483,24 +1918,24 @@ const BlogPage: React.FC = () => {
 
               {/* FAQs Section */}
               {displayPost.faqs && displayPost.faqs.length > 0 && (
-                <div className="mt-20 pt-12 border-t border-slate-800">
-                  <h2 className="text-3xl font-bold text-white tracking-tight mb-8">
+                <section className="mt-20 pt-12 border-t border-slate-800" aria-labelledby="faq-title">
+                  <h2 id="faq-title" className="text-[19px] md:text-3xl font-bold text-white tracking-tight mb-8">
                     {detailLabels?.faqTitle || t('blog.detail.faqTitle')}
                   </h2>
                   <div className="space-y-4">
                     {displayPost.faqs.map((faq, i) => (
                       <details key={i} className="group border border-slate-700/50 rounded-xl bg-slate-900/30 transition-all hover:border-slate-600">
-                        <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-lg">
+                        <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-[18px] md:text-lg">
                           <span className="pr-6">{faq.question}</span>
                           <Plus size={20} className="text-brand-cyan flex-shrink-0 group-open:rotate-45 transition-transform" />
                         </summary>
-                        <div className="px-6 pb-6 text-slate-400 text-lg leading-relaxed border-t border-slate-700/30 pt-4">
+                        <div className="px-6 pb-6 text-slate-400 text-[14px] md:text-lg leading-relaxed border-t border-slate-700/30 pt-4">
                           {faq.answer}
                         </div>
                       </details>
                     ))}
                   </div>
-                </div>
+                </section>
               )}
 
               {/* Author Section */}

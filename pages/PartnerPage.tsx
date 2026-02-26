@@ -220,7 +220,6 @@ const ScrollReveal: React.FC<{ children: React.ReactNode; delay?: number; classN
 
 export const PartnerPage: React.FC = () => {
   const { t } = useTranslation()
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -234,9 +233,34 @@ export const PartnerPage: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index)
-  }
+  // Add JSON-LD structured data for FAQ
+  useEffect(() => {
+    const faqStructuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(faq => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer
+        }
+      }))
+    }
+
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.id = 'faq-structured-data'
+    script.textContent = JSON.stringify(faqStructuredData)
+    document.head.appendChild(script)
+
+    return () => {
+      const existingScript = document.getElementById('faq-structured-data')
+      if (existingScript) {
+        existingScript.remove()
+      }
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -799,7 +823,7 @@ export const PartnerPage: React.FC = () => {
             <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
               FAQs
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            <h2 className="text-[19px] md:text-3xl lg:text-4xl font-bold text-white mb-6">
               Frequently Asked Questions
             </h2>
             <p className="text-lg text-slate-400">
@@ -810,33 +834,19 @@ export const PartnerPage: React.FC = () => {
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <ScrollReveal key={index} delay={index + 1}>
-                <div className="rounded-2xl bg-slate-800/30 border border-slate-700/50 overflow-hidden">
-                  <button
-                    onClick={() => toggleFaq(index)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-800/50 transition-colors"
-                  >
+                <details className="group rounded-2xl bg-slate-800/30 border border-slate-700/50 overflow-hidden">
+                  <summary className="w-full flex items-center justify-between p-6 text-left cursor-pointer hover:bg-slate-800/50 transition-colors list-none">
                     <span className="font-semibold text-white pr-8">
                       {faq.question}
                     </span>
-                    {openFaq === index ? (
-                      <ChevronUp className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-                    )}
-                  </button>
-                  {openFaq === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="px-6 pb-6"
-                    >
-                      <p className="text-slate-400 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </div>
+                    <ChevronDown className="w-5 h-5 text-cyan-400 flex-shrink-0 transition-transform group-open:rotate-180" />
+                  </summary>
+                  <div className="px-6 pb-6">
+                    <p className="text-slate-400 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </details>
               </ScrollReveal>
             ))}
           </div>
