@@ -90,17 +90,17 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
       },
       h2: ({ children, value }) => {
         const id = headingIds.get(value._key) || generateSlug(String(children));
-        return <h2 id={id} className="text-[19px] md:text-3xl font-bold text-white mt-12 mb-4 pt-8 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28">{children}</h2>;
+        return <h2 id={id} className="text-[19px] md:text-3xl font-bold text-white mt-3 mb-4 pt-3 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28">{children}</h2>;
       },
       h3: ({ children, value }) => {
         const id = headingIds.get(value._key) || generateSlug(String(children));
-        return <h3 id={id} className="text-[18px] md:text-2xl font-semibold text-slate-100 mt-10 mb-4 scroll-mt-28">{children}</h3>;
+        return <h3 id={id} className="text-[18px] md:text-2xl font-semibold text-slate-100 mt-3 mb-3 scroll-mt-28">{children}</h3>;
       },
       h4: ({ children, value }) => {
         const id = headingIds.get(value._key) || generateSlug(String(children));
         return <h4 id={id} className="text-xl font-semibold text-slate-200 mt-8 mb-3 scroll-mt-28">{children}</h4>;
       },
-      normal: ({ children }) => <p className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-6">{children}</p>,
+      normal: ({ children }) => <p className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-3">{children}</p>,
       blockquote: ({ children }) => (
         <blockquote className="border-l-4 border-brand-cyan pl-6 my-8 italic text-slate-400 text-xl">
           {children}
@@ -113,11 +113,11 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
     },
     listItem: {
       bullet: ({ children }) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-6 mb-1.5 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
           {children}
         </li>
       ),
-      number: ({ children }) => <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed">{children}</li>,
+      number: ({ children }) => <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-1.5">{children}</li>,
     },
     marks: {
       strong: ({ children }) => <strong className="font-bold text-white">{children}</strong>,
@@ -1268,11 +1268,11 @@ const BlogPage: React.FC = () => {
                   font-size: 19px;
                   font-weight: 800;
                   color: #ffffff;
-                  margin-top: 2rem;
+                  margin-top: 0.75rem;
                   margin-bottom: 1rem;
                   line-height: 1.25;
                   letter-spacing: -0.025em;
-                  padding-top: 1.5rem;
+                  padding-top: 0.75rem;
                   border-top: 1px solid rgba(51, 65, 85, 0.5);
                   scroll-margin-top: 5rem;
                 }
@@ -1280,9 +1280,9 @@ const BlogPage: React.FC = () => {
                 @media (min-width: 768px) {
                   .blog-content h2 {
                     font-size: 30px;
-                    margin-top: 4rem;
+                    margin-top: 1.5rem;
                     margin-bottom: 1.5rem;
-                    padding-top: 2rem;
+                    padding-top: 1.5rem;
                     scroll-margin-top: 7rem;
                   }
                 }
@@ -1297,8 +1297,8 @@ const BlogPage: React.FC = () => {
                   font-size: 18px;
                   font-weight: 700;
                   color: #f1f5f9;
-                  margin-top: 3rem;
-                  margin-bottom: 1.25rem;
+                  margin-top: 0.75rem;
+                  margin-bottom: 0.75rem;
                   line-height: 1.35;
                   scroll-margin-top: 7rem;
                 }
@@ -1315,13 +1315,13 @@ const BlogPage: React.FC = () => {
 
                 /* Paragraphs - Generous spacing */
                 .blog-content p {
-                  margin-bottom: 1rem;
+                  margin-bottom: 0.75rem;
                   line-height: 1.8;
                 }
 
                 @media (min-width: 768px) {
                   .blog-content p {
-                    margin-bottom: 2rem;
+                    margin-bottom: 1.5rem;
                   }
                 }
 
@@ -1341,7 +1341,7 @@ const BlogPage: React.FC = () => {
 
                 .blog-content li {
                   font-size: 14px;
-                  margin-bottom: 1rem;
+                  margin-bottom: 0.375rem;
                   padding-left: 2rem;
                   position: relative;
                   line-height: 1.8;
