@@ -13,6 +13,7 @@ import {
   ChevronRight,
   ChevronDown,
   ArrowLeft,
+  ArrowRight,
   User,
   BookOpen,
   Rocket
@@ -983,7 +984,39 @@ const BlogPage: React.FC = () => {
         // Remove Article schema
         const articleSchema = document.querySelector('script[type="application/ld+json"][data-schema="article-deleted-whatsapp"]');
         if (articleSchema) articleSchema.remove();
+
+        // Remove dynamic FAQ schema
+        const dynamicFaqSchema = document.querySelector('script[type="application/ld+json"][data-schema="dynamic-faq"]');
+        if (dynamicFaqSchema) dynamicFaqSchema.remove();
       };
+    }
+
+    // Add Dynamic FAQPage Schema for ALL blog posts
+    if (displayPost.faqs && displayPost.faqs.length > 0) {
+      const dynamicFaqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": displayPost.faqs.map((faq: any) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      };
+
+      // Remove existing dynamic FAQ schema if any
+      const existingFaqScript = document.querySelector('script[type="application/ld+json"][data-schema="dynamic-faq"]');
+      if (existingFaqScript) {
+        existingFaqScript.remove();
+      }
+
+      const dynamicFaqScript = document.createElement('script') as HTMLScriptElement;
+      dynamicFaqScript.type = 'application/ld+json';
+      dynamicFaqScript.setAttribute('data-schema', 'dynamic-faq');
+      dynamicFaqScript.textContent = JSON.stringify(dynamicFaqSchema);
+      document.head.appendChild(dynamicFaqScript);
     }
   }, [displayPost]);
 
@@ -1490,24 +1523,24 @@ const BlogPage: React.FC = () => {
 
               {/* FAQs Section */}
               {displayPost.faqs && displayPost.faqs.length > 0 && (
-                <div className="mt-20 pt-12 border-t border-slate-800">
-                  <h2 className="text-3xl font-bold text-white tracking-tight mb-8">
+                <section className="mt-20 pt-12 border-t border-slate-800" aria-labelledby="faq-title">
+                  <h2 id="faq-title" className="text-[19px] md:text-3xl font-bold text-white tracking-tight mb-8">
                     {detailLabels?.faqTitle || t('blog.detail.faqTitle')}
                   </h2>
                   <div className="space-y-4">
                     {displayPost.faqs.map((faq, i) => (
                       <details key={i} className="group border border-slate-700/50 rounded-xl bg-slate-900/30 transition-all hover:border-slate-600">
-                        <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-lg">
+                        <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-[18px] md:text-lg">
                           <span className="pr-6">{faq.question}</span>
                           <Plus size={20} className="text-brand-cyan flex-shrink-0 group-open:rotate-45 transition-transform" />
                         </summary>
-                        <div className="px-6 pb-6 text-slate-400 text-lg leading-relaxed border-t border-slate-700/30 pt-4">
+                        <div className="px-6 pb-6 text-slate-400 text-[14px] md:text-lg leading-relaxed border-t border-slate-700/30 pt-4">
                           {faq.answer}
                         </div>
                       </details>
                     ))}
                   </div>
-                </div>
+                </section>
               )}
 
               {/* Author Section */}
