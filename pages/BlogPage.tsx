@@ -112,11 +112,11 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
     },
     listItem: {
       bullet: ({ children }) => (
-        <li className="text-lg text-slate-300 leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
           {children}
         </li>
       ),
-      number: ({ children }) => <li className="text-lg text-slate-300 leading-relaxed">{children}</li>,
+      number: ({ children }) => <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed">{children}</li>,
     },
     marks: {
       strong: ({ children }) => <strong className="font-bold text-white">{children}</strong>,
@@ -1307,6 +1307,7 @@ const BlogPage: React.FC = () => {
                 }
 
                 .blog-content li {
+                  font-size: 14px;
                   margin-bottom: 1rem;
                   padding-left: 2rem;
                   position: relative;
@@ -1344,6 +1345,12 @@ const BlogPage: React.FC = () => {
                   display: flex;
                   align-items: center;
                   justify-content: center;
+                }
+
+                @media (min-width: 768px) {
+                  .blog-content li {
+                    font-size: 1.125rem;
+                  }
                 }
 
                 /* Emphasis */
