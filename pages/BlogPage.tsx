@@ -1053,7 +1053,7 @@ const BlogPage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           {/* Breadcrumb Navigation */}
-          <nav className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm mb-6 md:mb-10">
+          <nav className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm mb-0">
             <Link to="/" className="text-slate-500 hover:text-white transition-colors">
               Home
             </Link>
@@ -1077,7 +1077,7 @@ const BlogPage: React.FC = () => {
           </div>
 
           {/* Title - Large, Bold, Readable */}
-          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-5 md:mb-8">
+          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-0">
             {displayPost.title}
           </h1>
 
@@ -1143,7 +1143,7 @@ const BlogPage: React.FC = () => {
 
       {/* Featured Image - Left Aligned */}
       {displayPost.featuredImage && (
-        <div className="max-w-7xl mx-auto px-4 md:px-6 mb-6 md:mb-12 lg:mb-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 mb-3">
           <div className="relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden aspect-[16/9] md:aspect-[2/1] shadow-xl md:shadow-2xl border border-slate-800/50">
             <img
               src={displayPost.featuredImage}
