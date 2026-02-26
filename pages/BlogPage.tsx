@@ -1077,12 +1077,12 @@ const BlogPage: React.FC = () => {
           </div>
 
           {/* Title - Large, Bold, Readable */}
-          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-0">
+          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-3">
             {displayPost.title}
           </h1>
 
           {/* Excerpt - Generous size */}
-          <p className="text-base md:text-xl lg:text-2xl text-slate-400 leading-relaxed mb-8 md:mb-10">
+          <p className="text-base md:text-xl lg:text-2xl text-slate-400 leading-relaxed mb-3">
             {displayPost.excerpt}
           </p>
 
@@ -1155,7 +1155,7 @@ const BlogPage: React.FC = () => {
               height={630}
             />
           </div>
-          <figcaption className="text-center text-slate-400 text-[10px] mt-3">{displayPost.title}</figcaption>
+          <figcaption className="text-center text-slate-400 text-[10px] md:text-xs mt-3">{displayPost.title}</figcaption>
         </figure>
       )}
 
