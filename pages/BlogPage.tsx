@@ -1143,7 +1143,7 @@ const BlogPage: React.FC = () => {
 
       {/* Featured Image - Left Aligned */}
       {displayPost.featuredImage && (
-        <div className="max-w-7xl mx-auto px-4 md:px-6 mb-3">
+        <figure className="max-w-7xl mx-auto px-4 md:px-6 mb-3">
           <div className="relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden aspect-[16/9] md:aspect-[2/1] shadow-xl md:shadow-2xl border border-slate-800/50">
             <img
               src={displayPost.featuredImage}
@@ -1155,7 +1155,8 @@ const BlogPage: React.FC = () => {
               height={630}
             />
           </div>
-        </div>
+          <figcaption className="text-center text-slate-400 text-[10px] mt-3">{displayPost.title}</figcaption>
+        </figure>
       )}
 
       {/* Main Content Area - Left Aligned */}
