@@ -2,7 +2,7 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-// Import all translations upfront
+// Import translations synchronously for all supported languages
 import enTranslations from '../locales/en/common.json'
 import ptTranslations from '../locales/pt/common.json'
 import esTranslations from '../locales/es/common.json'
@@ -35,7 +35,7 @@ const pathLanguageDetector = {
   },
 }
 
-// Initialize with all translations preloaded
+// Initialize with all translations (Vite handles optimization)
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)

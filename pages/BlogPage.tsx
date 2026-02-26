@@ -144,6 +144,8 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
               src={value.url}
               alt={value.alt || ''}
               className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
+              fetchPriority="high"
+              loading="eager"
             />
             {value.caption && (
               <figcaption className="text-center text-slate-500 text-sm mt-4">{value.caption}</figcaption>
@@ -424,7 +426,7 @@ const RelatedPostCard: React.FC<{
       className="bg-brand-card border border-slate-700 rounded-2xl overflow-hidden shadow-xl hover:border-slate-500 transition-all cursor-pointer group h-full flex flex-col"
     >
       <div className="relative h-48 overflow-hidden">
-        <img src={image || 'https://picsum.photos/600/400'} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <img src={image || 'https://picsum.photos/600/400'} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" fetchPriority="high" loading="eager" width={600} height={400} />
         <div className="absolute top-4 left-4">
           <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2 py-1 rounded text-white">{category}</span>
         </div>
@@ -1054,10 +1056,18 @@ const BlogPage: React.FC = () => {
           {/* Author & Meta - Clean horizontal layout */}
           <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 py-6 md:py-8 border-y border-slate-800/50">
             <div className="flex items-center gap-3 md:gap-4">
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg md:text-xl">
-                {displayPost.author?.name?.[0] || <User size={20} className="md:hidden" />}
-                {displayPost.author?.name?.[0] || <User size={24} className="hidden md:block" />}
-              </div>
+              {displayPost.author?.image ? (
+                <img
+                  src={displayPost.author.image}
+                  alt={displayPost.author.name}
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-brand-cyan"
+                />
+              ) : (
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg md:text-xl">
+                  {displayPost.author?.name?.[0] || <User size={20} className="md:hidden" />}
+                  {displayPost.author?.name?.[0] || <User size={24} className="hidden md:block" />}
+                </div>
+              )}
               <div>
                 <p className="font-semibold text-white text-base md:text-lg">{displayPost.author?.name || t('blog.detail.authorFallback')}</p>
                 <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
@@ -1106,6 +1116,10 @@ const BlogPage: React.FC = () => {
               src={displayPost.featuredImage}
               alt={displayPost.title}
               className="w-full h-full object-cover"
+              fetchPriority="high"
+              loading="eager"
+              width={1200}
+              height={630}
             />
           </div>
         </div>
@@ -1493,9 +1507,17 @@ const BlogPage: React.FC = () => {
               {displayPost.author && (
                 <div className="mt-20 pt-12 border-t border-slate-800">
                   <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-slate-700/30">
-                    <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-3xl flex-shrink-0">
-                      {displayPost.author.name[0]}
-                    </div>
+                    {displayPost.author.image ? (
+                      <img
+                        src={displayPost.author.image}
+                        alt={displayPost.author.name}
+                        className="w-24 h-24 rounded-2xl object-cover border-2 border-brand-cyan flex-shrink-0"
+                      />
+                    ) : (
+                      <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-3xl flex-shrink-0">
+                        {displayPost.author.name[0]}
+                      </div>
+                    )}
                     <div className="flex-1">
                       <p className="text-sm text-brand-cyan uppercase tracking-wider font-semibold mb-2">
                         {detailLabels?.authorLabel || t('blog.detail.authorLabel')}

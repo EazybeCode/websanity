@@ -1,14 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-// Import i18n synchronously to ensure it's initialized before app renders
+// Import i18n
 import './i18n';
 import App from './App';
-
-const LoadingFallback = () => (
-  <div className="min-h-screen bg-[#0a0a14] flex items-center justify-center">
-    <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
-  </div>
-);
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -16,10 +10,5 @@ if (!rootElement) {
 }
 
 const root = ReactDOM.createRoot(rootElement);
-root.render(
-  <React.StrictMode>
-    <Suspense fallback={<LoadingFallback />}>
-      <App />
-    </Suspense>
-  </React.StrictMode>
-);
+// Removed Suspense wrapper to eliminate loading spinner - faster LCP
+root.render(<App />);

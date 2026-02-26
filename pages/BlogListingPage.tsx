@@ -8,6 +8,10 @@ import { useBlogPosts, useBlogIndex, BlogCategory } from '../hooks/useBlog';
 import { SectionBadge } from '../components/ui/SectionBadge';
 import { getLanguageFromPath } from '../components/LanguageProvider';
 import { translateBlogPost, getUIText, SupportedLanguage } from '../lib/blogTranslations';
+import { useBlogListingSEO } from '../hooks/useBlogListingSEO';
+import { useBlogListingSEOBr } from '../hooks/useBlogListingSEOBr';
+import { useBlogListingSEOEs } from '../hooks/useBlogListingSEOEs';
+import { useBlogListingSEOTr } from '../hooks/useBlogListingSEOTr';
 
 const BlogCard: React.FC<{ post: any; minReadSuffix?: string }> = ({ post, minReadSuffix = 'min read' }) => {
   const navigate = useNavigate();
@@ -22,6 +26,10 @@ const BlogCard: React.FC<{ post: any; minReadSuffix?: string }> = ({ post, minRe
           src={post.featuredImage || 'https://picsum.photos/800/450'}
           alt={post.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          fetchPriority="high"
+          loading="eager"
+          width={800}
+          height={450}
         />
         <div className="absolute top-4 left-4">
           <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2.5 py-1 rounded text-white">
@@ -72,6 +80,10 @@ const FeaturedBlogCard: React.FC<{ post: any; badgeText?: string; minReadSuffix?
             src={post.featuredImage || 'https://picsum.photos/800/600'}
             alt={post.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            fetchPriority="high"
+            loading="eager"
+            width={800}
+            height={600}
           />
           <div className="absolute top-4 left-4">
             <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2.5 py-1 rounded text-white">
@@ -111,8 +123,31 @@ const FeaturedBlogCard: React.FC<{ post: any; badgeText?: string; minReadSuffix?
 const BlogListingPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
+
+  // Apply SEO meta tags for blog listing page based on language
+  const currentPath = location.pathname;
+  if (currentPath === '/blog') {
+    useBlogListingSEO();
+  } else if (currentPath === '/br/blog') {
+    useBlogListingSEOBr();
+  } else if (currentPath === '/es/blog') {
+    useBlogListingSEOEs();
+  } else if (currentPath === '/tr/blog') {
+    useBlogListingSEOTr();
+  }
+
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [forceShowContent, setForceShowContent] = useState(false);
+
+  // Timeout to force show content after 5 seconds if Sanity is slow
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setForceShowContent(true);
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, []);
+
   // Get language from URL pathname instead of i18n state
   const language = getLanguageFromPath(location.pathname);
   const { data: allPosts, loading: postsLoading, error: postsError } = useBlogPosts(undefined, language);
@@ -189,25 +224,14 @@ const BlogListingPage: React.FC = () => {
     return filteredPosts;
   }, [filteredPosts, activeCategory, searchQuery, featuredPost]);
 
-  const loading = postsLoading || indexLoading;
+  const loading = (postsLoading || indexLoading) && !forceShowContent;
 
-  if (loading) {
+  if (loading && !postsError) {
     return (
       <div className="min-h-screen bg-brand-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400">{t('blog.loading')}</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (postsError) {
-    return (
-      <div className="min-h-screen bg-brand-black flex items-center justify-center">
-        <div className="text-center text-red-400">
-          <p>{t('blog.error')}</p>
-          <p className="text-sm mt-2">{postsError.message}</p>
         </div>
       </div>
     );
