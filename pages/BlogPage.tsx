@@ -89,17 +89,17 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
       },
       h2: ({ children, value }) => {
         const id = headingIds.get(value._key) || generateSlug(String(children));
-        return <h2 id={id} className="text-3xl font-bold text-white mt-12 mb-4 pt-8 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28">{children}</h2>;
+        return <h2 id={id} className="text-[19px] md:text-3xl font-bold text-white mt-12 mb-4 pt-8 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28">{children}</h2>;
       },
       h3: ({ children, value }) => {
         const id = headingIds.get(value._key) || generateSlug(String(children));
-        return <h3 id={id} className="text-2xl font-semibold text-slate-100 mt-10 mb-4 scroll-mt-28">{children}</h3>;
+        return <h3 id={id} className="text-[18px] md:text-2xl font-semibold text-slate-100 mt-10 mb-4 scroll-mt-28">{children}</h3>;
       },
       h4: ({ children, value }) => {
         const id = headingIds.get(value._key) || generateSlug(String(children));
         return <h4 id={id} className="text-xl font-semibold text-slate-200 mt-8 mb-3 scroll-mt-28">{children}</h4>;
       },
-      normal: ({ children }) => <p className="text-lg text-slate-300 leading-relaxed mb-6">{children}</p>,
+      normal: ({ children }) => <p className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-6">{children}</p>,
       blockquote: ({ children }) => (
         <blockquote className="border-l-4 border-brand-cyan pl-6 my-8 italic text-slate-400 text-xl">
           {children}
@@ -1211,7 +1211,7 @@ const BlogPage: React.FC = () => {
                   <>
                     <style dangerouslySetInnerHTML={{ __html: `
                 .blog-content {
-                  font-size: 15px;
+                  font-size: 14px;
                   line-height: 1.8;
                   color: #d1d5db;
                   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -1232,7 +1232,7 @@ const BlogPage: React.FC = () => {
 
                 /* Headings - Clear hierarchy */
                 .blog-content h2 {
-                  font-size: 20px;
+                  font-size: 19px;
                   font-weight: 800;
                   color: #ffffff;
                   margin-top: 2rem;
@@ -1261,7 +1261,7 @@ const BlogPage: React.FC = () => {
                 }
 
                 .blog-content h3 {
-                  font-size: 1.5rem;
+                  font-size: 18px;
                   font-weight: 700;
                   color: #f1f5f9;
                   margin-top: 3rem;
