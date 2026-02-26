@@ -38,15 +38,33 @@ const PageLoader = () => (
   </div>
 )
 
-// HubSpot SPA page view tracker - tracks route changes for entry/exit page analytics
-const HubSpotPageTracker: React.FC = () => {
+// Tracks entry page, UTMs, and current page for HubSpot form fields
+const PageTracker: React.FC = () => {
   const location = useLocation()
 
   useEffect(() => {
-    const _hsq = (window as any)._hsq = (window as any)._hsq || []
-    _hsq.push(['setPath', location.pathname + location.search])
-    _hsq.push(['trackPageView'])
-  }, [location.pathname, location.search])
+    // Store entry page only once per session
+    if (!sessionStorage.getItem('entry_page')) {
+      sessionStorage.setItem('entry_page', location.pathname)
+    }
+
+    // Store UTMs only once per session (from landing URL)
+    if (!sessionStorage.getItem('utm_captured')) {
+      const params = new URLSearchParams(location.search)
+      const source = params.get('utm_source')
+      const medium = params.get('utm_medium')
+      const campaign = params.get('utm_campaign')
+      if (source) sessionStorage.setItem('utm_source', source)
+      if (medium) sessionStorage.setItem('utm_medium', medium)
+      if (campaign) sessionStorage.setItem('utm_campaign', campaign)
+      sessionStorage.setItem('utm_captured', 'true')
+    }
+  }, [])
+
+  // Update exit page on every route change
+  useEffect(() => {
+    sessionStorage.setItem('exit_page', location.pathname)
+  }, [location.pathname])
 
   return null
 }
@@ -266,7 +284,7 @@ const AppRoutes = () => (
 function App() {
   return (
     <BrowserRouter>
-      <HubSpotPageTracker />
+      <PageTracker />
       <TrialModalProvider>
         <TrailingSlashRedirect>
           <QueryParamRedirect>

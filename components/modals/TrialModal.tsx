@@ -248,26 +248,28 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
 
     try {
       // Submit to HubSpot Forms API
-      // Get HubSpot tracking cookie for linking page views to contact
       const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1];
+
+      const fields: { name: string; value: string }[] = [
+        { name: 'email', value: formData.workEmail },
+        { name: 'phone', value: finalPhone },
+        { name: 'crm_used', value: formData.crmProvider },
+        { name: 'entry_page', value: sessionStorage.getItem('entry_page') || window.location.pathname },
+        { name: 'exit_page', value: window.location.pathname },
+      ];
+
+      // Add UTMs if present
+      const utmSource = sessionStorage.getItem('utm_source');
+      const utmMedium = sessionStorage.getItem('utm_medium');
+      const utmCampaign = sessionStorage.getItem('utm_campaign');
+      if (utmSource) fields.push({ name: 'utm_source', value: utmSource });
+      if (utmMedium) fields.push({ name: 'utm_medium', value: utmMedium });
+      if (utmCampaign) fields.push({ name: 'utm_campaign', value: utmCampaign });
 
       const hubspotPayload: Record<string, unknown> = {
         portalId: '40009480',
         formGuid: '9aedb83c-2475-483a-87cc-30712345cc77',
-        fields: [
-          {
-            name: 'email',
-            value: formData.workEmail,
-          },
-          {
-            name: 'phone',
-            value: finalPhone,
-          },
-          {
-            name: 'crm_used',
-            value: formData.crmProvider,
-          },
-        ],
+        fields,
         context: {
           pageUri: window.location.href,
           pageName: document.title || 'EazyBe Website',

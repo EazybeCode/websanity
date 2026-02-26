@@ -247,7 +247,17 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
         { name: "language", value: getLanguageName() },
         { name: "crm_used", value: formData.crm || "Website" },
         { name: "source_name", value: "website" },
+        { name: "entry_page", value: sessionStorage.getItem('entry_page') || window.location.pathname },
+        { name: "exit_page", value: window.location.pathname },
       ];
+
+      // Add UTMs if present
+      const utmSource = sessionStorage.getItem('utm_source');
+      const utmMedium = sessionStorage.getItem('utm_medium');
+      const utmCampaign = sessionStorage.getItem('utm_campaign');
+      if (utmSource) fields.push({ name: "utm_source", value: utmSource });
+      if (utmMedium) fields.push({ name: "utm_medium", value: utmMedium });
+      if (utmCampaign) fields.push({ name: "utm_campaign", value: utmCampaign });
 
       // Add phone with country code
       const formattedPhone = formData.countryCode.replace('+', '') + formatPhoneNumber(formData.phone);
