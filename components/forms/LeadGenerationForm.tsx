@@ -253,11 +253,15 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       const formattedPhone = formData.countryCode.replace('+', '') + formatPhoneNumber(formData.phone);
       fields.push({ name: "phone", value: formattedPhone });
 
+      // Get HubSpot tracking cookie for linking page views to contact
+      const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1];
+
       const payload = {
         fields,
         context: {
           pageUri: window.location.href,
           pageName: document.title || "EazyBe Website",
+          ...(hutk ? { hutk } : {}),
         },
       };
 

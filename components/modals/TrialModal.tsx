@@ -248,7 +248,10 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
 
     try {
       // Submit to HubSpot Forms API
-      const hubspotPayload = {
+      // Get HubSpot tracking cookie for linking page views to contact
+      const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1];
+
+      const hubspotPayload: Record<string, unknown> = {
         portalId: '40009480',
         formGuid: '9aedb83c-2475-483a-87cc-30712345cc77',
         fields: [
@@ -265,6 +268,11 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
             value: formData.crmProvider,
           },
         ],
+        context: {
+          pageUri: window.location.href,
+          pageName: document.title || 'EazyBe Website',
+          ...(hutk ? { hutk } : {}),
+        },
       };
 
       const response = await fetch(
