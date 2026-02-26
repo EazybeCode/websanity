@@ -988,6 +988,400 @@ const BlogPage: React.FC = () => {
         // Remove dynamic FAQ schema
         const dynamicFaqSchema = document.querySelector('script[type="application/ld+json"][data-schema="dynamic-faq"]');
         if (dynamicFaqSchema) dynamicFaqSchema.remove();
+
+        // Remove AI Support schemas
+        const aiOrgSchema = document.querySelector('script[type="application/ld+json"][data-schema="org-ai-support"]');
+        if (aiOrgSchema) aiOrgSchema.remove();
+        const aiSoftwareAppSchema = document.querySelector('script[type="application/ld+json"][data-schema="software-ai-support"]');
+        if (aiSoftwareAppSchema) aiSoftwareAppSchema.remove();
+        const aiBreadcrumbSchema = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-ai-support"]');
+        if (aiBreadcrumbSchema) aiBreadcrumbSchema.remove();
+        const aiWebPageSchema = document.querySelector('script[type="application/ld+json"][data-schema="webpage-ai-support"]');
+        if (aiWebPageSchema) aiWebPageSchema.remove();
+        const aiBlogPostingSchema = document.querySelector('script[type="application/ld+json"][data-schema="blogposting-ai-support"]');
+        if (aiBlogPostingSchema) aiBlogPostingSchema.remove();
+        const aiFaqPageSchema = document.querySelector('script[type="application/ld+json"][data-schema="faqpage-ai-support"]');
+        if (aiFaqPageSchema) aiFaqPageSchema.remove();
+      };
+    }
+
+    // Special meta tags for "best-ai-agents-for-customer-support" blog post
+    if (slug === 'best-ai-agents-for-customer-support') {
+      // Update title with custom title
+      document.title = 'Best AI Agents for Customer Support in 2026 | Eazybe';
+
+      // Override with specific meta tags for this post
+      setMetaTag('description', 'Top AI agents for customer support in 2026. Compare leading AI chatbots, automation tools, and CX platforms that reduce costs, improve response time, and scale support teams.');
+      setMetaTag('keywords', 'best AI customer support tools, AI chatbots for support, AI agents for customer service, customer support automation tools, AI helpdesk software, CX automation platforms');
+      setMetaTag('author', 'Eazybe');
+      setMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+      setMetaTag('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+      setMetaTag('bingbot', 'index, follow');
+      setMetaTag('thumbnail', featuredImageUrl);
+
+      // Article meta tags
+      setMetaTag('article:published_time', '2026-02-03T08:00:00+00:00', true);
+      setMetaTag('article:modified_time', '2026-02-03T10:30:00+00:00', true);
+      setMetaTag('article:section', 'AI & Customer Support', true);
+      setMetaTag('article:tag', 'AI Customer Support Tools', true);
+
+      // Open Graph / Facebook - override with specific content
+      setMetaTag('og:url', 'https://eazybe.com/blog/best-ai-agents-for-customer-support', true);
+      setMetaTag('og:title', 'Best AI Agents for Customer Support in 2026', true);
+      setMetaTag('og:description', 'Discover the top AI agents and chatbots for customer support in 2026. Compare features, automation capabilities, and pricing to choose the right platform.', true);
+      setMetaTag('og:image', 'https://eazybe.com/logo.png', true);
+      setMetaTag('og:image:width', '1200', true);
+      setMetaTag('og:image:height', '630', true);
+      setMetaTag('og:image:alt', 'Best AI agents for customer support comparison', true);
+      setMetaTag('og:locale', 'en_US', true);
+      setMetaTag('og:site_name', 'Eazybe', true);
+
+      // Twitter Card - override with specific content
+      setMetaTag('twitter:site', '@eazybe');
+      setMetaTag('twitter:creator', '@eazybe');
+      setMetaTag('twitter:title', 'Best AI Agents for Customer Support in 2026');
+      setMetaTag('twitter:description', 'Compare the leading AI chatbots and automation platforms for customer support. See which tools deliver faster replies, lower costs, and better CX.');
+      setMetaTag('twitter:image', 'https://eazybe.com/logo.png');
+      setMetaTag('twitter:image:alt', 'AI customer support tools comparison');
+
+      // Twitter Card labels
+      setMetaTag('twitter:label1', 'Content Type');
+      setMetaTag('twitter:data1', 'Comparison Guide');
+      setMetaTag('twitter:label2', 'Topic');
+      setMetaTag('twitter:data2', 'AI Customer Support Tools');
+
+      // Mobile web app tags
+      setMetaTag('mobile-web-app-capable', 'yes');
+      setMetaTag('apple-mobile-web-app-capable', 'yes');
+      setMetaTag('apple-mobile-web-app-status-bar-style', 'default');
+      setMetaTag('apple-mobile-web-app-title', 'Eazybe');
+
+      // AI and SEO specific meta tags
+      setMetaTag('answer-type', 'comparison, list, guide, recommendations');
+      setMetaTag('target-audience', 'support leaders, SaaS founders, CX managers, operations teams, startups, enterprise teams');
+      setMetaTag('content-intent', 'informational, commercial-investigation');
+      setMetaTag('conversational-query', 'best AI agents for customer support, top AI chatbots for support, AI helpdesk tools comparison, automation tools for customer service');
+      setMetaTag('ai-readability', 'professional, educational, comparison-focused');
+      setMetaTag('context-window', 'customer support automation, AI chatbots, helpdesk AI, CX optimization, support scalability');
+      setMetaTag('user-problem', 'support teams overloaded with tickets, slow response time, rising support costs');
+      setMetaTag('solution-summary', 'compare AI-powered support agents to automate responses and improve customer experience');
+      setMetaTag('primary-benefit', 'find the best AI support platform to reduce workload and improve CX');
+      setMetaTag('use-case', 'businesses researching AI tools to automate customer support');
+      setMetaTag('implementation-difficulty', 'varies by platform');
+      setMetaTag('time-to-value', 'quick impact after implementation');
+
+      // Add Organization Schema
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe helps organization & sales teams connect WhatsApp with CRM platforms to sync conversations, automate follow-ups, and improve customer engagement.",
+        "foundingDate": "2021",
+        "sameAs": ["https://twitter.com/eazybe", "https://linkedin.com/company/eazybe", "https://youtube.com/@eazybe"],
+        "publishingPrinciples": "https://eazybe.com/blog",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        }
+      };
+
+      let orgScript = document.querySelector('script[type="application/ld+json"][data-schema="org-ai-support"]') as HTMLScriptElement;
+      if (!orgScript) {
+        orgScript = document.createElement('script') as HTMLScriptElement;
+        orgScript.type = 'application/ld+json';
+        orgScript.setAttribute('data-schema', 'org-ai-support');
+        document.head.appendChild(orgScript);
+      }
+      orgScript.textContent = JSON.stringify(organizationSchema);
+
+      // Add SoftwareApplication Schema
+      const softwareAppSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "WhatsApp CRM Integration - Eazybe",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
+        "operatingSystem": "Web, Chrome Extension",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 29,
+          "highPrice": 49,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": 53766
+        },
+        "featureList": [
+          "Automatic WhatsApp to CRM sync",
+          "AI-powered reply suggestions",
+          "Shared inbox for team collaboration",
+          "Deal tracking from WhatsApp",
+          "Contact synchronization",
+          "Message scheduling",
+          "AI Agents for CRM"
+        ]
+      };
+
+      let softwareAppScript = document.querySelector('script[type="application/ld+json"][data-schema="software-ai-support"]') as HTMLScriptElement;
+      if (!softwareAppScript) {
+        softwareAppScript = document.createElement('script') as HTMLScriptElement;
+        softwareAppScript.type = 'application/ld+json';
+        softwareAppScript.setAttribute('data-schema', 'software-ai-support');
+        document.head.appendChild(softwareAppScript);
+      }
+      softwareAppScript.textContent = JSON.stringify(softwareAppSchema);
+
+      // Add BreadcrumbList Schema
+      const breadcrumbSchema = {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Eazybe",
+            "item": "https://eazybe.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://eazybe.com/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Best AI Agent",
+            "item": "https://eazybe.com/blog/best-ai-agents-for-customer-support"
+          }
+        ]
+      };
+
+      let breadcrumbScript = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-ai-support"]') as HTMLScriptElement;
+      if (!breadcrumbScript) {
+        breadcrumbScript = document.createElement('script') as HTMLScriptElement;
+        breadcrumbScript.type = 'application/ld+json';
+        breadcrumbScript.setAttribute('data-schema', 'breadcrumb-ai-support');
+        document.head.appendChild(breadcrumbScript);
+      }
+      breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
+
+      // Add WebPage Schema
+      const webPageSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Best AI Agents for Customer Support in 2026 | Eazybe",
+        "description": "Top AI agents for customer support in 2026. Learn which AI chatbots and automation platforms deliver faster responses, lower costs, and better CX.",
+        "url": "https://eazybe.com/blog/best-ai-agents-for-customer-support",
+        "inLanguage": "en-US",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png",
+            "width": 600,
+            "height": 60
+          }
+        },
+        "isPartOf": {
+          "@type": "Blog",
+          "name": "Eazybe Blog",
+          "url": "https://eazybe.com/blog"
+        }
+      };
+
+      let webPageScript = document.querySelector('script[type="application/ld+json"][data-schema="webpage-ai-support"]') as HTMLScriptElement;
+      if (!webPageScript) {
+        webPageScript = document.createElement('script') as HTMLScriptElement;
+        webPageScript.type = 'application/ld+json';
+        webPageScript.setAttribute('data-schema', 'webpage-ai-support');
+        document.head.appendChild(webPageScript);
+      }
+      webPageScript.textContent = JSON.stringify(webPageSchema);
+
+      // Add BlogPosting Schema
+      const blogPostingSchema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://eazybe.com/blog/best-ai-agents-for-customer-support"
+        },
+        "inLanguage": "en-US",
+        "headline": "Best AI Agents for Customer Support in 2026 | Eazybe",
+        "description": "Top AI agents for customer support in 2026. Learn which AI chatbots and automation platforms deliver faster responses, lower costs, and better CX.",
+        "keywords": [
+          "AI agents for customer support",
+          "AI customer service",
+          "AI chatbots",
+          "customer support automation",
+          "CX automation",
+          "helpdesk AI"
+        ],
+        "articleSection": "AI & Customer Support",
+        "url": "https://eazybe.com/blog/best-ai-agents-for-customer-support",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 1200,
+          "height": 630
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png",
+            "width": 600,
+            "height": 60
+          }
+        },
+        "about": [
+          { "@type": "Thing", "name": "Customer Support" },
+          { "@type": "Thing", "name": "AI Agents" },
+          { "@type": "Thing", "name": "Customer Experience" },
+          { "@type": "Thing", "name": "Automation" }
+        ]
+      };
+
+      let blogPostingScript = document.querySelector('script[type="application/ld+json"][data-schema="blogposting-ai-support"]') as HTMLScriptElement;
+      if (!blogPostingScript) {
+        blogPostingScript = document.createElement('script') as HTMLScriptElement;
+        blogPostingScript.type = 'application/ld+json';
+        blogPostingScript.setAttribute('data-schema', 'blogposting-ai-support');
+        document.head.appendChild(blogPostingScript);
+      }
+      blogPostingScript.textContent = JSON.stringify(blogPostingSchema);
+
+      // Add FAQPage Schema
+      const faqPageSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "inLanguage": "en-US",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are AI agents for customer support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An AI support agent is software that can understand customer requests, retrieve relevant answers from your knowledge base or systems, and resolve issues automatically—or escalate to a human agent when needed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How are AI agents different from traditional chatbots?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Traditional chatbots rely on scripted flows and keywords. AI agents use language models and retrieval to handle open-ended questions, follow context across messages, and take actions via integrations (e.g., create tickets, update CRM, check orders)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which features matter most when choosing an AI agent in 2026?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Key features include high answer accuracy, knowledge base syncing, multi-channel support, human handoff, integrations (helpdesk/CRM), analytics, brand tone controls, and enterprise security (SSO, audit logs, data controls)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can AI agents reduce customer support costs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. AI agents can deflect repetitive tickets, speed up first response time, and help human agents handle more volume. Cost savings depend on ticket mix, knowledge base quality, and handoff rules."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do AI agents work on WhatsApp for customer support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. AI agents can support WhatsApp workflows when connected via the WhatsApp Business Platform or approved integrations, enabling automated replies, ticket creation, and escalation to human agents while keeping conversation context."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you prevent AI agents from giving wrong answers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use grounded responses from verified sources (knowledge base), confidence thresholds, restricted actions, human review for sensitive topics, and continuous testing on real tickets. Clear escalation rules reduce risk."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What security and compliance should I look for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Look for encryption, role-based access, SSO/SAML, audit logs, data retention controls, PII redaction, and region/compliance options (e.g., GDPR/LGPD) depending on your customers and industry."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What KPIs should I track to measure AI agent performance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Track deflection rate, first response time, resolution time, CSAT, containment rate, escalation rate, recontact rate, and cost per resolved ticket. Review accuracy and failure reasons regularly to improve outcomes."
+            }
+          }
+        ]
+      };
+
+      let faqPageScript = document.querySelector('script[type="application/ld+json"][data-schema="faqpage-ai-support"]') as HTMLScriptElement;
+      if (!faqPageScript) {
+        faqPageScript = document.createElement('script') as HTMLScriptElement;
+        faqPageScript.type = 'application/ld+json';
+        faqPageScript.setAttribute('data-schema', 'faqpage-ai-support');
+        document.head.appendChild(faqPageScript);
+      }
+      faqPageScript.textContent = JSON.stringify(faqPageSchema);
+
+      // Cleanup function to remove schemas when unmounting
+      return () => {
+        // Remove Organization schema
+        const orgSchema = document.querySelector('script[type="application/ld+json"][data-schema="org-ai-support"]');
+        if (orgSchema) orgSchema.remove();
+
+        // Remove SoftwareApplication schema
+        const softwareAppSchema = document.querySelector('script[type="application/ld+json"][data-schema="software-ai-support"]');
+        if (softwareAppSchema) softwareAppSchema.remove();
+
+        // Remove BreadcrumbList schema
+        const breadcrumbSchema = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-ai-support"]');
+        if (breadcrumbSchema) breadcrumbSchema.remove();
+
+        // Remove WebPage schema
+        const webPageSchema = document.querySelector('script[type="application/ld+json"][data-schema="webpage-ai-support"]');
+        if (webPageSchema) webPageSchema.remove();
+
+        // Remove BlogPosting schema
+        const blogPostingSchema = document.querySelector('script[type="application/ld+json"][data-schema="blogposting-ai-support"]');
+        if (blogPostingSchema) blogPostingSchema.remove();
+
+        // Remove FAQPage schema
+        const faqPageSchema = document.querySelector('script[type="application/ld+json"][data-schema="faqpage-ai-support"]');
+        if (faqPageSchema) faqPageSchema.remove();
       };
     }
 
