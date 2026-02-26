@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { SEOHead } from './components/SEOHead'
 import { LanguageProvider } from './components/LanguageProvider'
@@ -37,6 +37,19 @@ const PageLoader = () => (
     <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin" />
   </div>
 )
+
+// HubSpot SPA page view tracker - tracks route changes for entry/exit page analytics
+const HubSpotPageTracker: React.FC = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    const _hsq = (window as any)._hsq = (window as any)._hsq || []
+    _hsq.push(['setPath', location.pathname + location.search])
+    _hsq.push(['trackPageView'])
+  }, [location.pathname, location.search])
+
+  return null
+}
 
 // Component to redirect trailing slashes
 const TrailingSlashRedirect: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -253,6 +266,7 @@ const AppRoutes = () => (
 function App() {
   return (
     <BrowserRouter>
+      <HubSpotPageTracker />
       <TrialModalProvider>
         <TrailingSlashRedirect>
           <QueryParamRedirect>
