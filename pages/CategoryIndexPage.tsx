@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import {
@@ -730,6 +730,92 @@ export const CategoryIndexPage: React.FC = () => {
   const language = getLanguageFromPath()
   const slug = getSlugFromPath()
   const { data: sanityData, loading, error } = useCategoryIndex(slug, language)
+
+  // Add meta tags for /integrations page - MUST be before any early returns to follow React's Rules of Hooks
+  useEffect(() => {
+    if (location.pathname === '/integrations' || location.pathname === '/integrations/') {
+      // Helper function to set or update meta tag
+      const setMetaTag = (name: string, content: string, isProperty = false) => {
+        let element: HTMLMetaElement | null = document.querySelector(
+          isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`
+        );
+        if (!element) {
+          element = document.createElement('meta');
+          if (isProperty) {
+            (element as any).setAttribute('property', name);
+          } else {
+            element.name = name;
+          }
+          document.head.appendChild(element);
+        }
+        element.setAttribute('content', content);
+      };
+
+      // Set page title
+      document.title = 'WhatsApp CRM Integrations | Connect CRM With Business Tools';
+
+      // Basic meta tags
+      setMetaTag('description', 'Connect WhatsApp with HubSpot, Zoho, Salesforce, Google Sheets and more using Eazybe. Sync chats, automate workflows, and manage customer conversations across all your CRM integrations.');
+      setMetaTag('keywords', 'WhatsApp CRM integrations, WhatsApp HubSpot integration, WhatsApp Salesforce integration, WhatsApp Zoho integration, CRM WhatsApp integration, WhatsApp business integrations, Eazybe integrations');
+      setMetaTag('author', 'Eazybe');
+      setMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+      setMetaTag('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+      setMetaTag('bingbot', 'index, follow');
+      setMetaTag('thumbnail', 'https://eazybe.com/logo.png');
+
+      // Article meta tags
+      setMetaTag('article:section', 'Integrations', true);
+      setMetaTag('article:tag', 'WhatsApp CRM Integrations', true);
+
+      // Open Graph meta tags
+      setMetaTag('og:type', 'website', true);
+      setMetaTag('og:url', 'https://eazybe.com/integrations', true);
+      setMetaTag('og:title', 'WhatsApp CRM Integrations With Eazybe', true);
+      setMetaTag('og:description', 'Explore all WhatsApp CRM integrations supported by Eazybe. Connect HubSpot, Zoho, Salesforce and more to automate conversations and manage sales workflows.', true);
+      setMetaTag('og:image', 'https://eazybe.com/logo.png', true);
+      setMetaTag('og:image:width', '1200', true);
+      setMetaTag('og:image:height', '630', true);
+      setMetaTag('og:image:alt', 'Eazybe WhatsApp CRM Integrations Platform', true);
+      setMetaTag('og:locale', 'en_US', true);
+      setMetaTag('og:site_name', 'Eazybe', true);
+
+      // Twitter Card meta tags
+      setMetaTag('twitter:card', 'summary_large_image');
+      setMetaTag('twitter:site', '@eazybe');
+      setMetaTag('twitter:creator', '@eazybe');
+      setMetaTag('twitter:title', 'WhatsApp CRM Integrations | Connect WhatsApp With Your CRM');
+      setMetaTag('twitter:description', 'Integrate WhatsApp with leading CRMs and business tools using Eazybe. Sync chats, automate workflows, and manage customer communication in one place.');
+      setMetaTag('twitter:image', 'https://eazybe.com/logo.png');
+      setMetaTag('twitter:image:alt', 'WhatsApp CRM Integrations by Eazybe');
+
+      // Twitter Card labels
+      setMetaTag('twitter:label1', 'Category');
+      setMetaTag('twitter:data1', 'CRM Integrations');
+      setMetaTag('twitter:label2', 'Platform');
+      setMetaTag('twitter:data2', 'WhatsApp Automation');
+
+      // Mobile web app tags
+      setMetaTag('mobile-web-app-capable', 'yes');
+      setMetaTag('apple-mobile-web-app-capable', 'yes');
+      setMetaTag('apple-mobile-web-app-status-bar-style', 'default');
+      setMetaTag('apple-mobile-web-app-title', 'Eazybe');
+
+      // AI and SEO specific meta tags
+      setMetaTag('answer-type', 'product-information, integrations, feature-list');
+      setMetaTag('target-audience', 'sales teams, CRM users, business owners, support teams, SaaS companies');
+      setMetaTag('content-intent', 'commercial-investigation, transactional');
+      setMetaTag('conversational-query', 'WhatsApp CRM integrations, connect WhatsApp to CRM, WhatsApp integrations for sales teams');
+      setMetaTag('ai-readability', 'professional, solution-oriented');
+      setMetaTag('context-window', 'WhatsApp automation, CRM sync, customer communication, sales workflow automation');
+      setMetaTag('user-problem', 'WhatsApp conversations not connected to CRM systems');
+      setMetaTag('solution-summary', 'centralized WhatsApp integrations with CRM and business tools');
+      setMetaTag('primary-benefit', 'manage WhatsApp conversations inside your CRM');
+      setMetaTag('use-case', 'businesses connecting WhatsApp with CRM platforms and productivity tools');
+      setMetaTag('implementation-difficulty', 'easy integration setup');
+      setMetaTag('time-to-value', 'instant synchronization after connection');
+      setMetaTag('referrer', 'origin-when-cross-origin');
+    }
+  }, [location.pathname]);
 
   if (loading) {
     return (
