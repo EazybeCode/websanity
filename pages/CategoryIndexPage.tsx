@@ -741,7 +741,8 @@ export const CategoryIndexPage: React.FC = () => {
       'integrations-webpage-schema',
       'integrations-website-schema',
       'integrations-softwareapp-schema',
-      'integrations-softwareapp-br-schema'
+      'integrations-softwareapp-br-schema',
+      'integrations-softwareapp-es-schema'
     ];
 
     // Check if current path is an integrations page (any locale)
@@ -1312,6 +1313,49 @@ export const CategoryIndexPage: React.FC = () => {
           "inLanguage": "pt-BR"
         };
         addJsonLdSchema('integrations-softwareapp-br-schema', brSoftwareAppSchema);
+      }
+
+      // Add SoftwareApplication Schema for Spanish /es/integrations page
+      if (language === 'es') {
+        const esSoftwareAppSchema = {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Integraciones de WhatsApp con CRM - Eazybe",
+          "url": "https://eazybe.com/es/integrations",
+          "applicationCategory": "BusinessApplication",
+          "applicationSubCategory": "Integración CRM, Automatización de WhatsApp, Plataforma de Integraciones",
+          "operatingSystem": "Web, Extensión de Chrome",
+          "description": "Eazybe te permite integrar WhatsApp con CRMs y herramientas de ventas como HubSpot, Zoho, Salesforce, Bitrix24, LeadSquared y Google Sheets para sincronizar conversaciones, automatizar seguimientos y mejorar la productividad del equipo.",
+          "image": "https://eazybe.com/logo.png",
+          "offers": {
+            "@type": "AggregateOffer",
+            "url": "https://eazybe.com/es/pricing",
+            "priceCurrency": "EUR",
+            "lowPrice": 25,
+            "highPrice": 42,
+            "offerCount": 5,
+            "availability": "https://schema.org/InStock"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": 53766
+          },
+          "featureList": [
+            "Integraciones de WhatsApp con múltiples CRMs",
+            "Sincronización automática de conversaciones",
+            "Bandeja de entrada compartida para equipos",
+            "Automatización de mensajes y seguimientos",
+            "Sincronización de contactos y oportunidades",
+            "Integraciones personalizadas mediante webhooks",
+            "Agentes de IA para ventas y soporte",
+            "Gestión de leads directamente en WhatsApp"
+          ],
+          "inLanguage": "es-ES"
+        };
+        addJsonLdSchema('integrations-softwareapp-es-schema', esSoftwareAppSchema);
       }
     }
 
