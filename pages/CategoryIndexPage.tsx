@@ -739,7 +739,8 @@ export const CategoryIndexPage: React.FC = () => {
       'integrations-itemlist-schema',
       'integrations-breadcrumb-schema',
       'integrations-webpage-schema',
-      'integrations-website-schema'
+      'integrations-website-schema',
+      'integrations-softwareapp-schema'
     ];
 
     // Check if current path is an integrations page (any locale)
@@ -1230,6 +1231,44 @@ export const CategoryIndexPage: React.FC = () => {
         }
       };
       addJsonLdSchema('integrations-website-schema', webSiteSchema);
+
+      // Add SoftwareApplication Schema (only for English /integrations page)
+      if (language === 'en') {
+        const softwareAppSchema = {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "WhatsApp CRM Integration - Eazybe",
+          "applicationCategory": "BusinessApplication",
+          "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
+          "operatingSystem": "Web, Chrome Extension",
+          "offers": {
+            "@type": "AggregateOffer",
+            "url": "https://eazybe.com/pricing",
+            "priceCurrency": "USD",
+            "lowPrice": 29,
+            "highPrice": 49,
+            "offerCount": 5,
+            "availability": "https://schema.org/InStock"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": 53766
+          },
+          "featureList": [
+            "Automatic WhatsApp to CRM sync",
+            "AI-powered reply suggestions",
+            "Shared inbox for team collaboration",
+            "Deal tracking from WhatsApp",
+            "Contact synchronization",
+            "Message scheduling",
+            "AI Agents for CRM"
+          ]
+        };
+        addJsonLdSchema('integrations-softwareapp-schema', softwareAppSchema);
+      }
     }
 
     // Cleanup: Remove schemas when navigating away from /integrations
