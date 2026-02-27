@@ -742,8 +742,7 @@ export const CategoryIndexPage: React.FC = () => {
       'integrations-website-schema',
       'integrations-softwareapp-schema',
       'integrations-softwareapp-br-schema',
-      'integrations-softwareapp-es-schema',
-      'integrations-softwareapp-tr-schema'
+      'integrations-softwareapp-es-schema'
     ];
 
     // Check if current path is an integrations page (any locale)
