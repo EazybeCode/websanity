@@ -742,7 +742,21 @@ export const CategoryIndexPage: React.FC = () => {
       'integrations-website-schema'
     ];
 
-    if (location.pathname === '/integrations' || location.pathname === '/integrations/') {
+    // Check if current path is an integrations page (any locale)
+    const isIntegrationsPage = location.pathname === '/integrations' ||
+                               location.pathname === '/integrations/' ||
+                               location.pathname.startsWith('/integrations/') ||
+                               location.pathname === '/br/integrations' ||
+                               location.pathname === '/br/integrations/' ||
+                               location.pathname.startsWith('/br/integrations/') ||
+                               location.pathname === '/es/integrations' ||
+                               location.pathname === '/es/integrations/' ||
+                               location.pathname.startsWith('/es/integrations/') ||
+                               location.pathname === '/tr/integrations' ||
+                               location.pathname === '/tr/integrations/' ||
+                               location.pathname.startsWith('/tr/integrations/');
+
+    if (isIntegrationsPage) {
       // Helper function to set or update meta tag
       const setMetaTag = (name: string, content: string, isProperty = false) => {
         let element: HTMLMetaElement | null = document.querySelector(
@@ -760,12 +774,49 @@ export const CategoryIndexPage: React.FC = () => {
         element.setAttribute('content', content);
       };
 
+      // Get localized URL and language code
+      const getLocalizedData = () => {
+        const langMap: Record<string, { url: string; locale: string; title: string; description: string; keywords: string }> = {
+          'en': {
+            url: 'https://eazybe.com/integrations',
+            locale: 'en_US',
+            title: 'WhatsApp CRM Integrations | Connect CRM With Business Tools',
+            description: 'Connect WhatsApp with HubSpot, Zoho, Salesforce, Google Sheets and more using Eazybe. Sync chats, automate workflows, and manage customer conversations across all your CRM integrations.',
+            keywords: 'WhatsApp CRM integrations, WhatsApp HubSpot integration, WhatsApp Salesforce integration, WhatsApp Zoho integration, CRM WhatsApp integration, WhatsApp business integrations, Eazybe integrations'
+          },
+          'br': {
+            url: 'https://eazybe.com/br/integrations',
+            locale: 'pt_BR',
+            title: 'Integrações de CRM WhatsApp | Conecte CRM com Ferramentas de Negócios',
+            description: 'Conecte WhatsApp com HubSpot, Zoho, Salesforce, Google Sheets e mais usando Eazybe. Sincronize conversas, automatize fluxos de trabalho e gerencie conversas de clientes em todas as integrações de CRM.',
+            keywords: 'integrações CRM WhatsApp, integração WhatsApp HubSpot, integração WhatsApp Salesforce, integração WhatsApp Zoho, integração CRM WhatsApp, integrações WhatsApp negócios, integrações Eazybe'
+          },
+          'es': {
+            url: 'https://eazybe.com/es/integrations',
+            locale: 'es_ES',
+            title: 'Integraciones de CRM WhatsApp | Conecta CRM con Herramientas de Negocio',
+            description: 'Conecta WhatsApp con HubSpot, Zoho, Salesforce, Google Sheets y más usando Eazybe. Sincroniza conversaciones, automatiza flujos de trabajo y gestiona la comunicación de clientes en todas las integraciones de CRM.',
+            keywords: 'integraciones CRM WhatsApp, integración WhatsApp HubSpot, integración WhatsApp Salesforce, integración WhatsApp Zoho, integración CRM WhatsApp, integraciones WhatsApp negocios, integraciones Eazybe'
+          },
+          'tr': {
+            url: 'https://eazybe.com/tr/integrations',
+            locale: 'tr_TR',
+            title: 'WhatsApp CRM Entegrasyonları | CRM\'i İş Araçlarıyla Bağlayın',
+            description: 'Eazybe kullanarak WhatsApp\'ı HubSpot, Zoho, Salesforce, Google Sheets ve daha fazlasıyla bağlayın. Sohbetleri senkronize edin, iş akışlarını otomatikleştirin ve tüm CRM entegrasyonlarında müşteri iletişimini yönetin.',
+            keywords: 'WhatsApp CRM entegrasyonları, WhatsApp HubSpot entegrasyonu, WhatsApp Salesforce entegrasyonu, WhatsApp Zoho entegrasyonu, CRM WhatsApp entegrasyonu, WhatsApp iş entegrasyonları, Eazybe entegrasyonları'
+          }
+        };
+        return langMap[language] || langMap['en'];
+      };
+
+      const localizedData = getLocalizedData();
+
       // Set page title
-      document.title = 'WhatsApp CRM Integrations | Connect CRM With Business Tools';
+      document.title = localizedData.title;
 
       // Basic meta tags
-      setMetaTag('description', 'Connect WhatsApp with HubSpot, Zoho, Salesforce, Google Sheets and more using Eazybe. Sync chats, automate workflows, and manage customer conversations across all your CRM integrations.');
-      setMetaTag('keywords', 'WhatsApp CRM integrations, WhatsApp HubSpot integration, WhatsApp Salesforce integration, WhatsApp Zoho integration, CRM WhatsApp integration, WhatsApp business integrations, Eazybe integrations');
+      setMetaTag('description', localizedData.description);
+      setMetaTag('keywords', localizedData.keywords);
       setMetaTag('author', 'Eazybe');
       setMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
       setMetaTag('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
@@ -778,22 +829,22 @@ export const CategoryIndexPage: React.FC = () => {
 
       // Open Graph meta tags
       setMetaTag('og:type', 'website', true);
-      setMetaTag('og:url', 'https://eazybe.com/integrations', true);
-      setMetaTag('og:title', 'WhatsApp CRM Integrations With Eazybe', true);
-      setMetaTag('og:description', 'Explore all WhatsApp CRM integrations supported by Eazybe. Connect HubSpot, Zoho, Salesforce and more to automate conversations and manage sales workflows.', true);
+      setMetaTag('og:url', localizedData.url, true);
+      setMetaTag('og:title', localizedData.title, true);
+      setMetaTag('og:description', localizedData.description, true);
       setMetaTag('og:image', 'https://eazybe.com/logo.png', true);
       setMetaTag('og:image:width', '1200', true);
       setMetaTag('og:image:height', '630', true);
       setMetaTag('og:image:alt', 'Eazybe WhatsApp CRM Integrations Platform', true);
-      setMetaTag('og:locale', 'en_US', true);
+      setMetaTag('og:locale', localizedData.locale, true);
       setMetaTag('og:site_name', 'Eazybe', true);
 
       // Twitter Card meta tags
       setMetaTag('twitter:card', 'summary_large_image');
       setMetaTag('twitter:site', '@eazybe');
       setMetaTag('twitter:creator', '@eazybe');
-      setMetaTag('twitter:title', 'WhatsApp CRM Integrations | Connect WhatsApp With Your CRM');
-      setMetaTag('twitter:description', 'Integrate WhatsApp with leading CRMs and business tools using Eazybe. Sync chats, automate workflows, and manage customer communication in one place.');
+      setMetaTag('twitter:title', localizedData.title);
+      setMetaTag('twitter:description', localizedData.description);
       setMetaTag('twitter:image', 'https://eazybe.com/logo.png');
       setMetaTag('twitter:image:alt', 'WhatsApp CRM Integrations by Eazybe');
 
@@ -843,7 +894,7 @@ export const CategoryIndexPage: React.FC = () => {
       const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "inLanguage": "en-US",
+        "inLanguage": localizedData.locale,
         "mainEntity": [
           {
             "@type": "Question",
@@ -953,6 +1004,11 @@ export const CategoryIndexPage: React.FC = () => {
       addJsonLdSchema('integrations-org-schema', orgSchema);
 
       // Add ItemList Schema for all integrations
+      const getIntegrationUrl = (slug: string) => {
+        const langPrefix = language === 'en' ? '' : `/${language}`;
+        return `https://eazybe.com${langPrefix}/${slug}`;
+      };
+
       const itemListSchema = {
         "@context": "https://schema.org",
         "@type": "ItemList",
@@ -969,7 +1025,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "HubSpot WhatsApp Integration",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/hubspot-whatsapp-integration"
+              "url": getIntegrationUrl('hubspot-whatsapp-integration')
             }
           },
           {
@@ -980,7 +1036,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "Salesforce WhatsApp Integration",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/salesforce-whatsapp-integration"
+              "url": getIntegrationUrl('salesforce-whatsapp-integration')
             }
           },
           {
@@ -991,7 +1047,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "Zoho WhatsApp Integration",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/zoho-whatsapp-integration"
+              "url": getIntegrationUrl('zoho-whatsapp-integration')
             }
           },
           {
@@ -1002,7 +1058,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "Bitrix24 WhatsApp Integration",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/bitrix24-whatsapp-integration"
+              "url": getIntegrationUrl('bitrix24-whatsapp-integration')
             }
           },
           {
@@ -1013,7 +1069,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "LeadSquared WhatsApp Integration",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/leadsquared-whatsapp-integration"
+              "url": getIntegrationUrl('leadsquared-whatsapp-integration')
             }
           },
           {
@@ -1024,7 +1080,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "Freshdesk WhatsApp Integration",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/freshdesk-whatsapp-integration"
+              "url": getIntegrationUrl('freshdesk-whatsapp-integration')
             }
           },
           {
@@ -1035,7 +1091,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "Google Sheets WhatsApp Integration",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/google-sheets-whatsapp-integration"
+              "url": getIntegrationUrl('google-sheets-whatsapp-integration')
             }
           },
           {
@@ -1046,7 +1102,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "Webhooks & Custom Integrations",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/webhooks-whatsapp-integration"
+              "url": getIntegrationUrl('webhooks-whatsapp-integration')
             }
           },
           {
@@ -1057,7 +1113,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "Pipedrive WhatsApp Integration",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/pipedrive-whatsapp-integration"
+              "url": getIntegrationUrl('pipedrive-whatsapp-integration')
             }
           },
           {
@@ -1068,7 +1124,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "Monday WhatsApp Integrations",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/monday-whatsapp-integration"
+              "url": getIntegrationUrl('monday-whatsapp-integration')
             }
           },
           {
@@ -1079,7 +1135,7 @@ export const CategoryIndexPage: React.FC = () => {
               "name": "Google WhatsApp Integrations",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Chrome Extension",
-              "url": "https://eazybe.com/google-calendar-whatsapp-integration"
+              "url": getIntegrationUrl('google-calendar-whatsapp-integration')
             }
           }
         ]
@@ -1101,7 +1157,7 @@ export const CategoryIndexPage: React.FC = () => {
             "@type": "ListItem",
             "position": 2,
             "name": "Integrations",
-            "item": "https://eazybe.com/integrations"
+            "item": localizedData.url
           }
         ]
       };
@@ -1111,10 +1167,10 @@ export const CategoryIndexPage: React.FC = () => {
       const webPageSchema = {
         "@context": "https://schema.org",
         "@type": ["WebPage", "CollectionPage"],
-        "url": "https://eazybe.com/integrations",
-        "name": "WhatsApp CRM Integrations With Eazybe | Connect CRM & Business Tools",
-        "description": "Explore all WhatsApp CRM integrations supported by Eazybe. Connect HubSpot, Zoho, Salesforce, Google Sheets and more to automate conversations and manage workflows.",
-        "inLanguage": "en-US",
+        "url": localizedData.url,
+        "name": localizedData.title,
+        "description": localizedData.description,
+        "inLanguage": localizedData.locale,
         "isPartOf": {
           "@type": "WebSite",
           "url": "https://eazybe.com/",
