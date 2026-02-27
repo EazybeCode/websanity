@@ -742,7 +742,8 @@ export const CategoryIndexPage: React.FC = () => {
       'integrations-website-schema',
       'integrations-softwareapp-schema',
       'integrations-softwareapp-br-schema',
-      'integrations-softwareapp-es-schema'
+      'integrations-softwareapp-es-schema',
+      'integrations-softwareapp-tr-schema'
     ];
 
     // Check if current path is an integrations page (any locale)
@@ -1356,6 +1357,49 @@ export const CategoryIndexPage: React.FC = () => {
           "inLanguage": "es-ES"
         };
         addJsonLdSchema('integrations-softwareapp-es-schema', esSoftwareAppSchema);
+      }
+
+      // Add SoftwareApplication Schema for Turkish /tr/integrations page
+      if (language === 'tr') {
+        const trSoftwareAppSchema = {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "WhatsApp CRM Entegrasyonları - Eazybe",
+          "url": "https://eazybe.com/tr/integrations",
+          "applicationCategory": "BusinessApplication",
+          "applicationSubCategory": "CRM Entegrasyonu, WhatsApp Otomasyonu, Entegrasyon Platformu",
+          "operatingSystem": "Web, Chrome Uzantısı",
+          "description": "Eazybe, WhatsApp'ı HubSpot, Zoho, Salesforce, Bitrix24, LeadSquared ve Google Sheets gibi CRM ve satış araçlarıyla entegre ederek konuşmaları senkronize etmenizi, takipleri otomatikleştirmenizi ve ekip verimliliğini artırmanızı sağlar.",
+          "image": "https://eazybe.com/logo.png",
+          "offers": {
+            "@type": "AggregateOffer",
+            "url": "https://eazybe.com/tr/pricing",
+            "priceCurrency": "TRY",
+            "lowPrice": 1272,
+            "highPrice": 2149,
+            "offerCount": 5,
+            "availability": "https://schema.org/InStock"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": 53766
+          },
+          "featureList": [
+            "WhatsApp ile çoklu CRM entegrasyonu",
+            "Otomatik WhatsApp konuşma senkronizasyonu",
+            "Ekipler için paylaşılan gelen kutusu",
+            "Mesaj ve takip otomasyonu",
+            "Kişi ve fırsat senkronizasyonu",
+            "Webhook ile özel entegrasyonlar",
+            "Satış ve destek için yapay zekâ ajanları",
+            "WhatsApp üzerinden lead yönetimi"
+          ],
+          "inLanguage": "tr-TR"
+        };
+        addJsonLdSchema('integrations-softwareapp-tr-schema', trSoftwareAppSchema);
       }
     }
 
