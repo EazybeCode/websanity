@@ -1151,7 +1151,7 @@ export const CategoryIndexPage: React.FC = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Eazybe",
-            "item": "https://eazybe.com/"
+            "item": language === 'en' ? 'https://eazybe.com/' : `https://eazybe.com/${language}`
           },
           {
             "@type": "ListItem",
