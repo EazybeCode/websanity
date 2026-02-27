@@ -92,12 +92,14 @@ export const SEOHead: React.FC = () => {
       if (blogSlug) {
         const sanityLang = getSanityLanguageCode(currentLang)
 
+        console.log('🔍 Fetching translations for blog slug:', blogSlug, 'Language:', sanityLang)
         getBlogPostHreflangData(blogSlug, sanityLang)
           .then(translations => {
+            console.log('✅ Blog translations fetched:', translations)
             setAlternates(translations)
           })
           .catch(err => {
-            console.warn('Failed to fetch blog translations, falling back to default', err)
+            console.error('❌ Failed to fetch blog translations, falling back to default:', err)
             // Fallback to default language-based alternates
             const defaultAlternates = Object.entries(SUPPORTED_LANGUAGES).map(([langCode, localeCode]) =>
               buildAlternateUrl(langCode as LanguageCode)

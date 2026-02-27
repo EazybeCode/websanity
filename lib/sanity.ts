@@ -941,17 +941,23 @@ export async function getBlogPostTranslations(
   slug: string,
   currentLanguage: string = 'en'
 ): Promise<Array<{ language: string; slug: string }>> {
+  console.log('📖 getBlogPostTranslations called with:', { slug, currentLanguage })
+
   // First get the current post to find its translationGroupId
   const currentPostQuery = `*[_type == "blogPost" && slug.current == $slug && language == $currentLanguage][0]{
     translationGroupId
   }`
 
   const currentPost = await sanityClient.fetch(currentPostQuery, { slug, currentLanguage })
+  console.log('📄 Current post found:', currentPost)
 
   if (!currentPost?.translationGroupId) {
+    console.warn('⚠️ No translationGroupId found for post:', slug)
     // No translation group, return only current
     return [{ language: currentLanguage, slug }]
   }
+
+  console.log('🔗 translationGroupId found:', currentPost.translationGroupId)
 
   // Fetch all posts with the same translationGroupId
   const translationsQuery = `*[_type == "blogPost" && translationGroupId == $groupId]{
@@ -963,6 +969,7 @@ export async function getBlogPostTranslations(
     groupId: currentPost.translationGroupId
   })
 
+  console.log('🌍 All translations found:', translations)
   return translations || [{ language: currentLanguage, slug }]
 }
 
@@ -977,7 +984,7 @@ export async function getBlogPostHreflangData(
   const translations = await getBlogPostTranslations(slug, currentLanguage)
   const BASE_URL = 'https://eazybe.com'
 
-  return translations.map(({ language, slug: translatedSlug }) => {
+  const hreflangData = translations.map(({ language, slug: translatedSlug }) => {
     // Map Sanity language codes to hreflang format
     const hreflangMap: Record<string, string> = {
       'en': 'en',
@@ -992,4 +999,7 @@ export async function getBlogPostHreflangData(
 
     return { lang: langCode, url }
   })
+
+  console.log('🔗 Hreflang data generated:', hreflangData)
+  return hreflangData
 }
