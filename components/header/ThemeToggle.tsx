@@ -14,10 +14,14 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ variant = 'desktop' })
     return (
       <button
         onClick={toggleTheme}
-        className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors"
+        className={`flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-all duration-300 ${
+          isDark
+            ? 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+            : 'bg-white text-slate-700 hover:bg-slate-50 shadow-saas-light'
+        }`}
         aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       >
-        {isDark ? <Sun size={18} className="text-yellow-400" /> : <Moon size={18} />}
+        {isDark ? <Sun size={18} className="text-yellow-400" /> : <Moon size={18} className="text-indigo-500" />}
       </button>
     )
   }
@@ -25,7 +29,11 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ variant = 'desktop' })
   return (
     <button
       onClick={toggleTheme}
-      className="relative flex items-center justify-center w-9 h-9 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+      className={`relative flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-300 ${
+        isDark
+          ? 'text-slate-300 hover:text-white hover:bg-white/5'
+          : 'text-slate-600 hover:text-indigo-600 hover:bg-indigo-50'
+      }`}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <motion.div
@@ -36,7 +44,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ variant = 'desktop' })
         {isDark ? (
           <Sun size={18} className="text-yellow-400" />
         ) : (
-          <Moon size={18} className="text-slate-400" />
+          <Moon size={18} className="text-indigo-500" />
         )}
       </motion.div>
     </button>

@@ -48,14 +48,36 @@ interface SitemapURL {
   alternates?: Array<{ lang: string; url: string }>
 }
 
-// Fetch all blog posts from Sanity
-async function getAllBlogPosts() {
+// Fetch all blog posts from Sanity with translation info
+async function getAllBlogPostsWithTranslations() {
   const query = `*[_type == "blogPost"]{
     "slug": slug.current,
     language,
+    translationGroupId,
     _updatedAt
-  }`
+  } | order(language asc)`
   return sanityClient.fetch(query)
+}
+
+// Group blog posts by translationGroupId for hreflang generation
+function groupBlogPostsByTranslation(posts: any[]): Map<string, any[]> {
+  const grouped = new Map<string, any[]>()
+
+  posts.forEach(post => {
+    // Posts without a translationGroupId are treated as their own group
+    const groupId = post.translationGroupId || post.slug
+    if (!grouped.has(groupId)) {
+      grouped.set(groupId, [])
+    }
+    grouped.get(groupId)!.push(post)
+  })
+
+  return grouped
+}
+
+// Legacy function for backward compatibility
+async function getAllBlogPosts() {
+  return getAllBlogPostsWithTranslations()
 }
 
 // Fetch all product pages (features and integrations)
@@ -220,22 +242,41 @@ async function generateSitemap() {
     })
   })
 
-  // Fetch and add dynamic blog posts
+  // Fetch and add dynamic blog posts with hreflang support
   console.log('📝 Fetching blog posts from Sanity...')
   try {
-    const blogPosts = await getAllBlogPosts()
+    const blogPosts = await getAllBlogPostsWithTranslations()
     console.log(`   Found ${blogPosts.length} blog posts`)
 
-    blogPosts.forEach((post: any) => {
-      // Transform 'pt' to 'br' for Brazilian Portuguese
-      const language = post.language === 'pt' ? 'br' : post.language
-      const prefix = language === 'en' ? '' : `/${language}`
+    // Group posts by translationGroupId
+    const groupedPosts = groupBlogPostsByTranslation(blogPosts)
+    console.log(`   Organized into ${groupedPosts.size} translation groups`)
 
-      urlsByLanguage[language].push({
-        loc: `${SITE_URL}${prefix}/blog/${post.slug}`,
-        changefreq: 'monthly',
-        priority: 0.9,
-        lastmod: formatDate(post._updatedAt),
+    // Add each blog post to its language sitemap with hreflang alternates
+    groupedPosts.forEach((posts, groupId) => {
+      posts.forEach((post: any) => {
+        // Transform 'pt' to 'br' for Brazilian Portuguese
+        const language = post.language === 'pt' ? 'br' : post.language
+        const prefix = language === 'en' ? '' : `/${language}`
+
+        // Generate alternates for all posts in this translation group
+        const alternates = posts.map((p: any) => {
+          const pLang = p.language === 'pt' ? 'br' : p.language
+          const pPrefix = pLang === 'en' ? '' : `/${pLang}`
+          const hreflang = pLang === 'pt' ? 'pt-BR' : pLang
+          return {
+            lang: hreflang,
+            url: `${SITE_URL}${pPrefix}/blog/${p.slug}`
+          }
+        })
+
+        urlsByLanguage[language].push({
+          loc: `${SITE_URL}${prefix}/blog/${post.slug}`,
+          changefreq: 'monthly',
+          priority: 0.9,
+          lastmod: formatDate(post._updatedAt),
+          alternates,
+        })
       })
     })
   } catch (error) {

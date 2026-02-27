@@ -1,11 +1,27 @@
 /**
- * Blog Post Schema with ALL content types
+ * Blog Post Schema with Language Field
+ * Translation linking is done via translationGroupId field
  */
 export default {
   name: 'blogPost',
   title: 'Blog Post',
   type: 'document',
   fields: [
+    {
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'English', value: 'en' },
+          { title: 'Brazilian Portuguese', value: 'pt-BR' },
+          { title: 'Spanish', value: 'es' },
+          { title: 'Turkish', value: 'tr' },
+        ],
+      },
+      initialValue: 'en',
+      validation: Rule => Rule.required(),
+    },
     {
       name: 'title',
       title: 'Title',
@@ -21,6 +37,13 @@ export default {
         maxLength: 96,
       },
       validation: Rule => Rule.required(),
+      description: 'Editable - customize this URL for each language',
+    },
+    {
+      name: 'translationGroupId',
+      title: 'Translation Group ID',
+      type: 'string',
+      description: 'Manually enter the same ID for all language versions (e.g., "blog-post-123") to link translations together.',
     },
     {
       name: 'excerpt',
@@ -121,16 +144,32 @@ export default {
         },
       ],
     },
+    {
+      name: 'seo',
+      title: 'SEO',
+      type: 'object',
+      fields: [
+        { name: 'metaTitle', type: 'string', title: 'Meta Title' },
+        { name: 'metaDescription', type: 'text', title: 'Meta Description' },
+      ],
+    },
   ],
   preview: {
     select: {
       title: 'title',
       slug: 'slug.current',
+      language: 'language',
     },
-    prepare({ title, slug }) {
+    prepare({ title, slug, language }) {
+      const langFlag = {
+        'en': '🇬🇧',
+        'pt-BR': '🇧🇷',
+        'es': '🇪🇸',
+        'tr': '🇹🇷',
+      }[language] || '🌐';
       return {
-        title,
-        subtitle: slug,
+        title: `${langFlag} ${title}`,
+        subtitle: `${language.toUpperCase()} — ${slug}`,
       };
     },
   },

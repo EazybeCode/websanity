@@ -932,3 +932,64 @@ export async function getFAQs(language: string = 'en') {
     badge: 'FAQ'
   }
 }
+
+/**
+ * Fetch all translations of a blog post by translationGroupId
+ * Returns an array of translations with their language and slug
+ */
+export async function getBlogPostTranslations(
+  slug: string,
+  currentLanguage: string = 'en'
+): Promise<Array<{ language: string; slug: string }>> {
+  // First get the current post to find its translationGroupId
+  const currentPostQuery = `*[_type == "blogPost" && slug.current == $slug && language == $currentLanguage][0]{
+    translationGroupId
+  }`
+
+  const currentPost = await sanityClient.fetch(currentPostQuery, { slug, currentLanguage })
+
+  if (!currentPost?.translationGroupId) {
+    // No translation group, return only current
+    return [{ language: currentLanguage, slug }]
+  }
+
+  // Fetch all posts with the same translationGroupId
+  const translationsQuery = `*[_type == "blogPost" && translationGroupId == $groupId]{
+    language,
+    "slug": slug.current
+  }`
+
+  const translations = await sanityClient.fetch(translationsQuery, {
+    groupId: currentPost.translationGroupId
+  })
+
+  return translations || [{ language: currentLanguage, slug }]
+}
+
+/**
+ * Get blog post hreflang data for SEO
+ * Returns alternate URLs for all language versions
+ */
+export async function getBlogPostHreflangData(
+  slug: string,
+  currentLanguage: string = 'en'
+): Promise<Array<{ lang: string; url: string }>> {
+  const translations = await getBlogPostTranslations(slug, currentLanguage)
+  const BASE_URL = 'https://eazybe.com'
+
+  return translations.map(({ language, slug: translatedSlug }) => {
+    // Map Sanity language codes to hreflang format
+    const hreflangMap: Record<string, string> = {
+      'en': 'en',
+      'pt-BR': 'pt-BR',
+      'es': 'es',
+      'tr': 'tr'
+    }
+
+    const langCode = hreflangMap[language] || language
+    const pathPrefix = language === 'en' ? '' : `/${language === 'pt-BR' ? 'br' : language}`
+    const url = `${BASE_URL}${pathPrefix}/blog/${translatedSlug}`
+
+    return { lang: langCode, url }
+  })
+}
