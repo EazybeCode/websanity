@@ -733,6 +733,15 @@ export const CategoryIndexPage: React.FC = () => {
 
   // Add meta tags for /integrations page - MUST be before any early returns to follow React's Rules of Hooks
   useEffect(() => {
+    const schemaIds = [
+      'integrations-faq-schema',
+      'integrations-org-schema',
+      'integrations-itemlist-schema',
+      'integrations-breadcrumb-schema',
+      'integrations-webpage-schema',
+      'integrations-website-schema'
+    ];
+
     if (location.pathname === '/integrations' || location.pathname === '/integrations/') {
       // Helper function to set or update meta tag
       const setMetaTag = (name: string, content: string, isProperty = false) => {
@@ -814,7 +823,368 @@ export const CategoryIndexPage: React.FC = () => {
       setMetaTag('implementation-difficulty', 'easy integration setup');
       setMetaTag('time-to-value', 'instant synchronization after connection');
       setMetaTag('referrer', 'origin-when-cross-origin');
+
+      // Helper function to add JSON-LD schema
+      const addJsonLdSchema = (schemaId: string, schemaData: any) => {
+        // Remove existing schema with same ID if present
+        const existing = document.getElementById(schemaId);
+        if (existing) {
+          existing.remove();
+        }
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.id = schemaId;
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+      };
+
+      // Add FAQPage Schema
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "inLanguage": "en-US",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What integrations does Eazybe support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe integrates WhatsApp with leading CRM and business tools including HubSpot, Zoho CRM, Salesforce, Bitrix24, LeadSquared, Google Sheets, webhooks, and other sales automation platforms."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does WhatsApp CRM integration work with Eazybe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe connects WhatsApp conversations directly with your CRM, automatically syncing contacts, messages, notes, and deal activity so sales teams can manage customer communication without manual updates."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I sync WhatsApp chats automatically with my CRM?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Eazybe automatically syncs WhatsApp chats, customer details, and conversation history with supported CRM platforms in real time."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Eazybe support custom integrations using webhooks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Eazybe provides webhook integrations that allow businesses to connect WhatsApp with custom systems, internal tools, or third-party applications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can teams collaborate using integrated WhatsApp inboxes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe offers a shared WhatsApp team inbox where multiple agents can manage conversations, assign chats, and collaborate while keeping CRM data synchronized."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do integrations require coding or technical setup?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No coding is required. Most integrations can be activated with a one-click setup and guided authentication process inside the Eazybe dashboard."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can AI agents work across integrated CRM platforms?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Eazybe AI agents can automate replies, qualify leads, and assist customer conversations across integrated CRM systems while maintaining conversation context."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is WhatsApp data secure when integrated with CRM tools?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe uses secure authentication, encrypted data transfer, and permission-based access controls to ensure WhatsApp and CRM data remain protected."
+            }
+          }
+        ]
+      };
+      addJsonLdSchema('integrations-faq-schema', faqSchema);
+
+      // Add Organization Schema
+      const orgSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 600,
+          "height": 60
+        },
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe helps sales teams connect WhatsApp with CRM platforms to sync conversations, automate follow-ups, and improve customer engagement.",
+        "foundingDate": "2021",
+        "sameAs": [
+          "https://twitter.com/eazybe",
+          "https://linkedin.com/company/eazybe",
+          "https://youtube.com/@eazybe"
+        ],
+        "publishingPrinciples": "https://eazybe.com/blog",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "knowsAbout": [
+          "WhatsApp CRM",
+          "CRM integration",
+          "Sales automation",
+          "Shared inbox",
+          "WhatsApp productivity"
+        ]
+      };
+      addJsonLdSchema('integrations-org-schema', orgSchema);
+
+      // Add ItemList Schema for all integrations
+      const itemListSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Eazybe Integrations",
+        "description": "WhatsApp integrations supported by Eazybe.",
+        "itemListOrder": "https://schema.org/ItemListUnordered",
+        "numberOfItems": 11,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "HubSpot WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/hubspot-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Salesforce WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/salesforce-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Zoho WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/zoho-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Bitrix24 WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/bitrix24-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "LeadSquared WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/leadsquared-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Freshdesk WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/freshdesk-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Google Sheets WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/google-sheets-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Webhooks & Custom Integrations",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/webhooks-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Pipedrive WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/pipedrive-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Monday WhatsApp Integrations",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/monday-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Google WhatsApp Integrations",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/google-calendar-whatsapp-integration"
+            }
+          }
+        ]
+      };
+      addJsonLdSchema('integrations-itemlist-schema', itemListSchema);
+
+      // Add BreadcrumbList Schema
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Eazybe",
+            "item": "https://eazybe.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Integrations",
+            "item": "https://eazybe.com/integrations"
+          }
+        ]
+      };
+      addJsonLdSchema('integrations-breadcrumb-schema', breadcrumbSchema);
+
+      // Add WebPage/CollectionPage Schema
+      const webPageSchema = {
+        "@context": "https://schema.org",
+        "@type": ["WebPage", "CollectionPage"],
+        "url": "https://eazybe.com/integrations",
+        "name": "WhatsApp CRM Integrations With Eazybe | Connect CRM & Business Tools",
+        "description": "Explore all WhatsApp CRM integrations supported by Eazybe. Connect HubSpot, Zoho, Salesforce, Google Sheets and more to automate conversations and manage workflows.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://eazybe.com/",
+          "name": "Eazybe"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png",
+            "width": 600,
+            "height": 60
+          }
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 1200,
+          "height": 630
+        },
+        "about": [
+          { "@type": "Thing", "name": "WhatsApp CRM Integrations" },
+          { "@type": "Thing", "name": "Sales Automation" },
+          { "@type": "Thing", "name": "Customer Communication" }
+        ]
+      };
+      addJsonLdSchema('integrations-webpage-schema', webPageSchema);
+
+      // Add WebSite Schema
+      const webSiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://eazybe.com/",
+        "name": "Eazybe",
+        "description": "Eazybe helps teams integrate WhatsApp with CRM and business tools to sync chats, automate workflows, and improve sales productivity.",
+        "inLanguage": "en-US",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png",
+            "width": 600,
+            "height": 60
+          }
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://eazybe.com/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      };
+      addJsonLdSchema('integrations-website-schema', webSiteSchema);
     }
+
+    // Cleanup: Remove schemas when navigating away from /integrations
+    return () => {
+      schemaIds.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.remove();
+        }
+      });
+    };
   }, [location.pathname]);
 
   if (loading) {
