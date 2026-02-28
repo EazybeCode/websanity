@@ -294,7 +294,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
 
       // Fire GA4 event
       const lang = i18n.language || 'en';
-      (window as any).gtag?.('event', mode === 'demo' ? `book_demo_click_${lang}` : `install_free_click_${lang}`);
+      (window as any).gtag?.('event', mode === 'demo' ? `book_demo_submit_${lang}` : `install_free_submit_${lang}`);
 
       setIsSubmitting(false);
       setIsSuccess(true);
