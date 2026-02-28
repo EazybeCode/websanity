@@ -124,7 +124,7 @@ const PERSONAL_EMAIL_DOMAINS = [
 ];
 
 export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedCountry, setSelectedCountry] = useState(COUNTRY_CODES[0].code);
   const [phoneValue, setPhoneValue] = useState('');
   const [formData, setFormData] = useState<TrialFormData>({
@@ -291,6 +291,10 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
       if (!response.ok) {
         throw new Error('Form submission failed');
       }
+
+      // Fire GA4 event
+      const lang = i18n.language || 'en';
+      (window as any).gtag?.('event', mode === 'demo' ? `book_demo_click_${lang}` : `install_free_click_${lang}`);
 
       setIsSubmitting(false);
       setIsSuccess(true);
