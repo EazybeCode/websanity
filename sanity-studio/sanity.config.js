@@ -628,6 +628,278 @@ const page = {
   ],
 }
 
+// Category Index Page Schema (for /features, /integrations index pages)
+const categoryIndexPage = {
+  name: 'categoryIndexPage',
+  title: 'Category Index Page',
+  type: 'document',
+  fieldsets: [
+    { name: 'content', title: '📝 Content', options: { collapsible: false } },
+    { name: 'seo', title: '🔍 SEO', options: { collapsible: true, collapsed: true } },
+  ],
+  fields: [
+    {
+      name: 'language',
+      title: '🌍 Language',
+      type: 'string',
+      fieldset: 'content',
+      options: {
+        list: [
+          { title: '🇬🇧 English', value: 'en' },
+          { title: '🇪🇸 Spanish', value: 'es' },
+          { title: '🇹🇷 Turkish', value: 'tr' },
+          { title: '🇧🇷 Portuguese', value: 'br' },
+        ],
+      },
+      initialValue: 'en',
+    },
+    {
+      name: 'title',
+      title: 'Page Title',
+      type: 'string',
+      fieldset: 'content',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'slug',
+      title: 'URL Slug',
+      type: 'slug',
+      fieldset: 'content',
+      options: { source: 'title' },
+      validation: Rule => Rule.required(),
+      description: 'e.g., "features", "integrations", "whatsapp-api"',
+    },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      fieldset: 'content',
+      validation: Rule => Rule.required(),
+      description: 'Category identifier (e.g., "features", "integrations")',
+    },
+    {
+      name: 'hero',
+      title: 'Hero Section',
+      type: 'object',
+      fieldset: 'content',
+      fields: [
+        { name: 'badge', type: 'string', title: 'Badge', initialValue: 'Features' },
+        { name: 'headline', type: 'string', title: 'Headline', validation: Rule => Rule.required() },
+        { name: 'headlineHighlight', type: 'string', title: 'Headline Highlight' },
+        { name: 'description', type: 'text', title: 'Description', rows: 3, validation: Rule => Rule.required() },
+        {
+          name: 'primaryCta',
+          title: 'Primary CTA',
+          type: 'object',
+          fields: [
+            { name: 'label', type: 'string', title: 'Label' },
+            { name: 'url', type: 'string', title: 'URL' },
+          ],
+        },
+        {
+          name: 'secondaryCta',
+          title: 'Secondary CTA',
+          type: 'object',
+          fields: [
+            { name: 'label', type: 'string', title: 'Label' },
+            { name: 'url', type: 'string', title: 'URL' },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'intro',
+      title: 'Intro Section',
+      type: 'object',
+      fieldset: 'content',
+      fields: [
+        { name: 'headline', type: 'string', title: 'Headline' },
+        { name: 'description', type: 'text', title: 'Description', rows: 3 },
+      ],
+    },
+    {
+      name: 'featuredItems',
+      title: 'Featured Items',
+      type: 'array',
+      fieldset: 'content',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'name', type: 'string', title: 'Name', validation: Rule => Rule.required() },
+            { name: 'slug', type: 'string', title: 'Slug', validation: Rule => Rule.required() },
+            { name: 'description', type: 'text', title: 'Description', rows: 2 },
+            { name: 'icon', type: 'string', title: 'Icon', description: 'Lucide icon name or emoji' },
+            { name: 'color', type: 'string', title: 'Color', initialValue: 'blue' },
+            { name: 'isFeatured', type: 'boolean', title: 'Is Featured', initialValue: false },
+            { name: 'tags', type: 'array', title: 'Tags', of: [{ type: 'string' }] },
+          ],
+          preview: {
+            select: { name: 'name', icon: 'icon' },
+            prepare({ name, icon }) {
+              return { title: name, media: icon || '⭐' }
+            },
+          },
+        },
+      ],
+    },
+    {
+      name: 'comparisonTable',
+      title: 'Comparison Table',
+      type: 'object',
+      fieldset: 'content',
+      fields: [
+        { name: 'headline', type: 'string', title: 'Headline' },
+        { name: 'description', type: 'text', title: 'Description', rows: 2 },
+        { name: 'columns', type: 'array', title: 'Columns', of: [{ type: 'string' }] },
+        {
+          name: 'rows',
+          title: 'Rows',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                { name: 'feature', type: 'string', title: 'Feature' },
+                {
+                  name: 'values',
+                  title: 'Values',
+                  type: 'array',
+                  of: [
+                    {
+                      type: 'object',
+                      fields: [
+                        { name: 'type', type: 'string', title: 'Type', options: { list: ['check', 'cross', 'partial', 'text'] } },
+                        { name: 'text', type: 'string', title: 'Text' },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'benefits',
+      title: 'Benefits Section',
+      type: 'object',
+      fieldset: 'content',
+      fields: [
+        { name: 'badge', type: 'string', title: 'Badge', initialValue: 'Benefits' },
+        { name: 'headline', type: 'string', title: 'Headline' },
+        {
+          name: 'items',
+          title: 'Items',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                { name: 'icon', type: 'string', title: 'Icon' },
+                { name: 'title', type: 'string', title: 'Title' },
+                { name: 'description', type: 'text', title: 'Description', rows: 2 },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'howItWorks',
+      title: 'How It Works',
+      type: 'object',
+      fieldset: 'content',
+      fields: [
+        { name: 'badge', type: 'string', title: 'Badge', initialValue: 'How It Works' },
+        { name: 'headline', type: 'string', title: 'Headline' },
+        { name: 'description', type: 'text', title: 'Description', rows: 2 },
+        {
+          name: 'steps',
+          title: 'Steps',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                { name: 'number', type: 'string', title: 'Number' },
+                { name: 'title', type: 'string', title: 'Title' },
+                { name: 'description', type: 'text', title: 'Description', rows: 2 },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'faq',
+      title: 'FAQ Section',
+      type: 'object',
+      fieldset: 'content',
+      fields: [
+        { name: 'badge', type: 'string', title: 'Badge', initialValue: 'FAQ' },
+        { name: 'headline', type: 'string', title: 'Headline' },
+        {
+          name: 'items',
+          title: 'FAQ Items',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                { name: 'question', type: 'string', title: 'Question' },
+                { name: 'answer', type: 'text', title: 'Answer', rows: 3 },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'cta',
+      title: 'CTA Section',
+      type: 'object',
+      fieldset: 'content',
+      fields: [
+        { name: 'headline', type: 'string', title: 'Headline' },
+        { name: 'headlineHighlight', type: 'string', title: 'Headline Highlight' },
+        { name: 'description', type: 'text', title: 'Description', rows: 2 },
+        {
+          name: 'primaryCta',
+          title: 'Primary CTA',
+          type: 'object',
+          fields: [
+            { name: 'label', type: 'string', title: 'Label' },
+            { name: 'url', type: 'string', title: 'URL' },
+          ],
+        },
+        {
+          name: 'secondaryCta',
+          title: 'Secondary CTA',
+          type: 'object',
+          fields: [
+            { name: 'label', type: 'string', title: 'Label' },
+            { name: 'url', type: 'string', title: 'URL' },
+          ],
+        },
+        { name: 'footnote', type: 'string', title: 'Footnote' },
+      ],
+    },
+    ...seoFields.map(field => ({ ...field, fieldset: 'seo' })),
+  ],
+  preview: {
+    select: { title: 'title', slug: 'slug.current', language: 'language' },
+    prepare({ title, slug, language }) {
+      const langFlag = { 'en': '🇬🇧', 'es': '🇪🇸', 'tr': '🇹🇷', 'br': '🇧🇷' }[language] || '🌐'
+      return {
+        title: `${langFlag} ${title}`,
+        subtitle: `/${slug} (${language.toUpperCase()})`,
+      }
+    },
+  },
+}
+
 // Redirect Schema
 const redirect = {
   name: 'redirect',
@@ -684,7 +956,7 @@ export default defineConfig({
   projectId: '5awzi0t4',
   dataset: 'production',
   schema: {
-    types: [blogPost, feature, integration, page, redirect],
+    types: [blogPost, feature, integration, page, categoryIndexPage, redirect],
   },
   plugins: [
     structureTool({
@@ -717,6 +989,14 @@ export default defineConfig({
                 S.documentTypeList('integration')
                   .title('Integration Pages (/integrations/*)')
                   .filter('_type == "integration"')
+              ),
+            S.listItem()
+              .title('Category Index Pages')
+              .icon(() => '📑')
+              .child(
+                S.documentTypeList('categoryIndexPage')
+                  .title('Category Index Pages (/features, /integrations)')
+                  .filter('_type == "categoryIndexPage"')
               ),
             S.listItem()
               .title('Pages')
