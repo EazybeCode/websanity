@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export type ModalMode = 'trial' | 'demo';
 
@@ -26,8 +27,11 @@ interface TrialModalProviderProps {
 export const TrialModalProvider: React.FC<TrialModalProviderProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<ModalMode>('trial');
+  const { i18n } = useTranslation();
 
   const openModal = (modalMode: ModalMode = 'trial') => {
+    const lang = i18n.language || 'en';
+    (window as any).gtag?.('event', modalMode === 'demo' ? `book_demo_click_${lang}` : `install_free_click_${lang}`);
     setMode(modalMode);
     setIsOpen(true);
   };

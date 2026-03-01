@@ -295,6 +295,9 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       console.log('HubSpot Response data:', JSON.stringify(data, null, 2));
 
       if (response.ok) {
+        // Fire GA4 event
+        const lang = i18n.language || 'en';
+        (window as any).gtag?.('event', `steal_roadmap_submit_${lang}`);
         setIsSuccess(true);
       } else {
         console.error('HubSpot error:', data);
