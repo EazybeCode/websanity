@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/product/pipedrive-whatsapp-integration",
+      "destination": "/pipedrive-whatsapp-integration",
+      "statusCode": 301
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*-[a-f0-9]{8,}\\.(js|css))",
