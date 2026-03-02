@@ -1,0 +1,100 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║           EAZYBE 301 REDIRECT - DEPLOYMENT INSTRUCTIONS              ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+🎯 OBJECTIVE:
+Deploy 301 redirect from /product/pipedrive-whatsapp-integration
+to /pipedrive-whatsapp-integration
+
+⏱️  TIME REQUIRED: 2 minutes
+
+═══════════════════════════════════════════════════════════════════════
+
+OPTION 1: AUTOMATED DEPLOYMENT (RECOMMENDED)
+──────────────────────────────────────────
+
+1. SSH into your production server
+2. Navigate to the websanity directory
+3. Run one command:
+
+   bash DEPLOY_NOW.sh
+
+That's it! The script will:
+  ✅ Pull latest code
+  ✅ Install dependencies
+  ✅ Build the project
+  ✅ Deploy with docker-compose
+  ✅ Test the redirect
+
+
+═══════════════════════════════════════════════════════════════════════
+
+OPTION 2: MANUAL DEPLOYMENT
+──────────────────────────
+
+1. SSH into your production server
+
+2. Navigate to project:
+   cd /path/to/websanity
+
+3. Pull latest changes:
+   git pull origin main
+
+4. Install dependencies:
+   npm install
+
+5. Build project:
+   npm run build
+
+6. Deploy:
+   docker-compose down
+   docker-compose up -d --build
+
+═══════════════════════════════════════════════════════════════════════
+
+VERIFICATION
+────────────
+
+After deployment, test the redirect:
+
+curl -I https://eazybe.com/product/pipedrive-whatsapp-integration
+
+EXPECTED RESULT:
+HTTP/1.1 301 Moved Permanently
+Location: /pipedrive-whatsapp-integration
+
+
+═══════════════════════════════════════════════════════════════════════
+
+TECHNICAL DETAILS
+────────────────
+
+What's being deployed:
+
+1. nginx.conf (Line 21)
+   rewrite ^/product/pipedrive-whatsapp-integration$ /pipedrive-whatsapp-integration permanent;
+   → Server-level HTTP 301 redirect (SEO best practice)
+
+2. App.tsx (Lines 134-137)
+   React Router redirect for client-side fallback
+
+3. vite.config.ts (Lines 15-44)
+   Local dev server redirect middleware
+
+SEO BENEFITS:
+  ✅ Preserves backlink equity
+  ✅ Maintains search rankings
+  ✅ Prevents 404 errors
+  ✅ Proper HTTP 301 status code
+
+═══════════════════════════════════════════════════════════════════════
+
+NEED HELP?
+──────────
+
+All files are committed and pushed to:
+https://github.com/EazybeCode/websanity
+
+Latest commit: d322723
+
+═══════════════════════════════════════════════════════════════════════
