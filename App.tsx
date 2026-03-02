@@ -7,6 +7,7 @@ import { TrialModalWrapper } from './components/modals/TrialModalWrapper'
 import { LeadSidebar } from './components/LeadSidebar'
 import { LeadMobileButton } from './components/LeadMobileButton'
 import { redirectMappings } from './src/routes/redirectRoutes'
+import { NoIndexHubSpotTr } from './components/NoIndexHubSpotTr'
 
 // Lazy load all page components for code splitting
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })))
@@ -243,12 +244,24 @@ const AppRoutes = () => (
       <Route path="/tr/integrations" element={<CategoryIndexPage />} />
       {/* Redirect old Turkish integration URLs */}
       <Route path="/tr/integrations/fresh-desk" element={<Navigate to="/tr/freshdesk-whatsapp-integration" replace />} />
-      {integrationSlugs.map((slug) => (
-        <Route key={`tr-redirect-${slug}`} path={`/tr/${slug}`} element={<Navigate to={`/tr/${slug}-whatsapp-integration`} replace />} />
-      ))}
+      {/* Special route: /tr/hubspot with noindex, nofollow (redirect only) */}
+      <Route path="/tr/hubspot" element={
+        <NoIndexHubSpotTr>
+          <Navigate to="/tr/hubspot-whatsapp-integration" replace />
+        </NoIndexHubSpotTr>
+      } />
       {integrationSlugs.map((slug) => (
         <Route key={`tr-${slug}`} path={`/tr/${slug}-whatsapp-integration`} element={<ProductPage />} />
       ))}
+      {/* Special route: /tr/hubspot-whatsapp-integration with noindex, nofollow */}
+      <Route path="/tr/hubspot-whatsapp-integration" element={<NoIndexHubSpotTrProductPage />} />
+      {integrationSlugs.map((slug) => {
+        // Skip hubspot as it's handled above with noindex
+        if (slug === 'hubspot') return null
+        return (
+          <Route key={`tr-${slug}`} path={`/tr/${slug}-whatsapp-integration`} element={<ProductPage />} />
+        )
+      })}
       <Route path="/tr/product/:slug" element={<ProductPage />} />
       <Route path="/tr/blog" element={<BlogListingPage />} />
       {/* Redirect old Turkish blog URLs */}
