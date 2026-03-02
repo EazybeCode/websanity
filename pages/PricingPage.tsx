@@ -14,6 +14,7 @@ import { useTrialModal } from '../contexts/TrialModalContext'
 import { usePricingPageSEO } from '../hooks/usePricingPageSEO'
 import { usePricingPageSEOBr } from '../hooks/usePricingPageSEOBr'
 import { usePricingPageSEOEs } from '../hooks/usePricingPageSEOEs'
+import { usePricingPageSEOTr } from '../hooks/usePricingPageSEOTr'
 
 // Default/Fallback Data
 const defaultPricingPlans: PricingPlan[] = [
@@ -173,10 +174,11 @@ export const PricingPage: React.FC = () => {
   const { userCurrency, getDynamicPrice, loading: dynamicPricingLoading } = useDynamicPricing()
   const { openModal } = useTrialModal()
 
-  // Add SEO meta tags for English, Portuguese, and Spanish pricing pages
+  // Add SEO meta tags for English, Portuguese, Spanish, and Turkish pricing pages
   usePricingPageSEO()
   usePricingPageSEOBr()
   usePricingPageSEOEs()
+  usePricingPageSEOTr()
 
   // Use Sanity data if available, otherwise use translated defaults
   const hero = pricingData?.hero || {
