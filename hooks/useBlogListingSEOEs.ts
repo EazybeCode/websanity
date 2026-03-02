@@ -15,7 +15,7 @@ export const useBlogListingSEOEs = () => {
 
     if (isBlogPage) {
       // Document title
-      document.title = 'Blog Eazybe - Consejos CRM de WhatsApp, Automatización de Ventas e Insights de IA'
+      document.title = 'Blog'
 
       // Helper function to set/update meta tag
       const setMetaTag = (nameOrProperty: string, content: string, isProperty = false) => {

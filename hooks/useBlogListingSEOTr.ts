@@ -15,7 +15,7 @@ export const useBlogListingSEOTr = () => {
 
     if (isBlogPage) {
       // Document title
-      document.title = 'Eazybe Blog - WhatsApp CRM İpuçları, Satış Otomasyonu ve Yapay Zeka Analizleri'
+      document.title = 'Blog'
 
       // Helper function to set/update meta tag
       const setMetaTag = (nameOrProperty: string, content: string, isProperty = false) => {
