@@ -264,6 +264,12 @@ const AppRoutes = () => (
       <Route path="/tr/terms" element={<TermsPage />} />
       <Route path="/tr/become-our-partner" element={<PartnerPage />} />
 
+      {/* Redirect /product/pipedrive-whatsapp-integration → /pipedrive-whatsapp-integration */}
+      <Route
+        path="/product/pipedrive-whatsapp-integration"
+        element={<Navigate to="/pipedrive-whatsapp-integration" replace />}
+      />
+
       {/* 301 SEO Redirects - Programmatically loaded from redirectRoutes.tsx */}
       {redirectMappings.map((redirect, index) => (
         <React.Fragment key={`redirect-${index}`}>
