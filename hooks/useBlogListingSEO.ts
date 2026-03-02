@@ -30,7 +30,7 @@ export const useBlogListingSEO = () => {
       // ==================== META TAGS ====================
 
       // Document title
-      document.title = 'Eazybe Blog - WhatsApp CRM Tips, Sales Automation & AI Insights'
+      document.title = 'Blog'
 
       // Helper function to set/update meta tag
       const setMetaTag = (nameOrProperty: string, content: string, isProperty = false) => {
