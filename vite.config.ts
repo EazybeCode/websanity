@@ -8,9 +8,28 @@ export default defineConfig(({ mode }) => {
     return {
       server: {
         port: 3000,
-        host: '0.0.0.0',
+        host: '0.0.0.0'
       },
-      plugins: [react()],
+      // Custom plugin for handling redirects
+      plugins: [
+        react(),
+        {
+          name: 'redirect-middleware',
+          configureServer(server) {
+            server.middlewares.use((req, res, next) => {
+              // Handle 301 redirect for pipedrive integration
+              if (req.url === '/product/pipedrive-whatsapp-integration') {
+                res.writeHead(301, {
+                  Location: '/pipedrive-whatsapp-integration'
+                });
+                res.end();
+                return;
+              }
+              next();
+            });
+          }
+        }
+      ],
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
