@@ -2,7 +2,6 @@ import { Route, Navigate } from 'react-router-dom'
 
 // SEO redirect mappings: from old URL to new URL
 export const redirectMappings: Array<{ from: string; to: string }> = [
-{ from: "/product/pipedrive-whatsapp-integration", to: "/pipedrive-whatsapp-integration" },
 { from: "/es/blog-es", to: "/es/blog" },
 { from: "/blog/whatsapp-hacks/go-offline-on-whatsapp-without-turning-off-the-internet-how-to-use-whatsapp-proxy-setting-for-some-me-time", to: "/blog/how-to-appear-offline-on-whatsapp" },
 { from: "/how-to-create-a-chat-gpt-3-ai-chatbot-on-whatsapp", to: "/" },

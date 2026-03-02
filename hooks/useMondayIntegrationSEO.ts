@@ -11,9 +11,8 @@ export const useMondayIntegrationSEO = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Check if we're on the Monday integration page (with or without language prefix)
-    const isMondayPage = /^\/[a-z]{2}\/?monday-whatsapp-integration/.test(location.pathname) ||
-                         location.pathname === '/monday-whatsapp-integration'
+    // Check if we're on the Monday integration page (English only, no language prefix)
+    const isMondayPage = location.pathname === '/monday-whatsapp-integration'
 
     if (isMondayPage) {
       // ==================== META TAGS ====================

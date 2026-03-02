@@ -7,7 +7,6 @@ import { TrialModalWrapper } from './components/modals/TrialModalWrapper'
 import { LeadSidebar } from './components/LeadSidebar'
 import { LeadMobileButton } from './components/LeadMobileButton'
 import { redirectMappings } from './src/routes/redirectRoutes'
-import { NoIndexHubSpotTr } from './components/NoIndexHubSpotTr'
 
 // Lazy load all page components for code splitting
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })))
@@ -131,12 +130,6 @@ const AppRoutes = () => (
       {/* Fix /index.html SEO redirect */}
       <Route path="/index.html" element={<Navigate to="/" replace />} />
 
-      {/* 301 SEO Redirect - Pipedrive integration */}
-      <Route
-        path="/product/pipedrive-whatsapp-integration"
-        element={<Navigate to="/pipedrive-whatsapp-integration" replace />}
-      />
-
       {/* English routes (default, no prefix) */}
       {/* Redirect old URLs */}
       <Route path="/search" element={<Navigate to="/" replace />} />
@@ -245,10 +238,11 @@ const AppRoutes = () => (
       {/* Redirect old Turkish integration URLs */}
       <Route path="/tr/integrations/fresh-desk" element={<Navigate to="/tr/freshdesk-whatsapp-integration" replace />} />
       {integrationSlugs.map((slug) => (
+        <Route key={`tr-redirect-${slug}`} path={`/tr/${slug}`} element={<Navigate to={`/tr/${slug}-whatsapp-integration`} replace />} />
+      ))}
+      {integrationSlugs.map((slug) => (
         <Route key={`tr-${slug}`} path={`/tr/${slug}-whatsapp-integration`} element={<ProductPage />} />
       ))}
-      {/* Special route: /tr/hubspot with noindex, nofollow (redirect only) */}
-      <Route path="/tr/hubspot" element={<NoIndexHubSpotTr />} />
       <Route path="/tr/product/:slug" element={<ProductPage />} />
       <Route path="/tr/blog" element={<BlogListingPage />} />
       {/* Redirect old Turkish blog URLs */}
