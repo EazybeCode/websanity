@@ -8,9 +8,8 @@ export default defineConfig(({ mode }) => {
     return {
       server: {
         port: 3000,
-        host: '0.0.0.0'
+        host: '0.0.0.0',
       },
-      // Custom plugin for handling redirects
       plugins: [
         react(),
         {
