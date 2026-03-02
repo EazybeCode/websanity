@@ -112,10 +112,282 @@ export const usePricingPageSEOBr = () => {
       // Referrer meta tag
       setMetaTag('referrer', 'origin-when-cross-origin')
 
-      // Cleanup function - remove meta tags when leaving the page
+      // ==================== JSON-LD SCHEMAS ====================
+
+      // Helper function to add JSON-LD schema
+      const addJsonLdSchema = (schema: any, id: string) => {
+        let script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
+        if (!script) {
+          script = document.createElement('script')
+          script.type = 'application/ld+json'
+          ;(script as HTMLScriptElement).setAttribute('data-schema', id)
+          document.head.appendChild(script)
+        }
+        script.textContent = JSON.stringify(schema)
+      }
+
+      // FAQPage Schema (Portuguese)
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "inLanguage": "pt-BR",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Posso testar o Eazybe gratuitamente?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim! Oferecemos um teste gratuito de 14 dias nos planos Starter e Scaler, sem necessidade de cartão de crédito. Você pode explorar todos os recursos e verificar como o Eazybe se integra ao seu fluxo de trabalho antes de contratar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que é o Revenue Inbox?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O Revenue Inbox é um painel inteligente que destaca as conversas do WhatsApp mais importantes que precisam de atenção. Utilizando IA, ele identifica oportunidades de vendas, negociações prioritárias e possíveis escalonamentos que podem passar despercebidos em uma caixa de entrada movimentada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que é o RevOps Agent?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O RevOps Agent é um assistente com inteligência artificial que automatiza tarefas de operações de receita. Ele analisa conversas, atualiza registros no CRM, identifica riscos em negociações e fornece insights acionáveis para ajudar sua equipe a fechar mais vendas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que é o WhatsApp Web Copilot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O WhatsApp Web Copilot é um assistente de IA que funciona diretamente no WhatsApp Web. Ele ajuda a criar respostas, resumir conversas e oferecer sugestões em tempo real para melhorar a comunicação com clientes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como funciona o preço por usuário?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O pagamento é feito por cada membro da equipe que utiliza ativamente o Eazybe. Um usuário é qualquer pessoa que sincroniza conversas do WhatsApp com o CRM. Administradores que apenas visualizam dados não são contabilizados como usuários."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Com quais CRMs o Eazybe se integra?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O plano Starter integra com HubSpot, Zoho CRM, Bitrix24 e Google Sheets. O plano Scaler adiciona integrações com Salesforce e Webhooks para CRMs personalizados. O plano Omnis inclui APIs dedicadas e sincronização avançada com negócios e tickets."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso mudar de plano depois?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim! Você pode fazer upgrade ou downgrade do seu plano a qualquer momento. Ao atualizar, novos recursos ficam disponíveis imediatamente. Ao reduzir o plano, a alteração entra em vigor no próximo ciclo de cobrança."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Meus dados estão seguros?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. Utilizamos criptografia de nível bancário de 256 bits para dados em trânsito e em repouso. Somos compatíveis com o GDPR, parceiros oficiais da Meta Business e realizamos auditorias de segurança regularmente."
+            }
+          }
+        ]
+      }
+
+      // WebPage Schema (Portuguese)
+      const webpageSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Preços Eazybe",
+        "url": "https://eazybe.com/br/pricing",
+        "description": "Conheça os planos e preços do Eazybe para integração do WhatsApp com CRM, automação de vendas e agentes de IA.",
+        "inLanguage": "pt-BR",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/br"
+        },
+        "about": [
+          { "@type": "Thing", "name": "WhatsApp CRM" },
+          { "@type": "Thing", "name": "Automação de Vendas" },
+          { "@type": "Thing", "name": "Integração CRM" }
+        ]
+      }
+
+      // Organization Schema
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/br",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 600,
+          "height": 60
+        },
+        "description": "A Eazybe ajuda equipes a integrar o WhatsApp com CRMs para sincronizar conversas, automatizar follow-ups e aumentar a produtividade em vendas.",
+        "foundingDate": "2021",
+        "sameAs": [
+          "https://twitter.com/eazybe",
+          "https://linkedin.com/company/eazybe",
+          "https://youtube.com/@eazybe"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "knowsAbout": [
+          "WhatsApp CRM",
+          "Integração CRM",
+          "Automação de vendas",
+          "Caixa de entrada compartilhada",
+          "Produtividade no WhatsApp"
+        ]
+      }
+
+      // BreadcrumbList Schema
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Eazybe",
+            "item": "https://eazybe.com/br"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Preços",
+            "item": "https://eazybe.com/br/pricing"
+          }
+        ]
+      }
+
+      // WebSite Schema (Portuguese)
+      const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://eazybe.com/br",
+        "name": "Eazybe",
+        "description": "Integre o WhatsApp ao CRM, automatize vendas e gerencie conversas com a plataforma Eazybe.",
+        "inLanguage": "pt-BR",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png"
+          }
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://eazybe.com/br/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+
+      // SoftwareApplication Schema (Portuguese)
+      const softwareApplicationSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Integrações WhatsApp CRM - Eazybe",
+        "url": "https://eazybe.com/br/integrations",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Integração CRM e Automação WhatsApp",
+        "operatingSystem": "Web, Extensão Chrome",
+        "description": "Integre o WhatsApp com HubSpot, Salesforce, Zoho, Bitrix24 e outras ferramentas para automatizar vendas e sincronizar conversas.",
+        "image": "https://eazybe.com/logo.png",
+        "inLanguage": "pt-BR",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/br/pricing",
+          "priceCurrency": "BRL",
+          "lowPrice": 96,
+          "highPrice": 162,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "ratingCount": 53766,
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+
+      // SoftwareApplication Extended Schema (Portuguese)
+      const softwareApplicationExtendedSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Integrações WhatsApp CRM - Eazybe",
+        "url": "https://eazybe.com/br/integrations",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Integração CRM, Automação WhatsApp, Plataforma de Integrações",
+        "operatingSystem": "Web, Extensão Chrome",
+        "description": "Eazybe permite integrar o WhatsApp com CRMs e ferramentas de vendas como HubSpot, Zoho, Salesforce, Bitrix24, LeadSquared e Google Sheets para sincronizar conversas, automatizar follow-ups e melhorar a produtividade das equipes.",
+        "image": "https://eazybe.com/logo.png",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/br/pricing",
+          "priceCurrency": "BRL",
+          "lowPrice": 96,
+          "highPrice": 162,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": 53766
+        },
+        "featureList": [
+          "Integração do WhatsApp com múltiplos CRMs",
+          "Sincronização automática de conversas",
+          "Caixa de entrada compartilhada para equipes",
+          "Automação de mensagens e follow-ups",
+          "Sincronização de contatos e negócios",
+          "Integrações via Webhooks",
+          "Agentes de IA para vendas e suporte",
+          "Gestão de leads diretamente no WhatsApp"
+        ],
+        "inLanguage": "pt-BR"
+      }
+
+      // Add all schemas to head
+      addJsonLdSchema(faqSchema, 'faq-pricing-br')
+      addJsonLdSchema(webpageSchema, 'webpage-pricing-br')
+      addJsonLdSchema(organizationSchema, 'organization-pricing-br')
+      addJsonLdSchema(breadcrumbSchema, 'breadcrumb-pricing-br')
+      addJsonLdSchema(websiteSchema, 'website-pricing-br')
+      addJsonLdSchema(softwareApplicationSchema, 'software-pricing-br')
+      addJsonLdSchema(softwareApplicationExtendedSchema, 'software-extended-pricing-br')
+
+      // Cleanup function - remove meta tags and schemas when leaving the page
       return () => {
-        // Note: We keep some meta tags as they might be used globally
-        // Only remove pricing-specific tags if needed
+        // Remove all pricing schemas
+        const schemaIds = ['faq-pricing-br', 'webpage-pricing-br', 'organization-pricing-br', 'breadcrumb-pricing-br', 'website-pricing-br', 'software-pricing-br', 'software-extended-pricing-br']
+        schemaIds.forEach(id => {
+          const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
+          if (script) script.remove()
+        })
       }
     }
   }, [location.pathname])
