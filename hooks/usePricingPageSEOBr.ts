@@ -301,89 +301,17 @@ export const usePricingPageSEOBr = () => {
         }
       }
 
-      // SoftwareApplication Schema (Portuguese)
-      const softwareApplicationSchema = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Integrações WhatsApp CRM - Eazybe",
-        "url": "https://eazybe.com/br/integrations",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Integração CRM e Automação WhatsApp",
-        "operatingSystem": "Web, Extensão Chrome",
-        "description": "Integre o WhatsApp com HubSpot, Salesforce, Zoho, Bitrix24 e outras ferramentas para automatizar vendas e sincronizar conversas.",
-        "image": "https://eazybe.com/logo.png",
-        "inLanguage": "pt-BR",
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/br/pricing",
-          "priceCurrency": "BRL",
-          "lowPrice": 96,
-          "highPrice": 162,
-          "offerCount": 5,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.7",
-          "ratingCount": 53766,
-          "bestRating": "5",
-          "worstRating": "1"
-        }
-      }
-
-      // SoftwareApplication Extended Schema (Portuguese)
-      const softwareApplicationExtendedSchema = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Integrações WhatsApp CRM - Eazybe",
-        "url": "https://eazybe.com/br/integrations",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Integração CRM, Automação WhatsApp, Plataforma de Integrações",
-        "operatingSystem": "Web, Extensão Chrome",
-        "description": "Eazybe permite integrar o WhatsApp com CRMs e ferramentas de vendas como HubSpot, Zoho, Salesforce, Bitrix24, LeadSquared e Google Sheets para sincronizar conversas, automatizar follow-ups e melhorar a produtividade das equipes.",
-        "image": "https://eazybe.com/logo.png",
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/br/pricing",
-          "priceCurrency": "BRL",
-          "lowPrice": 96,
-          "highPrice": 162,
-          "offerCount": 5,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.7",
-          "bestRating": "5",
-          "worstRating": "1",
-          "ratingCount": 53766
-        },
-        "featureList": [
-          "Integração do WhatsApp com múltiplos CRMs",
-          "Sincronização automática de conversas",
-          "Caixa de entrada compartilhada para equipes",
-          "Automação de mensagens e follow-ups",
-          "Sincronização de contatos e negócios",
-          "Integrações via Webhooks",
-          "Agentes de IA para vendas e suporte",
-          "Gestão de leads diretamente no WhatsApp"
-        ],
-        "inLanguage": "pt-BR"
-      }
-
       // Add all schemas to head
       addJsonLdSchema(faqSchema, 'faq-pricing-br')
       addJsonLdSchema(webpageSchema, 'webpage-pricing-br')
       addJsonLdSchema(organizationSchema, 'organization-pricing-br')
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb-pricing-br')
       addJsonLdSchema(websiteSchema, 'website-pricing-br')
-      addJsonLdSchema(softwareApplicationSchema, 'software-pricing-br')
-      addJsonLdSchema(softwareApplicationExtendedSchema, 'software-extended-pricing-br')
 
       // Cleanup function - remove meta tags and schemas when leaving the page
       return () => {
         // Remove all pricing schemas
-        const schemaIds = ['faq-pricing-br', 'webpage-pricing-br', 'organization-pricing-br', 'breadcrumb-pricing-br', 'website-pricing-br', 'software-pricing-br', 'software-extended-pricing-br']
+        const schemaIds = ['faq-pricing-br', 'webpage-pricing-br', 'organization-pricing-br', 'breadcrumb-pricing-br', 'website-pricing-br']
         schemaIds.forEach(id => {
           const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
           if (script) script.remove()
