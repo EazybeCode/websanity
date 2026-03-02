@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 /**
  * NoIndex Wrapper for Turkish HubSpot redirect page
@@ -10,8 +10,10 @@ import { Outlet } from 'react-router-dom'
  * The destination /tr/hubspot-whatsapp-integration remains indexable
  */
 export const NoIndexHubSpotTr = () => {
+  const navigate = useNavigate()
+
   useEffect(() => {
-    // Set noindex, nofollow meta tags
+    // Set noindex, nofollow meta tags BEFORE redirect
     const setMetaTag = (name: string, content: string) => {
       let meta = document.querySelector(`meta[name="${name}"]`)
       if (!meta) {
@@ -34,8 +36,14 @@ export const NoIndexHubSpotTr = () => {
     }
     xRobots.setAttribute('content', 'noindex, nofollow')
 
+    // Redirect after setting meta tags
+    const redirectTimer = setTimeout(() => {
+      navigate('/tr/hubspot-whatsapp-integration', { replace: true })
+    }, 100) // Small delay to ensure meta tags are set
+
     // Cleanup function to reset meta tags when leaving the page
     return () => {
+      clearTimeout(redirectTimer)
       const robots = document.querySelector('meta[name="robots"]')
       if (robots) {
         robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
@@ -46,7 +54,7 @@ export const NoIndexHubSpotTr = () => {
         xrobots.remove()
       }
     }
-  }, [])
+  }, [navigate])
 
-  return <Outlet />
+  return null // This component only sets meta tags and redirects
 }
