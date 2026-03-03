@@ -497,7 +497,7 @@ const integrations = [
       },
       {
         badge: 'No Migration Needed',
-        headline: 'Works with the WhatsApp you already use.',
+        headline: 'Works With The WhatsApp You Already Use.',
         description: 'Other solutions force you into WhatsApp Business API—expensive, complex, and restrictive. Eazybe is a Chrome extension that works with personal WhatsApp, Business App, and API. Install and start syncing in minutes.',
         points: [
           'Chrome extension installs in 60 seconds',

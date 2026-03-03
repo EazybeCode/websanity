@@ -328,7 +328,7 @@ const TeamInboxPage: React.FC = () => {
           <div className="col-span-2">
             <img src="https://eazybe.com/images/logo.png" alt="Eazybe" className="h-8 mb-6" />
             <p className="text-sm text-slate-400 max-w-xs leading-relaxed">
-              The WhatsApp Sales Platform for CRM teams. Automate, monitor, and scale your sales efforts on the world's most popular messaging app.
+              The WhatsApp Sales Platform For CRM Teams. Automate, monitor, and scale your sales efforts on the world's most popular messaging app.
             </p>
             <div className="mt-8 flex gap-4">
               <Linkedin className="w-5 h-5 text-slate-500 hover:text-white cursor-pointer transition-colors" />

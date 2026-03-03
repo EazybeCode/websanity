@@ -20,7 +20,7 @@ export const ComparisonSection: React.FC = () => {
                    Why Teams Switch to Eazybe
                 </span>
                 <h2 className="text-4xl font-sans font-bold text-brand-ink mb-6">
-                  Works with the WhatsApp you already use
+                  Works With The WhatsApp You Already Use
                 </h2>
                 <p className="text-lg text-slate-600 font-light leading-relaxed mb-8">
                   Other tools force you to abandon WhatsApp Business App and migrate to API-only. Eazybe works with both—keep your existing setup, your chat history, and your workflow.

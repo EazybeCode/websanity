@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
                 Eazybe
             </div>
             <p className="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed text-xs">
-              The WhatsApp Sales Platform for CRM teams.
+              The WhatsApp Sales Platform For CRM Teams.
             </p>
             <div className="flex space-x-4 mb-6">
                 <a href="https://linkedin.com/company/eazybe" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-brand-violet transition-colors"><Linkedin size={18}/></a>

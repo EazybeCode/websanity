@@ -105,7 +105,7 @@
     "aboutUs": "About Us",
     "careers": "Careers",
     "contact": "Contact",
-    "tagline": "The WhatsApp Sales Platform for CRM teams.",
+    "tagline": "The WhatsApp Sales Platform For CRM Teams.",
     "trustedBy": "Trusted by regulated industries: financial services, healthcare, insurance",
     "platform": "Platform",
     "integrations": "Integrations",
@@ -385,7 +385,7 @@
     "features": {
       "syncEngine": {
         "badge": "Sync Engine",
-        "headline": "Every message, automatically captured",
+        "headline": "Every Message, Automatically Captured",
         "description": "All WhatsApp conversations sync to your CRM in real-time. No manual entry, no missed messages.",
         "points": [
           "Real-time bi-directional sync",
@@ -395,7 +395,7 @@
       },
       "miniCrm": {
         "badge": "Mini CRM View",
-        "headline": "Your CRM data, inside WhatsApp",
+        "headline": "Your CRM Data, Inside WhatsApp",
         "description": "See deal stages, contact info, and notes right in the chat window. Update records without switching tabs.",
         "points": [
           "Contact and deal info at a glance",
@@ -405,7 +405,7 @@
       },
       "workflows": {
         "badge": "Workflow Automations",
-        "headline": "Automate your follow-ups",
+        "headline": "Automate Your Follow-ups",
         "description": "Trigger WhatsApp messages from CRM events. Send reminders, nurture sequences, and alerts automatically.",
         "points": [
           "CRM-triggered WhatsApp messages",
@@ -415,7 +415,7 @@
       },
       "revenueInbox": {
         "badge": "Revenue Inbox",
-        "headline": "Focus on deals that matter",
+        "headline": "Focus On Deals That Matter",
         "description": "AI surfaces high-intent conversations and at-risk deals. Know exactly where to focus your time.",
         "points": [
           "AI-powered deal prioritization",
@@ -425,7 +425,7 @@
       },
       "repRadar": {
         "badge": "Rep Radar",
-        "headline": "Complete visibility into team activity",
+        "headline": "Complete Visibility Into Team Activity",
         "description": "See response times, conversation volumes, and performance metrics. Coach your team with data.",
         "points": [
           "Response time tracking",
@@ -435,7 +435,7 @@
       },
       "aiAgent": {
         "badge": "WhatsApp Copilot",
-        "headline": "AI-powered sales assistance",
+        "headline": "AI-Powered Sales Assistance",
         "description": "Get smart reply suggestions, conversation summaries, and next-best-action recommendations.",
         "points": [
           "AI reply suggestions",

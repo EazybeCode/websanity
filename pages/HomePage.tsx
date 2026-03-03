@@ -356,7 +356,7 @@ export const HomePage: React.FC = () => {
       setMetaTag('og:image', 'https://eazybe.com/logo.png', true)
       setMetaTag('og:image:width', '1200', true)
       setMetaTag('og:image:height', '630', true)
-      setMetaTag('og:image:alt', 'Eazybe – WhatsApp Sales Platform for CRM Teams', true)
+      setMetaTag('og:image:alt', 'Eazybe – WhatsApp Sales Platform For CRM Teams', true)
       setMetaTag('og:locale', 'en_US', true)
       setMetaTag('og:site_name', 'Eazybe', true)
 
