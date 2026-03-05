@@ -29,6 +29,7 @@ const IntegrateSalesforceCrmPage = lazy(() => import('./pages/IntegrateSalesforc
 const IntegrateBitrixCrmPage = lazy(() => import('./pages/IntegrateBitrixCrmPage'))
 const FbPage = lazy(() => import('./pages/FbPage'))
 const PartnerPage = lazy(() => import('./pages/PartnerPage').then(m => ({ default: m.PartnerPage })))
+const ComparisonPage = lazy(() => import('./pages/ComparisonPage').then(m => ({ default: m.ComparisonPage })))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 // Loading fallback for lazy-loaded pages
@@ -169,6 +170,7 @@ const AppRoutes = () => (
       <Route path="/integrate-bitrix-crm" element={<IntegrateBitrixCrmPage />} />
       <Route path="/fb" element={<FbPage />} />
       <Route path="/become-our-partner" element={<PartnerPage />} />
+      <Route path="/comparison" element={<ComparisonPage />} />
 
       {/* Portuguese/Brazil routes (/br) */}
       <Route path="/br" element={<HomePage />} />
@@ -198,6 +200,7 @@ const AppRoutes = () => (
       <Route path="/br/privacy" element={<PrivacyPage />} />
       <Route path="/br/terms" element={<TermsPage />} />
       <Route path="/br/become-our-partner" element={<PartnerPage />} />
+      <Route path="/br/comparison" element={<ComparisonPage />} />
 
       {/* Spanish routes (/es) */}
       <Route path="/es" element={<HomePage />} />
@@ -225,6 +228,7 @@ const AppRoutes = () => (
       <Route path="/es/privacy" element={<PrivacyPage />} />
       <Route path="/es/terms" element={<TermsPage />} />
       <Route path="/es/become-our-partner" element={<PartnerPage />} />
+      <Route path="/es/comparison" element={<ComparisonPage />} />
 
       {/* Turkish routes (/tr) */}
       <Route path="/tr" element={<HomePage />} />
@@ -263,6 +267,7 @@ const AppRoutes = () => (
       <Route path="/tr/privacy" element={<PrivacyPage />} />
       <Route path="/tr/terms" element={<TermsPage />} />
       <Route path="/tr/become-our-partner" element={<PartnerPage />} />
+      <Route path="/tr/comparison" element={<ComparisonPage />} />
 
       {/* 301 SEO Redirects - Programmatically loaded from redirectRoutes.tsx */}
       {redirectMappings.map((redirect, index) => (
