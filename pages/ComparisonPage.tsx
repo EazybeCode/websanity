@@ -25,6 +25,7 @@ import { Button } from '../components/ui/Button'
 import { useTrialModal } from '../contexts/TrialModalContext'
 import { useComparisonPageSEO } from '../hooks/useComparisonPageSEO'
 import { useComparisonPageSEOBr } from '../hooks/useComparisonPageSEOBr'
+import { useComparisonPageSEOEs } from '../hooks/useComparisonPageSEOEs'
 
 // Comparison data structure
 interface Competitor {
@@ -504,6 +505,7 @@ export const ComparisonPage: React.FC = () => {
   // SEO hooks for comparison page - ensures crawlability for all bots
   useComparisonPageSEO()      // English
   useComparisonPageSEOBr()    // Portuguese (Brazil)
+  useComparisonPageSEOEs()    // Spanish
 
   return (
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
