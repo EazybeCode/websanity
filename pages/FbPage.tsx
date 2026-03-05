@@ -11,6 +11,25 @@ declare global {
 
 const FbPage: React.FC = () => {
   useEffect(() => {
+    // Remove existing robots meta tag (from index.html)
+    const existingRobotsTag = document.querySelector('meta[name="robots"]')
+    if (existingRobotsTag) {
+      existingRobotsTag.remove()
+    }
+
+    // Add noindex meta tag
+    const metaTag = document.createElement('meta')
+    metaTag.name = 'robots'
+    metaTag.content = 'noindex, nofollow'
+    document.head.appendChild(metaTag)
+
+    return () => {
+      // Cleanup meta tag on unmount
+      document.head.removeChild(metaTag)
+    }
+  }, [])
+
+  useEffect(() => {
     const trackAndUpdate = async () => {
       // Track events
       window.lintrk?.("track", "StartTrial")
