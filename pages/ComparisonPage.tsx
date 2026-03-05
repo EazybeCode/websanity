@@ -26,6 +26,7 @@ import { useTrialModal } from '../contexts/TrialModalContext'
 import { useComparisonPageSEO } from '../hooks/useComparisonPageSEO'
 import { useComparisonPageSEOBr } from '../hooks/useComparisonPageSEOBr'
 import { useComparisonPageSEOEs } from '../hooks/useComparisonPageSEOEs'
+import { useComparisonPageSEOTr } from '../hooks/useComparisonPageSEOTr'
 
 // Comparison data structure
 interface Competitor {
@@ -506,6 +507,7 @@ export const ComparisonPage: React.FC = () => {
   useComparisonPageSEO()      // English
   useComparisonPageSEOBr()    // Portuguese (Brazil)
   useComparisonPageSEOEs()    // Spanish
+  useComparisonPageSEOTr()    // Turkish
 
   return (
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
