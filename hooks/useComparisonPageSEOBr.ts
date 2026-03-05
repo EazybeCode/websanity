@@ -11,7 +11,7 @@ export const useComparisonPageSEOBr = () => {
 
   useEffect(() => {
     // Check if we're on the Portuguese comparison page
-    const isComparisonPage = location.pathname === '/br/comparison' || location.pathname === '/comparison'
+    const isComparisonPage = location.pathname === '/br/comparison'
 
     if (isComparisonPage) {
       // ==================== META TAGS ====================
