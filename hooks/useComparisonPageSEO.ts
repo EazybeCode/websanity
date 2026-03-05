@@ -374,6 +374,62 @@ export const useComparisonPageSEO = () => {
         ]
       }
 
+      // FAQPage Schema
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "How does Eazybe compare to other WhatsApp CRMs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eazybe outperforms 20+ WhatsApp CRM platforms including Wati, Interakt, QuickReply, Cooby, Timelines, and Rasayel. We offer 70% cost savings, exclusive AI features like WhatsApp Web Copilot and Revenue Inbox, more CRM integrations including Salesforce, and features no one else has like WhatsApp Chat Backup."
+          }
+        },{
+          "@type": "Question",
+          "name": "Why is Eazybe more affordable than competitors?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eazybe starts at just $13/month while competitors charge $25-$49/month. We believe powerful WhatsApp CRM should be accessible to all businesses. Our efficient operations and larger user base (50,000+) allow us to offer premium features at a fraction of the cost."
+          }
+        },{
+          "@type": "Question",
+          "name": "What exclusive features does Eazybe offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eazybe offers exclusive features you won't find anywhere else: WhatsApp Chat Backup, Salesforce Integration, WhatsApp Web Copilot, Revenue Inbox, RevOps Agent, AI Unreplied Chats Agent, and Bitrix24 Integration. These features are not available on Wati, Interakt, QuickReply, Cooby, Timelines, or Rasayel."
+          }
+        },{
+          "@type": "Question",
+          "name": "Is Eazybe suitable for enterprise teams?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! Eazybe serves businesses of all sizes. Our Omnis plan includes dedicated APIs, unlimited message sync, Revenue Inbox, RevOps Agent, and a dedicated account manager for enterprise teams. We scale with your business needs."
+          }
+        },{
+          "@type": "Question",
+          "name": "Can I migrate from another platform?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! We make migration easy from any WhatsApp CRM platform. Import your existing contacts, messages, and workflows. Our team provides free migration support for annual plans to ensure a smooth transition from Wati, Interakt, QuickReply, Cooby, or any other platform."
+          }
+        },{
+          "@type": "Question",
+          "name": "What integrations does Eazybe support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eazybe integrates with 10+ platforms including HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar, and custom webhooks for any other platform. More integrations than any other WhatsApp CRM."
+          }
+        },{
+          "@type": "Question",
+          "name": "Is there a free trial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! We offer a 7-day free trial on all plans with no credit card required. You can explore all features, test integrations, and see how Eazybe fits your workflow before committing."
+          }
+        }]
+      }
+
       // Add all schemas to head
       addJsonLdSchema(webpageSchema, 'webpage-comparison')
       addJsonLdSchema(organizationSchema, 'organization-comparison')
@@ -381,12 +437,13 @@ export const useComparisonPageSEO = () => {
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb-comparison')
       addJsonLdSchema(websiteSchema, 'website-comparison')
       addJsonLdSchema(softwareApplicationSchema, 'software-comparison')
+      addJsonLdSchema(faqSchema, 'faq-comparison')
 
       console.log('✅ Comparison Page: SEO meta tags and JSON-LD schemas added/updated')
 
       // Cleanup function - remove schemas when leaving the page
       return () => {
-        const schemaIds = ['webpage-comparison', 'organization-comparison', 'integrations-comparison', 'breadcrumb-comparison', 'website-comparison', 'software-comparison']
+        const schemaIds = ['webpage-comparison', 'organization-comparison', 'integrations-comparison', 'breadcrumb-comparison', 'website-comparison', 'software-comparison', 'faq-comparison']
         schemaIds.forEach(id => {
           const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
           if (script) script.remove()
