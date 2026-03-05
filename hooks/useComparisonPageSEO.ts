@@ -99,7 +99,300 @@ export const useComparisonPageSEO = () => {
       // Link tags
       setLinkTag('canonical', 'https://eazybe.com/comparison')
 
-      console.log('✅ Comparison Page: SEO meta tags added/updated')
+      // ==================== JSON-LD SCHEMAS ====================
+
+      // Helper function to add JSON-LD schema
+      const addJsonLdSchema = (schema: Record<string, unknown>, id: string) => {
+        let script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
+        if (!script) {
+          script = document.createElement('script')
+          script.type = 'application/ld+json'
+          ;(script as HTMLScriptElement).setAttribute('data-schema', id)
+          document.head.appendChild(script)
+        }
+        script.textContent = JSON.stringify(schema)
+      }
+
+      // WebPage Schema
+      const webpageSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "url": "https://eazybe.com/comparison",
+        "name": "Comparison | WhatsApp CRM Tools & WhatsApp Web Productivity - Eazybe",
+        "description": "Unlock the full potential of WhatsApp Web with Eazybe's productivity features. Compare Eazybe vs other WhatsApp CRM tools on features, support, pricing, and more.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://eazybe.com/",
+          "name": "Eazybe"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png",
+            "width": 600,
+            "height": 60
+          }
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 1200,
+          "height": 630
+        },
+        "about": [
+          { "@type": "Thing", "name": "WhatsApp CRM comparison" },
+          { "@type": "Thing", "name": "WhatsApp automation tools" },
+          { "@type": "Thing", "name": "WhatsApp Web productivity" },
+          { "@type": "Thing", "name": "Shared team inbox" },
+          { "@type": "Thing", "name": "AI replies for WhatsApp" }
+        ]
+      }
+
+      // Organization Schema
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe helps sales teams connect WhatsApp with CRM platforms to sync conversations, automate follow-ups, and improve customer engagement.",
+        "foundingDate": "2021",
+        "sameAs": ["https://twitter.com/eazybe", "https://linkedin.com/company/eazybe", "https://youtube.com/@eazybe"],
+        "publishingPrinciples": "https://eazybe.com/comparison",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "Delaware",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "knowsAbout": ["WhatsApp CRM", "CRM integration", "Sales automation", "Shared inbox", "WhatsApp productivity"]
+      }
+
+      // ItemList Schema (Integrations)
+      const integrationsSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Eazybe Integrations",
+        "description": "WhatsApp integrations supported by Eazybe.",
+        "itemListOrder": "https://schema.org/ItemListUnordered",
+        "numberOfItems": 11,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "HubSpot WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/hubspot-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Salesforce WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/salesforce-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Zoho WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/zoho-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Bitrix24 WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/bitrix24-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "LeadSquared WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/leadsquared-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Freshdesk WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/freshdesk-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Google Sheets WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/google-sheets-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Webhooks & Custom Integrations",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/webhooks-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Pipedrive WhatsApp Integration",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/pipedrive-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Monday WhatsApp Integrations",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/monday-whatsapp-integration"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Google WhatsApp Integrations",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Chrome Extension",
+              "url": "https://eazybe.com/google-calendar-whatsapp-integration"
+            }
+          }
+        ]
+      }
+
+      // BreadcrumbList Schema
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Eazybe", "item": "https://eazybe.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Comparison", "item": "https://eazybe.com/comparison" }
+        ]
+      }
+
+      // WebSite Schema
+      const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://eazybe.com/",
+        "name": "Eazybe",
+        "description": "Eazybe helps teams integrate WhatsApp with CRM and business tools to sync chats, automate workflows, and improve sales productivity.",
+        "inLanguage": "en-US",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/",
+          "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 }
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": { "@type": "EntryPoint", "urlTemplate": "https://eazybe.com/search?q={search_term_string}" },
+          "query-input": "required name=search_term_string"
+        }
+      }
+
+      // SoftwareApplication Schema
+      const softwareApplicationSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Eazybe",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
+        "operatingSystem": "Web, Chrome Extension",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/pricing",
+          "priceCurrency": "USD",
+          "lowPrice": 29,
+          "highPrice": 49,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": 53766
+        },
+        "featureList": [
+          "Automatic WhatsApp to CRM sync",
+          "AI-powered reply suggestions",
+          "Shared inbox for team collaboration",
+          "Deal tracking from WhatsApp",
+          "Contact synchronization",
+          "Message scheduling",
+          "AI Agents for CRM"
+        ]
+      }
+
+      // Add all schemas to head
+      addJsonLdSchema(webpageSchema, 'webpage-comparison')
+      addJsonLdSchema(organizationSchema, 'organization-comparison')
+      addJsonLdSchema(integrationsSchema, 'integrations-comparison')
+      addJsonLdSchema(breadcrumbSchema, 'breadcrumb-comparison')
+      addJsonLdSchema(websiteSchema, 'website-comparison')
+      addJsonLdSchema(softwareApplicationSchema, 'software-comparison')
+
+      console.log('✅ Comparison Page: SEO meta tags and JSON-LD schemas added/updated')
+
+      // Cleanup function - remove schemas when leaving the page
+      return () => {
+        const schemaIds = ['webpage-comparison', 'organization-comparison', 'integrations-comparison', 'breadcrumb-comparison', 'website-comparison', 'software-comparison']
+        schemaIds.forEach(id => {
+          const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
+          if (script) script.remove()
+        })
+        console.log('🧹 Comparison Page: JSON-LD schemas removed')
+      }
     }
   }, [location.pathname])
 }
