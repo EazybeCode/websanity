@@ -339,18 +339,84 @@ export const useComparisonPageSEOEs = () => {
         }
       }
 
+      // FAQPage Schema
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "inLanguage": "es-ES",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cómo se compara Eazybe con otros CRM de WhatsApp?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe supera a más de 20 plataformas de CRM para WhatsApp, incluyendo Wati, Interakt, QuickReply, Cooby, Timelines y Rasayel. Ofrecemos hasta un 70% de ahorro en costos, funciones exclusivas de IA como WhatsApp Web Copilot y Revenue Inbox, más integraciones de CRM incluyendo Salesforce y funciones únicas como WhatsApp Chat Backup."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Por qué Eazybe es más económico que otros competidores?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe comienza desde solo $13 al mes mientras que muchos competidores cobran entre $25 y $49 al mes. Creemos que un CRM potente para WhatsApp debe ser accesible para todas las empresas. Gracias a nuestras operaciones eficientes y a una base de más de 50.000 usuarios, podemos ofrecer funciones premium a un costo mucho menor."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué funciones exclusivas ofrece Eazybe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe ofrece funciones exclusivas que no encontrarás en otras plataformas, como WhatsApp Chat Backup, integración con Salesforce, WhatsApp Web Copilot, Revenue Inbox, RevOps Agent, AI Unreplied Chats Agent e integración con Bitrix24. Estas funciones no están disponibles en herramientas como Wati, Interakt, QuickReply, Cooby, Timelines o Rasayel."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Eazybe es adecuado para equipos empresariales?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "¡Por supuesto! Eazybe está diseñado para empresas de todos los tamaños. Nuestro plan Omnis incluye APIs dedicadas, sincronización ilimitada de mensajes, Revenue Inbox, RevOps Agent y un gestor de cuenta dedicado para equipos empresariales. Eazybe escala junto con las necesidades de tu negocio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo migrar desde otra plataforma?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "¡Sí! Facilitamos la migración desde cualquier CRM de WhatsApp. Puedes importar tus contactos, mensajes y flujos de trabajo existentes. Nuestro equipo ofrece soporte de migración gratuito para planes anuales y garantiza una transición sencilla desde Wati, Interakt, QuickReply, Cooby u otras plataformas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué integraciones admite Eazybe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe se integra con más de 10 plataformas, incluyendo HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar y webhooks personalizados para conectarse con cualquier otra plataforma."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay una prueba gratuita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "¡Sí! Ofrecemos una prueba gratuita de 7 días en todos los planes sin necesidad de tarjeta de crédito. Puedes explorar todas las funciones, probar integraciones y ver cómo Eazybe se adapta a tu flujo de trabajo antes de suscribirte."
+            }
+          }
+        ]
+      }
+
       // Add all schemas to head
       addJsonLdSchema(webpageSchema, 'webpage-comparison-es')
       addJsonLdSchema(organizationSchema, 'organization-comparison-es')
       addJsonLdSchema(integrationsSchema, 'integrations-comparison-es')
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb-comparison-es')
       addJsonLdSchema(websiteSchema, 'website-comparison-es')
+      addJsonLdSchema(faqSchema, 'faq-comparison-es')
 
       console.log('✅ Spanish Comparison Page: SEO meta tags and JSON-LD schemas added/updated')
 
       // Cleanup function - remove schemas when leaving the page
       return () => {
-        const schemaIds = ['webpage-comparison-es', 'organization-comparison-es', 'integrations-comparison-es', 'breadcrumb-comparison-es', 'website-comparison-es']
+        const schemaIds = ['webpage-comparison-es', 'organization-comparison-es', 'integrations-comparison-es', 'breadcrumb-comparison-es', 'website-comparison-es', 'faq-comparison-es']
         schemaIds.forEach(id => {
           const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
           if (script) script.remove()
