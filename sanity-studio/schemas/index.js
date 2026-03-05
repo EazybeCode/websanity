@@ -4,7 +4,6 @@
  */
 
 import blogPost from './blogPost.js'
-import comparisonPage from './comparisonPage.js'
 import table from './table.js'
 import accordion from './accordion.js'
 import callout from './callout.js'
@@ -18,7 +17,6 @@ import comparisonTable from './comparisonTable.js'
 
 export default [
   blogPost,
-  comparisonPage,
   // Object types (used within arrays/fields)
   table,
   accordion,
