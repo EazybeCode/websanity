@@ -24,6 +24,7 @@ import { SectionBadge } from '../components/ui/SectionBadge'
 import { Button } from '../components/ui/Button'
 import { useTrialModal } from '../contexts/TrialModalContext'
 import { useComparisonPageSEO } from '../hooks/useComparisonPageSEO'
+import { useComparisonPageSEOBr } from '../hooks/useComparisonPageSEOBr'
 
 // Comparison data structure
 interface Competitor {
@@ -500,8 +501,9 @@ export const ComparisonPage: React.FC = () => {
   const { openModal } = useTrialModal()
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
 
-  // SEO hook for comparison page - ensures crawlability for all bots
-  useComparisonPageSEO()
+  // SEO hooks for comparison page - ensures crawlability for all bots
+  useComparisonPageSEO()      // English
+  useComparisonPageSEOBr()    // Portuguese (Brazil)
 
   return (
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
