@@ -404,6 +404,40 @@ export const useComparisonPageSEOEs = () => {
         ]
       }
 
+      // SoftwareApplication Schema
+      const softwareApplicationSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Eazybe",
+        "operatingSystem": "Web, Extensión de Chrome",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM, Mensajería, Automatización de WhatsApp",
+        "image": ["https://eazybe.com/logo.png"],
+        "description": "Eazybe es una extensión de Chrome que convierte WhatsApp Web en una potente herramienta de CRM. Se integra con HubSpot, Zoho, Salesforce y Google Sheets para ayudar a equipos de ventas, marketing y soporte a gestionar conversaciones y datos de clientes con eficiencia.",
+        "softwareVersion": "latest",
+        "url": "https://eazybe.com/es",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/es/precios",
+          "priceCurrency": "EUR",
+          "lowPrice": 25,
+          "highPrice": 42,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 53978
+        },
+        "publisher": { "@type": "Organization", "name": "Eazybe" },
+        "inLanguage": "es-ES"
+      }
+
       // Add all schemas to head
       addJsonLdSchema(webpageSchema, 'webpage-comparison-es')
       addJsonLdSchema(organizationSchema, 'organization-comparison-es')
@@ -411,12 +445,13 @@ export const useComparisonPageSEOEs = () => {
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb-comparison-es')
       addJsonLdSchema(websiteSchema, 'website-comparison-es')
       addJsonLdSchema(faqSchema, 'faq-comparison-es')
+      addJsonLdSchema(softwareApplicationSchema, 'software-comparison-es')
 
       console.log('✅ Spanish Comparison Page: SEO meta tags and JSON-LD schemas added/updated')
 
       // Cleanup function - remove schemas when leaving the page
       return () => {
-        const schemaIds = ['webpage-comparison-es', 'organization-comparison-es', 'integrations-comparison-es', 'breadcrumb-comparison-es', 'website-comparison-es', 'faq-comparison-es']
+        const schemaIds = ['webpage-comparison-es', 'organization-comparison-es', 'integrations-comparison-es', 'breadcrumb-comparison-es', 'website-comparison-es', 'faq-comparison-es', 'software-comparison-es']
         schemaIds.forEach(id => {
           const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
           if (script) script.remove()
