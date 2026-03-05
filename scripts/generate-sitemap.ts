@@ -50,7 +50,7 @@ interface SitemapURL {
 
 // Fetch all blog posts from Sanity with translation info
 async function getAllBlogPostsWithTranslations() {
-  const query = `*[_type == "blogPost"]{
+  const query = `*[_type == "post"]{
     "slug": slug.current,
     language,
     translationGroupId,

@@ -113,7 +113,7 @@ export async function getPricingPage(language: string = 'en') {
       title,
       subtitle,
       contactLinkText,
-      faqs[]{
+      "faqs": faq[]{
         _key,
         question,
         answer
@@ -144,10 +144,8 @@ export async function getProductPage(slug: string, language: string = 'en') {
     crmName,
     crmSlug,
     crmColor,
-    seo{
-      metaTitle,
-      metaDescription
-    },
+    metaTitle,
+    metaDescription,
     hero{
       badge,
       headline,
@@ -279,10 +277,8 @@ export async function getFeaturePage(slug: string, language: string = 'en') {
     "slug": slug.current,
     title,
     category,
-    seo{
-      metaTitle,
-      metaDescription
-    },
+    metaTitle,
+    metaDescription,
     // New modular sections array
     sections[]{
       _type,
@@ -433,10 +429,8 @@ export async function getCategoryIndexPage(slug: string, language: string = 'en'
     "slug": slug.current,
     title,
     category,
-    seo{
-      metaTitle,
-      metaDescription
-    },
+    metaTitle,
+    metaDescription,
     hero{
       badge,
       headline,
@@ -624,12 +618,12 @@ export async function getCoexistencePage(language: string = 'en') {
 }
 
 export async function getBlogPost(slug: string, language: string = 'en') {
-  const query = `*[_type == "blogPost" && slug.current == $slug && language == $language][0]{
+  const query = `*[_type == "post" && slug.current == $slug && language == $language][0]{
     _id,
     title,
     slug,
     excerpt,
-    content[]{
+    "content": body[]{
       ...,
       _type == "image" => {
         ...,
@@ -651,26 +645,24 @@ export async function getBlogPost(slug: string, language: string = 'en') {
       label,
       id
     },
-    faqs[]{
+    "faqs": faq[]{
       question,
       answer
     },
-    seo{
-      metaTitle,
-      metaDescription
-    }
+    metaTitle,
+    metaDescription
   }`
 
   let result = await sanityClient.fetch(query, { slug, language })
 
   // Fallback: if no result with language filter, try English version and translate
   if (!result && language !== 'en') {
-    const fallbackQuery = `*[_type == "blogPost" && slug.current == $slug && language == "en"][0]{
+    const fallbackQuery = `*[_type == "post" && slug.current == $slug && language == "en"][0]{
       _id,
       title,
       slug,
       excerpt,
-      content[]{
+      "content": body[]{
         ...,
         _type == "image" => {
           ...,
@@ -692,7 +684,7 @@ export async function getBlogPost(slug: string, language: string = 'en') {
         label,
         id
       },
-      faqs[]{
+      "faqs": faq[]{
         question,
         answer
       },
@@ -715,12 +707,12 @@ export async function getBlogPost(slug: string, language: string = 'en') {
 
   // Final fallback: try without any language filter
   if (!result) {
-    const noLangQuery = `*[_type == "blogPost" && slug.current == $slug][0]{
+    const noLangQuery = `*[_type == "post" && slug.current == $slug][0]{
       _id,
       title,
       slug,
       excerpt,
-      content[]{
+      "content": body[]{
         ...,
         _type == "image" => {
           ...,
@@ -742,7 +734,7 @@ export async function getBlogPost(slug: string, language: string = 'en') {
         label,
         id
       },
-      faqs[]{
+      "faqs": faq[]{
         question,
         answer
       },
@@ -759,7 +751,7 @@ export async function getBlogPost(slug: string, language: string = 'en') {
 
 export async function getBlogPosts(limit?: number, language: string = 'en') {
   const query = limit
-    ? `*[_type == "blogPost" && language == $language] | order(publishedAt desc) [0...${limit}]{
+    ? `*[_type == "post" && language == $language] | order(publishedAt desc) [0...${limit}]{
         _id,
         title,
         slug,
@@ -773,7 +765,7 @@ export async function getBlogPosts(limit?: number, language: string = 'en') {
           name
         }
       }`
-    : `*[_type == "blogPost" && language == $language] | order(publishedAt desc){
+    : `*[_type == "post" && language == $language] | order(publishedAt desc){
         _id,
         title,
         slug,
@@ -944,7 +936,7 @@ export async function getBlogPostTranslations(
   console.log('📖 getBlogPostTranslations called with:', { slug, currentLanguage })
 
   // First get the current post to find its translationGroupId
-  const currentPostQuery = `*[_type == "blogPost" && slug.current == $slug && language == $currentLanguage][0]{
+  const currentPostQuery = `*[_type == "post" && slug.current == $slug && language == $currentLanguage][0]{
     translationGroupId
   }`
 
@@ -960,7 +952,7 @@ export async function getBlogPostTranslations(
   console.log('🔗 translationGroupId found:', currentPost.translationGroupId)
 
   // Fetch all posts with the same translationGroupId
-  const translationsQuery = `*[_type == "blogPost" && translationGroupId == $groupId]{
+  const translationsQuery = `*[_type == "post" && translationGroupId == $groupId]{
     language,
     "slug": slug.current
   }`

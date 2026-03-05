@@ -19,8 +19,21 @@ export default {
       title: 'Table Rows',
       type: 'array',
       of: [{
-        type: 'array',
-        of: [{ type: 'string' }],
+        type: 'object',
+        fields: [
+          {
+            name: 'cells',
+            title: 'Cells',
+            type: 'array',
+            of: [{ type: 'string' }],
+          },
+        ],
+        preview: {
+          select: { cells: 'cells' },
+          prepare({ cells }) {
+            return { title: cells?.join(' | ') || 'Empty row' }
+          },
+        },
       }],
     },
     {

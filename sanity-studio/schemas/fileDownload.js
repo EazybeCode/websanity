@@ -26,7 +26,7 @@ export default {
       rows: 2,
     },
     {
-      name: ' fileSize',
+      name: 'fileSize',
       title: 'File Size (display only)',
       type: 'string',
       description: 'e.g., "2.5 MB" - auto-detected if possible',

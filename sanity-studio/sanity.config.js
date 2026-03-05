@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
+import customSchemaTypes from './schemas/index.js'
 
 /**
  * Eazybe Enterprise CMS with JSON-LD Structured Data
@@ -161,7 +162,8 @@ const blogPost = {
           { title: '🇬🇧 English (en) - Default, no URL prefix', value: 'en' },
           { title: '🇪🇸 Spanish (es) - /es/* URLs', value: 'es' },
           { title: '🇹🇷 Turkish (tr) - /tr/* URLs', value: 'tr' },
-          { title: '🇧🇷 Portuguese (br) - /br/* URLs', value: 'br' },
+          { title: '🇧🇷 Portuguese (pt-BR) - /br/* URLs', value: 'pt-BR' },
+          { title: '🇧🇷 Portuguese (pt) - /pt/* URLs', value: 'pt' },
         ],
       },
       initialValue: 'en',
@@ -252,6 +254,16 @@ const blogPost = {
           },
         },
         { type: 'image' },
+        { type: 'table' },
+        { type: 'accordion' },
+        { type: 'callout' },
+        { type: 'codeBlock' },
+        { type: 'imageGallery' },
+        { type: 'videoEmbed' },
+        { type: 'buttonCTA' },
+        { type: 'quote' },
+        { type: 'fileDownload' },
+        { type: 'comparisonTable' },
       ],
     },
     {
@@ -956,7 +968,7 @@ export default defineConfig({
   projectId: '5awzi0t4',
   dataset: 'production',
   schema: {
-    types: [blogPost, feature, integration, page, categoryIndexPage, redirect],
+    types: [blogPost, feature, integration, page, categoryIndexPage, redirect, ...customSchemaTypes.filter(s => s.name !== 'blogPost')],
   },
   plugins: [
     structureTool({
