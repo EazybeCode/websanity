@@ -118,18 +118,18 @@ export const useComparisonPageSEOBr = () => {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "url": "https://eazybe.com/br/comparison",
-        "name": "Comparação | Ferramentas de CRM para WhatsApp & Produtividade do WhatsApp Web - Eazybe",
-        "description": "Desbloqueie todo o potencial do WhatsApp Web com os recursos de produtividade do Eazybe. Compare o Eazybe vs outras ferramentas de CRM para WhatsApp em recursos, suporte, preços e mais.",
+        "name": "Comparação | Eazybe",
+        "description": "Desbloqueie todo o potencial do WhatsApp Web com os recursos de produtividade do Eazybe. Compare o Eazybe vs outras ferramentas de CRM para WhatsApp por recursos, suporte, preços e mais.",
         "inLanguage": "pt-BR",
         "isPartOf": {
           "@type": "WebSite",
-          "url": "https://eazybe.com/",
+          "url": "https://eazybe.com/br",
           "name": "Eazybe"
         },
         "publisher": {
           "@type": "Organization",
           "name": "Eazybe",
-          "url": "https://eazybe.com/",
+          "url": "https://eazybe.com/br",
           "logo": {
             "@type": "ImageObject",
             "url": "https://eazybe.com/logo.png",
@@ -146,9 +146,9 @@ export const useComparisonPageSEOBr = () => {
         "about": [
           { "@type": "Thing", "name": "comparação de CRM para WhatsApp" },
           { "@type": "Thing", "name": "ferramentas de automação do WhatsApp" },
-          { "@type": "Thing", "name": "produtividade do WhatsApp Web" },
-          { "@type": "Thing", "name": "caixa de entrada compartilhada" },
-          { "@type": "Thing", "name": "respostas com IA para WhatsApp" }
+          { "@type": "Thing", "name": "produtividade no WhatsApp Web" },
+          { "@type": "Thing", "name": "caixa de entrada compartilhada para equipes" },
+          { "@type": "Thing", "name": "respostas com IA no WhatsApp" }
         ]
       }
 
@@ -157,12 +157,21 @@ export const useComparisonPageSEOBr = () => {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Eazybe",
-        "url": "https://eazybe.com/",
-        "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
+        "url": "https://eazybe.com/br",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 600,
+          "height": 60
+        },
         "image": "https://eazybe.com/logo.png",
-        "description": "O Eazybe ajuda equipes de vendas a conectar o WhatsApp com plataformas de CRM para sincronizar conversas, automatizar follow-ups e melhorar o engajamento do cliente.",
+        "description": "O Eazybe ajuda equipes de vendas a conectar o WhatsApp a CRMs para sincronizar conversas, automatizar follow-ups e aumentar o engajamento com clientes.",
         "foundingDate": "2021",
-        "sameAs": ["https://twitter.com/eazybe", "https://linkedin.com/company/eazybe", "https://youtube.com/@eazybe"],
+        "sameAs": [
+          "https://twitter.com/eazybe",
+          "https://linkedin.com/company/eazybe",
+          "https://youtube.com/@eazybe"
+        ],
         "publishingPrinciples": "https://eazybe.com/br/comparison",
         "address": {
           "@type": "PostalAddress",
@@ -172,7 +181,13 @@ export const useComparisonPageSEOBr = () => {
           "postalCode": "19901",
           "addressCountry": "US"
         },
-        "knowsAbout": ["CRM para WhatsApp", "integração com CRM", "automação de vendas", "caixa de entrada compartilhada", "produtividade do WhatsApp"]
+        "knowsAbout": [
+          "CRM para WhatsApp",
+          "Integração com CRM",
+          "Automação de vendas",
+          "Caixa de entrada compartilhada",
+          "Produtividade no WhatsApp"
+        ]
       }
 
       // ItemList Schema (Integrations)
@@ -180,7 +195,7 @@ export const useComparisonPageSEOBr = () => {
         "@context": "https://schema.org",
         "@type": "ItemList",
         "name": "Integrações do Eazybe",
-        "description": "Integrações do WhatsApp suportadas pelo Eazybe.",
+        "description": "Integrações de WhatsApp suportadas pelo Eazybe.",
         "itemListOrder": "https://schema.org/ItemListUnordered",
         "numberOfItems": 11,
         "itemListElement": [
@@ -192,7 +207,7 @@ export const useComparisonPageSEOBr = () => {
               "name": "Integração HubSpot WhatsApp",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/hubspot-whatsapp-integration"
+              "url": "https://eazybe.com/br/hubspot-whatsapp-integration"
             }
           },
           {
@@ -203,7 +218,7 @@ export const useComparisonPageSEOBr = () => {
               "name": "Integração Salesforce WhatsApp",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/salesforce-whatsapp-integration"
+              "url": "https://eazybe.com/br/salesforce-whatsapp-integration"
             }
           },
           {
@@ -214,7 +229,7 @@ export const useComparisonPageSEOBr = () => {
               "name": "Integração Zoho WhatsApp",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/zoho-whatsapp-integration"
+              "url": "https://eazybe.com/br/zoho-whatsapp-integration"
             }
           },
           {
@@ -225,7 +240,7 @@ export const useComparisonPageSEOBr = () => {
               "name": "Integração Bitrix24 WhatsApp",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/bitrix24-whatsapp-integration"
+              "url": "https://eazybe.com/br/bitrix24-whatsapp-integration"
             }
           },
           {
@@ -236,7 +251,7 @@ export const useComparisonPageSEOBr = () => {
               "name": "Integração LeadSquared WhatsApp",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/leadsquared-whatsapp-integration"
+              "url": "https://eazybe.com/br/leadsquared-whatsapp-integration"
             }
           },
           {
@@ -247,7 +262,7 @@ export const useComparisonPageSEOBr = () => {
               "name": "Integração Freshdesk WhatsApp",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/freshdesk-whatsapp-integration"
+              "url": "https://eazybe.com/br/freshdesk-whatsapp-integration"
             }
           },
           {
@@ -258,7 +273,7 @@ export const useComparisonPageSEOBr = () => {
               "name": "Integração Google Sheets WhatsApp",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/google-sheets-whatsapp-integration"
+              "url": "https://eazybe.com/br/google-sheets-whatsapp-integration"
             }
           },
           {
@@ -266,10 +281,10 @@ export const useComparisonPageSEOBr = () => {
             "position": 8,
             "item": {
               "@type": "SoftwareApplication",
-              "name": "Webhooks e Integrações Personalizadas",
+              "name": "Integração WhatsApp via Webhooks e Integrações Personalizadas",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/webhooks-whatsapp-integration"
+              "url": "https://eazybe.com/br/webhooks-whatsapp-integration"
             }
           },
           {
@@ -280,7 +295,7 @@ export const useComparisonPageSEOBr = () => {
               "name": "Integração Pipedrive WhatsApp",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/pipedrive-whatsapp-integration"
+              "url": "https://eazybe.com/br/pipedrive-whatsapp-integration"
             }
           },
           {
@@ -288,10 +303,10 @@ export const useComparisonPageSEOBr = () => {
             "position": 10,
             "item": {
               "@type": "SoftwareApplication",
-              "name": "Integrações Monday WhatsApp",
+              "name": "Integração Monday WhatsApp",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/monday-whatsapp-integration"
+              "url": "https://eazybe.com/br/monday-whatsapp-integration"
             }
           },
           {
@@ -299,10 +314,10 @@ export const useComparisonPageSEOBr = () => {
             "position": 11,
             "item": {
               "@type": "SoftwareApplication",
-              "name": "Integrações Google WhatsApp",
+              "name": "Integração Google Calendar WhatsApp",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web, Extensão Chrome",
-              "url": "https://eazybe.com/google-calendar-whatsapp-integration"
+              "url": "https://eazybe.com/br/google-calendar-whatsapp-integration"
             }
           }
         ]
@@ -313,7 +328,7 @@ export const useComparisonPageSEOBr = () => {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Eazybe", "item": "https://eazybe.com/" },
+          { "@type": "ListItem", "position": 1, "name": "Eazybe", "item": "https://eazybe.com/br" },
           { "@type": "ListItem", "position": 2, "name": "Comparação", "item": "https://eazybe.com/br/comparison" }
         ]
       }
@@ -322,19 +337,24 @@ export const useComparisonPageSEOBr = () => {
       const websiteSchema = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "url": "https://eazybe.com/",
+        "url": "https://eazybe.com/br",
         "name": "Eazybe",
-        "description": "O Eazybe ajuda equipes a integrar o WhatsApp com ferramentas de CRM e negócios para sincronizar chats, automatizar fluxos de trabalho e melhorar a produtividade de vendas.",
+        "description": "O Eazybe ajuda equipes a integrar o WhatsApp com CRM e ferramentas de negócios para sincronizar conversas, automatizar fluxos e aumentar a produtividade de vendas.",
         "inLanguage": "pt-BR",
         "publisher": {
           "@type": "Organization",
           "name": "Eazybe",
-          "url": "https://eazybe.com/",
-          "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 }
+          "url": "https://eazybe.com/br",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png",
+            "width": 600,
+            "height": 60
+          }
         },
         "potentialAction": {
           "@type": "SearchAction",
-          "target": { "@type": "EntryPoint", "urlTemplate": "https://eazybe.com/search?q={search_term_string}" },
+          "target": { "@type": "EntryPoint", "urlTemplate": "https://eazybe.com/br/search?q={search_term_string}" },
           "query-input": "required name=search_term_string"
         }
       }
@@ -345,14 +365,14 @@ export const useComparisonPageSEOBr = () => {
         "@type": "SoftwareApplication",
         "name": "Eazybe",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Integração CRM, Automação WhatsApp, Agentes de IA para WhatsApp",
+        "applicationSubCategory": "Integração com CRM, Automação de WhatsApp, Agentes de IA para WhatsApp",
         "operatingSystem": "Web, Extensão Chrome",
         "offers": {
           "@type": "AggregateOffer",
-          "url": "https://eazybe.com/pricing",
-          "priceCurrency": "USD",
-          "lowPrice": 29,
-          "highPrice": 49,
+          "url": "https://eazybe.com/br/pricing",
+          "priceCurrency": "BRL",
+          "lowPrice": 96,
+          "highPrice": 162,
           "offerCount": 5,
           "availability": "https://schema.org/InStock"
         },
@@ -364,14 +384,15 @@ export const useComparisonPageSEOBr = () => {
           "ratingCount": 53766
         },
         "featureList": [
-          "Sincronização automática do WhatsApp para CRM",
+          "Sincronização automática do WhatsApp com o CRM",
           "Sugestões de resposta com IA",
           "Caixa de entrada compartilhada para colaboração em equipe",
-          "Acompanhamento de negociações do WhatsApp",
+          "Acompanhamento de negócios a partir do WhatsApp",
           "Sincronização de contatos",
           "Agendamento de mensagens",
           "Agentes de IA para CRM"
-        ]
+        ],
+        "inLanguage": "pt-BR"
       }
 
       // FAQPage Schema
