@@ -404,6 +404,40 @@ export const useComparisonPageSEOTr = () => {
         ]
       }
 
+      // SoftwareApplication Schema
+      const softwareApplicationSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Eazybe",
+        "operatingSystem": "Web, Chrome Uzantısı",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM, Mesajlaşma, WhatsApp Otomasyonu",
+        "image": ["https://eazybe.com/logo.png"],
+        "description": "Eazybe, WhatsApp Web'i güçlü bir CRM aracına dönüştüren bir Chrome uzantısıdır. HubSpot, Zoho, Salesforce ve Google Sheets ile entegre olarak satış, pazarlama ve destek ekiplerinin konuşmaları ve müşteri verilerini verimli şekilde yönetmesine yardımcı olur.",
+        "softwareVersion": "latest",
+        "url": "https://eazybe.com/tr",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/tr/fiyatlar",
+          "priceCurrency": "TRY",
+          "lowPrice": 1272,
+          "highPrice": 2149,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 53978
+        },
+        "publisher": { "@type": "Organization", "name": "Eazybe" },
+        "inLanguage": "tr-TR"
+      }
+
       // Add all schemas to head
       addJsonLdSchema(webpageSchema, 'webpage-comparison-tr')
       addJsonLdSchema(organizationSchema, 'organization-comparison-tr')
@@ -411,12 +445,13 @@ export const useComparisonPageSEOTr = () => {
       addJsonLdSchema(breadcrumbSchema, 'breadcrumb-comparison-tr')
       addJsonLdSchema(websiteSchema, 'website-comparison-tr')
       addJsonLdSchema(faqSchema, 'faq-comparison-tr')
+      addJsonLdSchema(softwareApplicationSchema, 'software-comparison-tr')
 
       console.log('✅ Turkish Comparison Page: SEO meta tags and JSON-LD schemas added/updated')
 
       // Cleanup function - remove schemas when leaving the page
       return () => {
-        const schemaIds = ['webpage-comparison-tr', 'organization-comparison-tr', 'integrations-comparison-tr', 'breadcrumb-comparison-tr', 'website-comparison-tr', 'faq-comparison-tr']
+        const schemaIds = ['webpage-comparison-tr', 'organization-comparison-tr', 'integrations-comparison-tr', 'breadcrumb-comparison-tr', 'website-comparison-tr', 'faq-comparison-tr', 'software-comparison-tr']
         schemaIds.forEach(id => {
           const script = document.querySelector(`script[type="application/ld+json"][data-schema="${id}"]`)
           if (script) script.remove()
