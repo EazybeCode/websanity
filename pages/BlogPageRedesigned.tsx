@@ -141,7 +141,7 @@ const StickyTableOfContents: React.FC<{
   return (
     <div className="space-y-6">
       {/* TOC Card */}
-      <div className="bg-brand-card border border-slate-700/50 rounded-2xl p-5 shadow-xl">
+      <div className="bg-brand-card border border-slate-700/50 rounded-2xl px-5 py-8 shadow-xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-700/50">
           <div className="flex items-center gap-2">

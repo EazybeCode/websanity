@@ -12,8 +12,8 @@ function getInitialTheme(): Theme {
       return stored
     }
   }
-  // Default to dark mode
-  return 'dark'
+  // Default to light mode for preview
+  return 'light'
 }
 
 export function useTheme() {

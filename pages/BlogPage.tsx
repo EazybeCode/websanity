@@ -343,7 +343,7 @@ const StickyTableOfContents: React.FC<{
     <div className="space-y-6">
       {/* Table of Contents */}
       {sections && sections.length > 0 && (
-        <div className="bg-brand-card border border-slate-700/50 rounded-2xl p-5 shadow-xl">
+        <div className="bg-brand-card border border-slate-700/50 rounded-2xl px-5 py-8 shadow-xl">
           <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-700/50">
             <BookOpen size={16} className="text-brand-cyan" />
             <h4 className="font-semibold text-white text-sm">{tocTitle || t('blog.detail.tocTitle')}</h4>
@@ -1585,16 +1585,16 @@ const BlogPage: React.FC = () => {
 
               {/* Mobile TOC Dropdown - Visible on mobile only */}
               {dynamicToc && dynamicToc.length > 0 && (
-                <div className="lg:hidden mb-8">
+                <div className="lg:hidden mb-3">
                   <details className="bg-brand-card border border-slate-700/50 rounded-xl overflow-hidden">
-                    <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-800/50 transition-colors">
+                    <summary className="flex items-center justify-between p-2 cursor-pointer hover:bg-slate-800/50 transition-colors">
                       <div className="flex items-center gap-2">
                         <BookOpen size={18} className="text-brand-cyan" />
                         <span className="font-semibold text-white">Table of Contents</span>
                       </div>
                       <ChevronDown size={20} className="text-slate-400 open:rotate-180 transition-transform" />
                     </summary>
-                    <nav className="p-4 pt-0 border-t border-slate-700/50">
+                    <nav className="p-2 pt-0 border-t border-slate-700/50">
                       <ul className="space-y-1">
                         {dynamicToc.map((item, i) => {
                           const isActive = mobileActiveSection === item.id;
