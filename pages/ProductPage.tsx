@@ -45,6 +45,7 @@ import { useLeadSquaredIntegrationSEOBr } from '../hooks/useLeadSquaredIntegrati
 import { useFreshdeskIntegrationSEOBr } from '../hooks/useFreshdeskIntegrationSEOBr'
 import { useWebhooksIntegrationSEOBr } from '../hooks/useWebhooksIntegrationSEOBr'
 import { useGoogleSheetsIntegrationSEOBr } from '../hooks/useGoogleSheetsIntegrationSEOBr'
+import { useGoogleSheetsIntegrationSEOEs } from '../hooks/useGoogleSheetsIntegrationSEOEs'
 import { useHubSpotIntegrationSEOEs } from '../hooks/useHubSpotIntegrationSEOEs'
 import { useSalesforceIntegrationSEOEs } from '../hooks/useSalesforceIntegrationSEOEs'
 import { useZohoIntegrationSEOEs } from '../hooks/useZohoIntegrationSEOEs'
@@ -1682,6 +1683,7 @@ export const ProductPage: React.FC = () => {
   // Google Sheets Integration Page SEO
   useGoogleSheetsIntegrationSEO()
   useGoogleSheetsIntegrationSEOBr()
+useGoogleSheetsIntegrationSEOEs()
 
   // Google Calendar Integration Page SEO
   useGoogleCalendarIntegrationSEO()
