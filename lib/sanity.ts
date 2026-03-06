@@ -995,3 +995,28 @@ export async function getBlogPostHreflangData(
   console.log('🔗 Hreflang data generated:', hreflangData)
   return hreflangData
 }
+
+// ==================== REDIRECTS ====================
+
+/**
+ * Fetch all active redirects from Sanity CMS
+ * Returns array of { source: string, destination: string, type: string }
+ */
+export async function getAllRedirects(): Promise<Array<{ source: string; destination: string; type: string }>> {
+  const query = `
+    *[_type == "redirect" && isActive == true]{
+      source,
+      destination,
+      type
+    } | order(source asc)
+  `
+
+  try {
+    const redirects = await sanityClient.fetch(query)
+    console.log(`🔀 Fetched ${redirects?.length || 0} active redirects from Sanity`)
+    return redirects || []
+  } catch (error) {
+    console.error('Error fetching redirects from Sanity:', error)
+    return []
+  }
+}

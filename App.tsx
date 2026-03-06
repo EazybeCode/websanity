@@ -6,6 +6,7 @@ import { TrialModalProvider } from './contexts/TrialModalContext'
 import { TrialModalWrapper } from './components/modals/TrialModalWrapper'
 import { LeadSidebar } from './components/LeadSidebar'
 import { LeadMobileButton } from './components/LeadMobileButton'
+import { RedirectHandler } from './components/RedirectHandler'
 import { redirectMappings } from './src/routes/redirectRoutes'
 
 // Lazy load all page components for code splitting
@@ -293,6 +294,7 @@ function App() {
   return (
     <BrowserRouter>
       <PageTracker />
+      <RedirectHandler />
       <TrialModalProvider>
         <TrailingSlashRedirect>
           <QueryParamRedirect>
