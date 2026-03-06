@@ -12,8 +12,7 @@ export const usePipedriveIntegrationSEO = () => {
 
   useEffect(() => {
     // Check if we're on the Pipedrive integration page (with or without language prefix)
-    const isPipedrivePage = /^\/[a-z]{2}\/?pipedrive-whatsapp-integration/.test(location.pathname) ||
-                           location.pathname === '/pipedrive-whatsapp-integration'
+    const isPipedrivePage = location.pathname === '/pipedrive-whatsapp-integration'
 
     if (isPipedrivePage) {
       // ==================== META TAGS ====================
