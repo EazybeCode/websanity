@@ -1464,6 +1464,129 @@
             "answer": "Yes, we use bank-level encryption and are fully GDPR compliant."
           }
         ]
+      },
+      "featuredItems": [
+        {
+          "name": "Team Inbox",
+          "slug": "team-inbox",
+          "description": "Shared WhatsApp inbox for sales teams with automatic lead routing.",
+          "icon": "team",
+          "color": "blue",
+          "isFeatured": true,
+          "tags": ["Collaboration", "CRM"]
+        },
+        {
+          "name": "Cloud Backup",
+          "slug": "cloud-backup",
+          "description": "Automatic WhatsApp chat backup to cloud storage.",
+          "icon": "cloud",
+          "color": "cyan",
+          "isFeatured": true,
+          "tags": ["Backup", "Security"]
+        },
+        {
+          "name": "Quick Reply",
+          "slug": "quick-reply",
+          "description": "Pre-built message templates for faster responses.",
+          "icon": "zap",
+          "color": "green",
+          "isFeatured": true,
+          "tags": ["Productivity", "Automation"]
+        },
+        {
+          "name": "Revenue Inbox",
+          "slug": "revenue-inbox",
+          "description": "AI-powered WhatsApp inbox that prioritizes high-value conversations.",
+          "icon": "revenue",
+          "color": "purple",
+          "isFeatured": true,
+          "tags": ["AI", "Sales"]
+        },
+        {
+          "name": "WhatsApp API",
+          "slug": "whatsapp-api",
+          "description": "Enterprise WhatsApp Business API solutions for scale.",
+          "icon": "global",
+          "color": "orange",
+          "isFeatured": false,
+          "tags": ["API", "Enterprise"]
+        },
+        {
+          "name": "CRM Integrations",
+          "slug": "integrations",
+          "description": "Connect WhatsApp with HubSpot, Salesforce, Zoho, and 10+ more tools.",
+          "icon": "link",
+          "color": "indigo",
+          "isFeatured": true,
+          "tags": ["CRM", "Automation"]
+        }
+      ],
+      "integrationsList": {
+        "headline": "Connect With Your Favorite Tools",
+        "description": "Seamless integrations with 10+ CRMs and business platforms."
+      },
+      "integrationsCta": {
+        "badge": "Ready to Integrate?",
+        "headline": "Supercharge Your Workflow",
+        "headlineHighlight": "Today",
+        "description": "Connect WhatsApp with your existing tools in minutes.",
+        "primaryCta": "Explore Integrations",
+        "secondaryCta": "Talk to Sales"
+      },
+      "capabilities": {
+        "badge": "Platform Capabilities",
+        "headline": "Built for",
+        "headlineHighlight": "Scale",
+        "description": "From solo entrepreneurs to enterprise teams, Eazybe scales with you.",
+        "items": [
+          {
+            "icon": "Users",
+            "title": "Unlimited Team Members",
+            "description": "Add as many team members as you need without extra cost."
+          },
+          {
+            "icon": "Shield",
+            "title": "Enterprise Security",
+            "description": "Bank-level encryption and GDPR compliance."
+          },
+          {
+            "icon": "Zap",
+            "title": "Lightning Fast",
+            "description": "Real-time message sync with zero latency."
+          },
+          {
+            "icon": "Globe",
+            "title": "Global Coverage",
+            "description": "Works in 120+ countries worldwide."
+          },
+          {
+            "icon": "Clock",
+            "title": "24/7 Support",
+            "description": "Round-the-clock customer support."
+          },
+          {
+            "icon": "Smartphone",
+            "title": "Mobile First",
+            "description": "Works perfectly on any device, anywhere."
+          }
+        ]
+      },
+      "pricing": {
+        "badge": "Simple Pricing",
+        "headline": "Start Free,",
+        "headlineHighlight": "Scale Affordably",
+        "description": "No hidden fees. No credit card required. Cancel anytime.",
+        "primaryCta": "Start Free Trial",
+        "secondaryCta": "View All Plans"
+      },
+      "cta": {
+        "badge": "Ready to Get Started?",
+        "headline": "Join 50,000+ Teams",
+        "headlineHighlight": "Winning with WhatsApp",
+        "description": "Start your free trial today. No credit card required.",
+        "primaryCta": "Install for Free",
+        "secondaryCta": "Book a Demo",
+        "footnote": "Free 14-day trial • No credit card required"
       }
     },
     "integrations": {

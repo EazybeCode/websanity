@@ -1502,6 +1502,91 @@
             "answer": "Sí, usamos encriptación de nivel bancario y cumplimos totalmente con GDPR."
           }
         ]
+      },
+      "featuredItems": [
+        {
+          "name": "Buzón del Equipo",
+          "slug": "team-inbox",
+          "description": "Bandeja de entrada compartida de WhatsApp para equipos de ventas con enrutamiento automático de leads.",
+          "icon": "team",
+          "color": "blue",
+          "isFeatured": true,
+          "tags": ["Colaboración", "CRM"]
+        },
+        {
+          "name": "Backup en la Nube",
+          "slug": "cloud-backup",
+          "description": "Respaldo automático de conversaciones de WhatsApp al almacenamiento en la nube.",
+          "icon": "cloud",
+          "color": "cyan",
+          "isFeatured": true,
+          "tags": ["Backup", "Seguridad"]
+        },
+        {
+          "name": "Respuestas Rápidas",
+          "slug": "quick-reply",
+          "description": "Plantillas de mensaje preconstruidas para respuestas más rápidas.",
+          "icon": "zap",
+          "color": "green",
+          "isFeatured": true,
+          "tags": ["Productividad", "Automatización"]
+        },
+        {
+          "name": "Revenue Inbox",
+          "slug": "revenue-inbox",
+          "description": "Bandeja de entrada de WhatsApp alimentada por IA que prioriza conversas de alto valor.",
+          "icon": "revenue",
+          "color": "purple",
+          "isFeatured": true,
+          "tags": ["IA", "Ventas"]
+        },
+        {
+          "name": "WhatsApp API",
+          "slug": "whatsapp-api",
+          "description": "Soluciones empresariales de WhatsApp Business API para escala.",
+          "icon": "global",
+          "color": "orange",
+          "isFeatured": false,
+          "tags": ["API", "Empresarial"]
+        },
+        {
+          "name": "Integraciones",
+          "slug": "integrations",
+          "description": "Conecta WhatsApp con HubSpot, Salesforce, Zoho y más.",
+          "icon": "link",
+          "color": "indigo",
+          "isFeatured": true,
+          "tags": ["CRM", "Automatización"]
+        }
+      ],
+      "integrationsList": {
+        "headline": "Conecta Con Tus Herramientas Favoritas",
+        "description": "Integraciones perfectas con 10+ CRMs y plataformas de negocios."
+      },
+      "integrationsCta": {
+        "badge": "¿Listo para Integrar?",
+        "headline": "Potencia Tu",
+        "headlineHighlight": "Flujo de Trabajo",
+        "description": "Conecta WhatsApp con tus herramientas existentes en minutos.",
+        "primaryCta": "Explorar Integraciones",
+        "secondaryCta": "Hablar con Ventas"
+      },
+      "pricing": {
+        "badge": "Precios Simples",
+        "headline": "Comienza Gratis,",
+        "headlineHighlight": "Escala Asequiblemente",
+        "description": "Sin tarifas ocultas. Sin tarjeta de crédito necesaria. Cancela en cualquier momento.",
+        "primaryCta": "Iniciar Prueba Gratis",
+        "secondaryCta": "Ver Todos los Planes"
+      },
+      "cta": {
+        "badge": "¿Listo para Comenzar?",
+        "headline": "Únete a 50,000+ Equipos",
+        "headlineHighlight": "Ganando con WhatsApp",
+        "description": "Inicia tu prueba gratuita hoy. Sin tarjeta de crédito necesaria.",
+        "primaryCta": "Instalar Gratis",
+        "secondaryCta": "Reservar Demo",
+        "footnote": "Prueba gratuita de 14 días • Sin tarjeta de crédito"
       }
     },
     "features": {

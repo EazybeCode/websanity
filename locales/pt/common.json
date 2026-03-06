@@ -1438,7 +1438,7 @@
             "description": "Sincronize mensagens do WhatsApp instantaneamente com sua equipe."
           },
           {
-            "icon": "Users",
+            "icon": "team",
             "title": "Caixa de Entrada da Equipe",
             "description": "Múltiplos membros da equipe podem colaborar no mesmo chat."
           },
@@ -1517,6 +1517,91 @@
             "answer": "Sim, usamos criptografia de nível bancário e somos totalmente compatíveis com LGPD."
           }
         ]
+      },
+      "featuredItems": [
+        {
+          "name": "Caixa de Entrada da Equipe",
+          "slug": "team-inbox",
+          "description": "Caixa de entrada compartilhada do WhatsApp para equipes de vendas com roteamento automático de leads.",
+          "icon": "team",
+          "color": "blue",
+          "isFeatured": true,
+          "tags": ["Colaboração", "CRM"]
+        },
+        {
+          "name": "Backup na Nuvem",
+          "slug": "cloud-backup",
+          "description": "Backup automático de conversas do WhatsApp para armazenamento na nuvem.",
+          "icon": "cloud",
+          "color": "cyan",
+          "isFeatured": true,
+          "tags": ["Backup", "Segurança"]
+        },
+        {
+          "name": "Respostas Rápidas",
+          "slug": "quick-reply",
+          "description": "Modelos de mensagem pré-construídos para respostas mais rápidas.",
+          "icon": "zap",
+          "color": "green",
+          "isFeatured": true,
+          "tags": ["Produtividade", "Automação"]
+        },
+        {
+          "name": "Revenue Inbox",
+          "slug": "revenue-inbox",
+          "description": "Caixa de entrada do WhatsApp alimentada por IA que prioriza conversas de alto valor.",
+          "icon": "revenue",
+          "color": "purple",
+          "isFeatured": true,
+          "tags": ["IA", "Vendas"]
+        },
+        {
+          "name": "WhatsApp API",
+          "slug": "whatsapp-api",
+          "description": "Soluções empresariais de WhatsApp Business API para escala.",
+          "icon": "global",
+          "color": "orange",
+          "isFeatured": false,
+          "tags": ["API", "Empresarial"]
+        },
+        {
+          "name": "Integrações",
+          "slug": "integrations",
+          "description": "Conecte o WhatsApp com HubSpot, Salesforce, Zoho e mais.",
+          "icon": "link",
+          "color": "indigo",
+          "isFeatured": true,
+          "tags": ["CRM", "Automação"]
+        }
+      ],
+      "integrationsList": {
+        "headline": "Conecte Com Suas Ferramentas Favoritas",
+        "description": "Integrações perfeitas com 10+ CRMs e plataformas de negócios."
+      },
+      "integrationsCta": {
+        "badge": "Pronto para Integrar?",
+        "headline": "Supercharge Seu",
+        "headlineHighlight": "Fluxo de Trabalho",
+        "description": "Conecte o WhatsApp com suas ferramentas existentes em minutos.",
+        "primaryCta": "Explorar Integrações",
+        "secondaryCta": "Fale com Vendas"
+      },
+      "pricing": {
+        "badge": "Preços Simples",
+        "headline": "Comece Grátis,",
+        "headlineHighlight": "Escale Acessivelmente",
+        "description": "Sem taxas ocultas. Sem cartão de crédito necessário. Cancele a qualquer momento.",
+        "primaryCta": "Iniciar Teste Grátis",
+        "secondaryCta": "Ver Todos os Planos"
+      },
+      "cta": {
+        "badge": "Pronto para Começar?",
+        "headline": "Junte-se a 50.000+ Equipes",
+        "headlineHighlight": "Vencendo no WhatsApp",
+        "description": "Inicie seu teste gratuito hoje. Sem cartão de crédito necessário.",
+        "primaryCta": "Instalar Grátis",
+        "secondaryCta": "Agendar Demo",
+        "footnote": "Teste gratuito de 14 dias • Sem cartão de crédito"
       }
     },
     "features": {
@@ -1533,7 +1618,7 @@
           "name": "Caixa de Entrada da Equipe",
           "slug": "team-inbox",
           "description": "Colabore em chats de clientes com múltiplos membros da equipe",
-          "icon": "Users",
+          "icon": "team",
           "color": "#3b82f6",
           "isFeatured": true,
           "tags": ["Colaboração", "Popular"]
@@ -1542,7 +1627,7 @@
           "name": "Backup na Nuvem",
           "slug": "cloud-backup",
           "description": "Nunca perca uma conversa novamente com backup automático",
-          "icon": "Cloud",
+          "icon": "cloud",
           "color": "#06b6d4",
           "isFeatured": true,
           "tags": ["Segurança", "Essencial"]
@@ -1643,7 +1728,7 @@
           "name": "Salesforce",
           "slug": "salesforce",
           "description": "Integração de nível empresarial",
-          "icon": "Cloud",
+          "icon": "cloud",
           "color": "#00a1e0",
           "isFeatured": true,
           "tags": ["CRM", "Enterprise"]
@@ -1652,7 +1737,7 @@
           "name": "Pipedrive",
           "slug": "pipedrive",
           "description": "Automação de pipeline de vendas",
-          "icon": "TrendingUp",
+          "icon": "revenue",
           "color": "#ff7a59",
           "isFeatured": false,
           "tags": ["CRM"]

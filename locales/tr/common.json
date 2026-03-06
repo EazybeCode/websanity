@@ -1502,6 +1502,91 @@
             "answer": "Evet, banka düzeyinde şifreleme kullanıyoruz ve tamamen KVKK uyumluyuz."
           }
         ]
+      },
+      "featuredItems": [
+        {
+          "name": "Takip Gelen Kutusu",
+          "slug": "team-inbox",
+          "description": "Satış ekibi için paylaşılan WhatsApp gelen kutusu otomatik lead yönlendirme ile.",
+          "icon": "team",
+          "color": "blue",
+          "isFeatured": true,
+          "tags": ["İşbirliği", "CRM"]
+        },
+        {
+          "name": "Bulut Yedekleme",
+          "slug": "cloud-backup",
+          "description": "WhatsApp konuşmalarının bulut depolamaya otomatik yedeği.",
+          "icon": "cloud",
+          "color": "cyan",
+          "isFeatured": true,
+          "tags": ["Yedekleme", "Güvenlik"]
+        },
+        {
+          "name": "Hızlı Yanıt",
+          "slug": "quick-reply",
+          "description": "Daha hızlı yanıtlar için önceden hazırlanmış mesaj şablonları.",
+          "icon": "zap",
+          "color": "green",
+          "isFeatured": true,
+          "tags": ["Verimlilik", "Otomasyon"]
+        },
+        {
+          "name": "Revenue Inbox",
+          "slug": "revenue-inbox",
+          "description": "Yüksek değerli konuşmaları önceliklendiren AI destekli WhatsApp gelen kutusu.",
+          "icon": "revenue",
+          "color": "purple",
+          "isFeatured": true,
+          "tags": ["AI", "Satış"]
+        },
+        {
+          "name": "WhatsApp API",
+          "slug": "whatsapp-api",
+          "description": "Ölçekleme için kurumsal WhatsApp Business API çözümleri.",
+          "icon": "global",
+          "color": "orange",
+          "isFeatured": false,
+          "tags": ["API", "Kurumsal"]
+        },
+        {
+          "name": "Entegrasyonlar",
+          "slug": "integrations",
+          "description": "HubSpot, Salesforce, Zoho ve daha fazlasıyla WhatsApp'ı bağlayın.",
+          "icon": "link",
+          "color": "indigo",
+          "isFeatured": true,
+          "tags": ["CRM", "Otomasyon"]
+        }
+      ],
+      "integrationsList": {
+        "headline": "Favori Araçlarınızla Bağlayın",
+        "description": "10+ CRM ve iş platformu ile kusursuz entegrasyonlar."
+      },
+      "integrationsCta": {
+        "badge": "Entegre Olmaya Hazır mısınız?",
+        "headline": "İş Akışınızı",
+        "headlineHighlight": "Güçlendirin",
+        "description": "Mevcut araçlarınızla WhatsApp'ı dakikalar içinde bağlayın.",
+        "primaryCta": "Entegrasyonları Keşfedin",
+        "secondaryCta": "Satışla Konuşun"
+      },
+      "pricing": {
+        "badge": "Basit Fiyatlandırma",
+        "headline": "Ücretsiz Başlayın,",
+        "headlineHighlight": "Uygun Fiyatla Ölçeklenin",
+        "description": "Gizli ücretler yok. Kredi kartı gerekmez. İstediği zaman iptal edin.",
+        "primaryCta": "Ücretsiz Deneyin",
+        "secondaryCta": "Tüm Planları Görün"
+      },
+      "cta": {
+        "badge": "Başlamaya Hazır mısınız?",
+        "headline": "50.000+ Ekibe Katılın",
+        "headlineHighlight": "WhatsApp'ta Kazanın",
+        "description": "Bugün ücretsiz denemenizi başlatın. Kredi kartı gerekmez.",
+        "primaryCta": "Ücretsiz Yükleyin",
+        "secondaryCta": "Demo Rezervasyonu Yap",
+        "footnote": "14 günlük ücretsiz deneme • Kredi kartı gerekmez"
       }
     },
     "features": {

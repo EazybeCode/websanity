@@ -121,12 +121,7 @@ export default {
       title: 'Author',
       type: 'object',
       fields: [
-        {
-          name: 'name',
-          type: 'string',
-          title: 'Name',
-          validation: Rule => Rule.required().warning('Author name is recommended'),
-        },
+        { name: 'name', type: 'string', title: 'Name' },
         { name: 'bio', type: 'text', title: 'Bio' },
       ],
     },
