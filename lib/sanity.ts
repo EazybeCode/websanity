@@ -643,20 +643,6 @@ export async function getBlogPost(slug: string, language: string = 'en') {
     },
     category,
     language,
-    "featuredImage": featuredImage  const query = `*[_type == "post" && slug.current == $slug && language == $language][0]{
-    _id,
-    title,
-    slug,
-    excerpt,
-    "content": body[]{
-      ...,
-      _type == "image" => {
-        ...,
-        "url": asset->url
-      }
-    },
-    category,
-    language,
     "featuredImage": featuredImage.asset->url,
     publishedAt,
     readTime,
@@ -678,7 +664,7 @@ export async function getBlogPost(slug: string, language: string = 'en') {
     metaDescription
   }`
 
-  let result = await sanityClient.fetch(query, { slug, language })
+  let result = await sanityClient.fetch(query, { slug, sanityLanguage })
 
   // Fallback: if no result with language filter, try English version and translate
   if (!result && language !== 'en') {
@@ -713,10 +699,8 @@ export async function getBlogPost(slug: string, language: string = 'en') {
         question,
         answer
       },
-      seo{
-        metaTitle,
-        metaDescription
-      }
+      metaTitle,
+      metaDescription
     }`
     const englishResult = await sanityClient.fetch(fallbackQuery, { slug })
 
@@ -742,66 +726,34 @@ export async function getBlogPost(slug: string, language: string = 'en') {
         _type == "image" => {
           ...,
           "url": asset->url
-          ? `*[_type == "post" && language == $language] | order(publishedAt desc) [0...${limit}]{
-        _id,
-        title,
-        slug,
-        excerpt,
-        category,
-        language,
-        "featuredImage": featuredImage.asset->url,
-        publishedAt,
-        readTime,
-        author->{
-          name
         }
-      }`
-    : `*[_type == "post" && language == $language] | order(publishedAt desc){
-        _id,
-        title,
-        slug,
-        excerpt,
-        category,
-        language,
-        "featuredImage": featuredImage.asset->url,
-        publishedAt,
-        readTime,
-        author->{
-          name
-        }
-      }`
+      },
+      category,
+      language,
+      "featuredImage": featuredImage.asset->url,
+      publishedAt,
+      readTime,
+      author->{
+        name,
+        bio,
+        "image": image.asset->url
+      },
+      quickAnswer,
+      tableOfContents[]{
+        label,
+        id
+      },
+      "faqs": faq[]{
+        question,
+        answer
+      },
+      metaTitle,
+      metaDescription
+    }`
+    result = await sanityClient.fetch(noLangQuery, { slug })
+  }
 
-  return sanityClient.fetch(query, { language })
-..${limit}]{
-        _id,
-        title,
-        slug,
-        excerpt,
-        category,
-        language,
-        "featuredImage": featuredImage.asset->url,
-        publishedAt,
-        readTime,
-        author->{
-          name
-        }
-      }`
-    : `*[_type == "post" && language == $language] | order(publishedAt desc){
-        _id,
-        title,
-        slug,
-        excerpt,
-        category,
-        language,
-        "featuredImage": featuredImage.asset->url,
-        publishedAt,
-        readTime,
-        author->{
-          name
-        }
-      }`
-
-  return sanityClient.fetch(query, { language })
+  return result
 }
 
 export async function getNavigation(slug: string = 'main-nav') {
@@ -839,6 +791,40 @@ export async function getNavigation(slug: string = 'main-nav') {
   }`
 
   return sanityClient.fetch(query, { slug })
+}
+
+export async function getBlogPosts(limit?: number, language: string = 'en') {
+  const query = limit
+    ? `*[_type == "post" && language == $language] | order(publishedAt desc) [0...${limit}]{
+        _id,
+        title,
+        slug,
+        excerpt,
+        category,
+        language,
+        "featuredImage": featuredImage.asset->url,
+        publishedAt,
+        readTime,
+        author->{
+          name
+        }
+      }`
+    : `*[_type == "post" && language == $language] | order(publishedAt desc){
+        _id,
+        title,
+        slug,
+        excerpt,
+        category,
+        language,
+        "featuredImage": featuredImage.asset->url,
+        publishedAt,
+        readTime,
+        author->{
+          name
+        }
+      }`
+
+  return sanityClient.fetch(query, { language })
 }
 
 export async function getBlogIndexPage(language: string = 'en') {
@@ -929,7 +915,31 @@ export async function getBlogIndexPage(language: string = 'en') {
 
 export async function getFAQs(language: string = 'en') {
   const query = `*[_type == "faq" && language == $language] | order(order asc) {
- return translations || [{ language: currentLanguage, slug }]
+    _id,
+    question,
+    answer,
+    category,
+    order
+  }`
+
+  return sanityClient.fetch(query, { language })
+}
+
+/**
+ * Get blog post translations for a given slug
+ * Returns array of { language, slug } for all language versions
+ */
+export async function getBlogPostTranslations(
+  slug: string,
+  currentLanguage: string = 'en'
+): Promise<Array<{ language: string; slug: string }>> {
+  const query = `*[_type == "post" && slug.current == $slug]{
+    language,
+    "slug": slug.current
+  }`
+
+  const translations = await sanityClient.fetch(query, { slug })
+  return translations || [{ language: currentLanguage, slug }]
 }
 
 /**
