@@ -37,7 +37,7 @@ export const HomePage: React.FC = () => {
         "url": "https://eazybe.com/",
         "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
         "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe helps sales teams connect WhatsApp with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets to sync conversations, automate follow-ups, and improve customer engagement.",
+        "description": "Eazybe provides WhatsApp AI Agents for sales teams. Automate lead qualification, detect cold deals, use AI chatbots, and sync conversations with HubSpot, Salesforce, Zoho and other CRMs.",
         "foundingDate": "2021",
         "sameAs": ["https://twitter.com/eazybe", "https://linkedin.com/company/eazybe", "https://youtube.com/@eazybe"],
         "contactPoint": [
@@ -59,12 +59,13 @@ export const HomePage: React.FC = () => {
           "addressCountry": "US"
         },
         "knowsAbout": [
-          "WhatsApp CRM",
-          "HubSpot WhatsApp integration",
+          "WhatsApp AI Agents",
+          "AI agents for sales teams",
+          "WhatsApp CRM automation",
+          "Lead qualification automation",
+          "AI chatbots for WhatsApp",
           "Sales automation",
-          "CRM integration",
-          "AI agents for CRM",
-          "WhatsApp chat backup"
+          "CRM integration"
         ]
       }
 
@@ -75,19 +76,19 @@ export const HomePage: React.FC = () => {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is Eazybe WhatsApp CRM Integration?",
+            "name": "What is Eazybe WhatsApp AI Agent for Sales Teams?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Eazybe is a WhatsApp CRM integration tool that syncs your WhatsApp Web conversations directly with your CRM like HubSpot, Zoho, Salesforce, and Google Sheets. It helps sales teams manage leads, schedule messages, and never miss follow-ups - all inside WhatsApp Web.",
+              "text": "Eazybe provides WhatsApp AI Agents that automate sales workflows. Qualify leads, detect cold deals, use AI chatbots, and sync conversations with HubSpot, Salesforce, Zoho and other CRMs - all inside WhatsApp Web.",
               "inLanguage": "en"
             }
           },
           {
             "@type": "Question",
-            "name": "How does WhatsApp CRM integration work?",
+            "name": "How do WhatsApp AI Agents work for sales automation?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Eazybe integrates directly with WhatsApp Web as a Chrome extension. It automatically syncs incoming and outgoing messages to your CRM in real-time. You can schedule messages, use AI-powered smart replies, and manage shared team inboxes without leaving WhatsApp Web.",
+              "text": "Eazybe's AI Agents integrate directly with WhatsApp Web as a Chrome extension. They automatically qualify leads using AI, detect cold deals, sync conversations to CRM in real-time, and help sales teams automate follow-ups without leaving WhatsApp Web.",
               "inLanguage": "en"
             }
           },
@@ -96,34 +97,34 @@ export const HomePage: React.FC = () => {
             "name": "Which CRMs does Eazybe integrate with?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Eazybe supports WhatsApp CRM integration with HubSpot, Zoho CRM, Salesforce, Bitrix24, Freshdesk, Pipedrive, Leadsquared, and Google Sheets. The integration is one-click setup and works instantly.",
+              "text": "Eazybe supports WhatsApp AI Agent integration with HubSpot, Zoho CRM, Salesforce, Bitrix24, Freshdesk, Pipedrive, Leadsquared, and Google Sheets. The AI-powered integration is one-click setup and works instantly.",
               "inLanguage": "en"
             }
           },
           {
             "@type": "Question",
-            "name": "Is Eazybe WhatsApp CRM integration free?",
+            "name": "Is Eazybe WhatsApp AI Agent free?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Eazybe offers a free plan with basic WhatsApp CRM integration features. Premium plans start with advanced features like AI replies, scheduled messages, and team collaboration tools.",
+              "text": "Yes, Eazybe offers a free plan with basic WhatsApp AI Agent features. Premium plans start with advanced features like AI lead qualification, automated follow-ups, and team collaboration tools.",
               "inLanguage": "en"
             }
           },
           {
             "@type": "Question",
-            "name": "Can I schedule WhatsApp messages with Eazybe?",
+            "name": "Can AI Agents qualify leads automatically?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Eazybe allows you to schedule WhatsApp messages in advance. You can set date and time for follow-ups, birthday messages, promotional campaigns, and more. Messages are sent automatically even when you're offline.",
+              "text": "Yes, Eazybe's WhatsApp AI Agents automatically qualify leads based on conversations, detect cold deals, and update your CRM. AI analyzes chat patterns and helps sales teams prioritize hot leads while automating follow-ups.",
               "inLanguage": "en"
             }
           },
           {
             "@type": "Question",
-            "name": "Does Eazybe support shared team inboxes?",
+            "name": "How do AI chatbots help sales teams?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Eazybe provides shared team inbox functionality. Multiple team members can access and manage WhatsApp conversations from a single dashboard. Assign chats, add notes, and collaborate seamlessly.",
+              "text": "Eazybe's AI chatbots handle initial customer conversations, qualify leads 24/7, detect buying intent, and sync qualified leads to your CRM. Sales teams can focus on closing deals while AI handles routine queries and lead qualification.",
               "inLanguage": "en"
             }
           }
@@ -147,8 +148,8 @@ export const HomePage: React.FC = () => {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "url": "https://eazybe.com/",
-        "name": "WhatsApp CRM Integration With  AI Agents | Sync WhatsApp To CRM",
-        "description": "Connect WhatsApp with CRM. Sync chats automatically, use AI agents, track deals, and manage sales conversations directly inside CRM.",
+        "name": "WhatsApp AI Agent For Sales Teams | Automate Sales | Eazybe",
+        "description": "Automate sales with WhatsApp AI Agents. Qualify leads, detect cold deals, use AI chatbots, and sync conversations with HubSpot, Salesforce, Zoho and other CRMs.",
         "inLanguage": "en",
         "datePublished": "2026-02-03T08:00:00+00:00",
         "dateModified": "2026-02-03T10:30:00+00:00"
@@ -158,9 +159,9 @@ export const HomePage: React.FC = () => {
       const softwareApplicationSchema = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "WhatsApp CRM Integration - Eazybe",
+        "name": "WhatsApp AI Agent For Sales Teams - Eazybe",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
+        "applicationSubCategory": "WhatsApp AI Agents, Sales Automation, CRM Integration",
         "operatingSystem": "Web, Chrome Extension",
         "offers": {
           "@type": "AggregateOffer",
@@ -193,16 +194,16 @@ export const HomePage: React.FC = () => {
       const productSchema = {
         "@context": "https://schema.org",
         "@type": "Product",
-        "name": "WhatsApp CRM Integration - Eazybe",
+        "name": "WhatsApp AI Agent For Sales Teams - Eazybe",
         "url": "https://eazybe.com/",
         "image": ["https://eazybe.com/logo.png"],
-        "description": "Eazybe connects WhatsApp with CRM to automatically sync chats, help sales teams respond faster with AI, and manage customer conversations with shared inbox workflows.",
+        "description": "Automate sales with WhatsApp AI Agents. Qualify leads, detect cold deals, use AI chatbots, and sync conversations with HubSpot, Salesforce, Zoho and other CRMs.",
         "brand": { "@type": "Brand", "name": "Eazybe" },
         "manufacturer": { "@type": "Organization", "name": "Eazybe", "url": "https://eazybe.com/" },
-        "category": "CRM Integration Software",
+        "category": "AI Sales Automation Software",
         "audience": {
           "@type": "BusinessAudience",
-          "audienceType": "Sales teams, CRM users, CRM managers, B2B businesses"
+          "audienceType": "Sales teams, revenue teams, SaaS founders, CRM managers, marketing automation teams, B2B companies"
         },
         "offers": {
           "@type": "AggregateOffer",
@@ -226,8 +227,8 @@ export const HomePage: React.FC = () => {
       const howToSchema = {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to connect WhatsApp to CRM using Eazybe",
-        "description": "Follow these steps to install Eazybe and sync WhatsApp conversations with CRM so your team can track chats, speed up follow-ups, and keep CRM records up to date.",
+        "name": "How to automate sales with WhatsApp AI Agents using Eazybe",
+        "description": "Follow these steps to install Eazybe and set up WhatsApp AI Agents to qualify leads, detect cold deals, and automate sales workflows with CRM integration.",
         "totalTime": "PT5M",
         "estimatedCost": { "@type": "MonetaryAmount", "currency": "USD", "value": "0" },
         "supply": [
@@ -236,7 +237,7 @@ export const HomePage: React.FC = () => {
         ],
         "tool": [
           { "@type": "HowToTool", "name": "Google Chrome (or Chromium-based browser)" },
-          { "@type": "HowToTool", "name": "Eazybe Chrome Extension" }
+          { "@type": "HowToTool", "name": "Eazybe Chrome Extension with AI Agents" }
         ],
         "step": [
           {
@@ -250,7 +251,7 @@ export const HomePage: React.FC = () => {
             "@type": "HowToStep",
             "url": "https://eazybe.com/#step2",
             "name": "Open WhatsApp Web",
-            "text": "Go to WhatsApp Web on your computer and sign in. The Eazybe panel will appear inside WhatsApp Web.",
+            "text": "Go to WhatsApp Web on your computer and sign in. The Eazybe AI Agent panel will appear inside WhatsApp Web.",
             "image": "https://eazybe.com/logo.png"
           },
           {
@@ -330,12 +331,12 @@ export const HomePage: React.FC = () => {
       }
 
       // Set document title
-      setDocumentTitle('WhatsApp CRM Integration | WhatsApp Sales Platform - Eazybe')
+      setDocumentTitle('WhatsApp AI Agent For Sales Teams: Automate Sales | Eazybe')
 
       // Basic meta tags
-      setMetaTag('title', 'WhatsApp CRM Integration | WhatsApp Sales Platform - Eazybe')
-      setMetaTag('description', 'WhatsApp CRM integration for (HubSpot, Zoho, Salesforce, Sheets). CRM integration with WhatsApp sync chats with your CRM, AI replies, & shared inboxes.')
-      setMetaTag('keywords', 'WhatsApp CRM, WhatsApp CRM Integration, CRM integration with WhatsApp, WhatsApp Web extension, CRM integration, CRM WhatsApp integration, sales productivity, WhatsApp productivity')
+      setMetaTag('title', 'WhatsApp AI Agent For Sales Teams: Automate Sales | Eazybe')
+      setMetaTag('description', 'Automate sales with WhatsApp AI Agents by Eazybe. Qualify leads, detect cold deals, use AI chatbots, and sync conversations with HubSpot, Salesforce, Zoho and other CRMs.')
+      setMetaTag('keywords', 'whatsapp ai agent, ai agents for whatsapp, whatsapp ai agents, ai agents on whatsapp, ai whatsapp agent, whatsapp agent ai, ai agent for whatsapp automation, whatsapp ai agent for sales teams')
       setMetaTag('author', 'Eazybe')
       setMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
       setMetaTag('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
@@ -343,20 +344,20 @@ export const HomePage: React.FC = () => {
       setMetaTag('thumbnail', 'https://eazybe.com/logo.png')
 
       // Article meta tags
-      setMetaTag('article:published_time', '2025-02-03T08:00:00+00:00', true)
-      setMetaTag('article:modified_time', '2025-02-03T10:30:00+00:00', true)
-      setMetaTag('article:section', 'Technology', true)
-      setMetaTag('article:tag', 'WhatsApp CRM Integration', true)
+      setMetaTag('article:published_time', '2026-02-03T08:00:00+00:00', true)
+      setMetaTag('article:modified_time', '2026-02-03T10:30:00+00:00', true)
+      setMetaTag('article:section', 'AI Sales Automation', true)
+      setMetaTag('article:tag', 'WhatsApp AI Agents', true)
 
       // Open Graph meta tags
       setMetaTag('og:type', 'website', true)
       setMetaTag('og:url', 'https://eazybe.com/', true)
-      setMetaTag('og:title', 'Eazybe — WhatsApp CRM & Productivity Tool for Sales Teams', true)
-      setMetaTag('og:description', 'Integrate WhatsApp Web directly with HubSpot, Zoho, Salesforce & more. Manage chats, schedule messages, and boost customer engagement — all inside WhatsApp Web.', true)
+      setMetaTag('og:title', 'WhatsApp AI Agent For Sales Teams | Automate Sales | Eazybe', true)
+      setMetaTag('og:description', 'Automate sales using WhatsApp AI Agents. Qualify leads, detect cold deals, and sync chats with HubSpot, Salesforce, Zoho and other CRM platforms.', true)
       setMetaTag('og:image', 'https://eazybe.com/logo.png', true)
       setMetaTag('og:image:width', '1200', true)
       setMetaTag('og:image:height', '630', true)
-      setMetaTag('og:image:alt', 'Eazybe – WhatsApp Sales Platform For CRM Teams', true)
+      setMetaTag('og:image:alt', 'WhatsApp AI Agent for Sales Automation by Eazybe', true)
       setMetaTag('og:locale', 'en_US', true)
       setMetaTag('og:site_name', 'Eazybe', true)
 
@@ -364,14 +365,14 @@ export const HomePage: React.FC = () => {
       setMetaTag('twitter:card', 'summary_large_image')
       setMetaTag('twitter:site', '@eazybe')
       setMetaTag('twitter:creator', '@eazybe')
-      setMetaTag('twitter:title', 'Eazybe | WhatsApp CRM & Sales Productivity Extension')
-      setMetaTag('twitter:description', 'Turn WhatsApp Web into a powerful CRM tool with Eazybe. Sync chats with HubSpot, Zoho, Salesforce & more — schedule messages, use smart replies, and boost sales.')
+      setMetaTag('twitter:title', 'WhatsApp AI Agent For Sales Teams | Automate Sales | Eazybe')
+      setMetaTag('twitter:description', 'Use WhatsApp AI Agents to qualify leads, detect cold deals, automate sales workflows and sync conversations with your CRM.')
       setMetaTag('twitter:image', 'https://eazybe.com/logo.png')
-      setMetaTag('twitter:image:alt', 'Eazybe WhatsApp CRM Integration Extension')
-      setMetaTag('twitter:label1', 'Rating')
-      setMetaTag('twitter:data1', '4.7/5')
-      setMetaTag('twitter:label2', 'Price')
-      setMetaTag('twitter:data2', 'Free')
+      setMetaTag('twitter:image:alt', 'WhatsApp AI Agent for Sales Teams')
+      setMetaTag('twitter:label1', 'Product')
+      setMetaTag('twitter:data1', 'WhatsApp AI Agents')
+      setMetaTag('twitter:label2', 'Use Case')
+      setMetaTag('twitter:data2', 'Sales Automation')
 
       // Mobile web app meta tags
       setMetaTag('mobile-web-app-capable', 'yes')
@@ -380,18 +381,18 @@ export const HomePage: React.FC = () => {
       setMetaTag('apple-mobile-web-app-title', 'Eazybe')
 
       // Custom SEO meta tags
-      setMetaTag('answer-type', 'how-to, product-information, feature-comparison')
-      setMetaTag('target-audience', 'sales teams, business owners, CRM managers, B2B professionals')
-      setMetaTag('content-intent', 'informational, commercial-investigation, transactional')
-      setMetaTag('conversational-query', 'how to manage whatsapp leads in crm, best whatsapp crm integration')
-      setMetaTag('ai-readability', 'conversational, professional, solution-oriented')
-      setMetaTag('context-window', 'sales automation, customer communication, lead tracking, CRM integration, business messaging')
-      setMetaTag('user-problem', 'losing leads in WhatsApp, missed follow-ups, disconnected sales workflow')
-      setMetaTag('solution-summary', 'automatic WhatsApp to CRM synchronization')
-      setMetaTag('primary-benefit', 'never miss a lead or follow-up')
-      setMetaTag('use-case', 'sales teams managing customer conversations across WhatsApp and CRM')
-      setMetaTag('implementation-difficulty', 'easy, one-click installation')
-      setMetaTag('time-to-value', 'immediate, instant sync')
+      setMetaTag('answer-type', 'product-information, automation, ai-agents')
+      setMetaTag('target-audience', 'sales teams, revenue teams, SaaS founders, CRM managers, marketing automation teams, B2B companies')
+      setMetaTag('content-intent', 'commercial-investigation, transactional')
+      setMetaTag('conversational-query', 'whatsapp ai agent for sales, automate sales with whatsapp ai, ai agents for whatsapp crm, whatsapp ai automation for sales teams')
+      setMetaTag('ai-readability', 'professional, solution-oriented, automation-focused')
+      setMetaTag('context-window', 'whatsapp ai agents, sales automation, crm sync, lead qualification, revenue operations automation')
+      setMetaTag('user-problem', 'manual lead qualification, slow sales follow ups, disconnected crm conversations')
+      setMetaTag('solution-summary', 'whatsapp ai agents automate lead qualification and sync conversations with crm platforms')
+      setMetaTag('primary-benefit', 'automate sales conversations and qualify leads using whatsapp ai agents')
+      setMetaTag('use-case', 'sales teams automating lead qualification and crm updates using whatsapp ai agents')
+      setMetaTag('implementation-difficulty', 'easy, no-code crm integration')
+      setMetaTag('time-to-value', 'instant automation after connecting whatsapp and crm')
 
       // Link tags
       setLinkTag('preconnect', 'https://fonts.googleapis.com')
