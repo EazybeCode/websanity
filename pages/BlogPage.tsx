@@ -128,7 +128,7 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
       link: ({ children, value }) => (
         <a
           href={value?.href}
-          className="text-brand-cyan hover:text-brand-blue underline underline-offset-4 transition-colors"
+          className="text-brand-cyan hover:text-brand-blue transition-colors"
           target={value?.href?.startsWith('http') ? '_blank' : undefined}
           rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
         >
@@ -1561,7 +1561,7 @@ const BlogPage: React.FC = () => {
             <div className="w-full lg:flex-1">
               {/* Summary Box - Prominent */}
               {displayPost.quickAnswer && (
-                <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 mb-8 md:mb-12">
+                <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 mb-3 md:mb-12">
                   <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-5">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-brand-cyan/10 flex items-center justify-center">
                       <Zap size={18} className="text-brand-cyan md:hidden" />
@@ -1797,12 +1797,10 @@ const BlogPage: React.FC = () => {
                 .blog-content a {
                   color: #06b6d4;
                   text-decoration: none;
-                  background-image: linear-gradient(transparent 90%, rgba(6, 182, 212, 0.3) 90%);
                   transition: all 0.2s;
                 }
-
                 .blog-content a:hover {
-                  background-image: linear-gradient(transparent 0%, rgba(6, 182, 212, 0.15) 0%);
+                  color: #22d3ee;
                 }
 
                 /* Blockquotes - Prominent */

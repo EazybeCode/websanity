@@ -618,7 +618,32 @@ export async function getCoexistencePage(language: string = 'en') {
 }
 
 export async function getBlogPost(slug: string, language: string = 'en') {
-  const query = `*[_type == "post" && slug.current == $slug && language == $language][0]{
+  // Map URL language codes to Sanity language codes
+  const sanityLanguageMap: Record<string, string> = {
+    'en': 'en',
+    'es': 'es',
+    'br': 'pt-BR',  // Map 'br' URL path to 'pt-BR' in Sanity
+    'pt': 'pt',
+    'tr': 'tr'
+  }
+
+  const sanityLanguage = sanityLanguageMap[language] || language
+
+  const query = `*[_type == "post" && slug.current == $slug && language == $sanityLanguage][0]{
+    _id,
+    title,
+    slug,
+    excerpt,
+    "content": body[]{
+      ...,
+      _type == "image" => {
+        ...,
+        "url": asset->url
+      }
+    },
+    category,
+    language,
+    "featuredImage": featuredImage  const query = `*[_type == "post" && slug.current == $slug && language == $language][0]{
     _id,
     title,
     slug,
@@ -717,41 +742,37 @@ export async function getBlogPost(slug: string, language: string = 'en') {
         _type == "image" => {
           ...,
           "url": asset->url
+          ? `*[_type == "post" && language == $language] | order(publishedAt desc) [0...${limit}]{
+        _id,
+        title,
+        slug,
+        excerpt,
+        category,
+        language,
+        "featuredImage": featuredImage.asset->url,
+        publishedAt,
+        readTime,
+        author->{
+          name
         }
-      },
-      category,
-      language,
-      "featuredImage": featuredImage.asset->url,
-      publishedAt,
-      readTime,
-      author->{
-        name,
-        bio,
-        "image": image.asset->url
-      },
-      quickAnswer,
-      tableOfContents[]{
-        label,
-        id
-      },
-      "faqs": faq[]{
-        question,
-        answer
-      },
-      seo{
-        metaTitle,
-        metaDescription
-      }
-    }`
-    result = await sanityClient.fetch(noLangQuery, { slug })
-  }
+      }`
+    : `*[_type == "post" && language == $language] | order(publishedAt desc){
+        _id,
+        title,
+        slug,
+        excerpt,
+        category,
+        language,
+        "featuredImage": featuredImage.asset->url,
+        publishedAt,
+        readTime,
+        author->{
+          name
+        }
+      }`
 
-  return result
-}
-
-export async function getBlogPosts(limit?: number, language: string = 'en') {
-  const query = limit
-    ? `*[_type == "post" && language == $language] | order(publishedAt desc) [0...${limit}]{
+  return sanityClient.fetch(query, { language })
+..${limit}]{
         _id,
         title,
         slug,
@@ -908,61 +929,7 @@ export async function getBlogIndexPage(language: string = 'en') {
 
 export async function getFAQs(language: string = 'en') {
   const query = `*[_type == "faq" && language == $language] | order(order asc) {
-    _id,
-    question,
-    answer,
-    language,
-    order,
-    category
-  }`
-
-  const faqs = await sanityClient.fetch(query, { language })
-
-  return {
-    faqs: faqs || [],
-    title: language === 'en' ? 'Frequently Asked Questions' : 'FAQ',
-    badge: 'FAQ'
-  }
-}
-
-/**
- * Fetch all translations of a blog post by translationGroupId
- * Returns an array of translations with their language and slug
- */
-export async function getBlogPostTranslations(
-  slug: string,
-  currentLanguage: string = 'en'
-): Promise<Array<{ language: string; slug: string }>> {
-  console.log('📖 getBlogPostTranslations called with:', { slug, currentLanguage })
-
-  // First get the current post to find its translationGroupId
-  const currentPostQuery = `*[_type == "post" && slug.current == $slug && language == $currentLanguage][0]{
-    translationGroupId
-  }`
-
-  const currentPost = await sanityClient.fetch(currentPostQuery, { slug, currentLanguage })
-  console.log('📄 Current post found:', currentPost)
-
-  if (!currentPost?.translationGroupId) {
-    console.warn('⚠️ No translationGroupId found for post:', slug)
-    // No translation group, return only current
-    return [{ language: currentLanguage, slug }]
-  }
-
-  console.log('🔗 translationGroupId found:', currentPost.translationGroupId)
-
-  // Fetch all posts with the same translationGroupId
-  const translationsQuery = `*[_type == "post" && translationGroupId == $groupId]{
-    language,
-    "slug": slug.current
-  }`
-
-  const translations = await sanityClient.fetch(translationsQuery, {
-    groupId: currentPost.translationGroupId
-  })
-
-  console.log('🌍 All translations found:', translations)
-  return translations || [{ language: currentLanguage, slug }]
+ return translations || [{ language: currentLanguage, slug }]
 }
 
 /**
