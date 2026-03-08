@@ -299,15 +299,46 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
         const lang = i18n.language || 'en';
         (window as any).gtag?.('event', `steal_roadmap_submit_${lang}`);
         setIsSuccess(true);
+        // Redirect to WhatsApp chat with language-specific message
+        const waMessages: Record<string, string> = {
+          en: 'Hey, I need to know more about Eazybe',
+          es: 'Hola, necesito saber más sobre Eazybe',
+          tr: 'Merhaba, Eazybe hakkında daha fazla bilgi almam gerekiyor',
+          'pt-BR': 'Olá, preciso saber mais sobre o Eazybe',
+          pt: 'Olá, preciso saber mais sobre o Eazybe',
+          br: 'Olá, preciso saber mais sobre o Eazybe',
+        };
+        const waMessage = encodeURIComponent(waMessages[lang] || waMessages.en);
+        window.open(`https://wa.me/13028040259?text=${waMessage}`, '_blank');
       } else {
         console.error('HubSpot error:', data);
-        // Still show success to user
         setIsSuccess(true);
+        const lang = i18n.language || 'en';
+        const waMessages: Record<string, string> = {
+          en: 'Hey, I need to know more about Eazybe',
+          es: 'Hola, necesito saber más sobre Eazybe',
+          tr: 'Merhaba, Eazybe hakkında daha fazla bilgi almam gerekiyor',
+          'pt-BR': 'Olá, preciso saber mais sobre o Eazybe',
+          pt: 'Olá, preciso saber mais sobre o Eazybe',
+          br: 'Olá, preciso saber mais sobre o Eazybe',
+        };
+        const waMessage = encodeURIComponent(waMessages[lang] || waMessages.en);
+        window.open(`https://wa.me/13028040259?text=${waMessage}`, '_blank');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      // Still show success for now (you can add error handling UI later)
       setIsSuccess(true);
+      const lang = i18n.language || 'en';
+      const waMessages: Record<string, string> = {
+        en: 'Hey, I need to know more about Eazybe',
+        es: 'Hola, necesito saber más sobre Eazybe',
+        tr: 'Merhaba, Eazybe hakkında daha fazla bilgi almam gerekiyor',
+        'pt-BR': 'Olá, preciso saber mais sobre o Eazybe',
+        pt: 'Olá, preciso saber mais sobre o Eazybe',
+        br: 'Olá, preciso saber mais sobre o Eazybe',
+      };
+      const waMessage = encodeURIComponent(waMessages[lang] || waMessages.en);
+      window.open(`https://wa.me/13028040259?text=${waMessage}`, '_blank');
     } finally {
       setIsSubmitting(false);
     }

@@ -968,7 +968,7 @@ export default defineConfig({
   projectId: '5awzi0t4',
   dataset: 'production',
   schema: {
-    types: [blogPost, feature, integration, page, categoryIndexPage, redirect, ...customSchemaTypes.filter(s => s.name !== 'blogPost')],
+    types: [blogPost, feature, integration, page, categoryIndexPage, redirect, ...customSchemaTypes],
   },
   plugins: [
     structureTool({
