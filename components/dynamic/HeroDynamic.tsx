@@ -113,32 +113,36 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                 </Button>
             </motion.div>
 
-            {noCreditCard && (
-              <motion.div
-                className="flex items-center gap-2 text-sm text-slate-400 font-medium"
+            <motion.div
+                className="text-sm text-slate-400 font-medium"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-9 h-9 rounded-full border-2 border-slate-900 bg-slate-800 shadow-sm relative z-0 hover:z-10 transition-all"
+                <span className="text-white font-bold">{isNonEnglish ? t('hero.trustedBy', 'Trusted by 2000+ Sales Teams Using') : 'Trusted by 2000+ Sales Teams Using'}</span>
+                <div className="flex items-center gap-3 mt-3 flex-wrap">
+                  {[
+                    { name: 'HubSpot', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.hubspot.com&size=256' },
+                    { name: 'Salesforce', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.salesforce.com&size=256' },
+                    { name: 'Zoho', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.zoho.com&size=256' },
+                    { name: 'Bitrix24', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.bitrix24.com&size=256' },
+                    { name: 'LeadSquared', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.leadsquared.com&size=256' },
+                    { name: 'Freshworks', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.freshworks.com&size=256' },
+                    { name: 'Google Sheets', logo: 'https://cdn.simpleicons.org/googlesheets/34A853' },
+                  ].map((crm, i) => (
+                    <motion.div
+                      key={crm.name}
+                      className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700/50 p-1.5 hover:border-slate-500 transition-colors"
+                      title={crm.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.5 + i * 0.05 }}
                     >
-                      <img
-                        src={`https://i.pravatar.cc/100?img=${i + 10}`}
-                        alt="User"
-                        className="w-full h-full rounded-full grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
-                      />
-                    </div>
+                      <img src={crm.logo} alt={crm.name} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                    </motion.div>
                   ))}
                 </div>
-                <span className="ml-3">
-                  <span className="text-white font-bold">{noCreditCard}</span>
-                </span>
               </motion.div>
-            )}
           </div>
 
           {/* Right: Engineered Visual */}

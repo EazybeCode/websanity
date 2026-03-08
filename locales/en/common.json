@@ -1,6 +1,6 @@
 {
   "nav": {
-    "startFreeTrial": "Install for Free",
+    "startFreeTrial": "Start Free Trial",
     "signIn": "Sign In",
     "pricing": "Pricing",
     "platform": "Platform",
@@ -83,7 +83,7 @@
     }
   },
   "cta": {
-    "startFreeTrial": "Install for Free",
+    "startFreeTrial": "Start Free Trial",
     "bookDemo": "Book a Demo",
     "contactSales": "Contact Sales",
     "learnMore": "Learn More",

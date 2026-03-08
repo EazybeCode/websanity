@@ -40,13 +40,27 @@ export const Hero: React.FC = () => {
                  </Button>
              </div>
 
-             <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 font-medium">
-                <div className="flex -space-x-2">
-                    {[1,2,3,4].map(i => (
-                        <div key={i} className="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 bg-gradient-to-br from-indigo-200 to-purple-200 dark:from-indigo-500 dark:to-purple-500"></div>
-                    ))}
+             <div className="text-sm text-slate-500 dark:text-slate-400 font-medium">
+                <span className="font-bold text-slate-700 dark:text-slate-300">Trusted by 2000+ Sales Teams Using</span>
+                <div className="flex items-center gap-3 mt-3 flex-wrap">
+                  {[
+                    { name: 'HubSpot', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.hubspot.com&size=256' },
+                    { name: 'Salesforce', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.salesforce.com&size=256' },
+                    { name: 'Zoho', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.zoho.com&size=256' },
+                    { name: 'Bitrix24', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.bitrix24.com&size=256' },
+                    { name: 'LeadSquared', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.leadsquared.com&size=256' },
+                    { name: 'Freshworks', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.freshworks.com&size=256' },
+                    { name: 'Google Sheets', logo: 'https://cdn.simpleicons.org/googlesheets/34A853' },
+                  ].map((crm) => (
+                    <div
+                      key={crm.name}
+                      className="w-8 h-8 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1.5 hover:border-indigo-300 dark:hover:border-slate-500 transition-colors shadow-sm"
+                      title={crm.name}
+                    >
+                      <img src={crm.logo} alt={crm.name} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                    </div>
+                  ))}
                 </div>
-                <span className="ml-2">Trusted by 2,000+ sales teams at Apollo Hospitals, Avendus, University Living and more</span>
              </div>
           </div>
 
