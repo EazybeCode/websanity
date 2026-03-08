@@ -1,6 +1,6 @@
 {
   "nav": {
-    "startFreeTrial": "Start Free Trial",
+    "startFreeTrial": "Install for Free",
     "signIn": "Sign In",
     "pricing": "Pricing",
     "platform": "Platform",
@@ -83,7 +83,7 @@
     }
   },
   "cta": {
-    "startFreeTrial": "Start Free Trial",
+    "startFreeTrial": "Install for Free",
     "bookDemo": "Book a Demo",
     "contactSales": "Contact Sales",
     "learnMore": "Learn More",
@@ -1576,7 +1576,7 @@
         "headline": "Start Free,",
         "headlineHighlight": "Scale Affordably",
         "description": "No hidden fees. No credit card required. Cancel anytime.",
-        "primaryCta": "Start Free Trial",
+        "primaryCta": "Install for Free",
         "secondaryCta": "View All Plans"
       },
       "cta": {

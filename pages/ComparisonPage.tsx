@@ -57,7 +57,7 @@ const competitors: Competitor[] = [
     logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://eazybe.com&size=128',
     highlight: true,
     cta: {
-      text: 'Start Free Trial',
+      text: 'Install for Free',
       url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd'
     }
   },
@@ -832,7 +832,7 @@ export const ComparisonPage: React.FC = () => {
               variant="outline"
               onClick={() => openModal('trial')}
             >
-              Start Free Trial
+              Install for Free
             </Button>
           </div>
         </div>
