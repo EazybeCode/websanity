@@ -644,12 +644,14 @@ export async function getBlogPost(slug: string, language: string = 'en') {
     category,
     language,
     "featuredImage": featuredImage.asset->url,
+    "featuredImageAlt": featuredImage.alt,
     publishedAt,
     readTime,
-    author->{
+    author{
       name,
       bio,
-      "image": image.asset->url
+      "image": image.asset->url,
+      url
     },
     quickAnswer,
     tableOfContents[]{
@@ -658,10 +660,23 @@ export async function getBlogPost(slug: string, language: string = 'en') {
     },
     "faqs": faq[]{
       question,
-      answer
+      answer,
+      acceptedAnswer
+    },
+    "breadcrumbs": breadcrumbs[]{
+      name,
+      url
     },
     metaTitle,
-    metaDescription
+    metaDescription,
+    "ogImage": ogImage.asset->url,
+    noindex,
+    nofollow,
+    "jsonLdSchemas": jsonLdSchemas[]{
+      schemaType,
+      schemaJson,
+      priority
+    }
   }`
 
   let result = await sanityClient.fetch(query, { slug, sanityLanguage })
@@ -683,12 +698,14 @@ export async function getBlogPost(slug: string, language: string = 'en') {
       category,
       language,
       "featuredImage": featuredImage.asset->url,
+      "featuredImageAlt": featuredImage.alt,
       publishedAt,
       readTime,
-      author->{
+      author{
         name,
         bio,
-        "image": image.asset->url
+        "image": image.asset->url,
+        url
       },
       quickAnswer,
       tableOfContents[]{
@@ -697,10 +714,23 @@ export async function getBlogPost(slug: string, language: string = 'en') {
       },
       "faqs": faq[]{
         question,
-        answer
+        answer,
+        acceptedAnswer
+      },
+      "breadcrumbs": breadcrumbs[]{
+        name,
+        url
       },
       metaTitle,
-      metaDescription
+      metaDescription,
+      "ogImage": ogImage.asset->url,
+      noindex,
+      nofollow,
+      "jsonLdSchemas": jsonLdSchemas[]{
+        schemaType,
+        schemaJson,
+        priority
+      }
     }`
     const englishResult = await sanityClient.fetch(fallbackQuery, { slug })
 
@@ -731,12 +761,14 @@ export async function getBlogPost(slug: string, language: string = 'en') {
       category,
       language,
       "featuredImage": featuredImage.asset->url,
+      "featuredImageAlt": featuredImage.alt,
       publishedAt,
       readTime,
-      author->{
+      author{
         name,
         bio,
-        "image": image.asset->url
+        "image": image.asset->url,
+        url
       },
       quickAnswer,
       tableOfContents[]{
@@ -745,10 +777,23 @@ export async function getBlogPost(slug: string, language: string = 'en') {
       },
       "faqs": faq[]{
         question,
-        answer
+        answer,
+        acceptedAnswer
+      },
+      "breadcrumbs": breadcrumbs[]{
+        name,
+        url
       },
       metaTitle,
-      metaDescription
+      metaDescription,
+      "ogImage": ogImage.asset->url,
+      noindex,
+      nofollow,
+      "jsonLdSchemas": jsonLdSchemas[]{
+        schemaType,
+        schemaJson,
+        priority
+      }
     }`
     result = await sanityClient.fetch(noLangQuery, { slug })
   }

@@ -29,9 +29,10 @@ export interface BlogPost {
   category: string
   language?: string
   featuredImage?: string
+  featuredImageAlt?: string
   publishedAt: string
   readTime: number
-  author?: BlogAuthor
+  author?: BlogAuthor & { url?: string }
   quickAnswer?: string
   tableOfContents?: Array<{
     label: string
@@ -40,6 +41,21 @@ export interface BlogPost {
   faqs?: Array<{
     question: string
     answer: string
+    acceptedAnswer?: string
+  }>
+  breadcrumbs?: Array<{
+    name: string
+    url: string
+  }>
+  metaTitle?: string
+  metaDescription?: string
+  ogImage?: string
+  noindex?: boolean
+  nofollow?: boolean
+  jsonLdSchemas?: Array<{
+    schemaType: string
+    schemaJson: string
+    priority?: number
   }>
   seo?: {
     metaTitle?: string

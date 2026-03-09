@@ -522,10 +522,10 @@ const BlogPage: React.FC = () => {
     if (!displayPost) return;
 
     const slug = displayPost.slug?.current || '';
-    const featuredImageUrl = displayPost.featuredImage || 'https://eazybe.com/logo.png';
-    const postTitle = displayPost.title || 'Blog Post';
-    const postDescription = displayPost.excerpt || displayPost.title || 'Read this blog post on Eazybe';
+    const featuredImageUrl = displayPost.ogImage || displayPost.featuredImage || 'https://eazybe.com/logo.png';
+    const pageTitle = displayPost.title || 'Blog Post';
     const postUrl = `https://eazybe.com/blog/${slug}`;
+    const featuredImageAlt = displayPost.featuredImageAlt || pageTitle;
 
     // Helper function to set or update meta tag
     const setMetaTag = (name: string, content: string, isProperty = false) => {
@@ -545,20 +545,120 @@ const BlogPage: React.FC = () => {
     };
 
     // Set dynamic meta tags for ALL blog posts
-    document.title = `${postTitle} | Eazybe`;
-    setMetaTag('description', postDescription);
+    // Use metaTitle/metaDescription from Sanity SEO fields (separate from title/excerpt)
+    document.title = displayPost.metaTitle
+      ? `${displayPost.metaTitle} | Eazybe`
+      : `${pageTitle} | Eazybe`;
+    if (displayPost.metaDescription) {
+      setMetaTag('description', displayPost.metaDescription);
+    } else if (displayPost.excerpt) {
+      setMetaTag('description', displayPost.excerpt);
+    }
     setMetaTag('thumbnail', featuredImageUrl);
+    setMetaTag('author', displayPost.author?.name || 'Eazybe');
+    setMetaTag('robots', displayPost.noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
     setMetaTag('og:type', 'article', true);
     setMetaTag('og:url', postUrl, true);
-    setMetaTag('og:title', postTitle, true);
-    setMetaTag('og:description', postDescription, true);
+    setMetaTag('og:title', displayPost.metaTitle || pageTitle, true);
+    setMetaTag('og:description', displayPost.metaDescription || displayPost.excerpt || '', true);
     setMetaTag('og:image', featuredImageUrl, true);
-    setMetaTag('og:image:alt', postTitle, true);
+    setMetaTag('og:image:alt', featuredImageAlt, true);
+    setMetaTag('og:site_name', 'Eazybe', true);
     setMetaTag('twitter:card', 'summary_large_image');
-    setMetaTag('twitter:title', postTitle);
-    setMetaTag('twitter:description', postDescription);
+    setMetaTag('twitter:site', '@eazybe');
+    setMetaTag('twitter:title', displayPost.metaTitle || pageTitle);
+    setMetaTag('twitter:description', displayPost.metaDescription || displayPost.excerpt || '');
     setMetaTag('twitter:image', featuredImageUrl);
-    setMetaTag('twitter:image:alt', postTitle);
+    setMetaTag('twitter:image:alt', featuredImageAlt);
+
+    // Article meta tags for ALL posts
+    if (displayPost.publishedAt) {
+      setMetaTag('article:published_time', displayPost.publishedAt, true);
+      setMetaTag('article:modified_time', displayPost.publishedAt, true);
+    }
+    if (displayPost.category) {
+      setMetaTag('article:section', displayPost.category, true);
+    }
+
+    // Set canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = postUrl;
+
+    // === DYNAMIC JSON-LD SCHEMAS FOR ALL POSTS ===
+
+    // 1. Article Schema (auto-generated for every post)
+    const articleSchema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },
+      "headline": pageTitle,
+      "description": displayPost.metaDescription || displayPost.excerpt || '',
+      "image": featuredImageUrl,
+      "author": displayPost.author?.url
+        ? { "@type": "Person", "name": displayPost.author.name, "url": displayPost.author.url }
+        : { "@type": "Organization", "name": displayPost.author?.name || "Eazybe", "url": "https://eazybe.com/" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Eazybe",
+        "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png" }
+      },
+      ...(displayPost.publishedAt ? { "datePublished": displayPost.publishedAt.split('T')[0] } : {}),
+      ...(displayPost.publishedAt ? { "dateModified": displayPost.publishedAt.split('T')[0] } : {}),
+    };
+    const existingArticle = document.querySelector('script[data-schema="dynamic-article"]');
+    if (existingArticle) existingArticle.remove();
+    const articleScript = document.createElement('script');
+    articleScript.type = 'application/ld+json';
+    articleScript.setAttribute('data-schema', 'dynamic-article');
+    articleScript.textContent = JSON.stringify(articleSchema);
+    document.head.appendChild(articleScript);
+
+    // 2. BreadcrumbList Schema (from Sanity breadcrumbs or auto-generated)
+    const breadcrumbItems = displayPost.breadcrumbs && displayPost.breadcrumbs.length > 0
+      ? displayPost.breadcrumbs.map((b: any, i: number) => ({
+          "@type": "ListItem", "position": i + 1, "name": b.name, "item": b.url
+        }))
+      : [
+          { "@type": "ListItem", "position": 1, "name": "Eazybe", "item": "https://eazybe.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://eazybe.com/blog" },
+          { "@type": "ListItem", "position": 3, "name": displayPost.title, "item": postUrl },
+        ];
+    const breadcrumbSchema = {
+      "@context": "https://schema.org/",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbItems,
+    };
+    const existingBreadcrumb = document.querySelector('script[data-schema="dynamic-breadcrumb"]');
+    if (existingBreadcrumb) existingBreadcrumb.remove();
+    const breadcrumbScript = document.createElement('script');
+    breadcrumbScript.type = 'application/ld+json';
+    breadcrumbScript.setAttribute('data-schema', 'dynamic-breadcrumb');
+    breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
+    document.head.appendChild(breadcrumbScript);
+
+    // 3. Inject custom JSON-LD schemas from Sanity
+    // Remove previous custom schemas
+    document.querySelectorAll('script[data-schema^="sanity-custom-"]').forEach(el => el.remove());
+    if (displayPost.jsonLdSchemas && displayPost.jsonLdSchemas.length > 0) {
+      const sorted = [...displayPost.jsonLdSchemas].sort((a: any, b: any) => (a.priority || 99) - (b.priority || 99));
+      sorted.forEach((schema: any, i: number) => {
+        try {
+          const parsed = JSON.parse(schema.schemaJson);
+          const script = document.createElement('script');
+          script.type = 'application/ld+json';
+          script.setAttribute('data-schema', `sanity-custom-${i}`);
+          script.textContent = JSON.stringify(parsed);
+          document.head.appendChild(script);
+        } catch (e) {
+          // Skip invalid JSON
+        }
+      });
+    }
 
     // Special meta tags for "how-to-read-deleted-messages-on-whatsapp" displayPost
     if (slug === 'how-to-read-deleted-messages-on-whatsapp') {
@@ -985,9 +1085,11 @@ const BlogPage: React.FC = () => {
         const articleSchema = document.querySelector('script[type="application/ld+json"][data-schema="article-deleted-whatsapp"]');
         if (articleSchema) articleSchema.remove();
 
-        // Remove dynamic FAQ schema
-        const dynamicFaqSchema = document.querySelector('script[type="application/ld+json"][data-schema="dynamic-faq"]');
-        if (dynamicFaqSchema) dynamicFaqSchema.remove();
+        // Remove dynamic schemas
+        document.querySelectorAll('script[data-schema="dynamic-faq"], script[data-schema="dynamic-article"], script[data-schema="dynamic-breadcrumb"]').forEach(el => el.remove());
+        document.querySelectorAll('script[data-schema^="sanity-custom-"]').forEach(el => el.remove());
+        const canonicalLink = document.querySelector('link[rel="canonical"]');
+        if (canonicalLink) canonicalLink.remove();
 
         // Remove AI Support schemas
         const aiOrgSchema = document.querySelector('script[type="application/ld+json"][data-schema="org-ai-support"]');
@@ -1359,29 +1461,13 @@ const BlogPage: React.FC = () => {
 
       // Cleanup function to remove schemas when unmounting
       return () => {
-        // Remove Organization schema
-        const orgSchema = document.querySelector('script[type="application/ld+json"][data-schema="org-ai-support"]');
-        if (orgSchema) orgSchema.remove();
-
-        // Remove SoftwareApplication schema
-        const softwareAppSchema = document.querySelector('script[type="application/ld+json"][data-schema="software-ai-support"]');
-        if (softwareAppSchema) softwareAppSchema.remove();
-
-        // Remove BreadcrumbList schema
-        const breadcrumbSchema = document.querySelector('script[type="application/ld+json"][data-schema="breadcrumb-ai-support"]');
-        if (breadcrumbSchema) breadcrumbSchema.remove();
-
-        // Remove WebPage schema
-        const webPageSchema = document.querySelector('script[type="application/ld+json"][data-schema="webpage-ai-support"]');
-        if (webPageSchema) webPageSchema.remove();
-
-        // Remove BlogPosting schema
-        const blogPostingSchema = document.querySelector('script[type="application/ld+json"][data-schema="blogposting-ai-support"]');
-        if (blogPostingSchema) blogPostingSchema.remove();
-
-        // Remove FAQPage schema
-        const faqPageSchema = document.querySelector('script[type="application/ld+json"][data-schema="faqpage-ai-support"]');
-        if (faqPageSchema) faqPageSchema.remove();
+        // Remove post-specific schemas
+        document.querySelectorAll('script[data-schema*="ai-support"]').forEach(el => el.remove());
+        // Remove dynamic schemas
+        document.querySelectorAll('script[data-schema="dynamic-faq"], script[data-schema="dynamic-article"], script[data-schema="dynamic-breadcrumb"]').forEach(el => el.remove());
+        document.querySelectorAll('script[data-schema^="sanity-custom-"]').forEach(el => el.remove());
+        const canonicalLink = document.querySelector('link[rel="canonical"]');
+        if (canonicalLink) canonicalLink.remove();
       };
     }
 
@@ -1395,7 +1481,7 @@ const BlogPage: React.FC = () => {
           "name": faq.question,
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": faq.answer
+            "text": faq.acceptedAnswer || faq.answer
           }
         }))
       };
@@ -1412,6 +1498,26 @@ const BlogPage: React.FC = () => {
       dynamicFaqScript.textContent = JSON.stringify(dynamicFaqSchema);
       document.head.appendChild(dynamicFaqScript);
     }
+
+    // General cleanup for posts that don't match any hardcoded slug
+    return () => {
+      // Remove all dynamic schemas
+      document.querySelectorAll('script[data-schema="dynamic-article"], script[data-schema="dynamic-breadcrumb"], script[data-schema="dynamic-faq"]').forEach(el => el.remove());
+      document.querySelectorAll('script[data-schema^="sanity-custom-"]').forEach(el => el.remove());
+      const canonicalLink = document.querySelector('link[rel="canonical"]');
+      if (canonicalLink) canonicalLink.remove();
+      // Remove meta tags
+      ['name="description"', 'name="author"', 'name="robots"', 'name="thumbnail"',
+       'property="og:type"', 'property="og:url"', 'property="og:title"', 'property="og:description"',
+       'property="og:image"', 'property="og:image:alt"', 'property="og:site_name"',
+       'property="article:published_time"', 'property="article:modified_time"', 'property="article:section"',
+       'name="twitter:card"', 'name="twitter:site"', 'name="twitter:title"', 'name="twitter:description"',
+       'name="twitter:image"', 'name="twitter:image:alt"'
+      ].forEach(sel => {
+        const el = document.querySelector(`meta[${sel}]`);
+        if (el) el.remove();
+      });
+    };
   }, [displayPost]);
 
   if (loading) {
@@ -1541,7 +1647,7 @@ const BlogPage: React.FC = () => {
           <div className="relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden aspect-[16/9] md:aspect-[2/1] shadow-xl md:shadow-2xl border border-slate-800/50">
             <img
               src={displayPost.featuredImage}
-              alt={displayPost.title}
+              alt={displayPost.featuredImageAlt || displayPost.title}
               className="w-full h-full object-cover"
               fetchPriority="high"
               loading="eager"
