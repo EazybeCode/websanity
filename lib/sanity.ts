@@ -933,13 +933,29 @@ export async function getBlogPostTranslations(
   slug: string,
   currentLanguage: string = 'en'
 ): Promise<Array<{ language: string; slug: string }>> {
-  const query = `*[_type == "post" && slug.current == $slug]{
+  // First, find the translationGroupId for this post
+  const current = await sanityClient.fetch(
+    `*[_type == "post" && slug.current == $slug][0]{ translationGroupId, language, "slug": slug.current }`,
+    { slug }
+  )
+
+  if (!current) return [{ language: currentLanguage, slug }]
+
+  // If no translationGroupId, return just this post
+  if (!current.translationGroupId) {
+    return [{ language: current.language || currentLanguage, slug }]
+  }
+
+  // Find all posts in the same translation group
+  const query = `*[_type == "post" && translationGroupId == $groupId]{
     language,
     "slug": slug.current
   }`
 
-  const translations = await sanityClient.fetch(query, { slug })
-  return translations || [{ language: currentLanguage, slug }]
+  const translations = await sanityClient.fetch(query, { groupId: current.translationGroupId })
+  return translations && translations.length > 0
+    ? translations
+    : [{ language: currentLanguage, slug }]
 }
 
 /**
