@@ -1655,7 +1655,7 @@ const BlogPage: React.FC = () => {
               height={630}
             />
           </div>
-          <figcaption className="text-center text-slate-400 text-[10px] md:text-xs mt-3">{displayPost.title}</figcaption>
+          <figcaption className="text-center text-slate-400 text-[10px] md:text-xs mt-3">{displayPost.featuredImageAlt || displayPost.title}</figcaption>
         </figure>
       )}
 
