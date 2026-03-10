@@ -1306,6 +1306,42 @@ const BlogPage: React.FC = () => {
       }
       blogPostingScript.textContent = JSON.stringify(blogPostingSchema);
 
+      // Add Article Schema
+      const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "mainEntityOfPage": {
+          "@type": "WebPage"
+        },
+        "headline": "Best AI Agents for Customer Support: What Actually Works for Real Teams",
+        "description": "Best AI agents for customer support in 2026 that reduce workload, automate replies, and help teams deliver fast, human-like 24/7 customer service.",
+        "image": "https://cdn.sanity.io/images/5awzi0t4/production/2ed0ee7f1161624f37f965fa6f3218e4abd61a05-1200x675.png",
+        "author": {
+          "@type": "Person",
+          "name": "Victor",
+          "url": "https://www.linkedin.com/in/vikashvictor/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://eazybe.com/logo.png"
+          }
+        },
+        "datePublished": "2026-02-26",
+        "dateModified": "2026-03-11"
+      };
+
+      let articleScript = document.querySelector('script[type="application/ld+json"][data-schema="article-ai-support"]') as HTMLScriptElement;
+      if (!articleScript) {
+        articleScript = document.createElement('script') as HTMLScriptElement;
+        articleScript.type = 'application/ld+json';
+        articleScript.setAttribute('data-schema', 'article-ai-support');
+        document.head.appendChild(articleScript);
+      }
+      articleScript.textContent = JSON.stringify(articleSchema);
+
       // Add FAQPage Schema
       const faqPageSchema = {
         "@context": "https://schema.org",

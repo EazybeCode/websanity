@@ -31,7 +31,7 @@ async function fetchBlogPostImages(language: string = 'en'): Promise<string[]> {
 
   try {
     // Fetch latest 6 blog posts with featured images
-    const query = `*[_type == "blogPost" && language == $language] | order(publishedAt desc) [0...6]{
+    const query = `*[_type == "post" && language == $language] | order(publishedAt desc) [0...6]{
       "featuredImage": featuredImage.asset->url
     }`
 
@@ -828,6 +828,253 @@ async function createBlogPrerenderedHTML(canonicalUrl: string, lang: { prefix: s
   return indexHTML
 }
 
+/**
+ * Fetch individual blog posts from Sanity for prerendering
+ */
+interface BlogPost {
+  _id: string
+  slug: { current: string }
+  title: string
+  excerpt: string
+  metaTitle?: string
+  metaDescription?: string
+  featuredImage?: string
+  publishedAt: string
+  category: string
+  language: string
+}
+
+async function fetchBlogPosts(language: string = 'en'): Promise<BlogPost[]> {
+  try {
+    const query = `*[_type == "post" && language == $language] | order(publishedAt desc) {
+      _id,
+      slug,
+      title,
+      excerpt,
+      metaTitle,
+      metaDescription,
+      "featuredImage": featuredImage.asset->url,
+      publishedAt,
+      category,
+      language
+    }`
+
+    const posts = await sanityClient.fetch(query, { language })
+    console.log(`📝 Fetched ${posts.length} blog posts for ${language}`)
+    return posts
+  } catch (error) {
+    console.warn(`⚠️  Failed to fetch blog posts for ${language}:`, error)
+    return []
+  }
+}
+
+/**
+ * Generate meta tags for individual blog posts
+ */
+function generateBlogPostMetaTags(post: BlogPost, locale: string, canonicalUrl: string): string {
+  const title = post.metaTitle || post.title
+  const description = post.metaDescription || post.excerpt
+  const featuredImage = post.featuredImage || 'https://eazybe.com/logo.png'
+  const publishedDate = new Date(post.publishedAt).toISOString()
+
+  return `
+    <!-- Basic Meta Tags -->
+    <meta name="description" content="${description}" />
+    <meta name="keywords" content="${post.category}, ${post.title}, Eazybe blog" />
+    <meta name="author" content="Eazybe" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow" />
+
+    <!-- Article Meta Tags -->
+    <meta property="article:published_time" content="${publishedDate}" />
+    <meta property="article:section" content="${post.category}" />
+    <meta property="article:tag" content="${post.category}" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="${canonicalUrl}" />
+    <meta property="og:title" content="${title}" />
+    <meta property="og:description" content="${description}" />
+    <meta property="og:image" content="${featuredImage}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="${locale}" />
+    <meta property="og:site_name" content="Eazybe" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@eazybe" />
+    <meta name="twitter:creator" content="@eazybe" />
+    <meta name="twitter:title" content="${title}" />
+    <meta name="twitter:description" content="${description}" />
+    <meta name="twitter:image" content="${featuredImage}" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="${canonicalUrl}" />
+  `.trim()
+}
+
+/**
+ * Generate JSON-LD schemas for individual blog posts
+ */
+function generateBlogPostSchemas(post: BlogPost, canonicalUrl: string, featuredImage: string): string {
+  const title = post.metaTitle || post.title
+  const description = post.metaDescription || post.excerpt
+  const publishedDate = new Date(post.publishedAt).toISOString().split('T')[0]
+  const modifiedDate = new Date().toISOString().split('T')[0]
+
+  // Breadcrumb schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Eazybe",
+        "item": "https://eazybe.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": `https://eazybe.com/${post.language === 'en' ? '' : post.language + '/'}blog`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": title,
+        "item": canonicalUrl
+      }
+    ]
+  }
+
+  // Organization schema
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Eazybe",
+    "url": "https://eazybe.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eazybe.com/logo.png",
+      "width": 600,
+      "height": 60
+    }
+  }
+
+  const schemas: any[] = [breadcrumbSchema, organizationSchema]
+
+  // Add Article schema for best-ai-agents-for-customer-support
+  if (post.slug.current === 'best-ai-agents-for-customer-support') {
+    const articleSchema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage"
+      },
+      "headline": "Best AI Agents for Customer Support: What Actually Works for Real Teams",
+      "description": "Best AI agents for customer support in 2026 that reduce workload, automate replies, and help teams deliver fast, human-like 24/7 customer service.",
+      "image": "https://cdn.sanity.io/images/5awzi0t4/production/2ed0ee7f1161624f37f965fa6f3218e4abd61a05-1200x675.png",
+      "author": {
+        "@type": "Person",
+        "name": "Victor",
+        "url": "https://www.linkedin.com/in/vikashvictor/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Eazybe",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png"
+        }
+      },
+      "datePublished": "2026-02-26",
+      "dateModified": "2026-03-11"
+    }
+    schemas.push(articleSchema)
+  }
+
+  // Add BlogPosting schema for all blog posts
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    },
+    "headline": title,
+    "description": description,
+    "image": {
+      "@type": "ImageObject",
+      "url": featuredImage,
+      "width": 1200,
+      "height": 630
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Eazybe",
+      "url": "https://eazybe.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Eazybe",
+      "url": "https://eazybe.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://eazybe.com/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "datePublished": publishedDate,
+    "dateModified": modifiedDate
+  }
+  schemas.push(blogPostingSchema)
+
+  return schemas.map(schema => `
+    <script type="application/ld+json">
+    ${JSON.stringify(schema)}
+    </script>`).join('\n')
+}
+
+/**
+ * Create pre-rendered HTML for individual blog posts
+ */
+async function createBlogPostPrerenderedHTML(post: BlogPost, lang: { prefix: string; locale: string }): Promise<string> {
+  const slug = post.slug.current
+  const fullPath = lang.prefix ? `${lang.prefix}/blog/${slug}` : `blog/${slug}`
+  const canonicalUrl = `https://eazybe.com/${fullPath}`
+
+  // Read the original index.html
+  const indexPath = join(DIST_DIR, 'index.html')
+  let indexHTML = readFileSync(indexPath, 'utf-8')
+
+  const title = post.metaTitle || post.title
+
+  // Generate meta tags
+  const metaTags = generateBlogPostMetaTags(post, lang.locale, canonicalUrl)
+
+  // Generate schemas
+  const featuredImage = post.featuredImage || 'https://eazybe.com/logo.png'
+  const schemas = generateBlogPostSchemas(post, canonicalUrl, featuredImage)
+
+  // Replace title
+  indexHTML = indexHTML.replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+
+  // Add meta tags and schemas before closing head
+  const headEndIndex = indexHTML.indexOf('</head>')
+  if (headEndIndex !== -1) {
+    indexHTML = indexHTML.slice(0, headEndIndex) +
+      '\n' + metaTags + '\n\n' +
+      '\n' + schemas + '\n' +
+      indexHTML.slice(headEndIndex)
+  }
+
+  return indexHTML
+}
+
 // Generate all pre-rendered files
 async function generatePrerenderedFiles() {
   console.log('🚀 Starting SSR pre-rendering...')
@@ -900,6 +1147,31 @@ async function generatePrerenderedFiles() {
       } catch (error) {
         console.error(`❌ Error creating ${outputPath}:`, error)
       }
+    }
+
+    // Blog post routes - generate HTML for individual blog posts
+    try {
+      const blogPosts = await fetchBlogPosts(langKey)
+      console.log(`📝 Generating ${blogPosts.length} blog post HTML files for ${langKey}...`)
+
+      for (const post of blogPosts) {
+        const slug = post.slug.current
+        const routePrefix = langPrefix ? `${langPrefix}/blog/${slug}` : `blog/${slug}`
+        const outputPath = join(DIST_DIR, routePrefix, 'index.html')
+        const outputDir = join(DIST_DIR, routePrefix)
+
+        try {
+          mkdirSync(outputDir, { recursive: true })
+          const html = await createBlogPostPrerenderedHTML(post, langConfig)
+          writeFileSync(outputPath, html, 'utf-8')
+          filesCreated.push(outputPath)
+          console.log(`✅ Created: blog/${slug}/index.html`)
+        } catch (error) {
+          console.error(`❌ Error creating blog post ${slug}:`, error)
+        }
+      }
+    } catch (error) {
+      console.warn(`⚠️  Failed to generate blog posts for ${langKey}:`, error)
     }
   }
 
