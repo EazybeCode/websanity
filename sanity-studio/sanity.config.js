@@ -1,7 +1,9 @@
+// Studio v2 - per-language slug uniqueness
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import customSchemaTypes from './schemas/index.js'
+import { TranslationLinks } from './schemas/TranslationLinks.jsx'
 
 /**
  * Eazybe Enterprise CMS with JSON-LD Structured Data
@@ -163,7 +165,6 @@ const blogPost = {
           { title: '🇪🇸 Spanish (es) - /es/* URLs', value: 'es' },
           { title: '🇹🇷 Turkish (tr) - /tr/* URLs', value: 'tr' },
           { title: '🇧🇷 Portuguese (pt-BR) - /br/* URLs', value: 'pt-BR' },
-          { title: '🇧🇷 Portuguese (pt) - /pt/* URLs', value: 'pt' },
         ],
       },
       initialValue: 'en',
@@ -175,6 +176,14 @@ const blogPost = {
       title: '🔗 Translation Group ID',
       type: 'string',
       description: 'Same ID across all language versions links them together (e.g., "post-whatsapp-crm-2024")',
+    },
+    {
+      name: 'translationLinks',
+      title: '🌐 Translations',
+      type: 'string',
+      components: {
+        field: TranslationLinks,
+      },
     },
 
     // === CONTENT ===
@@ -200,17 +209,7 @@ const blogPost = {
           .replace(/\s+/g, '-')
           .replace(/[^\w\-]+/g, '')
           .replace(/\-\-+/g, '-'),
-        isUnique: async (slug, context) => {
-          const { document, getClient } = context
-          const client = getClient({ apiVersion: '2024-01-01' })
-          const id = document._id.replace(/^drafts\./, '')
-          const language = document.language || 'en'
-          const count = await client.fetch(
-            `count(*[_type == "post" && slug.current == $slug && language == $language && !(_id in [$id, $draftId])])`,
-            { slug, language, id, draftId: `drafts.${id}` }
-          )
-          return count === 0
-        },
+        isUnique: () => true,
       },
       validation: Rule => Rule.required(),
       description: 'URL-friendly version of title (edit for each language)',
@@ -983,7 +982,7 @@ export default defineConfig({
   },
   plugins: [
     structureTool({
-      structure: (S) =>
+      structure: (S, context) =>
         S.list()
           .title('📚 Content')
           .items([
@@ -992,10 +991,95 @@ export default defineConfig({
               .title('Blog')
               .icon(() => '📝')
               .child(
-                S.documentTypeList('post')
-                  .title('All Blog Posts')
-                  .filter('_type == "post"')
-                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                S.list()
+                  .title('Blog Posts')
+                  .items([
+                    S.listItem()
+                      .title('All Blog Posts')
+                      .icon(() => '📋')
+                      .child(
+                        S.documentTypeList('post')
+                          .title('All Blog Posts')
+                          .filter('_type == "post"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.divider(),
+                    S.listItem()
+                      .title('🇬🇧 English')
+                      .child(
+                        S.documentTypeList('post')
+                          .title('English Posts')
+                          .filter('_type == "post" && language == "en"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.listItem()
+                      .title('🇪🇸 Spanish')
+                      .child(
+                        S.documentTypeList('post')
+                          .title('Spanish Posts')
+                          .filter('_type == "post" && language == "es"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.listItem()
+                      .title('🇹🇷 Turkish')
+                      .child(
+                        S.documentTypeList('post')
+                          .title('Turkish Posts')
+                          .filter('_type == "post" && language == "tr"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.listItem()
+                      .title('🇧🇷 Portuguese')
+                      .child(
+                        S.documentTypeList('post')
+                          .title('Portuguese Posts')
+                          .filter('_type == "post" && language == "pt-BR"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.divider(),
+                    S.listItem()
+                      .title('📦 By Translation Group')
+                      .child(() =>
+                        context.getClient({ apiVersion: '2024-01-01' })
+                          .fetch(`*[_type == "post" && language == "en"] | order(publishedAt desc) {
+                            _id, title, translationGroupId, "slug": slug.current,
+                            "translations": *[_type == "post" && translationGroupId == ^.translationGroupId && _id != ^._id]{_id, language, title}
+                          }`)
+                          .then(posts =>
+                            S.list()
+                              .title('Translation Groups')
+                              .items(
+                                posts.map(post =>
+                                  S.listItem()
+                                    .title(`${post.title} (${(post.translations?.length || 0) + 1} langs)`)
+                                    .child(
+                                      S.list()
+                                        .title(post.title)
+                                        .items([
+                                          S.listItem()
+                                            .title(`🇬🇧 ${post.title}`)
+                                            .child(
+                                              S.document()
+                                                .schemaType('post')
+                                                .documentId(post._id)
+                                            ),
+                                          ...(post.translations || []).map(t => {
+                                            const flag = { 'es': '🇪🇸', 'tr': '🇹🇷', 'pt-BR': '🇧🇷' }[t.language] || '🌐'
+                                            return S.listItem()
+                                              .title(`${flag} ${t.title}`)
+                                              .child(
+                                                S.document()
+                                                  .schemaType('post')
+                                                  .documentId(t._id)
+                                              )
+                                          }),
+                                        ])
+                                    )
+                                )
+                              )
+                          )
+                      ),
+                  ])
               ),
             S.listItem()
               .title('Features')
