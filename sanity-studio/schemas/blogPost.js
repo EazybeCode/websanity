@@ -173,24 +173,4 @@ export default {
       };
     },
   },
-  actions: [
-    {
-      label: 'Open Preview',
-      icon: () => '👁️',
-      onAction: (document) => {
-        const { slug, language } = document;
-        const baseUrl = window.location.hostname === 'localhost'
-          ? 'http://localhost:3000'
-          : 'https://eazybe.com';
-
-        const previewUrl = language === 'en'
-          ? `${baseUrl}/preview/${slug.current}`
-          : `${baseUrl}/${language === 'pt-BR' ? 'br' : language}/preview/${slug.current}`;
-
-        // Open preview in new tab
-        window.open(previewUrl, '_blank');
-      },
-      input: null,
-    },
-  ],
 };

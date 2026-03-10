@@ -20,7 +20,6 @@ const BlogPage = lazy(() => import('./pages/BlogPage'))
 const BlogListingPage = lazy(() => import('./pages/BlogListingPage'))
 const BlogPageRedesigned = lazy(() => import('./pages/BlogPageRedesigned'))
 const BlogListingPageRedesigned = lazy(() => import('./pages/BlogListingPageRedesigned'))
-const PreviewPage = lazy(() => import('./pages/PreviewPage').then(m => ({ default: m.PreviewPage })))
 const TeamInboxPage = lazy(() => import('./pages/TeamInboxPage'))
 const MSAPage = lazy(() => import('./pages/MSAPage'))
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage'))
@@ -162,8 +161,6 @@ const AppRoutes = () => (
       <Route path="/product/:slug" element={<ProductPage />} />
       <Route path="/blog" element={<BlogListingPage />} />
       <Route path="/blog/:slug" element={<BlogPage />} />
-      {/* Preview Route */}
-      <Route path="/preview/:slug" element={<PreviewPage />} />
       {/* Redesigned Blog Routes - for testing */}
       <Route path="/blog-new" element={<BlogListingPageRedesigned />} />
       <Route path="/blog-new/:slug" element={<BlogPageRedesigned />} />
