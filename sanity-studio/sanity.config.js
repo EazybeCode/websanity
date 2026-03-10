@@ -1,3 +1,4 @@
+// Studio v2 - per-language slug uniqueness
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
@@ -204,11 +205,15 @@ const blogPost = {
           const client = getClient({ apiVersion: '2024-01-01' })
           const id = document._id.replace(/^drafts\./, '')
           const language = document.language || 'en'
-          const count = await client.fetch(
-            `count(*[_type == "post" && slug.current == $slug && language == $language && !(_id in [$id, $draftId])])`,
-            { slug, language, id, draftId: `drafts.${id}` }
+          const all = await client.fetch(
+            `*[_type == "post" && slug.current == $slug]{_id, language}`,
+            { slug }
           )
-          return count === 0
+          const conflicts = all.filter(doc => {
+            const docCleanId = doc._id.replace(/^drafts\./, '')
+            return docCleanId !== id && doc.language === language
+          })
+          return conflicts.length === 0
         },
       },
       validation: Rule => Rule.required(),
