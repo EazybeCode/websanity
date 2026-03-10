@@ -6,13 +6,20 @@ import React from 'react';
 
 interface TableData {
   headers: string[];
-  rows: string[][];
+  rows: string[][] | Array<{ cells: string[] }>;
   caption?: string;
   variant?: 'default' | 'striped' | 'bordered' | 'compact';
 }
 
 export const TableBlock: React.FC<{ data: TableData }> = ({ data }) => {
   const { headers = [], rows = [], caption, variant = 'striped' } = data;
+
+  // Transform rows to handle both string[][] and {cells: string[]} formats
+  // Sanity CMS provides: [{cells: ['a', 'b']}, {cells: ['c', 'd']}]
+  // Component expects: [['a', 'b'], ['c', 'd']]
+  const normalizedRows = rows.map(row =>
+    Array.isArray(row) ? row : (row as { cells: string[] }).cells
+  );
 
   if (!headers.length || !rows.length) return null;
 
@@ -33,7 +40,7 @@ export const TableBlock: React.FC<{ data: TableData }> = ({ data }) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-700/50">
-            {rows.map((row, rowIndex) => (
+            {normalizedRows.map((row, rowIndex) => (
               <tr
                 key={rowIndex}
                 className={`${variant === 'striped' && rowIndex % 2 === 0 ? 'bg-slate-800/20' : ''} hover:bg-slate-800/30 transition-colors`}
