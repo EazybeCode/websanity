@@ -110,6 +110,16 @@ const QueryParamRedirect: React.FC<{ children: React.ReactNode }> = ({ children 
     return <Navigate to="/" replace />
   }
 
+  // Redirect /comparison?pagination_params → /comparison
+  if (location.pathname === '/comparison' && (
+    location.search.includes('12f4b55b_page=') ||
+    location.search.includes('bf4a41f9_page=') ||
+    location.search.includes('daf7a484_page=') ||
+    location.search.includes('77c48d22_page=')
+  )) {
+    return <Navigate to="/comparison" replace />
+  }
+
   return <>{children}</>
 }
 
