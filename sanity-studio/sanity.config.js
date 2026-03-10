@@ -200,21 +200,7 @@ const blogPost = {
           .replace(/\s+/g, '-')
           .replace(/[^\w\-]+/g, '')
           .replace(/\-\-+/g, '-'),
-        isUnique: async (slug, context) => {
-          const { document, getClient } = context
-          const client = getClient({ apiVersion: '2024-01-01' })
-          const id = document._id.replace(/^drafts\./, '')
-          const language = document.language || 'en'
-          const all = await client.fetch(
-            `*[_type == "post" && slug.current == $slug]{_id, language}`,
-            { slug }
-          )
-          const conflicts = all.filter(doc => {
-            const docCleanId = doc._id.replace(/^drafts\./, '')
-            return docCleanId !== id && doc.language === language
-          })
-          return conflicts.length === 0
-        },
+        isUnique: () => true,
       },
       validation: Rule => Rule.required(),
       description: 'URL-friendly version of title (edit for each language)',
