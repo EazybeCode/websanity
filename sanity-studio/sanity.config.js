@@ -3,6 +3,7 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import customSchemaTypes from './schemas/index.js'
+import { TranslationLinks } from './schemas/TranslationLinks.jsx'
 
 /**
  * Eazybe Enterprise CMS with JSON-LD Structured Data
@@ -175,6 +176,14 @@ const blogPost = {
       title: '🔗 Translation Group ID',
       type: 'string',
       description: 'Same ID across all language versions links them together (e.g., "post-whatsapp-crm-2024")',
+    },
+    {
+      name: 'translationLinks',
+      title: '🌐 Translations',
+      type: 'string',
+      components: {
+        field: TranslationLinks,
+      },
     },
 
     // === CONTENT ===
