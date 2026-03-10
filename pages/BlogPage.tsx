@@ -233,7 +233,7 @@ const createPortableTextComponents = (content: PortableTextBlock[]): PortableTex
       comparisonTable: ({ value }) => {
         if (!value || !value.columns?.length) return null;
         return (
-          <div className="my-8 md:my-12">
+          <div className="my-6">
             {value.title && <h3 className="text-xl font-bold text-white mb-6">{value.title}</h3>}
             <div className="overflow-x-auto rounded-xl border border-slate-700">
               <table className="w-full">
