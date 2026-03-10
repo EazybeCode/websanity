@@ -22,6 +22,7 @@ import { PortableText, PortableTextComponents } from '@portabletext/react';
 import { Navbar } from '../components/Navbar';
 import { ChunkyFooter } from '../components/footer/ChunkyFooter';
 import { useBlogPost, useBlogPosts, useBlogIndex, BlogIndexSidebarCta, BlogIndexNewsletterCta, BlogIndexDetailLabels, BlogIndexRelatedPostsSection, PortableTextBlock } from '../hooks/useBlog';
+import { useBlogPostSEO } from '../hooks/useBlogPostSEO';
 import { Button } from '../components/ui/Button';
 import { SectionBadge } from '../components/ui/SectionBadge';
 import { getLanguageFromPath } from '../components/LanguageProvider';
@@ -453,6 +454,9 @@ const BlogPage: React.FC = () => {
   const { data: post, loading, error } = useBlogPost(slug || '', language);
   const { data: relatedPosts } = useBlogPosts(4, language);
   const { data: blogIndex } = useBlogIndex(language);
+
+  // Add SEO meta tags and schemas for blog post
+  useBlogPostSEO(post);
 
   // State for translated post content
   const [translatedPost, setTranslatedPost] = useState<any>(null);
