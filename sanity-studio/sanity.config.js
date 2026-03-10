@@ -1042,8 +1042,7 @@ export default defineConfig({
                               .items(
                                 posts.map(post =>
                                   S.listItem()
-                                    .title(post.title)
-                                    .subtitle(`${post.translations?.length || 0} translations`)
+                                    .title(`${post.title} (${(post.translations?.length || 0) + 1} langs)`)
                                     .child(
                                       S.list()
                                         .title(post.title)
