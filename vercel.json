@@ -4,6 +4,21 @@
       "source": "/product/pipedrive-whatsapp-integration",
       "destination": "/pipedrive-whatsapp-integration",
       "statusCode": 301
+    },
+    {
+      "source": "/comparison?:12f4b55b_page=:page1&:bf4a41f9_page=:page2&:daf7a484_page=:page3",
+      "destination": "/comparison",
+      "statusCode": 301
+    },
+    {
+      "source": "/comparison?:12f4b55b_page=:page&bf4a41f9_page=:page&daf7a484_page=:page",
+      "destination": "/comparison",
+      "statusCode": 301
+    },
+    {
+      "source": "/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=5",
+      "destination": "/comparison",
+      "statusCode": 301
     }
   ],
   "headers": [
