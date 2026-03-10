@@ -163,7 +163,6 @@ const blogPost = {
           { title: '🇪🇸 Spanish (es) - /es/* URLs', value: 'es' },
           { title: '🇹🇷 Turkish (tr) - /tr/* URLs', value: 'tr' },
           { title: '🇧🇷 Portuguese (pt-BR) - /br/* URLs', value: 'pt-BR' },
-          { title: '🇧🇷 Portuguese (pt) - /pt/* URLs', value: 'pt' },
         ],
       },
       initialValue: 'en',
