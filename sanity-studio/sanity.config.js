@@ -1051,12 +1051,14 @@ export default defineConfig({
                               .items(
                                 posts.map(post =>
                                   S.listItem()
+                                    .id(post._id)
                                     .title(`${post.title} (${(post.translations?.length || 0) + 1} langs)`)
                                     .child(
                                       S.list()
                                         .title(post.title)
                                         .items([
                                           S.listItem()
+                                            .id(post._id)
                                             .title(`🇬🇧 ${post.title}`)
                                             .child(
                                               S.document()
@@ -1066,6 +1068,7 @@ export default defineConfig({
                                           ...(post.translations || []).map(t => {
                                             const flag = { 'es': '🇪🇸', 'tr': '🇹🇷', 'pt-BR': '🇧🇷' }[t.language] || '🌐'
                                             return S.listItem()
+                                              .id(t._id)
                                               .title(`${flag} ${t.title}`)
                                               .child(
                                                 S.document()
