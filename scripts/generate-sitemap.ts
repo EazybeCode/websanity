@@ -19,6 +19,14 @@ const sanityClient = createClient({
 const SITE_URL = process.env.VITE_SITE_URL || 'https://eazybe.com'
 const LANGUAGES = ['en', 'br', 'es', 'tr']
 
+// Proper hreflang language codes (ISO 639-1 format)
+const HREFLANG_CODES: Record<string, string> = {
+  en: 'en',
+  br: 'pt-BR',  // Brazilian Portuguese uses pt-BR, not 'br'
+  es: 'es',
+  tr: 'tr'
+}
+
 // Language names for better logging
 const LANGUAGE_NAMES: Record<string, string> = {
   en: 'English',
@@ -106,6 +114,11 @@ function generateSitemapXML(urls: SitemapURL[], includeHreflang = true): string 
         url.alternates.forEach((alt) => {
           entry += `\n    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${alt.url}" />`
         })
+        // Add x-default pointing to English version
+        const englishUrl = url.alternates.find(a => a.lang === 'en') || url.alternates[0]
+        if (englishUrl) {
+          entry += `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${englishUrl.url}" />`
+        }
       }
 
       entry += `
@@ -194,7 +207,7 @@ async function generateSitemap() {
     mainPages.forEach(({ path, priority, changefreq }) => {
       // Generate alternates for hreflang
       const alternates = LANGUAGES.map((altLang) => ({
-        lang: altLang === 'en' ? 'en' : altLang,
+        lang: HREFLANG_CODES[altLang],  // Use proper ISO code
         url: `${SITE_URL}${altLang === 'en' ? '' : `/${altLang}`}${path}`,
       }))
 
@@ -214,7 +227,7 @@ async function generateSitemap() {
 
     legalPages.forEach(({ path, priority, changefreq }) => {
       const alternates = LANGUAGES.map((altLang) => ({
-        lang: altLang === 'en' ? 'en' : altLang,
+        lang: HREFLANG_CODES[altLang],  // Use proper ISO code
         url: `${SITE_URL}${altLang === 'en' ? '' : `/${altLang}`}${path}`,
       }))
 
@@ -226,10 +239,34 @@ async function generateSitemap() {
       })
     })
 
+    // Additional static pages
+    const additionalPages = [
+      { path: '/fb', priority: 0.5, changefreq: 'monthly' as const },
+      { path: '/become-our-partner', priority: 0.7, changefreq: 'weekly' as const },
+      { path: '/comparison', priority: 0.7, changefreq: 'weekly' as const },
+      { path: '/integrate-hubspot-crm', priority: 0.5, changefreq: 'monthly' as const },
+      { path: '/integrate-zoho-crm', priority: 0.5, changefreq: 'monthly' as const },
+      { path: '/integrate-salesforce-crm', priority: 0.5, changefreq: 'monthly' as const },
+      { path: '/integrate-bitrix-crm', priority: 0.5, changefreq: 'monthly' as const },
+    ]
+
+    additionalPages.forEach(({ path, priority, changefreq }) => {
+      const alternates = LANGUAGES.map((altLang) => ({
+        lang: HREFLANG_CODES[altLang],
+        url: `${SITE_URL}${altLang === 'en' ? '' : `/${altLang}`}${path}`,
+      }))
+      urlsByLanguage[lang].push({
+        loc: `${SITE_URL}${prefix}${path}`,
+        changefreq,
+        priority: lang === 'en' ? priority : priority - 0.1,
+        alternates,
+      })
+    })
+
     // Integration pages
     INTEGRATION_SLUGS.forEach((slug) => {
       const alternates = LANGUAGES.map((altLang) => ({
-        lang: altLang === 'en' ? 'en' : altLang,
+        lang: HREFLANG_CODES[altLang],  // Use proper ISO code
         url: `${SITE_URL}${altLang === 'en' ? '' : `/${altLang}`}/${slug}-whatsapp-integration`,
       }))
 
@@ -255,17 +292,23 @@ async function generateSitemap() {
     // Add each blog post to its language sitemap with hreflang alternates
     groupedPosts.forEach((posts, groupId) => {
       posts.forEach((post: any) => {
-        // Transform 'pt' to 'br' for Brazilian Portuguese
-        const language = post.language === 'pt' ? 'br' : post.language
+        // Transform 'pt' or 'pt-BR' to 'br' for Brazilian Portuguese
+        const language = post.language === 'pt' || post.language === 'pt-BR' ? 'br' : post.language
+
+        // Skip if language is not supported
+        if (!urlsByLanguage[language]) {
+          console.warn(`   ⚠️  Skipping post with unsupported language: ${post.language} (${post.slug})`)
+          return
+        }
+
         const prefix = language === 'en' ? '' : `/${language}`
 
         // Generate alternates for all posts in this translation group
         const alternates = posts.map((p: any) => {
-          const pLang = p.language === 'pt' ? 'br' : p.language
+          const pLang = p.language === 'pt' || p.language === 'pt-BR' ? 'br' : p.language
           const pPrefix = pLang === 'en' ? '' : `/${pLang}`
-          const hreflang = pLang === 'pt' ? 'pt-BR' : pLang
           return {
-            lang: hreflang,
+            lang: HREFLANG_CODES[pLang],  // Use consistent mapping
             url: `${SITE_URL}${pPrefix}/blog/${p.slug}`
           }
         })
@@ -290,8 +333,15 @@ async function generateSitemap() {
     console.log(`   Found ${productPages.length} product/feature pages`)
 
     productPages.forEach((page: any) => {
-      // Transform 'pt' to 'br' for Brazilian Portuguese
-      const language = page.language === 'pt' ? 'br' : page.language
+      // Transform 'pt' or 'pt-BR' to 'br' for Brazilian Portuguese
+      const language = page.language === 'pt' || page.language === 'pt-BR' ? 'br' : page.language
+
+      // Skip if language is not supported
+      if (!urlsByLanguage[language]) {
+        console.warn(`   ⚠️  Skipping product page with unsupported language: ${page.language} (${page.slug})`)
+        return
+      }
+
       const prefix = language === 'en' ? '' : `/${language}`
 
       // Skip coexistence page as it has a special route
@@ -309,11 +359,29 @@ async function generateSitemap() {
         url = `${SITE_URL}${prefix}/product/${page.slug}`
       }
 
+      // Generate hreflang alternates for product pages
+      const productAlternates = LANGUAGES.map((altLang) => {
+        const altPrefix = altLang === 'en' ? '' : `/${altLang}`
+        let altUrl = ''
+        if (page.category === 'feature') {
+          altUrl = `${SITE_URL}${altPrefix}/features/${page.slug}`
+        } else if (page.category === 'whatsapp-api') {
+          altUrl = `${SITE_URL}${altPrefix}/whatsapp-api/${page.slug}`
+        } else {
+          altUrl = `${SITE_URL}${altPrefix}/product/${page.slug}`
+        }
+        return {
+          lang: HREFLANG_CODES[altLang],
+          url: altUrl
+        }
+      })
+
       urlsByLanguage[language].push({
         loc: url,
         changefreq: 'weekly',
         priority: language === 'en' ? 0.7 : 0.6,
         lastmod: formatDate(page._updatedAt),
+        alternates: productAlternates,  // Add hreflang alternates
       })
     })
   } catch (error) {
