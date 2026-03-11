@@ -22,7 +22,7 @@ export const Input: React.FC<InputProps> = ({
     ? "bg-brand-card text-white border-2 border-red-500 focus:border-red-600 focus:ring-2 focus:ring-red-500/20"
     : "bg-brand-card text-white border border-slate-700 hover:border-slate-600 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20";
 
-  const sizeStyles = "px-4 py-2.5 text-sm h-11";
+  const sizeStyles = "px-4 py-2 text-sm";
 
   return (
     <div className="w-full">

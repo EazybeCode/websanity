@@ -434,7 +434,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                   value={formData.countryCode}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-24 font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-2 py-2.5 text-sm h-11 bg-brand-card text-white border border-slate-700 hover:border-slate-600 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20"
+                  className="w-[160px] font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-3 py-2 text-sm bg-brand-card text-white border border-slate-700 hover:border-slate-600 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20"
                 >
                   {COUNTRY_CODES.map((cc) => (
                     <option key={cc.code} value={cc.code}>
@@ -450,7 +450,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                   value={formData.phone}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className={`flex-1 font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-4 py-2.5 text-sm h-11 ${
+                  className={`w-[160px] font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-4 py-2 text-sm ${
                     errors.phone
                       ? 'bg-brand-card text-white border-2 border-red-500 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
                       : 'bg-brand-card text-white border border-slate-700 hover:border-slate-600 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20'
@@ -481,7 +481,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                 value={formData.crm}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className={`w-full font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-4 py-2.5 text-sm h-11 ${
+                className={`w-full font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-4 py-2 text-sm ${
                   errors.crm
                     ? 'bg-brand-card text-white border-2 border-red-500 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
                     : 'bg-brand-card text-white border border-slate-700 hover:border-slate-600 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20'
