@@ -17,7 +17,8 @@
     "push-content": "tsx scripts/push-content-to-sanity.ts",
     "migrate-faqs": "tsx scripts/migrate-faqs-to-sanity.ts",
     "import-blogs-from-live": "tsx scripts/import-blogs-from-live.ts",
-    "fix-blog-titles": "tsx scripts/fix-blog-titles.ts"
+    "fix-blog-titles": "tsx scripts/fix-blog-titles.ts",
+    "verify-hreflang": "tsx scripts/verify-hreflang.ts"
   },
   "dependencies": {
     "@portabletext/react": "^6.0.2",

@@ -247,6 +247,42 @@
       ]
     },
     {
+      "source": "/br/:path*",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "pt-BR"
+        }
+      ]
+    },
+    {
+      "source": "/es/:path*",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "es"
+        }
+      ]
+    },
+    {
+      "source": "/tr/:path*",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "tr"
+        }
+      ]
+    },
+    {
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "en"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
