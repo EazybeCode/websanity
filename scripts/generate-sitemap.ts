@@ -268,8 +268,8 @@ async function generateSitemap() {
 
       urlsByLanguage[lang].push({
         loc: `${SITE_URL}${prefix}/${slug}-whatsapp-integration`,
-        changefreq: 'weekly',
-        priority: lang === 'en' ? 0.8 : 0.7,
+        changefreq: 'daily',
+        priority: 0.9,
         alternates,
       })
     })
@@ -311,7 +311,7 @@ async function generateSitemap() {
 
         urlsByLanguage[language].push({
           loc: `${SITE_URL}${prefix}/blog/${post.slug}`,
-          changefreq: 'monthly',
+          changefreq: 'daily',
           priority: 0.9,
           lastmod: formatDate(post._updatedAt),
           alternates,
