@@ -244,10 +244,7 @@ async function generateSitemap() {
       { path: '/fb', priority: 0.5, changefreq: 'monthly' as const },
       { path: '/become-our-partner', priority: 0.7, changefreq: 'weekly' as const },
       { path: '/comparison', priority: 0.7, changefreq: 'weekly' as const },
-      { path: '/integrate-hubspot-crm', priority: 0.5, changefreq: 'monthly' as const },
-      { path: '/integrate-zoho-crm', priority: 0.5, changefreq: 'monthly' as const },
       { path: '/integrate-salesforce-crm', priority: 0.5, changefreq: 'monthly' as const },
-      { path: '/integrate-bitrix-crm', priority: 0.5, changefreq: 'monthly' as const },
     ]
 
     additionalPages.forEach(({ path, priority, changefreq }) => {

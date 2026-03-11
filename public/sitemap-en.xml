@@ -137,26 +137,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/comparison" />
   </url>
   <url>
-    <loc>https://eazybe.com/integrate-hubspot-crm</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/integrate-hubspot-crm" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/integrate-hubspot-crm" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/integrate-hubspot-crm" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/integrate-hubspot-crm" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/integrate-hubspot-crm" />
-  </url>
-  <url>
-    <loc>https://eazybe.com/integrate-zoho-crm</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/integrate-zoho-crm" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/integrate-zoho-crm" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/integrate-zoho-crm" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/integrate-zoho-crm" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/integrate-zoho-crm" />
-  </url>
-  <url>
     <loc>https://eazybe.com/integrate-salesforce-crm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -165,16 +145,6 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/integrate-salesforce-crm" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/integrate-salesforce-crm" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/integrate-salesforce-crm" />
-  </url>
-  <url>
-    <loc>https://eazybe.com/integrate-bitrix-crm</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/integrate-bitrix-crm" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/integrate-bitrix-crm" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/integrate-bitrix-crm" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/integrate-bitrix-crm" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/integrate-bitrix-crm" />
   </url>
   <url>
     <loc>https://eazybe.com/hubspot-whatsapp-integration</loc>
