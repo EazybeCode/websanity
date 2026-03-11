@@ -343,6 +343,10 @@ async function generateSitemap() {
       // Skip coexistence page as it has a special route
       if (page.slug === 'coexistence') return
 
+      // Skip integration pages that are already added from INTEGRATION_SLUGS array
+      // Sanity slugs are like "hubspot-whatsapp-integration", while INTEGRATION_SLUGS has "hubspot"
+      if (INTEGRATION_SLUGS.some(slug => page.slug === `${slug}-whatsapp-integration`)) return
+
       // Determine the URL based on category
       let url = ''
       if (page.category === 'feature') {
