@@ -353,10 +353,9 @@ async function generateSitemap() {
         url = `${SITE_URL}${prefix}/features/${page.slug}`
       } else if (page.category === 'whatsapp-api') {
         url = `${SITE_URL}${prefix}/whatsapp-api/${page.slug}`
-      } else if (page.category === 'integration') {
-        url = `${SITE_URL}${prefix}/product/${page.slug}`
       } else {
-        url = `${SITE_URL}${prefix}/product/${page.slug}`
+        // Clean URLs without /product/ prefix for integrations and other pages
+        url = `${SITE_URL}${prefix}/${page.slug}`
       }
 
       // Generate hreflang alternates for product pages
@@ -368,7 +367,8 @@ async function generateSitemap() {
         } else if (page.category === 'whatsapp-api') {
           altUrl = `${SITE_URL}${altPrefix}/whatsapp-api/${page.slug}`
         } else {
-          altUrl = `${SITE_URL}${altPrefix}/product/${page.slug}`
+          // Clean URLs without /product/ prefix
+          altUrl = `${SITE_URL}${altPrefix}/${page.slug}`
         }
         return {
           lang: HREFLANG_CODES[altLang],

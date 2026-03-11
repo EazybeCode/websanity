@@ -1,23 +1,58 @@
 {
   "redirects": [
     {
+      "source": "/product/hubspot-whatsapp-integration",
+      "destination": "/hubspot-whatsapp-integration",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/salesforce-whatsapp-integration",
+      "destination": "/salesforce-whatsapp-integration",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/zoho-whatsapp-integration",
+      "destination": "/zoho-whatsapp-integration",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/bitrix24-whatsapp-integration",
+      "destination": "/bitrix24-whatsapp-integration",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/leadsquared-whatsapp-integration",
+      "destination": "/leadsquared-whatsapp-integration",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/freshdesk-whatsapp-integration",
+      "destination": "/freshdesk-whatsapp-integration",
+      "statusCode": 301
+    },
+    {
       "source": "/product/pipedrive-whatsapp-integration",
       "destination": "/pipedrive-whatsapp-integration",
       "statusCode": 301
     },
     {
-      "source": "/comparison?:12f4b55b_page=:page1&:bf4a41f9_page=:page2&:daf7a484_page=:page3",
-      "destination": "/comparison",
+      "source": "/product/google-sheets-whatsapp-integration",
+      "destination": "/google-sheets-whatsapp-integration",
       "statusCode": 301
     },
     {
-      "source": "/comparison?:12f4b55b_page=:page&bf4a41f9_page=:page&daf7a484_page=:page",
-      "destination": "/comparison",
+      "source": "/product/webhooks-whatsapp-integration",
+      "destination": "/webhooks-whatsapp-integration",
       "statusCode": 301
     },
     {
-      "source": "/comparison?12f4b55b_page=1&bf4a41f9_page=2&daf7a484_page=5",
-      "destination": "/comparison",
+      "source": "/product/monday-whatsapp-integration",
+      "destination": "/monday-whatsapp-integration",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/google-calendar-whatsapp-integration",
+      "destination": "/google-calendar-whatsapp-integration",
       "statusCode": 301
     }
   ],
