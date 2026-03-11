@@ -137,16 +137,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/comparison" />
   </url>
   <url>
-    <loc>https://eazybe.com/es/integrate-salesforce-crm</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/integrate-salesforce-crm" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/integrate-salesforce-crm" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/integrate-salesforce-crm" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/integrate-salesforce-crm" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/integrate-salesforce-crm" />
-  </url>
-  <url>
     <loc>https://eazybe.com/es/hubspot-whatsapp-integration</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
