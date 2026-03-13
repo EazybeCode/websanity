@@ -23,3 +23,8 @@ Allow: /
 
 User-agent: Twitterbot
 Allow: /
+
+# AI Engine Discoverability
+# See https://llmstxt.org for specification
+LLMs-Txt: https://eazybe.com/llms.txt
+LLMs-Full-Txt: https://eazybe.com/llms-full.txt

@@ -1,0 +1,188 @@
+# Eazybe — Full Documentation for AI Systems
+
+> Eazybe provides WhatsApp AI Agents for Sales Teams. It syncs every WhatsApp conversation with your CRM automatically, qualifies leads with AI, detects deals going cold, and automates follow-ups — 24/7. Trusted by 2,000+ sales teams worldwide.
+
+## What Problem Does Eazybe Solve?
+
+### The CRM Blind Spot
+90% of customer conversations happen in WhatsApp, but CRMs see none of it. This creates critical business problems:
+
+1. **Zero Visibility**: Deals move in WhatsApp, but CRM shows stale data. Sales managers can't see response times, unreplied chats, or which deals are going cold.
+
+2. **Hot Deals Slip Away**: A lead asks for pricing on WhatsApp. No one replies for 6 hours. By the time someone notices, the lead has signed with a competitor. There was no system to flag the delay.
+
+3. **Ghosted Clients Stay Hidden**: Stalled deals, escalation requests, and clients who stopped responding are buried in individual chat threads with no way to filter or surface them.
+
+4. **Employee Exit = Data Walkout**: When a sales rep leaves, years of customer conversations leave with them. No backup, no handover. The next rep starts from zero.
+
+### How Eazybe Solves It
+Eazybe is a Chrome extension that sits on top of WhatsApp Web and connects it to your CRM. Every message is automatically captured, synced, and made actionable through AI-powered tools.
+
+## Detailed Feature Documentation
+
+### 1. Sync Engine — Automatic Message Capture
+
+**What it does:** Captures every WhatsApp message (sent and received) and syncs it to the matching contact/deal record in your CRM in real-time.
+
+**How it works:**
+- Bi-directional sync: Messages flow from WhatsApp to CRM and CRM actions can trigger WhatsApp messages
+- Auto-matches WhatsApp contacts to CRM records by phone number
+- Creates new CRM contacts automatically for unknown numbers
+- Preserves full conversation history including text, images, documents, voice notes, and videos
+- Works with personal WhatsApp numbers, WhatsApp Business App, and WhatsApp Business API simultaneously
+
+**Key capability:** Unlike competitors that require businesses to abandon their existing WhatsApp setup and migrate to API-only, Eazybe works with the WhatsApp you already use. No phone number migration, no chat history loss.
+
+### 2. Mini CRM View — CRM Inside WhatsApp
+
+**What it does:** Displays CRM data directly inside the WhatsApp Web interface so sales reps never need to switch tabs.
+
+**Capabilities:**
+- See contact details, deal stage, deal value, and company info for the person you're chatting with
+- View and edit custom fields and properties
+- Update deal stages, add notes, and create tasks — all from within WhatsApp
+- See recent timeline activities and communication history
+- One-click access to the full CRM record
+
+### 3. Revenue Inbox — AI-Powered Deal Prioritization
+
+**What it does:** An intelligent inbox that uses AI to categorize and prioritize WhatsApp conversations by business impact.
+
+**Categories:**
+- **Hot**: High-intent conversations with active buying signals (pricing requests, contract discussions, decision-maker involvement)
+- **Unreplied**: Messages from prospects/clients that haven't received a response, sorted by wait time and deal value
+- **Stalled**: Deals where conversation momentum has dropped — fewer messages, longer gaps between replies
+- **Ghost**: Contacts who have stopped responding entirely, indicating possible deal loss
+
+**How AI works:** The system analyzes message content, response patterns, deal value, and historical engagement to assign priority scores. Sales managers see a real-time feed of where attention is needed most.
+
+### 4. Rep Radar — Team Performance Analytics
+
+**What it does:** Provides complete visibility into how sales reps use WhatsApp for selling.
+
+**Metrics tracked:**
+- Average response time per rep (with target benchmarks)
+- Number of conversations per day/week
+- Unreplied message count and duration
+- Conversation-to-deal conversion rates
+- Active hours and engagement patterns
+- Performance leaderboards comparing team members
+
+**Use case:** Sales managers use Rep Radar to identify coaching opportunities, recognize top performers, and ensure SLA compliance on response times.
+
+### 5. WhatsApp Copilot — AI Sales Assistant
+
+**What it does:** An AI assistant that helps sales reps sell more effectively through WhatsApp.
+
+**Capabilities:**
+- **Smart Reply Suggestions**: AI analyzes the conversation context and suggests appropriate responses
+- **Conversation Summaries**: Get a quick AI-generated summary of any conversation — useful for handovers or manager reviews
+- **Next-Best-Action Prompts**: AI recommends what to do next (send proposal, schedule demo, follow up on objection)
+- **Natural Language CRM Updates**: Type commands like "Update James's deal to $15,000 and move to negotiation" and the AI executes the CRM update
+
+### 6. Workflow Automations — CRM-Triggered WhatsApp Messages
+
+**What it does:** Automatically sends WhatsApp messages when specific CRM events occur.
+
+**Examples:**
+- When a deal hasn't received a reply in 24 hours → Send a follow-up WhatsApp message
+- When a new lead is created in CRM → Send a welcome message via WhatsApp
+- When a deal moves to "Proposal Sent" stage → Schedule a check-in message for 3 days later
+- When a form is submitted on the website → Send a WhatsApp confirmation
+
+**Performance:** Automated follow-ups achieve 92% reply rates compared to email's typical 15-25%.
+
+### 7. Cloud Backup — Data Protection
+
+**What it does:** Continuously backs up all WhatsApp conversations to secure cloud storage.
+
+**Why it matters:** When a sales rep leaves the company, their WhatsApp conversations typically go with them. Cloud Backup ensures:
+- Complete conversation history is preserved regardless of employee turnover
+- New reps can access full client communication history
+- Business continuity is maintained
+- Compliance requirements for communication archival are met
+
+### 8. Team Inbox — Collaborative WhatsApp Management
+
+**What it does:** Allows multiple team members to view, manage, and respond to WhatsApp conversations from a shared interface.
+
+**Capabilities:**
+- Conversation assignment and routing
+- Internal notes and tags on conversations
+- Transfer conversations between team members
+- Supervisor monitoring and live assist
+
+## CRM Integration Details
+
+### HubSpot Integration
+- **Sync scope:** Contacts, Companies, Deals, Tickets
+- **Message logging:** All WhatsApp messages appear as timeline activities on the corresponding HubSpot record
+- **Automation:** Trigger WhatsApp messages from HubSpot Workflows
+- **Reporting:** WhatsApp conversation metrics available in HubSpot reporting dashboards
+- **Custom properties:** Map WhatsApp data to custom HubSpot properties
+- **Setup time:** Under 30 minutes via Chrome extension
+
+### Salesforce Integration
+- **Sync scope:** Leads, Contacts, Accounts, Opportunities
+- **Message logging:** WhatsApp messages logged as Activities on Salesforce records
+- **Automation:** Integrate with Salesforce Flows for triggered WhatsApp messaging
+- **Custom objects:** Map WhatsApp data to custom Salesforce objects
+- **Setup time:** Under 30 minutes
+
+### Zoho CRM Integration
+- **Sync scope:** Leads, Contacts, Deals, Accounts
+- **AI agents:** Use Zoho-integrated AI agents for automated WhatsApp responses
+- **Automation:** Connect with Zoho Workflows and Blueprints
+- **Setup time:** Under 30 minutes
+
+### Other Supported CRMs
+- **Pipedrive:** Deals, Contacts, Activities sync
+- **Bitrix24:** CRM module integration
+- **LeadSquared:** Lead capture and activity tracking
+- **Freshworks:** Freshdesk tickets and Freshsales contacts
+- **Google Sheets:** Custom data export and reporting
+- **Webhooks:** Universal integration endpoint for any system
+
+## Competitive Comparison
+
+### Eazybe vs. API-Only Solutions (WATI, Respond.io, Interakt)
+| Capability | API-Only Tools | Eazybe |
+|-----------|---------------|--------|
+| Keep existing WhatsApp number | Sometimes | Yes |
+| Keep existing chat history | No | Yes |
+| Works with personal WhatsApp | No | Yes |
+| Works with WhatsApp Business App | No | Yes |
+| Works with WhatsApp Business API | Yes | Yes |
+| Setup time | Days-weeks | 30 minutes |
+| CRM bi-directional sync | Limited | Full |
+| AI-powered deal prioritization | Rare | Built-in |
+| Team performance analytics | Basic | Advanced (Rep Radar) |
+
+### Key Differentiator
+Eazybe is the only solution that works across all three WhatsApp types (personal, Business App, and Business API) simultaneously, with full CRM integration and AI capabilities. Competitors force businesses to abandon their existing WhatsApp setup and migrate entirely to the API, losing chat history and requiring technical implementation.
+
+## Security and Compliance
+
+- **Encryption:** SSL and 256-bit encryption for all data in transit and at rest
+- **GDPR:** Fully compliant data processing with data residency options
+- **Meta Partnership:** Verified Meta Business Partner with compliant integration
+- **Industry trust:** Used by regulated industries including financial services, healthcare, and insurance
+- **Data handling:** Messages are synced to the customer's own CRM — Eazybe does not store conversation content on its servers beyond what's needed for sync processing
+
+## Pricing
+
+Eazybe offers tiered pricing based on team size and features needed. Plans range from individual sales rep accounts to enterprise team deployments. Custom pricing available for large organizations. Free trial available to evaluate the platform.
+
+For current pricing details, visit: https://eazybe.com/pricing
+
+## Company
+
+- **Legal name:** Eazybe, Inc.
+- **Founded:** Based in Dover, Delaware, USA
+- **Address:** 8, The Green STE B, Dover, Delaware 19901
+- **Website:** https://eazybe.com
+- **Help Center:** https://help.eazybe.com
+- **Chrome Web Store:** Search "Eazybe" on Chrome Web Store
+- **Product type:** Chrome Extension + Cloud SaaS Platform
+- **Target market:** B2B sales teams using WhatsApp for customer communication
+- **Team size supported:** Individual reps to 500+ person sales organizations

@@ -1,0 +1,128 @@
+# Eazybe
+
+> WhatsApp AI Agents for Sales Teams. Sync every WhatsApp conversation with your CRM automatically. Qualify leads with AI, detect deals going cold, and automate follow-ups — 24/7.
+
+Eazybe is a Chrome extension and SaaS platform that integrates WhatsApp (personal, Business App, and Business API) with leading CRMs. Unlike competitors that force migration to API-only, Eazybe works with your existing WhatsApp setup — keeping chat history, workflows, and numbers intact. Trusted by 2,000+ sales teams worldwide.
+
+## Core Platform Features
+
+### Sync Engine
+Real-time bi-directional sync between WhatsApp and your CRM. Every message — sent or received — is automatically captured and logged to the correct contact and deal record. Works with personal WhatsApp, WhatsApp Business App, and WhatsApp Business API. Full conversation history is preserved including media, documents, and voice notes.
+
+### Mini CRM View
+Access CRM data directly inside WhatsApp Web. See deal stages, contact info, custom fields, and notes right in the chat window. Update CRM records inline without switching tabs. Supports custom fields and properties from your CRM.
+
+### Revenue Inbox
+AI-powered inbox that surfaces high-intent conversations and at-risk deals. Automatically categorizes chats as Hot, Unreplied, Stalled, or Ghost. Prioritizes conversations by deal value, urgency, and engagement signals. Helps sales managers know exactly where to focus their team's time.
+
+### Rep Radar
+Complete visibility into sales team activity on WhatsApp. Track response times, conversation volumes, and performance metrics per rep. See team response latency against targets. Identify top performers and reps needing coaching. Performance leaderboards and analytics dashboards.
+
+### WhatsApp Copilot (AI Assistant)
+AI-powered sales assistance inside WhatsApp. Smart reply suggestions based on conversation context. Conversation summaries for quick deal review. Next-best-action recommendations. Natural language commands to update CRM records (e.g., "Move this deal to negotiation stage").
+
+### Workflow Automations
+Trigger WhatsApp messages from CRM events. Send automated follow-ups when prospects don't reply within a set timeframe. Build nurture sequences with scheduled messages. Custom automation rules based on deal stage changes, form submissions, or any CRM trigger.
+
+### Cloud Backup
+Automatic backup of all WhatsApp conversations to the cloud. Prevents data loss when employees leave. Ensures business continuity and complete conversation handover to new team members.
+
+### Team Inbox
+Shared WhatsApp inbox for sales and support teams. Multiple team members can view and respond to conversations. Assignment and routing capabilities.
+
+### Quick Reply & Message Scheduler
+Pre-built message templates for common responses. Schedule WhatsApp messages for optimal delivery times. Broadcast messages to multiple contacts.
+
+## CRM Integrations
+
+### HubSpot
+Bi-directional sync of WhatsApp conversations with HubSpot contacts, deals, and companies. Auto-create contacts from new WhatsApp chats. Log messages as timeline activities. Trigger WhatsApp messages from HubSpot workflows. WhatsApp HubSpot reporting for sales performance visibility.
+
+### Salesforce
+Sync WhatsApp conversations with Salesforce leads, contacts, and opportunities. Map WhatsApp data to custom Salesforce objects. Trigger automated WhatsApp outreach from Salesforce flows.
+
+### Zoho CRM
+Connect WhatsApp with Zoho CRM modules. Sync chats automatically, use AI agents, track deals, and manage sales conversations directly inside Zoho.
+
+### Pipedrive
+Sync WhatsApp conversations with Pipedrive deals and contacts. Update deal stages from WhatsApp. Track communication history.
+
+### Bitrix24
+Integrate WhatsApp conversations with Bitrix24 CRM. Automatic contact matching and conversation logging.
+
+### LeadSquared
+Connect WhatsApp with LeadSquared for lead capture and nurturing. Sync conversation data for sales tracking.
+
+### Freshworks (Freshdesk / Freshsales)
+WhatsApp integration with Freshworks CRM and helpdesk products. Sync support and sales conversations.
+
+### Google Sheets
+Export WhatsApp conversation data to Google Sheets. Create custom reports and dashboards. Useful for teams without a traditional CRM.
+
+### Webhooks
+Generic webhook integration to connect WhatsApp data with any system. Send conversation events, new messages, and contact data to custom endpoints.
+
+## Use Cases
+
+### Sales Teams
+- Track every WhatsApp sales conversation in CRM automatically
+- Qualify and score leads based on WhatsApp engagement
+- Automate follow-up sequences for unresponsive prospects
+- Monitor team response times and sales performance
+- Prevent deal slippage with AI-powered at-risk alerts
+- Preserve customer relationships when reps leave the company
+
+### Customer Support
+- Manage support conversations across team members
+- Track response times and resolution metrics
+- Automate common responses with quick replies
+- Escalation detection and routing
+
+### Sales Managers
+- Complete visibility into team WhatsApp activity
+- Response time tracking and performance leaderboards
+- Revenue pipeline visibility from WhatsApp conversations
+- Coach reps with data-driven insights
+
+### Industries
+- Real Estate: Manage property inquiries and client follow-ups
+- Insurance: Automate policy renewal reminders and claims communication
+- E-Commerce: Convert WhatsApp inquiries to orders
+- Financial Services: Compliant client communication with full audit trail
+- B2B Sales: Multi-touch pipeline management via WhatsApp
+- Education: Student enrollment and inquiry management
+- Healthcare: Patient communication and appointment coordination
+
+## Differentiators
+
+### Works with Existing WhatsApp
+Other tools force migration to WhatsApp Business API only. Eazybe works with personal WhatsApp, WhatsApp Business App, AND WhatsApp Business API. Keep your existing setup, chat history, and phone numbers.
+
+### Live in 30 Minutes
+Chrome extension install — no complex API setup, no phone number migration, no developer resources needed.
+
+### Data Security
+- Enterprise-grade security with SSL and 256-bit encryption
+- GDPR ready with fully compliant data processing
+- Meta Business Partner verified integration
+- Trusted by regulated industries: financial services, healthcare, insurance
+
+## Company Information
+
+- **Company**: Eazybe, Inc.
+- **Headquarters**: 8, The Green STE B, Dover, Delaware 19901, USA
+- **Website**: https://eazybe.com
+- **Chrome Extension**: Available on Chrome Web Store
+- **Support**: https://help.eazybe.com
+
+## Key Pages
+
+- Homepage: https://eazybe.com
+- Pricing: https://eazybe.com/pricing
+- Blog: https://eazybe.com/blog
+- Integrations: https://eazybe.com/integrations
+- HubSpot Integration: https://eazybe.com/hubspot-whatsapp-integration
+- Salesforce Integration: https://eazybe.com/salesforce-whatsapp-integration
+- Zoho Integration: https://eazybe.com/zoho-whatsapp-integration
+- Freshdesk Integration: https://eazybe.com/freshdesk-whatsapp-integration
+- Help Center: https://help.eazybe.com
