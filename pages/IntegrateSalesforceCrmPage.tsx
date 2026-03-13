@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-const APP_URL_PREFIX_V2 = "https://api.eazybe.com/v2/"
+const APP_URL_PREFIX_V2 = "https://dev.eazybe.com/v2/"
 const EXTENSION_ID_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
 const REDIRECT_URI = "https://eazybe.com/integrate-salesforce-crm"
 const SALESFORCE_DOMAIN = "login.salesforce"
