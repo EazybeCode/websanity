@@ -6,23 +6,18 @@ import { BlogPostClient } from '@/components/pages/BlogPostClient'
 import { routing } from '@/i18n/routing'
 
 export async function generateStaticParams() {
-  try {
-    const params: { locale: string; slug: string }[] = []
+  const params: { locale: string; slug: string }[] = []
 
-    for (const locale of routing.locales) {
-      const posts = await getBlogPosts(locale)
-      if (posts) {
-        for (const post of posts) {
-          params.push({ locale, slug: post.slug })
-        }
+  for (const locale of routing.locales) {
+    const posts = await getBlogPosts(locale)
+    if (posts) {
+      for (const post of posts) {
+        params.push({ locale, slug: post.slug })
       }
     }
-
-    return params
-  } catch (error) {
-    console.error('Failed to generate blog static params:', error)
-    return []
   }
+
+  return params
 }
 
 export async function generateMetadata({
