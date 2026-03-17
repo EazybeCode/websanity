@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getBlogPosts, getBlogIndex } from '@/lib/sanity-queries'
 import { BlogListingClient } from '@/components/pages/BlogListingClient'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({
   params,

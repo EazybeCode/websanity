@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 

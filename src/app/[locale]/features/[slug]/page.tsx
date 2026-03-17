@@ -4,7 +4,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getFeature } from '@/lib/sanity-queries'
 import FeaturePageClient from '@/components/pages/FeaturePageClient'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 

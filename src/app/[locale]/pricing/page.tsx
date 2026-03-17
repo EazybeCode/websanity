@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getPricing } from '@/lib/sanity-queries'
 import { PricingPageClient } from '@/components/pages/PricingPageClient'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({
   params,
