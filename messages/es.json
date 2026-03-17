@@ -302,19 +302,36 @@
       "name": "Inicial",
       "price": "0",
       "description": "Perfecto para individuos comenzando con WhatsApp CRM",
-      "features": ["1 Usuario", "Respaldo en la Nube", "Plantillas de Respuesta Rápida", "Analíticas Básicas"]
+      "features": [
+        "1 Usuario",
+        "Respaldo en la Nube",
+        "Plantillas de Respuesta Rápida",
+        "Analíticas Básicas"
+      ]
     },
     "professional": {
       "name": "Profesional",
       "price": "15",
       "description": "Para equipos en crecimiento que necesitan más poder",
-      "features": ["Hasta 10 Usuarios", "Bandeja de Entrada del Equipo", "Integraciones CRM", "Programador de Mensajes", "Analíticas Avanzadas"]
+      "features": [
+        "Hasta 10 Usuarios",
+        "Bandeja de Entrada del Equipo",
+        "Integraciones CRM",
+        "Programador de Mensajes",
+        "Analíticas Avanzadas"
+      ]
     },
     "business": {
       "name": "Empresarial",
       "price": "29",
       "description": "Para empresas que necesitan funciones empresariales",
-      "features": ["Usuarios Ilimitados", "Acceso a API WhatsApp", "Bandeja de Ingresos", "Radar de Representantes", "Soporte Prioritario"]
+      "features": [
+        "Usuarios Ilimitados",
+        "Acceso a API WhatsApp",
+        "Bandeja de Ingresos",
+        "Radar de Representantes",
+        "Soporte Prioritario"
+      ]
     }
   },
   "hero": {
@@ -1422,198 +1439,6 @@
         "primaryCta": "Instalar Gratis",
         "secondaryCta": "Reservar Demo"
       },
-      "intro": {
-        "badge": "¿Por Qué Eazybe?",
-        "headline": "Hecho para Equipos de Ventas",
-        "description": "Cada función está diseñada para ayudarte a vender más y más rápido. Sin excesos, sin complejidad—solo las herramientas que necesitas."
-      },
-      "capabilities": {
-        "badge": "Funciones de la Plataforma",
-        "headline": "Todo en Un",
-        "headlineHighlight": "Solo Lugar",
-        "description": "Desde conversaciones en tiempo real hasta análisis avanzados, tenemos todo lo que necesitas.",
-        "items": [
-          {
-            "icon": "MessageCircle",
-            "title": "Conversaciones en Tiempo Real",
-            "description": "Sincroniza mensajes de WhatsApp al instante con tu equipo."
-          },
-          {
-            "icon": "Users",
-            "title": "Bandeja de Entrada del Equipo",
-            "description": "Múltiples miembros del equipo pueden colaborar en el mismo chat."
-          },
-          {
-            "icon": "BarChart3",
-            "title": "Análisis Avanzados",
-            "description": "Rastrea el rendimiento del equipo con informes detallados."
-          },
-          {
-            "icon": "Workflow",
-            "title": "Automatización de Workflow",
-            "description": "Automatiza tareas repetitivas y ahorra horas cada semana."
-          },
-          {
-            "icon": "Database",
-            "title": "Integración CRM",
-            "description": "Conecta con HubSpot, Zoho, Salesforce y 50+ CRMs."
-          },
-          {
-            "icon": "Shield",
-            "title": "Seguridad de Nivel Empresarial",
-            "description": "Cifrado de nivel bancario y cumplimiento GDPR."
-          }
-        ]
-      },
-      "benefits": {
-        "badge": "Beneficios Clave",
-        "headline": "Lo Que Ganarás",
-        "items": [
-          {
-            "title": "Aumenta Conversiones",
-            "description": "Cierra más negocios con respuestas instantáneas y seguimientos personalizados."
-          },
-          {
-            "title": "Ahorra Tiempo",
-            "description": "Automatiza tareas repetitivas y enfócate en conversaciones de alto valor."
-          },
-          {
-            "title": "Visibilidad Total",
-            "description": "Ve cada conversación, rastrea cada negocio, entrena a cada representante."
-          }
-        ]
-      },
-      "howItWorks": {
-        "badge": "Cómo Funciona",
-        "headline": "Empieza en Minutos",
-        "steps": [
-          {
-            "title": "Conecta WhatsApp",
-            "description": "Vincula tu WhatsApp Web en menos de 2 minutos. Sin configuración de API."
-          },
-          {
-            "title": "Configura Tus Herramientas",
-            "description": "Configura plantillas, automatizaciones y roles del equipo."
-          },
-          {
-            "title": "Empieza a Vender",
-            "description": "Tu equipo está listo para cerrar más negocios en WhatsApp."
-          }
-        ]
-      },
-      "faq": {
-        "badge": "FAQ",
-        "headline": "Preguntas Frecuentes",
-        "items": [
-          {
-            "question": "¿Necesito una Cuenta WhatsApp Business?",
-            "answer": "No, Eazybe funciona con tu cuenta WhatsApp normal. No se necesita cuenta business separada."
-          },
-          {
-            "question": "¿Cuánto tiempo toma la configuración?",
-            "answer": "La mayoría de los equipos están funcionando en menos de 5 minutos. Solo escanea un código QR y listo."
-          },
-          {
-            "question": "¿Mis datos están seguros?",
-            "answer": "Sí, usamos encriptación de nivel bancario y cumplimos totalmente con GDPR."
-          }
-        ]
-      },
-      "featuredItems": [
-        {
-          "name": "Buzón del Equipo",
-          "slug": "team-inbox",
-          "description": "Bandeja de entrada compartida de WhatsApp para equipos de ventas con enrutamiento automático de leads.",
-          "icon": "team",
-          "color": "blue",
-          "isFeatured": true,
-          "tags": ["Colaboración", "CRM"]
-        },
-        {
-          "name": "Backup en la Nube",
-          "slug": "cloud-backup",
-          "description": "Respaldo automático de conversaciones de WhatsApp al almacenamiento en la nube.",
-          "icon": "cloud",
-          "color": "cyan",
-          "isFeatured": true,
-          "tags": ["Backup", "Seguridad"]
-        },
-        {
-          "name": "Respuestas Rápidas",
-          "slug": "quick-reply",
-          "description": "Plantillas de mensaje preconstruidas para respuestas más rápidas.",
-          "icon": "zap",
-          "color": "green",
-          "isFeatured": true,
-          "tags": ["Productividad", "Automatización"]
-        },
-        {
-          "name": "Revenue Inbox",
-          "slug": "revenue-inbox",
-          "description": "Bandeja de entrada de WhatsApp alimentada por IA que prioriza conversas de alto valor.",
-          "icon": "revenue",
-          "color": "purple",
-          "isFeatured": true,
-          "tags": ["IA", "Ventas"]
-        },
-        {
-          "name": "WhatsApp API",
-          "slug": "whatsapp-api",
-          "description": "Soluciones empresariales de WhatsApp Business API para escala.",
-          "icon": "global",
-          "color": "orange",
-          "isFeatured": false,
-          "tags": ["API", "Empresarial"]
-        },
-        {
-          "name": "Integraciones",
-          "slug": "integrations",
-          "description": "Conecta WhatsApp con HubSpot, Salesforce, Zoho y más.",
-          "icon": "link",
-          "color": "indigo",
-          "isFeatured": true,
-          "tags": ["CRM", "Automatización"]
-        }
-      ],
-      "integrationsList": {
-        "headline": "Conecta Con Tus Herramientas Favoritas",
-        "description": "Integraciones perfectas con 10+ CRMs y plataformas de negocios."
-      },
-      "integrationsCta": {
-        "badge": "¿Listo para Integrar?",
-        "headline": "Potencia Tu",
-        "headlineHighlight": "Flujo de Trabajo",
-        "description": "Conecta WhatsApp con tus herramientas existentes en minutos.",
-        "primaryCta": "Explorar Integraciones",
-        "secondaryCta": "Hablar con Ventas"
-      },
-      "pricing": {
-        "badge": "Precios Simples",
-        "headline": "Comienza Gratis,",
-        "headlineHighlight": "Escala Asequiblemente",
-        "description": "Sin tarifas ocultas. Sin tarjeta de crédito necesaria. Cancela en cualquier momento.",
-        "primaryCta": "Iniciar Prueba Gratis",
-        "secondaryCta": "Ver Todos los Planes"
-      },
-      "cta": {
-        "badge": "¿Listo para Comenzar?",
-        "headline": "Únete a 50,000+ Equipos",
-        "headlineHighlight": "Ganando con WhatsApp",
-        "description": "Inicia tu prueba gratuita hoy. Sin tarjeta de crédito necesaria.",
-        "primaryCta": "Instalar Gratis",
-        "secondaryCta": "Reservar Demo",
-        "footnote": "Prueba gratuita de 14 días • Sin tarjeta de crédito"
-      }
-    },
-    "features": {
-      "hero": {
-        "badge": "Funciones de la Plataforma",
-        "headline": "Todo Lo Que Necesitas para",
-        "headlineHighlight": "Ganar en WhatsApp",
-        "description": "Un conjunto completo de herramientas para convertir WhatsApp en tu canal de ventas más poderoso.",
-        "primaryCta": "Instalar Gratis",
-        "secondaryCta": "Reservar Demo"
-      },
       "featuredItems": [
         {
           "name": "Buzón del Equipo",
@@ -1622,7 +1447,10 @@
           "icon": "Users",
           "color": "#3b82f6",
           "isFeatured": true,
-          "tags": ["Colaboración", "Popular"]
+          "tags": [
+            "Colaboración",
+            "Popular"
+          ]
         },
         {
           "name": "Backup en la Nube",
@@ -1631,7 +1459,10 @@
           "icon": "Cloud",
           "color": "#06b6d4",
           "isFeatured": true,
-          "tags": ["Seguridad", "Esencial"]
+          "tags": [
+            "Seguridad",
+            "Esencial"
+          ]
         },
         {
           "name": "Respuestas Rápidas",
@@ -1640,7 +1471,9 @@
           "icon": "MessageSquare",
           "color": "#8b5cf6",
           "isFeatured": true,
-          "tags": ["Productividad"]
+          "tags": [
+            "Productividad"
+          ]
         },
         {
           "name": "Programador de Mensajes",
@@ -1649,7 +1482,9 @@
           "icon": "Calendar",
           "color": "#ec4899",
           "isFeatured": false,
-          "tags": ["Automatización"]
+          "tags": [
+            "Automatización"
+          ]
         },
         {
           "name": "Etiquetas y Funnels",
@@ -1658,7 +1493,9 @@
           "icon": "Tag",
           "color": "#f59e0b",
           "isFeatured": false,
-          "tags": ["CRM"]
+          "tags": [
+            "CRM"
+          ]
         },
         {
           "name": "Notas y Recordatorios",
@@ -1667,7 +1504,9 @@
           "icon": "StickyNote",
           "color": "#10b981",
           "isFeatured": false,
-          "tags": ["Productividad"]
+          "tags": [
+            "Productividad"
+          ]
         },
         {
           "name": "Exportación de Datos",
@@ -1676,7 +1515,9 @@
           "icon": "Download",
           "color": "#6366f1",
           "isFeatured": false,
-          "tags": ["Análisis"]
+          "tags": [
+            "Análisis"
+          ]
         },
         {
           "name": "Modo Coexistencia",
@@ -1685,7 +1526,10 @@
           "icon": "RefreshCw",
           "color": "#14b8a6",
           "isFeatured": false,
-          "tags": ["API", "Avanzado"]
+          "tags": [
+            "API",
+            "Avanzado"
+          ]
         }
       ],
       "pricing": {
@@ -1714,7 +1558,10 @@
           "icon": "CircleDot",
           "color": "#ff7a59",
           "isFeatured": true,
-          "tags": ["CRM", "Popular"]
+          "tags": [
+            "CRM",
+            "Popular"
+          ]
         },
         {
           "name": "Zoho",
@@ -1723,7 +1570,9 @@
           "icon": "Database",
           "color": "#008cff",
           "isFeatured": true,
-          "tags": ["CRM"]
+          "tags": [
+            "CRM"
+          ]
         },
         {
           "name": "Salesforce",
@@ -1732,7 +1581,10 @@
           "icon": "Cloud",
           "color": "#00a1e0",
           "isFeatured": true,
-          "tags": ["CRM", "Enterprise"]
+          "tags": [
+            "CRM",
+            "Enterprise"
+          ]
         },
         {
           "name": "Pipedrive",
@@ -1741,7 +1593,9 @@
           "icon": "TrendingUp",
           "color": "#ff7a59",
           "isFeatured": false,
-          "tags": ["CRM"]
+          "tags": [
+            "CRM"
+          ]
         },
         {
           "name": "Bitrix24",
@@ -1750,7 +1604,9 @@
           "icon": "Layers",
           "color": "#77d42d",
           "isFeatured": false,
-          "tags": ["CRM"]
+          "tags": [
+            "CRM"
+          ]
         },
         {
           "name": "Freshdesk",
@@ -1759,7 +1615,9 @@
           "icon": "HeadphonesIcon",
           "color": "#283e4a",
           "isFeatured": false,
-          "tags": ["Help Desk"]
+          "tags": [
+            "Help Desk"
+          ]
         },
         {
           "name": "Google Sheets",
@@ -1768,7 +1626,9 @@
           "icon": "Table",
           "color": "#0f9d58",
           "isFeatured": false,
-          "tags": ["Productividad"]
+          "tags": [
+            "Productividad"
+          ]
         },
         {
           "name": "Webhooks",
@@ -1777,7 +1637,9 @@
           "icon": "Webhook",
           "color": "#6366f1",
           "isFeatured": true,
-          "tags": ["Developer"]
+          "tags": [
+            "Developer"
+          ]
         }
       ]
     },
@@ -2025,7 +1887,8 @@
       "feature2": "WhatsApp Business API",
       "feature3": "Mantener historial de chat existente",
       "feature4": "Rastrear números personales de WhatsApp",
-      "feature5": "Listo en 30 minutos"
+      "feature5": "Listo en 30 minutos",
+      "headline": "Funciona con el WhatsApp que ya usas"
     },
     "faq": {
       "badge": "FAQ",

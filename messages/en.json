@@ -302,19 +302,36 @@
       "name": "Starter",
       "price": "0",
       "description": "Perfect for individuals getting started with WhatsApp CRM",
-      "features": ["1 User", "Cloud Backup", "Quick Reply Templates", "Basic Analytics"]
+      "features": [
+        "1 User",
+        "Cloud Backup",
+        "Quick Reply Templates",
+        "Basic Analytics"
+      ]
     },
     "professional": {
       "name": "Professional",
       "price": "15",
       "description": "For growing teams that need more power",
-      "features": ["Up to 10 Users", "Team Inbox", "CRM Integrations", "Message Scheduler", "Advanced Analytics"]
+      "features": [
+        "Up to 10 Users",
+        "Team Inbox",
+        "CRM Integrations",
+        "Message Scheduler",
+        "Advanced Analytics"
+      ]
     },
     "business": {
       "name": "Business",
       "price": "29",
       "description": "For businesses that need enterprise features",
-      "features": ["Unlimited Users", "WhatsApp API Access", "Revenue Inbox", "Rep Radar", "Priority Support"]
+      "features": [
+        "Unlimited Users",
+        "WhatsApp API Access",
+        "Revenue Inbox",
+        "Rep Radar",
+        "Priority Support"
+      ]
     }
   },
   "hero": {
@@ -1488,7 +1505,10 @@
           "icon": "team",
           "color": "blue",
           "isFeatured": true,
-          "tags": ["Collaboration", "CRM"]
+          "tags": [
+            "Collaboration",
+            "CRM"
+          ]
         },
         {
           "name": "Cloud Backup",
@@ -1497,7 +1517,10 @@
           "icon": "cloud",
           "color": "cyan",
           "isFeatured": true,
-          "tags": ["Backup", "Security"]
+          "tags": [
+            "Backup",
+            "Security"
+          ]
         },
         {
           "name": "Quick Reply",
@@ -1506,7 +1529,10 @@
           "icon": "zap",
           "color": "green",
           "isFeatured": true,
-          "tags": ["Productivity", "Automation"]
+          "tags": [
+            "Productivity",
+            "Automation"
+          ]
         },
         {
           "name": "Revenue Inbox",
@@ -1515,7 +1541,10 @@
           "icon": "revenue",
           "color": "purple",
           "isFeatured": true,
-          "tags": ["AI", "Sales"]
+          "tags": [
+            "AI",
+            "Sales"
+          ]
         },
         {
           "name": "WhatsApp API",
@@ -1524,7 +1553,10 @@
           "icon": "global",
           "color": "orange",
           "isFeatured": false,
-          "tags": ["API", "Enterprise"]
+          "tags": [
+            "API",
+            "Enterprise"
+          ]
         },
         {
           "name": "CRM Integrations",
@@ -1533,7 +1565,10 @@
           "icon": "link",
           "color": "indigo",
           "isFeatured": true,
-          "tags": ["CRM", "Automation"]
+          "tags": [
+            "CRM",
+            "Automation"
+          ]
         }
       ],
       "integrationsList": {
@@ -1858,7 +1893,8 @@
       "feature2": "WhatsApp Business API",
       "feature3": "Keep existing chat history",
       "feature4": "Track personal WhatsApp numbers",
-      "feature5": "Live in 30 minutes"
+      "feature5": "Live in 30 minutes",
+      "headline": "Works with the WhatsApp you already use"
     },
     "faq": {
       "badge": "FAQ",
@@ -2142,34 +2178,79 @@
       "title": "Refer. Relax. Reap Rewards.",
       "name": "Affiliate Partner",
       "description": "Connect us with potential clients and let our team handle the rest — from demo to deal. Earn commissions for every successful conversion.",
-      "whatYouGet": ["No minimum commitment", "Unique tracking links", "Monthly payouts", "Marketing materials provided"],
-      "idealFor": ["Bloggers", "Influencers", "Consultants"]
+      "whatYouGet": [
+        "No minimum commitment",
+        "Unique tracking links",
+        "Monthly payouts",
+        "Marketing materials provided"
+      ],
+      "idealFor": [
+        "Bloggers",
+        "Influencers",
+        "Consultants"
+      ]
     },
     "reseller": {
       "commission": "Up to 40%",
       "title": "Your Clients. Our Technology.",
       "name": "Reseller Partner",
       "description": "You sell and manage client relationships; we power you with complete backend - technology, automation, support, and training.",
-      "whatYouGet": ["White-glove onboarding", "Partner portal access", "Co-branded materials", "Technical training"],
-      "idealFor": ["Digital Agencies", "IT Consultants"]
+      "whatYouGet": [
+        "White-glove onboarding",
+        "Partner portal access",
+        "Co-branded materials",
+        "Technical training"
+      ],
+      "idealFor": [
+        "Digital Agencies",
+        "IT Consultants"
+      ]
     },
     "whitelabel": {
       "commission": "Up to 50%",
       "title": "Co-Create & Conquer Markets.",
       "name": "White Label Partner",
       "description": "Build tailored omnichannel solutions for high-potential sectors. Shape go-to-market strategies and share in revenue.",
-      "whatYouGet": ["Full brand customization", "API access", "Custom integrations", "Dedicated support team"],
-      "idealFor": ["SaaS Companies", "Enterprise Partners"]
+      "whatYouGet": [
+        "Full brand customization",
+        "API access",
+        "Custom integrations",
+        "Dedicated support team"
+      ],
+      "idealFor": [
+        "SaaS Companies",
+        "Enterprise Partners"
+      ]
     },
     "howToApplyTitle": "How to Become an Eazybe Partner",
     "howToApplyDesc": "From application to your first commission — we've made it seamless",
     "simpleProcess": "Simple 5-Step Process",
     "steps": [
-      { "step": "01", "title": "Submit Application", "desc": "Fill out our simple partner application form takes less than 2 minutes" },
-      { "step": "02", "title": "Quick Review", "desc": "Our team reviews your application within 24-48 hours" },
-      { "step": "03", "title": "Get Approved", "desc": "Receive welcome email with access to partner portal and resources" },
-      { "step": "04", "title": "Start Promoting", "desc": "Use your tracking links and marketing materials to refer clients" },
-      { "step": "05", "title": "Earn Commissions", "desc": "Track referrals and receive monthly payouts for successful conversions" }
+      {
+        "step": "01",
+        "title": "Submit Application",
+        "desc": "Fill out our simple partner application form takes less than 2 minutes"
+      },
+      {
+        "step": "02",
+        "title": "Quick Review",
+        "desc": "Our team reviews your application within 24-48 hours"
+      },
+      {
+        "step": "03",
+        "title": "Get Approved",
+        "desc": "Receive welcome email with access to partner portal and resources"
+      },
+      {
+        "step": "04",
+        "title": "Start Promoting",
+        "desc": "Use your tracking links and marketing materials to refer clients"
+      },
+      {
+        "step": "05",
+        "title": "Earn Commissions",
+        "desc": "Track referrals and receive monthly payouts for successful conversions"
+      }
     ],
     "testimonialsTitle": "What Our Partners Say",
     "testimonialsSubtitle": "Partner Success Stories",

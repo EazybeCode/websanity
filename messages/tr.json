@@ -302,19 +302,36 @@
       "name": "Başlangıç",
       "price": "0",
       "description": "WhatsApp CRM'e başlayan bireyler için mükemmel",
-      "features": ["1 Kullanıcı", "Bulut Yedeği", "Hızlı Yanıt Şablonları", "Temel Analizler"]
+      "features": [
+        "1 Kullanıcı",
+        "Bulut Yedeği",
+        "Hızlı Yanıt Şablonları",
+        "Temel Analizler"
+      ]
     },
     "professional": {
       "name": "Profesyonel",
       "price": "15",
       "description": "Daha fazla güce ihtiyaç duyan büyüyen ekipler için",
-      "features": ["10 Kullanıcıya Kadar", "Ekip Gelen Kutusu", "CRM Entegrasyonları", "Mesaj Zamanlayıcı", "Gelişmiş Analizler"]
+      "features": [
+        "10 Kullanıcıya Kadar",
+        "Ekip Gelen Kutusu",
+        "CRM Entegrasyonları",
+        "Mesaj Zamanlayıcı",
+        "Gelişmiş Analizler"
+      ]
     },
     "business": {
       "name": "İşletme",
       "price": "29",
       "description": "Kurumsal özelliklere ihtiyaç duyan işletmeler için",
-      "features": ["Sınırsız Kullanıcı", "WhatsApp API Erişimi", "Gelir Gelen Kutusu", "Temsilci Radarı", "Öncelikli Destek"]
+      "features": [
+        "Sınırsız Kullanıcı",
+        "WhatsApp API Erişimi",
+        "Gelir Gelen Kutusu",
+        "Temsilci Radarı",
+        "Öncelikli Destek"
+      ]
     }
   },
   "hero": {
@@ -1422,198 +1439,6 @@
         "primaryCta": "Ücretsiz Yükle",
         "secondaryCta": "Demo Rezervasyonu Yap"
       },
-      "intro": {
-        "badge": "Neden Eazybe?",
-        "headline": "Satış Ekipleri İçin Yapıldı",
-        "description": "Her özellik, daha fazla ve daha hızlı satmanıza yardımcı olmak için tasarlanmıştır. Şişkinlik yok, karmaşıklık yok—sadece ihtiyacınız olan araçlar."
-      },
-      "capabilities": {
-        "badge": "Platform Özellikleri",
-        "headline": "Her Şey Tek",
-        "headlineHighlight": "Bir Yerde",
-        "description": "Gerçek zamanlı konuşmalardan gelişmiş analizlere kadar, ihtiyacınız olan her şey.",
-        "items": [
-          {
-            "icon": "MessageCircle",
-            "title": "Gerçek Zamanlı Konuşmalar",
-            "description": "WhatsApp mesajlarını anında ekibinizle senkronize edin."
-          },
-          {
-            "icon": "Users",
-            "title": "Takip Gelen Kutusu",
-            "description": "Birden fazla ekip üyesi aynı sohbette işbirliği yapabilir."
-          },
-          {
-            "icon": "BarChart3",
-            "title": "Gelişmiş Analizler",
-            "description": "Detaylı raporlarla ekip performansını takip edin."
-          },
-          {
-            "icon": "Workflow",
-            "title": "Workflow Otomasyonu",
-            "description": "Tekrarlayan görevleri otomatikleştirin ve her hafta saatler kazanın."
-          },
-          {
-            "icon": "Database",
-            "title": "CRM Entegrasyonu",
-            "description": "HubSpot, Zoho, Salesforce ve 50+ CRM ile bağlanın."
-          },
-          {
-            "icon": "Shield",
-            "title": "Kurumsal Düzeyde Güvenlik",
-            "description": "Banka düzeyinde şifreleme ve KVKK uyumluluğu."
-          }
-        ]
-      },
-      "benefits": {
-        "badge": "Temel Faydalar",
-        "headline": "Ne Kazanacaksınız",
-        "items": [
-          {
-            "title": "Dönüşümleri Artırın",
-            "description": "Anında yanıtlar ve kişiselleştirilmiş takiplerle daha fazla anlaşma kapatın."
-          },
-          {
-            "title": "Zaman Tasarrufu",
-            "description": "Tekrarlayan görevleri otomatikleştirin ve yüksek değerli konuşmalara odaklanın."
-          },
-          {
-            "title": "Tam Görünürlük",
-            "description": "Her konuşmayı görün, her anlaşmayı takip edin, her temsilciye koçluk yapın."
-          }
-        ]
-      },
-      "howItWorks": {
-        "badge": "Nasıl Çalışır",
-        "headline": "Dakikalar İçinde Başlayın",
-        "steps": [
-          {
-            "title": "WhatsApp'ı Bağlayın",
-            "description": "WhatsApp Web'inizi 2 dakikadan kısa sürede bağlayın. API kurulumu yok."
-          },
-          {
-            "title": "Araçlarınızı Ayarlayın",
-            "description": "Şablonları, otomasyonları ve ekip rollerini yapılandırın."
-          },
-          {
-            "title": "Satmaya Başlayın",
-            "description": "Ekibiniz WhatsApp'ta daha fazla anlaşma kapatmaya hazır."
-          }
-        ]
-      },
-      "faq": {
-        "badge": "SSS",
-        "headline": "Sıkça Sorulan Sorular",
-        "items": [
-          {
-            "question": "WhatsApp Business Hesabına ihtiyacım var mı?",
-            "answer": "Hayır, Eazybe normal WhatsApp hesabınızla çalışır. Ayrı iş hesabı gerekmez."
-          },
-          {
-            "question": "Kurulum ne kadar sürer?",
-            "answer": "Çoğu ekip 5 dakikadan kısa sürede çalışmaya başlar. Sadece bir QR kodu tarayın ve başlayın."
-          },
-          {
-            "question": "Verilerim güvende mi?",
-            "answer": "Evet, banka düzeyinde şifreleme kullanıyoruz ve tamamen KVKK uyumluyuz."
-          }
-        ]
-      },
-      "featuredItems": [
-        {
-          "name": "Takip Gelen Kutusu",
-          "slug": "team-inbox",
-          "description": "Satış ekibi için paylaşılan WhatsApp gelen kutusu otomatik lead yönlendirme ile.",
-          "icon": "team",
-          "color": "blue",
-          "isFeatured": true,
-          "tags": ["İşbirliği", "CRM"]
-        },
-        {
-          "name": "Bulut Yedekleme",
-          "slug": "cloud-backup",
-          "description": "WhatsApp konuşmalarının bulut depolamaya otomatik yedeği.",
-          "icon": "cloud",
-          "color": "cyan",
-          "isFeatured": true,
-          "tags": ["Yedekleme", "Güvenlik"]
-        },
-        {
-          "name": "Hızlı Yanıt",
-          "slug": "quick-reply",
-          "description": "Daha hızlı yanıtlar için önceden hazırlanmış mesaj şablonları.",
-          "icon": "zap",
-          "color": "green",
-          "isFeatured": true,
-          "tags": ["Verimlilik", "Otomasyon"]
-        },
-        {
-          "name": "Revenue Inbox",
-          "slug": "revenue-inbox",
-          "description": "Yüksek değerli konuşmaları önceliklendiren AI destekli WhatsApp gelen kutusu.",
-          "icon": "revenue",
-          "color": "purple",
-          "isFeatured": true,
-          "tags": ["AI", "Satış"]
-        },
-        {
-          "name": "WhatsApp API",
-          "slug": "whatsapp-api",
-          "description": "Ölçekleme için kurumsal WhatsApp Business API çözümleri.",
-          "icon": "global",
-          "color": "orange",
-          "isFeatured": false,
-          "tags": ["API", "Kurumsal"]
-        },
-        {
-          "name": "Entegrasyonlar",
-          "slug": "integrations",
-          "description": "HubSpot, Salesforce, Zoho ve daha fazlasıyla WhatsApp'ı bağlayın.",
-          "icon": "link",
-          "color": "indigo",
-          "isFeatured": true,
-          "tags": ["CRM", "Otomasyon"]
-        }
-      ],
-      "integrationsList": {
-        "headline": "Favori Araçlarınızla Bağlayın",
-        "description": "10+ CRM ve iş platformu ile kusursuz entegrasyonlar."
-      },
-      "integrationsCta": {
-        "badge": "Entegre Olmaya Hazır mısınız?",
-        "headline": "İş Akışınızı",
-        "headlineHighlight": "Güçlendirin",
-        "description": "Mevcut araçlarınızla WhatsApp'ı dakikalar içinde bağlayın.",
-        "primaryCta": "Entegrasyonları Keşfedin",
-        "secondaryCta": "Satışla Konuşun"
-      },
-      "pricing": {
-        "badge": "Basit Fiyatlandırma",
-        "headline": "Ücretsiz Başlayın,",
-        "headlineHighlight": "Uygun Fiyatla Ölçeklenin",
-        "description": "Gizli ücretler yok. Kredi kartı gerekmez. İstediği zaman iptal edin.",
-        "primaryCta": "Ücretsiz Deneyin",
-        "secondaryCta": "Tüm Planları Görün"
-      },
-      "cta": {
-        "badge": "Başlamaya Hazır mısınız?",
-        "headline": "50.000+ Ekibe Katılın",
-        "headlineHighlight": "WhatsApp'ta Kazanın",
-        "description": "Bugün ücretsiz denemenizi başlatın. Kredi kartı gerekmez.",
-        "primaryCta": "Ücretsiz Yükleyin",
-        "secondaryCta": "Demo Rezervasyonu Yap",
-        "footnote": "14 günlük ücretsiz deneme • Kredi kartı gerekmez"
-      }
-    },
-    "features": {
-      "hero": {
-        "badge": "Platform Özellikleri",
-        "headline": "WhatsApp'ta Kazanmak İçin",
-        "headlineHighlight": "İhtiyacınız Olan Her Şey",
-        "description": "WhatsApp'ı en güçlü satış kanalınıza dönüştürmek için eksiksiz bir araç seti.",
-        "primaryCta": "Ücretsiz Yükle",
-        "secondaryCta": "Demo Rezervasyonu Yap"
-      },
       "featuredItems": [
         {
           "name": "Takip Gelen Kutusu",
@@ -1622,7 +1447,10 @@
           "icon": "Users",
           "color": "#3b82f6",
           "isFeatured": true,
-          "tags": ["İşbirliği", "Popüler"]
+          "tags": [
+            "İşbirliği",
+            "Popüler"
+          ]
         },
         {
           "name": "Bulut Yedekleme",
@@ -1631,7 +1459,10 @@
           "icon": "Cloud",
           "color": "#06b6d4",
           "isFeatured": true,
-          "tags": ["Güvenlik", "Essential"]
+          "tags": [
+            "Güvenlik",
+            "Essential"
+          ]
         },
         {
           "name": "Hızlı Yanıt",
@@ -1640,7 +1471,9 @@
           "icon": "MessageSquare",
           "color": "#8b5cf6",
           "isFeatured": true,
-          "tags": ["Üretkenlik"]
+          "tags": [
+            "Üretkenlik"
+          ]
         },
         {
           "name": "Mesaj Planlayıcı",
@@ -1649,7 +1482,9 @@
           "icon": "Calendar",
           "color": "#ec4899",
           "isFeatured": false,
-          "tags": ["Otomasyon"]
+          "tags": [
+            "Otomasyon"
+          ]
         },
         {
           "name": "Etiketler ve Huniler",
@@ -1658,7 +1493,9 @@
           "icon": "Tag",
           "color": "#f59e0b",
           "isFeatured": false,
-          "tags": ["CRM"]
+          "tags": [
+            "CRM"
+          ]
         },
         {
           "name": "Notlar ve Hatırlatıcılar",
@@ -1667,7 +1504,9 @@
           "icon": "StickyNote",
           "color": "#10b981",
           "isFeatured": false,
-          "tags": ["Üretkenlik"]
+          "tags": [
+            "Üretkenlik"
+          ]
         },
         {
           "name": "Veri Dışa Aktarma",
@@ -1676,7 +1515,9 @@
           "icon": "Download",
           "color": "#6366f1",
           "isFeatured": false,
-          "tags": ["Analiz"]
+          "tags": [
+            "Analiz"
+          ]
         },
         {
           "name": "Birlikte Yaşam Modu",
@@ -1685,7 +1526,10 @@
           "icon": "RefreshCw",
           "color": "#14b8a6",
           "isFeatured": false,
-          "tags": ["API", "Gelişmiş"]
+          "tags": [
+            "API",
+            "Gelişmiş"
+          ]
         }
       ],
       "pricing": {
@@ -1951,7 +1795,8 @@
       "feature2": "WhatsApp Business API",
       "feature3": "Mevcut sohbet geçmişini koru",
       "feature4": "Kişisel WhatsApp numaralarını takip et",
-      "feature5": "30 dakikada hazır"
+      "feature5": "30 dakikada hazır",
+      "headline": "Zaten kullandığınız WhatsApp ile çalışır"
     },
     "faq": {
       "badge": "SSS",

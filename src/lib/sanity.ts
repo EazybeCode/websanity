@@ -15,7 +15,7 @@ export const sanityClient = {
   ...rawClient,
   fetch: async <T = any>(query: string, params?: Record<string, any>): Promise<T | null> => {
     try {
-      return await rawClient.fetch<T>(query, params)
+      return await rawClient.fetch<T>(query, params as any)
     } catch (error) {
       console.warn('Sanity fetch failed:', (error as Error).message)
       return null
