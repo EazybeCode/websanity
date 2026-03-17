@@ -326,7 +326,10 @@
   },
   "home": {
     "clientLogos": {
-      "trustedBy": "Trusted by Sales Teams at"
+      "trustedBadge": "Trusted Worldwide",
+      "trustedBy": "Trusted by Sales Teams at",
+      "salesTeams": "Sales Teams",
+      "subtitle": "From startups to enterprises, teams rely on EazyBe to never miss a WhatsApp conversation"
     },
     "heroVisual": {
       "whatsapp": "WhatsApp",
@@ -339,7 +342,19 @@
       "alertMessage": "Lead mentioned <bold>pricing</bold> but hasn't received a reply in 2 hours.",
       "createTask": "Create Task: Send Pricing",
       "chatMessage1": "Can you send over the Enterprise pricing? We're looking to close this week.",
-      "chatMessage2": "Absolutely! Sending the PDF now. Let's schedule a call for Friday?"
+      "chatMessage2": "Absolutely! Sending the PDF now. Let's schedule a call for Friday?",
+      "msg1": "Deal closed! 🎉",
+      "msg2": "Send pricing?",
+      "msg3": "Meeting Friday",
+      "syncingToCrm": "SYNCING TO CRM",
+      "revenueDashboard": "Revenue Dashboard",
+      "live": "Live",
+      "responseRate": "Response Rate",
+      "dealsClosed": "Deals Closed",
+      "revenue": "Revenue",
+      "dealMoved": "Deal moved to Negotiation",
+      "newMessageSynced": "New message synced",
+      "twoMinAgo": "2m ago"
     },
     "comparison": {
       "personalWhatsApp": "Personal WhatsApp",

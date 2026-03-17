@@ -327,7 +327,10 @@
   },
   "home": {
     "clientLogos": {
-      "trustedBy": "Satış Ekiplerinin Güvendiği"
+      "trustedBadge": "Dünya Çapında Güvenilir",
+      "trustedBy": "Satış Ekiplerinin Güvendiği",
+      "salesTeams": "Satış Ekipleri",
+      "subtitle": "Startup'lardan büyük şirketlere, ekipler hiçbir WhatsApp konuşmasını kaçırmamak için EazyBe'ye güveniyor"
     },
     "heroVisual": {
       "whatsapp": "WhatsApp",
@@ -340,7 +343,19 @@
       "alertMessage": "Lead <bold>fiyat</bold> belirtti ama 2 saattir yanıt almadı.",
       "createTask": "Görev Oluştur: Fiyat Gönder",
       "chatMessage1": "Enterprise fiyatını gönderebilir misiniz? Bu hafta kapatmak istiyoruz.",
-      "chatMessage2": "Tabii! PDF'i şimdi gönderiyorum. Cuma için bir görüşme ayarlayalım mı?"
+      "chatMessage2": "Tabii! PDF'i şimdi gönderiyorum. Cuma için bir görüşme ayarlayalım mı?",
+      "msg1": "Anlaşma kapandı! 🎉",
+      "msg2": "Fiyat gönder?",
+      "msg3": "Cuma toplantı",
+      "syncingToCrm": "CRM'E SENKRONİZE EDİLİYOR",
+      "revenueDashboard": "Gelir Paneli",
+      "live": "Canlı",
+      "responseRate": "Yanıt Oranı",
+      "dealsClosed": "Kapanan Anlaşmalar",
+      "revenue": "Gelir",
+      "dealMoved": "Anlaşma Müzakereye taşındı",
+      "newMessageSynced": "Yeni mesaj senkronize edildi",
+      "twoMinAgo": "2dk önce"
     },
     "comparison": {
       "personalWhatsApp": "Kişisel WhatsApp",
