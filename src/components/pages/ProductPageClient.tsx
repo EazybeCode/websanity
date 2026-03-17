@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import {
   Check,
   X,
@@ -94,7 +95,7 @@ const crmConfig: Record<string, {
   },
   webhooks: {
     name: 'Webhooks',
-    logo: 'https://cdn.simpleicons.org/webhook/6B7280',
+    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://webhook.site&size=256',
     color: '#6B7280',
     gradient: 'from-[#6B7280] to-[#4B5563]',
     partnerText: 'Custom Integration',
@@ -319,7 +320,7 @@ const PropertyCard: React.FC<{ field: { label: string; type: string; value: stri
 
 // ─── Hero Section ────────────────────────────────────────────────────────────
 
-const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; crmSlug: string }> = ({ crm, crmColor, crmSlug }) => {
+const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; crmSlug: string; t: (key: string, values?: Record<string, string>) => string }> = ({ crm, crmColor, crmSlug, t }) => {
   const { openModal } = useTrialModal()
 
   return (
@@ -331,27 +332,27 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; c
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="max-w-3xl">
             <div className="flex gap-3 mb-8">
-              <SectionKicker label="WhatsApp Integration" variant="cyan" className="mb-0" />
-              <SectionKicker label={`${crm.name} Certified`} variant="orange" className="mb-0" />
+              <SectionKicker label={t('integrations.badges.whatsappIntegration')} variant="cyan" className="mb-0" />
+              <SectionKicker label={`${crm.name} ${t('integrations.badges.certified')}`} variant="orange" className="mb-0" />
             </div>
 
             <h1 className="text-5xl lg:text-7xl font-sans font-extrabold tracking-tight text-white leading-[1.05] mb-6">
-              Connect Your <br />
+              {t('integrations.hero.headlinePrefix')} <br />
               <span className="inline-flex items-baseline gap-3" style={{ color: crmColor }}>
                 {crm.name}
               </span> <br />
-              With WhatsApp
+              {t('integrations.hero.headlineSuffix')}
             </h1>
 
             <p className="text-lg text-slate-400 leading-relaxed mb-8 max-w-xl">
-              Sync WhatsApp conversations with {crm.name} in real-time. Auto-log chats, update deals, and never miss a follow-up.
+              {t('integrations.hero.description', { crmName: crm.name })}
             </p>
 
             <div className="space-y-4 mb-10">
               {[
-                'Auto-sync WhatsApp chats to CRM contacts',
-                'Update deals & pipelines from conversations',
-                'Team inbox with CRM context sidebar'
+                t('integrations.hero.feature1'),
+                t('integrations.hero.feature2'),
+                t('integrations.hero.feature3')
               ].map((item, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <CheckCircle2 className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
@@ -367,10 +368,10 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; c
                 style={{ backgroundColor: crmColor, borderColor: crmColor }}
                 onClick={() => openModal('trial')}
               >
-                Start Free Trial
+                {t('integrations.hero.startTrial')}
               </Button>
               <Button variant="outline" className="h-14 px-8 text-base" onClick={() => openModal('demo')}>
-                Book a Demo
+                {t('integrations.hero.bookDemo')}
               </Button>
             </div>
 
@@ -381,7 +382,7 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; c
                 </div>
                 <div className="flex flex-col">
                   <span className="text-white font-bold text-sm">Meta</span>
-                  <span className="text-slate-400 text-xs">Business Partner</span>
+                  <span className="text-slate-400 text-xs">{t('integrations.hero.metaPartner')}</span>
                 </div>
               </div>
               <div className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
@@ -390,7 +391,7 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; c
                 </div>
                 <div className="flex flex-col">
                   <span className="text-white font-bold text-sm">{crm.name}</span>
-                  <span className="text-slate-400 text-xs">App Partner</span>
+                  <span className="text-slate-400 text-xs">{t('integrations.hero.appPartner')}</span>
                 </div>
               </div>
             </div>
@@ -440,26 +441,26 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; c
 
 // ─── Feature Comparison Section ──────────────────────────────────────────────
 
-const FeatureComparisonSection: React.FC = () => {
+const FeatureComparisonSection: React.FC<{ t: (key: string, values?: Record<string, string>) => string }> = ({ t }) => {
   return (
     <section className="py-24 bg-slate-950 relative border-t border-slate-800/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 mb-16">
           <div>
-            <SectionKicker label="Why Eazybe" variant="cyan" />
+            <SectionKicker label={t('integrations.comparison.badge')} variant="cyan" />
             <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-6">
-              Works With All <br />
-              WhatsApp Types. <span className="text-cyan-500">Zero API Cost.</span>
+              {t('integrations.comparison.headline1')} <br />
+              {t('integrations.comparison.headline2')} <span className="text-cyan-500">{t('integrations.comparison.headline3')}</span>
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed">
-              Unlike other tools that only work with expensive WhatsApp API, Eazybe works with Personal WhatsApp, Business App, and API.
+              {t('integrations.comparison.description')}
             </p>
           </div>
           <div className="grid grid-cols-3 gap-4">
             {[
-              { label: 'Personal WhatsApp', badge: null },
-              { label: 'Business App', badge: 'B' },
-              { label: 'Business API', badge: <Cloud size={10} /> }
+              { label: t('integrations.comparison.personalWhatsApp'), badge: null },
+              { label: t('integrations.comparison.businessApp'), badge: 'B' },
+              { label: t('integrations.comparison.businessApi'), badge: <Cloud size={10} /> }
             ].map((item, idx) => (
               <div key={idx} className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:border-slate-500/30 transition-colors min-h-[140px]">
                 <div className="w-14 h-14 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center mb-4 relative">
@@ -478,16 +479,16 @@ const FeatureComparisonSection: React.FC = () => {
 
         <div className="bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl">
           <div className="grid grid-cols-4 bg-slate-800 p-6 border-b border-slate-700">
-            <div className="col-span-2 font-mono text-sm font-bold text-slate-400 uppercase tracking-wider">Capability</div>
-            <div className="text-center font-mono text-sm font-bold text-slate-500 uppercase tracking-wider">Other Tools</div>
+            <div className="col-span-2 font-mono text-sm font-bold text-slate-400 uppercase tracking-wider">{t('integrations.comparison.capability')}</div>
+            <div className="text-center font-mono text-sm font-bold text-slate-500 uppercase tracking-wider">{t('integrations.comparison.otherTools')}</div>
             <div className="text-center font-mono text-sm font-bold text-cyan-500 uppercase tracking-wider">Eazybe</div>
           </div>
           {[
-            { name: 'Works with Personal WhatsApp', other: false, eazybe: true },
-            { name: 'Auto-sync chats to CRM', other: true, eazybe: true },
-            { name: 'No WhatsApp API cost', other: false, eazybe: true },
-            { name: 'Team inbox with CRM sidebar', other: false, eazybe: true },
-            { name: 'AI-powered chat analysis', other: false, eazybe: true },
+            { name: t('integrations.comparison.feature1'), other: false, eazybe: true },
+            { name: t('integrations.comparison.feature2'), other: true, eazybe: true },
+            { name: t('integrations.comparison.feature3'), other: false, eazybe: true },
+            { name: t('integrations.comparison.feature4'), other: false, eazybe: true },
+            { name: t('integrations.comparison.feature5'), other: false, eazybe: true },
           ].map((row, idx) => (
             <div key={idx} className="grid grid-cols-4 p-6 border-b border-slate-700/50 hover:bg-slate-800/50 transition-colors">
               <div className="col-span-2 font-medium text-slate-200">{row.name}</div>
@@ -509,7 +510,7 @@ const FeatureComparisonSection: React.FC = () => {
 
 // ─── Mini CRM Section ────────────────────────────────────────────────────────
 
-const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; crmSlug: string }> = ({ crm, crmColor, crmSlug }) => {
+const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; crmSlug: string; t: (key: string, values?: Record<string, string>) => string }> = ({ crm, crmColor, crmSlug, t }) => {
   const activeContact = { name: 'Sarah Chen', avatar: 'https://i.pravatar.cc/100?u=sarah' }
   const messages = [
     { from: 'contact', text: 'Hi! Following up on the enterprise quote.', time: '10:02 AM' },
@@ -528,23 +529,23 @@ const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-10 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionKicker label="Live CRM Sidebar" className="mx-auto" />
+          <SectionKicker label={t('integrations.miniCrm.badge')} className="mx-auto" />
           <h2 className="text-4xl lg:text-5xl font-sans font-bold text-white tracking-tight mb-6">
-            {crm.name} Panel Inside <br />
+            {crm.name} {t('integrations.miniCrm.headline')} <br />
             <span className="text-cyan-500">WhatsApp Web</span>
           </h2>
           <p className="text-lg text-slate-400 leading-relaxed mb-8">
-            See {crm.name} contact details, deals, and history right next to your WhatsApp conversations.
+            {t('integrations.miniCrm.description', { crmName: crm.name })}
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-slate-300">
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-              <Users size={16} className="text-blue-500" /> Instant Context
+              <Users size={16} className="text-blue-500" /> {t('integrations.miniCrm.instantContext')}
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-              <TrendingUp size={16} className="text-emerald-500" /> Pipeline Management
+              <TrendingUp size={16} className="text-emerald-500" /> {t('integrations.miniCrm.pipelineManagement')}
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-              <CheckSquare size={16} className="text-orange-500" /> Quick Actions
+              <CheckSquare size={16} className="text-orange-500" /> {t('integrations.miniCrm.quickActions')}
             </div>
           </div>
         </div>
@@ -641,7 +642,7 @@ const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string
 
 // ─── Properties Section ──────────────────────────────────────────────────────
 
-const PropertiesSection: React.FC<{ crm: typeof crmConfig.hubspot; crmSlug: string }> = ({ crm, crmSlug }) => {
+const PropertiesSection: React.FC<{ crm: typeof crmConfig.hubspot; crmSlug: string; t: (key: string, values?: Record<string, string>) => string }> = ({ crm, crmSlug, t }) => {
   const propertyFields = CRM_PROPERTY_FIELDS[crmSlug] || CRM_PROPERTY_FIELDS.hubspot
 
   return (
@@ -649,13 +650,13 @@ const PropertiesSection: React.FC<{ crm: typeof crmConfig.hubspot; crmSlug: stri
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-50 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionKicker label="Live Data Sync" className="mx-auto" />
+          <SectionKicker label={t('integrations.properties.badge')} className="mx-auto" />
           <h2 className="text-4xl font-sans font-bold text-white tracking-tight leading-tight mb-4">
-            Real-Time WhatsApp <br />
-            <span className="text-cyan-500">Properties in {crm.name}</span>
+            {t('integrations.properties.headline1')} <br />
+            <span className="text-cyan-500">{t('integrations.properties.headline2')}</span>
           </h2>
           <p className="text-lg text-slate-400">
-            Every WhatsApp interaction creates rich, queryable {crm.name} properties automatically.
+            {t('integrations.properties.description', { crmName: crm.name })}
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -757,15 +758,16 @@ interface ProductPageClientProps {
 }
 
 export default function ProductPageClient({ product, crmSlug }: ProductPageClientProps) {
+  const t = useTranslations()
   const crm = crmConfig[crmSlug] || crmConfig.hubspot
   const crmColor = crm.color
 
   return (
     <main>
-      <HeroSection crm={crm} crmColor={crmColor} crmSlug={crmSlug} />
-      <FeatureComparisonSection />
-      <MiniCRMSection crm={crm} crmColor={crmColor} crmSlug={crmSlug} />
-      <PropertiesSection crm={crm} crmSlug={crmSlug} />
+      <HeroSection crm={crm} crmColor={crmColor} crmSlug={crmSlug} t={t} />
+      <FeatureComparisonSection t={t} />
+      <MiniCRMSection crm={crm} crmColor={crmColor} crmSlug={crmSlug} t={t} />
+      <PropertiesSection crm={crm} crmSlug={crmSlug} t={t} />
 
       {/* Sanity-driven sections */}
       {product?.benefits && (

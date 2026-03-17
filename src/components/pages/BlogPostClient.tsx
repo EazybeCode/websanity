@@ -21,6 +21,12 @@ import {
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import Link from 'next/link'
 import { SectionBadge } from '@/components/ui/SectionBadge'
+import { AccordionBlock } from '@/components/blog/AccordionBlock'
+import { ButtonCTABlock } from '@/components/blog/ButtonCTABlock'
+import { CalloutBlock } from '@/components/blog/CalloutBlock'
+import { QuoteBlock } from '@/components/blog/QuoteBlock'
+import { TableBlock } from '@/components/blog/TableBlock'
+import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -390,6 +396,31 @@ const createPortableTextComponents = (
             </div>
           </div>
         )
+      },
+      // ─── Custom Blog Block Components ────────────────────────────────
+      accordion: ({ value }: any) => {
+        if (!value) return null
+        return <AccordionBlock data={value} />
+      },
+      buttonCTA: ({ value }: any) => {
+        if (!value) return null
+        return <ButtonCTABlock data={value} />
+      },
+      callout: ({ value }: any) => {
+        if (!value) return null
+        return <CalloutBlock data={value} />
+      },
+      quote: ({ value }: any) => {
+        if (!value) return null
+        return <QuoteBlock data={value} />
+      },
+      table: ({ value }: any) => {
+        if (!value) return null
+        return <TableBlock data={value} />
+      },
+      videoEmbed: ({ value }: any) => {
+        if (!value) return null
+        return <VideoEmbedBlock data={value} />
       },
     },
   }

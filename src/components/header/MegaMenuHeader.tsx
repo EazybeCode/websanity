@@ -353,9 +353,9 @@ export const MegaMenuHeader: React.FC = () => {
 
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center">
-            {navigation.items.map((item) => (
+            {navigation.items.map((item, idx) => (
               <NavItemWithDropdown
-                key={item._key}
+                key={`${item._key}-${idx}`}
                 item={item}
                 isActive={activeDropdown === item._key}
                 onMouseEnter={() => handleMouseEnter(item._key)}

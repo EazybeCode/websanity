@@ -9,9 +9,54 @@ import {
   Check,
   AlertTriangle
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { SectionBadge } from '@/components/ui/SectionBadge'
 import { useTrialModal } from '@/providers/TrialModalProvider'
 import { urlFor } from '@/lib/sanity'
+
+// ─── Animation Imports ──────────────────────────────────────────────────────
+import LabelAnimation from '@/components/animations/LabelAnimation'
+import UnifiedDashboardAnimation from '@/components/animations/UnifiedDashboardAnimation'
+import RoutingAnimation from '@/components/animations/RoutingAnimation'
+import RepetitiveAnimation from '@/components/animations/RepetitiveAnimation'
+import PersonalizationAnimation from '@/components/animations/PersonalizationAnimation'
+import TeamAnimation from '@/components/animations/TeamAnimation'
+import FollowUpAnimation from '@/components/animations/FollowUpAnimation'
+import ScheduleAnimation from '@/components/animations/ScheduleAnimation'
+import PersistenceAnimation from '@/components/animations/PersistenceAnimation'
+import ActivityGrid from '@/components/animations/ActivityGrid'
+import DashboardConsole from '@/components/animations/DashboardConsole'
+import SkillGapAnalysis from '@/components/animations/SkillGapAnalysis'
+import { CopilotProblemAnimation, CopilotSolutionAnimation, CopilotSummaryAnimation } from '@/components/animations/WhatsAppCopilotMockup'
+import CloudBackupProblemAnimation from '@/components/animations/CloudBackupProblemAnimation'
+import CloudBackupSyncAnimation from '@/components/animations/CloudBackupSyncAnimation'
+import CloudBackupSearchAnimation from '@/components/animations/CloudBackupSearchAnimation'
+import WhatsAppCRMChaosAnimation from '@/components/animations/WhatsAppCRMChaosAnimation'
+import WhatsAppCRMLabelAnimation from '@/components/animations/WhatsAppCRMLabelAnimation'
+import WhatsAppCRMSyncAnimation from '@/components/animations/WhatsAppCRMSyncAnimation'
+import RevenueInboxComparisonAnimation from '@/components/animations/RevenueInboxComparisonAnimation'
+import RevenueInboxScoringAnimation from '@/components/animations/RevenueInboxScoringAnimation'
+import RevenueInboxAlertsAnimation from '@/components/animations/RevenueInboxAlertsAnimation'
+import TemplatesProblemAnimation from '@/components/animations/TemplatesProblemAnimation'
+import TemplatesSolutionAnimation from '@/components/animations/TemplatesSolutionAnimation'
+import TemplatesAutomationAnimation from '@/components/animations/TemplatesAutomationAnimation'
+import BroadcastProblemAnimation from '@/components/animations/BroadcastProblemAnimation'
+import BroadcastSolutionAnimation from '@/components/animations/BroadcastSolutionAnimation'
+import BroadcastAutomationAnimation from '@/components/animations/BroadcastAutomationAnimation'
+
+// ─── Animation Mappings (slug → ordered animation components) ───────────────
+const animationMap: Record<string, Record<number, React.FC>> = {
+  'team-inbox': { 0: LabelAnimation, 1: UnifiedDashboardAnimation, 2: RoutingAnimation },
+  'quick-reply': { 0: RepetitiveAnimation, 1: PersonalizationAnimation, 2: TeamAnimation },
+  'scheduler': { 0: FollowUpAnimation, 1: ScheduleAnimation, 2: PersistenceAnimation },
+  'rep-radar': { 0: ActivityGrid, 1: DashboardConsole, 2: SkillGapAnalysis },
+  'whatsapp-copilot': { 0: CopilotProblemAnimation, 1: CopilotSolutionAnimation, 2: CopilotSummaryAnimation },
+  'cloud-backup': { 0: CloudBackupProblemAnimation, 1: CloudBackupSyncAnimation, 2: CloudBackupSearchAnimation },
+  'whatsapp-crm': { 0: WhatsAppCRMChaosAnimation, 1: WhatsAppCRMLabelAnimation, 2: WhatsAppCRMSyncAnimation },
+  'revenue-inbox': { 0: RevenueInboxComparisonAnimation, 1: RevenueInboxScoringAnimation, 2: RevenueInboxAlertsAnimation },
+  'templates': { 0: TemplatesProblemAnimation, 1: TemplatesSolutionAnimation, 2: TemplatesAutomationAnimation },
+  'broadcast': { 0: BroadcastProblemAnimation, 1: BroadcastSolutionAnimation, 2: BroadcastAutomationAnimation },
+}
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -156,11 +201,14 @@ const BenefitsSection: React.FC<{ data: any }> = ({ data }) => {
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
 
+  const slugAnimations = animationMap[slug]
+
   return (
     <div id="features">
       {features.map((feature, idx) => {
         const isEven = idx % 2 === 0
         const alignRight = idx % 2 === 1
+        const AnimationComponent = slugAnimations?.[idx] || null
 
         return (
           <section
@@ -212,7 +260,11 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
                 <div className="flex-1 w-full relative">
                   <div className="aspect-[4/3] bg-brand-card rounded-2xl border border-slate-700 shadow-card p-2 flex items-center justify-center relative overflow-hidden group hover:shadow-card-hover hover:border-slate-600 transition-all duration-500">
                     <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
-                    {feature.image && typeof feature.image === 'object' && feature.image.asset ? (
+                    {AnimationComponent ? (
+                      <div className="w-full h-full flex items-center justify-center z-10 p-4">
+                        <AnimationComponent />
+                      </div>
+                    ) : feature.image && typeof feature.image === 'object' && feature.image.asset ? (
                       <img
                         src={urlFor(feature.image).width(800).height(600).url()}
                         alt={feature.headline || feature.badge || 'Feature illustration'}
@@ -411,6 +463,63 @@ const CTASection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
+// ─── Translation Fallback ────────────────────────────────────────────────────
+
+const featureKeyMap: Record<string, string> = {
+  'cloud-backup': 'cloudBackup',
+  'team-inbox': 'teamInbox',
+  'whatsapp-crm': 'whatsappCrm',
+  'quick-reply': 'quickReply',
+  'scheduler': 'scheduler',
+  'revenue-inbox': 'revenueInbox',
+  'rep-radar': 'repRadar',
+  'whatsapp-copilot': 'whatsappCopilot',
+  'whatsapp-api': 'whatsappApi',
+  'coexistence': 'coexistence',
+  'templates': 'templates',
+  'broadcast': 'broadcast',
+}
+
+function getTranslatedFallbackData(slug: string, t: ReturnType<typeof useTranslations>) {
+  const featureKey = featureKeyMap[slug]
+  if (!featureKey) return null
+
+  try {
+    const heroData = t.raw(`features.${featureKey}.hero`)
+    if (typeof heroData === 'string' || !heroData) return null
+
+    return {
+      hero: {
+        badge: t(`features.${featureKey}.hero.badge`),
+        headline: t(`features.${featureKey}.hero.headline`),
+        headlineHighlight: t(`features.${featureKey}.hero.headlineHighlight`),
+        description: t(`features.${featureKey}.hero.description`),
+        primaryCta: { label: t(`features.${featureKey}.hero.primaryCta`), url: '#' },
+        secondaryCta: { label: t(`features.${featureKey}.hero.secondaryCta`), url: '#' },
+      },
+      benefits: {
+        badge: t(`features.${featureKey}.benefits.badge`),
+        headline: t(`features.${featureKey}.benefits.headline`),
+        items: t.raw(`features.${featureKey}.benefits.items`) || [],
+      },
+      features: (t.raw(`features.${featureKey}.sections`) || []).map((section: any, idx: number) => ({
+        badge: section.badge,
+        headline: section.headline,
+        description: section.description,
+        points: section.points || [],
+        _key: `section-${idx}`,
+      })),
+      faq: {
+        badge: t(`features.${featureKey}.faq.badge`),
+        headline: t(`features.${featureKey}.faq.headline`),
+        items: t.raw(`features.${featureKey}.faq.items`) || [],
+      },
+    }
+  } catch {
+    return null
+  }
+}
+
 // ─── Main FeaturePageClient ──────────────────────────────────────────────────
 
 interface FeaturePageClientProps {
@@ -419,16 +528,22 @@ interface FeaturePageClientProps {
 }
 
 export default function FeaturePageClient({ feature, slug }: FeaturePageClientProps) {
+  const t = useTranslations()
+  const translatedData = getTranslatedFallbackData(slug, t)
+  const data = feature || translatedData
+
+  if (!data) return null
+
   return (
     <main>
-      <HeroSection data={feature?.hero} />
-      <BenefitsSection data={feature?.benefits} />
-      <FeaturesSection features={feature?.features} slug={slug} />
-      <HowItWorksSection data={feature?.howItWorks} />
-      <UseCasesSection data={feature?.useCases} />
-      {feature?.testimonial && <TestimonialSection data={feature.testimonial} />}
-      <FAQSection data={feature?.faq} />
-      {feature?.cta && <CTASection data={feature.cta} />}
+      <HeroSection data={data?.hero} />
+      <BenefitsSection data={data?.benefits} />
+      <FeaturesSection features={data?.features} slug={slug} />
+      <HowItWorksSection data={data?.howItWorks} />
+      <UseCasesSection data={data?.useCases} />
+      {data?.testimonial && <TestimonialSection data={data.testimonial} />}
+      <FAQSection data={data?.faq} />
+      {data?.cta && <CTASection data={data.cta} />}
     </main>
   )
 }

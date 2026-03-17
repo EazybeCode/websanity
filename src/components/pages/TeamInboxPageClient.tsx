@@ -12,6 +12,9 @@ import {
   ChevronDown,
 } from 'lucide-react'
 import { useTrialModal } from '@/providers/TrialModalProvider'
+import LabelAnimation from '@/components/animations/LabelAnimation'
+import UnifiedDashboardAnimation from '@/components/animations/UnifiedDashboardAnimation'
+import RoutingAnimation from '@/components/animations/RoutingAnimation'
 
 // Helper Components
 const LayoutDashboardIcon = () => (
@@ -141,9 +144,7 @@ export function TeamInboxPageClient() {
               Get visibility <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
-          <div className="aspect-[4/3] bg-slate-800/50 rounded-2xl border border-slate-700 flex items-center justify-center">
-            <p className="text-slate-500 text-sm font-mono">Label Animation</p>
-          </div>
+          <LabelAnimation />
         </div>
       </section>
 
@@ -152,9 +153,7 @@ export function TeamInboxPageClient() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 via-transparent to-transparent opacity-30 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
-            <div className="aspect-[4/3] bg-slate-800/50 rounded-2xl border border-slate-700 flex items-center justify-center">
-              <p className="text-slate-500 text-sm font-mono">Unified Dashboard Animation</p>
-            </div>
+            <UnifiedDashboardAnimation />
           </div>
           <div className="order-1 lg:order-2">
             <SectionKicker label="Unified View" color="cyan" />
@@ -216,9 +215,7 @@ export function TeamInboxPageClient() {
               Configure routing <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
-          <div className="aspect-[4/3] bg-slate-800/50 rounded-2xl border border-slate-700 flex items-center justify-center">
-            <p className="text-slate-500 text-sm font-mono">Routing Animation</p>
-          </div>
+          <RoutingAnimation />
         </div>
       </section>
 

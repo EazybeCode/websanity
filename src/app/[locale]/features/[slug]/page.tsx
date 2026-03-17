@@ -47,9 +47,6 @@ export default async function FeatureDetailPage({
   const language = sanityLangMap[locale] || 'en'
   const feature = await getFeature(slug, language)
 
-  if (!feature) {
-    notFound()
-  }
-
+  // feature can be null — FeaturePageClient will use translation JSON fallback
   return <FeaturePageClient feature={feature} slug={slug} />
 }

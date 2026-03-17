@@ -1,5 +1,6 @@
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
+import { redirectRules } from "./src/lib/redirects"
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
 
@@ -64,6 +65,14 @@ const nextConfig: NextConfig = {
       // Locale-prefixed old integration redirects
       { source: "/:locale/integrations/google-sheet", destination: "/:locale/google-sheets-whatsapp-integration", permanent: true },
       { source: "/:locale/integrations/fresh-desk", destination: "/:locale/freshdesk-whatsapp-integration", permanent: true },
+      // Old OAuth/CRM integration pages → redirect to integration pages
+      { source: "/integrate-hubspot-crm", destination: "/hubspot-whatsapp-integration", permanent: true },
+      { source: "/integrate-zoho-crm", destination: "/zoho-whatsapp-integration", permanent: true },
+      { source: "/integrate-salesforce-crm", destination: "/salesforce-whatsapp-integration", permanent: true },
+      { source: "/integrate-bitrix-crm", destination: "/bitrix24-whatsapp-integration", permanent: true },
+      // Old blog redesign routes → main blog
+      { source: "/blog-new", destination: "/blog", permanent: true },
+      { source: "/blog-new/:slug", destination: "/blog/:slug", permanent: true },
       // Old misc redirects
       { source: "/search", destination: "/", permanent: true },
       { source: "/lp/hubspot-demo", destination: "/", permanent: true },
@@ -85,6 +94,8 @@ const nextConfig: NextConfig = {
       { source: "/tr/blog/use-these-7-proven-strategies-to-grow-your-business", destination: "/tr/blog", permanent: true },
       { source: "/tr/blog/essential-glossary-of-artificial-intelligence-ai-terms", destination: "/tr/blog", permanent: true },
       { source: "/tr/blog/whatsapp-companion-mode-how-to-use-whatsapp-on-two-phones", destination: "/tr/blog", permanent: true },
+      // Migrated redirects from old React site
+      ...redirectRules,
     ]
   },
 }

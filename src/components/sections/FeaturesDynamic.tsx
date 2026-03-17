@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/Button'
 import { SectionBadge } from '@/components/ui/SectionBadge'
 import { Check, ArrowRight } from 'lucide-react'
 import type { FeatureSection } from '@/types/sanity'
-// NOTE: These animation components need to be migrated to @/components/animations/
 import HomeSyncAnimation from '@/components/animations/HomeSyncAnimation'
 import HomeMiniCRMAnimation from '@/components/animations/HomeMiniCRMAnimation'
 import HomeWorkflowAnimation from '@/components/animations/HomeWorkflowAnimation'

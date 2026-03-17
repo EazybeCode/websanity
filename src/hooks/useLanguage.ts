@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react'
 import { useLocale } from 'next-intl'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter, usePathname } from '@/i18n/navigation'
 
 export type SupportedLanguage = 'en' | 'br' | 'es' | 'tr'
 
@@ -47,9 +47,7 @@ export function useLanguage() {
 
   const changeLanguage = useCallback(
     (lang: SupportedLanguage) => {
-      const currentPath = removeLanguagePrefix(pathname)
-      const newPath = addLanguagePrefix(currentPath, lang)
-      router.push(newPath)
+      router.replace(pathname, { locale: lang })
     },
     [pathname, router]
   )
