@@ -6,6 +6,8 @@ import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
 import MegaMenuHeader from '@/components/header/MegaMenuHeader'
 import ChunkyFooter from '@/components/footer/ChunkyFooter'
+import { LeadSidebar } from '@/components/lead/LeadSidebar'
+import { LeadMobileButton } from '@/components/lead/LeadMobileButton'
 
 const htmlLangMap: Record<string, string> = {
   en: 'en',
@@ -38,6 +40,8 @@ export default async function LocaleLayout({
           <MegaMenuHeader />
           <main>{children}</main>
           <ChunkyFooter />
+          <LeadSidebar />
+          <LeadMobileButton />
         </div>
       </Providers>
       <Analytics />
