@@ -125,12 +125,12 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
 
   // ── Blog posts from Sanity ──────────────────────────────────────────────
   try {
-    const posts: Array<{
+    const posts = await sanityClient.fetch<Array<{
       slug: string
       language: string
       translationGroupId?: string
       _updatedAt: string
-    }> = await sanityClient.fetch(
+    }>>(
       `*[_type == "post"]{
         "slug": slug.current,
         language,
@@ -138,6 +138,8 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
         _updatedAt
       }`
     )
+
+    if (!posts) throw new Error('No posts returned')
 
     // Group by translationGroupId for hreflang
     const groups = new Map<string, typeof posts>()
@@ -173,11 +175,11 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     const sanityLangMap: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }
     const sanityLang = sanityLangMap[lang] || lang
 
-    const pages: Array<{
+    const pages = await sanityClient.fetch<Array<{
       slug: string
       category: string
       _updatedAt: string
-    }> = await sanityClient.fetch(
+    }>>(
       `*[_type == "productPage" && slug.current != "coexistence" && language == $language]{
         "slug": slug.current,
         category,
@@ -185,6 +187,8 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
       }`,
       { language: sanityLang }
     )
+
+    if (!pages) throw new Error('No pages returned')
 
     for (const page of pages) {
       let path = ''
