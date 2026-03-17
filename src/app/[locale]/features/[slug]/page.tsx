@@ -4,6 +4,8 @@ import { setRequestLocale } from 'next-intl/server'
 import { getFeature } from '@/lib/sanity-queries'
 import FeaturePageClient from '@/components/pages/FeaturePageClient'
 
+export const revalidate = 3600
+
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 const sanityLangMap: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }

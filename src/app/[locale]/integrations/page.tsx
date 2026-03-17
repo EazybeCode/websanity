@@ -3,6 +3,8 @@ import { setRequestLocale } from 'next-intl/server'
 import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
 
+export const revalidate = 3600
+
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 const sanityLangMap: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }

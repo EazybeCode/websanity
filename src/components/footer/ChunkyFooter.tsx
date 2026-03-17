@@ -534,7 +534,7 @@ export const ChunkyFooter: React.FC = () => {
 
           <div className={`pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
             <div className={`text-xs text-center md:text-left ${isDark ? 'text-slate-500' : 'text-slate-600'}`}>
-              &copy; {new Date().getFullYear()} {t('footer.copyright')}
+              &copy; 2025 {t('footer.copyright')}
               <span className="hidden md:inline"> &middot; </span>
               <span className="block md:inline mt-1 md:mt-0">
                 8, The Green STE B, Dover Delaware - 19901
