@@ -1,20 +1,36 @@
-# Build stage
-FROM node:22-alpine AS builder
+FROM node:22-alpine AS base
 
+# Install dependencies
+FROM base AS deps
 WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm install
 
-COPY package.json package-lock.json ./
-RUN npm ci
-
+# Build the application
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+ARG SANITY_API_TOKEN
+ENV SANITY_API_TOKEN=$SANITY_API_TOKEN
+
 RUN npm run build
 
-# Production stage
-FROM nginx:alpine
+# Production runner
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=3000
 
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
-EXPOSE 80
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-CMD ["nginx", "-g", "daemon off;"]
+USER nextjs
+EXPOSE 3000
+
+CMD ["node", "server.js"]

@@ -5,6 +5,7 @@ import { redirectRules } from "./src/lib/redirects"
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
   turbopack: {
     root: '.',
   },
