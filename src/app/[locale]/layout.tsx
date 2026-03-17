@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
+import MegaMenuHeader from '@/components/header/MegaMenuHeader'
+import ChunkyFooter from '@/components/footer/ChunkyFooter'
 
 const htmlLangMap: Record<string, string> = {
   en: 'en',
@@ -33,7 +35,9 @@ export default async function LocaleLayout({
     <NextIntlClientProvider messages={messages}>
       <Providers>
         <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
-          {children}
+          <MegaMenuHeader />
+          <main>{children}</main>
+          <ChunkyFooter />
         </div>
       </Providers>
       <Analytics />
