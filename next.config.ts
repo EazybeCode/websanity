@@ -46,6 +46,11 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  async rewrites() {
+    return [
+      { source: '/sitemap-:lang.xml', destination: '/api/sitemap/:lang' },
+    ]
+  },
   async redirects() {
     return [
       // Old product URLs → new format
