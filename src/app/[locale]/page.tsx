@@ -22,7 +22,7 @@ export default async function HomePage({
   setRequestLocale(locale)
 
   // Server-side data fetching — no useEffect, no loading spinner
-  const landingPage = await getLandingPage()
+  const landingPage = await getLandingPage().catch(() => null)
 
   // Get JSON-LD schemas for this locale
   const jsonLdSchemas = getHomepageJsonLd(locale)

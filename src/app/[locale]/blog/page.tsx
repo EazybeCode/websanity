@@ -9,7 +9,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const blogIndex = await getBlogIndex(locale)
+  const blogIndex = await getBlogIndex(locale).catch(() => null)
 
   const seo = blogIndex?.seo
 
@@ -38,8 +38,8 @@ export default async function BlogListingPage({
   setRequestLocale(locale)
 
   const [allPosts, blogIndex] = await Promise.all([
-    getBlogPosts(locale),
-    getBlogIndex(locale),
+    getBlogPosts(locale).catch(() => null),
+    getBlogIndex(locale).catch(() => null),
   ])
 
   return (
