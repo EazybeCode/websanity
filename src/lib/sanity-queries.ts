@@ -1,5 +1,12 @@
 import { sanityClient } from './sanity'
 
+// ─── Language mapping ────────────────────────────────────────────────────────
+
+const sanityLangMap: Record<string, string> = { en: 'en', es: 'es', br: 'pt-BR', pt: 'pt', tr: 'tr' }
+function toSanityLang(locale: string): string {
+  return sanityLangMap[locale] || locale
+}
+
 // ─── Homepage ───────────────────────────────────────────────────────────────
 
 export async function getLandingPage() {
@@ -65,19 +72,19 @@ export async function getNavigation(navId: string = 'main-nav') {
 // ─── FAQs ───────────────────────────────────────────────────────────────────
 
 export async function getFAQs(language: string = 'en') {
-  const sanityLang = language === 'br' ? 'pt-BR' : language
   const query = `*[_type == "faq" && language == $language][0]{
     questions[]{
       question,
       answer
     }
   }`
-  return sanityClient.fetch(query, { language: sanityLang })
+  return sanityClient.fetch(query, { language: toSanityLang(language) })
 }
 
 // ─── Pricing ────────────────────────────────────────────────────────────────
 
-export async function getPricing(language: string = 'en') {
+export async function getPricing(locale: string = 'en') {
+  const language = toSanityLang(locale)
   const query = `*[_type == "pricingPage" && language == $language][0]{
     language,
     seo,
@@ -160,7 +167,8 @@ export async function getPricing(language: string = 'en') {
 
 // ─── Product (Integration Pages) ────────────────────────────────────────────
 
-export async function getProduct(slug: string, language: string = 'en') {
+export async function getProduct(slug: string, locale: string = 'en') {
+  const language = toSanityLang(locale)
   const query = `*[_type == "productPage" && slug.current == $slug && language == $language][0]{
     "slug": slug.current,
     crmName,
@@ -244,7 +252,8 @@ export async function getProduct(slug: string, language: string = 'en') {
 
 // ─── Blog Posts (listing) ───────────────────────────────────────────────────
 
-export async function getBlogPosts(language: string = 'en', limit?: number) {
+export async function getBlogPosts(locale: string = 'en', limit?: number) {
+  const language = toSanityLang(locale)
   const slice = limit ? `[0...${limit}]` : ''
   const query = `*[_type == "post" && language == $language] | order(publishedAt desc) ${slice}{
     _id,
@@ -265,9 +274,8 @@ export async function getBlogPosts(language: string = 'en', limit?: number) {
 
 // ─── Blog Post (single) ────────────────────────────────────────────────────
 
-export async function getBlogPost(slug: string, language: string = 'en') {
-  const langMap: Record<string, string> = { en: 'en', es: 'es', br: 'pt-BR', pt: 'pt', tr: 'tr' }
-  const sanityLanguage = langMap[language] || language
+export async function getBlogPost(slug: string, locale: string = 'en') {
+  const sanityLanguage = toSanityLang(locale)
   const query = `*[_type == "post" && slug.current == $slug && language == $sanityLanguage][0]{
     _id,
     title,
@@ -322,7 +330,8 @@ export async function getBlogPost(slug: string, language: string = 'en') {
 
 // ─── Blog Index ─────────────────────────────────────────────────────────────
 
-export async function getBlogIndex(language: string = 'en') {
+export async function getBlogIndex(locale: string = 'en') {
+  const language = toSanityLang(locale)
   const query = `*[_type == "blogIndex" && language == $language][0]{
     language,
     title,
@@ -401,7 +410,8 @@ export async function getBlogIndex(language: string = 'en') {
 
 // ─── Feature Page ───────────────────────────────────────────────────────────
 
-export async function getFeature(slug: string, language: string = 'en') {
+export async function getFeature(slug: string, locale: string = 'en') {
+  const language = toSanityLang(locale)
   const query = `*[_type == "productPage" && slug.current == $slug && category in ["feature", "whatsapp-api"] && language == $language][0]{
     "slug": slug.current,
     title,
@@ -528,7 +538,8 @@ export async function getFeature(slug: string, language: string = 'en') {
 
 // ─── Category Index Page ────────────────────────────────────────────────────
 
-export async function getCategoryIndex(slug: string, language: string = 'en') {
+export async function getCategoryIndex(slug: string, locale: string = 'en') {
+  const language = toSanityLang(locale)
   const query = `*[_type == "categoryIndexPage" && slug.current == $slug && language == $language][0]{
     "slug": slug.current,
     title,
@@ -609,7 +620,7 @@ export async function getCategoryIndex(slug: string, language: string = 'en') {
 
 // ─── Coexistence Page ───────────────────────────────────────────────────────
 
-export async function getCoexistence(language: string = 'en') {
+export async function getCoexistence(locale: string = 'en') {
   const query = `*[_type == "productPage" && _id == $docId][0]{
     _id,
     title,
@@ -688,5 +699,5 @@ export async function getCoexistence(language: string = 'en') {
       footnote
     }
   }`
-  return sanityClient.fetch(query, { docId: `productPage-coexistence-${language}` })
+  return sanityClient.fetch(query, { docId: `productPage-coexistence-${locale}` })
 }

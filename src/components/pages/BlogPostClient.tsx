@@ -560,7 +560,7 @@ const RelatedPostCard: React.FC<{
     >
       <div className="relative h-48 overflow-hidden">
         <img
-          src={image || 'https://picsum.photos/600/400'}
+          src={image || '/logo.png'}
           alt={title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="eager"

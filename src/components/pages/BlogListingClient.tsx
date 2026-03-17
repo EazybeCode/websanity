@@ -73,7 +73,7 @@ const BlogCard: React.FC<{ post: BlogPost; locale: string; minReadSuffix: string
     >
       <div className="relative h-56 overflow-hidden">
         <img
-          src={post.featuredImage || 'https://picsum.photos/800/450'}
+          src={post.featuredImage || '/logo.png'}
           alt={post.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="eager"
@@ -129,7 +129,7 @@ const FeaturedBlogCard: React.FC<{
       <div className="grid md:grid-cols-2 h-full">
         <div className="relative h-64 md:h-full overflow-hidden">
           <img
-            src={post.featuredImage || 'https://picsum.photos/800/600'}
+            src={post.featuredImage || '/logo.png'}
             alt={post.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="eager"

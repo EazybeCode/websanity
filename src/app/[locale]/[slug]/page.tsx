@@ -48,8 +48,6 @@ export function generateStaticParams() {
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
-const sanityLangMap: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }
-
 export async function generateMetadata({
   params,
 }: {
@@ -59,8 +57,7 @@ export async function generateMetadata({
   const crmSlug = extractCrmSlug(slug)
   if (!crmSlug) return {}
 
-  const language = sanityLangMap[locale] || 'en'
-  const product = await getProduct(slug, language)
+  const product = await getProduct(slug, locale)
 
   const crmNameMap: Record<string, string> = {
     hubspot: 'HubSpot', salesforce: 'Salesforce', zoho: 'Zoho', bitrix24: 'Bitrix24',
@@ -100,8 +97,7 @@ export default async function IntegrationPage({
     notFound()
   }
 
-  const language = sanityLangMap[locale] || 'en'
-  const product = await getProduct(slug, language)
+  const product = await getProduct(slug, locale)
 
   return <ProductPageClient product={product} crmSlug={crmSlug} />
 }
