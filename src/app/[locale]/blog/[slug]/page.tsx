@@ -5,7 +5,7 @@ import { getBlogPost, getBlogPosts, getBlogIndex } from '@/lib/sanity-queries'
 import { BlogPostClient } from '@/components/pages/BlogPostClient'
 import { routing } from '@/i18n/routing'
 
-export const revalidate = 3600
+export const revalidate = 60
 
 export async function generateStaticParams() {
   const params: { locale: string; slug: string }[] = []

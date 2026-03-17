@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getCoexistence } from '@/lib/sanity-queries'
 import { CoexistencePageClient } from '@/components/pages/CoexistencePageClient'
 
-export const revalidate = 3600
+export const revalidate = 60
 
 export async function generateMetadata({
   params,

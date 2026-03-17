@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
 
-export const revalidate = 3600
+export const revalidate = 60
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 

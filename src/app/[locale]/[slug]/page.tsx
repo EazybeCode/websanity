@@ -5,7 +5,7 @@ import { getProduct } from '@/lib/sanity-queries'
 import { routing } from '@/i18n/routing'
 import ProductPageClient from '@/components/pages/ProductPageClient'
 
-export const revalidate = 3600
+export const revalidate = 60
 
 // ─── Integration slug mapping ────────────────────────────────────────────────
 

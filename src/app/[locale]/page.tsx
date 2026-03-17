@@ -4,7 +4,7 @@ import { getLandingPage } from '@/lib/sanity-queries'
 import { getHomepageMetadata, getHomepageJsonLd } from '@/data/homepage-seo'
 import { SectionRenderer } from '@/components/SectionRenderer'
 
-export const revalidate = 3600 // ISR: revalidate every hour
+export const revalidate = 60 // ISR: revalidate every 60 seconds
 
 export async function generateMetadata({
   params,
