@@ -27,11 +27,38 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: "/product/pipedrive-whatsapp-integration",
-        destination: "/pipedrive-whatsapp-integration",
-        permanent: true,
-      },
+      // Old product URLs → new format
+      { source: "/product/:slug", destination: "/:slug", permanent: true },
+      { source: "/:locale/product/:slug", destination: "/:locale/:slug", permanent: true },
+      // Old integration URLs → new format
+      { source: "/integrations/hubspot", destination: "/hubspot-whatsapp-integration", permanent: true },
+      { source: "/hubspot", destination: "/hubspot-whatsapp-integration", permanent: true },
+      { source: "/integrations/zoho-crm", destination: "/zoho-whatsapp-integration", permanent: true },
+      { source: "/zoho-crm", destination: "/zoho-whatsapp-integration", permanent: true },
+      // Locale-prefixed old integration redirects
+      { source: "/:locale/integrations/google-sheet", destination: "/:locale/google-sheets-whatsapp-integration", permanent: true },
+      { source: "/:locale/integrations/fresh-desk", destination: "/:locale/freshdesk-whatsapp-integration", permanent: true },
+      // Old misc redirects
+      { source: "/search", destination: "/", permanent: true },
+      { source: "/lp/hubspot-demo", destination: "/", permanent: true },
+      { source: "/all-crm-form", destination: "/", permanent: true },
+      { source: "/categories-intregrations/account-management", destination: "/", permanent: true },
+      { source: "/index.html", destination: "/", permanent: true },
+      // Old blog redirects
+      { source: "/br/blog/integrate-hubspot-with-whatsapp-easiest-method", destination: "/br", permanent: true },
+      { source: "/br/blog/discover-the-best-whatsapp-business-api-alternatives", destination: "/br/blog", permanent: true },
+      { source: "/br/blog/apply-for-green-tick-on-whatsapp-business", destination: "/br/blog", permanent: true },
+      { source: "/tr/blog-pt", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/how-to-edit-andriod-contacts-on-whatsapp-without-leaving-the-app", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/get-organized-with-hubspot-free-crm-start-now", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/how-whatapp-will-take-over-email-by-2030", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/whatsapp-hacks-how-to-message-without-saving-contact", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/boost-your-sales-process-with-these-15-automation-tools", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/top-3-chrome-extensions-that-you-must-install-right-now", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/use-these-7-proven-strategies-to-grow-your-business", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/essential-glossary-of-artificial-intelligence-ai-terms", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/whatsapp-companion-mode-how-to-use-whatsapp-on-two-phones", destination: "/tr/blog", permanent: true },
     ]
   },
 }
