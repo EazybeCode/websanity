@@ -107,7 +107,7 @@ function generateSitemapXML(urls: SitemapURL[], includeHreflang = true): string 
   <url>
     <loc>${url.loc}</loc>
     <changefreq>${url.changefreq}</changefreq>
-    <priority>${url.priority}</priority>${url.lastmod ? `\n    <lastmod>${url.lastmod}</lastmod>` : ''}`
+    <priority>${url.priority.toFixed(1)}</priority>${url.lastmod ? `\n    <lastmod>${url.lastmod}</lastmod>` : ''}`
 
       // Add hreflang tags for alternate language versions
       if (includeHreflang && url.alternates && url.alternates.length > 0) {
@@ -177,18 +177,25 @@ async function generateSitemap() {
   LANGUAGES.forEach((lang) => {
     const prefix = lang === 'en' ? '' : `/${lang}`
 
-    // Home page
+    // Home page with hreflang alternates
+    const homepageAlternates = LANGUAGES.map((altLang) => ({
+      lang: HREFLANG_CODES[altLang],  // Use proper ISO code
+      url: `${SITE_URL}${altLang === 'en' ? '' : `/${altLang}`}`,
+    }))
+
     if (lang === 'en') {
       urlsByLanguage[lang].push({
         loc: `${SITE_URL}/`,
         changefreq: 'daily',
         priority: 1.0,
+        alternates: homepageAlternates,
       })
     } else {
       urlsByLanguage[lang].push({
         loc: `${SITE_URL}/${lang}`,
         changefreq: 'daily',
         priority: 0.9,
+        alternates: homepageAlternates,
       })
     }
 
