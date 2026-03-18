@@ -288,7 +288,7 @@ async function generateSitemap() {
     // Add each blog post to its language sitemap with hreflang alternates
     groupedPosts.forEach((posts, groupId) => {
       posts.forEach((post: any) => {
-        // Transform 'pt' or 'pt-BR' to 'br' for Brazilian Portuguese
+        // Transform 'pt' or 'pt-BR' to 'br' for Brazilian Portuguese URL paths
         const language = post.language === 'pt' || post.language === 'pt-BR' ? 'br' : post.language
 
         // Skip if language is not supported
@@ -301,10 +301,11 @@ async function generateSitemap() {
 
         // Generate alternates for all posts in this translation group
         const alternates = posts.map((p: any) => {
-          const pLang = p.language === 'pt' || p.language === 'pt-BR' ? 'br' : p.language
-          const pPrefix = pLang === 'en' ? '' : `/${pLang}`
+          // Normalize language code for URL path (br, en, es, tr)
+          const normalizedLang = p.language === 'pt' || p.language === 'pt-BR' ? 'br' : p.language
+          const pPrefix = normalizedLang === 'en' ? '' : `/${normalizedLang}`
           return {
-            lang: HREFLANG_CODES[pLang],  // Use consistent mapping
+            lang: HREFLANG_CODES[normalizedLang],  // Maps br → pt-BR for hreflang
             url: `${SITE_URL}${pPrefix}/blog/${p.slug}`
           }
         })
@@ -329,7 +330,7 @@ async function generateSitemap() {
     console.log(`   Found ${productPages.length} product/feature pages`)
 
     productPages.forEach((page: any) => {
-      // Transform 'pt' or 'pt-BR' to 'br' for Brazilian Portuguese
+      // Transform 'pt' or 'pt-BR' to 'br' for Brazilian Portuguese URL paths
       const language = page.language === 'pt' || page.language === 'pt-BR' ? 'br' : page.language
 
       // Skip if language is not supported
@@ -360,7 +361,8 @@ async function generateSitemap() {
 
       // Generate hreflang alternates for product pages
       const productAlternates = LANGUAGES.map((altLang) => {
-        const altPrefix = altLang === 'en' ? '' : `/${altLang}`
+        const normalizedAltLang = altLang  // Keep as br, en, es, tr
+        const altPrefix = normalizedAltLang === 'en' ? '' : `/${normalizedAltLang}`
         let altUrl = ''
         if (page.category === 'feature') {
           altUrl = `${SITE_URL}${altPrefix}/features/${page.slug}`
@@ -371,7 +373,7 @@ async function generateSitemap() {
           altUrl = `${SITE_URL}${altPrefix}/${page.slug}`
         }
         return {
-          lang: HREFLANG_CODES[altLang],
+          lang: HREFLANG_CODES[normalizedAltLang],  // Maps br → pt-BR for hreflang
           url: altUrl
         }
       })
