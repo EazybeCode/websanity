@@ -6,9 +6,9 @@
     <changefreq>daily</changefreq>
     <priority>1</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/" />
   </url>
   <url>
