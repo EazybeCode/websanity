@@ -218,10 +218,16 @@ async function generateSitemap() {
         url: `${SITE_URL}${altLang === 'en' ? '' : `/${altLang}`}${path}`,
       }))
 
+      // Special case: BR blog page gets priority 0.9
+      let finalPriority = lang === 'en' ? priority : priority - 0.1
+      if (path === '/blog' && lang === 'br') {
+        finalPriority = 0.9
+      }
+
       urlsByLanguage[lang].push({
         loc: `${SITE_URL}${prefix}${path}`,
         changefreq,
-        priority: lang === 'en' ? priority : priority - 0.1,
+        priority: finalPriority,
         alternates,
       })
     })
