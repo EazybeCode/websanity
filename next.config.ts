@@ -64,11 +64,7 @@ const nextConfig: NextConfig = {
       // Locale-prefixed old integration redirects
       { source: "/:locale/integrations/google-sheet", destination: "/:locale/google-sheets-whatsapp-integration", permanent: true },
       { source: "/:locale/integrations/fresh-desk", destination: "/:locale/freshdesk-whatsapp-integration", permanent: true },
-      // Old OAuth/CRM integration pages → redirect to integration pages
-      { source: "/integrate-hubspot-crm", destination: "/hubspot-whatsapp-integration", permanent: true },
-      { source: "/integrate-zoho-crm", destination: "/zoho-whatsapp-integration", permanent: true },
-      { source: "/integrate-salesforce-crm", destination: "/salesforce-whatsapp-integration", permanent: true },
-      { source: "/integrate-bitrix-crm", destination: "/bitrix24-whatsapp-integration", permanent: true },
+      // OAuth/CRM integration callback pages are now at src/app/integrate-*-crm/
       // Old blog redesign routes → main blog
       { source: "/blog-new", destination: "/blog", permanent: true },
       { source: "/blog-new/:slug", destination: "/blog/:slug", permanent: true },
