@@ -5,11 +5,16 @@
     <loc>https://eazybe.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/" />
   </url>
   <url>
     <loc>https://eazybe.com/pricing</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/pricing" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/pricing" />
     <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/pricing" />
@@ -29,7 +34,7 @@
   <url>
     <loc>https://eazybe.com/whatsapp-api</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/whatsapp-api" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/whatsapp-api" />
     <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/whatsapp-api" />
@@ -59,7 +64,7 @@
   <url>
     <loc>https://eazybe.com/blog</loc>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/blog" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/blog" />
     <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/blog" />
@@ -67,19 +72,9 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/blog" />
   </url>
   <url>
-    <loc>https://eazybe.com/team-inbox</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/team-inbox" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/team-inbox" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/team-inbox" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/team-inbox" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/team-inbox" />
-  </url>
-  <url>
     <loc>https://eazybe.com/msa</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/msa" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/msa" />
     <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/msa" />
@@ -109,7 +104,7 @@
   <url>
     <loc>https://eazybe.com/fb</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/fb" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/fb" />
     <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/fb" />
@@ -119,7 +114,7 @@
   <url>
     <loc>https://eazybe.com/become-our-partner</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/become-our-partner" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/become-our-partner" />
     <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/become-our-partner" />
@@ -129,7 +124,7 @@
   <url>
     <loc>https://eazybe.com/comparison</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/comparison" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/comparison" />
     <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/comparison" />
@@ -227,6 +222,28 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/webhooks-whatsapp-integration" />
   </url>
   <url>
+    <loc>https://eazybe.com/google-calendar-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/google-calendar-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/google-calendar-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/google-calendar-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/google-calendar-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/google-calendar-whatsapp-integration" />
+  </url>
+  <url>
+    <loc>https://eazybe.com/monday-whatsapp-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/monday-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/monday-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/monday-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/monday-whatsapp-integration" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/monday-whatsapp-integration" />
+  </url>
+  <url>
     <loc>https://eazybe.com/blog/whatsapp-automation</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -248,7 +265,7 @@
   <url>
     <loc>https://eazybe.com/whatsapp-api/broadcast</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <lastmod>2026-01-28</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/whatsapp-api/broadcast" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/whatsapp-api/broadcast" />
@@ -259,7 +276,7 @@
   <url>
     <loc>https://eazybe.com/features/cloud-backup</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <lastmod>2026-01-28</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/features/cloud-backup" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/features/cloud-backup" />
@@ -268,31 +285,9 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/features/cloud-backup" />
   </url>
   <url>
-    <loc>https://eazybe.com/google-calendar-whatsapp-integration</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-01-28</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/google-calendar-whatsapp-integration" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/google-calendar-whatsapp-integration" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/google-calendar-whatsapp-integration" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/google-calendar-whatsapp-integration" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/google-calendar-whatsapp-integration" />
-  </url>
-  <url>
-    <loc>https://eazybe.com/monday-whatsapp-integration</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-01-28</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/monday-whatsapp-integration" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/monday-whatsapp-integration" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://eazybe.com/es/monday-whatsapp-integration" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://eazybe.com/tr/monday-whatsapp-integration" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eazybe.com/monday-whatsapp-integration" />
-  </url>
-  <url>
     <loc>https://eazybe.com/features/quick-reply</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <lastmod>2026-01-28</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/features/quick-reply" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/features/quick-reply" />
@@ -303,7 +298,7 @@
   <url>
     <loc>https://eazybe.com/features/rep-radar</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <lastmod>2026-01-28</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/features/rep-radar" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/features/rep-radar" />
@@ -314,7 +309,7 @@
   <url>
     <loc>https://eazybe.com/features/revenue-inbox</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <lastmod>2026-01-28</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/features/revenue-inbox" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/features/revenue-inbox" />
@@ -325,7 +320,7 @@
   <url>
     <loc>https://eazybe.com/features/scheduler</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <lastmod>2026-01-28</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/features/scheduler" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/features/scheduler" />
@@ -336,7 +331,7 @@
   <url>
     <loc>https://eazybe.com/features/team-inbox</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <lastmod>2026-01-28</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/features/team-inbox" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/features/team-inbox" />
@@ -347,7 +342,7 @@
   <url>
     <loc>https://eazybe.com/whatsapp-api/templates</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <lastmod>2026-01-28</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/whatsapp-api/templates" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/whatsapp-api/templates" />
@@ -358,7 +353,7 @@
   <url>
     <loc>https://eazybe.com/features/whatsapp-copilot</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <lastmod>2026-01-28</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/features/whatsapp-copilot" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/features/whatsapp-copilot" />
@@ -369,7 +364,7 @@
   <url>
     <loc>https://eazybe.com/features/whatsapp-crm</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <lastmod>2026-01-28</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://eazybe.com/features/whatsapp-crm" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://eazybe.com/br/features/whatsapp-crm" />
