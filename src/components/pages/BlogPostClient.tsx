@@ -709,24 +709,24 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
           </nav>
 
           {/* Category Badge */}
-          <div className="mb-5 md:mb-8">
+          <div className="mt-4 mb-6">
             <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs md:text-sm font-medium">
               {post.category || 'Blog'}
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-3">
+          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-4">
             {post.title}
           </h1>
 
           {/* Excerpt */}
-          <p className="text-base md:text-xl lg:text-2xl text-slate-400 leading-relaxed mb-3">
+          <p className="text-base md:text-xl lg:text-2xl text-slate-400 leading-relaxed mb-4">
             {post.excerpt}
           </p>
 
           {/* Author & Meta */}
-          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 py-6 md:py-8 border-y border-slate-800/50">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 pt-4 pb-8 border-y border-slate-800/50">
             <div className="flex items-center gap-3 md:gap-4">
               {post.author?.image ? (
                 <img
