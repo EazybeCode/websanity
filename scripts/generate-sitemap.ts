@@ -180,7 +180,7 @@ async function generateSitemap() {
     // Home page with hreflang alternates
     const homepageAlternates = LANGUAGES.map((altLang) => ({
       lang: HREFLANG_CODES[altLang],  // Use proper ISO code
-      url: `${SITE_URL}${altLang === 'en' ? '' : `/${altLang}`}`,
+      url: `${SITE_URL}${altLang === 'en' ? '/' : `/${altLang}`}`,
     }))
 
     if (lang === 'en') {
@@ -194,7 +194,7 @@ async function generateSitemap() {
       urlsByLanguage[lang].push({
         loc: `${SITE_URL}/${lang}`,
         changefreq: 'daily',
-        priority: 0.9,
+        priority: 1.0,
         alternates: homepageAlternates,
       })
     }
