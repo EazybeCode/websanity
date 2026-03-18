@@ -206,7 +206,7 @@ async function generateSitemap() {
       { path: '/whatsapp-api', priority: 0.9, changefreq: 'weekly' as const },
       { path: '/whatsapp-api/coexistence', priority: 0.8, changefreq: 'weekly' as const },
       { path: '/integrations', priority: 0.9, changefreq: 'weekly' as const },
-      { path: '/blog', priority: 0.8, changefreq: 'daily' as const },
+      { path: '/blog', priority: 0.9, changefreq: 'daily' as const },
       { path: '/team-inbox', priority: 0.8, changefreq: 'weekly' as const },
       { path: '/msa', priority: 0.7, changefreq: 'monthly' as const },
     ]
@@ -256,7 +256,7 @@ async function generateSitemap() {
     const additionalPages = [
       { path: '/fb', priority: 0.5, changefreq: 'monthly' as const },
       { path: '/become-our-partner', priority: 0.7, changefreq: 'weekly' as const },
-      { path: '/comparison', priority: 0.7, changefreq: 'weekly' as const },
+      { path: '/comparison', priority: 0.9, changefreq: 'weekly' as const },
     ]
 
     additionalPages.forEach(({ path, priority, changefreq }) => {
