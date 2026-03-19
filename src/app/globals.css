@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@config "../../tailwind.config.ts";
+
+/* Base body styles */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Light Mode - SaaS Style with Gradients */
+html.light body {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 25%, #fce7f3 50%, #ecfdf5 75%, #fef3c7 100%);
+  background-attachment: fixed;
+  color: #1e293b;
+}
+
+html.light ::-webkit-scrollbar {
+  width: 8px;
+}
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366f1, #8b5cf6);
+  border-radius: 4px;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4f46e5, #7c3aed);
+}
+
+/* Dark mode (default) */
+html.dark body {
+  background-color: #020617;
+  color: #94A3B8;
+}
+
+html.dark ::-webkit-scrollbar {
+  width: 8px;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #020617;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.mask-linear-gradient {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+html.dark .bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+html.light .bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
+}
+
+html.light .bg-brand-gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+}
+
+html.light .bg-saas-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+html.light .bg-saas-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+}
+
+html.light .shadow-saas-card {
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+html.light .shadow-saas-card-hover {
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+html.light .text-gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.light .text-gradient-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.animate-scroll-hover {
+  animation: scroll-hover 60s linear infinite;
+}
+.hover\:pause-scroll:hover {
+  animation-play-state: paused;
+}
