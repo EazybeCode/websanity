@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import { SectionBadge } from '@/components/ui/SectionBadge'
 import { Button } from '@/components/ui/Button'
+import { useDynamicPricing } from '@/hooks/useDynamicPricing'
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -346,9 +347,12 @@ function PricingToggle({
 
 // ── Pricing Card ────────────────────────────────────────────────────────────
 
-function PricingCard({ plan, isAnnual }: { plan: PricingPlan; isAnnual: boolean }) {
+function PricingCard({ plan, isAnnual, dynamicCurrency, dynamicMonthlyPrice, dynamicAnnualPrice }: { plan: PricingPlan; isAnnual: boolean; dynamicCurrency?: string; dynamicMonthlyPrice?: number; dynamicAnnualPrice?: number }) {
   const Icon = planIconMap[plan.icon]
-  const price = isAnnual ? plan.annualPrice : plan.monthlyPrice
+  const currency = dynamicCurrency || plan.currency
+  const monthlyPrice = dynamicMonthlyPrice ?? plan.monthlyPrice
+  const annualPrice = dynamicAnnualPrice ?? plan.annualPrice
+  const price = isAnnual ? annualPrice : monthlyPrice
   const isPopular = plan.popular
   const isEnterprise = plan.enterprise
 
@@ -396,14 +400,14 @@ function PricingCard({ plan, isAnnual }: { plan: PricingPlan; isAnnual: boolean 
             </div>
           ) : (
             <div className="flex items-baseline gap-2">
-              <span className="text-lg text-slate-500">{plan.currency}</span>
+              <span className="text-lg text-slate-500">{currency}</span>
               <span className="text-5xl font-extrabold tracking-tight text-white">{price}</span>
               <span className="text-sm text-slate-500">/user/mo</span>
             </div>
           )}
           {isAnnual && !isEnterprise && (
             <p className="text-xs text-brand-green mt-2 font-medium">
-              Billed annually ({plan.currency} {plan.annualPrice * 12}/user/year)
+              Billed annually ({currency} {annualPrice * 12}/user/year)
             </p>
           )}
         </div>
@@ -655,6 +659,7 @@ interface PricingPageClientProps {
 
 export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const [isAnnual, setIsAnnual] = useState(true)
+  const { getDynamicPrice, loading: dynamicPricingLoading } = useDynamicPricing()
 
   // ── Hero ────────────────────────────────────────────────────────────────
   const hero = pricingData?.hero || {
@@ -786,9 +791,19 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       <section className="py-12 lg:py-16 bg-brand-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 lg:gap-6">
-            {pricingPlans.map((plan) => (
-              <PricingCard key={plan.name} plan={plan} isAnnual={isAnnual} />
-            ))}
+            {pricingPlans.map((plan) => {
+              const dynamicPrice = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
+              return (
+                <PricingCard
+                  key={plan.name}
+                  plan={plan}
+                  isAnnual={isAnnual}
+                  dynamicCurrency={dynamicPrice.currency}
+                  dynamicMonthlyPrice={dynamicPrice.monthlyPrice}
+                  dynamicAnnualPrice={dynamicPrice.annualPrice}
+                />
+              )
+            })}
           </div>
 
           {/* Trust Signals */}
