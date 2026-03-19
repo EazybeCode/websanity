@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Home, Calendar, ArrowLeft } from 'lucide-react'
