@@ -2255,5 +2255,19 @@
     "successTitle": "Sucesso!",
     "successMessage": "Confirmação enviada para",
     "redirecting": "Redirecionando para a Chrome Web Store..."
+  },
+  "notFound": {
+    "title": "Ops! Página Não Encontrada",
+    "subtitle": "A página que você procura não existe ou foi movida.",
+    "description": "Não se preocupe! Você pode encontrar o que procura em nossas principais seções abaixo.",
+    "goToHome": "Ir para o Início",
+    "viewPricing": "Ver Preços",
+    "suggestedPages": "Páginas Sugeridas",
+    "integrations": "Integrações",
+    "blog": "Blog",
+    "features": "Recursos",
+    "teamInbox": "Caixa de Entrada da Equipe",
+    "popularIntegrations": "Integrações Populares",
+    "goBack": "Voltar"
   }
 }

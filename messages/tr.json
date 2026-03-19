@@ -2180,5 +2180,19 @@
     "successTitle": "Başarılı!",
     "successMessage": "Onay gönderildi",
     "redirecting": "Chrome Web Store'a yönlendiriliyor..."
+  },
+  "notFound": {
+    "title": "Hata! Sayfa Bulunamadı",
+    "subtitle": "Aradığınız sayfa mevcut değil veya taşınmış.",
+    "description": "Endişelenmeyin! Aşağıdaki ana bölümlerimizden aradığınızı bulabilirsiniz.",
+    "goToHome": "Ana Sayfaya Git",
+    "viewPricing": "Fiyatları Gör",
+    "suggestedPages": "Önerilen Sayfalar",
+    "integrations": "Entegrasyonlar",
+    "blog": "Blog",
+    "features": "Özellikler",
+    "teamInbox": "Ekip Gelen Kutusu",
+    "popularIntegrations": "Popüler Entegrasyonlar",
+    "goBack": "Geri git"
   }
 }
