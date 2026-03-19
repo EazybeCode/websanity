@@ -27,6 +27,7 @@ import { CalloutBlock } from '@/components/blog/CalloutBlock'
 import { QuoteBlock } from '@/components/blog/QuoteBlock'
 import { TableBlock } from '@/components/blog/TableBlock'
 import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
+import { LeadGenerationForm } from '@/components/lead/LeadGenerationForm'
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -540,31 +541,17 @@ const StickyTableOfContents: React.FC<{
         </div>
       )}
 
-      {/* Free Trial CTA */}
-      <div className="bg-gradient-to-br from-brand-blue/10 to-brand-cyan/10 border border-brand-cyan/20 rounded-2xl p-5 shadow-xl">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-8 h-8 rounded-lg bg-brand-cyan/20 flex items-center justify-center">
-            <Rocket size={16} className="text-brand-cyan" />
-          </div>
-          <span className="font-mono text-[10px] uppercase tracking-widest text-brand-cyan font-bold">
-            {sidebarCta?.badge || t('blog.sidebar.badge')}
-          </span>
+      {/* Lead Generation Form */}
+      <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 shadow-xl">
+        <div className="mb-5">
+          <h4 className="text-lg font-bold text-white mb-2">
+            {t('blog.sidebar.formHeadline') || 'Talk to Our WhatsApp AI Agent'}
+          </h4>
+          <p className="text-sm text-slate-400 leading-relaxed">
+            {t('blog.sidebar.formDescription') || 'Get a personalized demo of our AI-powered customer support solutions.'}
+          </p>
         </div>
-        <h4 className="text-white font-bold mb-2">
-          {sidebarCta?.headline || t('blog.sidebar.headline')}
-        </h4>
-        <p className="text-slate-400 text-sm mb-4 leading-relaxed">
-          {sidebarCta?.description || t('blog.sidebar.description')}
-        </p>
-        <a
-          href={sidebarCta?.buttonUrl || '/pricing'}
-          className="block w-full text-center bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold py-3 px-6 rounded-xl transition-colors"
-        >
-          {sidebarCta?.buttonText || t('blog.sidebar.buttonText')}
-        </a>
-        <p className="text-[10px] text-center mt-3 font-mono text-slate-500 uppercase tracking-widest">
-          {sidebarCta?.footnote || t('blog.sidebar.footnote')}
-        </p>
+        <LeadGenerationForm />
       </div>
     </div>
   )
