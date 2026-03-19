@@ -813,12 +813,12 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
       {/* Main Content Area */}
       <main className="pb-12 md:pb-20">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
             {/* Left Column - Main Content */}
             <div className="w-full lg:flex-1">
               {/* Summary Box */}
               {post.quickAnswer && (
-                <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 mb-3 md:mb-12">
+                <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-xl md:rounded-2xl p-5 md:p-7 lg:p-8 mb-6 md:mb-10">
                   <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-5">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-brand-cyan/10 flex items-center justify-center">
                       <Zap size={18} className="text-brand-cyan md:hidden" />
@@ -897,7 +897,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               )}
 
               {/* Main Article Content */}
-              <article className="blog-content prose prose-invert max-w-none">
+              <article className="blog-content prose prose-invert max-w-none px-1">
                 {Array.isArray(post.content) ? (
                   <PortableText value={post.content} components={portableTextComponents} />
                 ) : (
@@ -1021,7 +1021,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               {/* FAQs Section */}
               {post.faqs && post.faqs.length > 0 && (
                 <section
-                  className="mt-20 pt-12 border-t border-slate-800"
+                  className="mt-16 pt-10 border-t border-slate-800"
                   aria-labelledby="faq-title"
                 >
                   <h2
@@ -1054,7 +1054,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
 
               {/* Author Section */}
               {post.author && (
-                <div className="mt-20 pt-12 border-t border-slate-800">
+                <div className="mt-16 pt-10 border-t border-slate-800">
                   <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-slate-700/30">
                     {post.author.image ? (
                       <img
@@ -1083,7 +1083,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               )}
 
               {/* Newsletter CTA */}
-              <div className="mt-20 p-10 bg-gradient-to-br from-brand-blue/10 to-brand-cyan/10 rounded-3xl border border-brand-cyan/20 text-center">
+              <div className="mt-16 p-8 bg-gradient-to-br from-brand-blue/10 to-brand-cyan/10 rounded-3xl border border-brand-cyan/20 text-center">
                 <h3 className="text-2xl font-bold text-white mb-3">
                   {newsletterCta?.headline || t('blog.newsletter.headline')}
                 </h3>
