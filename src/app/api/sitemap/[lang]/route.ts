@@ -137,7 +137,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
         translationGroupId,
         _updatedAt
       }`
-    )
+    ) ?? []
 
     // Group by translationGroupId for hreflang
     const groups = new Map<string, typeof posts>()
@@ -184,7 +184,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
         _updatedAt
       }`,
       { language: sanityLang }
-    )
+    ) ?? []
 
     for (const page of pages) {
       let path = ''
