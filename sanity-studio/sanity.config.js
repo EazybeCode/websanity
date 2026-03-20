@@ -4,6 +4,7 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import customSchemaTypes from './schemas/index.js'
 import { TranslationLinks } from './schemas/TranslationLinks.jsx'
+import { CreateTranslationsAction } from './actions/createTranslations.jsx'
 
 /**
  * Eazybe Enterprise CMS with JSON-LD Structured Data
@@ -211,7 +212,7 @@ const blogPost = {
       name: 'translationGroupId',
       title: '🔗 Translation Group ID',
       type: 'string',
-      description: 'Same ID across all language versions links them together (e.g., "post-whatsapp-crm-2024")',
+      description: 'Auto-filled from slug. Same ID across all language versions links them together.',
     },
     {
       name: 'translationLinks',
@@ -1015,6 +1016,14 @@ export default defineConfig({
   dataset: 'production',
   schema: {
     types: [blogPost, feature, integration, page, categoryIndexPage, redirect, ...customSchemaTypes],
+  },
+  document: {
+    actions: (prev, context) => {
+      if (context.schemaType === 'post') {
+        return [...prev, CreateTranslationsAction]
+      }
+      return prev
+    },
   },
   plugins: [
     structureTool({
