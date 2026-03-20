@@ -290,6 +290,7 @@ export async function getBlogPost(slug: string, locale: string = 'en') {
     },
     category,
     language,
+    translationGroupId,
     "featuredImage": featuredImage.asset->url,
     "featuredImageAlt": featuredImage.alt,
     publishedAt,
@@ -330,6 +331,17 @@ export async function getBlogPost(slug: string, locale: string = 'en') {
     }
   }`
   return sanityClient.fetch(query, { slug, sanityLanguage })
+}
+
+// ─── Blog Post Translations ───────────────────────────────────────────────────
+
+export async function getBlogPostTranslations(translationGroupId: string) {
+  const query = `*[_type == "post" && translationGroupId == $translationGroupId]{
+    _id,
+    "slug": slug.current,
+    language
+  }`
+  return sanityClient.fetch(query, { translationGroupId })
 }
 
 // ─── Blog Index ─────────────────────────────────────────────────────────────
