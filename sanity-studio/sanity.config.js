@@ -72,87 +72,20 @@ const seoFields = [
   },
   {
     name: 'customMetaTags',
-    title: '🏷️ Custom Meta Tags',
-    type: 'array',
-    of: [
-      {
-        type: 'object',
-        fields: [
-          {
-            name: 'name',
-            title: 'Meta Name / Property',
-            type: 'string',
-            validation: Rule => Rule.required(),
-            description: 'e.g., "keywords", "article:tag", "robots", "author"',
-          },
-          {
-            name: 'content',
-            title: 'Content',
-            type: 'string',
-            validation: Rule => Rule.required(),
-            description: 'The meta tag value',
-          },
-        ],
-        preview: {
-          select: { name: 'name', content: 'content' },
-          prepare({ name, content }) {
-            return {
-              title: name,
-              subtitle: content?.substring(0, 60) + (content?.length > 60 ? '...' : ''),
-            }
-          },
-        },
-      },
-    ],
-    description: 'Add any custom <meta> tags. Common: keywords, article:tag, author, google-site-verification',
+    title: '🏷️ Custom Meta Tags (HTML)',
+    type: 'text',
+    rows: 8,
+    description: 'Paste all your meta tags at once. One per line. Example:\n<meta name="keywords" content="whatsapp, crm, integration">\n<meta name="author" content="Eazybe">\n<meta property="article:tag" content="WhatsApp">',
   },
 ]
 
 // Universal JSON-LD Schemas section - for ALL content types
 const jsonLdSchemasField = {
   name: 'jsonLdSchemas',
-  title: '📊 JSON-LD Schemas',
-  type: 'array',
-  of: [
-    {
-      type: 'object',
-      fields: [
-        {
-          name: 'schemaType',
-          title: 'Schema Type',
-          type: 'string',
-          validation: Rule => Rule.required(),
-          description: '@type value (e.g., Article, FAQPage, Organization, Product, SoftwareApplication, WebPage, BreadcrumbList, Person, LocalBusiness, etc.)',
-        },
-        {
-          name: 'schemaJson',
-          title: 'Schema Data (JSON)',
-          type: 'text',
-          rows: 10,
-          validation: Rule => Rule.required(),
-          description: 'Enter valid JSON. Example: {"@context": "https://schema.org", "@type": "Article", "headline": "Title"}',
-        },
-        {
-          name: 'priority',
-          title: 'Priority',
-          type: 'number',
-          initialValue: 1,
-          description: 'Order in which schemas appear on the page (1 = first)',
-        },
-      ],
-      preview: {
-        select: { schemaType: 'schemaType', schemaJson: 'schemaJson' },
-        prepare({ schemaType, schemaJson }) {
-          const preview = schemaJson?.substring(0, 60) + (schemaJson?.length > 60 ? '...' : '')
-          return {
-            title: `${schemaType} Schema`,
-            subtitle: preview,
-          }
-        }
-      }
-    },
-  ],
-  description: 'Add any JSON-LD schema manually. Frontend will inject all schemas into <script type="application/ld+json"> tags in order.',
+  title: '📊 JSON-LD Schemas (HTML)',
+  type: 'text',
+  rows: 15,
+  description: 'Paste all your JSON-LD schemas at once. Each schema in its own <script> tag. Example:\n<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Title"}</script>',
 }
 
 // Organization Info for JSON-LD

@@ -320,15 +320,8 @@ export async function getBlogPost(slug: string, locale: string = 'en') {
     "ogImage": ogImage.asset->url,
     noindex,
     nofollow,
-    "jsonLdSchemas": jsonLdSchemas[]{
-      schemaType,
-      schemaJson,
-      priority
-    },
-    "customMetaTags": customMetaTags[]{
-      name,
-      content
-    }
+    jsonLdSchemas,
+    customMetaTags
   }`
   return sanityClient.fetch(query, { slug, sanityLanguage })
 }

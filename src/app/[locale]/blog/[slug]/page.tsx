@@ -107,16 +107,21 @@ export async function generateMetadata({
           'max-image-preview': 'large' as const,
           'max-video-preview': -1,
         },
-    // Custom meta tags from Sanity
-    ...(post.customMetaTags && post.customMetaTags.length > 0
-      ? {
-          other: Object.fromEntries(
-            post.customMetaTags
-              .filter((tag: any) => tag.name && tag.content)
-              .map((tag: any) => [tag.name, tag.content])
-          ),
-        }
-      : {}),
+    // Custom meta tags from Sanity (parsed from HTML text field)
+    ...(post.customMetaTags ? {
+      other: Object.fromEntries(
+        (post.customMetaTags as string)
+          .split('\n')
+          .map((line: string) => line.trim())
+          .filter((line: string) => line.startsWith('<meta'))
+          .map((line: string) => {
+            const nameMatch = line.match(/(?:name|property)=["']([^"']+)["']/)
+            const contentMatch = line.match(/content=["']([^"']+)["']/)
+            return nameMatch && contentMatch ? [nameMatch[1], contentMatch[1]] : null
+          })
+          .filter(Boolean) as [string, string][]
+      ),
+    } : {}),
   }
 }
 
@@ -201,17 +206,18 @@ export default async function BlogPostPage({
         }
       : null
 
-  // Custom Sanity JSON-LD schemas
+  // Custom Sanity JSON-LD schemas (parsed from HTML text field)
   const customSchemas: object[] = []
-  if (post.jsonLdSchemas && post.jsonLdSchemas.length > 0) {
-    const sorted = [...post.jsonLdSchemas].sort(
-      (a: any, b: any) => (a.priority || 99) - (b.priority || 99)
-    )
-    for (const schema of sorted) {
-      try {
-        customSchemas.push(JSON.parse(schema.schemaJson))
-      } catch {
-        // Skip invalid JSON
+  if (post.jsonLdSchemas && typeof post.jsonLdSchemas === 'string') {
+    const jsonMatches = (post.jsonLdSchemas as string).match(/(?:<script[^>]*>)?([\s\S]*?)(?:<\/script>|$)/gi) || []
+    for (const match of jsonMatches) {
+      const jsonStr = match.replace(/<\/?script[^>]*>/gi, '').trim()
+      if (jsonStr) {
+        try {
+          customSchemas.push(JSON.parse(jsonStr))
+        } catch {
+          // Skip invalid JSON
+        }
       }
     }
   }
