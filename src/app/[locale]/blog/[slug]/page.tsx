@@ -31,8 +31,84 @@ export async function generateMetadata({
   const { locale, slug } = await params
   const post = await getBlogPost(slug, locale)
 
-  // NOTE: All SEO metadata removed - returning empty object
-  return {}
+  if (!post) {
+    return { title: 'Blog Post - Eazybe' }
+  }
+
+  // Fallback pattern: CMS value first, then hardcoded fallback
+  const pageTitle = post.metaTitle || post.title || 'Blog Post'
+  const description = post.metaDescription || post.excerpt || 'Read the latest insights and updates from the Eazybe team.'
+  const featuredImage = post.ogImage || post.featuredImage || 'https://eazybe.com/logo.png'
+  const postUrl = `https://eazybe.com${locale === 'en' ? '' : `/${locale}`}/blog/${slug}`
+
+  // Build hreflang links
+  const languages: Record<string, string> = {}
+  if (post.translationGroupId) {
+    const translations = await getBlogPostTranslations(post.translationGroupId)
+
+    if (translations && Array.isArray(translations)) {
+      translations.forEach((translation: any) => {
+        // hreflang attribute: pt-BR for Portuguese, others as-is
+        const langCode = translation.language === 'pt-BR' ? 'pt-BR' : translation.language
+        // URL prefix: en = no prefix, pt-BR = /br, others = /lang
+        const urlPrefix = translation.language === 'en' ? '' : `/${translation.language === 'pt-BR' ? 'br' : translation.language}`
+        languages[langCode] = `https://eazybe.com${urlPrefix}/blog/${translation.slug}`
+      })
+    }
+  }
+
+  // If no translations found, at least include current page
+  if (Object.keys(languages).length === 0) {
+    const currentLangCode = locale === 'br' ? 'pt-BR' : locale
+    languages[currentLangCode] = postUrl
+  }
+
+  // Set x-default to English version if available, otherwise current page
+  languages['x-default'] = languages['en'] || postUrl
+
+  return {
+    title: `${pageTitle} | Eazybe`,
+    description,
+    authors: post.author?.name ? [{ name: post.author.name }] : undefined,
+    openGraph: {
+      type: 'article',
+      title: pageTitle,
+      description,
+      url: postUrl,
+      siteName: 'Eazybe',
+      images: [
+        {
+          url: featuredImage,
+          alt: post.featuredImageAlt || pageTitle,
+        },
+      ],
+      ...(post.publishedAt && {
+        publishedTime: post.publishedAt,
+        modifiedTime: post.publishedAt,
+      }),
+      ...(post.category && { section: post.category }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@eazybe',
+      title: pageTitle,
+      description,
+      images: [featuredImage],
+    },
+    alternates: {
+      canonical: postUrl,
+      languages: Object.keys(languages).length > 0 ? languages : undefined,
+    },
+    robots: post.noindex
+      ? { index: false, follow: false }
+      : {
+          index: true,
+          follow: true,
+          'max-snippet': -1,
+          'max-image-preview': 'large' as const,
+          'max-video-preview': -1,
+        },
+  }
 }
 
 export default async function BlogPostPage({
