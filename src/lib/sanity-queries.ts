@@ -323,6 +323,10 @@ export async function getBlogPost(slug: string, locale: string = 'en') {
       schemaType,
       schemaJson,
       priority
+    },
+    "customMetaTags": customMetaTags[]{
+      name,
+      content
     }
   }`
   return sanityClient.fetch(query, { slug, sanityLanguage })

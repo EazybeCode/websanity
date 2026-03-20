@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
-import { getBlogPost, getBlogPosts, getBlogIndex } from '@/lib/sanity-queries'
+import { getBlogPost, getBlogPosts, getBlogIndex, getBlogPostTranslations } from '@/lib/sanity-queries'
 import { BlogPostClient } from '@/components/pages/BlogPostClient'
 import { routing } from '@/i18n/routing'
 
@@ -38,7 +38,32 @@ export async function generateMetadata({
   const pageTitle = post.metaTitle || post.title || 'Blog Post'
   const description = post.metaDescription || post.excerpt || ''
   const featuredImage = post.ogImage || post.featuredImage || 'https://eazybe.com/logo.png'
-  const postUrl = `https://eazybe.com/blog/${slug}`
+  const postUrl = `https://eazybe.com${locale === 'en' ? '' : `/${locale}`}/blog/${slug}`
+
+  // Build hreflang links
+  const languages: Record<string, string> = {}
+  if (post.translationGroupId) {
+    const translations = await getBlogPostTranslations(post.translationGroupId)
+
+    if (translations && Array.isArray(translations)) {
+      translations.forEach((translation: any) => {
+        // hreflang attribute: pt-BR for Portuguese, others as-is
+        const langCode = translation.language === 'pt-BR' ? 'pt-BR' : translation.language
+        // URL prefix: en = no prefix, pt-BR = /br, others = /lang
+        const urlPrefix = translation.language === 'en' ? '' : `/${translation.language === 'pt-BR' ? 'br' : translation.language}`
+        languages[langCode] = `https://eazybe.com${urlPrefix}/blog/${translation.slug}`
+      })
+    }
+  }
+
+  // If no translations found, at least include current page
+  if (Object.keys(languages).length === 0) {
+    const currentLangCode = locale === 'br' ? 'pt-BR' : locale
+    languages[currentLangCode] = postUrl
+  }
+
+  // Set x-default to English version if available, otherwise current page
+  languages['x-default'] = languages['en'] || postUrl
 
   return {
     title: `${pageTitle} | Eazybe`,
@@ -71,6 +96,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: postUrl,
+      languages: Object.keys(languages).length > 0 ? languages : undefined,
     },
     robots: post.noindex
       ? { index: false, follow: false }
@@ -81,6 +107,16 @@ export async function generateMetadata({
           'max-image-preview': 'large' as const,
           'max-video-preview': -1,
         },
+    // Custom meta tags from Sanity
+    ...(post.customMetaTags && post.customMetaTags.length > 0
+      ? {
+          other: Object.fromEntries(
+            post.customMetaTags
+              .filter((tag: any) => tag.name && tag.content)
+              .map((tag: any) => [tag.name, tag.content])
+          ),
+        }
+      : {}),
   }
 }
 
@@ -103,7 +139,7 @@ export default async function BlogPostPage({
   }
 
   // Build JSON-LD schemas server-side
-  const postUrl = `https://eazybe.com/blog/${slug}`
+  const postUrl = `https://eazybe.com${locale === 'en' ? '' : `/${locale}`}/blog/${slug}`
   const featuredImage = post.ogImage || post.featuredImage || 'https://eazybe.com/logo.png'
 
   // Article schema
@@ -127,6 +163,7 @@ export default async function BlogPostPage({
   }
 
   // Breadcrumb schema
+  const blogPath = locale === 'en' ? '/blog' : `/${locale}/blog`
   const breadcrumbItems =
     post.breadcrumbs && post.breadcrumbs.length > 0
       ? post.breadcrumbs.map((b: any, i: number) => ({
@@ -137,7 +174,7 @@ export default async function BlogPostPage({
         }))
       : [
           { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/' },
-          { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://eazybe.com/blog' },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: `https://eazybe.com${blogPath}` },
           { '@type': 'ListItem', position: 3, name: post.title, item: postUrl },
         ]
 

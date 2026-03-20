@@ -69,6 +69,42 @@ const seoFields = [
     initialValue: false,
     description: 'Tell search engines not to follow links on this page',
   },
+  {
+    name: 'customMetaTags',
+    title: '🏷️ Custom Meta Tags',
+    type: 'array',
+    of: [
+      {
+        type: 'object',
+        fields: [
+          {
+            name: 'name',
+            title: 'Meta Name / Property',
+            type: 'string',
+            validation: Rule => Rule.required(),
+            description: 'e.g., "keywords", "article:tag", "robots", "author"',
+          },
+          {
+            name: 'content',
+            title: 'Content',
+            type: 'string',
+            validation: Rule => Rule.required(),
+            description: 'The meta tag value',
+          },
+        ],
+        preview: {
+          select: { name: 'name', content: 'content' },
+          prepare({ name, content }) {
+            return {
+              title: name,
+              subtitle: content?.substring(0, 60) + (content?.length > 60 ? '...' : ''),
+            }
+          },
+        },
+      },
+    ],
+    description: 'Add any custom <meta> tags. Common: keywords, article:tag, author, google-site-verification',
+  },
 ]
 
 // Universal JSON-LD Schemas section - for ALL content types
@@ -391,7 +427,7 @@ const blogPost = {
       featuredImage: 'featuredImage',
     },
     prepare({ title, slug, language, publishedAt, featuredImage }) {
-      const langFlag = { 'en': '🇬🇧', 'es': '🇪🇸', 'tr': '🇹🇷', 'br': '🇧🇷' }[language] || '🌐'
+      const langFlag = { 'en': '🇬🇧', 'es': '🇪🇸', 'tr': '🇹🇷', 'pt-BR': '🇧🇷', 'br': '🇧🇷' }[language] || '🌐'
       const date = publishedAt ? new Date(publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Draft'
       return {
         title: `${langFlag} ${title}`,
