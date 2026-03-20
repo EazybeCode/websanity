@@ -5,8 +5,8 @@ import { getBlogPost, getBlogPosts, getBlogIndex, getBlogPostTranslations } from
 import { BlogPostClient } from '@/components/pages/BlogPostClient'
 import { routing } from '@/i18n/routing'
 
-// ISR: Revalidate pages every 60 seconds to pick up Sanity CMS changes
-export const revalidate = 60
+// ISR: Revalidate pages every 10 seconds to pick up Sanity CMS changes immediately
+export const revalidate = 10
 
 export async function generateStaticParams() {
   const params: { locale: string; slug: string }[] = []
