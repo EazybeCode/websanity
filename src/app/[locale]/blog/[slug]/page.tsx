@@ -143,97 +143,10 @@ export default async function BlogPostPage({
     notFound()
   }
 
-  // Build JSON-LD schemas server-side
-  const postUrl = `https://eazybe.com${locale === 'en' ? '' : `/${locale}`}/blog/${slug}`
-  const featuredImage = post.ogImage || post.featuredImage || 'https://eazybe.com/logo.png'
-
-  // Article schema
-  const articleSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
-    headline: post.title,
-    description: post.metaDescription || post.excerpt || '',
-    image: featuredImage,
-    author: post.author?.url
-      ? { '@type': 'Person', name: post.author.name, url: post.author.url }
-      : { '@type': 'Organization', name: post.author?.name || 'Eazybe', url: 'https://eazybe.com/' },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Eazybe',
-      logo: { '@type': 'ImageObject', url: 'https://eazybe.com/logo.png' },
-    },
-    ...(post.publishedAt ? { datePublished: post.publishedAt.split('T')[0] } : {}),
-    ...(post.publishedAt ? { dateModified: post.publishedAt.split('T')[0] } : {}),
-  }
-
-  // Breadcrumb schema
-  const blogPath = locale === 'en' ? '/blog' : `/${locale}/blog`
-  const breadcrumbItems =
-    post.breadcrumbs && post.breadcrumbs.length > 0
-      ? post.breadcrumbs.map((b: any, i: number) => ({
-          '@type': 'ListItem',
-          position: i + 1,
-          name: b.name,
-          item: b.url,
-        }))
-      : [
-          { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/' },
-          { '@type': 'ListItem', position: 2, name: 'Blog', item: `https://eazybe.com${blogPath}` },
-          { '@type': 'ListItem', position: 3, name: post.title, item: postUrl },
-        ]
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org/',
-    '@type': 'BreadcrumbList',
-    itemListElement: breadcrumbItems,
-  }
-
-  // FAQ schema
-  const faqSchema =
-    post.faqs && post.faqs.length > 0
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: post.faqs.map((faq: any) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: faq.acceptedAnswer || faq.answer,
-            },
-          })),
-        }
-      : null
-
-  // Custom Sanity JSON-LD schemas (parsed from HTML text field)
-  const customSchemas: object[] = []
-  if (post.jsonLdSchemas && typeof post.jsonLdSchemas === 'string') {
-    const jsonMatches = (post.jsonLdSchemas as string).match(/(?:<script[^>]*>)?([\s\S]*?)(?:<\/script>|$)/gi) || []
-    for (const match of jsonMatches) {
-      const jsonStr = match.replace(/<\/?script[^>]*>/gi, '').trim()
-      if (jsonStr) {
-        try {
-          customSchemas.push(JSON.parse(jsonStr))
-        } catch {
-          // Skip invalid JSON
-        }
-      }
-    }
-  }
-
-  const allSchemas = [articleSchema, breadcrumbSchema, ...customSchemas]
-  if (faqSchema) allSchemas.push(faqSchema)
+  // NOTE: JSON-LD schemas removed - no longer generating Article, Breadcrumb, or FAQ schemas
 
   return (
     <>
-      {allSchemas.map((schema, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      ))}
 
       <BlogPostClient
         post={post}
