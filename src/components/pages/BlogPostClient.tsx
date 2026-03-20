@@ -800,6 +800,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               alt={post.featuredImageAlt || post.title}
               className="w-full h-full object-cover"
               loading="eager"
+              fetchPriority="high"
               width={1200}
               height={630}
             />
