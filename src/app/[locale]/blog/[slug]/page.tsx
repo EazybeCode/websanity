@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
-import { getBlogPost, getBlogPosts, getBlogIndex } from '@/lib/sanity-queries'
+import { getBlogPost, getBlogPosts, getBlogIndex, getBlogPostTranslations } from '@/lib/sanity-queries'
 import { BlogPostClient } from '@/components/pages/BlogPostClient'
 import { routing } from '@/i18n/routing'
 
@@ -186,6 +186,49 @@ export async function generateMetadata({
     metadata.description = post.excerpt || ''
   }
 
+  // Canonical URL for this page
+  const SITE_URL = 'https://eazybe.com'
+  const localePath = locale === 'en' ? '' : `/${locale}`
+  const canonicalUrl = `${SITE_URL}${localePath}/blog/${slug}`
+
+  if (!metadata.alternates) metadata.alternates = {}
+  if (!(metadata.alternates as any).canonical) {
+    ;(metadata.alternates as any).canonical = canonicalUrl
+  }
+
+  // Hreflang alternates from translation group
+  if (post.translationGroupId) {
+    const translations = await getBlogPostTranslations(post.translationGroupId)
+    if (translations && translations.length > 0) {
+      const sanityToLocale: Record<string, string> = {
+        en: 'en',
+        es: 'es',
+        'pt-BR': 'pt-BR',
+        pt: 'pt-BR',
+        tr: 'tr',
+      }
+      const localeToPrefix: Record<string, string> = {
+        en: '',
+        es: '/es',
+        'pt-BR': '/br',
+        tr: '/tr',
+      }
+
+      const languages: Record<string, string> = {}
+      for (const t of translations) {
+        const hreflang = sanityToLocale[t.language] || t.language
+        const prefix = localeToPrefix[hreflang] ?? `/${hreflang}`
+        languages[hreflang] = `${SITE_URL}${prefix}/blog/${t.slug}`
+      }
+      // x-default points to English version if available, otherwise current page
+      languages['x-default'] = languages['en'] || canonicalUrl
+
+      if (!metadata.alternates.languages) {
+        ;(metadata.alternates as any).languages = languages
+      }
+    }
+  }
+
   return metadata
 }
 
@@ -239,9 +282,7 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <head>
-        {jsonLdScripts}
-      </head>
+      {jsonLdScripts}
 
       <BlogPostClient
         post={post}
