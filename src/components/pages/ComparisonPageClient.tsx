@@ -284,7 +284,7 @@ const valueProps = [
   {
     icon: <Users className="w-7 h-7" />,
     title: 'Largest User Base',
-    description: 'Trusted by 50,000+ businesses worldwide - more users than all other WhatsApp CRMs combined.'
+    description: 'Trusted by 30,000+ businesses worldwide - more users than all other WhatsApp CRMs combined.'
   }
 ]
 
@@ -296,7 +296,7 @@ const faqItems = [
   },
   {
     question: 'Why is Eazybe more affordable than competitors?',
-    answer: 'Eazybe starts at just $13/month while competitors charge $25-$49/month. We believe powerful WhatsApp CRM should be accessible to all businesses. Our efficient operations and larger user base (50,000+) allow us to offer premium features at a fraction of the cost.'
+    answer: 'Eazybe starts at just $13/month while competitors charge $25-$49/month. We believe powerful WhatsApp CRM should be accessible to all businesses. Our efficient operations and larger user base (30,000+) allow us to offer premium features at a fraction of the cost.'
   },
   {
     question: 'What exclusive features does Eazybe offer?',
@@ -398,7 +398,7 @@ const comparisonArticles = [
     id: 'eazybe-vs-all',
     slug: 'eazybe-vs-all',
     title: 'Eazybe vs 20+ WhatsApp CRMs: Ultimate Comparison',
-    excerpt: 'See how Eazybe compares to all major WhatsApp CRM platforms. Features, pricing, integrations, and why 50,000+ businesses choose Eazybe.',
+    excerpt: 'See how Eazybe compares to all major WhatsApp CRM platforms. Features, pricing, integrations, and why 30,000+ businesses choose Eazybe.',
     category: 'Comparison',
     readTime: 15,
     publishedAt: '2025-03-15',
@@ -683,10 +683,10 @@ export function ComparisonPageClient() {
               Why Eazybe
             </SectionBadge>
             <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
-              Why 50,000+ Businesses Choose Eazybe
+              Why 30,000+ Businesses Choose Eazybe
             </h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Discover why 50,000+ businesses choose Eazybe over Wati, Interakt, QuickReply, Cooby, Timelines, Rasayel, and 20+ other platforms.
+              Discover why 30,000+ businesses choose Eazybe over Wati, Interakt, QuickReply, Cooby, Timelines, Rasayel, and 20+ other platforms.
             </p>
           </div>
 
@@ -721,7 +721,7 @@ export function ComparisonPageClient() {
             Ready to Transform Your WhatsApp Communication?
           </h2>
           <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-            Join 50,000+ businesses already using Eazybe to close more deals, provide better support, and scale their operations.
+            Join 30,000+ businesses already using Eazybe to close more deals, provide better support, and scale their operations.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button

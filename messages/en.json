@@ -1596,7 +1596,7 @@
       },
       "cta": {
         "badge": "Ready to Get Started?",
-        "headline": "Join 50,000+ Teams",
+        "headline": "Join 30,000+ Teams",
         "headlineHighlight": "Winning with WhatsApp",
         "description": "Start your free trial today. No credit card required.",
         "primaryCta": "Install for Free",
@@ -2089,7 +2089,7 @@
     "redirecting": "Redirecting to Chrome Web Store..."
   },
   "partner": {
-    "heroBadge": "Join 500+ Successful Partners Worldwide",
+    "heroBadge": "Join 30,000+ Successful Partners Worldwide",
     "heroHeadline": "Partner with",
     "heroHighlight": "#1 WhatsApp CRM",
     "heroSubheadline": "Help businesses transform their customer communication while you earn industry-leading commissions.",
@@ -2250,7 +2250,7 @@
     ],
     "finalCtaTitle": "Ready to grow with us?",
     "finalCtaDesc": "Start Earning with Eazybe Today",
-    "finalCtaSubtext": "Join 500+ partners worldwide who are earning up to 50% revenue share while helping businesses transform their WhatsApp communication.",
+    "finalCtaSubtext": "Join 30,000+ partners worldwide who are earning up to 50% revenue share while helping businesses transform their WhatsApp communication.",
     "talkToTeam": "Talk to Partnership Team"
   },
   "notFound": {

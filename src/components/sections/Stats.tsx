@@ -7,7 +7,7 @@ export const Stats: React.FC = () => {
   const t = useTranslations()
 
   const stats = [
-    { value: "2,000+", label: t('home.stats.salesTeams') },
+    { value: "30,000+", label: t('home.stats.salesTeams') },
     { value: "10M+", label: t('home.stats.messagesSynced') },
     { value: "40%", label: t('home.stats.fasterResponse') },
     { value: "30 min", label: t('home.stats.setupTime') }

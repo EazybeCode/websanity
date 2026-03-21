@@ -57,7 +57,7 @@ export const ClientLogos: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
             {t('home.clientLogos.trustedBy', { defaultValue: 'Trusted By' })}{' '}
             <span className="bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-indigo bg-clip-text text-transparent">
-              500+
+              30,000+
             </span>{' '}
             {t('home.clientLogos.salesTeams', { defaultValue: 'Sales Teams' })}
           </h2>

@@ -454,7 +454,7 @@ export function getHomepageJsonLd(locale: string): object[] {
         "applicationSubCategory": "AI Sales Automation, WhatsApp CRM Integration, AI Agents for WhatsApp",
         "operatingSystem": "Web, Chrome Extension",
         "url": "https://eazybe.com/",
-        "description": "Eazybe helps sales teams automate WhatsApp conversations with WhastApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms.",
+        "description": "Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms.",
         "offers": {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
@@ -466,10 +466,10 @@ export function getHomepageJsonLd(locale: string): object[] {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": "4.7",
+          "ratingValue": "4.6",
           "bestRating": "5",
           "worstRating": "1",
-          "ratingCount": 53766
+          "ratingCount": 800
         },
         "featureList": [
           "WhatsApp AI agents for sales teams",
@@ -480,94 +480,8 @@ export function getHomepageJsonLd(locale: string): object[] {
           "Shared inbox for team collaboration",
           "Message scheduling"
         ]
-      },
-      // Product Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "WhatsApp AI Agent For Sales Teams - Eazybe",
-        "url": "https://eazybe.com/",
-        "image": ["https://eazybe.com/logo.png"],
-        "description": "Eazybe is a WhatsApp AI Agent platform that helps sales teams automate conversations, qualify leads, detect cold deals, and sync chats with CRM systems.",
-        "brand": { "@type": "Brand", "name": "Eazybe" },
-        "manufacturer": { "@type": "Organization", "name": "Eazybe", "url": "https://eazybe.com/" },
-        "category": "WhatsApp AI Agents For Sales Automation Software",
-        "audience": {
-          "@type": "BusinessAudience",
-          "audienceType": "Sales teams, revenue teams, CRM managers, B2B businesses"
-        },
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/pricing",
-          "priceCurrency": "USD",
-          "lowPrice": 29,
-          "highPrice": 49,
-          "offerCount": 5,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.9,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 53766
-        }
-      },
-      // HowTo Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "How to automate sales with WhatsApp AI Agents using Eazybe",
-        "description": "Follow these steps to set up Eazybe - WhatsApp AI Agents, automate WhatsApp sales workflows, qualify leads, and sync conversations with your CRM.",
-        "totalTime": "PT5M",
-        "estimatedCost": { "@type": "MonetaryAmount", "currency": "USD", "value": "0" },
-        "supply": [
-          { "@type": "HowToSupply", "name": "Active CRM account" },
-          { "@type": "HowToSupply", "name": "WhatsApp account with access to WhatsApp Web" }
-        ],
-        "tool": [
-          { "@type": "HowToTool", "name": "Google Chrome (or Chromium-based browser)" },
-          { "@type": "HowToTool", "name": "Eazybe Chrome Extension" }
-        ],
-        "step": [
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/#step1",
-            "name": "Install the Eazybe extension",
-            "text": "Open the Chrome Web Store and install the official Eazybe extension in your browser.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/#step2",
-            "name": "Open WhatsApp Web",
-            "text": "Go to WhatsApp Web on your computer and sign in. The Eazybe panel will appear inside WhatsApp Web.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/#step3",
-            "name": "Connect your CRM account",
-            "text": "In the Eazybe panel, connect your CRM such as HubSpot, Salesforce, or Zoho to start syncing conversations securely.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/#step4",
-            "name": "Activate AI sales workflows",
-            "text": "Enable AI features to help qualify leads, detect cold deals, and suggest next-best actions for your sales team.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/#step5",
-            "name": "Automate follow-ups and collaborate",
-            "text": "Use AI replies, shared inbox workflows, and CRM sync to automate follow-ups and keep your sales team aligned.",
-            "image": "https://eazybe.com/logo.png"
-          }
-        ],
-        "inLanguage": "en-US"
-      },
+      }
+
     ],
     br: [
       // FAQPage Schema
@@ -741,101 +655,14 @@ export function getHomepageJsonLd(locale: string): object[] {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": 4.9,
+          "ratingValue": 4.6,
           "bestRating": 5,
           "worstRating": 1,
-          "ratingCount": 53978
+          "ratingCount": 800
         },
         "publisher": {
           "@id": "https://eazybe.com/br/#"
         }
-      },
-      // Product Schema
-      {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "Eazybe - CRM para WhatsApp",
-        "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe \u00e9 uma extens\u00e3o de CRM para WhatsApp que transforma o WhatsApp Web em uma ferramenta de vendas. Integra\u00e7\u00e3o nativa com HubSpot, Zoho, Salesforce e Google Sheets.",
-        "brand": {
-          "@type": "Brand",
-          "name": "Eazybe"
-        },
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/br/precos",
-          "priceCurrency": "BRL",
-          "lowPrice": 96,
-          "highPrice": 162,
-          "offerCount": 5,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.9,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 53766
-        }
-      },
-      // HowTo Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "Como configurar o Eazybe para sincronizar o WhatsApp com seu CRM",
-        "description": "Siga este guia passo a passo para instalar a extens\u00e3o Eazybe e conectar suas conversas do WhatsApp ao HubSpot, Zoho ou Salesforce em minutos.",
-        "totalTime": "PT5M",
-        "estimatedCost": {
-          "@type": "MonetaryAmount",
-          "currency": "BRL",
-          "value": "0"
-        },
-        "supply": [
-          {
-            "@type": "HowToSupply",
-            "name": "Conta ativa em um CRM (HubSpot, Zoho ou Salesforce)"
-          }
-        ],
-        "tool": [
-          {
-            "@type": "HowToTool",
-            "name": "Navegador Google Chrome"
-          },
-          {
-            "@type": "HowToTool",
-            "name": "Extens\u00e3o Eazybe"
-          }
-        ],
-        "step": [
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/br#step1",
-            "name": "Instale a Extens\u00e3o",
-            "text": "Acesse a Chrome Web Store e instale a extens\u00e3o oficial do Eazybe em seu navegador.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/br#step2",
-            "name": "Conecte seu WhatsApp",
-            "text": "Abra o WhatsApp Web em seu computador. O painel do Eazybe aparecer\u00e1 automaticamente no lado direito.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/br#step3",
-            "name": "Vincule seu CRM",
-            "text": "Clique no \u00edcone de configura\u00e7\u00f5es no painel do Eazybe e escolha seu CRM (ex: HubSpot). Siga as instru\u00e7\u00f5es de login para autorizar a conex\u00e3o.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/br#step4",
-            "name": "Inicie a Sincroniza\u00e7\u00e3o",
-            "text": "Selecione um contato ou conversa e ative a sincroniza\u00e7\u00e3o autom\u00e1tica. Agora, todas as mensagens e dados ser\u00e3o salvos diretamente no seu CRM.",
-            "image": "https://eazybe.com/logo.png"
-          }
-        ]
       },
       // ProfessionalService Schema
       {
@@ -875,7 +702,7 @@ export function getHomepageJsonLd(locale: string): object[] {
             "closes": "23:59"
           }
         ]
-      },
+      }
     ],
     es: [
       // FAQPage Schema
@@ -1047,103 +874,15 @@ export function getHomepageJsonLd(locale: string): object[] {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": 4.9,
+          "ratingValue": 4.6,
           "bestRating": 5,
           "worstRating": 1,
-          "ratingCount": 53978
+          "ratingCount": 800
         },
         "publisher": {
           "@type": "Organization",
           "name": "Eazybe"
         },
-        "inLanguage": "es-ES"
-      },
-      // Product Schema
-      {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "Eazybe - CRM para WhatsApp",
-        "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe es una extensi\u00f3n de CRM para WhatsApp que convierte WhatsApp Web en una herramienta de ventas. Integraci\u00f3n nativa con HubSpot, Zoho, Salesforce y Google Sheets.",
-        "brand": {
-          "@type": "Brand",
-          "name": "Eazybe"
-        },
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/es/precios",
-          "priceCurrency": "EUR",
-          "lowPrice": 25,
-          "highPrice": 42,
-          "offerCount": 5,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.9,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 53766
-        }
-      },
-      // HowTo Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "C\u00f3mo configurar Eazybe para sincronizar WhatsApp con tu CRM",
-        "description": "Sigue esta gu\u00eda paso a paso para instalar la extensi\u00f3n de Eazybe y conectar tus conversaciones de WhatsApp con HubSpot, Zoho o Salesforce en minutos.",
-        "totalTime": "PT5M",
-        "estimatedCost": {
-          "@type": "MonetaryAmount",
-          "currency": "EUR",
-          "value": "0"
-        },
-        "supply": [
-          {
-            "@type": "HowToSupply",
-            "name": "Cuenta activa en un CRM (HubSpot, Zoho o Salesforce)"
-          }
-        ],
-        "tool": [
-          {
-            "@type": "HowToTool",
-            "name": "Navegador Google Chrome"
-          },
-          {
-            "@type": "HowToTool",
-            "name": "Extensi\u00f3n Eazybe"
-          }
-        ],
-        "step": [
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/es#step1",
-            "name": "Instala la extensi\u00f3n",
-            "text": "Ve a Chrome Web Store e instala la extensi\u00f3n oficial de Eazybe en tu navegador.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/es#step2",
-            "name": "Conecta tu WhatsApp",
-            "text": "Abre WhatsApp Web en tu ordenador. El panel de Eazybe aparecer\u00e1 autom\u00e1ticamente en el lado derecho.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/es#step3",
-            "name": "Vincula tu CRM",
-            "text": "Haz clic en el icono de configuraci\u00f3n del panel de Eazybe y elige tu CRM (por ejemplo, HubSpot). Sigue las instrucciones de inicio de sesi\u00f3n para autorizar la conexi\u00f3n.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/es#step4",
-            "name": "Inicia la sincronizaci\u00f3n",
-            "text": "Selecciona un contacto o conversaci\u00f3n y activa la sincronizaci\u00f3n autom\u00e1tica. A partir de ahora, los mensajes y datos se guardar\u00e1n directamente en tu CRM.",
-            "image": "https://eazybe.com/logo.png"
-          }
-        ],
         "inLanguage": "es-ES"
       },
       // ProfessionalService Schema
@@ -1172,7 +911,7 @@ export function getHomepageJsonLd(locale: string): object[] {
             "closes": "23:59"
           }
         ]
-      },
+      }
     ],
     tr: [
       // FAQPage Schema
@@ -1344,105 +1083,17 @@ export function getHomepageJsonLd(locale: string): object[] {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": 4.9,
+          "ratingValue": 4.6,
           "bestRating": 5,
           "worstRating": 1,
-          "ratingCount": 53978
+          "ratingCount": 800
         },
         "publisher": {
           "@type": "Organization",
           "name": "Eazybe"
         },
         "inLanguage": "tr-TR"
-      },
-      // Product Schema
-      {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "Eazybe - WhatsApp i\u00e7in CRM",
-        "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe, WhatsApp Web'i bir sat\u0131\u015f arac\u0131na d\u00f6n\u00fc\u015ft\u00fcren bir WhatsApp CRM uzant\u0131s\u0131d\u0131r. HubSpot, Zoho, Salesforce ve Google Sheets ile yerel entegrasyon sunar.",
-        "brand": {
-          "@type": "Brand",
-          "name": "Eazybe"
-        },
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/tr/fiyatlar",
-          "priceCurrency": "TRY",
-          "lowPrice": 1272,
-          "highPrice": 2149,
-          "offerCount": 5,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.9,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 53766
-        }
-      },
-      // HowTo Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "Eazybe'yi WhatsApp'\u0131 CRM'inizle senkronize edecek \u015fekilde kurma",
-        "description": "Eazybe uzant\u0131s\u0131n\u0131 y\u00fcklemek ve WhatsApp konu\u015fmalar\u0131n\u0131z\u0131 HubSpot, Zoho veya Salesforce'a dakikalar i\u00e7inde ba\u011flamak i\u00e7in bu ad\u0131m ad\u0131m k\u0131lavuzu izleyin.",
-        "totalTime": "PT5M",
-        "estimatedCost": {
-          "@type": "MonetaryAmount",
-          "currency": "TRY",
-          "value": "0"
-        },
-        "supply": [
-          {
-            "@type": "HowToSupply",
-            "name": "Aktif bir CRM hesab\u0131 (HubSpot, Zoho veya Salesforce)"
-          }
-        ],
-        "tool": [
-          {
-            "@type": "HowToTool",
-            "name": "Google Chrome taray\u0131c\u0131s\u0131"
-          },
-          {
-            "@type": "HowToTool",
-            "name": "Eazybe uzant\u0131s\u0131"
-          }
-        ],
-        "step": [
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/tr#step1",
-            "name": "Uzant\u0131y\u0131 y\u00fckleyin",
-            "text": "Chrome Web Store'a gidin ve resmi Eazybe uzant\u0131s\u0131n\u0131 taray\u0131c\u0131n\u0131za y\u00fckleyin.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/tr#step2",
-            "name": "WhatsApp'\u0131n\u0131z\u0131 ba\u011flay\u0131n",
-            "text": "Bilgisayar\u0131n\u0131zda WhatsApp Web'i a\u00e7\u0131n. Eazybe paneli otomatik olarak sa\u011f tarafta g\u00f6r\u00fcnecektir.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/tr#step3",
-            "name": "CRM'inizi ba\u011flay\u0131n",
-            "text": "Eazybe panelindeki ayarlar simgesine t\u0131klay\u0131n ve CRM'inizi se\u00e7in (\u00f6r. HubSpot). Ba\u011flant\u0131y\u0131 yetkilendirmek i\u00e7in giri\u015f ad\u0131mlar\u0131n\u0131 izleyin.",
-            "image": "https://eazybe.com/logo.png"
-          },
-          {
-            "@type": "HowToStep",
-            "url": "https://eazybe.com/tr#step4",
-            "name": "Senkronizasyonu ba\u015flat\u0131n",
-            "text": "Bir ki\u015fi veya konu\u015fma se\u00e7in ve otomatik senkronizasyonu etkinle\u015ftirin. Art\u0131k mesajlar ve veriler do\u011frudan CRM'inize kaydedilecektir.",
-            "image": "https://eazybe.com/logo.png"
-          }
-        ],
-        "inLanguage": "tr-TR"
-      },
+      }
     ],
   }
 

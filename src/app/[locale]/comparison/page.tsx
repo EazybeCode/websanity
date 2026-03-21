@@ -17,7 +17,7 @@ export async function generateMetadata({
   }
 
   const descriptions: Record<string, string> = {
-    en: 'Compare Eazybe with 20+ WhatsApp CRM platforms including Wati, Interakt, QuickReply, Cooby, Timelines, and Rasayel. See features, pricing, and why 50,000+ businesses choose Eazybe.',
+    en: 'Compare Eazybe with 20+ WhatsApp CRM platforms including Wati, Interakt, QuickReply, Cooby, Timelines, and Rasayel. See features, pricing, and why 30,000+ businesses choose Eazybe.',
     pt: 'Compare o Eazybe com mais de 20 plataformas de WhatsApp CRM incluindo Wati, Interakt, QuickReply, Cooby, Timelines e Rasayel.',
     es: 'Compare Eazybe con mas de 20 plataformas de WhatsApp CRM incluyendo Wati, Interakt, QuickReply, Cooby, Timelines y Rasayel.',
     tr: 'Eazybe\'yi Wati, Interakt, QuickReply, Cooby, Timelines ve Rasayel dahil 20+ WhatsApp CRM platformuyla karsilastirin.',
