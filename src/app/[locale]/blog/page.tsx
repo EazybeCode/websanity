@@ -3,8 +3,8 @@ import { setRequestLocale } from 'next-intl/server'
 import { getBlogPosts, getBlogIndex } from '@/lib/sanity-queries'
 import { BlogListingClient } from '@/components/pages/BlogListingClient'
 
-// ISR: Revalidate pages every 60 seconds to pick up Sanity CMS changes
-export const revalidate = 60
+// ISR: Revalidate every 10 seconds to pick up Sanity CMS changes immediately
+export const revalidate = 10
 
 export async function generateMetadata({
   params,
