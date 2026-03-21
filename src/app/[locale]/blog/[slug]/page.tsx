@@ -65,20 +65,8 @@ export async function generateMetadata({
         } else if (name === 'author') {
           metadata.authors = [{ name: content }]
         } else if (name === 'robots') {
-          // Parse robots directives
-          const robotsDirectives = content.split(',').map((s: string) => s.trim())
-          const robots: any = {}
-          robotsDirectives.forEach((directive: string) => {
-            const [key, value] = directive.split(':').map((s: string) => s.trim())
-            if (key === 'index') robots.index = value === 'true' || value === 'index'
-            if (key === 'follow') robots.follow = value === 'true' || value === 'follow'
-            if (key === 'noindex') robots.index = false
-            if (key === 'nofollow') robots.follow = false
-            if (key === 'max-snippet') robots['max-snippet'] = value === '-1' ? -1 : parseInt(value)
-            if (key === 'max-image-preview') robots['max-image-preview'] = value === 'large' ? 'large' : value === '-1' ? -1 : 'default'
-            if (key === 'max-video-preview') robots['max-video-preview'] = value === '-1' ? -1 : parseInt(value)
-          })
-          metadata.robots = robots as any
+          // Skip robots from Sanity — always use index, follow (set below)
+          void 0
         } else {
           // All other meta tags go to 'other'
           if (!metadata.other) metadata.other = {}
@@ -181,9 +169,21 @@ export async function generateMetadata({
     }
   }
 
-  // If no customMetaTags, return minimal metadata
-  if (Object.keys(metadata).length === 0) {
-    return { title: 'Blog Post - Eazybe' }
+  // Always allow indexing
+  metadata.robots = {
+    index: true,
+    follow: true,
+    'max-snippet': -1,
+    'max-image-preview': 'large' as const,
+    'max-video-preview': -1,
+  }
+
+  // Fallback: auto-generate from post fields if customMetaTags didn't provide them
+  if (!metadata.title) {
+    metadata.title = `${post.title || 'Blog Post'} | Eazybe`
+  }
+  if (!metadata.description) {
+    metadata.description = post.excerpt || ''
   }
 
   return metadata
