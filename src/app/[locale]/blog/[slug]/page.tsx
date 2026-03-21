@@ -207,42 +207,27 @@ export default async function BlogPostPage({
     notFound()
   }
 
-  // Parse JSON-LD schemas from jsonLdSchemas HTML field in Sanity CMS
-  const jsonLdScripts: React.ReactNode[] = []
-
+  // Parse JSON-LD schemas from Sanity CMS
+  const jsonLdScripts: string[] = []
   if (post.jsonLdSchemas && typeof post.jsonLdSchemas === 'string') {
-    // Extract all <script type="application/ld+json"> tags and their content
     const scriptRegex = /<script\s+type=["']application\/ld\+json["']\s*>([\s\S]*?)<\/script>/gi
     let match
-
     while ((match = scriptRegex.exec(post.jsonLdSchemas)) !== null) {
-      const jsonContent = match[1].trim()
-
       try {
-        // Validate that the content is valid JSON
-        const parsedJson = JSON.parse(jsonContent)
-
-        // Create a script tag for each valid schema
-        jsonLdScripts.push(
-          <script
-            key={`json-ld-${jsonLdScripts.length}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(parsedJson) }}
-          />
-        )
-      } catch (error) {
-        // Skip invalid JSON schemas
-        console.warn('Invalid JSON-LD schema in jsonLdSchemas field:', error)
-      }
+        jsonLdScripts.push(JSON.stringify(JSON.parse(match[1].trim())))
+      } catch { /* skip invalid */ }
     }
   }
 
   return (
     <>
-      <head>
-        {jsonLdScripts}
-      </head>
-
+      {jsonLdScripts.map((schema, i) => (
+        <script
+          key={`json-ld-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: schema }}
+        />
+      ))}
       <BlogPostClient
         post={post}
         relatedPosts={relatedPosts || []}
