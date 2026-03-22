@@ -70,24 +70,20 @@ export async function generateMetadata({
   if (post.translationGroupId) {
     const translations = await getBlogPostTranslations(post.translationGroupId)
     if (translations && translations.length > 0) {
-      const sanityToLocale: Record<string, string> = {
-        en: 'en',
-        es: 'es',
-        'pt-BR': 'pt-BR',
-        pt: 'pt-BR',
-        tr: 'tr',
-      }
-      const localeToPrefix: Record<string, string> = {
-        en: '',
-        es: '/es',
-        'pt-BR': '/br',
-        tr: '/tr',
+      // Map Sanity language codes to ISO hreflang codes and Next.js locale prefixes
+      const translationMap: Record<string, { hreflang: string; prefix: string }> = {
+        en: { hreflang: 'en', prefix: '' },
+        es: { hreflang: 'es', prefix: '/es' },
+        'pt-BR': { hreflang: 'pt-BR', prefix: '/br' },
+        pt: { hreflang: 'pt-BR', prefix: '/br' },
+        tr: { hreflang: 'tr', prefix: '/tr' },
+        br: { hreflang: 'pt-BR', prefix: '/br' },
       }
 
       const languages: Record<string, string> = {}
       for (const t of translations) {
-        const hreflang = sanityToLocale[t.language] || t.language
-        const prefix = localeToPrefix[hreflang] ?? `/${hreflang}`
+        const mapping = translationMap[t.language] || { hreflang: t.language, prefix: `/${t.language}` }
+        const { hreflang, prefix } = mapping
         languages[hreflang] = `${SITE_URL}${prefix}/blog/${t.slug}`
       }
       // x-default points to English version if available, otherwise current page
@@ -120,6 +116,31 @@ export default async function BlogPostPage({
     notFound()
   }
 
+  // Fetch translations for language switcher
+  const translations = post.translationGroupId
+    ? await getBlogPostTranslations(post.translationGroupId)
+    : []
+
+  // Format translations for the context provider
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://eazybe.com'
+  const localePrefixes: Record<string, string> = {
+    en: '',
+    es: '/es',
+    br: '/br',
+    tr: '/tr',
+    'pt-BR': '/br',
+    pt: '/br',
+  }
+
+  const formattedTranslations = translations.map((t) => {
+    const prefix = localePrefixes[t.language] || `/${t.language}`
+    return {
+      locale: t.language,
+      slug: t.slug,
+      url: `${SITE_URL}${prefix}/blog/${t.slug}`,
+    }
+  })
+
   // Parse JSON-LD schemas from jsonLdSchemas HTML field using Cheerio
   const schemas = parseJsonLdSchemas(post.jsonLdSchemas)
 
@@ -142,6 +163,7 @@ export default async function BlogPostPage({
         blogIndex={blogIndex}
         slug={slug}
         locale={locale}
+        translations={formattedTranslations}
       />
     </>
   )

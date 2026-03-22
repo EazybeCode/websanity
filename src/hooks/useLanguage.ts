@@ -3,6 +3,7 @@
 import { useCallback } from 'react'
 import { useLocale } from 'next-intl'
 import { useRouter, usePathname } from '@/i18n/navigation'
+import { useBlogTranslations } from '@/contexts/BlogTranslationsContext'
 
 export type SupportedLanguage = 'en' | 'br' | 'es' | 'tr'
 
@@ -42,14 +43,26 @@ export function useLanguage() {
   const locale = useLocale() as SupportedLanguage
   const pathname = usePathname()
   const router = useRouter()
+  const { translations } = useBlogTranslations()
 
   const currentLanguage = locale
 
   const changeLanguage = useCallback(
     (lang: SupportedLanguage) => {
+      // Check if we're on a blog post and have translation data
+      if (translations.length > 0) {
+        const translation = translations.find((t) => t.locale === lang)
+        if (translation) {
+          // Navigate to the translated blog post URL
+          router.replace(translation.url)
+          return
+        }
+      }
+
+      // Fall back to default behavior (just change locale)
       router.replace(pathname, { locale: lang })
     },
-    [pathname, router]
+    [pathname, router, translations]
   )
 
   const getLocalizedPath = useCallback(

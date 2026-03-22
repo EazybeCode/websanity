@@ -27,6 +27,7 @@ import { CalloutBlock } from '@/components/blog/CalloutBlock'
 import { QuoteBlock } from '@/components/blog/QuoteBlock'
 import { TableBlock } from '@/components/blog/TableBlock'
 import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
+import { BlogTranslationsProvider, type BlogTranslation } from '@/contexts/BlogTranslationsContext'
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -108,6 +109,7 @@ interface BlogPostClientProps {
   blogIndex: BlogIndex | null
   slug: string
   locale: string
+  translations?: BlogTranslation[]
 }
 
 // ─── Utility Functions ─────────────────────────────────────────────────────
@@ -629,6 +631,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
   blogIndex,
   slug,
   locale,
+  translations = [],
 }) => {
   const t = useTranslations()
   const router = useRouter()
@@ -679,8 +682,9 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
   }, [post?.content])
 
   return (
-    <>
-      <ReadingProgress />
+    <BlogTranslationsProvider translations={translations} currentSlug={slug}>
+      <>
+        <ReadingProgress />
 
       {/* Hero Section - Left Aligned */}
       <header className="pt-20 md:pt-24 lg:pt-32 pb-6 md:pb-8 lg:pb-12 relative overflow-x-clip">
@@ -1165,6 +1169,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
           </div>
         </section>
       )}
-    </>
+      </>
+    </BlogTranslationsProvider>
   )
 }
