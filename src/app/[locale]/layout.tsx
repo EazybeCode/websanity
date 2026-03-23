@@ -47,7 +47,6 @@ export default async function LocaleLayout({
         </div>
       </Providers>
       <Analytics />
-      <TrialModalWrapper />
     </NextIntlClientProvider>
   )
 }
