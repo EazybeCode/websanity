@@ -4,7 +4,6 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 Disallow: /*?*utm_*
-Disallow: /*.json$
 
 User-agent: GPTBot
 Allow: /
