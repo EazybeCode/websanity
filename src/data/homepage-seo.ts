@@ -467,10 +467,11 @@ export function getHomepageJsonLd(locale: string): object[] {
         "@type": "SoftwareApplication",
         "name": "Eazybe",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "AI Sales Automation, WhatsApp CRM Integration, AI Agents for WhatsApp",
+        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
         "operatingSystem": "Web, Chrome Extension",
         "url": "https://eazybe.com/",
-        "description": "Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms.",
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets.",
         "offers": {
           "@type": "AggregateOffer",
           "url": "https://eazybe.com/pricing",
@@ -482,19 +483,21 @@ export function getHomepageJsonLd(locale: string): object[] {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": "4.6",
+          "ratingValue": "4.9",
           "bestRating": "5",
           "worstRating": "1",
-          "ratingCount": 800
+          "ratingCount": 30597
         },
         "featureList": [
-          "WhatsApp AI agents for sales teams",
-          "Automatic lead qualification",
+          "WhatsApp AI agents",
+          "Lead qualification",
           "Cold deal detection",
-          "CRM sync for chats and contacts",
           "AI-powered reply suggestions",
           "Shared inbox for team collaboration",
-          "Message scheduling"
+          "Deal tracking from WhatsApp",
+          "Contact synchronization",
+          "WhatsApp CRM integration",
+          "Sales automation"
         ]
       }
 
