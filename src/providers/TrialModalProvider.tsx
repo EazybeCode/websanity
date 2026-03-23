@@ -16,7 +16,17 @@ const TrialModalContext = createContext<TrialModalContextType | undefined>(undef
 
 export const useTrialModal = () => {
   const context = useContext(TrialModalContext)
-  if (!context) throw new Error('useTrialModal must be used within TrialModalProvider')
+
+  // During SSR, return a no-op function instead of throwing
+  if (!context) {
+    return {
+      isOpen: false,
+      mode: 'trial' as ModalMode,
+      openModal: () => {}, // no-op during SSR
+      closeModal: () => {}, // no-op during SSR
+    }
+  }
+
   return context
 }
 
