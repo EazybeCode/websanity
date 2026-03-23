@@ -41,6 +41,7 @@ export default async function LocaleLayout({
           <MegaMenuHeader />
           <main>{children}</main>
           <ChunkyFooter />
+          <TrialModalWrapper />
           <LeadSidebar />
           <LeadMobileButton />
         </div>
