@@ -132,7 +132,7 @@ export default async function BlogPostPage({
     pt: '/br',
   }
 
-  const formattedTranslations = translations.map((t) => {
+  const formattedTranslations = translations.map((t: { language: string; slug: string }) => {
     const prefix = localePrefixes[t.language] || `/${t.language}`
     return {
       locale: t.language,

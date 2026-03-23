@@ -70,7 +70,7 @@ export async function debugBlogTranslations(
 
   // Check for expected languages
   const expectedLanguages = ['en', 'es', 'pt-BR', 'tr']
-  const foundLanguages = translations.map((t) => t.language)
+  const foundLanguages = translations.map((t: { language: string }) => t.language)
   const missingLanguages = expectedLanguages.filter((lang) => !foundLanguages.includes(lang))
 
   if (missingLanguages.length > 0) {
@@ -87,7 +87,7 @@ export async function debugBlogTranslations(
     tr: '/tr',
   }
 
-  const translationUrls = translations.map((t) => {
+  const translationUrls = translations.map((t: { language: string; slug: string }) => {
     const prefix = localePrefixes[t.language] || `/${t.language}`
     return {
       slug: t.slug,
