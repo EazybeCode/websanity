@@ -332,9 +332,25 @@ export function getHomepageJsonLd(locale: string): object[] {
         "url": "https://eazybe.com/",
         "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
         "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe helps sales teams automate WhatsApp conversations with AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets.",
-        "foundingDate": "2021",
-        "sameAs": ["https://twitter.com/eazybe", "https://linkedin.com/company/eazybe", "https://youtube.com/@eazybe"],
+        "description": "Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets.",
+        "foundingDate": "2022-09-13",
+        "founder": {
+          "@type": "Person",
+          "name": "Sagar Dewan",
+          "sameAs": ["https://www.linkedin.com/in/sagar-dewan-b43b9931/"]
+        },
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Eazybe Inc."
+        },
+        "sameAs": [
+          "https://x.com/EazybeHQ",
+          "https://www.linkedin.com/company/eazybe",
+          "https://www.youtube.com/@eazybe",
+          "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
+          "https://www.threads.com/@eazybe.supercharge",
+          "https://www.instagram.com/eazybe.supercharge/"
+        ],
         "contactPoint": [
           {
             "@type": "ContactPoint",
@@ -349,7 +365,7 @@ export function getHomepageJsonLd(locale: string): object[] {
           "@type": "PostalAddress",
           "streetAddress": "8, The Green STE B",
           "addressLocality": "Dover",
-          "addressRegion": "Delaware",
+          "addressRegion": "DE",
           "postalCode": "19901",
           "addressCountry": "US"
         },
