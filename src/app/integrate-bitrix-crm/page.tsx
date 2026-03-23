@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
+import { decryptParams } from '@/lib/decrypt-params'
 
 const CLIENT_ID = "app.6448e61fad4676.49982309"
 const EXTENSION_ID_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
@@ -77,16 +78,10 @@ export default function IntegrateBitrixCrmPage() {
 
       if (encryptedParams) {
         try {
-          const response = await fetch("https://api.eazybe.com/v2/other/decrypt-url", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ encryptedUrl: encryptedParams }),
-          })
-          if (!response.ok) throw new Error("Failed to decrypt URL")
-          const { data } = await response.json()
-          new URLSearchParams(data).forEach((value, key) => { urlParamsObject[key] = value })
+          const decrypted = decryptParams(encryptedParams)
+          Object.assign(urlParamsObject, decrypted)
         } catch (error) {
-          console.error("Error extracting params:", error)
+          console.error("Error decrypting params:", error)
         }
       } else {
         urlParams.forEach((value, key) => { urlParamsObject[key] = value })
