@@ -100,7 +100,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/*?*utm_*', '/*.json$'],
+        disallow: ['/api/', '/dist/', '/.git/', '/admin/', '/_next/', '/*.json$', '/*?*utm_*', '/node_modules/'],
       },
       // Explicitly allow all AI, search, social, and SEO bots
       ...allowedBots.map((userAgent) => ({
