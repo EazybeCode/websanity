@@ -115,6 +115,5 @@ export default function robots(): MetadataRoute.Robots {
       `${SITE_URL}/sitemap-es.xml`,
       `${SITE_URL}/sitemap-tr.xml`,
     ],
-    host: SITE_URL,
   }
 }
