@@ -713,7 +713,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
           </nav>
 
           {/* Category Badge */}
-          <div className="mb-5 md:mb-8">
+          <div className="my-4">
             <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs md:text-sm font-medium">
               {post.category || 'Blog'}
             </span>
