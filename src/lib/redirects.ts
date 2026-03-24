@@ -8,15 +8,16 @@ export interface RedirectRule {
  * Redirect rules migrated from the old React site (redirectRoutes.tsx) and public/_redirects.
  * These are 301 permanent redirects for SEO preservation.
  *
- * Total rules: 799
- * Normal redirects (without query parameters): 799
+ * Total rules: 805
+ * Normal redirects (without query parameters): 805
  * Query parameter redirects: 236 (handled in public/_redirects)
  *
- * Removed all 5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions redirects: 2026-03-24T12:52:00.000Z
+ * Removed invalid //www.eazybe.com/integrations redirect: 2026-03-24T13:02:00.000Z
  */
 export const redirectRules: RedirectRule[] = [
-  { source: "//www.eazybe.com/integrations", destination: "/", permanent: true },
   { source: "/%20synchronizing-whatsapp-conversations-with-hubspot-crm", destination: "/", permanent: true },
+  { source: "/%205-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/blog", permanent: true },
+  { source: "/5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/blog", permanent: true },
   { source: "/a-complete-guide-to-the-whatsapp-business-api-price-list-for-2023", destination: "/", permanent: true },
   { source: "/about-cs", destination: "/", permanent: true },
   { source: "/all-crm-form-pt", destination: "/", permanent: true },
@@ -68,6 +69,7 @@ export const redirectRules: RedirectRule[] = [
   { source: "/blog/2022/04/15/sale-closing-plan-the-best-tool-to-close-almost-all-your-deals/feed", destination: "/blog", permanent: true },
   { source: "/blog/2022/05/06/tutorial-how-to-organize-chats-using-labels/feed", destination: "/blog", permanent: true },
   { source: "/blog/2023/04/10", destination: "/blog", permanent: true },
+  { source: "/blog/5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/blog", permanent: true },
   { source: "/blog/7-best-alternative-of-cooby-elevate-your-experience", destination: "/hubspot-whatsapp-integration", permanent: true },
   { source: "/blog/7-wa-deck-alternatives-which-one-should-you-choose", destination: "/", permanent: true },
   { source: "/blog/9-ways-to-use-whatsapp-for-customer-service-2023", destination: "/", permanent: true },
@@ -338,6 +340,7 @@ export const redirectRules: RedirectRule[] = [
   { source: "/blog/whatsapp-vs-whatsapp-business-vs-whatsapp-api", destination: "/", permanent: true },
   { source: "/blog/whatsapp/15-whatsapp-business-description-samples-templates-2023", destination: "/blog", permanent: true },
   { source: "/blog/whatsapp/15-whatsapp-business-description-samples-templates-2023/feed", destination: "/blog", permanent: true },
+  { source: "/blog/whatsapp/5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/blog", permanent: true },
   { source: "/blog/whatsapp/9-ways-to-use-whatsapp-for-customer-service-2023", destination: "/blog", permanent: true },
   { source: "/blog/whatsapp/a-complete-guide-to-the-whatsapp-business-api-price-list-for-2023", destination: "/blog", permanent: true },
   { source: "/blog/whatsapp/catalogo-do-whatsapp-tudo-o-que-voce-precisa-saber-em-2023", destination: "/blog", permanent: true },
@@ -388,6 +391,7 @@ export const redirectRules: RedirectRule[] = [
   { source: "/br/blog-pt/organize-se-com-hubspot-free-crm-comece-agora", destination: "/br/blog", permanent: true },
   { source: "/br/blog/10-ways-whatsapp-crm-can-revolutionize-your-business", destination: "/br/blog", permanent: true },
   { source: "/br/blog/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025", destination: "/br/blog", permanent: true },
+  { source: "/br/blog/5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/br/blog", permanent: true },
   { source: "/br/blog/beginners-guide-mastering-whatsapp-automation-for-sales", destination: "/br/blog", permanent: true },
   { source: "/br/blog/beginners-guide-mastering-whatsapp-crm-for-beginners", destination: "/br/blog", permanent: true },
   { source: "/br/blog/best-tool-to-close-almost-all-your-deals", destination: "/br/blog", permanent: true },
@@ -516,6 +520,7 @@ export const redirectRules: RedirectRule[] = [
   { source: "/post/", destination: "/chatgpt-4-0-on-whatsapp-eazybe-extension-for-ai-sales", permanent: true },
   { source: "/post/ 15-whatsapp-business-description-samples-templates-2023", destination: "/", permanent: true },
   { source: "/post/ 5-reasons-why-marketing-is-more-important-than-ever-in-2023", destination: "/", permanent: true },
+  { source: "/post/ 5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/blog", permanent: true },
   { source: "/post/ access-chatgpt-on-whatsapp-with-this-top-3-whatsapp-chrome-extensions", destination: "/", permanent: true },
   { source: "/post/ add-whatsapp-on-your-wordpress-website", destination: "/", permanent: true },
   { source: "/post/ apply-for-green-tick-on-whatsapp-business", destination: "/", permanent: true },
@@ -598,6 +603,7 @@ export const redirectRules: RedirectRule[] = [
   { source: "/post/15-best-ai-driven-sales-tools-for-b2c-companies", destination: "/", permanent: true },
   { source: "/post/15-whatsapp-business-description-samples-templates-2023", destination: "/blog", permanent: true },
   { source: "/post/5-reasons-why-marketing-is-more-important-than-ever-in-2023", destination: "/", permanent: true },
+  { source: "/post/5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/blog", permanent: true },
   { source: "/post/7-alternatives-of-wa-plus", destination: "/", permanent: true },
   { source: "/post/7-alternatives-of-wa-sender", destination: "/", permanent: true },
   { source: "/post/7-best-alternative-of-cooby-elevate-your-experience", destination: "/", permanent: true },
