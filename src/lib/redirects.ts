@@ -8,14 +8,13 @@ export interface RedirectRule {
  * Redirect rules migrated from the old React site (redirectRoutes.tsx) and public/_redirects.
  * These are 301 permanent redirects for SEO preservation.
  *
- * Total rules: 808
- * Normal redirects (without query parameters): 808
+ * Total rules: 807
+ * Normal redirects (without query parameters): 807
  * Query parameter redirects: 236 (handled in public/_redirects)
  *
- * Split completed: 2026-03-24T11:00:34.848Z
+ * Fixed homepage redirect: 2026-03-24T12:49:00.000Z
  */
 export const redirectRules: RedirectRule[] = [
-  { source: "/", destination: "/5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", permanent: true },
   { source: "/ 5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/", permanent: true },
   { source: "//www.eazybe.com/integrations", destination: "/", permanent: true },
   { source: "/%205-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/blog", permanent: true },
