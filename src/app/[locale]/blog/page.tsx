@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getBlogPosts, getBlogIndex } from '@/lib/sanity-queries'
 import { BlogListingClient } from '@/components/pages/BlogListingClient'
+import { BlogJsonLd } from '@/components/BlogJsonLd'
 
 // ISR: Revalidate every 10 seconds to pick up Sanity CMS changes immediately
 export const revalidate = 10
@@ -132,6 +133,20 @@ export default async function BlogListingPage({
     getBlogPosts(locale),
     getBlogIndex(locale),
   ])
+
+  // Only add JSON-LD schemas for English blog page
+  if (locale === 'en') {
+    return (
+      <>
+        <BlogJsonLd />
+        <BlogListingClient
+          allPosts={allPosts || []}
+          blogIndex={blogIndex}
+          locale={locale}
+        />
+      </>
+    )
+  }
 
   return (
     <BlogListingClient
