@@ -8,8 +8,8 @@ export interface RedirectRule {
  * Redirect rules migrated from the old React site (redirectRoutes.tsx) and public/_redirects.
  * These are 301 permanent redirects for SEO preservation.
  *
- * Total rules: 805
- * Normal redirects (without query parameters): 805
+ * Total rules: 806
+ * Normal redirects (without query parameters): 806
  * Query parameter redirects: 236 (handled in public/_redirects)
  *
  * Removed invalid //www.eazybe.com/integrations redirect: 2026-03-24T13:02:00.000Z
@@ -18,6 +18,7 @@ export const redirectRules: RedirectRule[] = [
   { source: "/%20synchronizing-whatsapp-conversations-with-hubspot-crm", destination: "/", permanent: true },
   { source: "/%205-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/blog", permanent: true },
   { source: "/5-wa-web-plus-alternatives-best-whatsapp-chrome-extensions", destination: "/blog", permanent: true },
+  { source: "/blog/desconectarse-de-whatsapp", destination: "/es/blog/desconectarse-de-whatsapp", permanent: true },
   { source: "/a-complete-guide-to-the-whatsapp-business-api-price-list-for-2023", destination: "/", permanent: true },
   { source: "/about-cs", destination: "/", permanent: true },
   { source: "/all-crm-form-pt", destination: "/", permanent: true },
