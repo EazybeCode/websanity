@@ -16,11 +16,23 @@ export async function generateMetadata({
 
   const seo = blogIndex?.seo
 
+  const canonicalUrl = `https://eazybe.com${locale === 'en' ? '' : `/${locale}`}/blog`
+
   return {
     title: seo?.metaTitle || 'Blog - Eazybe',
     description:
       seo?.metaDescription ||
       'Tips, guides, and insights on WhatsApp CRM integration, sales automation, and customer engagement.',
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': 'https://eazybe.com/blog',
+        'pt-BR': 'https://eazybe.com/br/blog',
+        'es': 'https://eazybe.com/es/blog',
+        'tr': 'https://eazybe.com/tr/blog',
+        'x-default': 'https://eazybe.com/blog',
+      },
+    },
     openGraph: {
       title: seo?.ogTitle || seo?.metaTitle || 'Blog - Eazybe',
       description:
