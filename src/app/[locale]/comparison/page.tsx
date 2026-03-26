@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { ComparisonPageClient } from '@/components/pages/ComparisonPageClient'
+import { getAlternates } from '@/lib/seo-helpers'
 
 export async function generateMetadata({
   params,
@@ -30,6 +31,7 @@ export async function generateMetadata({
       title: titles[locale] || titles.en,
       description: descriptions[locale] || descriptions.en,
     },
+    alternates: getAlternates(locale, '/comparison'),
   }
 }
 

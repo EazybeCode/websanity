@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
+import { getAlternates } from '@/lib/seo-helpers'
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
@@ -25,9 +26,7 @@ export async function generateMetadata({
       type: 'website',
       siteName: 'Eazybe',
     },
-    alternates: {
-      canonical: `https://eazybe.com${locale === 'en' ? '' : `/${locale}`}/integrations`,
-    },
+    alternates: getAlternates(locale, '/integrations'),
   }
 }
 

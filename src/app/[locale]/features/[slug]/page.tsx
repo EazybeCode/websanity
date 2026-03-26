@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
 import { getFeature } from '@/lib/sanity-queries'
 import FeaturePageClient from '@/components/pages/FeaturePageClient'
+import { getAlternates } from '@/lib/seo-helpers'
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
@@ -28,9 +29,7 @@ export async function generateMetadata({
       type: 'website',
       siteName: 'Eazybe',
     },
-    alternates: {
-      canonical: `https://eazybe.com${locale === 'en' ? '' : `/${locale}`}/features/${slug}`,
-    },
+    alternates: getAlternates(locale, `/features/${slug}`),
   }
 }
 

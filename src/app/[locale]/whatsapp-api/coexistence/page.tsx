@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getCoexistence } from '@/lib/sanity-queries'
 import { CoexistencePageClient } from '@/components/pages/CoexistencePageClient'
+import { getAlternates } from '@/lib/seo-helpers'
 
 export async function generateMetadata({
   params,
@@ -26,6 +27,7 @@ export async function generateMetadata({
         'Use WhatsApp Business App and WhatsApp API together with Eazybe Coexistence.',
       ...(seo?.ogImage && { images: [{ url: seo.ogImage }] }),
     },
+    alternates: getAlternates(locale, '/whatsapp-api/coexistence'),
   }
 }
 

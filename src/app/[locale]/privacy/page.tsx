@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { Shield } from 'lucide-react'
+import { getAlternates } from '@/lib/seo-helpers'
 
 export async function generateMetadata({
   params,
@@ -22,6 +23,7 @@ export async function generateMetadata({
       index: false,
       follow: false,
     },
+    alternates: getAlternates(locale, '/privacy'),
   }
 }
 

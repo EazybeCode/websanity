@@ -4,6 +4,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getProduct } from '@/lib/sanity-queries'
 import { routing } from '@/i18n/routing'
 import ProductPageClient from '@/components/pages/ProductPageClient'
+import { getAlternates } from '@/lib/seo-helpers'
 
 // ─── Integration slug mapping ────────────────────────────────────────────────
 
@@ -76,9 +77,7 @@ export async function generateMetadata({
       type: 'website',
       siteName: 'Eazybe',
     },
-    alternates: {
-      canonical: `https://eazybe.com${locale === 'en' ? '' : `/${locale}`}/${slug}`,
-    },
+    alternates: getAlternates(locale, `/${slug}`),
   }
 }
 

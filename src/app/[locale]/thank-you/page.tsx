@@ -1,5 +1,23 @@
-import { setRequestLocale } from 'next-intl/server'
-import { getTranslations } from 'next-intl/server'
+import { setRequestLocale, getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
+import { getAlternates } from '@/lib/seo-helpers'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+
+  return {
+    title: 'Thank You | Eazybe',
+    robots: {
+      index: false,
+      follow: false,
+    },
+    alternates: getAlternates(locale, '/thank-you'),
+  }
+}
 
 export default async function ThankYouPage({
   params,

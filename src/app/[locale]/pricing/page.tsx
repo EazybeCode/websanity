@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getPricing } from '@/lib/sanity-queries'
 import { PricingPageClient } from '@/components/pages/PricingPageClient'
+import { getAlternates } from '@/lib/seo-helpers'
 
 export async function generateMetadata({
   params,
@@ -26,6 +27,7 @@ export async function generateMetadata({
         'Simple, transparent pricing for WhatsApp CRM integration.',
       ...(seo?.ogImage && { images: [{ url: seo.ogImage }] }),
     },
+    alternates: getAlternates(locale, '/pricing'),
   }
 }
 
