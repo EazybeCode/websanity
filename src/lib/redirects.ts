@@ -807,6 +807,7 @@ export const redirectRules: RedirectRule[] = [
   { source: "/top-5-whatsapp-alternatives-for-2023", destination: "/", permanent: true },
   { source: "/tr/blog-es", destination: "/tr/blog", permanent: true },
   { source: "/tr/blog/hubspot-conversation-analytics", destination: "/tr/blog/hubspot-konusma-analitigi", permanent: true },
+  { source: "/tr/blog/synchronizing-whatsapp-conversations-with-hubspot-crm", destination: "/tr/hubspot-whatsapp-integration", permanent: true },
   { source: "/tr/blog/whatsapp-business-tools", destination: "/tr/blog/whatsapp-isletme-araclari", permanent: true },
   { source: "/tr/blog/whatsapp-hubspot-reporting", destination: "/tr/blog/hubspot-whatsapp-raporlamasi", permanent: true },
   { source: "/tr/blog/whatsapp-sales-performance-analytics", destination: "/tr/blog/whatsapp-ekip-gelen-kutusu", permanent: true },
