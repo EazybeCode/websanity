@@ -999,7 +999,7 @@ export function getHomepageJsonLd(locale: string): object[] {
       },
       // Organization Schema
       {
-        "@context": "https://schema.org",
+        "@context": "https://schema.org/",
         "@type": "Organization",
         "name": "Eazybe",
         "url": "https://eazybe.com/tr",
@@ -1010,32 +1010,51 @@ export function getHomepageJsonLd(locale: string): object[] {
           "height": 60
         },
         "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe, sat\u0131\u015f ekiplerinin WhatsApp Web \u00fczerinden konu\u015fmalar\u0131 senkronize etmesine, mesajlar\u0131 planlamas\u0131na ve m\u00fc\u015fteri etkile\u015fimini art\u0131rmas\u0131na yard\u0131mc\u0131 olan bir WhatsApp CRM entegrasyon platformudur.",
-        "foundingDate": "2021",
+        "description": "Eazybe, sat\u0131\u015f ekiplerinin WhatsApp konu\u015fmalar\u0131n\u0131 yapay zeka ajanlar\u0131 ile otomatikle\u015ftirmesine, lead'leri nitelendirmesine, so\u011fuyan f\u0131rsatlar\u0131 tespit etmesine ve sohbetleri HubSpot, Zoho, Salesforce ve Google Sheets gibi CRM platformlar\u0131yla senkronize etmesine yard\u0131mc\u0131 olur.",
+        "foundingDate": "2022-09-13",
+        "founder": {
+          "@type": "Person",
+          "name": "Sagar Dewan",
+          "sameAs": [
+            "https://www.linkedin.com/in/sagar-dewan-b43b9931/"
+          ]
+        },
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Eazybe Inc."
+        },
         "sameAs": [
-          "https://twitter.com/eazybe",
-          "https://linkedin.com/company/eazybe",
-          "https://youtube.com/@eazybe"
+          "https://x.com/EazybeHQ",
+          "https://www.linkedin.com/company/eazybe",
+          "https://www.youtube.com/@eazybe",
+          "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
+          "https://www.threads.com/@eazybe.supercharge",
+          "https://www.instagram.com/eazybe.supercharge/"
         ],
-        "contactPoint": [
-          {
-            "@type": "ContactPoint",
-            "contactType": "m\u00fc\u015fteri hizmetleri",
-            "email": "support@eazybe.com",
-            "url": "https://eazybe.com/tr",
-            "areaServed": "TR",
-            "availableLanguage": ["Turkish"]
-          }
-        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "m\u00fc\u015fteri deste\u011fi",
+          "email": "support@eazybe.com",
+          "url": "https://eazybe.com/tr",
+          "areaServed": "TR",
+          "availableLanguage": ["T\u00fcrk\u00e7e"]
+        },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "8, The Green STE B",
           "addressLocality": "Dover",
-          "addressRegion": "Delaware",
+          "addressRegion": "DE",
           "postalCode": "19901",
           "addressCountry": "US"
         },
-        "knowsAbout": ["WhatsApp CRM", "Sat\u0131\u015f otomasyonu", "CRM entegrasyonu", "CRM i\u00e7in yapay zek\u00e2 ajanlar\u0131", "M\u00fc\u015fteri etkile\u015fimi"]
+        "knowsAbout": [
+          "WhatsApp yapay zeka ajan\u0131",
+          "Sat\u0131\u015f ekipleri i\u00e7in yapay zeka ajanlar\u0131",
+          "WhatsApp CRM entegrasyonu",
+          "Sat\u0131\u015f otomasyonu",
+          "Lead nitelendirme",
+          "CRM senkronizasyonu"
+        ]
       },
       // BreadcrumbList Schema
       {
@@ -1079,21 +1098,21 @@ export function getHomepageJsonLd(locale: string): object[] {
       },
       // SoftwareApplication Schema
       {
-        "@context": "https://schema.org",
+        "@context": "https://schema.org/",
         "@type": "SoftwareApplication",
         "name": "Eazybe",
-        "operatingSystem": "Web, Chrome Uzant\u0131s\u0131",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "CRM, Mesajla\u015fma, WhatsApp Otomasyonu",
-        "image": ["https://eazybe.com/logo.png"],
-        "description": "Eazybe, WhatsApp Web'i g\u00fc\u00e7l\u00fc bir CRM arac\u0131na d\u00f6n\u00fc\u015ft\u00fcren bir Chrome uzant\u0131s\u0131d\u0131r. HubSpot, Zoho, Salesforce ve Google Sheets ile entegre olarak sat\u0131\u015f, pazarlama ve destek ekiplerinin konu\u015fmalar\u0131 ve m\u00fc\u015fteri verilerini verimli \u015fekilde y\u00f6netmesine yard\u0131mc\u0131 olur.",
-        "softwareVersion": "latest",
+        "applicationSubCategory": "CRM Entegrasyonu, WhatsApp Otomasyonu, WhatsApp i\u00e7in Yapay Zeka Ajanlar\u0131",
+        "operatingSystem": "Web, Chrome Uzant\u0131s\u0131",
         "url": "https://eazybe.com/tr",
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe, sat\u0131\u015f ekiplerinin WhatsApp konu\u015fmalar\u0131n\u0131 yapay zeka ajanlar\u0131 ile otomatikle\u015ftirmesine, lead'leri nitelendirmesine, so\u011fuyan f\u0131rsatlar\u0131 tespit etmesine ve sohbetleri HubSpot, Zoho, Salesforce ve Google Sheets gibi CRM platformlar\u0131yla senkronize etmesine yard\u0131mc\u0131 olur.",
+        "softwareVersion": "latest",
         "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
         "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
         "offers": {
           "@type": "AggregateOffer",
-          "url": "https://eazybe.com/tr/fiyatlar",
+          "url": "https://eazybe.com/tr/pricing",
           "priceCurrency": "TRY",
           "lowPrice": 1272,
           "highPrice": 2149,
@@ -1102,16 +1121,19 @@ export function getHomepageJsonLd(locale: string): object[] {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": 4.6,
+          "ratingValue": 4.9,
           "bestRating": 5,
           "worstRating": 1,
-          "ratingCount": 800
+          "ratingCount": 30597
         },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Eazybe"
-        },
-        "inLanguage": "tr-TR"
+        "featureList": [
+          "WhatsApp yapay zeka ajanlar\u0131",
+          "Lead nitelendirme",
+          "So\u011fuuk f\u0131rsat tespiti",
+          "Yapay zeka destekli yan\u0131t \u00f6nerileri",
+          "Ekipler i\u00e7in ortak gelen kutusu",
+          "WhatsApp CRM entegrasyonu"
+        ]
       }
     ],
   }
