@@ -169,6 +169,81 @@ export async function generateMetadata({
     }
   }
 
+  // Override everything for Spanish blog page with provided meta tags
+  if (locale === 'es') {
+    return {
+      title: 'Blog',
+      description: 'Explora el blog de Eazybe para conocer insights sobre automatización de WhatsApp, chatbots, estrategias de ventas y herramientas CRM para optimizar procesos y hacer crecer tu negocio.',
+      keywords: 'automatización whatsapp, chatbot whatsapp, automatización de negocios, estrategias de ventas, herramientas crm, automatización de marketing, compromiso del cliente, automatizar mensajes whatsapp',
+      robots: {
+        index: true,
+        follow: true,
+        'max-snippet': -1,
+        'max-image-preview': 'large',
+        'max-video-preview': -1,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-snippet': -1,
+          'max-image-preview': 'large',
+          'max-video-preview': -1,
+        },
+      },
+      alternates: {
+        canonical: canonicalUrl,
+        languages: {
+          'en': 'https://eazybe.com/blog',
+          'pt-BR': 'https://eazybe.com/br/blog',
+          'es': 'https://eazybe.com/es/blog',
+          'tr': 'https://eazybe.com/tr/blog',
+          'x-default': 'https://eazybe.com/blog',
+        },
+      },
+      openGraph: {
+        type: 'website',
+        url: 'https://eazybe.com/es/blog',
+        title: 'Blog Eazybe | Automatización de WhatsApp, Ventas y CRM',
+        description: 'Descubre insights sobre automatización de WhatsApp, chatbots, estrategias de ventas y herramientas CRM para hacer crecer tu negocio con Eazybe.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Blog de Eazybe sobre automatización, CRM y estrategias de ventas',
+          }
+        ],
+        locale: 'es_ES',
+        siteName: 'Eazybe',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Blog Eazybe | Automatización, Ventas y CRM',
+        description: 'Aprende sobre automatización de WhatsApp, chatbots, herramientas CRM y estrategias de ventas para escalar tu negocio.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'answer-type': 'blog, insights, guías',
+        'target-audience': 'equipos de ventas, profesionales de marketing, fundadores de SaaS, emprendedores, usuarios de CRM, especialistas en automatización',
+        'content-intent': 'informacional',
+        'conversational-query': 'blog de automatización WhatsApp, consejos de ventas automatizadas, herramientas CRM insights, estrategias de chatbot, guías de automatización empresarial',
+        'ai-readability': 'profesional, accionable, educativo',
+        'context-window': 'automatización de WhatsApp, estrategias de ventas, herramientas CRM, chatbots, generación de leads, crecimiento empresarial',
+        'user-problem': 'las empresas necesitan estrategias e insights para automatizar procesos, mejorar ventas y escalar eficientemente',
+        'solution-summary': 'el blog de Eazybe ofrece estrategias prácticas, insights y herramientas para automatizar ventas y mejorar el rendimiento empresarial',
+        'primary-benefit': 'aprender a automatizar procesos, mejorar ventas y crecer con insights expertos',
+        'use-case': 'lectura de contenido para aprender sobre automatización, CRM y estrategias de ventas',
+        'implementation-difficulty': 'varía según los temas y herramientas tratadas',
+        'time-to-value': 'insights inmediatos con estrategias aplicables',
+        'twitter:image:alt': 'Blog Eazybe',
+      },
+    }
+  }
+
   // For other locales, use Sanity CMS data
   return {
     title: seo?.metaTitle || 'Blog - Eazybe',
@@ -327,6 +402,125 @@ export default async function BlogListingPage({
     return (
       <>
         {brSchemas.map((schema, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
+        <BlogListingClient
+          allPosts={allPosts || []}
+          blogIndex={blogIndex}
+          locale={locale}
+        />
+      </>
+    )
+  }
+
+  // Add JSON-LD schemas for Spanish blog page
+  if (locale === 'es') {
+    const esSchemas = [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/es",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 600,
+          "height": 60
+        },
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe ayuda a los equipos de ventas a automatizar conversaciones de WhatsApp con agentes de IA, calificar leads, detectar oportunidades estancadas y sincronizar chats con CRM como HubSpot, Zoho, Salesforce y Google Sheets.",
+        "foundingDate": "2022-09-13",
+        "founder": {
+          "@type": "Person",
+          "name": "Sagar Dewan",
+          "sameAs": [
+            "https://www.linkedin.com/in/sagar-dewan-b43b9931/"
+          ]
+        },
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Eazybe Inc."
+        },
+        "sameAs": [
+          "https://x.com/EazybeHQ",
+          "https://www.linkedin.com/company/eazybe",
+          "https://www.youtube.com/@eazybe",
+          "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
+          "https://www.threads.com/@eazybe.supercharge",
+          "https://www.instagram.com/eazybe.supercharge/"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "support@eazybe.com",
+          "url": "https://eazybe.com/es",
+          "areaServed": "ES",
+          "availableLanguage": ["Spanish"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "DE",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "knowsAbout": [
+          "Agente de IA para WhatsApp",
+          "Agentes de IA para equipos de ventas",
+          "Integración de WhatsApp con CRM",
+          "Automatización de ventas",
+          "Calificación de leads",
+          "Sincronización con CRM"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Eazybe",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Integración CRM, Automatización de WhatsApp, Agentes de IA para WhatsApp",
+        "operatingSystem": "Web, Chrome Extension",
+        "url": "https://eazybe.com/es",
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe ayuda a los equipos de ventas a automatizar conversaciones de WhatsApp con agentes de IA, calificar leads, detectar oportunidades estancadas y sincronizar chats con CRM como HubSpot, Zoho, Salesforce y Google Sheets.",
+        "softwareVersion": "latest",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/es/pricing",
+          "priceCurrency": "EUR",
+          "lowPrice": 25,
+          "highPrice": 42,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 30597
+        },
+        "featureList": [
+          "Agentes de IA para WhatsApp",
+          "Calificación de leads",
+          "Detección de oportunidades estancadas",
+          "Sugerencias de respuesta con IA",
+          "Bandeja de entrada compartida para equipos",
+          "Integración de WhatsApp con CRM"
+        ]
+      }
+    ]
+
+    return (
+      <>
+        {esSchemas.map((schema, index) => (
           <script
             key={index}
             type="application/ld+json"
