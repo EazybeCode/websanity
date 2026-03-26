@@ -387,7 +387,11 @@ const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; c
               </div>
               <div className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-                  <img src={crm.logo} alt={crm.name} className="w-6 h-6" referrerPolicy="no-referrer" />
+                  {crm.logo ? (
+                    <img src={crm.logo} alt={crm.name} className="w-6 h-6" referrerPolicy="no-referrer" />
+                  ) : (
+                    <span className="text-xs font-bold text-slate-600">{crm.name?.[0] || 'C'}</span>
+                  )}
                 </div>
                 <div className="flex flex-col">
                   <span className="text-white font-bold text-sm">{crm.name}</span>
@@ -570,7 +574,13 @@ const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string
               <div className="flex-1 overflow-y-auto p-4 space-y-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <img src={activeContact.avatar} className="w-5 h-5 rounded-full" alt={activeContact.name} />
+                    {activeContact.avatar ? (
+                      <img src={activeContact.avatar} className="w-5 h-5 rounded-full" alt={activeContact.name} />
+                    ) : (
+                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center">
+                        <span className="text-[8px] font-bold text-white">{activeContact.name?.[0] || 'U'}</span>
+                      </div>
+                    )}
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{activeContact.name}</span>
                   </div>
                   <div className="max-w-[85%] bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-slate-800">
@@ -586,7 +596,13 @@ const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <img src={activeContact.avatar} className="w-5 h-5 rounded-full" alt={activeContact.name} />
+                    {activeContact.avatar ? (
+                      <img src={activeContact.avatar} className="w-5 h-5 rounded-full" alt={activeContact.name} />
+                    ) : (
+                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center">
+                        <span className="text-[8px] font-bold text-white">{activeContact.name?.[0] || 'U'}</span>
+                      </div>
+                    )}
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{activeContact.name}</span>
                   </div>
                   <div className="max-w-[85%] bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-slate-800">
