@@ -267,7 +267,7 @@ const createPortableTextComponents = (
               src={value.url}
               alt={value.alt || ''}
               className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
-              loading="eager"
+              loading="lazy"
             />
             {value.caption && (
               <figcaption className="text-center text-slate-500 text-sm mt-4">
@@ -324,6 +324,7 @@ const createPortableTextComponents = (
                     src={img.url}
                     alt={img.alt || ''}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                 </div>
               ))}
@@ -375,7 +376,7 @@ const createPortableTextComponents = (
                         }`}
                       >
                         {col.icon && (
-                          <img src={col.icon} alt="" className="w-8 h-8 mx-auto mb-2" />
+                          <img src={col.icon} alt="" className="w-8 h-8 mx-auto mb-2" loading="lazy" />
                         )}
                         {col.name}
                       </th>
@@ -596,7 +597,7 @@ const RelatedPostCard: React.FC<{
           src={image || '/logo.png'}
           alt={title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="eager"
+          loading="lazy"
           width={600}
           height={400}
         />
@@ -737,6 +738,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                   src={post.author.image}
                   alt={post.author.name}
                   className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-brand-cyan"
+                  loading="lazy"
                 />
               ) : (
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg md:text-xl">
@@ -1066,6 +1068,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                         src={post.author.image}
                         alt={post.author.name}
                         className="w-24 h-24 rounded-2xl object-cover border-2 border-brand-cyan flex-shrink-0"
+                        loading="lazy"
                       />
                     ) : (
                       <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-3xl flex-shrink-0">
