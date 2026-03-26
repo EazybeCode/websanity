@@ -270,7 +270,13 @@ export const ChunkyFooter: React.FC = () => {
                         &ldquo;{testimonial.content}&rdquo;
                       </p>
                       <div className="flex items-center gap-3">
-                        <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover border-2 border-slate-600" />
+                        {testimonial.avatar ? (
+                          <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover border-2 border-slate-600" />
+                        ) : (
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg">
+                            {testimonial.name?.[0] || 'U'}
+                          </div>
+                        )}
                         <div>
                           <p className="text-white font-semibold text-sm">{testimonial.name}</p>
                           <p className="text-slate-500 text-xs">{testimonial.role}</p>
