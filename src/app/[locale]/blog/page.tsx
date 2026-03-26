@@ -244,6 +244,81 @@ export async function generateMetadata({
     }
   }
 
+  // Override everything for Turkish blog page with provided meta tags
+  if (locale === 'tr') {
+    return {
+      title: 'Blog',
+      description: 'Eazybe blog unda WhatsApp otomasyonu, chatbotlar, satış stratejileri ve CRM araçları hakkında içgörüler keşfedin. İş süreçlerinizi optimize edin ve işinizi büyütün.',
+      keywords: 'WhatsApp otomasyonu, chatbot WhatsApp, iş otomasyonu, satış stratejileri, CRM araçları, pazarlama otomasyonu, müşteri etkileşimi, WhatsApp mesajlarını otomatikleştirme',
+      robots: {
+        index: true,
+        follow: true,
+        'max-snippet': -1,
+        'max-image-preview': 'large',
+        'max-video-preview': -1,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-snippet': -1,
+          'max-image-preview': 'large',
+          'max-video-preview': -1,
+        },
+      },
+      alternates: {
+        canonical: canonicalUrl,
+        languages: {
+          'en': 'https://eazybe.com/blog',
+          'pt-BR': 'https://eazybe.com/br/blog',
+          'es': 'https://eazybe.com/es/blog',
+          'tr': 'https://eazybe.com/tr/blog',
+          'x-default': 'https://eazybe.com/blog',
+        },
+      },
+      openGraph: {
+        type: 'website',
+        url: 'https://eazybe.com/tr/blog',
+        title: 'Eazybe Blog | WhatsApp Otomasyonu, Satış ve CRM',
+        description: 'WhatsApp otomasyonu, chatbotlar, satış stratejileri ve CRM araçları hakkında içgörüler keşfedin ve Eazybe ile işinizi büyütün.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Eazybe blog - otomasyon, CRM ve satış stratejileri',
+          }
+        ],
+        locale: 'tr_TR',
+        siteName: 'Eazybe',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Eazybe Blog | Otomasyon, Satış ve CRM',
+        description: 'WhatsApp otomasyonu, chatbotlar, CRM araçları ve satış stratejileri hakkında bilgi edinin ve işinizi büyütün.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'answer-type': 'blog, içgörüler, rehberler',
+        'target-audience': 'satış ekipleri, pazarlamacılar, SaaS kurucuları, girişimciler, CRM kullanıcıları, otomasyon uzmanları',
+        'content-intent': 'bilgilendirici',
+        'conversational-query': 'WhatsApp otomasyon blogu, satış otomasyonu ipuçları, CRM araçları içgörüleri, chatbot stratejileri, iş otomasyonu rehberleri',
+        'ai-readability': 'profesyonel, uygulanabilir, eğitici',
+        'context-window': 'WhatsApp otomasyonu, satış stratejileri, CRM araçları, chatbotlar, lead oluşturma, iş büyümesi',
+        'user-problem': 'işletmeler süreçlerini otomatikleştirmek, satışlarını geliştirmek ve verimli şekilde büyümek için içgörülere ihtiyaç duyar',
+        'solution-summary': 'Eazybe blogu, satışları otomatikleştirmek ve iş performansını artırmak için uygulanabilir stratejiler ve araçlar sunar',
+        'primary-benefit': 'iş süreçlerini otomatikleştirmeyi, satışları geliştirmeyi ve uzman içgörülerle büyümeyi öğrenmek',
+        'use-case': 'otomasyon, CRM ve satış stratejileri hakkında bilgi edinmek için blog içeriklerini okumak',
+        'implementation-difficulty': 'konuya ve kullanılan araçlara bağlı olarak değişir',
+        'time-to-value': 'uygulanabilir stratejilerle anında içgörüler',
+        'twitter:image:alt': 'Eazybe Blog',
+      },
+    }
+  }
+
   // For other locales, use Sanity CMS data
   return {
     title: seo?.metaTitle || 'Blog - Eazybe',
@@ -521,6 +596,125 @@ export default async function BlogListingPage({
     return (
       <>
         {esSchemas.map((schema, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
+        <BlogListingClient
+          allPosts={allPosts || []}
+          blogIndex={blogIndex}
+          locale={locale}
+        />
+      </>
+    )
+  }
+
+  // Add JSON-LD schemas for Turkish blog page
+  if (locale === 'tr') {
+    const trSchemas = [
+      {
+        "@context": "https://schema.org/",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/tr",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://eazybe.com/logo.png",
+          "width": 600,
+          "height": 60
+        },
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe, satış ekiplerinin WhatsApp konuşmalarını yapay zeka ajanları ile otomatikleştirmesine, lead'leri nitelendirmesine, soğuyan fırsatları tespit etmesine ve sohbetleri HubSpot, Zoho, Salesforce ve Google Sheets gibi CRM platformlarıyla senkronize etmesine yardımcı olur.",
+        "foundingDate": "2022-09-13",
+        "founder": {
+          "@type": "Person",
+          "name": "Sagar Dewan",
+          "sameAs": [
+            "https://www.linkedin.com/in/sagar-dewan-b43b9931/"
+          ]
+        },
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Eazybe Inc."
+        },
+        "sameAs": [
+          "https://x.com/EazybeHQ",
+          "https://www.linkedin.com/company/eazybe",
+          "https://www.youtube.com/@eazybe",
+          "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
+          "https://www.threads.com/@eazybe.supercharge",
+          "https://www.instagram.com/eazybe.supercharge/"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "müşteri desteği",
+          "email": "support@eazybe.com",
+          "url": "https://eazybe.com/tr",
+          "areaServed": "TR",
+          "availableLanguage": ["Türkçe"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8, The Green STE B",
+          "addressLocality": "Dover",
+          "addressRegion": "DE",
+          "postalCode": "19901",
+          "addressCountry": "US"
+        },
+        "knowsAbout": [
+          "WhatsApp yapay zeka ajanı",
+          "Satış ekipleri için yapay zeka ajanları",
+          "WhatsApp CRM entegrasyonu",
+          "Satış otomasyonu",
+          "Lead nitelendirme",
+          "CRM senkronizasyonu"
+        ]
+      },
+      {
+        "@context": "https://schema.org/",
+        "@type": "SoftwareApplication",
+        "name": "Eazybe",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "CRM Entegrasyonu, WhatsApp Otomasyonu, WhatsApp için Yapay Zeka Ajanları",
+        "operatingSystem": "Web, Chrome Uzantısı",
+        "url": "https://eazybe.com/tr",
+        "image": "https://eazybe.com/logo.png",
+        "description": "Eazybe, satış ekiplerinin WhatsApp konuşmalarını yapay zeka ajanları ile otomatikleştirmesine, lead'leri nitelendirmesine, soğuyan fırsatları tespit etmesine ve sohbetleri HubSpot, Zoho, Salesforce ve Google Sheets gibi CRM platformlarıyla senkronize etmesine yardımcı olur.",
+        "softwareVersion": "latest",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://eazybe.com/tr/pricing",
+          "priceCurrency": "TRY",
+          "lowPrice": 1272,
+          "highPrice": 2149,
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 30597
+        },
+        "featureList": [
+          "WhatsApp yapay zeka ajanları",
+          "Lead nitelendirme",
+          "Soğuk fırsat tespiti",
+          "Yapay zeka destekli yanıt önerileri",
+          "Ekipler için ortak gelen kutusu",
+          "WhatsApp CRM entegrasyonu"
+        ]
+      }
+    ]
+
+    return (
+      <>
+        {trSchemas.map((schema, index) => (
           <script
             key={index}
             type="application/ld+json"
