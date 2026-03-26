@@ -416,6 +416,7 @@ export const redirectRules: RedirectRule[] = [
   { source: "/br/blog/the-future-of-crm-top-integration-tools-transforming-customer-relationship-management-in-2024", destination: "/br/blog", permanent: true },
   { source: "/br/blog/the-power-of-ai-in-sales-introducing-eazybes-revolutionary-ai-assistant-for-2024", destination: "/br/blog", permanent: true },
   { source: "/br/blog/the-ultimate-crm-buying-guide-how-to-choose-the-right-crm-for-your-sales-team-in-2025", destination: "/br/blog", permanent: true },
+  { source: "/br/blog/top-3-chrome-extensions-that-you-must-install-right-now", destination: "/br", permanent: true },
   { source: "/br/blog/unveiling-the-preference-for-whatsapp-over-sms-emails", destination: "/br/blog", permanent: true },
   { source: "/br/blog/use-google-sheets-on-whatsapp", destination: "/br/blog", permanent: true },
   { source: "/br/blog/whatsapp-automation", destination: "/br/blog/automacao-do-whatsapp", permanent: true },
