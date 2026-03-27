@@ -94,6 +94,7 @@ const nextConfig: NextConfig = {
       { source: "/tr/blog/use-these-7-proven-strategies-to-grow-your-business", destination: "/tr/blog", permanent: true },
       { source: "/tr/blog/essential-glossary-of-artificial-intelligence-ai-terms", destination: "/tr/blog", permanent: true },
       { source: "/tr/blog/whatsapp-companion-mode-how-to-use-whatsapp-on-two-phones", destination: "/tr/blog", permanent: true },
+      { source: "/tr/blog/how-to-appear-offline-on-whatsapp", destination: "/tr/blog/whatsappta-cevrimdisi-gorunme", permanent: true },
       // Migrated redirects from old React site
       ...redirectRules,
     ]
