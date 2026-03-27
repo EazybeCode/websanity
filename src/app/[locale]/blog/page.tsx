@@ -378,6 +378,21 @@ export default async function BlogListingPage({
     const brSchemas = [
       {
         "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Eazybe",
+          "item": "https://eazybe.com/br"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://eazybe.com/br/blog"
+        }]
+      },
+      {
+        "@context": "https://schema.org/",
         "@type": "Organization",
         "name": "Eazybe",
         "url": "https://eazybe.com/br",
