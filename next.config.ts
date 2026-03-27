@@ -84,6 +84,7 @@ const nextConfig: NextConfig = {
       { source: "/br/blog/discover-the-best-whatsapp-business-api-alternatives", destination: "/br/blog", permanent: true },
       { source: "/br/blog/apply-for-green-tick-on-whatsapp-business", destination: "/br/blog", permanent: true },
       { source: "/br/blog-pt/transforme-suas-conexoes-integracao-hubspot-com-whatsapp", destination: "/br/blog", permanent: true },
+      { source: "/br/blog/whatsapp-otp-how-do-you-send-an-otp-on-whatsapp", destination: "/br/blog", permanent: true },
       { source: "/blog/como-leer-mensajes-eliminados-en-whatsapp", destination: "/es/blog/como-leer-mensajes-eliminados-en-whatsapp", permanent: true },
       { source: "/tr/blog-pt", destination: "/tr/blog", permanent: true },
       { source: "/tr/blog/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025", destination: "/tr/blog", permanent: true },
