@@ -83,6 +83,7 @@ const nextConfig: NextConfig = {
       { source: "/br/blog/integrate-hubspot-with-whatsapp-easiest-method", destination: "/br", permanent: true },
       { source: "/br/blog/discover-the-best-whatsapp-business-api-alternatives", destination: "/br/blog", permanent: true },
       { source: "/br/blog/apply-for-green-tick-on-whatsapp-business", destination: "/br/blog", permanent: true },
+      { source: "/br/blog-pt/transforme-suas-conexoes-integracao-hubspot-com-whatsapp", destination: "/br/blog", permanent: true },
       { source: "/tr/blog-pt", destination: "/tr/blog", permanent: true },
       { source: "/tr/blog/15-best-ai-drive-sales-tool-for-b2c-companies-using-whatsapp-business-2025", destination: "/tr/blog", permanent: true },
       { source: "/tr/blog/how-to-edit-andriod-contacts-on-whatsapp-without-leaving-the-app", destination: "/tr/blog", permanent: true },
