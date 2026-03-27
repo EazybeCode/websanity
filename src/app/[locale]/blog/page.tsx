@@ -496,6 +496,21 @@ export default async function BlogListingPage({
   if (locale === 'es') {
     const esSchemas = [
       {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Eazybe",
+          "item": "https://eazybe.com/es"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://eazybe.com/es/blog"
+        }]
+      },
+      {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Eazybe",
