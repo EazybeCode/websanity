@@ -11,7 +11,7 @@ export async function generateMetadata({
   const { locale } = await params
 
   const titles: Record<string, string> = {
-    en: 'Eazybe vs Wati vs Interakt vs QuickReply - WhatsApp CRM Comparison',
+    en: 'Comparison',
     pt: 'Eazybe vs Wati vs Interakt vs QuickReply - Comparacao WhatsApp CRM',
     es: 'Eazybe vs Wati vs Interakt vs QuickReply - Comparacion WhatsApp CRM',
     tr: 'Eazybe vs Wati vs Interakt vs QuickReply - WhatsApp CRM Karsilastirma',
