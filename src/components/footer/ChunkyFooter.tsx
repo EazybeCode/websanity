@@ -89,8 +89,10 @@ export const ChunkyFooter: React.FC = () => {
   // Get current language from locale
   const currentLang = locale as 'en' | 'br' | 'es' | 'tr'
 
-  // Homepage has its own testimonials/FAQ sections now — disable footer duplicates
-  const shouldShowSections = false
+  // Only show testimonials and FAQ on specific homepage paths
+  const allowedPaths = ['/', '/br', '/es', '/tr']
+  const shouldShowSections = allowedPaths.includes(pathname) ||
+                             allowedPaths.some(path => pathname === path)
 
   // Testimonials data by language
   const testimonialsData = {

@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
+import { getLandingPage } from '@/lib/sanity-queries'
 import { getHomepageMetadata, getHomepageJsonLd } from '@/data/homepage-seo'
-import { HomePageClient } from '@/components/pages/HomePageClient'
+import { SectionRenderer } from '@/components/SectionRenderer'
 
 export async function generateMetadata({
   params,
@@ -20,10 +21,15 @@ export default async function HomePage({
   const { locale } = await params
   setRequestLocale(locale)
 
+  // Server-side data fetching — no useEffect, no loading spinner
+  const landingPage = await getLandingPage()
+
+  // Get JSON-LD schemas for this locale
   const jsonLdSchemas = getHomepageJsonLd(locale)
 
   return (
     <>
+      {/* JSON-LD schemas rendered server-side in HTML */}
       {jsonLdSchemas.map((schema, i) => (
         <script
           key={i}
@@ -31,7 +37,15 @@ export default async function HomePage({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
-      <HomePageClient />
+
+      {/* Render sections from Sanity CMS data */}
+      <main>
+        {landingPage?.sections
+          ?.filter((section: any) => section._type !== 'securitySection' && section._type !== 'ctaSection')
+          .map((section: any) => (
+            <SectionRenderer key={section._key} section={section} />
+          ))}
+      </main>
     </>
   )
 }

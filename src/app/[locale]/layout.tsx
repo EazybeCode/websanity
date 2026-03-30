@@ -37,7 +37,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <Providers>
-        <div className="min-h-screen font-sans antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
+        <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
           <MegaMenuHeader />
           <main>{children}</main>
           <ChunkyFooter />

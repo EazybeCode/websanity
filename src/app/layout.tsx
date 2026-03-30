@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
-  other: { "theme-color": "#FAFAFB" },
+  other: { "theme-color": "#020617" },
 }
 
 export default function RootLayout({
@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="light" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
