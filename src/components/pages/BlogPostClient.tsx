@@ -489,7 +489,7 @@ const StickyTableOfContents: React.FC<{
   }, [sections])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pr-1">
       {/* Table of Contents */}
       {sections && sections.length > 0 && (
         <div className="bg-brand-card border border-slate-700/50 rounded-2xl px-5 py-8 shadow-xl">
@@ -1114,12 +1114,19 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
             </div>
 
             {/* Right Column - Sticky Sidebar */}
-            <aside className="hidden lg:block w-[300px] flex-shrink-0 sticky top-24 self-start">
-              <StickyTableOfContents
-                sections={dynamicToc}
-                sidebarCta={sidebarCta}
-                tocTitle={detailLabels?.tocTitle}
-              />
+            <aside className="hidden lg:block w-[300px] flex-shrink-0 self-start">
+              <div
+                className="lg:fixed lg:top-24 w-[300px]"
+                style={{
+                  right: 'max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem))',
+                }}
+              >
+                <StickyTableOfContents
+                  sections={dynamicToc}
+                  sidebarCta={sidebarCta}
+                  tocTitle={detailLabels?.tocTitle}
+                />
+              </div>
             </aside>
           </div>
         </div>

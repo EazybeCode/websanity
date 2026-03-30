@@ -321,6 +321,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                     value={formData.phone}
                     onChange={handleChange}
                     disabled={isSubmitting}
+                    style={{width:"172px"}}
                     className={`flex-1 font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-4 py-2.5 text-sm h-11 ${
                       errors.phone
                         ? 'bg-brand-card text-white border-2 border-red-500 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
