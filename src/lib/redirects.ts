@@ -434,7 +434,6 @@ export const redirectRules: RedirectRule[] = [
   { source: "/br/es", destination: "/br", permanent: true },
   { source: "/br/hubspot", destination: "/br/hubspot-whatsapp-integration", permanent: true },
   { source: "/br/hubspot-es", destination: "/br/hubspot-whatsapp-integration", permanent: true },
-  { source: "/br/integrations", destination: "/br", permanent: true },
   { source: "/br/integrations-es", destination: "/br/integrations", permanent: true },
   { source: "/br/integrations-pt", destination: "/br/integrations", permanent: true },
   { source: "/br/pricing-es", destination: "/br/pricing", permanent: true },
