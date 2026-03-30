@@ -483,7 +483,7 @@ const StickyTableOfContents: React.FC<{
       setActiveSection(currentSection)
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [sections])
@@ -1091,7 +1091,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               )}
 
               {/* Newsletter CTA */}
-              <div className="mt-16 p-8 bg-gradient-to-br from-brand-blue/10 to-brand-cyan/10 rounded-3xl border border-brand-cyan/20 text-center">
+              <div id="newsletter-cta-section" className="mt-16 p-8 bg-gradient-to-br from-brand-blue/10 to-brand-cyan/10 rounded-3xl border border-brand-cyan/20 text-center">
                 <h3 className="text-2xl font-bold text-white mb-3">
                   {newsletterCta?.headline || t('blog.newsletter.headline')}
                 </h3>
