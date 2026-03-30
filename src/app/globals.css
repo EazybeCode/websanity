@@ -30,7 +30,7 @@ html.light ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #4f46e5, #7c3aed);
 }
 
-/* Dark mode (default) */
+/* Dark mode */
 html.dark body {
   background-color: #020617;
   color: #94A3B8;
