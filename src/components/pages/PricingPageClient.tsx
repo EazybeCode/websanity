@@ -226,7 +226,7 @@ const defaultFaqItems: FAQItem[] = [
   {
     question: 'Can I try Eazybe for free?',
     answer:
-      'Yes! We offer a 14-day free trial on Starter and Scaler plans. No credit card required. You can explore all features and see how Eazybe integrates with your existing workflow before committing.',
+      'Yes! We offer a 7-day free trial on Starter and Scaler plans. No credit card required. You can explore all features and see how Eazybe integrates with your existing workflow before committing.',
   },
   {
     question: 'What is Revenue Inbox?',
@@ -697,7 +697,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const trustSignals = pricingData?.trustSignals || [
     { icon: 'shield', text: 'GDPR Compliant & Encrypted' },
     { icon: 'zap', text: '2-Minute Setup' },
-    { icon: 'clock', text: '14-Day Free Trial' },
+    { icon: 'clock', text: '7-Day Free Trial' },
     { icon: 'message', text: 'No Credit Card Required' },
   ]
 

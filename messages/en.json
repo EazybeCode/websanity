@@ -162,7 +162,7 @@
     "trustSignals": {
       "gdprCompliant": "GDPR Compliant",
       "setupTime": "Setup in 5 minutes",
-      "freeTrial": "14-day free trial",
+      "freeTrial": "7-day free trial",
       "noCreditCard": "No credit card required"
     },
     "comparison": {
@@ -267,7 +267,7 @@
     "faqItems": [
       {
         "question": "Can I try Eazybe for free?",
-        "answer": "Yes! We offer a 14-day free trial on Starter and Scaler plans. No credit card required. You can explore all features and see how Eazybe integrates with your existing workflow before committing."
+        "answer": "Yes! We offer a 7-day free trial on Starter and Scaler plans. No credit card required. You can explore all features and see how Eazybe integrates with your existing workflow before committing."
       },
       {
         "question": "What is Revenue Inbox?",
@@ -1601,7 +1601,7 @@
         "description": "Start your free trial today. No credit card required.",
         "primaryCta": "Install for Free",
         "secondaryCta": "Book a Demo",
-        "footnote": "Free 14-day trial • No credit card required"
+        "footnote": "Free 7-day trial • No credit card required"
       }
     },
     "integrations": {
@@ -1871,7 +1871,7 @@
       "description": "Join thousands of businesses using Eazybe for {crmName} integration.",
       "primaryCta": "Install for Free",
       "secondaryCta": "Talk to Sales",
-      "footnote": "14-day free trial • No credit card required"
+      "footnote": "7-day free trial • No credit card required"
     }
   },
   "msa": {

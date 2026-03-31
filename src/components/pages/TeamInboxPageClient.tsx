@@ -309,7 +309,7 @@ export function TeamInboxPageClient() {
             </button>
           </div>
           <p className="mt-6 text-slate-500 text-sm font-mono uppercase tracking-widest">
-            Free 14-day trial - No credit card required
+            Free 7-day trial - No credit card required
           </p>
         </div>
       </section>

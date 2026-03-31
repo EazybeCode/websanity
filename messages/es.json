@@ -162,7 +162,7 @@
     "trustSignals": {
       "gdprCompliant": "Compatible con GDPR",
       "setupTime": "Configuración en 5 minutos",
-      "freeTrial": "Prueba gratis de 14 días",
+      "freeTrial": "Prueba gratis de 7 días",
       "noCreditCard": "Sin tarjeta de crédito"
     },
     "comparison": {
@@ -267,7 +267,7 @@
     "faqItems": [
       {
         "question": "¿Puedo probar Eazybe gratis?",
-        "answer": "¡Sí! Ofrecemos una prueba gratis de 14 días en los planes Inicial y Escalador. Sin tarjeta de crédito. Puedes explorar todas las funciones y ver cómo Eazybe se integra con tu flujo de trabajo antes de comprometerte."
+        "answer": "¡Sí! Ofrecemos una prueba gratis de 7 días en los planes Inicial y Escalador. Sin tarjeta de crédito. Puedes explorar todas las funciones y ver cómo Eazybe se integra con tu flujo de trabajo antes de comprometerte."
       },
       {
         "question": "¿Qué es Bandeja de Ingresos?",
@@ -1602,7 +1602,7 @@
         "description": "Inicia tu prueba gratuita hoy. Sin tarjeta de crédito necesaria.",
         "primaryCta": "Instalar Gratis",
         "secondaryCta": "Reservar Demo",
-        "footnote": "Prueba gratuita de 14 días • Sin tarjeta de crédito"
+        "footnote": "Prueba gratuita de 7 días • Sin tarjeta de crédito"
       }
     },
     "features": {
@@ -2038,7 +2038,7 @@
       "description": "Únete a miles de empresas usando Eazybe para integración con {crmName}.",
       "primaryCta": "Instalar Gratis",
       "secondaryCta": "Hablar con Ventas",
-      "footnote": "Prueba gratis de 14 días • Sin tarjeta de crédito"
+      "footnote": "Prueba gratis de 7 días • Sin tarjeta de crédito"
     }
   },
   "msa": {
