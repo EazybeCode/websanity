@@ -5,6 +5,8 @@ import { getProduct } from '@/lib/sanity-queries'
 import { routing } from '@/i18n/routing'
 import ProductPageClient from '@/components/pages/ProductPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
+import { HubSpotStructuredData } from '@/components/seo/HubSpotStructuredData'
+import { Fragment } from 'react'
 
 // ─── Integration slug mapping ────────────────────────────────────────────────
 
@@ -68,7 +70,7 @@ export async function generateMetadata({
   }
   const crmName = crmNameMap[crmSlug] || crmSlug
 
-  return {
+  const baseMetadata = {
     title: product?.metaTitle || `${crmName} WhatsApp Integration | Eazybe`,
     description: product?.metaDescription || `Connect ${crmName} with WhatsApp using Eazybe. Auto-sync chats, update deals, and manage customer conversations.`,
     openGraph: {
@@ -79,6 +81,76 @@ export async function generateMetadata({
     },
     alternates: getAlternates(locale, `/${slug}`),
   }
+
+  // Additional meta tags for HubSpot integration page
+  if (crmSlug === 'hubspot') {
+    return {
+      ...baseMetadata,
+      title: 'HubSpot WhatsApp Integration: Sync WhatsApp With AI Agents',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'HubSpot WhatsApp integration, WhatsApp HubSpot CRM, sync WhatsApp with HubSpot, HubSpot WhatsApp automation, WhatsApp CRM HubSpot, AI agents HubSpot WhatsApp',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/hubspot-whatsapp-integration',
+        title: 'HubSpot WhatsApp Integration With AI Agents | Eazybe',
+        description: 'Sync WhatsApp with HubSpot CRM automatically. Track deals, use AI replies, manage chats, and boost sales productivity directly inside HubSpot.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Eazybe HubSpot WhatsApp Integration Platform',
+          },
+        ],
+        locale: 'en_US',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'HubSpot WhatsApp Integration | Sync CRM With WhatsApp',
+        description: 'Automatically sync WhatsApp chats with HubSpot CRM. Use AI agents, track pipeline activity, and manage customer conversations in one place.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-02-03T10:30:00+00:00',
+        'article:section': 'Technology',
+        'article:tag': 'HubSpot WhatsApp Integration',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'HubSpot WhatsApp CRM Integration by Eazybe',
+        'twitter:label1': 'Rating',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Price',
+        'twitter:data2': 'Free',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'how-to, product-information, feature-comparison',
+        'target-audience': 'HubSpot users, sales teams, CRM managers, marketing automation teams, B2B businesses',
+        'content-intent': 'commercial-investigation, transactional',
+        'conversational-query': 'how to connect WhatsApp to HubSpot, best HubSpot WhatsApp integration, sync WhatsApp with HubSpot CRM',
+        'ai-readability': 'conversational, professional, solution-oriented',
+        'context-window': 'HubSpot automation, WhatsApp CRM sync, deal tracking, sales pipeline management, WhatsApp inside HubSpot',
+        'user-problem': 'HubSpot not connected to WhatsApp, missing WhatsApp leads, manual CRM updates',
+        'solution-summary': 'automatic WhatsApp to HubSpot synchronization with AI automation',
+        'primary-benefit': 'manage WhatsApp conversations directly inside HubSpot',
+        'use-case': 'sales teams syncing WhatsApp conversations with HubSpot CRM automatically',
+        'implementation-difficulty': 'easy, one-click HubSpot integration',
+        'time-to-value': 'instant, real-time WhatsApp sync',
+      },
+    }
+  }
+
+  return baseMetadata
 }
 
 // ─── Page Component ──────────────────────────────────────────────────────────
@@ -98,5 +170,10 @@ export default async function IntegrationPage({
 
   const product = await getProduct(slug, locale)
 
-  return <ProductPageClient product={product} crmSlug={crmSlug} />
+  return (
+    <>
+      {crmSlug === 'hubspot' && <HubSpotStructuredData />}
+      <ProductPageClient product={product} crmSlug={crmSlug} />
+    </>
+  )
 }

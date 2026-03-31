@@ -1,0 +1,322 @@
+/**
+ * JSON-LD structured data for HubSpot WhatsApp Integration page
+ * Includes: FAQPage, BreadcrumbList, WebPage, SoftwareApplication, Organization, Product, HowTo
+ */
+
+export function HubSpotStructuredData() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': 'https://eazybe.com/hubspot-whatsapp-integration/#faq',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How do I connect WhatsApp to HubSpot CRM?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Install Eazybe and connect your HubSpot account. Eazybe syncs WhatsApp chats to HubSpot so conversations and customer context stay linked to the right CRM records.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Does Eazybe sync WhatsApp messages into HubSpot automatically?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Eazybe can sync WhatsApp conversations to HubSpot automatically, reducing manual copy/paste and keeping sales activity up to date.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Can multiple teammates use a shared inbox with HubSpot + WhatsApp?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Eazybe supports shared inbox workflows so teams can collaborate on WhatsApp leads while keeping HubSpot records aligned.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What can AI agents do for HubSpot + WhatsApp conversations?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'AI can help draft replies, summarize conversations, and speed up follow-ups—so reps respond faster while maintaining consistent messaging.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Is this integration safe to use with WhatsApp and HubSpot?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Eazybe is designed for business use cases and focuses on secure workflows for syncing WhatsApp conversations with CRM records. Always review your security and compliance requirements before rollout.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Which HubSpot objects can I associate WhatsApp conversations with?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most teams associate WhatsApp conversations with contacts and deals to track context across the sales pipeline. The best mapping depends on your HubSpot workflow.'
+        }
+      }
+    ]
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/' },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'HubSpot WhatsApp Integration',
+        item: 'https://eazybe.com/hubspot-whatsapp-integration'
+      }
+    ]
+  }
+
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    url: 'https://eazybe.com/hubspot-whatsapp-integration',
+    name: 'HubSpot WhatsApp Integration With AI Agents | Sync WhatsApp CRM',
+    description: 'Connect WhatsApp with HubSpot CRM. Sync chats automatically, use AI agents, track deals, and manage sales conversations directly inside HubSpot.',
+    inLanguage: 'en',
+    datePublished: '2026-02-03T08:00:00+00:00',
+    dateModified: '2026-02-03T10:30:00+00:00'
+  }
+
+  const softwareApplicationSchema = {
+    '@context': 'https://schema.org/',
+    '@type': 'SoftwareApplication',
+    name: 'Eazybe',
+    applicationCategory: 'BusinessApplication',
+    applicationSubCategory: 'CRM Integration, WhatsApp Automation, AI Agents for WhatsApp',
+    operatingSystem: 'Web, Chrome Extension',
+    url: 'https://eazybe.com/',
+    image: 'https://eazybe.com/logo.png',
+    description: 'Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets.',
+    softwareVersion: 'latest',
+    downloadUrl: 'https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd',
+    screenshot: 'https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp',
+    offers: {
+      '@type': 'AggregateOffer',
+      url: 'https://eazybe.com/pricing',
+      priceCurrency: 'USD',
+      lowPrice: 29,
+      highPrice: 49,
+      offerCount: 5,
+      availability: 'https://schema.org/InStock'
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: 4.9,
+      bestRating: 5,
+      worstRating: 1,
+      ratingCount: 30597
+    },
+    featureList: [
+      'WhatsApp AI agents',
+      'Lead qualification',
+      'Cold deal detection',
+      'AI-powered reply suggestions',
+      'Shared inbox for team collaboration',
+      'WhatsApp CRM integration'
+    ]
+  }
+
+  const organizationSchema = {
+    '@context': 'https://schema.org/',
+    '@type': 'Organization',
+    name: 'Eazybe',
+    url: 'https://eazybe.com/',
+    logo: { '@type': 'ImageObject', url: 'https://eazybe.com/logo.png', width: 600, height: 60 },
+    image: 'https://eazybe.com/logo.png',
+    description: 'Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets.',
+    foundingDate: '2022-09-13',
+    founder: {
+      '@type': 'Person',
+      name: 'Sagar Dewan',
+      sameAs: ['https://www.linkedin.com/in/sagar-dewan-b43b9931/']
+    },
+    parentOrganization: { '@type': 'Organization', name: 'Eazybe Inc.' },
+    sameAs: [
+      'https://x.com/EazybeHQ',
+      'https://www.linkedin.com/company/eazybe',
+      'https://www.youtube.com/@eazybe',
+      'https://www.facebook.com/EazyBe.WhatsApp.Marketing/',
+      'https://www.threads.com/@eazybe.supercharge',
+      'https://www.instagram.com/eazybe.supercharge/'
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'support@eazybe.com',
+      url: 'https://eazybe.com/',
+      areaServed: 'US',
+      availableLanguage: ['English']
+    },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '8, The Green STE B',
+      addressLocality: 'Dover',
+      addressRegion: 'DE',
+      postalCode: '19901',
+      addressCountry: 'US'
+    },
+    knowsAbout: [
+      'WhatsApp AI agent',
+      'AI agents for sales teams',
+      'WhatsApp CRM integration',
+      'Sales automation',
+      'Lead qualification',
+      'CRM sync'
+    ]
+  }
+
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'HubSpot WhatsApp Integration - Eazybe',
+    url: 'https://eazybe.com/hubspot-whatsapp-integration',
+    image: ['https://eazybe.com/logo.png'],
+    description: 'Eazybe connects WhatsApp with HubSpot CRM to automatically sync chats, help sales teams respond faster with AI, and manage customer conversations with shared inbox workflows.',
+    brand: {
+      '@type': 'Brand',
+      name: 'Eazybe'
+    },
+    manufacturer: {
+      '@type': 'Organization',
+      name: 'Eazybe',
+      url: 'https://eazybe.com/'
+    },
+    category: 'CRM Integration Software',
+    audience: {
+      '@type': 'BusinessAudience',
+      audienceType: 'Sales teams, HubSpot users, CRM managers, B2B businesses'
+    },
+    offers: {
+      '@type': 'AggregateOffer',
+      url: 'https://eazybe.com/pricing',
+      priceCurrency: 'USD',
+      lowPrice: 29,
+      highPrice: 49,
+      offerCount: 5,
+      availability: 'https://schema.org/InStock'
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: 4.9,
+      bestRating: 5,
+      worstRating: 1,
+      ratingCount: 30597
+    }
+  }
+
+  const howToSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to connect WhatsApp to HubSpot CRM using Eazybe',
+    description: 'Follow these steps to install Eazybe and sync WhatsApp conversations with HubSpot CRM so your team can track chats, speed up follow-ups, and keep CRM records up to date.',
+    totalTime: 'PT5M',
+    estimatedCost: {
+      '@type': 'MonetaryAmount',
+      currency: 'USD',
+      value: '0'
+    },
+    supply: [
+      {
+        '@type': 'HowToSupply',
+        name: 'Active HubSpot account'
+      },
+      {
+        '@type': 'HowToSupply',
+        name: 'WhatsApp account with access to WhatsApp Web'
+      }
+    ],
+    tool: [
+      {
+        '@type': 'HowToTool',
+        name: 'Google Chrome (or Chromium-based browser)'
+      },
+      {
+        '@type': 'HowToTool',
+        name: 'Eazybe Chrome Extension'
+      }
+    ],
+    step: [
+      {
+        '@type': 'HowToStep',
+        url: 'https://eazybe.com/hubspot-whatsapp-integration#step1',
+        name: 'Install the Eazybe extension',
+        text: 'Open the Chrome Web Store and install the official Eazybe extension in your browser.',
+        image: 'https://eazybe.com/logo.png'
+      },
+      {
+        '@type': 'HowToStep',
+        url: 'https://eazybe.com/hubspot-whatsapp-integration#step2',
+        name: 'Open WhatsApp Web',
+        text: 'Go to WhatsApp Web on your computer and sign in. The Eazybe panel will appear inside WhatsApp Web.',
+        image: 'https://eazybe.com/logo.png'
+      },
+      {
+        '@type': 'HowToStep',
+        url: 'https://eazybe.com/hubspot-whatsapp-integration#step3',
+        name: 'Connect your HubSpot account',
+        text: 'In the Eazybe panel, choose HubSpot and complete the authorization flow to connect your CRM securely.',
+        image: 'https://eazybe.com/logo.png'
+      },
+      {
+        '@type': 'HowToStep',
+        url: 'https://eazybe.com/hubspot-whatsapp-integration#step4',
+        name: 'Enable chat sync to HubSpot',
+        text: 'Select a contact or conversation and enable syncing. WhatsApp messages and customer context will start syncing to HubSpot automatically.',
+        image: 'https://eazybe.com/logo.png'
+      },
+      {
+        '@type': 'HowToStep',
+        url: 'https://eazybe.com/hubspot-whatsapp-integration#step5',
+        name: 'Use AI replies and team workflows',
+        text: 'Use AI-assisted replies to respond faster and shared inbox workflows to collaborate with your team while keeping HubSpot updated.',
+        image: 'https://eazybe.com/logo.png'
+      }
+    ],
+    inLanguage: 'en-US'
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        data-schema="breadcrumb-hubspot"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        data-schema="webpage-hubspot"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        data-schema="product"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        data-schema="howto"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+    </>
+  )
+}
