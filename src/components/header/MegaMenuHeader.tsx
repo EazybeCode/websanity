@@ -131,7 +131,7 @@ const getFallbackNavigation = (t: (key: string) => string) => ({
           title: t('nav.support'),
           links: [
             { _key: 'help', label: t('nav.menu.helpCenter'), href: 'https://help.eazybe.com', icon: 'HelpCircle', description: t('nav.menu.helpCenterDesc'), isExternal: true },
-            { _key: 'contact', label: t('nav.menu.contact'), href: 'https://api.whatsapp.com/send/?phone=13022051228&text=I%20want%20to%20know%20more%20about%20Eazybe&type=phone_number&app_absent=0', icon: 'MessageCircle', description: t('nav.menu.contactDesc'), isExternal: true },
+            { _key: 'contact', label: t('nav.menu.contact'), href: 'https://api.whatsapp.com/send/?phone=916364346419&text=I%20want%20to%20know%20more%20about%20Eazybe&type=phone_number&app_absent=0', icon: 'MessageCircle', description: t('nav.menu.contactDesc'), isExternal: true },
             { _key: 'email', label: t('nav.menu.email'), href: 'mailto:hey@eazybe.com', icon: 'Mail', description: t('nav.menu.emailDesc'), isExternal: true },
           ],
         },
