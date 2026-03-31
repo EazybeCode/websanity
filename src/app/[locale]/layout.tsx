@@ -9,6 +9,7 @@ import ChunkyFooter from '@/components/footer/ChunkyFooter'
 import { LeadSidebar } from '@/components/lead/LeadSidebar'
 import { LeadMobileButton } from '@/components/lead/LeadMobileButton'
 import { TrialModalWrapper } from '@/components/modals/TrialModalWrapper'
+import { GlobalStructuredData } from '@/components/seo/GlobalStructuredData'
 
 const htmlLangMap: Record<string, string> = {
   en: 'en',
@@ -37,6 +38,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <Providers>
+        <GlobalStructuredData locale={locale} />
         <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
           <MegaMenuHeader />
           <main>{children}</main>
