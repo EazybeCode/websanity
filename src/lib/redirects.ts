@@ -8,8 +8,8 @@ export interface RedirectRule {
  * Redirect rules migrated from the old React site (redirectRoutes.tsx) and public/_redirects.
  * These are 301 permanent redirects for SEO preservation.
  *
- * Total rules: 807
- * Normal redirects (without query parameters): 807
+ * Total rules: 808
+ * Normal redirects (without query parameters): 808
  * Query parameter redirects: 236 (handled in public/_redirects)
  *
  * Removed invalid //www.eazybe.com/integrations redirect: 2026-03-24T13:02:00.000Z
@@ -802,6 +802,7 @@ export const redirectRules: RedirectRule[] = [
   { source: "/terms-of-service", destination: "/", permanent: true },
   { source: "/terms-of-service-es", destination: "/es/terms", permanent: true },
   { source: "/terms-of-service-pt", destination: "/br/terms", permanent: true },
+  { source: "/team-inbox", destination: "/features/team-inbox", permanent: true },
   { source: "/testimonials", destination: "/", permanent: true },
   { source: "/the-complete-guide-to-pricing-for-whatsapp-business-api-2023", destination: "/", permanent: true },
   { source: "/top-5-whatsapp-alternatives-for-2023", destination: "/", permanent: true },
