@@ -60,7 +60,7 @@ const resourceLinks: FooterLink[] = [
 ]
 
 const companyLinks: FooterLink[] = [
-  { label: 'Contact', href: 'https://api.whatsapp.com/send/?phone=916364346419&text=I%20want%20to%20know%20more%20about%20Eazybe&type=phone_number&app_absent=0', isExternal: true },
+  { label: 'Contact', href: 'https://api.whatsapp.com/send/?phone=13022051228&text=I%20want%20to%20know%20more%20about%20Eazybe&type=phone_number&app_absent=0', isExternal: true },
   { label: 'Email', href: 'mailto:hey@eazybe.com', isExternal: true },
   { label: 'Partners', href: 'https://eazybe.com/partners', isExternal: true },
 ]
