@@ -8,8 +8,8 @@ export interface RedirectRule {
  * Redirect rules migrated from the old React site (redirectRoutes.tsx) and public/_redirects.
  * These are 301 permanent redirects for SEO preservation.
  *
- * Total rules: 806
- * Normal redirects (without query parameters): 806
+ * Total rules: 807
+ * Normal redirects (without query parameters): 807
  * Query parameter redirects: 236 (handled in public/_redirects)
  *
  * Removed invalid //www.eazybe.com/integrations redirect: 2026-03-24T13:02:00.000Z
@@ -436,6 +436,7 @@ export const redirectRules: RedirectRule[] = [
   { source: "/br/hubspot-es", destination: "/br/hubspot-whatsapp-integration", permanent: true },
   { source: "/br/integrations-es", destination: "/br/integrations", permanent: true },
   { source: "/br/integrations-pt", destination: "/br/integrations", permanent: true },
+  { source: "/br/integrations/bitrix", destination: "/br/bitrix24-whatsapp-integration", permanent: true },
   { source: "/br/pricing-es", destination: "/br/pricing", permanent: true },
   { source: "/br/pricing-pt", destination: "/br/pricing", permanent: true },
   { source: "/br/privacy-es", destination: "/br/privacy", permanent: true },
