@@ -11,8 +11,23 @@ const INTEGRATION_SLUGS = [
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
+/**
+ * Maps Sanity language codes to our URL locale format.
+ * Used for building URLs: /blog/slug vs /br/blog/slug
+ */
 function toLocale(sanityLang: string): string {
   if (sanityLang === 'pt-BR' || sanityLang === 'pt') return 'br'
+  return sanityLang
+}
+
+/**
+ * Maps Sanity language codes to proper hreflang codes for SEO.
+ * Uses ISO 639-1 format with region where applicable.
+ * Important: pt-BR (not 'br') is the correct hreflang for Brazilian Portuguese.
+ */
+function toHreflang(sanityLang: string): string {
+  if (sanityLang === 'pt' || sanityLang === 'pt-BR') return 'pt-BR'
+  if (sanityLang === 'br') return 'pt-BR'
   return sanityLang
 }
 
@@ -23,6 +38,13 @@ function localeUrl(locale: string, path: string): string {
 
 function formatDate(date: string | Date): string {
   return new Date(date).toISOString().split('T')[0]
+}
+
+/**
+ * Gets the build date for static pages that don't have their own lastmod
+ */
+function getBuildDate(): string {
+  return new Date().toISOString().split('T')[0]
 }
 
 // ─── XML builders ───────────────────────────────────────────────────────────
@@ -66,8 +88,15 @@ function buildSitemapXml(entries: SitemapEntry[]): string {
 
 // ─── Alternates helper ──────────────────────────────────────────────────────
 
+/**
+ * Generates hreflang alternates for static pages (same slug across all locales).
+ * Includes x-default pointing to English version.
+ */
 function allLocaleAlternates(path: string): Array<{ lang: string; url: string }> {
-  return LOCALES.map((l) => ({ lang: l, url: localeUrl(l, path) }))
+  return [
+    { lang: 'x-default', url: localeUrl('en', path) },
+    ...LOCALES.map((l) => ({ lang: toHreflang(l), url: localeUrl(l, path) })),
+  ]
 }
 
 // ─── Generate per-language sitemap ──────────────────────────────────────────
@@ -77,25 +106,29 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
   const isDefault = lang === 'en'
 
   // ── Homepage ────────────────────────────────────────────────────────────
+  const homeAlternates: Array<{ lang: string; url: string }> = [
+    { lang: 'x-default', url: `${SITE_URL}/` },
+    ...LOCALES.map((l) => ({
+      lang: toHreflang(l),
+      url: l === 'en' ? `${SITE_URL}/` : `${SITE_URL}/${l}`,
+    })),
+  ]
   entries.push({
     loc: isDefault ? `${SITE_URL}/` : `${SITE_URL}/${lang}`,
     changefreq: 'daily',
-    priority: isDefault ? 1.0 : 0.9,
-    alternates: LOCALES.map((l) => ({
-      lang: l,
-      url: l === 'en' ? `${SITE_URL}/` : `${SITE_URL}/${l}`,
-    })),
+    priority: 1.0, // All homepages get priority 1.0
+    alternates: homeAlternates,
   })
 
   // ── Static pages ────────────────────────────────────────────────────────
   const staticPages = [
-    { path: '/pricing', changefreq: 'weekly', priority: 0.9 },
-    { path: '/features', changefreq: 'weekly', priority: 0.9 },
-    { path: '/whatsapp-api', changefreq: 'weekly', priority: 0.9 },
-    { path: '/whatsapp-api/coexistence', changefreq: 'weekly', priority: 0.8 },
-    { path: '/integrations', changefreq: 'weekly', priority: 0.9 },
-    { path: '/blog', changefreq: 'daily', priority: 0.8 },
-    { path: '/team-inbox', changefreq: 'weekly', priority: 0.8 },
+    { path: '/pricing', changefreq: 'monthly', priority: 0.8 },
+    { path: '/features', changefreq: 'monthly', priority: 0.8 },
+    { path: '/whatsapp-api', changefreq: 'monthly', priority: 0.8 },
+    { path: '/whatsapp-api/coexistence', changefreq: 'monthly', priority: 0.8 },
+    { path: '/integrations', changefreq: 'monthly', priority: 0.8 },
+    { path: '/blog', changefreq: 'daily', priority: 0.9 },
+    // { path: '/team-inbox', changefreq: 'weekly', priority: 0.8 }, // REMOVED
     { path: '/comparison', changefreq: 'weekly', priority: 0.8 },
     { path: '/become-our-partner', changefreq: 'monthly', priority: 0.7 },
     { path: '/msa', changefreq: 'monthly', priority: 0.3 },
@@ -108,6 +141,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
       loc: localeUrl(lang, page.path),
       changefreq: page.changefreq,
       priority: isDefault ? page.priority : Math.round(Math.max(page.priority - 0.1, 0.1) * 10) / 10,
+      lastmod: getBuildDate(), // Add lastmod for static pages
       alternates: allLocaleAlternates(page.path),
     })
   }
@@ -117,8 +151,9 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     const path = `/${slug}-whatsapp-integration`
     entries.push({
       loc: localeUrl(lang, path),
-      changefreq: 'weekly',
-      priority: isDefault ? 0.8 : 0.7,
+      changefreq: 'daily',
+      priority: 0.9,
+      lastmod: getBuildDate(),
       alternates: allLocaleAlternates(path),
     })
   }
@@ -151,14 +186,25 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
       const thisPost = groupPosts.find((p) => toLocale(p.language) === lang)
       if (!thisPost) return
 
-      const alternates = groupPosts.map((p) => {
-        const pLocale = toLocale(p.language)
-        return { lang: pLocale, url: localeUrl(pLocale, `/blog/${p.slug}`) }
-      })
+      // Build hreflang alternates with x-default pointing to English version
+      const englishPost = groupPosts.find((p) => p.language === 'en')
+      const alternates: Array<{ lang: string; url: string }> = [
+        {
+          lang: 'x-default',
+          url: englishPost ? localeUrl(toLocale(englishPost.language), `/blog/${englishPost.slug}`) : localeUrl('en', `/blog/${thisPost.slug}`)
+        },
+        ...groupPosts.map((p) => {
+          const pLocale = toLocale(p.language)
+          return {
+            lang: toHreflang(p.language),
+            url: localeUrl(pLocale, `/blog/${p.slug}`)
+          }
+        }),
+      ]
 
       entries.push({
         loc: localeUrl(lang, `/blog/${thisPost.slug}`),
-        changefreq: 'monthly',
+        changefreq: 'daily',
         priority: 0.9,
         lastmod: formatDate(thisPost._updatedAt),
         alternates,
@@ -178,7 +224,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
       category: string
       _updatedAt: string
     }> = await sanityClient.fetch(
-      `*[_type == "productPage" && slug.current != "coexistence" && language == $language]{
+      `*[_type == "productPage" && slug.current != "coexistence" && slug.current != "team-inbox" && language == $language]{
         "slug": slug.current,
         category,
         _updatedAt
@@ -198,8 +244,8 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
 
       entries.push({
         loc: localeUrl(lang, path),
-        changefreq: 'weekly',
-        priority: isDefault ? 0.7 : 0.6,
+        changefreq: 'monthly',
+        priority: 0.8,
         lastmod: formatDate(page._updatedAt),
       })
     }
