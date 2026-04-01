@@ -316,7 +316,7 @@ const faqItems = [
   },
   {
     question: 'Is there a free trial?',
-    answer: 'Yes! We offer a 7-day free trial on all plans with no credit card required. You can explore all features, test integrations, and see how Eazybe fits your workflow before committing.'
+    answer: 'Yes! We offer a 4-day free trial on all plans with no credit card required. You can explore all features, test integrations, and see how Eazybe fits your workflow before committing.'
   }
 ]
 
@@ -530,7 +530,7 @@ export function ComparisonPageClient() {
                 icon={<ArrowRight className="w-4 h-4" />}
                 onClick={() => openModal('trial')}
               >
-                Start 7-Day Free Trial
+                Start 4-Day Free Trial
               </Button>
               <Button
                 variant="outline"
@@ -741,7 +741,7 @@ export function ComparisonPageClient() {
             </Button>
           </div>
           <p className="mt-6 text-sm text-slate-500">
-            No credit card required - 7-day free trial - Cancel anytime
+            No credit card required - 4-day free trial - Cancel anytime
           </p>
         </div>
       </section>

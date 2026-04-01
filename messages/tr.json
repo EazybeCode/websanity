@@ -162,7 +162,7 @@
     "trustSignals": {
       "gdprCompliant": "KVKK Uyumlu",
       "setupTime": "5 dakikada kurulum",
-      "freeTrial": "7 günlük ücretsiz deneme",
+      "freeTrial": "4 günlük ücretsiz deneme",
       "noCreditCard": "Kredi kartı gerekmez"
     },
     "comparison": {
@@ -267,7 +267,7 @@
     "faqItems": [
       {
         "question": "Eazybe'yi ücretsiz deneyebilir miyim?",
-        "answer": "Evet! Başlangıç ve Ölçekleyici planlarında 7 günlük ücretsiz deneme sunuyoruz. Kredi kartı gerekmez. Taahhüt etmeden önce tüm özellikleri keşfedebilir ve Eazybe'nin mevcut iş akışınızla nasıl entegre olduğunu görebilirsiniz."
+        "answer": "Evet! Başlangıç ve Ölçekleyici planlarında 4 günlük ücretsiz deneme sunuyoruz. Kredi kartı gerekmez. Taahhüt etmeden önce tüm özellikleri keşfedebilir ve Eazybe'nin mevcut iş akışınızla nasıl entegre olduğunu görebilirsiniz."
       },
       {
         "question": "Gelir Gelen Kutusu nedir?",
@@ -1602,7 +1602,7 @@
         "description": "Bugün ücretsiz denemenizi başlatın. Kredi kartı gerekmez.",
         "primaryCta": "Ücretsiz Yükleyin",
         "secondaryCta": "Demo Rezervasyonu Yap",
-        "footnote": "7 günlük ücretsiz deneme • Kredi kartı gerekmez"
+        "footnote": "4 günlük ücretsiz deneme • Kredi kartı gerekmez"
       }
     },
     "features": {
@@ -1964,7 +1964,7 @@
       "description": "{crmName} entegrasyonu için Eazybe kullanan binlerce işletmeye katılın.",
       "primaryCta": "Ücretsiz Yükle",
       "secondaryCta": "Satış ile Konuş",
-      "footnote": "7 günlük ücretsiz deneme • Kredi kartı gerekmez"
+      "footnote": "4 günlük ücretsiz deneme • Kredi kartı gerekmez"
     }
   },
   "msa": {

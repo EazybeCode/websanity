@@ -162,7 +162,7 @@
     "trustSignals": {
       "gdprCompliant": "Compatível com LGPD",
       "setupTime": "Configuração em 5 minutos",
-      "freeTrial": "Teste grátis de 7 dias",
+      "freeTrial": "Teste grátis de 4 dias",
       "noCreditCard": "Sem cartão de crédito"
     },
     "comparison": {
@@ -267,7 +267,7 @@
     "faqItems": [
       {
         "question": "Posso experimentar o Eazybe gratuitamente?",
-        "answer": "Sim! Oferecemos um teste grátis de 7 dias nos planos Inicial e Escalador. Sem cartão de crédito. Você pode explorar todos os recursos e ver como o Eazybe integra com seu fluxo de trabalho antes de se comprometer."
+        "answer": "Sim! Oferecemos um teste grátis de 4 dias nos planos Inicial e Escalador. Sem cartão de crédito. Você pode explorar todos os recursos e ver como o Eazybe integra com seu fluxo de trabalho antes de se comprometer."
       },
       {
         "question": "O que é Caixa de Receita?",
@@ -1602,7 +1602,7 @@
         "description": "Inicie seu teste gratuito hoje. Sem cartão de crédito necessário.",
         "primaryCta": "Instalar Grátis",
         "secondaryCta": "Agendar Demo",
-        "footnote": "Teste gratuito de 7 dias • Sem cartão de crédito"
+        "footnote": "Teste gratuito de 4 dias • Sem cartão de crédito"
       }
     },
     "features": {
@@ -2039,7 +2039,7 @@
       "description": "Junte-se a milhares de empresas usando Eazybe para integração com {crmName}.",
       "primaryCta": "Instalar Grátis",
       "secondaryCta": "Falar com Vendas",
-      "footnote": "Teste grátis de 7 dias • Sem cartão de crédito"
+      "footnote": "Teste grátis de 4 dias • Sem cartão de crédito"
     }
   },
   "msa": {

@@ -451,7 +451,7 @@ export function getHomepageJsonLd(locale: string): object[] {
             "name": "Como funciona o teste gratuito?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Voc\u00ea pode come\u00e7ar com nosso teste gratuito de 7 dias sem necessidade de cart\u00e3o de cr\u00e9dito. Ap\u00f3s o teste, voc\u00ea pode escolher um plano que atenda \u00e0s suas necessidades - de usu\u00e1rios individuais a equipes empresariais."
+              "text": "Voc\u00ea pode come\u00e7ar com nosso teste gratuito de 4 dias sem necessidade de cart\u00e3o de cr\u00e9dito. Ap\u00f3s o teste, voc\u00ea pode escolher um plano que atenda \u00e0s suas necessidades - de usu\u00e1rios individuais a equipes empresariais."
             }
           },
           {
