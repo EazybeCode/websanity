@@ -137,10 +137,12 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
   ]
 
   for (const page of staticPages) {
+    // Blog keeps same priority across all languages (0.9), others reduced for non-English
+    const priority = page.path === '/blog' ? page.priority : (isDefault ? page.priority : Math.round(Math.max(page.priority - 0.1, 0.1) * 10) / 10)
     entries.push({
       loc: localeUrl(lang, page.path),
       changefreq: page.changefreq,
-      priority: isDefault ? page.priority : Math.round(Math.max(page.priority - 0.1, 0.1) * 10) / 10,
+      priority,
       lastmod: getBuildDate(), // Add lastmod for static pages
       alternates: allLocaleAlternates(page.path),
     })
