@@ -128,7 +128,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     { path: '/whatsapp-api/coexistence', changefreq: 'monthly', priority: 0.8 },
     { path: '/integrations', changefreq: 'monthly', priority: 0.8 },
     { path: '/blog', changefreq: 'daily', priority: 0.9 },
-    // { path: '/team-inbox', changefreq: 'weekly', priority: 0.8 }, // REMOVED
+    { path: '/features/team-inbox', changefreq: 'monthly', priority: 0.8 },
     { path: '/comparison', changefreq: 'weekly', priority: 0.8 },
     { path: '/become-our-partner', changefreq: 'monthly', priority: 0.7 },
     { path: '/msa', changefreq: 'monthly', priority: 0.3 },
