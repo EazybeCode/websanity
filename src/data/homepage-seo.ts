@@ -324,60 +324,6 @@ export function getHomepageMetadata(locale: string): Metadata {
 export function getHomepageJsonLd(locale: string): object[] {
   const schemas: Record<string, object[]> = {
     en: [
-      // Organization Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Eazybe",
-        "url": "https://eazybe.com/",
-        "logo": { "@type": "ImageObject", "url": "https://eazybe.com/logo.png", "width": 600, "height": 60 },
-        "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets.",
-        "foundingDate": "2022-09-13",
-        "founder": {
-          "@type": "Person",
-          "name": "Sagar Dewan",
-          "sameAs": ["https://www.linkedin.com/in/sagar-dewan-b43b9931/"]
-        },
-        "parentOrganization": {
-          "@type": "Organization",
-          "name": "Eazybe Inc."
-        },
-        "sameAs": [
-          "https://x.com/EazybeHQ",
-          "https://www.linkedin.com/company/eazybe",
-          "https://www.youtube.com/@eazybe",
-          "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
-          "https://www.threads.com/@eazybe.supercharge",
-          "https://www.instagram.com/eazybe.supercharge/"
-        ],
-        "contactPoint": [
-          {
-            "@type": "ContactPoint",
-            "contactType": "customer support",
-            "email": "support@eazybe.com",
-            "url": "https://eazybe.com/",
-            "areaServed": "US",
-            "availableLanguage": ["English"]
-          }
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "8, The Green STE B",
-          "addressLocality": "Dover",
-          "addressRegion": "DE",
-          "postalCode": "19901",
-          "addressCountry": "US"
-        },
-        "knowsAbout": [
-          "WhatsApp AI agent",
-          "AI agents for sales teams",
-          "WhatsApp CRM integration",
-          "Sales automation",
-          "Lead qualification",
-          "CRM sync"
-        ]
-      },
       // FAQPage Schema
       {
         "@context": "https://schema.org",
@@ -460,47 +406,7 @@ export function getHomepageJsonLd(locale: string): object[] {
         "inLanguage": "en-US",
         "datePublished": "2026-02-03T08:00:00+00:00",
         "dateModified": "2026-02-03T10:30:00+00:00"
-      },
-      // SoftwareApplication Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Eazybe",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
-        "operatingSystem": "Web, Chrome Extension",
-        "url": "https://eazybe.com/",
-        "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets.",
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/pricing",
-          "priceCurrency": "USD",
-          "lowPrice": 29,
-          "highPrice": 49,
-          "offerCount": 5,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "bestRating": "5",
-          "worstRating": "1",
-          "ratingCount": 30597
-        },
-        "featureList": [
-          "WhatsApp AI agents",
-          "Lead qualification",
-          "Cold deal detection",
-          "AI-powered reply suggestions",
-          "Shared inbox for team collaboration",
-          "Deal tracking from WhatsApp",
-          "Contact synchronization",
-          "WhatsApp CRM integration",
-          "Sales automation"
-        ]
       }
-
     ],
     br: [
       // FAQPage Schema
@@ -585,65 +491,6 @@ export function getHomepageJsonLd(locale: string): object[] {
           }
         ]
       },
-      // Organization Schema
-      {
-        "@context": "https://schema.org/",
-        "@type": "Organization",
-        "name": "Eazybe",
-        "url": "https://eazybe.com/br",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://eazybe.com/logo.png",
-          "width": 600,
-          "height": 60
-        },
-        "image": "https://eazybe.com/logo.png",
-        "description": "A Eazybe ajuda equipes de vendas a automatizar conversas no WhatsApp com agentes de IA, qualificar leads, identificar neg\u00f3cios frios e sincronizar chats com plataformas de CRM como HubSpot, Zoho, Salesforce e Google Sheets.",
-        "foundingDate": "2022-09-13",
-        "founder": {
-          "@type": "Person",
-          "name": "Sagar Dewan",
-          "sameAs": [
-            "https://www.linkedin.com/in/sagar-dewan-b43b9931/"
-          ]
-        },
-        "parentOrganization": {
-          "@type": "Organization",
-          "name": "Eazybe Inc."
-        },
-        "sameAs": [
-          "https://x.com/EazybeHQ",
-          "https://www.linkedin.com/company/eazybe",
-          "https://www.youtube.com/@eazybe",
-          "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
-          "https://www.threads.com/@eazybe.supercharge",
-          "https://www.instagram.com/eazybe.supercharge/"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "suporte ao cliente",
-          "email": "support@eazybe.com",
-          "url": "https://eazybe.com/br",
-          "areaServed": "Brazil",
-          "availableLanguage": ["Portugu\u00eas"]
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "8, The Green STE B",
-          "addressLocality": "Dover",
-          "addressRegion": "DE",
-          "postalCode": "19901",
-          "addressCountry": "US"
-        },
-        "knowsAbout": [
-          "Agente de IA para WhatsApp",
-          "Agentes de IA para equipes de vendas",
-          "Integra\u00e7\u00e3o de CRM com WhatsApp",
-          "Automa\u00e7\u00e3o de vendas",
-          "Qualifica\u00e7\u00e3o de leads",
-          "Sincroniza\u00e7\u00e3o com CRM"
-        ]
-      },
       // WebSite Schema
       {
         "@context": "https://schema.org",
@@ -666,45 +513,6 @@ export function getHomepageJsonLd(locale: string): object[] {
           },
           "query-input": "required name=search_term_string"
         }
-      },
-      // SoftwareApplication Schema
-      {
-        "@context": "https://schema.org/",
-        "@type": "SoftwareApplication",
-        "name": "Eazybe",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Integra\u00e7\u00e3o com CRM, Automa\u00e7\u00e3o para WhatsApp, Agentes de IA para WhatsApp",
-        "operatingSystem": "Web, Extens\u00e3o Chrome",
-        "url": "https://eazybe.com/br",
-        "image": "https://eazybe.com/logo.png",
-        "description": "A Eazybe ajuda equipes de vendas a automatizar conversas no WhatsApp com agentes de IA, qualificar leads, identificar neg\u00f3cios frios e sincronizar chats com plataformas de CRM como HubSpot, Zoho, Salesforce e Google Sheets.",
-        "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
-        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/br/pricing",
-          "priceCurrency": "BRL",
-          "lowPrice": 96,
-          "highPrice": 162,
-          "offerCount": 5,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.9,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 30597
-        },
-        "featureList": [
-          "Agentes de IA para WhatsApp",
-          "Qualifica\u00e7\u00e3o de leads",
-          "Detec\u00e7\u00e3o de neg\u00f3cios frios",
-          "Sugest\u00f5es de resposta com IA",
-          "Caixa de entrada compartilhada para equipes",
-          "Integra\u00e7\u00e3o de CRM com WhatsApp"
-        ]
       },
       // ProfessionalService Schema
       {
@@ -811,65 +619,6 @@ export function getHomepageJsonLd(locale: string): object[] {
           }
         ]
       },
-      // Organization Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Eazybe",
-        "url": "https://eazybe.com/es",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://eazybe.com/logo.png",
-          "width": 600,
-          "height": 60
-        },
-        "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe ayuda a los equipos de ventas a automatizar conversaciones de WhatsApp con agentes de IA, calificar leads, detectar oportunidades estancadas y sincronizar chats con CRM como HubSpot, Zoho, Salesforce y Google Sheets.",
-        "foundingDate": "2022-09-13",
-        "founder": {
-          "@type": "Person",
-          "name": "Sagar Dewan",
-          "sameAs": [
-            "https://www.linkedin.com/in/sagar-dewan-b43b9931/"
-          ]
-        },
-        "parentOrganization": {
-          "@type": "Organization",
-          "name": "Eazybe Inc."
-        },
-        "sameAs": [
-          "https://x.com/EazybeHQ",
-          "https://www.linkedin.com/company/eazybe",
-          "https://www.youtube.com/@eazybe",
-          "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
-          "https://www.threads.com/@eazybe.supercharge",
-          "https://www.instagram.com/eazybe.supercharge/"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "customer support",
-          "email": "support@eazybe.com",
-          "url": "https://eazybe.com/es",
-          "areaServed": "ES",
-          "availableLanguage": ["Spanish"]
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "8, The Green STE B",
-          "addressLocality": "Dover",
-          "addressRegion": "DE",
-          "postalCode": "19901",
-          "addressCountry": "US"
-        },
-        "knowsAbout": [
-          "Agente de IA para WhatsApp",
-          "Agentes de IA para equipos de ventas",
-          "Integraci\u00f3n de WhatsApp con CRM",
-          "Automatizaci\u00f3n de ventas",
-          "Calificaci\u00f3n de leads",
-          "Sincronizaci\u00f3n con CRM"
-        ]
-      },
       // BreadcrumbList Schema
       {
         "@context": "https://schema.org",
@@ -909,45 +658,6 @@ export function getHomepageJsonLd(locale: string): object[] {
           },
           "query-input": "required name=search_term_string"
         }
-      },
-      // SoftwareApplication Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Eazybe",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Integraci\u00f3n CRM, Automatizaci\u00f3n de WhatsApp, Agentes de IA para WhatsApp",
-        "operatingSystem": "Web, Chrome Extension",
-        "url": "https://eazybe.com/es",
-        "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe ayuda a los equipos de ventas a automatizar conversaciones de WhatsApp con agentes de IA, calificar leads, detectar oportunidades estancadas y sincronizar chats con CRM como HubSpot, Zoho, Salesforce y Google Sheets.",
-        "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
-        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/es/pricing",
-          "priceCurrency": "EUR",
-          "lowPrice": 25,
-          "highPrice": 42,
-          "offerCount": 5,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.9,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 30597
-        },
-        "featureList": [
-          "Agentes de IA para WhatsApp",
-          "Calificaci\u00f3n de leads",
-          "Detecci\u00f3n de oportunidades estancadas",
-          "Sugerencias de respuesta con IA",
-          "Bandeja de entrada compartida para equipos",
-          "Integraci\u00f3n de WhatsApp con CRM"
-        ]
       },
       // ProfessionalService Schema
       {
@@ -1042,65 +752,6 @@ export function getHomepageJsonLd(locale: string): object[] {
           }
         ]
       },
-      // Organization Schema
-      {
-        "@context": "https://schema.org/",
-        "@type": "Organization",
-        "name": "Eazybe",
-        "url": "https://eazybe.com/tr",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://eazybe.com/logo.png",
-          "width": 600,
-          "height": 60
-        },
-        "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe, sat\u0131\u015f ekiplerinin WhatsApp konu\u015fmalar\u0131n\u0131 yapay zeka ajanlar\u0131 ile otomatikle\u015ftirmesine, lead'leri nitelendirmesine, so\u011fuyan f\u0131rsatlar\u0131 tespit etmesine ve sohbetleri HubSpot, Zoho, Salesforce ve Google Sheets gibi CRM platformlar\u0131yla senkronize etmesine yard\u0131mc\u0131 olur.",
-        "foundingDate": "2022-09-13",
-        "founder": {
-          "@type": "Person",
-          "name": "Sagar Dewan",
-          "sameAs": [
-            "https://www.linkedin.com/in/sagar-dewan-b43b9931/"
-          ]
-        },
-        "parentOrganization": {
-          "@type": "Organization",
-          "name": "Eazybe Inc."
-        },
-        "sameAs": [
-          "https://x.com/EazybeHQ",
-          "https://www.linkedin.com/company/eazybe",
-          "https://www.youtube.com/@eazybe",
-          "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
-          "https://www.threads.com/@eazybe.supercharge",
-          "https://www.instagram.com/eazybe.supercharge/"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "m\u00fc\u015fteri deste\u011fi",
-          "email": "support@eazybe.com",
-          "url": "https://eazybe.com/tr",
-          "areaServed": "TR",
-          "availableLanguage": ["T\u00fcrk\u00e7e"]
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "8, The Green STE B",
-          "addressLocality": "Dover",
-          "addressRegion": "DE",
-          "postalCode": "19901",
-          "addressCountry": "US"
-        },
-        "knowsAbout": [
-          "WhatsApp yapay zeka ajan\u0131",
-          "Sat\u0131\u015f ekipleri i\u00e7in yapay zeka ajanlar\u0131",
-          "WhatsApp CRM entegrasyonu",
-          "Sat\u0131\u015f otomasyonu",
-          "Lead nitelendirme",
-          "CRM senkronizasyonu"
-        ]
-      },
       // BreadcrumbList Schema
       {
         "@context": "https://schema.org",
@@ -1141,45 +792,6 @@ export function getHomepageJsonLd(locale: string): object[] {
           "query-input": "required name=search_term_string"
         }
       },
-      // SoftwareApplication Schema
-      {
-        "@context": "https://schema.org/",
-        "@type": "SoftwareApplication",
-        "name": "Eazybe",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "CRM Entegrasyonu, WhatsApp Otomasyonu, WhatsApp i\u00e7in Yapay Zeka Ajanlar\u0131",
-        "operatingSystem": "Web, Chrome Uzant\u0131s\u0131",
-        "url": "https://eazybe.com/tr",
-        "image": "https://eazybe.com/logo.png",
-        "description": "Eazybe, sat\u0131\u015f ekiplerinin WhatsApp konu\u015fmalar\u0131n\u0131 yapay zeka ajanlar\u0131 ile otomatikle\u015ftirmesine, lead'leri nitelendirmesine, so\u011fuyan f\u0131rsatlar\u0131 tespit etmesine ve sohbetleri HubSpot, Zoho, Salesforce ve Google Sheets gibi CRM platformlar\u0131yla senkronize etmesine yard\u0131mc\u0131 olur.",
-        "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
-        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": "https://eazybe.com/tr/pricing",
-          "priceCurrency": "TRY",
-          "lowPrice": 1272,
-          "highPrice": 2149,
-          "offerCount": 5,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.9,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 30597
-        },
-        "featureList": [
-          "WhatsApp yapay zeka ajanlar\u0131",
-          "Lead nitelendirme",
-          "So\u011fuuk f\u0131rsat tespiti",
-          "Yapay zeka destekli yan\u0131t \u00f6nerileri",
-          "Ekipler i\u00e7in ortak gelen kutusu",
-          "WhatsApp CRM entegrasyonu"
-        ]
-      }
     ],
   }
 
