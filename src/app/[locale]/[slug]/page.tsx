@@ -9,6 +9,7 @@ import { HubSpotStructuredData } from '@/components/seo/HubSpotStructuredData'
 import { ZohoStructuredData } from '@/components/seo/ZohoStructuredData'
 import { Bitrix24StructuredData } from '@/components/seo/Bitrix24StructuredData'
 import { GoogleSheetsStructuredData } from '@/components/seo/GoogleSheetsStructuredData'
+import { GoogleCalendarStructuredData } from '@/components/seo/GoogleCalendarStructuredData'
 import { LeadSquaredStructuredData } from '@/components/seo/LeadSquaredStructuredData'
 import { FreshdeskStructuredData } from '@/components/seo/FreshdeskStructuredData'
 import { WebhooksStructuredData } from '@/components/seo/WebhooksStructuredData'
@@ -360,6 +361,74 @@ export async function generateMetadata({
     }
   }
 
+  // Additional meta tags for Google Calendar integration page (English only)
+  if (crmSlug === 'google-calendar' && locale === 'en') {
+    return {
+      ...baseMetadata,
+      title: 'Google Calendar WhatsApp Integration With AI Agents - Eazybe',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'Google Calendar WhatsApp integration, WhatsApp Google Calendar, sync WhatsApp with Google Calendar, Google Calendar WhatsApp automation, WhatsApp Google Calendar, AI agents Google Calendar WhatsApp',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/google-calendar-whatsapp-integration',
+        title: 'Google Calendar WhatsApp Integration With AI Agents | Eazybe',
+        description: 'Sync WhatsApp with Google Calendar automatically. Track deals, use AI replies, manage chats, and boost sales productivity directly inside Google Calendar.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Google Calendar WhatsApp Integration Platform - Eazybe',
+          },
+        ],
+        locale: 'en_US',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Google Calendar WhatsApp Integration | Sync Google Calendar With WhatsApp',
+        description: 'Automatically sync WhatsApp chats with Google Calendar. Use AI agents, track pipeline activity, and manage customer conversations in one place.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-01T10:30:00+00:00',
+        'article:section': 'Technology',
+        'article:tag': 'Google Calendar WhatsApp Integration',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Google Calendar WhatsApp Integration by Eazybe',
+        'twitter:label1': 'Rating',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Price',
+        'twitter:data2': 'Free',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'how-to, product-information, feature-comparison',
+        'target-audience': 'Google Calendar users, sales teams, CRM managers, marketing automation teams, B2B businesses',
+        'content-intent': 'commercial-investigation, transactional',
+        'conversational-query': 'how to connect WhatsApp to Google Calendar, best Google Calendar WhatsApp integration, sync WhatsApp with Google Calendar',
+        'ai-readability': 'conversational, professional, solution-oriented',
+        'context-window': 'Google Calendar automation, WhatsApp Google Calendar sync, deal tracking, sales pipeline management, WhatsApp inside Google Calendar',
+        'user-problem': 'Google Calendar not connected to WhatsApp, missing WhatsApp leads, manual Google Calendar updates',
+        'solution-summary': 'automatic WhatsApp to Google Calendar synchronization with AI automation',
+        'primary-benefit': 'manage WhatsApp conversations directly inside Google Calendar',
+        'use-case': 'sales teams syncing WhatsApp conversations with Google Calendar automatically',
+        'implementation-difficulty': 'easy, one-click Google Calendar integration',
+        'time-to-value': 'instant, real-time WhatsApp sync',
+      },
+    }
+  }
+
   // Additional meta tags for LeadSquared integration page (English only)
   if (crmSlug === 'leadsquared' && locale === 'en') {
     return {
@@ -590,6 +659,7 @@ export default async function IntegrationPage({
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
       {crmSlug === 'bitrix24' && locale === 'en' && <Bitrix24StructuredData />}
       {crmSlug === 'google-sheets' && locale === 'en' && <GoogleSheetsStructuredData />}
+      {crmSlug === 'google-calendar' && locale === 'en' && <GoogleCalendarStructuredData />}
       {crmSlug === 'leadsquared' && locale === 'en' && <LeadSquaredStructuredData />}
       {crmSlug === 'freshdesk' && locale === 'en' && <FreshdeskStructuredData />}
       {crmSlug === 'webhooks' && locale === 'en' && <WebhooksStructuredData />}
