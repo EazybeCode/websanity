@@ -10,6 +10,7 @@ import { ZohoStructuredData } from '@/components/seo/ZohoStructuredData'
 import { Bitrix24StructuredData } from '@/components/seo/Bitrix24StructuredData'
 import { GoogleSheetsStructuredData } from '@/components/seo/GoogleSheetsStructuredData'
 import { GoogleCalendarStructuredData } from '@/components/seo/GoogleCalendarStructuredData'
+import { MondayStructuredData } from '@/components/seo/MondayStructuredData'
 import { LeadSquaredStructuredData } from '@/components/seo/LeadSquaredStructuredData'
 import { FreshdeskStructuredData } from '@/components/seo/FreshdeskStructuredData'
 import { WebhooksStructuredData } from '@/components/seo/WebhooksStructuredData'
@@ -633,6 +634,74 @@ export async function generateMetadata({
     }
   }
 
+  // Additional meta tags for Monday integration page (English only)
+  if (crmSlug === 'monday' && locale === 'en') {
+    return {
+      ...baseMetadata,
+      title: 'Monday WhatsApp Integration: Connect WhatsApp To Monday',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'Monday WhatsApp integration, WhatsApp Monday CRM, sync WhatsApp with Monday, Monday WhatsApp automation, WhatsApp CRM Monday, AI agents Monday WhatsApp',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/monday-whatsapp-integration',
+        title: 'Monday WhatsApp Integration With AI Agents - Eazybe',
+        description: 'Sync WhatsApp with Monday CRM automatically. Track deals, use AI replies, manage chats, and boost sales productivity directly inside Monday.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Monday WhatsApp Integration Platform - Eazybe',
+          },
+        ],
+        locale: 'en_US',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Monday WhatsApp Integration | Sync CRM With WhatsApp',
+        description: 'Automatically sync WhatsApp chats with Monday CRM. Use AI agents, track pipeline activity, and manage customer conversations in one place.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-02T10:30:00+00:00',
+        'article:section': 'Technology',
+        'article:tag': 'Monday WhatsApp Integration',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Monday WhatsApp CRM Integration by Eazybe',
+        'twitter:label1': 'Rating',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Price',
+        'twitter:data2': 'Free',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'how-to, product-information, feature-comparison',
+        'target-audience': 'Monday users, sales teams, CRM managers, marketing automation teams, B2B businesses',
+        'content-intent': 'commercial-investigation, transactional',
+        'conversational-query': 'how to connect WhatsApp to Monday, best Monday WhatsApp integration, sync WhatsApp with Monday CRM',
+        'ai-readability': 'conversational, professional, solution-oriented',
+        'context-window': 'Monday automation, WhatsApp CRM sync, deal tracking, sales pipeline management, WhatsApp inside Monday',
+        'user-problem': 'Monday not connected to WhatsApp, missing WhatsApp leads, manual CRM updates',
+        'solution-summary': 'automatic WhatsApp to Monday synchronization with AI automation',
+        'primary-benefit': 'manage WhatsApp conversations directly inside Monday',
+        'use-case': 'sales teams syncing WhatsApp conversations with Monday CRM automatically',
+        'implementation-difficulty': 'easy, one-click Monday integration',
+        'time-to-value': 'instant, real-time WhatsApp sync',
+      },
+    }
+  }
+
   return baseMetadata
 }
 
@@ -660,6 +729,7 @@ export default async function IntegrationPage({
       {crmSlug === 'bitrix24' && locale === 'en' && <Bitrix24StructuredData />}
       {crmSlug === 'google-sheets' && locale === 'en' && <GoogleSheetsStructuredData />}
       {crmSlug === 'google-calendar' && locale === 'en' && <GoogleCalendarStructuredData />}
+      {crmSlug === 'monday' && locale === 'en' && <MondayStructuredData />}
       {crmSlug === 'leadsquared' && locale === 'en' && <LeadSquaredStructuredData />}
       {crmSlug === 'freshdesk' && locale === 'en' && <FreshdeskStructuredData />}
       {crmSlug === 'webhooks' && locale === 'en' && <WebhooksStructuredData />}
