@@ -14,6 +14,7 @@ import { Bitrix24StructuredDataBr } from '@/components/seo/Bitrix24StructuredDat
 import { GoogleSheetsStructuredData } from '@/components/seo/GoogleSheetsStructuredData'
 import { GoogleSheetsStructuredDataBr } from '@/components/seo/GoogleSheetsStructuredDataBr'
 import { GoogleCalendarStructuredData } from '@/components/seo/GoogleCalendarStructuredData'
+import { GoogleCalendarStructuredDataBr } from '@/components/seo/GoogleCalendarStructuredDataBr'
 import { MondayStructuredData } from '@/components/seo/MondayStructuredData'
 import { PipedriveStructuredData } from '@/components/seo/PipedriveStructuredData'
 import { SalesforceStructuredData } from '@/components/seo/SalesforceStructuredData'
@@ -708,6 +709,74 @@ export async function generateMetadata({
         'use-case': 'sales teams syncing WhatsApp conversations with Google Calendar automatically',
         'implementation-difficulty': 'easy, one-click Google Calendar integration',
         'time-to-value': 'instant, real-time WhatsApp sync',
+      },
+    }
+  }
+
+  // Additional meta tags for Google Calendar integration page (Portuguese/Brazil only)
+  if (crmSlug === 'google-calendar' && locale === 'br') {
+    return {
+      ...baseMetadata,
+      title: 'Integração Google Calendar com WhatsApp: Conecte WhatsApp',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'integração Google Calendar WhatsApp, WhatsApp Google Calendar, sincronizar WhatsApp com Google Calendar, automação WhatsApp calendário, integração agenda WhatsApp, lembretes WhatsApp Google Calendar',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/br/google-calendar-whatsapp-integration',
+        title: 'Integração Google Calendar com WhatsApp: Conecte WhatsApp',
+        description: 'Conecte o WhatsApp ao Google Calendar. Sincronize compromissos automaticamente, envie lembretes e gerencie conversas com clientes de forma eficiente.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Integração Google Calendar com WhatsApp - Eazybe',
+          },
+        ],
+        locale: 'pt_BR',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Integração Google Calendar com WhatsApp: Conecte WhatsApp',
+        description: 'Sincronize WhatsApp com Google Calendar automaticamente. Envie lembretes, gerencie compromissos e melhore a comunicação com clientes.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-02T10:30:00+00:00',
+        'article:section': 'Tecnologia',
+        'article:tag': 'Integração Google Calendar WhatsApp',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Integração Google Calendar WhatsApp da Eazybe',
+        'twitter:label1': 'Avaliação',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Preço',
+        'twitter:data2': 'Grátis',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'como fazer, informações do produto, automação',
+        'target-audience': 'usuários do Google Calendar, equipes de vendas, equipes de suporte, gestores de CRM, empresas B2B',
+        'content-intent': 'investigação comercial, transacional',
+        'conversational-query': 'como conectar WhatsApp ao Google Calendar, integração WhatsApp calendário, enviar lembretes WhatsApp automaticamente, sincronizar agenda com WhatsApp',
+        'ai-readability': 'conversacional, profissional, orientado para solução',
+        'context-window': 'automação de calendário, lembretes via WhatsApp, sincronização de agenda, comunicação com clientes, automação de compromissos',
+        'user-problem': 'falta de lembretes automáticos, compromissos perdidos, comunicação manual com clientes',
+        'solution-summary': 'integração do WhatsApp com Google Calendar para automatizar lembretes e gerenciar compromissos com eficiência',
+        'primary-benefit': 'automatizar lembretes e melhorar a gestão de compromissos via WhatsApp',
+        'use-case': 'equipes que desejam enviar lembretes de reuniões e gerenciar compromissos automaticamente pelo WhatsApp',
+        'implementation-difficulty': 'fácil, integração rápida com Google Calendar',
+        'time-to-value': 'instantâneo, sincronização e automação imediata',
       },
     }
   }
@@ -1423,6 +1492,7 @@ export default async function IntegrationPage({
       {crmSlug === 'google-sheets' && locale === 'en' && <GoogleSheetsStructuredData />}
       {crmSlug === 'google-sheets' && locale === 'br' && <GoogleSheetsStructuredDataBr />}
       {crmSlug === 'google-calendar' && locale === 'en' && <GoogleCalendarStructuredData />}
+      {crmSlug === 'google-calendar' && locale === 'br' && <GoogleCalendarStructuredDataBr />}
       {crmSlug === 'monday' && locale === 'en' && <MondayStructuredData />}
       {crmSlug === 'pipedrive' && locale === 'en' && <PipedriveStructuredData />}
       {crmSlug === 'salesforce' && locale === 'en' && <SalesforceStructuredData />}
