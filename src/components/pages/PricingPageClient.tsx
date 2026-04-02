@@ -732,7 +732,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     })) || defaultFaqItems
 
   // ── CTA Section ─────────────────────────────────────────────────────────
-  const ctaSection = pricingData?.ctaSection || {
+  const ctaSection = {
     headline: 'Ready to supercharge your',
     headlineHighlight: 'WhatsApp sales?',
     subheadline:
@@ -885,7 +885,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
             </a>
           </div>
           {ctaSection.footnote && (
-            <p className="text-sm text-slate-500 mt-6">{ctaSection.footnote}</p>
+            <p className="text-sm text-slate-500 mt-6">{ctaSection.footnote?.replace(/14-day/gi, '4-day')}</p>
           )}
         </div>
       </section>

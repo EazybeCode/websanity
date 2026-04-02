@@ -759,7 +759,7 @@ const CTASection: React.FC<{ data: any }> = ({ data }) => {
           )}
         </div>
         {data.footnote && (
-          <p className="text-sm text-slate-500 mt-6">{data.footnote}</p>
+          <p className="text-sm text-slate-500 mt-6">{data.footnote.replace(/14-day/gi, '4-day')}</p>
         )}
       </div>
     </section>
