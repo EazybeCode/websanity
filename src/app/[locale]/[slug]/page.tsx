@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing'
 import ProductPageClient from '@/components/pages/ProductPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
 import { HubSpotStructuredData } from '@/components/seo/HubSpotStructuredData'
+import { ZohoStructuredData } from '@/components/seo/ZohoStructuredData'
 import { Fragment } from 'react'
 
 // ─── Integration slug mapping ────────────────────────────────────────────────
@@ -241,6 +242,7 @@ export default async function IntegrationPage({
   return (
     <>
       {crmSlug === 'hubspot' && <HubSpotStructuredData />}
+      {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
       <ProductPageClient product={product} crmSlug={crmSlug} />
     </>
   )
