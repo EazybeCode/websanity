@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing'
 import ProductPageClient from '@/components/pages/ProductPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
 import { HubSpotStructuredData } from '@/components/seo/HubSpotStructuredData'
+import { HubSpotStructuredDataBr } from '@/components/seo/HubSpotStructuredDataBr'
 import { ZohoStructuredData } from '@/components/seo/ZohoStructuredData'
 import { Bitrix24StructuredData } from '@/components/seo/Bitrix24StructuredData'
 import { GoogleSheetsStructuredData } from '@/components/seo/GoogleSheetsStructuredData'
@@ -92,8 +93,8 @@ export async function generateMetadata({
     alternates: getAlternates(locale, `/${slug}`),
   }
 
-  // Additional meta tags for HubSpot integration page
-  if (crmSlug === 'hubspot') {
+  // Additional meta tags for HubSpot integration page (English only)
+  if (crmSlug === 'hubspot' && locale === 'en') {
     return {
       ...baseMetadata,
       title: 'HubSpot WhatsApp Integration: Sync WhatsApp With AI Agents',
@@ -156,6 +157,74 @@ export async function generateMetadata({
         'use-case': 'sales teams syncing WhatsApp conversations with HubSpot CRM automatically',
         'implementation-difficulty': 'easy, one-click HubSpot integration',
         'time-to-value': 'instant, real-time WhatsApp sync',
+      },
+    }
+  }
+
+  // Additional meta tags for HubSpot integration page (Portuguese/Brazil only)
+  if (crmSlug === 'hubspot' && locale === 'br') {
+    return {
+      ...baseMetadata,
+      title: 'Integração HubSpot WhatsApp: HubSpot integrado ao WhatsApp',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'integração WhatsApp HubSpot, HubSpot WhatsApp integração, WhatsApp HubSpot CRM, sincronizar WhatsApp com HubSpot, automação WhatsApp HubSpot, CRM WhatsApp HubSpot, agentes de IA WhatsApp HubSpot',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/br/hubspot-whatsapp-integration',
+        title: 'HubSpot WhatsApp Integration | Sincronize CRM do WhatsApp',
+        description: 'Conecte WhatsApp ao HubSpot CRM. Sincronize conversas, use agentes de IA, acompanhe negócios e gerencie vendas sem sair do HubSpot.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Integração WhatsApp com HubSpot CRM - Eazybe',
+          },
+        ],
+        locale: 'pt_BR',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'HubSpot WhatsApp Integration | Sincronize CRM do WhatsApp',
+        description: 'Conecte WhatsApp ao HubSpot CRM. Sincronize conversas, use agentes de IA, acompanhe negócios e gerencie vendas sem sair do HubSpot.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-02-03T10:30:00+00:00',
+        'article:section': 'Technology',
+        'article:tag': 'Integração WhatsApp HubSpot',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Integração WhatsApp HubSpot CRM da Eazybe',
+        'twitter:label1': 'Avaliação',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Preço',
+        'twitter:data2': 'Grátis',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'como-fazer, informações-do-produto, comparação-de-recursos',
+        'target-audience': 'usuários do HubSpot, equipes de vendas, gestores de CRM, automação de marketing, empresas B2B',
+        'content-intent': 'investigação-comercial, transacional',
+        'conversational-query': 'como conectar WhatsApp ao HubSpot, melhor integração WhatsApp HubSpot, sincronizar WhatsApp com HubSpot CRM',
+        'ai-readability': 'conversacional, profissional, orientado-a-soluções',
+        'context-window': 'automação HubSpot, sincronização WhatsApp CRM, acompanhamento de negócios, gestão de pipeline de vendas, WhatsApp dentro do HubSpot',
+        'user-problem': 'HubSpot sem WhatsApp, leads perdidos no WhatsApp, atualizações manuais no CRM',
+        'solution-summary': 'sincronização automática do WhatsApp com o HubSpot com automação por IA',
+        'primary-benefit': 'gerencie conversas do WhatsApp diretamente dentro do HubSpot',
+        'use-case': 'equipes de vendas sincronizando conversas do WhatsApp com o HubSpot CRM automaticamente',
+        'implementation-difficulty': 'fácil, integração com HubSpot em um clique',
+        'time-to-value': 'instantâneo, sincronização do WhatsApp em tempo real',
       },
     }
   }
@@ -862,7 +931,8 @@ export default async function IntegrationPage({
 
   return (
     <>
-      {crmSlug === 'hubspot' && <HubSpotStructuredData />}
+      {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
+      {crmSlug === 'hubspot' && locale === 'br' && <HubSpotStructuredDataBr />}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
       {crmSlug === 'bitrix24' && locale === 'en' && <Bitrix24StructuredData />}
       {crmSlug === 'google-sheets' && locale === 'en' && <GoogleSheetsStructuredData />}
