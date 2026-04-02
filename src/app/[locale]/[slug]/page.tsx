@@ -8,6 +8,7 @@ import { getAlternates } from '@/lib/seo-helpers'
 import { HubSpotStructuredData } from '@/components/seo/HubSpotStructuredData'
 import { HubSpotStructuredDataBr } from '@/components/seo/HubSpotStructuredDataBr'
 import { ZohoStructuredData } from '@/components/seo/ZohoStructuredData'
+import { ZohoStructuredDataBr } from '@/components/seo/ZohoStructuredDataBr'
 import { Bitrix24StructuredData } from '@/components/seo/Bitrix24StructuredData'
 import { GoogleSheetsStructuredData } from '@/components/seo/GoogleSheetsStructuredData'
 import { GoogleCalendarStructuredData } from '@/components/seo/GoogleCalendarStructuredData'
@@ -294,6 +295,74 @@ export async function generateMetadata({
         'use-case': 'sales teams syncing WhatsApp conversations with Zoho CRM automatically',
         'implementation-difficulty': 'easy, one-click Zoho integration',
         'time-to-value': 'instant, real-time WhatsApp sync',
+      },
+    }
+  }
+
+  // Additional meta tags for Zoho integration page (Portuguese/Brazil only)
+  if (crmSlug === 'zoho' && locale === 'br') {
+    return {
+      ...baseMetadata,
+      title: 'Integração Zoho CRM com WhatsApp | Zoho CRM + WhatsApp',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'integração WhatsApp Zoho, Zoho WhatsApp integração, WhatsApp Zoho CRM, sincronizar WhatsApp com Zoho, automação WhatsApp Zoho, CRM WhatsApp Zoho, agentes de IA WhatsApp Zoho',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/br/zoho-whatsapp-integration',
+        title: 'Zoho WhatsApp Integration e agentes de IA - Eazybe',
+        description: 'Conecte WhatsApp ao Zoho CRM. Sincronize conversas, use agentes de IA, acompanhe negócios e gerencie vendas sem sair do Zoho.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Integração WhatsApp com Zoho CRM - Eazybe',
+          },
+        ],
+        locale: 'pt_BR',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Zoho WhatsApp Integration e agentes de IA - Eazybe',
+        description: 'Conecte WhatsApp ao Zoho CRM. Sincronize conversas, use agentes de IA, acompanhe negócios e gerencie vendas sem sair do Zoho.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-02T10:30:00+00:00',
+        'article:section': 'Technology',
+        'article:tag': 'Integração WhatsApp Zoho',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Integração WhatsApp Zoho CRM da Eazybe',
+        'twitter:label1': 'Avaliação',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Preço',
+        'twitter:data2': 'Grátis',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'como-fazer, informações-do-produto, comparação-de-recursos',
+        'target-audience': 'usuários do Zoho, equipes de vendas, gestores de CRM, automação de marketing, empresas B2B',
+        'content-intent': 'investigação-comercial, transacional',
+        'conversational-query': 'como conectar WhatsApp ao Zoho, melhor integração WhatsApp Zoho, sincronizar WhatsApp com Zoho CRM',
+        'ai-readability': 'conversacional, profissional, orientado-a-soluções',
+        'context-window': 'automação Zoho, sincronização WhatsApp CRM, acompanhamento de negócios, gestão de pipeline de vendas, WhatsApp dentro do Zoho',
+        'user-problem': 'Zoho sem WhatsApp, leads perdidos no WhatsApp, atualizações manuais no CRM',
+        'solution-summary': 'sincronização automática do WhatsApp com o Zoho com automação por IA',
+        'primary-benefit': 'gerencie conversas do WhatsApp diretamente dentro do Zoho',
+        'use-case': 'equipes de vendas sincronizando conversas do WhatsApp com o Zoho CRM automaticamente',
+        'implementation-difficulty': 'fácil, integração com Zoho em um clique',
+        'time-to-value': 'instantâneo, sincronização do WhatsApp em tempo real',
       },
     }
   }
@@ -1003,6 +1072,7 @@ export default async function IntegrationPage({
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
       {crmSlug === 'hubspot' && locale === 'br' && <HubSpotStructuredDataBr />}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
+      {crmSlug === 'zoho' && locale === 'br' && <ZohoStructuredDataBr />}
       {crmSlug === 'bitrix24' && locale === 'en' && <Bitrix24StructuredData />}
       {crmSlug === 'google-sheets' && locale === 'en' && <GoogleSheetsStructuredData />}
       {crmSlug === 'google-calendar' && locale === 'en' && <GoogleCalendarStructuredData />}

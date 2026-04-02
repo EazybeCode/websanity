@@ -64,7 +64,7 @@ export function SalesforceStructuredDataBr() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'integrations', item: 'https://eazybe.com/br/integrations' },
+      { '@type': 'ListItem', position: 1, name: 'integração', item: 'https://eazybe.com/br/integrations' },
       {
         '@type': 'ListItem',
         position: 2,
