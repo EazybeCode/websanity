@@ -22,6 +22,7 @@ import { LeadSquaredStructuredDataBr } from '@/components/seo/LeadSquaredStructu
 import { FreshdeskStructuredData } from '@/components/seo/FreshdeskStructuredData'
 import { FreshdeskStructuredDataBr } from '@/components/seo/FreshdeskStructuredDataBr'
 import { WebhooksStructuredData } from '@/components/seo/WebhooksStructuredData'
+import { WebhooksStructuredDataBr } from '@/components/seo/WebhooksStructuredDataBr'
 import { Fragment } from 'react'
 
 // ─── Integration slug mapping ────────────────────────────────────────────────
@@ -982,6 +983,74 @@ export async function generateMetadata({
     }
   }
 
+  // Additional meta tags for Webhooks integration page (Portuguese/Brazil only)
+  if (crmSlug === 'webhooks' && locale === 'br') {
+    return {
+      ...baseMetadata,
+      title: 'Integração Webhooks WhatsApp: Conecte WhatsApp com Webhooks',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'integração WhatsApp Webhooks, Webhooks WhatsApp, sincronizar WhatsApp com Webhooks, automação WhatsApp Webhooks, API WhatsApp Webhooks, agentes de IA WhatsApp Webhooks',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/br/webhooks-whatsapp-integration',
+        title: 'Integração Webhooks WhatsApp: Conecte WhatsApp com Webhooks',
+        description: 'Integre o WhatsApp com Webhooks automaticamente. Use agentes de IA, automatize eventos e gerencie conversas com mais eficiência.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Integração WhatsApp com Webhooks - Eazybe',
+          },
+        ],
+        locale: 'pt_BR',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Integração Webhooks WhatsApp: Conecte WhatsApp com Webhooks',
+        description: 'Conecte o WhatsApp com Webhooks e automatize eventos, conversas e fluxos com agentes de IA.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-02T10:30:00+00:00',
+        'article:section': 'Tecnologia',
+        'article:tag': 'Integração WhatsApp Webhooks',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Integração WhatsApp Webhooks da Eazybe',
+        'twitter:label1': 'Avaliação',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Preço',
+        'twitter:data2': 'Grátis',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'como fazer, integração, automação',
+        'target-audience': 'desenvolvedores, equipes técnicas, equipes de automação, empresas SaaS, equipes de produto',
+        'content-intent': 'investigação comercial, técnico',
+        'conversational-query': 'como conectar WhatsApp com webhooks, integração WhatsApp API webhooks, automatizar WhatsApp com webhooks',
+        'ai-readability': 'técnico, prático, orientado a soluções',
+        'context-window': 'webhooks, API WhatsApp, automação de eventos, integração de sistemas, mensagens automatizadas',
+        'user-problem': 'dificuldade em integrar WhatsApp com sistemas personalizados, automação limitada, necessidade de sincronização em tempo real',
+        'solution-summary': 'integração do WhatsApp com webhooks para automatizar eventos, sincronizar dados e escalar processos com IA',
+        'primary-benefit': 'automatizar fluxos e integrar WhatsApp com qualquer sistema via webhooks',
+        'use-case': 'empresas e desenvolvedores que desejam conectar WhatsApp com sistemas internos usando webhooks',
+        'implementation-difficulty': 'médio, requer configuração técnica de webhooks',
+        'time-to-value': 'rápido após configuração inicial',
+      },
+    }
+  }
+
   // Additional meta tags for Monday integration page (English only)
   if (crmSlug === 'monday' && locale === 'en') {
     return {
@@ -1293,6 +1362,7 @@ export default async function IntegrationPage({
       {crmSlug === 'freshdesk' && locale === 'en' && <FreshdeskStructuredData />}
       {crmSlug === 'freshdesk' && locale === 'br' && <FreshdeskStructuredDataBr />}
       {crmSlug === 'webhooks' && locale === 'en' && <WebhooksStructuredData />}
+      {crmSlug === 'webhooks' && locale === 'br' && <WebhooksStructuredDataBr />}
       <ProductPageClient product={product} crmSlug={crmSlug} />
     </>
   )
