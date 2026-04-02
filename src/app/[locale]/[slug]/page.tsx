@@ -9,6 +9,7 @@ import { HubSpotStructuredData } from '@/components/seo/HubSpotStructuredData'
 import { ZohoStructuredData } from '@/components/seo/ZohoStructuredData'
 import { Bitrix24StructuredData } from '@/components/seo/Bitrix24StructuredData'
 import { GoogleSheetsStructuredData } from '@/components/seo/GoogleSheetsStructuredData'
+import { LeadSquaredStructuredData } from '@/components/seo/LeadSquaredStructuredData'
 import { Fragment } from 'react'
 
 // ─── Integration slug mapping ────────────────────────────────────────────────
@@ -357,6 +358,74 @@ export async function generateMetadata({
     }
   }
 
+  // Additional meta tags for LeadSquared integration page (English only)
+  if (crmSlug === 'leadsquared' && locale === 'en') {
+    return {
+      ...baseMetadata,
+      title: 'LeadSquared WhatsApp Integration | WhatsApp + LeadSquared',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'LeadSquared WhatsApp integration, WhatsApp LeadSquared CRM, sync WhatsApp with LeadSquared, LeadSquared WhatsApp automation, WhatsApp CRM LeadSquared, AI agents LeadSquared WhatsApp',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/leadsquared-whatsapp-integration',
+        title: 'LeadSquared WhatsApp Integration With AI Agents | Eazybe',
+        description: 'Sync WhatsApp with LeadSquared CRM automatically. Track deals, use AI replies, manage chats, and boost sales productivity directly inside LeadSquared.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'LeadSquared WhatsApp Integration Platform - Eazybe',
+          },
+        ],
+        locale: 'en_US',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'LeadSquared WhatsApp Integration | Sync CRM With WhatsApp',
+        description: 'Automatically sync WhatsApp chats with LeadSquared CRM. Use AI agents, track pipeline activity, and manage customer conversations in one place.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-01T10:30:00+00:00',
+        'article:section': 'Technology',
+        'article:tag': 'LeadSquared WhatsApp Integration',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'LeadSquared WhatsApp CRM Integration by Eazybe',
+        'twitter:label1': 'Rating',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Price',
+        'twitter:data2': 'Free',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'how-to, product-information, feature-comparison',
+        'target-audience': 'LeadSquared users, sales teams, CRM managers, marketing automation teams, B2B businesses',
+        'content-intent': 'commercial-investigation, transactional',
+        'conversational-query': 'how to connect WhatsApp to LeadSquared, best LeadSquared WhatsApp integration, sync WhatsApp with LeadSquared CRM',
+        'ai-readability': 'conversational, professional, solution-oriented',
+        'context-window': 'LeadSquared automation, WhatsApp CRM sync, deal tracking, sales pipeline management, WhatsApp inside LeadSquared',
+        'user-problem': 'LeadSquared not connected to WhatsApp, missing WhatsApp leads, manual CRM updates',
+        'solution-summary': 'automatic WhatsApp to LeadSquared synchronization with AI automation',
+        'primary-benefit': 'manage WhatsApp conversations directly inside LeadSquared',
+        'use-case': 'sales teams syncing WhatsApp conversations with LeadSquared CRM automatically',
+        'implementation-difficulty': 'easy, one-click LeadSquared integration',
+        'time-to-value': 'instant, real-time WhatsApp sync',
+      },
+    }
+  }
+
   return baseMetadata
 }
 
@@ -383,6 +452,7 @@ export default async function IntegrationPage({
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
       {crmSlug === 'bitrix24' && locale === 'en' && <Bitrix24StructuredData />}
       {crmSlug === 'google-sheets' && locale === 'en' && <GoogleSheetsStructuredData />}
+      {crmSlug === 'leadsquared' && locale === 'en' && <LeadSquaredStructuredData />}
       <ProductPageClient product={product} crmSlug={crmSlug} />
     </>
   )
