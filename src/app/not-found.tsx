@@ -1,12 +1,13 @@
 'use client'
 
-import React from 'react'
-import { Home, ArrowLeft, Calendar } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Home, ArrowLeft, Calendar, Languages } from 'lucide-react'
 import Link from 'next/link'
 
 /**
  * Custom 404 Not Found Page
  * - Multilingual support (en, es, pt, tr)
+ * - Auto-detects browser language
  * - Conversion-focused CTAs
  * - Animated 404 design
  */
@@ -20,43 +21,106 @@ const content = {
     viewPricing: "View Pricing",
     suggestedPages: "Suggested Pages",
     integrations: "Integrations",
-    blog: "Blog"
+    blog: "Blog",
+    features: "Features",
+    teamInbox: "Team Inbox",
+    popularIntegrations: "Popular Integrations",
+    goBack: "Go back"
   },
   es: {
-    title: "Ups! Pagina No Encontrada",
-    subtitle: "La pagina que buscas no existe o ha sido movida.",
-    description: "No te preocupes! Puedes encontrar lo que buscas en nuestras secciones principales abajo.",
+    title: "¡Ups! Página No Encontrada",
+    subtitle: "La página que buscas no existe o ha sido movida.",
+    description: "¡No te preocupes! Puedes encontrar lo que buscas en nuestras secciones principales abajo.",
     goToHome: "Ir al Inicio",
     viewPricing: "Ver Precios",
-    suggestedPages: "Paginas Sugeridas",
+    suggestedPages: "Páginas Sugeridas",
     integrations: "Integraciones",
-    blog: "Blog"
+    blog: "Blog",
+    features: "Características",
+    teamInbox: "Bandeja de Equipo",
+    popularIntegrations: "Integraciones Populares",
+    goBack: "Volver"
   },
   pt: {
-    title: "Ops! Pagina Nao Encontrada",
-    subtitle: "A pagina que voce procura nao existe ou foi movida.",
-    description: "Nao se preocupe! Voce pode encontrar o que procura em nossas principais secoes abaixo.",
-    goToHome: "Ir para o Inicio",
-    viewPricing: "Ver Precos",
-    suggestedPages: "Paginas Sugeridas",
-    integrations: "Integracoes",
-    blog: "Blog"
+    title: "Ops! Página Não Encontrada",
+    subtitle: "A página que você procura não existe ou foi movida.",
+    description: "Não se preocupe! Você pode encontrar o que procura em nossas principais seções abaixo.",
+    goToHome: "Ir para o Início",
+    viewPricing: "Ver Preços",
+    suggestedPages: "Páginas Sugeridas",
+    integrations: "Integrações",
+    blog: "Blog",
+    features: "Recursos",
+    teamInbox: "Caixa de Entrada da Equipe",
+    popularIntegrations: "Integrações Populares",
+    goBack: "Voltar"
   },
   tr: {
-    title: "Hata! Sayfa Bulunamadi",
-    subtitle: "Aradiginiz sayfa mevcut degil veya tasinmis.",
-    description: "Endiselenmeyin! Asagidaki ana bolumlerimizden aradiginizi bulabilirsiniz.",
+    title: "Hata! Sayfa Bulunamadı",
+    subtitle: "Aradığınız sayfa mevcut değil veya taşınmış.",
+    description: "Endişelenmeyin! Aşağıdaki ana bölümlerimizden aradığınızı bulabilirsiniz.",
     goToHome: "Ana Sayfaya Git",
-    viewPricing: "Fiyatlari Gor",
-    suggestedPages: "Onerilen Sayfalar",
+    viewPricing: "Fiyatları Gör",
+    suggestedPages: "Önerilen Sayfalar",
     integrations: "Entegrasyonlar",
-    blog: "Blog"
+    blog: "Blog",
+    features: "Özellikler",
+    teamInbox: "Takım Gelen Kutusu",
+    popularIntegrations: "Popüler Entegrasyonlar",
+    goBack: "Geri git"
+  }
+}
+
+const integrations = [
+  { name: 'HubSpot', slug: 'hubspot-whatsapp-integration' },
+  { name: 'Salesforce', slug: 'salesforce-whatsapp-integration' },
+  { name: 'Zoho', slug: 'zoho-whatsapp-integration' },
+  { name: 'Bitrix24', slug: 'bitrix24-whatsapp-integration' },
+  { name: 'Monday.com', slug: 'monday-whatsapp-integration' },
+]
+
+// Map browser language codes to our content keys
+function detectLocale(): keyof typeof content {
+  if (typeof window === 'undefined') return 'en'
+
+  const browserLang = navigator.language.toLowerCase()
+  const localeCode = browserLang.split('-')[0]
+
+  // Map browser codes to our content keys
+  const localeMap: Record<string, keyof typeof content> = {
+    'en': 'en',
+    'es': 'es',
+    'pt': 'pt',
+    'br': 'pt',  // Brazilian Portuguese uses pt content
+    'tr': 'tr',
+  }
+
+  return localeMap[localeCode] || 'en'
+}
+
+function getLocalePaths(locale: keyof typeof content) {
+  const prefix = locale === 'en' ? '' : `/${locale === 'pt' ? 'br' : locale}`
+  return {
+    home: prefix || '/',
+    pricing: `${prefix}/pricing`,
+    integrations: `${prefix}/integrations`,
+    blog: `${prefix}/blog`,
+    features: `${prefix}/features`,
+    teamInbox: `${prefix}/team-inbox`,
   }
 }
 
 export default function NotFound() {
-  // Default to English for the root not-found page
-  const t = content.en
+  const [locale, setLocale] = useState<keyof typeof content>('en')
+  const [paths, setPaths] = useState(getLocalePaths('en'))
+
+  useEffect(() => {
+    const detectedLocale = detectLocale()
+    setLocale(detectedLocale)
+    setPaths(getLocalePaths(detectedLocale))
+  }, [])
+
+  const t = content[locale]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-brand-black via-brand-dark to-brand-black flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 relative">
@@ -90,7 +154,7 @@ export default function NotFound() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
           <Link
-            href="/"
+            href={paths.home}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105"
           >
             <Home size={20} />
@@ -98,7 +162,7 @@ export default function NotFound() {
           </Link>
 
           <Link
-            href="/pricing"
+            href={paths.pricing}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-all duration-200 border border-white/20"
           >
             <Calendar size={20} />
@@ -113,44 +177,44 @@ export default function NotFound() {
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <Link
-              href="/integrations"
+              href={paths.integrations}
               className="px-4 py-3 bg-white/5 hover:bg-white/10 rounded-lg text-gray-300 hover:text-white transition-all duration-200 text-sm font-medium"
             >
               {t.integrations}
             </Link>
             <Link
-              href="/blog"
+              href={paths.blog}
               className="px-4 py-3 bg-white/5 hover:bg-white/10 rounded-lg text-gray-300 hover:text-white transition-all duration-200 text-sm font-medium"
             >
               {t.blog}
             </Link>
             <Link
-              href="/features"
+              href={paths.features}
               className="px-4 py-3 bg-white/5 hover:bg-white/10 rounded-lg text-gray-300 hover:text-white transition-all duration-200 text-sm font-medium"
             >
-              Features
+              {t.features}
             </Link>
             <Link
-              href="/team-inbox"
+              href={paths.teamInbox}
               className="px-4 py-3 bg-white/5 hover:bg-white/10 rounded-lg text-gray-300 hover:text-white transition-all duration-200 text-sm font-medium"
             >
-              Team Inbox
+              {t.teamInbox}
             </Link>
           </div>
 
           {/* Popular Integrations */}
           <div className="mt-4 pt-4 border-t border-white/10">
-            <p className="text-xs text-gray-500 mb-3">Popular Integrations:</p>
+            <p className="text-xs text-gray-500 mb-3">{t.popularIntegrations}:</p>
             <div className="flex flex-wrap gap-2 justify-center">
-              <Link href="/hubspot-whatsapp-integration" className="text-xs text-brand-blue hover:text-cyan-400 transition-colors">HubSpot</Link>
-              <span className="text-gray-600">&#8226;</span>
-              <Link href="/salesforce-whatsapp-integration" className="text-xs text-brand-blue hover:text-cyan-400 transition-colors">Salesforce</Link>
-              <span className="text-gray-600">&#8226;</span>
-              <Link href="/zoho-whatsapp-integration" className="text-xs text-brand-blue hover:text-cyan-400 transition-colors">Zoho</Link>
-              <span className="text-gray-600">&#8226;</span>
-              <Link href="/bitrix24-whatsapp-integration" className="text-xs text-brand-blue hover:text-cyan-400 transition-colors">Bitrix24</Link>
-              <span className="text-gray-600">&#8226;</span>
-              <Link href="/monday-whatsapp-integration" className="text-xs text-brand-blue hover:text-cyan-400 transition-colors">Monday.com</Link>
+              {integrations.map((integration, index) => (
+                <Link
+                  key={integration.slug}
+                  href={locale === 'en' ? `/${integration.slug}` : `/${locale === 'pt' ? 'br' : locale}/${integration.slug}`}
+                  className="text-xs text-brand-blue hover:text-cyan-400 transition-colors"
+                >
+                  {integration.name}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -161,8 +225,35 @@ export default function NotFound() {
           className="mt-8 inline-flex items-center gap-2 text-gray-500 hover:text-white transition-colors duration-200 text-sm cursor-pointer"
         >
           <ArrowLeft size={16} />
-          Go back
+          {t.goBack}
         </button>
+
+        {/* Language Switcher */}
+        <div className="mt-6 flex items-center justify-center gap-2">
+          <Languages size={16} className="text-gray-500" />
+          <div className="flex gap-1">
+            {(['en', 'es', 'pt', 'tr'] as const).map((lang) => {
+              const langPrefix = lang === 'pt' ? 'BR' : lang.toUpperCase()
+              const isActive = locale === lang
+              return (
+                <button
+                  key={lang}
+                  onClick={() => {
+                    setLocale(lang)
+                    setPaths(getLocalePaths(lang))
+                  }}
+                  className={`px-3 py-1 text-xs font-medium rounded transition-all ${
+                    isActive
+                      ? 'bg-brand-blue text-white'
+                      : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  {langPrefix}
+                </button>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </div>
   )
