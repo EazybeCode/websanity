@@ -7,6 +7,7 @@ import ProductPageClient from '@/components/pages/ProductPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
 import { HubSpotStructuredData } from '@/components/seo/HubSpotStructuredData'
 import { ZohoStructuredData } from '@/components/seo/ZohoStructuredData'
+import { Bitrix24StructuredData } from '@/components/seo/Bitrix24StructuredData'
 import { Fragment } from 'react'
 
 // ─── Integration slug mapping ────────────────────────────────────────────────
@@ -219,6 +220,74 @@ export async function generateMetadata({
     }
   }
 
+  // Additional meta tags for Bitrix24 integration page (English only)
+  if (crmSlug === 'bitrix24' && locale === 'en') {
+    return {
+      ...baseMetadata,
+      title: 'Bitrix24 WhatsApp Integration | Connect WhatsApp To Bitrix24',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'Bitrix24 WhatsApp integration, WhatsApp Bitrix24 CRM, sync WhatsApp with Bitrix24, Bitrix24 WhatsApp automation, WhatsApp CRM Bitrix24, AI agents Bitrix24 WhatsApp',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/bitrix24-whatsapp-integration',
+        title: 'Bitrix24 WhatsApp Integration With AI Agents | Eazybe',
+        description: 'Sync WhatsApp with Bitrix24 CRM automatically. Track deals, use AI replies, manage chats, and boost sales productivity directly inside Bitrix24.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Bitrix24 WhatsApp Integration Platform',
+          },
+        ],
+        locale: 'en_US',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Bitrix24 WhatsApp Integration | Sync CRM With WhatsApp',
+        description: 'Automatically sync WhatsApp chats with Bitrix24 CRM. Use AI agents, track pipeline activity, and manage customer conversations in one place.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-01T10:30:00+00:00',
+        'article:section': 'Technology',
+        'article:tag': 'Bitrix24 WhatsApp Integration',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Bitrix24 WhatsApp CRM Integration by Eazybe',
+        'twitter:label1': 'Rating',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Price',
+        'twitter:data2': 'Free',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'how-to, product-information, feature-comparison',
+        'target-audience': 'Bitrix24 users, sales teams, CRM managers, marketing automation teams, B2B businesses',
+        'content-intent': 'commercial-investigation, transactional',
+        'conversational-query': 'how to connect WhatsApp to Bitrix24, best Bitrix24 WhatsApp integration, sync WhatsApp with Bitrix24 CRM',
+        'ai-readability': 'conversational, professional, solution-oriented',
+        'context-window': 'Bitrix24 automation, WhatsApp CRM sync, deal tracking, sales pipeline management, WhatsApp inside Bitrix24',
+        'user-problem': 'Bitrix24 not connected to WhatsApp, missing WhatsApp leads, manual CRM updates',
+        'solution-summary': 'automatic WhatsApp to Bitrix24 synchronization with AI automation',
+        'primary-benefit': 'manage WhatsApp conversations directly inside Bitrix24',
+        'use-case': 'sales teams syncing WhatsApp conversations with Bitrix24 CRM automatically',
+        'implementation-difficulty': 'easy, one-click Bitrix24 integration',
+        'time-to-value': 'instant, real-time WhatsApp sync',
+      },
+    }
+  }
+
   return baseMetadata
 }
 
@@ -243,6 +312,7 @@ export default async function IntegrationPage({
     <>
       {crmSlug === 'hubspot' && <HubSpotStructuredData />}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
+      {crmSlug === 'bitrix24' && locale === 'en' && <Bitrix24StructuredData />}
       <ProductPageClient product={product} crmSlug={crmSlug} />
     </>
   )
