@@ -694,7 +694,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     })) || defaultPricingPlans
 
   // ── Trust Signals ───────────────────────────────────────────────────────
-  const trustSignals = pricingData?.trustSignals || [
+  const trustSignals = [
     { icon: 'shield', text: 'GDPR Compliant & Encrypted' },
     { icon: 'zap', text: '2-Minute Setup' },
     { icon: 'clock', text: '4-Day Free Trial' },
