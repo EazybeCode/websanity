@@ -8,6 +8,7 @@ import { getAlternates } from '@/lib/seo-helpers'
 import { HubSpotStructuredData } from '@/components/seo/HubSpotStructuredData'
 import { ZohoStructuredData } from '@/components/seo/ZohoStructuredData'
 import { Bitrix24StructuredData } from '@/components/seo/Bitrix24StructuredData'
+import { GoogleSheetsStructuredData } from '@/components/seo/GoogleSheetsStructuredData'
 import { Fragment } from 'react'
 
 // ─── Integration slug mapping ────────────────────────────────────────────────
@@ -288,6 +289,74 @@ export async function generateMetadata({
     }
   }
 
+  // Additional meta tags for Google Sheets integration page (English only)
+  if (crmSlug === 'google-sheets' && locale === 'en') {
+    return {
+      ...baseMetadata,
+      title: 'Google Sheets WhatsApp Integration With AI Agents | Eazybe',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'Google Sheets WhatsApp integration, WhatsApp Google Sheets, sync WhatsApp with Google Sheets, Google Sheets WhatsApp automation, WhatsApp Google Sheets sync, AI agents Google Sheets WhatsApp',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/google-sheets-whatsapp-integration',
+        title: 'Google Sheets WhatsApp Integration With AI Agents | Eazybe',
+        description: 'Sync WhatsApp with Google Sheets automatically. Track deals, use AI replies, manage chats, and boost sales productivity directly inside Google Sheets.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Google Sheets WhatsApp Integration Platform - Eazybe',
+          },
+        ],
+        locale: 'en_US',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Google Sheets WhatsApp Integration | Sync Google Sheets With WhatsApp',
+        description: 'Automatically sync WhatsApp chats with Google Sheets. Use AI agents, track pipeline activity, and manage customer conversations in one place.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-01T10:30:00+00:00',
+        'article:section': 'Technology',
+        'article:tag': 'Google Sheets WhatsApp Integration',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Google Sheets WhatsApp Integration',
+        'twitter:label1': 'Rating',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Price',
+        'twitter:data2': 'Free',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'how-to, product-information, feature-comparison',
+        'target-audience': 'Google Sheets users, sales teams, Google Sheets managers, marketing automation teams, B2B businesses',
+        'content-intent': 'commercial-investigation, transactional',
+        'conversational-query': 'how to connect WhatsApp to Google Sheets, best Google Sheets WhatsApp integration, sync WhatsApp with Google Sheets',
+        'ai-readability': 'conversational, professional, solution-oriented',
+        'context-window': 'Google Sheets automation, WhatsApp sync, deal tracking, sales pipeline management, WhatsApp inside Google Sheets',
+        'user-problem': 'Google Sheets not connected to WhatsApp, missing WhatsApp leads, manual Google Sheets updates',
+        'solution-summary': 'automatic WhatsApp to Google Sheets synchronization with AI automation',
+        'primary-benefit': 'manage WhatsApp conversations directly inside Google Sheets',
+        'use-case': 'sales teams syncing WhatsApp conversations with Google Sheets automatically',
+        'implementation-difficulty': 'easy, one-click Google Sheets integration',
+        'time-to-value': 'instant, real-time WhatsApp sync',
+      },
+    }
+  }
+
   return baseMetadata
 }
 
@@ -313,6 +382,7 @@ export default async function IntegrationPage({
       {crmSlug === 'hubspot' && <HubSpotStructuredData />}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
       {crmSlug === 'bitrix24' && locale === 'en' && <Bitrix24StructuredData />}
+      {crmSlug === 'google-sheets' && locale === 'en' && <GoogleSheetsStructuredData />}
       <ProductPageClient product={product} crmSlug={crmSlug} />
     </>
   )
