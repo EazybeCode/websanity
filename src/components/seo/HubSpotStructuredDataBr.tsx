@@ -109,9 +109,9 @@ export function HubSpotStructuredDataBr() {
     offers: {
       '@type': 'AggregateOffer',
       url: 'https://eazybe.com/br/precos',
-      priceCurrency: 'USD',
-      lowPrice: 29,
-      highPrice: 49,
+      priceCurrency: 'BRL',
+      lowPrice: 96,
+      highPrice: 162,
       offerCount: 5,
       availability: 'https://schema.org/InStock'
     },
@@ -132,7 +132,7 @@ export function HubSpotStructuredDataBr() {
     totalTime: 'PT5M',
     estimatedCost: {
       '@type': 'MonetaryAmount',
-      currency: 'USD',
+      currency: 'BRL',
       value: '0'
     },
     supply: [
