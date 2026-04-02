@@ -17,6 +17,7 @@ import { PipedriveStructuredData } from '@/components/seo/PipedriveStructuredDat
 import { SalesforceStructuredData } from '@/components/seo/SalesforceStructuredData'
 import { SalesforceStructuredDataBr } from '@/components/seo/SalesforceStructuredDataBr'
 import { LeadSquaredStructuredData } from '@/components/seo/LeadSquaredStructuredData'
+import { LeadSquaredStructuredDataBr } from '@/components/seo/LeadSquaredStructuredDataBr'
 import { FreshdeskStructuredData } from '@/components/seo/FreshdeskStructuredData'
 import { FreshdeskStructuredDataBr } from '@/components/seo/FreshdeskStructuredDataBr'
 import { WebhooksStructuredData } from '@/components/seo/WebhooksStructuredData'
@@ -640,6 +641,74 @@ export async function generateMetadata({
     }
   }
 
+  // Additional meta tags for LeadSquared integration page (Portuguese/Brazil only)
+  if (crmSlug === 'leadsquared' && locale === 'br') {
+    return {
+      ...baseMetadata,
+      title: 'Integração LeadSquared WhatsApp | LeadSquared + WhatsApp',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'integração LeadSquared WhatsApp, WhatsApp LeadSquared CRM, sincronizar WhatsApp com LeadSquared, automação WhatsApp LeadSquared, CRM WhatsApp LeadSquared, agentes de IA WhatsApp LeadSquared',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/br/leadsquared-whatsapp-integration',
+        title: 'Integração LeadSquared WhatsApp | LeadSquared + WhatsApp',
+        description: 'Sincronize o WhatsApp com o LeadSquared CRM automaticamente. Use agentes de IA, acompanhe negócios e gerencie conversas diretamente dentro do LeadSquared.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Integração WhatsApp LeadSquared CRM da Eazybe',
+          },
+        ],
+        locale: 'pt_BR',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Integração LeadSquared WhatsApp | LeadSquared + WhatsApp',
+        description: 'Sincronize automaticamente as conversas do WhatsApp com o LeadSquared CRM. Use IA, acompanhe o pipeline e gerencie clientes em um só lugar.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-02T10:30:00+00:00',
+        'article:section': 'Tecnologia',
+        'article:tag': 'Integração LeadSquared WhatsApp',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Integração CRM WhatsApp LeadSquared da Eazybe',
+        'twitter:label1': 'Avaliação',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Preço',
+        'twitter:data2': 'Grátis',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'como fazer, informações do produto, comparação de recursos',
+        'target-audience': 'usuários do LeadSquared, equipes de vendas, gestores de CRM, equipes de marketing, empresas B2B',
+        'content-intent': 'investigação comercial, transacional',
+        'conversational-query': 'como conectar WhatsApp ao LeadSquared, melhor integração WhatsApp LeadSquared, sincronizar WhatsApp com LeadSquared CRM',
+        'ai-readability': 'conversacional, profissional, orientado para solução',
+        'context-window': 'automação LeadSquared, sincronização WhatsApp CRM, acompanhamento de negócios, gestão de pipeline de vendas, WhatsApp dentro do LeadSquared',
+        'user-problem': 'LeadSquared não conectado ao WhatsApp, leads perdidos no WhatsApp, atualizações manuais no CRM',
+        'solution-summary': 'sincronização automática do WhatsApp com o LeadSquared usando automação com IA',
+        'primary-benefit': 'gerenciar conversas do WhatsApp diretamente dentro do LeadSquared',
+        'use-case': 'equipes de vendas sincronizando automaticamente conversas do WhatsApp com o LeadSquared CRM',
+        'implementation-difficulty': 'fácil, integração com LeadSquared em um clique',
+        'time-to-value': 'instantâneo, sincronização do WhatsApp em tempo real',
+      },
+    }
+  }
+
   // Additional meta tags for Freshdesk integration page (English only)
   if (crmSlug === 'freshdesk' && locale === 'en') {
     return {
@@ -1150,6 +1219,7 @@ export default async function IntegrationPage({
       {crmSlug === 'salesforce' && locale === 'en' && <SalesforceStructuredData />}
       {crmSlug === 'salesforce' && locale === 'br' && <SalesforceStructuredDataBr />}
       {crmSlug === 'leadsquared' && locale === 'en' && <LeadSquaredStructuredData />}
+      {crmSlug === 'leadsquared' && locale === 'br' && <LeadSquaredStructuredDataBr />}
       {crmSlug === 'freshdesk' && locale === 'en' && <FreshdeskStructuredData />}
       {crmSlug === 'freshdesk' && locale === 'br' && <FreshdeskStructuredDataBr />}
       {crmSlug === 'webhooks' && locale === 'en' && <WebhooksStructuredData />}
