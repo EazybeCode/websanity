@@ -18,6 +18,7 @@ import { SalesforceStructuredData } from '@/components/seo/SalesforceStructuredD
 import { SalesforceStructuredDataBr } from '@/components/seo/SalesforceStructuredDataBr'
 import { LeadSquaredStructuredData } from '@/components/seo/LeadSquaredStructuredData'
 import { FreshdeskStructuredData } from '@/components/seo/FreshdeskStructuredData'
+import { FreshdeskStructuredDataBr } from '@/components/seo/FreshdeskStructuredDataBr'
 import { WebhooksStructuredData } from '@/components/seo/WebhooksStructuredData'
 import { Fragment } from 'react'
 
@@ -707,6 +708,74 @@ export async function generateMetadata({
     }
   }
 
+  // Additional meta tags for Freshdesk integration page (Portuguese/Brazil only)
+  if (crmSlug === 'freshdesk' && locale === 'br') {
+    return {
+      ...baseMetadata,
+      title: 'Integração Freshdesk WhatsApp: Conecte WhatsApp Freshdesk',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'integração Freshdesk WhatsApp, Freshdesk WhatsApp integração, WhatsApp Freshdesk CRM, sincronizar WhatsApp com Freshdesk, automação WhatsApp Freshdesk, CRM WhatsApp Freshdesk, agentes de IA WhatsApp Freshdesk',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/br/freshdesk-whatsapp-integration',
+        title: 'Integração Freshdesk WhatsApp: Conecte WhatsApp Freshdesk',
+        description: 'Conecte WhatsApp ao Freshdesk CRM. Sincronize conversas, use agentes de IA, acompanhe negócios e gerencie vendas sem sair do Freshdesk.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Integração WhatsApp com Freshdesk CRM - Eazybe',
+          },
+        ],
+        locale: 'pt_BR',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Integração Freshdesk WhatsApp: Conecte WhatsApp Freshdesk',
+        description: 'Conecte WhatsApp ao Freshdesk CRM. Sincronize conversas, use agentes de IA, acompanhe negócios e gerencie vendas sem sair do Freshdesk.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-02T10:30:00+00:00',
+        'article:section': 'Tecnologia',
+        'article:tag': 'Integração Freshdesk WhatsApp',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Integração WhatsApp Freshdesk CRM da Eazybe',
+        'twitter:label1': 'Avaliação',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Preço',
+        'twitter:data2': 'Grátis',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'como-fazer, informações-do-produto, comparação-de-recursos',
+        'target-audience': 'usuários do Freshdesk, equipes de vendas, gestores de CRM, automação de marketing, empresas B2B',
+        'content-intent': 'investigação-comercial, transacional',
+        'conversational-query': 'como conectar WhatsApp ao Freshdesk, melhor integração WhatsApp Freshdesk, sincronizar WhatsApp com Freshdesk CRM',
+        'ai-readability': 'conversacional, profissional, orientado-a-soluções',
+        'context-window': 'automação Freshdesk, sincronização WhatsApp CRM, acompanhamento de negócios, gestão de pipeline de vendas, WhatsApp dentro do Freshdesk',
+        'user-problem': 'Freshdesk sem WhatsApp, leads perdidos no WhatsApp, atualizações manuais no CRM',
+        'solution-summary': 'sincronização automática do WhatsApp com o Freshdesk com automação por IA',
+        'primary-benefit': 'gerencie conversas do WhatsApp diretamente dentro do Freshdesk',
+        'use-case': 'equipes de vendas sincronizando conversas do WhatsApp com o Freshdesk CRM automaticamente',
+        'implementation-difficulty': 'fácil, integração com Freshdesk em um clique',
+        'time-to-value': 'instantâneo, sincronização do WhatsApp em tempo real',
+      },
+    }
+  }
+
   // Additional meta tags for Webhooks integration page (English only)
   if (crmSlug === 'webhooks' && locale === 'en') {
     return {
@@ -1082,6 +1151,7 @@ export default async function IntegrationPage({
       {crmSlug === 'salesforce' && locale === 'br' && <SalesforceStructuredDataBr />}
       {crmSlug === 'leadsquared' && locale === 'en' && <LeadSquaredStructuredData />}
       {crmSlug === 'freshdesk' && locale === 'en' && <FreshdeskStructuredData />}
+      {crmSlug === 'freshdesk' && locale === 'br' && <FreshdeskStructuredDataBr />}
       {crmSlug === 'webhooks' && locale === 'en' && <WebhooksStructuredData />}
       <ProductPageClient product={product} crmSlug={crmSlug} />
     </>
