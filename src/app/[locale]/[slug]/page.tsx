@@ -14,6 +14,7 @@ import { GoogleCalendarStructuredData } from '@/components/seo/GoogleCalendarStr
 import { MondayStructuredData } from '@/components/seo/MondayStructuredData'
 import { PipedriveStructuredData } from '@/components/seo/PipedriveStructuredData'
 import { SalesforceStructuredData } from '@/components/seo/SalesforceStructuredData'
+import { SalesforceStructuredDataBr } from '@/components/seo/SalesforceStructuredDataBr'
 import { LeadSquaredStructuredData } from '@/components/seo/LeadSquaredStructuredData'
 import { FreshdeskStructuredData } from '@/components/seo/FreshdeskStructuredData'
 import { WebhooksStructuredData } from '@/components/seo/WebhooksStructuredData'
@@ -909,6 +910,74 @@ export async function generateMetadata({
     }
   }
 
+  // Additional meta tags for Salesforce integration page (Portuguese/Brazil only)
+  if (crmSlug === 'salesforce' && locale === 'br') {
+    return {
+      ...baseMetadata,
+      title: 'Integração Salesforce WhatsApp: Conecte WhatsApp Salesforce',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'integração Salesforce WhatsApp, WhatsApp Salesforce CRM, sincronizar WhatsApp com Salesforce, automação WhatsApp Salesforce, CRM WhatsApp Salesforce, agentes de IA Salesforce WhatsApp',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/br/salesforce-whatsapp-integration',
+        title: 'Integração Salesforce WhatsApp: Conecte WhatsApp Salesforce',
+        description: 'Sincronize o WhatsApp com o Salesforce CRM automaticamente. Use agentes de IA, acompanhe negócios, gerencie conversas e aumente a produtividade de vendas dentro do Salesforce.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Plataforma de integração Salesforce WhatsApp da Eazybe',
+          },
+        ],
+        locale: 'pt_BR',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Integração Salesforce WhatsApp: Conecte WhatsApp Salesforce',
+        description: 'Sincronize automaticamente as conversas do WhatsApp com o Salesforce CRM. Use agentes de IA, acompanhe o pipeline e gerencie conversas em um só lugar.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-02T10:30:00+00:00',
+        'article:section': 'Tecnologia',
+        'article:tag': 'Integração Salesforce WhatsApp',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Integração CRM Salesforce WhatsApp da Eazybe',
+        'twitter:label1': 'Avaliação',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Preço',
+        'twitter:data2': 'Grátis',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'como fazer, informações do produto, comparação de recursos',
+        'target-audience': 'usuários do Salesforce, equipes de vendas, gestores de CRM, equipes de automação de marketing, empresas B2B',
+        'content-intent': 'investigação comercial, transacional',
+        'conversational-query': 'como conectar WhatsApp ao Salesforce, melhor integração WhatsApp Salesforce, sincronizar WhatsApp com Salesforce CRM',
+        'ai-readability': 'conversacional, profissional, orientado para solução',
+        'context-window': 'automação no Salesforce, sincronização de CRM com WhatsApp, acompanhamento de negócios, gestão de pipeline de vendas, WhatsApp dentro do Salesforce',
+        'user-problem': 'Salesforce não conectado ao WhatsApp, leads do WhatsApp perdidos, atualizações manuais no CRM',
+        'solution-summary': 'sincronização automática do WhatsApp com o Salesforce usando automação com IA',
+        'primary-benefit': 'gerenciar conversas do WhatsApp diretamente dentro do Salesforce',
+        'use-case': 'equipes de vendas sincronizando automaticamente conversas do WhatsApp com o Salesforce CRM',
+        'implementation-difficulty': 'fácil, integração com Salesforce em um clique',
+        'time-to-value': 'instantâneo, sincronização do WhatsApp em tempo real',
+      },
+    }
+  }
+
   return baseMetadata
 }
 
@@ -940,6 +1009,7 @@ export default async function IntegrationPage({
       {crmSlug === 'monday' && locale === 'en' && <MondayStructuredData />}
       {crmSlug === 'pipedrive' && locale === 'en' && <PipedriveStructuredData />}
       {crmSlug === 'salesforce' && locale === 'en' && <SalesforceStructuredData />}
+      {crmSlug === 'salesforce' && locale === 'br' && <SalesforceStructuredDataBr />}
       {crmSlug === 'leadsquared' && locale === 'en' && <LeadSquaredStructuredData />}
       {crmSlug === 'freshdesk' && locale === 'en' && <FreshdeskStructuredData />}
       {crmSlug === 'webhooks' && locale === 'en' && <WebhooksStructuredData />}
