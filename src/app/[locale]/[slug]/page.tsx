@@ -16,6 +16,7 @@ import { GoogleSheetsStructuredDataBr } from '@/components/seo/GoogleSheetsStruc
 import { GoogleCalendarStructuredData } from '@/components/seo/GoogleCalendarStructuredData'
 import { GoogleCalendarStructuredDataBr } from '@/components/seo/GoogleCalendarStructuredDataBr'
 import { MondayStructuredData } from '@/components/seo/MondayStructuredData'
+import { MondayStructuredDataBr } from '@/components/seo/MondayStructuredDataBr'
 import { PipedriveStructuredData } from '@/components/seo/PipedriveStructuredData'
 import { PipedriveStructuredDataBr } from '@/components/seo/PipedriveStructuredDataBr'
 import { SalesforceStructuredData } from '@/components/seo/SalesforceStructuredData'
@@ -1258,6 +1259,74 @@ export async function generateMetadata({
     }
   }
 
+  // Additional meta tags for Monday integration page (Portuguese/Brazil only)
+  if (crmSlug === 'monday' && locale === 'br') {
+    return {
+      ...baseMetadata,
+      title: 'Integração Monday WhatsApp | Conecte o WhatsApp ao Monday',
+      metadataBase: new URL('https://eazybe.com'),
+      keywords: 'integração WhatsApp Monday, Monday WhatsApp integração, WhatsApp Monday CRM, sincronizar WhatsApp com Monday, automação WhatsApp Monday, CRM WhatsApp Monday, agentes de IA WhatsApp Monday',
+      authors: [{ name: 'Eazybe' }],
+      robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      verification: {
+        google: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      },
+      openGraph: {
+        ...baseMetadata.openGraph,
+        url: 'https://eazybe.com/br/monday-whatsapp-integration',
+        title: 'Integração Monday WhatsApp | Conecte o WhatsApp ao Monday',
+        description: 'Sincronize o WhatsApp com o Monday.com automaticamente. Atualize negócios, gerencie conversas e melhore a produtividade da equipe com automação e IA.',
+        images: [
+          {
+            url: 'https://eazybe.com/logo.png',
+            width: 1200,
+            height: 630,
+            alt: 'Integração WhatsApp com Monday.com - Eazybe',
+          },
+        ],
+        locale: 'pt_BR',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@eazybe',
+        creator: '@eazybe',
+        title: 'Integração Monday WhatsApp | Conecte o WhatsApp ao Monday',
+        description: 'Conecte WhatsApp ao Monday.com. Sincronize conversas automaticamente, acompanhe negócios e gerencie interações com clientes em um só lugar.',
+        images: ['https://eazybe.com/logo.png'],
+      },
+      other: {
+        'article:published_time': '2026-02-03T08:00:00+00:00',
+        'article:modified_time': '2026-04-02T10:30:00+00:00',
+        'article:section': 'Tecnologia',
+        'article:tag': 'Integração WhatsApp Monday',
+        'thumbnail': 'https://eazybe.com/logo.png',
+        'googlebot': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        'bingbot': 'index, follow',
+        'twitter:image:alt': 'Integração WhatsApp Monday.com pela Eazybe',
+        'twitter:label1': 'Avaliação',
+        'twitter:data1': '4.7/5',
+        'twitter:label2': 'Preço',
+        'twitter:data2': 'Grátis',
+        'mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-capable': 'yes',
+        'apple-mobile-web-app-status-bar-style': 'default',
+        'apple-mobile-web-app-title': 'Eazybe',
+        'answer-type': 'como-fazer, informações-do-produto, comparação-de-recursos',
+        'target-audience': 'usuários do Monday.com, equipes de vendas, gestores de CRM, equipes de marketing, empresas B2B',
+        'content-intent': 'investigação-comercial, transacional',
+        'conversational-query': 'como conectar WhatsApp ao Monday, melhor integração WhatsApp Monday, sincronizar WhatsApp com Monday CRM',
+        'ai-readability': 'conversacional, profissional, orientado a soluções',
+        'context-window': 'automação no Monday.com, sincronização WhatsApp CRM, gestão de negócios, pipeline de vendas, WhatsApp integrado ao Monday',
+        'user-problem': 'Monday.com não conectado ao WhatsApp, leads perdidos no WhatsApp, atualizações manuais no CRM',
+        'solution-summary': 'sincronização automática do WhatsApp com o Monday.com usando automação com IA',
+        'primary-benefit': 'gerenciar conversas do WhatsApp diretamente dentro do Monday.com',
+        'use-case': 'equipes de vendas sincronizando conversas do WhatsApp com o Monday.com automaticamente',
+        'implementation-difficulty': 'fácil, integração com Monday em um clique',
+        'time-to-value': 'instantâneo, sincronização do WhatsApp em tempo real',
+      },
+    }
+  }
+
   // Additional meta tags for Pipedrive integration page (English only)
   if (crmSlug === 'pipedrive' && locale === 'en') {
     return {
@@ -1563,6 +1632,7 @@ export default async function IntegrationPage({
       {crmSlug === 'google-calendar' && locale === 'en' && <GoogleCalendarStructuredData />}
       {crmSlug === 'google-calendar' && locale === 'br' && <GoogleCalendarStructuredDataBr />}
       {crmSlug === 'monday' && locale === 'en' && <MondayStructuredData />}
+      {crmSlug === 'monday' && locale === 'br' && <MondayStructuredDataBr />}
       {crmSlug === 'pipedrive' && locale === 'en' && <PipedriveStructuredData />}
       {crmSlug === 'pipedrive' && locale === 'br' && <PipedriveStructuredDataBr />}
       {crmSlug === 'salesforce' && locale === 'en' && <SalesforceStructuredData />}
