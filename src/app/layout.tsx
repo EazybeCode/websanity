@@ -25,7 +25,15 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
-  other: { "theme-color": "#020617" },
+  appleWebApp: {
+    capable: true,
+    title: "Eazybe",
+    statusBarStyle: "default",
+  },
+  other: {
+    "theme-color": "#020617",
+    "X-UA-Compatible": "IE=edge",
+  },
 }
 
 export default function RootLayout({

@@ -24,11 +24,6 @@ export function getHomepageMetadata(locale: string): Metadata {
         },
       },
       referrer: 'origin-when-cross-origin',
-      appleWebApp: {
-        capable: true,
-        title: 'Eazybe',
-        statusBarStyle: 'default',
-      },
       openGraph: {
         type: 'website',
         url: `${BASE_URL}/`,
@@ -67,7 +62,6 @@ export function getHomepageMetadata(locale: string): Metadata {
         'twitter:data1': 'WhatsApp AI Agents',
         'twitter:label2': 'Use Case',
         'twitter:data2': 'Sales Automation',
-        'mobile-web-app-capable': 'yes',
         'answer-type': 'product-information, automation, ai-agents',
         'target-audience': 'sales teams, revenue teams, SaaS founders, CRM managers, marketing automation teams, B2B companies',
         'content-intent': 'commercial-investigation, transactional',
@@ -102,11 +96,6 @@ export function getHomepageMetadata(locale: string): Metadata {
         },
       },
       referrer: 'origin-when-cross-origin',
-      appleWebApp: {
-        capable: true,
-        title: 'Eazybe',
-        statusBarStyle: 'default',
-      },
       openGraph: {
         type: 'website',
         url: `${BASE_URL}/br`,
@@ -145,7 +134,6 @@ export function getHomepageMetadata(locale: string): Metadata {
         'twitter:data1': '4.7/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
-        'mobile-web-app-capable': 'yes',
         'answer-type': 'tutorial, informações do produto, comparação de recursos',
         'target-audience': 'equipes de vendas, donos de empresas, gestores de CRM, profissionais B2B, suporte ao cliente, desenvolvimento de negócios',
         'content-intent': 'informativo, investigação comercial, transacional',
@@ -180,11 +168,6 @@ export function getHomepageMetadata(locale: string): Metadata {
         },
       },
       referrer: 'origin-when-cross-origin',
-      appleWebApp: {
-        capable: true,
-        title: 'Eazybe',
-        statusBarStyle: 'default',
-      },
       openGraph: {
         type: 'website',
         url: `${BASE_URL}/es`,
@@ -223,7 +206,6 @@ export function getHomepageMetadata(locale: string): Metadata {
         'twitter:data1': '4.7/5',
         'twitter:label2': 'Precio',
         'twitter:data2': 'Gratis',
-        'mobile-web-app-capable': 'yes',
         'answer-type': 'guía, información-del-producto, comparación-de-funciones',
         'target-audience': 'equipos de ventas, dueños de negocios, gestores de CRM, profesionales B2B',
         'content-intent': 'informativo, investigación-comercial, transaccional',
@@ -258,11 +240,6 @@ export function getHomepageMetadata(locale: string): Metadata {
         },
       },
       referrer: 'origin-when-cross-origin',
-      appleWebApp: {
-        capable: true,
-        title: 'Eazybe',
-        statusBarStyle: 'default',
-      },
       openGraph: {
         type: 'website',
         url: `${BASE_URL}/tr`,
@@ -301,7 +278,6 @@ export function getHomepageMetadata(locale: string): Metadata {
         'twitter:data1': '4.7/5',
         'twitter:label2': 'Fiyat',
         'twitter:data2': 'Ücretsiz',
-        'mobile-web-app-capable': 'yes',
         'answer-type': 'nasıl-yapılır, ürün-bilgisi, özellik-karşılaştırması',
         'target-audience': 'satış ekipleri, işletme sahipleri, CRM yöneticileri, B2B profesyonelleri',
         'content-intent': 'bilgilendirici, ticari-araştırma, işlemsel',

@@ -494,6 +494,7 @@ function generateBlogMetaTags(locale: string, canonicalUrl: string, blogSeo: typ
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Eazybe" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- AI and SEO Specific Meta Tags -->
     <meta name="answer-type" content="${blogSeo.answerType}" />
