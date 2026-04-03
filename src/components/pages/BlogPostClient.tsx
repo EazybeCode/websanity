@@ -462,7 +462,8 @@ const StickyTableOfContents: React.FC<{
   sections: Array<{ label: string; id: string }>
   sidebarCta?: BlogIndex['sidebarCta']
   tocTitle?: string
-}> = ({ sections, sidebarCta, tocTitle }) => {
+  locale: string
+}> = ({ sections, sidebarCta, tocTitle, locale }) => {
   const t = useTranslations()
   const [activeSection, setActiveSection] = useState<string>('')
 
@@ -560,7 +561,7 @@ const StickyTableOfContents: React.FC<{
           {sidebarCta?.description || t('blog.sidebar.description')}
         </p>
         <a
-          href={sidebarCta?.buttonUrl || '/pricing'}
+          href={locale === 'en' ? 'https://eazybe.com/pricing' : (sidebarCta?.buttonUrl || `/${locale}/pricing`)}
           className="block w-full text-center bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold py-3 px-6 rounded-xl transition-colors"
         >
           {sidebarCta?.buttonText || t('blog.sidebar.buttonText')}
@@ -1119,6 +1120,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 sections={dynamicToc}
                 sidebarCta={sidebarCta}
                 tocTitle={detailLabels?.tocTitle}
+                locale={locale}
               />
             </aside>
           </div>
