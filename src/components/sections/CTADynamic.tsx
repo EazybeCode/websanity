@@ -61,7 +61,7 @@ export const CTADynamic: React.FC<Props> = ({ data }) => {
 
         {data.footnote && (
           <p className="text-xs font-mono text-slate-500 uppercase tracking-wide">
-            {data.footnote?.replace(/14-day/gi, '4-day')}
+            {data.footnote}
           </p>
         )}
       </div>
