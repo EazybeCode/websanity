@@ -59,11 +59,20 @@ const resourceLinks: FooterLink[] = [
   { label: 'Webinars', href: 'https://eazybe.com/webinars', isExternal: true },
 ]
 
-const companyLinks: FooterLink[] = [
-  { label: 'Contact', href: 'https://api.whatsapp.com/send/?phone=916364346419&text=I%20want%20to%20know%20more%20about%20Eazybe&type=phone_number&app_absent=0', isExternal: true },
-  { label: 'Email', href: 'mailto:hey@eazybe.com', isExternal: true },
-  { label: 'Partners', href: 'https://eazybe.com/partners', isExternal: true },
-]
+const getCompanyLinks = (locale: string): FooterLink[] => {
+  const aboutUsLabels: Record<string, string> = {
+    en: 'About Us',
+    br: 'Sobre N\u00f3s',
+    es: 'Sobre Nosotros',
+    tr: 'Hakk\u0131m\u0131zda',
+  }
+  return [
+    { label: aboutUsLabels[locale] || 'About Us', href: '/about-us' },
+    { label: 'Contact', href: 'https://api.whatsapp.com/send/?phone=916364346419&text=I%20want%20to%20know%20more%20about%20Eazybe&type=phone_number&app_absent=0', isExternal: true },
+    { label: 'Email', href: 'mailto:hey@eazybe.com', isExternal: true },
+    { label: 'Partners', href: 'https://eazybe.com/partners', isExternal: true },
+  ]
+}
 
 const legalLinks = [
   { label: 'Privacy Policy', href: '/privacy' },
@@ -511,7 +520,7 @@ export const ChunkyFooter: React.FC = () => {
             <FooterColumn title={t('footer.integrations')} links={getIntegrationLinks(t)} isDark={isDark} />
             <FooterColumn title={t('footer.whatsappApi')} links={whatsappApiLinks} isDark={isDark} />
             <FooterColumn title={t('footer.resources')} links={resourceLinks} isDark={isDark} />
-            <FooterColumn title={t('footer.company')} links={companyLinks} isDark={isDark} />
+            <FooterColumn title={t('footer.company')} links={getCompanyLinks(locale)} isDark={isDark} />
           </div>
 
           <div className={`pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
