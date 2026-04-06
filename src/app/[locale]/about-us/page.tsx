@@ -220,13 +220,70 @@ export async function generateMetadata({
     }
   }
 
-  // Turkish - basic metadata
+  // Turkish full meta tags
   return {
-    title: 'Hakkimizda - Eazybe Ekibini Taniyin | Eazybe',
-    description: 'WhatsApp CRM platformu #1 Eazybe hakkinda bilgi edinin. Sagar Dewan tarafindan kurulan Eazybe, 25.000+ satis ekibinin WhatsApp konusmalarini yapay zeka ajanlariyla otomatiklestirmesine yardimci oluyor.',
+    title: 'Hakk\u0131m\u0131zda',
+    description: 'Eazybe\u2019yi ke\u015ffedin: sat\u0131\u015f s\u00fcre\u00e7lerini sadele\u015ftirir, verimlili\u011fi art\u0131r\u0131r ve ekipleri g\u00fc\u00e7lendirir. Misyonumuzu, de\u011ferlerimizi ve hikayemizi \u00f6\u011frenin.',
+    keywords: 'Eazybe, Eazybe hakk\u0131nda, Eazybe \u015firketi, Eazybe misyonu, sat\u0131\u015f verimlili\u011fi, CRM ara\u00e7lar\u0131, sat\u0131\u015f yaz\u0131l\u0131m\u0131, Eazybe ekibi',
+    authors: [{ name: 'Eazybe' }],
+    robots: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large' as const,
+      'max-video-preview': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-snippet': -1,
+        'max-image-preview': 'large' as const,
+        'max-video-preview': -1,
+      },
+    },
     openGraph: {
-      title: 'Hakkimizda - Eazybe Ekibini Taniyin | Eazybe',
-      description: 'WhatsApp CRM platformu #1 Eazybe hakkinda bilgi edinin. Sagar Dewan tarafindan kurulan Eazybe, 25.000+ satis ekibinin WhatsApp konusmalarini yapay zeka ajanlariyla otomatiklestirmesine yardimci oluyor.',
+      type: 'website',
+      url: 'https://eazybe.com/tr/about-us',
+      title: 'Eazybe Hakk\u0131nda | Misyonumuz, vizyonumuz ve ekibimiz',
+      description: 'Eazybe\u2019nin hikayesini, misyonunu ve sat\u0131\u015f verimlili\u011fi i\u00e7in daha ak\u0131ll\u0131 \u00e7\u00f6z\u00fcmler geli\u015ftiren ekibi ke\u015ffedin.',
+      images: [
+        {
+          url: 'https://eazybe.com/logo.png',
+          width: 1200,
+          height: 630,
+          alt: 'Eazybe \u015firketi ve ekibi hakk\u0131nda',
+        },
+      ],
+      locale: 'tr_TR',
+      siteName: 'Eazybe',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@eazybe',
+      creator: '@eazybe',
+      title: 'Eazybe Hakk\u0131nda | Misyonumuz, vizyonumuz ve ekibimiz',
+      description: 'Eazybe\u2019yi, misyonumuzu ve sat\u0131\u015f ekiplerinin s\u00fcre\u00e7lerini ve verimlili\u011fini nas\u0131l geli\u015ftirdi\u011fimizi \u00f6\u011frenin.',
+      images: [
+        {
+          url: 'https://eazybe.com/logo.png',
+          alt: 'Eazybe \u015firket \u00f6zeti',
+        },
+      ],
+    },
+    other: {
+      'thumbnail': 'https://eazybe.com/logo.png',
+      'bingbot': 'index, follow',
+      'answer-type': '\u015firket, hakk\u0131nda, genel bak\u0131\u015f',
+      'target-audience': 'sat\u0131\u015f ekipleri, SaaS kurucular\u0131, CRM kullan\u0131c\u0131lar\u0131, i\u015fletmeler, potansiyel m\u00fc\u015fteriler',
+      'content-intent': 'bilgilendirici, marka bilinirli\u011fi',
+      'conversational-query': 'Eazybe nedir, Eazybe \u015firketi hakk\u0131nda, Eazybe misyonu, Eazybe\u2019yi kim kurdu, Eazybe ekibi',
+      'ai-readability': 'profesyonel, bilgilendirici, marka odakl\u0131',
+      'context-window': 'Eazybe \u015firketi, sat\u0131\u015f verimlili\u011fi, i\u015f ak\u0131\u015f\u0131 otomasyonu, CRM ara\u00e7lar\u0131, ekip i\u015f birli\u011fi',
+      'user-problem': 'kullan\u0131c\u0131lar, g\u00fcvenmeden veya sat\u0131n alma karar\u0131 vermeden \u00f6nce \u00fcr\u00fcn\u00fcn arkas\u0131ndaki \u015firketi anlamak istiyor',
+      'solution-summary': 'g\u00fcven olu\u015fturmak i\u00e7in Eazybe\u2019nin misyonu, vizyonu ve ekibi hakk\u0131nda net bilgiler sunar',
+      'primary-benefit': 'kullan\u0131c\u0131lar\u0131n markay\u0131 ve Eazybe\u2019nin arkas\u0131ndaki insanlar\u0131 tan\u0131mas\u0131na yard\u0131mc\u0131 olur',
+      'use-case': 'kullan\u0131c\u0131lar\u0131n Eazybe \u00fcr\u00fcnlerini kullanmadan veya sat\u0131n almadan \u00f6nce \u015firketi ara\u015ft\u0131rmas\u0131',
+      'implementation-difficulty': 'yok',
+      'time-to-value': 'an\u0131nda',
     },
     alternates: getAlternates(locale, '/about-us'),
   }
@@ -244,8 +301,8 @@ export default async function AboutUsPage({
   const breadcrumbNames: Record<string, string> = {
     en: 'about us',
     es: 'sobre nosotros',
-    br: 'sobre nos',
-    tr: 'hakkimizda',
+    br: 'sobre n\u00f3s',
+    tr: 'hakk\u0131m\u0131zda',
   }
   const breadcrumbSchema = {
     "@context": "https://schema.org/",
