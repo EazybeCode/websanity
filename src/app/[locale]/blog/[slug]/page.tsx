@@ -142,12 +142,7 @@ export default async function BlogPostPage({
   })
 
   // Parse JSON-LD schemas from jsonLdSchemas HTML field using Cheerio
-  // Filter out Organization and SoftwareApplication schemas to avoid duplicates
-  // (these are already injected globally via GlobalStructuredData in layout.tsx)
-  const GLOBAL_SCHEMA_TYPES = ['Organization', 'SoftwareApplication']
-  const schemas = parseJsonLdSchemas(post.jsonLdSchemas).filter(
-    (schema: any) => !GLOBAL_SCHEMA_TYPES.includes(schema['@type'])
-  )
+  const schemas = parseJsonLdSchemas(post.jsonLdSchemas)
 
   return (
     <>
