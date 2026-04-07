@@ -322,7 +322,8 @@ export async function getBlogPost(slug: string, locale: string = 'en', preview: 
     noindex,
     nofollow,
     jsonLdSchemas,
-    customMetaTags
+    customMetaTags,
+    viewCount
   }`
   return client.fetch(query, { slug, sanityLanguage })
 }

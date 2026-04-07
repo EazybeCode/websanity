@@ -17,6 +17,7 @@ import {
   User,
   BookOpen,
   Rocket,
+  Eye,
 } from 'lucide-react'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import Link from 'next/link'
@@ -110,6 +111,7 @@ interface BlogPostClientProps {
   slug: string
   locale: string
   translations?: BlogTranslation[]
+  initialViewCount?: number
 }
 
 // ─── Utility Functions ─────────────────────────────────────────────────────
@@ -634,6 +636,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
   slug,
   locale,
   translations = [],
+  initialViewCount = 0,
 }) => {
   const t = useTranslations()
   const router = useRouter()
@@ -675,6 +678,19 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
     handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [dynamicToc])
+
+  // View count tracking — initial count from server, increment in background
+  const [viewCount, setViewCount] = useState(initialViewCount)
+  useEffect(() => {
+    fetch('/api/views', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug, locale }),
+    })
+      .then(res => res.ok ? res.json() : null)
+      .then(data => { if (data?.views) setViewCount(data.views) })
+      .catch(() => {})
+  }, [slug, locale])
 
   // Create portable text components with heading IDs
   const portableTextComponents = useMemo(() => {
@@ -763,6 +779,12 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                     <Clock size={14} />
                     {post.readTime} {detailLabels?.minReadSuffix || t('blog.detail.minRead')}
                   </span>
+                  {viewCount > 0 && (
+                    <span className="flex items-center gap-1">
+                      <Eye size={14} />
+                      {viewCount.toLocaleString()} views
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

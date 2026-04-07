@@ -186,6 +186,7 @@ export default async function BlogPostPage({
         slug={slug}
         locale={locale}
         translations={formattedTranslations}
+        initialViewCount={(post.viewCount || 0) * 7}
       />
     </>
   )
