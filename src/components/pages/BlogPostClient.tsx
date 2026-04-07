@@ -727,7 +727,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
           </h1>
 
           {/* Excerpt */}
-          <p className="text-base md:text-xl lg:text-2xl text-slate-400 leading-relaxed mb-3">
+          <p className="text-[15px] sm:text-base md:text-lg text-slate-300 leading-[1.75] mb-4">
             {post.excerpt}
           </p>
 
