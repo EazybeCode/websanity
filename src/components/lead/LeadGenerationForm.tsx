@@ -299,17 +299,21 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                   {t('leadForm.phoneLabel')}
                   <span className="text-red-500 ml-1">*</span>
                 </label>
-                <div className="flex gap-2">
+                <div className={`flex items-center gap-0 rounded-btn bg-brand-card h-11 transition-all duration-200 ${
+                  errors.phone
+                    ? 'border-2 border-red-500 focus-within:border-red-600 focus-within:ring-2 focus-within:ring-red-500/20'
+                    : 'border border-slate-700 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20'
+                }`}>
                   <select
                     name="countryCode"
                     value={formData.countryCode}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className="w-24 font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-2 py-2.5 text-sm h-11 bg-brand-card text-white border border-slate-700 hover:border-slate-600 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20"
+                    className="w-[100px] shrink-0 font-sans text-sm h-full bg-brand-card text-white px-3 border-r border-slate-700 rounded-l-btn focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                   >
                     {COUNTRY_CODES.map((cc) => (
-                      <option key={`${cc.code}-${cc.country}`} value={cc.code}>
-                        {cc.flag} {cc.code}
+                      <option key={`${cc.code}-${cc.country}`} value={cc.code} className="bg-slate-900 text-white">
+                        {cc.country} {cc.code}
                       </option>
                     ))}
                   </select>
@@ -321,11 +325,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                     value={formData.phone}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className={`flex-1 font-sans transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed rounded-btn px-4 py-2.5 text-sm h-11 ${
-                      errors.phone
-                        ? 'bg-brand-card text-white border-2 border-red-500 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
-                        : 'bg-brand-card text-white border border-slate-700 hover:border-slate-600 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20'
-                    }`}
+                    className="flex-1 font-sans text-sm h-full bg-transparent text-white px-4 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
                 {errors.phone && (
