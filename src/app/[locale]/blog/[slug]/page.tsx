@@ -132,10 +132,21 @@ export default async function BlogPostPage({
     pt: '/br',
   }
 
+  // Map Sanity language codes to app locale codes for the language switcher
+  const sanityToAppLocale: Record<string, string> = {
+    en: 'en',
+    es: 'es',
+    'pt-BR': 'br',
+    pt: 'br',
+    br: 'br',
+    tr: 'tr',
+  }
+
   const formattedTranslations = translations.map((t: { language: string; slug: string }) => {
+    const appLocale = sanityToAppLocale[t.language] || t.language
     const prefix = localePrefixes[t.language] || `/${t.language}`
     return {
-      locale: t.language,
+      locale: appLocale,
       slug: t.slug,
       url: `${SITE_URL}${prefix}/blog/${t.slug}`,
     }

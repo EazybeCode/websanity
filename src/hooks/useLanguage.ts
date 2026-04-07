@@ -1,9 +1,12 @@
 'use client'
 
-import { useCallback } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 import { useLocale } from 'next-intl'
 import { useRouter, usePathname } from '@/i18n/navigation'
-import { useBlogTranslations } from '@/contexts/BlogTranslationsContext'
+import {
+  getGlobalBlogTranslations,
+  subscribeGlobalBlogTranslations,
+} from '@/contexts/BlogTranslationsContext'
 
 export type SupportedLanguage = 'en' | 'br' | 'es' | 'tr'
 
@@ -39,11 +42,28 @@ function addLanguagePrefix(path: string, lang: SupportedLanguage): string {
   return `/${lang}${cleanPath}`
 }
 
+// Snapshot function for useSyncExternalStore
+function getSnapshot() {
+  return getGlobalBlogTranslations()
+}
+
+// Server snapshot must be cached to avoid infinite loop
+const SERVER_SNAPSHOT = { translations: [] as any[], currentSlug: '' }
+function getServerSnapshot() {
+  return SERVER_SNAPSHOT
+}
+
 export function useLanguage() {
   const locale = useLocale() as SupportedLanguage
   const pathname = usePathname()
   const router = useRouter()
-  const { translations } = useBlogTranslations()
+
+  // Subscribe to global blog translations store (reactive)
+  const { translations } = useSyncExternalStore(
+    subscribeGlobalBlogTranslations,
+    getSnapshot,
+    getServerSnapshot
+  )
 
   const currentLanguage = locale
 
@@ -53,8 +73,13 @@ export function useLanguage() {
       if (translations.length > 0) {
         const translation = translations.find((t) => t.locale === lang)
         if (translation) {
-          // Navigate to the translated blog post URL
-          router.replace(translation.url)
+          // Extract path from full URL and navigate
+          try {
+            const url = new URL(translation.url)
+            window.location.href = url.pathname
+          } catch {
+            window.location.href = translation.url
+          }
           return
         }
       }
