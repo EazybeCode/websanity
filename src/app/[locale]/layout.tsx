@@ -39,7 +39,7 @@ export default async function LocaleLayout({
     <NextIntlClientProvider messages={messages}>
       <Providers>
         <GlobalStructuredData locale={locale} />
-        <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
+        <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-clip">
           <MegaMenuHeader />
           <main>{children}</main>
           <ChunkyFooter />
