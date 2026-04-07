@@ -555,7 +555,7 @@ const StickyTableOfContents: React.FC<{
           </span>
         </div>
         <h4 className="text-white font-bold mb-2">
-          {sidebarCta?.headline || t('blog.sidebar.headline')}
+          <span>{sidebarCta?.headline || t('blog.sidebar.headline')}</span>
         </h4>
         <p className="text-slate-400 text-sm mb-4 leading-relaxed">
           {sidebarCta?.description || t('blog.sidebar.description')}
@@ -564,7 +564,7 @@ const StickyTableOfContents: React.FC<{
           href={locale === 'en' ? 'https://eazybe.com/pricing' : (sidebarCta?.buttonUrl || `/${locale}/pricing`)}
           className="block w-full text-center bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold py-3 px-6 rounded-xl transition-colors"
         >
-          {sidebarCta?.buttonText || t('blog.sidebar.buttonText')}
+          <span>{sidebarCta?.buttonText || t('blog.sidebar.buttonText')}</span>
         </a>
         <p className="text-[10px] text-center mt-3 font-mono text-slate-500 uppercase tracking-widest">
           {sidebarCta?.footnote || t('blog.sidebar.footnote')}
@@ -609,8 +609,8 @@ const RelatedPostCard: React.FC<{
         </div>
       </div>
       <div className="p-6 flex-1 flex flex-col">
-        <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 leading-snug group-hover:text-brand-cyan transition-colors">
-          {title}
+        <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 leading-snug group-hover:text-brand-cyan transition-colors relative z-10 cursor-pointer">
+          <span>{title}</span>
         </h3>
         <div className="flex items-center gap-4 mt-auto pt-4 border-t border-slate-800 font-mono text-[10px] uppercase text-slate-500 font-bold">
           <span className="flex items-center gap-1">
