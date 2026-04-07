@@ -1040,7 +1040,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               {/* FAQs Section */}
               {post.faqs && post.faqs.length > 0 && (
                 <section
-                  className="mt-16 pt-10 border-t border-slate-800"
+                  className="mt-3 pt-10 border-t border-slate-800"
                   aria-labelledby="faq-title"
                 >
                   <h2
