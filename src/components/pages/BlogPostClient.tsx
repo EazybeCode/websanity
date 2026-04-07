@@ -191,7 +191,7 @@ const createPortableTextComponents = (
         return (
           <h3
             id={id}
-            className="text-[18px] md:text-2xl font-semibold text-slate-100 mt-3 mb-3 scroll-mt-28"
+            className="text-[16px] md:text-2xl font-semibold text-slate-100 mt-3 mb-3 scroll-mt-28"
           >
             {children}
           </h3>
@@ -214,7 +214,7 @@ const createPortableTextComponents = (
         </p>
       ),
       blockquote: ({ children }: any) => (
-        <blockquote className="border-l-4 border-brand-cyan pl-6 my-8 italic text-slate-400 text-xl">
+        <blockquote className="border-l-4 border-brand-cyan pl-6 my-8 italic text-slate-400 text-base md:text-xl">
           {children}
         </blockquote>
       ),
@@ -262,7 +262,7 @@ const createPortableTextComponents = (
       image: ({ value }: any) => {
         if (!value?.url) return null
         return (
-          <figure className="my-10">
+          <figure className="my-5">
             <img
               src={value.url}
               alt={value.alt || ''}
@@ -270,7 +270,7 @@ const createPortableTextComponents = (
               loading="lazy"
             />
             {value.caption && (
-              <figcaption className="text-center text-slate-500 text-sm mt-4">
+              <figcaption className="text-center text-slate-500 text-[12px] mt-4">
                 {value.caption}
               </figcaption>
             )}
@@ -940,9 +940,14 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 }
                 .blog-content h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
                 .blog-content h3 {
-                  font-size: 18px; font-weight: 700; color: #f1f5f9;
+                  font-size: 16px; font-weight: 700; color: #f1f5f9;
                   margin-top: 0.75rem; margin-bottom: 0.75rem; line-height: 1.35;
                   scroll-margin-top: 7rem;
+                }
+                @media (min-width: 768px) {
+                  .blog-content h3 {
+                    font-size: 24px;
+                  }
                 }
                 .blog-content h4 {
                   font-size: 1.25rem; font-weight: 600; color: #e2e8f0;
@@ -975,10 +980,16 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 .blog-content a { color: #06b6d4; text-decoration: none; transition: all 0.2s; }
                 .blog-content a:hover { color: #22d3ee; }
                 .blog-content blockquote {
-                  margin: 3rem 0; padding: 2rem 2.5rem;
+                  margin: 2rem 0; padding: 1.25rem 1.5rem;
                   background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.05));
                   border-left: 4px solid #2563eb; border-radius: 0 1rem 1rem 0;
-                  font-size: 1.35rem; font-style: italic; color: #e2e8f0; line-height: 1.7;
+                  font-size: 1rem; font-style: italic; color: #e2e8f0; line-height: 1.7;
+                }
+                @media (min-width: 768px) {
+                  .blog-content blockquote {
+                    margin: 3rem 0; padding: 2rem 2.5rem;
+                    font-size: 1.35rem;
+                  }
                 }
                 .blog-content blockquote p { margin-bottom: 0; }
                 .blog-content code {
@@ -1044,7 +1055,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                         key={i}
                         className="group border border-slate-700/50 rounded-xl bg-slate-900/30 transition-all hover:border-slate-600"
                       >
-                        <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-[18px] md:text-lg">
+                        <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-[16px] md:text-lg">
                           <span className="pr-6">{faq.question}</span>
                           <Plus
                             size={20}
