@@ -12,8 +12,26 @@ export default async function SubscriptionPage({
   setRequestLocale(locale)
   const sp = await searchParams
   const success = sp.success === 'true'
-  const currency = sp.currency?.toUpperCase() || ''
-  const amount = sp.amount || ''
+  const rawCurrency = sp.currency?.toUpperCase() || ''
+  const rawAmount = sp.amount || ''
+
+  // Format amount: Stripe sends cents, so convert to proper decimal
+  const formatAmount = (amt: string, cur: string): string => {
+    const num = parseFloat(amt)
+    if (isNaN(num)) return amt
+    // If amount looks like cents (> 999 for most currencies), divide by 100
+    const value = num > 999 ? num / 100 : num
+    try {
+      return new Intl.NumberFormat(locale === 'br' ? 'pt-BR' : locale === 'es' ? 'es' : locale === 'tr' ? 'tr-TR' : 'en-US', {
+        style: 'currency',
+        currency: cur || 'USD',
+      }).format(value)
+    } catch {
+      return `${value.toFixed(2)} ${cur}`
+    }
+  }
+
+  const formattedAmount = rawAmount && rawCurrency ? formatAmount(rawAmount, rawCurrency) : ''
 
   if (!success) {
     return (
@@ -58,9 +76,9 @@ export default async function SubscriptionPage({
           Thank you for subscribing to Eazybe.
         </p>
 
-        {amount && currency && (
+        {formattedAmount && (
           <p className="text-white/50 mb-6">
-            Amount paid: <span className="font-semibold text-white">{amount} {currency}</span>
+            Amount paid: <span className="font-semibold text-white">{formattedAmount}</span>
           </p>
         )}
 
