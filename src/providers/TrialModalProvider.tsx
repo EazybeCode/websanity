@@ -37,6 +37,10 @@ export const TrialModalProvider: React.FC<{ children: ReactNode }> = ({ children
 
   const openModal = (modalMode: ModalMode = 'trial') => {
     ;(window as any).gtag?.('event', modalMode === 'demo' ? `book_demo_click_${locale}` : `install_free_click_${locale}`)
+    if (modalMode === 'demo') {
+      window.open('https://calendly.com/d/cw67-pt3-y2m', '_blank')
+      return
+    }
     setMode(modalMode)
     setIsOpen(true)
   }
