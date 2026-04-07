@@ -22,6 +22,28 @@ export const sanityClient = {
   },
 }
 
+// Draft client for preview mode — fetches unpublished content
+const rawDraftClient = createClient({
+  projectId: '5awzi0t4',
+  dataset: 'production',
+  useCdn: false,
+  apiVersion: '2024-01-01',
+  perspective: 'previewDrafts',
+  token: process.env.SANITY_API_TOKEN,
+})
+
+export const sanityDraftClient = {
+  ...rawDraftClient,
+  fetch: async <T = any>(query: string, params?: Record<string, any>): Promise<T | null> => {
+    try {
+      return await rawDraftClient.fetch<T>(query, params as any)
+    } catch (error) {
+      console.warn('Sanity draft fetch failed:', (error as Error).message)
+      return null
+    }
+  },
+}
+
 const builder = createImageUrlBuilder({
   projectId: '5awzi0t4',
   dataset: 'production',

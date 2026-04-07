@@ -1,4 +1,4 @@
-import { sanityClient } from './sanity'
+import { sanityClient, sanityDraftClient } from './sanity'
 
 // ─── Language mapping ────────────────────────────────────────────────────────
 
@@ -274,8 +274,9 @@ export async function getBlogPosts(locale: string = 'en', limit?: number) {
 
 // ─── Blog Post (single) ────────────────────────────────────────────────────
 
-export async function getBlogPost(slug: string, locale: string = 'en') {
+export async function getBlogPost(slug: string, locale: string = 'en', preview: boolean = false) {
   const sanityLanguage = toSanityLang(locale)
+  const client = preview ? sanityDraftClient : sanityClient
   const query = `*[_type == "post" && slug.current == $slug && language == $sanityLanguage][0]{
     _id,
     title,
@@ -323,7 +324,7 @@ export async function getBlogPost(slug: string, locale: string = 'en') {
     jsonLdSchemas,
     customMetaTags
   }`
-  return sanityClient.fetch(query, { slug, sanityLanguage })
+  return client.fetch(query, { slug, sanityLanguage })
 }
 
 // ─── Blog Post Translations ───────────────────────────────────────────────────

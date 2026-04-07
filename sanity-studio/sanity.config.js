@@ -5,6 +5,7 @@ import { visionTool } from '@sanity/vision'
 import customSchemaTypes from './schemas/index.js'
 import { TranslationLinks } from './schemas/TranslationLinks.jsx'
 import { CreateTranslationsAction } from './actions/createTranslations.jsx'
+import { OpenPreviewAction } from './actions/openPreview.jsx'
 
 /**
  * Eazybe Enterprise CMS with JSON-LD Structured Data
@@ -233,7 +234,25 @@ const blogPost = {
             ],
           },
         },
-        { type: 'image' },
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              description: 'Describe the image for accessibility and SEO (required for good SEO)',
+              validation: Rule => Rule.warning('Alt text is strongly recommended for accessibility and SEO'),
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              description: 'Optional caption displayed below the image',
+            },
+          ],
+        },
         { type: 'table' },
         { type: 'accordion' },
         { type: 'callout' },
@@ -953,7 +972,7 @@ export default defineConfig({
   document: {
     actions: (prev, context) => {
       if (context.schemaType === 'post') {
-        return [...prev, CreateTranslationsAction]
+        return [...prev, CreateTranslationsAction, OpenPreviewAction]
       }
       return prev
     },

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { draftMode } from 'next/headers'
 import { setRequestLocale } from 'next-intl/server'
 import { getBlogPost, getBlogPosts, getBlogIndex, getBlogPostTranslations } from '@/lib/sanity-queries'
 import { BlogPostClient } from '@/components/pages/BlogPostClient'
@@ -106,8 +107,10 @@ export default async function BlogPostPage({
   const { locale, slug } = await params
   setRequestLocale(locale)
 
+  const { isEnabled: isPreview } = await draftMode()
+
   const [post, relatedPosts, blogIndex] = await Promise.all([
-    getBlogPost(slug, locale),
+    getBlogPost(slug, locale, isPreview),
     getBlogPosts(locale, 4),
     getBlogIndex(locale),
   ])
@@ -157,6 +160,14 @@ export default async function BlogPostPage({
 
   return (
     <>
+      {isPreview && (
+        <div className="fixed top-0 left-0 right-0 z-[9999] bg-yellow-500 text-black text-center py-2 text-sm font-bold">
+          Preview Mode —{' '}
+          <a href={`/api/preview/disable?redirect=${locale === 'en' ? '' : `/${locale}`}/blog/${slug}`} className="underline">
+            Exit Preview
+          </a>
+        </div>
+      )}
       {/* Render JSON-LD schemas at the top of the page */}
       {/* Note: While typically in <head>, JSON-LD in body is valid for SEO */}
       {schemas.map((schema, index) => (
