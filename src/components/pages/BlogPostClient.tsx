@@ -852,14 +852,12 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               {dynamicToc && dynamicToc.length > 0 && (
                 <div className="lg:hidden mb-3">
                   <details className="bg-brand-card border border-slate-700/50 rounded-xl overflow-hidden">
-                    <summary className="flex items-center justify-between p-2 cursor-pointer hover:bg-slate-800/50 transition-colors">
-                      <div className="flex items-center gap-2">
-                        <BookOpen size={18} className="text-brand-cyan" />
-                        <span className="font-semibold text-white">Table of Contents</span>
-                      </div>
+                    <summary className="flex items-center justify-center gap-2 py-3 px-4 cursor-pointer hover:bg-slate-800/50 transition-colors">
+                      <BookOpen size={18} className="text-brand-cyan" />
+                      <span className="font-semibold text-white">Table of Contents</span>
                       <ChevronDown
-                        size={20}
-                        className="text-slate-400 open:rotate-180 transition-transform"
+                        size={18}
+                        className="text-slate-400 open:rotate-180 transition-transform ml-1"
                       />
                     </summary>
                     <nav className="px-3 py-2.5 border-t border-slate-700/50">
