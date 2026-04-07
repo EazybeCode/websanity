@@ -862,12 +862,14 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                         className="text-slate-400 open:rotate-180 transition-transform"
                       />
                     </summary>
-                    <nav className="p-2 pt-0 border-t border-slate-700/50">
-                      <ul className="space-y-1">
+                    <nav className="px-3 py-2.5 border-t border-slate-700/50">
+                      <ul className="list-disc pl-4 space-y-1 marker:text-slate-500" style={{ listStylePosition: 'outside' }}>
                         {dynamicToc.map((item, i) => {
                           const isActive = mobileActiveSection === item.id
                           return (
-                            <li key={i}>
+                            <li key={i} className={`text-[13px] leading-[1.6] pl-1 ${
+                              isActive ? 'marker:text-brand-cyan' : 'marker:text-slate-500'
+                            }`}>
                               <a
                                 href={`#${item.id}`}
                                 onClick={(e) => {
@@ -887,10 +889,10 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                                     if (details) details.open = false
                                   }
                                 }}
-                                className={`block py-2 px-3 rounded-lg text-sm transition-all ${
+                                className={`transition-colors duration-200 ${
                                   isActive
-                                    ? 'bg-brand-cyan/10 text-brand-cyan font-medium'
-                                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                                    ? 'text-brand-cyan font-medium'
+                                    : 'text-slate-400 hover:text-white'
                                 }`}
                               >
                                 {item.label}
