@@ -58,8 +58,7 @@ export const VideoEmbedBlock: React.FC<{ data: VideoData }> = ({ data }) => {
   }
 
   return (
-    <div className="my-8 md:my-12">
-      {title && <p className="text-sm text-slate-500 mb-3">{title}</p>}
+    <figure className="my-8 md:my-12">
       <div
         className={`relative w-full rounded-xl overflow-hidden ${aspectRatios[aspectRatio]} bg-slate-900`}
       >
@@ -88,7 +87,12 @@ export const VideoEmbedBlock: React.FC<{ data: VideoData }> = ({ data }) => {
           />
         )}
       </div>
-    </div>
+      {title && (
+        <figcaption className="text-center text-slate-500 text-sm mt-4">
+          {title}
+        </figcaption>
+      )}
+    </figure>
   )
 }
 
