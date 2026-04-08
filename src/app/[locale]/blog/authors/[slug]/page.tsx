@@ -1,0 +1,55 @@
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { setRequestLocale } from 'next-intl/server'
+import { getAuthorBySlug, getAllAuthorSlugs } from '@/lib/sanity-queries'
+import { getAlternates } from '@/lib/seo-helpers'
+import { AuthorProfileClient } from '@/components/pages/AuthorProfileClient'
+
+export async function generateStaticParams() {
+  const authors = await getAllAuthorSlugs()
+  if (!authors) return []
+  return authors
+    .filter((a: { slug: string }) => typeof a.slug === 'string' && a.slug)
+    .map((a: { slug: string }) => ({ slug: a.slug }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}): Promise<Metadata> {
+  const { locale, slug } = await params
+  const author = await getAuthorBySlug(slug, locale)
+
+  if (!author) {
+    return { title: 'Author Not Found | Eazybe' }
+  }
+
+  return {
+    title: `${author.name} - Author | Eazybe Blog`,
+    description: author.bio || `Read articles by ${author.name} on the Eazybe blog.`,
+    openGraph: {
+      title: `${author.name} - Author | Eazybe Blog`,
+      description: author.bio || `Read articles by ${author.name} on the Eazybe blog.`,
+      images: author.image ? [{ url: author.image }] : undefined,
+    },
+    alternates: getAlternates(locale, `/blog/authors/${slug}`),
+  }
+}
+
+export default async function AuthorPage({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}) {
+  const { locale, slug } = await params
+  setRequestLocale(locale)
+
+  const author = await getAuthorBySlug(slug, locale)
+
+  if (!author) {
+    notFound()
+  }
+
+  return <AuthorProfileClient author={author} locale={locale} />
+}

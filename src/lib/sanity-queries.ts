@@ -721,3 +721,56 @@ export async function getCoexistence(locale: string = 'en') {
   }`
   return sanityClient.fetch(query, { docId: `productPage-coexistence-${locale}` })
 }
+
+// ─── Authors ─────────────────────────────────────────────────────────────────
+
+export async function getAuthors(locale: string = 'en') {
+  const sanityLanguage = toSanityLang(locale)
+  const query = `*[_type == "author" && language == $sanityLanguage] | order(name asc) {
+    _id,
+    name,
+    "slug": slug.current,
+    position,
+    email,
+    location,
+    bio,
+    "imageUrl": image.asset->url,
+    socialLinks,
+    "postCount": count(*[_type == "post" && references(^._id) && language == $sanityLanguage])
+  }`
+  return sanityClient.fetch(query, { sanityLanguage })
+}
+
+export async function getAuthorBySlug(slug: string, locale: string = 'en') {
+  const sanityLanguage = toSanityLang(locale)
+  const query = `*[_type == "author" && slug.current == $slug && language == $sanityLanguage][0]{
+    _id,
+    name,
+    "slug": slug.current,
+    position,
+    email,
+    location,
+    bio,
+    detailedBio,
+    "imageUrl": image.asset->url,
+    "imageAlt": image.alt,
+    socialLinks,
+    "posts": *[_type == "post" && references(^._id) && language == $sanityLanguage] | order(publishedAt desc) {
+      _id,
+      title,
+      "slug": slug.current,
+      excerpt,
+      category,
+      language,
+      "featuredImage": featuredImage.asset->url,
+      publishedAt,
+      readTime
+    }
+  }`
+  return sanityClient.fetch(query, { slug, sanityLanguage })
+}
+
+export async function getAllAuthorSlugs() {
+  const query = `*[_type == "author" && defined(slug.current)]{ "slug": slug.current }`
+  return sanityClient.fetch(query)
+}
