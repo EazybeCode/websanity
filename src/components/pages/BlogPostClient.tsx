@@ -361,7 +361,7 @@ const createPortableTextComponents = (
       comparisonTable: ({ value }: any) => {
         if (!value || !value.columns?.length) return null
         return (
-          <div className="my-8 md:my-12">
+          <div className="my-6">
             {value.title && (
               <h3 className="text-xl font-bold text-white mb-6">{value.title}</h3>
             )}

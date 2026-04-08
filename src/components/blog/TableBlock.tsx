@@ -26,7 +26,7 @@ export const TableBlock: React.FC<{ data: TableData }> = ({ data }) => {
   if (!headers.length || !rows.length) return null
 
   return (
-    <figure className="my-8 md:my-12">
+    <figure className="my-6">
       <div className="overflow-x-auto rounded-xl border border-slate-700/50">
         <table
           className={`w-full border-collapse ${variant === 'striped' ? 'striped' : ''}`}
