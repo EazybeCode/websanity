@@ -51,5 +51,45 @@ export default async function AuthorPage({
     notFound()
   }
 
-  return <AuthorProfileClient author={author} locale={locale} />
+  const localePrefix = locale === 'en' ? '' : `/${locale}`
+  const authorsLabel: Record<string, string> = {
+    en: 'authors',
+    br: 'autores',
+    es: 'autores',
+    tr: 'yazarlar',
+  }
+  const breadcrumbSchema = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "blog",
+        "item": `https://eazybe.com${localePrefix}/blog`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": authorsLabel[locale] || 'authors',
+        "item": `https://eazybe.com${localePrefix}/blog/authors`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": slug,
+        "item": `https://eazybe.com${localePrefix}/blog/authors/${slug}`
+      }
+    ]
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <AuthorProfileClient author={author} locale={locale} />
+    </>
+  )
 }
