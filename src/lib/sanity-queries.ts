@@ -299,6 +299,7 @@ export async function getBlogPost(slug: string, locale: string = 'en', preview: 
     "author": coalesce(
       authorRef->{
         name,
+        "slug": slug.current,
         bio,
         "image": image.asset->url,
         "url": socialLinks.website,

@@ -750,22 +750,32 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
           {/* Author & Meta */}
           <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 py-6 md:py-8 border-y border-slate-800/50">
             <div className="flex items-center gap-3 md:gap-4">
-              {post.author?.image ? (
-                <img
-                  src={post.author.image}
-                  alt={post.author.name}
-                  className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-brand-cyan"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg md:text-xl">
-                  {post.author?.name?.[0] || <User size={20} />}
-                </div>
-              )}
+              {(() => {
+                const authorUrl = post.author?.slug ? `${locale === 'en' ? '' : `/${locale}`}/blog/authors/${post.author.slug}` : undefined
+                const avatar = post.author?.image ? (
+                  <img
+                    src={post.author.image}
+                    alt={post.author.name}
+                    className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-brand-cyan"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg md:text-xl">
+                    {post.author?.name?.[0] || <User size={20} />}
+                  </div>
+                )
+                return authorUrl ? <a href={authorUrl} className="hover:opacity-80 transition-opacity">{avatar}</a> : avatar
+              })()}
               <div>
-                <p className="font-semibold text-white text-base md:text-lg">
-                  {post.author?.name || t('blog.detail.authorFallback')}
-                </p>
+                {post.author?.slug ? (
+                  <a href={`${locale === 'en' ? '' : `/${locale}`}/blog/authors/${post.author.slug}`} className="font-semibold text-white text-base md:text-lg hover:text-brand-cyan transition-colors">
+                    {post.author?.name || t('blog.detail.authorFallback')}
+                  </a>
+                ) : (
+                  <p className="font-semibold text-white text-base md:text-lg">
+                    {post.author?.name || t('blog.detail.authorFallback')}
+                  </p>
+                )}
                 <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
                   <span className="flex items-center gap-1">
                     <Calendar size={14} />
@@ -1104,25 +1114,37 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               {post.author && (
                 <div className="mt-16 pt-10 border-t border-slate-800">
                   <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-slate-700/30">
-                    {post.author.image ? (
-                      <img
-                        src={post.author.image}
-                        alt={post.author.name}
-                        className="w-24 h-24 rounded-2xl object-cover border-2 border-brand-cyan flex-shrink-0"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-3xl flex-shrink-0">
-                        {post.author.name[0]}
-                      </div>
-                    )}
+                    {(() => {
+                      const authorUrl = post.author.slug ? `${locale === 'en' ? '' : `/${locale}`}/blog/authors/${post.author.slug}` : undefined
+                      const avatar = post.author.image ? (
+                        <img
+                          src={post.author.image}
+                          alt={post.author.name}
+                          className="w-24 h-24 rounded-2xl object-cover border-2 border-brand-cyan flex-shrink-0"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-3xl flex-shrink-0">
+                          {post.author.name[0]}
+                        </div>
+                      )
+                      return authorUrl ? <a href={authorUrl} className="hover:opacity-80 transition-opacity flex-shrink-0">{avatar}</a> : avatar
+                    })()}
                     <div className="flex-1">
                       <p className="text-sm text-brand-cyan uppercase tracking-wider font-semibold mb-2">
                         {detailLabels?.authorLabel || t('blog.detail.authorLabel')}
                       </p>
-                      <h4 className="text-2xl font-bold text-white mb-4">
-                        {post.author.name}
-                      </h4>
+                      {post.author.slug ? (
+                        <a href={`${locale === 'en' ? '' : `/${locale}`}/blog/authors/${post.author.slug}`} className="block">
+                          <h4 className="text-2xl font-bold text-white mb-4 hover:text-brand-cyan transition-colors">
+                            {post.author.name}
+                          </h4>
+                        </a>
+                      ) : (
+                        <h4 className="text-2xl font-bold text-white mb-4">
+                          {post.author.name}
+                        </h4>
+                      )}
                       <p className="text-lg text-slate-400 leading-relaxed">
                         {post.author.bio || t('blog.detail.authorBioFallback')}
                       </p>
