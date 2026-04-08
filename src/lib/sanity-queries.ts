@@ -296,12 +296,21 @@ export async function getBlogPost(slug: string, locale: string = 'en', preview: 
     "featuredImageAlt": featuredImage.alt,
     publishedAt,
     readTime,
-    author{
-      name,
-      bio,
-      "image": image.asset->url,
-      url
-    },
+    "author": coalesce(
+      authorRef->{
+        name,
+        bio,
+        "image": image.asset->url,
+        "url": socialLinks.website,
+        socialLinks
+      },
+      author{
+        name,
+        bio,
+        "image": image.asset->url,
+        url
+      }
+    ),
     quickAnswer,
     tableOfContents[]{
       label,
