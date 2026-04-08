@@ -694,7 +694,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     })) || defaultPricingPlans
 
   // ── Trust Signals ───────────────────────────────────────────────────────
-  const trustSignals = pricingData?.trustSignals || [
+  const trustSignals = [
     { icon: 'shield', text: 'GDPR Compliant & Encrypted' },
     { icon: 'zap', text: '2-Minute Setup' },
     { icon: 'clock', text: '4-Day Free Trial' },
@@ -732,7 +732,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     })) || defaultFaqItems
 
   // ── CTA Section ─────────────────────────────────────────────────────────
-  const ctaSection = pricingData?.ctaSection || {
+  const ctaSection = {
     headline: 'Ready to supercharge your',
     headlineHighlight: 'WhatsApp sales?',
     subheadline:
