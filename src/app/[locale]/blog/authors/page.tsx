@@ -28,5 +28,34 @@ export default async function AuthorsPage({
 
   const authors = await getAuthors(locale)
 
-  return <AuthorsListClient authors={authors || []} locale={locale} />
+  const localePrefix = locale === 'en' ? '' : `/${locale}`
+  const authorsLabel: Record<string, string> = { en: 'authors', br: 'autores', es: 'autores', tr: 'yazarlar' }
+  const breadcrumbSchema = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "blog",
+        "item": `https://eazybe.com${localePrefix}/blog`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": authorsLabel[locale] || 'authors',
+        "item": `https://eazybe.com${localePrefix}/blog/authors`
+      }
+    ]
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <AuthorsListClient authors={authors || []} locale={locale} />
+    </>
+  )
 }
