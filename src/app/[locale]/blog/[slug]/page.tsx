@@ -49,6 +49,11 @@ export async function generateMetadata({
     'max-video-preview': -1,
   }
 
+  // Add author meta tag dynamically from Sanity author field
+  if (post.author?.name) {
+    metadata.authors = [{ name: post.author.name }]
+  }
+
   // Fallback: auto-generate from post fields if customMetaTags didn't provide them
   if (!metadata.title) {
     metadata.title = `${post.title || 'Blog Post'} | Eazybe`
