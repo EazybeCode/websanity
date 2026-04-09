@@ -333,7 +333,7 @@ export const MegaMenuHeader: React.FC = () => {
           >
             <Image
               src="/logo.png"
-              alt="Eazybe"
+              alt="Eazybe Logo"
               width={137}
               height={32}
               priority
