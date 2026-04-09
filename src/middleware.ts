@@ -25,6 +25,9 @@ export default function middleware(request: NextRequest) {
 
   const response = intlMiddleware(request)
 
+  // Set pathname header so root layout can read it for html lang
+  response.headers.set('x-pathname', pathname)
+
   const host = request.headers.get('host') || ''
 
   // Block search engines from indexing non-production domains (Coolify staging URLs etc.)

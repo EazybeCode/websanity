@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Inter, JetBrains_Mono } from "next/font/google"
+import { headers } from "next/headers"
 import "./globals.css"
 
 const inter = Inter({
@@ -36,13 +37,30 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') || headersList.get('x-invoke-path') || ''
+
+  const langMap: Record<string, string> = {
+    '/br': 'pt-BR',
+    '/es': 'es',
+    '/tr': 'tr',
+  }
+
+  let lang = 'en'
+  for (const [prefix, locale] of Object.entries(langMap)) {
+    if (pathname === prefix || pathname.startsWith(prefix + '/')) {
+      lang = locale
+      break
+    }
+  }
+
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang={lang} className="dark" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
