@@ -176,6 +176,7 @@ export async function getProduct(slug: string, locale: string = 'en') {
     crmColor,
     metaTitle,
     metaDescription,
+    metaKeywords,
     hero{
       badge,
       headline,
@@ -337,6 +338,7 @@ export async function getBlogPost(slug: string, locale: string = 'en', preview: 
     },
     metaTitle,
     metaDescription,
+    metaKeywords,
     "ogImage": ogImage.asset->url,
     noindex,
     nofollow,
@@ -448,6 +450,7 @@ export async function getFeature(slug: string, locale: string = 'en') {
     category,
     metaTitle,
     metaDescription,
+    metaKeywords,
     sections[]{
       _type,
       _key,
@@ -576,6 +579,7 @@ export async function getCategoryIndex(slug: string, locale: string = 'en') {
     category,
     metaTitle,
     metaDescription,
+    metaKeywords,
     hero{
       badge,
       headline,

@@ -54,9 +54,22 @@ export async function generateMetadata({
     metadata.authors = [{ name: post.author.name }]
   }
 
-  // Fallback: auto-generate from post fields if customMetaTags didn't provide them
+  // Add keywords meta tag from Sanity metaKeywords field
+  if (post.metaKeywords) {
+    metadata.keywords = post.metaKeywords
+  }
+
+  // Priority order for title: customMetaTags > metaTitle > post.title > fallback
+  if (!metadata.title && post.metaTitle) {
+    metadata.title = post.metaTitle
+  }
   if (!metadata.title) {
     metadata.title = `${post.title || 'Blog Post'} | Eazybe`
+  }
+
+  // Priority order for description: customMetaTags > metaDescription > excerpt
+  if (!metadata.description && post.metaDescription) {
+    metadata.description = post.metaDescription
   }
   if (!metadata.description) {
     metadata.description = post.excerpt || ''
