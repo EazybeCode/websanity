@@ -52,6 +52,7 @@ interface BlogPost {
   readTime?: number
   author?: {
     name: string
+    slug?: string
     bio?: string
     image?: string
     url?: string
