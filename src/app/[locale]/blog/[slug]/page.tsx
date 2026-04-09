@@ -108,6 +108,63 @@ export async function generateMetadata({
     }
   }
 
+  // Generate Open Graph and Twitter meta tags
+  const ogImage = post.socialShareImage || post.featuredImage
+  const ogImageMeta = post.socialShareImage ? post.socialShareImageMeta : post.featuredImageMeta
+  const ogImageAlt = post.socialShareImage
+    ? (post.socialShareImageAlt || post.title)
+    : (post.featuredImageAlt || post.title)
+
+  const ogLocaleMap: Record<string, string> = {
+    en: 'en_US',
+    br: 'pt_BR',
+    es: 'es_ES',
+    tr: 'tr_TR',
+  }
+  const ogLocale = ogLocaleMap[locale] || 'en_US'
+
+  // OG and Twitter title/description (no fallback to excerpt for descriptions)
+  const fallbackTitle = metadata.title?.toString() || post.title
+  const ogTitle = post.ogTitle || fallbackTitle
+  const ogDescription = post.ogDescription || ''
+  const twitterTitle = post.twitterTitle || post.ogTitle || fallbackTitle
+  const twitterDescription = post.twitterDescription || ''
+
+  metadata.openGraph = {
+    type: 'article',
+    url: canonicalUrl,
+    title: ogTitle,
+    description: ogDescription,
+    siteName: 'Eazybe',
+    locale: ogLocale,
+    ...(ogImage && {
+      images: [
+        {
+          url: ogImage,
+          width: ogImageMeta?.width || 1200,
+          height: ogImageMeta?.height || 630,
+          alt: ogImageAlt,
+        },
+      ],
+    }),
+  }
+
+  metadata.twitter = {
+    card: 'summary_large_image',
+    site: '@eazybe',
+    creator: '@eazybe',
+    title: twitterTitle,
+    description: twitterDescription,
+    ...(ogImage && {
+      images: [
+        {
+          url: ogImage,
+          alt: ogImageAlt,
+        },
+      ],
+    }),
+  }
+
   return metadata
 }
 
