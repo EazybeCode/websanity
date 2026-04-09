@@ -5,11 +5,6 @@ import { getAuthorBySlug, getAllAuthorSlugs } from '@/lib/sanity-queries'
 import { getAlternates } from '@/lib/seo-helpers'
 import { AuthorProfileClient } from '@/components/pages/AuthorProfileClient'
 
-// Allow new slugs to be rendered on-demand without rebuild
-export const dynamicParams = true
-// Revalidate every 10 seconds to pick up Sanity CMS changes
-export const revalidate = 10
-
 export async function generateStaticParams() {
   const authors = await getAllAuthorSlugs()
   if (!authors) return []

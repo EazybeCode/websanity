@@ -4,9 +4,6 @@ import { getAuthors } from '@/lib/sanity-queries'
 import { getAlternates } from '@/lib/seo-helpers'
 import { AuthorsListClient } from '@/components/pages/AuthorsListClient'
 
-// Revalidate every 10 seconds to pick up Sanity CMS changes
-export const revalidate = 10
-
 export async function generateMetadata({
   params,
 }: {
