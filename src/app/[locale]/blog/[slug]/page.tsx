@@ -227,6 +227,50 @@ export default async function BlogPostPage({
   // Parse JSON-LD schemas from jsonLdSchemas HTML field using Cheerio
   const schemas = parseJsonLdSchemas(post.jsonLdSchemas)
 
+  // Auto-generate BreadcrumbList JSON-LD (always)
+  const SITE_BASE = 'https://eazybe.com'
+  const localePathPrefix = locale === 'en' ? '' : `/${locale}`
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Eazybe',
+        item: locale === 'en' ? `${SITE_BASE}/` : `${SITE_BASE}${localePathPrefix}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${SITE_BASE}${localePathPrefix}/blog`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.featuredImageAlt || post.title,
+        item: `${SITE_BASE}${localePathPrefix}/blog/${slug}`,
+      },
+    ],
+  }
+
+  // Auto-generate FAQPage JSON-LD (only if FAQs exist)
+  const faqSchema = post.faqs && post.faqs.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: post.faqs.map((faq: { question: string; answer: string }) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        })),
+      }
+    : null
+
   return (
     <>
       {isPreview && (
@@ -237,7 +281,19 @@ export default async function BlogPostPage({
           </a>
         </div>
       )}
-      {/* Render JSON-LD schemas at the top of the page */}
+      {/* Auto-generated BreadcrumbList JSON-LD (always) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {/* Auto-generated FAQPage JSON-LD (only if FAQs exist) */}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      {/* Render JSON-LD schemas from Sanity jsonLdSchemas field */}
       {/* Note: While typically in <head>, JSON-LD in body is valid for SEO */}
       {schemas.map((schema, index) => (
         <script
