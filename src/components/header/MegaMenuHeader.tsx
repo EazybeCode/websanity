@@ -325,11 +325,11 @@ export const MegaMenuHeader: React.FC = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
+        <div className="relative flex items-center justify-between">
+          {/* Logo (left) */}
           <LocalizedLink
             href="/"
-            className="flex-shrink-0 flex items-center justify-start cursor-pointer group mr-auto"
+            className="flex-shrink-0 flex items-center cursor-pointer group"
           >
             <Image
               src="/logo.png"
@@ -343,8 +343,8 @@ export const MegaMenuHeader: React.FC = () => {
             />
           </LocalizedLink>
 
-          {/* Desktop Links */}
-          <div className="hidden lg:flex items-center">
+          {/* Desktop Links (center) */}
+          <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2">
             {navigation.items.map((item, idx) => (
               <NavItemWithDropdown
                 key={`${item._key}-${idx}`}
@@ -357,7 +357,7 @@ export const MegaMenuHeader: React.FC = () => {
             ))}
           </div>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA (right) */}
           <div className="hidden lg:flex items-center gap-2">
             <button
               onClick={() => openModal('demo')}
