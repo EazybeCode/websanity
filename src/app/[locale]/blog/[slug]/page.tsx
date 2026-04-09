@@ -158,6 +158,54 @@ export default async function BlogPostPage({
   // Parse JSON-LD schemas from jsonLdSchemas HTML field using Cheerio
   const schemas = parseJsonLdSchemas(post.jsonLdSchemas)
 
+  // Default author (fallback when Sanity author field is empty)
+  const authorData = post.author || {
+    name: 'Sagar Dewan',
+    bio: 'Founder & CEO of Eazybe, a WhatsApp CRM used by 30,000+ businesses.',
+    url: 'https://www.linkedin.com/in/sagardewan/',
+  }
+
+  const authorSchema = {
+    '@type': 'Person' as const,
+    name: authorData.name,
+    url: authorData.url || 'https://www.linkedin.com/in/sagardewan/',
+    jobTitle: 'Founder & CEO',
+    worksFor: { '@type': 'Organization' as const, name: 'Eazybe' },
+  }
+
+  // Inject author into any BlogPosting schema that's missing it
+  for (const schema of schemas) {
+    if (schema['@type'] === 'BlogPosting' && !schema.author) {
+      schema.author = authorSchema
+    }
+  }
+
+  // Auto-generate BlogPosting schema if none exists from Sanity
+  const hasBlogPosting = schemas.some((s: Record<string, unknown>) => s['@type'] === 'BlogPosting')
+  if (!hasBlogPosting) {
+    const localePath = locale === 'en' ? '' : `/${locale}`
+    const postUrl = `https://eazybe.com${localePath}/blog/${slug}`
+    const langMap: Record<string, string> = { en: 'en', es: 'es', br: 'pt-BR', tr: 'tr', 'pt-BR': 'pt-BR' }
+
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      mainEntityOfPage: { '@type': 'WebPage', url: postUrl },
+      headline: post.title || '',
+      description: post.excerpt || '',
+      image: post.featuredImage || 'https://eazybe.com/images/logo.png',
+      author: authorSchema,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Eazybe',
+        logo: { '@type': 'ImageObject', url: 'https://eazybe.com/images/logo.png' },
+      },
+      datePublished: post.publishedAt || new Date().toISOString(),
+      dateModified: new Date().toISOString(),
+      inLanguage: langMap[locale] || locale,
+    })
+  }
+
   return (
     <>
       {isPreview && (
