@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback, lazy, Suspense, useTransition } from 'react'
+import Image from 'next/image'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
@@ -328,27 +329,18 @@ export const MegaMenuHeader: React.FC = () => {
           {/* Logo */}
           <LocalizedLink
             href="/"
-            className="flex-shrink-0 flex items-center gap-2.5 cursor-pointer group"
+            className="flex-shrink-0 flex items-center justify-start cursor-pointer group mr-auto"
           >
-            <div
-              className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors duration-300 p-1.5 border"
-              style={isDark
-                ? { backgroundColor: '#0F172A', borderColor: 'rgba(255,255,255,0.1)' }
-                : { backgroundColor: '#1e293b', borderColor: '#334155' }
-              }
-            >
-              <img
-                src="/logo.png"
-                alt="Eazybe Logo"
-                width="24"
-                height="24"
-                className="w-full h-full object-contain"
-                decoding="async"
-              />
-            </div>
-            <span className="font-sans font-bold text-xl tracking-tight text-slate-900 dark:text-white group-hover:text-brand-violet dark:group-hover:text-brand-blue transition-colors">
-              Eazybe
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Eazybe"
+              width={137}
+              height={32}
+              priority
+              sizes="137px"
+              className="h-8 w-auto object-contain"
+              style={{ width: 'auto', height: '32px' }}
+            />
           </LocalizedLink>
 
           {/* Desktop Links */}
