@@ -96,6 +96,18 @@ export async function generateMetadata({
     }
   }
 
+  // Add article:published_time and article:modified_time meta tags (ISO 8601)
+  if (post.publishedAt || post.updatedAt) {
+    if (!metadata.other) metadata.other = {}
+    if (post.publishedAt) {
+      ;(metadata.other as Record<string, string>)['article:published_time'] = new Date(post.publishedAt).toISOString()
+    }
+    // Only render modified_time if updatedAt exists
+    if (post.updatedAt) {
+      ;(metadata.other as Record<string, string>)['article:modified_time'] = new Date(post.updatedAt).toISOString()
+    }
+  }
+
   return metadata
 }
 
