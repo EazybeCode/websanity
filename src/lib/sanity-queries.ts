@@ -295,7 +295,6 @@ export async function getBlogPost(slug: string, locale: string = 'en', preview: 
     "featuredImage": featuredImage.asset->url,
     "featuredImageAlt": featuredImage.alt,
     publishedAt,
-    updatedAt,
     readTime,
     "author": coalesce(
       authorRef->{

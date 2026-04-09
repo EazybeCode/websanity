@@ -96,19 +96,6 @@ export async function generateMetadata({
     }
   }
 
-  // Add article:published_time and article:modified_time meta tags
-  if (post.publishedAt || post.updatedAt) {
-    if (!metadata.other) metadata.other = {}
-    if (post.publishedAt) {
-      ;(metadata.other as Record<string, string>)['article:published_time'] = post.publishedAt
-    }
-    // Use updatedAt if set, otherwise fall back to publishedAt
-    const modifiedTime = post.updatedAt || post.publishedAt
-    if (modifiedTime) {
-      ;(metadata.other as Record<string, string>)['article:modified_time'] = modifiedTime
-    }
-  }
-
   return metadata
 }
 
