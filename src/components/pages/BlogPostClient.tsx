@@ -46,6 +46,7 @@ interface BlogPost {
   excerpt: string
   content: PortableTextBlock[]
   category: string
+  categories?: Array<{ title: string; slug: string; link?: string }>
   featuredImage?: string
   featuredImageAlt?: string
   publishedAt: string
@@ -731,11 +732,33 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
             </span>
           </nav>
 
-          {/* Category Badge */}
-          <div className="my-4">
-            <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs md:text-sm font-medium">
-              {post.category || 'Blog'}
-            </span>
+          {/* Category Badges */}
+          <div className="my-4 flex flex-wrap gap-2">
+            {post.categories && post.categories.length > 0 ? (
+              post.categories.map((cat, i) => {
+                const catLink = cat.link ? `${locale === 'en' ? '' : `/${locale}`}/blog/${cat.link}` : undefined
+                return catLink ? (
+                  <a
+                    key={i}
+                    href={catLink}
+                    className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs md:text-sm font-medium hover:bg-brand-cyan/20 transition-colors"
+                  >
+                    {cat.title}
+                  </a>
+                ) : (
+                  <span
+                    key={i}
+                    className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs md:text-sm font-medium"
+                  >
+                    {cat.title}
+                  </span>
+                )
+              })
+            ) : (
+              <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs md:text-sm font-medium">
+                {post.category || 'Blog'}
+              </span>
+            )}
           </div>
 
           {/* Title */}

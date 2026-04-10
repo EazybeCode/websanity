@@ -291,6 +291,7 @@ export async function getBlogPost(slug: string, locale: string = 'en', preview: 
       }
     },
     category,
+    "categories": categories[]->{title, "slug": slug.current, link},
     language,
     translationGroupId,
     "featuredImage": featuredImage.asset->url,
