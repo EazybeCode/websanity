@@ -274,16 +274,17 @@ export default async function BlogPostPage({
   }
 
   // Auto-generate FAQPage JSON-LD (only if FAQs exist)
+  // Uses plainAnswer > answerText (extracted plain text) > stringified answer as fallback
   const faqSchema = post.faqs && post.faqs.length > 0
     ? {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        mainEntity: post.faqs.map((faq: { question: string; answer: string }) => ({
+        mainEntity: post.faqs.map((faq: any) => ({
           '@type': 'Question',
           name: faq.question,
           acceptedAnswer: {
             '@type': 'Answer',
-            text: faq.answer,
+            text: faq.plainAnswer || faq.answerText || (typeof faq.answer === 'string' ? faq.answer : ''),
           },
         })),
       }

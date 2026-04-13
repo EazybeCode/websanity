@@ -328,10 +328,12 @@ export async function getBlogPost(slug: string, locale: string = 'en', preview: 
       label,
       id
     },
+    faqTitle,
     "faqs": faq[]{
       question,
       answer,
-      acceptedAnswer
+      plainAnswer,
+      "answerText": pt::text(answer)
     },
     "breadcrumbs": breadcrumbs[]{
       name,

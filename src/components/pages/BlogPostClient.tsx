@@ -60,7 +60,8 @@ interface BlogPost {
   }
   quickAnswer?: string
   tableOfContents?: Array<{ label: string; id: string }>
-  faqs?: Array<{ question: string; answer: string; acceptedAnswer?: string }>
+  faqTitle?: string
+  faqs?: Array<{ question: string; answer: any; plainAnswer?: string; answerText?: string }>
 }
 
 interface BlogIndex {
@@ -1131,7 +1132,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                     id="faq-title"
                     className="text-[19px] md:text-3xl font-bold text-white tracking-tight mb-8"
                   >
-                    {detailLabels?.faqTitle || t('blog.detail.faqTitle')}
+                    {post.faqTitle || detailLabels?.faqTitle || t('blog.detail.faqTitle')}
                   </h2>
                   <div className="space-y-4">
                     {post.faqs.map((faq, i) => (
@@ -1147,7 +1148,30 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                           />
                         </summary>
                         <div className="px-6 pb-6 text-slate-400 text-[14px] md:text-lg leading-relaxed border-t border-slate-700/30 pt-4">
-                          {faq.answer}
+                          {Array.isArray(faq.answer) ? (
+                            <PortableText
+                              value={faq.answer}
+                              components={{
+                                marks: {
+                                  link: ({ children, value: markValue }: any) => (
+                                    <a
+                                      href={markValue?.href}
+                                      target={markValue?.openInNewTab ? '_blank' : undefined}
+                                      rel={markValue?.openInNewTab ? 'noopener noreferrer' : undefined}
+                                      className="text-brand-cyan hover:text-brand-blue underline transition-colors"
+                                    >
+                                      {children}
+                                    </a>
+                                  ),
+                                },
+                                block: {
+                                  normal: ({ children }: any) => <p className="mb-2 last:mb-0">{children}</p>,
+                                },
+                              }}
+                            />
+                          ) : (
+                            faq.answer
+                          )}
                         </div>
                       </details>
                     ))}
