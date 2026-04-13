@@ -732,10 +732,10 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
             </span>
           </nav>
 
-          {/* Category Badges */}
-          <div className="my-4 flex flex-wrap gap-2">
-            {post.categories && post.categories.length > 0 ? (
-              post.categories.map((cat, i) => {
+          {/* Category Badges — only show when categories are set via Sanity CMS */}
+          {post.categories && post.categories.length > 0 && (
+            <div className="my-4 flex flex-wrap gap-2">
+              {post.categories.map((cat, i) => {
                 const catLink = cat.link ? `${locale === 'en' ? '' : `/${locale}`}/blog/${cat.link}` : undefined
                 return catLink ? (
                   <a
@@ -753,16 +753,12 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                     {cat.title}
                   </span>
                 )
-              })
-            ) : (
-              <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs md:text-sm font-medium">
-                {post.category || 'Blog'}
-              </span>
-            )}
-          </div>
+              })}
+            </div>
+          )}
 
           {/* Title */}
-          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mb-3">
+          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mt-3 mb-3">
             {post.title}
           </h1>
 
