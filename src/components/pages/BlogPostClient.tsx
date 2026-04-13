@@ -265,14 +265,39 @@ const createPortableTextComponents = (
     types: {
       image: ({ value }: any) => {
         if (!value?.url) return null
+        const desktopRatio = value.desktopRatio && value.desktopRatio !== 'natural' ? value.desktopRatio : null
+        const mobileRatio = value.mobileRatio && value.mobileRatio !== 'natural' ? value.mobileRatio : null
+        const hasRatio = desktopRatio || mobileRatio
+
         return (
           <figure className="my-5">
-            <img
-              src={value.url}
-              alt={value.alt || ''}
-              className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
-              loading="lazy"
-            />
+            {hasRatio ? (
+              <>
+                {/* Mobile */}
+                <img
+                  src={value.url}
+                  alt={value.alt || ''}
+                  className="md:hidden w-full"
+                  style={mobileRatio ? { aspectRatio: mobileRatio, objectFit: 'contain' } : undefined}
+                  loading="lazy"
+                />
+                {/* Desktop */}
+                <img
+                  src={value.url}
+                  alt={value.alt || ''}
+                  className="hidden md:block w-full"
+                  style={desktopRatio ? { aspectRatio: desktopRatio, objectFit: 'contain' } : undefined}
+                  loading="lazy"
+                />
+              </>
+            ) : (
+              <img
+                src={value.url}
+                alt={value.alt || ''}
+                className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
+                loading="lazy"
+              />
+            )}
             {value.caption && (
               <figcaption className="text-center text-slate-500 text-[12px] mt-4">
                 {value.caption}
