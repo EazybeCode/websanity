@@ -325,7 +325,7 @@ export const MegaMenuHeader: React.FC = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between">
+        <div className="flex items-center">
           {/* Logo (left) */}
           <LocalizedLink
             href="/"
@@ -344,7 +344,7 @@ export const MegaMenuHeader: React.FC = () => {
           </LocalizedLink>
 
           {/* Desktop Links (center) */}
-          <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2">
+          <div className="hidden lg:flex items-center flex-1 justify-end mr-[200px]">
             {navigation.items.map((item, idx) => (
               <NavItemWithDropdown
                 key={`${item._key}-${idx}`}
