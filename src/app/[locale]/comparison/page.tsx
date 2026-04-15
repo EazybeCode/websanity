@@ -2,6 +2,10 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { ComparisonPageClient } from '@/components/pages/ComparisonPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
+import { getComparisonPosts } from '@/lib/sanity-queries'
+
+// ISR: revalidate every 10s to pick up Sanity changes
+export const revalidate = 10
 
 export async function generateMetadata({
   params,
@@ -102,6 +106,7 @@ export default async function ComparisonPage({
   }
 
   const comparisonSchemas = getSchemas(locale)
+  const comparisonPosts = (await getComparisonPosts(locale)) || []
 
   return (
     <>
@@ -113,7 +118,7 @@ export default async function ComparisonPage({
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />
         ))}
-      <ComparisonPageClient />
+      <ComparisonPageClient comparisonPosts={comparisonPosts} locale={locale} />
     </>
   )
 }

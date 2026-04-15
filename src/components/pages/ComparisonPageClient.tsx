@@ -492,9 +492,29 @@ const RenderValue: React.FC<{ value: boolean | string; highlight?: boolean }> = 
   return <span className="text-sm text-slate-300 font-medium">{value}</span>
 }
 
-export function ComparisonPageClient() {
+interface SanityComparisonPost {
+  _id: string
+  title: string
+  slug: string
+  excerpt?: string
+  category?: string
+  language?: string
+  featuredImage?: string
+  featuredImageAlt?: string
+  publishedAt?: string
+  readTime?: number
+  author?: { name?: string; image?: string }
+}
+
+interface ComparisonPageClientProps {
+  comparisonPosts?: SanityComparisonPost[]
+  locale?: string
+}
+
+export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: ComparisonPageClientProps = {}) {
   const { openModal } = useTrialModal()
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
+  const localePrefix = locale === 'en' ? '' : `/${locale}`
 
   return (
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
@@ -822,6 +842,61 @@ export function ComparisonPageClient() {
           </div>
         </div>
       </section>
+
+      {/* Sanity-driven comparison posts */}
+      {comparisonPosts.length > 0 && (
+        <section className="py-16 lg:py-24 bg-brand-black border-b border-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <SectionBadge variant="cyan" className="mb-6">Latest Comparisons</SectionBadge>
+              <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
+                More Platform Comparisons
+              </h2>
+              <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+                Fresh comparison articles published by our team.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {comparisonPosts.map((post) => (
+                <a
+                  key={post._id}
+                  href={`${localePrefix}/comparison/${post.slug}`}
+                  className="group bg-brand-card border border-slate-700 hover:border-brand-cyan/50 rounded-2xl overflow-hidden transition-all duration-300"
+                >
+                  {post.featuredImage && (
+                    <div className="relative h-48 overflow-hidden bg-slate-800">
+                      <img
+                        src={post.featuredImage}
+                        alt={post.featuredImageAlt || post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      {post.category && (
+                        <span className="absolute top-3 left-3 font-mono text-[10px] uppercase font-bold bg-brand-cyan px-2 py-1 rounded text-white">
+                          {post.category}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-2 line-clamp-2 group-hover:text-brand-cyan transition-colors">
+                      {post.title}
+                    </h3>
+                    {post.excerpt && (
+                      <p className="text-sm text-slate-400 line-clamp-3 mb-4">{post.excerpt}</p>
+                    )}
+                    <div className="flex items-center gap-3 text-xs text-slate-500">
+                      {post.author?.name && <span>{post.author.name}</span>}
+                      {post.readTime && <span>• {post.readTime} min read</span>}
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   )
 }

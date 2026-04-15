@@ -791,3 +791,114 @@ export async function getAllAuthorSlugs() {
   const query = `*[_type == "author" && defined(slug.current)]{ "slug": slug.current }`
   return sanityClient.fetch(query)
 }
+
+// ─── Comparison Posts ────────────────────────────────────────────────────────
+
+export async function getComparisonPosts(locale: string = 'en', limit?: number) {
+  const sanityLanguage = toSanityLang(locale)
+  const limitClause = limit ? `[0...${limit}]` : ''
+  const query = `*[_type == "comparisonPost" && language == $sanityLanguage] | order(publishedAt desc) ${limitClause} {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    category,
+    language,
+    "featuredImage": featuredImage.asset->url,
+    "featuredImageAlt": featuredImage.alt,
+    publishedAt,
+    readTime,
+    author{ name, "image": image.asset->url }
+  }`
+  return sanityClient.fetch(query, { sanityLanguage })
+}
+
+export async function getComparisonPost(slug: string, locale: string = 'en', preview: boolean = false) {
+  const sanityLanguage = toSanityLang(locale)
+  const client = preview ? sanityDraftClient : sanityClient
+  const query = `*[_type == "comparisonPost" && slug.current == $slug && language == $sanityLanguage][0]{
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    "content": body[]{
+      ...,
+      _type == "image" => {
+        ...,
+        "url": asset->url
+      }
+    },
+    category,
+    "categories": categories[]->{title, "slug": slug.current, link},
+    language,
+    translationGroupId,
+    "featuredImage": featuredImage.asset->url,
+    "featuredImageAlt": featuredImage.alt,
+    "featuredImageMeta": featuredImage.asset->metadata.dimensions,
+    "socialShareImage": socialShareImage.asset->url,
+    "socialShareImageAlt": socialShareImage.alt,
+    "socialShareImageMeta": socialShareImage.asset->metadata.dimensions,
+    ogTitle,
+    ogDescription,
+    twitterTitle,
+    twitterDescription,
+    publishedAt,
+    updatedAt,
+    readTime,
+    "author": coalesce(
+      authorRef->{
+        name,
+        "slug": slug.current,
+        bio,
+        "image": image.asset->url,
+        "url": socialLinks.website,
+        socialLinks
+      },
+      author{
+        name,
+        bio,
+        "image": image.asset->url,
+        url
+      }
+    ),
+    quickAnswer,
+    tableOfContents[]{
+      label,
+      id
+    },
+    faqTitle,
+    "faqs": faq[]{
+      question,
+      answer,
+      plainAnswer,
+      "answerText": pt::text(answer)
+    },
+    "breadcrumbs": breadcrumbs[]{
+      name,
+      url
+    },
+    metaTitle,
+    metaDescription,
+    metaKeywords,
+    "ogImage": ogImage.asset->url,
+    noindex,
+    nofollow,
+    jsonLdSchemas,
+    customMetaTags,
+    viewCount
+  }`
+  return client.fetch(query, { slug, sanityLanguage })
+}
+
+export async function getAllComparisonSlugs() {
+  const query = `*[_type == "comparisonPost" && defined(slug.current)]{ "slug": slug.current, language }`
+  return sanityClient.fetch(query)
+}
+
+export async function getComparisonPostTranslations(translationGroupId: string) {
+  if (!translationGroupId) return []
+  const query = `*[_type == "comparisonPost" && translationGroupId == $translationGroupId]{
+    _id, "slug": slug.current, language
+  }`
+  return sanityClient.fetch(query, { translationGroupId })
+}

@@ -28,6 +28,8 @@ export async function GET(request: NextRequest) {
   let redirectUrl = '/'
   if (type === 'post') {
     redirectUrl = `${localePrefix}/blog/${slug}`
+  } else if (type === 'comparison') {
+    redirectUrl = `${localePrefix}/comparison/${slug}`
   }
 
   redirect(redirectUrl)
