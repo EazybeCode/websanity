@@ -196,20 +196,36 @@ export default async function ComparisonPostPage({
   // Parse any custom JSON-LD from jsonLdSchemas field
   const customSchemas = parseJsonLdSchemas(post.jsonLdSchemas)
 
-  // Auto-generate BreadcrumbList JSON-LD
+  // Auto-generate BreadcrumbList JSON-LD (always)
   const SITE_BASE = 'https://eazybe.com'
   const localePathPrefix = locale === 'en' ? '' : `/${locale}`
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Eazybe', item: locale === 'en' ? `${SITE_BASE}/` : `${SITE_BASE}${localePathPrefix}` },
-      { '@type': 'ListItem', position: 2, name: 'Comparison', item: `${SITE_BASE}${localePathPrefix}/comparison` },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE_BASE}${localePathPrefix}/comparison/${slug}` },
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Eazybe',
+        item: locale === 'en' ? `${SITE_BASE}/` : `${SITE_BASE}${localePathPrefix}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Comparison',
+        item: `${SITE_BASE}${localePathPrefix}/comparison`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.featuredImageAlt || post.title,
+        item: `${SITE_BASE}${localePathPrefix}/comparison/${slug}`,
+      },
     ],
   }
 
   // Auto-generate FAQPage JSON-LD (only if FAQs exist)
+  // Uses plainAnswer > answerText (extracted plain text) > stringified answer as fallback
   const faqSchema = post.faqs && post.faqs.length > 0
     ? {
         '@context': 'https://schema.org',
@@ -219,7 +235,7 @@ export default async function ComparisonPostPage({
           name: faq.question,
           acceptedAnswer: {
             '@type': 'Answer',
-            text: faq.plainAnswer || faq.answer || '',
+            text: faq.plainAnswer || faq.answerText || (typeof faq.answer === 'string' ? faq.answer : ''),
           },
         })),
       }
