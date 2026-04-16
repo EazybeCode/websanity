@@ -13,8 +13,13 @@ import buttonCTA from './buttonCTA.js'
 import quote from './quote.js'
 import fileDownload from './fileDownload.js'
 import comparisonTable from './comparisonTable.js'
+import author from './author.js'
+import blogCategory from './blogCategory.js'
 
 export default [
+  // Document types
+  author,
+  blogCategory,
   // Object types (used within arrays/fields)
   table,
   accordion,

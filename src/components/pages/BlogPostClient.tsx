@@ -115,8 +115,6 @@ interface BlogPostClientProps {
   locale: string
   translations?: BlogTranslation[]
   initialViewCount?: number
-  /** 'post' (default) or 'comparison' — routes views API to the right document type */
-  contentType?: 'post' | 'comparison'
 }
 
 // ─── Utility Functions ─────────────────────────────────────────────────────
@@ -667,7 +665,6 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
   locale,
   translations = [],
   initialViewCount = 0,
-  contentType = 'post',
 }) => {
   const t = useTranslations()
   const router = useRouter()
@@ -677,9 +674,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
   const relatedPostsSection = blogIndex?.relatedPostsSection
   const detailLabels = blogIndex?.detailLabels
 
-  const sectionPath = contentType === 'comparison' ? 'comparison' : 'blog'
-  const blogPath = locale === 'en' ? `/${sectionPath}` : `/${locale}/${sectionPath}`
-  const sectionLabel = contentType === 'comparison' ? 'Comparison' : 'Blog'
+  const blogPath = locale === 'en' ? '/blog' : `/${locale}/blog`
 
   // Dynamically extract TOC from content headings
   const dynamicToc = useMemo(() => {
@@ -718,12 +713,12 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
     fetch('/api/views', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slug, locale, type: contentType }),
+      body: JSON.stringify({ slug, locale }),
     })
       .then(res => res.ok ? res.json() : null)
       .then(data => { if (data?.views) setViewCount(data.views) })
       .catch(() => {})
-  }, [slug, locale, contentType])
+  }, [slug, locale])
 
   // Create portable text components with heading IDs
   const portableTextComponents = useMemo(() => {
@@ -751,7 +746,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
             <ChevronRight size={12} className="text-slate-600 md:hidden" />
             <ChevronRight size={14} className="text-slate-600 hidden md:block" />
             <Link href={blogPath} className="text-slate-500 hover:text-white transition-colors">
-              {sectionLabel}
+              Blog
             </Link>
             <ChevronRight size={12} className="text-slate-600 md:hidden" />
             <ChevronRight size={14} className="text-slate-600 hidden md:block" />

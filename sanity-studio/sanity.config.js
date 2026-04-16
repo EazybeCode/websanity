@@ -6,6 +6,7 @@ import customSchemaTypes from './schemas/index.js'
 import { TranslationLinks } from './schemas/TranslationLinks.jsx'
 import { CreateTranslationsAction } from './actions/createTranslations.jsx'
 import { OpenPreviewAction } from './actions/openPreview.jsx'
+import { ReadTimeInput } from './components/ReadTimeInput.jsx'
 
 /**
  * Eazybe Enterprise CMS with JSON-LD Structured Data
@@ -310,8 +311,9 @@ const blogPost = {
       title: 'Read Time (minutes)',
       type: 'number',
       fieldset: 'metadata',
-      initialValue: 5,
-      description: 'Estimated reading time',
+      initialValue: 1,
+      description: 'Auto-calculated from body content (220 wpm). You can override manually.',
+      components: { input: ReadTimeInput },
     },
     {
       name: 'author',
@@ -326,6 +328,45 @@ const blogPost = {
       ],
     },
     {
+      name: 'categories',
+      title: 'Categories (References)',
+      type: 'array',
+      fieldset: 'metadata',
+      of: [{ type: 'reference', to: [{ type: 'blogCategory' }] }],
+      description: 'Tag this post with one or more category documents',
+    },
+    {
+      name: 'quickAnswer',
+      title: 'Quick Answer',
+      type: 'text',
+      fieldset: 'metadata',
+      rows: 4,
+      description: 'Short direct answer shown at the top of the post (for featured snippets)',
+    },
+    {
+      name: 'tableOfContents',
+      title: 'Table of Contents',
+      type: 'array',
+      fieldset: 'metadata',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'label', type: 'string', title: 'Label' },
+            { name: 'id', type: 'string', title: 'Anchor ID', description: 'Heading id to jump to (e.g. "features")' },
+          ],
+        },
+      ],
+      description: 'Custom TOC overrides auto-generated one',
+    },
+    {
+      name: 'faqTitle',
+      title: 'FAQ Section Title',
+      type: 'string',
+      fieldset: 'metadata',
+      description: 'Custom H2 for the FAQ section (e.g. "Frequently Asked Questions")',
+    },
+    {
       name: 'faq',
       title: 'FAQs',
       type: 'array',
@@ -335,7 +376,45 @@ const blogPost = {
           type: 'object',
           fields: [
             { name: 'question', type: 'string', title: 'Question', validation: Rule => Rule.required() },
-            { name: 'answer', type: 'text', title: 'Answer', rows: 3, validation: Rule => Rule.required() },
+            {
+              name: 'answer',
+              title: 'Answer (Rich Text)',
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [{ title: 'Normal', value: 'normal' }],
+                  lists: [
+                    { title: 'Bullet', value: 'bullet' },
+                    { title: 'Numbered', value: 'number' },
+                  ],
+                  marks: {
+                    decorators: [
+                      { title: 'Bold', value: 'strong' },
+                      { title: 'Italic', value: 'em' },
+                    ],
+                    annotations: [
+                      {
+                        name: 'link',
+                        type: 'object',
+                        fields: [
+                          { name: 'href', type: 'url', title: 'URL' },
+                          { name: 'openInNewTab', type: 'boolean', title: 'Open in new tab', initialValue: true },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+              description: 'Rich text with links. Falls back to plain answer if empty.',
+            },
+            {
+              name: 'plainAnswer',
+              title: 'Plain Text Answer',
+              type: 'text',
+              rows: 3,
+              description: 'Plain-text fallback used for FAQPage JSON-LD schema',
+            },
             { name: 'acceptedAnswer', type: 'text', title: 'Accepted Answer', rows: 3, description: 'For QAPage schema - best/most detailed answer' }
           ],
           preview: {
@@ -365,8 +444,82 @@ const blogPost = {
       description: 'Breadcrumb trail for BreadcrumbList schema',
     },
 
+    // === ADDITIONAL METADATA ===
+    {
+      name: 'authorRef',
+      title: '👤 Author (Reference)',
+      type: 'reference',
+      fieldset: 'metadata',
+      to: [{ type: 'author' }],
+      description: 'Link to an author document (preferred over the inline Author object above)',
+    },
+    {
+      name: 'updatedAt',
+      title: '🕒 Last Updated',
+      type: 'datetime',
+      fieldset: 'metadata',
+      description: 'Used for article:modified_time meta tag and dateModified schema',
+    },
+    {
+      name: 'viewCount',
+      title: '👁️ View Count',
+      type: 'number',
+      fieldset: 'metadata',
+      initialValue: 0,
+      description: 'Auto-incremented when page is viewed (display multiplied by 7 on the site)',
+    },
+
     // === SEO ===
     ...seoFields.map(field => ({ ...field, fieldset: 'seo' })),
+    {
+      name: 'metaKeywords',
+      title: 'Meta Keywords',
+      type: 'text',
+      fieldset: 'seo',
+      rows: 2,
+      description: 'Comma-separated keywords (legacy SEO — still used by some search engines)',
+    },
+    {
+      name: 'socialShareImage',
+      title: 'Social Share Image (OG / Twitter)',
+      type: 'image',
+      fieldset: 'seo',
+      options: { hotspot: true },
+      fields: [
+        { name: 'alt', type: 'string', title: 'Alt Text' },
+      ],
+      description: '1200×630 recommended. Used for Open Graph + Twitter cards.',
+    },
+    {
+      name: 'ogTitle',
+      title: 'Open Graph Title',
+      type: 'string',
+      fieldset: 'seo',
+      description: 'Title shown when shared on Facebook / LinkedIn (falls back to meta title)',
+    },
+    {
+      name: 'ogDescription',
+      title: 'Open Graph Description',
+      type: 'text',
+      fieldset: 'seo',
+      rows: 2,
+      description: 'Description when shared on Facebook / LinkedIn',
+    },
+    {
+      name: 'twitterTitle',
+      title: 'Twitter Title',
+      type: 'string',
+      fieldset: 'seo',
+      description: 'Title for Twitter card (falls back to OG title)',
+    },
+    {
+      name: 'twitterDescription',
+      title: 'Twitter Description',
+      type: 'text',
+      fieldset: 'seo',
+      rows: 2,
+      description: 'Description for Twitter card',
+    },
 
     // === JSON-LD SCHEMAS ===
     jsonLdSchemasField,
@@ -385,6 +538,397 @@ const blogPost = {
       return {
         title: `${langFlag} ${title}`,
         subtitle: `${language.toUpperCase()} • ${date} • /${slug}`,
+        media: featuredImage,
+      }
+    },
+  },
+}
+
+// Comparison Post Schema — separate document type from blog post for /comparison articles
+const comparisonPost = {
+  name: 'comparisonPost',
+  title: 'Comparison Post',
+  type: 'document',
+  fieldsets: [
+    { name: 'content', title: '📝 Content', options: { collapsible: false } },
+    { name: 'seo', title: '🔍 SEO & Discovery', options: { collapsible: true, collapsed: false } },
+    { name: 'schemas', title: '📊 JSON-LD Schemas', options: { collapsible: true, collapsed: true } },
+    { name: 'metadata', title: '⚙️ Metadata', options: { collapsible: true, collapsed: true } },
+  ],
+  fields: [
+    // === LANGUAGE & TRANSLATION ===
+    {
+      name: 'language',
+      title: '🌍 Language',
+      type: 'string',
+      options: {
+        list: [
+          { title: '🇬🇧 English (en) - Default, no URL prefix', value: 'en' },
+          { title: '🇪🇸 Spanish (es) - /es/* URLs', value: 'es' },
+          { title: '🇹🇷 Turkish (tr) - /tr/* URLs', value: 'tr' },
+          { title: '🇧🇷 Portuguese (pt-BR) - /br/* URLs', value: 'pt-BR' },
+        ],
+      },
+      initialValue: 'en',
+      validation: Rule => Rule.required(),
+      description: 'Language determines URL prefix and hreflang links',
+    },
+    {
+      name: 'translationGroupId',
+      title: '🔗 Translation Group ID',
+      type: 'string',
+      description: 'Same ID across all language versions links them together (e.g. "comparison-eazybe-vs-wati").',
+    },
+
+    // === CONTENT ===
+    {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      fieldset: 'content',
+      validation: Rule => Rule.required().min(10).warning('Should be 10+ chars for SEO'),
+      description: 'SEO-optimized headline (e.g. "Eazybe vs WATI")',
+    },
+    {
+      name: 'slug',
+      title: 'URL Slug',
+      type: 'slug',
+      fieldset: 'content',
+      options: {
+        source: 'title',
+        maxLength: 96,
+        slugify: input => input
+          .toLowerCase()
+          .trim()
+          .replace(/\s+/g, '-')
+          .replace(/[^\w\-]+/g, '')
+          .replace(/\-\-+/g, '-'),
+        isUnique: () => true,
+      },
+      validation: Rule => Rule.required(),
+      description: 'URL slug — lives at /comparison/{slug}',
+    },
+    {
+      name: 'excerpt',
+      title: 'Excerpt / Summary',
+      type: 'text',
+      fieldset: 'content',
+      rows: 4,
+      validation: Rule => Rule.max(300).warning('Keep under 300 chars'),
+      description: 'Summary for comparison cards, social shares, and search',
+    },
+    {
+      name: 'body',
+      title: 'Body Content',
+      type: 'array',
+      fieldset: 'content',
+      of: [
+        {
+          type: 'block',
+          styles: [
+            { title: 'Paragraph', value: 'normal' },
+            { title: 'Heading 1', value: 'h1' },
+            { title: 'Heading 2', value: 'h2' },
+            { title: 'Heading 3', value: 'h3' },
+            { title: 'Heading 4', value: 'h4' },
+            { title: 'Quote', value: 'blockquote' },
+          ],
+          lists: [
+            { title: 'Bullet Points', value: 'bullet' },
+            { title: 'Numbered List', value: 'number' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+              { title: 'Code', value: 'code' },
+              { title: 'Underline', value: 'underline' },
+              { title: 'Strikethrough', value: 'strike-through' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                fields: [
+                  { name: 'href', type: 'url', title: 'URL' },
+                  { name: 'openInNewTab', type: 'boolean', title: 'Open in new tab', initialValue: true },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            { name: 'alt', type: 'string', title: 'Alt Text', description: 'Describe the image for accessibility and SEO' },
+            { name: 'caption', type: 'string', title: 'Caption', description: 'Optional caption displayed below the image' },
+          ],
+        },
+        { type: 'table' },
+        { type: 'accordion' },
+        { type: 'callout' },
+        { type: 'codeBlock' },
+        { type: 'imageGallery' },
+        { type: 'videoEmbed' },
+        { type: 'buttonCTA' },
+        { type: 'quote' },
+        { type: 'fileDownload' },
+        { type: 'comparisonTable' },
+      ],
+    },
+    {
+      name: 'featuredImage',
+      title: 'Featured Image',
+      type: 'image',
+      fieldset: 'content',
+      options: { hotspot: true },
+      fields: [
+        { name: 'alt', type: 'string', title: 'Alt Text', description: 'Describe image for accessibility and SEO' },
+      ],
+    },
+
+    // === METADATA ===
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      fieldset: 'metadata',
+      options: {
+        list: ['CRM Comparison', 'Tool Comparison', 'Integration Comparison', 'Alternative'],
+      },
+    },
+    {
+      name: 'publishedAt',
+      title: 'Published Date',
+      type: 'datetime',
+      fieldset: 'metadata',
+      initialValue: () => new Date().toISOString(),
+    },
+    {
+      name: 'readTime',
+      title: 'Read Time (minutes)',
+      type: 'number',
+      fieldset: 'metadata',
+      initialValue: 1,
+      description: 'Auto-calculated from body content (220 wpm). You can override manually.',
+      components: { input: ReadTimeInput },
+    },
+    {
+      name: 'author',
+      title: 'Author (Inline)',
+      type: 'object',
+      fieldset: 'metadata',
+      fields: [
+        { name: 'name', type: 'string', title: 'Name' },
+        { name: 'bio', type: 'text', title: 'Bio', rows: 2 },
+        { name: 'image', type: 'image', title: 'Author Photo' },
+        { name: 'url', type: 'url', title: 'Author URL' },
+      ],
+    },
+    {
+      name: 'authorRef',
+      title: '👤 Author (Reference)',
+      type: 'reference',
+      fieldset: 'metadata',
+      to: [{ type: 'author' }],
+      description: 'Link to an author document (preferred over inline author)',
+    },
+    {
+      name: 'categories',
+      title: 'Categories (References)',
+      type: 'array',
+      fieldset: 'metadata',
+      of: [{ type: 'reference', to: [{ type: 'blogCategory' }] }],
+      description: 'Tag this comparison with one or more category documents',
+    },
+    {
+      name: 'quickAnswer',
+      title: 'Quick Answer',
+      type: 'text',
+      fieldset: 'metadata',
+      rows: 4,
+      description: 'Short direct answer shown at the top (for featured snippets)',
+    },
+    {
+      name: 'tableOfContents',
+      title: 'Table of Contents',
+      type: 'array',
+      fieldset: 'metadata',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'label', type: 'string', title: 'Label' },
+            { name: 'id', type: 'string', title: 'Anchor ID' },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'faqTitle',
+      title: 'FAQ Section Title',
+      type: 'string',
+      fieldset: 'metadata',
+      description: 'Custom H2 for the FAQ section',
+    },
+    {
+      name: 'faq',
+      title: 'FAQs',
+      type: 'array',
+      fieldset: 'metadata',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'question', type: 'string', title: 'Question', validation: Rule => Rule.required() },
+            {
+              name: 'answer',
+              title: 'Answer (Rich Text)',
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [{ title: 'Normal', value: 'normal' }],
+                  lists: [
+                    { title: 'Bullet', value: 'bullet' },
+                    { title: 'Numbered', value: 'number' },
+                  ],
+                  marks: {
+                    decorators: [
+                      { title: 'Bold', value: 'strong' },
+                      { title: 'Italic', value: 'em' },
+                    ],
+                    annotations: [
+                      {
+                        name: 'link',
+                        type: 'object',
+                        fields: [
+                          { name: 'href', type: 'url', title: 'URL' },
+                          { name: 'openInNewTab', type: 'boolean', title: 'Open in new tab', initialValue: true },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+              description: 'Rich text with links. Falls back to plain answer if empty.',
+            },
+            {
+              name: 'plainAnswer',
+              title: 'Plain Text Answer',
+              type: 'text',
+              rows: 3,
+              description: 'Plain-text fallback used for FAQPage JSON-LD schema',
+            },
+            { name: 'acceptedAnswer', type: 'text', title: 'Accepted Answer', rows: 3 },
+          ],
+          preview: {
+            select: { question: 'question' },
+            prepare({ question }) {
+              return { title: question?.substring(0, 50) + '...' }
+            },
+          },
+        },
+      ],
+      description: 'FAQs auto-generate FAQPage JSON-LD schema',
+    },
+    {
+      name: 'breadcrumbs',
+      title: 'Breadcrumbs',
+      type: 'array',
+      fieldset: 'metadata',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'name', type: 'string', title: 'Label', validation: Rule => Rule.required() },
+            { name: 'url', type: 'string', title: 'URL', validation: Rule => Rule.required() },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'updatedAt',
+      title: '🕒 Last Updated',
+      type: 'datetime',
+      fieldset: 'metadata',
+      description: 'Used for article:modified_time and dateModified schema',
+    },
+    {
+      name: 'viewCount',
+      title: '👁️ View Count',
+      type: 'number',
+      fieldset: 'metadata',
+      initialValue: 0,
+      description: 'Auto-incremented on view (display multiplied by 7)',
+    },
+
+    // === SEO ===
+    ...seoFields.map(field => ({ ...field, fieldset: 'seo' })),
+    {
+      name: 'metaKeywords',
+      title: 'Meta Keywords',
+      type: 'text',
+      fieldset: 'seo',
+      rows: 2,
+      description: 'Comma-separated keywords',
+    },
+    {
+      name: 'socialShareImage',
+      title: 'Social Share Image (OG / Twitter)',
+      type: 'image',
+      fieldset: 'seo',
+      options: { hotspot: true },
+      fields: [
+        { name: 'alt', type: 'string', title: 'Alt Text' },
+      ],
+      description: '1200×630 recommended. Used for Open Graph + Twitter cards.',
+    },
+    {
+      name: 'ogTitle',
+      title: 'Open Graph Title',
+      type: 'string',
+      fieldset: 'seo',
+    },
+    {
+      name: 'ogDescription',
+      title: 'Open Graph Description',
+      type: 'text',
+      fieldset: 'seo',
+      rows: 2,
+    },
+    {
+      name: 'twitterTitle',
+      title: 'Twitter Title',
+      type: 'string',
+      fieldset: 'seo',
+    },
+    {
+      name: 'twitterDescription',
+      title: 'Twitter Description',
+      type: 'text',
+      fieldset: 'seo',
+      rows: 2,
+    },
+
+    // === JSON-LD SCHEMAS ===
+    jsonLdSchemasField,
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      slug: 'slug.current',
+      language: 'language',
+      publishedAt: 'publishedAt',
+      featuredImage: 'featuredImage',
+    },
+    prepare({ title, slug, language, publishedAt, featuredImage }) {
+      const langFlag = { 'en': '🇬🇧', 'es': '🇪🇸', 'tr': '🇹🇷', 'pt-BR': '🇧🇷', 'br': '🇧🇷' }[language] || '🌐'
+      const date = publishedAt ? new Date(publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Draft'
+      return {
+        title: `⚖️ ${langFlag} ${title}`,
+        subtitle: `${(language || 'en').toUpperCase()} • ${date} • /comparison/${slug}`,
         media: featuredImage,
       }
     },
@@ -967,12 +1511,15 @@ export default defineConfig({
   projectId: '5awzi0t4',
   dataset: 'production',
   schema: {
-    types: [blogPost, feature, integration, page, categoryIndexPage, redirect, ...customSchemaTypes],
+    types: [blogPost, comparisonPost, feature, integration, page, categoryIndexPage, redirect, ...customSchemaTypes],
   },
   document: {
     actions: (prev, context) => {
       if (context.schemaType === 'post') {
         return [...prev, CreateTranslationsAction, OpenPreviewAction]
+      }
+      if (context.schemaType === 'comparisonPost') {
+        return [...prev, OpenPreviewAction]
       }
       return prev
     },
@@ -1078,6 +1625,57 @@ export default defineConfig({
                                 )
                               )
                           )
+                      ),
+                  ])
+              ),
+            S.listItem()
+              .title('Comparisons')
+              .icon(() => '⚖️')
+              .child(
+                S.list()
+                  .title('Comparison Posts')
+                  .items([
+                    S.listItem()
+                      .title('All Comparison Posts')
+                      .icon(() => '📋')
+                      .child(
+                        S.documentTypeList('comparisonPost')
+                          .title('All Comparison Posts')
+                          .filter('_type == "comparisonPost"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.divider(),
+                    S.listItem()
+                      .title('🇬🇧 English')
+                      .child(
+                        S.documentTypeList('comparisonPost')
+                          .title('English Comparisons')
+                          .filter('_type == "comparisonPost" && language == "en"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.listItem()
+                      .title('🇪🇸 Spanish')
+                      .child(
+                        S.documentTypeList('comparisonPost')
+                          .title('Spanish Comparisons')
+                          .filter('_type == "comparisonPost" && language == "es"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.listItem()
+                      .title('🇹🇷 Turkish')
+                      .child(
+                        S.documentTypeList('comparisonPost')
+                          .title('Turkish Comparisons')
+                          .filter('_type == "comparisonPost" && language == "tr"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.listItem()
+                      .title('🇧🇷 Portuguese')
+                      .child(
+                        S.documentTypeList('comparisonPost')
+                          .title('Portuguese Comparisons')
+                          .filter('_type == "comparisonPost" && language == "pt-BR"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
                       ),
                   ])
               ),
