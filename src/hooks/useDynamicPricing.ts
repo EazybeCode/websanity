@@ -140,7 +140,7 @@ export function useDynamicPricing() {
 
   const getExchangeRateService = async (): Promise<ExchangeRateResponse | null> => {
     try {
-      const res = await fetch('https://eazybe.com/api/v1/whatzapp/exchangeRateService')
+      const res = await fetch('https://cerberus.eazybe.com/prod/api/v1/exchangeRateService')
       return await res.json()
     } catch {
       return null
