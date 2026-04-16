@@ -1519,7 +1519,7 @@ export default defineConfig({
         return [...prev, CreateTranslationsAction, OpenPreviewAction]
       }
       if (context.schemaType === 'comparisonPost') {
-        return [...prev, OpenPreviewAction]
+        return [...prev, CreateTranslationsAction, OpenPreviewAction]
       }
       return prev
     },
@@ -1676,6 +1676,52 @@ export default defineConfig({
                           .title('Portuguese Comparisons')
                           .filter('_type == "comparisonPost" && language == "pt-BR"')
                           .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.divider(),
+                    S.listItem()
+                      .title('📦 By Translation Group')
+                      .child(() =>
+                        context.getClient({ apiVersion: '2024-01-01' })
+                          .fetch(`*[_type == "comparisonPost" && language == "en"] | order(publishedAt desc) {
+                            _id, title, translationGroupId, "slug": slug.current,
+                            "translations": *[_type == "comparisonPost" && translationGroupId == ^.translationGroupId && _id != ^._id]{_id, language, title}
+                          }`)
+                          .then(posts =>
+                            S.list()
+                              .title('Translation Groups')
+                              .items(
+                                posts.map(post =>
+                                  S.listItem()
+                                    .id(post._id)
+                                    .title(`${post.title} (${(post.translations?.length || 0) + 1} langs)`)
+                                    .child(
+                                      S.list()
+                                        .title(post.title)
+                                        .items([
+                                          S.listItem()
+                                            .id(post._id)
+                                            .title(`🇬🇧 ${post.title}`)
+                                            .child(
+                                              S.document()
+                                                .schemaType('comparisonPost')
+                                                .documentId(post._id)
+                                            ),
+                                          ...(post.translations || []).map(t => {
+                                            const flag = { 'es': '🇪🇸', 'tr': '🇹🇷', 'pt-BR': '🇧🇷' }[t.language] || '🌐'
+                                            return S.listItem()
+                                              .id(t._id)
+                                              .title(`${flag} ${t.title}`)
+                                              .child(
+                                                S.document()
+                                                  .schemaType('comparisonPost')
+                                                  .documentId(t._id)
+                                              )
+                                          }),
+                                        ])
+                                    )
+                                )
+                              )
+                          )
                       ),
                   ])
               ),
