@@ -8,7 +8,6 @@ import {
   Zap,
   Shield,
   Users,
-  TrendingUp,
   Star,
   ArrowRight,
   MessageSquare,
@@ -17,12 +16,12 @@ import {
   Calendar,
   DollarSign,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  TrendingUp
 } from 'lucide-react'
 import { SectionBadge } from '@/components/ui/SectionBadge'
 import { Button } from '@/components/ui/Button'
 import { useTrialModal } from '@/providers/TrialModalProvider'
-import { LocalizedLink } from '@/components/LocalizedLink'
 
 // Comparison data structure
 interface Competitor {
@@ -321,151 +320,6 @@ const faqItems = [
 ]
 
 // Comparison articles for blog section
-const comparisonArticles = [
-  {
-    id: 'eazybe-vs-wati',
-    slug: 'eazybe-vs-wati',
-    title: 'Eazybe vs Wati: Which WhatsApp CRM is Better?',
-    excerpt: 'Compare Eazybe and Wati head-to-head. Discover why Eazybe offers 70% cost savings with exclusive features like WhatsApp Chat Backup and Salesforce integration.',
-    category: 'Comparison',
-    readTime: 10,
-    publishedAt: '2025-03-01',
-    featuredImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop',
-    competitors: ['Eazybe', 'Wati'],
-    verdict: 'Eazybe Wins - Save 70%'
-  },
-  {
-    id: 'eazybe-vs-interakt',
-    slug: 'eazybe-vs-interakt',
-    title: 'Eazybe vs Interakt: Complete Comparison Guide',
-    excerpt: 'A detailed comparison between Eazybe and Interakt. Learn about AI features, CRM integrations, and why Eazybe offers better value for growing businesses.',
-    category: 'Comparison',
-    readTime: 9,
-    publishedAt: '2025-03-05',
-    featuredImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop',
-    competitors: ['Eazybe', 'Interakt'],
-    verdict: 'Eazybe Wins - More AI Features'
-  },
-  {
-    id: 'eazybe-vs-quickreply',
-    slug: 'eazybe-vs-quickreply',
-    title: 'Eazybe vs QuickReply: Which Platform Wins?',
-    excerpt: 'Compare Eazybe and QuickReply side-by-side. Discover exclusive features like WhatsApp Web Copilot, Revenue Inbox, and superior CRM integrations.',
-    category: 'Comparison',
-    readTime: 8,
-    publishedAt: '2025-03-08',
-    featuredImage: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=450&fit=crop',
-    competitors: ['Eazybe', 'QuickReply'],
-    verdict: 'Eazybe Wins - Better Integrations'
-  },
-  {
-    id: 'eazybe-vs-cooby',
-    slug: 'eazybe-vs-cooby',
-    title: 'Eazybe vs Cooby: Which WhatsApp CRM is Better?',
-    excerpt: 'Compare Eazybe and Cooby head-to-head. Discover why Eazybe offers better pricing, exclusive AI features, and more CRM integrations than Cooby.',
-    category: 'Comparison',
-    readTime: 8,
-    publishedAt: '2025-03-09',
-    featuredImage: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=450&fit=crop',
-    competitors: ['Eazybe', 'Cooby'],
-    verdict: 'Eazybe Wins - Better Value'
-  },
-  {
-    id: 'eazybe-vs-timelines',
-    slug: 'eazybe-vs-timelines',
-    title: 'Eazybe vs Timelines: Which WhatsApp CRM is Better?',
-    excerpt: 'Compare Eazybe and Timelines head-to-head. Discover why Eazybe offers more features at nearly half the price with exclusive AI capabilities.',
-    category: 'Comparison',
-    readTime: 8,
-    publishedAt: '2025-03-10',
-    featuredImage: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=450&fit=crop',
-    competitors: ['Eazybe', 'Timelines'],
-    verdict: 'Eazybe Wins - More Features, Lower Price'
-  },
-  {
-    id: 'eazybe-vs-rasayel',
-    slug: 'eazybe-vs-rasayel',
-    title: 'Eazybe vs Rasayel: Complete Comparison Guide',
-    excerpt: 'A detailed comparison between Eazybe and Rasayel. Learn about features, pricing, integrations, and why Eazybe is the superior choice for WhatsApp CRM.',
-    category: 'Comparison',
-    readTime: 10,
-    publishedAt: '2025-03-12',
-    featuredImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=450&fit=crop',
-    competitors: ['Eazybe', 'Rasayel'],
-    verdict: 'Eazybe Wins - Best Value for Money'
-  },
-  {
-    id: 'eazybe-vs-all',
-    slug: 'eazybe-vs-all',
-    title: 'Eazybe vs 20+ WhatsApp CRMs: Ultimate Comparison',
-    excerpt: 'See how Eazybe compares to all major WhatsApp CRM platforms. Features, pricing, integrations, and why 30,000+ businesses choose Eazybe.',
-    category: 'Comparison',
-    readTime: 15,
-    publishedAt: '2025-03-15',
-    featuredImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop',
-    competitors: ['Eazybe', '20+ Platforms'],
-    verdict: 'Eazybe Wins - #1 Choice'
-  }
-]
-
-// Comparison Card Component
-const ComparisonCard: React.FC<{ article: typeof comparisonArticles[0] }> = ({ article }) => {
-  return (
-    <LocalizedLink
-      href={`/comparison/${article.slug}`}
-      className="group bg-brand-card border border-slate-700 rounded-2xl overflow-hidden hover:border-brand-blue/50 transition-all duration-300 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-brand-blue/10 h-full flex flex-col"
-    >
-      <div className="relative h-48 overflow-hidden">
-        <img
-          src={article.featuredImage}
-          alt={article.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute top-3 left-3">
-          <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2 py-1 rounded text-white">
-            {article.category}
-          </span>
-        </div>
-        {article.verdict && (
-          <div className="absolute bottom-3 right-3">
-            <span className="font-mono text-[10px] uppercase font-bold bg-brand-green/90 px-2 py-1 rounded text-white">
-              {article.verdict}
-            </span>
-          </div>
-        )}
-      </div>
-
-      <div className="p-5 flex-1 flex flex-col">
-        <div className="flex items-center gap-2 mb-2">
-          <TrendingUp className="w-4 h-4 text-brand-cyan" />
-          <span className="font-mono text-xs text-brand-cyan uppercase">
-            {article.competitors.join(' vs ')}
-          </span>
-        </div>
-
-        <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 leading-snug group-hover:text-brand-cyan transition-colors">
-          {article.title}
-        </h3>
-
-        <p className="text-slate-400 mb-4 line-clamp-2 leading-relaxed text-sm flex-1">
-          {article.excerpt}
-        </p>
-
-        <div className="flex items-center justify-between pt-3 border-t border-slate-800">
-          <div className="flex items-center gap-3 font-mono text-[10px] uppercase text-slate-500 font-bold">
-            <span className="flex items-center gap-1">
-              <Clock size={12} /> {article.readTime} min
-            </span>
-            <span className="flex items-center gap-1">
-              <Calendar size={12} /> {new Date(article.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-            </span>
-          </div>
-          <ArrowRight className="w-4 h-4 text-brand-blue group-hover:text-brand-cyan transition-colors" />
-        </div>
-      </div>
-    </LocalizedLink>
-  )
-}
 
 // Render cell value
 const RenderValue: React.FC<{ value: boolean | string; highlight?: boolean }> = ({ value, highlight }) => {
@@ -810,50 +664,20 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
         </div>
       </section>
 
-      {/* Comparison Articles Blog Section */}
-      <section className="py-16 lg:py-24 bg-brand-surface border-y border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <SectionBadge variant="green" className="mb-6">
-              <Star className="w-4 h-4" />
-              Comparison Articles
-            </SectionBadge>
-            <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
-              Detailed Platform Comparisons
-            </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Deep-dive articles comparing Eazybe with other WhatsApp CRM platforms. Make an informed decision with our comprehensive analysis.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {comparisonArticles.map((article) => (
-              <ComparisonCard key={article.id} article={article} />
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button
-              variant="outline"
-              onClick={() => openModal('trial')}
-            >
-              Install for Free
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Sanity-driven comparison posts */}
+      {/* Comparison Articles — Sanity-driven */}
       {comparisonPosts.length > 0 && (
-        <section className="py-16 lg:py-24 bg-brand-black border-b border-slate-800">
+        <section className="py-16 lg:py-24 bg-brand-surface border-y border-slate-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <SectionBadge variant="cyan" className="mb-6">Latest Comparisons</SectionBadge>
+              <SectionBadge variant="green" className="mb-6">
+                <Star className="w-4 h-4" />
+                Comparison Articles
+              </SectionBadge>
               <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
-                More Platform Comparisons
+                Detailed Platform Comparisons
               </h2>
               <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                Fresh comparison articles published by our team.
+                Deep-dive articles comparing Eazybe with other WhatsApp CRM platforms. Make an informed decision with our comprehensive analysis.
               </p>
             </div>
 
@@ -862,37 +686,80 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
                 <a
                   key={post._id}
                   href={`${localePrefix}/comparison/${post.slug}`}
-                  className="group bg-brand-card border border-slate-700 hover:border-brand-cyan/50 rounded-2xl overflow-hidden transition-all duration-300"
+                  className="group bg-brand-card border border-slate-700 rounded-2xl overflow-hidden hover:border-brand-blue/50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-brand-blue/10 h-full flex flex-col"
                 >
-                  {post.featuredImage && (
-                    <div className="relative h-48 overflow-hidden bg-slate-800">
+                  <div className="relative h-48 overflow-hidden bg-slate-800">
+                    {post.featuredImage && (
                       <img
                         src={post.featuredImage}
                         alt={post.featuredImageAlt || post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                       />
-                      {post.category && (
-                        <span className="absolute top-3 left-3 font-mono text-[10px] uppercase font-bold bg-brand-cyan px-2 py-1 rounded text-white">
+                    )}
+                    {post.category && (
+                      <div className="absolute top-3 left-3">
+                        <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2 py-1 rounded text-white">
                           {post.category}
                         </span>
-                      )}
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2 line-clamp-2 group-hover:text-brand-cyan transition-colors">
+                      </div>
+                    )}
+                    {post.verdict && (
+                      <div className="absolute bottom-3 right-3">
+                        <span className="font-mono text-[10px] uppercase font-bold bg-brand-green/90 px-2 py-1 rounded text-white">
+                          {post.verdict}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-5 flex-1 flex flex-col">
+                    {post.competitors && post.competitors.length > 0 && (
+                      <div className="flex items-center gap-2 mb-2">
+                        <TrendingUp className="w-4 h-4 text-brand-cyan" />
+                        <span className="font-mono text-xs text-brand-cyan uppercase">
+                          {post.competitors.join(' vs ')}
+                        </span>
+                      </div>
+                    )}
+
+                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 leading-snug group-hover:text-brand-cyan transition-colors">
                       {post.title}
                     </h3>
+
                     {post.excerpt && (
-                      <p className="text-sm text-slate-400 line-clamp-3 mb-4">{post.excerpt}</p>
+                      <p className="text-slate-400 mb-4 line-clamp-2 leading-relaxed text-sm flex-1">
+                        {post.excerpt}
+                      </p>
                     )}
-                    <div className="flex items-center gap-3 text-xs text-slate-500">
-                      {post.author?.name && <span>{post.author.name}</span>}
-                      {post.readTime && <span>• {post.readTime} min read</span>}
+
+                    <div className="flex items-center justify-between pt-3 border-t border-slate-800">
+                      <div className="flex items-center gap-3 font-mono text-[10px] uppercase text-slate-500 font-bold">
+                        {post.readTime && (
+                          <span className="flex items-center gap-1">
+                            <Clock size={12} /> {post.readTime} min
+                          </span>
+                        )}
+                        {post.publishedAt && (
+                          <span className="flex items-center gap-1">
+                            <Calendar size={12} /> {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                          </span>
+                        )}
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-brand-blue group-hover:text-brand-cyan transition-colors" />
                     </div>
                   </div>
                 </a>
               ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Button
+                variant="outline"
+                onClick={() => openModal('trial')}
+              >
+                Install for Free
+              </Button>
             </div>
           </div>
         </section>

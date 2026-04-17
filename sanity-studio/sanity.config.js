@@ -699,6 +699,21 @@ const comparisonPost = {
       },
     },
     {
+      name: 'competitors',
+      title: 'Competitors',
+      type: 'array',
+      fieldset: 'metadata',
+      of: [{ type: 'string' }],
+      description: 'Names shown on the card (e.g. "Eazybe", "Wati"). Usually 2 entries.',
+    },
+    {
+      name: 'verdict',
+      title: 'Verdict Badge',
+      type: 'string',
+      fieldset: 'metadata',
+      description: 'Short verdict shown on the card image (e.g. "Eazybe Wins - Save 70%")',
+    },
+    {
       name: 'publishedAt',
       title: 'Published Date',
       type: 'datetime',

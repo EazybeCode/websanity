@@ -803,6 +803,8 @@ export async function getComparisonPosts(locale: string = 'en', limit?: number) 
     "slug": slug.current,
     excerpt,
     category,
+    competitors,
+    verdict,
     language,
     "featuredImage": featuredImage.asset->url,
     "featuredImageAlt": featuredImage.alt,
