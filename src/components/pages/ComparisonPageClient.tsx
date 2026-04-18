@@ -23,16 +23,12 @@ import { SectionBadge } from '@/components/ui/SectionBadge'
 import { Button } from '@/components/ui/Button'
 import { useTrialModal } from '@/providers/TrialModalProvider'
 
-// Comparison data structure
 interface Competitor {
   id: string
   name: string
   logo: string
   highlight: boolean
-  cta?: {
-    text: string
-    url: string
-  }
+  hasCta?: boolean
 }
 
 interface FeatureComparison {
@@ -44,17 +40,13 @@ interface FeatureComparison {
   }[]
 }
 
-// Comparison competitors
 const competitors: Competitor[] = [
   {
     id: 'eazybe',
     name: 'Eazybe',
     logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://eazybe.com&size=128',
     highlight: true,
-    cta: {
-      text: 'Install for Free',
-      url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd'
-    }
+    hasCta: true,
   },
   {
     id: 'wati',
@@ -94,234 +86,6 @@ const competitors: Competitor[] = [
   }
 ]
 
-// Feature comparison data
-const featureComparisons: FeatureComparison[] = [
-  {
-    category: 'Core Features',
-    features: [
-      {
-        name: 'WhatsApp Web Integration',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
-      },
-      {
-        name: 'Team Inbox',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
-      },
-      {
-        name: 'WhatsApp Chat Backup',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'Unlimited Quick Replies',
-        values: { eazybe: true, wati: 'Limited', interakt: 'Limited', quickreply: 'Limited', cooby: true, timelines: 'Limited', rasayel: 'Limited' },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'Scheduled Messages',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
-      },
-      {
-        name: 'Bulk Messaging',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
-      }
-    ]
-  },
-  {
-    category: 'CRM Integrations',
-    features: [
-      {
-        name: 'HubSpot Integration',
-        values: { eazybe: true, wati: true, interakt: false, quickreply: false, cooby: true, timelines: true, rasayel: true }
-      },
-      {
-        name: 'Salesforce Integration',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'Zoho CRM Integration',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: false, cooby: false, timelines: false, rasayel: true }
-      },
-      {
-        name: 'Bitrix24 Integration',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'Webhook Integrations',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
-      },
-      {
-        name: 'Custom Objects Support',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      }
-    ]
-  },
-  {
-    category: 'AI & Automation',
-    features: [
-      {
-        name: 'AI Unreplied Chats Agent',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: true, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'WhatsApp Web Copilot',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'Revenue Inbox',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'RevOps Agent',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'Smart Labeling',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
-      },
-      {
-        name: 'Message Analytics',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
-      }
-    ]
-  },
-  {
-    category: 'Pricing & Value',
-    features: [
-      {
-        name: 'Starting Price (Monthly)',
-        values: { eazybe: '$13', wati: '$49', interakt: '$39', quickreply: '$29', cooby: '$19', timelines: '$25', rasayel: '$35' },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'Free Trial',
-        values: { eazybe: '7 Days', wati: '7 Days', interakt: '7 Days', quickreply: '7 Days', cooby: '7 Days', timelines: '7 Days', rasayel: '7 Days' }
-      },
-      {
-        name: 'Free Plan Available',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'Annual Discount',
-        values: { eazybe: '20%', wati: '15%', interakt: '15%', quickreply: '10%', cooby: '15%', timelines: '15%', rasayel: '10%' },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'Per User Pricing',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
-      }
-    ]
-  },
-  {
-    category: 'Support & Security',
-    features: [
-      {
-        name: 'GDPR Compliant',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
-      },
-      {
-        name: 'Meta Business Partner',
-        values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
-      },
-      {
-        name: 'Priority Support',
-        values: { eazybe: true, wati: true, interakt: false, quickreply: true, cooby: false, timelines: true, rasayel: false }
-      },
-      {
-        name: 'Dedicated Account Manager',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      },
-      {
-        name: '24/7 Support',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
-        highlight: 'eazybe'
-      },
-      {
-        name: 'Implementation Support',
-        values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: true, rasayel: false }
-      }
-    ]
-  }
-]
-
-// Value propositions
-const valueProps = [
-  {
-    icon: <DollarSign className="w-7 h-7" />,
-    title: 'Best Price Guarantee',
-    description: 'Start at just $13/month - 70% cheaper than Wati, Interakt, and other competitors with more features included.'
-  },
-  {
-    icon: <Puzzle className="w-7 h-7" />,
-    title: 'Most Integrations',
-    description: 'Connect with 10+ CRMs including Salesforce, HubSpot, Zoho, Bitrix24 - more than any other WhatsApp CRM.'
-  },
-  {
-    icon: <Zap className="w-7 h-7" />,
-    title: 'AI-Powered Features',
-    description: 'Exclusive AI unreplied chats agent, WhatsApp Web Copilot, Revenue Inbox, and RevOps Agent not found elsewhere.'
-  },
-  {
-    icon: <Shield className="w-7 h-7" />,
-    title: 'Enterprise Security',
-    description: 'GDPR compliant, Meta Business Partner verified, with bank-grade encryption and data protection.'
-  },
-  {
-    icon: <Clock className="w-7 h-7" />,
-    title: 'Fastest Setup',
-    description: 'Get started in under 5 minutes. No setup fees or credit card required for trial.'
-  },
-  {
-    icon: <Users className="w-7 h-7" />,
-    title: 'Largest User Base',
-    description: 'Trusted by 30,000+ businesses worldwide - more users than all other WhatsApp CRMs combined.'
-  }
-]
-
-// FAQ items
-const faqItems = [
-  {
-    question: 'How does Eazybe compare to other WhatsApp CRMs?',
-    answer: 'Eazybe outperforms 20+ WhatsApp CRM platforms including Wati, Interakt, QuickReply, Cooby, Timelines, and Rasayel. We offer 70% cost savings, exclusive AI features like WhatsApp Web Copilot and Revenue Inbox, more CRM integrations including Salesforce, and features no one else has like WhatsApp Chat Backup.'
-  },
-  {
-    question: 'Why is Eazybe more affordable than competitors?',
-    answer: 'Eazybe starts at just $13/month while competitors charge $25-$49/month. We believe powerful WhatsApp CRM should be accessible to all businesses. Our efficient operations and larger user base (30,000+) allow us to offer premium features at a fraction of the cost.'
-  },
-  {
-    question: 'What exclusive features does Eazybe offer?',
-    answer: 'Eazybe offers exclusive features you won\'t find anywhere else: WhatsApp Chat Backup, Salesforce Integration, WhatsApp Web Copilot, Revenue Inbox, RevOps Agent, AI Unreplied Chats Agent, and Bitrix24 Integration. These features are not available on Wati, Interakt, QuickReply, Cooby, Timelines, or Rasayel.'
-  },
-  {
-    question: 'Is Eazybe suitable for enterprise teams?',
-    answer: 'Absolutely! Eazybe serves businesses of all sizes. Our Omnis plan includes dedicated APIs, unlimited message sync, Revenue Inbox, RevOps Agent, and a dedicated account manager for enterprise teams. We scale with your business needs.'
-  },
-  {
-    question: 'Can I migrate from another platform?',
-    answer: 'Yes! We make migration easy from any WhatsApp CRM platform. Import your existing contacts, messages, and workflows. Our team provides free migration support for annual plans to ensure a smooth transition from Wati, Interakt, QuickReply, Cooby, or any other platform.'
-  },
-  {
-    question: 'What integrations does Eazybe support?',
-    answer: 'Eazybe integrates with 10+ platforms including HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar, and custom webhooks for any other platform. More integrations than any other WhatsApp CRM.'
-  },
-  {
-    question: 'Is there a free trial?',
-    answer: 'Yes! We offer a 4-day free trial on all plans with no credit card required. You can explore all features, test integrations, and see how Eazybe fits your workflow before committing.'
-  }
-]
-
-// Comparison articles for blog section
-
-// Render cell value
 const RenderValue: React.FC<{ value: boolean | string; highlight?: boolean }> = ({ value, highlight }) => {
   if (typeof value === 'boolean') {
     return value ? (
@@ -358,6 +122,8 @@ interface SanityComparisonPost {
   publishedAt?: string
   readTime?: number
   author?: { name?: string; image?: string }
+  verdict?: string
+  competitors?: string[]
 }
 
 interface ComparisonPageClientProps {
@@ -367,14 +133,194 @@ interface ComparisonPageClientProps {
 
 export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: ComparisonPageClientProps = {}) {
   const { openModal } = useTrialModal()
+  const t = useTranslations('comparisonHub')
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
   const localePrefix = locale === 'en' ? '' : `/${locale}`
+
+  const tLimited = t('table.limited')
+  const tSevenDays = t('table.sevenDays')
+
+  const featureComparisons: FeatureComparison[] = [
+    {
+      category: t('table.categories.core'),
+      features: [
+        {
+          name: t('table.features.whatsappWebIntegration'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
+        },
+        {
+          name: t('table.features.teamInbox'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
+        },
+        {
+          name: t('table.features.whatsappChatBackup'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.unlimitedQuickReplies'),
+          values: { eazybe: true, wati: tLimited, interakt: tLimited, quickreply: tLimited, cooby: true, timelines: tLimited, rasayel: tLimited },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.scheduledMessages'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
+        },
+        {
+          name: t('table.features.bulkMessaging'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
+        }
+      ]
+    },
+    {
+      category: t('table.categories.crm'),
+      features: [
+        {
+          name: t('table.features.hubspotIntegration'),
+          values: { eazybe: true, wati: true, interakt: false, quickreply: false, cooby: true, timelines: true, rasayel: true }
+        },
+        {
+          name: t('table.features.salesforceIntegration'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.zohoCrmIntegration'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: false, cooby: false, timelines: false, rasayel: true }
+        },
+        {
+          name: t('table.features.bitrix24Integration'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.webhookIntegrations'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
+        },
+        {
+          name: t('table.features.customObjectsSupport'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        }
+      ]
+    },
+    {
+      category: t('table.categories.ai'),
+      features: [
+        {
+          name: t('table.features.aiUnrepliedChatsAgent'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: true, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.whatsappWebCopilot'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.revenueInbox'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.revopsAgent'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.smartLabeling'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
+        },
+        {
+          name: t('table.features.messageAnalytics'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
+        }
+      ]
+    },
+    {
+      category: t('table.categories.pricing'),
+      features: [
+        {
+          name: t('table.features.startingPriceMonthly'),
+          values: { eazybe: '$29', wati: '$49', interakt: '$39', quickreply: '$29', cooby: '$19', timelines: '$25', rasayel: '$35' },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.freeTrial'),
+          values: { eazybe: tSevenDays, wati: tSevenDays, interakt: tSevenDays, quickreply: tSevenDays, cooby: tSevenDays, timelines: tSevenDays, rasayel: tSevenDays }
+        },
+        {
+          name: t('table.features.freePlanAvailable'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.annualDiscount'),
+          values: { eazybe: '20%', wati: '15%', interakt: '15%', quickreply: '10%', cooby: '15%', timelines: '15%', rasayel: '10%' },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.perUserPricing'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
+        }
+      ]
+    },
+    {
+      category: t('table.categories.support'),
+      features: [
+        {
+          name: t('table.features.gdprCompliant'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
+        },
+        {
+          name: t('table.features.metaBusinessPartner'),
+          values: { eazybe: true, wati: true, interakt: true, quickreply: true, cooby: true, timelines: true, rasayel: true }
+        },
+        {
+          name: t('table.features.prioritySupport'),
+          values: { eazybe: true, wati: true, interakt: false, quickreply: true, cooby: false, timelines: true, rasayel: false }
+        },
+        {
+          name: t('table.features.dedicatedAccountManager'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.support247'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: false, rasayel: false },
+          highlight: 'eazybe'
+        },
+        {
+          name: t('table.features.implementationSupport'),
+          values: { eazybe: true, wati: false, interakt: false, quickreply: false, cooby: false, timelines: true, rasayel: false }
+        }
+      ]
+    }
+  ]
+
+  const valueProps = [
+    { icon: <DollarSign className="w-7 h-7" />, title: t('whyEazybe.bestPriceTitle'), description: t('whyEazybe.bestPriceDesc') },
+    { icon: <Puzzle className="w-7 h-7" />, title: t('whyEazybe.integrationsTitle'), description: t('whyEazybe.integrationsDesc') },
+    { icon: <Zap className="w-7 h-7" />, title: t('whyEazybe.aiTitle'), description: t('whyEazybe.aiDesc') },
+    { icon: <Shield className="w-7 h-7" />, title: t('whyEazybe.securityTitle'), description: t('whyEazybe.securityDesc') },
+    { icon: <Clock className="w-7 h-7" />, title: t('whyEazybe.setupTitle'), description: t('whyEazybe.setupDesc') },
+    { icon: <Users className="w-7 h-7" />, title: t('whyEazybe.userBaseTitle'), description: t('whyEazybe.userBaseDesc') },
+  ]
+
+  const faqItems = [
+    { question: t('faq.q1'), answer: t('faq.a1') },
+    { question: t('faq.q2'), answer: t('faq.a2') },
+    { question: t('faq.q3'), answer: t('faq.a3') },
+    { question: t('faq.q4'), answer: t('faq.a4') },
+    { question: t('faq.q5'), answer: t('faq.a5') },
+    { question: t('faq.q6'), answer: t('faq.a6') },
+    { question: t('faq.q7'), answer: t('faq.a7') },
+  ]
 
   return (
     <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-brand-black">
-        {/* Background Effects */}
         <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-blue/10 rounded-full blur-[120px] -z-10"></div>
 
@@ -382,19 +328,19 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
           <div className="text-center max-w-4xl mx-auto">
             <SectionBadge variant="cyan" className="mb-6">
               <Star className="w-4 h-4" />
-              Platform Comparison
+              {t('hero.badge')}
             </SectionBadge>
 
             <h1 className="text-4xl lg:text-6xl font-sans font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
-              Why Eazybe Is the{' '}
+              {t('hero.titlePrefix')}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-brand-cyan to-brand-green">
-                #1 Choice
+                {t('hero.titleHighlight')}
               </span>{' '}
-              for Whatsapp CRM
+              {t('hero.titleSuffix')}
             </h1>
 
             <p className="text-xl text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed">
-              See how Eazybe compares to 20+ leading WhatsApp CRM platforms. More features, better integrations, and unbeatable pricing - all in one powerful platform.
+              {t('hero.subtitle')}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -404,14 +350,14 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
                 icon={<ArrowRight className="w-4 h-4" />}
                 onClick={() => openModal('trial')}
               >
-                Start 4-Day Free Trial
+                {t('hero.ctaPrimary')}
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 onClick={() => document.getElementById('comparison-table')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Compare Features
+                {t('hero.ctaSecondary')}
               </Button>
             </div>
 
@@ -419,10 +365,10 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
             <div className="mt-16 flex justify-center">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 max-w-3xl">
                 {[
-                  { value: '50K+', label: 'Active Users' },
-                  { value: '4.8/5', label: 'Chrome Rating' },
-                  { value: '70%', label: 'Cost Savings' },
-                  { value: '20+', label: 'Platforms Compared' }
+                  { value: '50K+', label: t('hero.stats.activeUsers') },
+                  { value: '4.8/5', label: t('hero.stats.chromeRating') },
+                  { value: '70%', label: t('hero.stats.costSavings') },
+                  { value: '20+', label: t('hero.stats.platformsCompared') }
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
                     <div className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-cyan mb-2">
@@ -442,29 +388,26 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <SectionBadge variant="orange" className="mb-6">
-              Feature Comparison
+              {t('table.badge')}
             </SectionBadge>
             <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
-              Side-by-Side Feature Comparison
+              {t('table.title')}
             </h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Compare Eazybe with Wati, Interakt, QuickReply, Cooby, Timelines, Rasayel, and more. See why businesses choose Eazybe for superior features, more integrations, and better value.
+              {t('table.subtitle')}
             </p>
             <p className="text-sm text-slate-500 mt-2 md:hidden">
-              Swipe left to see more
+              {t('table.swipeHint')}
             </p>
           </div>
 
-          {/* Comparison Table */}
           <div className="relative rounded-2xl border border-slate-700 bg-brand-card overflow-hidden">
-            {/* Mobile scroll wrapper */}
             <div className="overflow-x-auto -mx-4 px-4 lg:mx-0 lg:px-0">
               <div className="min-w-[1200px]">
-                {/* Table Header */}
                 <div className="grid grid-cols-8 border-b border-slate-700 bg-brand-surface">
                   <div className="p-4 lg:p-6">
                     <span className="font-mono text-xs font-bold uppercase tracking-widest text-slate-500">
-                      Features
+                      {t('table.featuresHeader')}
                     </span>
                   </div>
                   {competitors.map((competitor, index) => (
@@ -485,17 +428,17 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
                         </span>
                         {competitor.highlight && (
                           <span className="inline-block px-3 py-1 bg-brand-green/20 text-brand-green text-xs font-bold rounded-full">
-                            RECOMMENDED
+                            {t('table.recommended')}
                           </span>
                         )}
-                        {competitor.cta && (
+                        {competitor.hasCta && (
                           <Button
                             variant={competitor.highlight ? 'primary' : 'outline'}
                             size="sm"
                             className="mt-2 text-xs"
                             onClick={() => openModal('trial')}
                           >
-                            {competitor.cta.text}
+                            {t('table.installFree')}
                           </Button>
                         )}
                       </div>
@@ -503,10 +446,8 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
                   ))}
                 </div>
 
-                {/* Table Body */}
                 {featureComparisons.map((category) => (
                   <div key={category.category}>
-                    {/* Category Header */}
                     <div className="grid grid-cols-8 border-b border-slate-800 bg-slate-900/50">
                       <div className="p-3 lg:p-4 col-span-5">
                         <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-cyan">
@@ -515,7 +456,6 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
                       </div>
                     </div>
 
-                    {/* Category Features */}
                     {category.features.map((feature, featureIndex) => (
                       <div
                         key={featureIndex}
@@ -554,13 +494,13 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
           <div className="text-center mb-16">
             <SectionBadge variant="green" className="mb-6">
               <CheckCircle2 className="w-4 h-4" />
-              Why Eazybe
+              {t('whyEazybe.badge')}
             </SectionBadge>
             <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
-              Why 30,000+ Businesses Choose Eazybe
+              {t('whyEazybe.title')}
             </h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Discover why 30,000+ businesses choose Eazybe over Wati, Interakt, QuickReply, Cooby, Timelines, Rasayel, and 20+ other platforms.
+              {t('whyEazybe.subtitle')}
             </p>
           </div>
 
@@ -592,10 +532,10 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
       <section className="py-16 lg:py-24 bg-gradient-to-br from-brand-blue/10 via-brand-cyan/10 to-brand-green/10 border-y border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-6">
-            Ready to Transform Your WhatsApp Communication?
+            {t('cta.title')}
           </h2>
           <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-            Join 30,000+ businesses already using Eazybe to close more deals, provide better support, and scale their operations.
+            {t('cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
@@ -604,18 +544,18 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
               icon={<ArrowRight className="w-4 h-4" />}
               onClick={() => openModal('trial')}
             >
-              Start Your Free Trial
+              {t('cta.primary')}
             </Button>
             <Button
               variant="secondary"
               size="lg"
               onClick={() => openModal('demo')}
             >
-              Book a Demo
+              {t('cta.secondary')}
             </Button>
           </div>
           <p className="mt-6 text-sm text-slate-500">
-            No credit card required - 4-day free trial - Cancel anytime
+            {t('cta.footnote')}
           </p>
         </div>
       </section>
@@ -626,13 +566,13 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
           <div className="text-center mb-16">
             <SectionBadge variant="cyan" className="mb-6">
               <MessageSquare className="w-4 h-4" />
-              FAQ
+              {t('faq.badge')}
             </SectionBadge>
             <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
-              Frequently Asked Questions
+              {t('faq.title')}
             </h2>
             <p className="text-lg text-slate-400">
-              Everything you need to know about Eazybe and how it compares to other platforms.
+              {t('faq.subtitle')}
             </p>
           </div>
 
@@ -671,13 +611,13 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
             <div className="text-center mb-12">
               <SectionBadge variant="green" className="mb-6">
                 <Star className="w-4 h-4" />
-                Comparison Articles
+                {t('articles.badge')}
               </SectionBadge>
               <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
-                Detailed Platform Comparisons
+                {t('articles.title')}
               </h2>
               <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                Deep-dive articles comparing Eazybe with other WhatsApp CRM platforms. Make an informed decision with our comprehensive analysis.
+                {t('articles.subtitle')}
               </p>
             </div>
 
@@ -758,7 +698,7 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
                 variant="outline"
                 onClick={() => openModal('trial')}
               >
-                Install for Free
+                {t('articles.installFree')}
               </Button>
             </div>
           </div>

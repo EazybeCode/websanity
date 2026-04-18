@@ -2269,5 +2269,120 @@
     "teamInbox": "Caixa de Entrada da Equipe",
     "popularIntegrations": "Integrações Populares",
     "goBack": "Voltar"
+  },
+  "comparisonHub": {
+    "hero": {
+      "badge": "Comparação de Plataformas",
+      "titlePrefix": "Por que o Eazybe é a",
+      "titleHighlight": "Escolha #1",
+      "titleSuffix": "para CRM do WhatsApp",
+      "subtitle": "Veja como o Eazybe se compara com mais de 20 plataformas líderes de CRM para WhatsApp. Mais recursos, melhores integrações e preços imbatíveis - tudo em uma plataforma poderosa.",
+      "ctaPrimary": "Iniciar Teste Grátis de 7 Dias",
+      "ctaSecondary": "Comparar Recursos",
+      "stats": {
+        "activeUsers": "Usuários Ativos",
+        "chromeRating": "Avaliação no Chrome",
+        "costSavings": "Economia de Custo",
+        "platformsCompared": "Plataformas Comparadas"
+      }
+    },
+    "table": {
+      "badge": "Comparação de Recursos",
+      "title": "Comparação de Recursos Lado a Lado",
+      "subtitle": "Compare o Eazybe com Wati, Interakt, QuickReply, Cooby, Timelines, Rasayel e mais. Veja por que as empresas escolhem o Eazybe por recursos superiores, mais integrações e melhor custo-benefício.",
+      "swipeHint": "Deslize para a esquerda para ver mais",
+      "featuresHeader": "Recursos",
+      "recommended": "RECOMENDADO",
+      "installFree": "Instalar Grátis",
+      "limited": "Limitado",
+      "sevenDays": "7 Dias",
+      "categories": {
+        "core": "Recursos Principais",
+        "crm": "Integrações CRM",
+        "ai": "IA e Automação",
+        "pricing": "Preços e Valor",
+        "support": "Suporte e Segurança"
+      },
+      "features": {
+        "whatsappWebIntegration": "Integração com WhatsApp Web",
+        "teamInbox": "Caixa de Entrada da Equipe",
+        "whatsappChatBackup": "Backup de Conversas do WhatsApp",
+        "unlimitedQuickReplies": "Respostas Rápidas Ilimitadas",
+        "scheduledMessages": "Mensagens Agendadas",
+        "bulkMessaging": "Mensagens em Massa",
+        "hubspotIntegration": "Integração com HubSpot",
+        "salesforceIntegration": "Integração com Salesforce",
+        "zohoCrmIntegration": "Integração com Zoho CRM",
+        "bitrix24Integration": "Integração com Bitrix24",
+        "webhookIntegrations": "Integrações com Webhooks",
+        "customObjectsSupport": "Suporte a Objetos Personalizados",
+        "aiUnrepliedChatsAgent": "Agente IA de Conversas Não Respondidas",
+        "whatsappWebCopilot": "Copiloto do WhatsApp Web",
+        "revenueInbox": "Caixa de Entrada de Receita",
+        "revopsAgent": "Agente RevOps",
+        "smartLabeling": "Etiquetagem Inteligente",
+        "messageAnalytics": "Análise de Mensagens",
+        "startingPriceMonthly": "Preço Inicial (Mensal)",
+        "freeTrial": "Teste Grátis",
+        "freePlanAvailable": "Plano Grátis Disponível",
+        "annualDiscount": "Desconto Anual",
+        "perUserPricing": "Preço por Usuário",
+        "gdprCompliant": "Conforme LGPD/GDPR",
+        "metaBusinessPartner": "Parceiro Meta Business",
+        "prioritySupport": "Suporte Prioritário",
+        "dedicatedAccountManager": "Gerente de Conta Dedicado",
+        "support247": "Suporte 24/7",
+        "implementationSupport": "Suporte de Implementação"
+      }
+    },
+    "whyEazybe": {
+      "badge": "Por que o Eazybe",
+      "title": "Por que mais de 30.000 empresas escolhem o Eazybe",
+      "subtitle": "Descubra por que mais de 30.000 empresas escolhem o Eazybe em vez de Wati, Interakt, QuickReply, Cooby, Timelines, Rasayel e mais de 20 outras plataformas.",
+      "bestPriceTitle": "Garantia do Melhor Preço",
+      "bestPriceDesc": "Comece por apenas $29/mês - 70% mais barato que Wati, Interakt e outros concorrentes, com mais recursos incluídos.",
+      "integrationsTitle": "Mais Integrações",
+      "integrationsDesc": "Conecte-se com mais de 10 CRMs incluindo Salesforce, HubSpot, Zoho, Bitrix24 - mais do que qualquer outro CRM do WhatsApp.",
+      "aiTitle": "Recursos com IA",
+      "aiDesc": "Agente exclusivo de IA para conversas não respondidas, Copiloto do WhatsApp Web, Caixa de Entrada de Receita e Agente RevOps que você não encontra em nenhum outro lugar.",
+      "securityTitle": "Segurança Empresarial",
+      "securityDesc": "Conforme LGPD/GDPR, verificado como Parceiro Meta Business, com criptografia de nível bancário e proteção de dados.",
+      "setupTitle": "Configuração Mais Rápida",
+      "setupDesc": "Comece em menos de 5 minutos. Sem taxas de configuração ou cartão de crédito para o teste.",
+      "userBaseTitle": "Maior Base de Usuários",
+      "userBaseDesc": "Confiado por mais de 30.000 empresas em todo o mundo - mais usuários que todos os outros CRMs do WhatsApp juntos."
+    },
+    "cta": {
+      "title": "Pronto para Transformar sua Comunicação no WhatsApp?",
+      "subtitle": "Junte-se a mais de 30.000 empresas que já usam o Eazybe para fechar mais negócios, fornecer melhor suporte e expandir suas operações.",
+      "primary": "Iniciar Teste Grátis",
+      "secondary": "Agendar Demo",
+      "footnote": "Sem cartão de crédito - teste grátis de 7 dias - Cancele a qualquer momento"
+    },
+    "faq": {
+      "badge": "FAQ",
+      "title": "Perguntas Frequentes",
+      "subtitle": "Tudo o que você precisa saber sobre o Eazybe e como ele se compara com outras plataformas.",
+      "q1": "Como o Eazybe se compara com outros CRMs do WhatsApp?",
+      "a1": "O Eazybe supera mais de 20 plataformas de CRM do WhatsApp incluindo Wati, Interakt, QuickReply, Cooby, Timelines e Rasayel. Oferecemos 70% de economia de custo, recursos exclusivos de IA como o Copiloto do WhatsApp Web e a Caixa de Entrada de Receita, mais integrações CRM incluindo Salesforce e recursos únicos como o Backup de Conversas do WhatsApp.",
+      "q2": "Por que o Eazybe é mais acessível que os concorrentes?",
+      "a2": "O Eazybe começa por apenas $29/mês enquanto os concorrentes cobram $25-$49/mês. Acreditamos que um CRM poderoso para WhatsApp deve ser acessível para todas as empresas. Nossas operações eficientes e nossa ampla base de usuários (30.000+) nos permitem oferecer recursos premium por uma fração do custo.",
+      "q3": "Quais recursos exclusivos o Eazybe oferece?",
+      "a3": "O Eazybe oferece recursos exclusivos que você não encontra em nenhum outro lugar: Backup de Conversas do WhatsApp, Integração com Salesforce, Copiloto do WhatsApp Web, Caixa de Entrada de Receita, Agente RevOps, Agente IA de Conversas Não Respondidas e Integração com Bitrix24. Esses recursos não estão disponíveis no Wati, Interakt, QuickReply, Cooby, Timelines ou Rasayel.",
+      "q4": "O Eazybe é adequado para equipes empresariais?",
+      "a4": "Com certeza! O Eazybe atende empresas de todos os tamanhos. Nosso plano Omnis inclui APIs dedicadas, sincronização ilimitada de mensagens, Caixa de Entrada de Receita, Agente RevOps e um gerente de conta dedicado para equipes empresariais. Escalamos conforme as necessidades do seu negócio.",
+      "q5": "Posso migrar de outra plataforma?",
+      "a5": "Sim! Tornamos a migração de qualquer plataforma de CRM do WhatsApp fácil. Importe seus contatos, mensagens e fluxos de trabalho existentes. Nossa equipe oferece suporte gratuito de migração nos planos anuais para garantir uma transição tranquila do Wati, Interakt, QuickReply, Cooby ou qualquer outra plataforma.",
+      "q6": "Quais integrações o Eazybe suporta?",
+      "a6": "O Eazybe integra com mais de 10 plataformas incluindo HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar e webhooks personalizados para qualquer outra plataforma. Mais integrações que qualquer outro CRM do WhatsApp.",
+      "q7": "Há um teste gratuito?",
+      "a7": "Sim! Oferecemos um teste grátis de 7 dias em todos os planos sem necessidade de cartão de crédito. Você pode explorar todos os recursos, testar integrações e ver como o Eazybe se encaixa no seu fluxo de trabalho antes de se comprometer."
+    },
+    "articles": {
+      "badge": "Artigos de Comparação",
+      "title": "Comparações Detalhadas de Plataformas",
+      "subtitle": "Artigos aprofundados comparando o Eazybe com outras plataformas de CRM do WhatsApp. Tome uma decisão informada com nossa análise abrangente.",
+      "installFree": "Instalar Grátis"
+    }
   }
 }

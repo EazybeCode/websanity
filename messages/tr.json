@@ -2194,5 +2194,120 @@
     "teamInbox": "Ekip Gelen Kutusu",
     "popularIntegrations": "Popüler Entegrasyonlar",
     "goBack": "Geri git"
+  },
+  "comparisonHub": {
+    "hero": {
+      "badge": "Platform Karşılaştırması",
+      "titlePrefix": "Eazybe Neden",
+      "titleHighlight": "#1 Tercih",
+      "titleSuffix": "WhatsApp CRM için",
+      "subtitle": "Eazybe'nin 20'den fazla önde gelen WhatsApp CRM platformuyla nasıl karşılaştırıldığını görün. Daha fazla özellik, daha iyi entegrasyonlar ve yenilmez fiyatlandırma - hepsi tek bir güçlü platformda.",
+      "ctaPrimary": "7 Günlük Ücretsiz Denemeyi Başlat",
+      "ctaSecondary": "Özellikleri Karşılaştır",
+      "stats": {
+        "activeUsers": "Aktif Kullanıcı",
+        "chromeRating": "Chrome Puanı",
+        "costSavings": "Maliyet Tasarrufu",
+        "platformsCompared": "Karşılaştırılan Platform"
+      }
+    },
+    "table": {
+      "badge": "Özellik Karşılaştırması",
+      "title": "Yan Yana Özellik Karşılaştırması",
+      "subtitle": "Eazybe'yi Wati, Interakt, QuickReply, Cooby, Timelines, Rasayel ve daha fazlasıyla karşılaştırın. İşletmelerin neden üstün özellikler, daha fazla entegrasyon ve daha iyi değer için Eazybe'yi seçtiğini görün.",
+      "swipeHint": "Daha fazlasını görmek için sola kaydırın",
+      "featuresHeader": "Özellikler",
+      "recommended": "ÖNERİLEN",
+      "installFree": "Ücretsiz Yükle",
+      "limited": "Sınırlı",
+      "sevenDays": "7 Gün",
+      "categories": {
+        "core": "Temel Özellikler",
+        "crm": "CRM Entegrasyonları",
+        "ai": "YZ ve Otomasyon",
+        "pricing": "Fiyatlandırma ve Değer",
+        "support": "Destek ve Güvenlik"
+      },
+      "features": {
+        "whatsappWebIntegration": "WhatsApp Web Entegrasyonu",
+        "teamInbox": "Ekip Gelen Kutusu",
+        "whatsappChatBackup": "WhatsApp Sohbet Yedekleme",
+        "unlimitedQuickReplies": "Sınırsız Hızlı Yanıtlar",
+        "scheduledMessages": "Zamanlanmış Mesajlar",
+        "bulkMessaging": "Toplu Mesajlaşma",
+        "hubspotIntegration": "HubSpot Entegrasyonu",
+        "salesforceIntegration": "Salesforce Entegrasyonu",
+        "zohoCrmIntegration": "Zoho CRM Entegrasyonu",
+        "bitrix24Integration": "Bitrix24 Entegrasyonu",
+        "webhookIntegrations": "Webhook Entegrasyonları",
+        "customObjectsSupport": "Özel Nesne Desteği",
+        "aiUnrepliedChatsAgent": "YZ Yanıtsız Sohbet Ajanı",
+        "whatsappWebCopilot": "WhatsApp Web Yardımcı Pilot",
+        "revenueInbox": "Gelir Gelen Kutusu",
+        "revopsAgent": "RevOps Ajanı",
+        "smartLabeling": "Akıllı Etiketleme",
+        "messageAnalytics": "Mesaj Analitiği",
+        "startingPriceMonthly": "Başlangıç Fiyatı (Aylık)",
+        "freeTrial": "Ücretsiz Deneme",
+        "freePlanAvailable": "Ücretsiz Plan Mevcut",
+        "annualDiscount": "Yıllık İndirim",
+        "perUserPricing": "Kullanıcı Başına Fiyatlandırma",
+        "gdprCompliant": "GDPR Uyumlu",
+        "metaBusinessPartner": "Meta Business Ortağı",
+        "prioritySupport": "Öncelikli Destek",
+        "dedicatedAccountManager": "Özel Hesap Yöneticisi",
+        "support247": "7/24 Destek",
+        "implementationSupport": "Uygulama Desteği"
+      }
+    },
+    "whyEazybe": {
+      "badge": "Neden Eazybe",
+      "title": "30.000+ İşletme Neden Eazybe'yi Seçiyor",
+      "subtitle": "30.000'den fazla işletmenin Wati, Interakt, QuickReply, Cooby, Timelines, Rasayel ve 20'den fazla diğer platform yerine neden Eazybe'yi seçtiğini keşfedin.",
+      "bestPriceTitle": "En İyi Fiyat Garantisi",
+      "bestPriceDesc": "Sadece $29/ay'dan başlayın - Wati, Interakt ve diğer rakiplerden %70 daha ucuz, üstelik daha fazla özellik dahil.",
+      "integrationsTitle": "En Çok Entegrasyon",
+      "integrationsDesc": "Salesforce, HubSpot, Zoho, Bitrix24 dahil 10'dan fazla CRM ile bağlantı kurun - diğer herhangi bir WhatsApp CRM'den daha fazla.",
+      "aiTitle": "YZ Destekli Özellikler",
+      "aiDesc": "Başka hiçbir yerde bulunmayan YZ yanıtsız sohbet ajanı, WhatsApp Web Yardımcı Pilot, Gelir Gelen Kutusu ve RevOps Ajanı.",
+      "securityTitle": "Kurumsal Güvenlik",
+      "securityDesc": "GDPR uyumlu, Meta Business Ortağı onaylı, banka düzeyinde şifreleme ve veri koruması ile.",
+      "setupTitle": "En Hızlı Kurulum",
+      "setupDesc": "5 dakikadan kısa sürede başlayın. Deneme için kurulum ücreti veya kredi kartı gerekmez.",
+      "userBaseTitle": "En Geniş Kullanıcı Tabanı",
+      "userBaseDesc": "Dünya çapında 30.000'den fazla işletme tarafından güvenilen - tüm diğer WhatsApp CRM'lerinin toplamından daha fazla kullanıcı."
+    },
+    "cta": {
+      "title": "WhatsApp İletişiminizi Dönüştürmeye Hazır mısınız?",
+      "subtitle": "Daha fazla anlaşma kapatmak, daha iyi destek sağlamak ve operasyonlarını ölçeklendirmek için Eazybe'yi kullanan 30.000+ işletmeye katılın.",
+      "primary": "Ücretsiz Denemeyi Başlat",
+      "secondary": "Demo Rezervasyonu",
+      "footnote": "Kredi kartı gerekmez - 7 günlük ücretsiz deneme - İstediğiniz zaman iptal edin"
+    },
+    "faq": {
+      "badge": "SSS",
+      "title": "Sıkça Sorulan Sorular",
+      "subtitle": "Eazybe ve diğer platformlarla nasıl karşılaştırıldığı hakkında bilmeniz gereken her şey.",
+      "q1": "Eazybe diğer WhatsApp CRM'leriyle nasıl karşılaştırılır?",
+      "a1": "Eazybe, Wati, Interakt, QuickReply, Cooby, Timelines ve Rasayel dahil 20'den fazla WhatsApp CRM platformundan daha iyi performans gösteriyor. %70 maliyet tasarrufu, WhatsApp Web Yardımcı Pilot ve Gelir Gelen Kutusu gibi özel YZ özellikleri, Salesforce dahil daha fazla CRM entegrasyonu ve WhatsApp Sohbet Yedekleme gibi başka hiç kimsede olmayan özellikler sunuyoruz.",
+      "q2": "Eazybe neden rakiplerinden daha uygun fiyatlı?",
+      "a2": "Eazybe sadece $29/ay'dan başlarken rakipler $25-$49/ay ücretlendiriyor. Güçlü WhatsApp CRM'in tüm işletmeler için erişilebilir olması gerektiğine inanıyoruz. Verimli operasyonlarımız ve daha büyük kullanıcı tabanımız (30.000+) premium özellikleri maliyetin çok altında sunmamızı sağlıyor.",
+      "q3": "Eazybe hangi özel özellikleri sunuyor?",
+      "a3": "Eazybe başka hiçbir yerde bulamayacağınız özel özellikler sunar: WhatsApp Sohbet Yedekleme, Salesforce Entegrasyonu, WhatsApp Web Yardımcı Pilot, Gelir Gelen Kutusu, RevOps Ajanı, YZ Yanıtsız Sohbet Ajanı ve Bitrix24 Entegrasyonu. Bu özellikler Wati, Interakt, QuickReply, Cooby, Timelines veya Rasayel üzerinde mevcut değildir.",
+      "q4": "Eazybe kurumsal ekipler için uygun mu?",
+      "a4": "Kesinlikle! Eazybe her büyüklükteki işletmeye hizmet eder. Omnis planımız kurumsal ekipler için özel APIler, sınırsız mesaj senkronizasyonu, Gelir Gelen Kutusu, RevOps Ajanı ve özel bir hesap yöneticisi içerir. İşletmenizin ihtiyaçlarına göre ölçekleniriz.",
+      "q5": "Başka bir platformdan geçiş yapabilir miyim?",
+      "a5": "Evet! Herhangi bir WhatsApp CRM platformundan geçişi kolaylaştırıyoruz. Mevcut kişilerinizi, mesajlarınızı ve iş akışlarınızı içe aktarın. Ekibimiz, Wati, Interakt, QuickReply, Cooby veya başka bir platformdan sorunsuz bir geçiş sağlamak için yıllık planlara ücretsiz geçiş desteği sunar.",
+      "q6": "Eazybe hangi entegrasyonları destekler?",
+      "a6": "Eazybe HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar ve diğer herhangi bir platform için özel webhooks dahil 10'dan fazla platformla entegre olur. Diğer herhangi bir WhatsApp CRM'den daha fazla entegrasyon.",
+      "q7": "Ücretsiz deneme var mı?",
+      "a7": "Evet! Tüm planlarda kredi kartı gerekmeden 7 günlük ücretsiz deneme sunuyoruz. Tüm özellikleri keşfedebilir, entegrasyonları test edebilir ve taahhüt etmeden önce Eazybe'nin iş akışınıza nasıl uyduğunu görebilirsiniz."
+    },
+    "articles": {
+      "badge": "Karşılaştırma Makaleleri",
+      "title": "Ayrıntılı Platform Karşılaştırmaları",
+      "subtitle": "Eazybe'yi diğer WhatsApp CRM platformlarıyla karşılaştıran derinlemesine makaleler. Kapsamlı analizimizle bilinçli bir karar verin.",
+      "installFree": "Ücretsiz Yükle"
+    }
   }
 }
