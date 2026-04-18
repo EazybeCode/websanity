@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { ComparisonPageClient } from '@/components/pages/ComparisonPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
 import { getComparisonPosts } from '@/lib/sanity-queries'
@@ -105,19 +105,35 @@ export default async function ComparisonPage({
     return null
   }
 
-  const comparisonSchemas = getSchemas(locale)
+  const baseSchemas = getSchemas(locale) || []
+
+  // Build FAQPage schema from translated FAQ entries (q1/a1 .. q7/a7)
+  const t = await getTranslations({ locale, namespace: 'comparisonHub.faq' })
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [1, 2, 3, 4, 5, 6, 7].map((i) => ({
+      "@type": "Question",
+      "name": t(`q${i}`),
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": t(`a${i}`),
+      },
+    })),
+  }
+
+  const comparisonSchemas = [...baseSchemas, faqSchema]
   const comparisonPosts = (await getComparisonPosts(locale)) || []
 
   return (
     <>
-      {comparisonSchemas &&
-        comparisonSchemas.map((schema, index) => (
-          <script
-            key={index}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-          />
-        ))}
+      {comparisonSchemas.map((schema, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <ComparisonPageClient comparisonPosts={comparisonPosts} locale={locale} />
     </>
   )
