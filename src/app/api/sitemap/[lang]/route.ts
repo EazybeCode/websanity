@@ -216,6 +216,63 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     console.warn('Sitemap: Could not fetch blog posts:', error)
   }
 
+  // ── Comparison posts from Sanity ────────────────────────────────────────
+  try {
+    const comparisonPosts: Array<{
+      slug: string
+      language: string
+      translationGroupId?: string
+      _updatedAt: string
+    }> = await sanityClient.fetch(
+      `*[_type == "comparisonPost"]{
+        "slug": slug.current,
+        language,
+        translationGroupId,
+        _updatedAt
+      }`
+    ) ?? []
+
+    // Group by translationGroupId for hreflang
+    const groups = new Map<string, typeof comparisonPosts>()
+    for (const post of comparisonPosts) {
+      const key = post.translationGroupId || post.slug
+      if (!groups.has(key)) groups.set(key, [])
+      groups.get(key)!.push(post)
+    }
+
+    groups.forEach((groupPosts) => {
+      const thisPost = groupPosts.find((p) => toLocale(p.language) === lang)
+      if (!thisPost) return
+
+      const englishPost = groupPosts.find((p) => p.language === 'en')
+      const alternates: Array<{ lang: string; url: string }> = [
+        {
+          lang: 'x-default',
+          url: englishPost
+            ? localeUrl(toLocale(englishPost.language), `/comparison/${englishPost.slug}`)
+            : localeUrl('en', `/comparison/${thisPost.slug}`)
+        },
+        ...groupPosts.map((p) => {
+          const pLocale = toLocale(p.language)
+          return {
+            lang: toHreflang(p.language),
+            url: localeUrl(pLocale, `/comparison/${p.slug}`)
+          }
+        }),
+      ]
+
+      entries.push({
+        loc: localeUrl(lang, `/comparison/${thisPost.slug}`),
+        changefreq: 'weekly',
+        priority: 0.8,
+        lastmod: formatDate(thisPost._updatedAt),
+        alternates,
+      })
+    })
+  } catch (error) {
+    console.warn('Sitemap: Could not fetch comparison posts:', error)
+  }
+
   // ── Feature / WhatsApp API pages from Sanity ────────────────────────────
   try {
     const sanityLangMap: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }
