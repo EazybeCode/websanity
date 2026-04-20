@@ -275,16 +275,16 @@ export function PartnerPageClient() {
 
             {/* Trust Badges */}
             <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-              <div className="flex items-center justify-center gap-3 text-slate-400">
-                <Shield className="w-5 h-5" />
+              <div className="flex items-start justify-center gap-3 text-slate-400">
+                <Shield className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm font-medium">Official WhatsApp Business Solution Provider</span>
               </div>
-              <div className="flex items-center justify-center gap-3 text-slate-400">
-                <CheckCircle2 className="w-5 h-5" />
+              <div className="flex items-start justify-center gap-3 text-slate-400">
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm font-medium">SOC 2 Type II Compliant</span>
               </div>
-              <div className="flex items-center justify-center gap-3 text-slate-400">
-                <Globe className="w-5 h-5" />
+              <div className="flex items-start justify-center gap-3 text-slate-400">
+                <Globe className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm font-medium">Available in 100+ Countries</span>
               </div>
             </div>
@@ -293,7 +293,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-b from-slate-950 to-slate-900">
+      <section className="py-10 md:py-20 lg:py-28 bg-gradient-to-b from-slate-950 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal delay={0} className="text-center mb-16">
             <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
@@ -336,7 +336,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* Partnership Models Section */}
-      <section className="py-20 lg:py-28 bg-slate-900">
+      <section className="py-10 md:py-20 lg:py-28 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal delay={0} className="text-center mb-16">
             <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
@@ -413,7 +413,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* How to Apply Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-b from-slate-900 to-slate-950">
+      <section className="py-10 md:py-20 lg:py-28 bg-gradient-to-b from-slate-900 to-slate-950">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal delay={0} className="text-center mb-16">
             <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
@@ -452,7 +452,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 lg:py-28 bg-slate-950">
+      <section className="py-10 md:py-20 lg:py-28 bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal delay={0} className="text-center mb-16">
             <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
@@ -525,7 +525,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* Application Form Section */}
-      <section id="apply" className="py-20 lg:pt-28 lg:pb-14 bg-gradient-to-b from-slate-950 to-slate-900">
+      <section id="apply" className="py-10 md:py-20 lg:pt-28 lg:pb-14 bg-gradient-to-b from-slate-950 to-slate-900">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal delay={0} className="text-center mb-12">
             <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
@@ -585,7 +585,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 lg:pt-14 lg:pb-28 bg-slate-900">
+      <section className="py-10 md:py-20 lg:pt-14 lg:pb-28 bg-slate-900">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal delay={0} className="text-center mb-12">
             <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
