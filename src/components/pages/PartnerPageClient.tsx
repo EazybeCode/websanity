@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import {
-  Handshake,
   TrendingUp,
   Users,
   DollarSign,
@@ -206,19 +205,6 @@ const ScrollReveal: React.FC<{ children: React.ReactNode; delay?: number; classN
 }
 
 export function PartnerPageClient() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    website: '',
-    partnerType: '',
-    message: ''
-  })
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
   return (
     <div className="min-h-screen bg-slate-950">
       {/* Hero Section */}
@@ -537,7 +523,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* Application Form Section */}
-      <section id="apply" className="py-20 lg:py-28 bg-gradient-to-b from-slate-950 to-slate-900">
+      <section id="apply" className="py-20 lg:pt-28 lg:pb-14 bg-gradient-to-b from-slate-950 to-slate-900">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal delay={0} className="text-center mb-12">
             <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
@@ -593,121 +579,11 @@ export function PartnerPageClient() {
             </div>
           </ScrollReveal>
 
-          {/* Form */}
-          <ScrollReveal delay={2}>
-            <form className="space-y-6 p-8 rounded-2xl bg-slate-800/50 border border-slate-700/50">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
-                    placeholder="John Doe"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
-                    placeholder="john@company.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Company Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="company"
-                    required
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
-                    placeholder="Acme Inc."
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Website URL
-                  </label>
-                  <input
-                    type="url"
-                    name="website"
-                    value={formData.website}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
-                    placeholder="https://company.com"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Partnership Type *
-                </label>
-                <select
-                  name="partnerType"
-                  required
-                  value={formData.partnerType}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-cyan-500 transition-colors"
-                >
-                  <option value="">Select partnership type...</option>
-                  <option value="affiliate">Affiliate Partner (up to 30% commission)</option>
-                  <option value="reseller">Reseller Partner (up to 40% commission)</option>
-                  <option value="whitelabel">White Label Partner (up to 50% commission)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Tell Us About Your Business *
-                </label>
-                <textarea
-                  name="message"
-                  required
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows={4}
-                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors resize-none"
-                  placeholder="Describe your business, target audience, and how you plan to promote Eazybe..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold rounded-xl transition-all duration-300 cursor-pointer"
-              >
-                <Handshake className="w-5 h-5" />
-                Submit Partner Application
-              </button>
-
-              <p className="text-center text-sm text-slate-500">
-                Takes less than 2 minutes - Free to apply
-              </p>
-            </form>
-          </ScrollReveal>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 lg:py-28 bg-slate-900">
+      <section className="py-20 lg:pt-14 lg:pb-28 bg-slate-900">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal delay={0} className="text-center mb-12">
             <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
