@@ -233,7 +233,7 @@ export function PartnerPageClient() {
 
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Partner with{' '}
+              Partner With{' '}
               <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent">
                 #1 WhatsApp CRM
               </span>
@@ -418,7 +418,7 @@ export function PartnerPageClient() {
               Simple 5-Step Process
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              How to Become an Eazybe Partner
+              How To Become An Eazybe Partner
             </h2>
             <p className="text-lg text-slate-400">
               From application to your first commission -- we&apos;ve made it seamless
@@ -634,7 +634,7 @@ export function PartnerPageClient() {
       <section className="py-20 lg:py-28 bg-gradient-to-b from-slate-950 to-slate-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-            Ready to grow with us?
+            Ready to Grow With Us?
           </h2>
           <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
             Start Earning with Eazybe Today
