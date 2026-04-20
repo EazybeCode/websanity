@@ -316,15 +316,17 @@ export function PartnerPageClient() {
                     <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${benefit.color} mb-6`}>
                       <benefit.icon className="w-6 h-6 text-white" />
                     </div>
-                    <span className="inline-block text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">
-                      {benefit.subtitle}
-                    </span>
-                    <h3 className="text-xl font-bold text-white mb-3">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-slate-400 leading-relaxed">
-                      {benefit.description}
-                    </p>
+                    <div className="pl-[10%]">
+                      <span className="inline-block text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">
+                        {benefit.subtitle}
+                      </span>
+                      <h3 className="text-xl font-bold text-white mb-3">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-slate-400 leading-relaxed">
+                        {benefit.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </ScrollReveal>
@@ -630,37 +632,6 @@ export function PartnerPageClient() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-b from-slate-950 to-slate-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-            Ready to Grow With Us?
-          </h2>
-          <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
-            Start Earning with Eazybe Today
-          </p>
-          <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
-            Join 500+ partners worldwide who are earning up to 50% revenue share while helping businesses transform their WhatsApp communication.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#apply"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold rounded-full shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105"
-            >
-              Apply Now - It&apos;s Free
-              <ArrowRight size={20} />
-            </a>
-            <a
-              href="https://calendly.com/d/cw67-pt3-y2m"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 text-white border border-slate-700 hover:bg-white/10 font-semibold rounded-full transition-all duration-300 hover:scale-105"
-            >
-              Talk to Partnership Team
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
