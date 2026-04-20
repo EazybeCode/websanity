@@ -260,7 +260,7 @@ export function PartnerPageClient() {
                 href="#apply"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold rounded-full shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105"
               >
-                Apply Now -- It&apos;s 100% Free
+                Apply Now - It&apos;s 100% Free
                 <ArrowRight size={20} />
               </a>
               <a
@@ -561,11 +561,11 @@ export function PartnerPageClient() {
             <p className="text-slate-400 mb-4">Have questions? Reach out directly:</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <a
-                href="mailto:partners@eazybe.com"
+                href="mailto:hey@eazybe.com"
                 className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
               >
                 <Mail className="w-5 h-5" />
-                partners@eazybe.com
+                hey@eazybe.com
               </a>
               <a
                 href="https://calendly.com/d/cw67-pt3-y2m"
@@ -620,7 +620,7 @@ export function PartnerPageClient() {
           <ScrollReveal delay={8} className="text-center mt-10 p-6 rounded-2xl bg-slate-800/30 border border-slate-700/50">
             <p className="text-slate-400 mb-4">Still have questions?</p>
             <a
-              href="mailto:partners@eazybe.com"
+              href="mailto:hey@eazybe.com"
               className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium"
             >
               <Mail className="w-5 h-5" />
@@ -647,7 +647,7 @@ export function PartnerPageClient() {
               href="#apply"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold rounded-full shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105"
             >
-              Apply Now -- It&apos;s Free
+              Apply Now - It&apos;s Free
               <ArrowRight size={20} />
             </a>
             <a
