@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { PartnerPageClient } from '@/components/pages/PartnerPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
 
@@ -35,6 +35,15 @@ export async function generateMetadata({
   }
 }
 
+const SITE_URL = 'https://eazybe.com'
+
+const breadcrumbLabels: Record<string, string> = {
+  en: 'Become Our Partner',
+  br: 'Torne-se Nosso Parceiro',
+  es: 'Sea Nuestro Socio',
+  tr: 'Ortağımız Olun',
+}
+
 export default async function PartnerPage({
   params,
 }: {
@@ -43,5 +52,47 @@ export default async function PartnerPage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  return <PartnerPageClient />
+  const localePrefix = locale === 'en' ? '' : `/${locale}`
+  const pageUrl = `${SITE_URL}${localePrefix}/become-our-partner`
+
+  // FAQPage schema — pulled per-locale from the messages file so the schema
+  // stays in sync with the FAQ content rendered by PartnerPageClient.
+  const t = await getTranslations({ locale, namespace: 'partner' })
+  const partnerFaqs = t.raw('faqs') as Array<{ question: string; answer: string }>
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: partnerFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Eazybe', item: `${SITE_URL}${localePrefix}/` },
+      { '@type': 'ListItem', position: 2, name: breadcrumbLabels[locale] || breadcrumbLabels.en, item: pageUrl },
+    ],
+  }
+
+  const schemas = [breadcrumbSchema, faqSchema]
+
+  return (
+    <>
+      {schemas.map((schema, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+      <PartnerPageClient />
+    </>
+  )
 }

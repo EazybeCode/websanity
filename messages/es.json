@@ -2383,5 +2383,215 @@
       "subtitle": "Artículos a fondo que comparan Eazybe con otras plataformas de CRM de WhatsApp. Toma una decisión informada con nuestro análisis integral.",
       "installFree": "Instalar Gratis"
     }
+  },
+  "partner": {
+    "heroBadge": "Únete a Más de 30.000 Socios Exitosos en Todo el Mundo",
+    "heroHeadline": "Asóciate con",
+    "heroHighlight": "el CRM #1 de WhatsApp",
+    "heroSubheadline": "Ayuda a las empresas a transformar su comunicación con clientes mientras ganas comisiones líderes en la industria.",
+    "freeToJoin": "Gratis para Unirse",
+    "hourApproval": "Aprobación en 24 Horas",
+    "dedicatedSupport": "Soporte Dedicado",
+    "unlimitedEarnings": "Ganancias Ilimitadas",
+    "applyNow": "Postularme Ahora - Es 100% Gratis",
+    "scheduleCall": "Agendar una Llamada",
+    "whyPartnerTitle": "Por Qué Asociarte Con Nosotros",
+    "whyPartnerDesc": "Hemos diseñado nuestro programa de socios de CRM de WhatsApp para maximizar tus ganancias y minimizar tus esfuerzos",
+    "benefitsSubtitle": "Beneficios para Socios Que Impulsan Tu Éxito",
+    "benefits": {
+      "revenueShare": {
+        "title": "Hasta 50% de Participación en Ingresos",
+        "subtitle": "La Más Alta del Sector",
+        "description": "Gana comisiones líderes de la industria por cada referido. Nuestro modelo de ingresos transparente garantiza recompensas justas por cada cliente que traigas."
+      },
+      "expandedPortfolio": {
+        "title": "Portafolio de Servicios Ampliado",
+        "subtitle": "Agrega Valor",
+        "description": "Añade la integración de CRM de WhatsApp a tus ofertas. Ayuda a los clientes a automatizar ventas, soporte y marketing a través de la plataforma de mensajería más popular del mundo."
+      },
+      "mutualGrowth": {
+        "title": "Motor de Crecimiento Mutuo",
+        "subtitle": "Crezcan Juntos",
+        "description": "Accede a recursos exclusivos para socios, oportunidades de co-marketing y gestión de cuenta dedicada para acelerar el crecimiento de tu negocio."
+      },
+      "prioritySupport": {
+        "title": "Soporte Prioritario para Socios",
+        "subtitle": "Soporte 24/7",
+        "description": "Obtén acceso directo a nuestro equipo de producto, cola de soporte prioritario y un gerente de éxito del socio dedicado para resoluciones más rápidas."
+      },
+      "certifiedBadge": {
+        "title": "Insignia de Socio Certificado",
+        "subtitle": "Genera Confianza",
+        "description": "Destácate con la certificación oficial de Eazybe. Usa nuestra insignia de socio para generar credibilidad y atraer más clientes."
+      },
+      "earlyAccess": {
+        "title": "Acceso Anticipado a Funciones",
+        "subtitle": "Mantente a la Vanguardia",
+        "description": "Sé el primero en acceder a nuevas funciones, programas beta y actualizaciones de producto. Brinda a tus clientes la ventaja competitiva que necesitan."
+      }
+    },
+    "modelsTitle": "Modelos de Asociación",
+    "modelsDesc": "Elige Tu Camino al Éxito",
+    "modelsSubtitle": "Tres modelos flexibles de socios de CRM de WhatsApp diseñados para adaptarse a los objetivos de tu negocio",
+    "affiliate": {
+      "commission": "Hasta 30%",
+      "title": "Refiere. Relájate. Cosecha Recompensas.",
+      "name": "Socio Afiliado",
+      "description": "Conéctanos con clientes potenciales y deja que nuestro equipo se encargue del resto — desde la demostración hasta el cierre. Gana comisiones por cada conversión exitosa.",
+      "whatYouGet": [
+        "Sin compromiso mínimo",
+        "Enlaces de seguimiento únicos",
+        "Pagos mensuales",
+        "Materiales de marketing provistos"
+      ],
+      "idealFor": [
+        "Bloggers",
+        "Influencers",
+        "Consultores"
+      ]
+    },
+    "reseller": {
+      "commission": "Hasta 40%",
+      "title": "Tus Clientes. Nuestra Tecnología.",
+      "name": "Socio Revendedor",
+      "description": "Tú vendes y gestionas las relaciones con los clientes; nosotros te respaldamos con todo el backend: tecnología, automatización, soporte y capacitación.",
+      "whatYouGet": [
+        "Onboarding personalizado",
+        "Acceso al portal de socios",
+        "Materiales co-marcados",
+        "Capacitación técnica"
+      ],
+      "idealFor": [
+        "Agencias Digitales",
+        "Consultores de TI"
+      ]
+    },
+    "whitelabel": {
+      "commission": "Hasta 50%",
+      "title": "Co-Crea y Conquista Mercados.",
+      "name": "Socio de Marca Blanca",
+      "description": "Crea soluciones omnicanal personalizadas para sectores de alto potencial. Da forma a las estrategias go-to-market y comparte ingresos.",
+      "whatYouGet": [
+        "Personalización total de marca",
+        "Acceso a API",
+        "Integraciones personalizadas",
+        "Equipo de soporte dedicado"
+      ],
+      "idealFor": [
+        "Empresas SaaS",
+        "Socios Empresariales"
+      ]
+    },
+    "howToApplyTitle": "Cómo Convertirte en un Socio de Eazybe",
+    "howToApplyDesc": "De la solicitud a tu primera comisión — lo hemos hecho sin fricciones",
+    "simpleProcess": "Proceso Simple de 5 Pasos",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Enviar Solicitud",
+        "desc": "Completa nuestro sencillo formulario de solicitud de socio en menos de 2 minutos"
+      },
+      {
+        "step": "02",
+        "title": "Revisión Rápida",
+        "desc": "Nuestro equipo revisa tu solicitud en 24-48 horas"
+      },
+      {
+        "step": "03",
+        "title": "Aprobación",
+        "desc": "Recibe un correo de bienvenida con acceso al portal y recursos para socios"
+      },
+      {
+        "step": "04",
+        "title": "Comienza a Promocionar",
+        "desc": "Usa tus enlaces de seguimiento y materiales de marketing para referir clientes"
+      },
+      {
+        "step": "05",
+        "title": "Gana Comisiones",
+        "desc": "Rastrea los referidos y recibe pagos mensuales por conversiones exitosas"
+      }
+    ],
+    "testimonialsTitle": "Lo Que Dicen Nuestros Socios",
+    "testimonialsSubtitle": "Historias de Éxito de Socios",
+    "testimonialsDesc": "Únete a cientos de socios que han hecho crecer su negocio con Eazybe",
+    "testimonials": [
+      {
+        "quote": "Asociarme con Eazybe fue revolucionario. Agregamos CRM de WhatsApp a nuestra pila de servicios y aumentamos los ingresos de nuestra agencia en un 40% en solo 6 meses.",
+        "author": "Rahul Sharma",
+        "role": "Fundador, Digital Growth Agency",
+        "earnings": "$50K+"
+      },
+      {
+        "quote": "El soporte para socios es excepcional. Cada vez que mis clientes tienen preguntas, el equipo de Eazybe responde en horas. ¡Me hace quedar muy bien!",
+        "author": "Priya Patel",
+        "role": "Consultora de CRM",
+        "earnings": "$25K+"
+      },
+      {
+        "quote": "Como afiliado, me encanta el seguimiento transparente y los pagos mensuales. Mi audiencia confía en mis recomendaciones y Eazybe cumple cada vez.",
+        "author": "Alex Johnson",
+        "role": "Blogger Tech e Influencer",
+        "earnings": "$15K+"
+      }
+    ],
+    "integrationsTitle": "Ayuda a tus clientes a integrarse con sus plataformas CRM favoritas",
+    "applyTitle": "Tu Viaje de Asociación Comienza Aquí",
+    "applyDesc": "Únete a nuestro ecosistema global de innovadores, agencias y consultores que están transformando la comunicación empresarial y ganando en el camino.",
+    "fastApproval": "Aprobación Rápida",
+    "fastApprovalDesc": "La mayoría de las solicitudes son aprobadas en 24-48 horas",
+    "dedicatedSupportTitle": "Soporte Dedicado",
+    "dedicatedSupportDesc": "Obtén un gerente de éxito de socio dedicado",
+    "noUpfrontCosts": "Sin Costos Iniciales",
+    "noUpfrontCostsDesc": "Completamente gratis para unirte — comienza a ganar de inmediato",
+    "haveQuestions": "¿Tienes preguntas? Contáctanos directamente:",
+    "emailUs": "Envía un correo a nuestro equipo",
+    "formTitle": "Solicitud de Socio",
+    "formDesc": "Toma menos de 2 minutos",
+    "fullName": "Nombre Completo",
+    "emailAddress": "Dirección de Correo",
+    "companyName": "Nombre de la Empresa",
+    "websiteUrl": "URL del Sitio Web",
+    "partnershipType": "Tipo de Asociación",
+    "selectType": "Selecciona un tipo de asociación...",
+    "typeAffiliate": "Socio Afiliado (hasta 30% de comisión)",
+    "typeReseller": "Socio Revendedor (hasta 40% de comisión)",
+    "typeWhitelabel": "Socio de Marca Blanca (hasta 50% de comisión)",
+    "tellUs": "Cuéntanos Sobre Tu Negocio",
+    "tellUsPlaceholder": "Describe tu negocio, audiencia objetivo y cómo planeas promover Eazybe...",
+    "submitApplication": "Enviar Solicitud de Socio",
+    "faqTitle": "Preguntas Frecuentes",
+    "faqDesc": "Todo lo que necesitas saber sobre el Programa de Socios de Eazybe",
+    "faqStillHave": "¿Aún tienes preguntas?",
+    "faqs": [
+      {
+        "question": "¿Cómo me convierto en socio?",
+        "answer": "Simplemente completa nuestro formulario de solicitud de socio en menos de 2 minutos. La mayoría de las solicitudes son aprobadas en 24-48 horas. Una vez aprobado, obtendrás acceso a nuestro portal de socios con todos los recursos que necesitas para empezar a ganar."
+      },
+      {
+        "question": "¿Cuál es la estructura de comisiones?",
+        "answer": "Ofrecemos tres niveles de socios: Afiliado (hasta 30% de comisión), Revendedor (hasta 40% de comisión) y Marca Blanca (hasta 50% de comisión). Las comisiones se pagan mensualmente a través de tu método de pago preferido."
+      },
+      {
+        "question": "¿Hay un costo por unirme?",
+        "answer": "¡No! Unirse al programa de socios de Eazybe es completamente gratis. No hay costos iniciales, ni compromisos mínimos, ni tarifas ocultas. Empiezas a ganar desde tu primer referido exitoso."
+      },
+      {
+        "question": "¿Qué materiales de marketing se proporcionan?",
+        "answer": "Brindamos un kit de herramientas completo para socios que incluye enlaces de seguimiento, materiales de marketing co-marcados, plantillas de correo, contenido para redes sociales, casos de estudio y demostraciones de producto. Todo lo que necesitas para promover Eazybe eficazmente."
+      },
+      {
+        "question": "¿Cómo se rastrean los referidos?",
+        "answer": "Cada socio recibe enlaces de seguimiento únicos y un portal de socios dedicado para monitorear clics, registros y conversiones en tiempo real. Nuestro seguimiento transparente garantiza que recibas crédito por cada referido."
+      },
+      {
+        "question": "¿Qué tipo de soporte reciben los socios?",
+        "answer": "Los socios reciben soporte prioritario con gerentes de cuenta dedicados, tiempos de respuesta más rápidos, acceso directo a nuestro equipo de producto, oportunidades de co-marketing y sesiones de capacitación exclusivas para ayudarte a tener éxito."
+      }
+    ],
+    "finalCtaTitle": "¿Listo para crecer con nosotros?",
+    "finalCtaDesc": "Comienza a Ganar con Eazybe Hoy",
+    "finalCtaSubtext": "Únete a más de 30.000 socios en todo el mundo que están ganando hasta un 50% de participación en ingresos mientras ayudan a empresas a transformar su comunicación por WhatsApp.",
+    "talkToTeam": "Hablar con el Equipo de Socios"
   }
 }

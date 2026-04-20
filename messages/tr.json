@@ -2309,5 +2309,215 @@
       "subtitle": "Eazybe'yi diğer WhatsApp CRM platformlarıyla karşılaştıran derinlemesine makaleler. Kapsamlı analizimizle bilinçli bir karar verin.",
       "installFree": "Ücretsiz Yükle"
     }
+  },
+  "partner": {
+    "heroBadge": "Dünya Çapında 30.000+ Başarılı Ortağa Katılın",
+    "heroHeadline": "Ortak Ol",
+    "heroHighlight": "#1 WhatsApp CRM ile",
+    "heroSubheadline": "Sektör lideri komisyonlar kazanırken işletmelerin müşteri iletişimini dönüştürmelerine yardımcı olun.",
+    "freeToJoin": "Katılım Ücretsiz",
+    "hourApproval": "24 Saat İçinde Onay",
+    "dedicatedSupport": "Özel Destek",
+    "unlimitedEarnings": "Sınırsız Kazanç",
+    "applyNow": "Hemen Başvur - %100 Ücretsiz",
+    "scheduleCall": "Görüşme Planla",
+    "whyPartnerTitle": "Neden Bizimle Ortak Olmalısınız",
+    "whyPartnerDesc": "Kazancınızı maksimize etmek ve çabanızı minimize etmek için WhatsApp CRM ortak programımızı tasarladık",
+    "benefitsSubtitle": "Başarınızı Sağlayacak Ortak Avantajları",
+    "benefits": {
+      "revenueShare": {
+        "title": "%50'ye Kadar Gelir Payı",
+        "subtitle": "Sektörün En Yükseği",
+        "description": "Her başvuruda sektör lideri komisyonlar kazanın. Şeffaf gelir modelimiz, getirdiğiniz her müşteri için adil ödüller garanti eder."
+      },
+      "expandedPortfolio": {
+        "title": "Genişletilmiş Hizmet Portföyü",
+        "subtitle": "Değer Katın",
+        "description": "Tekliflerinize WhatsApp CRM entegrasyonunu ekleyin. Müşterilerin dünyanın en popüler mesajlaşma platformu üzerinden satış, destek ve pazarlamayı otomatikleştirmelerine yardımcı olun."
+      },
+      "mutualGrowth": {
+        "title": "Karşılıklı Büyüme Motoru",
+        "subtitle": "Birlikte Büyüyelim",
+        "description": "İşletmenizin büyümesini hızlandırmak için özel ortak kaynaklarına, ortak pazarlama fırsatlarına ve özel hesap yönetimine erişin."
+      },
+      "prioritySupport": {
+        "title": "Öncelikli Ortak Desteği",
+        "subtitle": "7/24 Destek",
+        "description": "Daha hızlı çözümler için ürün ekibimize doğrudan erişim, öncelikli destek kuyruğu ve özel ortak başarı yöneticisi edinin."
+      },
+      "certifiedBadge": {
+        "title": "Sertifikalı Ortak Rozeti",
+        "subtitle": "Güven Oluşturun",
+        "description": "Resmi Eazybe sertifikasıyla öne çıkın. Güvenilirlik oluşturmak ve daha fazla müşteri çekmek için ortak rozetimizi kullanın."
+      },
+      "earlyAccess": {
+        "title": "Özelliklere Erken Erişim",
+        "subtitle": "Önde Kalın",
+        "description": "Yeni özelliklere, beta programlarına ve ürün güncellemelerine ilk erişen siz olun. Müşterilerinize ihtiyaç duydukları rekabet avantajını sunun."
+      }
+    },
+    "modelsTitle": "Ortaklık Modelleri",
+    "modelsDesc": "Başarıya Giden Yolunuzu Seçin",
+    "modelsSubtitle": "İşletme hedeflerinize uyacak şekilde tasarlanmış üç esnek WhatsApp CRM ortak modeli",
+    "affiliate": {
+      "commission": "%30'a Kadar",
+      "title": "Yönlendir. Rahatla. Kazan.",
+      "name": "Bağlı Ortak",
+      "description": "Bizi potansiyel müşterilerle buluşturun ve ekibimiz demodan kapanışa kadar gerisini halletsin. Her başarılı dönüşüm için komisyon kazanın.",
+      "whatYouGet": [
+        "Minimum taahhüt yok",
+        "Benzersiz izleme bağlantıları",
+        "Aylık ödemeler",
+        "Pazarlama materyalleri sağlanır"
+      ],
+      "idealFor": [
+        "Blog Yazarları",
+        "Etkileyiciler",
+        "Danışmanlar"
+      ]
+    },
+    "reseller": {
+      "commission": "%40'a Kadar",
+      "title": "Sizin Müşterileriniz. Bizim Teknolojimiz.",
+      "name": "Bayi Ortak",
+      "description": "Siz satar ve müşteri ilişkilerini yönetirsiniz; biz tüm arka plan tarafında teknoloji, otomasyon, destek ve eğitimle sizi güçlendiririz.",
+      "whatYouGet": [
+        "Kişiselleştirilmiş onboarding",
+        "Ortak portalı erişimi",
+        "Ortak markalı materyaller",
+        "Teknik eğitim"
+      ],
+      "idealFor": [
+        "Dijital Ajanslar",
+        "BT Danışmanları"
+      ]
+    },
+    "whitelabel": {
+      "commission": "%50'ye Kadar",
+      "title": "Birlikte Yaratın ve Pazarları Fethedin.",
+      "name": "Beyaz Etiket Ortağı",
+      "description": "Yüksek potansiyelli sektörler için özelleştirilmiş omnichannel çözümler geliştirin. Go-to-market stratejilerini şekillendirin ve gelire ortak olun.",
+      "whatYouGet": [
+        "Tam marka özelleştirmesi",
+        "API erişimi",
+        "Özel entegrasyonlar",
+        "Özel destek ekibi"
+      ],
+      "idealFor": [
+        "SaaS Şirketleri",
+        "Kurumsal Ortaklar"
+      ]
+    },
+    "howToApplyTitle": "Eazybe Ortağı Nasıl Olunur",
+    "howToApplyDesc": "Başvurudan ilk komisyonunuza kadar - sürtüşmesiz hale getirdik",
+    "simpleProcess": "Basit 5 Adımlı Süreç",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Başvuruyu Gönderin",
+        "desc": "2 dakikadan kısa sürede basit ortak başvuru formumuzu doldurun"
+      },
+      {
+        "step": "02",
+        "title": "Hızlı İnceleme",
+        "desc": "Ekibimiz başvurunuzu 24-48 saat içinde inceler"
+      },
+      {
+        "step": "03",
+        "title": "Onay Alın",
+        "desc": "Ortak portalı ve kaynaklara erişim içeren hoş geldiniz e-postası alın"
+      },
+      {
+        "step": "04",
+        "title": "Tanıtıma Başlayın",
+        "desc": "Müşteri yönlendirmek için izleme bağlantılarınızı ve pazarlama materyallerini kullanın"
+      },
+      {
+        "step": "05",
+        "title": "Komisyon Kazanın",
+        "desc": "Yönlendirmeleri takip edin ve başarılı dönüşümler için aylık ödemeler alın"
+      }
+    ],
+    "testimonialsTitle": "Ortaklarımız Ne Diyor",
+    "testimonialsSubtitle": "Ortak Başarı Hikayeleri",
+    "testimonialsDesc": "İşlerini Eazybe ile büyüten yüzlerce ortağa katılın",
+    "testimonials": [
+      {
+        "quote": "Eazybe ile ortaklık kurmak çığır açıcıydı. WhatsApp CRM'i hizmet yığınımıza ekledik ve sadece 6 ayda ajans gelirimizi %40 artırdık.",
+        "author": "Rahul Sharma",
+        "role": "Kurucu, Digital Growth Agency",
+        "earnings": "$50K+"
+      },
+      {
+        "quote": "Ortak desteği olağanüstü. Müşterilerimin sorusu olduğunda Eazybe ekibi saatler içinde yanıt veriyor. Bu beni harika gösteriyor!",
+        "author": "Priya Patel",
+        "role": "CRM Danışmanı",
+        "earnings": "$25K+"
+      },
+      {
+        "quote": "Bağlı ortak olarak şeffaf takibi ve aylık ödemeleri çok seviyorum. Kitlem önerilerime güveniyor ve Eazybe her seferinde teslim ediyor.",
+        "author": "Alex Johnson",
+        "role": "Teknoloji Blog Yazarı ve Etkileyicisi",
+        "earnings": "$15K+"
+      }
+    ],
+    "integrationsTitle": "Müşterilerinizin favori CRM platformlarıyla entegre olmasına yardımcı olun",
+    "applyTitle": "Ortaklık Yolculuğunuz Burada Başlıyor",
+    "applyDesc": "İş iletişimini dönüştüren ve bu sırada kazanan yenilikçilerin, ajansların ve danışmanların küresel ekosistemimize katılın.",
+    "fastApproval": "Hızlı Onay",
+    "fastApprovalDesc": "Başvuruların çoğu 24-48 saat içinde onaylanır",
+    "dedicatedSupportTitle": "Özel Destek",
+    "dedicatedSupportDesc": "Özel bir ortak başarı yöneticisi edinin",
+    "noUpfrontCosts": "Önden Ödeme Yok",
+    "noUpfrontCostsDesc": "Katılım tamamen ücretsiz — hemen kazanmaya başlayın",
+    "haveQuestions": "Sorularınız mı var? Doğrudan bize ulaşın:",
+    "emailUs": "Ekibimize E-posta Gönderin",
+    "formTitle": "Ortak Başvurusu",
+    "formDesc": "2 dakikadan az sürer",
+    "fullName": "Tam Ad",
+    "emailAddress": "E-posta Adresi",
+    "companyName": "Şirket Adı",
+    "websiteUrl": "Web Sitesi URL",
+    "partnershipType": "Ortaklık Türü",
+    "selectType": "Ortaklık türünü seçin...",
+    "typeAffiliate": "Bağlı Ortak (%30 komisyona kadar)",
+    "typeReseller": "Bayi Ortak (%40 komisyona kadar)",
+    "typeWhitelabel": "Beyaz Etiket Ortağı (%50 komisyona kadar)",
+    "tellUs": "İşletmenizden Bahsedin",
+    "tellUsPlaceholder": "İşletmenizi, hedef kitlenizi ve Eazybe'yi nasıl tanıtmayı planladığınızı açıklayın...",
+    "submitApplication": "Ortak Başvurusunu Gönder",
+    "faqTitle": "Sıkça Sorulan Sorular",
+    "faqDesc": "Eazybe Ortak Programı hakkında bilmeniz gereken her şey",
+    "faqStillHave": "Hala sorularınız mı var?",
+    "faqs": [
+      {
+        "question": "Nasıl ortak olurum?",
+        "answer": "Sadece ortak başvuru formumuzu 2 dakikadan az sürede doldurun. Başvuruların çoğu 24-48 saat içinde onaylanır. Onaylandıktan sonra kazanmaya başlamak için ihtiyacınız olan tüm kaynaklara sahip ortak portalımıza erişim elde edersiniz."
+      },
+      {
+        "question": "Komisyon yapısı nedir?",
+        "answer": "Üç ortak seviyesi sunuyoruz: Bağlı Ortak (%30 komisyona kadar), Bayi (%40 komisyona kadar) ve Beyaz Etiket (%50 komisyona kadar). Komisyonlar, tercih ettiğiniz ödeme yöntemiyle aylık olarak ödenir."
+      },
+      {
+        "question": "Katılmak için bir maliyet var mı?",
+        "answer": "Hayır! Eazybe ortak programına katılmak tamamen ücretsizdir. Önden maliyet, minimum taahhüt veya gizli ücret yoktur. İlk başarılı yönlendirmenizden itibaren kazanmaya başlarsınız."
+      },
+      {
+        "question": "Hangi pazarlama materyalleri sağlanır?",
+        "answer": "İzleme bağlantıları, ortak markalı pazarlama materyalleri, e-posta şablonları, sosyal medya içeriği, vaka çalışmaları ve ürün demoları dahil kapsamlı bir ortak araç kitiyle sizi donatıyoruz. Eazybe'yi etkili bir şekilde tanıtmak için ihtiyacınız olan her şey."
+      },
+      {
+        "question": "Yönlendirmeler nasıl takip edilir?",
+        "answer": "Her ortak tıklamaları, kayıtları ve dönüşümleri gerçek zamanlı olarak izlemek için benzersiz izleme bağlantıları ve özel bir ortak portalı alır. Şeffaf takibimiz, her yönlendirme için kredi almanızı sağlar."
+      },
+      {
+        "question": "Ortaklar ne tür destek alır?",
+        "answer": "Ortaklar, başarılı olmanıza yardımcı olmak için özel hesap yöneticileri, daha hızlı yanıt süreleri, ürün ekibimize doğrudan erişim, ortak pazarlama fırsatları ve özel eğitim oturumları ile öncelikli destek alır."
+      }
+    ],
+    "finalCtaTitle": "Bizimle büyümeye hazır mısınız?",
+    "finalCtaDesc": "Bugün Eazybe ile Kazanmaya Başlayın",
+    "finalCtaSubtext": "%50'ye kadar gelir payı kazanırken işletmelerin WhatsApp iletişimini dönüştürmelerine yardımcı olan dünya çapında 30.000+ ortağa katılın.",
+    "talkToTeam": "Ortaklık Ekibi ile Görüşün"
   }
 }

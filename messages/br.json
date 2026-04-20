@@ -2384,5 +2384,215 @@
       "subtitle": "Artigos aprofundados comparando o Eazybe com outras plataformas de CRM do WhatsApp. Tome uma decisão informada com nossa análise abrangente.",
       "installFree": "Instalar Grátis"
     }
+  },
+  "partner": {
+    "heroBadge": "Junte-se a Mais de 30.000 Parceiros Bem-Sucedidos em Todo o Mundo",
+    "heroHeadline": "Torne-se Parceiro do",
+    "heroHighlight": "#1 CRM do WhatsApp",
+    "heroSubheadline": "Ajude empresas a transformar a comunicação com seus clientes enquanto você ganha comissões líderes do setor.",
+    "freeToJoin": "Grátis para Participar",
+    "hourApproval": "Aprovação em 24 Horas",
+    "dedicatedSupport": "Suporte Dedicado",
+    "unlimitedEarnings": "Ganhos Ilimitados",
+    "applyNow": "Candidate-se Agora - 100% Grátis",
+    "scheduleCall": "Agendar uma Ligação",
+    "whyPartnerTitle": "Por Que Ser Nosso Parceiro",
+    "whyPartnerDesc": "Desenhamos nosso programa de parceiros de CRM do WhatsApp para maximizar seus ganhos e minimizar seus esforços",
+    "benefitsSubtitle": "Benefícios para Parceiros Que Impulsionam Seu Sucesso",
+    "benefits": {
+      "revenueShare": {
+        "title": "Até 50% de Participação em Receita",
+        "subtitle": "A Mais Alta do Setor",
+        "description": "Ganhe comissões líderes do setor em cada indicação. Nosso modelo de receita transparente garante recompensas justas por cada cliente que você trouxer."
+      },
+      "expandedPortfolio": {
+        "title": "Portfólio de Serviços Expandido",
+        "subtitle": "Agregue Valor",
+        "description": "Adicione a integração de CRM do WhatsApp às suas ofertas. Ajude clientes a automatizar vendas, suporte e marketing pela plataforma de mensagens mais popular do mundo."
+      },
+      "mutualGrowth": {
+        "title": "Motor de Crescimento Mútuo",
+        "subtitle": "Cresçam Juntos",
+        "description": "Acesse recursos exclusivos para parceiros, oportunidades de co-marketing e gestão de conta dedicada para acelerar o crescimento do seu negócio."
+      },
+      "prioritySupport": {
+        "title": "Suporte Prioritário para Parceiros",
+        "subtitle": "Suporte 24/7",
+        "description": "Tenha acesso direto à nossa equipe de produto, fila de suporte prioritária e um gerente de sucesso de parceiro dedicado para resoluções mais rápidas."
+      },
+      "certifiedBadge": {
+        "title": "Selo de Parceiro Certificado",
+        "subtitle": "Gere Confiança",
+        "description": "Destaque-se com a certificação oficial Eazybe. Use nosso selo de parceiro para criar credibilidade e atrair mais clientes."
+      },
+      "earlyAccess": {
+        "title": "Acesso Antecipado a Recursos",
+        "subtitle": "Fique à Frente",
+        "description": "Seja o primeiro a acessar novos recursos, programas beta e atualizações de produto. Dê aos seus clientes a vantagem competitiva que precisam."
+      }
+    },
+    "modelsTitle": "Modelos de Parceria",
+    "modelsDesc": "Escolha Seu Caminho para o Sucesso",
+    "modelsSubtitle": "Três modelos flexíveis de parceiros de CRM do WhatsApp, projetados para combinar com os objetivos do seu negócio",
+    "affiliate": {
+      "commission": "Até 30%",
+      "title": "Indique. Relaxe. Colha Recompensas.",
+      "name": "Parceiro Afiliado",
+      "description": "Conecte-nos a clientes em potencial e deixe nossa equipe cuidar do resto — da demo ao fechamento. Ganhe comissões por cada conversão bem-sucedida.",
+      "whatYouGet": [
+        "Sem compromisso mínimo",
+        "Links de rastreamento únicos",
+        "Pagamentos mensais",
+        "Materiais de marketing fornecidos"
+      ],
+      "idealFor": [
+        "Blogueiros",
+        "Influenciadores",
+        "Consultores"
+      ]
+    },
+    "reseller": {
+      "commission": "Até 40%",
+      "title": "Seus Clientes. Nossa Tecnologia.",
+      "name": "Parceiro Revendedor",
+      "description": "Você vende e gerencia os relacionamentos com clientes; nós oferecemos todo o backend — tecnologia, automação, suporte e treinamento.",
+      "whatYouGet": [
+        "Onboarding personalizado",
+        "Acesso ao portal de parceiros",
+        "Materiais co-marcados",
+        "Treinamento técnico"
+      ],
+      "idealFor": [
+        "Agências Digitais",
+        "Consultores de TI"
+      ]
+    },
+    "whitelabel": {
+      "commission": "Até 50%",
+      "title": "Co-Crie e Conquiste Mercados.",
+      "name": "Parceiro White Label",
+      "description": "Construa soluções omnichannel personalizadas para setores de alto potencial. Molde estratégias go-to-market e compartilhe a receita.",
+      "whatYouGet": [
+        "Personalização total da marca",
+        "Acesso à API",
+        "Integrações personalizadas",
+        "Equipe de suporte dedicada"
+      ],
+      "idealFor": [
+        "Empresas SaaS",
+        "Parceiros Corporativos"
+      ]
+    },
+    "howToApplyTitle": "Como Se Tornar um Parceiro Eazybe",
+    "howToApplyDesc": "Da inscrição à sua primeira comissão — tornamos tudo sem fricção",
+    "simpleProcess": "Processo Simples em 5 Etapas",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Enviar Inscrição",
+        "desc": "Preencha nosso formulário de inscrição de parceiro em menos de 2 minutos"
+      },
+      {
+        "step": "02",
+        "title": "Análise Rápida",
+        "desc": "Nossa equipe analisa sua inscrição em 24-48 horas"
+      },
+      {
+        "step": "03",
+        "title": "Aprovação",
+        "desc": "Receba um e-mail de boas-vindas com acesso ao portal e aos recursos de parceiros"
+      },
+      {
+        "step": "04",
+        "title": "Comece a Promover",
+        "desc": "Use seus links de rastreamento e materiais de marketing para indicar clientes"
+      },
+      {
+        "step": "05",
+        "title": "Ganhe Comissões",
+        "desc": "Acompanhe as indicações e receba pagamentos mensais por conversões bem-sucedidas"
+      }
+    ],
+    "testimonialsTitle": "O Que Nossos Parceiros Dizem",
+    "testimonialsSubtitle": "Histórias de Sucesso de Parceiros",
+    "testimonialsDesc": "Junte-se a centenas de parceiros que cresceram seus negócios com a Eazybe",
+    "testimonials": [
+      {
+        "quote": "Fazer parceria com a Eazybe foi um divisor de águas. Adicionamos CRM do WhatsApp à nossa oferta de serviços e aumentamos a receita da agência em 40% em apenas 6 meses.",
+        "author": "Rahul Sharma",
+        "role": "Fundador, Digital Growth Agency",
+        "earnings": "$50K+"
+      },
+      {
+        "quote": "O suporte a parceiros é excepcional. Sempre que meus clientes têm dúvidas, a equipe da Eazybe responde em horas. Isso me faz parecer ótimo!",
+        "author": "Priya Patel",
+        "role": "Consultora de CRM",
+        "earnings": "$25K+"
+      },
+      {
+        "quote": "Como afiliado, adoro o rastreamento transparente e os pagamentos mensais. Meu público confia nas minhas recomendações e a Eazybe entrega sempre.",
+        "author": "Alex Johnson",
+        "role": "Blogueiro Tech e Influenciador",
+        "earnings": "$15K+"
+      }
+    ],
+    "integrationsTitle": "Ajude seus clientes a se integrarem com suas plataformas CRM favoritas",
+    "applyTitle": "Sua Jornada de Parceria Começa Aqui",
+    "applyDesc": "Junte-se ao nosso ecossistema global de inovadores, agências e consultores que estão transformando a comunicação empresarial e ganhando pelo caminho.",
+    "fastApproval": "Aprovação Rápida",
+    "fastApprovalDesc": "A maioria das inscrições é aprovada em 24-48 horas",
+    "dedicatedSupportTitle": "Suporte Dedicado",
+    "dedicatedSupportDesc": "Ganhe um gerente de sucesso de parceiro dedicado",
+    "noUpfrontCosts": "Sem Custos Iniciais",
+    "noUpfrontCostsDesc": "Totalmente grátis para participar — comece a ganhar imediatamente",
+    "haveQuestions": "Tem dúvidas? Fale diretamente conosco:",
+    "emailUs": "Envie um E-mail para Nossa Equipe",
+    "formTitle": "Inscrição de Parceiro",
+    "formDesc": "Leva menos de 2 minutos",
+    "fullName": "Nome Completo",
+    "emailAddress": "Endereço de E-mail",
+    "companyName": "Nome da Empresa",
+    "websiteUrl": "URL do Site",
+    "partnershipType": "Tipo de Parceria",
+    "selectType": "Selecione o tipo de parceria...",
+    "typeAffiliate": "Parceiro Afiliado (até 30% de comissão)",
+    "typeReseller": "Parceiro Revendedor (até 40% de comissão)",
+    "typeWhitelabel": "Parceiro White Label (até 50% de comissão)",
+    "tellUs": "Conte-nos Sobre Seu Negócio",
+    "tellUsPlaceholder": "Descreva seu negócio, público-alvo e como você planeja promover a Eazybe...",
+    "submitApplication": "Enviar Inscrição de Parceiro",
+    "faqTitle": "Perguntas Frequentes",
+    "faqDesc": "Tudo o que você precisa saber sobre o Programa de Parceiros Eazybe",
+    "faqStillHave": "Ainda tem dúvidas?",
+    "faqs": [
+      {
+        "question": "Como me torno um parceiro?",
+        "answer": "Basta preencher nosso formulário de inscrição de parceiro em menos de 2 minutos. A maioria das inscrições é aprovada em 24-48 horas. Após a aprovação, você terá acesso ao nosso portal de parceiros com todos os recursos necessários para começar a ganhar."
+      },
+      {
+        "question": "Qual é a estrutura de comissões?",
+        "answer": "Oferecemos três níveis de parceiros: Afiliado (até 30% de comissão), Revendedor (até 40% de comissão) e White Label (até 50% de comissão). As comissões são pagas mensalmente pelo seu método de pagamento preferido."
+      },
+      {
+        "question": "Há algum custo para participar?",
+        "answer": "Não! Participar do programa de parceiros Eazybe é totalmente grátis. Não há custos iniciais, nem compromissos mínimos, nem taxas ocultas. Você começa a ganhar desde a sua primeira indicação bem-sucedida."
+      },
+      {
+        "question": "Quais materiais de marketing são fornecidos?",
+        "answer": "Fornecemos um kit completo de ferramentas para parceiros, incluindo links de rastreamento, materiais de marketing co-marcados, modelos de e-mail, conteúdo para redes sociais, estudos de caso e demos do produto. Tudo o que você precisa para promover a Eazybe com eficácia."
+      },
+      {
+        "question": "Como as indicações são rastreadas?",
+        "answer": "Cada parceiro recebe links de rastreamento exclusivos e um portal dedicado para monitorar cliques, cadastros e conversões em tempo real. Nosso rastreamento transparente garante que você seja creditado por cada indicação."
+      },
+      {
+        "question": "Que tipo de suporte os parceiros recebem?",
+        "answer": "Os parceiros recebem suporte prioritário com gerentes de conta dedicados, tempos de resposta mais rápidos, acesso direto à nossa equipe de produto, oportunidades de co-marketing e sessões de treinamento exclusivas para ajudá-los a ter sucesso."
+      }
+    ],
+    "finalCtaTitle": "Pronto para crescer conosco?",
+    "finalCtaDesc": "Comece a Ganhar com a Eazybe Hoje",
+    "finalCtaSubtext": "Junte-se a mais de 30.000 parceiros em todo o mundo que estão ganhando até 50% de participação em receita enquanto ajudam empresas a transformar sua comunicação por WhatsApp.",
+    "talkToTeam": "Falar com a Equipe de Parceria"
   }
 }
