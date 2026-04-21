@@ -130,6 +130,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     { path: '/blog', changefreq: 'daily', priority: 0.9 },
     { path: '/features/team-inbox', changefreq: 'monthly', priority: 0.8 },
     { path: '/comparison', changefreq: 'weekly', priority: 0.8 },
+    { path: '/about-us', changefreq: 'monthly', priority: 0.7 },
     { path: '/become-our-partner', changefreq: 'monthly', priority: 0.7 },
     { path: '/msa', changefreq: 'monthly', priority: 0.3 },
     { path: '/privacy', changefreq: 'monthly', priority: 0.3 },
