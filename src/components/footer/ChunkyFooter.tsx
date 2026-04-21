@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { Linkedin, Twitter, Youtube, Shield, Lock, Rocket, ShieldCheck, ChevronDown, Plus } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import { usePathname } from 'next/navigation'
@@ -53,41 +54,52 @@ const whatsappApiLinks: FooterLink[] = [
 ]
 
 const getResourceLinks = (locale: string): FooterLink[] => {
-  const comparisonLabels: Record<string, string> = {
-    en: 'Comparison',
-    br: 'Comparação',
-    es: 'Comparación',
-    tr: 'Karşılaştırma',
+  const labels: Record<string, Record<string, string>> = {
+    blog: { en: 'Blog', br: 'Blog', es: 'Blog', tr: 'Blog' },
+    helpCenter: { en: 'Help Center', br: 'Central de Ajuda', es: 'Centro de Ayuda', tr: 'Yardım Merkezi' },
+    caseStudies: { en: 'Case Studies', br: 'Estudos de Caso', es: 'Casos de Éxito', tr: 'Vaka Çalışmaları' },
+    comparison: { en: 'Comparison', br: 'Comparação', es: 'Comparación', tr: 'Karşılaştırma' },
+    webinars: { en: 'Webinars', br: 'Webinars', es: 'Webinars', tr: 'Web Seminerleri' },
   }
+  const pick = (key: string) => labels[key][locale] || labels[key].en
   return [
-    { label: 'Blog', href: '/blog' },
-    { label: 'Help Center', href: 'https://help.eazybe.com', isExternal: true },
-    { label: 'Case Studies', href: '/blog?category=case-studies' },
-    { label: comparisonLabels[locale] || comparisonLabels.en, href: '/comparison' },
-    { label: 'Webinars', href: 'https://eazybe.com/webinars', isExternal: true },
+    { label: pick('blog'), href: '/blog' },
+    { label: pick('helpCenter'), href: 'https://help.eazybe.com', isExternal: true },
+    { label: pick('caseStudies'), href: '/blog?category=case-studies' },
+    { label: pick('comparison'), href: '/comparison' },
+    { label: pick('webinars'), href: 'https://eazybe.com/webinars', isExternal: true },
   ]
 }
 
 const getCompanyLinks = (locale: string): FooterLink[] => {
-  const aboutUsLabels: Record<string, string> = {
-    en: 'About Us',
-    br: 'Sobre N\u00f3s',
-    es: 'Sobre Nosotros',
-    tr: 'Hakk\u0131m\u0131zda',
+  const labels: Record<string, Record<string, string>> = {
+    aboutUs: { en: 'About Us', br: 'Sobre Nós', es: 'Sobre Nosotros', tr: 'Hakkımızda' },
+    contact: { en: 'Contact', br: 'Contato', es: 'Contacto', tr: 'İletişim' },
+    email: { en: 'Email', br: 'E-mail', es: 'Correo', tr: 'E-posta' },
+    becomePartner: { en: 'Become Our Partner', br: 'Torne-se Nosso Parceiro', es: 'Sea Nuestro Socio', tr: 'Ortağımız Olun' },
   }
+  const pick = (key: string) => labels[key][locale] || labels[key].en
   return [
-    { label: aboutUsLabels[locale] || 'About Us', href: '/about-us' },
-    { label: 'Contact', href: 'https://api.whatsapp.com/send/?phone=916364346419&text=I%20want%20to%20know%20more%20about%20Eazybe&type=phone_number&app_absent=0', isExternal: true },
-    { label: 'Email', href: 'mailto:hey@eazybe.com', isExternal: true },
-    { label: 'Become Our Partner', href: '/become-our-partner' },
+    { label: pick('aboutUs'), href: '/about-us' },
+    { label: pick('contact'), href: 'https://api.whatsapp.com/send/?phone=916364346419&text=I%20want%20to%20know%20more%20about%20Eazybe&type=phone_number&app_absent=0', isExternal: true },
+    { label: pick('email'), href: 'mailto:hey@eazybe.com', isExternal: true },
+    { label: pick('becomePartner'), href: '/become-our-partner' },
   ]
 }
 
-const legalLinks = [
-  { label: 'Privacy Policy', href: '/privacy' },
-  { label: 'Terms of Service', href: '/terms' },
-  { label: 'MSA', href: '/msa' },
-]
+const getLegalLinks = (locale: string): FooterLink[] => {
+  const labels: Record<string, Record<string, string>> = {
+    privacy: { en: 'Privacy Policy', br: 'Política de Privacidade', es: 'Política de Privacidad', tr: 'Gizlilik Politikası' },
+    terms: { en: 'Terms of Service', br: 'Termos de Serviço', es: 'Términos del Servicio', tr: 'Hizmet Şartları' },
+    msa: { en: 'MSA', br: 'MSA', es: 'MSA', tr: 'MSA' },
+  }
+  const pick = (key: string) => labels[key][locale] || labels[key].en
+  return [
+    { label: pick('privacy'), href: '/privacy' },
+    { label: pick('terms'), href: '/terms' },
+    { label: pick('msa'), href: '/msa' },
+  ]
+}
 
 const socialLinks = [
   { icon: Linkedin, href: 'https://linkedin.com/company/eazybe', label: 'LinkedIn' },
@@ -473,14 +485,17 @@ export const ChunkyFooter: React.FC = () => {
             <div className="col-span-2 md:col-span-3 lg:col-span-1">
               <LocalizedLink
                 href="/"
-                className="flex items-center gap-2 mb-4 group"
+                className="flex-shrink-0 flex items-center cursor-pointer group mb-4"
               >
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center border group-hover:scale-105 transition-transform duration-300 p-1.5 shadow-sm" style={{ backgroundColor: '#1e293b', borderColor: '#334155' }}>
-                  <img src="/logo.png" alt="Eazybe Logo" className="w-full h-full object-contain" />
-                </div>
-                <span className={`font-bold text-xl group-hover:text-brand-blue transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Eazybe
-                </span>
+                <Image
+                  src="/logo.png"
+                  alt="Eazybe Logo"
+                  width={137}
+                  height={32}
+                  sizes="137px"
+                  className="h-8 w-auto object-contain"
+                  style={{ width: 'auto', height: '32px' }}
+                />
               </LocalizedLink>
               <p className={`mb-5 leading-relaxed text-xs ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>
                 {t('footer.tagline')}
@@ -541,7 +556,7 @@ export const ChunkyFooter: React.FC = () => {
               </span>
             </div>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              {legalLinks.map((link) => (
+              {getLegalLinks(locale).map((link) => (
                 <LocalizedLink
                   key={link.href}
                   href={link.href}
