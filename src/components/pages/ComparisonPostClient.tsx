@@ -4,6 +4,7 @@ import React, { useEffect, useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { mobileAspectClass, desktopAspectClass } from '@/lib/aspect-ratio'
+import { SummarizeWithLLM } from '@/components/blog/SummarizeWithLLM'
 import {
   Calendar,
   Clock,
@@ -903,6 +904,13 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
           </figcaption>
         </figure>
       )}
+
+      {/* Summarize with LLM — 5 provider icons; deep-link with locale-specific prefilled prompt */}
+      <SummarizeWithLLM
+        url={`https://eazybe.com${locale === 'en' ? '' : `/${locale}`}/comparison/${post.slug}`}
+        locale={locale}
+      />
+
 
       {/* Main Content Area */}
       <main className="pb-12 md:pb-20">
