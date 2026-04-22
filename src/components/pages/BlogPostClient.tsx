@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { mobileAspectClass, desktopAspectClass } from '@/lib/aspect-ratio'
 import {
   Calendar,
   Clock,
@@ -886,7 +887,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
       {/* Featured Image */}
       {post.featuredImage && (
         <figure className="max-w-7xl mx-auto px-4 md:px-6 mb-3">
-          <div className="relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden aspect-[16/9] md:aspect-[2/1] shadow-xl md:shadow-2xl border border-slate-800/50">
+          <div className={`relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden ${mobileAspectClass(post.featuredImageMobileRatio, 'aspect-[16/9]')} ${desktopAspectClass(post.featuredImageDesktopRatio, 'md:aspect-[2/1]')} shadow-xl md:shadow-2xl border border-slate-800/50`}>
             <img
               src={post.featuredImage}
               alt={post.featuredImageAlt || post.title}
@@ -898,7 +899,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
             />
           </div>
           <figcaption className="text-center text-slate-400 text-[10px] md:text-xs mt-3">
-            {post.featuredImageAlt || post.title}
+            {post.featuredImageCaption || post.featuredImageAlt || post.title}
           </figcaption>
         </figure>
       )}

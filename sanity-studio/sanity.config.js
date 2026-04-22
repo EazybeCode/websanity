@@ -81,6 +81,37 @@ const seoFields = [
   },
 ]
 
+// Aspect-ratio options for images / GIFs. Applied to every editable image
+// field (inline body, featuredImage, socialShareImage) on both post types.
+// Frontend reads these to set `aspect-ratio` responsively per device.
+const ASPECT_RATIO_OPTIONS = [
+  { title: '1:1 (square)', value: '1:1' },
+  { title: '3:5 (tall portrait)', value: '3:5' },
+  { title: '4:5 (portrait)', value: '4:5' },
+  { title: '9:16 (vertical / story)', value: '9:16' },
+  { title: '16:9 (widescreen)', value: '16:9' },
+  { title: 'auto (use intrinsic image size)', value: 'auto' },
+]
+
+const imageRatioFields = [
+  {
+    name: 'desktopRatio',
+    title: '🖥️ Desktop Aspect Ratio',
+    type: 'string',
+    options: { list: ASPECT_RATIO_OPTIONS, layout: 'dropdown' },
+    initialValue: 'auto',
+    description: 'Aspect ratio the image will render at on desktop (≥768px). Default: use the image\'s own proportions.',
+  },
+  {
+    name: 'mobileRatio',
+    title: '📱 Mobile Aspect Ratio',
+    type: 'string',
+    options: { list: ASPECT_RATIO_OPTIONS, layout: 'dropdown' },
+    initialValue: 'auto',
+    description: 'Aspect ratio the image will render at on mobile (<768px). Default: use the image\'s own proportions.',
+  },
+]
+
 // Universal JSON-LD Schemas section - for ALL content types
 const jsonLdSchemasField = {
   name: 'jsonLdSchemas',
@@ -252,6 +283,7 @@ const blogPost = {
               title: 'Caption',
               description: 'Optional caption displayed below the image',
             },
+            ...imageRatioFields,
           ],
         },
         { type: 'table' },
@@ -278,7 +310,15 @@ const blogPost = {
           type: 'string',
           title: 'Alt Text',
           description: 'Describe image for accessibility and SEO',
-        }
+          validation: Rule => Rule.required().warning('Alt text is required for accessibility and SEO'),
+        },
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          description: 'Optional caption displayed below the image',
+        },
+        ...imageRatioFields,
       ],
     },
 
@@ -487,6 +527,7 @@ const blogPost = {
       options: { hotspot: true },
       fields: [
         { name: 'alt', type: 'string', title: 'Alt Text' },
+        ...imageRatioFields,
       ],
       description: '1200×630 recommended. Used for Open Graph + Twitter cards.',
     },
@@ -669,8 +710,15 @@ const comparisonPost = {
           type: 'image',
           options: { hotspot: true },
           fields: [
-            { name: 'alt', type: 'string', title: 'Alt Text', description: 'Describe the image for accessibility and SEO' },
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              description: 'Describe the image for accessibility and SEO',
+              validation: Rule => Rule.warning('Alt text is strongly recommended for accessibility and SEO'),
+            },
             { name: 'caption', type: 'string', title: 'Caption', description: 'Optional caption displayed below the image' },
+            ...imageRatioFields,
           ],
         },
         { type: 'table' },
@@ -692,7 +740,15 @@ const comparisonPost = {
       fieldset: 'content',
       options: { hotspot: true },
       fields: [
-        { name: 'alt', type: 'string', title: 'Alt Text', description: 'Describe image for accessibility and SEO' },
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt Text',
+          description: 'Describe image for accessibility and SEO',
+          validation: Rule => Rule.required().warning('Alt text is required for accessibility and SEO'),
+        },
+        { name: 'caption', type: 'string', title: 'Caption', description: 'Optional caption displayed below the image' },
+        ...imageRatioFields,
       ],
     },
 
@@ -905,6 +961,7 @@ const comparisonPost = {
       options: { hotspot: true },
       fields: [
         { name: 'alt', type: 'string', title: 'Alt Text' },
+        ...imageRatioFields,
       ],
       description: '1200×630 recommended. Used for Open Graph + Twitter cards.',
     },
