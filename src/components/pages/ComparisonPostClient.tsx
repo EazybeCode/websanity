@@ -846,8 +846,8 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
               </div>
             </div>
 
-            {/* Share buttons */}
-            <div className="flex items-center gap-1 sm:ml-auto w-full sm:w-auto justify-start sm:justify-end">
+            {/* Share buttons — desktop only; mobile shows them in the author section at the bottom */}
+            <div className="hidden md:flex items-center gap-1 sm:ml-auto w-full sm:w-auto justify-start sm:justify-end">
               <button
                 className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
                 title="Share on Twitter"
@@ -1215,6 +1215,40 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                           {post.author.name}
                         </h4>
                       )}
+                      {/* Mobile-only share buttons — moved from the top-fold header */}
+                      <div className="flex md:hidden items-center gap-1 mb-4 justify-center sm:justify-start">
+                        <button
+                          className="p-2 rounded-lg hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
+                          title="Share on Twitter"
+                          onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`, '_blank')}
+                        >
+                          <Twitter size={18} />
+                        </button>
+                        <button
+                          className="p-2 rounded-lg hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
+                          title="Share on LinkedIn"
+                          onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
+                        >
+                          <Linkedin size={18} />
+                        </button>
+                        <button
+                          className="p-2 rounded-lg hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
+                          title="Share via Email"
+                          onClick={() => window.location.href = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(window.location.href)}`}
+                        >
+                          <Mail size={18} />
+                        </button>
+                        <button
+                          className="p-2 rounded-lg hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
+                          title="Copy Link"
+                          onClick={() => {
+                            navigator.clipboard.writeText(window.location.href)
+                            alert('Link copied!')
+                          }}
+                        >
+                          <LinkIcon size={18} />
+                        </button>
+                      </div>
                       <p className="text-lg text-slate-400 leading-relaxed">
                         {post.author.bio || t('blog.detail.authorBioFallback')}
                       </p>
