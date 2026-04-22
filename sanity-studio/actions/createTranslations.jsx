@@ -67,6 +67,8 @@ export function CreateTranslationsAction(props) {
                 ogDescription: doc.ogDescription || '',
                 twitterTitle: doc.twitterTitle || '',
                 twitterDescription: doc.twitterDescription || '',
+                featuredImage: doc.featuredImage,
+                socialShareImage: doc.socialShareImage,
               },
               lang.code
             )
@@ -96,9 +98,9 @@ export function CreateTranslationsAction(props) {
               twitterTitle: translated.twitterTitle,
               twitterDescription: translated.twitterDescription,
 
-              // Structure / assets — copied verbatim
-              featuredImage: doc.featuredImage,
-              socialShareImage: doc.socialShareImage,
+              // Images — alt/caption translated, asset/hotspot preserved
+              featuredImage: translated.featuredImage || doc.featuredImage,
+              socialShareImage: translated.socialShareImage || doc.socialShareImage,
               ogImage: doc.ogImage,
               category: doc.category,
               categories: doc.categories,

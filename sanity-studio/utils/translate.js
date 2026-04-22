@@ -232,9 +232,27 @@ async function translateFaqs(faqs, targetLang) {
 }
 
 /**
+ * Translate the alt / caption on a top-level image field (e.g. featuredImage,
+ * socialShareImage). Returns a shallow-cloned image object with translated
+ * alt and caption; preserves the asset reference and all other properties.
+ * Returns the input unchanged if it's falsy or has no translatable text.
+ */
+export async function translateImage(image, targetLang) {
+  if (!image || typeof image !== 'object') return image
+  const [alt, caption] = await Promise.all([
+    translateText(image.alt, targetLang),
+    translateText(image.caption, targetLang),
+  ])
+  const next = { ...image }
+  if (image.alt !== undefined) next.alt = alt
+  if (image.caption !== undefined) next.caption = caption
+  return next
+}
+
+/**
  * Translate every translatable field of a post / comparisonPost document.
- * Structural fields (images, refs, dates, flags, schemas) are left for the
- * caller to copy verbatim.
+ * Structural fields (refs, dates, flags, schemas) are left for the caller to
+ * copy verbatim. Top-level image alts/captions are translated here too.
  */
 export async function translatePostFields(fields, targetLang) {
   const [
@@ -252,6 +270,8 @@ export async function translatePostFields(fields, targetLang) {
     ogDescription,
     twitterTitle,
     twitterDescription,
+    featuredImage,
+    socialShareImage,
   ] = await Promise.all([
     translateText(fields.title, targetLang),
     translateText(fields.excerpt, targetLang),
@@ -267,6 +287,8 @@ export async function translatePostFields(fields, targetLang) {
     translateText(fields.ogDescription, targetLang),
     translateText(fields.twitterTitle, targetLang),
     translateText(fields.twitterDescription, targetLang),
+    translateImage(fields.featuredImage, targetLang),
+    translateImage(fields.socialShareImage, targetLang),
   ])
 
   return {
@@ -284,5 +306,7 @@ export async function translatePostFields(fields, targetLang) {
     ogDescription,
     twitterTitle,
     twitterDescription,
+    featuredImage,
+    socialShareImage,
   }
 }

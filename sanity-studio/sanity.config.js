@@ -579,6 +579,14 @@ const comparisonPost = {
       type: 'string',
       description: 'Same ID across all language versions links them together (e.g. "comparison-eazybe-vs-wati").',
     },
+    {
+      name: 'translationLinks',
+      title: '🌐 Translations',
+      type: 'string',
+      components: {
+        field: TranslationLinks,
+      },
+    },
 
     // === CONTENT ===
     {

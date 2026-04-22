@@ -21,6 +21,7 @@ const TRANSLATABLE_FIELDS = [
 export function TranslationLinks(props) {
   const client = useClient({ apiVersion: '2024-01-01' })
   const documentId = useFormValue(['_id'])
+  const docType = useFormValue(['_type']) || 'post'
   const translationGroupId = useFormValue(['translationGroupId'])
   const currentLanguage = useFormValue(['language'])
   const title = useFormValue(['title'])
@@ -48,12 +49,12 @@ export function TranslationLinks(props) {
     setLoading(true)
     try {
       const results = await client.fetch(
-        `*[_type == "post" && translationGroupId == $groupId]{
+        `*[_type == $docType && translationGroupId == $groupId]{
           _id, title, language, "slug": slug.current,
           excerpt, metaTitle, metaDescription,
           "hasBody": count(body) > 0
         }`,
-        { groupId: effectiveGroupId }
+        { docType, groupId: effectiveGroupId }
       )
       setTranslations(results || [])
 
@@ -72,7 +73,7 @@ export function TranslationLinks(props) {
       console.error('Failed to fetch translations:', err)
     }
     setLoading(false)
-  }, [client, effectiveGroupId])
+  }, [client, docType, effectiveGroupId])
 
   useEffect(() => {
     fetchTranslations()
@@ -81,7 +82,7 @@ export function TranslationLinks(props) {
   const cleanId = (id) => (id || '').replace(/^drafts\./, '')
 
   const openDocument = (id) => {
-    window.location.href = `/intent/edit/id=${cleanId(id)};type=post`
+    window.location.href = `/intent/edit/id=${cleanId(id)};type=${docType}`
   }
 
   // Auto-set translationGroupId on the current doc if it's missing, then create translations
@@ -114,8 +115,8 @@ export function TranslationLinks(props) {
     try {
       // Check existing
       const existing = await client.fetch(
-        `*[_type == "post" && translationGroupId == $groupId]{language}`,
-        { groupId }
+        `*[_type == $docType && translationGroupId == $groupId]{language}`,
+        { docType, groupId }
       )
       const existingLangs = new Set(existing.map(e => e.language))
       const missing = LANGUAGES.filter(l => !existingLangs.has(l.code) && l.code !== currentLanguage)
@@ -130,7 +131,7 @@ export function TranslationLinks(props) {
       const created = []
       for (const lang of missing) {
         const langSlug = `${slugValue}-${lang.code}`
-        const newId = `drafts.post-${langSlug}-${lang.code}`
+        const newId = `drafts.${docType}-${langSlug}-${lang.code}`
 
         try {
           // Translate content to target language
@@ -139,18 +140,19 @@ export function TranslationLinks(props) {
             excerpt: excerpt || '',
             body: body || [],
             faq: faq || [],
+            featuredImage: featuredImage || undefined,
           }, lang.code)
 
           await client.createIfNotExists({
             _id: newId,
-            _type: 'post',
+            _type: docType,
             language: lang.code,
             translationGroupId: groupId,
             title: translated.title,
             slug: { current: langSlug, _type: 'slug' },
             excerpt: translated.excerpt,
             body: translated.body,
-            featuredImage: featuredImage || undefined,
+            featuredImage: translated.featuredImage || featuredImage || undefined,
             category: category || undefined,
             publishedAt: new Date().toISOString(),
             readTime: readTime || 5,
