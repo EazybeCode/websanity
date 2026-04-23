@@ -15,10 +15,17 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
   const locale = useLocale()
   const isNonEnglish = locale !== 'en'
 
-  // For non-English languages, prioritize translations
-  const badge = isNonEnglish ? t('integrations.comparison.badge', { defaultValue: data.badge || '' }) : (data.badge || t('integrations.comparison.badge', { defaultValue: '' }))
-  const headline = isNonEnglish ? t('integrations.comparison.headline', { defaultValue: data.headline || '' }) : (data.headline || '')
-  const description = isNonEnglish ? t('integrations.comparison.description', { defaultValue: data.description || '' }) : (data.description || t('integrations.comparison.description', { defaultValue: '' }))
+  // next-intl's `t()` throws MISSING_MESSAGE when a key is missing — the
+  // second argument is for ICU placeholders, not a fallback. Wrap in a
+  // safe helper so we can fall back to the Sanity-provided value and
+  // keep the build from failing on missing translation keys.
+  const safeT = (key: string, fallback: string): string => {
+    try { return t(key) } catch { return fallback }
+  }
+
+  const badge = isNonEnglish ? safeT('integrations.comparison.badge', data.badge || '') : (data.badge || safeT('integrations.comparison.badge', ''))
+  const headline = isNonEnglish ? safeT('integrations.comparison.headline', data.headline || '') : (data.headline || '')
+  const description = isNonEnglish ? safeT('integrations.comparison.description', data.description || '') : (data.description || safeT('integrations.comparison.description', ''))
 
   return (
     <section className="py-24 bg-brand-surface border-y border-slate-800 relative">

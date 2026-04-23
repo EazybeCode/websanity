@@ -257,13 +257,23 @@ export function parseJsonLdSchemas(html: string | null | undefined): any[] {
 
     if (!scriptContent) return
 
+    const raw = scriptContent.trim()
     try {
-      // Parse and validate JSON
-      const schema = JSON.parse(scriptContent.trim())
-      schemas.push(schema)
-    } catch (error) {
-      // Skip invalid JSON
-      console.warn('Failed to parse JSON-LD schema:', error)
+      schemas.push(JSON.parse(raw))
+      return
+    } catch {
+      // Fall through to permissive retry below.
+    }
+
+    // Most common editor mistake: trailing comma before `}` or `]`.
+    // Try a one-shot fix; silently skip if it still fails (logging here
+    // would spam SSR logs since the same bad content is processed on
+    // every request).
+    try {
+      const sanitized = raw.replace(/,(\s*[}\]])/g, '$1')
+      schemas.push(JSON.parse(sanitized))
+    } catch {
+      // Silently skip — editors can validate at https://validator.schema.org/
     }
   })
 
