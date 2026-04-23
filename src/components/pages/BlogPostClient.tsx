@@ -945,9 +945,9 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 </div>
               )}
 
-              {/* Mobile TOC Dropdown */}
+              {/* Mobile TOC Dropdown — hidden everywhere per request; desktop uses the sticky sidebar TOC */}
               {dynamicToc && dynamicToc.length > 0 && (
-                <div className="lg:hidden mb-3">
+                <div className="hidden">
                   <details className="bg-brand-card border border-slate-700/50 rounded-xl overflow-hidden">
                     <summary className="flex items-center justify-center gap-2 py-1.5 px-4 cursor-pointer hover:bg-slate-800/50 transition-colors">
                       <BookOpen size={18} className="text-brand-cyan" />
