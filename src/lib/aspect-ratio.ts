@@ -36,3 +36,16 @@ export function desktopAspectClass(ratio?: string | null, fallback: string = 'md
   if (!ratio) return fallback
   return DESKTOP_ASPECT[ratio as AspectRatio] ?? fallback
 }
+
+/**
+ * Convert a Sanity-stored ratio value (e.g. "16:9") to a valid CSS
+ * `aspect-ratio` string (e.g. "16/9"). CSS rejects the colon form silently.
+ * Returns `undefined` for unset / `auto` so the caller can skip applying
+ * any style (default intrinsic sizing).
+ */
+export function cssAspectRatio(ratio?: string | null): string | undefined {
+  if (!ratio || ratio === 'auto') return undefined
+  // Accept "16:9", "16/9", or a bare number like "1.78"
+  if (/^\d+(\.\d+)?$/.test(ratio)) return ratio
+  return ratio.replace(':', '/')
+}

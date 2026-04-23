@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { mobileAspectClass, desktopAspectClass } from '@/lib/aspect-ratio'
+import { mobileAspectClass, desktopAspectClass, cssAspectRatio } from '@/lib/aspect-ratio'
 import { SummarizeWithLLM } from '@/components/blog/SummarizeWithLLM'
 import {
   Calendar,
@@ -271,8 +271,10 @@ const createPortableTextComponents = (
     types: {
       image: ({ value }: any) => {
         if (!value?.url) return null
-        const desktopRatio = value.desktopRatio && value.desktopRatio !== 'natural' ? value.desktopRatio : null
-        const mobileRatio = value.mobileRatio && value.mobileRatio !== 'natural' ? value.mobileRatio : null
+        // CSS `aspect-ratio` requires "16/9" (slash), but Sanity stores "16:9" (colon).
+        // Convert here; return undefined for unset / "auto" so we fall back to intrinsic.
+        const desktopRatio = cssAspectRatio(value.desktopRatio)
+        const mobileRatio = cssAspectRatio(value.mobileRatio)
         const hasRatio = desktopRatio || mobileRatio
 
         return (
