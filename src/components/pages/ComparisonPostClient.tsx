@@ -51,6 +51,9 @@ interface BlogPost {
   categories?: Array<{ title: string; slug: string; link?: string }>
   featuredImage?: string
   featuredImageAlt?: string
+  featuredImageMobileRatio?: string
+  featuredImageDesktopRatio?: string
+  featuredImageCaption?: string
   publishedAt: string
   readTime?: number
   author?: {
