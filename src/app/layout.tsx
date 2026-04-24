@@ -1,20 +1,12 @@
 import type { Metadata } from "next"
-import { Inter, JetBrains_Mono } from "next/font/google"
-import { headers } from "next/headers"
 import "./globals.css"
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-})
-
+// `<html>` and `<body>` live in `[locale]/layout.tsx` so the `lang` attribute
+// is server-rendered with the correct locale without opting the tree into
+// dynamic rendering. This root layout only carries the global `metadata`
+// export (favicons, manifest, etc.) and acts as a pass-through wrapper for
+// non-locale routes (redirect stub, 404, OAuth callbacks) which render their
+// own minimal HTML.
 export const metadata: Metadata = {
   metadataBase: new URL("https://eazybe.com"),
   icons: {
@@ -37,35 +29,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const headersList = await headers()
-  const pathname = headersList.get('x-pathname') || headersList.get('x-invoke-path') || ''
-
-  const langMap: Record<string, string> = {
-    '/br': 'pt-BR',
-    '/es': 'es',
-    '/tr': 'tr',
-  }
-
-  let lang = 'en'
-  for (const [prefix, locale] of Object.entries(langMap)) {
-    if (pathname === prefix || pathname.startsWith(prefix + '/')) {
-      lang = locale
-      break
-    }
-  }
-
-  return (
-    <html lang={lang} className="dark" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  )
+  return children
 }

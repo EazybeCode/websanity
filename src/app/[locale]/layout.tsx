@@ -1,6 +1,7 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
@@ -11,6 +12,20 @@ import { LeadMobileButton } from '@/components/lead/LeadMobileButton'
 import { TrialModalWrapper } from '@/components/modals/TrialModalWrapper'
 import { GlobalStructuredData } from '@/components/seo/GlobalStructuredData'
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+})
+
+// Map next-intl URL locale codes to canonical HTML `lang` values.
+// `br` in our URL structure is Brazilian Portuguese, which in BCP-47 is `pt-BR`.
 const htmlLangMap: Record<string, string> = {
   en: 'en',
   br: 'pt-BR',
@@ -36,19 +51,25 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      <Providers>
-        <GlobalStructuredData locale={locale} />
-        <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-clip">
-          <MegaMenuHeader />
-          <main>{children}</main>
-          <ChunkyFooter />
-          <TrialModalWrapper />
-          <LeadSidebar />
-          <LeadMobileButton />
-        </div>
-      </Providers>
-      <Analytics />
-    </NextIntlClientProvider>
+    <html lang={htmlLangMap[locale] || 'en'} className="dark" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+      >
+        <NextIntlClientProvider messages={messages}>
+          <Providers>
+            <GlobalStructuredData locale={locale} />
+            <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-clip">
+              <MegaMenuHeader />
+              <main>{children}</main>
+              <ChunkyFooter />
+              <TrialModalWrapper />
+              <LeadSidebar />
+              <LeadMobileButton />
+            </div>
+          </Providers>
+          <Analytics />
+        </NextIntlClientProvider>
+      </body>
+    </html>
   )
 }

@@ -4,6 +4,9 @@ import { getPricing } from '@/lib/sanity-queries'
 import { PricingPageClient } from '@/components/pages/PricingPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
 
+// ISR: refresh Sanity pricing content every 30 seconds.
+export const revalidate = 30
+
 export async function generateMetadata({
   params,
 }: {

@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react'
 import { decryptParams } from '@/lib/decrypt-params'
+import { StandaloneShell } from '@/components/StandaloneShell'
 
 const APP_URL_PREFIX_V2 = "https://api.eazybe.com/v2/"
 const EXTENSION_ID_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
@@ -113,11 +114,13 @@ export default function IntegrateSalesforceCrmPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
-        <p className="text-white text-lg">Connecting to Salesforce...</p>
+    <StandaloneShell>
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
+          <p className="text-white text-lg">Connecting to Salesforce...</p>
+        </div>
       </div>
-    </div>
+    </StandaloneShell>
   )
 }

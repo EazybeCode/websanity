@@ -4,6 +4,17 @@ import { getLandingPage } from '@/lib/sanity-queries'
 import { getHomepageMetadata, getHomepageJsonLd } from '@/data/homepage-seo'
 import { fallbackSections } from '@/data/homepage-fallback'
 import { SectionRenderer } from '@/components/SectionRenderer'
+import { routing } from '@/i18n/routing'
+
+// ISR: prerender one page per locale at build time and refresh from Sanity
+// every 30 seconds. Without `generateStaticParams` the route stays dynamic,
+// which forces Next.js to emit `Cache-Control: no-store` and prevents any
+// CDN caching.
+export const revalidate = 30
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
 
 export async function generateMetadata({
   params,
