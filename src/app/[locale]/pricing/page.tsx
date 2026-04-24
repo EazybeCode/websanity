@@ -17,23 +17,22 @@ export async function generateMetadata({
 
   const seo = pricingData?.seo
 
-  // Set title for locales
-  const title =
-    locale === 'en'
-      ? 'Pricing'
-      : locale === 'br'
-        ? 'Preços'
-        : locale === 'es'
-          ? 'Precios'
-          : locale === 'tr'
-            ? 'fiyatlandırma'
-            : (seo?.metaTitle || 'Pricing - Eazybe')
+  // SERP-friendly titles per locale. Authoritative in code across all
+  // locales so the SEO titles can't drift from editor-made changes in
+  // Sanity. ~54-57 characters each, within SERP truncation limits.
+  const titlesByLocale: Record<string, string> = {
+    en: 'WhatsApp CRM Pricing - Starter, Scaler, Omnis | Eazybe',
+    es: 'Precios de WhatsApp CRM - Starter, Scaler, Omnis | Eazybe',
+    br: 'Preços do WhatsApp CRM - Starter, Scaler, Omnis | Eazybe',
+    tr: 'WhatsApp CRM Fiyatları - Starter, Scaler, Omnis | Eazybe',
+  }
+  const title = titlesByLocale[locale] || titlesByLocale.en
 
   return {
     title,
     description:
       seo?.metaDescription ||
-      'Simple, transparent pricing for WhatsApp CRM integration. Start free, scale as you grow.',
+      'Simple, transparent pricing for WhatsApp CRM integration. Start free with Starter, scale with Scaler, or go all-in with Omnis.',
     openGraph: {
       title,
       description:

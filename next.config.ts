@@ -5,6 +5,9 @@ import { redirectRules } from "./src/lib/redirects"
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
 
 const nextConfig: NextConfig = {
+  // Strip the `X-Powered-By: Next.js` response header. No SEO impact,
+  // just security hygiene — no reason to advertise the framework version.
+  poweredByHeader: false,
   turbopack: {
     root: '.',
   },
