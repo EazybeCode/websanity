@@ -119,6 +119,11 @@
     "metaPartner": "Meta Partner",
     "encrypted": "Encrypted"
   },
+  "footerCta": {
+    "headline": "Ready To Automate",
+    "headlineHighlight": "Your WhatsApp Sales?",
+    "subheadline": "Join 2,000+ teams using Eazybe to capture leads, automate follow-ups, and sync every conversation with their CRM."
+  },
   "language": {
     "select": "Language",
     "en": "English",
@@ -1738,8 +1743,8 @@
     "errorPost": "Error loading blog post",
     "hero": {
       "badge": "Knowledge Hub",
-      "headline": "Blog &",
-      "headlineHighlight": "Resources",
+      "headline": "WhatsApp CRM & Automation",
+      "headlineHighlight": "Blog",
       "description": "Expert insights, guides, and best practices for WhatsApp CRM success. Master the art of conversational sales.",
       "searchPlaceholder": "Search articles..."
     },

@@ -399,12 +399,12 @@ export const ChunkyFooter: React.FC = () => {
           </div>
 
           <h2 className="text-5xl md:text-6xl font-sans font-extrabold text-white tracking-tight leading-tight mb-6">
-            {t('hero.headline')} <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">{t('hero.headlineHighlight')}</span>
+            {t('footerCta.headline')} <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">{t('footerCta.headlineHighlight')}</span>
           </h2>
 
           <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-            {t('hero.subheadline')}
+            {t('footerCta.subheadline')}
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">

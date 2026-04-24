@@ -254,9 +254,9 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({
             {hero.badge || t('blog.hero.badge')}
           </SectionBadge>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1] mb-6">
-            {hero.headline || t('blog.hero.headline')}{' '}
+            {t('blog.hero.headline')}{' '}
             <span className="text-brand-cyan">
-              {hero.headlineHighlight || t('blog.hero.headlineHighlight')}
+              {t('blog.hero.headlineHighlight')}
             </span>
           </h1>
           <p className="max-w-2xl mx-auto text-lg text-slate-400 leading-relaxed mb-10">

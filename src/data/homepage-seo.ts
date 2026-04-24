@@ -30,6 +30,7 @@ export function getHomepageMetadata(locale: string): Metadata {
         description: 'Deploy no-code WhatsApp AI agents for sales and support. Capture leads, automate conversations, complete tasks, and sync CRM data in real time.',
         images: [{ url: `${BASE_URL}/logo.png`, width: 1200, height: 630, alt: 'Eazybe WhatsApp AI Agent platform for sales and support teams' }],
         locale: 'en_US',
+        alternateLocale: ['pt_BR', 'es_ES', 'tr_TR'],
         siteName: 'Eazybe',
       },
       twitter: {
@@ -101,6 +102,7 @@ export function getHomepageMetadata(locale: string): Metadata {
         description: 'Automatize conversas no WhatsApp com agentes de IA. Integre com CRM, sincronize chats e gerencie vendas com uma caixa de entrada compartilhada.',
         images: [{ url: `${BASE_URL}/logo.png`, width: 1200, height: 630, alt: 'Eazybe - Agentes de IA para WhatsApp e integra\u00e7\u00e3o com CRM' }],
         locale: 'pt_BR',
+        alternateLocale: ['en_US', 'es_ES', 'tr_TR'],
         siteName: 'Eazybe',
       },
       twitter: {
@@ -168,6 +170,7 @@ export function getHomepageMetadata(locale: string): Metadata {
         description: 'Crea agentes de IA para WhatsApp sin c\u00f3digo. Automatiza conversaciones, captura leads y sincroniza tu CRM en tiempo real.',
         images: [{ url: `${BASE_URL}/logo.png`, width: 1200, height: 630, alt: 'Plataforma de agentes de IA para WhatsApp de Eazybe' }],
         locale: 'es_ES',
+        alternateLocale: ['en_US', 'pt_BR', 'tr_TR'],
         siteName: 'Eazybe',
       },
       twitter: {
@@ -237,6 +240,7 @@ export function getHomepageMetadata(locale: string): Metadata {
         description: 'Kodsuz WhatsApp AI ajanlar\u0131 ile konu\u015fmalar\u0131 otomatikle\u015ftirin, lead yakala\u0131n ve CRM verilerinizi ger\u00e7ek zamanl\u0131 senkronize edin.',
         images: [{ url: `${BASE_URL}/logo.png`, width: 1200, height: 630, alt: 'Eazybe WhatsApp AI ajan platformu' }],
         locale: 'tr_TR',
+        alternateLocale: ['en_US', 'pt_BR', 'es_ES'],
         siteName: 'Eazybe',
       },
       twitter: {

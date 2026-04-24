@@ -22,7 +22,7 @@ export async function generateMetadata({
   // Override everything for English blog page with provided meta tags
   if (locale === 'en') {
     return {
-      title: 'Blog',
+      title: 'WhatsApp CRM & Automation Blog - Guides, Tips, News | Eazybe',
       description: 'Explore the Eazybe blog for insights on WhatsApp automation, chatbots, sales strategies, and CRM tools to streamline workflows and grow your business.',
       keywords: 'whatsapp automation, whatsapp chatbot, business automation, sales strategies, crm tools, marketing automation, customer engagement, automate whatsapp messages',
       authors: [{ name: 'Victor' }],
@@ -61,6 +61,7 @@ export async function generateMetadata({
           }
         ],
         locale: 'en_US',
+        alternateLocale: ['pt_BR', 'es_ES', 'tr_TR'],
         siteName: 'Eazybe',
       },
       twitter: {
@@ -97,7 +98,7 @@ export async function generateMetadata({
   // Override everything for Brazilian Portuguese blog page with provided meta tags
   if (locale === 'br') {
     return {
-      title: 'Blog',
+      title: 'Blog de Automação WhatsApp & CRM - Guias e Insights | Eazybe',
       description: 'Explore o blog da Eazybe para insights sobre automação de WhatsApp, chatbots, estratégias de vendas e ferramentas de CRM para otimizar processos e impulsionar seu negócio.',
       keywords: 'automação whatsapp, chatbot whatsapp, automação de negócios, estratégias de vendas, ferramentas crm, automação de marketing, engajamento do cliente, automatizar mensagens whatsapp',
       robots: {
@@ -138,6 +139,7 @@ export async function generateMetadata({
           }
         ],
         locale: 'pt_BR',
+        alternateLocale: ['en_US', 'es_ES', 'tr_TR'],
         siteName: 'Eazybe',
       },
       twitter: {
@@ -172,7 +174,7 @@ export async function generateMetadata({
   // Override everything for Spanish blog page with provided meta tags
   if (locale === 'es') {
     return {
-      title: 'Blog',
+      title: 'Blog de WhatsApp CRM y Automatización - Guías | Eazybe',
       description: 'Explora el blog de Eazybe para conocer insights sobre automatización de WhatsApp, chatbots, estrategias de ventas y herramientas CRM para optimizar procesos y hacer crecer tu negocio.',
       keywords: 'automatización whatsapp, chatbot whatsapp, automatización de negocios, estrategias de ventas, herramientas crm, automatización de marketing, compromiso del cliente, automatizar mensajes whatsapp',
       robots: {
@@ -213,6 +215,7 @@ export async function generateMetadata({
           }
         ],
         locale: 'es_ES',
+        alternateLocale: ['en_US', 'pt_BR', 'tr_TR'],
         siteName: 'Eazybe',
       },
       twitter: {
@@ -247,7 +250,7 @@ export async function generateMetadata({
   // Override everything for Turkish blog page with provided meta tags
   if (locale === 'tr') {
     return {
-      title: 'Blog',
+      title: 'WhatsApp CRM ve Otomasyon Blogu - Rehberler | Eazybe',
       description: 'Eazybe blog unda WhatsApp otomasyonu, chatbotlar, satış stratejileri ve CRM araçları hakkında içgörüler keşfedin. İş süreçlerinizi optimize edin ve işinizi büyütün.',
       keywords: 'WhatsApp otomasyonu, chatbot WhatsApp, iş otomasyonu, satış stratejileri, CRM araçları, pazarlama otomasyonu, müşteri etkileşimi, WhatsApp mesajlarını otomatikleştirme',
       robots: {
@@ -288,6 +291,7 @@ export async function generateMetadata({
           }
         ],
         locale: 'tr_TR',
+        alternateLocale: ['en_US', 'pt_BR', 'es_ES'],
         siteName: 'Eazybe',
       },
       twitter: {

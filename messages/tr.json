@@ -119,6 +119,11 @@
     "metaPartner": "Meta Ortağı",
     "encrypted": "Şifreli"
   },
+  "footerCta": {
+    "headline": "WhatsApp satışlarınızı",
+    "headlineHighlight": "otomatikleştirmeye hazır mısınız?",
+    "subheadline": "Potansiyel müşterileri yakalamak, takipleri otomatikleştirmek ve her konuşmayı CRM ile senkronize etmek için Eazybe'yi kullanan 2.000'den fazla ekibe katılın."
+  },
   "language": {
     "select": "Dil",
     "en": "English",
@@ -1831,8 +1836,8 @@
     "errorPost": "Blog yazısı yüklenirken hata oluştu",
     "hero": {
       "badge": "Bilgi Merkezi",
-      "headline": "Blog &",
-      "headlineHighlight": "Kaynaklar",
+      "headline": "WhatsApp CRM ve Otomasyon",
+      "headlineHighlight": "Blogu",
       "description": "WhatsApp CRM başarısı için uzman içgörüleri, kılavuzlar ve en iyi uygulamalar. Konuşmalı satış sanatında ustalaşın.",
       "searchPlaceholder": "Makalelerde ara..."
     },

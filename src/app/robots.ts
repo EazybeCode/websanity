@@ -108,12 +108,9 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       })),
     ],
-    sitemap: [
-      `${SITE_URL}/sitemap.xml`,
-      `${SITE_URL}/sitemap-en.xml`,
-      `${SITE_URL}/sitemap-br.xml`,
-      `${SITE_URL}/sitemap-es.xml`,
-      `${SITE_URL}/sitemap-tr.xml`,
-    ],
+    // Only the sitemap index. Google discovers the per-locale child
+    // sitemaps through the index automatically — listing them here is
+    // redundant and just clutters robots.txt.
+    sitemap: `${SITE_URL}/sitemap.xml`,
   }
 }
