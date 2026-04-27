@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useMemo } from 'react'
-import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { Search, Calendar, Clock, Zap } from 'lucide-react'
 import { SectionBadge } from '@/components/ui/SectionBadge'
@@ -63,12 +62,11 @@ const BlogCard: React.FC<{ post: BlogPost; locale: string; minReadSuffix: string
   locale,
   minReadSuffix,
 }) => {
-  const router = useRouter()
   const blogPath = locale === 'en' ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`
 
   return (
-    <div
-      onClick={() => router.push(blogPath)}
+    <a
+      href={blogPath}
       className="group bg-brand-card border border-slate-700 rounded-2xl overflow-hidden hover:border-slate-500 transition-all duration-300 cursor-pointer shadow-xl hover:shadow-2xl h-full flex flex-col"
     >
       <div className="relative h-56 overflow-hidden">
@@ -108,7 +106,7 @@ const BlogCard: React.FC<{ post: BlogPost; locale: string; minReadSuffix: string
           </span>
         </div>
       </div>
-    </div>
+    </a>
   )
 }
 
@@ -118,13 +116,12 @@ const FeaturedBlogCard: React.FC<{
   badgeText: string
   minReadSuffix: string
 }> = ({ post, locale, badgeText, minReadSuffix }) => {
-  const router = useRouter()
   const blogPath = locale === 'en' ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`
 
   return (
-    <div
-      onClick={() => router.push(blogPath)}
-      className="group bg-brand-card border border-slate-700 rounded-2xl overflow-hidden hover:border-slate-500 transition-all duration-300 cursor-pointer shadow-xl hover:shadow-2xl h-full"
+    <a
+      href={blogPath}
+      className="group bg-brand-card border border-slate-700 rounded-2xl overflow-hidden hover:border-slate-500 transition-all duration-300 cursor-pointer shadow-xl hover:shadow-2xl h-full block"
     >
       <div className="grid md:grid-cols-2 h-full">
         <div className="relative h-64 md:h-full overflow-hidden">
@@ -168,7 +165,7 @@ const FeaturedBlogCard: React.FC<{
           </div>
         </div>
       </div>
-    </div>
+    </a>
   )
 }
 
