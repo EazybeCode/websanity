@@ -122,6 +122,15 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
 
   const langPrefix = locale === 'en' ? '' : `/${locale}`
 
+  // Localized labels for the section's hardcoded headings + link text.
+  const labels: Record<string, { featured: string; more: string; learnMore: string }> = {
+    en: { featured: 'Featured', more: 'More Options', learnMore: 'Learn more' },
+    es: { featured: 'Destacados', more: 'Más Opciones', learnMore: 'Más información' },
+    br: { featured: 'Destaques', more: 'Mais Opções', learnMore: 'Saiba mais' },
+    tr: { featured: 'Öne Çıkanlar', more: 'Daha Fazla Seçenek', learnMore: 'Daha fazla bilgi' },
+  }
+  const L = labels[locale] || labels.en
+
   const getItemUrl = (item: any) => {
     if (category === 'feature') return `${langPrefix}/features/${item.slug}`
     if (category === 'whatsapp-api') return `${langPrefix}/whatsapp-api/${item.slug}`
@@ -143,7 +152,7 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
         {featuredItems.length > 0 && (
           <>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white">Featured</h2>
+              <h2 className="text-3xl font-bold text-white">{L.featured}</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {featuredItems.map((item, idx) => (
@@ -168,7 +177,7 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">{item.name}</h3>
                   <p className="text-slate-400 mb-4">{item.description}</p>
                   <div className="flex items-center text-cyan-500 font-medium text-sm group-hover:translate-x-1 transition-transform">
-                    Learn more <ArrowRight className="ml-2 w-4 h-4" />
+                    {L.learnMore} <ArrowRight className="ml-2 w-4 h-4" />
                   </div>
                 </Link>
               ))}
@@ -179,7 +188,7 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
         {otherItems.length > 0 && (
           <>
             <div className="text-center mb-12">
-              <h2 className="text-2xl font-bold text-white">More Options</h2>
+              <h2 className="text-2xl font-bold text-white">{L.more}</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {otherItems.map((item, idx) => (

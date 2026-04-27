@@ -9,6 +9,18 @@ body {
   overflow-x: hidden;
 }
 
+/*
+ * Render every <h1> and <h2> in title case site-wide. CSS `capitalize` only
+ * uppercases the first letter of each word — it never downcases existing
+ * capitals, so brand names and acronyms (WhatsApp, CRM, AI, FAQ) still
+ * render correctly. `!important` is here because some pages apply a
+ * `motion.h1` / inline-style transform that would otherwise win the cascade.
+ */
+h1,
+h2 {
+  text-transform: capitalize !important;
+}
+
 /* Light Mode - SaaS Style with Gradients */
 html.light body {
   background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 25%, #fce7f3 50%, #ecfdf5 75%, #fef3c7 100%);

@@ -55,3 +55,39 @@ export function getAlternates(locale: string, path: string): Metadata['alternate
     languages: getHrefLangs(locale, path),
   }
 }
+
+/**
+ * Build a Schema.org FAQPage JSON-LD blob from a list of FAQ items. Use this
+ * to attach structured data to any page that renders an FAQ section so Google
+ * can surface the questions as rich results in SERPs and AI Overviews.
+ *
+ * Returns `null` when the items array is missing/empty, which is the
+ * convention the rendering code checks before emitting a `<script>` tag.
+ *
+ * Each item should have `question` + `answer`. Items missing either are
+ * silently skipped so a half-populated locale doc doesn't break the schema.
+ */
+export function buildFaqPageSchema(
+  items: Array<{ question?: string; answer?: string }> | null | undefined,
+): object | null {
+  if (!items || items.length === 0) return null
+
+  const mainEntity = items
+    .filter((item) => item?.question && item?.answer)
+    .map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    }))
+
+  if (mainEntity.length === 0) return null
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity,
+  }
+}

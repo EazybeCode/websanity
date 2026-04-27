@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
-import { getAlternates } from '@/lib/seo-helpers'
+import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
@@ -42,6 +42,18 @@ export default async function WhatsAppApiIndexPage({
 
   const language = sanityLangMap[locale] || 'en'
   const data = await getCategoryIndex('whatsapp-api', language)
+  // Auto-generate FAQPage JSON-LD from the rendered FAQ items.
+  const faqSchema = buildFaqPageSchema(data?.faq?.items)
 
-  return <CategoryIndexClient data={data} category="whatsapp-api" />
+  return (
+    <>
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      <CategoryIndexClient data={data} category="whatsapp-api" />
+    </>
+  )
 }

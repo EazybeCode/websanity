@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
-import { getAlternates } from '@/lib/seo-helpers'
+import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
@@ -112,6 +112,8 @@ export default async function FeaturesIndexPage({
   }
 
   const featureSchemas = getSchemas(locale)
+  // Auto-generate FAQPage JSON-LD from the rendered FAQ items.
+  const faqSchema = buildFaqPageSchema(data?.faq?.items)
 
   return (
     <>
@@ -123,6 +125,12 @@ export default async function FeaturesIndexPage({
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />
         ))}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <CategoryIndexClient data={data} category="feature" />
     </>
   )

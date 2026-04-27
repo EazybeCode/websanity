@@ -577,6 +577,68 @@ export async function getFeature(slug: string, locale: string = 'en') {
 
 // ─── Category Index Page ────────────────────────────────────────────────────
 
+// In-process cache for runtime-translated category index pages. Key:
+// `${slug}-${language}`. Lifetime is the lifetime of the Node process —
+// each cold start translates once and reuses for all subsequent renders.
+const categoryTranslateCache = new Map<string, any>()
+
+// Google's free Translate endpoint — same one used by scripts/bulk-translate.mjs.
+// Best-effort: returns the original on failure so the page keeps rendering.
+async function gTranslate(text: string, targetLang: string): Promise<string> {
+  if (!text || !text.trim()) return text
+  const map: Record<string, string> = { es: 'es', tr: 'tr', 'pt-BR': 'pt', en: 'en' }
+  const tl = map[targetLang] || targetLang
+  if (tl === 'en') return text
+  try {
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`
+    const res = await fetch(url)
+    const data = await res.json()
+    if (data && data[0]) return data[0].map((s: any) => s[0]).join('')
+    return text
+  } catch {
+    return text
+  }
+}
+
+// Recursively translate every string in a category-index payload, skipping
+// keys whose values are not user-visible content (URLs, slugs, icons,
+// colors, Sanity meta, step numbers).
+const NON_TRANSLATABLE_KEYS = new Set([
+  'slug',
+  'url',
+  'icon',
+  'color',
+  '_id',
+  '_type',
+  '_key',
+  'number',
+  'category',
+  // Schema-level discriminator on comparison-table cells
+  // (`{ type: 'check' | 'cross' | 'partial' | 'text', text?: string }`).
+  // Translating "check" into "verificar" etc. broke the renderer's switch
+  // so no icon rendered on non-English locales. Skip it.
+  'type',
+])
+
+async function deepTranslate(value: any, targetLang: string, parentKey?: string): Promise<any> {
+  if (value == null) return value
+  if (parentKey && NON_TRANSLATABLE_KEYS.has(parentKey)) return value
+  if (typeof value === 'string') return gTranslate(value, targetLang)
+  if (Array.isArray(value)) {
+    return Promise.all(value.map((item) => deepTranslate(item, targetLang, parentKey)))
+  }
+  if (typeof value === 'object') {
+    const out: Record<string, any> = {}
+    await Promise.all(
+      Object.entries(value).map(async ([k, v]) => {
+        out[k] = NON_TRANSLATABLE_KEYS.has(k) ? v : await deepTranslate(v, targetLang, k)
+      }),
+    )
+    return out
+  }
+  return value
+}
+
 export async function getCategoryIndex(slug: string, locale: string = 'en') {
   const language = toSanityLang(locale)
   const query = `*[_type == "categoryIndexPage" && slug.current == $slug && language == $language][0]{
@@ -655,7 +717,52 @@ export async function getCategoryIndex(slug: string, locale: string = 'en') {
       footnote
     }
   }`
-  return sanityClient.fetch(query, { slug, language })
+
+  const localeData = await sanityClient.fetch<Record<string, any> | null>(query, { slug, language })
+
+  // For English, no fallback / translation needed.
+  if (language === 'en') return localeData
+
+  // For non-English locales, sections often exist only in English in Sanity
+  // (`hero`, `comparisonTable`, `benefits`, `howItWorks`, `faq`, `cta`). We:
+  //   1. Fetch the English source-of-truth doc.
+  //   2. Run it through Google Translate so the user-facing copy is in their
+  //      language. Cached in-process to keep this cheap on warm renders.
+  //   3. Overlay any locale-specific Sanity content on top — editor-curated
+  //      translations always win over auto-translated English.
+  const englishData = await sanityClient.fetch<Record<string, any> | null>(query, { slug, language: 'en' })
+  if (!englishData) return localeData
+
+  // Step 2: translate (with cache).
+  const cacheKey = `${slug}-${language}`
+  let translatedEnglish = categoryTranslateCache.get(cacheKey)
+  if (!translatedEnglish) {
+    translatedEnglish = await deepTranslate(englishData, language)
+    categoryTranslateCache.set(cacheKey, translatedEnglish)
+  }
+
+  if (!localeData) return translatedEnglish
+
+  // Step 3: merge — Sanity locale content wins per section.
+  const isPopulated = (value: unknown): boolean => {
+    if (value == null) return false
+    if (Array.isArray(value)) return value.length > 0
+    if (typeof value === 'object') return Object.keys(value as object).length > 0
+    if (typeof value === 'string') return value.trim().length > 0
+    return true
+  }
+
+  const merged: Record<string, any> = { ...translatedEnglish, ...localeData }
+  // Metadata fields strictly belong to the locale doc; an empty value should
+  // not be replaced with the auto-translated English.
+  const localeOnlyFields = ['metaTitle', 'metaDescription', 'metaKeywords', 'title']
+  for (const key of Object.keys(merged)) {
+    if (localeOnlyFields.includes(key)) continue
+    if (!isPopulated((localeData as Record<string, any>)[key])) {
+      merged[key] = (translatedEnglish as Record<string, any>)[key]
+    }
+  }
+  return merged
 }
 
 // ─── Coexistence Page ───────────────────────────────────────────────────────

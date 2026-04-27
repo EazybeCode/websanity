@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
-import { getAlternates } from '@/lib/seo-helpers'
+import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
@@ -52,7 +52,13 @@ export default async function IntegrationsIndexPage({
   setRequestLocale(locale)
 
   const language = sanityLangMap[locale] || 'en'
-  const data = await getCategoryIndex('integrations', language)
+  const rawData = await getCategoryIndex('integrations', language)
+
+  // The integrations page already inherits the footer's "Ready To Automate
+  // Your WhatsApp Sales?" CTA via ChunkyFooter, so the in-page Sanity CTA
+  // ("Stop flying blind on WhatsApp deals") is redundant and stacks two CTAs
+  // back to back. Suppress only the page-level CTA; keep everything else.
+  const data = rawData ? { ...rawData, cta: null } : rawData
 
   // JSON-LD schemas for integrations page - only BreadcrumbList
   const getSchemas = (locale: string) => {
@@ -112,6 +118,10 @@ export default async function IntegrationsIndexPage({
   }
 
   const integrationSchemas = getSchemas(locale)
+  // Auto-generate FAQPage JSON-LD from the actual FAQ items rendered on the
+  // page so structured data stays in sync with content (including translated
+  // FAQs on non-English locales).
+  const faqSchema = buildFaqPageSchema(data?.faq?.items)
 
   return (
     <>
@@ -123,6 +133,12 @@ export default async function IntegrationsIndexPage({
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />
         ))}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <CategoryIndexClient data={data} category="integration" />
     </>
   )
