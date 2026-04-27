@@ -58,7 +58,39 @@ export default async function IntegrationsIndexPage({
   // Your WhatsApp Sales?" CTA via ChunkyFooter, so the in-page Sanity CTA
   // ("Stop flying blind on WhatsApp deals") is redundant and stacks two CTAs
   // back to back. Suppress only the page-level CTA; keep everything else.
-  const data = rawData ? { ...rawData, cta: null } : rawData
+  //
+  // The hero CTAs are also overridden in code so they match the rest of the
+  // site's primary/secondary funnel buttons (Install for Free + Book a Demo)
+  // instead of Sanity's older "Start Free Trial / Compare Integrations".
+  // Per-locale strings mirror messages/{locale}.json `cta.*` values.
+  const heroCtaLabels: Record<string, { install: string; demo: string }> = {
+    en: { install: 'Install for Free', demo: 'Book a Demo' },
+    es: { install: 'Instalar Gratis', demo: 'Reservar Demo' },
+    br: { install: 'Instalar Grátis', demo: 'Agendar Demo' },
+    tr: { install: 'Ücretsiz Yükle', demo: 'Demo Rezervasyonu Yap' },
+  }
+  const labels = heroCtaLabels[locale] || heroCtaLabels.en
+
+  // Use the same modal-trigger URLs the homepage hero uses (`#trial` /
+  // `#demo`); CategoryIndexClient routes those through the global trial
+  // modal instead of doing a navigation.
+  const data = rawData
+    ? {
+        ...rawData,
+        cta: null,
+        hero: rawData.hero
+          ? {
+              ...rawData.hero,
+              primaryCta: rawData.hero.primaryCta
+                ? { ...rawData.hero.primaryCta, label: labels.install, url: '#trial' }
+                : rawData.hero.primaryCta,
+              secondaryCta: rawData.hero.secondaryCta
+                ? { ...rawData.hero.secondaryCta, label: labels.demo, url: '#demo' }
+                : rawData.hero.secondaryCta,
+            }
+          : rawData.hero,
+      }
+    : rawData
 
   // JSON-LD schemas for integrations page - only BreadcrumbList
   const getSchemas = (locale: string) => {

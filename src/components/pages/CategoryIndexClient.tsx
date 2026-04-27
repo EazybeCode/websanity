@@ -12,6 +12,15 @@ import {
   MessageCircle
 } from 'lucide-react'
 import { useLocale } from 'next-intl'
+import { useTrialModal } from '@/providers/TrialModalProvider'
+
+// Special URL conventions: pages can set a CTA's `url` to one of these to
+// open the global trial/demo modal instead of navigating. Mirrors the
+// homepage hero behavior in HeroDynamic.tsx.
+const MODAL_TRIGGERS: Record<string, 'trial' | 'demo'> = {
+  '#trial': 'trial',
+  '#demo': 'demo',
+}
 
 // ─── UI Components ───────────────────────────────────────────────────────────
 
@@ -45,6 +54,51 @@ const Button: React.FC<ButtonProps> = ({ variant = 'primary', children, classNam
 
 // ─── Hero Section ────────────────────────────────────────────────────────────
 
+const HeroCta: React.FC<{
+  cta: { label?: string; url?: string }
+  variant: 'primary' | 'outline'
+  showArrow?: boolean
+}> = ({ cta, variant, showArrow }) => {
+  const { openModal } = useTrialModal()
+  const url = cta.url || ''
+  const modalKind = MODAL_TRIGGERS[url]
+
+  const buttonContent = (
+    <>
+      {cta.label}
+      {showArrow && <ArrowRight className="ml-2 w-5 h-5" />}
+    </>
+  )
+
+  if (modalKind) {
+    return (
+      <Button
+        variant={variant}
+        className="h-14 px-8 text-base"
+        onClick={() => openModal(modalKind)}
+      >
+        {buttonContent}
+      </Button>
+    )
+  }
+  if (url.startsWith('http')) {
+    return (
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        <Button variant={variant} className="h-14 px-8 text-base">
+          {buttonContent}
+        </Button>
+      </a>
+    )
+  }
+  return (
+    <Link href={url || '#'}>
+      <Button variant={variant} className="h-14 px-8 text-base">
+        {buttonContent}
+      </Button>
+    </Link>
+  )
+}
+
 const HeroSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data) return null
 
@@ -67,30 +121,8 @@ const HeroSection: React.FC<{ data: any }> = ({ data }) => {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            {data.primaryCta && (
-              data.primaryCta.url?.startsWith('http') ? (
-                <a href={data.primaryCta.url} target="_blank" rel="noopener noreferrer">
-                  <Button variant="primary" className="h-14 px-8 text-base">
-                    {data.primaryCta.label}
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </a>
-              ) : (
-                <Link href={data.primaryCta.url || '#'}>
-                  <Button variant="primary" className="h-14 px-8 text-base">
-                    {data.primaryCta.label}
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-              )
-            )}
-            {data.secondaryCta && (
-              <Link href={data.secondaryCta.url || '#'}>
-                <Button variant="outline" className="h-14 px-8 text-base">
-                  {data.secondaryCta.label}
-                </Button>
-              </Link>
-            )}
+            {data.primaryCta && <HeroCta cta={data.primaryCta} variant="primary" showArrow />}
+            {data.secondaryCta && <HeroCta cta={data.secondaryCta} variant="outline" />}
           </div>
         </div>
       </div>
