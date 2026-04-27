@@ -1323,7 +1323,7 @@ export async function generateMetadata({
   if (crmSlug === 'pipedrive' && locale === 'br') {
     return {
       ...baseMetadata,
-      title: 'Integração Pipedrive WhatsApp | Conecte o WhatsApp Pipedrive',
+      title: 'Integração Pipedrive WhatsApp: Conecte o WhatsApp Pipedrive',
       metadataBase: new URL('https://eazybe.com'),
       keywords: 'integração Pipedrive WhatsApp, WhatsApp Pipedrive CRM, sincronizar WhatsApp com Pipedrive, automação WhatsApp Pipedrive, CRM WhatsApp Pipedrive, agentes de IA WhatsApp Pipedrive',
       authors: [{ name: 'Eazybe' }],
