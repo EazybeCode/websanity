@@ -1672,6 +1672,65 @@ export default async function IntegrationPage({
         }
       : null
 
+  // Salesforce (es + tr): same pattern as HubSpot above. FAQ schema reads
+  // straight from `product.faq.items` since `getProduct`'s translation
+  // pipeline auto-translates Sanity's English Salesforce FAQs into the
+  // visitor's language. No hardcoded fallback array — if the translation
+  // pipeline fails, the schema simply won't render (safer than emitting
+  // stale fallback content that could drift from the live page copy).
+  const esSalesforceFaqSchema =
+    crmSlug === 'salesforce' && locale === 'es'
+      ? buildFaqPageSchema(product?.faq?.items)
+      : null
+  const esSalesforceBreadcrumbSchema =
+    crmSlug === 'salesforce' && locale === 'es'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/es' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Integraciones',
+              item: 'https://eazybe.com/es/integrations',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'Integración Salesforce WhatsApp',
+              item: 'https://eazybe.com/es/salesforce-whatsapp-integration',
+            },
+          ],
+        }
+      : null
+  const trSalesforceFaqSchema =
+    crmSlug === 'salesforce' && locale === 'tr'
+      ? buildFaqPageSchema(product?.faq?.items)
+      : null
+  const trSalesforceBreadcrumbSchema =
+    crmSlug === 'salesforce' && locale === 'tr'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/tr' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Entegrasyonlar',
+              item: 'https://eazybe.com/tr/integrations',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'Salesforce WhatsApp Entegrasyonu',
+              item: 'https://eazybe.com/tr/salesforce-whatsapp-integration',
+            },
+          ],
+        }
+      : null
+
   return (
     <>
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
@@ -1698,6 +1757,30 @@ export default async function IntegrationPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(trHubSpotBreadcrumbSchema) }}
+        />
+      )}
+      {esSalesforceFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esSalesforceFaqSchema) }}
+        />
+      )}
+      {esSalesforceBreadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esSalesforceBreadcrumbSchema) }}
+        />
+      )}
+      {trSalesforceFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(trSalesforceFaqSchema) }}
+        />
+      )}
+      {trSalesforceBreadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(trSalesforceBreadcrumbSchema) }}
         />
       )}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
