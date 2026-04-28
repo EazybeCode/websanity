@@ -167,6 +167,11 @@ export async function getPricing(locale: string = 'en') {
 
 // ─── Product (Integration Pages) ────────────────────────────────────────────
 
+// In-process cache for runtime-translated product pages, keyed by
+// `${slug}-${language}`. Same lifecycle and rationale as
+// `categoryTranslateCache`.
+const productTranslateCache = new Map<string, any>()
+
 export async function getProduct(slug: string, locale: string = 'en') {
   const language = toSanityLang(locale)
   const query = `*[_type == "productPage" && slug.current == $slug && language == $language][0]{
@@ -248,7 +253,54 @@ export async function getProduct(slug: string, locale: string = 'en') {
       footnote
     }
   }`
-  return sanityClient.fetch(query, { slug, language })
+
+  const localeData = await sanityClient.fetch<Record<string, any> | null>(query, {
+    slug,
+    language,
+  })
+
+  // For English, no fallback / translation needed.
+  if (language === 'en') return localeData
+
+  // For non-English locales, the productPage doc often only exists in English
+  // in Sanity (full content for /hubspot-whatsapp-integration but no per-
+  // locale docs for /es, /br, /tr). Fetch the English source-of-truth, run
+  // it through the auto-translate pipeline, then overlay any locale-specific
+  // Sanity content on top — same pattern as getCategoryIndex.
+  const englishData = await sanityClient.fetch<Record<string, any> | null>(query, {
+    slug,
+    language: 'en',
+  })
+  if (!englishData) return localeData
+
+  const cacheKey = `${slug}-${language}`
+  let translatedEnglish = productTranslateCache.get(cacheKey)
+  if (!translatedEnglish) {
+    translatedEnglish = await deepTranslate(englishData, language)
+    productTranslateCache.set(cacheKey, translatedEnglish)
+  }
+
+  if (!localeData) return translatedEnglish
+
+  const isPopulated = (value: unknown): boolean => {
+    if (value == null) return false
+    if (Array.isArray(value)) return value.length > 0
+    if (typeof value === 'object') return Object.keys(value as object).length > 0
+    if (typeof value === 'string') return value.trim().length > 0
+    return true
+  }
+
+  const merged: Record<string, any> = { ...translatedEnglish, ...localeData }
+  // Metadata fields strictly belong to the locale doc — empty values should
+  // not be replaced by the auto-translated English.
+  const localeOnlyFields = ['metaTitle', 'metaDescription', 'metaKeywords']
+  for (const key of Object.keys(merged)) {
+    if (localeOnlyFields.includes(key)) continue
+    if (!isPopulated((localeData as Record<string, any>)[key])) {
+      merged[key] = (translatedEnglish as Record<string, any>)[key]
+    }
+  }
+  return merged
 }
 
 // ─── Blog Posts (listing) ───────────────────────────────────────────────────

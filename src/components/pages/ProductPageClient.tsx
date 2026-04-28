@@ -872,28 +872,16 @@ export default function ProductPageClient({ product, crmSlug }: ProductPageClien
         </section>
       )}
 
-      {product?.testimonial && (
-        <section className="py-24 bg-brand-surface border-b border-slate-800">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="text-6xl mb-8 font-serif text-brand-cyan" style={{ textShadow: '0 0 40px rgba(6, 182, 212, 0.3)' }}>&ldquo;</div>
-            <blockquote className="text-2xl font-medium text-white mb-8 leading-relaxed">
-              {product.testimonial.quote}
-            </blockquote>
-            <div className="flex items-center justify-center gap-4">
-              {product.testimonial.avatar && (
-                <img src={product.testimonial.avatar} alt={product.testimonial.author} className="w-12 h-12 rounded-full border-2 border-slate-700" />
-              )}
-              <div className="text-left">
-                <div className="font-bold text-white">{product.testimonial.author}</div>
-                <div className="text-sm text-slate-400">{product.testimonial.title}, {product.testimonial.company}</div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
+      {/* Testimonial section intentionally removed from rendering. The
+          `product.testimonial` data is still fetched in Sanity-queries so
+          re-enabling means restoring the JSX block from git history. */}
 
       {product?.faq && <FAQSection data={product.faq} />}
-      {product?.cta && <CTASection data={product.cta} />}
+      {/* Page-level CTA section intentionally removed — ChunkyFooter's
+          "Ready To Automate Your WhatsApp Sales?" CTA already closes the
+          page, so the in-page CTA was just stacking two CTAs back-to-back.
+          `product.cta` data is still fetched; re-enable by restoring this
+          line from git history. */}
     </main>
   )
 }

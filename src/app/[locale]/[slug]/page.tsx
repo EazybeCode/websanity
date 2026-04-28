@@ -4,7 +4,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getProduct } from '@/lib/sanity-queries'
 import { routing } from '@/i18n/routing'
 import ProductPageClient from '@/components/pages/ProductPageClient'
-import { getAlternates } from '@/lib/seo-helpers'
+import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
 import { HubSpotStructuredData } from '@/components/seo/HubSpotStructuredData'
 import { HubSpotStructuredDataBr } from '@/components/seo/HubSpotStructuredDataBr'
 import { ZohoStructuredData } from '@/components/seo/ZohoStructuredData'
@@ -1539,10 +1539,87 @@ export default async function IntegrationPage({
 
   const product = await getProduct(slug, locale)
 
+  // Spanish HubSpot integration page: en/br have hand-tuned structured data
+  // components; this Spanish equivalent is generated dynamically from the
+  // product's own faqSection (so editors who add/edit FAQs in Sanity see
+  // their changes flow into search results) — with a Spanish-translated
+  // fallback for when Sanity has no FAQs yet, mirroring the English
+  // HubSpotStructuredData component's question set.
+  const ES_HUBSPOT_FAQ_FALLBACK = [
+    {
+      question: '¿Cómo conecto WhatsApp con HubSpot CRM?',
+      answer:
+        'Instala Eazybe y conecta tu cuenta de HubSpot. Eazybe sincroniza los chats de WhatsApp con HubSpot para que las conversaciones y el contexto del cliente queden vinculados a los registros correctos del CRM.',
+    },
+    {
+      question: '¿Eazybe sincroniza los mensajes de WhatsApp en HubSpot automáticamente?',
+      answer:
+        'Sí. Eazybe puede sincronizar las conversaciones de WhatsApp con HubSpot de forma automática, reduciendo el copiar y pegar manual y manteniendo la actividad de ventas siempre actualizada.',
+    },
+    {
+      question: '¿Pueden varios miembros del equipo usar una bandeja compartida con HubSpot + WhatsApp?',
+      answer:
+        'Sí. Eazybe admite flujos de bandeja compartida para que los equipos colaboren en leads de WhatsApp manteniendo los registros de HubSpot alineados.',
+    },
+    {
+      question: '¿Qué pueden hacer los agentes de IA en conversaciones de HubSpot + WhatsApp?',
+      answer:
+        'La IA ayuda a redactar respuestas, resumir conversaciones y agilizar los seguimientos, para que los representantes respondan más rápido manteniendo un mensaje consistente.',
+    },
+    {
+      question: '¿Es segura esta integración con WhatsApp y HubSpot?',
+      answer:
+        'Eazybe está pensado para casos de uso empresariales y se centra en flujos seguros para sincronizar conversaciones de WhatsApp con registros del CRM. Revisa siempre tus requisitos de seguridad y cumplimiento antes de implementarlo.',
+    },
+    {
+      question: '¿Con qué objetos de HubSpot puedo asociar las conversaciones de WhatsApp?',
+      answer:
+        'La mayoría de los equipos asocian las conversaciones de WhatsApp con contactos y deals para seguir el contexto a lo largo del pipeline de ventas. La asociación ideal depende del flujo de trabajo concreto de tu HubSpot.',
+    },
+  ]
+  const esHubSpotFaqSchema =
+    crmSlug === 'hubspot' && locale === 'es'
+      ? buildFaqPageSchema(product?.faq?.items?.length ? product.faq.items : ES_HUBSPOT_FAQ_FALLBACK)
+      : null
+  const esHubSpotBreadcrumbSchema =
+    crmSlug === 'hubspot' && locale === 'es'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/es' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Integraciones',
+              item: 'https://eazybe.com/es/integrations',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'Integración HubSpot WhatsApp',
+              item: 'https://eazybe.com/es/hubspot-whatsapp-integration',
+            },
+          ],
+        }
+      : null
+
   return (
     <>
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
       {crmSlug === 'hubspot' && locale === 'br' && <HubSpotStructuredDataBr />}
+      {esHubSpotFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esHubSpotFaqSchema) }}
+        />
+      )}
+      {esHubSpotBreadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esHubSpotBreadcrumbSchema) }}
+        />
+      )}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
       {crmSlug === 'zoho' && locale === 'br' && <ZohoStructuredDataBr />}
       {crmSlug === 'bitrix24' && locale === 'en' && <Bitrix24StructuredData />}
