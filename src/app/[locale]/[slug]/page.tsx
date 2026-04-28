@@ -231,6 +231,14 @@ export async function generateMetadata({
     }
   }
 
+  // Spanish title-only override for HubSpot integration page.
+  if (crmSlug === 'hubspot' && locale === 'es') {
+    return {
+      ...baseMetadata,
+      title: 'Integración HubSpot WhatsApp: HubSpot integrado WhatsApp',
+    }
+  }
+
   // Additional meta tags for Zoho integration page (English only)
   if (crmSlug === 'zoho' && locale === 'en') {
     return {
