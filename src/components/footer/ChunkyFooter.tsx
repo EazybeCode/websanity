@@ -171,6 +171,7 @@ export const ChunkyFooter: React.FC = () => {
       { question: 'What is WhatsApp API Coexistence?', answer: 'Coexistence allows you to use both WhatsApp Web and WhatsApp API simultaneously. This means you can keep your manual conversations while automating bulk messages and templates through the API.' },
       { question: 'How does the Revenue Inbox work?', answer: 'The Revenue Inbox tracks and attributes revenue to specific WhatsApp conversations, giving you visibility into which messages lead to sales and helping your team focus on high-value prospects.' },
       { question: 'Do I need technical skills to set up Eazybe?', answer: 'Not at all! Eazybe is designed to be user-friendly. Most features work out of the box, and our detailed help center and support team are available if you need assistance.' },
+      { question: 'What is your refund policy?', answer: 'Eazybe follows a strict no-refund policy. We do not offer refunds for any plan — including both monthly and annual subscriptions. Once a payment is made, it is non-refundable. If a subscription is not cancelled before the renewal date, the resulting charge is valid and non-refundable. Retroactive cancellations or refund requests after billing renewal will not be accepted.' },
     ],
     br: [
       { question: 'O que e o Eazybe?', answer: 'O Eazybe e uma plataforma de CRM e vendas para WhatsApp que ajuda empresas a gerenciar conversas com clientes, automatizar respostas, rastrear receita e integrar o WhatsApp com ferramentas de CRM populares como HubSpot, Salesforce e mais.' },
@@ -181,6 +182,7 @@ export const ChunkyFooter: React.FC = () => {
       { question: 'O que e Coexistencia de API do WhatsApp?', answer: 'A coexistencia permite que voce use o WhatsApp Web e a API do WhatsApp simultaneamente. Isso significa que voce pode manter suas conversas manuais enquanto automatiza mensagens em massa e modelos atraves da API.' },
       { question: 'Como funciona a Caixa de Entrada de Receita?', answer: 'A Caixa de Entrada de Receita rastreia e atribui receita a conversas especificas do WhatsApp, dando visibilidade sobre quais mensagens levam a vendas e ajudando sua equipe a se concentrar em prospects de alto valor.' },
       { question: 'Preciso de habilidades tecnicas para configurar o Eazybe?', answer: 'De forma alguma! O Eazybe foi projetado para ser facil de usar. A maioria dos recursos funciona imediatamente e nosso centro de ajuda detalhado e equipe de suporte estao disponiveis se voce precisar de assistencia.' },
+      { question: 'Qual e a politica de reembolso?', answer: 'O Eazybe segue uma politica rigorosa de nao reembolso. Nao oferecemos reembolsos para nenhum plano — incluindo assinaturas mensais e anuais. Uma vez realizado o pagamento, nao e reembolsavel. Se uma assinatura nao for cancelada antes da data de renovacao, a cobranca resultante e valida e nao reembolsavel.' },
     ],
     es: [
       { question: 'Que es Eazybe?', answer: 'Eazybe es una plataforma de CRM y ventas de WhatsApp que ayuda a las empresas a gestionar conversaciones con clientes, automatizar respuestas, rastrear ingresos e integrar WhatsApp con herramientas de CRM populares como HubSpot, Salesforce y mas.' },
@@ -191,6 +193,7 @@ export const ChunkyFooter: React.FC = () => {
       { question: 'Que es la Coexistencia de API de WhatsApp?', answer: 'La coexistencia le permite usar WhatsApp Web y la API de WhatsApp simultaneamente. Esto significa que puede mantener sus conversaciones manuales mientras automatiza mensajes masivos y plantillas a traves de la API.' },
       { question: 'Como funciona la Bandeja de Entrada de Ingresos?', answer: 'La Bandeja de Entrada de Ingresos rastrea y atribuye ingresos a conversaciones especificas de WhatsApp, dandole visibilidad sobre que mensajes llevan a ventas y ayudando a su equipo a centrarse en prospectos de alto valor.' },
       { question: 'Necesito habilidades tecnicas para configurar Eazybe?', answer: 'De ninguna manera! Eazybe esta disenado para ser facil de usar. La mayoria de las funciones funcionan de inmediato y nuestro centro de ayuda detallado y equipo de soporte estan disponibles si necesita asistencia.' },
+      { question: 'Cual es la politica de reembolso?', answer: 'Eazybe sigue una politica estricta de no reembolso. No ofrecemos reembolsos para ningun plan — incluyendo suscripciones mensuales y anuales. Una vez realizado el pago, no es reembolsable. Si una suscripcion no se cancela antes de la fecha de renovacion, el cargo resultante es valido y no reembolsable.' },
     ],
     tr: [
       { question: 'Eazybe nedir?', answer: 'Eazybe, isletmelerin musteri konusmalarini yonetmesine, yanitlari otomatiklestirmesine, geliri izlemesine ve WhatsApp\'i HubSpot, Salesforce ve daha fazlasi gibi populer CRM araclariyla entegre etmesine yardimci olan bir WhatsApp CRM ve satis platformudur.' },
@@ -201,6 +204,7 @@ export const ChunkyFooter: React.FC = () => {
       { question: 'WhatsApp API Coexistence nedir?', answer: 'Coexistence, WhatsApp Web ve WhatsApp API\'yi ayni anda kullanmanizi saglar. Bu, manuel konusmalarinizi korurken API uzerinden toplu mesajlari ve sablonlari otomatiklestirebileceginiz anlamina gelir.' },
       { question: 'Gelir Gelen Kutusu nasil calisiyor?', answer: 'Gelir Gelen Kutusu, geliri belirli WhatsApp konusmalarina atar ve hangi mesajlarin satisa yol actiqi konusunda gorunurluk saglar, ekibinizin yuksek degerli potansiyel musterilere odaklanmasina yardimci olur.' },
       { question: 'Eazybe\'yi kurmak icin teknik becerilere ihtiyacim var mi?', answer: 'Hicbir sekilde! Eazybe kullanici dostu olacak sekilde tasarlanmistir. Cogu ozellik kutudan ciktigi gibi calisir ve yardima ihtiyaciniz olursa detayli yardim merkezimiz ve destek ekibimiz mevcuttur.' },
+      { question: 'Iade politikaniz nedir?', answer: 'Eazybe kesin bir iade yapmama politikasi uygular. Hicbir plan icin iade teklif etmiyoruz — aylik ve yillik abonelikler dahil. Odeme yapildiktan sonra iade edilemez. Bir abonelik yenileme tarihinden once iptal edilmezse, ortaya cikan ucret gecerlidir ve iade edilemez.' },
     ],
   }
 

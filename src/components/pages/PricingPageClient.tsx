@@ -263,6 +263,11 @@ const defaultFaqItems: FAQItem[] = [
     answer:
       'Yes. We use bank-grade 256-bit encryption for all data in transit and at rest. We are GDPR compliant, Meta Business Partner verified, and undergo regular security audits.',
   },
+  {
+    question: 'What is your refund policy?',
+    answer:
+      'Eazybe follows a strict no-refund policy. We do not offer refunds for any plan — including both monthly and annual subscriptions. Once a payment is made, it is non-refundable. If a subscription is not cancelled before the renewal date, the resulting charge is valid and non-refundable. Retroactive cancellations or refund requests after billing renewal will not be accepted. We encourage all users to take advantage of our free trial to evaluate the product before purchasing. By subscribing, you agree to our no-refund policy.',
+  },
 ]
 
 // ─── Helper ─────────────────────────────────────────────────────────────────
