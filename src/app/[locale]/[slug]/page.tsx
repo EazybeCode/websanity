@@ -1403,7 +1403,7 @@ export async function generateMetadata({
   if (crmSlug === 'salesforce' && locale === 'en') {
     return {
       ...baseMetadata,
-      title: 'Salesforce WhatsApp Integration | WhatsApp + Salesforce',
+      title: 'Salesforce WhatsApp Integration: WhatsApp + Salesforce',
       metadataBase: new URL('https://eazybe.com'),
       keywords: 'Salesforce WhatsApp integration, WhatsApp Salesforce CRM, sync WhatsApp with Salesforce, Salesforce WhatsApp automation, WhatsApp CRM Salesforce, AI agents Salesforce WhatsApp',
       authors: [{ name: 'Eazybe' }],
