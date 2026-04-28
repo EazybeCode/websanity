@@ -639,6 +639,35 @@ async function deepTranslate(value: any, targetLang: string, parentKey?: string)
   return value
 }
 
+// In-process cache for runtime-translated *page-level overrides* (anything
+// that page.tsx wants to inject into a categoryIndex render but that lives
+// in code, not Sanity). Separate from `categoryTranslateCache` so cache
+// invalidation can happen independently when the code-side defaults change.
+const overrideTranslateCache = new Map<string, any>()
+
+/**
+ * Translate an arbitrary content payload for a target locale, with in-process
+ * memoization. Skips the standard `NON_TRANSLATABLE_KEYS` (slug, url, icon,
+ * color, etc.). Use this for code-side content (hero/intro/benefits/howItWorks/
+ * faq fallbacks) that needs to render in es/br/tr without touching Sanity.
+ *
+ * @param data - The English-source payload to translate
+ * @param locale - Target locale (en passes through, others go through Google)
+ * @param cacheKey - Module-level cache key (typically `${slug}-overrides-${locale}`)
+ */
+export async function translatePageOverrides<T>(
+  data: T,
+  locale: string,
+  cacheKey: string,
+): Promise<T> {
+  if (locale === 'en') return data
+  if (overrideTranslateCache.has(cacheKey)) return overrideTranslateCache.get(cacheKey)
+  const targetLang = toSanityLang(locale)
+  const translated = await deepTranslate(data, targetLang)
+  overrideTranslateCache.set(cacheKey, translated)
+  return translated
+}
+
 export async function getCategoryIndex(slug: string, locale: string = 'en') {
   const language = toSanityLang(locale)
   const query = `*[_type == "categoryIndexPage" && slug.current == $slug && language == $language][0]{
