@@ -239,6 +239,14 @@ export async function generateMetadata({
     }
   }
 
+  // Turkish title-only override for HubSpot integration page.
+  if (crmSlug === 'hubspot' && locale === 'tr') {
+    return {
+      ...baseMetadata,
+      title: 'HubSpot WhatsApp Entegrasyonu: HubSpot WhatsAppa entegre',
+    }
+  }
+
   // Additional meta tags for Zoho integration page (English only)
   if (crmSlug === 'zoho' && locale === 'en') {
     return {
@@ -1604,6 +1612,66 @@ export default async function IntegrationPage({
         }
       : null
 
+  // Turkish equivalent of the Spanish HubSpot schemas above.
+  const TR_HUBSPOT_FAQ_FALLBACK = [
+    {
+      question: "WhatsApp'ı HubSpot CRM'ye nasıl bağlarım?",
+      answer:
+        "Eazybe'yi yükleyin ve HubSpot hesabınızı bağlayın. Eazybe, WhatsApp sohbetlerini HubSpot'a senkronize eder, böylece konuşmalar ve müşteri bağlamı doğru CRM kayıtlarına bağlı kalır.",
+    },
+    {
+      question: 'Eazybe, WhatsApp mesajlarını HubSpot içine otomatik olarak senkronize eder mi?',
+      answer:
+        "Evet. Eazybe, WhatsApp konuşmalarını HubSpot'a otomatik olarak senkronize edebilir; manuel kopyala-yapıştır işlemlerini azaltır ve satış aktivitenizi güncel tutar.",
+    },
+    {
+      question: 'Birden fazla ekip üyesi HubSpot + WhatsApp ile paylaşılan bir gelen kutusu kullanabilir mi?',
+      answer:
+        "Evet. Eazybe paylaşılan gelen kutusu iş akışlarını destekler; ekipler WhatsApp lead'leri üzerinde işbirliği yaparken HubSpot kayıtlarını hizalı tutar.",
+    },
+    {
+      question: 'AI ajanları HubSpot + WhatsApp konuşmaları için ne yapabilir?',
+      answer:
+        'AI; yanıtların taslağını çıkarmaya, konuşmaları özetlemeye ve takipleri hızlandırmaya yardımcı olabilir, böylece temsilciler tutarlı bir mesajla daha hızlı yanıt verir.',
+    },
+    {
+      question: 'Bu entegrasyonu WhatsApp ve HubSpot ile kullanmak güvenli mi?',
+      answer:
+        'Eazybe, kurumsal kullanım senaryoları için tasarlanmıştır ve WhatsApp konuşmalarını CRM kayıtlarıyla senkronize etmek için güvenli iş akışlarına odaklanır. Devreye almadan önce güvenlik ve uyumluluk gereksinimlerinizi her zaman gözden geçirin.',
+    },
+    {
+      question: 'WhatsApp konuşmalarını hangi HubSpot nesneleriyle ilişkilendirebilirim?',
+      answer:
+        "Çoğu ekip, WhatsApp konuşmalarını satış pipeline'ı boyunca bağlamı izlemek için kişiler ve deals ile ilişkilendirir. İdeal eşleme, HubSpot iş akışınıza bağlıdır.",
+    },
+  ]
+  const trHubSpotFaqSchema =
+    crmSlug === 'hubspot' && locale === 'tr'
+      ? buildFaqPageSchema(product?.faq?.items?.length ? product.faq.items : TR_HUBSPOT_FAQ_FALLBACK)
+      : null
+  const trHubSpotBreadcrumbSchema =
+    crmSlug === 'hubspot' && locale === 'tr'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/tr' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Entegrasyonlar',
+              item: 'https://eazybe.com/tr/integrations',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'HubSpot WhatsApp Entegrasyonu',
+              item: 'https://eazybe.com/tr/hubspot-whatsapp-integration',
+            },
+          ],
+        }
+      : null
+
   return (
     <>
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
@@ -1618,6 +1686,18 @@ export default async function IntegrationPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(esHubSpotBreadcrumbSchema) }}
+        />
+      )}
+      {trHubSpotFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(trHubSpotFaqSchema) }}
+        />
+      )}
+      {trHubSpotBreadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(trHubSpotBreadcrumbSchema) }}
         />
       )}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
