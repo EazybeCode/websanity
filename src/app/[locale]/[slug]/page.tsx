@@ -255,6 +255,14 @@ export async function generateMetadata({
     }
   }
 
+  // Turkish title-only override for Salesforce integration page.
+  if (crmSlug === 'salesforce' && locale === 'tr') {
+    return {
+      ...baseMetadata,
+      title: 'Salesforce WhatsApp Entegrasyonu: WhatsApp + Salesforce',
+    }
+  }
+
   // Additional meta tags for Zoho integration page (English only)
   if (crmSlug === 'zoho' && locale === 'en') {
     return {
