@@ -133,7 +133,7 @@ export function SummarizeWithLLM({ url, locale = 'en', label }: SummarizeWithLLM
             rel="noopener noreferrer"
             title={`Summarize with ${llm.name}`}
             aria-label={`Summarize with ${llm.name}`}
-            className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 hover:border-slate-400 hover:shadow-lg transition-all duration-200 hover:scale-105"
+            className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 hover:border-slate-400 hover:shadow-lg transition-all duration-200 hover:scale-105"
           >
             {llm.icon}
           </a>

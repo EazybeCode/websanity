@@ -926,7 +926,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
             <div className="w-full lg:flex-1">
               {/* TL;DR Box (rich text from Sanity, supports bullets/links) */}
               {post.tldr && post.tldr.length > 0 && (
-                <div className="my-6 md:mt-0 md:mb-5 p-5 md:p-6 rounded-xl border-l-4 border-brand-cyan/50 bg-gradient-to-r from-brand-blue/15 via-brand-cyan/10 to-blue-500/5">
+                <div className="mt-0 mb-6 md:mb-5 p-5 md:p-6 rounded-xl border-l-4 border-brand-cyan/50 bg-gradient-to-r from-brand-blue/15 via-brand-cyan/10 to-blue-500/5">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 text-brand-cyan">
                       <BookOpen size={24} />
