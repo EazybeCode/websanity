@@ -7,6 +7,9 @@ import { LocalizedLink } from '@/components/LocalizedLink'
 
 interface Post {
   _id: string
+  // `_type` distinguishes blog posts (`post`) from comparison posts
+  // (`comparisonPost`) so the card can link to the right URL prefix.
+  _type?: 'post' | 'comparisonPost'
   title: string
   slug: string
   excerpt: string
@@ -176,7 +179,9 @@ export function AuthorProfileClient({ author, locale }: { author: Author; locale
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {author.posts.map((post) => {
                 const prefix = langToLocalePrefix[post.language] || ''
-                const postUrl = `${prefix}/blog/${post.slug}`
+                // Route to /comparison for comparison posts, /blog for everything else.
+                const section = post._type === 'comparisonPost' ? 'comparison' : 'blog'
+                const postUrl = `${prefix}/${section}/${post.slug}`
 
                 return (
                   <a

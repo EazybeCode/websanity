@@ -963,8 +963,9 @@ export async function getAuthorBySlug(slug: string, locale: string = 'en') {
     "imageUrl": image.asset->url,
     "imageAlt": image.alt,
     socialLinks,
-    "posts": *[_type == "post" && references(^._id) && language == $sanityLanguage] | order(publishedAt desc) {
+    "posts": *[(_type == "post" || _type == "comparisonPost") && references(^._id) && language == $sanityLanguage] | order(publishedAt desc) {
       _id,
+      _type,
       title,
       "slug": slug.current,
       excerpt,
