@@ -130,9 +130,16 @@ export async function translatePortableText(blocks, targetLang) {
       }
 
       case 'callout': {
+        // Schema fields: `content` (Portable Text) and `title` (string).
+        // Older docs may also have a legacy `text` field — translate both
+        // when present so we don't drop content on either shape.
         const title = await translateText(block.title, targetLang)
-        const text = await translateAny(block.text, targetLang)
-        out.push({ ...block, title, text })
+        const content = await translateAny(block.content, targetLang)
+        const next = { ...block, title, content }
+        if (block.text !== undefined) {
+          next.text = await translateAny(block.text, targetLang)
+        }
+        out.push(next)
         break
       }
 

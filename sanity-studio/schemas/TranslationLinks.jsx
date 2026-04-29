@@ -29,11 +29,23 @@ export function TranslationLinks(props) {
   const excerpt = useFormValue(['excerpt'])
   const body = useFormValue(['body'])
   const featuredImage = useFormValue(['featuredImage'])
+  const socialShareImage = useFormValue(['socialShareImage'])
   const category = useFormValue(['category'])
   const readTime = useFormValue(['readTime'])
   const author = useFormValue(['author'])
+  const authorRef = useFormValue(['authorRef'])
   const faq = useFormValue(['faq'])
+  const faqTitle = useFormValue(['faqTitle'])
+  const tldr = useFormValue(['tldr'])
+  const quickAnswer = useFormValue(['quickAnswer'])
   const breadcrumbs = useFormValue(['breadcrumbs'])
+  const metaTitle = useFormValue(['metaTitle'])
+  const metaDescription = useFormValue(['metaDescription'])
+  const metaKeywords = useFormValue(['metaKeywords'])
+  const ogTitle = useFormValue(['ogTitle'])
+  const ogDescription = useFormValue(['ogDescription'])
+  const twitterTitle = useFormValue(['twitterTitle'])
+  const twitterDescription = useFormValue(['twitterDescription'])
 
   const [translations, setTranslations] = useState([])
   const [translationDetails, setTranslationDetails] = useState({})
@@ -140,10 +152,21 @@ export function TranslationLinks(props) {
             excerpt: excerpt || '',
             body: body || [],
             faq: faq || [],
+            quickAnswer: quickAnswer || '',
+            tldr: tldr || [],
+            faqTitle: faqTitle || '',
+            metaTitle: metaTitle || '',
+            metaDescription: metaDescription || '',
+            metaKeywords: metaKeywords || '',
+            ogTitle: ogTitle || '',
+            ogDescription: ogDescription || '',
+            twitterTitle: twitterTitle || '',
+            twitterDescription: twitterDescription || '',
             featuredImage: featuredImage || undefined,
+            socialShareImage: socialShareImage || undefined,
           }, lang.code)
 
-          await client.createIfNotExists({
+          const newDoc = {
             _id: newId,
             _type: docType,
             language: lang.code,
@@ -152,16 +175,31 @@ export function TranslationLinks(props) {
             slug: { current: langSlug, _type: 'slug' },
             excerpt: translated.excerpt,
             body: translated.body,
+            quickAnswer: translated.quickAnswer,
+            tldr: translated.tldr,
+            faqTitle: translated.faqTitle,
+            faq: translated.faq,
+            metaTitle: translated.metaTitle,
+            metaDescription: translated.metaDescription,
+            metaKeywords: translated.metaKeywords,
+            ogTitle: translated.ogTitle,
+            ogDescription: translated.ogDescription,
+            twitterTitle: translated.twitterTitle,
+            twitterDescription: translated.twitterDescription,
             featuredImage: translated.featuredImage || featuredImage || undefined,
+            socialShareImage: translated.socialShareImage || socialShareImage || undefined,
             category: category || undefined,
             publishedAt: new Date().toISOString(),
             readTime: readTime || 5,
             author: author || undefined,
-            faq: translated.faq,
+            authorRef: authorRef || undefined,
             breadcrumbs: breadcrumbs || [],
-            metaTitle: '',
-            metaDescription: '',
+          }
+          // Strip undefined so Sanity doesn't store empty keys
+          Object.keys(newDoc).forEach((k) => {
+            if (newDoc[k] === undefined) delete newDoc[k]
           })
+          await client.createIfNotExists(newDoc)
           created.push(`${lang.flag} ${lang.label} — translated`)
         } catch (err) {
           created.push(`${lang.flag} ${lang.label} (FAILED: ${err.message})`)
