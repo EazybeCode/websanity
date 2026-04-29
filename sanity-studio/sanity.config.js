@@ -793,9 +793,7 @@ const comparisonPost = {
       title: 'Category',
       type: 'string',
       fieldset: 'metadata',
-      options: {
-        list: ['CRM Comparison', 'Tool Comparison', 'Integration Comparison', 'Alternative'],
-      },
+      description: 'Free-form label shown on cards and badges (e.g. "CRM Comparison", "Tool Comparison", "Integration Comparison", "Alternative"). Type any label you want.',
     },
     {
       name: 'competitors',
