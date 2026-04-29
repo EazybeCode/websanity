@@ -28,11 +28,11 @@ interface CalloutData {
  */
 const RenderContent: React.FC<{ content: any }> = ({ content }) => {
   if (typeof content === 'string') {
-    return <p className="text-[14px] md:text-base text-slate-300 leading-relaxed">{content}</p>
+    return <p className="text-[14px] md:text-lg text-slate-300 leading-relaxed">{content}</p>
   }
   if (Array.isArray(content)) {
     return (
-      <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&>p]:mb-2 [&>p:last-child]:mb-0">
+      <div className="text-[14px] md:text-lg text-slate-300 leading-relaxed [&>p]:mb-2 [&>p:last-child]:mb-0">
         <PortableText value={content} />
       </div>
     )
@@ -100,7 +100,7 @@ export const CalloutBlock: React.FC<{ data: CalloutData }> = ({ data }) => {
 
   return (
     <div
-      className={`my-6 md:my-8 p-5 md:p-6 rounded-xl border-l-4 ${style.bg} ${style.border}`}
+      className={`my-6 md:my-5 p-5 md:p-6 rounded-xl border-l-4 ${style.bg} ${style.border}`}
     >
       <div className="flex items-start gap-4">
         <div className={`flex-shrink-0 ${style.iconColor}`}>{iconToShow}</div>
