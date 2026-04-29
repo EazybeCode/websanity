@@ -63,6 +63,7 @@ interface BlogPost {
     image?: string
     url?: string
   }
+  tldr?: any[]
   quickAnswer?: string
   tableOfContents?: Array<{ label: string; id: string }>
   faqTitle?: string
@@ -923,6 +924,42 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
             {/* Left Column - Main Content */}
             <div className="w-full lg:flex-1">
+              {/* TL;DR Box (rich text from Sanity, supports bullets/links) */}
+              {post.tldr && post.tldr.length > 0 && (
+                <div className="my-6 md:my-8 p-5 md:p-6 rounded-xl border-l-4 border-brand-cyan/50 bg-gradient-to-r from-brand-blue/15 via-brand-cyan/10 to-blue-500/5">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 text-brand-cyan">
+                      <BookOpen size={24} />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-white mb-2">TL;DR</h4>
+                      <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_a]:text-brand-cyan [&_a:hover]:text-cyan-200 [&_a]:underline [&_a]:underline-offset-4 [&_a]:transition-colors [&_strong]:font-semibold [&_strong]:text-white [&_em]:italic [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:bg-brand-cyan/15 [&_code]:text-cyan-200 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded">
+                        <PortableText
+                          value={post.tldr}
+                          components={{
+                            list: {
+                              bullet: ({ children }) => <ul className="list-disc pl-5 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
+                              number: ({ children }) => <ol className="list-decimal pl-5 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ol>,
+                            },
+                            marks: {
+                              link: ({ children, value }) => (
+                                <a
+                                  href={value?.href}
+                                  target={value?.blank ? '_blank' : undefined}
+                                  rel={value?.blank ? 'noopener noreferrer' : undefined}
+                                >
+                                  {children}
+                                </a>
+                              ),
+                            },
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Summary Box */}
               {post.quickAnswer && (
                 <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-xl md:rounded-2xl p-5 md:p-7 lg:p-8 mb-6 md:mb-10">

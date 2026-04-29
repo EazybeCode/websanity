@@ -376,6 +376,41 @@ const blogPost = {
       description: 'Tag this post with one or more category documents',
     },
     {
+      name: 'tldr',
+      title: 'TL;DR',
+      type: 'array',
+      fieldset: 'metadata',
+      description: 'Short rich-text summary shown above Quick Answer. Supports bullet points, bold/italic, and hyperlinks.',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+              { title: 'Code', value: 'code' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  { name: 'href', type: 'url', title: 'URL', validation: (Rule) => Rule.uri({ scheme: ['http', 'https', 'mailto', 'tel'] }) },
+                  { name: 'blank', type: 'boolean', title: 'Open in new tab', initialValue: false },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
       name: 'quickAnswer',
       title: 'Quick Answer',
       type: 'text',
@@ -820,6 +855,41 @@ const comparisonPost = {
       fieldset: 'metadata',
       of: [{ type: 'reference', to: [{ type: 'blogCategory' }] }],
       description: 'Tag this comparison with one or more category documents',
+    },
+    {
+      name: 'tldr',
+      title: 'TL;DR',
+      type: 'array',
+      fieldset: 'metadata',
+      description: 'Short rich-text summary shown above Quick Answer. Supports bullet points, bold/italic, and hyperlinks.',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+              { title: 'Code', value: 'code' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  { name: 'href', type: 'url', title: 'URL', validation: (Rule) => Rule.uri({ scheme: ['http', 'https', 'mailto', 'tel'] }) },
+                  { name: 'blank', type: 'boolean', title: 'Open in new tab', initialValue: false },
+                ],
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       name: 'quickAnswer',

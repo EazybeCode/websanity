@@ -378,6 +378,7 @@ export async function getBlogPost(slug: string, locale: string = 'en', preview: 
         url
       }
     ),
+    tldr,
     quickAnswer,
     tableOfContents[]{
       label,
@@ -1058,6 +1059,7 @@ export async function getComparisonPost(slug: string, locale: string = 'en', pre
         url
       }
     ),
+    tldr,
     quickAnswer,
     tableOfContents[]{
       label,

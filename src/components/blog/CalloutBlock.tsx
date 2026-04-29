@@ -28,11 +28,11 @@ interface CalloutData {
  */
 const RenderContent: React.FC<{ content: any }> = ({ content }) => {
   if (typeof content === 'string') {
-    return <p className="text-slate-300 leading-relaxed">{content}</p>
+    return <p className="text-[14px] md:text-base text-slate-300 leading-relaxed">{content}</p>
   }
   if (Array.isArray(content)) {
     return (
-      <div className="text-slate-300 leading-relaxed [&>p]:mb-2 [&>p:last-child]:mb-0">
+      <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&>p]:mb-2 [&>p:last-child]:mb-0">
         <PortableText value={content} />
       </div>
     )
