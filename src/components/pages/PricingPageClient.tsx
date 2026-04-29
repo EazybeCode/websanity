@@ -795,6 +795,12 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       {/* Pricing Cards Section */}
       <section className="py-12 lg:py-16 bg-brand-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {dynamicPricingLoading ? (
+            <div className="flex flex-col items-center justify-center py-20 gap-4">
+              <div className="w-10 h-10 border-2 border-brand-blue border-t-transparent rounded-full animate-spin" />
+              <p className="text-slate-500 text-sm">Loading pricing for your region...</p>
+            </div>
+          ) : (
           <div className="grid md:grid-cols-3 gap-8 lg:gap-6">
             {pricingPlans.map((plan) => {
               const dynamicPrice = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
@@ -810,6 +816,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               )
             })}
           </div>
+          )}
 
           {/* Trust Signals */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-slate-500">
