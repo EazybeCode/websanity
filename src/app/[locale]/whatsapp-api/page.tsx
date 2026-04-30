@@ -82,6 +82,10 @@ export default async function WhatsAppApiIndexPage({
           primaryCta: { label: ctaLabels.install, url: '#trial' },
           secondaryCta: { label: ctaLabels.demo, url: '#demo' },
         },
+        // Hide the post-FAQ "Ready to Scale Your WhatsApp Business?" CTA
+        // section on /whatsapp-api — the hero CTAs already cover trial /
+        // demo conversion; the second block was duplicating intent.
+        cta: undefined,
       }
     : rawData
 
