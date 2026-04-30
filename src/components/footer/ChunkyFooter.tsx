@@ -59,6 +59,7 @@ const getResourceLinks = (locale: string): FooterLink[] => {
     helpCenter: { en: 'Help Center', br: 'Central de Ajuda', es: 'Centro de Ayuda', tr: 'Yardım Merkezi' },
     caseStudies: { en: 'Case Studies', br: 'Estudos de Caso', es: 'Casos de Éxito', tr: 'Vaka Çalışmaları' },
     comparison: { en: 'Comparison', br: 'Comparação', es: 'Comparación', tr: 'Karşılaştırma' },
+    whatsappApi: { en: 'WhatsApp API', br: 'WhatsApp API', es: 'WhatsApp API', tr: 'WhatsApp API' },
     webinars: { en: 'Webinars', br: 'Webinars', es: 'Webinars', tr: 'Web Seminerleri' },
   }
   const pick = (key: string) => labels[key][locale] || labels[key].en
@@ -67,6 +68,7 @@ const getResourceLinks = (locale: string): FooterLink[] => {
     { label: pick('helpCenter'), href: 'https://help.eazybe.com', isExternal: true },
     { label: pick('caseStudies'), href: '/blog?category=case-studies' },
     { label: pick('comparison'), href: '/comparison' },
+    { label: pick('whatsappApi'), href: '/whatsapp-api' },
     { label: pick('webinars'), href: 'https://eazybe.com/webinars', isExternal: true },
   ]
 }

@@ -60,7 +60,31 @@ export default async function WhatsAppApiIndexPage({
   setRequestLocale(locale)
 
   const language = sanityLangMap[locale] || 'en'
-  const data = await getCategoryIndex('whatsapp-api', language)
+  const rawData = await getCategoryIndex('whatsapp-api', language)
+
+  // Mirrors /features and /integrations: hero CTAs are authoritative in
+  // code so they always trigger the global trial / demo modals (via the
+  // `#trial` / `#demo` URL convention CategoryIndexClient understands),
+  // with localized labels matching the rest of the site.
+  const heroCtaLabels: Record<string, { install: string; demo: string }> = {
+    en: { install: 'Install for Free', demo: 'Book a Demo' },
+    es: { install: 'Instalar Gratis', demo: 'Reservar Demo' },
+    br: { install: 'Instalar Grátis', demo: 'Agendar Demo' },
+    tr: { install: 'Ücretsiz Yükle', demo: 'Demo Rezervasyonu Yap' },
+  }
+  const ctaLabels = heroCtaLabels[locale] || heroCtaLabels.en
+
+  const data = rawData
+    ? {
+        ...rawData,
+        hero: {
+          ...(rawData.hero || {}),
+          primaryCta: { label: ctaLabels.install, url: '#trial' },
+          secondaryCta: { label: ctaLabels.demo, url: '#demo' },
+        },
+      }
+    : rawData
+
   // Auto-generate FAQPage JSON-LD from the rendered FAQ items.
   const faqSchema = buildFaqPageSchema(data?.faq?.items)
 
