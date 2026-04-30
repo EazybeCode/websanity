@@ -37,6 +37,25 @@ export async function generateMetadata({
       description: descriptions[locale] || descriptions.en,
     },
     alternates: getAlternates(locale, '/comparison'),
+    robots: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-snippet': -1,
+        'max-image-preview': 'large',
+        'max-video-preview': -1,
+      },
+    },
+    themeColor: '#020617',
+    other: {
+      'X-UA-Compatible': 'IE=edge',
+      bingbot: 'index, follow',
+    },
   }
 }
 
