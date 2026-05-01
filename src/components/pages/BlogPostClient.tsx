@@ -231,9 +231,9 @@ const createPortableTextComponents = (
       ),
     },
     list: {
-      bullet: ({ children }: any) => <ul className="my-6 space-y-3">{children}</ul>,
+      bullet: ({ children }: any) => <ul className="my-6 space-y-3 pl-[15px] md:pl-5">{children}</ul>,
       number: ({ children }: any) => (
-        <ol className="my-6 space-y-3 list-decimal list-inside">{children}</ol>
+        <ol className="my-6 space-y-3 list-decimal list-inside pl-[15px] md:pl-5">{children}</ol>
       ),
     },
     listItem: {
