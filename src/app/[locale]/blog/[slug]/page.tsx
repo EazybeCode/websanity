@@ -40,13 +40,25 @@ export async function generateMetadata({
   // Parse metadata from customMetaTags HTML field using Cheerio
   const metadata = parseMetadataFromHtml(post.customMetaTags)
 
-  // Always allow indexing
+  // Always allow indexing — force the same robots / googlebot / bingbot
+  // tags on every post regardless of whether customMetaTags is filled.
   metadata.robots = {
     index: true,
     follow: true,
     'max-snippet': -1,
     'max-image-preview': 'large' as const,
     'max-video-preview': -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  }
+  metadata.other = {
+    ...(metadata.other || {}),
+    bingbot: 'index, follow',
   }
 
   // Add author meta tag dynamically from Sanity author field

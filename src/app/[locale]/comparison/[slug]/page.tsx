@@ -51,13 +51,28 @@ export async function generateMetadata({
   // Parse metadata from customMetaTags HTML field
   const metadata = parseMetadataFromHtml(post.customMetaTags)
 
-  // Always allow indexing unless explicitly disabled
+  // Always allow indexing unless explicitly disabled. Force the same
+  // robots / googlebot / bingbot tags on every comparison post regardless
+  // of whether customMetaTags is filled — match the blog post page.
+  const wantIndex = !post.noindex
+  const wantFollow = !post.nofollow
   metadata.robots = {
-    index: !post.noindex,
-    follow: !post.nofollow,
+    index: wantIndex,
+    follow: wantFollow,
     'max-snippet': -1,
     'max-image-preview': 'large' as const,
     'max-video-preview': -1,
+    googleBot: {
+      index: wantIndex,
+      follow: wantFollow,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  }
+  metadata.other = {
+    ...(metadata.other || {}),
+    bingbot: wantIndex && wantFollow ? 'index, follow' : `${wantIndex ? 'index' : 'noindex'}, ${wantFollow ? 'follow' : 'nofollow'}`,
   }
 
   if (post.author?.name) {
