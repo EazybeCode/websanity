@@ -56,10 +56,13 @@ export async function generateMetadata({
       'max-video-preview': -1,
     },
   }
-  metadata.other = {
-    ...(metadata.other || {}),
-    bingbot: 'index, follow',
+  const existingOther = metadata.other || {}
+  const cleanOther: Record<string, string | number | (string | number)[]> = {}
+  for (const [k, v] of Object.entries(existingOther)) {
+    if (v !== undefined && v !== null) cleanOther[k] = v
   }
+  cleanOther.bingbot = 'index, follow'
+  metadata.other = cleanOther
 
   // Add author meta tag dynamically from Sanity author field
   if (post.author?.name) {

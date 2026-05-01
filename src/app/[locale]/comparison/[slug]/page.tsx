@@ -70,10 +70,13 @@ export async function generateMetadata({
       'max-video-preview': -1,
     },
   }
-  metadata.other = {
-    ...(metadata.other || {}),
-    bingbot: wantIndex && wantFollow ? 'index, follow' : `${wantIndex ? 'index' : 'noindex'}, ${wantFollow ? 'follow' : 'nofollow'}`,
+  const existingOther = metadata.other || {}
+  const cleanOther: Record<string, string | number | (string | number)[]> = {}
+  for (const [k, v] of Object.entries(existingOther)) {
+    if (v !== undefined && v !== null) cleanOther[k] = v
   }
+  cleanOther.bingbot = wantIndex && wantFollow ? 'index, follow' : `${wantIndex ? 'index' : 'noindex'}, ${wantFollow ? 'follow' : 'nofollow'}`
+  metadata.other = cleanOther
 
   if (post.author?.name) {
     metadata.authors = [{ name: post.author.name }]
