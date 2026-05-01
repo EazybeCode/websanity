@@ -69,11 +69,17 @@ export function useLanguage() {
 
   const changeLanguage = useCallback(
     (lang: SupportedLanguage) => {
-      // Check if we're on a blog post and have translation data
+      // Per-slug routes (blog / comparison posts) have language-specific
+      // slugs. Switching locale by just swapping the prefix produces
+      // `/es/<en-slug>` style 404 URLs — that's exactly the pattern that
+      // polluted GSC historically. Use the BlogTranslations context if
+      // available; otherwise route the user to the locale's index page
+      // instead of synthesizing a wrong URL.
+      const isPerSlugRoute = /^\/(?:(?:en|br|es|tr)\/)?(?:blog|comparison)\/[^/]+\/?$/.test(pathname)
+
       if (translations.length > 0) {
         const translation = translations.find((t) => t.locale === lang)
         if (translation) {
-          // Extract path from full URL and navigate
           try {
             const url = new URL(translation.url)
             window.location.href = url.pathname
@@ -82,9 +88,19 @@ export function useLanguage() {
           }
           return
         }
+        if (isPerSlugRoute) {
+          const indexPath = /\/blog\//.test(pathname) ? '/blog' : '/comparison'
+          router.replace(indexPath, { locale: lang })
+          return
+        }
+      } else if (isPerSlugRoute) {
+        const indexPath = /\/blog\//.test(pathname) ? '/blog' : '/comparison'
+        router.replace(indexPath, { locale: lang })
+        return
       }
 
-      // Fall back to default behavior (just change locale)
+      // Static routes (homepage, /pricing, /features, etc.) exist in
+      // every locale, so swapping the prefix is safe.
       router.replace(pathname, { locale: lang })
     },
     [pathname, router, translations]
