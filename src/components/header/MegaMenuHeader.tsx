@@ -124,6 +124,8 @@ const getFallbackNavigation = (t: (key: string) => string) => ({
           links: [
             { _key: 'blog', label: t('nav.blog'), href: '/blog', icon: 'FileText', description: t('nav.menu.blogDesc') },
             { _key: 'cs', label: t('nav.menu.caseStudies'), href: '/blog?category=case-studies', icon: 'Award', description: t('nav.menu.caseStudiesDesc') },
+            { _key: 'comparison', label: t('nav.menu.comparison'), href: '/comparison', icon: 'Table', description: t('nav.menu.comparisonDesc') },
+            { _key: 'partner', label: t('nav.menu.becomePartner'), href: '/become-our-partner', icon: 'Users', description: t('nav.menu.becomePartnerDesc') },
             { _key: 'webinars', label: t('nav.menu.webinars'), href: 'https://eazybe.com/webinars', icon: 'Video', description: t('nav.menu.webinarsDesc'), isExternal: true },
           ],
         },
