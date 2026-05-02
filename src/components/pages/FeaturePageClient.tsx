@@ -543,7 +543,13 @@ export default function FeaturePageClient({ feature, slug }: FeaturePageClientPr
       <UseCasesSection data={data?.useCases} />
       {data?.testimonial && <TestimonialSection data={data.testimonial} />}
       <FAQSection data={data?.faq} />
-      {data?.cta && <CTASection data={data.cta} />}
+      {/*
+       * Post-FAQ CTA section intentionally suppressed across all feature
+       * pages. The hero CTAs and the global footer "Ready for Lift Off"
+       * block already cover trial / demo conversion — the in-page block
+       * was duplicating intent. Keep CTASection import in case we want
+       * to re-enable per-page later.
+       */}
     </main>
   )
 }
