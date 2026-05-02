@@ -263,6 +263,14 @@ export async function generateMetadata({
     }
   }
 
+  // Spanish title-only override for Zoho integration page.
+  if (crmSlug === 'zoho' && locale === 'es') {
+    return {
+      ...baseMetadata,
+      title: 'Integración Zoho CRM con WhatsApp: Zoho CRM + WhatsApp',
+    }
+  }
+
   // Additional meta tags for Zoho integration page (English only)
   if (crmSlug === 'zoho' && locale === 'en') {
     return {
