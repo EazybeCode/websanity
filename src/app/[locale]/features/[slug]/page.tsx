@@ -18,14 +18,19 @@ export async function generateMetadata({
   const language = sanityLangMap[locale] || 'en'
   const feature = await getFeature(slug, language)
 
-  if (!feature) return {}
+  // The page renders even when the Sanity doc is missing for this locale
+  // (FeaturePageClient falls back to translation JSON), so we still need
+  // to emit canonical + hreflang for every locale variant — otherwise
+  // /es/, /br/, /tr/ feature pages ship with zero SEO tags.
+  const fallbackTitle = `${slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())} | Eazybe`
+  const fallbackDescription = `Learn about ${slug.replace(/-/g, ' ')} - a powerful WhatsApp productivity feature by Eazybe.`
 
   return {
-    title: feature.metaTitle || `${feature.title || slug} | Eazybe`,
-    description: feature.metaDescription || `Learn about ${feature.title || slug} - a powerful WhatsApp productivity feature by Eazybe.`,
+    title: feature?.metaTitle || (feature?.title ? `${feature.title} | Eazybe` : fallbackTitle),
+    description: feature?.metaDescription || (feature?.title ? `Learn about ${feature.title} - a powerful WhatsApp productivity feature by Eazybe.` : fallbackDescription),
     openGraph: {
-      title: feature.metaTitle || `${feature.title || slug} | Eazybe`,
-      description: feature.metaDescription || `Learn about ${feature.title || slug} by Eazybe.`,
+      title: feature?.metaTitle || (feature?.title ? `${feature.title} | Eazybe` : fallbackTitle),
+      description: feature?.metaDescription || (feature?.title ? `Learn about ${feature.title} by Eazybe.` : fallbackDescription),
       type: 'website',
       siteName: 'Eazybe',
     },
