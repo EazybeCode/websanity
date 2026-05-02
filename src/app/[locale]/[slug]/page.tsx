@@ -1755,6 +1755,36 @@ export default async function IntegrationPage({
         }
       : null
 
+  // Zoho ES: same shape as Salesforce ES — FAQ schema reads from
+  // product.faq.items (auto-translated by getProduct's pipeline) and
+  // BreadcrumbList is locale-aware.
+  const esZohoFaqSchema =
+    crmSlug === 'zoho' && locale === 'es'
+      ? buildFaqPageSchema(product?.faq?.items)
+      : null
+  const esZohoBreadcrumbSchema =
+    crmSlug === 'zoho' && locale === 'es'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/es' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Integraciones',
+              item: 'https://eazybe.com/es/integrations',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'Integración Zoho CRM con WhatsApp',
+              item: 'https://eazybe.com/es/zoho-whatsapp-integration',
+            },
+          ],
+        }
+      : null
+
   return (
     <>
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
@@ -1805,6 +1835,18 @@ export default async function IntegrationPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(trSalesforceBreadcrumbSchema) }}
+        />
+      )}
+      {esZohoFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esZohoFaqSchema) }}
+        />
+      )}
+      {esZohoBreadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esZohoBreadcrumbSchema) }}
         />
       )}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
