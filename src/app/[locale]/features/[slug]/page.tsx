@@ -51,6 +51,12 @@ export default async function FeatureDetailPage({
   const language = sanityLangMap[locale] || 'en'
   const feature = await getFeature(slug, language)
 
+  // Hide the post-FAQ CTA block on /features/cloud-backup — the hero CTA
+  // already covers trial / demo conversion; the secondary block was
+  // duplicating intent. Other feature pages keep their CTA section.
+  const featureData =
+    feature && slug === 'cloud-backup' ? { ...feature, cta: undefined } : feature
+
   // feature can be null — FeaturePageClient will use translation JSON fallback
-  return <FeaturePageClient feature={feature} slug={slug} />
+  return <FeaturePageClient feature={featureData} slug={slug} />
 }
