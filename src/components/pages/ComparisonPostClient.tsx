@@ -933,7 +933,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                     </div>
                     <div className="flex-1">
                       <h4 className="font-bold text-white mb-2">TL;DR</h4>
-                      <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_a]:text-brand-cyan [&_a:hover]:text-cyan-200 [&_a]:underline [&_a]:underline-offset-4 [&_a]:transition-colors [&_strong]:font-semibold [&_strong]:text-white [&_em]:italic [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:bg-brand-cyan/15 [&_code]:text-cyan-200 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded">
+                      <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_strong]:text-white [&_em]:italic [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:bg-brand-cyan/15 [&_code]:text-cyan-200 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded">
                         <PortableText
                           value={post.tldr}
                           components={{
@@ -947,6 +947,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                                   href={value?.href}
                                   target={value?.blank ? '_blank' : undefined}
                                   rel={value?.blank ? 'noopener noreferrer' : undefined}
+                                  className="text-brand-cyan hover:text-brand-blue transition-colors"
                                 >
                                   {children}
                                 </a>

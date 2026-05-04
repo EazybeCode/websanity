@@ -23,6 +23,22 @@ interface CalloutData {
   title?: string
 }
 
+// Match the TL;DR link styling: cyan text, blue on hover, no underline.
+const calloutPortableComponents = {
+  marks: {
+    link: ({ children, value }: any) => (
+      <a
+        href={value?.href}
+        target={value?.blank ? '_blank' : undefined}
+        rel={value?.blank ? 'noopener noreferrer' : undefined}
+        className="text-brand-cyan hover:text-brand-blue transition-colors"
+      >
+        {children}
+      </a>
+    ),
+  },
+}
+
 /**
  * Renders content that may be either a Portable Text array or a plain string.
  */
@@ -33,7 +49,7 @@ const RenderContent: React.FC<{ content: any }> = ({ content }) => {
   if (Array.isArray(content)) {
     return (
       <div className="text-[14px] md:text-lg text-slate-300 leading-relaxed [&>p]:mb-2 [&>p:last-child]:mb-0">
-        <PortableText value={content} />
+        <PortableText value={content} components={calloutPortableComponents} />
       </div>
     )
   }
