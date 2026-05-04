@@ -169,7 +169,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       if (utmMedium) fields.push({ name: "utm_medium", value: utmMedium })
       if (utmCampaign) fields.push({ name: "utm_campaign", value: utmCampaign })
 
-      const formattedPhone = formData.countryCode.replace('+', '') + formatPhoneNumber(formData.phone)
+      const formattedPhone = formData.countryCode + formatPhoneNumber(formData.phone)
       fields.push({ name: "phone", value: formattedPhone })
 
       const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1]
