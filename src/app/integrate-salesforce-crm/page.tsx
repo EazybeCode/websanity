@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { decryptParams } from '@/lib/decrypt-params'
 import { StandaloneShell } from '@/components/StandaloneShell'
 
-const APP_URL_PREFIX_V2 = "https://cerberus.eazybe.com/prod/api/v2/"
+const APP_URL_PREFIX_V2 = "https://api.eazybe.com/v2/"
 const EXTENSION_ID_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
 const REDIRECT_URI = "https://eazybe.com/integrate-salesforce-crm"
 const SALESFORCE_DOMAIN = "login.salesforce"
