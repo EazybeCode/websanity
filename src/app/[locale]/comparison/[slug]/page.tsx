@@ -259,6 +259,48 @@ export default async function ComparisonPostPage({
       }
     : null
 
+  // Auto-generate VideoObject JSON-LD per videoEmbed in the body so GSC
+  // doesn't report "No video indexed" on comparison posts that contain
+  // YouTube/Vimeo/Loom embeds.
+  const videoSchemas = (Array.isArray(post.content) ? post.content : [])
+    .filter((b: any) => b?._type === 'videoEmbed')
+    .map((v: any) => {
+      const platform = v.platform || 'youtube'
+      const id = (v.videoId || '').split(/[?&/#]/)[0]
+      const customUrl = v.url
+      let embedUrl: string | undefined
+      let contentUrl: string | undefined
+      let thumbnailUrl: string | undefined
+      if (platform === 'youtube' && id) {
+        embedUrl = `https://www.youtube.com/embed/${id}`
+        contentUrl = `https://www.youtube.com/watch?v=${id}`
+        thumbnailUrl = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
+      } else if (platform === 'vimeo' && id) {
+        embedUrl = `https://player.vimeo.com/video/${id}`
+        contentUrl = `https://vimeo.com/${id}`
+      } else if (platform === 'loom' && id) {
+        embedUrl = `https://www.loom.com/embed/${id}`
+        contentUrl = `https://www.loom.com/share/${id}`
+      } else if (platform === 'wistia' && id) {
+        embedUrl = `https://fast.wistia.net/embed/iframe/${id}`
+      } else if (platform === 'custom' && customUrl) {
+        embedUrl = customUrl
+        contentUrl = customUrl
+      }
+      if (!embedUrl) return null
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        name: v.title || post.title || 'Video',
+        description: v.title ? (post.excerpt || `${v.title} — ${post.title}`) : (post.excerpt || post.title),
+        thumbnailUrl: v.coverImage?.asset?.url || thumbnailUrl || post.featuredImage,
+        uploadDate: post.publishedAt || post.updatedAt || new Date().toISOString(),
+        embedUrl,
+        ...(contentUrl ? { contentUrl } : {}),
+      }
+    })
+    .filter(Boolean) as object[]
+
   return (
     <>
       {isPreview && (
@@ -280,6 +322,13 @@ export default async function ComparisonPostPage({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
+      {videoSchemas.map((vs, i) => (
+        <script
+          key={`video-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(vs) }}
+        />
+      ))}
       {customSchemas.map((schema, index) => (
         <script
           key={`jsonld-${index}`}
