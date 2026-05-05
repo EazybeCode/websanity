@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { decryptParams } from '@/lib/decrypt-params'
 import { StandaloneShell } from '@/components/StandaloneShell'
 
-const APP_URL_PREFIX_V2 = "https://api.eazybe.com/v2/"
+const APP_URL_PREFIX_V2 = "https://cerberus.eazybe.com/prod/api/v2/"
 const EXTENSION_ID_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
 const REDIRECT_URI = "https://eazybe.com/integrate-salesforce-crm"
 const SALESFORCE_DOMAIN = "login.salesforce"
@@ -12,21 +12,35 @@ const RESPONSE_TYPE = "code"
 const CLIENT_ID = "3MVG9Kr5_mB04D17phMhLZXqXQ8jQnGDJCGPfV3M5yXC_LoGr1QkZc9sKJ1CSnmvaL5fKkolF5eYh3CU4MrGc"
 const clientRedirectURI = `https://${SALESFORCE_DOMAIN}.com/services/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
 
-const FETCHV2 = async (options: { url: string; method?: string; body?: string }) => {
-  const authToken = localStorage.getItem('authToken')
+const FETCHV2 = async (options: { url: string; method?: string; body?: string; authToken?: string }) => {
   return fetch(APP_URL_PREFIX_V2 + options.url, {
     method: options.method || "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "Authorization": authToken ? `Bearer ${authToken}` : ""
+      "Authorization": options.authToken ? `Bearer ${options.authToken}` : ""
     },
     body: options.body,
   })
 }
 
-const createAuthSalesforce = (data: { code: string; redirect_uri: string; workspace_id: string | null }): Promise<any> => {
+const fetchAuthTokenByWorkspaceId = async (workspaceId: string): Promise<string | null> => {
+  try {
+    const response = await FETCHV2({
+      url: `auth/token-by-workspace?workspace_id=${encodeURIComponent(workspaceId)}`,
+    })
+    const data = await response.json()
+    return data?.access_token || null
+  } catch {
+    return null
+  }
+}
+
+const createAuthSalesforce = (
+  data: { code: string; redirect_uri: string; workspace_id: string | null },
+  authToken: string
+): Promise<any> => {
   return new Promise((resolve) => {
-    FETCHV2({ method: 'POST', url: 'salesforce/auth', body: JSON.stringify(data) })
+    FETCHV2({ method: 'POST', url: 'salesforce/auth', body: JSON.stringify(data), authToken })
       .then(res => res.json())
       .then(res => resolve(res))
       .catch(() => resolve(null))
@@ -55,17 +69,27 @@ const sendMessageToChromeExtension = (
   }, time)
 }
 
-const getBearerToken = async (authCode: string) => {
+const getBearerToken = async (
+  authCode: string,
+  workspaceId: string | null,
+  extensionId: string | null,
+  authTokenFromParams: string | null
+) => {
+  if (!workspaceId) return
+
+  const authToken = authTokenFromParams || await fetchAuthTokenByWorkspaceId(workspaceId)
+  if (!authToken) return
+
   const data = {
     code: authCode,
     redirect_uri: REDIRECT_URI,
-    workspace_id: localStorage.getItem("workspaceId"),
+    workspace_id: workspaceId,
   }
-  const res = await createAuthSalesforce(data)
+  const res = await createAuthSalesforce(data, authToken)
   if (res?.status) {
     ;(window as any).gtag?.("event", "Salesforceintegrated")
     ;(window as any).gtagAW?.("event", "Salesforceintegrated")
-    sendMessageToChromeExtension(true, 500, localStorage.getItem("extensionId") || undefined)
+    sendMessageToChromeExtension(true, 500, extensionId || undefined)
     setTimeout(() => { window.close() }, 1000)
   }
 }
@@ -94,11 +118,28 @@ export default function IntegrateSalesforceCrmPage() {
       const extensionId = urlParamsObject['extensionId'] || null
       const authToken = urlParamsObject['authToken'] || null
       const autoConnect = urlParamsObject['connect'] === "true"
+      const savedWorkspaceId = localStorage.getItem("workspaceId")
+      const savedExtensionId = localStorage.getItem("extensionId")
+      const effectiveWorkspaceId = workspaceId || savedWorkspaceId
+      const effectiveExtensionId = extensionId || savedExtensionId
 
-      if (workspaceId) localStorage.setItem("workspaceId", workspaceId)
-      if (email) localStorage.setItem("email", email)
-      if (extensionId) localStorage.setItem("extensionId", extensionId)
-      if (authToken) localStorage.setItem("authToken", authToken)
+      // Always use fresh params from URL, clear old data if new params are present
+      if (workspaceId) {
+        localStorage.setItem("workspaceId", workspaceId)
+      } else {
+        localStorage.removeItem("workspaceId")
+      }
+      if (email) {
+        localStorage.setItem("email", email)
+      } else {
+        localStorage.removeItem("email")
+      }
+      if (extensionId) {
+        localStorage.setItem("extensionId", extensionId)
+      } else {
+        localStorage.removeItem("extensionId")
+      }
+      localStorage.removeItem("authToken")
 
       if (autoConnect) {
         window.location.href = clientRedirectURI
@@ -106,7 +147,7 @@ export default function IntegrateSalesforceCrmPage() {
       }
 
       if (urlParamsObject?.code) {
-        getBearerToken(urlParamsObject.code)
+        getBearerToken(urlParamsObject.code, effectiveWorkspaceId, effectiveExtensionId, authToken)
       }
     }
 
