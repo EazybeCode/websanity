@@ -928,7 +928,35 @@ export async function getCoexistence(locale: string = 'en') {
       footnote
     }
   }`
-  return sanityClient.fetch(query, { docId: `productPage-coexistence-${locale}` })
+
+  const localeData = await sanityClient.fetch<Record<string, any> | null>(query, {
+    docId: `productPage-coexistence-${locale}`,
+  })
+
+  // English serves itself.
+  if (locale === 'en') return localeData
+
+  // For non-EN locales, the per-locale doc often doesn't exist (only an
+  // English source-of-truth lives in Sanity). Pull the EN doc and run it
+  // through the same auto-translate pipeline used by getProduct /
+  // getCategoryIndex so the page renders fully localized content instead
+  // of falling through to CoexistencePageClient's not-found state.
+  if (!localeData) {
+    const englishData = await sanityClient.fetch<Record<string, any> | null>(query, {
+      docId: 'productPage-coexistence-en',
+    })
+    if (!englishData) return null
+
+    const cacheKey = `coexistence-${locale}`
+    let translated = productTranslateCache.get(cacheKey)
+    if (!translated) {
+      translated = await deepTranslate(englishData, toSanityLang(locale))
+      productTranslateCache.set(cacheKey, translated)
+    }
+    return translated
+  }
+
+  return localeData
 }
 
 // ─── Authors ─────────────────────────────────────────────────────────────────

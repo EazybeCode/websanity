@@ -2,7 +2,16 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getCoexistence } from '@/lib/sanity-queries'
 import { CoexistencePageClient } from '@/components/pages/CoexistencePageClient'
-import { getAlternates } from '@/lib/seo-helpers'
+import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
+
+const breadcrumbLabels: Record<string, { home: string; whatsappApi: string; coexistence: string }> = {
+  en: { home: 'Home', whatsappApi: 'WhatsApp API', coexistence: 'Coexistence' },
+  br: { home: 'Início', whatsappApi: 'WhatsApp API', coexistence: 'Coexistência' },
+  es: { home: 'Inicio', whatsappApi: 'WhatsApp API', coexistence: 'Coexistencia' },
+  tr: { home: 'Ana Sayfa', whatsappApi: 'WhatsApp API', coexistence: 'Bir Arada Yaşam' },
+}
+
+const SITE_URL = 'https://eazybe.com'
 
 export async function generateMetadata({
   params,
@@ -41,5 +50,36 @@ export default async function CoexistencePage({
 
   const data = await getCoexistence(locale)
 
-  return <CoexistencePageClient data={data} />
+  // FAQPage + BreadcrumbList JSON-LD, server-rendered. FAQ items come
+  // from Sanity (auto-translated by getCoexistence's pipeline for non-EN
+  // locales, so the schema text matches what's on the page).
+  const faqSchema = buildFaqPageSchema(data?.faq?.items)
+
+  const labels = breadcrumbLabels[locale] || breadcrumbLabels.en
+  const localePath = locale === 'en' ? '' : `/${locale}`
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: labels.home, item: `${SITE_URL}${localePath}/` },
+      { '@type': 'ListItem', position: 2, name: labels.whatsappApi, item: `${SITE_URL}${localePath}/whatsapp-api` },
+      { '@type': 'ListItem', position: 3, name: labels.coexistence, item: `${SITE_URL}${localePath}/whatsapp-api/coexistence` },
+    ],
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      <CoexistencePageClient data={data} />
+    </>
+  )
 }
