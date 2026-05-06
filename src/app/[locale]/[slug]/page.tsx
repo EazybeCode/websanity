@@ -271,6 +271,14 @@ export async function generateMetadata({
     }
   }
 
+  // Spanish title-only override for Google Sheets integration page.
+  if (crmSlug === 'google-sheets' && locale === 'es') {
+    return {
+      ...baseMetadata,
+      title: 'Integración de Google Sheets WhatsApp: Conectar WhatsApp',
+    }
+  }
+
   // Additional meta tags for Zoho integration page (English only)
   if (crmSlug === 'zoho' && locale === 'en') {
     return {
@@ -1785,6 +1793,36 @@ export default async function IntegrationPage({
         }
       : null
 
+  // Google Sheets ES — same shape as Zoho ES. FAQ schema reads from
+  // product.faq.items (auto-translated by getProduct's pipeline) and
+  // BreadcrumbList is locale-aware.
+  const esGoogleSheetsFaqSchema =
+    crmSlug === 'google-sheets' && locale === 'es'
+      ? buildFaqPageSchema(product?.faq?.items)
+      : null
+  const esGoogleSheetsBreadcrumbSchema =
+    crmSlug === 'google-sheets' && locale === 'es'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/es' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Integraciones',
+              item: 'https://eazybe.com/es/integrations',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'Integración de Google Sheets WhatsApp',
+              item: 'https://eazybe.com/es/google-sheets-whatsapp-integration',
+            },
+          ],
+        }
+      : null
+
   return (
     <>
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
@@ -1847,6 +1885,18 @@ export default async function IntegrationPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(esZohoBreadcrumbSchema) }}
+        />
+      )}
+      {esGoogleSheetsFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esGoogleSheetsFaqSchema) }}
+        />
+      )}
+      {esGoogleSheetsBreadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esGoogleSheetsBreadcrumbSchema) }}
         />
       )}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
