@@ -318,6 +318,19 @@ export async function generateMetadata({
     }
   }
 
+  // Spanish title + og:title override for Webhooks integration page.
+  if (crmSlug === 'webhooks' && locale === 'es') {
+    const webhooksEsTitle = 'Integración Webhooks WhatsApp: Conecta WhatsApp Webhooks'
+    return {
+      ...baseMetadata,
+      title: webhooksEsTitle,
+      openGraph: {
+        ...(baseMetadata.openGraph || {}),
+        title: webhooksEsTitle,
+      },
+    }
+  }
+
   // Additional meta tags for Zoho integration page (English only)
   if (crmSlug === 'zoho' && locale === 'en') {
     return {
@@ -1946,6 +1959,34 @@ export default async function IntegrationPage({
         }
       : null
 
+  // Webhooks ES — same shape.
+  const esWebhooksFaqSchema =
+    crmSlug === 'webhooks' && locale === 'es'
+      ? buildFaqPageSchema(product?.faq?.items)
+      : null
+  const esWebhooksBreadcrumbSchema =
+    crmSlug === 'webhooks' && locale === 'es'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/es' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Integraciones',
+              item: 'https://eazybe.com/es/integrations',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'Integración Webhooks WhatsApp',
+              item: 'https://eazybe.com/es/webhooks-whatsapp-integration',
+            },
+          ],
+        }
+      : null
+
   return (
     <>
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
@@ -2056,6 +2097,18 @@ export default async function IntegrationPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(esFreshdeskBreadcrumbSchema) }}
+        />
+      )}
+      {esWebhooksFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esWebhooksFaqSchema) }}
+        />
+      )}
+      {esWebhooksBreadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esWebhooksBreadcrumbSchema) }}
         />
       )}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
