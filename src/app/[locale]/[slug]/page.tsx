@@ -357,6 +357,19 @@ export async function generateMetadata({
     }
   }
 
+  // Spanish title + og:title override for Google Calendar integration page.
+  if (crmSlug === 'google-calendar' && locale === 'es') {
+    const googleCalendarEsTitle = 'Integración WhatsApp con Google Calendar: Conecta WhatsApp'
+    return {
+      ...baseMetadata,
+      title: googleCalendarEsTitle,
+      openGraph: {
+        ...(baseMetadata.openGraph || {}),
+        title: googleCalendarEsTitle,
+      },
+    }
+  }
+
   // Additional meta tags for Zoho integration page (English only)
   if (crmSlug === 'zoho' && locale === 'en') {
     return {
@@ -2069,6 +2082,34 @@ export default async function IntegrationPage({
         }
       : null
 
+  // Google Calendar ES — same shape.
+  const esGoogleCalendarFaqSchema =
+    crmSlug === 'google-calendar' && locale === 'es'
+      ? buildFaqPageSchema(product?.faq?.items)
+      : null
+  const esGoogleCalendarBreadcrumbSchema =
+    crmSlug === 'google-calendar' && locale === 'es'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/es' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Integraciones',
+              item: 'https://eazybe.com/es/integrations',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'Integración WhatsApp con Google Calendar',
+              item: 'https://eazybe.com/es/google-calendar-whatsapp-integration',
+            },
+          ],
+        }
+      : null
+
   return (
     <>
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
@@ -2215,6 +2256,18 @@ export default async function IntegrationPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(esMondayBreadcrumbSchema) }}
+        />
+      )}
+      {esGoogleCalendarFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esGoogleCalendarFaqSchema) }}
+        />
+      )}
+      {esGoogleCalendarBreadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esGoogleCalendarBreadcrumbSchema) }}
         />
       )}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
