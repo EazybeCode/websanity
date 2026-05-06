@@ -305,6 +305,19 @@ export async function generateMetadata({
     }
   }
 
+  // Spanish title + og:title override for Freshdesk integration page.
+  if (crmSlug === 'freshdesk' && locale === 'es') {
+    const freshdeskEsTitle = 'Integración WhatsApp con Freshdesk - Eazybe'
+    return {
+      ...baseMetadata,
+      title: freshdeskEsTitle,
+      openGraph: {
+        ...(baseMetadata.openGraph || {}),
+        title: freshdeskEsTitle,
+      },
+    }
+  }
+
   // Additional meta tags for Zoho integration page (English only)
   if (crmSlug === 'zoho' && locale === 'en') {
     return {
@@ -1905,6 +1918,34 @@ export default async function IntegrationPage({
         }
       : null
 
+  // Freshdesk ES — same shape.
+  const esFreshdeskFaqSchema =
+    crmSlug === 'freshdesk' && locale === 'es'
+      ? buildFaqPageSchema(product?.faq?.items)
+      : null
+  const esFreshdeskBreadcrumbSchema =
+    crmSlug === 'freshdesk' && locale === 'es'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/es' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Integraciones',
+              item: 'https://eazybe.com/es/integrations',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'Integración WhatsApp con Freshdesk',
+              item: 'https://eazybe.com/es/freshdesk-whatsapp-integration',
+            },
+          ],
+        }
+      : null
+
   return (
     <>
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
@@ -2003,6 +2044,18 @@ export default async function IntegrationPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(esLeadSquaredBreadcrumbSchema) }}
+        />
+      )}
+      {esFreshdeskFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esFreshdeskFaqSchema) }}
+        />
+      )}
+      {esFreshdeskBreadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esFreshdeskBreadcrumbSchema) }}
         />
       )}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
