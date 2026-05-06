@@ -625,7 +625,39 @@ export async function getFeature(slug: string, locale: string = 'en') {
       footnote
     }
   }`
-  return sanityClient.fetch(query, { slug, language })
+
+  const localeData = await sanityClient.fetch<Record<string, any> | null>(query, {
+    slug,
+    language,
+  })
+
+  // English serves itself.
+  if (language === 'en') return localeData
+
+  // Non-EN locales: when no per-locale productPage doc exists in Sanity
+  // (the typical case for /features/<slug> and /whatsapp-api/<slug>),
+  // pull the English source-of-truth and run it through the same
+  // auto-translate pipeline used by getProduct / getCategoryIndex /
+  // getCoexistence so sections like howItWorks and useCases render
+  // properly in es/br/tr instead of falling through to the messages JSON
+  // which doesn't contain those sections.
+  if (!localeData) {
+    const englishData = await sanityClient.fetch<Record<string, any> | null>(query, {
+      slug,
+      language: 'en',
+    })
+    if (!englishData) return null
+
+    const cacheKey = `feature-${slug}-${language}`
+    let translated = productTranslateCache.get(cacheKey)
+    if (!translated) {
+      translated = await deepTranslate(englishData, language)
+      productTranslateCache.set(cacheKey, translated)
+    }
+    return translated
+  }
+
+  return localeData
 }
 
 // ─── Category Index Page ────────────────────────────────────────────────────
