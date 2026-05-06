@@ -344,6 +344,19 @@ export async function generateMetadata({
     }
   }
 
+  // Spanish title + og:title override for Monday integration page.
+  if (crmSlug === 'monday' && locale === 'es') {
+    const mondayEsTitle = 'Integración WhatsApp con Monday - Eazybe'
+    return {
+      ...baseMetadata,
+      title: mondayEsTitle,
+      openGraph: {
+        ...(baseMetadata.openGraph || {}),
+        title: mondayEsTitle,
+      },
+    }
+  }
+
   // Additional meta tags for Zoho integration page (English only)
   if (crmSlug === 'zoho' && locale === 'en') {
     return {
@@ -2028,6 +2041,34 @@ export default async function IntegrationPage({
         }
       : null
 
+  // Monday ES — same shape.
+  const esMondayFaqSchema =
+    crmSlug === 'monday' && locale === 'es'
+      ? buildFaqPageSchema(product?.faq?.items)
+      : null
+  const esMondayBreadcrumbSchema =
+    crmSlug === 'monday' && locale === 'es'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Eazybe', item: 'https://eazybe.com/es' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Integraciones',
+              item: 'https://eazybe.com/es/integrations',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'Integración WhatsApp con Monday',
+              item: 'https://eazybe.com/es/monday-whatsapp-integration',
+            },
+          ],
+        }
+      : null
+
   return (
     <>
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
@@ -2162,6 +2203,18 @@ export default async function IntegrationPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(esPipedriveBreadcrumbSchema) }}
+        />
+      )}
+      {esMondayFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esMondayFaqSchema) }}
+        />
+      )}
+      {esMondayBreadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(esMondayBreadcrumbSchema) }}
         />
       )}
       {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
