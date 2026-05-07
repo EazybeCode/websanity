@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { FbPageClient } from '@/components/pages/FbPageClient'
-import { getAlternates } from '@/lib/seo-helpers'
+import { getCanonicalOnly } from '@/lib/seo-helpers'
 
 export async function generateMetadata({
   params,
@@ -16,7 +16,7 @@ export async function generateMetadata({
       index: false,
       follow: false,
     },
-    alternates: getAlternates(locale, '/fb'),
+    alternates: getCanonicalOnly(locale, '/fb'),
   }
 }
 

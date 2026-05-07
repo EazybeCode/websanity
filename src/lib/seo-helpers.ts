@@ -57,6 +57,23 @@ export function getAlternates(locale: string, path: string): Metadata['alternate
 }
 
 /**
+ * Canonical-only alternates for noindex pages.
+ *
+ * Google's guidance: hreflang clusters must contain indexable URLs only.
+ * If a page sets `noindex`, it should not declare hreflang relationships
+ * with other locales — otherwise the entire cluster gets ignored, which
+ * triggers the "Noindex Return Links" warning in SEO audits.
+ *
+ * Use this for /fb, /msa, /privacy, /terms, /thank-you and any other
+ * page that is intentionally noindex but still needs a self-canonical.
+ */
+export function getCanonicalOnly(locale: string, path: string): Metadata['alternates'] {
+  return {
+    canonical: getCanonicalUrl(locale, path),
+  }
+}
+
+/**
  * Build a Schema.org FAQPage JSON-LD blob from a list of FAQ items. Use this
  * to attach structured data to any page that renders an FAQ section so Google
  * can surface the questions as rich results in SERPs and AI Overviews.

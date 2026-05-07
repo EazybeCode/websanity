@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { ScrollText } from 'lucide-react'
-import { getAlternates } from '@/lib/seo-helpers'
+import { getCanonicalOnly } from '@/lib/seo-helpers'
 
 export async function generateMetadata({
   params,
@@ -17,7 +17,7 @@ export async function generateMetadata({
       index: false,
       follow: false,
     },
-    alternates: getAlternates(locale, '/terms'),
+    alternates: getCanonicalOnly(locale, '/terms'),
   }
 }
 
