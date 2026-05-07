@@ -52,43 +52,33 @@ export default async function middleware(request: NextRequest) {
     response.headers.set('X-Robots-Tag', 'noindex, nofollow')
   }
 
-  // Post-process the `Link` header emitted by next-intl.
+  // Strip ALL hreflang entries from the auto-emitted `Link:` response
+  // header. Next.js's `metadata.alternates.languages` API emits the same
+  // alternates as both HTML `<link rel="alternate" hreflang>` tags and an
+  // HTTP `Link:` header — that double-emission triggers SEO audit warnings
+  // ("URLs with multiple entries to a language or regional code") and adds
+  // no value, since Google reads either signal fine.
   //
-  // Two problems to fix:
-  //   1. next-intl naively swaps the locale prefix to build alternate URLs,
-  //      assuming the same slug across locales. For blog and comparison
-  //      posts the translated slug differs (e.g. `how-to-read-…` in English
-  //      vs `como-leer-…` in Spanish), so the header advertises 404 URLs
-  //      and Google invalidates the whole hreflang cluster. The page's
-  //      generateMetadata() already emits correct per-slug <link rel="alternate">
-  //      tags, so we strip the HTTP header entirely on those routes.
-  //   2. The routing config uses `br` as the locale code for Brazilian
-  //      Portuguese (so URLs stay /br/...), but `br` is the ISO code for
-  //      Breton — Google ignores it. Remap to `pt-BR` in the header.
-  // Also preserves the existing production-host normalization.
+  // We keep HTML tags as the single source of truth (visible in view-source,
+  // easier to debug, no header bloat) and drop the redundant Link entries
+  // here. Non-hreflang Link entries (preload hints, etc.) are preserved.
+  //
+  // Also fixes a separate bug along the way: next-intl naively swaps the
+  // locale prefix to build alternate URLs and uses `hreflang="br"` —
+  // Breton's code, not Brazilian Portuguese. Pages that didn't override
+  // alternates would have shipped a wrong-region header. Stripping
+  // everything makes that bug moot.
   const linkHeader = response.headers.get('link')
   if (linkHeader) {
-    // Blog *posts* (not the `/blog/authors` index) and comparison posts —
-    // these have per-locale slugs, so the auto-generated header is wrong.
-    const isBlogPost =
-      /^\/(?:(?:en|br|es|tr)\/)?blog\/[^/]+\/?$/.test(pathname) &&
-      !/^\/(?:(?:en|br|es|tr)\/)?blog\/authors\/?$/.test(pathname)
-    const isComparisonPost = /^\/(?:(?:en|br|es|tr)\/)?comparison\/[^/]+\/?$/.test(pathname)
-    const isPerSlugRoute = isBlogPost || isComparisonPost
-    // Split on "," that precedes a new link-value ("<"), so we don't split inside params.
     const items = linkHeader.split(/,\s*(?=<)/)
-    const kept = items.filter((item) => {
-      if (isPerSlugRoute && /rel=(?:"alternate"|alternate)/.test(item) && /hreflang=/.test(item)) {
-        return false
-      }
-      return true
-    })
+    const kept = items.filter(
+      (item) => !(/rel=(?:"alternate"|alternate)/.test(item) && /hreflang=/.test(item))
+    )
     if (kept.length === 0) {
       response.headers.delete('link')
     } else {
       const fixed = kept
         .map((item) => item.replace(/https?:\/\/[^/]+/g, PRODUCTION_URL))
-        .map((item) => item.replace(/hreflang="br"/g, 'hreflang="pt-BR"'))
         .join(', ')
       response.headers.set('link', fixed)
     }
