@@ -198,12 +198,12 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
 
       setIsSuccess(true)
       const waMessages: Record<string, string> = {
-        en: 'Hey, I need to know more about Eazybe',
-        es: 'Hola, necesito saber mas sobre Eazybe',
-        tr: 'Merhaba, Eazybe hakkinda daha fazla bilgi almam gerekiyor',
-        'pt-BR': 'Ola, preciso saber mais sobre o Eazybe',
-        pt: 'Ola, preciso saber mais sobre o Eazybe',
-        br: 'Ola, preciso saber mais sobre o Eazybe',
+        en: 'Build AI Agent for my Business in 2 Mins',
+        es: 'Crea un Agente de IA para mi Negocio en 2 Min',
+        tr: 'İşletmem için 2 Dakikada AI Ajanı Oluştur',
+        'pt-BR': 'Crie um Agente de IA para meu Negócio em 2 Min',
+        pt: 'Crie um Agente de IA para meu Negócio em 2 Min',
+        br: 'Crie um Agente de IA para meu Negócio em 2 Min',
       }
       const waMessage = encodeURIComponent(waMessages[locale] || waMessages.en)
       window.open(`https://wa.me/13022051228?text=${waMessage}`, '_blank')
@@ -211,10 +211,10 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       console.error('Error submitting form:', error)
       setIsSuccess(true)
       const waMessages: Record<string, string> = {
-        en: 'Hey, I need to know more about Eazybe',
-        es: 'Hola, necesito saber mas sobre Eazybe',
-        tr: 'Merhaba, Eazybe hakkinda daha fazla bilgi almam gerekiyor',
-        br: 'Ola, preciso saber mais sobre o Eazybe',
+        en: 'Build AI Agent for my Business in 2 Mins',
+        es: 'Crea un Agente de IA para mi Negocio en 2 Min',
+        tr: 'İşletmem için 2 Dakikada AI Ajanı Oluştur',
+        br: 'Crie um Agente de IA para meu Negócio em 2 Min',
       }
       const waMessage = encodeURIComponent(waMessages[locale] || waMessages.en)
       window.open(`https://wa.me/13022051228?text=${waMessage}`, '_blank')
