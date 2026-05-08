@@ -206,7 +206,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
         br: 'Crie um Agente de IA para meu Negócio em 2 Min',
       }
       const waMessage = encodeURIComponent(waMessages[locale] || waMessages.en)
-      window.open(`https://wa.me/13022051228?text=${waMessage}`, '_blank')
+      window.open(`https://wa.me/13023356201?text=${waMessage}`, '_blank')
     } catch (error) {
       console.error('Error submitting form:', error)
       setIsSuccess(true)
@@ -217,7 +217,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
         br: 'Crie um Agente de IA para meu Negócio em 2 Min',
       }
       const waMessage = encodeURIComponent(waMessages[locale] || waMessages.en)
-      window.open(`https://wa.me/13022051228?text=${waMessage}`, '_blank')
+      window.open(`https://wa.me/13023356201?text=${waMessage}`, '_blank')
     } finally {
       setIsSubmitting(false)
     }
