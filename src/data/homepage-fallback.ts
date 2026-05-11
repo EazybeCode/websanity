@@ -7,13 +7,13 @@ export const fallbackSections = [
   {
     _type: 'heroSection',
     _key: 'hero-fallback',
-    badge: 'WhatsApp AI Agents for Sales',
-    headline: 'Turn WhatsApp into your',
-    headlineHighlight: 'revenue engine',
+    badge: 'WHATSAPP AI · CRM-NATIVE · 24/7',
+    headline: 'Sell on WhatsApp.',
+    headlineHighlight: 'See it all in your CRM.',
     subheadline:
-      'AI agents that qualify leads, detect cold deals, automate follow-ups, and sync every conversation to your CRM — all inside WhatsApp Web.',
-    socialProof: 'Trusted by 2,000+ sales teams worldwide',
-    primaryCta: { label: 'Install for Free', url: '#' },
+      'AI agents trained on your best chats. Sync every conversation to your CRM. Qualify leads while you sleep.',
+    socialProof: 'Try it live — our agent qualifies you in 60 seconds.',
+    primaryCta: { label: 'Talk to our Agent on WhatsApp', url: 'https://wa.me/13023356201?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works.' },
     secondaryCta: { label: 'Book a Demo', url: '#' },
   },
   {
@@ -24,30 +24,37 @@ export const fallbackSections = [
     _type: 'problemSection',
     _key: 'problem-fallback',
     badge: 'The Problem',
-    headline: 'Your sales team is losing deals on WhatsApp',
+    headline: 'Selling on WhatsApp is easy. Everything around it is broken.',
     subheadline:
-      'Without AI-powered automation, critical conversations slip through the cracks.',
+      'Four blind spots killing your pipeline — each has an agent that fixes it.',
     problems: [
       {
         _key: 'p1',
-        title: 'Leads go cold',
+        title: '200 chats today. Zero in the CRM.',
         description:
-          'Sales reps forget to follow up. Hot leads turn cold within hours.',
-        icon: 'clock',
-      },
-      {
-        _key: 'p2',
-        title: 'No CRM sync',
-        description:
-          'Conversations happen on WhatsApp but never reach your CRM. Zero visibility.',
+          "Reps sell all day. Nothing's logged. No handoff. No trail.",
         icon: 'database',
       },
       {
-        _key: 'p3',
-        title: 'Manual chaos',
+        _key: 'p2',
+        title: '11 PM lead. By morning, gone.',
         description:
-          'Copy-pasting messages, manual data entry, no templates. Hours wasted daily.',
+          'Nobody answers after hours. You lose them every night.',
+        icon: 'clock',
+      },
+      {
+        _key: 'p3',
+        title: 'Deals ghosted. Nobody noticed.',
+        description:
+          'Warm deals stall for weeks in silent threads. Revenue dies quiet.',
         icon: 'zap',
+      },
+      {
+        _key: 'p4',
+        title: 'Customers ping. Support sleeps.',
+        description:
+          'Same questions, every day. No one picks up until Monday.',
+        icon: 'message',
       },
     ],
   },
