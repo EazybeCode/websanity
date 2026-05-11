@@ -327,12 +327,11 @@
     }
   },
   "hero": {
-    "badge": "WHATSAPP AI · CRM-NATIVE · 24/7",
-    "headline": "Sell on WhatsApp.",
-    "headlineHighlight": "See it all in your CRM.",
-    "subheadline": "AI agents trained on your best chats. Sync every conversation to your CRM. Qualify leads while you sleep.",
-    "noCreditCard": "Try it live — our agent qualifies you in 60 seconds.",
-    "trustedBy": "2,000+ teams · 40+ countries · Meta Partner"
+    "badge": "Ready for Lift Off",
+    "headline": "WhatsApp AI Agents for",
+    "headlineHighlight": "Sales Teams",
+    "subheadline": "See every WhatsApp conversation inside your CRM. Qualify leads with AI, detect deals going cold, and automate follow-ups — all with a WhatsApp AI Agent that works 24/7.",
+    "noCreditCard": "No credit card required"
   },
   "home": {
     "clientLogos": {
