@@ -1,9 +1,15 @@
 export function Nav() {
   return (
     <nav className="nav">
-      <a href="#" className="nav-logo">
-        <span className="dot" />
-        eazy<em>be</em>
+      <a href="/" className="nav-logo" aria-label="Eazybe — Home">
+        {/* Production homepage logo: 137×32 PNG served from /public/logo.png */}
+        <img
+          src="/logo.png"
+          alt="Eazybe Logo"
+          width={137}
+          height={32}
+          style={{ height: 32, width: 'auto', objectFit: 'contain' }}
+        />
       </a>
       <div className="nav-links">
         <div className="nav-item">
@@ -86,13 +92,13 @@ export function Nav() {
         </div>
 
         <div className="nav-item"><a><span>Agent Builder</span></a></div>
-        <div className="nav-item"><a><span>Pricing</span></a></div>
+        <div className="nav-item"><a href="https://eazybe.com/pricing" target="_blank" rel="noopener noreferrer"><span>Pricing</span></a></div>
 
         <div className="nav-item">
           <a><span>Resources</span> <span className="nav-caret">▾</span></a>
           <div className="nav-dropdown">
             <div className="nav-dd-section">Learn</div>
-            <a href="#" className="nav-dd-item">
+            <a href="https://eazybe.com/blog" target="_blank" rel="noopener noreferrer" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               </span>
@@ -101,7 +107,7 @@ export function Nav() {
                 <div className="nav-dd-desc">WhatsApp sales playbooks &amp; guides</div>
               </span>
             </a>
-            <a href="#" className="nav-dd-item">
+            <a href="https://help.eazybe.com/introduction" target="_blank" rel="noopener noreferrer" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#F0EBF8' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               </span>

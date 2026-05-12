@@ -7,17 +7,12 @@ const STEP_DURATIONS = [0, 3000, 6000]
 
 export function HowItWorks() {
   const wrapRef = useRef<HTMLDivElement>(null)
-  const [active, setActive] = useState<number | null>(null)
+  const [active, setActive] = useState<number>(0)
   const [logoActive, setLogoActive] = useState<Set<number>>(new Set())
   const [agentOn, setAgentOn] = useState<Set<number>>(new Set())
 
   useEffect(() => {
-    const wrap = wrapRef.current
-    if (!wrap) return
-
-    let cycleTimer: number | null = null
     const timeouts: number[] = []
-    let visible = false
 
     const clearAll = () => {
       timeouts.forEach((t) => clearTimeout(t))
@@ -30,7 +25,6 @@ export function HowItWorks() {
     }
     const setActiveStep = (idx: number) => {
       setActive(idx)
-      // reset sub-states
       setLogoActive(new Set())
       setAgentOn(new Set())
       if (idx === 1) {
@@ -47,29 +41,14 @@ export function HowItWorks() {
       clearAll()
       STEP_DURATIONS.forEach((ms, i) => schedule(() => setActiveStep(i), ms))
     }
-    const start = () => {
-      if (cycleTimer) return
-      runCycle()
-      cycleTimer = window.setInterval(runCycle, CYCLE)
-    }
-    const stop = () => {
-      if (cycleTimer) { clearInterval(cycleTimer); cycleTimer = null }
-      clearAll()
-      setActive(null)
-    }
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          visible = e.isIntersecting
-          if (visible) start()
-          else stop()
-        }
-      },
-      { threshold: 0.2 }
-    )
-    io.observe(wrap)
-    return () => { io.disconnect(); stop() }
+    runCycle()
+    const cycleTimer = window.setInterval(runCycle, CYCLE)
+
+    return () => {
+      clearInterval(cycleTimer)
+      clearAll()
+    }
   }, [])
 
   return (
@@ -80,7 +59,7 @@ export function HowItWorks() {
           <h2>Live in <em>10 minutes.</em> Not 10 weeks.</h2>
         </div>
         <div className="steps" ref={wrapRef}>
-          <div className={`step reveal${active === 0 ? ' active' : ''}`} data-step="1">
+          <div className={`step${active === 0 ? ' active' : ''}`} data-step="1">
             <div className="step-num">1</div>
             <h4>Install</h4>
             <p>Add the Eazybe Chrome extension. 30 seconds flat.</p>
@@ -103,7 +82,7 @@ export function HowItWorks() {
             </div>
           </div>
 
-          <div className={`step reveal${active === 1 ? ' active' : ''}`} data-step="2" style={{ transitionDelay: '.1s' }}>
+          <div className={`step${active === 1 ? ' active' : ''}`} data-step="2">
             <div className="step-num">2</div>
             <h4>Connect</h4>
             <p>Connect your CRM. HubSpot, Salesforce, Zoho — one-click OAuth.</p>
@@ -130,7 +109,7 @@ export function HowItWorks() {
             </div>
           </div>
 
-          <div className={`step reveal${active === 2 ? ' active' : ''}`} data-step="3" style={{ transitionDelay: '.2s' }}>
+          <div className={`step${active === 2 ? ' active' : ''}`} data-step="3">
             <div className="step-num">3</div>
             <h4>Activate</h4>
             <p>Turn on your agents. CRM Sync starts immediately. AI agents activate within 24 hours.</p>

@@ -11,7 +11,15 @@ export function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <h3>eazy<em>be</em></h3>
+            <a href="/" aria-label="Eazybe — Home" style={{ display: 'inline-block', marginBottom: 14 }}>
+              <img
+                src="/logo.png"
+                alt="Eazybe Logo"
+                width={137}
+                height={32}
+                style={{ height: 32, width: 'auto', objectFit: 'contain' }}
+              />
+            </a>
             <p>WhatsApp AI agents for CRM teams. Built for the way sales actually happens.</p>
           </div>
           {COLS.map((c) => (
