@@ -2,11 +2,12 @@
 
 import React, { useEffect } from 'react'
 import { StandaloneShell } from '@/components/StandaloneShell'
+import '@/components/landing/landing-v3.css'
 
 export default function FbPage() {
   useEffect(() => {
     const trackAndUpdate = async () => {
-      ;(window as any).lintrk?.("track", "StartTrial")
+      ;(window as any).lintrk?.('track', 'StartTrial')
       ;(window as any).fbq?.('track', 'StartTrial')
       ;(window as any).gtag?.('event', 'extension_install')
       ;(window as any).gtagAW?.('event', 'extension_install')
@@ -18,7 +19,8 @@ export default function FbPage() {
       }
 
       const rawWorkspaceId = urlWorkspaceId || localStorage.getItem('workspaceId')
-      const finalWorkspaceId = rawWorkspaceId && !isNaN(Number(rawWorkspaceId)) ? Number(rawWorkspaceId) : null
+      const finalWorkspaceId =
+        rawWorkspaceId && !isNaN(Number(rawWorkspaceId)) ? Number(rawWorkspaceId) : null
 
       const referrer = localStorage.getItem('referrer')
       const entryPage = localStorage.getItem('entryPage')
@@ -31,11 +33,14 @@ export default function FbPage() {
         if (exitPage) body.exit_page = exitPage
 
         try {
-          const resp = await fetch('https://eazybe.com/api/v1/whatzapp/updateutmonhubspot', {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-          })
+          const resp = await fetch(
+            'https://eazybe.com/api/v1/whatzapp/updateutmonhubspot',
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(body),
+            },
+          )
           const response = await resp.json()
           console.log('API response:', response)
         } catch (error) {
@@ -49,10 +54,15 @@ export default function FbPage() {
 
   return (
     <StandaloneShell>
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
-          <p className="text-white text-lg">Processing...</p>
+      <div className="landing" data-accent="iris" data-typeset="geist">
+        <div className="processing">
+          <div className="processing-inner">
+            <div className="orb" aria-hidden />
+            <h1>
+              Processing<span style={{ color: 'var(--accent-ink)', fontStyle: 'italic' }}>…</span>
+            </h1>
+            <p>Setting up your workspace. Hold tight — this takes just a moment.</p>
+          </div>
         </div>
       </div>
     </StandaloneShell>

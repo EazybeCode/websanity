@@ -1,725 +1,853 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import {
-  Check,
-  X,
-  CheckCircle2,
-  MessageSquare,
-  RefreshCw,
-  Users,
-  TrendingUp,
-  CheckSquare,
-  Search,
-  MoreVertical,
-  Activity,
-  Workflow,
-  Zap,
-  PieChart,
-  Users2,
-  Cloud,
-  Plus,
-  Share2,
-  ArrowRight
-} from 'lucide-react'
-import { SectionBadge } from '@/components/ui/SectionBadge'
 import { useTrialModal } from '@/providers/TrialModalProvider'
 
 // ─── CRM Configuration ──────────────────────────────────────────────────────
 
-const crmConfig: Record<string, {
-  name: string
-  logo: string
-  color: string
-  gradient: string
-  partnerText: string
-  certified: boolean
-}> = {
-  hubspot: {
-    name: 'HubSpot',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.hubspot.com&size=256',
-    color: '#FF7A59',
-    gradient: 'from-[#FF7A59] to-[#FF5C35]',
-    partnerText: 'HubSpot App Partner',
-    certified: true
-  },
-  salesforce: {
-    name: 'Salesforce',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.salesforce.com&size=256',
-    color: '#00A1E0',
-    gradient: 'from-[#00A1E0] to-[#0070D2]',
-    partnerText: 'Salesforce Partner',
-    certified: true
-  },
-  zoho: {
-    name: 'Zoho',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.zoho.com&size=256',
-    color: '#E42527',
-    gradient: 'from-[#E42527] to-[#C41E3A]',
-    partnerText: 'Zoho Partner',
-    certified: true
-  },
-  bitrix24: {
-    name: 'Bitrix24',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.bitrix24.com&size=256',
-    color: '#2FC6F6',
-    gradient: 'from-[#2FC6F6] to-[#1AA3D0]',
-    partnerText: 'Bitrix24 Partner',
-    certified: false
-  },
-  leadsquared: {
-    name: 'LeadSquared',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.leadsquared.com&size=256',
-    color: '#0066CC',
-    gradient: 'from-[#0066CC] to-[#004C99]',
-    partnerText: 'LeadSquared Partner',
-    certified: false
-  },
-  freshdesk: {
-    name: 'Freshdesk',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.freshdesk.com&size=256',
-    color: '#25C16F',
-    gradient: 'from-[#25C16F] to-[#1A9E58]',
-    partnerText: 'Freshdesk Partner',
-    certified: false
-  },
-  'google-sheets': {
-    name: 'Google Sheets',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://sheets.google.com&size=256',
-    color: '#0F9D58',
-    gradient: 'from-[#0F9D58] to-[#0B7A43]',
-    partnerText: 'Google Partner',
-    certified: false
-  },
-  webhooks: {
-    name: 'Webhooks',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://webhook.site&size=256',
-    color: '#6B7280',
-    gradient: 'from-[#6B7280] to-[#4B5563]',
-    partnerText: 'Custom Integration',
-    certified: false
-  },
-  pipedrive: {
-    name: 'Pipedrive',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.pipedrive.com&size=256',
-    color: '#017737',
-    gradient: 'from-[#017737] to-[#015A2A]',
-    partnerText: 'Pipedrive Partner',
-    certified: false
-  },
-  monday: {
-    name: 'Monday.com',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.monday.com&size=256',
-    color: '#FF3D57',
-    gradient: 'from-[#FF3D57] to-[#E02040]',
-    partnerText: 'Monday.com Partner',
-    certified: false
-  },
-  'google-calendar': {
-    name: 'Google Calendar',
-    logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://calendar.google.com&size=256',
-    color: '#4285F4',
-    gradient: 'from-[#4285F4] to-[#2A6FDB]',
-    partnerText: 'Google Partner',
-    certified: false
-  }
+const crmConfig: Record<string, { name: string; logo: string; color: string }> = {
+  hubspot: { name: 'HubSpot', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.hubspot.com&size=256', color: '#FF7A59' },
+  salesforce: { name: 'Salesforce', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.salesforce.com&size=256', color: '#00A1E0' },
+  zoho: { name: 'Zoho', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.zoho.com&size=256', color: '#E42527' },
+  bitrix24: { name: 'Bitrix24', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.bitrix24.com&size=256', color: '#2FC6F6' },
+  leadsquared: { name: 'LeadSquared', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.leadsquared.com&size=256', color: '#0066CC' },
+  freshdesk: { name: 'Freshdesk', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.freshdesk.com&size=256', color: '#25C16F' },
+  'google-sheets': { name: 'Google Sheets', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://sheets.google.com&size=256', color: '#0F9D58' },
+  webhooks: { name: 'Webhooks', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://webhook.site&size=256', color: '#6B7280' },
+  pipedrive: { name: 'Pipedrive', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.pipedrive.com&size=256', color: '#017737' },
+  monday: { name: 'Monday.com', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.monday.com&size=256', color: '#FF3D57' },
+  'google-calendar': { name: 'Google Calendar', logo: 'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://calendar.google.com&size=256', color: '#4285F4' },
 }
 
-// ─── CRM Property Fields ─────────────────────────────────────────────────────
+// ─── CRM Property Fields (preserved data) ───────────────────────────────────
 
-const CRM_PROPERTY_FIELDS: Record<string, Array<{ label: string; type: string; value: string; desc: string; color?: string }>> = {
+const CRM_PROPERTY_FIELDS: Record<string, Array<{ label: string; type: string; value: string; desc: string }>> = {
   hubspot: [
     { label: 'AVG_RESPONSE_TIME', type: 'ANALYTICS', value: '1m 12s', desc: 'Calculated based on rolling 30-day window.' },
     { label: 'TOTAL_MESSAGES', type: 'METER', value: '1,242', desc: 'Aggregate sum of all logged WhatsApp segments.' },
-    { label: 'FOLLOWUP_PRIORITY', type: 'STATUS', value: 'CRITICAL', desc: 'Heuristic-based intent scoring from chat history.', color: 'text-orange-500' },
+    { label: 'FOLLOWUP_PRIORITY', type: 'STATUS', value: 'CRITICAL', desc: 'Heuristic-based intent scoring from chat history.' },
     { label: 'LEAD_ENGAGEMENT_SCORE', type: 'ENGINE', value: '94.8', desc: 'Real-time sync of engagement signals.' },
-    { label: 'SYNC_PROTOCOL_STATUS', type: 'PROTOCOL', value: 'ESTABLISHED', desc: 'End-to-end encrypted channel with HubSpot.', color: 'text-emerald-500' },
-    { label: 'LATEST_CHAT_INTENT', type: 'SIGNAL', value: 'UPSELL_READY', desc: 'NLP-extracted conversation state.', color: 'text-cyan-500' },
+    { label: 'SYNC_PROTOCOL_STATUS', type: 'PROTOCOL', value: 'ESTABLISHED', desc: 'End-to-end encrypted channel with HubSpot.' },
+    { label: 'LATEST_CHAT_INTENT', type: 'SIGNAL', value: 'UPSELL_READY', desc: 'NLP-extracted conversation state.' },
   ],
   salesforce: [
-    { label: 'OPPORTUNITY_STAGE', type: 'PIPELINE', value: 'Proposal', desc: 'Auto-updated from conversation signals.', color: 'text-blue-500' },
+    { label: 'OPPORTUNITY_STAGE', type: 'PIPELINE', value: 'Proposal', desc: 'Auto-updated from conversation signals.' },
     { label: 'DEAL_VALUE', type: 'CURRENCY', value: '$45,000', desc: 'Extracted from quote discussions.' },
-    { label: 'CLOSE_PROBABILITY', type: 'FORECAST', value: '85%', desc: 'AI-predicted based on engagement patterns.', color: 'text-emerald-500' },
+    { label: 'CLOSE_PROBABILITY', type: 'FORECAST', value: '85%', desc: 'AI-predicted based on engagement patterns.' },
     { label: 'LAST_ACTIVITY', type: 'TIMESTAMP', value: '2 hrs ago', desc: 'Most recent WhatsApp interaction.' },
-    { label: 'ACCOUNT_HEALTH', type: 'HEALTH', value: 'STRONG', desc: 'Composite score from all touchpoints.', color: 'text-cyan-500' },
-    { label: 'NEXT_BEST_ACTION', type: 'AI_SUGGEST', value: 'SEND_CONTRACT', desc: 'Recommended based on conversation flow.', color: 'text-orange-500' },
+    { label: 'ACCOUNT_HEALTH', type: 'HEALTH', value: 'STRONG', desc: 'Composite score from all touchpoints.' },
+    { label: 'NEXT_BEST_ACTION', type: 'AI_SUGGEST', value: 'SEND_CONTRACT', desc: 'Recommended based on conversation flow.' },
   ],
   zoho: [
-    { label: 'LEAD_SCORE', type: 'SCORING', value: '87/100', desc: 'Weighted score from WhatsApp engagement.', color: 'text-cyan-500' },
+    { label: 'LEAD_SCORE', type: 'SCORING', value: '87/100', desc: 'Weighted score from WhatsApp engagement.' },
     { label: 'RESPONSE_RATE', type: 'PERCENTAGE', value: '94%', desc: 'Customer reply rate on WhatsApp.' },
-    { label: 'CONVERSION_STAGE', type: 'FUNNEL', value: 'HOT_LEAD', desc: 'Automated lead classification.', color: 'text-orange-500' },
-    { label: 'MSG_SENTIMENT', type: 'NLP', value: 'POSITIVE', desc: 'Real-time sentiment from last 10 messages.', color: 'text-emerald-500' },
+    { label: 'CONVERSION_STAGE', type: 'FUNNEL', value: 'HOT_LEAD', desc: 'Automated lead classification.' },
+    { label: 'MSG_SENTIMENT', type: 'NLP', value: 'POSITIVE', desc: 'Real-time sentiment from last 10 messages.' },
     { label: 'DEAL_POTENTIAL', type: 'REVENUE', value: '$3.2L', desc: 'Estimated deal value from context.' },
-    { label: 'FOLLOW_UP_DUE', type: 'ALERT', value: 'TODAY', desc: 'Smart reminder based on conversation gaps.', color: 'text-red-500' },
+    { label: 'FOLLOW_UP_DUE', type: 'ALERT', value: 'TODAY', desc: 'Smart reminder based on conversation gaps.' },
   ],
   bitrix24: [
-    { label: 'CONTACT_STATUS', type: 'CRM', value: 'SYNCED', desc: 'Contact matched to Bitrix24 record.', color: 'text-emerald-500' },
+    { label: 'CONTACT_STATUS', type: 'CRM', value: 'SYNCED', desc: 'Contact matched to Bitrix24 record.' },
     { label: 'TOTAL_MESSAGES', type: 'METER', value: '847', desc: 'Aggregate WhatsApp messages logged.' },
-    { label: 'CHAT_BACKUP_STATUS', type: 'PROTOCOL', value: 'ACTIVE', desc: 'Real-time backup to Bitrix24.', color: 'text-cyan-500' },
+    { label: 'CHAT_BACKUP_STATUS', type: 'PROTOCOL', value: 'ACTIVE', desc: 'Real-time backup to Bitrix24.' },
     { label: 'LAST_INTERACTION', type: 'TIMESTAMP', value: '14m ago', desc: 'Most recent WhatsApp message synced.' },
-    { label: 'DEAL_STAGE', type: 'PIPELINE', value: 'NEGOTIATION', desc: 'Current deal stage in Bitrix24.', color: 'text-orange-500' },
-    { label: 'SYNC_HEALTH', type: 'STATUS', value: 'OPTIMAL', desc: 'Connection status with Bitrix24.', color: 'text-emerald-500' },
+    { label: 'DEAL_STAGE', type: 'PIPELINE', value: 'NEGOTIATION', desc: 'Current deal stage in Bitrix24.' },
+    { label: 'SYNC_HEALTH', type: 'STATUS', value: 'OPTIMAL', desc: 'Connection status with Bitrix24.' },
   ],
   leadsquared: [
-    { label: 'LEAD_SCORE', type: 'SCORING', value: '91/100', desc: 'Weighted from WhatsApp engagement signals.', color: 'text-cyan-500' },
+    { label: 'LEAD_SCORE', type: 'SCORING', value: '91/100', desc: 'Weighted from WhatsApp engagement signals.' },
     { label: 'ACTIVITY_COUNT', type: 'METER', value: '1,089', desc: 'Total activities logged from WhatsApp.' },
-    { label: 'WORKFLOW_STATUS', type: 'AUTOMATION', value: 'TRIGGERED', desc: 'LeadSquared workflow active.', color: 'text-emerald-500' },
-    { label: 'LEAD_STAGE', type: 'FUNNEL', value: 'QUALIFIED', desc: 'Auto-updated from conversation signals.', color: 'text-orange-500' },
+    { label: 'WORKFLOW_STATUS', type: 'AUTOMATION', value: 'TRIGGERED', desc: 'LeadSquared workflow active.' },
+    { label: 'LEAD_STAGE', type: 'FUNNEL', value: 'QUALIFIED', desc: 'Auto-updated from conversation signals.' },
     { label: 'RESPONSE_TIME', type: 'ANALYTICS', value: '2m 30s', desc: 'Average rep response time on WhatsApp.' },
-    { label: 'CAPTURE_MODE', type: 'PROTOCOL', value: 'AUTO', desc: 'New leads captured automatically.', color: 'text-cyan-500' },
+    { label: 'CAPTURE_MODE', type: 'PROTOCOL', value: 'AUTO', desc: 'New leads captured automatically.' },
   ],
   freshdesk: [
-    { label: 'TICKET_CONTEXT', type: 'SUPPORT', value: 'LINKED', desc: 'WhatsApp chat linked to ticket.', color: 'text-emerald-500' },
+    { label: 'TICKET_CONTEXT', type: 'SUPPORT', value: 'LINKED', desc: 'WhatsApp chat linked to ticket.' },
     { label: 'TOTAL_MESSAGES', type: 'METER', value: '623', desc: 'Support messages backed up.' },
-    { label: 'CONTACT_STATUS', type: 'CRM', value: 'MATCHED', desc: 'Contact synced to Freshdesk.', color: 'text-cyan-500' },
-    { label: 'RESPONSE_SLA', type: 'TIMER', value: 'ON_TRACK', desc: 'SLA compliance for WhatsApp channel.', color: 'text-emerald-500' },
+    { label: 'CONTACT_STATUS', type: 'CRM', value: 'MATCHED', desc: 'Contact synced to Freshdesk.' },
+    { label: 'RESPONSE_SLA', type: 'TIMER', value: 'ON_TRACK', desc: 'SLA compliance for WhatsApp channel.' },
     { label: 'BACKUP_STATUS', type: 'PROTOCOL', value: 'ACTIVE', desc: 'Real-time chat backup enabled.' },
-    { label: 'AGENT_LOAD', type: 'CAPACITY', value: '12 ACTIVE', desc: 'Active WhatsApp conversations.', color: 'text-orange-500' },
+    { label: 'AGENT_LOAD', type: 'CAPACITY', value: '12 ACTIVE', desc: 'Active WhatsApp conversations.' },
   ],
   'google-sheets': [
     { label: 'CONTACTS_SYNCED', type: 'COUNTER', value: '2,341', desc: 'Total contacts exported to Sheets.' },
     { label: 'LAST_EXPORT', type: 'TIMESTAMP', value: '3m ago', desc: 'Most recent data sync to spreadsheet.' },
-    { label: 'SHEET_STATUS', type: 'CONNECTION', value: 'CONNECTED', desc: 'Google Sheets link active.', color: 'text-emerald-500' },
+    { label: 'SHEET_STATUS', type: 'CONNECTION', value: 'CONNECTED', desc: 'Google Sheets link active.' },
     { label: 'DATA_ROWS', type: 'METER', value: '5,892', desc: 'Total rows of WhatsApp data.' },
-    { label: 'TEAM_MEMBERS', type: 'USERS', value: '8 ACTIVE', desc: 'Team members syncing to same sheet.', color: 'text-cyan-500' },
-    { label: 'EXPORT_MODE', type: 'PROTOCOL', value: 'REAL-TIME', desc: 'Continuous data export enabled.', color: 'text-orange-500' },
+    { label: 'TEAM_MEMBERS', type: 'USERS', value: '8 ACTIVE', desc: 'Team members syncing to same sheet.' },
+    { label: 'EXPORT_MODE', type: 'PROTOCOL', value: 'REAL-TIME', desc: 'Continuous data export enabled.' },
   ],
   webhooks: [
     { label: 'EVENTS_SENT', type: 'COUNTER', value: '14,203', desc: 'Total webhook events delivered.' },
-    { label: 'DELIVERY_RATE', type: 'PERCENTAGE', value: '99.97%', desc: 'Successful event delivery rate.', color: 'text-emerald-500' },
+    { label: 'DELIVERY_RATE', type: 'PERCENTAGE', value: '99.97%', desc: 'Successful event delivery rate.' },
     { label: 'AVG_LATENCY', type: 'TIMER', value: '142ms', desc: 'Average event delivery time.' },
-    { label: 'ENDPOINT_STATUS', type: 'CONNECTION', value: 'HEALTHY', desc: 'HTTP endpoint responding correctly.', color: 'text-emerald-500' },
-    { label: 'EVENT_TYPES', type: 'CONFIG', value: '6 ACTIVE', desc: 'Configured event subscriptions.', color: 'text-cyan-500' },
-    { label: 'RETRY_QUEUE', type: 'BUFFER', value: '0 PENDING', desc: 'No failed deliveries in queue.', color: 'text-orange-500' },
+    { label: 'ENDPOINT_STATUS', type: 'CONNECTION', value: 'HEALTHY', desc: 'HTTP endpoint responding correctly.' },
+    { label: 'EVENT_TYPES', type: 'CONFIG', value: '6 ACTIVE', desc: 'Configured event subscriptions.' },
+    { label: 'RETRY_QUEUE', type: 'BUFFER', value: '0 PENDING', desc: 'No failed deliveries in queue.' },
   ],
   pipedrive: [
     { label: 'DEAL_VALUE', type: 'CURRENCY', value: '$38,500', desc: 'Active deal value from conversations.' },
-    { label: 'PIPELINE_STAGE', type: 'PIPELINE', value: 'PROPOSAL', desc: 'Auto-updated from chat signals.', color: 'text-blue-500' },
+    { label: 'PIPELINE_STAGE', type: 'PIPELINE', value: 'PROPOSAL', desc: 'Auto-updated from chat signals.' },
     { label: 'ACTIVITY_LOG', type: 'METER', value: '956', desc: 'WhatsApp activities logged to Pipedrive.' },
-    { label: 'WIN_PROBABILITY', type: 'FORECAST', value: '78%', desc: 'AI-predicted from engagement data.', color: 'text-emerald-500' },
-    { label: 'WORKFLOW_STATUS', type: 'AUTOMATION', value: 'RUNNING', desc: 'Pipedrive automation triggered.', color: 'text-cyan-500' },
-    { label: 'NEXT_ACTION', type: 'AI_SUGGEST', value: 'FOLLOW_UP', desc: 'Recommended based on conversation.', color: 'text-orange-500' },
+    { label: 'WIN_PROBABILITY', type: 'FORECAST', value: '78%', desc: 'AI-predicted from engagement data.' },
+    { label: 'WORKFLOW_STATUS', type: 'AUTOMATION', value: 'RUNNING', desc: 'Pipedrive automation triggered.' },
+    { label: 'NEXT_ACTION', type: 'AI_SUGGEST', value: 'FOLLOW_UP', desc: 'Recommended based on conversation.' },
   ],
   monday: [
     { label: 'BOARD_ITEMS', type: 'COUNTER', value: '1,245', desc: 'Contacts synced to Monday.com boards.' },
     { label: 'MESSAGES_BACKED', type: 'METER', value: '3,891', desc: 'WhatsApp messages archived.' },
-    { label: 'SYNC_STATUS', type: 'CONNECTION', value: 'ACTIVE', desc: 'Real-time sync to Monday.com.', color: 'text-emerald-500' },
-    { label: 'TEAM_ACTIVITY', type: 'USERS', value: '15 MEMBERS', desc: 'Active team members syncing.', color: 'text-cyan-500' },
+    { label: 'SYNC_STATUS', type: 'CONNECTION', value: 'ACTIVE', desc: 'Real-time sync to Monday.com.' },
+    { label: 'TEAM_ACTIVITY', type: 'USERS', value: '15 MEMBERS', desc: 'Active team members syncing.' },
     { label: 'LAST_UPDATE', type: 'TIMESTAMP', value: '1m ago', desc: 'Most recent board update.' },
-    { label: 'CONVERSATION_STATUS', type: 'STATUS', value: 'TRACKING', desc: 'All conversations being tracked.', color: 'text-orange-500' },
+    { label: 'CONVERSATION_STATUS', type: 'STATUS', value: 'TRACKING', desc: 'All conversations being tracked.' },
   ],
   'google-calendar': [
     { label: 'MEETINGS_SCHEDULED', type: 'COUNTER', value: '156', desc: 'Events created from WhatsApp chats.' },
-    { label: 'FOLLOW_UPS_DUE', type: 'ALERT', value: '3 TODAY', desc: 'Pending follow-ups from conversations.', color: 'text-orange-500' },
-    { label: 'REMINDER_STATUS', type: 'STATUS', value: 'ACTIVE', desc: 'Conversation-based reminders enabled.', color: 'text-emerald-500' },
-    { label: 'COMPLETION_RATE', type: 'PERCENTAGE', value: '94%', desc: 'Follow-ups completed on time.', color: 'text-cyan-500' },
+    { label: 'FOLLOW_UPS_DUE', type: 'ALERT', value: '3 TODAY', desc: 'Pending follow-ups from conversations.' },
+    { label: 'REMINDER_STATUS', type: 'STATUS', value: 'ACTIVE', desc: 'Conversation-based reminders enabled.' },
+    { label: 'COMPLETION_RATE', type: 'PERCENTAGE', value: '94%', desc: 'Follow-ups completed on time.' },
     { label: 'TEAM_BOOKINGS', type: 'USERS', value: '8 THIS WEEK', desc: 'Team meetings scheduled from WhatsApp.' },
-    { label: 'CALENDAR_SYNC', type: 'CONNECTION', value: 'CONNECTED', desc: 'Google Calendar linked and active.', color: 'text-emerald-500' },
-  ]
+    { label: 'CALENDAR_SYNC', type: 'CONNECTION', value: 'CONNECTED', desc: 'Google Calendar linked and active.' },
+  ],
 }
 
-// ─── UI Components ───────────────────────────────────────────────────────────
+const Check = (
+  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+)
+const TickIcon = (
+  <svg width="11" height="11" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+)
+const XIcon = (
+  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" /></svg>
+)
 
-interface SectionKickerProps {
-  label: string
-  className?: string
-  variant?: 'cyan' | 'orange' | 'blue'
-}
+// ─── Hero ────────────────────────────────────────────────────────────────────
 
-const SectionKicker: React.FC<SectionKickerProps> = ({ label, className = '', variant = 'cyan' }) => {
-  const variants = {
-    cyan: 'text-cyan-500 border-cyan-500/20 bg-cyan-500/10',
-    orange: 'text-orange-500 border-orange-500/20 bg-orange-500/10',
-    blue: 'text-blue-600 border-blue-600/20 bg-blue-600/10',
-  }
-  const dotColors = {
-    cyan: 'bg-cyan-500',
-    orange: 'bg-orange-500',
-    blue: 'bg-blue-600',
-  }
-
+const HeroSection: React.FC<{
+  crm: { name: string; logo: string; color: string }
+  crmSlug: string
+  t: ReturnType<typeof useTranslations>
+}> = ({ crm, t }) => {
+  const { openModal } = useTrialModal()
   return (
-    <span className={`inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.1em] px-3 py-1.5 rounded-full border mb-6 select-none ${variants[variant]} ${className}`}>
-      <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${dotColors[variant]}`}></span>
-      {label}
-    </span>
+    <section className="page-hero hero-split" data-tone="dark">
+      <div className="container">
+        <div className="hero-split-grid">
+          <div style={{ textAlign: 'left' }}>
+            <span className="hero-tag reveal">
+              <span className="pulse" /> WHATSAPP × {crm.name.toUpperCase()}
+            </span>
+            <h1 className="reveal" style={{ textAlign: 'left', maxWidth: 'none', margin: '0 0 20px' }}>
+              {t('integrations.hero.headlinePrefix')}{' '}
+              <em style={{ color: crm.color, fontStyle: 'italic' }}>{crm.name}</em>{' '}
+              {t('integrations.hero.headlineSuffix')}
+            </h1>
+            <p className="lede reveal" style={{ textAlign: 'left', margin: '0 0 28px' }}>
+              {t('integrations.hero.description', { crmName: crm.name })}
+            </p>
+            <ul className="reveal feat-list" style={{ marginBottom: 28 }}>
+              {[
+                t('integrations.hero.feature1'),
+                t('integrations.hero.feature2'),
+                t('integrations.hero.feature3'),
+              ].map((item, idx) => (
+                <li key={idx}>
+                  <span className="tick">{TickIcon}</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="reveal" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 32 }}>
+              <button onClick={() => openModal('trial')} className="btn btn-primary btn-lg">
+                {t('integrations.hero.startTrial')} →
+              </button>
+              <button onClick={() => openModal('demo')} className="btn btn-outline btn-lg">
+                {t('integrations.hero.bookDemo')}
+              </button>
+            </div>
+            <div
+              className="reveal"
+              style={{
+                display: 'flex',
+                gap: 28,
+                borderTop: '1px solid var(--line)',
+                paddingTop: 22,
+                flexWrap: 'wrap',
+              }}
+            >
+              <PartnerBadge name="Meta" sub={t('integrations.hero.metaPartner')} logo="https://cdn.simpleicons.org/meta/0064e0" />
+              <PartnerBadge name={crm.name} sub={t('integrations.hero.appPartner')} logo={crm.logo} />
+            </div>
+          </div>
+
+          <div className="reveal hero-split-visual">
+            <HeroSyncAnimation crm={crm} />
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'outline'
-  children: React.ReactNode
-}
+// ─── Animated hero visual: WhatsApp chat → CRM sync ─────────────────────────
 
-const Button: React.FC<ButtonProps> = ({ variant = 'primary', children, className = '', ...props }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
-  const variants = {
-    primary: 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] border border-blue-600 hover:bg-blue-700',
-    outline: 'bg-transparent text-slate-300 border border-slate-700 hover:border-slate-500 hover:text-white'
-  }
-
-  return (
-    <button className={`${baseStyles} ${variants[variant]} ${className}`} {...props}>
-      {children}
-    </button>
-  )
-}
-
-// ─── Animated Property Card ──────────────────────────────────────────────────
-
-const PropertyCard: React.FC<{ field: { label: string; type: string; value: string; desc: string; color?: string }; index: number }> = ({ field, index }) => {
-  const [dataPoints, setDataPoints] = useState(Array.from({ length: 15 }, () => Math.random() * 40 + 20))
+const HeroSyncAnimation: React.FC<{ crm: { name: string; logo: string; color: string } }> = ({ crm }) => {
+  const [step, setStep] = useState(0)
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setDataPoints(prev => [...prev.slice(1), Math.random() * 40 + 20])
-    }, 1500 + index * 200)
-    return () => clearInterval(timer)
-  }, [index])
+    const t = setInterval(() => setStep((s) => (s + 1) % 4), 2400)
+    return () => clearInterval(t)
+  }, [])
 
   return (
-    <div className="bg-[#0f172a] border border-slate-800 p-8 rounded-xl font-mono hover:border-blue-600/50 transition-all group relative overflow-hidden">
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-transparent to-cyan-500 animate-pulse"></div>
-      </div>
-
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2 text-[10px] text-slate-600 font-bold tracking-[0.2em]">
-          <div className="w-1.5 h-1.5 rounded-full bg-slate-700 group-hover:bg-blue-600 animate-pulse"></div>
-          {field.type}
+    <div
+      style={{
+        background: 'var(--paper)',
+        border: '1px solid var(--line)',
+        borderRadius: 22,
+        padding: 18,
+        boxShadow: '0 30px 80px -30px rgba(15,17,21,0.25), 0 8px 24px -12px rgba(15,17,21,0.12)',
+        position: 'relative',
+      }}
+    >
+      {/* "Browser" chrome */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingBottom: 12,
+          borderBottom: '1px solid var(--line)',
+          marginBottom: 14,
+        }}
+      >
+        <div style={{ display: 'flex', gap: 6 }}>
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#FF5F57' }} />
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#FEBC2E' }} />
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28C840' }} />
         </div>
-        <TrendingUp size={12} className="text-slate-700 group-hover:text-cyan-500 transition-colors" />
+        <div
+          style={{
+            fontFamily: 'var(--f-mono)',
+            fontSize: 9,
+            color: 'var(--ink-4)',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+          }}
+        >
+          web.whatsapp.com
+        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={crm.logo}
+          alt={crm.name}
+          width={18}
+          height={18}
+          referrerPolicy="no-referrer"
+          style={{ borderRadius: 4 }}
+        />
       </div>
 
-      <h4 className="text-slate-400 text-xs font-bold mb-1 tracking-wider uppercase group-hover:text-slate-300 transition-colors">{field.label}</h4>
-      <div className={`text-3xl font-bold tracking-tight mb-4 transition-all duration-300 group-hover:translate-x-1 ${field.color || 'text-white'}`}>
-        {field.value}
-      </div>
-
-      <div className="h-8 flex items-end gap-1 mb-4 opacity-30 group-hover:opacity-100 transition-all">
-        {dataPoints.map((p, i) => (
+      {/* Chat thread */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 14 }}>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://i.pravatar.cc/100?u=sarah"
+            alt="Sarah"
+            width={28}
+            height={28}
+            style={{ borderRadius: '50%', border: `2px solid ${crm.color}` }}
+          />
           <div
-            key={i}
-            className="flex-1 rounded-t-sm transition-all duration-700"
             style={{
-              height: `${p}%`,
-              backgroundColor: i === dataPoints.length - 1 ? '#22d3ee' : '#2563eb'
+              background: 'var(--bg-2)',
+              border: '1px solid var(--line)',
+              borderRadius: '12px 12px 12px 4px',
+              padding: '7px 11px',
+              fontSize: 12,
+              color: 'var(--ink-2)',
+              maxWidth: '78%',
+              lineHeight: 1.45,
             }}
-          ></div>
+          >
+            Hi! Following up on the enterprise quote.
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start', flexDirection: 'row-reverse' }}>
+          <div
+            style={{
+              width: 28,
+              height: 28,
+              borderRadius: '50%',
+              background: crm.color,
+              color: '#fff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 10,
+              fontWeight: 700,
+              flexShrink: 0,
+            }}
+          >
+            ME
+          </div>
+          <div
+            style={{
+              background: crm.color,
+              color: '#fff',
+              borderRadius: '12px 12px 4px 12px',
+              padding: '7px 11px',
+              fontSize: 12,
+              maxWidth: '78%',
+              lineHeight: 1.45,
+            }}
+          >
+            {step >= 2 ? 'Just sent it over to your email, Sarah.' : (
+              <span style={{ display: 'inline-flex', gap: 3 }}>
+                {[0, 1, 2].map((i) => (
+                  <span
+                    key={i}
+                    style={{
+                      width: 5,
+                      height: 5,
+                      borderRadius: '50%',
+                      background: '#fff',
+                      opacity: 0.85,
+                      animation: `landing-typingDot 1.2s ${i * 0.2}s infinite ease-in-out`,
+                    }}
+                  />
+                ))}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Sync flow indicator */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          padding: '8px 12px',
+          background: 'color-mix(in oklab, ' + crm.color + ' 8%, var(--paper))',
+          border: '1px solid color-mix(in oklab, ' + crm.color + ' 30%, var(--line))',
+          borderRadius: 100,
+          fontFamily: 'var(--f-mono)',
+          fontSize: 10,
+          color: 'var(--ink-2)',
+          letterSpacing: '0.06em',
+          marginBottom: 14,
+        }}
+      >
+        <span
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: '50%',
+            background: crm.color,
+            boxShadow: `0 0 0 0 ${crm.color}`,
+            animation: 'landing-lqaLive 1.6s ease-in-out infinite',
+          }}
+        />
+        {step >= 3 ? `SYNCED → ${crm.name.toUpperCase()}` : `SYNCING TO ${crm.name.toUpperCase()}…`}
+      </div>
+
+      {/* CRM record */}
+      <div
+        style={{
+          padding: 14,
+          background: 'var(--bg-2)',
+          border: '1px solid var(--line)',
+          borderRadius: 12,
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: 10,
+            fontFamily: 'var(--f-mono)',
+            fontSize: 9,
+            color: 'var(--ink-4)',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+          }}
+        >
+          <span>{crm.name} · Contact</span>
+          <span style={{ color: crm.color }}>● LIVE</span>
+        </div>
+        {[
+          ['First name', 'Sarah'],
+          ['Last name', 'Chen'],
+          ['Company', 'Enterprise Solutions Inc.'],
+          ['Last WhatsApp', step >= 1 ? 'Just now' : '2 hrs ago'],
+          ['Deal value', step >= 3 ? '$45,000' : '—'],
+        ].map(([k, v], i) => (
+          <div
+            key={k}
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              padding: '5px 0',
+              fontSize: 12,
+              borderTop: i > 0 ? '1px solid var(--line)' : 'none',
+              transition: 'opacity .3s',
+            }}
+          >
+            <span style={{ color: 'var(--ink-3)' }}>{k}</span>
+            <span
+              style={{
+                color: 'var(--ink)',
+                fontWeight: 500,
+                fontFamily: i === 4 ? 'var(--f-display)' : 'inherit',
+              }}
+            >
+              {v}
+            </span>
+          </div>
         ))}
       </div>
 
-      <p className="text-[10px] text-slate-500 leading-relaxed border-t border-slate-800 pt-4 group-hover:text-slate-400 transition-colors">
-        {field.desc}
-      </p>
+      {/* Decorative glow */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: -40,
+          background: `radial-gradient(circle at 70% 30%, ${crm.color}22, transparent 60%)`,
+          filter: 'blur(40px)',
+          zIndex: -1,
+          pointerEvents: 'none',
+        }}
+      />
     </div>
   )
 }
 
-// ─── Hero Section ────────────────────────────────────────────────────────────
+const PartnerBadge: React.FC<{ name: string; sub: string; logo: string }> = ({ name, sub, logo }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+    <div
+      style={{
+        width: 36,
+        height: 36,
+        background: '#fff',
+        borderRadius: '50%',
+        border: '1px solid var(--line)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={logo} alt={name} width={22} height={22} referrerPolicy="no-referrer" />
+    </div>
+    <div style={{ textAlign: 'left' }}>
+      <div style={{ fontWeight: 600, fontSize: 13, color: 'var(--ink)' }}>{name}</div>
+      <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10, color: 'var(--ink-4)', letterSpacing: '0.04em' }}>{sub}</div>
+    </div>
+  </div>
+)
 
-const HeroSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; crmSlug: string; t: (key: string, values?: Record<string, string>) => string }> = ({ crm, crmColor, crmSlug, t }) => {
-  const { openModal } = useTrialModal()
+// ─── Feature comparison table ───────────────────────────────────────────────
 
+const FeatureComparisonSection: React.FC<{ t: ReturnType<typeof useTranslations> }> = ({ t }) => {
+  const rows = [
+    { name: t('integrations.comparison.feature1'), other: false, eazybe: true },
+    { name: t('integrations.comparison.feature2'), other: true, eazybe: true },
+    { name: t('integrations.comparison.feature3'), other: false, eazybe: true },
+    { name: t('integrations.comparison.feature4'), other: false, eazybe: true },
+    { name: t('integrations.comparison.feature5'), other: false, eazybe: true },
+  ]
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden bg-slate-950">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none"></div>
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] blur-[120px] rounded-full -z-10 animate-pulse" style={{ backgroundColor: `${crmColor}15` }}></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="max-w-3xl">
-            <div className="flex gap-3 mb-8">
-              <SectionKicker label={t('integrations.badges.whatsappIntegration')} variant="cyan" className="mb-0" />
-              <SectionKicker label={`${crm.name} ${t('integrations.badges.certified')}`} variant="orange" className="mb-0" />
+    <section className="section">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          <span className="sec-tag">{t('integrations.comparison.badge')}</span>
+          <h2>
+            {t('integrations.comparison.headline1')} {t('integrations.comparison.headline2')}{' '}
+            <em>{t('integrations.comparison.headline3')}</em>
+          </h2>
+          <p>{t('integrations.comparison.description')}</p>
+        </div>
+        <div
+          className="reveal"
+          style={{
+            background: 'var(--paper)',
+            border: '1px solid var(--line)',
+            borderRadius: 18,
+            overflow: 'hidden',
+            maxWidth: 900,
+            margin: '0 auto',
+            boxShadow: '0 1px 0 rgba(15,17,21,0.02), 0 8px 24px -16px rgba(15,17,21,0.08)',
+          }}
+        >
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '2fr 1fr 1fr',
+              gap: 14,
+              padding: 18,
+              background: 'var(--bg-2)',
+              borderBottom: '1px solid var(--line)',
+            }}
+          >
+            <div style={kickerCol('var(--ink-4)', 'left')}>{t('integrations.comparison.capability')}</div>
+            <div style={kickerCol('var(--ink-4)', 'center')}>{t('integrations.comparison.otherTools')}</div>
+            <div style={kickerCol('var(--accent-ink)', 'center')}>Eazybe</div>
+          </div>
+          {rows.map((row, idx) => (
+            <div
+              key={idx}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '2fr 1fr 1fr',
+                gap: 14,
+                padding: 18,
+                borderBottom: idx < rows.length - 1 ? '1px solid var(--line)' : 'none',
+                alignItems: 'center',
+              }}
+            >
+              <div style={{ color: 'var(--ink-2)', fontWeight: 500 }}>{row.name}</div>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                {row.other ? (
+                  <span style={{ color: 'var(--ok)' }}>{TickIcon}</span>
+                ) : (
+                  <span style={{ color: 'var(--ink-4)' }}>{XIcon}</span>
+                )}
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <span
+                  style={{
+                    width: 26,
+                    height: 26,
+                    borderRadius: '50%',
+                    background: 'color-mix(in oklab, var(--accent-a) 22%, var(--paper))',
+                    border: '1px solid color-mix(in oklab, var(--accent-a) 40%, var(--line))',
+                    color: 'var(--accent-ink)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {TickIcon}
+                </span>
+              </div>
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 
-            <h1 className="text-5xl lg:text-7xl font-sans font-extrabold tracking-tight text-white leading-[1.05] mb-6">
-              {t('integrations.hero.headlinePrefix')} <br />
-              <span className="inline-flex items-baseline gap-3" style={{ color: crmColor }}>
-                {crm.name}
-              </span> <br />
-              {t('integrations.hero.headlineSuffix')}
-            </h1>
+const kickerCol = (color: string, align: 'left' | 'center'): React.CSSProperties => ({
+  fontFamily: 'var(--f-mono)',
+  fontSize: 11,
+  fontWeight: 600,
+  letterSpacing: '0.1em',
+  textTransform: 'uppercase',
+  color,
+  textAlign: align,
+})
 
-            <p className="text-lg text-slate-400 leading-relaxed mb-8 max-w-xl">
-              {t('integrations.hero.description', { crmName: crm.name })}
-            </p>
+// ─── Property cards (live data) ─────────────────────────────────────────────
 
-            <div className="space-y-4 mb-10">
-              {[
-                t('integrations.hero.feature1'),
-                t('integrations.hero.feature2'),
-                t('integrations.hero.feature3')
-              ].map((item, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-300 font-medium">{item}</span>
-                </div>
-              ))}
-            </div>
+const PropertyCard: React.FC<{
+  field: { label: string; type: string; value: string; desc: string }
+  index: number
+  accent: string
+}> = ({ field, index, accent }) => {
+  const [points, setPoints] = useState<number[]>(() => Array.from({ length: 14 }, () => Math.random() * 40 + 20))
+  useEffect(() => {
+    const t = setInterval(() => setPoints((p) => [...p.slice(1), Math.random() * 40 + 20]), 1500 + index * 200)
+    return () => clearInterval(t)
+  }, [index])
+  return (
+    <div
+      className="card reveal"
+      style={{ transitionDelay: `${index * 0.05}s`, fontFamily: 'var(--f-mono)' }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 10,
+          fontFamily: 'var(--f-mono)',
+          fontSize: 10,
+          color: 'var(--ink-4)',
+          letterSpacing: '0.12em',
+        }}
+      >
+        <span>{field.type}</span>
+        <span style={{ width: 6, height: 6, borderRadius: '50%', background: accent }} />
+      </div>
+      <h3
+        style={{
+          fontFamily: 'var(--f-mono)',
+          fontSize: 11,
+          color: 'var(--ink-3)',
+          letterSpacing: '0.05em',
+          fontWeight: 500,
+          marginBottom: 6,
+        }}
+      >
+        {field.label}
+      </h3>
+      <div
+        style={{
+          fontFamily: 'var(--f-display)',
+          fontSize: 28,
+          fontWeight: 400,
+          color: 'var(--ink)',
+          letterSpacing: '-0.01em',
+          marginBottom: 8,
+        }}
+      >
+        {field.value}
+      </div>
+      <p style={{ fontFamily: 'var(--f-sans)', fontSize: 12, color: 'var(--ink-3)', lineHeight: 1.5 }}>{field.desc}</p>
+      <div style={{ marginTop: 14, display: 'flex', alignItems: 'flex-end', gap: 2, height: 30 }}>
+        {points.map((p, i) => (
+          <div
+            key={i}
+            style={{
+              flex: 1,
+              height: `${p}%`,
+              background: `color-mix(in oklab, ${accent} ${30 + (i / points.length) * 30}%, var(--bg-2))`,
+              borderRadius: 2,
+              transition: 'height .4s',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
-            <div className="flex flex-wrap gap-4 mb-10">
-              <Button
-                variant="primary"
-                className="h-14 px-8 text-base shadow-none hover:shadow-lg"
-                style={{ backgroundColor: crmColor, borderColor: crmColor }}
-                onClick={() => openModal('trial')}
+const PropertiesSection: React.FC<{
+  crm: { name: string; color: string }
+  crmSlug: string
+  t: ReturnType<typeof useTranslations>
+}> = ({ crm, crmSlug, t }) => {
+  const fields = CRM_PROPERTY_FIELDS[crmSlug] || []
+  if (fields.length === 0) return null
+  return (
+    <section className="section" data-tone="dark">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          <span className="sec-tag">{t('integrations.properties.badge') || 'Live properties'}</span>
+          <h2>
+            {crm.name} <em>fields</em>, populated automatically.
+          </h2>
+          <p>Eazybe writes every WhatsApp signal into {crm.name} as a typed custom property — no manual data entry.</p>
+        </div>
+        <div className="card-grid cols-3">
+          {fields.map((field, idx) => (
+            <PropertyCard key={field.label} field={field} index={idx} accent={crm.color} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Mini CRM mockup ────────────────────────────────────────────────────────
+
+const MiniCRMSection: React.FC<{
+  crm: { name: string; color: string }
+  t: ReturnType<typeof useTranslations>
+}> = ({ crm, t }) => (
+  <section className="agent">
+    <div className="container">
+      <div className="agent-inner">
+        <div className="agent-copy reveal">
+          <span className="sec-tag">{t('integrations.miniCrm.badge') || 'Inside the chat'}</span>
+          <h3>
+            {crm.name} <em>{t('integrations.miniCrm.headline')}</em> WhatsApp Web.
+          </h3>
+          <p className="lede">
+            Open any WhatsApp chat and Eazybe surfaces the matching {crm.name} record alongside — fields,
+            deals, activity log — all editable, all synced back.
+          </p>
+        </div>
+        <div className="visual reveal">
+          <div
+            style={{
+              background: 'var(--paper)',
+              border: '1px solid var(--line)',
+              borderRadius: 18,
+              padding: 20,
+              boxShadow: '0 20px 60px -30px rgba(15,17,21,0.18)',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingBottom: 12,
+                borderBottom: '1px solid var(--line)',
+                marginBottom: 14,
+              }}
+            >
+              <div style={{ display: 'flex', gap: 6 }}>
+                <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#FF5F57' }} />
+                <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#FEBC2E' }} />
+                <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28C840' }} />
+              </div>
+              <div
+                style={{
+                  fontFamily: 'var(--f-mono)',
+                  fontSize: 9,
+                  color: 'var(--ink-4)',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                }}
               >
-                {t('integrations.hero.startTrial')}
-              </Button>
-              <Button variant="outline" className="h-14 px-8 text-base" onClick={() => openModal('demo')}>
-                {t('integrations.hero.bookDemo')}
-              </Button>
-            </div>
-
-            <div className="flex items-center gap-8 pt-8 border-t border-slate-800/50">
-              <div className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-                  <img src="https://cdn.simpleicons.org/meta/0064e0" alt="Meta" className="w-6 h-6" referrerPolicy="no-referrer" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-white font-bold text-sm">Meta</span>
-                  <span className="text-slate-400 text-xs">{t('integrations.hero.metaPartner')}</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-                  {crm.logo ? (
-                    <img src={crm.logo} alt={crm.name} className="w-6 h-6" referrerPolicy="no-referrer" />
-                  ) : (
-                    <span className="text-xs font-bold text-slate-600">{crm.name?.[0] || 'C'}</span>
-                  )}
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-white font-bold text-sm">{crm.name}</span>
-                  <span className="text-slate-400 text-xs">{t('integrations.hero.appPartner')}</span>
-                </div>
+                {crm.name.toLowerCase()}.com/contacts/sarah
               </div>
             </div>
-          </div>
-
-          {/* Chat Mock */}
-          <div className="relative hidden lg:block">
-            <div className="bg-slate-900/80 backdrop-blur-xl border border-white/5 rounded-3xl p-6 shadow-2xl relative z-10">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <ChatBubble side="them" accent={crm.color} avatar="https://i.pravatar.cc/100?u=sarah" name="Sarah">
+                Hi! Following up on the enterprise quote.
+              </ChatBubble>
+              <ChatBubble side="me" accent={crm.color}>Just sent it over to your email, Sarah.</ChatBubble>
+              <div
+                style={{
+                  marginTop: 6,
+                  padding: 12,
+                  background: 'var(--bg-2)',
+                  border: '1px solid var(--line)',
+                  borderRadius: 12,
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: 'var(--f-mono)',
+                    fontSize: 9,
+                    color: 'var(--ink-4)',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    marginBottom: 8,
+                  }}
+                >
+                  Synced to {crm.name}
                 </div>
-                <div className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">{crm.name.toLowerCase()}.com/contacts/sarah-chen</div>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <img src="https://i.pravatar.cc/100?u=sarah" alt="Sarah" className="w-10 h-10 rounded-full border-2" style={{ borderColor: crmColor }} />
-                  <div className="flex-1">
-                    <div className="bg-slate-800 rounded-2xl rounded-tl-none p-4 text-sm text-slate-200">
-                      Hi! Following up on the enterprise quote.
-                    </div>
-                    <div className="mt-2 flex items-center gap-2 text-[10px] font-mono text-slate-500">
-                      <MessageSquare size={10} className="text-green-500" /> WhatsApp &bull; 10:02 AM &bull; <span style={{ color: crmColor }}>Synced to {crm.name}</span>
-                    </div>
+                {[
+                  ['First name', 'Sarah'],
+                  ['Last name', 'Chen'],
+                  ['Company', 'Enterprise Solutions Inc.'],
+                ].map(([k, v]) => (
+                  <div key={k} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, padding: '4px 0', color: 'var(--ink-2)' }}>
+                    <span style={{ color: 'var(--ink-3)' }}>{k}</span>
+                    <span style={{ color: 'var(--ink)', fontWeight: 500 }}>{v}</span>
                   </div>
-                </div>
-                <div className="flex items-start gap-4 flex-row-reverse">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shrink-0 text-xs" style={{ backgroundColor: crmColor }}>ME</div>
-                  <div className="flex-1 text-right">
-                    <div className="rounded-2xl rounded-tr-none p-4 text-sm text-white inline-block text-left" style={{ backgroundColor: crmColor }}>
-                      Just sent it over to your email, Sarah.
-                    </div>
-                    <div className="mt-2 text-[10px] font-mono text-slate-500">Sent via {crm.name} &bull; 10:03 AM</div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
-            <div className="absolute inset-0 blur-[80px] rounded-full -z-0" style={{ backgroundColor: `${crmColor}20` }}></div>
           </div>
         </div>
       </div>
-    </section>
-  )
-}
+    </div>
+  </section>
+)
 
-// ─── Feature Comparison Section ──────────────────────────────────────────────
-
-const FeatureComparisonSection: React.FC<{ t: (key: string, values?: Record<string, string>) => string }> = ({ t }) => {
+const ChatBubble: React.FC<{
+  side: 'them' | 'me'
+  accent: string
+  avatar?: string
+  name?: string
+  children: React.ReactNode
+}> = ({ side, accent, avatar, name, children }) => {
+  if (side === 'them') {
+    return (
+      <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {avatar && <img src={avatar} alt={name} width={32} height={32} style={{ borderRadius: '50%', border: `2px solid ${accent}` }} />}
+        <div
+          style={{
+            background: 'var(--bg-2)',
+            border: '1px solid var(--line)',
+            borderRadius: '14px 14px 14px 4px',
+            padding: '8px 12px',
+            fontSize: 13,
+            color: 'var(--ink-2)',
+            maxWidth: '75%',
+          }}
+        >
+          {children}
+        </div>
+      </div>
+    )
+  }
   return (
-    <section className="py-24 bg-slate-950 relative border-t border-slate-800/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 mb-16">
-          <div>
-            <SectionKicker label={t('integrations.comparison.badge')} variant="cyan" />
-            <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-6">
-              {t('integrations.comparison.headline1')} <br />
-              {t('integrations.comparison.headline2')} <span className="text-cyan-500">{t('integrations.comparison.headline3')}</span>
-            </h2>
-            <p className="text-lg text-slate-400 leading-relaxed">
-              {t('integrations.comparison.description')}
-            </p>
-          </div>
-          <div className="grid grid-cols-3 gap-4">
-            {[
-              { label: t('integrations.comparison.personalWhatsApp'), badge: null },
-              { label: t('integrations.comparison.businessApp'), badge: 'B' },
-              { label: t('integrations.comparison.businessApi'), badge: <Cloud size={10} /> }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:border-slate-500/30 transition-colors min-h-[140px]">
-                <div className="w-14 h-14 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center mb-4 relative">
-                  <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" className="w-8 h-8" referrerPolicy="no-referrer" />
-                  {item.badge && (
-                    <div className="absolute -bottom-1 -right-1 bg-cyan-500 text-white text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-slate-800">
-                      {item.badge}
-                    </div>
-                  )}
-                </div>
-                <div className="text-sm font-bold text-slate-200">{item.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl">
-          <div className="grid grid-cols-4 bg-slate-800 p-6 border-b border-slate-700">
-            <div className="col-span-2 font-mono text-sm font-bold text-slate-400 uppercase tracking-wider">{t('integrations.comparison.capability')}</div>
-            <div className="text-center font-mono text-sm font-bold text-slate-500 uppercase tracking-wider">{t('integrations.comparison.otherTools')}</div>
-            <div className="text-center font-mono text-sm font-bold text-cyan-500 uppercase tracking-wider">Eazybe</div>
-          </div>
-          {[
-            { name: t('integrations.comparison.feature1'), other: false, eazybe: true },
-            { name: t('integrations.comparison.feature2'), other: true, eazybe: true },
-            { name: t('integrations.comparison.feature3'), other: false, eazybe: true },
-            { name: t('integrations.comparison.feature4'), other: false, eazybe: true },
-            { name: t('integrations.comparison.feature5'), other: false, eazybe: true },
-          ].map((row, idx) => (
-            <div key={idx} className="grid grid-cols-4 p-6 border-b border-slate-700/50 hover:bg-slate-800/50 transition-colors">
-              <div className="col-span-2 font-medium text-slate-200">{row.name}</div>
-              <div className="flex justify-center items-center">
-                {row.other ? <Check className="text-emerald-500" size={20} /> : <X className="text-slate-600" size={20} />}
-              </div>
-              <div className="flex justify-center items-center">
-                <div className="w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                  <Check className="text-cyan-500" size={16} strokeWidth={3} />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', flexDirection: 'row-reverse' }}>
+      <div
+        style={{
+          width: 32,
+          height: 32,
+          borderRadius: '50%',
+          background: accent,
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 11,
+          fontWeight: 700,
+          flexShrink: 0,
+        }}
+      >
+        ME
       </div>
-    </section>
+      <div
+        style={{
+          background: accent,
+          color: '#fff',
+          borderRadius: '14px 14px 4px 14px',
+          padding: '8px 12px',
+          fontSize: 13,
+          maxWidth: '75%',
+        }}
+      >
+        {children}
+      </div>
+    </div>
   )
 }
 
-// ─── Mini CRM Section ────────────────────────────────────────────────────────
-
-const MiniCRMSection: React.FC<{ crm: typeof crmConfig.hubspot; crmColor: string; crmSlug: string; t: (key: string, values?: Record<string, string>) => string }> = ({ crm, crmColor, crmSlug, t }) => {
-  const activeContact = { name: 'Sarah Chen', avatar: 'https://i.pravatar.cc/100?u=sarah' }
-  const messages = [
-    { from: 'contact', text: 'Hi! Following up on the enterprise quote.', time: '10:02 AM' },
-    { from: 'me', text: 'Just sent it over to your email, Sarah.', time: '10:03 AM' },
-  ]
-  const fields = [
-    { label: 'First Name', value: 'Sarah' },
-    { label: 'Last Name', value: 'Chen' },
-    { label: 'Company', value: 'Enterprise Solutions Inc.' },
-    { label: 'Email', value: 'sarah@enterprise.com' },
-    { label: 'Website', value: 'enterprise.com' },
-  ]
-
-  return (
-    <section className="py-24 bg-slate-900 border-t border-slate-700 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-10 pointer-events-none"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionKicker label={t('integrations.miniCrm.badge')} className="mx-auto" />
-          <h2 className="text-4xl lg:text-5xl font-sans font-bold text-white tracking-tight mb-6">
-            {crm.name} {t('integrations.miniCrm.headline')} <br />
-            <span className="text-cyan-500">WhatsApp Web</span>
-          </h2>
-          <p className="text-lg text-slate-400 leading-relaxed mb-8">
-            {t('integrations.miniCrm.description', { crmName: crm.name })}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-slate-300">
-            <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-              <Users size={16} className="text-blue-500" /> {t('integrations.miniCrm.instantContext')}
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-              <TrendingUp size={16} className="text-emerald-500" /> {t('integrations.miniCrm.pipelineManagement')}
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-              <CheckSquare size={16} className="text-orange-500" /> {t('integrations.miniCrm.quickActions')}
-            </div>
-          </div>
-        </div>
-
-        <div className="relative mx-auto max-w-5xl">
-          <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-3/4 h-32 blur-[100px] rounded-full pointer-events-none" style={{ backgroundColor: `${crmColor}30` }}></div>
-          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl flex overflow-hidden font-sans antialiased relative z-10 text-left" style={{ height: '500px' }}>
-            {/* WhatsApp Chat Side */}
-            <div className="flex-1 flex flex-col bg-[#e5ddd5] min-w-0">
-              <div className="h-14 bg-[#f0f2f5] flex items-center px-4 justify-between shrink-0 border-b border-slate-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-[#25D366]/10 flex items-center justify-center">
-                    <MessageSquare size={18} className="text-[#25D366]" fill="#25D366" />
-                  </div>
-                  <span className="font-semibold text-slate-800 text-sm">WhatsApp chats</span>
-                </div>
-                <div className="flex items-center gap-4 text-slate-400">
-                  <Search size={18} />
-                  <MoreVertical size={18} />
-                </div>
-              </div>
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    {activeContact.avatar ? (
-                      <img src={activeContact.avatar} className="w-5 h-5 rounded-full" alt={activeContact.name} />
-                    ) : (
-                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center">
-                        <span className="text-[8px] font-bold text-white">{activeContact.name?.[0] || 'U'}</span>
-                      </div>
-                    )}
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{activeContact.name}</span>
-                  </div>
-                  <div className="max-w-[85%] bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-slate-800">
-                    {messages[0].text}
-                    <div className="text-[9px] text-slate-400 mt-1 flex items-center justify-end gap-1">10:02:15 <Check size={10} className="text-blue-400" /></div>
-                  </div>
-                </div>
-                <div className="space-y-1 flex flex-col items-end">
-                  <div className="max-w-[85%] bg-[#d9fdd3] p-3 rounded-lg rounded-tr-none shadow-sm text-sm text-slate-800">
-                    {messages[1].text}
-                    <div className="text-[9px] text-slate-400 mt-1 flex items-center justify-end gap-1">10:03:42 <Check size={10} className="text-blue-400" /></div>
-                  </div>
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    {activeContact.avatar ? (
-                      <img src={activeContact.avatar} className="w-5 h-5 rounded-full" alt={activeContact.name} />
-                    ) : (
-                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center">
-                        <span className="text-[8px] font-bold text-white">{activeContact.name?.[0] || 'U'}</span>
-                      </div>
-                    )}
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{activeContact.name}</span>
-                  </div>
-                  <div className="max-w-[85%] bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-slate-800">
-                    Received! Let&apos;s schedule the kickoff.
-                    <div className="text-[9px] text-slate-400 mt-1 flex items-center justify-end gap-1">10:05:10 <Check size={10} className="text-blue-400" /></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CRM Sidebar */}
-            <div className="w-[320px] bg-white border-l border-slate-200 flex flex-col shrink-0">
-              <div className="h-14 flex items-center px-4 justify-between border-b border-slate-100">
-                <img src={crm.logo} alt={crm.name} className="h-6" referrerPolicy="no-referrer" />
-                <div className="flex items-center gap-3 text-slate-400">
-                  <RefreshCw size={16} />
-                </div>
-              </div>
-              <div className="flex border-b border-slate-100">
-                <button className="flex-1 py-3 text-[10px] font-bold uppercase tracking-wider border-b-2" style={{ color: crmColor, borderColor: crmColor }}>Contact</button>
-                <button className="flex-1 py-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b-2 border-transparent">Deals</button>
-                <button className="flex-1 py-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b-2 border-transparent">Tickets</button>
-              </div>
-              <div className="flex-1 overflow-y-auto">
-                <div className="flex items-center gap-3 p-4 border-b border-slate-100" style={{ backgroundColor: `${crmColor}08` }}>
-                  <img src={activeContact.avatar} className="w-12 h-12 rounded-full border-2" style={{ borderColor: crmColor }} alt={activeContact.name} />
-                  <div>
-                    <h4 className="font-bold text-slate-800 text-sm">{activeContact.name}</h4>
-                    <div className="text-[9px] font-bold uppercase" style={{ color: crmColor }}>Not the right contact?</div>
-                  </div>
-                </div>
-                <div className="p-4 space-y-4">
-                  {fields.map((field, i) => (
-                    <div key={i}>
-                      <label className="text-[9px] font-bold text-slate-400 uppercase block mb-1">{field.label}</label>
-                      <div className="text-sm text-slate-800 border-b border-slate-100 pb-2">{field.value}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="p-4 border-t border-slate-100">
-                <button className="w-full text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg" style={{ backgroundColor: crmColor }}>
-                  SAVE
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Properties Section ──────────────────────────────────────────────────────
-
-const PropertiesSection: React.FC<{ crm: typeof crmConfig.hubspot; crmSlug: string; t: (key: string, values?: Record<string, string>) => string }> = ({ crm, crmSlug, t }) => {
-  const propertyFields = CRM_PROPERTY_FIELDS[crmSlug] || CRM_PROPERTY_FIELDS.hubspot
-
-  return (
-    <section className="py-24 bg-slate-950 relative">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-50 pointer-events-none"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionKicker label={t('integrations.properties.badge')} className="mx-auto" />
-          <h2 className="text-4xl font-sans font-bold text-white tracking-tight leading-tight mb-4">
-            {t('integrations.properties.headline1')} <br />
-            <span className="text-cyan-500">{t('integrations.properties.headline2')}</span>
-          </h2>
-          <p className="text-lg text-slate-400">
-            {t('integrations.properties.description', { crmName: crm.name })}
-          </p>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {propertyFields.map((field, i) => (
-            <PropertyCard key={i} field={field} index={i} />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── FAQ Section ─────────────────────────────────────────────────────────────
+// ─── FAQ ────────────────────────────────────────────────────────────────────
 
 const FAQSection: React.FC<{ data: any }> = ({ data }) => {
-  const [openIndex, setOpenIndex] = React.useState<number | null>(0)
-
+  const [open, setOpen] = useState<Set<number>>(new Set([0]))
   if (!data || !data.items) return null
-
+  const toggle = (i: number) => setOpen((p) => {
+    const n = new Set(p)
+    if (n.has(i)) n.delete(i)
+    else n.add(i)
+    return n
+  })
   return (
-    <section className="py-24 bg-slate-950">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          {data.badge && (
-            <div className="mb-6">
-              <SectionBadge variant="cyan">{data.badge}</SectionBadge>
-            </div>
-          )}
-          <h2 className="text-4xl font-sans font-bold text-white tracking-tight">
-            {data.headline}
-          </h2>
+    <section className="section">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          <span className="sec-tag">FAQ</span>
+          <h2>{data.headline || 'Common questions'}</h2>
         </div>
-        <div className="space-y-4">
+        <div className="faq">
           {data.items.map((item: any, idx: number) => (
-            <div key={idx} className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden">
-              <button
-                className="w-full px-6 py-4 text-left flex items-center justify-between"
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-              >
-                <span className="font-semibold text-white">{item.question}</span>
-                <svg className={`w-5 h-5 text-slate-400 transition-transform ${openIndex === idx ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            <div key={idx} className={`faq-item reveal${open.has(idx) ? ' open' : ''}`}>
+              <button className="faq-q" onClick={() => toggle(idx)}>
+                {item.question}
+                <span className="plus">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
               </button>
-              {openIndex === idx && (
-                <div className="px-6 pb-4 text-slate-400">
-                  {item.answer}
-                </div>
-              )}
+              <div className="faq-a">{item.answer}</div>
             </div>
           ))}
         </div>
@@ -728,45 +856,33 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
-// ─── CTA Section ─────────────────────────────────────────────────────────────
+// ─── Final CTA ──────────────────────────────────────────────────────────────
 
-const CTASection: React.FC<{ data: any }> = ({ data }) => {
+const CTASection: React.FC<{ crm: { name: string }; t: ReturnType<typeof useTranslations> }> = ({ crm, t }) => {
   const { openModal } = useTrialModal()
-
-  if (!data) return null
-
   return (
-    <section className="py-24 bg-slate-950 border-t border-slate-800">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-bold text-white mb-4">
-          {data.headline}{' '}
-          <span className="text-cyan-500">{data.headlineHighlight}</span>
+    <section className="final-cta" data-tone="dark">
+      <div className="container">
+        <h2 className="reveal">
+          Bring WhatsApp into <em>{crm.name}.</em>
         </h2>
-        {data.description && (
-          <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">{data.description}</p>
-        )}
-        <div className="flex flex-wrap justify-center gap-4">
-          {data.primaryCta && (
-            <Button variant="primary" className="h-14 px-8 text-base" onClick={() => openModal('trial')}>
-              {data.primaryCta.label}
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          )}
-          {data.secondaryCta && (
-            <Button variant="outline" className="h-14 px-8 text-base" onClick={() => openModal('demo')}>
-              {data.secondaryCta.label}
-            </Button>
-          )}
+        <p className="sub reveal">
+          Install Eazybe, connect {crm.name}, watch every chat sync — automatically.
+        </p>
+        <div className="ctas reveal">
+          <button onClick={() => openModal('trial')} className="btn btn-primary btn-lg">
+            {t('integrations.hero.startTrial')} →
+          </button>
+          <button onClick={() => openModal('demo')} className="btn btn-outline btn-lg">
+            {t('integrations.hero.bookDemo')}
+          </button>
         </div>
-        {data.footnote && (
-          <p className="text-sm text-slate-500 mt-6">{data.footnote}</p>
-        )}
       </div>
     </section>
   )
 }
 
-// ─── Main ProductPageClient ──────────────────────────────────────────────────
+// ─── Main ───────────────────────────────────────────────────────────────────
 
 interface ProductPageClientProps {
   product: any
@@ -775,113 +891,16 @@ interface ProductPageClientProps {
 
 export default function ProductPageClient({ product, crmSlug }: ProductPageClientProps) {
   const t = useTranslations()
-  const crm = crmConfig[crmSlug] || crmConfig.hubspot
-  const crmColor = crm.color
+  const crm = crmConfig[crmSlug] || { name: crmSlug, logo: '', color: '#5B4BAE' }
 
   return (
-    <main>
-      <HeroSection crm={crm} crmColor={crmColor} crmSlug={crmSlug} t={t} />
+    <>
+      <HeroSection crm={crm} crmSlug={crmSlug} t={t} />
       <FeatureComparisonSection t={t} />
-      <MiniCRMSection crm={crm} crmColor={crmColor} crmSlug={crmSlug} t={t} />
+      <MiniCRMSection crm={crm} t={t} />
       <PropertiesSection crm={crm} crmSlug={crmSlug} t={t} />
-
-      {/* Sanity-driven sections */}
-      {product?.benefits && (
-        <section className="py-24 bg-brand-surface border-b border-slate-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              {product.benefits.badge && (
-                <div className="mb-6"><SectionBadge variant="cyan">{product.benefits.badge}</SectionBadge></div>
-              )}
-              <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-4">{product.benefits.headline}</h2>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {product.benefits.items?.map((item: any, idx: number) => (
-                <div key={idx} className="bg-brand-card border border-slate-700 hover:border-slate-600 hover:shadow-card-hover transition-all duration-300 rounded-2xl p-6 group">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-brand-cyan/10 text-brand-cyan shadow-glow-cyan">
-                    <CheckCircle2 size={24} />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-slate-400 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {product?.useCases && (
-        <section className="py-24 bg-brand-black border-b border-slate-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              {product.useCases.badge && (
-                <div className="mb-6"><SectionBadge variant="cyan">{product.useCases.badge}</SectionBadge></div>
-              )}
-              <h2 className="text-4xl font-sans font-bold text-white tracking-tight">{product.useCases.headline}</h2>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {product.useCases.items?.map((item: any, idx: number) => (
-                <div key={idx} className="bg-brand-card border border-slate-700 rounded-2xl p-6 hover:border-slate-600 hover:shadow-card-hover transition-all duration-300">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-brand-cyan/10 text-brand-cyan shadow-glow-cyan">
-                    <CheckCircle2 size={24} />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-slate-400 mb-4">{item.description}</p>
-                  {item.benefits && item.benefits.length > 0 && (
-                    <ul className="space-y-2">
-                      {item.benefits.map((benefit: string, bIdx: number) => (
-                        <li key={bIdx} className="flex items-center gap-2 text-sm text-slate-300">
-                          <Check size={14} className="text-brand-cyan" strokeWidth={3} />
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {product?.howItWorks && (
-        <section className="py-24 bg-brand-surface border-b border-slate-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              {product.howItWorks.badge && (
-                <div className="mb-6"><SectionBadge variant="cyan">{product.howItWorks.badge}</SectionBadge></div>
-              )}
-              <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-4">{product.howItWorks.headline}</h2>
-              {product.howItWorks.description && <p className="text-lg text-slate-400">{product.howItWorks.description}</p>}
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {product.howItWorks.steps?.map((step: any, idx: number) => (
-                <div key={idx} className="relative bg-brand-card rounded-2xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-300">
-                  <div className="text-5xl font-black mb-4 text-brand-cyan/40" style={{ textShadow: '0 0 30px rgba(6, 182, 212, 0.2)' }}>
-                    {step.number}
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-slate-400">{step.description}</p>
-                  {idx < (product.howItWorks.steps?.length || 0) - 1 && (
-                    <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-slate-600 to-transparent"></div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Testimonial section intentionally removed from rendering. The
-          `product.testimonial` data is still fetched in Sanity-queries so
-          re-enabling means restoring the JSX block from git history. */}
-
       {product?.faq && <FAQSection data={product.faq} />}
-      {/* Page-level CTA section intentionally removed — ChunkyFooter's
-          "Ready To Automate Your WhatsApp Sales?" CTA already closes the
-          page, so the in-page CTA was just stacking two CTAs back-to-back.
-          `product.cta` data is still fetched; re-enable by restoring this
-          line from git history. */}
-    </main>
+      <CTASection crm={crm} t={t} />
+    </>
   )
 }

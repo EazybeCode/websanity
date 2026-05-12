@@ -2,15 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import {
-  ArrowRight,
-  CheckCircle2,
-  Cloud,
-  Check,
-  AlertTriangle
-} from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { SectionBadge } from '@/components/ui/SectionBadge'
 import { useTrialModal } from '@/providers/TrialModalProvider'
 import { urlFor } from '@/lib/sanity'
 
@@ -44,7 +36,6 @@ import BroadcastProblemAnimation from '@/components/animations/BroadcastProblemA
 import BroadcastSolutionAnimation from '@/components/animations/BroadcastSolutionAnimation'
 import BroadcastAutomationAnimation from '@/components/animations/BroadcastAutomationAnimation'
 
-// ─── Animation Mappings (slug → ordered animation components) ───────────────
 const animationMap: Record<string, Record<number, React.FC>> = {
   'team-inbox': { 0: LabelAnimation, 1: UnifiedDashboardAnimation, 2: RoutingAnimation },
   'quick-reply': { 0: RepetitiveAnimation, 1: PersonalizationAnimation, 2: TeamAnimation },
@@ -58,136 +49,87 @@ const animationMap: Record<string, Record<number, React.FC>> = {
   'broadcast': { 0: BroadcastProblemAnimation, 1: BroadcastSolutionAnimation, 2: BroadcastAutomationAnimation },
 }
 
-// ─── Constants ───────────────────────────────────────────────────────────────
+const Check = (
+  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+)
+const TickIcon = (
+  <svg width="11" height="11" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+)
 
-const BADGE_VARIANT: 'cyan' | 'orange' | 'green' | 'default' = 'cyan'
-
-const featureColors: Record<string, { primary: string; gradient: string }> = {
-  'cloud-backup': { primary: '#3B82F6', gradient: 'from-blue-500 to-blue-600' },
-  'team-inbox': { primary: '#10B981', gradient: 'from-emerald-500 to-emerald-600' },
-  'whatsapp-crm': { primary: '#8B5CF6', gradient: 'from-violet-500 to-violet-600' },
-  'quick-reply': { primary: '#F59E0B', gradient: 'from-amber-500 to-amber-600' },
-  'scheduler': { primary: '#EC4899', gradient: 'from-pink-500 to-pink-600' },
-  'revenue-inbox': { primary: '#14B8A6', gradient: 'from-teal-500 to-teal-600' },
-  'rep-radar': { primary: '#6366F1', gradient: 'from-indigo-500 to-indigo-600' },
-  'whatsapp-copilot': { primary: '#0EA5E9', gradient: 'from-sky-500 to-sky-600' },
-  'whatsapp-api': { primary: '#25D366', gradient: 'from-green-500 to-green-600' },
-  'coexistence': { primary: '#25D366', gradient: 'from-green-500 to-green-600' },
-  'templates': { primary: '#25D366', gradient: 'from-green-500 to-green-600' },
-  'broadcast': { primary: '#25D366', gradient: 'from-green-500 to-green-600' }
-}
-
-// ─── UI Components ───────────────────────────────────────────────────────────
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'outline'
-  children: React.ReactNode
-}
-
-const Button: React.FC<ButtonProps> = ({ variant = 'primary', children, className = '', ...props }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg transition-all duration-200'
-  const variants = {
-    primary: 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] border border-blue-600 hover:bg-blue-700',
-    outline: 'bg-transparent text-slate-300 border border-slate-700 hover:border-slate-500 hover:text-white'
-  }
-
-  return (
-    <button className={`${baseStyles} ${variants[variant]} ${className}`} {...props}>
-      {children}
-    </button>
-  )
-}
-
-// ─── Hero Section ────────────────────────────────────────────────────────────
+// ─── Hero ────────────────────────────────────────────────────────────────────
 
 const HeroSection: React.FC<{ data: any }> = ({ data }) => {
   const { openModal } = useTrialModal()
-
   if (!data) return null
-
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden bg-brand-black border-b border-slate-800">
-      <div className="absolute inset-0 bg-grid-pattern opacity-40"></div>
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/20 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-purple/10 rounded-full blur-[100px] -z-10 -translate-x-1/4 translate-y-1/4"></div>
+    <section className="page-hero" data-tone="dark">
+      <div className="container">
+        {data.badge && (
+          <span className="hero-tag reveal"><span className="pulse" /> {String(data.badge).toUpperCase()}</span>
+        )}
+        <h1 className="reveal">
+          {data.headline}
+          {data.headlineHighlight ? <> <em>{data.headlineHighlight}</em></> : null}
+        </h1>
+        {data.description && <p className="lede reveal">{data.description}</p>}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {data.badge && (
-            <div className="mb-8 animate-fade-in-up">
-              <SectionBadge variant={BADGE_VARIANT}>{data.badge}</SectionBadge>
-            </div>
+        <div className="reveal" style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 36, flexWrap: 'wrap' }}>
+          {data.primaryCta && (
+            <button onClick={() => openModal('trial')} className="btn btn-primary btn-lg">
+              {data.primaryCta.label} →
+            </button>
           )}
-
-          <h1 className="text-5xl lg:text-7xl font-sans font-extrabold tracking-tight text-white leading-[1.05] mb-6">
-            {data.headline}{' '}
-            <span className="text-brand-cyan">{data.headlineHighlight}</span>
-          </h1>
-
-          <p className="text-lg text-slate-400 leading-relaxed mb-8 max-w-2xl mx-auto">
-            {data.description}
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
-            {data.primaryCta && (
-              <Button
-                variant="primary"
-                className="h-14 px-8 text-base bg-brand-blue border-brand-blue hover:bg-brand-blue/90"
-                onClick={() => openModal('trial')}
-              >
-                {data.primaryCta.label}
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            )}
-            {data.secondaryCta && (
-              <Button
-                variant="outline"
-                className="h-14 px-8 text-base"
-                onClick={() => openModal('demo')}
-              >
-                {data.secondaryCta.label}
-              </Button>
-            )}
-          </div>
-
-          {data.stats && data.stats.length > 0 && (
-            <div className="flex justify-center gap-12 pt-8 border-t border-slate-800/50">
-              {data.stats.map((stat: any, idx: number) => (
-                <div key={idx} className="text-center">
-                  <div className="text-3xl font-bold text-white">{stat.value}</div>
-                  <div className="text-sm text-slate-500">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+          {data.secondaryCta && (
+            <button onClick={() => openModal('demo')} className="btn btn-outline btn-lg">
+              {data.secondaryCta.label}
+            </button>
           )}
         </div>
+
+        {data.stats && data.stats.length > 0 && (
+          <div
+            className="reveal"
+            style={{
+              marginTop: 60,
+              display: 'grid',
+              gridTemplateColumns: `repeat(${data.stats.length}, 1fr)`,
+              gap: 32,
+              maxWidth: 720,
+              margin: '60px auto 0',
+              borderTop: '1px solid var(--line)',
+              paddingTop: 28,
+            }}
+          >
+            {data.stats.map((stat: any, idx: number) => (
+              <div key={idx}>
+                <div style={{ fontFamily: 'var(--f-display)', fontSize: 24, fontWeight: 400, color: 'var(--ink)' }}>{stat.value}</div>
+                <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10, color: 'var(--ink-4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginTop: 6 }}>{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )
 }
 
-// ─── Benefits Section ────────────────────────────────────────────────────────
+// ─── Benefits ───────────────────────────────────────────────────────────────
 
 const BenefitsSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data || !data.items) return null
-
   return (
-    <section className="py-24 bg-brand-surface border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          {data.badge && (
-            <div className="mb-6"><SectionBadge variant={BADGE_VARIANT}>{data.badge}</SectionBadge></div>
-          )}
-          <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-4">{data.headline}</h2>
+    <section className="section" style={{ paddingTop: 80 }}>
+      <div className="container">
+        <div className="sec-head centered reveal">
+          {data.badge && <span className="sec-tag">{data.badge}</span>}
+          {data.headline && <h2>{data.headline}</h2>}
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className={`card-grid ${data.items.length === 2 ? 'cols-2' : 'cols-3'}`}>
           {data.items.map((item: any, idx: number) => (
-            <div key={idx} className="bg-brand-card border border-slate-700 hover:border-slate-600 hover:shadow-card-hover transition-all duration-300 rounded-2xl p-6 group">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-brand-cyan/10 text-brand-cyan shadow-glow-cyan">
-                <CheckCircle2 size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{item.description}</p>
+            <div key={idx} className="card reveal" style={{ transitionDelay: `${idx * 0.05}s` }}>
+              <div className="card-icon">{Check}</div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
             </div>
           ))}
         </div>
@@ -196,90 +138,71 @@ const BenefitsSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
-// ─── Features Section ────────────────────────────────────────────────────────
+// ─── Features (alternating with animations) ─────────────────────────────────
 
 const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features, slug }) => {
   if (!features || features.length === 0) return null
-
   const slugAnimations = animationMap[slug]
-
   return (
     <div id="features">
       {features.map((feature, idx) => {
-        const isEven = idx % 2 === 0
-        const alignRight = idx % 2 === 1
         const AnimationComponent = slugAnimations?.[idx] || null
-
+        const reverse = idx % 2 === 1
+        const isDark = idx === 1
         return (
-          <section
-            key={idx}
-            className={`py-24 border-b border-slate-800 ${isEven ? 'bg-brand-black' : 'bg-brand-surface'}`}
-          >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className={`flex flex-col lg:flex-row gap-20 items-center ${alignRight ? 'lg:flex-row-reverse' : ''}`}>
-                <div className="flex-1 space-y-8">
-                  <div>
-                    {feature.badge && <SectionBadge variant={BADGE_VARIANT}>{feature.badge}</SectionBadge>}
-                    {feature.headline && (
-                      <h2 className="mt-6 text-4xl font-sans font-bold text-white leading-tight">{feature.headline}</h2>
-                    )}
-                    <p className="mt-6 text-lg text-slate-400 leading-relaxed">{feature.description}</p>
-                  </div>
+          <section key={feature._key || idx} className={`agent${reverse ? ' reverse' : ''}`} {...(isDark ? { 'data-tone': 'dark' as const } : {})}>
+            <div className="container">
+              <div className="agent-inner">
+                <div className="agent-copy reveal">
+                  {feature.badge && <span className="sec-tag">{feature.badge}</span>}
+                  {feature.headline && (
+                    <h3>{feature.headline}</h3>
+                  )}
+                  {feature.description && <p className="lede">{feature.description}</p>}
 
                   {feature.points && feature.points.length > 0 && (
-                    <ul className="space-y-4">
+                    <ul className="feat-list">
                       {feature.points.map((point: string, pIdx: number) => (
-                        <li key={pIdx} className="flex items-start gap-4">
-                          {idx === 0 ? (
-                            <div className="w-6 h-6 rounded-full bg-brand-orange/20 flex items-center justify-center border border-brand-orange/30 flex-shrink-0 mt-0.5">
-                              <AlertTriangle size={14} className="text-brand-orange" strokeWidth={2.5} />
-                            </div>
-                          ) : (
-                            <div className="w-6 h-6 rounded-full bg-brand-cyan/20 flex items-center justify-center border border-brand-cyan/30 flex-shrink-0 mt-0.5">
-                              <Check size={14} className="text-brand-cyan" strokeWidth={3} />
-                            </div>
-                          )}
-                          <span className="text-slate-200 font-medium">{point}</span>
-                        </li>
+                        <li key={pIdx}><span className="tick">{Check}</span>{point}</li>
                       ))}
                     </ul>
                   )}
 
                   {feature.cta && (
-                    <div className="pt-4">
-                      <Link href={feature.cta.url}>
-                        <Button variant="outline" className="text-slate-300 border-slate-700 hover:border-brand-cyan hover:text-brand-cyan">
-                          {feature.cta.label}
-                          <ArrowRight className="ml-2 w-4 h-4" />
-                        </Button>
-                      </Link>
-                    </div>
+                    <Link href={feature.cta.url} className="feat-link">
+                      {feature.cta.label} →
+                    </Link>
                   )}
                 </div>
 
-                <div className="flex-1 w-full relative">
-                  <div className="aspect-[4/3] bg-brand-card rounded-2xl border border-slate-700 shadow-card p-2 flex items-center justify-center relative overflow-hidden group hover:shadow-card-hover hover:border-slate-600 transition-all duration-500">
-                    <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
-                    {AnimationComponent ? (
-                      <div className="w-full h-full flex items-center justify-center z-10 p-4">
-                        <AnimationComponent />
-                      </div>
-                    ) : feature.image && typeof feature.image === 'object' && feature.image.asset ? (
-                      <img
-                        src={urlFor(feature.image).width(800).height(600).url()}
-                        alt={feature.headline || feature.badge || 'Feature illustration'}
-                        className="w-full h-full object-cover rounded-xl z-10"
-                      />
-                    ) : (
-                      <div className="text-center text-slate-500 z-10">
-                        <div className="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center bg-brand-cyan/15 shadow-glow-cyan">
-                          <Cloud size={48} className="text-brand-cyan" />
-                        </div>
-                        <p className="text-sm font-mono">{feature.badge || 'Feature visualization'}</p>
-                      </div>
-                    )}
-                  </div>
-                  <div className="absolute -top-6 -right-6 w-40 h-40 rounded-full blur-3xl -z-10 bg-brand-blue/15"></div>
+                <div className="visual reveal" style={{ padding: 0, background: 'transparent', border: 'none', boxShadow: 'none' }}>
+                  {AnimationComponent ? (
+                    <AnimationComponent />
+                  ) : feature.image && typeof feature.image === 'object' && feature.image.asset ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={urlFor(feature.image).width(800).height(600).url()}
+                      alt={feature.headline || feature.badge || 'Feature illustration'}
+                      style={{ width: '100%', borderRadius: 18, border: '1px solid var(--line)' }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        aspectRatio: '4/3',
+                        background: 'var(--bg-2)',
+                        border: '1px solid var(--line)',
+                        borderRadius: 18,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'var(--ink-4)',
+                        fontFamily: 'var(--f-mono)',
+                        fontSize: 12,
+                      }}
+                    >
+                      {feature.badge || 'Feature visualization'}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -290,32 +213,26 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
   )
 }
 
-// ─── How It Works Section ────────────────────────────────────────────────────
+// ─── How it works ───────────────────────────────────────────────────────────
 
 const HowItWorksSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data || !data.steps) return null
-
   return (
-    <section className="py-24 bg-brand-surface border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          {data.badge && (
-            <div className="mb-6"><SectionBadge variant={BADGE_VARIANT}>{data.badge}</SectionBadge></div>
-          )}
-          <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-4">{data.headline}</h2>
-          {data.description && <p className="text-lg text-slate-400">{data.description}</p>}
+    <section className="section">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          {data.badge && <span className="sec-tag">{data.badge}</span>}
+          {data.headline && <h2>{data.headline}</h2>}
+          {data.description && <p>{data.description}</p>}
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="card-grid cols-3">
           {data.steps.map((step: any, idx: number) => (
-            <div key={idx} className="relative bg-brand-card rounded-2xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-300">
-              <div className="text-5xl font-black mb-4 text-brand-cyan/40" style={{ textShadow: '0 0 30px rgba(6, 182, 212, 0.2)' }}>
+            <div key={idx} className="card reveal" style={{ transitionDelay: `${idx * 0.05}s` }}>
+              <div style={{ fontFamily: 'var(--f-mono)', fontSize: 14, color: 'var(--accent-ink)', letterSpacing: '0.1em', marginBottom: 14 }}>
                 {step.number}
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-              <p className="text-slate-400">{step.description}</p>
-              {idx < data.steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-slate-600 to-transparent"></div>
-              )}
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
             </div>
           ))}
         </div>
@@ -324,33 +241,28 @@ const HowItWorksSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
-// ─── Use Cases Section ───────────────────────────────────────────────────────
+// ─── Use cases ──────────────────────────────────────────────────────────────
 
 const UseCasesSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data || !data.items) return null
-
   return (
-    <section className="py-24 bg-brand-black border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          {data.badge && (
-            <div className="mb-6"><SectionBadge variant={BADGE_VARIANT}>{data.badge}</SectionBadge></div>
-          )}
-          <h2 className="text-4xl font-sans font-bold text-white tracking-tight">{data.headline}</h2>
+    <section className="section" data-tone="dark">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          {data.badge && <span className="sec-tag">{data.badge}</span>}
+          {data.headline && <h2>{data.headline}</h2>}
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="card-grid cols-3">
           {data.items.map((item: any, idx: number) => (
-            <div key={idx} className="bg-brand-card border border-slate-700 rounded-2xl p-6 hover:border-slate-600 hover:shadow-card-hover transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-brand-cyan/10 text-brand-cyan shadow-glow-cyan">
-                <CheckCircle2 size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-              <p className="text-slate-400 mb-4">{item.description}</p>
+            <div key={idx} className="card reveal" style={{ transitionDelay: `${idx * 0.05}s` }}>
+              <div className="card-icon">{Check}</div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
               {item.benefits && item.benefits.length > 0 && (
-                <ul className="space-y-2">
+                <ul className="feat-list" style={{ marginTop: 14, marginBottom: 0 }}>
                   {item.benefits.map((benefit: string, bIdx: number) => (
-                    <li key={bIdx} className="flex items-center gap-2 text-sm text-slate-300">
-                      <Check size={14} className="text-brand-cyan" strokeWidth={3} />
+                    <li key={bIdx} style={{ fontSize: 13 }}>
+                      <span className="tick" style={{ width: 14, height: 14 }}>{TickIcon}</span>
                       {benefit}
                     </li>
                   ))}
@@ -364,25 +276,40 @@ const UseCasesSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
-// ─── Testimonial Section ─────────────────────────────────────────────────────
+// ─── Testimonial ────────────────────────────────────────────────────────────
 
 const TestimonialSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data) return null
-
   return (
-    <section className="py-24 bg-brand-surface border-b border-slate-800">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="text-6xl mb-8 font-serif text-brand-cyan" style={{ textShadow: '0 0 40px rgba(6, 182, 212, 0.3)' }}>&ldquo;</div>
-        <blockquote className="text-2xl font-medium text-white mb-8 leading-relaxed">
-          {data.quote}
-        </blockquote>
-        <div className="flex items-center justify-center gap-4">
-          {data.avatar && (
-            <img src={data.avatar} alt={data.author} className="w-12 h-12 rounded-full border-2 border-slate-700" />
-          )}
-          <div className="text-left">
-            <div className="font-bold text-white">{data.author}</div>
-            <div className="text-sm text-slate-400">{data.title}, {data.company}</div>
+    <section className="section">
+      <div className="container">
+        <div className="reveal" style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+          <div style={{ fontFamily: 'var(--f-display)', fontSize: 64, color: 'var(--accent-ink)', lineHeight: 1, marginBottom: 12 }}>“</div>
+          <blockquote
+            style={{
+              fontFamily: 'var(--f-display)',
+              fontSize: 'clamp(22px, 2.6vw, 32px)',
+              fontStyle: 'italic',
+              color: 'var(--ink)',
+              lineHeight: 1.35,
+              letterSpacing: '-0.01em',
+            }}
+          >
+            {data.quote}
+          </blockquote>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16, marginTop: 28 }}>
+            {data.avatar ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={data.avatar} alt={data.author} style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid var(--line)' }} />
+            ) : (
+              <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--bg-2)' }} />
+            )}
+            <div style={{ textAlign: 'left' }}>
+              <div style={{ fontWeight: 600, color: 'var(--ink)' }}>{data.author}</div>
+              <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, color: 'var(--ink-4)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                {data.title}{data.company ? `, ${data.company}` : ''}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -390,37 +317,36 @@ const TestimonialSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
-// ─── FAQ Section ─────────────────────────────────────────────────────────────
+// ─── FAQ ────────────────────────────────────────────────────────────────────
 
 const FAQSection: React.FC<{ data: any }> = ({ data }) => {
-  const [openIndex, setOpenIndex] = React.useState<number | null>(0)
-
+  const [openIndices, setOpenIndices] = React.useState<Set<number>>(new Set([0]))
+  const toggle = (i: number) => {
+    setOpenIndices((prev) => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
+  }
   if (!data || !data.items) return null
-
   return (
-    <section className="py-24 bg-brand-black border-b border-slate-800">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          {data.badge && (
-            <div className="mb-6"><SectionBadge variant={BADGE_VARIANT}>{data.badge}</SectionBadge></div>
-          )}
-          <h2 className="text-4xl font-sans font-bold text-white tracking-tight">{data.headline}</h2>
+    <section className="section">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          {data.badge && <span className="sec-tag">{data.badge}</span>}
+          {data.headline && <h2>{data.headline}</h2>}
         </div>
-        <div className="space-y-4">
+        <div className="faq">
           {data.items.map((item: any, idx: number) => (
-            <div key={idx} className="bg-brand-card border border-slate-700 rounded-2xl overflow-hidden hover:border-slate-600 transition-colors">
-              <button
-                className="w-full px-6 py-5 text-left flex items-center justify-between"
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-              >
-                <span className="font-semibold text-white">{item.question}</span>
-                <svg className={`w-5 h-5 text-slate-400 transition-transform duration-200 ${openIndex === idx ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            <div key={idx} className={`faq-item reveal${openIndices.has(idx) ? ' open' : ''}`}>
+              <button className="faq-q" onClick={() => toggle(idx)}>
+                {item.question}
+                <span className="plus">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
               </button>
-              {openIndex === idx && (
-                <div className="px-6 pb-5 text-slate-400 leading-relaxed border-t border-slate-700/50">
-                  <div className="pt-4">{item.answer}</div>
-                </div>
-              )}
+              <div className="faq-a">{item.answer}</div>
             </div>
           ))}
         </div>
@@ -429,41 +355,7 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
-// ─── CTA Section ─────────────────────────────────────────────────────────────
-
-const CTASection: React.FC<{ data: any }> = ({ data }) => {
-  const { openModal } = useTrialModal()
-
-  if (!data) return null
-
-  return (
-    <section className="py-24 bg-slate-950 border-t border-slate-800">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-bold text-white mb-4">
-          {data.headline}{' '}
-          <span className="text-cyan-500">{data.headlineHighlight}</span>
-        </h2>
-        {data.description && <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">{data.description}</p>}
-        <div className="flex flex-wrap justify-center gap-4">
-          {data.primaryCta && (
-            <Button variant="primary" className="h-14 px-8 text-base" onClick={() => openModal('trial')}>
-              {data.primaryCta.label}
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          )}
-          {data.secondaryCta && (
-            <Button variant="outline" className="h-14 px-8 text-base" onClick={() => openModal('demo')}>
-              {data.secondaryCta.label}
-            </Button>
-          )}
-        </div>
-        {data.footnote && <p className="text-sm text-slate-500 mt-6">{data.footnote}</p>}
-      </div>
-    </section>
-  )
-}
-
-// ─── Translation Fallback ────────────────────────────────────────────────────
+// ─── Translation fallback ───────────────────────────────────────────────────
 
 const featureKeyMap: Record<string, string> = {
   'cloud-backup': 'cloudBackup',
@@ -520,7 +412,7 @@ function getTranslatedFallbackData(slug: string, t: ReturnType<typeof useTransla
   }
 }
 
-// ─── Main FeaturePageClient ──────────────────────────────────────────────────
+// ─── Main ───────────────────────────────────────────────────────────────────
 
 interface FeaturePageClientProps {
   feature: any
@@ -535,7 +427,7 @@ export default function FeaturePageClient({ feature, slug }: FeaturePageClientPr
   if (!data) return null
 
   return (
-    <main>
+    <>
       <HeroSection data={data?.hero} />
       <BenefitsSection data={data?.benefits} />
       <FeaturesSection features={data?.features} slug={slug} />
@@ -543,13 +435,6 @@ export default function FeaturePageClient({ feature, slug }: FeaturePageClientPr
       <UseCasesSection data={data?.useCases} />
       {data?.testimonial && <TestimonialSection data={data.testimonial} />}
       <FAQSection data={data?.faq} />
-      {/*
-       * Post-FAQ CTA section intentionally suppressed across all feature
-       * pages. The hero CTAs and the global footer "Ready for Lift Off"
-       * block already cover trial / demo conversion — the in-page block
-       * was duplicating intent. Keep CTASection import in case we want
-       * to re-enable per-page later.
-       */}
-    </main>
+    </>
   )
 }

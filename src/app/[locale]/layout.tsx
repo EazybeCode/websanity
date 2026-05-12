@@ -5,11 +5,6 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
-import MegaMenuHeader from '@/components/header/MegaMenuHeader'
-import ChunkyFooter from '@/components/footer/ChunkyFooter'
-import { LeadSidebar } from '@/components/lead/LeadSidebar'
-import { LeadMobileButton } from '@/components/lead/LeadMobileButton'
-import { TrialModalWrapper } from '@/components/modals/TrialModalWrapper'
 import { GlobalStructuredData } from '@/components/seo/GlobalStructuredData'
 
 const inter = Inter({
@@ -58,14 +53,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Providers>
             <GlobalStructuredData locale={locale} />
-            <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-clip">
-              <MegaMenuHeader />
-              <main>{children}</main>
-              <ChunkyFooter />
-              <TrialModalWrapper />
-              <LeadSidebar />
-              <LeadMobileButton />
-            </div>
+            {children}
           </Providers>
           <Analytics />
         </NextIntlClientProvider>

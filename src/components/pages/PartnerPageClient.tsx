@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import {
   Users,
@@ -11,511 +11,526 @@ import {
   Zap,
   Globe,
   CheckCircle2,
-  ArrowRight,
-  Star,
   Mail,
-  Phone,
-  ChevronDown,
-  Briefcase,
 } from 'lucide-react'
 import { LocalizedLink } from '@/components/LocalizedLink'
 
-// Integration logos — brand names, no translation needed
 const integrations = [
   { name: 'Zoho CRM', url: '/zoho-whatsapp-integration' },
   { name: 'HubSpot', url: '/hubspot-whatsapp-integration' },
   { name: 'Salesforce', url: '/salesforce-whatsapp-integration' },
   { name: 'Pipedrive', url: '/pipedrive-whatsapp-integration' },
   { name: 'Freshsales', url: '/freshsales-whatsapp-integration' },
-  { name: 'Monday.com', url: '/monday-whatsapp-integration' }
+  { name: 'Monday.com', url: '/monday-whatsapp-integration' },
 ]
 
-// Testimonial avatars — keyed by index, same across locales
 const testimonialAvatars = [
   'https://i.pravatar.cc/150?img=11',
   'https://i.pravatar.cc/150?img=5',
   'https://i.pravatar.cc/150?img=3',
 ]
 
-// Benefit icons + colors — keyed by index, same across locales
-const benefitMeta = [
-  { icon: DollarSign, color: 'from-emerald-500 to-cyan-500' },
-  { icon: Briefcase, color: 'from-blue-500 to-indigo-500' },
-  { icon: Rocket, color: 'from-purple-500 to-pink-500' },
-  { icon: Shield, color: 'from-amber-500 to-orange-500' },
-  { icon: Award, color: 'from-cyan-500 to-blue-500' },
-  { icon: Zap, color: 'from-violet-500 to-purple-500' },
-]
-
+const benefitIcons = [DollarSign, Users, Rocket, Shield, Award, Zap]
 const benefitKeys = ['revenueShare', 'expandedPortfolio', 'mutualGrowth', 'prioritySupport', 'certifiedBadge', 'earlyAccess'] as const
-
 const partnerTypeKeys = ['affiliate', 'reseller', 'whitelabel'] as const
 
-// ScrollReveal component
-const ScrollReveal: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({ children, delay = 0, className = '' }) => {
-  const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
-      },
-      { threshold: 0.1 }
-    )
-
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
-      style={{ transitionDelay: `${delay * 100}ms` }}
-    >
-      {children}
-    </div>
-  )
-}
+const Check = (
+  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+)
+const Star = (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+)
 
 export function PartnerPageClient() {
   const t = useTranslations('partner')
-
   const steps = t.raw('steps') as Array<{ step: string; title: string; desc: string }>
   const testimonials = t.raw('testimonials') as Array<{ quote: string; author: string; role: string; earnings: string }>
   const faqs = t.raw('faqs') as Array<{ question: string; answer: string }>
 
+  const [openFaq, setOpenFaq] = useState<Set<number>>(new Set([0]))
+  const toggleFaq = (i: number) => setOpenFaq((p) => {
+    const n = new Set(p)
+    if (n.has(i)) n.delete(i)
+    else n.add(i)
+    return n
+  })
+
   return (
-    <div className="min-h-screen bg-slate-950">
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }} />
-        </div>
+    <>
+      {/* Hero */}
+      <section className="page-hero" data-tone="dark">
+        <div className="container">
+          <span className="hero-tag reveal"><span className="pulse" /> {String(t('heroBadge')).toUpperCase()}</span>
+          <h1 className="reveal">
+            {t('heroHeadline')} <em>{t('heroHighlight')}</em>
+          </h1>
+          <p className="lede reveal">{t('heroSubheadline')}</p>
 
-        {/* Glowing Orbs */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px] -z-10" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] -z-10" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 mb-8">
-              <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider bg-slate-900/80 backdrop-blur px-4 py-2 rounded-full border border-cyan-500/30">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                {t('heroBadge')}
-              </span>
-            </div>
-
-            {/* Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              {t('heroHeadline')}{' '}
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent">
-                {t('heroHighlight')}
-              </span>
-            </h1>
-
-            {/* Subheading */}
-            <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto">
-              {t('heroSubheadline')}
-            </p>
-
-            {/* Features Pills */}
-            <div className="flex flex-wrap justify-center gap-4 mb-10">
-              {[t('freeToJoin'), t('hourApproval'), t('dedicatedSupport'), t('unlimitedEarnings')].map((text) => (
-                <span key={text} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 text-slate-300 text-sm">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  {text}
-                </span>
-              ))}
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="#apply"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold rounded-full shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105"
+          <div
+            className="reveal"
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: 10,
+              marginTop: 28,
+            }}
+          >
+            {[t('freeToJoin'), t('hourApproval'), t('dedicatedSupport'), t('unlimitedEarnings')].map((text) => (
+              <span
+                key={text}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  padding: '6px 12px',
+                  background: 'var(--paper)',
+                  border: '1px solid var(--line)',
+                  borderRadius: 100,
+                  fontSize: 13,
+                  color: 'var(--ink-2)',
+                }}
               >
-                {t('applyNow')}
-                <ArrowRight size={20} />
-              </a>
-              <a
-                href="https://calendly.com/d/cw67-pt3-y2m"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 text-white border border-slate-700 hover:bg-white/10 font-semibold rounded-full transition-all duration-300 hover:scale-105"
-              >
-                {t('scheduleCall')}
-              </a>
-            </div>
+                <span style={{ color: 'var(--ok)' }}>{Check}</span> {text}
+              </span>
+            ))}
+          </div>
 
-            {/* Trust Badges */}
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-              <div className="flex items-start justify-center gap-3 text-slate-400">
-                <Shield className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span className="text-sm font-medium">Official WhatsApp Business Solution Provider</span>
+          <div
+            className="reveal"
+            style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 28, flexWrap: 'wrap' }}
+          >
+            <a href="#apply" className="btn btn-primary btn-lg">{t('applyNow')} →</a>
+            <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-lg">
+              {t('scheduleCall')}
+            </a>
+          </div>
+
+          <div
+            className="reveal"
+            style={{
+              marginTop: 56,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 24,
+              maxWidth: 720,
+              margin: '56px auto 0',
+              borderTop: '1px solid var(--line)',
+              paddingTop: 24,
+            }}
+          >
+            {[
+              { Icon: Shield, text: 'Official WhatsApp Business Solution Provider' },
+              { Icon: CheckCircle2, text: 'SOC 2 Type II Compliant' },
+              { Icon: Globe, text: 'Available in 100+ Countries' },
+            ].map(({ Icon, text }) => (
+              <div key={text} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, color: 'var(--ink-3)', fontSize: 13 }}>
+                <Icon size={18} style={{ color: 'var(--accent-ink)', flexShrink: 0, marginTop: 2 }} />
+                <span style={{ fontWeight: 500 }}>{text}</span>
               </div>
-              <div className="flex items-start justify-center gap-3 text-slate-400">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span className="text-sm font-medium">SOC 2 Type II Compliant</span>
-              </div>
-              <div className="flex items-start justify-center gap-3 text-slate-400">
-                <Globe className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span className="text-sm font-medium">Available in 100+ Countries</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-10 md:py-20 lg:py-28 bg-gradient-to-b from-slate-950 to-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal delay={0} className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
-              {t('benefitsSubtitle')}
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              {t('whyPartnerTitle')}
-            </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              {t('whyPartnerDesc')}
-            </p>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Benefits */}
+      <section className="section">
+        <div className="container">
+          <div className="sec-head centered reveal">
+            <span className="sec-tag">{t('benefitsSubtitle')}</span>
+            <h2>{t('whyPartnerTitle')}</h2>
+            <p>{t('whyPartnerDesc')}</p>
+          </div>
+          <div className="card-grid cols-3">
             {benefitKeys.map((key, index) => {
-              const meta = benefitMeta[index]
-              const Icon = meta.icon
+              const Icon = benefitIcons[index]
               return (
-                <ScrollReveal key={key} delay={index + 1} className="group">
-                  <div className="relative p-8 rounded-2xl bg-slate-800/30 border border-slate-700/50 hover:border-slate-600/50 transition-all duration-300 overflow-hidden">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${meta.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                    <div className="relative">
-                      <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${meta.color} mb-6`}>
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="pl-[10%]">
-                        <span className="inline-block text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">
-                          {t(`benefits.${key}.subtitle`)}
-                        </span>
-                        <h3 className="text-xl font-bold text-white mb-3">
-                          {t(`benefits.${key}.title`)}
-                        </h3>
-                        <p className="text-slate-400 leading-relaxed">
-                          {t(`benefits.${key}.description`)}
-                        </p>
-                      </div>
-                    </div>
+                <div key={key} className="card reveal" style={{ transitionDelay: `${index * 0.05}s` }}>
+                  <div className="card-icon"><Icon size={20} /></div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--f-mono)',
+                      fontSize: 10,
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color: 'var(--accent-ink)',
+                      marginBottom: 6,
+                    }}
+                  >
+                    {t(`benefits.${key}.subtitle`)}
                   </div>
-                </ScrollReveal>
+                  <h3>{t(`benefits.${key}.title`)}</h3>
+                  <p>{t(`benefits.${key}.description`)}</p>
+                </div>
               )
             })}
           </div>
         </div>
       </section>
 
-      {/* Partnership Models Section */}
-      <section className="py-10 md:py-20 lg:py-28 bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal delay={0} className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
-              {t('modelsDesc')}
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              {t('modelsTitle')}
-            </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              {t('modelsSubtitle')}
-            </p>
-          </ScrollReveal>
-
-          <div className="grid lg:grid-cols-3 gap-8">
+      {/* Partnership models */}
+      <section className="section" data-tone="dark">
+        <div className="container">
+          <div className="sec-head centered reveal">
+            <span className="sec-tag">{t('modelsDesc')}</span>
+            <h2>{t('modelsTitle')}</h2>
+            <p>{t('modelsSubtitle')}</p>
+          </div>
+          <div className="card-grid cols-3">
             {partnerTypeKeys.map((key, index) => {
               const whatYouGet = t.raw(`${key}.whatYouGet`) as string[]
               const idealFor = t.raw(`${key}.idealFor`) as string[]
               const partnerName = t(`${key}.name`)
               return (
-                <ScrollReveal key={key} delay={index + 1} className="relative">
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-white font-bold text-sm shadow-lg">
-                      <DollarSign className="w-4 h-4" />
-                      {t(`${key}.commission`)}
-                    </div>
+                <div key={key} className="card reveal" style={{ transitionDelay: `${index * 0.05}s`, paddingTop: 36 }}>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: -14,
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      padding: '6px 14px 6px 10px',
+                      background: 'var(--ink)',
+                      color: 'var(--paper)',
+                      borderRadius: 100,
+                      fontFamily: 'var(--f-mono)',
+                      fontSize: 11,
+                      fontWeight: 600,
+                      letterSpacing: '0.06em',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 5,
+                    }}
+                  >
+                    <DollarSign size={12} /> {t(`${key}.commission`)}
                   </div>
+                  <h3 style={{ textAlign: 'center', marginBottom: 4 }}>{partnerName}</h3>
+                  <div style={{ textAlign: 'center', color: 'var(--accent-ink)', fontWeight: 500, fontSize: 14, marginBottom: 10 }}>
+                    {t(`${key}.title`)}
+                  </div>
+                  <p style={{ textAlign: 'center', marginBottom: 18 }}>{t(`${key}.description`)}</p>
 
-                  <div className="relative pt-8 p-8 rounded-2xl bg-gradient-to-b from-slate-800/50 to-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-all duration-300">
-                    <div className="text-center mb-6">
-                      <h3 className="text-2xl font-bold text-white mb-2">
-                        {partnerName}
-                      </h3>
-                      <p className="text-cyan-400 font-medium mb-4">
-                        {t(`${key}.title`)}
-                      </p>
-                      <p className="text-slate-400 text-sm">
-                        {t(`${key}.description`)}
-                      </p>
-                    </div>
-
-                    <div className="space-y-4 mb-6">
-                      <p className="text-sm font-semibold text-white">What You Get:</p>
-                      <ul className="space-y-2">
-                        {whatYouGet.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-slate-400">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="pt-6 border-t border-slate-700/50">
-                      <p className="text-xs font-semibold text-slate-500 uppercase mb-3">Ideal for:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {idealFor.map((item, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-950/50 rounded-full border border-cyan-800/50"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <a
-                      href="#apply"
-                      className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-all duration-300"
+                  <div style={{ marginBottom: 16 }}>
+                    <div
+                      style={{
+                        fontFamily: 'var(--f-mono)',
+                        fontSize: 10,
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        color: 'var(--ink-4)',
+                        marginBottom: 8,
+                      }}
                     >
-                      {partnerName}
-                    </a>
+                      What You Get
+                    </div>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                      {whatYouGet.map((item, i) => (
+                        <li key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13, color: 'var(--ink-2)' }}>
+                          <span style={{ color: 'var(--ok)', flexShrink: 0, marginTop: 2 }}>{Check}</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </ScrollReveal>
+
+                  <div style={{ paddingTop: 14, borderTop: '1px solid var(--line)' }}>
+                    <div
+                      style={{
+                        fontFamily: 'var(--f-mono)',
+                        fontSize: 10,
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        color: 'var(--ink-4)',
+                        marginBottom: 8,
+                      }}
+                    >
+                      Ideal for
+                    </div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+                      {idealFor.map((item, i) => (
+                        <span
+                          key={i}
+                          style={{
+                            padding: '3px 9px',
+                            background: 'color-mix(in oklab, var(--accent-a) 14%, var(--paper))',
+                            border: '1px solid color-mix(in oklab, var(--accent-a) 30%, var(--line))',
+                            color: 'var(--accent-ink)',
+                            borderRadius: 100,
+                            fontSize: 11,
+                            fontWeight: 500,
+                          }}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <a
+                    href="#apply"
+                    className="btn btn-primary"
+                    style={{ width: '100%', justifyContent: 'center', marginTop: 18 }}
+                  >
+                    Apply as {partnerName} →
+                  </a>
+                </div>
               )
             })}
           </div>
         </div>
       </section>
 
-      {/* How to Apply Section */}
-      <section className="py-10 md:py-20 lg:py-28 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal delay={0} className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
-              {t('simpleProcess')}
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              {t('howToApplyTitle')}
-            </h2>
-            <p className="text-lg text-slate-400">
-              {t('howToApplyDesc')}
-            </p>
-          </ScrollReveal>
-
-          <div className="space-y-6">
+      {/* How to apply */}
+      <section className="section">
+        <div className="container">
+          <div className="sec-head centered reveal">
+            <span className="sec-tag">{t('simpleProcess')}</span>
+            <h2>{t('howToApplyTitle')}</h2>
+            <p>{t('howToApplyDesc')}</p>
+          </div>
+          <div style={{ maxWidth: 720, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
             {steps.map((item, index) => (
-              <ScrollReveal key={index} delay={index}>
-                <div className="flex items-start gap-6 p-6 rounded-2xl bg-slate-800/30 border border-slate-700/50 hover:border-slate-600/50 transition-all duration-300">
-                  <span className="flex-shrink-0 w-12 h-12 flex items-center justify-center text-lg font-bold text-cyan-400 bg-cyan-950/50 rounded-xl border border-cyan-800/50">
-                    {item.step}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-1">{item.title}</h3>
-                    <p className="text-slate-400">{item.desc}</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-10 md:py-20 lg:py-28 bg-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal delay={0} className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
-              {t('testimonialsSubtitle')}
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              {t('testimonialsTitle')}
-            </h2>
-            <p className="text-lg text-slate-400">
-              {t('testimonialsDesc')}
-            </p>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <ScrollReveal key={index} delay={index + 1}>
-                <div className="p-8 rounded-2xl bg-gradient-to-b from-slate-800/50 to-slate-900/50 border border-slate-700/50 hover:border-slate-600/50 transition-all duration-300">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                    ))}
-                  </div>
-
-                  <p className="text-slate-300 mb-6 leading-relaxed">
-                    &quot;{testimonial.quote}&quot;
-                  </p>
-
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={testimonialAvatars[index]}
-                      alt={testimonial.author}
-                      className="w-12 h-12 rounded-full border-2 border-slate-700"
-                    />
-                    <div className="flex-1">
-                      <p className="font-semibold text-white">{testimonial.author}</p>
-                      <p className="text-sm text-slate-400">{testimonial.role}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs text-slate-500">Earned</p>
-                      <p className="text-lg font-bold text-emerald-400">{testimonial.earnings}</p>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Integration Logos Section */}
-      <section className="py-16 bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal delay={0} className="text-center mb-10">
-            <p className="text-slate-400 mb-8">
-              {t('integrationsTitle')}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-              {integrations.map((integration, index) => (
-                <LocalizedLink
-                  key={index}
-                  href={integration.url}
-                  className="text-slate-500 hover:text-cyan-400 transition-colors font-semibold text-lg"
+              <div
+                key={index}
+                className="card reveal"
+                style={{ transitionDelay: `${index * 0.05}s`, display: 'flex', gap: 18, alignItems: 'flex-start' }}
+              >
+                <span
+                  style={{
+                    flexShrink: 0,
+                    width: 44,
+                    height: 44,
+                    borderRadius: 12,
+                    background: 'color-mix(in oklab, var(--accent-a) 14%, var(--paper))',
+                    border: '1px solid color-mix(in oklab, var(--accent-a) 30%, var(--line))',
+                    color: 'var(--accent-ink)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: 'var(--f-display)',
+                    fontSize: 20,
+                    fontWeight: 400,
+                  }}
                 >
-                  {integration.name}
-                </LocalizedLink>
-              ))}
-            </div>
-          </ScrollReveal>
+                  {item.step}
+                </span>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ marginBottom: 4 }}>{item.title}</h3>
+                  <p style={{ marginBottom: 0 }}>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Application Form Section */}
-      <section id="apply" className="py-10 md:py-20 lg:pt-28 lg:pb-14 bg-gradient-to-b from-slate-950 to-slate-900">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal delay={0} className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
-              Apply Today
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              {t('applyTitle')}
-            </h2>
-            <p className="text-lg text-slate-400 mb-8">
-              {t('applyDesc')}
-            </p>
+      {/* Testimonials */}
+      <section className="section">
+        <div className="container">
+          <div className="sec-head centered reveal">
+            <span className="sec-tag">{t('testimonialsSubtitle')}</span>
+            <h2>{t('testimonialsTitle')}</h2>
+            <p>{t('testimonialsDesc')}</p>
+          </div>
+          <div className="card-grid cols-3">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="card reveal" style={{ transitionDelay: `${index * 0.05}s` }}>
+                <div style={{ display: 'flex', gap: 3, marginBottom: 14, color: 'var(--warn)' }}>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <span key={i}>{Star}</span>
+                  ))}
+                </div>
+                <p style={{ fontStyle: 'italic', fontSize: 15, marginBottom: 18 }}>&ldquo;{testimonial.quote}&rdquo;</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 14, borderTop: '1px solid var(--line)' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={testimonialAvatars[index]}
+                    alt={testimonial.author}
+                    width={40}
+                    height={40}
+                    style={{ borderRadius: '50%', border: '2px solid var(--line)' }}
+                  />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 600, color: 'var(--ink)' }}>{testimonial.author}</div>
+                    <div style={{ fontSize: 12, color: 'var(--ink-4)' }}>{testimonial.role}</div>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontFamily: 'var(--f-mono)', fontSize: 9, color: 'var(--ink-4)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                      Earned
+                    </div>
+                    <div style={{ fontFamily: 'var(--f-display)', fontSize: 18, color: 'var(--ok)' }}>{testimonial.earnings}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Key Benefits */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-              <div className="text-center">
-                <Zap className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-                <p className="text-white font-semibold">{t('fastApproval')}</p>
-                <p className="text-sm text-slate-400">{t('fastApprovalDesc')}</p>
-              </div>
-              <div className="text-center">
-                <Users className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-                <p className="text-white font-semibold">{t('dedicatedSupportTitle')}</p>
-                <p className="text-sm text-slate-400">{t('dedicatedSupportDesc')}</p>
-              </div>
-              <div className="text-center">
-                <DollarSign className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-                <p className="text-white font-semibold">{t('noUpfrontCosts')}</p>
-                <p className="text-sm text-slate-400">{t('noUpfrontCostsDesc')}</p>
-              </div>
-            </div>
-          </ScrollReveal>
+      {/* Integrations */}
+      <section className="section" data-tone="dark" style={{ paddingTop: 60, paddingBottom: 60 }}>
+        <div className="container">
+          <p
+            className="reveal"
+            style={{
+              textAlign: 'center',
+              fontFamily: 'var(--f-mono)',
+              fontSize: 11,
+              color: 'var(--ink-4)',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              marginBottom: 24,
+            }}
+          >
+            {t('integrationsTitle')}
+          </p>
+          <div
+            className="reveal"
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 32,
+            }}
+          >
+            {integrations.map((integration) => (
+              <LocalizedLink
+                key={integration.name}
+                href={integration.url}
+                style={{
+                  fontFamily: 'var(--f-display)',
+                  fontSize: 18,
+                  fontWeight: 400,
+                  color: 'var(--ink-2)',
+                  fontStyle: 'italic',
+                  transition: 'color .2s',
+                }}
+              >
+                {integration.name}
+              </LocalizedLink>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          {/* Contact Info */}
-          <ScrollReveal delay={1} className="text-center mb-8 p-6 rounded-2xl bg-slate-800/30 border border-slate-700/50">
-            <p className="text-slate-400 mb-4">{t('haveQuestions')}</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+      {/* Apply section */}
+      <section id="apply" className="section">
+        <div className="container">
+          <div className="sec-head centered reveal">
+            <span className="sec-tag">Apply Today</span>
+            <h2>{t('applyTitle')}</h2>
+            <p>{t('applyDesc')}</p>
+          </div>
+
+          <div className="card-grid cols-3" style={{ marginBottom: 32 }}>
+            {[
+              { Icon: Zap, title: t('fastApproval'), desc: t('fastApprovalDesc') },
+              { Icon: Users, title: t('dedicatedSupportTitle'), desc: t('dedicatedSupportDesc') },
+              { Icon: DollarSign, title: t('noUpfrontCosts'), desc: t('noUpfrontCostsDesc') },
+            ].map(({ Icon, title, desc }, i) => (
+              <div key={i} className="card reveal" style={{ textAlign: 'center', transitionDelay: `${i * 0.05}s` }}>
+                <div className="card-icon" style={{ margin: '0 auto 14px' }}><Icon size={20} /></div>
+                <h3 style={{ fontSize: 16 }}>{title}</h3>
+                <p style={{ fontSize: 13, marginBottom: 0 }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="reveal"
+            style={{
+              maxWidth: 640,
+              margin: '0 auto',
+              padding: 28,
+              background: 'var(--paper)',
+              border: '1px solid var(--line)',
+              borderRadius: 18,
+              textAlign: 'center',
+            }}
+          >
+            <p style={{ marginBottom: 16 }}>{t('haveQuestions')}</p>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 24, flexWrap: 'wrap' }}>
               <a
                 href="mailto:hey@eazybe.com"
-                className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  color: 'var(--accent-ink)',
+                  fontWeight: 500,
+                }}
               >
-                <Mail className="w-5 h-5" />
-                hey@eazybe.com
+                <Mail size={16} /> hey@eazybe.com
               </a>
               <a
                 href="https://calendly.com/d/cw67-pt3-y2m"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  color: 'var(--accent-ink)',
+                  fontWeight: 500,
+                }}
               >
-                <Phone className="w-5 h-5" />
-                {t('scheduleCall')}
+                <Mail size={16} /> {t('scheduleCall')}
               </a>
             </div>
-          </ScrollReveal>
-
+          </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-10 md:py-20 lg:pt-14 lg:pb-28 bg-slate-900">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal delay={0} className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4">
-              FAQs
-            </span>
-            <h2 className="text-[19px] md:text-3xl lg:text-4xl font-bold text-white mb-6">
-              {t('faqTitle')}
-            </h2>
-            <p className="text-lg text-slate-400">
-              {t('faqDesc')}
-            </p>
-          </ScrollReveal>
-
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <ScrollReveal key={index} delay={index + 1}>
-                <details className="group rounded-2xl bg-slate-800/30 border border-slate-700/50 overflow-hidden">
-                  <summary className="w-full flex items-center justify-between p-6 text-left cursor-pointer hover:bg-slate-800/50 transition-colors list-none">
-                    <span className="font-semibold text-white pr-8">
-                      {faq.question}
-                    </span>
-                    <ChevronDown className="w-5 h-5 text-cyan-400 flex-shrink-0 transition-transform group-open:rotate-180" />
-                  </summary>
-                  <div className="px-6 pb-6">
-                    <p className="text-slate-400 leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </details>
-              </ScrollReveal>
+      {/* FAQ */}
+      <section className="section">
+        <div className="container">
+          <div className="sec-head centered reveal">
+            <span className="sec-tag">FAQ</span>
+            <h2>{t('faqTitle')}</h2>
+            <p>{t('faqDesc')}</p>
+          </div>
+          <div className="faq">
+            {faqs.map((faq, idx) => (
+              <div key={idx} className={`faq-item reveal${openFaq.has(idx) ? ' open' : ''}`}>
+                <button className="faq-q" onClick={() => toggleFaq(idx)}>
+                  {faq.question}
+                  <span className="plus">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                  </span>
+                </button>
+                <div className="faq-a">{faq.answer}</div>
+              </div>
             ))}
           </div>
-
-          <ScrollReveal delay={8} className="text-center mt-10 p-6 rounded-2xl bg-slate-800/30 border border-slate-700/50">
-            <p className="text-slate-400 mb-4">{t('faqStillHave')}</p>
+          <div
+            className="reveal"
+            style={{
+              maxWidth: 640,
+              margin: '32px auto 0',
+              padding: 24,
+              background: 'var(--bg-2)',
+              border: '1px solid var(--line)',
+              borderRadius: 14,
+              textAlign: 'center',
+            }}
+          >
+            <p style={{ marginBottom: 10 }}>{t('faqStillHave')}</p>
             <a
               href="mailto:hey@eazybe.com"
-              className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                color: 'var(--accent-ink)',
+                fontWeight: 500,
+              }}
             >
-              <Mail className="w-5 h-5" />
-              {t('emailUs')}
+              <Mail size={16} /> {t('emailUs')}
             </a>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
-
-    </div>
+    </>
   )
 }

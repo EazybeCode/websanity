@@ -20,6 +20,15 @@ h1,
 h2 {
   text-transform: capitalize !important;
 }
+/* Landing pages opt out of the site-wide capitalize */
+.landing h1,
+.landing h2,
+.landing h3,
+.landing h4,
+.landing h5,
+.landing h6 {
+  text-transform: none !important;
+}
 
 /* Light Mode - SaaS Style with Gradients */
 html.light body {
