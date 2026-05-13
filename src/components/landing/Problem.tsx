@@ -51,6 +51,7 @@ export function Problem() {
         <div className="sec-head centered reveal">
           <span className="sec-tag">The problem</span>
           <h2>Selling on WhatsApp Is Easy. <em>Everything Around It Is Broken.</em></h2>
+          <p>Your reps live in WhatsApp. Your pipeline lives in your CRM. The two never meet — so deals slip, follow-ups vanish, and revenue quietly leaks out of conversations nobody can see.</p>
         </div>
         <div className="problem-grid" ref={gridRef}>
           <div className="p-card reveal">

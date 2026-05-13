@@ -57,7 +57,9 @@ export function HowItWorks() {
         <div className="sec-head centered reveal">
           <span className="sec-tag">Get Started</span>
           <h2>Live in <em>10 Minutes.</em> Not 10 Weeks.</h2>
-          <p className="steps-note">No code. No IT team. No migration. Your reps keep using WhatsApp Web exactly as they do today.</p>
+          <p style={{ maxWidth: 760, width: '100%', textAlign: 'justify', textAlignLast: 'center', hyphens: 'auto' }}>
+            Three steps, one Chrome extension, zero migration. Install Eazybe alongside the WhatsApp Web your reps already use, connect your CRM with one click, and switch on the agents you need — your first sync starts the moment you flip the toggle.
+          </p>
         </div>
         <div className="steps" ref={wrapRef}>
           <div className={`step${active === 0 ? ' active' : ''}`} data-step="1">

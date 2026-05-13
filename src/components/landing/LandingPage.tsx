@@ -22,7 +22,7 @@ import { RevealOnScroll } from './RevealOnScroll'
 
 export function LandingPage() {
   return (
-    <div className="landing" data-accent="iris" data-typeset="geist">
+    <div className="landing" data-accent="iris" data-typeset="geist" suppressHydrationWarning>
       <div className="grain" aria-hidden />
       <Nav />
       <Hero />

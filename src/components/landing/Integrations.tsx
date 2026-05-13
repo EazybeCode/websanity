@@ -17,12 +17,14 @@ const ITEMS: Integration[] = [
 
 export function Integrations() {
   return (
-    <section className="section" data-tone="dark">
+    <section className="section" data-tone="dark" id="integrations">
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">Integrations</span>
           <h2>Works with the CRM <em>You Already Use.</em></h2>
-          <p>Native integrations. Bi-directional sync. Workflow triggers.</p>
+          <p style={{ maxWidth: 760, width: '100%', textAlign: 'justify', textAlignLast: 'center', hyphens: 'auto' }}>
+            Eazybe plugs into the CRMs your team already lives in — HubSpot, Salesforce, Zoho, Pipedrive, and more. Bi-directional sync, workflow triggers, and custom properties out of the box — no rip-and-replace, no IT project.
+          </p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12, maxWidth: 1000, margin: '0 auto' }}>
           {ITEMS.map((i, idx) => (

@@ -500,6 +500,13 @@
   margin-top: 18px; max-width: 560px; line-height: 1.55;
 }
 .landing .sec-head.centered p { margin-left: auto; margin-right: auto; }
+.landing .problem .sec-head p {
+  max-width: none;
+  width: 100%;
+  text-align: justify;
+  text-align-last: center;
+  hyphens: auto;
+}
 
 /* PROBLEM */
 .landing .problem {
@@ -1142,21 +1149,21 @@
   align-items: center;
   justify-content: center;
   padding: 14px 28px;
-  background: #C8FF6B;
-  color: #0b1018;
+  background: #181b24;
+  color: #fff;
   font-family: var(--f-sans);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 15px;
   letter-spacing: -0.005em;
   border-radius: 12px;
   transition: background .2s, transform .2s, box-shadow .2s;
   white-space: nowrap;
-  box-shadow: 0 8px 20px -8px rgba(200, 255, 107, 0.5);
+  box-shadow: 0 8px 20px -8px rgba(24, 27, 36, 0.4);
 }
 .landing .steps-cta-btn:hover {
-  background: #b8f254;
+  background: #25293a;
   transform: translateY(-1px);
-  box-shadow: 0 12px 26px -10px rgba(200, 255, 107, 0.6);
+  box-shadow: 0 12px 26px -10px rgba(24, 27, 36, 0.55);
 }
 
 /* BANNER-CTA (compact dark banner above FAQ) */
@@ -1419,10 +1426,10 @@
 .landing .mid-cta-content p {
   font-size: 16px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.7);
   margin: 0 auto 30px;
-  max-width: 540px;
-  text-wrap: balance;
+  max-width: 640px;
+  text-wrap: pretty;
 }
 .landing .mid-cta-action {
   display: inline-flex;
@@ -1611,6 +1618,111 @@
   color: var(--ink-3); font-size: 15px; line-height: 1.6;
 }
 .landing .faq-item.open .faq-a { max-height: 260px; padding-top: 12px; }
+
+/* Headers that should stay on a single line above 720px */
+@media (min-width: 720px) {
+  .landing #faq .sec-head h2,
+  .landing #integrations .sec-head h2,
+  .landing .mid-cta-content h2 { white-space: nowrap; }
+}
+
+/* FAQ — pill grid variant (matches reference image) */
+.landing .faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+  margin: 36px auto 0;
+  max-width: 1200px;
+}
+.landing .faq-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.landing .faq-pill {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  overflow: hidden;
+  transition: border-color .3s, box-shadow .3s, border-radius .3s;
+}
+.landing .faq-pill:hover {
+  border-color: var(--line-2);
+  box-shadow: 0 4px 14px -6px rgba(15, 20, 35, 0.08);
+}
+.landing .faq-pill.open {
+  border-radius: 22px;
+  border-color: rgba(15, 20, 35, 0.18);
+  box-shadow: 0 6px 18px -8px rgba(15, 20, 35, 0.1);
+}
+.landing .faq-pill-q {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px 18px 26px;
+  font-family: var(--f-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  line-height: 1.4;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.landing .faq-pill-chev {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-3);
+  transition: transform .3s, color .3s, background .3s;
+}
+.landing .faq-pill.open .faq-pill-chev {
+  transform: rotate(180deg);
+  color: #fff;
+  background: var(--ink);
+}
+.landing .faq-pill-a {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .35s ease;
+}
+.landing .faq-pill-a > div {
+  padding: 0 26px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+.landing .faq-pill.open .faq-pill-a { max-height: 340px; }
+.landing .faq-footnote {
+  margin-top: 36px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+.landing .faq-footnote a {
+  color: var(--accent-ink);
+  font-weight: 600;
+  border-bottom: 1px solid color-mix(in oklab, var(--accent-ink) 30%, transparent);
+  transition: color .2s, border-color .2s;
+}
+.landing .faq-footnote a:hover {
+  color: var(--accent-a);
+  border-color: var(--accent-a);
+}
+@media (max-width: 720px) {
+  .landing .faq-grid { grid-template-columns: 1fr; gap: 14px; }
+  .landing .faq-pill { border-radius: 22px; }
+  .landing .faq-pill-q { padding: 16px 18px 16px 22px; font-size: 14.5px; }
+  .landing .faq-pill-a > div { padding: 0 22px 18px; }
+}
 
 /* FINAL CTA */
 .landing .final-cta { padding: 70px 0 80px; position: relative; overflow: hidden; text-align: center; }

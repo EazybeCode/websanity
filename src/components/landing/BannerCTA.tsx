@@ -25,8 +25,7 @@ export function BannerCTA() {
           </div>
 
           <span className="banner-cta-btn">
-            Build Mine
-            <span className="banner-cta-arrow">→</span>
+            🤖 Build Mine
           </span>
         </a>
       </div>
