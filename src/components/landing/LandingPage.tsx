@@ -34,8 +34,8 @@ export function LandingPage() {
       <AgentBuilder />
       <Integrations />
       <HowItWorks />
-      <FAQ />
       <CustomerStories />
+      <FAQ />
       <FinalCTA />
       <Footer />
       <BeaBot />

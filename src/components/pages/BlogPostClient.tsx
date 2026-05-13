@@ -1186,46 +1186,53 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                   >
                     {post.faqTitle || detailLabels?.faqTitle || t('blog.detail.faqTitle')}
                   </h2>
-                  <div className="space-y-4">
-                    {post.faqs.map((faq, i) => (
-                      <details
-                        key={i}
-                        className="group border border-slate-700/50 rounded-xl bg-slate-900/30 transition-all hover:border-slate-600"
-                      >
-                        <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-[16px] md:text-lg">
-                          <span className="pr-6">{faq.question}</span>
-                          <Plus
-                            size={20}
-                            className="text-brand-cyan flex-shrink-0 group-open:rotate-45 transition-transform"
-                          />
-                        </summary>
-                        <div className="px-6 pb-6 text-slate-400 text-[14px] md:text-lg leading-relaxed border-t border-slate-700/30 pt-4">
-                          {Array.isArray(faq.answer) ? (
-                            <PortableText
-                              value={faq.answer}
-                              components={{
-                                marks: {
-                                  link: ({ children, value: markValue }: any) => (
-                                    <a
-                                      href={markValue?.href}
-                                      target={markValue?.openInNewTab ? '_blank' : undefined}
-                                      rel={markValue?.openInNewTab ? 'noopener noreferrer' : undefined}
-                                      className="text-brand-cyan hover:text-brand-blue underline transition-colors"
-                                    >
-                                      {children}
-                                    </a>
-                                  ),
-                                },
-                                block: {
-                                  normal: ({ children }: any) => <p className="mb-2 last:mb-0">{children}</p>,
-                                },
-                              }}
-                            />
-                          ) : (
-                            faq.answer
-                          )}
-                        </div>
-                      </details>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      post.faqs.slice(0, Math.ceil(post.faqs.length / 2)),
+                      post.faqs.slice(Math.ceil(post.faqs.length / 2)),
+                    ].map((column, colIdx) => (
+                      <div key={colIdx} className="space-y-4">
+                        {column.map((faq, i) => (
+                          <details
+                            key={i}
+                            className="group border border-slate-700/50 rounded-xl bg-slate-900/30 transition-all hover:border-slate-600"
+                          >
+                            <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-[16px] md:text-lg">
+                              <span className="pr-6">{faq.question}</span>
+                              <Plus
+                                size={20}
+                                className="text-brand-cyan flex-shrink-0 group-open:rotate-45 transition-transform"
+                              />
+                            </summary>
+                            <div className="px-6 pb-6 text-slate-400 text-[14px] md:text-lg leading-relaxed border-t border-slate-700/30 pt-4">
+                              {Array.isArray(faq.answer) ? (
+                                <PortableText
+                                  value={faq.answer}
+                                  components={{
+                                    marks: {
+                                      link: ({ children, value: markValue }: any) => (
+                                        <a
+                                          href={markValue?.href}
+                                          target={markValue?.openInNewTab ? '_blank' : undefined}
+                                          rel={markValue?.openInNewTab ? 'noopener noreferrer' : undefined}
+                                          className="text-brand-cyan hover:text-brand-blue underline transition-colors"
+                                        >
+                                          {children}
+                                        </a>
+                                      ),
+                                    },
+                                    block: {
+                                      normal: ({ children }: any) => <p className="mb-2 last:mb-0">{children}</p>,
+                                    },
+                                  }}
+                                />
+                              ) : (
+                                faq.answer
+                              )}
+                            </div>
+                          </details>
+                        ))}
+                      </div>
                     ))}
                   </div>
                 </section>

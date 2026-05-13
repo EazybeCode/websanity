@@ -32,7 +32,7 @@ export function FAQ() {
         </div>
         <div className="faq">
           {ITEMS.map((it, i) => (
-            <div key={it.q} className={`faq-item reveal${open.has(i) ? ' open' : ''}`}>
+            <div key={it.q} className={`faq-item${open.has(i) ? ' open' : ''}`}>
               <button className="faq-q" onClick={() => toggle(i)}>
                 {it.q}
                 <span className="plus">
