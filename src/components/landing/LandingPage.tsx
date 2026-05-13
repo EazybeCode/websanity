@@ -19,6 +19,7 @@ import { FinalCTA } from './FinalCTA'
 import { Footer } from './Footer'
 import { BeaBot } from './BeaBot'
 import { RevealOnScroll } from './RevealOnScroll'
+import { MobileBottomNav } from './MobileBottomNav'
 import { SuppressExtensionHydrationWarning } from './SuppressExtensionHydrationWarning'
 
 export function LandingPage() {
@@ -45,6 +46,7 @@ export function LandingPage() {
       <Footer />
       <BeaBot />
       <RevealOnScroll />
+      <MobileBottomNav />
       <SuppressExtensionHydrationWarning />
     </div>
   )
