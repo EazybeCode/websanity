@@ -19,6 +19,7 @@ import { FinalCTA } from './FinalCTA'
 import { Footer } from './Footer'
 import { BeaBot } from './BeaBot'
 import { RevealOnScroll } from './RevealOnScroll'
+import { SuppressExtensionHydrationWarning } from './SuppressExtensionHydrationWarning'
 
 export function LandingPage() {
   return (
@@ -44,6 +45,7 @@ export function LandingPage() {
       <Footer />
       <BeaBot />
       <RevealOnScroll />
+      <SuppressExtensionHydrationWarning />
     </div>
   )
 }

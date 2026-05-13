@@ -1,3 +1,7 @@
+'use client'
+
+import { useState } from 'react'
+
 const COLS = [
   { title: 'Agents', items: ['CRM Sync', 'Lead Qualification', 'Revenue Ops', 'Team Visibility', 'All agents →'] },
   { title: 'Integrations', items: ['HubSpot', 'Salesforce', 'Zoho CRM', 'Pipedrive', 'Google Sheets'] },
@@ -6,6 +10,15 @@ const COLS = [
 ]
 
 export function Footer() {
+  const [openCols, setOpenCols] = useState<Set<number>>(new Set())
+  const toggleCol = (i: number) => {
+    setOpenCols((prev) => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
+  }
   return (
     <footer className="footer">
       <div className="container">
@@ -45,16 +58,33 @@ export function Footer() {
               </div>
             </div>
           </div>
-          {COLS.map((c) => (
-            <div key={c.title} className="footer-col">
-              <h4>{c.title}</h4>
-              <ul>
-                {c.items.map((i) => (
-                  <li key={i}><a href="#">{i}</a></li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {COLS.map((c, idx) => {
+            const isOpen = openCols.has(idx)
+            return (
+              <div key={c.title} className={`footer-col${isOpen ? ' open' : ''}`}>
+                <button
+                  type="button"
+                  className="footer-col-toggle"
+                  onClick={() => toggleCol(idx)}
+                  aria-expanded={isOpen}
+                  aria-controls={`footer-col-${idx}`}
+                >
+                  <h4>{c.title}</h4>
+                  <span className="footer-col-chev" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </span>
+                </button>
+                <ul id={`footer-col-${idx}`}>
+                  {c.items.map((i) => (
+                    <li key={i}><a href="#">{i}</a></li>
+                  ))}
+                </ul>
+              </div>
+            )
+          })}
         </div>
         <div className="footer-watermark" aria-hidden="true">EAZYBE</div>
 
