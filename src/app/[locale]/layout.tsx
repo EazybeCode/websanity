@@ -49,6 +49,7 @@ export default async function LocaleLayout({
     <html lang={htmlLangMap[locale] || 'en'} className="dark" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages}>
           <Providers>

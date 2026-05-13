@@ -24,7 +24,7 @@ export function FAQ() {
     })
   }
   return (
-    <section className="section" id="faq">
+    <section className="section" id="faq" style={{ paddingTop: 60 }}>
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">FAQ</span>

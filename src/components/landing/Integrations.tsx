@@ -48,8 +48,8 @@ export function Integrations() {
             </div>
           ))}
         </div>
-        <p className="reveal" style={{ textAlign: 'center', fontFamily: 'var(--f-display)', fontSize: 20, fontStyle: 'italic', color: 'rgba(255,255,255,0.7)', marginTop: 50 }}>
-          Every integration: <em style={{ color: '#fff' }}>contact sync, deal sync, activity logs, custom properties, workflow triggers.</em>
+        <p className="reveal" style={{ textAlign: 'center', fontFamily: 'var(--f-display)', fontSize: 20, color: 'rgba(255,255,255,0.7)', marginTop: 50 }}>
+          Every integration: <em style={{ color: '#fff', fontStyle: 'normal' }}>contact sync, deal sync, activity logs, custom properties, workflow triggers.</em>
         </p>
         <div style={{ textAlign: 'center', marginTop: 24 }}>
           <a href="#" className="btn btn-outline btn-lg reveal" style={{ borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}>

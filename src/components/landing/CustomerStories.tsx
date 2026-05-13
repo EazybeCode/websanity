@@ -66,7 +66,7 @@ const thirdColumn = TESTIMONIALS.slice(6, 9)
 
 export function CustomerStories() {
   return (
-    <section className="section">
+    <section className="section" style={{ paddingTop: 60, paddingBottom: 60 }}>
       <div className="container">
         <div className="sec-head centered">
           <span className="sec-tag">Customer Stories</span>
