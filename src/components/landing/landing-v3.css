@@ -2176,6 +2176,8 @@
   }
   .landing .footer-brand { margin-bottom: 16px; }
   .landing .footer-watermark { margin-top: 30px; }
+  .landing .problem { padding: 50px 0; }
+  .landing .agent { padding: 50px 0; }
 }
 @media (max-width: 680px) {
   .landing .container { padding: 0 20px; }

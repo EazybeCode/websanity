@@ -9,29 +9,20 @@ export function MobileBottomNav() {
   const [hidden, setHidden] = useState(false)
 
   useEffect(() => {
-    let lastY = window.scrollY
-    let ticking = false
-    const THRESHOLD = 8 // px — ignore micro-scrolls
+    const disclaimer = document.querySelector('.footer-disclaimer')
+    if (!disclaimer) return
 
-    const onScroll = () => {
-      if (ticking) return
-      ticking = true
-      window.requestAnimationFrame(() => {
-        const y = window.scrollY
-        const diff = y - lastY
-        // Always show near the top
-        if (y < 80) {
-          setHidden(false)
-        } else if (Math.abs(diff) > THRESHOLD) {
-          setHidden(diff > 0) // scrolling down hides, scrolling up shows
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          // Hide the bar once the disclaimer scrolls into view
+          setHidden(entry.isIntersecting)
         }
-        lastY = y
-        ticking = false
-      })
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+      },
+      { rootMargin: '0px 0px -40px 0px', threshold: 0 }
+    )
+    io.observe(disclaimer)
+    return () => io.disconnect()
   }, [])
 
   return (
