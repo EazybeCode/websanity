@@ -12,6 +12,7 @@ import { AgentBuilder } from './AgentBuilder'
 import { Integrations } from './Integrations'
 import { HowItWorks } from './HowItWorks'
 import { MidCTA } from './MidCTA'
+import { BannerCTA } from './BannerCTA'
 import { FAQ } from './FAQ'
 import { CustomerStories } from './CustomerStories'
 import { FinalCTA } from './FinalCTA'
@@ -37,6 +38,7 @@ export function LandingPage() {
       <HowItWorks />
       <MidCTA />
       <CustomerStories />
+      <BannerCTA />
       <FAQ />
       <FinalCTA />
       <Footer />

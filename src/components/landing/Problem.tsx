@@ -50,7 +50,7 @@ export function Problem() {
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">The problem</span>
-          <h2>Selling on WhatsApp is easy. <em>Everything around it is broken.</em></h2>
+          <h2>Selling on WhatsApp Is Easy. <em>Everything Around It Is Broken.</em></h2>
         </div>
         <div className="problem-grid" ref={gridRef}>
           <div className="p-card reveal">
@@ -139,6 +139,19 @@ export function Problem() {
           </div>
         </div>
         <p className="problem-foot reveal">Each blind spot has an <span>agent</span> that fixes it. ↓</p>
+
+        <div className="steps-cta">
+          <div className="steps-cta-line">
+            <span className="steps-cta-check" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#7CC576" aria-hidden="true">
+                <path d="M12 1.5l2.3 1.7 2.8-.3 1 2.7 2.7 1L20.5 9l1.7 2.3-1.7 2.3.3 2.8-2.7 1-1 2.7-2.8-.3L12 21.5l-2.3-1.7-2.8.3-1-2.7-2.7-1 .3-2.8L1.8 11.3 3.5 9l-.3-2.8 2.7-1 1-2.7 2.8.3L12 1.5z" />
+                <path d="M7.5 12.2l3 3 6-6" stroke="#fff" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <span>Custom AI agents, trained on your best reps, ready to take over today.</span>
+          </div>
+          <a href="#agents" className="steps-cta-btn">Meet the Agents</a>
+        </div>
       </div>
     </section>
   )

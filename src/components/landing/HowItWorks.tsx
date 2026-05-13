@@ -56,7 +56,8 @@ export function HowItWorks() {
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">Get Started</span>
-          <h2>Live in <em>10 minutes.</em> Not 10 weeks.</h2>
+          <h2>Live in <em>10 Minutes.</em> Not 10 Weeks.</h2>
+          <p className="steps-note">No code. No IT team. No migration. Your reps keep using WhatsApp Web exactly as they do today.</p>
         </div>
         <div className="steps" ref={wrapRef}>
           <div className={`step${active === 0 ? ' active' : ''}`} data-step="1">
@@ -123,7 +124,18 @@ export function HowItWorks() {
             </div>
           </div>
         </div>
-        <p className="steps-note reveal">No code. No IT team. No migration. Your reps keep using WhatsApp Web exactly as they do today.</p>
+        <div className="steps-cta">
+          <div className="steps-cta-line">
+            <span className="steps-cta-check" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#7CC576" aria-hidden="true">
+                <path d="M12 1.5l2.3 1.7 2.8-.3 1 2.7 2.7 1L20.5 9l1.7 2.3-1.7 2.3.3 2.8-2.7 1-1 2.7-2.8-.3L12 21.5l-2.3-1.7-2.8.3-1-2.7-2.7-1 .3-2.8L1.8 11.3 3.5 9l-.3-2.8 2.7-1 1-2.7 2.8.3L12 1.5z" />
+                <path d="M7.5 12.2l3 3 6-6" stroke="#fff" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <span>Don't see your CRM? Tell us your stack — we'll wire it up for you.</span>
+          </div>
+          <a href="#" className="steps-cta-btn">Book a Demo</a>
+        </div>
       </div>
     </section>
   )

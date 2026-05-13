@@ -70,7 +70,7 @@ export function CustomerStories() {
       <div className="container">
         <div className="sec-head centered">
           <span className="sec-tag">Customer Stories</span>
-          <h2>What teams tell us <em>in demos.</em></h2>
+          <h2>What Teams Tell Us <em>in Demos.</em></h2>
         </div>
 
         <motion.div

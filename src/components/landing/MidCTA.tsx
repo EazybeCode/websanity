@@ -41,7 +41,7 @@ export function MidCTA() {
             <span className="mid-cta-tag-dot" /> LIVE · WHATSAPP · 24/7
           </span>
           <h2>
-            Talk to our Agent. <em>Right now.</em>
+            Talk to Our Agent. <em>Right Now.</em>
           </h2>
           <p>
             Our Lead Qualification Agent is online. Send it a message — it will qualify
