@@ -266,7 +266,7 @@ export function Nav() {
       <div className="nav-ctas">
         <a href="#" className="btn btn-ghost">Book a Demo</a>
         <a
-          href="https://wa.me/13023356201?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works."
+          href="https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works."
           className="btn btn-primary"
         >
           Talk to our Agent →
@@ -394,7 +394,7 @@ export function Nav() {
           <div className="nav-drawer-ctas">
             <a href="#" className="btn btn-ghost" onClick={closeMenu}>Book a Demo</a>
             <a
-              href="https://wa.me/13023356201?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works."
+              href="https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works."
               className="btn btn-primary"
               onClick={closeMenu}
             >

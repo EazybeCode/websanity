@@ -1,5 +1,5 @@
 const WA_LINK =
-  'https://wa.me/13023356201?text=Hi%20-%20I%27d%20like%20a%20custom%20agent%20for%20my%20CRM.'
+  'https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20a%20custom%20agent%20for%20my%20CRM.'
 
 export function BannerCTA() {
   return (

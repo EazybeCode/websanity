@@ -6,7 +6,7 @@ import FooterV2 from '@/components/v2/FooterV2'
 import BeaBot from '@/components/v2/BeaBot'
 import '@/components/v2/v2.css'
 
-const WA_LINK = 'https://wa.me/13023356201?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works.'
+const WA_LINK = 'https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works.'
 
 const PROBLEMS = [
   { idx: '01 · CRM Sync Agent', title: '200 chats today.', em: 'Zero in the CRM.', desc: "Reps sell all day. Nothing's logged. No handoff. No trail." },

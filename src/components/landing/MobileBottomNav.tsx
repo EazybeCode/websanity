@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 const WA_LINK =
-  'https://wa.me/13023356201?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works.'
+  'https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works.'
 
 export function MobileBottomNav() {
   const [hidden, setHidden] = useState(false)

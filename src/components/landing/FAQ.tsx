@@ -71,7 +71,7 @@ export function FAQ() {
         </div>
 
         <p className="faq-footnote">
-          Didn&apos;t find your answer? <a href="https://wa.me/13023356201?text=Hi%20-%20I%20have%20a%20question%20about%20Eazybe." target="_blank" rel="noopener noreferrer">Let&apos;s connect with us!</a>
+          Didn&apos;t find your answer? <a href="https://wa.me/13024129610?text=Hi%20-%20I%20have%20a%20question%20about%20Eazybe." target="_blank" rel="noopener noreferrer">Let&apos;s connect with us!</a>
         </p>
       </div>
     </section>
