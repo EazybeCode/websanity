@@ -3,6 +3,7 @@ import { Nav } from './Nav'
 import { Hero } from './Hero'
 import { LogoBar } from './LogoBar'
 import { Problem } from './Problem'
+import { ReadMore } from './ReadMore'
 import { ContextEngine } from './ContextEngine'
 import { AgentSync } from './AgentSync'
 import { AgentLeadQual } from './AgentLeadQual'
@@ -29,6 +30,7 @@ export function LandingPage() {
       <Nav />
       <Hero />
       <LogoBar />
+      <ReadMore />
       <Problem />
       <ContextEngine />
       <AgentSync />
