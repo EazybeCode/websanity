@@ -485,7 +485,16 @@
 }
 .landing .logo-track.fwd { animation: landing-logoScroll 35s linear infinite; }
 .landing .logo-track.bwd { animation: landing-logoScrollReverse 35s linear infinite; }
-.landing .logo-track img { height: 32px; opacity: .6; filter: grayscale(1); transition: opacity .2s, filter .2s; }
+.landing .logo-track img {
+  height: 30px;
+  width: 120px;
+  object-fit: contain;
+  object-position: center;
+  opacity: .6;
+  filter: grayscale(1);
+  transition: opacity .2s, filter .2s;
+  flex-shrink: 0;
+}
 .landing .logo-track img:hover { opacity: 1; filter: grayscale(0); }
 @keyframes landing-logoScroll {
   0% { transform: translateX(0); }
@@ -2208,6 +2217,8 @@
   .landing #faq { padding: 50px 0 !important; }
   .landing .final-cta { padding: 50px 0; }
   .landing .footer { padding: 50px 0 10px !important; }
+  .landing .logo-track img { height: 22px; width: 90px; }
+  .landing .logo-track { gap: 28px; }
 }
 @media (max-width: 680px) {
   .landing .container { padding: 0 20px; }
