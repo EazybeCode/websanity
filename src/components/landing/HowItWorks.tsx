@@ -52,7 +52,7 @@ export function HowItWorks() {
   }, [])
 
   return (
-    <section className="section" style={{ paddingBottom: 60 }}>
+    <section className="section">
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">Get Started</span>

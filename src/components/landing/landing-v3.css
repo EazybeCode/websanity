@@ -146,8 +146,8 @@
   transition: all .2s ease;
   font-family: var(--f-sans); white-space: nowrap;
 }
-.landing .btn-ghost { color: var(--ink-2); }
-.landing .btn-ghost:hover { color: var(--ink); background: var(--bg-2); }
+.landing .btn-ghost { color: var(--ink-2); transition: background .2s, color .2s; }
+.landing .btn-ghost:hover { color: #fff; background: #5b4bae; }
 .landing .btn-outline { color: var(--ink); border: 1px solid var(--line-2); background: var(--paper); }
 .landing .btn-outline:hover { border-color: var(--ink-3); }
 .landing .btn-primary {
@@ -391,13 +391,37 @@
 .landing .float-tile:nth-child(9) { animation-duration: 21s; animation-delay: -8s; }
 
 .landing .trust {
-  display: flex; justify-content: center; align-items: center;
-  gap: 22px; flex-wrap: wrap; margin-top: 14px;
-  font-family: var(--f-mono); font-size: 11px; color: var(--ink-4);
-  letter-spacing: 0.04em; text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 18px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
-.landing .trust .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--line-2); }
-.landing .trust svg { width: 12px; height: 12px; color: var(--accent-ink); }
+.landing .trust > span:not(.sep) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.landing .trust .sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+.landing .trust svg {
+  width: 13px;
+  height: 13px;
+  color: #FFB74A;
+  flex-shrink: 0;
+}
 
 /* hero mesh */
 .landing .hero::after {
@@ -1728,7 +1752,7 @@
 }
 
 /* FINAL CTA */
-.landing .final-cta { padding: 70px 0 80px; position: relative; overflow: hidden; text-align: center; }
+.landing .final-cta { padding: 120px 0; position: relative; overflow: hidden; text-align: center; }
 .landing .final-cta > * { position: relative; z-index: 2; }
 .landing .final-cta h2 {
   font-family: var(--f-display); font-weight: 400;
@@ -2178,6 +2202,12 @@
   .landing .footer-watermark { margin-top: 30px; }
   .landing .problem { padding: 50px 0; }
   .landing .agent { padding: 50px 0; }
+  .landing .section:has(.steps) { padding-top: 50px; padding-bottom: 60px; }
+  .landing .customer-stories { padding: 60px 0; }
+  .landing #integrations { padding: 50px 0; }
+  .landing #faq { padding: 50px 0 !important; }
+  .landing .final-cta { padding: 50px 0; }
+  .landing .footer { padding: 50px 0 10px !important; }
 }
 @media (max-width: 680px) {
   .landing .container { padding: 0 20px; }
