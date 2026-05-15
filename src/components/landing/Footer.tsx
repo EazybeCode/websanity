@@ -2,11 +2,61 @@
 
 import { useState } from 'react'
 
-const COLS = [
-  { title: 'Agents', items: ['CRM Sync', 'Lead Qualification', 'Revenue Ops', 'Team Visibility', 'All agents →'] },
-  { title: 'Integrations', items: ['HubSpot', 'Salesforce', 'Zoho CRM', 'Pipedrive', 'Google Sheets'] },
-  { title: 'Resources', items: ['Blog', 'Help Center', 'Case Studies', 'API Docs'] },
-  { title: 'Company', items: ['About', 'Contact', 'Partners', 'Careers'] },
+const COLS: { title: string; items: { name: string; href: string }[] }[] = [
+  {
+    title: 'Agents',
+    items: [
+      { name: 'CRM Sync', href: '/features/whatsapp-crm' },
+      { name: 'Lead Qualification', href: '/features/team-inbox' },
+      { name: 'Revenue Ops', href: '/features/revenue-inbox' },
+      { name: 'Customer Success', href: '/features/whatsapp-copilot' },
+      { name: 'All agents →', href: '/features' },
+    ],
+  },
+  {
+    title: 'Integrations',
+    items: [
+      { name: 'HubSpot', href: '/hubspot-whatsapp-integration' },
+      { name: 'Salesforce', href: '/salesforce-whatsapp-integration' },
+      { name: 'Zoho CRM', href: '/zoho-whatsapp-integration' },
+      { name: 'Pipedrive', href: '/pipedrive-whatsapp-integration' },
+      { name: 'Google Sheets', href: '/google-sheets-whatsapp-integration' },
+      { name: 'All integrations →', href: '/integrations' },
+    ],
+  },
+  {
+    title: 'Features',
+    items: [
+      { name: 'Team Inbox', href: '/features/team-inbox' },
+      { name: 'Cloud Backup', href: '/features/cloud-backup' },
+      { name: 'Quick Reply', href: '/features/quick-reply' },
+      { name: 'Scheduler', href: '/features/scheduler' },
+      { name: 'Revenue Inbox', href: '/features/revenue-inbox' },
+      { name: 'Rep Radar', href: '/features/rep-radar' },
+      { name: 'WhatsApp Copilot', href: '/features/whatsapp-copilot' },
+      { name: 'WhatsApp CRM', href: '/features/whatsapp-crm' },
+    ],
+  },
+  {
+    title: 'Resources',
+    items: [
+      { name: 'Blog', href: '/blog' },
+      { name: 'Help Center', href: 'https://help.eazybe.com/introduction' },
+      { name: 'Comparison', href: '/comparison' },
+      { name: 'WhatsApp API', href: '/whatsapp-api' },
+      { name: 'Pricing', href: '/pricing' },
+    ],
+  },
+  {
+    title: 'Company',
+    items: [
+      { name: 'About', href: '/about-us' },
+      { name: 'Become Our Partner', href: '/become-our-partner' },
+      { name: 'Terms', href: '/terms' },
+      { name: 'Privacy', href: '/privacy' },
+      { name: 'MSA', href: '/msa' },
+    ],
+  },
 ]
 
 export function Footer() {
@@ -79,7 +129,16 @@ export function Footer() {
                 </button>
                 <ul id={`footer-col-${idx}`}>
                   {c.items.map((i) => (
-                    <li key={i}><a href="#">{i}</a></li>
+                    <li key={i.name}>
+                      <a
+                        href={i.href}
+                        {...(i.href.startsWith('http')
+                          ? { target: '_blank', rel: 'noopener noreferrer' }
+                          : {})}
+                      >
+                        {i.name}
+                      </a>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -93,13 +152,11 @@ export function Footer() {
             © 2026 Eazybe.com <span className="footer-baseline-sep">|</span> Trusted Global WhatsApp AI Agents for CRM Teams Across the World
           </p>
           <nav className="footer-baseline-links" aria-label="Policies">
-            <a href="#">All Policies</a>
+            <a href="/terms">Terms &amp; Conditions</a>
             <span className="footer-baseline-sep">|</span>
-            <a href="#">Terms &amp; Conditions</a>
+            <a href="/privacy">Privacy Policy</a>
             <span className="footer-baseline-sep">|</span>
-            <a href="#">Privacy Policy</a>
-            <span className="footer-baseline-sep">|</span>
-            <a href="#">MSA</a>
+            <a href="/msa">MSA</a>
           </nav>
           <p className="footer-disclaimer">
             Disclaimer: Eazybe is an independent product and is not affiliated with, endorsed by, or sponsored by WhatsApp LLC or Meta Platforms, Inc. WhatsApp is a trademark of WhatsApp LLC, registered in the U.S. and other countries. HubSpot, Salesforce, Zoho, Pipedrive, and all other third-party brands and logos referenced on this site are trademarks of their respective owners. Use of Eazybe is subject to WhatsApp&apos;s Business Policy and the terms of each connected service. Users are solely responsible for ensuring their messaging practices comply with applicable laws, anti-spam regulations, and platform policies in their jurisdiction.
