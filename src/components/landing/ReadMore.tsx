@@ -89,13 +89,10 @@ export function ReadMore() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}
       />
       <div className="container">
-        <div className="readmore-head">
-          <span className="readmore-eyebrow">
-            <span className="readmore-eyebrow-dot" />
-            WHY EAZYBE · LEARN MORE
-          </span>
-          <h2 id="readmore-title" className="sr-only">
-            Why Eazybe — long-form overview
+        <div className="sec-head centered reveal">
+          <span className="sec-tag">Why Eazybe · Learn More</span>
+          <h2 id="readmore-title">
+            Everything you need to know about <em>WhatsApp AI Agents.</em>
           </h2>
         </div>
         <div className="readmore-card">

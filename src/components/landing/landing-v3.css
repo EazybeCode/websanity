@@ -1214,53 +1214,19 @@
 
 /* READMORE — scrollable info card before Problem section */
 .landing .readmore-wrap {
-  padding: 70px 0 50px;
+  padding: 80px 0 60px;
   background: var(--bg);
 }
-.landing .readmore-head {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 22px;
-}
-.landing .readmore-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 100px;
-  background: rgba(91, 75, 174, 0.08);
-  border: 1px solid rgba(91, 75, 174, 0.18);
-  font-family: var(--f-mono);
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: #5b4bae;
-}
-.landing .readmore-eyebrow-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #5b4bae;
-  box-shadow: 0 0 0 0 rgba(91, 75, 174, 0.6);
-  animation: landing-readmoreEyePulse 2s ease-out infinite;
-}
-@keyframes landing-readmoreEyePulse {
-  0% { box-shadow: 0 0 0 0 rgba(91, 75, 174, 0.55); }
-  100% { box-shadow: 0 0 0 8px rgba(91, 75, 174, 0); }
-}
+.landing .readmore-wrap .sec-head { margin-bottom: 36px; }
 .landing .readmore-card {
   position: relative;
-  background:
-    radial-gradient(120% 80% at 0% 0%, rgba(91, 75, 174, 0.07), transparent 50%),
-    radial-gradient(120% 80% at 100% 100%, rgba(37, 211, 102, 0.06), transparent 50%),
-    linear-gradient(180deg, #F2F5FB 0%, #E8EDF5 100%);
-  border: 1px solid rgba(15, 20, 35, 0.08);
-  border-radius: 24px;
-  padding: 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 10px;
   box-shadow:
-    0 24px 60px -28px rgba(15, 20, 35, 0.2),
-    0 4px 12px -4px rgba(15, 20, 35, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    0 18px 48px -28px rgba(26, 24, 21, 0.18),
+    0 2px 6px -2px rgba(26, 24, 21, 0.04);
 }
 .landing .readmore-scroll-mask {
   position: relative;
@@ -1279,17 +1245,18 @@
 }
 .landing .readmore-scroll-mask::before {
   top: 0;
-  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, var(--paper) 0%, color-mix(in oklab, var(--paper) 0%, transparent) 100%);
 }
 .landing .readmore-scroll-mask::after {
   bottom: 0;
-  background: linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(0deg, var(--paper) 0%, color-mix(in oklab, var(--paper) 0%, transparent) 100%);
 }
 .landing .readmore-scroll {
-  max-height: 260px;
+  max-height: 280px;
   overflow-y: auto;
-  padding: 40px 44px;
-  background: #fff;
+  padding: 36px 40px;
+  background: var(--paper);
+  border-radius: 14px;
   scrollbar-width: thin;
   scrollbar-color: rgba(91, 75, 174, 0.3) transparent;
 }
@@ -1302,27 +1269,18 @@
 .landing .readmore-scroll::-webkit-scrollbar-thumb:hover { background: rgba(91, 75, 174, 0.55); }
 .landing .readmore-h2 {
   font-family: var(--f-display);
-  font-weight: 700;
-  font-size: clamp(22px, 2.4vw, 30px);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.25;
+  letter-spacing: -0.018em;
   color: var(--ink);
-  margin: 0 0 8px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(15, 20, 35, 0.08);
-  position: relative;
+  margin: 0 0 14px;
 }
-.landing .readmore-h2::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 40px;
-  height: 2px;
-  background: linear-gradient(90deg, #5b4bae, #8b7ad6);
-  border-radius: 2px;
+.landing .readmore-h2 em {
+  font-style: normal;
+  color: var(--accent-ink);
 }
-.landing .readmore-h2 + p { margin-top: 18px; }
+.landing .readmore-h2 + p { margin-top: 0; }
 .landing .readmore-scroll p {
   font-size: 15px;
   line-height: 1.65;
