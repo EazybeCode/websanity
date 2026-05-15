@@ -14,7 +14,7 @@ const PEOPLE: Person[] = [
   { name: 'Marco Rossi', initials: 'MR', bg: '#D4D9E5', msg: 'Sending the signed contract now 🎉' },
   { name: 'Aisha Khan',  initials: 'AK', bg: '#ECEFF7', msg: "We're comparing you vs. competitor X" },
   { name: 'Diego Lopez', initials: 'DL', bg: '#D9DFEC', msg: 'Voice note sent · 0:42' },
-  { name: 'Lena Weber',  initials: 'LW', bg: '#E8EBF3', msg: 'Great — lets move forward!' },
+  { name: 'Lena Weber',  initials: 'LW', bg: '#E8EBF3', msg: 'Great, lets move forward!' },
 ]
 
 const CheckIcon = (
@@ -149,9 +149,9 @@ export function AgentSync() {
             <ul className="feat-list">
               {[
                 'Syncs to HubSpot, Salesforce, Zoho, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets, custom API',
-                'Smart field mapping — right contact, right deal, right company',
-                'Bi-directional — CRM updates flow back into WhatsApp',
-                'Attachments, voice notes, media — all preserved',
+                'Smart field mapping, right contact, right deal, right company',
+                'Bi-directional, CRM updates flow back into WhatsApp',
+                'Attachments, voice notes, media, all preserved',
               ].map((t) => (
                 <li key={t}><span className="tick">{CheckIcon}</span>{t}</li>
               ))}

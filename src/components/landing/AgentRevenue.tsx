@@ -123,7 +123,7 @@ export function AgentRevenue() {
         <div className="agent-inner">
           <div className="agent-copy reveal">
             <span className="sec-tag">Agent 03 · Revenue Agent</span>
-            <h3>See which deals are <em>really alive.</em></h3>
+            <h3>See Which Deals Are <em>Really Alive</em></h3>
             <p className="lede">Reads WhatsApp + CRM every night. Flags ghosted deals. Scores deal health. Delivers a Weekly Executive Brief.</p>
             <ul className="feat-list">
               {[

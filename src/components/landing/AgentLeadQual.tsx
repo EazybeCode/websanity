@@ -14,10 +14,10 @@ const CONVOS: Convo[] = [
   { name: 'Sara P.', initials: 'SP', color: '#E4E8F1', lang: 'EN', msgs: [
     { who: 'user', text: 'Hi, I saw your ad. Interested in your product.' },
     { who: 'bot',  text: "Great to hear! What's your company name and team size?" },
-    { who: 'user', text: 'TechCorp — about 50 sales reps.' },
+    { who: 'user', text: 'TechCorp, about 50 sales reps.' },
     { who: 'bot',  text: 'Perfect! Using HubSpot or Salesforce?' },
     { who: 'user', text: 'HubSpot. Can we chat tomorrow at 3?' },
-    { who: 'bot',  text: 'Booked. Routing you to Priya — top closer for 50-rep teams.' },
+    { who: 'bot',  text: 'Booked. Routing you to Priya, top closer for 50-rep teams.' },
   ]},
   { name: 'Marco R.', initials: 'MR', color: '#D4D9E5', lang: 'ES', msgs: [
     { who: 'user', text: 'Hola, ¿pueden ayudar a un equipo de 20?' },
@@ -25,7 +25,7 @@ const CONVOS: Convo[] = [
     { who: 'user', text: 'Pipedrive. Buscamos integración.' },
     { who: 'bot',  text: 'Perfecto. ¿Presupuesto mensual aproximado?' },
     { who: 'user', text: 'Unos $2K. ¿Tienen plan empresarial?' },
-    { who: 'bot',  text: 'Sí — te conecto con Luis ahora mismo.' },
+    { who: 'bot',  text: 'Sí, te conecto con Luis ahora mismo.' },
   ]},
   { name: 'Aisha K.', initials: 'AK', color: '#ECEFF7', lang: 'HI', msgs: [
     { who: 'user', text: 'Namaste, kya aap lead tracking karte hain?' },
@@ -33,7 +33,7 @@ const CONVOS: Convo[] = [
     { who: 'user', text: '12 reps, mostly WhatsApp based.' },
     { who: 'bot',  text: 'Perfect fit. Zoho ya HubSpot use karte ho?' },
     { who: 'user', text: 'Zoho. Demo possible hai aaj?' },
-    { who: 'bot',  text: 'Done — Arjun aapko 5 min mein ping karega.' },
+    { who: 'bot',  text: 'Done, Arjun aapko 5 min mein ping karega.' },
   ]},
   { name: 'João S.', initials: 'JS', color: '#D9DFEC', lang: 'PT', msgs: [
     { who: 'user', text: 'Oi, vocês atendem e-commerce?' },
@@ -41,7 +41,7 @@ const CONVOS: Convo[] = [
     { who: 'user', text: 'Shopify + WhatsApp Business.' },
     { who: 'bot',  text: 'Combinação perfeita. Quantos atendentes?' },
     { who: 'user', text: '8 atendentes, 3 turnos.' },
-    { who: 'bot',  text: 'Ótimo — te envio a proposta em 2 min.' },
+    { who: 'bot',  text: 'Ótimo, te envio a proposta em 2 min.' },
   ]},
 ]
 
@@ -158,12 +158,12 @@ export function AgentLeadQual() {
         <div className="agent-inner">
           <div className="agent-copy reveal">
             <span className="sec-tag">Agent 02 · Lead Qualification · TRY IT LIVE</span>
-            <h3>Your best rep&apos;s instincts. <em>Running 24/7.</em></h3>
-            <p className="lede">A lead messages at 11 PM. This agent responds instantly — using qualification patterns learned from your top closers. Asks the right questions. Scores intent. Routes hot prospects to the right rep.</p>
+            <h3>Your Best Rep&apos;s Instincts, <em>Running 24/7</em></h3>
+            <p className="lede">A lead messages at 11 PM. This agent responds instantly, using qualification patterns learned from your top closers. Asks the right questions. Scores intent. Routes hot prospects to the right rep.</p>
             <ul className="feat-list">
               {[
                 'Qualifies using your criteria (BANT, MEDDIC, or custom)',
-                'Multilingual — English, Portuguese, Spanish, and more',
+                'Multilingual, English, Portuguese, Spanish, and more',
                 'Reads CRM before every conversation',
                 'WhatsApp-native button flows',
               ].map((t) => (

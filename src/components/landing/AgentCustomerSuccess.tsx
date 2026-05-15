@@ -9,7 +9,7 @@ export function AgentCustomerSuccess() {
         <div className="agent-inner">
           <div className="agent-copy reveal">
             <span className="sec-tag">Agent 04 · Customer Success</span>
-            <h3>Your best support rep. <em>Available 24/7.</em></h3>
+            <h3>Your Best Support Rep, <em>Available 24/7</em></h3>
             <p className="lede">Answers support on WhatsApp instantly. Knowledge-base-powered. Hands off to a human with full context when it matters.</p>
             <ul className="feat-list">
               {[

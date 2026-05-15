@@ -2528,7 +2528,7 @@
   .landing .footer { padding: 50px 0 10px !important; }
   .landing .logo-track img { height: 22px; width: 90px; }
   .landing .logo-track { gap: 28px; }
-  .landing .hero h1 { font-size: 27px !important; line-height: 1.15; }
+  .landing .hero h1 { font-size: 30px !important; line-height: 1.15; }
   .landing .sec-head h2,
   .landing .final-cta h2,
   .landing .mid-cta-content h2,
@@ -2553,6 +2553,8 @@
   .landing .hero-sub,
   .landing .agent-copy .lede { font-size: 16px !important; }
   .landing .integrations-foot { font-size: 16px !important; }
+  .landing .agent-copy h3 { font-size: 24px !important; line-height: 1.2; }
+  .landing .footer-disclaimer { text-align: justify; text-align-last: center; }
 }
 @media (max-width: 680px) {
   .landing .container { padding: 0 20px; }

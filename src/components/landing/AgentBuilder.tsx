@@ -9,12 +9,12 @@ export function AgentBuilder() {
         <div className="agent-inner">
           <div className="agent-copy reveal">
             <span className="sec-tag">Agent 05 · Agent Builder · BUILD YOUR OWN</span>
-            <h3>Your use case. <em>Your data. Your agent.</em></h3>
+            <h3>Your Use Case, <em>Your Data, Your Agent</em></h3>
             <p className="lede">Not every team fits the lineup. Build the agent your team needs in a day.</p>
             <ul className="feat-list">
-              <li><span className="tick">{Check}</span><strong style={{ marginRight: 6 }}>DEFINE</strong> — Triggers, CRM fields</li>
-              <li><span className="tick">{Check}</span><strong style={{ marginRight: 6 }}>TRAIN</strong> — On specific chats</li>
-              <li><span className="tick">{Check}</span><strong style={{ marginRight: 6 }}>DEPLOY</strong> — On WhatsApp + CRM sync</li>
+              <li><span className="tick">{Check}</span><strong style={{ marginRight: 6 }}>DEFINE</strong> Triggers, CRM fields</li>
+              <li><span className="tick">{Check}</span><strong style={{ marginRight: 6 }}>TRAIN</strong> On specific chats</li>
+              <li><span className="tick">{Check}</span><strong style={{ marginRight: 6 }}>DEPLOY</strong> On WhatsApp + CRM sync</li>
             </ul>
             <p className="lede" style={{ fontSize: 14, marginTop: 18 }}>
               <strong>Use case examples:</strong><br />
