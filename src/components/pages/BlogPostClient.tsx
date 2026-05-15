@@ -191,7 +191,7 @@ const createPortableTextComponents = (
         return (
           <h2
             id={id}
-            className="text-[19px] md:text-3xl font-bold text-white mt-3 mb-4 pt-3 border-t border-white/10 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28"
+            className="text-[19px] md:text-3xl font-bold text-white mt-3 mb-4 pt-3 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28"
           >
             {children}
           </h2>
@@ -202,7 +202,7 @@ const createPortableTextComponents = (
         return (
           <h3
             id={id}
-            className="text-[16px] md:text-2xl font-semibold text-[#F0F3FA] mt-3 mb-3 scroll-mt-28"
+            className="text-[16px] md:text-2xl font-semibold text-slate-100 mt-3 mb-3 scroll-mt-28"
           >
             {children}
           </h3>
@@ -213,19 +213,19 @@ const createPortableTextComponents = (
         return (
           <h4
             id={id}
-            className="text-xl font-semibold text-[#D4D9E5] mt-8 mb-3 scroll-mt-28"
+            className="text-xl font-semibold text-slate-200 mt-8 mb-3 scroll-mt-28"
           >
             {children}
           </h4>
         )
       },
       normal: ({ children }: any) => (
-        <p className="text-[14px] md:text-lg text-[#D4D9E5] leading-relaxed mb-3">
+        <p className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-3">
           {children}
         </p>
       ),
       blockquote: ({ children }: any) => (
-        <blockquote className="border-l-4 border-brand-cyan pl-6 my-8 italic text-[#9AA0B0] text-base md:text-xl">
+        <blockquote className="border-l-4 border-brand-cyan pl-6 my-8 italic text-slate-400 text-base md:text-xl">
           {children}
         </blockquote>
       ),
@@ -238,12 +238,12 @@ const createPortableTextComponents = (
     },
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-[#D4D9E5] leading-relaxed pl-6 mb-1.5 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-6 mb-1.5 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
           {children}
         </li>
       ),
       number: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-[#D4D9E5] leading-relaxed mb-1.5">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-1.5">
           {children}
         </li>
       ),
@@ -254,7 +254,7 @@ const createPortableTextComponents = (
       ),
       em: ({ children }: any) => <em className="italic">{children}</em>,
       code: ({ children }: any) => (
-        <code className="bg-[#181B24] text-brand-cyan px-2 py-1 rounded text-sm font-mono">
+        <code className="bg-slate-800 text-brand-cyan px-2 py-1 rounded text-sm font-mono">
           {children}
         </code>
       ),
@@ -303,12 +303,12 @@ const createPortableTextComponents = (
               <img
                 src={value.url}
                 alt={value.alt || ''}
-                className="w-full rounded-2xl shadow-2xl border border-white/10"
+                className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
                 loading="lazy"
               />
             )}
             {value.caption && (
-              <figcaption className="text-center text-[#8A90A0] text-[12px] mt-4">
+              <figcaption className="text-center text-slate-500 text-[12px] mt-4">
                 {value.caption}
               </figcaption>
             )}
@@ -320,10 +320,10 @@ const createPortableTextComponents = (
         return (
           <figure className="my-8">
             {value.filename && (
-              <div className="text-xs text-[#8A90A0] mb-2 font-mono">{value.filename}</div>
+              <div className="text-xs text-slate-500 mb-2 font-mono">{value.filename}</div>
             )}
             <pre
-              className={`bg-[#0F1115] rounded-xl p-4 md:p-6 overflow-x-auto border border-white/12 ${
+              className={`bg-slate-900 rounded-xl p-4 md:p-6 overflow-x-auto border border-slate-700 ${
                 value.theme === 'light' ? 'light' : ''
               }`}
             >
@@ -351,7 +351,7 @@ const createPortableTextComponents = (
         return (
           <figure className="my-8 md:my-12">
             {value.caption && (
-              <figcaption className="text-center text-[#9AA0B0] mb-4">
+              <figcaption className="text-center text-slate-400 mb-4">
                 {value.caption}
               </figcaption>
             )}
@@ -376,10 +376,10 @@ const createPortableTextComponents = (
           <a
             href={value.file?.asset?.url}
             download
-            className={`my-6 inline-flex items-center gap-4 p-4 md:p-6 rounded-xl border border-white/12 hover:border-brand-cyan transition-colors ${
+            className={`my-6 inline-flex items-center gap-4 p-4 md:p-6 rounded-xl border border-slate-700 hover:border-brand-cyan transition-colors ${
               value.variant === 'button'
                 ? 'bg-brand-cyan text-black hover:bg-brand-cyan/90'
-                : 'bg-[#181B24] text-[#D4D9E5]'
+                : 'bg-slate-800 text-slate-300'
             }`}
           >
             <div className="w-12 h-12 rounded-lg bg-brand-cyan/20 flex items-center justify-center">
@@ -401,11 +401,11 @@ const createPortableTextComponents = (
             {value.title && (
               <h3 className="text-xl font-bold text-white mb-6">{value.title}</h3>
             )}
-            <div className="overflow-x-auto rounded-xl border border-white/12">
+            <div className="overflow-x-auto rounded-xl border border-slate-700">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-[#181B24]">
-                    <th className="p-4 text-left text-[#9AA0B0]">Feature</th>
+                  <tr className="bg-slate-800">
+                    <th className="p-4 text-left text-slate-400">Feature</th>
                     {value.columns.map((col: any, i: number) => (
                       <th
                         key={i}
@@ -421,12 +421,12 @@ const createPortableTextComponents = (
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/10">
+                <tbody className="divide-y divide-slate-700">
                   {value.rows?.map((row: any, i: number) => (
                     <tr key={i}>
                       <td className="p-4 font-medium text-white">{row.feature}</td>
                       {row.values?.map((val: string, j: number) => (
-                        <td key={j} className="p-4 text-center text-[#D4D9E5]">
+                        <td key={j} className="p-4 text-center text-slate-300">
                           {val}
                         </td>
                       ))}
@@ -485,7 +485,7 @@ const ReadingProgress: React.FC = () => {
   }, [])
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-1 bg-[#181B24] z-50">
+    <div className="fixed top-0 left-0 right-0 h-1 bg-slate-800 z-50">
       <div
         className="h-full bg-gradient-to-r from-brand-blue to-brand-cyan transition-all duration-150"
         style={{ width: `${progress}%` }}
@@ -531,8 +531,8 @@ const StickyTableOfContents: React.FC<{
     <div className="space-y-6">
       {/* Table of Contents */}
       {sections && sections.length > 0 && (
-        <div className="bg-brand-card border border-white/10 rounded-2xl px-5 py-8 shadow-xl">
-          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
+        <div className="bg-brand-card border border-slate-700/50 rounded-2xl px-5 py-8 shadow-xl">
+          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-700/50">
             <BookOpen size={16} className="text-brand-cyan" />
             <h4 className="font-semibold text-white text-sm">
               {tocTitle || t('blog.detail.tocTitle')}
@@ -562,12 +562,12 @@ const StickyTableOfContents: React.FC<{
                       className={`flex items-start gap-3 py-2 px-3 rounded-lg transition-all text-sm leading-relaxed ${
                         isActive
                           ? 'bg-brand-cyan/10 text-brand-cyan border-l-2 border-brand-cyan'
-                          : 'text-[#9AA0B0] hover:text-white hover:bg-[#181B24]/60'
+                          : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                       }`}
                     >
                       <span
                         className={`font-mono text-[10px] mt-0.5 w-5 flex-shrink-0 ${
-                          isActive ? 'text-brand-cyan' : 'text-[#6B7080]'
+                          isActive ? 'text-brand-cyan' : 'text-slate-600'
                         }`}
                       >
                         {String(i + 1).padStart(2, '0')}
@@ -595,7 +595,7 @@ const StickyTableOfContents: React.FC<{
         <h4 className="text-white font-bold mb-2">
           <span>{sidebarCta?.headline || t('blog.sidebar.headline')}</span>
         </h4>
-        <p className="text-[#9AA0B0] text-sm mb-4 leading-relaxed">
+        <p className="text-slate-400 text-sm mb-4 leading-relaxed">
           {sidebarCta?.description || t('blog.sidebar.description')}
         </p>
         <a
@@ -604,7 +604,7 @@ const StickyTableOfContents: React.FC<{
         >
           <span>{sidebarCta?.buttonText || t('blog.sidebar.buttonText')}</span>
         </a>
-        <p className="text-[10px] text-center mt-3 font-mono text-[#8A90A0] uppercase tracking-widest">
+        <p className="text-[10px] text-center mt-3 font-mono text-slate-500 uppercase tracking-widest">
           {sidebarCta?.footnote || t('blog.sidebar.footnote')}
         </p>
       </div>
@@ -629,7 +629,7 @@ const RelatedPostCard: React.FC<{
   return (
     <div
       onClick={() => router.push(blogPath)}
-      className="bg-brand-card border border-white/12 rounded-2xl overflow-hidden shadow-xl hover:border-white/25 transition-all cursor-pointer group h-full flex flex-col"
+      className="bg-brand-card border border-slate-700 rounded-2xl overflow-hidden shadow-xl hover:border-slate-500 transition-all cursor-pointer group h-full flex flex-col"
     >
       <div className="relative h-48 overflow-hidden">
         <img
@@ -650,7 +650,7 @@ const RelatedPostCard: React.FC<{
         <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 leading-snug group-hover:text-brand-cyan transition-colors relative z-10 cursor-pointer">
           <span>{title}</span>
         </h3>
-        <div className="flex items-center gap-4 mt-auto pt-4 border-t border-white/10 font-mono text-[10px] uppercase text-[#8A90A0] font-bold">
+        <div className="flex items-center gap-4 mt-auto pt-4 border-t border-slate-800 font-mono text-[10px] uppercase text-slate-500 font-bold">
           <span className="flex items-center gap-1">
             <Clock size={12} /> {readTime}
           </span>
@@ -748,16 +748,16 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           {/* Breadcrumb Navigation */}
           <nav className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm mb-0">
-            <Link href={locale === 'en' ? '/' : `/${locale}`} className="text-[#8A90A0] hover:text-white transition-colors">
+            <Link href={locale === 'en' ? '/' : `/${locale}`} className="text-slate-500 hover:text-white transition-colors">
               Home
             </Link>
-            <ChevronRight size={12} className="text-[#6B7080] md:hidden" />
-            <ChevronRight size={14} className="text-[#6B7080] hidden md:block" />
-            <Link href={blogPath} className="text-[#8A90A0] hover:text-white transition-colors">
+            <ChevronRight size={12} className="text-slate-600 md:hidden" />
+            <ChevronRight size={14} className="text-slate-600 hidden md:block" />
+            <Link href={blogPath} className="text-slate-500 hover:text-white transition-colors">
               Blog
             </Link>
-            <ChevronRight size={12} className="text-[#6B7080] md:hidden" />
-            <ChevronRight size={14} className="text-[#6B7080] hidden md:block" />
+            <ChevronRight size={12} className="text-slate-600 md:hidden" />
+            <ChevronRight size={14} className="text-slate-600 hidden md:block" />
             <span
               className="text-brand-cyan font-medium truncate max-w-[150px] sm:max-w-[200px] md:max-w-md"
               title={post.title}
@@ -797,12 +797,12 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
           </h1>
 
           {/* Excerpt */}
-          <p className="text-[15px] sm:text-base md:text-lg text-[#D4D9E5] leading-[1.75] mb-4">
+          <p className="text-[15px] sm:text-base md:text-lg text-slate-300 leading-[1.75] mb-4">
             {post.excerpt}
           </p>
 
           {/* Author & Meta */}
-          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 py-6 md:py-8 border-y border-white/10">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 py-6 md:py-8 border-y border-slate-800/50">
             <div className="flex items-center gap-3 md:gap-4">
               {(() => {
                 const authorUrl = post.author?.slug ? `${locale === 'en' ? '' : `/${locale}`}/blog/authors/${post.author.slug}` : undefined
@@ -830,7 +830,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                     {post.author?.name || t('blog.detail.authorFallback')}
                   </p>
                 )}
-                <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-[#8A90A0] mt-1">
+                <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
                   <span className="flex items-center gap-1">
                     <Calendar size={14} />
                     {new Date(post.publishedAt).toLocaleDateString('en-US', {
@@ -856,28 +856,28 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
             {/* Share buttons — desktop only; mobile shows them in the author section at the bottom */}
             <div className="hidden md:flex items-center gap-1 sm:ml-auto w-full sm:w-auto justify-start sm:justify-end">
               <button
-                className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-[#181B24] text-[#8A90A0] hover:text-white transition-all"
+                className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
                 title="Share on Twitter"
                 onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`, '_blank')}
               >
                 <Twitter size={18} />
               </button>
               <button
-                className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-[#181B24] text-[#8A90A0] hover:text-white transition-all"
+                className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
                 title="Share on LinkedIn"
                 onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
               >
                 <Linkedin size={18} />
               </button>
               <button
-                className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-[#181B24] text-[#8A90A0] hover:text-white transition-all"
+                className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
                 title="Share via Email"
                 onClick={() => window.location.href = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(window.location.href)}`}
               >
                 <Mail size={18} />
               </button>
               <button
-                className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-[#181B24] text-[#8A90A0] hover:text-white transition-all"
+                className="p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
                 title="Copy Link"
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href)
@@ -894,7 +894,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
       {/* Featured Image */}
       {post.featuredImage && (
         <figure className="max-w-7xl mx-auto px-4 md:px-6 mb-3">
-          <div className={`relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden ${mobileAspectClass(post.featuredImageMobileRatio, 'aspect-[16/9]')} ${desktopAspectClass(post.featuredImageDesktopRatio, 'md:aspect-[2/1]')} shadow-xl md:shadow-2xl border border-white/10`}>
+          <div className={`relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden ${mobileAspectClass(post.featuredImageMobileRatio, 'aspect-[16/9]')} ${desktopAspectClass(post.featuredImageDesktopRatio, 'md:aspect-[2/1]')} shadow-xl md:shadow-2xl border border-slate-800/50`}>
             <img
               src={post.featuredImage}
               alt={post.featuredImageAlt || post.title}
@@ -905,7 +905,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               height={630}
             />
           </div>
-          <figcaption className="text-center text-[#9AA0B0] text-[10px] md:text-xs mt-3">
+          <figcaption className="text-center text-slate-400 text-[10px] md:text-xs mt-3">
             {post.featuredImageCaption || post.featuredImageAlt || post.title}
           </figcaption>
         </figure>
@@ -933,7 +933,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                     </div>
                     <div className="flex-1">
                       <h4 className="font-bold text-white mb-2">TL;DR</h4>
-                      <div className="text-[14px] md:text-base text-[#D4D9E5] leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_strong]:text-white [&_em]:italic [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:bg-brand-cyan/15 [&_code]:text-[#A8E3C5] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded">
+                      <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_strong]:text-white [&_em]:italic [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:bg-brand-cyan/15 [&_code]:text-cyan-200 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded">
                         <PortableText
                           value={post.tldr}
                           components={{
@@ -973,13 +973,13 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                       <h4 className="font-bold text-white text-sm md:text-base lg:text-lg">
                         {detailLabels?.summaryTitle || t('blog.detail.summaryTitle')}
                       </h4>
-                      <p className="text-xs md:text-sm text-[#8A90A0]">
+                      <p className="text-xs md:text-sm text-slate-500">
                         {detailLabels?.summarySubtitle || t('blog.detail.summarySubtitle')}
                       </p>
                     </div>
                   </div>
                   <div
-                    className="text-sm md:text-base lg:text-lg text-[#D4D9E5] leading-relaxed [&>p]:mb-3 [&>ul]:space-y-2 [&>ul>li]:flex [&>ul>li]:gap-2 [&>ul>li]:before:content-['->'] [&>ul>li]:before:text-brand-cyan"
+                    className="text-sm md:text-base lg:text-lg text-slate-300 leading-relaxed [&>p]:mb-3 [&>ul]:space-y-2 [&>ul>li]:flex [&>ul>li]:gap-2 [&>ul>li]:before:content-['->'] [&>ul>li]:before:text-brand-cyan"
                     dangerouslySetInnerHTML={{ __html: post.quickAnswer }}
                   />
                 </div>
@@ -988,22 +988,22 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               {/* Mobile TOC Dropdown — hidden everywhere per request; desktop uses the sticky sidebar TOC */}
               {dynamicToc && dynamicToc.length > 0 && (
                 <div className="hidden">
-                  <details className="bg-brand-card border border-white/10 rounded-xl overflow-hidden">
-                    <summary className="flex items-center justify-center gap-2 py-1.5 px-4 cursor-pointer hover:bg-[#181B24]/60 transition-colors">
+                  <details className="bg-brand-card border border-slate-700/50 rounded-xl overflow-hidden">
+                    <summary className="flex items-center justify-center gap-2 py-1.5 px-4 cursor-pointer hover:bg-slate-800/50 transition-colors">
                       <BookOpen size={18} className="text-brand-cyan" />
                       <span className="font-semibold text-white text-[14px] md:text-base">Table of Contents</span>
                       <ChevronDown
                         size={18}
-                        className="text-[#9AA0B0] open:rotate-180 transition-transform ml-1"
+                        className="text-slate-400 open:rotate-180 transition-transform ml-1"
                       />
                     </summary>
-                    <nav className="px-3 py-2.5 border-t border-white/10">
-                      <ul className="list-disc pl-4 space-y-1 marker:text-[#8A90A0]" style={{ listStylePosition: 'outside' }}>
+                    <nav className="px-3 py-2.5 border-t border-slate-700/50">
+                      <ul className="list-disc pl-4 space-y-1 marker:text-slate-500" style={{ listStylePosition: 'outside' }}>
                         {dynamicToc.map((item, i) => {
                           const isActive = mobileActiveSection === item.id
                           return (
                             <li key={i} className={`text-[13px] leading-[1.6] pl-1 ${
-                              isActive ? 'marker:text-brand-cyan' : 'marker:text-[#8A90A0]'
+                              isActive ? 'marker:text-brand-cyan' : 'marker:text-slate-500'
                             }`}>
                               <a
                                 href={`#${item.id}`}
@@ -1027,7 +1027,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                                 className={`transition-colors duration-200 ${
                                   isActive
                                     ? 'text-brand-cyan font-medium'
-                                    : 'text-[#9AA0B0] hover:text-white'
+                                    : 'text-slate-400 hover:text-white'
                                 }`}
                               >
                                 {item.label}
@@ -1177,7 +1177,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               {/* FAQs Section */}
               {post.faqs && post.faqs.length > 0 && (
                 <section
-                  className="mt-3 pt-10 border-t border-white/10"
+                  className="mt-3 pt-10 border-t border-slate-800"
                   aria-labelledby="faq-title"
                 >
                   <h2
@@ -1195,7 +1195,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                         {column.map((faq, i) => (
                           <details
                             key={i}
-                            className="group border border-white/10 rounded-xl bg-[#0F1115]/40 transition-all hover:border-white/20"
+                            className="group border border-slate-700/50 rounded-xl bg-slate-900/30 transition-all hover:border-slate-600"
                           >
                             <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-[16px] md:text-lg">
                               <span className="pr-6">{faq.question}</span>
@@ -1204,7 +1204,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                                 className="text-brand-cyan flex-shrink-0 group-open:rotate-45 transition-transform"
                               />
                             </summary>
-                            <div className="px-6 pb-6 text-[#9AA0B0] text-[14px] md:text-lg leading-relaxed border-t border-white/10 pt-4">
+                            <div className="px-6 pb-6 text-slate-400 text-[14px] md:text-lg leading-relaxed border-t border-slate-700/30 pt-4">
                               {Array.isArray(faq.answer) ? (
                                 <PortableText
                                   value={faq.answer}
@@ -1240,8 +1240,8 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
 
               {/* Author Section */}
               {post.author && (
-                <div className="mt-16 pt-10 border-t border-white/10">
-                  <div className="bg-gradient-to-br from-[#181B24]/60 to-[#0F1115]/60 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-white/10">
+                <div className="mt-16 pt-10 border-t border-slate-800">
+                  <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-slate-700/30">
                     {(() => {
                       const authorUrl = post.author.slug ? `${locale === 'en' ? '' : `/${locale}`}/blog/authors/${post.author.slug}` : undefined
                       const avatar = post.author.image ? (
@@ -1276,28 +1276,28 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                       {/* Mobile-only share buttons — moved from the top-fold header */}
                       <div className="flex md:hidden items-center gap-1 mb-4 justify-center sm:justify-start">
                         <button
-                          className="p-2 rounded-lg hover:bg-[#181B24] text-[#8A90A0] hover:text-white transition-all"
+                          className="p-2 rounded-lg hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
                           title="Share on Twitter"
                           onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`, '_blank')}
                         >
                           <Twitter size={18} />
                         </button>
                         <button
-                          className="p-2 rounded-lg hover:bg-[#181B24] text-[#8A90A0] hover:text-white transition-all"
+                          className="p-2 rounded-lg hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
                           title="Share on LinkedIn"
                           onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
                         >
                           <Linkedin size={18} />
                         </button>
                         <button
-                          className="p-2 rounded-lg hover:bg-[#181B24] text-[#8A90A0] hover:text-white transition-all"
+                          className="p-2 rounded-lg hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
                           title="Share via Email"
                           onClick={() => window.location.href = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(window.location.href)}`}
                         >
                           <Mail size={18} />
                         </button>
                         <button
-                          className="p-2 rounded-lg hover:bg-[#181B24] text-[#8A90A0] hover:text-white transition-all"
+                          className="p-2 rounded-lg hover:bg-slate-800 text-slate-500 hover:text-white transition-all"
                           title="Copy Link"
                           onClick={() => {
                             navigator.clipboard.writeText(window.location.href)
@@ -1307,7 +1307,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                           <LinkIcon size={18} />
                         </button>
                       </div>
-                      <p className="text-lg text-[#9AA0B0] leading-relaxed">
+                      <p className="text-lg text-slate-400 leading-relaxed">
                         {post.author.bio || t('blog.detail.authorBioFallback')}
                       </p>
                     </div>
@@ -1320,7 +1320,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 <h3 className="text-2xl font-bold text-white mb-3">
                   {newsletterCta?.headline || t('blog.newsletter.headline')}
                 </h3>
-                <p className="text-lg text-[#9AA0B0] mb-8 max-w-md mx-auto">
+                <p className="text-lg text-slate-400 mb-8 max-w-md mx-auto">
                   {newsletterCta?.description || t('blog.newsletter.description')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
@@ -1329,7 +1329,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                     placeholder={
                       newsletterCta?.placeholder || t('blog.newsletter.placeholder')
                     }
-                    className="flex-1 bg-brand-black border border-white/12 rounded-xl px-5 py-4 text-white placeholder:text-[#8A90A0] focus:border-brand-cyan outline-none transition-colors text-lg"
+                    className="flex-1 bg-brand-black border border-slate-700 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:border-brand-cyan outline-none transition-colors text-lg"
                     suppressHydrationWarning
                   />
                   <button className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold py-4 px-8 rounded-xl transition-colors">
@@ -1354,7 +1354,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
 
       {/* Related Posts */}
       {relatedPosts && relatedPosts.length > 0 && (
-        <section className="py-20 bg-brand-surface border-t border-white/10">
+        <section className="py-20 bg-brand-surface border-t border-slate-800">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex items-center justify-between mb-12">
               <div>
@@ -1367,7 +1367,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               </div>
               <button
                 onClick={() => router.push(blogPath)}
-                className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl border border-white/12 text-[#D4D9E5] hover:border-white/25 hover:text-white transition-all"
+                className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition-all"
               >
                 {relatedPostsSection?.viewAllText || t('blog.relatedPosts.viewAll')}
                 <ChevronRight size={16} />
