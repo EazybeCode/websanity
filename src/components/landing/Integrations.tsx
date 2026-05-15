@@ -21,9 +21,9 @@ export function Integrations() {
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">Integrations</span>
-          <h2>Works with the CRM <em>You Already Use.</em></h2>
+          <h2>Connect Your <em>WhatsApp AI Agent</em> To The CRM You Already Use</h2>
           <p style={{ maxWidth: 760, width: '100%', textAlign: 'justify', textAlignLast: 'center', hyphens: 'auto' }}>
-            Eazybe plugs into the CRMs your team already lives in — HubSpot, Salesforce, Zoho, Pipedrive, and more. Bi-directional sync, workflow triggers, and custom properties out of the box — no rip-and-replace, no IT project.
+            Eazybe plugs into the CRMs your team already lives in HubSpot, Salesforce, Zoho, Pipedrive and more. Bi-directional sync, workflow triggers and custom properties out of the box, no rip-and-replace, no IT project.
           </p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12, maxWidth: 1000, margin: '0 auto' }}>
@@ -51,7 +51,7 @@ export function Integrations() {
           ))}
         </div>
         <p className="reveal" style={{ textAlign: 'center', fontFamily: 'var(--f-display)', fontSize: 20, color: 'rgba(255,255,255,0.7)', marginTop: 50 }}>
-          Every integration: <em style={{ color: '#fff', fontStyle: 'normal' }}>contact sync, deal sync, activity logs, custom properties, workflow triggers.</em>
+          Every integration - contact sync, deal sync, activity logs, custom properties, workflow triggers.
         </p>
         <div style={{ textAlign: 'center', marginTop: 24 }}>
           <a href="#" className="btn btn-outline btn-lg reveal" style={{ borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}>

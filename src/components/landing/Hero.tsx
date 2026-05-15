@@ -89,9 +89,9 @@ export function Hero() {
           <span className="hero-tag">
             <span className="pulse" /> WHATSAPP AI AGENT · CRM-NATIVE · 24/7
           </span>
-          <h1>The WhatsApp AI Agent <em>that sells like your best rep.</em></h1>
+          <h1>Build Your WhatsApp AI Agent at Eazybe: <em>Expert Sales &amp; Support 24/7 Worldwide</em></h1>
           <p className="hero-sub">
-            Deploy no-code WhatsApp AI agents that qualify leads in 60 seconds, sync every chat to your CRM, and reply in your top closer&apos;s voice. Built for sales and support teams across 40+ countries.
+            Deploy no code WhatsApp AI agents that qualify leads in 60 seconds, sync every chat to your CRM and reply in your top closer voice. Built for sales and support teams across 40+ countries.
           </p>
 
           <div className="prompt-wrap">

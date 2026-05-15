@@ -70,9 +70,9 @@ export function CustomerStories() {
       <div className="container">
         <div className="sec-head centered">
           <span className="sec-tag">Customer Stories</span>
-          <h2>What Teams Tell Us <em>in Demos.</em></h2>
+          <h2>What Sales Teams Say About Our <em>WhatsApp AI Agent</em></h2>
           <p style={{ maxWidth: 'none', width: '100%', textAlign: 'justify', textAlignLast: 'center', hyphens: 'auto' }}>
-            Real quotes from sales ops leads, founders, and revenue teams who switched to Eazybe in the last 90 days — and what changed in their pipeline once their WhatsApp conversations started flowing into the CRM automatically.
+            Real quotes from sales ops leads, founders, and revenue teams who switched to Eazybe in the last 90 days and what changed in their pipeline once their WhatsApp conversations started flowing into the CRM automatically.
           </p>
         </div>
 

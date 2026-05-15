@@ -19,7 +19,7 @@ export function BannerCTA() {
               <span className="banner-cta-dot" /> NEW · CUSTOM AGENT BUILDER
             </div>
             <h3>
-              Get a WhatsApp AI Agent trained on <em>your</em> best reps.
+              Get A WhatsApp AI Agent Trained On Your Best Reps.
             </h3>
             <p>Live in 10 minutes. No code, no migration, no IT team.</p>
           </div>

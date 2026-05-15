@@ -29,7 +29,7 @@ export function ContextEngine() {
             </span>
           </div>
           <p className="ce-note">
-            Every agent reads both. <em>Add a new agent — it already knows your business.</em>
+            Every AI WhatsApp Agent reads both. Add a new agent, it already knows your business.
           </p>
         </div>
       </div>

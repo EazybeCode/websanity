@@ -139,7 +139,7 @@ export function AgentSync() {
   }, [])
 
   return (
-    <section className="agent" id="agents">
+    <section className="agent">
       <div className="container">
         <div className="agent-inner">
           <div className="agent-copy reveal">

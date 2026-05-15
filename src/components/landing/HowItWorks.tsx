@@ -56,9 +56,9 @@ export function HowItWorks() {
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">Get Started</span>
-          <h2>Live in <em>10 Minutes.</em> Not 10 Weeks.</h2>
+          <h2>Build A <em>WhatsApp AI Agent</em> In 10 Minutes, Not 10 Weeks</h2>
           <p style={{ maxWidth: 760, width: '100%', textAlign: 'justify', textAlignLast: 'center', hyphens: 'auto' }}>
-            Three steps, one Chrome extension, zero migration. Install Eazybe alongside the WhatsApp Web your reps already use, connect your CRM with one click, and switch on the agents you need — your first sync starts the moment you flip the toggle.
+            Three steps, one Chrome extension, zero migration. Install Eazybe alongside the WhatsApp Web your reps already use, connect your CRM with one click and switch on the agents you need. Your first sync starts the moment you flip the toggle.
           </p>
         </div>
         <div className="steps" ref={wrapRef}>

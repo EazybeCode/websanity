@@ -50,8 +50,8 @@ export function Problem() {
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">The problem</span>
-          <h2>Selling on WhatsApp Is Easy. <em>Everything Around It Is Broken.</em></h2>
-          <p>Your reps live in WhatsApp. Your pipeline lives in your CRM. The two never meet — so deals slip, follow-ups vanish, and revenue quietly leaks out of conversations nobody can see.</p>
+          <h2>Selling On WhatsApp Is Easy. Without A <em>WhatsApp AI Agent</em>, Everything Around It Is Broken</h2>
+          <p>Your reps live in WhatsApp. Your pipeline lives in your CRM. The two never meet. So, deals slip, follow-ups vanish, and revenue quietly leaks out of conversations nobody can see.</p>
         </div>
         <div className="problem-grid" ref={gridRef}>
           <div className="p-card reveal">
@@ -139,7 +139,7 @@ export function Problem() {
             </div>
           </div>
         </div>
-        <p className="problem-foot reveal">Each blind spot has an <span>agent</span> that fixes it. ↓</p>
+        <p className="problem-foot reveal">Each blind spot has an advanced <span>AI Agent on WhatsApp</span> that fixes it. ↓</p>
 
         <div className="steps-cta">
           <div className="steps-cta-line">

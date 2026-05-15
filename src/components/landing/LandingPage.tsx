@@ -5,6 +5,7 @@ import { LogoBar } from './LogoBar'
 import { Problem } from './Problem'
 import { ReadMore } from './ReadMore'
 import { ContextEngine } from './ContextEngine'
+import { AgentsHeader } from './AgentsHeader'
 import { AgentSync } from './AgentSync'
 import { AgentLeadQual } from './AgentLeadQual'
 import { AgentRevenue } from './AgentRevenue'
@@ -30,9 +31,10 @@ export function LandingPage() {
       <Nav />
       <Hero />
       <LogoBar />
-      <ReadMore />
       <Problem />
+      <ReadMore />
       <ContextEngine />
+      <AgentsHeader />
       <AgentSync />
       <AgentLeadQual />
       <AgentRevenue />

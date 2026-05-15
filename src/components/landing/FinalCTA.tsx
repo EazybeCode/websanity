@@ -3,7 +3,7 @@ export function FinalCTA() {
     <section className="final-cta" data-tone="dark">
       <div className="container">
         <h2 className="reveal">Your WhatsApp Team <em>Finally With An AI Brain.</em></h2>
-        <p className="sub reveal">Agents that know your CRM, read your chats, and sell like your best reps — 24/7.</p>
+        <p className="sub reveal">WhatsApp Agents that know your CRM, read your chats and sell like your best reps 24/7.</p>
         <div className="ctas reveal">
           <a
             href="https://wa.me/1234567890?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works."
