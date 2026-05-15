@@ -50,7 +50,7 @@ export function Integrations() {
             </div>
           ))}
         </div>
-        <p className="reveal" style={{ textAlign: 'center', fontFamily: 'var(--f-display)', fontSize: 20, color: 'rgba(255,255,255,0.7)', marginTop: 50 }}>
+        <p className="reveal integrations-foot" style={{ textAlign: 'center', fontFamily: 'var(--f-display)', fontSize: 20, color: 'rgba(255,255,255,0.7)', marginTop: 50 }}>
           Every integration - contact sync, deal sync, activity logs, custom properties, workflow triggers.
         </p>
         <div style={{ textAlign: 'center', marginTop: 24 }}>

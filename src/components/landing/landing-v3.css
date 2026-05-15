@@ -251,10 +251,11 @@
 .landing .hero h1 {
   font-family: var(--f-display);
   font-weight: 400;
-  font-size: clamp(36px, 5vw, 72px);
-  line-height: 1.06; letter-spacing: -0.025em;
-  color: var(--ink); max-width: 14ch;
+  font-size: clamp(32px, 4.2vw, 60px);
+  line-height: 1.08; letter-spacing: -0.025em;
+  color: var(--ink); max-width: 22ch;
   margin: 0 auto 28px; padding-bottom: 0.05em;
+  text-wrap: balance;
 }
 .landing .hero h1 em { font-style: normal; color: var(--accent-ink); }
 
@@ -2527,6 +2528,31 @@
   .landing .footer { padding: 50px 0 10px !important; }
   .landing .logo-track img { height: 22px; width: 90px; }
   .landing .logo-track { gap: 28px; }
+  .landing .hero h1 { font-size: 27px !important; line-height: 1.15; }
+  .landing .sec-head h2,
+  .landing .final-cta h2,
+  .landing .mid-cta-content h2,
+  .landing .readmore-h2 { font-size: 26px !important; line-height: 1.2; }
+  .landing .problem-foot { font-size: 18px; text-wrap: balance; }
+  .landing .steps-cta-line { align-items: center !important; }
+  .landing .steps-cta-check { margin-top: 0; }
+  .landing .readmore-wrap .sec-head p {
+    max-width: none !important;
+    width: 100% !important;
+    text-align: center !important;
+    text-align-last: center !important;
+    hyphens: auto !important;
+  }
+  .landing .readmore-wrap .sec-head p,
+  .landing .agents-header .sec-head p,
+  .landing #integrations .sec-head p,
+  .landing .section:has(.steps) .sec-head p,
+  .landing #faq .sec-head p,
+  .landing .customer-stories .sec-head p,
+  .landing .problem .sec-head p,
+  .landing .hero-sub,
+  .landing .agent-copy .lede { font-size: 16px !important; }
+  .landing .integrations-foot { font-size: 16px !important; }
 }
 @media (max-width: 680px) {
   .landing .container { padding: 0 20px; }
