@@ -89,7 +89,7 @@ export function Hero() {
           <span className="hero-tag">
             <span className="pulse" /> WHATSAPP AI AGENT · CRM-NATIVE · 24/7
           </span>
-          <h1>WhatsApp AI Agent For Sales &amp; Support: <em>Build No-Code AI Agent On WhatsApp</em></h1>
+          <h1>WhatsApp AI Agents For Sales &amp; Support: <em>Build No-Code AI Agent On WhatsApp</em></h1>
           <p className="hero-sub">
             Deploy no code WhatsApp AI agents that qualify leads in 60 seconds, sync every chat to your CRM and reply in your top closer voice. Built for sales and support teams across 40+ countries.
           </p>
