@@ -31,7 +31,7 @@ export default function FbPage() {
         if (exitPage) body.exit_page = exitPage
 
         try {
-          const resp = await fetch('https://cerberus.eazybe.com/prod/api/v1/whatzapp/updateutmonhubspot', {
+          const resp = await fetch('https://cerberus.eazybe.com/prod/api/v1/updateutmonhubspot', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),

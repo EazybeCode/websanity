@@ -63,7 +63,7 @@ const getBearerToken = (authCode: string) => {
   const workspaceId = localStorage.getItem("workspaceId")
 
   fetch(
-    `https://cerberus.eazybe.com/prod/api/v1/whatzapp/hubspotauthentication?workspace_id=${workspaceId}&grant_type=authorization_code&code=${authCode}&redirect_uri=${redirectUri}&client_id=${clientId}&client_secret=${clientSecret}`,
+    `https://cerberus.eazybe.com/prod/api/v1/hubspotauthentication?workspace_id=${workspaceId}&grant_type=authorization_code&code=${authCode}&redirect_uri=${redirectUri}&client_id=${clientId}&client_secret=${clientSecret}`,
     { method: "POST" }
   )
     .then((res) => res.json())
