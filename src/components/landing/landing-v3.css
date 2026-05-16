@@ -3167,6 +3167,31 @@
 .landing { color: var(--ink); }
 .landing p, .landing li, .landing span, .landing div { color: inherit; }
 
+/* LeadSidebar panel stays dark; re-map text colors inside so the form
+   reads as light-on-dark instead of inheriting the light-theme overrides. */
+.landing .lead-sidebar-panel { background-color: #0F1115 !important; border-color: rgba(255,255,255,0.10) !important; }
+.landing .lead-sidebar-panel .text-slate-100,
+.landing .lead-sidebar-panel .text-white { color: #F0F3FA !important; }
+.landing .lead-sidebar-panel .text-slate-200,
+.landing .lead-sidebar-panel .text-slate-300 { color: #D4D9E5 !important; }
+.landing .lead-sidebar-panel .text-slate-400,
+.landing .lead-sidebar-panel .text-slate-500 { color: #9AA0B0 !important; }
+.landing .lead-sidebar-panel .bg-brand-card,
+.landing .lead-sidebar-panel .bg-brand-card\/95 { background-color: #181B24 !important; }
+.landing .lead-sidebar-panel .border-slate-700 { border-color: rgba(255,255,255,0.12) !important; }
+.landing .lead-sidebar-panel input,
+.landing .lead-sidebar-panel select { color: #F0F3FA !important; }
+.landing .lead-sidebar-panel .bg-brand-blue { background-color: #5B4BAE !important; color: #fff !important; }
+.landing .lead-sidebar-panel .bg-saas-gradient { background-image: none !important; background-color: #6c5cc1 !important; color: #fff !important; }
+
+/* Author "Written by" card — keep dark on the light blog page */
+.landing .author-card-dark { background-color: #0F1115 !important; border: 1px solid rgba(255,255,255,0.10) !important; }
+.landing .author-card-dark .text-white { color: #F0F3FA !important; }
+.landing .author-card-dark .text-slate-300 { color: #D4D9E5 !important; }
+.landing .author-card-dark .text-slate-400 { color: #9AA0B0 !important; }
+.landing .author-card-dark .text-slate-500 { color: #8A90A0 !important; }
+.landing .author-card-dark .text-brand-cyan { color: #A8E3C5 !important; }
+
 /* hover:text-* overrides for accent-ink links */
 .landing .hover\:text-cyan-400:hover,
 .landing .hover\:text-cyan-300:hover,

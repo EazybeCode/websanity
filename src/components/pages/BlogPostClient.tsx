@@ -1042,7 +1042,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               )}
 
               {/* Main Article Content */}
-              <article className="blog-content prose prose-invert max-w-none px-1">
+              <article className="blog-content prose max-w-none">
                 {Array.isArray(post.content) ? (
                   <PortableText value={post.content} components={portableTextComponents} />
                 ) : (
@@ -1241,7 +1241,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               {/* Author Section */}
               {post.author && (
                 <div className="mt-16 pt-10 border-t border-slate-800">
-                  <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-slate-700/30">
+                  <div className="author-card-dark rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left">
                     {(() => {
                       const authorUrl = post.author.slug ? `${locale === 'en' ? '' : `/${locale}`}/blog/authors/${post.author.slug}` : undefined
                       const avatar = post.author.image ? (
