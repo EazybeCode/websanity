@@ -23,6 +23,8 @@ import { BeaBot } from './BeaBot'
 import { RevealOnScroll } from './RevealOnScroll'
 import { MobileBottomNav } from './MobileBottomNav'
 import { SuppressExtensionHydrationWarning } from './SuppressExtensionHydrationWarning'
+import { LeadSidebar } from '../lead/LeadSidebar'
+import { LeadMobileButton } from '../lead/LeadMobileButton'
 
 export function LandingPage() {
   return (
@@ -52,6 +54,8 @@ export function LandingPage() {
       <RevealOnScroll />
       <MobileBottomNav />
       <SuppressExtensionHydrationWarning />
+      <LeadSidebar />
+      <LeadMobileButton />
     </div>
   )
 }

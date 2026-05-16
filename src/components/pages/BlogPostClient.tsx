@@ -20,6 +20,7 @@ import {
   BookOpen,
   Rocket,
   Eye,
+  Tag,
 } from 'lucide-react'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import Link from 'next/link'
@@ -68,6 +69,7 @@ interface BlogPost {
   tableOfContents?: Array<{ label: string; id: string }>
   faqTitle?: string
   faqs?: Array<{ question: string; answer: any; plainAnswer?: string; answerText?: string }>
+  metaKeywords?: string
 }
 
 interface BlogIndex {
@@ -303,7 +305,7 @@ const createPortableTextComponents = (
               <img
                 src={value.url}
                 alt={value.alt || ''}
-                className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
+                className="w-full rounded-2xl"
                 loading="lazy"
               />
             )}
@@ -894,7 +896,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
       {/* Featured Image */}
       {post.featuredImage && (
         <figure className="max-w-7xl mx-auto px-4 md:px-6 mb-3">
-          <div className={`relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden ${mobileAspectClass(post.featuredImageMobileRatio, 'aspect-[16/9]')} ${desktopAspectClass(post.featuredImageDesktopRatio, 'md:aspect-[2/1]')} shadow-xl md:shadow-2xl border border-slate-800/50`}>
+          <div className={`relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden ${mobileAspectClass(post.featuredImageMobileRatio, 'aspect-[16/9]')} ${desktopAspectClass(post.featuredImageDesktopRatio, 'md:aspect-[2/1]')}`}>
             <img
               src={post.featuredImage}
               alt={post.featuredImageAlt || post.title}
@@ -1152,7 +1154,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 .blog-content tbody tr:hover { background: rgba(30, 41, 59, 0.4); }
                 .blog-content img {
                   max-width: 100%; height: auto; border-radius: 1rem;
-                  margin: 2.5rem 0; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+                  margin: 2.5rem 0;
                 }
                 .blog-content hr {
                   border: none; height: 1px;
@@ -1238,6 +1240,28 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 </section>
               )}
 
+              {/* Tags (from Sanity metaKeywords) */}
+              {post.metaKeywords && post.metaKeywords.trim() && (
+                <div className="mt-12 pt-8 border-t border-slate-800 flex flex-wrap items-center gap-2">
+                  <span className="flex items-center gap-1.5 text-slate-400 font-medium pr-1">
+                    <Tag size={16} />
+                    Tags:
+                  </span>
+                  {post.metaKeywords.split(',').map((kw, i) => {
+                    const tag = kw.trim()
+                    if (!tag) return null
+                    return (
+                      <span
+                        key={`${tag}-${i}`}
+                        className="px-3 py-1.5 rounded-full bg-slate-800/40 border border-slate-700/40 text-white text-sm"
+                      >
+                        {tag}
+                      </span>
+                    )
+                  })}
+                </div>
+              )}
+
               {/* Author Section */}
               {post.author && (
                 <div className="mt-16 pt-10 border-t border-slate-800">
@@ -1315,28 +1339,6 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 </div>
               )}
 
-              {/* Newsletter CTA */}
-              <div id="newsletter-cta-section" className="mt-16 p-8 bg-gradient-to-br from-brand-blue/10 to-brand-cyan/10 rounded-3xl border border-brand-cyan/20 text-center">
-                <h3 className="text-2xl font-bold text-white mb-3">
-                  {newsletterCta?.headline || t('blog.newsletter.headline')}
-                </h3>
-                <p className="text-lg text-slate-400 mb-8 max-w-md mx-auto">
-                  {newsletterCta?.description || t('blog.newsletter.description')}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                  <input
-                    type="email"
-                    placeholder={
-                      newsletterCta?.placeholder || t('blog.newsletter.placeholder')
-                    }
-                    className="flex-1 bg-brand-black border border-slate-700 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:border-brand-cyan outline-none transition-colors text-lg"
-                    suppressHydrationWarning
-                  />
-                  <button className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold py-4 px-8 rounded-xl transition-colors">
-                    {newsletterCta?.buttonText || t('blog.newsletter.buttonText')}
-                  </button>
-                </div>
-              </div>
             </div>
 
             {/* Right Column - Sticky Sidebar */}

@@ -71,7 +71,7 @@
 }
 
 .landing, .landing * { box-sizing: border-box; }
-.landing { background: var(--bg); color: var(--ink); font-family: var(--f-sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 16px; line-height: 1.55; }
+.landing { background: var(--bg); color: var(--ink); font-family: var(--f-sans); -webkit-font-smoothing: antialiased; overflow-x: clip; font-size: 16px; line-height: 1.55; }
 /* Cancel the global capitalize !important on h1/h2 for landing pages */
 .landing h1, .landing h2, .landing h3, .landing h4, .landing h5, .landing h6 { text-transform: none !important; }
 /* Cancel the dark body color leakage so paragraphs render with our ink tokens */
@@ -3184,14 +3184,6 @@
 .landing .lead-sidebar-panel .bg-brand-blue { background-color: #5B4BAE !important; color: #fff !important; }
 .landing .lead-sidebar-panel .bg-saas-gradient { background-image: none !important; background-color: #6c5cc1 !important; color: #fff !important; }
 
-/* Author "Written by" card — keep dark on the light blog page */
-.landing .author-card-dark { background-color: #0F1115 !important; border: 1px solid rgba(255,255,255,0.10) !important; }
-.landing .author-card-dark .text-white { color: #F0F3FA !important; }
-.landing .author-card-dark .text-slate-300 { color: #D4D9E5 !important; }
-.landing .author-card-dark .text-slate-400 { color: #9AA0B0 !important; }
-.landing .author-card-dark .text-slate-500 { color: #8A90A0 !important; }
-.landing .author-card-dark .text-brand-cyan { color: #A8E3C5 !important; }
-
 /* hover:text-* overrides for accent-ink links */
 .landing .hover\:text-cyan-400:hover,
 .landing .hover\:text-cyan-300:hover,
@@ -3205,4 +3197,218 @@
 .landing .hover\:border-cyan-500\/50:hover,
 .landing .hover\:border-emerald-500\/50:hover,
 .landing .hover\:border-blue-600\/50:hover { border-color: color-mix(in oklab, var(--accent-a) 45%, var(--line)) !important; }
+
+/* =========================================================
+   Blog post polish — readability, typography, accent harmony
+   ========================================================= */
+
+/* Article column — comfortable line length and serif-style hierarchy */
+.landing .blog-content {
+  color: var(--ink-2) !important;
+  font-size: 17px;
+  line-height: 1.75;
+}
+.landing .blog-content p {
+  color: var(--ink-2) !important;
+  margin: 0 0 1.1em;
+}
+.landing .blog-content h2 {
+  color: var(--ink) !important;
+  font-family: var(--f-display, var(--f-sans));
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  border-top: 1px solid var(--line) !important;
+  padding-top: 1.6rem !important;
+  margin-top: 2.4rem !important;
+  margin-bottom: 0.9rem !important;
+}
+.landing .blog-content h2:first-child { border-top: none !important; padding-top: 0 !important; margin-top: 0 !important; }
+.landing .blog-content h3 {
+  color: var(--ink) !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 1.8rem !important;
+  margin-bottom: 0.6rem !important;
+}
+.landing .blog-content h4 { color: var(--ink) !important; font-weight: 700; }
+.landing .blog-content strong, .landing .blog-content b { color: var(--ink) !important; font-weight: 700; }
+.landing .blog-content em, .landing .blog-content i { color: var(--ink-2) !important; }
+
+/* Links inside blog body / TL;DR / FAQ / cards — iris, no underline, hover dim */
+.landing .blog-content a,
+.landing .blog-content a *,
+.landing [data-blog-content] a,
+.landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]) {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+.landing .blog-content a {
+  color: var(--accent-ink) !important;
+  transition: opacity .15s, color .15s;
+}
+.landing .blog-content a:hover,
+.landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]):hover {
+  opacity: 0.75;
+  color: color-mix(in oklab, var(--accent-ink) 80%, #000) !important;
+  cursor: pointer;
+}
+
+/* Bullet dots — single iris dot instead of cyan→blue gradient */
+.landing .blog-content ul li::before,
+.landing .blog-content [class*="before:from-brand-cyan"]::before {
+  background: var(--accent-ink) !important;
+  background-image: none !important;
+}
+.landing .blog-content li {
+  color: var(--ink-2) !important;
+}
+
+/* Numbered list counter — iris pill instead of cyan gradient */
+.landing .blog-content ol li::before {
+  background: var(--accent-ink) !important;
+  background-image: none !important;
+  color: #fff !important;
+}
+
+/* Inline code chips */
+.landing .blog-content code {
+  background: color-mix(in oklab, var(--accent-ink) 10%, var(--bg-2)) !important;
+  color: var(--accent-ink) !important;
+  border: 1px solid color-mix(in oklab, var(--accent-ink) 22%, var(--line)) !important;
+  padding: 0.15em 0.45em;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+/* Blockquote */
+.landing .blog-content blockquote {
+  background: color-mix(in oklab, var(--accent-ink) 6%, var(--paper)) !important;
+  border-left: 4px solid var(--accent-ink) !important;
+  border-radius: 0 12px 12px 0;
+  color: var(--ink-2) !important;
+  padding: 1rem 1.25rem;
+}
+
+/* Tables */
+.landing .blog-content table {
+  background: var(--paper) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.landing .blog-content thead { background: var(--bg-2) !important; }
+.landing .blog-content th { color: var(--ink) !important; }
+.landing .blog-content td { border-top: 1px solid var(--line) !important; color: var(--ink-2) !important; }
+.landing .blog-content tbody tr:hover { background: color-mix(in oklab, var(--accent-ink) 4%, var(--paper)) !important; }
+
+/* Horizontal rule */
+.landing .blog-content hr {
+  border: none;
+  height: 1px;
+  background: var(--line) !important;
+  margin: 2.5rem 0 !important;
+}
+
+/* Drop cap — kill cyan, use a subtle dark cap */
+.landing .blog-content > p:first-of-type::first-letter {
+  color: var(--accent-ink) !important;
+  font-weight: 800;
+}
+
+/* TL;DR card — soften gradient + accent border */
+.landing .border-l-4.border-brand-cyan\/50 {
+  border-left-color: var(--accent-ink) !important;
+}
+.landing .from-brand-blue\/15.via-brand-cyan\/10.to-blue-500\/5 {
+  background: color-mix(in oklab, var(--accent-ink) 6%, var(--paper)) !important;
+}
+
+/* FAQ details items — clean light cards */
+.landing #faq-title ~ * details,
+.landing [aria-labelledby="faq-title"] details {
+  background: var(--paper) !important;
+  border: 1px solid var(--line) !important;
+}
+.landing [aria-labelledby="faq-title"] details summary { color: var(--ink) !important; }
+.landing [aria-labelledby="faq-title"] details > div { border-top-color: var(--line) !important; color: var(--ink-2) !important; }
+
+/* Author "Written by" card — solid black panel with light text */
+.landing .author-card-dark {
+  background: #0F1115 !important;
+  background-image: none !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+}
+.landing .author-card-dark .text-white,
+.landing .author-card-dark h4 { color: #ffffff !important; }
+.landing .author-card-dark .text-slate-300,
+.landing .author-card-dark .text-slate-400 { color: #D4D9E5 !important; }
+.landing .author-card-dark .text-slate-500 { color: #9AA0B0 !important; }
+.landing .author-card-dark .text-brand-cyan { color: #A8E3C5 !important; }
+.landing .author-card-dark p { color: #D4D9E5 !important; }
+
+/* Newsletter CTA — soft tinted card matching iris accent */
+.landing #newsletter-cta-section {
+  background: color-mix(in oklab, var(--accent-ink) 6%, var(--paper)) !important;
+  background-image: none !important;
+  border-color: color-mix(in oklab, var(--accent-ink) 22%, var(--line)) !important;
+}
+.landing #newsletter-cta-section input {
+  background: var(--paper) !important;
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+}
+.landing #newsletter-cta-section button {
+  background: var(--accent-ink) !important;
+  color: #fff !important;
+}
+
+/* Reading progress bar — use iris accent */
+.landing .fixed.top-0.left-0.right-0.h-1 > div {
+  background: var(--accent-ink) !important;
+  background-image: none !important;
+}
+
+/* Breadcrumb separators */
+.landing nav[class*="text-xs"] .text-brand-cyan { color: var(--accent-ink) !important; }
+
+/* Category badge */
+.landing .bg-brand-cyan\/10.border-brand-cyan\/20 {
+  background: color-mix(in oklab, var(--accent-ink) 10%, var(--paper)) !important;
+  border-color: color-mix(in oklab, var(--accent-ink) 25%, var(--line)) !important;
+}
+
+/* TableBlock — iris header, striped rows, dark text */
+.landing .blog-content figure > div.overflow-x-auto {
+  border-color: var(--line) !important;
+  border-radius: 12px;
+  background: var(--paper) !important;
+}
+.landing .blog-content figure > div.overflow-x-auto table thead tr {
+  background: #0F1115 !important;
+  border-bottom: none !important;
+}
+.landing .blog-content figure > div.overflow-x-auto table thead th {
+  color: #ffffff !important;
+  letter-spacing: 0.06em;
+}
+.landing .blog-content figure > div.overflow-x-auto table tbody tr {
+  background: var(--paper) !important;
+  border-color: var(--line) !important;
+}
+.landing .blog-content figure > div.overflow-x-auto table tbody tr.bg-slate-800\/20,
+.landing .blog-content figure > div.overflow-x-auto table tbody tr:nth-child(odd) {
+  background: var(--bg-2) !important;
+}
+.landing .blog-content figure > div.overflow-x-auto table tbody tr:hover {
+  background: color-mix(in oklab, var(--accent-ink) 6%, var(--paper)) !important;
+}
+.landing .blog-content figure > div.overflow-x-auto table tbody td {
+  color: var(--ink-2) !important;
+  border-top-color: var(--line) !important;
+}
+.landing .blog-content figure > div.overflow-x-auto table tbody td.text-white,
+.landing .blog-content figure > div.overflow-x-auto table tbody td.font-semibold {
+  color: var(--ink) !important;
+  font-weight: 700;
+}
 

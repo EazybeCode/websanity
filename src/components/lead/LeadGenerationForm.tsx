@@ -312,7 +312,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                     className="w-[100px] shrink-0 font-sans text-sm h-full bg-brand-card text-white px-3 border-r border-slate-700 rounded-l-btn focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                   >
                     {COUNTRY_CODES.map((cc) => (
-                      <option key={`${cc.code}-${cc.country}`} value={cc.code} className="bg-slate-900 text-white">
+                      <option key={`${cc.code}-${cc.country}`} value={cc.code} style={{ backgroundColor: '#fff', color: '#0F1115' }}>
                         {cc.country} {cc.code}
                       </option>
                     ))}
@@ -355,12 +355,12 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                       : 'bg-brand-card text-white border border-slate-700 hover:border-slate-600 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20'
                   }`}
                 >
-                  <option value="">{t('leadForm.crmPlaceholder')}</option>
-                  <option value="HubSpot">{t('leadForm.crmHubspot')}</option>
-                  <option value="Salesforce">{t('leadForm.crmSalesforce')}</option>
-                  <option value="Zoho">{t('leadForm.crmZoho')}</option>
-                  <option value="Other">{t('leadForm.crmOther')}</option>
-                  <option value="None">{t('leadForm.crmNone')}</option>
+                  <option value="" style={{ backgroundColor: '#fff', color: '#0F1115' }}>{t('leadForm.crmPlaceholder')}</option>
+                  <option value="HubSpot" style={{ backgroundColor: '#fff', color: '#0F1115' }}>{t('leadForm.crmHubspot')}</option>
+                  <option value="Salesforce" style={{ backgroundColor: '#fff', color: '#0F1115' }}>{t('leadForm.crmSalesforce')}</option>
+                  <option value="Zoho" style={{ backgroundColor: '#fff', color: '#0F1115' }}>{t('leadForm.crmZoho')}</option>
+                  <option value="Other" style={{ backgroundColor: '#fff', color: '#0F1115' }}>{t('leadForm.crmOther')}</option>
+                  <option value="None" style={{ backgroundColor: '#fff', color: '#0F1115' }}>{t('leadForm.crmNone')}</option>
                 </select>
                 {errors.crm && (
                   <p className="mt-1.5 text-sm text-red-500 flex items-center gap-1">

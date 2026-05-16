@@ -34,7 +34,7 @@ const AGENTS = [
   {
     name: 'Agent Builder',
     desc: 'Custom agents for your use case',
-    href: '/become-our-partner',
+    href: '/#',
     bg: '#F0EBF8',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg>',
   },
@@ -70,7 +70,7 @@ const RESOURCES = [
   {
     name: 'Customer Stories',
     desc: 'See how teams 10× their WhatsApp ROI',
-    href: '/about-us',
+    href: '/#',
     bg: '#FBEBDA',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E3F26" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
   },
@@ -215,7 +215,7 @@ export function Nav() {
           </div>
         </div>
 
-        <div className="nav-item"><a href="/become-our-partner"><span>Agent Builder</span></a></div>
+        <div className="nav-item"><a href="/#"><span>Agent Builder</span></a></div>
         <div className="nav-item"><a href="/pricing"><span>Pricing</span></a></div>
 
         <div className="nav-item">
@@ -240,7 +240,7 @@ export function Nav() {
                 <div className="nav-dd-desc">Docs, tutorials, API reference</div>
               </span>
             </a>
-            <a href="/about-us" className="nav-dd-item">
+            <a href="/#" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#FBEBDA' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E3F26" strokeWidth="2" strokeLinecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </span>
@@ -358,7 +358,7 @@ export function Nav() {
             </div>
 
             <div className="nav-drawer-link">
-              <a href="/become-our-partner" onClick={closeMenu}>Agent Builder</a>
+              <a href="/#" onClick={closeMenu}>Agent Builder</a>
             </div>
 
             <div className="nav-drawer-link">
