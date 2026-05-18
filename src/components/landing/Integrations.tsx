@@ -1,3 +1,7 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+
 interface Integration {
   name: string
   icon: string
@@ -16,14 +20,15 @@ const ITEMS: Integration[] = [
 ]
 
 export function Integrations() {
+  const t = useTranslations('landingV3.integrations')
   return (
     <section className="section" data-tone="dark" id="integrations">
       <div className="container">
         <div className="sec-head centered reveal">
-          <span className="sec-tag">Integrations</span>
-          <h2>Connect Your <em>WhatsApp AI Agent</em> To The CRM You Already Use</h2>
+          <span className="sec-tag">{t('tag')}</span>
+          <h2>{t('headline')} <em>{t('headlineEm')}</em> {t('headlineEnd')}</h2>
           <p style={{ maxWidth: 760, width: '100%', textAlign: 'justify', textAlignLast: 'center', hyphens: 'auto' }}>
-            Eazybe plugs into the CRMs your team already lives in HubSpot, Salesforce, Zoho, Pipedrive and more. Bi-directional sync, workflow triggers and custom properties out of the box, no rip-and-replace, no IT project.
+            {t('subtitle')}
           </p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12, maxWidth: 1000, margin: '0 auto' }}>
@@ -51,11 +56,11 @@ export function Integrations() {
           ))}
         </div>
         <p className="reveal integrations-foot" style={{ textAlign: 'center', fontFamily: 'var(--f-display)', fontSize: 20, color: 'rgba(255,255,255,0.7)', marginTop: 50 }}>
-          Every integration - contact sync, deal sync, activity logs, custom properties, workflow triggers.
+          {t('footnote')}
         </p>
         <div style={{ textAlign: 'center', marginTop: 24 }}>
           <a href="https://eazybe.com/integrations" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-lg reveal" style={{ borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}>
-            See full integration depth →
+            {t('cta')}
           </a>
         </div>
       </div>

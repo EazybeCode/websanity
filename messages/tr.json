@@ -2749,6 +2749,63 @@
       "trainedBadge": "✓ EĞİTİLDİ",
       "deployTo": "DAĞITIM HEDEFLERİ",
       "deployBtn": "Agent'ı Dağıt"
+    },
+    "logoBar": {
+      "trustedBy": "— Dünya genelinde 2.000+ gelir ekibinin tercihi —"
+    },
+    "howItWorks": {
+      "tag": "Hemen Başlayın",
+      "headline": "10 hafta değil,",
+      "headlineEm": "10 dakikada",
+      "headlineEnd": "bir WhatsApp AI Agent oluşturun",
+      "subtitle": "Üç adım, bir Chrome eklentisi, sıfır taşıma. Temsilcilerinizin halihazırda kullandığı WhatsApp Web'in yanına Eazybe'yi kurun, CRM'inizi tek tıkla bağlayın ve ihtiyacınız olan agent'ları açın. İlk senkronizasyonunuz, anahtarı çevirdiğiniz anda başlar.",
+      "step1Title": "Kur",
+      "step1Desc": "Eazybe Chrome eklentisini ekleyin. 30 saniyede tamam.",
+      "step1Browser": "chrome.google.com/webstore",
+      "step1Added": "Chrome'a eklendi",
+      "step2Title": "Bağla",
+      "step2Desc": "CRM'inizi bağlayın. HubSpot, Salesforce, Zoho — tek tıkla OAuth.",
+      "step2Auth": "OAuth yetkilendirildi",
+      "step3Title": "Etkinleştir",
+      "step3Desc": "Agent'larınızı açın. CRM Sync anında başlar. AI agent'lar 24 saat içinde devreye girer.",
+      "step3Agent1": "CRM Sync",
+      "step3Agent2": "Lead Qual",
+      "step3Agent3": "Revenue Ops",
+      "ctaFootnote": "CRM'iniz burada yok mu? Yığınınızı söyleyin — sizin için bağlarız.",
+      "ctaBtn": "Demo Planla"
+    },
+    "integrations": {
+      "tag": "Entegrasyonlar",
+      "headline": "WhatsApp AI Agent'ınızı",
+      "headlineEm": "zaten kullandığınız CRM'e",
+      "headlineEnd": "bağlayın",
+      "subtitle": "Eazybe, ekibinizin halihazırda yaşadığı CRM'lere bağlanır: HubSpot, Salesforce, Zoho, Pipedrive ve daha fazlası. Çift yönlü senkronizasyon, workflow tetikleyicileri ve özel alanlar kutudan çıkar çıkmaz hazır — sökme-takma yok, IT projesi yok.",
+      "footnote": "Her entegrasyonda: kişi senkronizasyonu, deal senkronizasyonu, aktivite kayıtları, özel alanlar ve workflow tetikleyicileri.",
+      "cta": "Tüm entegrasyonları gör →"
+    },
+    "customerStories": {
+      "tag": "Müşteri Hikâyeleri",
+      "headline": "Satış ekipleri WhatsApp AI",
+      "headlineEm": "Agent'ımız",
+      "subtitle": "Son 90 günde Eazybe'ye geçen Sales Ops liderleri, kurucular ve gelir ekiplerinden gerçek yorumlar — WhatsApp konuşmaları otomatik olarak CRM'e akmaya başladığında pipeline'larında neler değişti.",
+      "testimonials": [
+        { "text": "HubSpot'umuz bir mezarlıktı. Eazybe onu hayata döndürdü — artık her WhatsApp deal'i otomatik akıyor.", "name": "Priya Sharma", "role": "Sales Ops Lideri · SaaS · Hindistan" },
+        { "text": "WATI'yi denedik. Lead senaryo dışına çıkar çıkmaz tıkanıyordu. Eazybe ise sadece anlıyor.", "name": "Lucas Almeida", "role": "Kurucu · D2C · Brezilya" },
+        { "text": "Mesai sonrası lead'lerin %30'unu kaybediyorduk. Şimdi agent biz uyurken onları nitelendiriyor.", "name": "Omar Al-Fahad", "role": "Satıştan Sorumlu VP · FinTech · BAE" },
+        { "text": "Kurulum 12 dakika sürdü. On iki. CRM kurulumumuz altı ay sürmüştü.", "name": "Camila Ortiz", "role": "RevOps Direktörü · Lojistik · Meksika" },
+        { "text": "Temsilcilerim Salesforce'a sohbet kopyalayıp yapıştırmayı bıraktı. Bu tek başına yılın bedelini ödedi.", "name": "Diego Fernández", "role": "Satış Direktörü · Emlak · İspanya" },
+        { "text": "AI yanıtları en iyi closer'ımız gibi konuşuyor. Müşteriler onun olmadığını fark etmiyor.", "name": "Selin Kaya", "role": "CEO · EdTech · Türkiye" },
+        { "text": "Kimseyi işe almadan yanıt hızımızı ikiye katladık. Pipeline iki çeyrekte %38 büyüdü.", "name": "Rohan Mehta", "role": "COO · Sigorta · Hindistan" },
+        { "text": "Deal'ların sessizleştiğini benden 48 saat önce yakalıyor. Tek başına aboneliğin parasını ediyor.", "name": "Beatriz Costa", "role": "Account Executive · B2B SaaS · Brezilya" },
+        { "text": "Diğerleri bana chatbot sattı. Eazybe bana bir takım arkadaşı verdi.", "name": "Andrés Vargas", "role": "Kurucu · Seyahat · Kolombiya" }
+      ]
+    },
+    "mobileBottomNav": {
+      "home": "Ana Sayfa",
+      "whatsapp": "WhatsApp",
+      "agents": "Agent'lar",
+      "demo": "Demo",
+      "pricing": "Fiyatlar"
     }
   }
 }

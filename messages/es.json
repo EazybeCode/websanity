@@ -2823,6 +2823,63 @@
       "trainedBadge": "✓ ENTRENADO",
       "deployTo": "DESPLEGAR EN",
       "deployBtn": "Desplegar Agente"
+    },
+    "logoBar": {
+      "trustedBy": "— La elección de más de 2.000 equipos de ingresos en todo el mundo —"
+    },
+    "howItWorks": {
+      "tag": "Empieza ya",
+      "headline": "Crea un",
+      "headlineEm": "Agente de IA en WhatsApp",
+      "headlineEnd": "en 10 minutos, no en 10 semanas",
+      "subtitle": "Tres pasos, una extensión de Chrome, cero migración. Instala Eazybe junto al WhatsApp Web que tu equipo ya usa, conecta tu CRM con un clic y activa los agentes que necesites. Tu primera sincronización arranca en el momento en que enciendes el interruptor.",
+      "step1Title": "Instala",
+      "step1Desc": "Agrega la extensión de Eazybe a Chrome. 30 segundos.",
+      "step1Browser": "chrome.google.com/webstore",
+      "step1Added": "Agregado a Chrome",
+      "step2Title": "Conecta",
+      "step2Desc": "Conecta tu CRM. HubSpot, Salesforce, Zoho — OAuth en un clic.",
+      "step2Auth": "OAuth autorizado",
+      "step3Title": "Activa",
+      "step3Desc": "Enciende tus agentes. CRM Sync arranca al instante. Los agentes de IA se activan en menos de 24 horas.",
+      "step3Agent1": "CRM Sync",
+      "step3Agent2": "Calificación",
+      "step3Agent3": "Ingresos",
+      "ctaFootnote": "¿No ves tu CRM aquí? Cuéntanos tu stack — lo conectamos por ti.",
+      "ctaBtn": "Reservar Demo"
+    },
+    "integrations": {
+      "tag": "Integraciones",
+      "headline": "Conecta tu",
+      "headlineEm": "Agente de IA en WhatsApp",
+      "headlineEnd": "al CRM que ya usas",
+      "subtitle": "Eazybe se conecta a los CRMs que tu equipo ya vive: HubSpot, Salesforce, Zoho, Pipedrive y más. Sincronización bidireccional, disparadores de workflow y campos personalizados listos para usar, sin rip-and-replace, sin proyecto de TI.",
+      "footnote": "En cada integración: sincronización de contactos, deals, registros de actividad, campos personalizados y disparadores de workflow.",
+      "cta": "Ver todas las integraciones →"
+    },
+    "customerStories": {
+      "tag": "Casos de Clientes",
+      "headline": "Lo que los equipos de ventas dicen de nuestro",
+      "headlineEm": "Agente de IA en WhatsApp",
+      "subtitle": "Testimonios reales de líderes de Sales Ops, fundadores y equipos de ingresos que migraron a Eazybe en los últimos 90 días y qué cambió en su pipeline cuando las conversaciones de WhatsApp empezaron a entrar al CRM automáticamente.",
+      "testimonials": [
+        { "text": "Nuestro HubSpot era un cementerio. Eazybe le devolvió la vida — cada deal de WhatsApp ahora entra automáticamente.", "name": "Priya Sharma", "role": "Líder de Sales Ops · SaaS · India" },
+        { "text": "Probamos WATI. Se rompía al primer mensaje fuera del guion. Eazybe simplemente lo entiende.", "name": "Lucas Almeida", "role": "Fundador · D2C · Brasil" },
+        { "text": "Perdíamos 30% de los leads fuera de horario. Ahora el agente los califica mientras dormimos.", "name": "Omar Al-Fahad", "role": "VP de Ventas · FinTech · EAU" },
+        { "text": "La configuración tomó 12 minutos. Doce. Nuestro despliegue de CRM tardó seis meses.", "name": "Camila Ortiz", "role": "Head de RevOps · Logística · México" },
+        { "text": "Mis reps dejaron de copiar y pegar chats en Salesforce. Solo eso pagó el año.", "name": "Diego Fernández", "role": "Director de Ventas · Inmobiliario · España" },
+        { "text": "Las respuestas de la IA suenan como nuestra mejor closer. Los clientes no notan que no es ella.", "name": "Selin Kaya", "role": "CEO · EdTech · Turquía" },
+        { "text": "Duplicamos la velocidad de respuesta sin contratar a nadie. El pipeline creció 38% en dos trimestres.", "name": "Rohan Mehta", "role": "COO · Seguros · India" },
+        { "text": "Detecta deals que se enfrían 48 horas antes que yo. Vale toda la suscripción.", "name": "Beatriz Costa", "role": "Account Executive · B2B SaaS · Brasil" },
+        { "text": "Otros me vendieron un chatbot. Eazybe me dio un compañero de equipo.", "name": "Andrés Vargas", "role": "Fundador · Turismo · Colombia" }
+      ]
+    },
+    "mobileBottomNav": {
+      "home": "Inicio",
+      "whatsapp": "WhatsApp",
+      "agents": "Agentes",
+      "demo": "Demo",
+      "pricing": "Precios"
     }
   }
 }

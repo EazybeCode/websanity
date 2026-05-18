@@ -2823,6 +2823,63 @@
       "trainedBadge": "✓ TREINADO",
       "deployTo": "IMPLANTAR EM",
       "deployBtn": "Implantar Agente"
+    },
+    "logoBar": {
+      "trustedBy": "— A escolha de mais de 2.000 times de receita no mundo todo —"
+    },
+    "howItWorks": {
+      "tag": "Comece agora",
+      "headline": "Crie um",
+      "headlineEm": "Agente de IA no WhatsApp",
+      "headlineEnd": "em 10 minutos, não em 10 semanas",
+      "subtitle": "Três passos, uma extensão do Chrome, zero migração. Instale a Eazybe junto com o WhatsApp Web que seus vendedores já usam, conecte seu CRM em um clique e ative os agentes que precisar. Sua primeira sincronização começa no momento em que você liga o botão.",
+      "step1Title": "Instale",
+      "step1Desc": "Adicione a extensão da Eazybe no Chrome. 30 segundos.",
+      "step1Browser": "chrome.google.com/webstore",
+      "step1Added": "Adicionado ao Chrome",
+      "step2Title": "Conecte",
+      "step2Desc": "Conecte seu CRM. HubSpot, Salesforce, Zoho — OAuth em um clique.",
+      "step2Auth": "OAuth autorizado",
+      "step3Title": "Ative",
+      "step3Desc": "Ligue seus agentes. O CRM Sync começa na hora. Os agentes de IA ficam ativos em até 24 horas.",
+      "step3Agent1": "CRM Sync",
+      "step3Agent2": "Qualificação",
+      "step3Agent3": "Receita",
+      "ctaFootnote": "Não vê seu CRM aqui? Conta pra gente sua stack — a gente conecta pra você.",
+      "ctaBtn": "Agendar Demo"
+    },
+    "integrations": {
+      "tag": "Integrações",
+      "headline": "Conecte seu",
+      "headlineEm": "Agente de IA no WhatsApp",
+      "headlineEnd": "ao CRM que você já usa",
+      "subtitle": "A Eazybe se conecta aos CRMs que seu time já usa: HubSpot, Salesforce, Zoho, Pipedrive e outros. Sincronização bidirecional, gatilhos de workflow e campos personalizados prontos para uso — sem rip-and-replace, sem projeto de TI.",
+      "footnote": "Em toda integração: sincronia de contatos, deals, registros de atividade, campos personalizados e gatilhos de workflow.",
+      "cta": "Ver todas as integrações →"
+    },
+    "customerStories": {
+      "tag": "Histórias de Clientes",
+      "headline": "O que os times de vendas dizem sobre nosso",
+      "headlineEm": "Agente de IA no WhatsApp",
+      "subtitle": "Depoimentos reais de líderes de Sales Ops, fundadores e times de receita que migraram para a Eazybe nos últimos 90 dias e o que mudou no pipeline depois que as conversas do WhatsApp começaram a entrar no CRM automaticamente.",
+      "testimonials": [
+        { "text": "Nosso HubSpot era um cemitério. A Eazybe trouxe ele de volta à vida — todo deal do WhatsApp agora entra automaticamente.", "name": "Priya Sharma", "role": "Líder de Sales Ops · SaaS · Índia" },
+        { "text": "A gente tentou o WATI. Travava na primeira mensagem fora do roteiro. A Eazybe simplesmente entende.", "name": "Lucas Almeida", "role": "Fundador · D2C · Brasil" },
+        { "text": "Perdíamos 30% dos leads fora do expediente. Agora o agente qualifica enquanto a gente dorme.", "name": "Omar Al-Fahad", "role": "VP de Vendas · FinTech · EAU" },
+        { "text": "A configuração levou 12 minutos. Doze. Nosso rollout de CRM levou seis meses.", "name": "Camila Ortiz", "role": "Head de RevOps · Logística · México" },
+        { "text": "Meus vendedores pararam de copiar e colar conversas no Salesforce. Só isso já pagou o ano.", "name": "Diego Fernández", "role": "Diretor de Vendas · Imobiliário · Espanha" },
+        { "text": "As respostas da IA soam como nossa melhor closer. Os clientes não percebem que não é ela.", "name": "Selin Kaya", "role": "CEO · EdTech · Turquia" },
+        { "text": "Dobramos a velocidade de resposta sem contratar ninguém. O pipeline cresceu 38% em dois trimestres.", "name": "Rohan Mehta", "role": "COO · Seguros · Índia" },
+        { "text": "Ele detecta deals esfriando 48h antes do que eu detectaria. Vale a assinatura inteira.", "name": "Beatriz Costa", "role": "Account Executive · B2B SaaS · Brasil" },
+        { "text": "Os outros me venderam um chatbot. A Eazybe me deu um colega de time.", "name": "Andrés Vargas", "role": "Fundador · Turismo · Colômbia" }
+      ]
+    },
+    "mobileBottomNav": {
+      "home": "Início",
+      "whatsapp": "WhatsApp",
+      "agents": "Agentes",
+      "demo": "Demo",
+      "pricing": "Preços"
     }
   }
 }

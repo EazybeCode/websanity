@@ -1,3 +1,7 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+
 const ROW1 = [
   ['676859615a3ec360e3bc5d4c_university%20living.svg', 'University Living'],
   ['67685bae06432a9005e774af_satrack.svg', 'Satrack'],
@@ -27,10 +31,11 @@ const ROW2 = [
 const BASE = 'https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/'
 
 export function LogoBar() {
+  const t = useTranslations('landingV3.logoBar')
   return (
     <section className="logo-bar" style={{ padding: '70px 0 50px' }}>
       <div className="container">
-        <p className="logo-bar-label">— Trusted by 2,000+ revenue teams worldwide —</p>
+        <p className="logo-bar-label">{t('trustedBy')}</p>
 
         <div className="logo-marquee">
           <div className="logo-track fwd">

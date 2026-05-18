@@ -1,78 +1,38 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { TestimonialsColumn } from '@/components/ui/testimonials-columns-1'
 
-const TESTIMONIALS = [
-  {
-    text: 'Our HubSpot was a graveyard. Eazybe brought it back to life — every WhatsApp deal now flows in automatically.',
-    image: 'https://randomuser.me/api/portraits/women/12.jpg',
-    name: 'Priya Sharma',
-    role: 'Sales Ops Lead · SaaS · India',
-  },
-  {
-    text: 'We tried WATI. It broke the moment a lead said anything off-script. Eazybe just… gets it.',
-    image: 'https://randomuser.me/api/portraits/men/32.jpg',
-    name: 'Lucas Almeida',
-    role: 'Founder · D2C · Brazil',
-  },
-  {
-    text: 'We were losing 30% of after-hours leads. Now the agent qualifies them while we sleep.',
-    image: 'https://randomuser.me/api/portraits/men/45.jpg',
-    name: 'Omar Al-Fahad',
-    role: 'VP Sales · FinTech · UAE',
-  },
-  {
-    text: 'Setup took 12 minutes. Twelve. Our CRM rollout took six months.',
-    image: 'https://randomuser.me/api/portraits/women/68.jpg',
-    name: 'Camila Ortiz',
-    role: 'Head of RevOps · Logistics · Mexico',
-  },
-  {
-    text: 'My reps stopped copy-pasting chats into Salesforce. That alone paid for the year.',
-    image: 'https://randomuser.me/api/portraits/men/22.jpg',
-    name: 'Diego Fernández',
-    role: 'Sales Director · Real Estate · Spain',
-  },
-  {
-    text: "The AI replies sound like our top closer. Customers don't notice it isn't her.",
-    image: 'https://randomuser.me/api/portraits/women/44.jpg',
-    name: 'Selin Kaya',
-    role: 'CEO · EdTech · Turkey',
-  },
-  {
-    text: 'We doubled response speed without hiring anyone. Pipeline grew 38% in two quarters.',
-    image: 'https://randomuser.me/api/portraits/men/57.jpg',
-    name: 'Rohan Mehta',
-    role: 'COO · Insurance · India',
-  },
-  {
-    text: 'It catches deals going quiet 48 hours before I would have. Worth the whole subscription.',
-    image: 'https://randomuser.me/api/portraits/women/29.jpg',
-    name: 'Beatriz Costa',
-    role: 'Account Executive · B2B SaaS · Brazil',
-  },
-  {
-    text: 'Other tools sold us a chatbot. Eazybe gave us a teammate.',
-    image: 'https://randomuser.me/api/portraits/men/76.jpg',
-    name: 'Andrés Vargas',
-    role: 'Founder · Travel · Colombia',
-  },
+const IMAGES = [
+  'https://randomuser.me/api/portraits/women/12.jpg',
+  'https://randomuser.me/api/portraits/men/32.jpg',
+  'https://randomuser.me/api/portraits/men/45.jpg',
+  'https://randomuser.me/api/portraits/women/68.jpg',
+  'https://randomuser.me/api/portraits/men/22.jpg',
+  'https://randomuser.me/api/portraits/women/44.jpg',
+  'https://randomuser.me/api/portraits/men/57.jpg',
+  'https://randomuser.me/api/portraits/women/29.jpg',
+  'https://randomuser.me/api/portraits/men/76.jpg',
 ]
 
-const firstColumn = TESTIMONIALS.slice(0, 3)
-const secondColumn = TESTIMONIALS.slice(3, 6)
-const thirdColumn = TESTIMONIALS.slice(6, 9)
-
 export function CustomerStories() {
+  const t = useTranslations('landingV3.customerStories')
+  const items = (t.raw('testimonials') as { text: string; name: string; role: string }[]).map((item, i) => ({
+    ...item,
+    image: IMAGES[i] ?? IMAGES[0],
+  }))
+  const firstColumn = items.slice(0, 3)
+  const secondColumn = items.slice(3, 6)
+  const thirdColumn = items.slice(6, 9)
   return (
     <section className="section customer-stories" style={{ paddingBottom: 60 }}>
       <div className="container">
         <div className="sec-head centered">
-          <span className="sec-tag">Customer Stories</span>
-          <h2>What Sales Teams Say About Our <em>WhatsApp AI Agent</em></h2>
+          <span className="sec-tag">{t('tag')}</span>
+          <h2>{t('headline')} <em>{t('headlineEm')}</em></h2>
           <p style={{ maxWidth: 'none', width: '100%', textAlign: 'justify', textAlignLast: 'center', hyphens: 'auto' }}>
-            Real quotes from sales ops leads, founders, and revenue teams who switched to Eazybe in the last 90 days and what changed in their pipeline once their WhatsApp conversations started flowing into the CRM automatically.
+            {t('subtitle')}
           </p>
         </div>
 

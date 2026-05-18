@@ -1,11 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 const WA_LINK =
   'https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works.'
 
 export function MobileBottomNav() {
+  const t = useTranslations('landingV3.mobileBottomNav')
   const [hidden, setHidden] = useState(false)
 
   useEffect(() => {
@@ -42,7 +44,7 @@ export function MobileBottomNav() {
             <path d="M3 9.5L12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1V9.5z" />
           </svg>
         </span>
-        <span className="mob-tab-label">Home</span>
+        <span className="mob-tab-label">{t('home')}</span>
       </a>
 
       <a href={WA_LINK} className="mob-tab mob-tab-wa" target="_blank" rel="noopener noreferrer">
@@ -52,7 +54,7 @@ export function MobileBottomNav() {
           </svg>
           <span className="mob-tab-pulse" aria-hidden="true" />
         </span>
-        <span className="mob-tab-label">WhatsApp</span>
+        <span className="mob-tab-label">{t('whatsapp')}</span>
       </a>
 
       <a href="#agents" className="mob-tab">
@@ -64,7 +66,7 @@ export function MobileBottomNav() {
             <path d="M9 16c.9.7 2 1.1 3 1.1s2.1-.4 3-1.1" />
           </svg>
         </span>
-        <span className="mob-tab-label">Agents</span>
+        <span className="mob-tab-label">{t('agents')}</span>
       </a>
 
       <a href="#" className="mob-tab">
@@ -74,7 +76,7 @@ export function MobileBottomNav() {
             <polyline points="3 7 12 13 21 7" />
           </svg>
         </span>
-        <span className="mob-tab-label">Demo</span>
+        <span className="mob-tab-label">{t('demo')}</span>
       </a>
 
       <a href="https://eazybe.com/pricing" className="mob-tab" target="_blank" rel="noopener noreferrer">
@@ -84,7 +86,7 @@ export function MobileBottomNav() {
             <line x1="7" y1="7" x2="7.01" y2="7" />
           </svg>
         </span>
-        <span className="mob-tab-label">Pricing</span>
+        <span className="mob-tab-label">{t('pricing')}</span>
       </a>
     </nav>
   )

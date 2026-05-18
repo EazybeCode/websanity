@@ -1,11 +1,13 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 const CYCLE = 9000
 const STEP_DURATIONS = [0, 3000, 6000]
 
 export function HowItWorks() {
+  const t = useTranslations('landingV3.howItWorks')
   const wrapRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState<number>(0)
   const [logoActive, setLogoActive] = useState<Set<number>>(new Set())
@@ -55,22 +57,22 @@ export function HowItWorks() {
     <section className="section">
       <div className="container">
         <div className="sec-head centered reveal">
-          <span className="sec-tag">Get Started</span>
-          <h2>Build A <em>WhatsApp AI Agent</em> In 10 Minutes, Not 10 Weeks</h2>
+          <span className="sec-tag">{t('tag')}</span>
+          <h2>{t('headline')} <em>{t('headlineEm')}</em> {t('headlineEnd')}</h2>
           <p style={{ maxWidth: 760, width: '100%', textAlign: 'justify', textAlignLast: 'center', hyphens: 'auto' }}>
-            Three steps, one Chrome extension, zero migration. Install Eazybe alongside the WhatsApp Web your reps already use, connect your CRM with one click and switch on the agents you need. Your first sync starts the moment you flip the toggle.
+            {t('subtitle')}
           </p>
         </div>
         <div className="steps" ref={wrapRef}>
           <div className={`step${active === 0 ? ' active' : ''}`} data-step="1">
             <div className="step-num">1</div>
-            <h4>Install</h4>
-            <p>Add the Eazybe Chrome extension. 30 seconds flat.</p>
+            <h4>{t('step1Title')}</h4>
+            <p>{t('step1Desc')}</p>
             <div className="step-scene scene-install">
               <div className="si-browser">
                 <div className="si-browser-bar">
                   <span className="si-dot" /><span className="si-dot" /><span className="si-dot" />
-                  <span className="si-url">chrome.google.com/webstore</span>
+                  <span className="si-url">{t('step1Browser')}</span>
                   <span className="si-ext">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.5 7.27L12 12l-8.5-4.73M12 22V12"/><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
                   </span>
@@ -79,7 +81,7 @@ export function HowItWorks() {
                   <span className="si-check">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                   </span>
-                  Added to Chrome
+                  {t('step1Added')}
                 </div>
               </div>
             </div>
@@ -87,8 +89,8 @@ export function HowItWorks() {
 
           <div className={`step${active === 1 ? ' active' : ''}`} data-step="2">
             <div className="step-num">2</div>
-            <h4>Connect</h4>
-            <p>Connect your CRM. HubSpot, Salesforce, Zoho — one-click OAuth.</p>
+            <h4>{t('step2Title')}</h4>
+            <p>{t('step2Desc')}</p>
             <div className="step-scene scene-connect">
               <div className="sc-left">
                 {['hs', 'sf', 'zo'].map((slug, i) => (
@@ -106,7 +108,7 @@ export function HowItWorks() {
               <div className="sc-right">
                 <div className="sc-badge">
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  OAuth authorized
+                  {t('step2Auth')}
                 </div>
               </div>
             </div>
@@ -114,10 +116,10 @@ export function HowItWorks() {
 
           <div className={`step${active === 2 ? ' active' : ''}`} data-step="3">
             <div className="step-num">3</div>
-            <h4>Activate</h4>
-            <p>Turn on your agents. CRM Sync starts immediately. AI agents activate within 24 hours.</p>
+            <h4>{t('step3Title')}</h4>
+            <p>{t('step3Desc')}</p>
             <div className="step-scene scene-activate">
-              {['CRM Sync', 'Lead Qual', 'Revenue Ops'].map((name, i) => (
+              {[t('step3Agent1'), t('step3Agent2'), t('step3Agent3')].map((name, i) => (
                 <div key={name} className={`sa-agent${agentOn.has(i) ? ' on' : ''}`}>
                   <span className="sa-toggle"><span /></span>
                   <span>{name}</span>
@@ -134,9 +136,9 @@ export function HowItWorks() {
                 <path d="M7.5 12.2l3 3 6-6" stroke="#fff" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
-            <span>Don't see your CRM? Tell us your stack — we'll wire it up for you.</span>
+            <span>{t('ctaFootnote')}</span>
           </div>
-          <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="steps-cta-btn">Book a Demo</a>
+          <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="steps-cta-btn">{t('ctaBtn')}</a>
         </div>
       </div>
     </section>
