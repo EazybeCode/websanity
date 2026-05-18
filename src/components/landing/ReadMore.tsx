@@ -242,7 +242,7 @@ export function ReadMore() {
         </div>
 
         <div className="readmore-cta-wrap">
-          <a href="#" className="readmore-cta">
+          <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="readmore-cta">
             Get a Free Demo
             <span className="readmore-cta-arrow" aria-hidden="true">→</span>
           </a>

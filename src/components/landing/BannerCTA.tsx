@@ -1,11 +1,10 @@
-const WA_LINK =
-  'https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20a%20custom%20agent%20for%20my%20CRM.'
+const APP_LINK = 'https://app.eazybe.com/'
 
 export function BannerCTA() {
   return (
     <section className="banner-cta-wrap">
       <div className="container">
-        <a href={WA_LINK} className="banner-cta" target="_blank" rel="noopener noreferrer">
+        <a href={APP_LINK} className="banner-cta" target="_blank" rel="noopener noreferrer">
           <span className="banner-cta-rail" aria-hidden="true" />
           <span className="banner-cta-glow" aria-hidden="true" />
 

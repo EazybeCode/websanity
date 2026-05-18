@@ -157,7 +157,7 @@ export function AgentSync() {
                 <li key={t}><span className="tick">{CheckIcon}</span>{t}</li>
               ))}
             </ul>
-            <a href="#" className="feat-link">Deploy Free →</a>
+            <a href="https://app.eazybe.com/" target="_blank" rel="noopener noreferrer" className="feat-link">Deploy Free →</a>
           </div>
           <div className="visual reveal sync-v3">
             <div className="sv3-stage" ref={stageRef}>

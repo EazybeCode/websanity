@@ -136,7 +136,7 @@ export function HowItWorks() {
             </span>
             <span>Don't see your CRM? Tell us your stack — we'll wire it up for you.</span>
           </div>
-          <a href="#" className="steps-cta-btn">Book a Demo</a>
+          <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="steps-cta-btn">Book a Demo</a>
         </div>
       </div>
     </section>

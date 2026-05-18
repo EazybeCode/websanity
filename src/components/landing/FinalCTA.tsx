@@ -11,7 +11,7 @@ export function FinalCTA() {
           >
             Talk to our Agent on WhatsApp →
           </a>
-          <a href="#" className="btn btn-outline btn-lg">Book a Demo</a>
+          <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-lg">Book a Demo</a>
         </div>
 
         <div className="final-cta-trust">

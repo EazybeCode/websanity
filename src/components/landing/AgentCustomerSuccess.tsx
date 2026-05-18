@@ -22,7 +22,7 @@ export function AgentCustomerSuccess() {
                 <li key={t}><span className="tick">{Check}</span>{t}</li>
               ))}
             </ul>
-            <a href="#" className="feat-link">Deploy This Agent →</a>
+            <a href="https://app.eazybe.com/" target="_blank" rel="noopener noreferrer" className="feat-link">Deploy This Agent →</a>
           </div>
           <div className="visual reveal">
             <div className="chat">

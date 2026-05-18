@@ -54,7 +54,7 @@ export function Integrations() {
           Every integration - contact sync, deal sync, activity logs, custom properties, workflow triggers.
         </p>
         <div style={{ textAlign: 'center', marginTop: 24 }}>
-          <a href="#" className="btn btn-outline btn-lg reveal" style={{ borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}>
+          <a href="https://eazybe.com/integrations" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-lg reveal" style={{ borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}>
             See full integration depth →
           </a>
         </div>
