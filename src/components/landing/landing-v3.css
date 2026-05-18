@@ -3057,6 +3057,13 @@
   color: var(--ink-2);
   line-height: 1.7;
 }
+/* Blog/comparison articles already sit in a sized column with a sidebar —
+   don't re-constrain them with .prose's 720px max-width or center margin */
+.landing .blog-content.prose,
+.landing article.prose {
+  max-width: none !important;
+  margin: 0 !important;
+}
 .landing .prose h1, .landing .prose h2, .landing .prose h3 {
   font-family: var(--f-display); font-weight: 400;
   letter-spacing: -0.015em; color: var(--ink);
@@ -3347,11 +3354,34 @@
   margin: 2.5rem 0 !important;
 }
 
-/* Drop cap — kill cyan, use a subtle dark cap */
+/* Drop cap — keep prominent (big + bold + accent) but no float, so all
+   following paragraphs stay flush against the article's left edge */
 .landing .blog-content > p:first-of-type::first-letter {
   color: var(--accent-ink) !important;
+  font-family: var(--f-display, var(--f-sans));
   font-weight: 800;
+  font-size: 3.4em !important;
+  line-height: 1 !important;
+  float: none !important;
+  display: inline-block;
+  vertical-align: -0.18em;
+  padding-right: 0.08em;
+  margin: 0 0.1em 0 0 !important;
 }
+/* Belt-and-braces: every child of .blog-content shares the same left edge */
+.landing .blog-content > *,
+.landing .blog-content > p,
+.landing .blog-content > div,
+.landing .blog-content > ul,
+.landing .blog-content > ol,
+.landing .blog-content > blockquote {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
+}
+/* Callouts/quotes still keep their own internal padding — just no outward indent */
+.landing .blog-content > div[class*="border-l"],
+.landing .blog-content > blockquote { padding-left: 1.25rem !important; }
 
 /* TL;DR card — soften gradient + accent border */
 .landing .border-l-4.border-brand-cyan\/50 {
