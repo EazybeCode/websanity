@@ -2647,6 +2647,108 @@
       "footnoteRest": "var ve sorunu çözer. ↓",
       "stepsCtaText": "En iyi temsilcilerinizle eğitilmiş özel AI agent'lar — bugün devralmaya hazır.",
       "stepsCtaBtn": "Agent'larla Tanışın"
+    },
+    "agentSync": {
+      "tag": "Agent 01 · CRM Sync · ÜCRETSİZ · EN POPÜLER",
+      "headline": "Her WhatsApp konuşması.",
+      "headlineEm": "CRM'inizde.",
+      "headlineEnd": "Otomatik.",
+      "lede": "\"Temsilciniz bugün 200 konuşma yaptı. Bu agent her birini kayda geçirdi.\"",
+      "features": [
+        "HubSpot, Salesforce, Zoho, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets ve özel API ile senkronize olur",
+        "Akıllı alan eşleme: doğru kişi, doğru deal, doğru şirket",
+        "Çift yönlü: CRM güncellemeleri WhatsApp'a geri akar",
+        "Ekler, sesli notlar ve medya — hepsi korunur"
+      ],
+      "cta": "Ücretsiz Dağıt →",
+      "paneInbox": "WhatsApp · Gelen Kutusu",
+      "paneCount": "5 sohbet",
+      "savingPill": "CRM'e kaydediliyor",
+      "paneArchive": "HubSpot · Sohbet Arşivi",
+      "live": "Canlı"
+    },
+    "agentLeadQual": {
+      "tag": "Agent 02 · Lead Qualification · CANLI DENE",
+      "headline": "En iyi temsilcinizin sezgileri,",
+      "headlineEm": "7/24 çalışıyor",
+      "lede": "Gece 23'te bir lead yazıyor. Bu agent anında yanıt veriyor, en iyi kapatıcılarınızdan öğrendiği niteleme kalıplarını kullanıyor. Doğru soruları soruyor. Niyeti puanlıyor. Sıcak lead'leri doğru temsilciye yönlendiriyor.",
+      "features": [
+        "Sizin kriterinizle nitelendirir (BANT, MEDDIC veya özel)",
+        "Çok dilli: Türkçe, İngilizce, İspanyolca, Portekizce ve daha fazlası",
+        "Her konuşmadan önce CRM'i okur",
+        "WhatsApp'a özel düğmeli akışlar"
+      ],
+      "cta": "WhatsApp'tan Agent'la Konuş →",
+      "chatTitle": "Lead Qualification Agent",
+      "live": "CANLI ·",
+      "chattingWith": "{name} ile konuşuyor",
+      "training": "{count} konuşma üzerinde sürekli eğitim"
+    },
+    "agentRevenue": {
+      "tag": "Agent 03 · Revenue Agent",
+      "headline": "Hangi deal'ların",
+      "headlineEm": "gerçekten yaşadığını görün",
+      "lede": "Her gece WhatsApp + CRM'i okur. Yarıda kalmış deal'ları işaretler. Deal sağlığını puanlar. Haftalık Yönetici Özeti gönderir.",
+      "features": [
+        "Yarıda kalmış deal tespiti",
+        "Konuşma sinyallerinden deal sağlığı puanlaması",
+        "Gece yapılan CRM güncellemeleri",
+        "Risk altındaki pipeline uyarıları"
+      ],
+      "cta": "Bu Agent'ı Dağıt →",
+      "dashTitle": "Yönetici",
+      "dashTitleEm": "Özeti",
+      "dashUpdated": "AZ ÖNCE GÜNCELLENDİ",
+      "pipelineHealth": "Pipeline sağlığı"
+    },
+    "agentCustomerSuccess": {
+      "tag": "Agent 04 · Customer Success",
+      "headline": "En iyi destek temsilciniz,",
+      "headlineEm": "7/24 müsait",
+      "lede": "WhatsApp'taki destek sorularını anında yanıtlar. Bilgi tabanınızdan beslenir. Önemli olduğunda, tam bağlamla bir insana devreder.",
+      "features": [
+        "Bilgi tabanı destekli yanıtlar",
+        "Gerçek destek konuşmalarınız üzerinde eğitilmiş",
+        "Sorunsuz insan devri",
+        "Sesli notları ve medyayı yönetir",
+        "Destek yükünü %40'a kadar azaltır"
+      ],
+      "cta": "Bu Agent'ı Dağıt →",
+      "chatTitle": "Customer Success Agent",
+      "chatStatus": "● Çözüyor · Bilgi Tabanı Destekli",
+      "chatMsg1": "Kişilerimi CSV olarak nasıl dışa aktarırım?",
+      "chatBot1": "Selam! Ayarlar → Veri → Dışa Aktar yoluna gidin. Kişileri seçin, CSV biçimini seçip Dışa Aktar'a tıklayın. Ekran görüntülü rehber ister misiniz?",
+      "chatMsg2": "Evet, lütfen",
+      "chatBot2": "Gönderildi! Başka yardımcı olabileceğim bir şey var mı?"
+    },
+    "agentBuilder": {
+      "tag": "Agent 05 · Agent Builder · KENDİNİ OLUŞTUR",
+      "headline": "Sizin kullanım senaryonuz,",
+      "headlineEm": "verileriniz, agent'ınız",
+      "lede": "Her ekip standart kalıba uymaz. Ekibinizin ihtiyacı olan agent'ı bir günde oluşturun.",
+      "defineLabel": "TANIMLA",
+      "defineDesc": "Tetikleyiciler, CRM alanları",
+      "trainLabel": "EĞİT",
+      "trainDesc": "Belirli sohbetler üzerinde",
+      "deployLabel": "DAĞIT",
+      "deployDesc": "WhatsApp + CRM senkronizasyonu üzerinde",
+      "useCaseTitle": "Kullanım senaryosu örnekleri:",
+      "useCaseExamples": "Yenileme Agent'ı · Partner Onboarding · Fiyat İtirazı",
+      "cta": "Nasıl Kurulur →",
+      "builderTitle": "Yeni Agent",
+      "builderDraft": "YENİLEME AGENT'I · TASLAK",
+      "builderReady": "DAĞITIMA HAZIR",
+      "defineTrigger": "TETİKLEYİCİ TANIMLA",
+      "triggerWhen": "OLDUĞUNDA",
+      "triggerField": "deal.close_date",
+      "triggerIs": "KALDIĞINDA",
+      "triggerValue": "60 gün",
+      "trainOnChats": "SOHBETLERLE EĞİT",
+      "trainedConvos": "142 yenileme konuşması",
+      "trainedTime": "son 12 ay · indekslendi",
+      "trainedBadge": "✓ EĞİTİLDİ",
+      "deployTo": "DAĞITIM HEDEFLERİ",
+      "deployBtn": "Agent'ı Dağıt"
     }
   }
 }

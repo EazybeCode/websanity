@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface Person {
   name: string
@@ -25,6 +26,8 @@ const CheckIcon = (
 interface CrmRow extends Person { id: number }
 
 export function AgentSync() {
+  const t = useTranslations('landingV3.agentSync')
+  const features = t.raw('features') as string[]
   const stageRef = useRef<HTMLDivElement>(null)
   const rowsRef = useRef<HTMLDivElement>(null)
   const crmRowsRef = useRef<HTMLDivElement>(null)
@@ -144,20 +147,15 @@ export function AgentSync() {
       <div className="container">
         <div className="agent-inner">
           <div className="agent-copy reveal">
-            <span className="sec-tag">Agent 01 · CRM Sync · FREE · MOST POPULAR</span>
-            <h3>Every WhatsApp conversation. <em>In your CRM.</em> Automatically.</h3>
-            <p className="lede">&quot;Your rep had 200 conversations today. This agent logged every one.&quot;</p>
+            <span className="sec-tag">{t('tag')}</span>
+            <h3>{t('headline')} <em>{t('headlineEm')}</em> {t('headlineEnd')}</h3>
+            <p className="lede">{t('lede')}</p>
             <ul className="feat-list">
-              {[
-                'Syncs to HubSpot, Salesforce, Zoho, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets, custom API',
-                'Smart field mapping, right contact, right deal, right company',
-                'Bi-directional, CRM updates flow back into WhatsApp',
-                'Attachments, voice notes, media, all preserved',
-              ].map((t) => (
-                <li key={t}><span className="tick">{CheckIcon}</span>{t}</li>
+              {features.map((it) => (
+                <li key={it}><span className="tick">{CheckIcon}</span>{it}</li>
               ))}
             </ul>
-            <a href="https://app.eazybe.com/" target="_blank" rel="noopener noreferrer" className="feat-link">Deploy Free →</a>
+            <a href="https://app.eazybe.com/" target="_blank" rel="noopener noreferrer" className="feat-link">{t('cta')}</a>
           </div>
           <div className="visual reveal sync-v3">
             <div className="sv3-stage" ref={stageRef}>
@@ -166,8 +164,8 @@ export function AgentSync() {
                   <span className="sv3-ic sv3-ic-wa">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="#25D366"><path d="M12 2C6.49 2 2 6.49 2 12c0 1.89.53 3.7 1.54 5.28L2 22l4.84-1.5c1.52.83 3.24 1.27 4.99 1.27h.01c5.51 0 10-4.49 10.01-10 0-2.67-1.04-5.18-2.93-7.07z" /></svg>
                   </span>
-                  <span className="sv3-pane-label">WhatsApp · Inbox</span>
-                  <span className="sv3-pane-count">5 chats</span>
+                  <span className="sv3-pane-label">{t('paneInbox')}</span>
+                  <span className="sv3-pane-count">{t('paneCount')}</span>
                 </div>
                 <div className="sv3-rows" ref={rowsRef}>
                   {PEOPLE.map((p, i) => (
@@ -191,7 +189,7 @@ export function AgentSync() {
                 <span className="sv3-wire-line" />
                 <span className={`sv3-pill${pillActive ? ' active' : ''}`}>
                   <span className="sv3-pill-orb" />
-                  <span>saving to CRM</span>
+                  <span>{t('savingPill')}</span>
                 </span>
               </div>
 
@@ -200,8 +198,8 @@ export function AgentSync() {
                   <span className="sv3-ic sv3-ic-crm">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="#FF7A59"><circle cx="12" cy="12" r="10"/></svg>
                   </span>
-                  <span className="sv3-pane-label">HubSpot · Chat Archive</span>
-                  <span className="sv3-synced"><span className="sv3-live-dot" />Live</span>
+                  <span className="sv3-pane-label">{t('paneArchive')}</span>
+                  <span className="sv3-synced"><span className="sv3-live-dot" />{t('live')}</span>
                 </div>
                 <div className="sv3-rows sv3-crm-rows" ref={crmRowsRef}>
                   {crmRows.map((p) => (

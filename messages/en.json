@@ -2509,6 +2509,108 @@
       "footnoteRest": "that fixes it. ↓",
       "stepsCtaText": "Custom AI agents, trained on your best reps, ready to take over today.",
       "stepsCtaBtn": "Meet the Agents"
+    },
+    "agentSync": {
+      "tag": "Agent 01 · CRM Sync · FREE · MOST POPULAR",
+      "headline": "Every WhatsApp conversation.",
+      "headlineEm": "In your CRM.",
+      "headlineEnd": "Automatically.",
+      "lede": "\"Your rep had 200 conversations today. This agent logged every one.\"",
+      "features": [
+        "Syncs to HubSpot, Salesforce, Zoho, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets, custom API",
+        "Smart field mapping, right contact, right deal, right company",
+        "Bi-directional, CRM updates flow back into WhatsApp",
+        "Attachments, voice notes, media, all preserved"
+      ],
+      "cta": "Deploy Free →",
+      "paneInbox": "WhatsApp · Inbox",
+      "paneCount": "5 chats",
+      "savingPill": "saving to CRM",
+      "paneArchive": "HubSpot · Chat Archive",
+      "live": "Live"
+    },
+    "agentLeadQual": {
+      "tag": "Agent 02 · Lead Qualification · TRY IT LIVE",
+      "headline": "Your Best Rep's Instincts,",
+      "headlineEm": "Running 24/7",
+      "lede": "A lead messages at 11 PM. This agent responds instantly, using qualification patterns learned from your top closers. Asks the right questions. Scores intent. Routes hot prospects to the right rep.",
+      "features": [
+        "Qualifies using your criteria (BANT, MEDDIC, or custom)",
+        "Multilingual, English, Portuguese, Spanish, and more",
+        "Reads CRM before every conversation",
+        "WhatsApp-native button flows"
+      ],
+      "cta": "Chat with the Agent on WhatsApp →",
+      "chatTitle": "Lead Qualification Agent",
+      "live": "LIVE ·",
+      "chattingWith": "chatting with {name}",
+      "training": "Continuously training on {count} conversations"
+    },
+    "agentRevenue": {
+      "tag": "Agent 03 · Revenue Agent",
+      "headline": "See Which Deals Are",
+      "headlineEm": "Really Alive",
+      "lede": "Reads WhatsApp + CRM every night. Flags ghosted deals. Scores deal health. Delivers a Weekly Executive Brief.",
+      "features": [
+        "Ghosted deal detection",
+        "Deal health scoring from conversation signals",
+        "Nightly CRM updates",
+        "At-risk pipeline alerts"
+      ],
+      "cta": "Deploy This Agent →",
+      "dashTitle": "Executive",
+      "dashTitleEm": "Brief",
+      "dashUpdated": "UPDATED JUST NOW",
+      "pipelineHealth": "Pipeline health"
+    },
+    "agentCustomerSuccess": {
+      "tag": "Agent 04 · Customer Success",
+      "headline": "Your Best Support Rep,",
+      "headlineEm": "Available 24/7",
+      "lede": "Answers support on WhatsApp instantly. Knowledge-base-powered. Hands off to a human with full context when it matters.",
+      "features": [
+        "Knowledge base-powered responses",
+        "Trained on your actual support conversations",
+        "Seamless human handoff",
+        "Handles voice notes and media",
+        "Reduces support workload by up to 40%"
+      ],
+      "cta": "Deploy This Agent →",
+      "chatTitle": "Customer Success Agent",
+      "chatStatus": "● Resolving · KB-powered",
+      "chatMsg1": "How do I export my contacts to CSV?",
+      "chatBot1": "Hi! Go to Settings → Data → Export. Choose contacts, format CSV, click Export. Want me to send you a screenshot guide?",
+      "chatMsg2": "Yes please",
+      "chatBot2": "Sent! Anything else I can help with?"
+    },
+    "agentBuilder": {
+      "tag": "Agent 05 · Agent Builder · BUILD YOUR OWN",
+      "headline": "Your Use Case,",
+      "headlineEm": "Your Data, Your Agent",
+      "lede": "Not every team fits the lineup. Build the agent your team needs in a day.",
+      "defineLabel": "DEFINE",
+      "defineDesc": "Triggers, CRM fields",
+      "trainLabel": "TRAIN",
+      "trainDesc": "On specific chats",
+      "deployLabel": "DEPLOY",
+      "deployDesc": "On WhatsApp + CRM sync",
+      "useCaseTitle": "Use case examples:",
+      "useCaseExamples": "Renewal Agent · Partner Onboarding · Pricing Objection",
+      "cta": "See How to Build →",
+      "builderTitle": "New Agent",
+      "builderDraft": "RENEWAL AGENT · DRAFT",
+      "builderReady": "READY TO DEPLOY",
+      "defineTrigger": "DEFINE TRIGGER",
+      "triggerWhen": "WHEN",
+      "triggerField": "deal.close_date",
+      "triggerIs": "IS",
+      "triggerValue": "60 days away",
+      "trainOnChats": "TRAIN ON CHATS",
+      "trainedConvos": "142 renewal conversations",
+      "trainedTime": "last 12 months · indexed",
+      "trainedBadge": "✓ TRAINED",
+      "deployTo": "DEPLOY TO",
+      "deployBtn": "Deploy Agent"
     }
   }
 }

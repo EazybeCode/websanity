@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface Kpi {
   key: 'atrisk' | 'ghosted' | 'ready' | 'pipeline'
@@ -34,6 +35,8 @@ function fmt(k: Kpi, v: number) {
 }
 
 export function AgentRevenue() {
+  const t = useTranslations('landingV3.agentRevenue')
+  const features = t.raw('features') as string[]
   const dashRef = useRef<HTMLDivElement>(null)
   const [values, setValues] = useState<Record<string, number>>(
     Object.fromEntries(KPIS.map((k) => [k.key, 0])) as Record<string, number>
@@ -122,28 +125,23 @@ export function AgentRevenue() {
       <div className="container">
         <div className="agent-inner">
           <div className="agent-copy reveal">
-            <span className="sec-tag">Agent 03 · Revenue Agent</span>
-            <h3>See Which Deals Are <em>Really Alive</em></h3>
-            <p className="lede">Reads WhatsApp + CRM every night. Flags ghosted deals. Scores deal health. Delivers a Weekly Executive Brief.</p>
+            <span className="sec-tag">{t('tag')}</span>
+            <h3>{t('headline')} <em>{t('headlineEm')}</em></h3>
+            <p className="lede">{t('lede')}</p>
             <ul className="feat-list">
-              {[
-                'Ghosted deal detection',
-                'Deal health scoring from conversation signals',
-                'Nightly CRM updates',
-                'At-risk pipeline alerts',
-              ].map((t) => (
-                <li key={t}>
-                  <span className="tick"><svg fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>{t}
+              {features.map((it) => (
+                <li key={it}>
+                  <span className="tick"><svg fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>{it}
                 </li>
               ))}
             </ul>
-            <a href="https://app.eazybe.com/" target="_blank" rel="noopener noreferrer" className="feat-link">Deploy This Agent →</a>
+            <a href="https://app.eazybe.com/" target="_blank" rel="noopener noreferrer" className="feat-link">{t('cta')}</a>
           </div>
           <div className="visual reveal">
             <div className="dash" ref={dashRef}>
               <div className="dash-head">
-                <h5>Executive <em>Brief</em></h5>
-                <span>UPDATED JUST NOW</span>
+                <h5>{t('dashTitle')} <em>{t('dashTitleEm')}</em></h5>
+                <span>{t('dashUpdated')}</span>
               </div>
               <div className="dash-grid">
                 {KPIS.map((k) => (
@@ -169,7 +167,7 @@ export function AgentRevenue() {
               </div>
               <div className="dash-bar">
                 <div className="dash-bar-head">
-                  <span>Pipeline health</span>
+                  <span>{t('pipelineHealth')}</span>
                   <strong><em>72%</em></strong>
                 </div>
                 <div className="dash-bar-track"><div className="dash-bar-fill" /></div>

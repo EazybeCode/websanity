@@ -2721,6 +2721,108 @@
       "footnoteRest": "que lo resuelve. ↓",
       "stepsCtaText": "Agentes de IA personalizados, entrenados con tus mejores vendedores, listos para tomar el relevo hoy.",
       "stepsCtaBtn": "Conoce a los Agentes"
+    },
+    "agentSync": {
+      "tag": "Agente 01 · Sincronización con CRM · GRATIS · MÁS POPULAR",
+      "headline": "Cada conversación de WhatsApp.",
+      "headlineEm": "En tu CRM.",
+      "headlineEnd": "Automáticamente.",
+      "lede": "\"Tu rep tuvo 200 conversaciones hoy. Este agente registró todas.\"",
+      "features": [
+        "Se sincroniza con HubSpot, Salesforce, Zoho, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets y API personalizada",
+        "Mapeo inteligente de campos: contacto correcto, deal correcto, empresa correcta",
+        "Bidireccional: las actualizaciones del CRM vuelven a WhatsApp",
+        "Adjuntos, audios y multimedia, todo conservado"
+      ],
+      "cta": "Desplegar Gratis →",
+      "paneInbox": "WhatsApp · Bandeja",
+      "paneCount": "5 chats",
+      "savingPill": "guardando en CRM",
+      "paneArchive": "HubSpot · Archivo de Chats",
+      "live": "En vivo"
+    },
+    "agentLeadQual": {
+      "tag": "Agente 02 · Calificación de Leads · PRUÉBALO EN VIVO",
+      "headline": "El instinto de tu mejor rep,",
+      "headlineEm": "trabajando 24/7",
+      "lede": "Un lead escribe a las 23:00. Este agente responde al instante, usando patrones de calificación aprendidos de tus mejores closers. Hace las preguntas correctas. Puntúa la intención. Enruta a los prospectos calientes al rep adecuado.",
+      "features": [
+        "Califica con tu criterio (BANT, MEDDIC o personalizado)",
+        "Multilingüe: español, inglés, portugués y más",
+        "Lee el CRM antes de cada conversación",
+        "Flujos con botones nativos de WhatsApp"
+      ],
+      "cta": "Hablar con el Agente en WhatsApp →",
+      "chatTitle": "Agente de Calificación de Leads",
+      "live": "EN VIVO ·",
+      "chattingWith": "hablando con {name}",
+      "training": "Entrenando continuamente con {count} conversaciones"
+    },
+    "agentRevenue": {
+      "tag": "Agente 03 · Ingresos",
+      "headline": "Mira qué deals están",
+      "headlineEm": "realmente vivos",
+      "lede": "Lee WhatsApp + CRM cada noche. Marca deals olvidados. Puntúa la salud del deal. Envía un Resumen Ejecutivo Semanal.",
+      "features": [
+        "Detección de deals olvidados",
+        "Puntuación de salud del deal a partir de señales de la conversación",
+        "Actualizaciones del CRM cada noche",
+        "Alertas de pipeline en riesgo"
+      ],
+      "cta": "Desplegar este Agente →",
+      "dashTitle": "Resumen",
+      "dashTitleEm": "Ejecutivo",
+      "dashUpdated": "ACTUALIZADO AHORA",
+      "pipelineHealth": "Salud del pipeline"
+    },
+    "agentCustomerSuccess": {
+      "tag": "Agente 04 · Customer Success",
+      "headline": "Tu mejor agente de soporte,",
+      "headlineEm": "disponible 24/7",
+      "lede": "Responde dudas de soporte en WhatsApp al instante. Potenciado por tu base de conocimientos. Pasa el caso a un humano con todo el contexto cuando importa.",
+      "features": [
+        "Respuestas basadas en tu base de conocimientos",
+        "Entrenado con tus conversaciones reales de soporte",
+        "Traspaso fluido a un humano",
+        "Maneja audios y multimedia",
+        "Reduce la carga de soporte hasta un 40%"
+      ],
+      "cta": "Desplegar este Agente →",
+      "chatTitle": "Agente de Customer Success",
+      "chatStatus": "● Resolviendo · Base de Conocimientos",
+      "chatMsg1": "¿Cómo exporto mis contactos a CSV?",
+      "chatBot1": "¡Hola! Ve a Ajustes → Datos → Exportar. Elige contactos, formato CSV y clic en Exportar. ¿Te mando una guía con capturas?",
+      "chatMsg2": "Sí, por favor",
+      "chatBot2": "¡Enviado! ¿Algo más en lo que pueda ayudarte?"
+    },
+    "agentBuilder": {
+      "tag": "Agente 05 · Agent Builder · CONSTRUYE EL TUYO",
+      "headline": "Tu caso de uso,",
+      "headlineEm": "tus datos, tu agente",
+      "lede": "No todos los equipos encajan en la línea. Construye el agente que tu equipo necesita en un día.",
+      "defineLabel": "DEFINE",
+      "defineDesc": "Disparadores, campos del CRM",
+      "trainLabel": "ENTRENA",
+      "trainDesc": "Con chats específicos",
+      "deployLabel": "DESPLIEGA",
+      "deployDesc": "En WhatsApp + sincronización con CRM",
+      "useCaseTitle": "Casos de uso:",
+      "useCaseExamples": "Agente de Renovación · Onboarding de Partners · Objeción de Precio",
+      "cta": "Ver cómo montarlo →",
+      "builderTitle": "Nuevo Agente",
+      "builderDraft": "AGENTE DE RENOVACIÓN · BORRADOR",
+      "builderReady": "LISTO PARA DESPLEGAR",
+      "defineTrigger": "DEFINIR DISPARADOR",
+      "triggerWhen": "CUANDO",
+      "triggerField": "deal.close_date",
+      "triggerIs": "ESTÁ A",
+      "triggerValue": "60 días",
+      "trainOnChats": "ENTRENAR CON CHATS",
+      "trainedConvos": "142 conversaciones de renovación",
+      "trainedTime": "últimos 12 meses · indexado",
+      "trainedBadge": "✓ ENTRENADO",
+      "deployTo": "DESPLEGAR EN",
+      "deployBtn": "Desplegar Agente"
     }
   }
 }

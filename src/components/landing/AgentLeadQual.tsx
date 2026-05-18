@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface Convo {
   name: string
@@ -78,6 +79,8 @@ const TickIcon = (
 const MAX_VISIBLE = 4
 
 export function AgentLeadQual() {
+  const t = useTranslations('landingV3.agentLeadQual')
+  const features = t.raw('features') as string[]
   const bodyRef = useRef<HTMLDivElement>(null)
   const [convo, setConvo] = useState<Convo>(CONVOS[0])
   const [convoSwap, setConvoSwap] = useState(false)
@@ -158,22 +161,17 @@ export function AgentLeadQual() {
       <div className="container">
         <div className="agent-inner">
           <div className="agent-copy reveal">
-            <span className="sec-tag">Agent 02 · Lead Qualification · TRY IT LIVE</span>
-            <h3>Your Best Rep&apos;s Instincts, <em>Running 24/7</em></h3>
-            <p className="lede">A lead messages at 11 PM. This agent responds instantly, using qualification patterns learned from your top closers. Asks the right questions. Scores intent. Routes hot prospects to the right rep.</p>
+            <span className="sec-tag">{t('tag')}</span>
+            <h3>{t('headline')} <em>{t('headlineEm')}</em></h3>
+            <p className="lede">{t('lede')}</p>
             <ul className="feat-list">
-              {[
-                'Qualifies using your criteria (BANT, MEDDIC, or custom)',
-                'Multilingual, English, Portuguese, Spanish, and more',
-                'Reads CRM before every conversation',
-                'WhatsApp-native button flows',
-              ].map((t) => (
-                <li key={t}>
-                  <span className="tick"><svg fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>{t}
+              {features.map((it) => (
+                <li key={it}>
+                  <span className="tick"><svg fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>{it}
                 </li>
               ))}
             </ul>
-            <a href="https://wa.me/1234567890" className="feat-link">Chat with the Agent on WhatsApp →</a>
+            <a href="https://wa.me/1234567890" className="feat-link">{t('cta')}</a>
           </div>
 
           <div className="visual reveal">
@@ -192,7 +190,7 @@ export function AgentLeadQual() {
                 </div>
                 <div className="info lqa-info">
                   <h5>
-                    Lead Qualification Agent
+                    {t('chatTitle')}
                     <span className="lqa-wa-chip">
                       <svg width="9" height="9" viewBox="0 0 24 24" fill="#25D366"><path d="M12 2C6.49 2 2 6.49 2 12c0 1.89.53 3.7 1.54 5.28L2 22l4.84-1.5c1.52.83 3.24 1.27 4.99 1.27h.01c5.51 0 10-4.49 10.01-10 0-2.67-1.04-5.18-2.93-7.07z"/></svg>
                       WhatsApp
@@ -200,8 +198,8 @@ export function AgentLeadQual() {
                   </h5>
                   <p>
                     <span className="lqa-live-dot" />
-                    LIVE ·
-                    <span className={`lqa-now${convoSwap ? ' swap' : ''}`}>chatting with {convo.name}</span>
+                    {t('live')}
+                    <span className={`lqa-now${convoSwap ? ' swap' : ''}`}>{t('chattingWith', { name: convo.name })}</span>
                   </p>
                 </div>
                 <div className={`lqa-lang${convoSwap ? ' swap' : ''}`}>{convo.lang}</div>
@@ -230,7 +228,7 @@ export function AgentLeadQual() {
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
                     </svg>
-                    <span>Continuously training on <strong>{count.toLocaleString('en-US')}</strong> conversations</span>
+                    <span>{t('training', { count: count.toLocaleString('en-US') })}</span>
                   </div>
                   <div className="lqa-train-bar"><span /></div>
                 </div>
