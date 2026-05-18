@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { SigninModal } from './SigninModal'
 
 const EXAMPLES = [
   'Qualify inbound leads with BANT and route hot ones to my top rep…',
@@ -12,12 +11,20 @@ const EXAMPLES = [
   'Alert my manager when any deal over $50k goes silent…',
 ]
 
+
 export function Hero() {
   const [value, setValue] = useState('')
-  const [modalOpen, setModalOpen] = useState(false)
   const [placeholder, setPlaceholder] = useState('Alert my manager when any deal over $50k goes silent…')
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const focused = useRef(false)
+
+  const redirectToApp = () => {
+    const prompt = value.trim()
+    const url = prompt
+      ? `https://app.eazybe.com/?prompt=${encodeURIComponent(prompt)}`
+      : 'https://app.eazybe.com/'
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
 
   // Rotating placeholder typewriter
   useEffect(() => {
@@ -72,13 +79,13 @@ export function Hero() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setModalOpen(true)
+    redirectToApp()
   }
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
-      setModalOpen(true)
+      redirectToApp()
     }
   }
 
@@ -96,6 +103,11 @@ export function Hero() {
 
           <div className="prompt-wrap">
             <div className="prompt-orb" />
+            <label htmlFor="agent-prompt" className="prompt-label">
+              <span className="prompt-label-dot" />
+              Describe what your AI agent should do
+              <span className="prompt-label-arrow">↓</span>
+            </label>
             <form className="prompt-box" onSubmit={onSubmit}>
               <div className="prompt-inner">
                 <div className="prompt-icon" aria-hidden>
@@ -103,6 +115,7 @@ export function Hero() {
                 </div>
                 <textarea
                   ref={textareaRef}
+                  id="agent-prompt"
                   className="prompt-input"
                   rows={1}
                   placeholder={placeholder}
@@ -135,7 +148,6 @@ export function Hero() {
         </div>
       </section>
 
-      <SigninModal open={modalOpen} prompt={value} onClose={() => setModalOpen(false)} />
     </>
   )
 }

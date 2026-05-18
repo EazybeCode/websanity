@@ -347,7 +347,9 @@ export function Nav() {
         <LanguageSwitcher />
         <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Book a Demo</a>
         <a
-          href="https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works."
+          href="https://app.eazybe.com/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="btn btn-primary"
         >
           Talk to our Agent →
@@ -475,7 +477,9 @@ export function Nav() {
           <div className="nav-drawer-ctas">
             <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" onClick={closeMenu}>Book a Demo</a>
             <a
-              href="https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works."
+              href="https://app.eazybe.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-primary"
               onClick={closeMenu}
             >
