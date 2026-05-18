@@ -43,7 +43,7 @@ export function FbPageClient() {
 
         try {
           const resp = await fetch(
-            `https://eazybe.com/api/v1/whatzapp/updateutmonhubspot`,
+            `https://cerberus.eazybe.com/prod/api/v1/updateutmonhubspot`,
             {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
