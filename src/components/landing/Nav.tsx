@@ -329,7 +329,6 @@ export function Nav() {
           </div>
         </div>
 
-        <div className="nav-item"><a href="/#"><span>{t('agentBuilder')}</span></a></div>
         <div className="nav-item"><a href="/pricing"><span>{t('pricing')}</span></a></div>
 
         <div className="nav-item">
@@ -478,10 +477,6 @@ export function Nav() {
                   </a>
                 </li>
               </ul>
-            </div>
-
-            <div className="nav-drawer-link">
-              <a href="/#" onClick={closeMenu}>{t('agentBuilder')}</a>
             </div>
 
             <div className="nav-drawer-link">
