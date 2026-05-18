@@ -25,7 +25,7 @@ export function AgentBuilder() {
               <strong>{t('useCaseTitle')}</strong><br />
               {t('useCaseExamples')}
             </p>
-            <a href="https://app.eazybe.com/" target="_blank" rel="noopener noreferrer" className="feat-link">{t('cta')}</a>
+            <a href="https://eazybe.info/85c80b" target="_blank" rel="noopener noreferrer" className="feat-link">{t('cta')}</a>
           </div>
           <div className="visual reveal">
             <div style={{ background: 'var(--paper)', border: '1px solid var(--line)', borderRadius: 'var(--r-lg)', padding: 24, boxShadow: '0 8px 24px -12px rgba(0,0,0,0.08)' }}>

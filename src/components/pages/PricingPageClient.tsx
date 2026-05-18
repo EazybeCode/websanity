@@ -497,7 +497,7 @@ interface PricingPageClientProps { pricingData: PricingData | null }
 
 export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const [isAnnual, setIsAnnual] = useState(true)
-  const { getDynamicPrice } = useDynamicPricing()
+  const { getDynamicPrice, loading: pricingLoading } = useDynamicPricing()
 
   const hero = pricingData?.hero || {
     badge: 'Pricing',
@@ -562,6 +562,37 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
 
   return (
     <>
+      {pricingLoading && (
+        <div
+          role="status"
+          aria-live="polite"
+          aria-label="Loading pricing"
+          style={{
+            position: 'fixed',
+            top: 80,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'var(--bg, #ffffff)',
+            zIndex: 90,
+          }}
+        >
+          <span
+            style={{
+              width: 48,
+              height: 48,
+              border: '3px solid rgba(91, 75, 174, 0.18)',
+              borderTopColor: '#5b4bae',
+              borderRadius: '50%',
+              animation: 'pricing-loading-spin 0.9s linear infinite',
+            }}
+          />
+          <style>{`@keyframes pricing-loading-spin { to { transform: rotate(360deg); } }`}</style>
+        </div>
+      )}
       {/* Hero */}
       <section className="page-hero" data-tone="dark">
         <div className="container">

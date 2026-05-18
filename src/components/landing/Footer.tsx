@@ -1,7 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+
+// Prefix internal href paths with the active locale.
+function withLocale(href: string, locale: string): string {
+  if (locale === 'en') return href
+  if (!href || !href.startsWith('/')) return href
+  if (href === '/#' || href === '#') return href
+  return `/${locale}${href}`
+}
 
 // Column structure with translation keys. Each item references a key in
 // landingV3.footer so its display label tracks the active locale. The `href`
@@ -43,6 +51,7 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
       { nameKey: 'itemRepRadar', href: '/features/rep-radar' },
       { nameKey: 'itemWhatsappCopilot', href: '/features/whatsapp-copilot' },
       { nameKey: 'itemWhatsappCrm', href: '/features/whatsapp-crm' },
+      { nameKey: 'itemAllFeatures', href: '/features' },
     ],
   },
   {
@@ -77,6 +86,8 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
 
 export function Footer() {
   const t = useTranslations('landingV3.footer')
+  const locale = useLocale()
+  const lh = (href: string) => withLocale(href, locale)
   const [openCols, setOpenCols] = useState<Set<number>>(new Set())
   const toggleCol = (i: number) => {
     setOpenCols((prev) => {
@@ -91,7 +102,7 @@ export function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <a href="/" aria-label={t('logoAria')} style={{ display: 'inline-block', marginBottom: 14 }}>
+            <a href={lh('/')} aria-label={t('logoAria')} style={{ display: 'inline-block', marginBottom: 14 }}>
               <img
                 src="/logo.png"
                 alt="Eazybe Logo"
@@ -150,7 +161,7 @@ export function Footer() {
                     return (
                       <li key={`${idx}-${j}-${label}`}>
                         <a
-                          href={i.href}
+                          href={lh(i.href)}
                           {...(i.href.startsWith('http')
                             ? { target: '_blank', rel: 'noopener noreferrer' }
                             : {})}
@@ -173,11 +184,11 @@ export function Footer() {
             {t('copyright')} <span className="footer-baseline-sep">|</span> {t('copyrightSuffix')}
           </p>
           <nav className="footer-baseline-links" aria-label={t('policyAria')}>
-            <a href="/terms">{t('terms')}</a>
+            <a href={lh('/terms')}>{t('terms')}</a>
             <span className="footer-baseline-sep">|</span>
-            <a href="/privacy">{t('privacy')}</a>
+            <a href={lh('/privacy')}>{t('privacy')}</a>
             <span className="footer-baseline-sep">|</span>
-            <a href="/msa">{t('msa')}</a>
+            <a href={lh('/msa')}>{t('msa')}</a>
           </nav>
 
           <div className="footer-payments" aria-label="Accepted payment methods">

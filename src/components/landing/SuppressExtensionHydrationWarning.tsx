@@ -24,6 +24,12 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
     'did not match',
     "Hydration failed because the server rendered HTML didn't match",
   ]
+  // `RevealOnScroll` adds the `show` class to `.reveal` elements via DOM
+  // manipulation in useEffect. During soft navigations or streaming flushes
+  // React occasionally re-reads the DOM and surfaces a className mismatch
+  // (server: "reveal", client/DOM: "reveal show"). The animation contract
+  // is intentional and not a real bug, so filter that specific pattern too.
+  const SAFE_DOM_PATTERNS = ['reveal show', 'reveal&quot; show', 'reveal" show']
 
   const original = console.error
   const w = window as Window & { __eb_console_filtered__?: boolean }
@@ -34,10 +40,11 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
       const blob = args
         .map((a) => (typeof a === 'string' ? a : ''))
         .join(' ')
+      const isHydration = HYDRATION_HINTS.some((h) => blob.includes(h))
       if (
         EXTENSION_ATTRS.some((attr) => blob.includes(attr)) ||
-        (HYDRATION_HINTS.some((h) => blob.includes(h)) &&
-          EXTENSION_ATTRS.some((attr) => blob.includes(attr)))
+        (isHydration && EXTENSION_ATTRS.some((attr) => blob.includes(attr))) ||
+        (isHydration && SAFE_DOM_PATTERNS.some((p) => blob.includes(p)))
       ) {
         return
       }
