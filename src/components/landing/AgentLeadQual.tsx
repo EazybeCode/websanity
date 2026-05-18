@@ -7,11 +7,12 @@ interface Convo {
   initials: string
   color: string
   lang: string
+  photo: string
   msgs: { who: 'user' | 'bot'; text: string }[]
 }
 
 const CONVOS: Convo[] = [
-  { name: 'Sara P.', initials: 'SP', color: '#E4E8F1', lang: 'EN', msgs: [
+  { name: 'Sara P.', initials: 'SP', color: '#E4E8F1', lang: 'EN', photo: 'https://i.pravatar.cc/96?img=47', msgs: [
     { who: 'user', text: 'Hi, I saw your ad. Interested in your product.' },
     { who: 'bot',  text: "Great to hear! What's your company name and team size?" },
     { who: 'user', text: 'TechCorp, about 50 sales reps.' },
@@ -19,7 +20,7 @@ const CONVOS: Convo[] = [
     { who: 'user', text: 'HubSpot. Can we chat tomorrow at 3?' },
     { who: 'bot',  text: 'Booked. Routing you to Priya, top closer for 50-rep teams.' },
   ]},
-  { name: 'Marco R.', initials: 'MR', color: '#D4D9E5', lang: 'ES', msgs: [
+  { name: 'Marco R.', initials: 'MR', color: '#D4D9E5', lang: 'ES', photo: 'https://i.pravatar.cc/96?img=15', msgs: [
     { who: 'user', text: 'Hola, ¿pueden ayudar a un equipo de 20?' },
     { who: 'bot',  text: '¡Sí! ¿Qué CRM usan actualmente?' },
     { who: 'user', text: 'Pipedrive. Buscamos integración.' },
@@ -27,7 +28,7 @@ const CONVOS: Convo[] = [
     { who: 'user', text: 'Unos $2K. ¿Tienen plan empresarial?' },
     { who: 'bot',  text: 'Sí, te conecto con Luis ahora mismo.' },
   ]},
-  { name: 'Aisha K.', initials: 'AK', color: '#ECEFF7', lang: 'HI', msgs: [
+  { name: 'Aisha K.', initials: 'AK', color: '#ECEFF7', lang: 'HI', photo: 'https://i.pravatar.cc/96?img=44', msgs: [
     { who: 'user', text: 'Namaste, kya aap lead tracking karte hain?' },
     { who: 'bot',  text: 'Haan! Aapki team ka size kya hai?' },
     { who: 'user', text: '12 reps, mostly WhatsApp based.' },
@@ -35,7 +36,7 @@ const CONVOS: Convo[] = [
     { who: 'user', text: 'Zoho. Demo possible hai aaj?' },
     { who: 'bot',  text: 'Done, Arjun aapko 5 min mein ping karega.' },
   ]},
-  { name: 'João S.', initials: 'JS', color: '#D9DFEC', lang: 'PT', msgs: [
+  { name: 'João S.', initials: 'JS', color: '#D9DFEC', lang: 'PT', photo: 'https://i.pravatar.cc/96?img=12', msgs: [
     { who: 'user', text: 'Oi, vocês atendem e-commerce?' },
     { who: 'bot',  text: 'Sim! Qual plataforma você usa?' },
     { who: 'user', text: 'Shopify + WhatsApp Business.' },
@@ -210,7 +211,7 @@ export function AgentLeadQual() {
                 {messages.map((m) => (
                   <div key={m.key} className={`msg${m.who === 'bot' ? ' ai' : ''}`}>
                     {m.who === 'bot' ? BotAvatar : (
-                      <span className="sm-av sm-av-user" style={{ background: convo.color }}>{convo.initials}</span>
+                      <span className="sm-av sm-av-user" style={{ background: convo.color }}><img src={convo.photo} alt="" /></span>
                     )}
                     <div className="bub">
                       {m.typing ? (

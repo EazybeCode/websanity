@@ -827,7 +827,8 @@
 }
 .landing .sv3-row.focus { background: var(--bg-2); box-shadow: inset 0 0 0 1px var(--line-2); }
 .landing .sv3-row.sent { opacity: .5; }
-.landing .sv3-av { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: var(--ink-2); flex-shrink: 0; }
+.landing .sv3-av { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: var(--ink-2); flex-shrink: 0; overflow: hidden; }
+.landing .sv3-av img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
 .landing .sv3-row-body { flex: 1; min-width: 0; }
 .landing .sv3-row-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink); margin-bottom: 1px; }
 .landing .sv3-row-top strong { font-weight: 600; }
@@ -918,8 +919,9 @@
   border-color: color-mix(in oklab, var(--accent-a) 30%, var(--line));
   border-radius: 16px 16px 4px 16px;
 }
-.landing .msg .sm-av { width: 24px; height: 24px; border-radius: 50%; background: var(--bg-2); display: flex; align-items: center; justify-content: center; color: var(--ink-3); flex-shrink: 0; }
+.landing .msg .sm-av { width: 24px; height: 24px; border-radius: 50%; background: var(--bg-2); display: flex; align-items: center; justify-content: center; color: var(--ink-3); flex-shrink: 0; overflow: hidden; }
 .landing .msg.ai .sm-av { background: linear-gradient(135deg, var(--accent-a), var(--accent-b)); color: white; }
+.landing .msg .sm-av-user img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
 .landing .typing { display: inline-flex; gap: 3px; padding: 4px 0; }
 .landing .typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-4); animation: landing-typing 1.4s infinite; }
 .landing .typing span:nth-child(2) { animation-delay: .2s; }
@@ -992,7 +994,8 @@
   transition: opacity .25s, transform .25s;
 }
 .landing .lqa-lang.swap { opacity: 0; transform: translateY(-4px); }
-.landing .lqa-body .msg .sm-av { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--f-sans); font-size: 11px; font-weight: 600; color: #0F1115; flex-shrink: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+.landing .lqa-body .msg .sm-av { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--f-sans); font-size: 11px; font-weight: 600; color: #0F1115; flex-shrink: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.04); overflow: hidden; }
+.landing .lqa-body .msg .sm-av-user img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
 .landing .lqa-body .msg .sm-av-bot { background: linear-gradient(135deg, var(--accent-a), var(--accent-b)); color: #fff; position: relative; }
 .landing .lqa-body .msg .sm-av-bot::after { content: ""; position: absolute; right: -1px; bottom: -1px; width: 10px; height: 10px; border-radius: 50%; background: #22C55E; border: 2px solid #FBFCFE; }
 .landing .lqa-body .typing span { background: #9A9185; }

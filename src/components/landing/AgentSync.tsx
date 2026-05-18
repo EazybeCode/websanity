@@ -7,14 +7,15 @@ interface Person {
   initials: string
   bg: string
   msg: string
+  photo: string
 }
 
 const PEOPLE: Person[] = [
-  { name: 'Sara Patel',  initials: 'SP', bg: '#E4E8F1', msg: 'Can we do a call tomorrow at 3?' },
-  { name: 'Marco Rossi', initials: 'MR', bg: '#D4D9E5', msg: 'Sending the signed contract now 🎉' },
-  { name: 'Aisha Khan',  initials: 'AK', bg: '#ECEFF7', msg: "We're comparing you vs. competitor X" },
-  { name: 'Diego Lopez', initials: 'DL', bg: '#D9DFEC', msg: 'Voice note sent · 0:42' },
-  { name: 'Lena Weber',  initials: 'LW', bg: '#E8EBF3', msg: 'Great, lets move forward!' },
+  { name: 'Sara Patel',  initials: 'SP', bg: '#E4E8F1', msg: 'Can we do a call tomorrow at 3?',          photo: 'https://i.pravatar.cc/96?img=47' },
+  { name: 'Marco Rossi', initials: 'MR', bg: '#D4D9E5', msg: 'Sending the signed contract now 🎉',       photo: 'https://i.pravatar.cc/96?img=15' },
+  { name: 'Aisha Khan',  initials: 'AK', bg: '#ECEFF7', msg: "We're comparing you vs. competitor X",     photo: 'https://i.pravatar.cc/96?img=44' },
+  { name: 'Diego Lopez', initials: 'DL', bg: '#D9DFEC', msg: 'Voice note sent · 0:42',                   photo: 'https://i.pravatar.cc/96?img=12' },
+  { name: 'Lena Weber',  initials: 'LW', bg: '#E8EBF3', msg: 'Great, lets move forward!',                photo: 'https://i.pravatar.cc/96?img=45' },
 ]
 
 const CheckIcon = (
@@ -62,7 +63,7 @@ export function AgentSync() {
         ghost.style.left = sRect.left - stageRect.left + 'px'
         ghost.style.top = sRect.top - stageRect.top + 'px'
         ghost.innerHTML = `
-          <div class="sv3-av" style="background:${person.bg}">${person.initials}</div>
+          <div class="sv3-av" style="background:${person.bg}"><img src="${person.photo}" alt="" /></div>
           <div class="sv3-row-body">
             <div class="sv3-row-top"><strong>${person.name}</strong></div>
             <div class="sv3-row-msg">${person.msg}</div>
@@ -175,7 +176,7 @@ export function AgentSync() {
                       className={`sv3-row${focusIdx === i ? ' focus' : ''}${sentSet.has(i) ? ' sent' : ''}`}
                       data-idx={i}
                     >
-                      <div className="sv3-av" style={{ background: p.bg }}>{p.initials}</div>
+                      <div className="sv3-av" style={{ background: p.bg }}><img src={p.photo} alt="" /></div>
                       <div className="sv3-row-body">
                         <div className="sv3-row-top"><strong>{p.name}</strong></div>
                         <div className="sv3-row-msg">{p.msg}</div>
@@ -205,7 +206,7 @@ export function AgentSync() {
                 <div className="sv3-rows sv3-crm-rows" ref={crmRowsRef}>
                   {crmRows.map((p) => (
                     <div key={p.id} className="sv3-row" data-cid={p.id}>
-                      <div className="sv3-av" style={{ background: p.bg }}>{p.initials}</div>
+                      <div className="sv3-av" style={{ background: p.bg }}><img src={p.photo} alt="" /></div>
                       <div className="sv3-row-body">
                         <div className="sv3-row-top"><strong>{p.name}</strong></div>
                         <div className="sv3-row-msg">{p.msg}</div>

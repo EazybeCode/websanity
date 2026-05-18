@@ -35,9 +35,9 @@ export function AgentCustomerSuccess() {
                 <div className="info"><h5>Customer Success Agent</h5><p>● Resolving · KB-powered</p></div>
               </div>
               <div className="chat-body">
-                <div className="msg"><span className="sm-av">U</span><div className="bub">How do I export my contacts to CSV?</div></div>
+                <div className="msg"><span className="sm-av sm-av-user"><img src="https://i.pravatar.cc/96?img=33" alt="" /></span><div className="bub">How do I export my contacts to CSV?</div></div>
                 <div className="msg ai"><span className="sm-av">CS</span><div className="bub">Hi! Go to Settings → Data → Export. Choose contacts, format CSV, click Export. Want me to send you a screenshot guide?</div></div>
-                <div className="msg"><span className="sm-av">U</span><div className="bub">Yes please</div></div>
+                <div className="msg"><span className="sm-av sm-av-user"><img src="https://i.pravatar.cc/96?img=33" alt="" /></span><div className="bub">Yes please</div></div>
                 <div className="msg ai"><span className="sm-av">CS</span><div className="bub">Sent! Anything else I can help with?</div></div>
               </div>
             </div>
