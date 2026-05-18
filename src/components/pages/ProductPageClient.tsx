@@ -561,8 +561,11 @@ const PropertyCard: React.FC<{
   index: number
   accent: string
 }> = ({ field, index, accent }) => {
-  const [points, setPoints] = useState<number[]>(() => Array.from({ length: 14 }, () => Math.random() * 40 + 20))
+  // Start with stable, deterministic values so SSR and CSR match; replace with
+  // random values on the client after mount to avoid hydration mismatch.
+  const [points, setPoints] = useState<number[]>(() => Array.from({ length: 14 }, (_, i) => 25 + ((i * 13 + index * 7) % 30)))
   useEffect(() => {
+    setPoints(Array.from({ length: 14 }, () => Math.random() * 40 + 20))
     const t = setInterval(() => setPoints((p) => [...p.slice(1), Math.random() * 40 + 20]), 1500 + index * 200)
     return () => clearInterval(t)
   }, [index])
@@ -820,10 +823,85 @@ const ChatBubble: React.FC<{
   )
 }
 
+// ─── Built-for-teams section ────────────────────────────────────────────────
+
+const TEAM_AUDIENCES: Array<{ title: string; bullets: string[] }> = [
+  {
+    title: 'Sales Teams',
+    bullets: ['Full conversation visibility', 'Deal-linked chat history', 'Response time tracking'],
+  },
+  {
+    title: 'Sales Managers',
+    bullets: ['Team-wide visibility', 'Performance monitoring', 'Pipeline reality check'],
+  },
+  {
+    title: 'Customer Success',
+    bullets: ['Full customer history', 'Seamless handoffs', 'Ticket creation from chats'],
+  },
+]
+
+const TeamsSection: React.FC = () => (
+  <section className="section">
+    <div className="container">
+      <div className="sec-head centered reveal">
+        <span className="sec-tag">Who It&apos;s For</span>
+        <h2>Built for teams where <em>deals happen on WhatsApp</em></h2>
+      </div>
+      <div className="teams-grid">
+        {TEAM_AUDIENCES.map((a) => (
+          <div key={a.title} className="team-card reveal">
+            <h3>{a.title}</h3>
+            <ul>
+              {a.bullets.map((b) => (
+                <li key={b}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)
+
+// ─── Setup steps section ────────────────────────────────────────────────────
+
+const SetupStepsSection: React.FC<{ crmName: string }> = ({ crmName }) => {
+  const steps = [
+    { n: '01', title: 'Install Extension', desc: 'Add Eazybe to Chrome. One click, 60 seconds.' },
+    { n: '02', title: `Connect ${crmName}`, desc: 'OAuth login, no API keys, no developer needed.' },
+    { n: '03', title: 'Open WhatsApp Web', desc: `The ${crmName} sidebar appears automatically.` },
+    { n: '04', title: 'Start Closing Deals', desc: `Every message flows to ${crmName}. You're live.` },
+  ]
+  return (
+    <section className="section" data-tone="dark">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          <span className="sec-tag">Live in 5 Minutes</span>
+          <h2>No developers. No IT tickets. <em>No waiting.</em></h2>
+        </div>
+        <div className="setup-steps">
+          {steps.map((s) => (
+            <div key={s.n} className="setup-step reveal">
+              <div className="setup-step-n">{s.n}</div>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── FAQ ────────────────────────────────────────────────────────────────────
 
-const FAQSection: React.FC<{ data: any }> = ({ data }) => {
-  const [open, setOpen] = useState<Set<number>>(new Set([0]))
+const FAQSection: React.FC<{ data: any; crmName: string }> = ({ data, crmName }) => {
+  const [open, setOpen] = useState<Set<number>>(new Set())
   if (!data || !data.items) return null
   const toggle = (i: number) => setOpen((p) => {
     const n = new Set(p)
@@ -831,26 +909,53 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
     else n.add(i)
     return n
   })
+  const items = data.items
+  const half = Math.ceil(items.length / 2)
+  const columns = [items.slice(0, half), items.slice(half)]
   return (
-    <section className="section">
+    <section className="section" id="faq" style={{ paddingTop: 60 }}>
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">FAQ</span>
-          <h2>{data.headline || 'Common questions'}</h2>
+          <h2>All Your <em>{crmName} + WhatsApp</em> Questions, Answered</h2>
+          <p style={{ maxWidth: 720, width: '100%', textAlign: 'center', hyphens: 'auto' }}>
+            Get answers to common questions about setup, supported features, security, and how the {crmName} integration works day-to-day. Still stuck? Talk to our live agent on WhatsApp.
+          </p>
         </div>
-        <div className="faq">
-          {data.items.map((item: any, idx: number) => (
-            <div key={idx} className={`faq-item reveal${open.has(idx) ? ' open' : ''}`}>
-              <button className="faq-q" onClick={() => toggle(idx)}>
-                {item.question}
-                <span className="plus">
-                  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-                </span>
-              </button>
-              <div className="faq-a">{item.answer}</div>
+
+        <div className="faq-grid">
+          {columns.map((column, colIdx) => (
+            <div key={colIdx} className="faq-col">
+              {column.map((it: any, i: number) => {
+                const idx = colIdx === 0 ? i : i + half
+                const isOpen = open.has(idx)
+                return (
+                  <div key={idx} className={`faq-pill${isOpen ? ' open' : ''}`}>
+                    <button
+                      className="faq-pill-q"
+                      onClick={() => toggle(idx)}
+                      aria-expanded={isOpen}
+                    >
+                      <span>{it.question}</span>
+                      <span className="faq-pill-chev" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </span>
+                    </button>
+                    <div className="faq-pill-a">
+                      <div>{it.answer}</div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           ))}
         </div>
+
+        <p className="faq-footnote">
+          Didn&apos;t find your answer? <a href="https://wa.me/13024129610?text=Hi%20-%20I%20have%20a%20question%20about%20Eazybe." target="_blank" rel="noopener noreferrer">Let&apos;s connect with us!</a>
+        </p>
       </div>
     </section>
   )
@@ -899,7 +1004,9 @@ export default function ProductPageClient({ product, crmSlug }: ProductPageClien
       <FeatureComparisonSection t={t} />
       <MiniCRMSection crm={crm} t={t} />
       <PropertiesSection crm={crm} crmSlug={crmSlug} t={t} />
-      {product?.faq && <FAQSection data={product.faq} />}
+      <TeamsSection />
+      <SetupStepsSection crmName={crm.name} />
+      {product?.faq && <FAQSection data={product.faq} crmName={crm.name} />}
       <CTASection crm={crm} t={t} />
     </>
   )
