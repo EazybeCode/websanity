@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 const LOCALES = [
   { code: 'en', label: 'EN', country: 'gb', prefix: '' },
@@ -160,8 +161,38 @@ const RESOURCES = [
 ]
 
 export function Nav() {
+  const t = useTranslations('landingV3.nav')
   const [menuOpen, setMenuOpen] = useState(false)
   const [openSections, setOpenSections] = useState<Set<string>>(new Set())
+
+  // Translation key map for the AGENTS / INTEGRATIONS / RESOURCES data arrays,
+  // matched by original English name. Keeps the icon/bg/href data intact while
+  // letting each item show in the active locale.
+  const itemLabel = (name: string): { name: string; desc?: string } => {
+    const map: Record<string, { nameKey: string; descKey?: string }> = {
+      'CRM Sync Agent':           { nameKey: 'agentCrmName', descKey: 'agentCrmDesc' },
+      'Lead Qualification Agent': { nameKey: 'agentLeadName', descKey: 'agentLeadDesc' },
+      'Revenue Agent':            { nameKey: 'agentRevenueName', descKey: 'agentRevenueDesc' },
+      'Customer Success Agent':   { nameKey: 'agentCsName', descKey: 'agentCsDesc' },
+      'Agent Builder':            { nameKey: 'agentBuilderName', descKey: 'agentBuilderDesc' },
+      'HubSpot':                  { nameKey: 'intHubspot', descKey: 'intHubspotDesc' },
+      'Salesforce':               { nameKey: 'intSalesforce', descKey: 'intSalesforceDesc' },
+      'Zoho CRM':                 { nameKey: 'intZoho', descKey: 'intZohoDesc' },
+      'Pipedrive':                { nameKey: 'intPipedrive', descKey: 'intPipedriveDesc' },
+      'Bitrix24':                 { nameKey: 'intBitrix', descKey: 'intBitrixDesc' },
+      'LeadSquared':              { nameKey: 'intLeadSquared', descKey: 'intLeadSquaredDesc' },
+      'Freshworks':               { nameKey: 'intFreshworks', descKey: 'intFreshworksDesc' },
+      'Google Sheets':            { nameKey: 'intGoogleSheets', descKey: 'intGoogleSheetsDesc' },
+      'Custom API':               { nameKey: 'intCustom', descKey: 'intCustomDesc' },
+      'Blog':                     { nameKey: 'resBlog', descKey: 'resBlogDesc' },
+      'Help Center':              { nameKey: 'resHelpCenter', descKey: 'resHelpCenterDesc' },
+      'Customer Stories':         { nameKey: 'resCustomerStories', descKey: 'resCustomerStoriesDesc' },
+      'Contact Sales':            { nameKey: 'resContactSales', descKey: 'resContactSalesDesc' },
+    }
+    const entry = map[name]
+    if (!entry) return { name }
+    return { name: t(entry.nameKey), desc: entry.descKey ? t(entry.descKey) : undefined }
+  }
 
   const toggleSection = (key: string) => {
     setOpenSections((prev) => {
@@ -189,7 +220,7 @@ export function Nav() {
   return (
     <>
     <nav className="nav">
-      <a href="/" className="nav-logo" aria-label="Eazybe — Home" onClick={closeMenu}>
+      <a href="/" className="nav-logo" aria-label={t('logoAria')} onClick={closeMenu}>
         <img
           src="/logo.png"
           alt="Eazybe Logo"
@@ -206,7 +237,7 @@ export function Nav() {
       <button
         type="button"
         className={`nav-burger${menuOpen ? ' open' : ''}`}
-        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+        aria-label={menuOpen ? t('closeMenu') : t('openMenu')}
         aria-expanded={menuOpen}
         onClick={() => setMenuOpen((v) => !v)}
       >
@@ -217,16 +248,16 @@ export function Nav() {
 
       <div className="nav-links">
         <div className="nav-item">
-          <a><span>Agents</span> <span className="nav-caret">▾</span></a>
+          <a><span>{t('agents')}</span> <span className="nav-caret">▾</span></a>
           <div className="nav-dropdown">
-            <div className="nav-dd-section">AI Agents</div>
+            <div className="nav-dd-section">{t('sectionAiAgents')}</div>
             <a href="/#" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H9a5 5 0 00-5 5"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h12a5 5 0 005-5"/></svg>
               </span>
               <span className="nav-dd-content">
-                <div className="nav-dd-name">CRM Sync Agent</div>
-                <div className="nav-dd-desc">Auto-log every WhatsApp chat to your CRM</div>
+                <div className="nav-dd-name">{t('agentCrmName')}</div>
+                <div className="nav-dd-desc">{t('agentCrmDesc')}</div>
               </span>
             </a>
             <a href="/#" className="nav-dd-item">
@@ -234,8 +265,8 @@ export function Nav() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
               </span>
               <span className="nav-dd-content">
-                <div className="nav-dd-name">Lead Qualification Agent</div>
-                <div className="nav-dd-desc">Qualify leads 24/7 like your best rep</div>
+                <div className="nav-dd-name">{t('agentLeadName')}</div>
+                <div className="nav-dd-desc">{t('agentLeadDesc')}</div>
               </span>
             </a>
             <a href="/#" className="nav-dd-item">
@@ -243,8 +274,8 @@ export function Nav() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
               </span>
               <span className="nav-dd-content">
-                <div className="nav-dd-name">Revenue Agent</div>
-                <div className="nav-dd-desc">Spot ghosted deals before they die</div>
+                <div className="nav-dd-name">{t('agentRevenueName')}</div>
+                <div className="nav-dd-desc">{t('agentRevenueDesc')}</div>
               </span>
             </a>
             <a href="/#" className="nav-dd-item">
@@ -252,63 +283,66 @@ export function Nav() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
               </span>
               <span className="nav-dd-content">
-                <div className="nav-dd-name">Customer Success Agent</div>
-                <div className="nav-dd-desc">Answer support 24/7 with your KB</div>
+                <div className="nav-dd-name">{t('agentCsName')}</div>
+                <div className="nav-dd-desc">{t('agentCsDesc')}</div>
               </span>
             </a>
             <div className="nav-dd-divider" />
-            <div className="nav-dd-section">Build Your Own</div>
+            <div className="nav-dd-section">{t('sectionBuildYourOwn')}</div>
             <a href="/#" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#F0EBF8' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" strokeWidth="2" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg>
               </span>
               <span className="nav-dd-content">
-                <div className="nav-dd-name">Agent Builder</div>
-                <div className="nav-dd-desc">Custom agents for your use case</div>
+                <div className="nav-dd-name">{t('agentBuilderName')}</div>
+                <div className="nav-dd-desc">{t('agentBuilderDesc')}</div>
               </span>
             </a>
           </div>
         </div>
 
         <div className="nav-item">
-          <a><span>Integrations</span> <span className="nav-caret">▾</span></a>
+          <a><span>{t('integrations')}</span> <span className="nav-caret">▾</span></a>
           <div
             className="nav-dropdown"
             style={{ minWidth: 560, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, padding: 14 }}
           >
-            <div style={{ gridColumn: '1 / -1' }} className="nav-dd-section">CRMs</div>
-            {INTEGRATIONS.map((item) => (
-              <a key={item.name} href={item.href} className="nav-dd-item">
-                <span className="nav-dd-icon" style={{ background: item.bg }} dangerouslySetInnerHTML={{ __html: item.icon }} />
-                <span className="nav-dd-content">
-                  <div className="nav-dd-name">{item.name}</div>
-                  <div className="nav-dd-desc">{item.desc}</div>
-                </span>
-              </a>
-            ))}
+            <div style={{ gridColumn: '1 / -1' }} className="nav-dd-section">{t('sectionCrms')}</div>
+            {INTEGRATIONS.map((item) => {
+              const tr = itemLabel(item.name)
+              return (
+                <a key={item.name} href={item.href} className="nav-dd-item">
+                  <span className="nav-dd-icon" style={{ background: item.bg }} dangerouslySetInnerHTML={{ __html: item.icon }} />
+                  <span className="nav-dd-content">
+                    <div className="nav-dd-name">{tr.name}</div>
+                    <div className="nav-dd-desc">{tr.desc ?? item.desc}</div>
+                  </span>
+                </a>
+              )
+            })}
             <div style={{ gridColumn: '1 / -1' }} className="nav-dd-divider" />
             <a href="/integrations" style={{ gridColumn: '1 / -1' }} className="nav-dd-item">
               <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, color: 'var(--accent-ink)', letterSpacing: '0.04em', textAlign: 'center', width: '100%' }}>
-                See all integrations →
+                {t('allIntegrations')}
               </span>
             </a>
           </div>
         </div>
 
-        <div className="nav-item"><a href="/#"><span>Agent Builder</span></a></div>
-        <div className="nav-item"><a href="/pricing"><span>Pricing</span></a></div>
+        <div className="nav-item"><a href="/#"><span>{t('agentBuilder')}</span></a></div>
+        <div className="nav-item"><a href="/pricing"><span>{t('pricing')}</span></a></div>
 
         <div className="nav-item">
-          <a><span>Resources</span> <span className="nav-caret">▾</span></a>
+          <a><span>{t('resources')}</span> <span className="nav-caret">▾</span></a>
           <div className="nav-dropdown">
-            <div className="nav-dd-section">Learn</div>
+            <div className="nav-dd-section">{t('sectionLearn')}</div>
             <a href="/blog" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               </span>
               <span className="nav-dd-content">
-                <div className="nav-dd-name">Blog</div>
-                <div className="nav-dd-desc">WhatsApp sales playbooks &amp; guides</div>
+                <div className="nav-dd-name">{t('resBlog')}</div>
+                <div className="nav-dd-desc">{t('resBlogDesc')}</div>
               </span>
             </a>
             <a href="https://help.eazybe.com/introduction" target="_blank" rel="noopener noreferrer" className="nav-dd-item">
@@ -316,8 +350,8 @@ export function Nav() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               </span>
               <span className="nav-dd-content">
-                <div className="nav-dd-name">Help Center</div>
-                <div className="nav-dd-desc">Docs, tutorials, API reference</div>
+                <div className="nav-dd-name">{t('resHelpCenter')}</div>
+                <div className="nav-dd-desc">{t('resHelpCenterDesc')}</div>
               </span>
             </a>
             <a href="/#" className="nav-dd-item">
@@ -325,8 +359,8 @@ export function Nav() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E3F26" strokeWidth="2" strokeLinecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </span>
               <span className="nav-dd-content">
-                <div className="nav-dd-name">Customer Stories</div>
-                <div className="nav-dd-desc">See how teams 10× their WhatsApp ROI</div>
+                <div className="nav-dd-name">{t('resCustomerStories')}</div>
+                <div className="nav-dd-desc">{t('resCustomerStoriesDesc')}</div>
               </span>
             </a>
             <div className="nav-dd-divider" />
@@ -335,8 +369,8 @@ export function Nav() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E42527" strokeWidth="2" strokeLinecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               </span>
               <span className="nav-dd-content">
-                <div className="nav-dd-name">Contact Sales</div>
-                <div className="nav-dd-desc">Book a personalized demo</div>
+                <div className="nav-dd-name">{t('resContactSales')}</div>
+                <div className="nav-dd-desc">{t('resContactSalesDesc')}</div>
               </span>
             </a>
           </div>
@@ -345,14 +379,14 @@ export function Nav() {
 
       <div className="nav-ctas">
         <LanguageSwitcher />
-        <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Book a Demo</a>
+        <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">{t('bookDemo')}</a>
         <a
           href="https://app.eazybe.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-primary"
         >
-          Talk to our Agent →
+          {t('talkToAgent')}
         </a>
       </div>
     </nav>
@@ -363,7 +397,7 @@ export function Nav() {
         <div className="nav-drawer-backdrop" onClick={closeMenu} />
         <div className="nav-drawer-panel" role="dialog" aria-label="Main menu">
           <div className="nav-drawer-header">
-            <a href="/" className="nav-drawer-logo" onClick={closeMenu} aria-label="Eazybe — Home">
+            <a href="/" className="nav-drawer-logo" onClick={closeMenu} aria-label={t('logoAria')}>
               <img
                 src="/logo.png"
                 alt="Eazybe Logo"
@@ -376,7 +410,7 @@ export function Nav() {
               type="button"
               className="nav-drawer-close"
               onClick={closeMenu}
-              aria-label="Close menu"
+              aria-label={t('closeMenu')}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18" />
@@ -387,7 +421,7 @@ export function Nav() {
           <div className="nav-drawer-sections">
             <div className={`nav-drawer-section${openSections.has('agents') ? ' open' : ''}`}>
               <button type="button" onClick={() => toggleSection('agents')} aria-expanded={openSections.has('agents')}>
-                <span>Agents</span>
+                <span>{t('agents')}</span>
                 <span className="nav-drawer-chev">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19" />
@@ -396,23 +430,26 @@ export function Nav() {
                 </span>
               </button>
               <ul>
-                {AGENTS.map((a) => (
-                  <li key={a.name}>
-                    <a href={a.href} onClick={closeMenu}>
-                      <span className="nav-drawer-item-icon" style={{ background: a.bg }} dangerouslySetInnerHTML={{ __html: a.icon }} />
-                      <span className="nav-drawer-item-body">
-                        <span className="nav-drawer-item-name">{a.name}</span>
-                        <span className="nav-drawer-item-desc">{a.desc}</span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
+                {AGENTS.map((a) => {
+                  const tr = itemLabel(a.name)
+                  return (
+                    <li key={a.name}>
+                      <a href={a.href} onClick={closeMenu}>
+                        <span className="nav-drawer-item-icon" style={{ background: a.bg }} dangerouslySetInnerHTML={{ __html: a.icon }} />
+                        <span className="nav-drawer-item-body">
+                          <span className="nav-drawer-item-name">{tr.name}</span>
+                          <span className="nav-drawer-item-desc">{tr.desc ?? a.desc}</span>
+                        </span>
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
 
             <div className={`nav-drawer-section${openSections.has('integrations') ? ' open' : ''}`}>
               <button type="button" onClick={() => toggleSection('integrations')} aria-expanded={openSections.has('integrations')}>
-                <span>Integrations</span>
+                <span>{t('integrations')}</span>
                 <span className="nav-drawer-chev">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19" />
@@ -421,36 +458,39 @@ export function Nav() {
                 </span>
               </button>
               <ul>
-                {INTEGRATIONS.map((i) => (
-                  <li key={i.name}>
-                    <a href={i.href} onClick={closeMenu}>
-                      <span className="nav-drawer-item-icon" style={{ background: i.bg }} dangerouslySetInnerHTML={{ __html: i.icon }} />
-                      <span className="nav-drawer-item-body">
-                        <span className="nav-drawer-item-name">{i.name}</span>
-                        <span className="nav-drawer-item-desc">{i.desc}</span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
+                {INTEGRATIONS.map((i) => {
+                  const tr = itemLabel(i.name)
+                  return (
+                    <li key={i.name}>
+                      <a href={i.href} onClick={closeMenu}>
+                        <span className="nav-drawer-item-icon" style={{ background: i.bg }} dangerouslySetInnerHTML={{ __html: i.icon }} />
+                        <span className="nav-drawer-item-body">
+                          <span className="nav-drawer-item-name">{tr.name}</span>
+                          <span className="nav-drawer-item-desc">{tr.desc ?? i.desc}</span>
+                        </span>
+                      </a>
+                    </li>
+                  )
+                })}
                 <li>
                   <a href="/integrations" onClick={closeMenu} className="nav-drawer-see-all">
-                    See all integrations →
+                    {t('allIntegrations')}
                   </a>
                 </li>
               </ul>
             </div>
 
             <div className="nav-drawer-link">
-              <a href="/#" onClick={closeMenu}>Agent Builder</a>
+              <a href="/#" onClick={closeMenu}>{t('agentBuilder')}</a>
             </div>
 
             <div className="nav-drawer-link">
-              <a href="/pricing" onClick={closeMenu}>Pricing</a>
+              <a href="/pricing" onClick={closeMenu}>{t('pricing')}</a>
             </div>
 
             <div className={`nav-drawer-section${openSections.has('resources') ? ' open' : ''}`}>
               <button type="button" onClick={() => toggleSection('resources')} aria-expanded={openSections.has('resources')}>
-                <span>Resources</span>
+                <span>{t('resources')}</span>
                 <span className="nav-drawer-chev">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19" />
@@ -459,23 +499,26 @@ export function Nav() {
                 </span>
               </button>
               <ul>
-                {RESOURCES.map((r) => (
-                  <li key={r.name}>
-                    <a href={r.href} target={r.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" onClick={closeMenu}>
-                      <span className="nav-drawer-item-icon" style={{ background: r.bg }} dangerouslySetInnerHTML={{ __html: r.icon }} />
-                      <span className="nav-drawer-item-body">
-                        <span className="nav-drawer-item-name">{r.name}</span>
-                        <span className="nav-drawer-item-desc">{r.desc}</span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
+                {RESOURCES.map((r) => {
+                  const tr = itemLabel(r.name)
+                  return (
+                    <li key={r.name}>
+                      <a href={r.href} target={r.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" onClick={closeMenu}>
+                        <span className="nav-drawer-item-icon" style={{ background: r.bg }} dangerouslySetInnerHTML={{ __html: r.icon }} />
+                        <span className="nav-drawer-item-body">
+                          <span className="nav-drawer-item-name">{tr.name}</span>
+                          <span className="nav-drawer-item-desc">{tr.desc ?? r.desc}</span>
+                        </span>
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           </div>
 
           <div className="nav-drawer-ctas">
-            <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" onClick={closeMenu}>Book a Demo</a>
+            <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" onClick={closeMenu}>{t('bookDemo')}</a>
             <a
               href="https://app.eazybe.com/"
               target="_blank"
@@ -483,7 +526,7 @@ export function Nav() {
               className="btn btn-primary"
               onClick={closeMenu}
             >
-              Talk to our Agent →
+              {t('talkToAgent')}
             </a>
           </div>
         </div>

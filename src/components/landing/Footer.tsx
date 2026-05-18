@@ -1,76 +1,82 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
-const COLS: { title: string; items: { name: string; href: string; badge?: string }[] }[] = [
+// Column structure with translation keys. Each item references a key in
+// landingV3.footer so its display label tracks the active locale. The `href`
+// stays static. `literalName` shortcircuits the translation (used for brand
+// names that don't change across locales).
+const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string; href: string; badgeKey?: string }[] }[] = [
   {
-    title: 'Agents',
+    titleKey: 'colAgents',
     items: [
-      { name: 'CRM Sync', href: '/#' },
-      { name: 'Lead Qualification', href: '/#' },
-      { name: 'Revenue Ops', href: '/#' },
-      { name: 'Customer Success', href: '/#' },
-      { name: 'All agents →', href: '/#' },
+      { nameKey: 'itemCrmSync', href: '/#' },
+      { nameKey: 'itemLeadQual', href: '/#' },
+      { nameKey: 'itemRevenueOps', href: '/#' },
+      { nameKey: 'itemCustomerSuccess', href: '/#' },
+      { nameKey: 'itemAllAgents', href: '/#' },
     ],
   },
   {
-    title: 'Integrations',
+    titleKey: 'colIntegrations',
     items: [
-      { name: 'HubSpot', href: '/hubspot-whatsapp-integration' },
-      { name: 'Salesforce', href: '/salesforce-whatsapp-integration' },
-      { name: 'Zoho CRM', href: '/zoho-whatsapp-integration' },
-      { name: 'Pipedrive', href: '/pipedrive-whatsapp-integration' },
-      { name: 'Google Sheets', href: '/google-sheets-whatsapp-integration' },
-      { name: 'Bitrix24', href: '/bitrix24-whatsapp-integration' },
-      { name: 'Freshdesk', href: '/freshdesk-whatsapp-integration' },
-      { name: 'LeadSquared', href: '/leadsquared-whatsapp-integration' },
-      { name: 'All integrations →', href: '/integrations' },
+      { literalName: 'HubSpot', href: '/hubspot-whatsapp-integration' },
+      { literalName: 'Salesforce', href: '/salesforce-whatsapp-integration' },
+      { literalName: 'Zoho CRM', href: '/zoho-whatsapp-integration' },
+      { literalName: 'Pipedrive', href: '/pipedrive-whatsapp-integration' },
+      { literalName: 'Google Sheets', href: '/google-sheets-whatsapp-integration' },
+      { literalName: 'Bitrix24', href: '/bitrix24-whatsapp-integration' },
+      { literalName: 'Freshdesk', href: '/freshdesk-whatsapp-integration' },
+      { literalName: 'LeadSquared', href: '/leadsquared-whatsapp-integration' },
+      { nameKey: 'itemAllIntegrations', href: '/integrations' },
     ],
   },
   {
-    title: 'Features',
+    titleKey: 'colFeatures',
     items: [
-      { name: 'Team Inbox', href: '/features/team-inbox' },
-      { name: 'Cloud Backup', href: '/features/cloud-backup' },
-      { name: 'Quick Reply', href: '/features/quick-reply' },
-      { name: 'Scheduler', href: '/features/scheduler' },
-      { name: 'Revenue Inbox', href: '/features/revenue-inbox' },
-      { name: 'Rep Radar', href: '/features/rep-radar' },
-      { name: 'WhatsApp Copilot', href: '/features/whatsapp-copilot' },
-      { name: 'WhatsApp CRM', href: '/features/whatsapp-crm' },
+      { nameKey: 'itemTeamInbox', href: '/features/team-inbox' },
+      { nameKey: 'itemCloudBackup', href: '/features/cloud-backup' },
+      { nameKey: 'itemQuickReply', href: '/features/quick-reply' },
+      { nameKey: 'itemScheduler', href: '/features/scheduler' },
+      { nameKey: 'itemRevenueInbox', href: '/features/revenue-inbox' },
+      { nameKey: 'itemRepRadar', href: '/features/rep-radar' },
+      { nameKey: 'itemWhatsappCopilot', href: '/features/whatsapp-copilot' },
+      { nameKey: 'itemWhatsappCrm', href: '/features/whatsapp-crm' },
     ],
   },
   {
-    title: 'Resources',
+    titleKey: 'colResources',
     items: [
-      { name: 'Blog', href: '/blog' },
-      { name: 'Help Center', href: 'https://help.eazybe.com/introduction' },
-      { name: 'Comparison', href: '/comparison' },
-      { name: 'WhatsApp API', href: '/whatsapp-api' },
-      { name: 'Pricing', href: '/pricing' },
+      { nameKey: 'itemBlog', href: '/blog' },
+      { nameKey: 'itemHelpCenter', href: 'https://help.eazybe.com/introduction' },
+      { nameKey: 'itemComparison', href: '/comparison' },
+      { nameKey: 'itemWhatsappApi', href: '/whatsapp-api' },
+      { nameKey: 'itemPricing', href: '/pricing' },
     ],
   },
   {
-    title: 'Tools',
+    titleKey: 'colTools',
     items: [
-      { name: 'Generate Live Chat Widget', href: '#', badge: 'NEW' },
-      { name: 'Generate Chat Link', href: '#', badge: 'NEW' },
-      { name: 'WhatsApp Template', href: '#', badge: 'NEW' },
-      { name: 'WhatsApp QR Code Generator', href: '#', badge: 'NEW' },
+      { nameKey: 'itemLiveChatWidget', href: '#', badgeKey: 'badgeNew' },
+      { nameKey: 'itemChatLink', href: '#', badgeKey: 'badgeNew' },
+      { nameKey: 'itemWhatsappTemplate', href: '#', badgeKey: 'badgeNew' },
+      { nameKey: 'itemQrGenerator', href: '#', badgeKey: 'badgeNew' },
     ],
   },
   {
-    title: 'Company',
+    titleKey: 'colCompany',
     items: [
-      { name: 'About', href: '/about-us' },
-      { name: 'Careers', href: '#', badge: "We're hiring!" },
-      { name: 'Become Our Partner', href: '/become-our-partner' },
-      { name: 'Contact', href: '/contact' },
+      { nameKey: 'itemAbout', href: '/about-us' },
+      { nameKey: 'itemCareers', href: '#', badgeKey: 'itemHiring' },
+      { nameKey: 'itemPartner', href: '/become-our-partner' },
+      { nameKey: 'itemContact', href: '/contact' },
     ],
   },
 ]
 
 export function Footer() {
+  const t = useTranslations('landingV3.footer')
   const [openCols, setOpenCols] = useState<Set<number>>(new Set())
   const toggleCol = (i: number) => {
     setOpenCols((prev) => {
@@ -85,7 +91,7 @@ export function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <a href="/" aria-label="Eazybe — Home" style={{ display: 'inline-block', marginBottom: 14 }}>
+            <a href="/" aria-label={t('logoAria')} style={{ display: 'inline-block', marginBottom: 14 }}>
               <img
                 src="/logo.png"
                 alt="Eazybe Logo"
@@ -94,9 +100,9 @@ export function Footer() {
                 style={{ height: 32, width: 'auto', objectFit: 'contain' }}
               />
             </a>
-            <p>WhatsApp AI agents for CRM teams. Built for the way sales actually happens.</p>
+            <p>{t('tagline')}</p>
             <div className="footer-socials">
-              <span className="footer-socials-label">Connect with us:</span>
+              <span className="footer-socials-label">{t('connectLabel')}</span>
               <div className="footer-socials-icons">
                 <a href="#" aria-label="Twitter / X" target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -122,7 +128,7 @@ export function Footer() {
           {COLS.map((c, idx) => {
             const isOpen = openCols.has(idx)
             return (
-              <div key={c.title} className={`footer-col${isOpen ? ' open' : ''}`}>
+              <div key={c.titleKey} className={`footer-col${isOpen ? ' open' : ''}`}>
                 <button
                   type="button"
                   className="footer-col-toggle"
@@ -130,7 +136,7 @@ export function Footer() {
                   aria-expanded={isOpen}
                   aria-controls={`footer-col-${idx}`}
                 >
-                  <h4>{c.title}</h4>
+                  <h4>{t(c.titleKey)}</h4>
                   <span className="footer-col-chev" aria-hidden="true">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="12" y1="5" x2="12" y2="19" />
@@ -139,40 +145,43 @@ export function Footer() {
                   </span>
                 </button>
                 <ul id={`footer-col-${idx}`}>
-                  {c.items.map((i) => (
-                    <li key={i.name}>
-                      <a
-                        href={i.href}
-                        {...(i.href.startsWith('http')
-                          ? { target: '_blank', rel: 'noopener noreferrer' }
-                          : {})}
-                      >
-                        {i.name}
-                        {i.badge && <span className="footer-col-badge">{i.badge}</span>}
-                      </a>
-                    </li>
-                  ))}
+                  {c.items.map((i, j) => {
+                    const label = i.literalName ?? (i.nameKey ? t(i.nameKey) : '')
+                    return (
+                      <li key={`${idx}-${j}-${label}`}>
+                        <a
+                          href={i.href}
+                          {...(i.href.startsWith('http')
+                            ? { target: '_blank', rel: 'noopener noreferrer' }
+                            : {})}
+                        >
+                          {label}
+                          {i.badgeKey && <span className="footer-col-badge">{t(i.badgeKey)}</span>}
+                        </a>
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             )
           })}
         </div>
-        <div className="footer-watermark" aria-hidden="true">EAZYBE</div>
+        <div className="footer-watermark" aria-hidden="true">{t('watermark')}</div>
 
         <div className="footer-baseline">
           <p className="footer-baseline-line">
-            © 2026 Eazybe.com <span className="footer-baseline-sep">|</span> Trusted Global WhatsApp AI Agents for CRM Teams Across the World
+            {t('copyright')} <span className="footer-baseline-sep">|</span> {t('copyrightSuffix')}
           </p>
-          <nav className="footer-baseline-links" aria-label="Policies">
-            <a href="/terms">Terms &amp; Conditions</a>
+          <nav className="footer-baseline-links" aria-label={t('policyAria')}>
+            <a href="/terms">{t('terms')}</a>
             <span className="footer-baseline-sep">|</span>
-            <a href="/privacy">Privacy Policy</a>
+            <a href="/privacy">{t('privacy')}</a>
             <span className="footer-baseline-sep">|</span>
-            <a href="/msa">MSA</a>
+            <a href="/msa">{t('msa')}</a>
           </nav>
 
           <div className="footer-payments" aria-label="Accepted payment methods">
-            <span className="footer-payments-label">We accept</span>
+            <span className="footer-payments-label">{t('weAccept')}</span>
             <span className="footer-payment apple-pay" aria-label="Apple Pay">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-3.16 2.58-4.68 2.69-4.76-1.47-2.14-3.75-2.44-4.55-2.47-1.94-.2-3.79 1.14-4.77 1.14-.99 0-2.51-1.11-4.13-1.08-2.12.03-4.08 1.23-5.17 3.13-2.21 3.83-.56 9.49 1.59 12.6 1.05 1.52 2.3 3.23 3.93 3.17 1.58-.06 2.18-1.02 4.09-1.02s2.45 1.02 4.12.99c1.7-.03 2.78-1.55 3.82-3.08 1.2-1.77 1.69-3.49 1.71-3.58-.04-.02-3.28-1.26-3.32-4.99zM14.06 3.66c.87-1.06 1.46-2.52 1.3-3.99-1.25.05-2.78.83-3.68 1.88-.8.93-1.51 2.43-1.32 3.87 1.4.1 2.82-.71 3.7-1.76z"/></svg>
               <span>Pay</span>
@@ -202,10 +211,10 @@ export function Footer() {
               </svg>
               <span>PayPal</span>
             </span>
-            <span className="footer-payments-more">+2 more</span>
+            <span className="footer-payments-more">{t('moreCount')}</span>
           </div>
           <p className="footer-disclaimer">
-            Disclaimer: Eazybe is an independent product and is not affiliated with, endorsed by, or sponsored by WhatsApp LLC or Meta Platforms, Inc. WhatsApp is a trademark of WhatsApp LLC, registered in the U.S. and other countries. HubSpot, Salesforce, Zoho, Pipedrive, and all other third-party brands and logos referenced on this site are trademarks of their respective owners. Use of Eazybe is subject to WhatsApp&apos;s Business Policy and the terms of each connected service. Users are solely responsible for ensuring their messaging practices comply with applicable laws, anti-spam regulations, and platform policies in their jurisdiction.
+            {t('disclaimer')}
           </p>
         </div>
       </div>
