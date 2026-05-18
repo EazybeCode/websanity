@@ -1,6 +1,82 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+const LOCALES = [
+  { code: 'en', label: 'EN', country: 'gb', prefix: '' },
+  { code: 'br', label: 'BR', country: 'br', prefix: '/br' },
+  { code: 'es', label: 'ES', country: 'es', prefix: '/es' },
+  { code: 'tr', label: 'TR', country: 'tr', prefix: '/tr' },
+]
+
+function LanguageSwitcher() {
+  const [open, setOpen] = useState(false)
+  const [currentCode, setCurrentCode] = useState('en')
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const path = window.location.pathname
+    const match = LOCALES.find((l) => l.prefix && (path === l.prefix || path.startsWith(l.prefix + '/')))
+    setCurrentCode(match ? match.code : 'en')
+  }, [])
+
+  useEffect(() => {
+    if (!open) return
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', onClick)
+    return () => document.removeEventListener('mousedown', onClick)
+  }, [open])
+
+  const switchTo = (target: typeof LOCALES[number]) => {
+    const path = window.location.pathname
+    let rest = path
+    for (const l of LOCALES) {
+      if (l.prefix && (path === l.prefix || path.startsWith(l.prefix + '/'))) {
+        rest = path.slice(l.prefix.length) || '/'
+        break
+      }
+    }
+    window.location.href = (target.prefix || '') + rest + window.location.search
+  }
+
+  const current = LOCALES.find((l) => l.code === currentCode) || LOCALES[0]
+  return (
+    <div className="nav-lang" ref={ref}>
+      <button
+        type="button"
+        className="nav-lang-btn"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <img className="nav-lang-flag" src={`https://flagcdn.com/w40/${current.country}.png`} alt="" width={20} height={15} />
+        <span className="nav-lang-label">{current.label}</span>
+        <svg className="nav-lang-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+      {open && (
+        <div className="nav-lang-menu" role="listbox">
+          {LOCALES.map((l) => (
+            <button
+              key={l.code}
+              type="button"
+              role="option"
+              aria-selected={l.code === currentCode}
+              className={`nav-lang-item${l.code === currentCode ? ' active' : ''}`}
+              onClick={() => switchTo(l)}
+            >
+              <img className="nav-lang-flag" src={`https://flagcdn.com/w40/${l.country}.png`} alt="" width={20} height={15} />
+              <span>{l.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 const AGENTS = [
   {
@@ -122,6 +198,10 @@ export function Nav() {
           style={{ height: 32, width: 'auto', objectFit: 'contain' }}
         />
       </a>
+
+      <div className="nav-lang-mobile">
+        <LanguageSwitcher />
+      </div>
 
       <button
         type="button"
@@ -264,6 +344,7 @@ export function Nav() {
       </div>
 
       <div className="nav-ctas">
+        <LanguageSwitcher />
         <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Book a Demo</a>
         <a
           href="https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works."
