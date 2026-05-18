@@ -6,11 +6,11 @@ const COLS: { title: string; items: { name: string; href: string; badge?: string
   {
     title: 'Agents',
     items: [
-      { name: 'CRM Sync', href: '/features/whatsapp-crm' },
-      { name: 'Lead Qualification', href: '/features/team-inbox' },
-      { name: 'Revenue Ops', href: '/features/revenue-inbox' },
-      { name: 'Customer Success', href: '/features/whatsapp-copilot' },
-      { name: 'All agents →', href: '/features' },
+      { name: 'CRM Sync', href: '/#' },
+      { name: 'Lead Qualification', href: '/#' },
+      { name: 'Revenue Ops', href: '/#' },
+      { name: 'Customer Success', href: '/#' },
+      { name: 'All agents →', href: '/#' },
     ],
   },
   {

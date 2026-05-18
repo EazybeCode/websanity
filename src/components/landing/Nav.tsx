@@ -82,28 +82,28 @@ const AGENTS = [
   {
     name: 'CRM Sync Agent',
     desc: 'Auto-log every WhatsApp chat to your CRM',
-    href: '/features/whatsapp-crm',
+    href: '/#',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H9a5 5 0 00-5 5"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h12a5 5 0 005-5"/></svg>',
   },
   {
     name: 'Lead Qualification Agent',
     desc: 'Qualify leads 24/7 like your best rep',
-    href: '/features/team-inbox',
+    href: '/#',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>',
   },
   {
     name: 'Revenue Agent',
     desc: 'Spot ghosted deals before they die',
-    href: '/features/revenue-inbox',
+    href: '/#',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
   },
   {
     name: 'Customer Success Agent',
     desc: 'Answer support 24/7 with your KB',
-    href: '/features/whatsapp-copilot',
+    href: '/#',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>',
   },
@@ -220,7 +220,7 @@ export function Nav() {
           <a><span>Agents</span> <span className="nav-caret">▾</span></a>
           <div className="nav-dropdown">
             <div className="nav-dd-section">AI Agents</div>
-            <a href="/features/whatsapp-crm" className="nav-dd-item">
+            <a href="/#" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H9a5 5 0 00-5 5"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h12a5 5 0 005-5"/></svg>
               </span>
@@ -229,7 +229,7 @@ export function Nav() {
                 <div className="nav-dd-desc">Auto-log every WhatsApp chat to your CRM</div>
               </span>
             </a>
-            <a href="/features/team-inbox" className="nav-dd-item">
+            <a href="/#" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
               </span>
@@ -238,7 +238,7 @@ export function Nav() {
                 <div className="nav-dd-desc">Qualify leads 24/7 like your best rep</div>
               </span>
             </a>
-            <a href="/features/revenue-inbox" className="nav-dd-item">
+            <a href="/#" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
               </span>
@@ -247,7 +247,7 @@ export function Nav() {
                 <div className="nav-dd-desc">Spot ghosted deals before they die</div>
               </span>
             </a>
-            <a href="/features/whatsapp-copilot" className="nav-dd-item">
+            <a href="/#" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
               </span>
@@ -258,7 +258,7 @@ export function Nav() {
             </a>
             <div className="nav-dd-divider" />
             <div className="nav-dd-section">Build Your Own</div>
-            <a href="/become-our-partner" className="nav-dd-item">
+            <a href="/#" className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#F0EBF8' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" strokeWidth="2" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg>
               </span>
