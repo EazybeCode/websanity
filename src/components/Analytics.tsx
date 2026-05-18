@@ -13,7 +13,12 @@ export function Analytics() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-H5LHG23HEL');
+          // Disable cross-domain auto-linker so GA4 stops appending ?_gl=...
+          // to outbound links. Set domains to an empty list (or just omit
+          // 'linker' entirely if linker isn't already configured elsewhere).
+          gtag('config', 'G-H5LHG23HEL', {
+            linker: { domains: [], accept_incoming: false },
+          });
         `}
       </Script>
 

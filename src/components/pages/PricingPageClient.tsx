@@ -1,21 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import {
-  Check,
-  X,
-  Zap,
-  Rocket,
-  Building2,
-  Shield,
-  Clock,
-  MessageSquare,
-  HelpCircle,
-  Plus,
-  Minus as MinusIcon,
-} from 'lucide-react'
-import { SectionBadge } from '@/components/ui/SectionBadge'
-import { Button } from '@/components/ui/Button'
+import { Zap, Rocket, Building2, Shield, Clock, MessageSquare } from 'lucide-react'
 import { useDynamicPricing } from '@/hooks/useDynamicPricing'
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -40,10 +26,7 @@ interface PricingPlan {
   cta: { label: string; url: string }
 }
 
-interface FAQItem {
-  question: string
-  answer: string
-}
+interface FAQItem { question: string; answer: string }
 
 interface ComparisonFeatureRow {
   feature: string
@@ -64,66 +47,29 @@ interface PricingData {
     saveBadgeText?: string
   }
   plans?: Array<{
-    _key?: string
-    name: string
-    description: string
-    icon: string
-    monthlyPrice: number
-    annualPrice: number
-    currency: string
-    isPopular?: boolean
-    isEnterprise?: boolean
-    features: Array<{
-      _key?: string
-      text: string
-      included: boolean
-      highlight?: boolean
-    }>
+    name: string; description: string; icon: string
+    monthlyPrice: number; annualPrice: number; currency: string
+    isPopular?: boolean; isEnterprise?: boolean
+    features: Array<{ text: string; included: boolean; highlight?: boolean }>
     cta: { label: string; url: string }
   }>
-  trustSignals?: Array<{ icon: string; text: string }>
   comparisonSection?: {
-    badge?: string
-    title?: string
-    subtitle?: string
-    features?: Array<{
-      _key?: string
-      feature: string
-      category: string
-      starter: string
-      scaler: string
-      omnis: string
-    }>
+    badge?: string; title?: string; subtitle?: string
+    features?: Array<{ feature: string; category: string; starter: string; scaler: string; omnis: string }>
   }
   faqSection?: {
-    badge?: string
-    title?: string
-    subtitle?: string
-    contactLinkText?: string
-    faqs?: Array<{ _key?: string; question: string; answer: string }>
-  }
-  ctaSection?: {
-    headline?: string
-    headlineHighlight?: string
-    subheadline?: string
-    primaryCta?: { label: string; url: string }
-    secondaryCta?: { label: string; url: string }
-    footnote?: string
+    badge?: string; title?: string; subtitle?: string; contactLinkText?: string
+    faqs?: Array<{ question: string; answer: string }>
   }
 }
 
-// ─── Default / Fallback Data ────────────────────────────────────────────────
+// ─── Default fallback data ──────────────────────────────────────────────────
 
 const defaultPricingPlans: PricingPlan[] = [
   {
-    name: 'Starter',
-    planKey: 'starter',
-    description:
-      'Perfect for individuals and small teams getting started with WhatsApp CRM integration.',
-    monthlyPrice: 13,
-    annualPrice: 10,
-    currency: '$',
-    icon: 'starter',
+    name: 'Starter', planKey: 'starter',
+    description: 'Perfect for individuals and small teams getting started with WhatsApp CRM integration.',
+    monthlyPrice: 13, annualPrice: 10, currency: '$', icon: 'starter',
     features: [
       { text: 'Team Inbox', included: true, highlight: true },
       { text: 'Unlimited labels & funnels', included: true },
@@ -135,21 +81,12 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Salesforce integration', included: false },
       { text: 'Revenue Inbox', included: false },
     ],
-    cta: {
-      label: 'Install for Free',
-      url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd',
-    },
+    cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
   },
   {
-    name: 'Scaler',
-    planKey: 'scaler',
-    description:
-      'For growing teams that need advanced integrations and AI-powered automation.',
-    monthlyPrice: 19,
-    annualPrice: 15,
-    currency: '$',
-    icon: 'growth',
-    popular: true,
+    name: 'Scaler', planKey: 'scaler',
+    description: 'For growing teams that need advanced integrations and AI-powered automation.',
+    monthlyPrice: 19, annualPrice: 15, currency: '$', icon: 'growth', popular: true,
     features: [
       { text: 'Everything in Starter', included: true },
       { text: 'Salesforce integration', included: true, highlight: true },
@@ -161,21 +98,12 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'CRM workflow integration', included: true },
       { text: 'RevOps Agent', included: false },
     ],
-    cta: {
-      label: 'Install for Free',
-      url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd',
-    },
+    cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
   },
   {
-    name: 'Omnis',
-    planKey: 'omnis',
-    description:
-      'Full-stack revenue operations with AI agents and complete WhatsApp intelligence.',
-    monthlyPrice: 0,
-    annualPrice: 0,
-    currency: '$',
-    icon: 'enterprise',
-    enterprise: true,
+    name: 'Omnis', planKey: 'omnis',
+    description: 'Full-stack revenue operations with AI agents and complete WhatsApp intelligence.',
+    monthlyPrice: 0, annualPrice: 0, currency: '$', icon: 'enterprise', enterprise: true,
     features: [
       { text: 'Everything in Scaler', included: true },
       { text: 'Revenue Inbox', included: true, highlight: true },
@@ -223,136 +151,104 @@ const defaultComparisonFeatures: ComparisonFeatureRow[] = [
 ]
 
 const defaultFaqItems: FAQItem[] = [
-  {
-    question: 'Can I try Eazybe for free?',
-    answer:
-      'Yes! We offer a 4-day free trial on Starter and Scaler plans. No credit card required. You can explore all features and see how Eazybe integrates with your existing workflow before committing.',
-  },
-  {
-    question: 'What is Revenue Inbox?',
-    answer:
-      'Revenue Inbox is our intelligent dashboard that surfaces the most important WhatsApp conversations that need attention. It uses AI to identify hot deals, escalations, and opportunities you might miss in a busy inbox.',
-  },
-  {
-    question: 'What is RevOps Agent?',
-    answer:
-      'RevOps Agent is our AI-powered assistant that automates revenue operations tasks. It can analyze conversations, update CRM records, identify deal risks, and provide actionable insights to help you close more deals.',
-  },
-  {
-    question: 'What is WhatsApp Web Copilot?',
-    answer:
-      'WhatsApp Web Copilot is our AI assistant that works directly in your WhatsApp Web interface. It helps you draft responses, summarize conversations, and provides real-time suggestions to improve your customer communication.',
-  },
-  {
-    question: 'How does per-user pricing work?',
-    answer:
-      "You pay for each team member who actively uses Eazybe. A user is anyone who syncs their WhatsApp conversations to your CRM. Admins who only view data don't count as users.",
-  },
-  {
-    question: 'Which CRMs do you integrate with?',
-    answer:
-      'Starter integrates with HubSpot, Zoho CRM, Bitrix24, and Google Sheets. Scaler adds Salesforce and webhook integrations for custom CRMs. Omnis includes dedicated APIs and sync to deals/tickets.',
-  },
-  {
-    question: 'Can I switch plans later?',
-    answer:
-      'Absolutely! You can upgrade or downgrade your plan at any time. When upgrading, you get immediate access to new features. When downgrading, the change takes effect at your next billing cycle.',
-  },
-  {
-    question: 'Is my data secure?',
-    answer:
-      'Yes. We use bank-grade 256-bit encryption for all data in transit and at rest. We are GDPR compliant, Meta Business Partner verified, and undergo regular security audits.',
-  },
-  {
-    question: 'What is your refund policy?',
-    answer:
-      'Eazybe follows a strict no-refund policy. We do not offer refunds for any plan — including both monthly and annual subscriptions. Once a payment is made, it is non-refundable. If a subscription is not cancelled before the renewal date, the resulting charge is valid and non-refundable. Retroactive cancellations or refund requests after billing renewal will not be accepted. We encourage all users to take advantage of our free trial to evaluate the product before purchasing. By subscribing, you agree to our no-refund policy.',
-  },
+  { question: 'Can I try Eazybe for free?', answer: 'Yes! We offer a 4-day free trial on Starter and Scaler plans. No credit card required.' },
+  { question: 'How does per-user pricing work?', answer: 'You pay for each team member who actively uses Eazybe. A user is anyone who syncs their WhatsApp conversations to your CRM.' },
+  { question: 'Which CRMs do you integrate with?', answer: 'Starter integrates with HubSpot, Zoho CRM, Bitrix24, and Google Sheets. Scaler adds Salesforce and webhook integrations. Omnis includes dedicated APIs.' },
+  { question: 'Can I switch plans later?', answer: 'Absolutely! You can upgrade or downgrade at any time. Upgrades give immediate access; downgrades take effect at the next billing cycle.' },
+  { question: 'Is my data secure?', answer: 'Yes. Bank-grade 256-bit encryption, GDPR compliant, Meta Business Partner verified, with regular security audits.' },
+  { question: 'What is your refund policy?', answer: 'No refunds — once payment is made it is non-refundable. We encourage using the free trial to evaluate first.' },
 ]
 
-// ─── Helper ─────────────────────────────────────────────────────────────────
+const planIconMap = { starter: Zap, growth: Rocket, enterprise: Building2 }
 
 const parseComparisonValue = (value: string): boolean | string => {
   if (value === 'true') return true
   if (value === 'false') return false
   return value
 }
-
 const iconToPlanKey = (icon: string): 'starter' | 'scaler' | 'omnis' => {
   if (icon === 'starter') return 'starter'
   if (icon === 'growth') return 'scaler'
   return 'omnis'
 }
 
-// ─── Sub-components ─────────────────────────────────────────────────────────
+// ─── UI helpers ─────────────────────────────────────────────────────────────
 
-const planIconMap = {
-  starter: Zap,
-  growth: Rocket,
-  enterprise: Building2,
-}
+const Check = (
+  <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+)
+const XSym = (
+  <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" /></svg>
+)
 
-const trustIconMap: Record<string, React.ReactNode> = {
-  shield: <Shield size={18} className="text-brand-green" />,
-  zap: <Zap size={18} className="text-brand-cyan" />,
-  clock: <Clock size={18} className="text-brand-orange" />,
-  message: <MessageSquare size={18} className="text-brand-blue" />,
-}
-
-// ── Pricing Toggle ──────────────────────────────────────────────────────────
+// ─── Toggle ─────────────────────────────────────────────────────────────────
 
 function PricingToggle({
-  isAnnual,
-  onToggle,
-  labels,
+  isAnnual, onToggle, labels,
 }: {
   isAnnual: boolean
   onToggle: (v: boolean) => void
   labels?: { monthly?: string; annual?: string; saveBadge?: string }
 }) {
   return (
-    <div className="flex items-center justify-center gap-4">
-      <span
-        className={`text-sm font-semibold transition-colors cursor-pointer ${
-          !isAnnual ? 'text-white' : 'text-slate-500 hover:text-slate-400'
-        }`}
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 14, padding: 6, background: 'var(--paper)', border: '1px solid var(--line)', borderRadius: 100, marginTop: 20 }}>
+      <button
         onClick={() => onToggle(false)}
+        className="btn"
+        style={{
+          padding: '8px 18px',
+          background: !isAnnual ? 'var(--ink)' : 'transparent',
+          color: !isAnnual ? 'var(--paper)' : 'var(--ink-3)',
+          borderRadius: 100,
+        }}
       >
         {labels?.monthly || 'Monthly'}
-      </span>
-
-      <button
-        onClick={() => onToggle(!isAnnual)}
-        className="relative w-16 h-8 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 bg-brand-surface border border-slate-700 hover:border-slate-600 focus:ring-offset-brand-black"
-        aria-label="Toggle billing period"
-      >
-        <span
-          className={`absolute top-1 w-6 h-6 rounded-full bg-brand-blue shadow-glow-blue transition-all duration-300 ${
-            isAnnual ? 'left-9' : 'left-1'
-          }`}
-        />
       </button>
-
-      <div className="flex items-center gap-2">
+      <button
+        onClick={() => onToggle(true)}
+        className="btn"
+        style={{
+          padding: '8px 18px',
+          background: isAnnual ? 'var(--ink)' : 'transparent',
+          color: isAnnual ? 'var(--paper)' : 'var(--ink-3)',
+          borderRadius: 100,
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+        }}
+      >
+        {labels?.annual || 'Annual'}
         <span
-          className={`text-sm font-semibold transition-colors cursor-pointer ${
-            isAnnual ? 'text-white' : 'text-slate-500 hover:text-slate-400'
-          }`}
-          onClick={() => onToggle(true)}
+          style={{
+            background: 'color-mix(in oklab, var(--ok) 28%, var(--paper))',
+            color: 'var(--ok)',
+            fontFamily: 'var(--f-mono)',
+            fontSize: 9,
+            padding: '2px 6px',
+            borderRadius: 100,
+            fontWeight: 700,
+            letterSpacing: '0.04em',
+          }}
         >
-          {labels?.annual || 'Annual'}
+          {labels?.saveBadge || 'SAVE 20%'}
         </span>
-        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-brand-green/10 text-brand-green border border-green-500/20">
-          {labels?.saveBadge || 'Save 20%'}
-        </span>
-      </div>
+      </button>
     </div>
   )
 }
 
-// ── Pricing Card ────────────────────────────────────────────────────────────
+// ─── Pricing card ───────────────────────────────────────────────────────────
 
-function PricingCard({ plan, isAnnual, dynamicCurrency, dynamicMonthlyPrice, dynamicAnnualPrice }: { plan: PricingPlan; isAnnual: boolean; dynamicCurrency?: string; dynamicMonthlyPrice?: number; dynamicAnnualPrice?: number }) {
+function PricingCard({
+  plan, isAnnual, dynamicCurrency, dynamicMonthlyPrice, dynamicAnnualPrice, transitionDelay,
+}: {
+  plan: PricingPlan
+  isAnnual: boolean
+  dynamicCurrency?: string
+  dynamicMonthlyPrice?: number
+  dynamicAnnualPrice?: number
+  transitionDelay?: string
+}) {
   const Icon = planIconMap[plan.icon]
   const currency = dynamicCurrency || plan.currency
   const monthlyPrice = dynamicMonthlyPrice ?? plan.monthlyPrice
@@ -361,546 +257,478 @@ function PricingCard({ plan, isAnnual, dynamicCurrency, dynamicMonthlyPrice, dyn
   const isPopular = plan.popular
   const isEnterprise = plan.enterprise
 
-  const cardStyles = isPopular
-    ? 'bg-gradient-to-b from-brand-blue/10 to-brand-card border-brand-blue/50 shadow-[0_0_40px_rgba(37,99,235,0.15)]'
-    : 'bg-brand-card border-slate-700 hover:border-slate-600'
-
   return (
     <div
-      className={`relative flex flex-col h-full rounded-2xl border transition-all duration-300 ${cardStyles}`}
+      className="card reveal"
+      style={{
+        transitionDelay,
+        position: 'relative',
+        padding: 28,
+        display: 'flex',
+        flexDirection: 'column',
+        ...(isPopular
+          ? {
+              borderColor: 'color-mix(in oklab, var(--accent-a) 50%, var(--line))',
+              boxShadow: '0 0 0 4px color-mix(in oklab, var(--accent-a) 12%, transparent), 0 12px 30px -18px rgba(15,17,21,0.15)',
+              background: 'linear-gradient(180deg, color-mix(in oklab, var(--accent-a) 6%, var(--paper)), var(--paper) 60%)',
+            }
+          : {}),
+      }}
     >
       {isPopular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-blue text-white shadow-glow-blue">
-            <Zap size={12} fill="currentColor" />
-            Most Popular
-          </span>
+        <div
+          style={{
+            position: 'absolute',
+            top: -14,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            padding: '5px 14px 5px 10px',
+            background: 'var(--ink)',
+            color: 'var(--paper)',
+            borderRadius: 100,
+            fontFamily: 'var(--f-mono)',
+            fontSize: 10,
+            fontWeight: 700,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 5,
+            whiteSpace: 'nowrap',
+          }}
+        >
+          <Zap size={11} fill="currentColor" /> Most Popular
         </div>
       )}
 
-      <div className="p-8 flex-1 flex flex-col">
-        {/* Header */}
-        <div className="mb-6">
-          <div
-            className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-              isPopular
-                ? 'bg-brand-blue/20 text-brand-blue'
-                : isEnterprise
-                  ? 'bg-brand-purple/20 text-brand-purple'
-                  : 'bg-brand-cyan/20 text-brand-cyan'
-            }`}
-          >
-            <Icon size={24} />
-          </div>
-
-          <h3 className="text-xl font-bold mb-2 text-white">{plan.name}</h3>
-          <p className="text-sm leading-relaxed text-slate-400">{plan.description}</p>
-        </div>
-
-        {/* Pricing */}
-        <div className="mb-8">
-          {isEnterprise ? (
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-extrabold text-white">Custom</span>
-            </div>
-          ) : (
-            <div className="flex items-baseline gap-2">
-              <span className="text-lg text-slate-500">{currency}</span>
-              <span className="text-5xl font-extrabold tracking-tight text-white">{price}</span>
-              <span className="text-sm text-slate-500">/user/mo</span>
-            </div>
-          )}
-          {isAnnual && !isEnterprise && (
-            <p className="text-xs text-brand-green mt-2 font-medium">
-              Billed annually ({currency} {annualPrice * 12}/user/year)
-            </p>
-          )}
-        </div>
-
-        {/* Features */}
-        <ul className="space-y-3 mb-8 flex-1">
-          {plan.features.map((feature, index) => (
-            <li key={index} className="flex items-start gap-3">
-              {feature.included ? (
-                <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                    feature.highlight
-                      ? 'bg-brand-green/20 text-brand-green'
-                      : 'bg-slate-700 text-slate-400'
-                  }`}
-                >
-                  <Check size={12} strokeWidth={3} />
-                </div>
-              ) : (
-                <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-slate-800 text-slate-600">
-                  <X size={12} strokeWidth={3} />
-                </div>
-              )}
-              <span
-                className={`text-sm ${
-                  feature.included
-                    ? feature.highlight
-                      ? 'text-white font-medium'
-                      : 'text-slate-300'
-                    : 'text-slate-600 line-through'
-                }`}
-              >
-                {feature.text}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        {/* CTA */}
-        <a href={plan.cta.url}>
-          <Button
-            variant={isPopular ? 'primary' : 'outline'}
-            size="lg"
-            className={`w-full justify-center font-bold ${isPopular ? 'shadow-glow-blue' : ''}`}
-          >
-            {plan.cta.label}
-          </Button>
-        </a>
+      <div className="card-icon" style={{ marginBottom: 18 }}>
+        <Icon size={20} />
       </div>
+      <h3 style={{ marginBottom: 4 }}>{plan.name}</h3>
+      <p style={{ marginBottom: 22, fontSize: 13 }}>{plan.description}</p>
+
+      <div style={{ marginBottom: 22 }}>
+        {isEnterprise ? (
+          <div
+            style={{
+              fontFamily: 'var(--f-display)',
+              fontSize: 44,
+              fontWeight: 400,
+              color: 'var(--ink)',
+              letterSpacing: '-0.02em',
+              lineHeight: 1,
+            }}
+          >
+            Custom
+          </div>
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
+            <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{currency}</span>
+            <span
+              style={{
+                fontFamily: 'var(--f-display)',
+                fontSize: 56,
+                fontWeight: 400,
+                color: 'var(--ink)',
+                letterSpacing: '-0.025em',
+                lineHeight: 1,
+              }}
+            >
+              {price}
+            </span>
+            <span style={{ fontSize: 14, color: 'var(--ink-4)' }}>/user/mo</span>
+          </div>
+        )}
+        {isAnnual && !isEnterprise && (
+          <p style={{ marginTop: 6, fontSize: 12, color: 'var(--ok)', fontWeight: 500, marginBottom: 0 }}>
+            Billed annually ({currency}{annualPrice * 12}/user/year)
+          </p>
+        )}
+      </div>
+
+      <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px', display: 'flex', flexDirection: 'column', gap: 9, flex: 1 }}>
+        {plan.features.map((feature, i) => (
+          <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 13 }}>
+            <span
+              style={{
+                flexShrink: 0,
+                marginTop: 2,
+                width: 18,
+                height: 18,
+                borderRadius: '50%',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: !feature.included
+                  ? 'var(--bg-2)'
+                  : feature.highlight
+                  ? 'color-mix(in oklab, var(--accent-a) 22%, var(--paper))'
+                  : 'color-mix(in oklab, var(--ok) 18%, var(--paper))',
+                color: !feature.included
+                  ? 'var(--ink-4)'
+                  : feature.highlight
+                  ? 'var(--accent-ink)'
+                  : 'var(--ok)',
+                border: '1px solid ' + (!feature.included
+                  ? 'var(--line)'
+                  : feature.highlight
+                  ? 'color-mix(in oklab, var(--accent-a) 30%, var(--line))'
+                  : 'color-mix(in oklab, var(--ok) 25%, var(--line))'),
+              }}
+            >
+              {feature.included ? Check : XSym}
+            </span>
+            <span
+              style={{
+                color: !feature.included ? 'var(--ink-4)' : feature.highlight ? 'var(--ink)' : 'var(--ink-2)',
+                textDecoration: !feature.included ? 'line-through' : 'none',
+                fontWeight: feature.highlight ? 500 : 400,
+              }}
+            >
+              {feature.text}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href={plan.cta.url}
+        className={`btn btn-lg ${isPopular ? 'btn-primary' : 'btn-outline'}`}
+        style={{ width: '100%', justifyContent: 'center' }}
+      >
+        {plan.cta.label} →
+      </a>
     </div>
   )
 }
 
-// ── Comparison Table Value Renderer ─────────────────────────────────────────
-
-function RenderValue({ value }: { value: boolean | string }) {
-  if (typeof value === 'boolean') {
-    return value ? (
-      <div className="w-6 h-6 rounded-full bg-brand-green/20 flex items-center justify-center mx-auto">
-        <Check size={14} className="text-brand-green" strokeWidth={3} />
-      </div>
-    ) : (
-      <div className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center mx-auto">
-        <X size={14} className="text-slate-600" strokeWidth={3} />
-      </div>
-    )
-  }
-
-  if (value === '-') {
-    return (
-      <div className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center mx-auto">
-        <MinusIcon size={14} className="text-slate-600" strokeWidth={3} />
-      </div>
-    )
-  }
-
-  return <span className="text-sm text-slate-300 font-medium">{value}</span>
-}
-
-// ── Feature Comparison Table ────────────────────────────────────────────────
+// ─── Comparison table (grouped by category) ─────────────────────────────────
 
 function FeatureComparisonTable({ features }: { features: ComparisonFeatureRow[] }) {
-  const groupedFeatures = features.reduce(
-    (acc, feature) => {
-      const category = feature.category || 'General'
-      if (!acc[category]) {
-        acc[category] = []
-      }
-      acc[category].push(feature)
-      return acc
-    },
-    {} as Record<string, ComparisonFeatureRow[]>
-  )
+  const grouped = features.reduce((acc, row) => {
+    const key = row.category || 'Features'
+    if (!acc[key]) acc[key] = []
+    acc[key].push(row)
+    return acc
+  }, {} as Record<string, ComparisonFeatureRow[]>)
 
-  return (
-    <div className="relative overflow-hidden rounded-2xl border border-slate-700 bg-brand-card">
-      {/* Table Header */}
-      <div className="grid grid-cols-4 border-b border-slate-700 bg-brand-surface">
-        <div className="p-6">
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-slate-500">
-            Features
-          </span>
-        </div>
-        <div className="p-6 text-center border-l border-slate-700">
-          <span className="text-lg font-bold text-white">Starter</span>
-          <p className="text-xs text-slate-500 mt-1">For individuals</p>
-        </div>
-        <div className="p-6 text-center border-l border-slate-700 bg-brand-blue/5">
-          <span className="text-lg font-bold text-brand-blue">Scaler</span>
-          <p className="text-xs text-slate-500 mt-1">Most popular</p>
-        </div>
-        <div className="p-6 text-center border-l border-slate-700">
-          <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-cyan">
-            Omnis
-          </span>
-          <p className="text-xs text-slate-500 mt-1">Full-stack RevOps</p>
-        </div>
-      </div>
-
-      {/* Table Body */}
-      {(Object.entries(groupedFeatures) as [string, ComparisonFeatureRow[]][]).map(
-        ([category, categoryFeatures]) => (
-          <div key={category}>
-            {/* Category Header */}
-            <div className="grid grid-cols-4 border-b border-slate-800 bg-slate-900/50">
-              <div className="p-4 col-span-4">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-cyan">
-                  {category}
-                </span>
-              </div>
-            </div>
-
-            {/* Category Features */}
-            {categoryFeatures.map((row, index) => (
-              <div
-                key={index}
-                className="grid grid-cols-4 border-b border-slate-800 last:border-b-0 hover:bg-slate-800/30 transition-colors"
-              >
-                <div className="p-4 flex items-center">
-                  <span className="text-sm text-slate-300">{row.feature}</span>
-                </div>
-                <div className="p-4 flex items-center justify-center border-l border-slate-800">
-                  <RenderValue value={row.starter} />
-                </div>
-                <div className="p-4 flex items-center justify-center border-l border-slate-800 bg-brand-blue/5">
-                  <RenderValue value={row.scaler} />
-                </div>
-                <div className="p-4 flex items-center justify-center border-l border-slate-800">
-                  <RenderValue value={row.omnis} />
-                </div>
-              </div>
-            ))}
-          </div>
-        )
-      )}
-    </div>
-  )
-}
-
-// ── FAQ Accordion ───────────────────────────────────────────────────────────
-
-function FAQAccordion({
-  item,
-  isOpen,
-  onToggle,
-}: {
-  item: FAQItem
-  isOpen: boolean
-  onToggle: () => void
-}) {
-  return (
-    <div
-      className={`border rounded-xl transition-all duration-300 ${
-        isOpen
-          ? 'border-slate-600 bg-brand-surface'
-          : 'border-slate-700 bg-brand-card hover:border-slate-600'
-      }`}
-    >
-      <button
-        onClick={onToggle}
-        className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
-        aria-expanded={isOpen}
-      >
-        <span className={`text-base font-semibold pr-4 ${isOpen ? 'text-white' : 'text-slate-200'}`}>
-          {item.question}
-        </span>
-        <div
-          className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${
-            isOpen ? 'bg-brand-blue text-white' : 'bg-slate-700 text-slate-400'
-          }`}
-        >
-          {isOpen ? <MinusIcon size={16} /> : <Plus size={16} />}
-        </div>
-      </button>
-
-      <div
-        className={`overflow-hidden transition-all duration-300 ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="px-6 pb-6 text-slate-400 leading-relaxed">{item.answer}</div>
-      </div>
-    </div>
-  )
-}
-
-function PricingFAQ({ faqs }: { faqs: FAQItem[] }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
-
-  const handleToggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
+  const renderVal = (v: boolean | string) => {
+    if (v === true) return <span style={{ display: 'inline-flex', width: 22, height: 22, borderRadius: '50%', background: 'color-mix(in oklab, var(--ok) 18%, var(--paper))', color: 'var(--ok)', alignItems: 'center', justifyContent: 'center' }}>{Check}</span>
+    if (v === false) return <span style={{ display: 'inline-flex', width: 22, height: 22, borderRadius: '50%', background: 'var(--bg-2)', color: 'var(--ink-4)', alignItems: 'center', justifyContent: 'center' }}>{XSym}</span>
+    return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>{v}</span>
   }
 
-  const midpoint = Math.ceil(faqs.length / 2)
-  const leftColumn = faqs.slice(0, midpoint)
-  const rightColumn = faqs.slice(midpoint)
-
   return (
-    <div className="grid md:grid-cols-2 gap-4">
-      <div className="space-y-4">
-        {leftColumn.map((faq, index) => (
-          <FAQAccordion
-            key={index}
-            item={faq}
-            isOpen={openIndex === index}
-            onToggle={() => handleToggle(index)}
-          />
-        ))}
+    <div
+      style={{
+        background: 'var(--paper)',
+        border: '1px solid var(--line)',
+        borderRadius: 18,
+        overflow: 'hidden',
+        maxWidth: 1000,
+        margin: '0 auto',
+        boxShadow: '0 1px 0 rgba(15,17,21,0.02), 0 8px 24px -16px rgba(15,17,21,0.08)',
+      }}
+    >
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '2fr 1fr 1fr 1fr',
+          padding: 18,
+          background: 'var(--bg-2)',
+          borderBottom: '1px solid var(--line)',
+          fontFamily: 'var(--f-mono)',
+          fontSize: 11,
+          fontWeight: 600,
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          color: 'var(--ink-4)',
+        }}
+      >
+        <div>Feature</div>
+        <div style={{ textAlign: 'center' }}>Starter</div>
+        <div style={{ textAlign: 'center' }}>Scaler</div>
+        <div style={{ textAlign: 'center', color: 'var(--accent-ink)' }}>Omnis</div>
       </div>
-      <div className="space-y-4">
-        {rightColumn.map((faq, index) => (
-          <FAQAccordion
-            key={index + midpoint}
-            item={faq}
-            isOpen={openIndex === index + midpoint}
-            onToggle={() => handleToggle(index + midpoint)}
-          />
-        ))}
-      </div>
+      {Object.entries(grouped).map(([category, rows]) => (
+        <React.Fragment key={category}>
+          <div
+            style={{
+              padding: '14px 18px',
+              background: 'color-mix(in oklab, var(--accent-a) 6%, var(--paper))',
+              borderBottom: '1px solid var(--line)',
+              fontFamily: 'var(--f-mono)',
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'var(--accent-ink)',
+            }}
+          >
+            {category}
+          </div>
+          {rows.map((row, i) => (
+            <div
+              key={i}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '2fr 1fr 1fr 1fr',
+                padding: '14px 18px',
+                borderBottom: '1px solid var(--line)',
+                alignItems: 'center',
+                fontSize: 14,
+              }}
+            >
+              <div style={{ color: 'var(--ink-2)' }}>{row.feature}</div>
+              <div style={{ textAlign: 'center' }}>{renderVal(row.starter)}</div>
+              <div style={{ textAlign: 'center' }}>{renderVal(row.scaler)}</div>
+              <div style={{ textAlign: 'center' }}>{renderVal(row.omnis)}</div>
+            </div>
+          ))}
+        </React.Fragment>
+      ))}
     </div>
   )
 }
 
-// ─── Main Client Component ──────────────────────────────────────────────────
+// ─── Main ───────────────────────────────────────────────────────────────────
 
-interface PricingPageClientProps {
-  pricingData: PricingData | null
-}
+interface PricingPageClientProps { pricingData: PricingData | null }
 
 export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const [isAnnual, setIsAnnual] = useState(true)
-  const { getDynamicPrice, loading: dynamicPricingLoading } = useDynamicPricing()
+  const { getDynamicPrice, loading: pricingLoading } = useDynamicPricing()
 
-  // ── Hero ────────────────────────────────────────────────────────────────
   const hero = pricingData?.hero || {
     badge: 'Pricing',
-    headline: 'Simple, Transparent',
-    headlineHighlight: 'Pricing',
-    subheadline:
-      'Start free. Scale as you grow. No hidden fees, no surprises.',
+    headline: 'Simple, transparent',
+    headlineHighlight: 'pricing.',
+    subheadline: 'Start free. Scale as you grow. No hidden fees, no surprises.',
     billingToggleMonthly: 'Monthly',
     billingToggleAnnual: 'Annual',
-    saveBadgeText: 'Save 20%',
+    saveBadgeText: 'SAVE 20%',
   }
 
-  // ── Plans ───────────────────────────────────────────────────────────────
-  const pricingPlans: PricingPlan[] =
-    pricingData?.plans?.map((plan) => ({
-      name: plan.name,
-      planKey: iconToPlanKey(plan.icon),
-      description: plan.description,
-      monthlyPrice: plan.monthlyPrice,
-      annualPrice: plan.annualPrice,
-      currency: plan.currency,
-      icon: plan.icon as PricingPlan['icon'],
-      popular: plan.isPopular,
-      enterprise: plan.isEnterprise,
-      features: plan.features.map((f) => ({
-        text: f.text,
-        included: f.included,
-        highlight: f.highlight,
-      })),
-      cta: plan.cta,
-    })) || defaultPricingPlans
+  const pricingPlans: PricingPlan[] = pricingData?.plans?.map((plan) => ({
+    name: plan.name,
+    planKey: iconToPlanKey(plan.icon),
+    description: plan.description,
+    monthlyPrice: plan.monthlyPrice,
+    annualPrice: plan.annualPrice,
+    currency: plan.currency,
+    icon: plan.icon as PricingPlan['icon'],
+    popular: plan.isPopular,
+    enterprise: plan.isEnterprise,
+    features: plan.features.map((f) => ({ text: f.text, included: f.included, highlight: f.highlight })),
+    cta: plan.cta,
+  })) || defaultPricingPlans
 
-  // ── Trust Signals ───────────────────────────────────────────────────────
   const trustSignals = [
-    { icon: 'shield', text: 'GDPR Compliant & Encrypted' },
-    { icon: 'zap', text: '2-Minute Setup' },
-    { icon: 'clock', text: '4-Day Free Trial' },
-    { icon: 'message', text: 'No Credit Card Required' },
+    { Icon: Shield, text: 'GDPR Compliant & Encrypted' },
+    { Icon: Zap, text: '2-Minute Setup' },
+    { Icon: Clock, text: '4-Day Free Trial' },
+    { Icon: MessageSquare, text: 'No Credit Card Required' },
   ]
 
-  // ── Comparison Section ──────────────────────────────────────────────────
   const comparisonSection = pricingData?.comparisonSection || {
     badge: 'Compare Plans',
-    title: 'Feature-by-Feature Comparison',
+    title: 'Feature-by-feature comparison',
     subtitle: 'See exactly what you get with each plan.',
   }
 
-  const comparisonFeatures: ComparisonFeatureRow[] =
-    pricingData?.comparisonSection?.features?.map((f) => ({
-      feature: f.feature,
-      category: f.category,
-      starter: parseComparisonValue(f.starter),
-      scaler: parseComparisonValue(f.scaler),
-      omnis: parseComparisonValue(f.omnis),
-    })) || defaultComparisonFeatures
+  const comparisonFeatures: ComparisonFeatureRow[] = pricingData?.comparisonSection?.features?.map((f) => ({
+    feature: f.feature,
+    category: f.category,
+    starter: parseComparisonValue(f.starter),
+    scaler: parseComparisonValue(f.scaler),
+    omnis: parseComparisonValue(f.omnis),
+  })) || defaultComparisonFeatures
 
-  // ── FAQ Section ─────────────────────────────────────────────────────────
   const faqSection = pricingData?.faqSection || {
     badge: 'FAQ',
-    title: 'Frequently Asked Questions',
+    title: 'Frequently asked questions',
     subtitle: "Can't find what you're looking for?",
     contactLinkText: 'Contact our team',
   }
+  const faqItems: FAQItem[] = pricingData?.faqSection?.faqs?.map((f) => ({ question: f.question, answer: f.answer })) || defaultFaqItems
 
-  const faqItems: FAQItem[] =
-    pricingData?.faqSection?.faqs?.map((f) => ({
-      question: f.question,
-      answer: f.answer,
-    })) || defaultFaqItems
-
-  // ── CTA Section ─────────────────────────────────────────────────────────
-  const ctaSection = {
-    headline: 'Ready to supercharge your',
-    headlineHighlight: 'WhatsApp sales?',
-    subheadline:
-      'Join thousands of teams using Eazybe to close more deals through WhatsApp.',
-    primaryCta: {
-      label: 'Start Free Trial',
-      url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd',
-    },
-    secondaryCta: {
-      label: 'Book a Demo',
-      url: 'https://calendly.com/d/cw67-pt3-y2m',
-    },
-    footnote: 'No credit card required',
-  }
+  const [openFaq, setOpenFaq] = useState<Set<number>>(new Set([0]))
+  const toggleFaq = (i: number) => setOpenFaq((p) => {
+    const n = new Set(p)
+    if (n.has(i)) n.delete(i)
+    else n.add(i)
+    return n
+  })
 
   return (
-    <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden bg-brand-black">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-blue/10 rounded-full blur-[120px] -z-10"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
-            <SectionBadge variant="cyan" className="mb-6">
-              {hero.badge}
-            </SectionBadge>
-
-            <h1 className="text-4xl lg:text-6xl font-sans font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
-              {hero.headline}{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-brand-cyan to-brand-green">
-                {hero.headlineHighlight}
-              </span>
-            </h1>
-
-            <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-              {hero.subheadline}
-            </p>
-
-            {/* Billing Toggle */}
+    <>
+      {pricingLoading && (
+        <div
+          role="status"
+          aria-live="polite"
+          aria-label="Loading pricing"
+          style={{
+            position: 'fixed',
+            top: 80,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'var(--bg, #ffffff)',
+            zIndex: 90,
+          }}
+        >
+          <span
+            style={{
+              width: 48,
+              height: 48,
+              border: '3px solid rgba(91, 75, 174, 0.18)',
+              borderTopColor: '#5b4bae',
+              borderRadius: '50%',
+              animation: 'pricing-loading-spin 0.9s linear infinite',
+            }}
+          />
+          <style>{`@keyframes pricing-loading-spin { to { transform: rotate(360deg); } }`}</style>
+        </div>
+      )}
+      {/* Hero */}
+      <section className="page-hero" data-tone="dark">
+        <div className="container">
+          <span className="hero-tag reveal"><span className="pulse" /> {String(hero.badge).toUpperCase()}</span>
+          <h1 className="reveal">
+            {hero.headline} <em>{hero.headlineHighlight}</em>
+          </h1>
+          <p className="lede reveal">{hero.subheadline}</p>
+          <div className="reveal" style={{ display: 'flex', justifyContent: 'center' }}>
             <PricingToggle
               isAnnual={isAnnual}
               onToggle={setIsAnnual}
-              labels={{
-                monthly: hero.billingToggleMonthly,
-                annual: hero.billingToggleAnnual,
-                saveBadge: hero.saveBadgeText,
-              }}
+              labels={{ monthly: hero.billingToggleMonthly, annual: hero.billingToggleAnnual, saveBadge: hero.saveBadgeText }}
             />
           </div>
         </div>
       </section>
 
-      {/* Pricing Cards Section */}
-      <section className="py-12 lg:py-16 bg-brand-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {dynamicPricingLoading ? (
-            <div className="flex flex-col items-center justify-center py-20 gap-4">
-              <div className="w-10 h-10 border-2 border-brand-blue border-t-transparent rounded-full animate-spin" />
-              <p className="text-slate-500 text-sm">Loading pricing for your region...</p>
-            </div>
-          ) : (
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-6">
-            {pricingPlans.map((plan) => {
-              const dynamicPrice = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
+      {/* Plans */}
+      <section className="section" style={{ paddingTop: 30 }}>
+        <div className="container">
+          <div className="card-grid cols-3">
+            {pricingPlans.map((plan, idx) => {
+              const dp = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
               return (
                 <PricingCard
                   key={plan.name}
                   plan={plan}
                   isAnnual={isAnnual}
-                  dynamicCurrency={dynamicPrice.currency}
-                  dynamicMonthlyPrice={dynamicPrice.monthlyPrice}
-                  dynamicAnnualPrice={dynamicPrice.annualPrice}
+                  dynamicCurrency={dp.currency}
+                  dynamicMonthlyPrice={dp.monthlyPrice}
+                  dynamicAnnualPrice={dp.annualPrice}
+                  transitionDelay={`${idx * 0.06}s`}
                 />
               )
             })}
           </div>
-          )}
 
-          {/* Trust Signals */}
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-slate-500">
-            {trustSignals.map((signal, index) => (
-              <div key={index} className="flex items-center gap-2">
-                {trustIconMap[signal.icon]}
-                <span>{signal.text}</span>
+          <div
+            className="reveal"
+            style={{
+              marginTop: 56,
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: 28,
+              color: 'var(--ink-3)',
+              fontSize: 13,
+            }}
+          >
+            {trustSignals.map(({ Icon, text }, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Icon size={16} style={{ color: 'var(--accent-ink)' }} /> {text}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Feature Comparison Section */}
-      <section className="py-24 bg-brand-surface border-y border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <SectionBadge variant="orange" className="mb-6">
-              {comparisonSection.badge}
-            </SectionBadge>
-            <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
-              {comparisonSection.title}
-            </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              {comparisonSection.subtitle}
-            </p>
+      {/* Comparison */}
+      <section className="section" data-tone="dark">
+        <div className="container">
+          <div className="sec-head centered reveal">
+            <span className="sec-tag">{comparisonSection.badge}</span>
+            <h2>{comparisonSection.title}</h2>
+            <p>{comparisonSection.subtitle}</p>
           </div>
-
-          <FeatureComparisonTable features={comparisonFeatures} />
+          <div className="reveal">
+            <FeatureComparisonTable features={comparisonFeatures} />
+          </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-brand-black">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <SectionBadge variant="cyan" className="mb-6">
-              <HelpCircle size={14} />
-              {faqSection.badge}
-            </SectionBadge>
-            <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
-              {faqSection.title}
-            </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+      {/* FAQ */}
+      <section className="section">
+        <div className="container">
+          <div className="sec-head centered reveal">
+            <span className="sec-tag">{faqSection.badge}</span>
+            <h2>{faqSection.title}</h2>
+            <p>
               {faqSection.subtitle}{' '}
-              <a href="/contact" className="text-brand-blue hover:underline">
+              <a href="/contact" style={{ color: 'var(--accent-ink)', borderBottom: '1px solid color-mix(in oklab, var(--accent-ink) 40%, transparent)' }}>
                 {faqSection.contactLinkText}
               </a>
             </p>
           </div>
-
-          <PricingFAQ faqs={faqItems} />
+          <div className="faq">
+            {faqItems.map((faq, idx) => (
+              <div key={idx} className={`faq-item reveal${openFaq.has(idx) ? ' open' : ''}`}>
+                <button className="faq-q" onClick={() => toggleFaq(idx)}>
+                  {faq.question}
+                  <span className="plus">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                  </span>
+                </button>
+                <div className="faq-a">{faq.answer}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-brand-surface border-t border-slate-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-5xl font-sans font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
-            {ctaSection.headline}{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-brand-cyan to-brand-green">
-              {ctaSection.headlineHighlight}
-            </span>
+      {/* CTA */}
+      <section className="final-cta" data-tone="dark">
+        <div className="container">
+          <h2 className="reveal">
+            Ready to supercharge your<br />
+            <em>WhatsApp sales?</em>
           </h2>
-          <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            {ctaSection.subheadline}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href={ctaSection.primaryCta?.url}>
-              <Button variant="primary" size="lg" className="shadow-glow-blue font-bold">
-                {ctaSection.primaryCta?.label}
-              </Button>
+          <p className="sub reveal">Join thousands of teams using Eazybe to close more deals through WhatsApp.</p>
+          <div className="ctas reveal">
+            <a
+              href="https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd"
+              className="btn btn-primary btn-lg"
+            >
+              Start Free Trial →
             </a>
-            <a href={ctaSection.secondaryCta?.url}>
-              <Button variant="outline" size="lg" className="font-bold">
-                {ctaSection.secondaryCta?.label}
-              </Button>
+            <a href="https://calendly.com/d/cw67-pt3-y2m" className="btn btn-outline btn-lg">
+              Book a Demo
             </a>
           </div>
-          {ctaSection.footnote && (
-            <p className="text-sm text-slate-500 mt-6">{ctaSection.footnote}</p>
-          )}
+          <p
+            className="reveal"
+            style={{
+              marginTop: 22,
+              fontFamily: 'var(--f-mono)',
+              fontSize: 11,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: 'var(--ink-4)',
+            }}
+          >
+            No credit card required
+          </p>
         </div>
       </section>
-    </div>
+    </>
   )
 }

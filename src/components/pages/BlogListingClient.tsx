@@ -3,7 +3,6 @@
 import React, { useState, useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import { Search, Calendar, Clock, Zap } from 'lucide-react'
-import { SectionBadge } from '@/components/ui/SectionBadge'
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -19,10 +18,7 @@ interface BlogPost {
   author?: { name: string }
 }
 
-interface BlogCategory {
-  name: string
-  value: string
-}
+interface BlogCategory { name: string; value: string }
 
 interface BlogIndex {
   hero?: {
@@ -44,9 +40,7 @@ interface BlogIndex {
     emptyStateTitle?: string
     emptyStateButton?: string
   }
-  detailLabels?: {
-    minReadSuffix?: string
-  }
+  detailLabels?: { minReadSuffix?: string }
 }
 
 interface BlogListingClientProps {
@@ -57,52 +51,112 @@ interface BlogListingClientProps {
 
 // ─── Cards ─────────────────────────────────────────────────────────────────
 
-const BlogCard: React.FC<{ post: BlogPost; locale: string; minReadSuffix: string }> = ({
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+
+const BlogCard: React.FC<{ post: BlogPost; locale: string; minReadSuffix: string; delay: number }> = ({
   post,
   locale,
   minReadSuffix,
+  delay,
 }) => {
   const blogPath = locale === 'en' ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`
 
   return (
     <a
       href={blogPath}
-      className="group bg-brand-card border border-slate-700 rounded-2xl overflow-hidden hover:border-slate-500 transition-all duration-300 cursor-pointer shadow-xl hover:shadow-2xl h-full flex flex-col"
+      className="card reveal"
+      style={{
+        transitionDelay: `${delay}s`,
+        display: 'flex',
+        flexDirection: 'column',
+        padding: 0,
+        overflow: 'hidden',
+      }}
     >
-      <div className="relative h-56 overflow-hidden">
+      <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={post.featuredImage || '/logo.png'}
           alt={post.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="eager"
           width={800}
           height={450}
+          loading="eager"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s' }}
         />
-        <div className="absolute top-4 left-4">
-          <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2.5 py-1 rounded text-white">
-            {post.category}
-          </span>
-        </div>
+        <span
+          style={{
+            position: 'absolute',
+            top: 14,
+            left: 14,
+            padding: '4px 9px',
+            background: 'var(--ink)',
+            color: 'var(--paper)',
+            fontFamily: 'var(--f-mono)',
+            fontSize: 10,
+            fontWeight: 700,
+            letterSpacing: '0.06em',
+            textTransform: 'uppercase',
+            borderRadius: 6,
+          }}
+        >
+          {post.category}
+        </span>
       </div>
-      <div className="p-6 flex-1 flex flex-col">
-        <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 leading-snug group-hover:text-brand-cyan transition-colors">
+      <div style={{ padding: 22, display: 'flex', flexDirection: 'column', flex: 1 }}>
+        <h3
+          style={{
+            fontFamily: 'var(--f-display)',
+            fontSize: 20,
+            fontWeight: 400,
+            letterSpacing: '-0.01em',
+            color: 'var(--ink)',
+            marginBottom: 10,
+            lineHeight: 1.25,
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
           {post.title}
         </h3>
-        <p className="text-slate-400 mb-6 line-clamp-2 leading-relaxed text-sm flex-1">
+        <p
+          style={{
+            fontSize: 14,
+            color: 'var(--ink-3)',
+            lineHeight: 1.55,
+            flex: 1,
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            marginBottom: 16,
+          }}
+        >
           {post.excerpt}
         </p>
-        <div className="flex items-center gap-4 pt-4 border-t border-slate-800 font-mono text-[10px] uppercase text-slate-500 font-bold">
-          {post.author?.name && <span className="text-slate-400">{post.author.name}</span>}
-          <span className="flex items-center gap-1">
-            <Clock size={12} /> {post.readTime || 5} {minReadSuffix}
+        <div
+          style={{
+            display: 'flex',
+            gap: 14,
+            paddingTop: 14,
+            borderTop: '1px solid var(--line)',
+            fontFamily: 'var(--f-mono)',
+            fontSize: 10,
+            fontWeight: 600,
+            letterSpacing: '0.06em',
+            textTransform: 'uppercase',
+            color: 'var(--ink-4)',
+            flexWrap: 'wrap',
+          }}
+        >
+          {post.author?.name && <span style={{ color: 'var(--ink-3)' }}>{post.author.name}</span>}
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <Clock size={11} /> {post.readTime || 5} {minReadSuffix}
           </span>
-          <span className="flex items-center gap-1">
-            <Calendar size={12} />{' '}
-            {new Date(post.publishedAt).toLocaleDateString('en-US', {
-              month: 'short',
-              day: 'numeric',
-              year: 'numeric',
-            })}
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <Calendar size={11} /> {formatDate(post.publishedAt)}
           </span>
         </div>
       </div>
@@ -117,76 +171,125 @@ const FeaturedBlogCard: React.FC<{
   minReadSuffix: string
 }> = ({ post, locale, badgeText, minReadSuffix }) => {
   const blogPath = locale === 'en' ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`
-
   return (
     <a
       href={blogPath}
-      className="group bg-brand-card border border-slate-700 rounded-2xl overflow-hidden hover:border-slate-500 transition-all duration-300 cursor-pointer shadow-xl hover:shadow-2xl h-full block"
+      className="card reveal"
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        padding: 0,
+        overflow: 'hidden',
+      }}
     >
-      <div className="grid md:grid-cols-2 h-full">
-        <div className="relative h-64 md:h-full overflow-hidden">
-          <img
-            src={post.featuredImage || '/logo.png'}
-            alt={post.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="eager"
-            width={800}
-            height={600}
-          />
-          <div className="absolute top-4 left-4">
-            <span className="font-mono text-[10px] uppercase font-bold bg-brand-blue px-2.5 py-1 rounded text-white">
-              {badgeText}
-            </span>
-          </div>
-        </div>
-        <div className="p-8 flex flex-col justify-center">
-          <span className="font-mono text-[10px] uppercase font-bold text-brand-cyan mb-3">
-            {post.category}
+      <div style={{ position: 'relative', minHeight: 280, overflow: 'hidden' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={post.featuredImage || '/logo.png'}
+          alt={post.title}
+          width={800}
+          height={600}
+          loading="eager"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+        <span
+          style={{
+            position: 'absolute',
+            top: 18,
+            left: 18,
+            padding: '5px 11px',
+            background: 'var(--accent-ink)',
+            color: '#fff',
+            fontFamily: 'var(--f-mono)',
+            fontSize: 10,
+            fontWeight: 700,
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            borderRadius: 6,
+          }}
+        >
+          {badgeText}
+        </span>
+      </div>
+      <div style={{ padding: 36, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <span
+          style={{
+            fontFamily: 'var(--f-mono)',
+            fontSize: 10,
+            color: 'var(--accent-ink)',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            fontWeight: 600,
+            marginBottom: 12,
+          }}
+        >
+          {post.category}
+        </span>
+        <h3
+          style={{
+            fontFamily: 'var(--f-display)',
+            fontSize: 32,
+            fontWeight: 400,
+            letterSpacing: '-0.015em',
+            color: 'var(--ink)',
+            marginBottom: 14,
+            lineHeight: 1.2,
+          }}
+        >
+          {post.title}
+        </h3>
+        <p
+          style={{
+            fontSize: 15,
+            color: 'var(--ink-3)',
+            lineHeight: 1.6,
+            marginBottom: 20,
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
+          {post.excerpt}
+        </p>
+        <div
+          style={{
+            display: 'flex',
+            gap: 16,
+            fontFamily: 'var(--f-mono)',
+            fontSize: 10,
+            fontWeight: 600,
+            letterSpacing: '0.06em',
+            textTransform: 'uppercase',
+            color: 'var(--ink-4)',
+            flexWrap: 'wrap',
+          }}
+        >
+          {post.author?.name && <span style={{ color: 'var(--ink-3)' }}>By {post.author.name}</span>}
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <Clock size={11} /> {post.readTime || 5} {minReadSuffix}
           </span>
-          <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight group-hover:text-brand-cyan transition-colors">
-            {post.title}
-          </h3>
-          <p className="text-slate-400 mb-6 leading-relaxed line-clamp-3">{post.excerpt}</p>
-          <div className="flex items-center gap-4 font-mono text-[10px] uppercase text-slate-500 font-bold">
-            {post.author?.name && (
-              <span className="text-slate-400">By {post.author.name}</span>
-            )}
-            <span className="flex items-center gap-1">
-              <Clock size={12} /> {post.readTime || 5} {minReadSuffix}
-            </span>
-            <span className="flex items-center gap-1">
-              <Calendar size={12} />{' '}
-              {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })}
-            </span>
-          </div>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <Calendar size={11} /> {formatDate(post.publishedAt)}
+          </span>
         </div>
       </div>
     </a>
   )
 }
 
-// ─── Main Component ────────────────────────────────────────────────────────
+// ─── Main ──────────────────────────────────────────────────────────────────
 
-export const BlogListingClient: React.FC<BlogListingClientProps> = ({
-  allPosts,
-  blogIndex,
-  locale,
-}) => {
+export const BlogListingClient: React.FC<BlogListingClientProps> = ({ allPosts, blogIndex, locale }) => {
   const t = useTranslations()
   const [activeCategory, setActiveCategory] = useState<string>('All')
   const [searchQuery, setSearchQuery] = useState('')
 
-  // Get content from Sanity with fallbacks
   const hero = blogIndex?.hero || {}
   const allArticlesSection = blogIndex?.allArticlesSection || {}
   const featuredSection = blogIndex?.featuredSection || {}
   const minReadSuffix = blogIndex?.detailLabels?.minReadSuffix || 'min read'
 
-  // Categories
   const categories: BlogCategory[] = [
     { name: 'All', value: 'All' },
     ...(blogIndex?.categories || [
@@ -201,31 +304,21 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({
 
   const filteredPosts = useMemo(() => {
     let filtered = allPosts
-
-    if (activeCategory !== 'All') {
-      filtered = filtered.filter((post) => post.category === activeCategory)
-    }
-
+    if (activeCategory !== 'All') filtered = filtered.filter((p) => p.category === activeCategory)
     if (searchQuery) {
+      const q = searchQuery.toLowerCase()
       filtered = filtered.filter(
-        (post) =>
-          post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase())
+        (p) => p.title.toLowerCase().includes(q) || p.excerpt?.toLowerCase().includes(q),
       )
     }
-
     return filtered
   }, [allPosts, activeCategory, searchQuery])
 
   const featuredPost = useMemo(() => {
-    if (
-      blogIndex?.featuredSection?.featuredPosts &&
-      blogIndex.featuredSection.featuredPosts.length > 0
-    ) {
+    if (blogIndex?.featuredSection?.featuredPosts && blogIndex.featuredSection.featuredPosts.length > 0) {
       return (
-        allPosts.find(
-          (p) => p._id === blogIndex.featuredSection!.featuredPosts![0]._id
-        ) || blogIndex.featuredSection.featuredPosts[0]
+        allPosts.find((p) => p._id === blogIndex.featuredSection!.featuredPosts![0]._id) ||
+        blogIndex.featuredSection.featuredPosts[0]
       )
     }
     return allPosts[0] || null
@@ -233,61 +326,79 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({
 
   const regularPosts = useMemo(() => {
     if (activeCategory === 'All' && !searchQuery && filteredPosts.length > 0 && featuredPost) {
-      return filteredPosts.filter((post) => post._id !== featuredPost._id)
+      return filteredPosts.filter((p) => p._id !== featuredPost._id)
     }
     return filteredPosts
   }, [filteredPosts, activeCategory, searchQuery, featuredPost])
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/10 blur-[120px] rounded-full -z-10"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-cyan/5 blur-[100px] rounded-full -z-10"></div>
-
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <SectionBadge variant="cyan" className="mb-6">
-            {hero.badge || t('blog.hero.badge')}
-          </SectionBadge>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1] mb-6">
-            {t('blog.hero.headline')}{' '}
-            <span className="text-brand-cyan">
-              {t('blog.hero.headlineHighlight')}
-            </span>
+      {/* Hero */}
+      <section className="page-hero" data-tone="dark">
+        <div className="container">
+          <span className="hero-tag reveal">
+            <span className="pulse" /> {String(hero.badge || t('blog.hero.badge')).toUpperCase()}
+          </span>
+          <h1 className="reveal">
+            {t('blog.hero.headline')} <em>{t('blog.hero.headlineHighlight')}</em>
           </h1>
-          <p className="max-w-2xl mx-auto text-lg text-slate-400 leading-relaxed mb-10">
-            {hero.description || t('blog.hero.description')}
-          </p>
+          <p className="lede reveal">{hero.description || t('blog.hero.description')}</p>
 
-          <div className="max-w-xl mx-auto relative group">
-            <div className="absolute inset-y-0 left-4 flex items-center text-slate-500 group-focus-within:text-brand-cyan transition-colors">
-              <Search size={20} />
-            </div>
+          {/* Search */}
+          <div className="reveal" style={{ position: 'relative', maxWidth: 540, margin: '32px auto 0' }}>
+            <Search
+              size={18}
+              style={{
+                position: 'absolute',
+                left: 18,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                color: 'var(--ink-4)',
+              }}
+            />
             <input
               type="text"
               placeholder={hero.searchPlaceholder || t('blog.hero.searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-brand-surface border border-slate-700 focus:border-brand-cyan focus:outline-none focus:ring-1 focus:ring-brand-cyan rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-slate-500 transition-all shadow-xl"
+              style={{
+                width: '100%',
+                padding: '14px 16px 14px 48px',
+                background: 'var(--paper)',
+                border: '1px solid var(--line-2)',
+                borderRadius: 100,
+                fontSize: 15,
+                color: 'var(--ink)',
+                outline: 'none',
+                fontFamily: 'var(--f-sans)',
+                boxShadow: '0 8px 24px -16px rgba(15,17,21,0.12)',
+              }}
             />
           </div>
         </div>
       </section>
 
       {/* Filters */}
-      <section className="pb-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-2">
+      <section style={{ paddingTop: 30, paddingBottom: 16 }}>
+        <div className="container">
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8 }}>
             {categories.map((cat) => (
               <button
                 key={cat.value}
                 onClick={() => setActiveCategory(cat.value)}
-                className={`px-4 py-2 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-all border ${
-                  activeCategory === cat.value
-                    ? 'bg-brand-blue border-brand-blue text-white shadow-glow-blue'
-                    : 'bg-transparent border-slate-800 text-slate-400 hover:border-slate-600 hover:text-white'
-                }`}
+                className="btn"
+                style={{
+                  padding: '7px 16px',
+                  background: activeCategory === cat.value ? 'var(--ink)' : 'var(--paper)',
+                  color: activeCategory === cat.value ? 'var(--paper)' : 'var(--ink-3)',
+                  border: '1px solid ' + (activeCategory === cat.value ? 'var(--ink)' : 'var(--line)'),
+                  borderRadius: 100,
+                  fontFamily: 'var(--f-mono)',
+                  fontSize: 11,
+                  fontWeight: 600,
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                }}
               >
                 {cat.name}
               </button>
@@ -296,13 +407,13 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({
         </div>
       </section>
 
-      {/* Featured Article */}
+      {/* Featured */}
       {featuredPost && activeCategory === 'All' && !searchQuery && (
-        <section className="pb-16">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex items-center gap-3 mb-8">
-              <Zap className="text-brand-cyan" size={20} />
-              <h2 className="text-2xl font-bold text-white tracking-tight">
+        <section className="section" style={{ paddingTop: 20, paddingBottom: 30 }}>
+          <div className="container">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+              <Zap size={18} style={{ color: 'var(--accent-ink)' }} />
+              <h2 style={{ fontFamily: 'var(--f-display)', fontSize: 24, fontWeight: 400, letterSpacing: '-0.01em', color: 'var(--ink)' }}>
                 {featuredSection.title || t('blog.featured.title')}
               </h2>
             </div>
@@ -316,30 +427,52 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({
         </section>
       )}
 
-      {/* All Articles */}
-      <section className="bg-brand-surface py-20 border-t border-slate-800 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-10">
+      {/* All articles */}
+      <section className="section" data-tone="dark" style={{ paddingTop: 60 }}>
+        <div className="container">
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-end',
+              marginBottom: 32,
+              flexWrap: 'wrap',
+              gap: 16,
+            }}
+          >
             <div>
-              <SectionBadge variant="cyan" className="mb-4">
-                {allArticlesSection.badge || t('blog.allArticles.badge')}
-              </SectionBadge>
-              <h2 className="text-3xl font-bold text-white tracking-tight">
+              <span className="sec-tag">{allArticlesSection.badge || t('blog.allArticles.badge')}</span>
+              <h2
+                style={{
+                  fontFamily: 'var(--f-display)',
+                  fontSize: 'clamp(28px, 3vw, 36px)',
+                  fontWeight: 400,
+                  letterSpacing: '-0.015em',
+                  color: 'var(--ink)',
+                  marginTop: 8,
+                }}
+              >
                 {allArticlesSection.title || t('blog.allArticles.title')}
               </h2>
             </div>
-            <p className="hidden md:block text-slate-500 font-mono text-xs font-bold uppercase tracking-widest">
+            <p
+              style={{
+                fontFamily: 'var(--f-mono)',
+                fontSize: 11,
+                fontWeight: 600,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'var(--ink-4)',
+              }}
+            >
               {filteredPosts.length}{' '}
-              {filteredPosts.length === 1
-                ? t('blog.allArticles.articleSingular')
-                : t('blog.allArticles.articlePlural')}
+              {filteredPosts.length === 1 ? t('blog.allArticles.articleSingular') : t('blog.allArticles.articlePlural')}
             </p>
           </div>
 
           {filteredPosts.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-slate-400 text-lg mb-4">
+            <div style={{ textAlign: 'center', padding: '80px 0' }}>
+              <p style={{ fontSize: 16, color: 'var(--ink-3)', marginBottom: 14 }}>
                 {allArticlesSection.emptyStateTitle || t('blog.allArticles.emptyTitle')}
               </p>
               <button
@@ -347,19 +480,20 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({
                   setActiveCategory('All')
                   setSearchQuery('')
                 }}
-                className="px-6 py-2 rounded-lg border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition-all"
+                className="btn btn-outline"
               >
                 {allArticlesSection.emptyStateButton || t('blog.allArticles.clearFilters')}
               </button>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {regularPosts.map((post) => (
+            <div className="card-grid cols-3">
+              {regularPosts.map((post, idx) => (
                 <BlogCard
                   key={post._id}
                   post={post}
                   locale={locale}
                   minReadSuffix={minReadSuffix}
+                  delay={idx * 0.04}
                 />
               ))}
             </div>

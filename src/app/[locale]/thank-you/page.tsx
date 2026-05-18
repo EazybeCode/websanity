@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import { getCanonicalOnly } from '@/lib/seo-helpers'
+import { LandingShell } from '@/components/landing/LandingShell'
 
 export async function generateMetadata({
   params,
@@ -11,10 +12,7 @@ export async function generateMetadata({
 
   return {
     title: 'Thank You | Eazybe',
-    robots: {
-      index: false,
-      follow: false,
-    },
+    robots: { index: false, follow: false },
     alternates: getCanonicalOnly(locale, '/thank-you'),
   }
 }
@@ -29,27 +27,37 @@ export default async function ThankYouPage({
   const t = await getTranslations()
 
   return (
-    <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased">
-      <main className="pt-20 pb-12">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="mb-8">
-            <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+    <LandingShell hideBea>
+      <section className="page-hero" data-tone="dark">
+        <div className="container">
+          <div className="reveal" style={{ maxWidth: 640, margin: '0 auto' }}>
+            <div
+              style={{
+                width: 72,
+                height: 72,
+                borderRadius: '50%',
+                background:
+                  'linear-gradient(135deg, color-mix(in oklab, var(--accent-a) 30%, var(--paper)), color-mix(in oklab, var(--accent-b) 18%, var(--paper)))',
+                border: '1px solid color-mix(in oklab, var(--accent-a) 40%, var(--line))',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 24px',
+                color: 'var(--accent-ink)',
+              }}
+            >
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <h1 className="text-3xl font-bold text-white mb-4">
-              {t('leadForm.thankYouTitle')}
-            </h1>
-            <p className="text-lg text-slate-300 mb-4">
-              {t('leadForm.thankYouMessage')}
-            </p>
-            <p className="text-slate-400">
+            <h1>{t('leadForm.thankYouTitle')}</h1>
+            <p className="lede" style={{ marginBottom: 12 }}>{t('leadForm.thankYouMessage')}</p>
+            <p style={{ color: 'var(--ink-4)', fontSize: 15, fontFamily: 'var(--f-mono)' }}>
               {t('leadForm.thankYouSubtext')}
             </p>
           </div>
         </div>
-      </main>
-    </div>
+      </section>
+    </LandingShell>
   )
 }

@@ -41,6 +41,7 @@ export const Input: React.FC<InputProps> = ({
       <input
         id={inputId}
         className={`${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
+        suppressHydrationWarning
         {...props}
       />
 

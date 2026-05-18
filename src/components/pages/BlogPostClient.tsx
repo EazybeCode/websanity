@@ -20,6 +20,7 @@ import {
   BookOpen,
   Rocket,
   Eye,
+  Tag,
 } from 'lucide-react'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import Link from 'next/link'
@@ -68,6 +69,7 @@ interface BlogPost {
   tableOfContents?: Array<{ label: string; id: string }>
   faqTitle?: string
   faqs?: Array<{ question: string; answer: any; plainAnswer?: string; answerText?: string }>
+  metaKeywords?: string
 }
 
 interface BlogIndex {
@@ -303,7 +305,7 @@ const createPortableTextComponents = (
               <img
                 src={value.url}
                 alt={value.alt || ''}
-                className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
+                className="w-full rounded-2xl"
                 loading="lazy"
               />
             )}
@@ -737,7 +739,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
 
   return (
     <BlogTranslationsProvider translations={translations} currentSlug={slug}>
-      <>
+      <div className="blog-post-page">
         <ReadingProgress />
 
       {/* Hero Section - Left Aligned */}
@@ -894,7 +896,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
       {/* Featured Image */}
       {post.featuredImage && (
         <figure className="max-w-7xl mx-auto px-4 md:px-6 mb-3">
-          <div className={`relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden ${mobileAspectClass(post.featuredImageMobileRatio, 'aspect-[16/9]')} ${desktopAspectClass(post.featuredImageDesktopRatio, 'md:aspect-[2/1]')} shadow-xl md:shadow-2xl border border-slate-800/50`}>
+          <div className={`relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden ${mobileAspectClass(post.featuredImageMobileRatio, 'aspect-[16/9]')} ${desktopAspectClass(post.featuredImageDesktopRatio, 'md:aspect-[2/1]')}`}>
             <img
               src={post.featuredImage}
               alt={post.featuredImageAlt || post.title}
@@ -1042,7 +1044,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               )}
 
               {/* Main Article Content */}
-              <article className="blog-content prose prose-invert max-w-none px-1">
+              <article className="blog-content prose max-w-none">
                 {Array.isArray(post.content) ? (
                   <PortableText value={post.content} components={portableTextComponents} />
                 ) : (
@@ -1152,7 +1154,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 .blog-content tbody tr:hover { background: rgba(30, 41, 59, 0.4); }
                 .blog-content img {
                   max-width: 100%; height: auto; border-radius: 1rem;
-                  margin: 2.5rem 0; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+                  margin: 2.5rem 0;
                 }
                 .blog-content hr {
                   border: none; height: 1px;
@@ -1186,55 +1188,84 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                   >
                     {post.faqTitle || detailLabels?.faqTitle || t('blog.detail.faqTitle')}
                   </h2>
-                  <div className="space-y-4">
-                    {post.faqs.map((faq, i) => (
-                      <details
-                        key={i}
-                        className="group border border-slate-700/50 rounded-xl bg-slate-900/30 transition-all hover:border-slate-600"
-                      >
-                        <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-[16px] md:text-lg">
-                          <span className="pr-6">{faq.question}</span>
-                          <Plus
-                            size={20}
-                            className="text-brand-cyan flex-shrink-0 group-open:rotate-45 transition-transform"
-                          />
-                        </summary>
-                        <div className="px-6 pb-6 text-slate-400 text-[14px] md:text-lg leading-relaxed border-t border-slate-700/30 pt-4">
-                          {Array.isArray(faq.answer) ? (
-                            <PortableText
-                              value={faq.answer}
-                              components={{
-                                marks: {
-                                  link: ({ children, value: markValue }: any) => (
-                                    <a
-                                      href={markValue?.href}
-                                      target={markValue?.openInNewTab ? '_blank' : undefined}
-                                      rel={markValue?.openInNewTab ? 'noopener noreferrer' : undefined}
-                                      className="text-brand-cyan hover:text-brand-blue underline transition-colors"
-                                    >
-                                      {children}
-                                    </a>
-                                  ),
-                                },
-                                block: {
-                                  normal: ({ children }: any) => <p className="mb-2 last:mb-0">{children}</p>,
-                                },
-                              }}
-                            />
-                          ) : (
-                            faq.answer
-                          )}
-                        </div>
-                      </details>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      post.faqs.slice(0, Math.ceil(post.faqs.length / 2)),
+                      post.faqs.slice(Math.ceil(post.faqs.length / 2)),
+                    ].map((column, colIdx) => (
+                      <div key={colIdx} className="space-y-4">
+                        {column.map((faq, i) => (
+                          <details
+                            key={i}
+                            className="group border border-slate-700/50 rounded-xl bg-slate-900/30 transition-all hover:border-slate-600"
+                          >
+                            <summary className="flex items-center justify-between p-6 text-white font-semibold cursor-pointer list-none text-[16px] md:text-lg">
+                              <span className="pr-6">{faq.question}</span>
+                              <Plus
+                                size={20}
+                                className="text-brand-cyan flex-shrink-0 group-open:rotate-45 transition-transform"
+                              />
+                            </summary>
+                            <div className="px-6 pb-6 text-slate-400 text-[14px] md:text-lg leading-relaxed border-t border-slate-700/30 pt-4">
+                              {Array.isArray(faq.answer) ? (
+                                <PortableText
+                                  value={faq.answer}
+                                  components={{
+                                    marks: {
+                                      link: ({ children, value: markValue }: any) => (
+                                        <a
+                                          href={markValue?.href}
+                                          target={markValue?.openInNewTab ? '_blank' : undefined}
+                                          rel={markValue?.openInNewTab ? 'noopener noreferrer' : undefined}
+                                          className="text-brand-cyan hover:text-brand-blue underline transition-colors"
+                                        >
+                                          {children}
+                                        </a>
+                                      ),
+                                    },
+                                    block: {
+                                      normal: ({ children }: any) => <p className="mb-2 last:mb-0">{children}</p>,
+                                    },
+                                  }}
+                                />
+                              ) : (
+                                faq.answer
+                              )}
+                            </div>
+                          </details>
+                        ))}
+                      </div>
                     ))}
                   </div>
                 </section>
               )}
 
+              {/* Tags (from Sanity metaKeywords) */}
+              {post.metaKeywords && post.metaKeywords.trim() && (
+                <div className="mt-12 pt-8 border-t border-slate-800 flex flex-wrap items-center gap-2">
+                  <span className="flex items-center gap-1.5 text-slate-400 font-medium pr-1">
+                    <Tag size={16} />
+                    Tags:
+                  </span>
+                  {post.metaKeywords.split(',').map((kw, i) => {
+                    const tag = kw.trim()
+                    if (!tag) return null
+                    return (
+                      <span
+                        key={`${tag}-${i}`}
+                        className="px-3 py-1.5 rounded-full bg-slate-800/40 border border-slate-700/40 text-white text-sm"
+                      >
+                        {tag}
+                      </span>
+                    )
+                  })}
+                </div>
+              )}
+
               {/* Author Section */}
               {post.author && (
                 <div className="mt-16 pt-10 border-t border-slate-800">
-                  <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-slate-700/30">
+                  <div className="author-card-dark rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left">
                     {(() => {
                       const authorUrl = post.author.slug ? `${locale === 'en' ? '' : `/${locale}`}/blog/authors/${post.author.slug}` : undefined
                       const avatar = post.author.image ? (
@@ -1308,27 +1339,6 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 </div>
               )}
 
-              {/* Newsletter CTA */}
-              <div id="newsletter-cta-section" className="mt-16 p-8 bg-gradient-to-br from-brand-blue/10 to-brand-cyan/10 rounded-3xl border border-brand-cyan/20 text-center">
-                <h3 className="text-2xl font-bold text-white mb-3">
-                  {newsletterCta?.headline || t('blog.newsletter.headline')}
-                </h3>
-                <p className="text-lg text-slate-400 mb-8 max-w-md mx-auto">
-                  {newsletterCta?.description || t('blog.newsletter.description')}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                  <input
-                    type="email"
-                    placeholder={
-                      newsletterCta?.placeholder || t('blog.newsletter.placeholder')
-                    }
-                    className="flex-1 bg-brand-black border border-slate-700 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:border-brand-cyan outline-none transition-colors text-lg"
-                  />
-                  <button className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold py-4 px-8 rounded-xl transition-colors">
-                    {newsletterCta?.buttonText || t('blog.newsletter.buttonText')}
-                  </button>
-                </div>
-              </div>
             </div>
 
             {/* Right Column - Sticky Sidebar */}
@@ -1391,7 +1401,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
           </div>
         </section>
       )}
-      </>
+      </div>
     </BlogTranslationsProvider>
   )
 }

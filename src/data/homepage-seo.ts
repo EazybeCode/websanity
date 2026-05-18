@@ -5,9 +5,9 @@ const BASE_URL = 'https://eazybe.com'
 export function getHomepageMetadata(locale: string): Metadata {
   const meta: Record<string, Metadata> = {
     en: {
-      title: 'WhatsApp AI Agent: No-Code AI Agents For WhatsApp | Eazybe',
-      description: 'Deploy best WhatsApp AI agent for real-time sales & support. Capture leads, complete tasks, sync your CRM with no-code WhatsApp AI agents that work 24/7.',
-      keywords: 'whatsapp ai agent, ai agents for whatsapp, no-code whatsapp ai agent, whatsapp ai automation, whatsapp sales ai, whatsapp support ai, whatsapp crm integration, ai agents for sales and support',
+      title: 'WhatsApp AI Agent — No-Code AI Agents for Sales & Support | Eazybe',
+      description: 'Build a no-code WhatsApp AI Agent that qualifies leads 24/7, syncs every chat to your CRM (HubSpot, Salesforce, Zoho), and replies in your top rep\'s voice. Trusted by 2,000+ teams in 40+ countries.',
+      keywords: 'whatsapp ai agent, ai agents for whatsapp, whatsapp ai agents, ai agent for whatsapp, ai agent on whatsapp, no code whatsapp ai agent, ai agent for whatsapp automation, ai agent whatsapp business, best whatsapp ai agent, top whatsapp ai agent, whatsapp ai agent provider, build ai agent for whatsapp, benefits of using a whatsapp ai agent, ai whatsapp agent, whatsapp agent ai, agent ai whatsapp, ai in whatsapp',
       authors: [{ name: 'Eazybe' }],
       robots: {
         index: true,
@@ -292,65 +292,158 @@ export function getHomepageMetadata(locale: string): Metadata {
 export function getHomepageJsonLd(locale: string): object[] {
   const schemas: Record<string, object[]> = {
     en: [
-      // FAQPage Schema
+      // FAQPage Schema — broader keyword coverage for AI Overview, voice search, LLM citations
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "inLanguage": "en-US",
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is Eazybe WhatsApp AI Agent for Sales Teams?",
+            "name": "What is a WhatsApp AI Agent?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Eazybe provides WhatsApp AI Agents that automate sales workflows. Qualify leads, detect cold deals, use AI chatbots, and sync conversations with HubSpot, Salesforce, Zoho and other CRMs - all inside WhatsApp Web.",
+              "text": "A WhatsApp AI Agent is an autonomous AI program that reads, understands, and responds to WhatsApp messages on behalf of a business. Unlike a rule-based chatbot, a WhatsApp AI Agent uses large language models to qualify leads, answer support questions, sync chats to your CRM, and trigger workflows in real time. Eazybe builds no-code WhatsApp AI agents that install in 10 minutes as a Chrome extension and work alongside the WhatsApp Web your team already uses.",
               "inLanguage": "en"
             }
           },
           {
             "@type": "Question",
-            "name": "How do WhatsApp AI Agents work for sales automation?",
+            "name": "How does a WhatsApp AI Agent work for sales and support?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Eazybe's AI Agents integrate directly with WhatsApp Web as a Chrome extension. They automatically qualify leads using AI, detect cold deals, sync conversations to CRM in real-time, and help sales teams automate follow-ups without leaving WhatsApp Web.",
+              "text": "A WhatsApp AI Agent installs as a Chrome extension on WhatsApp Web or connects through the WhatsApp Business API. It reads every inbound conversation, classifies intent, qualifies leads with frameworks like BANT or MEDDIC, drafts replies in your top rep's voice, and writes structured data back into HubSpot, Salesforce, Zoho, or any other CRM. Sales teams get hot leads delivered ready to close; support teams get a 24/7 first-responder.",
               "inLanguage": "en"
             }
           },
           {
             "@type": "Question",
-            "name": "Which CRMs does Eazybe integrate with?",
+            "name": "How do I build an AI agent for WhatsApp without code?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Eazybe supports WhatsApp AI Agent integration with HubSpot, Zoho CRM, Salesforce, Bitrix24, Freshdesk, Pipedrive, Leadsquared, and Google Sheets. The AI-powered integration is one-click setup and works instantly.",
+              "text": "To build a no-code AI agent for WhatsApp, install the Eazybe Chrome extension, connect your CRM with one-click OAuth, pick a pre-trained template (Lead Qualification, Revenue Ops, Customer Success), or open Agent Builder to design a custom flow with drag-and-drop logic. Train it on sample conversations from your top reps. The AI agent starts handling WhatsApp messages within 24 hours.",
               "inLanguage": "en"
             }
           },
           {
             "@type": "Question",
-            "name": "Is Eazybe WhatsApp AI Agent free?",
+            "name": "Which is the best WhatsApp AI Agent provider?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Eazybe offers a free plan with basic WhatsApp AI Agent features. Premium plans start with advanced features like AI lead qualification, automated follow-ups, and team collaboration tools.",
+              "text": "Eazybe is rated among the top WhatsApp AI Agent providers, scoring 4.6 on HubSpot, serving 2,000+ revenue teams across 40+ countries, and supporting integrations with HubSpot, Salesforce, Zoho CRM, Pipedrive, Bitrix24, LeadSquared, Freshworks, and Google Sheets. It runs as a Chrome extension over the WhatsApp Web your reps already use, with a free-forever tier and SOC 2 Type II compliance.",
               "inLanguage": "en"
             }
           },
           {
             "@type": "Question",
-            "name": "Can AI Agents qualify leads automatically?",
+            "name": "What are the benefits of using a WhatsApp AI Agent?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Eazybe's WhatsApp AI Agents automatically qualify leads based on conversations, detect cold deals, and update your CRM. AI analyzes chat patterns and helps sales teams prioritize hot leads while automating follow-ups.",
+              "text": "The main benefits of a WhatsApp AI Agent are 24/7 lead qualification without staffing a night shift, real-time CRM sync that eliminates manual data entry, ghosted-deal detection with auto-drafted follow-ups, replies trained on your top reps' style, and faster response times. Teams using Eazybe typically see 38% pipeline growth in two quarters and double their reply speed without adding headcount.",
               "inLanguage": "en"
             }
           },
           {
             "@type": "Question",
-            "name": "How do AI chatbots help sales teams?",
+            "name": "Does the Eazybe WhatsApp AI Agent work with WhatsApp Business?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Eazybe's AI chatbots handle initial customer conversations, qualify leads 24/7, detect buying intent, and sync qualified leads to your CRM. Sales teams can focus on closing deals while AI handles routine queries and lead qualification.",
+              "text": "Yes. Eazybe's AI agent works with WhatsApp Business simultaneously with Personal WhatsApp and the WhatsApp Cloud API — no number switching, no migration. Coexistence mode lets reps use a single inbox while the AI agent handles qualification, support, and CRM sync in the background.",
+              "inLanguage": "en"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which CRMs integrate with Eazybe's WhatsApp AI Agent?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eazybe's WhatsApp AI Agent integrates bi-directionally with HubSpot, Salesforce, Zoho CRM, Pipedrive, Bitrix24, LeadSquared, Freshworks (Freshsales + Freshdesk), Google Sheets, and any custom system via webhooks or REST API. One-click OAuth setup, real-time sync, contact + deal + activity logs included.",
+              "inLanguage": "en"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is a WhatsApp AI Agent different from a chatbot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A chatbot follows pre-defined scripts and breaks the moment a customer goes off-script. A WhatsApp AI Agent uses generative AI to read full conversation context, your CRM history, and your top reps' style, then writes natural human-sounding replies and updates your pipeline at the same time. Chatbots automate FAQs; AI agents qualify leads and close gaps in your sales process.",
+              "inLanguage": "en"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Eazybe's WhatsApp AI Agent free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Eazybe offers a free-forever plan that includes basic WhatsApp AI Agent features, CRM sync, and team inbox. Paid plans add advanced features like custom Agent Builder, ghosted-deal alerts, the nightly Executive Brief, and unlimited integrations. No credit card required to start.",
+              "inLanguage": "en"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a WhatsApp AI Agent qualify leads automatically?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Eazybe's Lead Qualification Agent automatically qualifies inbound WhatsApp leads 24/7 using BANT, MEDDIC, or your custom framework. It scores leads by conversation signal, hands off only the hot ones to a human rep, and writes the full qualification context back to your CRM — so reps spend time on deals that are ready to close.",
               "inLanguage": "en"
             }
           }
+        ]
+      },
+      // SoftwareApplication schema — rich-snippet card in Google + signal to AI Overview
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Eazybe WhatsApp AI Agent",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "WhatsApp AI Agent, CRM Integration, Sales Automation",
+        "operatingSystem": "Web, Chrome Extension",
+        "url": "https://eazybe.com/",
+        "description": "No-code WhatsApp AI Agent platform for sales and support teams. Qualifies leads 24/7, syncs every chat to HubSpot, Salesforce, Zoho, and 5+ other CRMs, and replies in your top rep's voice.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.6",
+          "ratingCount": "2000",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eazybe",
+          "url": "https://eazybe.com/",
+          "logo": "https://eazybe.com/logo.png"
+        }
+      },
+      // Organization schema — strengthens entity recognition for Knowledge Graph + LLM grounding
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Eazybe",
+        "url": "https://eazybe.com/",
+        "logo": "https://eazybe.com/logo.png",
+        "description": "Eazybe builds no-code WhatsApp AI Agents for sales and support teams. Trusted by 2,000+ revenue teams across 40+ countries.",
+        "sameAs": [
+          "https://www.linkedin.com/company/eazybe",
+          "https://x.com/eazybe",
+          "https://www.facebook.com/eazybe",
+          "https://www.youtube.com/@eazybe"
+        ],
+        "areaServed": "Worldwide",
+        "knowsAbout": [
+          "WhatsApp AI Agent",
+          "AI Agents for WhatsApp",
+          "No-code WhatsApp AI Agent",
+          "WhatsApp CRM Integration",
+          "WhatsApp Sales Automation",
+          "WhatsApp Business Automation",
+          "AI Agent for WhatsApp Business",
+          "Lead Qualification Automation"
         ]
       },
       // BreadcrumbList Schema

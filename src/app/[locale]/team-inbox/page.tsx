@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { TeamInboxPageClient } from '@/components/pages/TeamInboxPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
+import { LandingShell } from '@/components/landing/LandingShell'
 
 export async function generateMetadata({
   params,
@@ -43,5 +44,9 @@ export default async function TeamInboxPage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  return <TeamInboxPageClient />
+  return (
+    <LandingShell>
+      <TeamInboxPageClient />
+    </LandingShell>
+  )
 }

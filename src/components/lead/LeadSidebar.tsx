@@ -30,7 +30,7 @@ export const LeadSidebar: React.FC = () => {
             transition={{ duration: 0.3, ease: 'easeOut' }}
             className="fixed left-8 w-[340px] z-40 bottom-8 hidden lg:block"
           >
-            <div className="relative bg-brand-card/95 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl p-8">
+            <div className="lead-sidebar-panel relative bg-brand-card/95 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl p-8">
               <button
                 onClick={handleToggle}
                 className="absolute top-5 right-5 text-slate-500 hover:text-slate-300 transition-colors duration-200 p-1.5 hover:bg-slate-800/50 rounded-lg"

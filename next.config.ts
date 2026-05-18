@@ -18,6 +18,13 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
+    // Skip aggressive immutable caching in dev — Turbopack reuses chunk hashes
+    // across edits, so a 1-year `immutable` header makes CSS/JS changes never
+    // reach the browser.
+    const isDev = process.env.NODE_ENV !== 'production'
+    const immutableAssetCache = isDev
+      ? 'no-store, must-revalidate'
+      : 'public, immutable, max-age=31536000'
     return [
       {
         source: "/(.*)",
@@ -35,21 +42,21 @@ const nextConfig: NextConfig = {
       {
         source: "/_next/static/(.*)",
         headers: [
-          { key: "Cache-Control", value: "public, immutable, max-age=31536000" },
+          { key: "Cache-Control", value: immutableAssetCache },
         ],
       },
       // Images - long cache
       {
         source: "/(.*\\.(?:png|jpg|jpeg|gif|webp|avif|ico|svg))",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          { key: "Cache-Control", value: immutableAssetCache },
         ],
       },
       // Fonts - long cache
       {
         source: "/(.*\\.(?:woff|woff2|ttf|otf|eot))",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          { key: "Cache-Control", value: immutableAssetCache },
         ],
       },
     ]

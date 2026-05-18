@@ -4,55 +4,27 @@ import React from 'react'
 import Link from 'next/link'
 import {
   ArrowRight,
-  CheckCircle2,
   Check,
   X,
   Minus,
-  Cloud,
-  MessageCircle
 } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import { useTrialModal } from '@/providers/TrialModalProvider'
 
-// Special URL conventions: pages can set a CTA's `url` to one of these to
-// open the global trial/demo modal instead of navigating. Mirrors the
-// homepage hero behavior in HeroDynamic.tsx.
 const MODAL_TRIGGERS: Record<string, 'trial' | 'demo'> = {
   '#trial': 'trial',
   '#demo': 'demo',
 }
 
-// ─── UI Components ───────────────────────────────────────────────────────────
+const TickIcon = (
+  <svg width="11" height="11" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+)
 
-const SectionKicker: React.FC<{ label: string; className?: string }> = ({ label, className = '' }) => {
-  return (
-    <span className={`inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.1em] px-3 py-1.5 rounded-full border text-cyan-500 border-cyan-500/20 bg-cyan-500/10 mb-6 select-none ${className}`}>
-      <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-cyan-500"></span>
-      {label}
-    </span>
-  )
-}
+const CardCheck = (
+  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+)
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'outline'
-  children: React.ReactNode
-}
-
-const Button: React.FC<ButtonProps> = ({ variant = 'primary', children, className = '', ...props }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg transition-all duration-200'
-  const variants = {
-    primary: 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] border border-blue-600 hover:bg-blue-700',
-    outline: 'bg-transparent text-slate-300 border border-slate-700 hover:border-slate-500 hover:text-white'
-  }
-
-  return (
-    <button className={`${baseStyles} ${variants[variant]} ${className}`} {...props}>
-      {children}
-    </button>
-  )
-}
-
-// ─── Hero Section ────────────────────────────────────────────────────────────
+// ─── Hero ───────────────────────────────────────────────────────────────────
 
 const HeroCta: React.FC<{
   cta: { label?: string; url?: string }
@@ -62,99 +34,68 @@ const HeroCta: React.FC<{
   const { openModal } = useTrialModal()
   const url = cta.url || ''
   const modalKind = MODAL_TRIGGERS[url]
-
-  const buttonContent = (
+  const className = `btn btn-lg ${variant === 'primary' ? 'btn-primary' : 'btn-outline'}`
+  const content = (
     <>
       {cta.label}
-      {showArrow && <ArrowRight className="ml-2 w-5 h-5" />}
+      {showArrow && ' →'}
     </>
   )
-
   if (modalKind) {
-    return (
-      <Button
-        variant={variant}
-        className="h-14 px-8 text-base"
-        onClick={() => openModal(modalKind)}
-      >
-        {buttonContent}
-      </Button>
-    )
+    return <button className={className} onClick={() => openModal(modalKind)}>{content}</button>
   }
   if (url.startsWith('http')) {
-    return (
-      <a href={url} target="_blank" rel="noopener noreferrer">
-        <Button variant={variant} className="h-14 px-8 text-base">
-          {buttonContent}
-        </Button>
-      </a>
-    )
+    return <a href={url} target="_blank" rel="noopener noreferrer" className={className}>{content}</a>
   }
-  return (
-    <Link href={url || '#'}>
-      <Button variant={variant} className="h-14 px-8 text-base">
-        {buttonContent}
-      </Button>
-    </Link>
-  )
+  return <Link href={url || '#'} className={className}>{content}</Link>
 }
 
 const HeroSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data) return null
-
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden bg-slate-950">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none"></div>
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] blur-[120px] rounded-full -z-10 animate-pulse bg-blue-500/10"></div>
+    <section className="page-hero" data-tone="dark">
+      <div className="container">
+        {data.badge && (
+          <span className="hero-tag reveal"><span className="pulse" /> {String(data.badge).toUpperCase()}</span>
+        )}
+        <h1 className="reveal">
+          {data.headline}
+          {data.headlineHighlight ? <> <em>{data.headlineHighlight}</em></> : null}
+        </h1>
+        {data.description && <p className="lede reveal">{data.description}</p>}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {data.badge && <SectionKicker label={data.badge} className="mx-auto" />}
-
-          <h1 className="text-5xl lg:text-7xl font-sans font-extrabold tracking-tight text-white leading-[1.05] mb-6">
-            {data.headline}{' '}
-            <span className="text-cyan-500">{data.headlineHighlight}</span>
-          </h1>
-
-          <p className="text-lg text-slate-400 leading-relaxed mb-8 max-w-2xl mx-auto">
-            {data.description}
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4">
-            {data.primaryCta && <HeroCta cta={data.primaryCta} variant="primary" showArrow />}
-            {data.secondaryCta && <HeroCta cta={data.secondaryCta} variant="outline" />}
-          </div>
+        <div className="reveal" style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 36, flexWrap: 'wrap' }}>
+          {data.primaryCta && <HeroCta cta={data.primaryCta} variant="primary" showArrow />}
+          {data.secondaryCta && <HeroCta cta={data.secondaryCta} variant="outline" />}
         </div>
       </div>
     </section>
   )
 }
 
-// ─── Intro Section ───────────────────────────────────────────────────────────
+// ─── Intro ──────────────────────────────────────────────────────────────────
 
 const IntroSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data) return null
-
   return (
-    <section className="py-16 bg-slate-900 border-t border-slate-700">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-bold text-white mb-6">{data.headline}</h2>
-        <p className="text-lg text-slate-400 leading-relaxed whitespace-pre-line">{data.description}</p>
+    <section className="section" style={{ paddingTop: 60, paddingBottom: 60 }}>
+      <div className="container">
+        <div className="sec-head centered reveal">
+          {data.headline && <h2>{data.headline}</h2>}
+          {data.description && <p style={{ whiteSpace: 'pre-line' }}>{data.description}</p>}
+        </div>
       </div>
     </section>
   )
 }
 
-// ─── Featured Items Grid ─────────────────────────────────────────────────────
+// ─── Featured items grid ────────────────────────────────────────────────────
 
 const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ items, category }) => {
   const locale = useLocale()
-
   if (!items || items.length === 0) return null
-
   const langPrefix = locale === 'en' ? '' : `/${locale}`
 
-  // Localized labels for the section's hardcoded headings + link text.
   const labels: Record<string, { featured: string; more: string; learnMore: string }> = {
     en: { featured: 'Featured', more: 'More Options', learnMore: 'Learn more' },
     es: { featured: 'Destacados', more: 'Más Opciones', learnMore: 'Más información' },
@@ -167,49 +108,88 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
     if (category === 'feature') return `${langPrefix}/features/${item.slug}`
     if (category === 'whatsapp-api') return `${langPrefix}/whatsapp-api/${item.slug}`
     if (category === 'integration') {
-      if (item.slug.endsWith('-whatsapp-integration')) {
-        return `${langPrefix}/${item.slug}`
-      }
+      if (item.slug.endsWith('-whatsapp-integration')) return `${langPrefix}/${item.slug}`
       return `${langPrefix}/${item.slug}-whatsapp-integration`
     }
     return `${langPrefix}/${item.slug}`
   }
 
-  const featuredItems = items.filter(item => item.isFeatured)
-  const otherItems = items.filter(item => !item.isFeatured)
+  const featuredItems = items.filter((item) => item.isFeatured)
+  const otherItems = items.filter((item) => !item.isFeatured)
 
   return (
-    <section className="py-24 bg-slate-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section" style={{ paddingTop: 30 }}>
+      <div className="container">
         {featuredItems.length > 0 && (
           <>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white">{L.featured}</h2>
+            <div className="sec-head centered reveal" style={{ marginBottom: 32 }}>
+              <h2 style={{ fontSize: 'clamp(28px, 3vw, 36px)' }}>{L.featured}</h2>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <div className="card-grid cols-3" style={{ marginBottom: 56 }}>
               {featuredItems.map((item, idx) => (
                 <Link
                   key={idx}
                   href={getItemUrl(item)}
-                  className="group bg-slate-900 border border-slate-700 hover:border-slate-500 transition-all rounded-xl p-6 relative overflow-hidden"
+                  className="card reveal"
+                  style={{ transitionDelay: `${idx * 0.05}s`, display: 'block' }}
                 >
-                  <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: item.color }}></div>
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white" style={{ backgroundColor: item.color }}>
-                      <CheckCircle2 size={24} strokeWidth={2} />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 0, left: 0, right: 0,
+                      height: 3,
+                      borderTopLeftRadius: 'var(--r-lg)',
+                      borderTopRightRadius: 'var(--r-lg)',
+                      background: item.color || 'var(--accent-a)',
+                    }}
+                  />
+                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 14 }}>
+                    <div
+                      className="card-icon"
+                      style={{
+                        background: item.color ? `color-mix(in oklab, ${item.color} 20%, var(--paper))` : undefined,
+                        borderColor: item.color ? `color-mix(in oklab, ${item.color} 40%, var(--line))` : undefined,
+                        color: item.color || 'var(--accent-ink)',
+                      }}
+                    >
+                      {CardCheck}
                     </div>
                     {item.tags && item.tags.length > 0 && (
-                      <div className="flex gap-2">
+                      <div style={{ display: 'flex', gap: 6 }}>
                         {item.tags.slice(0, 2).map((tag: string, tIdx: number) => (
-                          <span key={tIdx} className="text-xs font-medium px-2 py-1 rounded bg-slate-800 text-slate-300">{tag}</span>
+                          <span
+                            key={tIdx}
+                            style={{
+                              fontFamily: 'var(--f-mono)',
+                              fontSize: 10,
+                              padding: '3px 8px',
+                              borderRadius: 6,
+                              background: 'var(--bg-2)',
+                              color: 'var(--ink-3)',
+                              letterSpacing: '0.04em',
+                            }}
+                          >
+                            {tag}
+                          </span>
                         ))}
                       </div>
                     )}
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">{item.name}</h3>
-                  <p className="text-slate-400 mb-4">{item.description}</p>
-                  <div className="flex items-center text-cyan-500 font-medium text-sm group-hover:translate-x-1 transition-transform">
-                    {L.learnMore} <ArrowRight className="ml-2 w-4 h-4" />
+                  <h3>{item.name}</h3>
+                  <p>{item.description}</p>
+                  <div
+                    style={{
+                      marginTop: 16,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      color: 'var(--accent-ink)',
+                      fontFamily: 'var(--f-sans)',
+                      fontSize: 14,
+                      fontWeight: 500,
+                    }}
+                  >
+                    {L.learnMore} <ArrowRight size={14} />
                   </div>
                 </Link>
               ))}
@@ -219,30 +199,44 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
 
         {otherItems.length > 0 && (
           <>
-            <div className="text-center mb-12">
-              <h2 className="text-2xl font-bold text-white">{L.more}</h2>
+            <div className="sec-head centered reveal" style={{ marginBottom: 28 }}>
+              <h2 style={{ fontSize: 'clamp(22px, 2.4vw, 28px)' }}>{L.more}</h2>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+                gap: 14,
+                maxWidth: 1100,
+                margin: '0 auto',
+              }}
+            >
               {otherItems.map((item, idx) => (
                 <Link
                   key={idx}
                   href={getItemUrl(item)}
-                  className="group bg-slate-800/50 border border-slate-700 hover:border-slate-500 transition-all rounded-lg p-5"
+                  className="card reveal"
+                  style={{ transitionDelay: `${idx * 0.03}s`, display: 'block', padding: 18 }}
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white" style={{ backgroundColor: item.color }}>
-                      <CheckCircle2 size={20} strokeWidth={2} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                    <div
+                      style={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: 8,
+                        background: item.color ? `color-mix(in oklab, ${item.color} 20%, var(--paper))` : 'color-mix(in oklab, var(--accent-a) 18%, var(--paper))',
+                        border: '1px solid color-mix(in oklab, ' + (item.color || 'var(--accent-a)') + ' 35%, var(--line))',
+                        color: item.color || 'var(--accent-ink)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {TickIcon}
                     </div>
-                    <h3 className="font-bold text-white group-hover:text-cyan-400 transition-colors">{item.name}</h3>
+                    <h3 style={{ fontSize: 16, marginBottom: 0 }}>{item.name}</h3>
                   </div>
-                  <p className="text-sm text-slate-400 line-clamp-2">{item.description}</p>
-                  {item.tags && item.tags.length > 0 && (
-                    <div className="mt-3 flex gap-2">
-                      {item.tags.slice(0, 1).map((tag: string, tIdx: number) => (
-                        <span key={tIdx} className="text-xs px-2 py-0.5 rounded bg-slate-700 text-slate-300">{tag}</span>
-                      ))}
-                    </div>
-                  )}
+                  <p style={{ fontSize: 13, marginBottom: 0 }}>{item.description}</p>
                 </Link>
               ))}
             </div>
@@ -253,32 +247,62 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
   )
 }
 
-// ─── Comparison Table ────────────────────────────────────────────────────────
+// ─── Comparison table ───────────────────────────────────────────────────────
 
 const ComparisonSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data || !data.rows) return null
 
   const renderValue = (value: { type: string; text?: string }) => {
     switch (value.type) {
-      case 'check': return <Check className="w-5 h-5 text-emerald-500 mx-auto" />
-      case 'cross': return <X className="w-5 h-5 text-slate-600 mx-auto" />
-      case 'partial': return <Minus className="w-5 h-5 text-amber-500 mx-auto" />
-      case 'text': return <span className="text-sm text-slate-300">{value.text}</span>
+      case 'check': return <Check className="w-5 h-5" style={{ color: 'var(--ok)', margin: '0 auto', display: 'block' }} />
+      case 'cross': return <X className="w-5 h-5" style={{ color: 'var(--ink-4)', margin: '0 auto', display: 'block' }} />
+      case 'partial': return <Minus className="w-5 h-5" style={{ color: 'var(--warn)', margin: '0 auto', display: 'block' }} />
+      case 'text': return <span style={{ fontSize: 13, color: 'var(--ink-2)' }}>{value.text}</span>
       default: return null
     }
   }
 
   return (
-    <section id="comparison" className="py-24 bg-slate-900 border-t border-slate-700">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-white mb-4">{data.headline}</h2>
-          {data.description && <p className="text-slate-400">{data.description}</p>}
+    <section id="comparison" className="section" data-tone="dark">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          <h2>{data.headline}</h2>
+          {data.description && <p>{data.description}</p>}
         </div>
-        <div className="bg-slate-950 border border-slate-700 rounded-2xl overflow-hidden">
-          <div className="grid gap-4 p-6 bg-slate-800 border-b border-slate-700" style={{ gridTemplateColumns: `2fr repeat(${(data.columns?.length || 2) - 1}, 1fr)` }}>
+        <div
+          className="reveal"
+          style={{
+            background: 'var(--paper)',
+            border: '1px solid var(--line)',
+            borderRadius: 18,
+            overflow: 'hidden',
+            maxWidth: 1100,
+            margin: '0 auto',
+          }}
+        >
+          <div
+            style={{
+              display: 'grid',
+              gap: 14,
+              padding: 20,
+              background: 'var(--bg-2)',
+              borderBottom: '1px solid var(--line)',
+              gridTemplateColumns: `2fr repeat(${(data.columns?.length || 2) - 1}, 1fr)`,
+            }}
+          >
             {data.columns?.map((col: string, idx: number) => (
-              <div key={idx} className={`font-mono text-sm font-bold uppercase tracking-wider ${idx === 0 ? 'text-slate-400 text-left' : 'text-cyan-500 text-center'}`}>
+              <div
+                key={idx}
+                style={{
+                  fontFamily: 'var(--f-mono)',
+                  fontSize: 11,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: idx === 0 ? 'var(--ink-4)' : 'var(--accent-ink)',
+                  textAlign: idx === 0 ? 'left' : 'center',
+                }}
+              >
                 {col}
               </div>
             ))}
@@ -286,12 +310,18 @@ const ComparisonSection: React.FC<{ data: any }> = ({ data }) => {
           {data.rows.map((row: any, idx: number) => (
             <div
               key={idx}
-              className="grid gap-4 p-6 border-b border-slate-700/50 hover:bg-slate-800/50 transition-colors"
-              style={{ gridTemplateColumns: `2fr repeat(${(data.columns?.length || 2) - 1}, 1fr)` }}
+              style={{
+                display: 'grid',
+                gap: 14,
+                padding: 18,
+                borderBottom: idx < data.rows.length - 1 ? '1px solid var(--line)' : 'none',
+                gridTemplateColumns: `2fr repeat(${(data.columns?.length || 2) - 1}, 1fr)`,
+                alignItems: 'center',
+              }}
             >
-              <div className="font-medium text-slate-200">{row.feature}</div>
+              <div style={{ fontWeight: 500, color: 'var(--ink-2)', fontSize: 14 }}>{row.feature}</div>
               {row.values?.map((value: any, vIdx: number) => (
-                <div key={vIdx} className="text-center">{renderValue(value)}</div>
+                <div key={vIdx} style={{ textAlign: 'center' }}>{renderValue(value)}</div>
               ))}
             </div>
           ))}
@@ -301,26 +331,23 @@ const ComparisonSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
-// ─── Benefits Section ────────────────────────────────────────────────────────
+// ─── Benefits ───────────────────────────────────────────────────────────────
 
 const BenefitsSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data || !data.items) return null
-
   return (
-    <section className="py-24 bg-slate-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          {data.badge && <SectionKicker label={data.badge} className="mx-auto" />}
-          <h2 className="text-4xl font-sans font-bold text-white tracking-tight">{data.headline}</h2>
+    <section className="section">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          {data.badge && <span className="sec-tag">{data.badge}</span>}
+          {data.headline && <h2>{data.headline}</h2>}
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="card-grid cols-3">
           {data.items.map((item: any, idx: number) => (
-            <div key={idx} className="bg-slate-900 border border-slate-700 rounded-xl p-6 hover:border-slate-600 transition-colors">
-              <div className="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-500 mb-4">
-                <CheckCircle2 size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-              <p className="text-slate-400">{item.description}</p>
+            <div key={idx} className="card reveal" style={{ transitionDelay: `${idx * 0.05}s` }}>
+              <div className="card-icon">{CardCheck}</div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
             </div>
           ))}
         </div>
@@ -329,25 +356,35 @@ const BenefitsSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
-// ─── How It Works Section ────────────────────────────────────────────────────
+// ─── How it works ───────────────────────────────────────────────────────────
 
 const HowItWorksSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data || !data.steps) return null
-
   return (
-    <section className="py-24 bg-slate-900 border-t border-slate-700">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          {data.badge && <SectionKicker label={data.badge} className="mx-auto" />}
-          <h2 className="text-4xl font-sans font-bold text-white tracking-tight mb-4">{data.headline}</h2>
-          {data.description && <p className="text-lg text-slate-400">{data.description}</p>}
+    <section className="section" data-tone="dark">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          {data.badge && <span className="sec-tag">{data.badge}</span>}
+          {data.headline && <h2>{data.headline}</h2>}
+          {data.description && <p>{data.description}</p>}
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="card-grid cols-3">
           {data.steps.map((step: any, idx: number) => (
-            <div key={idx} className="relative text-center">
-              <div className="text-7xl font-black text-cyan-500/20 mb-4">{step.number}</div>
-              <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-              <p className="text-slate-400">{step.description}</p>
+            <div key={idx} className="card reveal" style={{ transitionDelay: `${idx * 0.05}s`, textAlign: 'center' }}>
+              <div
+                style={{
+                  fontFamily: 'var(--f-display)',
+                  fontSize: 56,
+                  fontWeight: 400,
+                  color: 'color-mix(in oklab, var(--accent-a) 60%, var(--paper))',
+                  lineHeight: 1,
+                  marginBottom: 16,
+                }}
+              >
+                {step.number}
+              </div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
             </div>
           ))}
         </div>
@@ -356,33 +393,36 @@ const HowItWorksSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
-// ─── FAQ Section ─────────────────────────────────────────────────────────────
+// ─── FAQ ────────────────────────────────────────────────────────────────────
 
 const FAQSection: React.FC<{ data: any }> = ({ data }) => {
-  const [openIndex, setOpenIndex] = React.useState<number | null>(0)
-
+  const [openIndices, setOpenIndices] = React.useState<Set<number>>(new Set([0]))
+  const toggle = (i: number) => {
+    setOpenIndices((prev) => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
+  }
   if (!data || !data.items) return null
-
   return (
-    <section className="py-24 bg-slate-950">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          {data.badge && <SectionKicker label={data.badge} className="mx-auto" />}
-          <h2 className="text-4xl font-sans font-bold text-white tracking-tight">{data.headline}</h2>
+    <section className="section">
+      <div className="container">
+        <div className="sec-head centered reveal">
+          {data.badge && <span className="sec-tag">{data.badge}</span>}
+          {data.headline && <h2>{data.headline}</h2>}
         </div>
-        <div className="space-y-4">
+        <div className="faq">
           {data.items.map((item: any, idx: number) => (
-            <div key={idx} className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden">
-              <button
-                className="w-full px-6 py-4 text-left flex items-center justify-between"
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-              >
-                <span className="font-semibold text-white">{item.question}</span>
-                <svg className={`w-5 h-5 text-slate-400 transition-transform ${openIndex === idx ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            <div key={idx} className={`faq-item reveal${openIndices.has(idx) ? ' open' : ''}`}>
+              <button className="faq-q" onClick={() => toggle(idx)}>
+                {item.question}
+                <span className="plus">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+                </span>
               </button>
-              {openIndex === idx && (
-                <div className="px-6 pb-4 text-slate-400">{item.answer}</div>
-              )}
+              <div className="faq-a">{item.answer}</div>
             </div>
           ))}
         </div>
@@ -391,48 +431,51 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
   )
 }
 
-// ─── CTA Section ─────────────────────────────────────────────────────────────
+// ─── Final CTA ──────────────────────────────────────────────────────────────
 
 const CTASection: React.FC<{ data: any }> = ({ data }) => {
   if (!data) return null
-
   return (
-    <section className="py-24 bg-slate-950">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">
-          {data.headline}{' '}
-          {data.headlineHighlight && <span className="text-cyan-500">{data.headlineHighlight}</span>}
+    <section className="final-cta" data-tone="dark">
+      <div className="container">
+        <h2 className="reveal">
+          {data.headline}
+          {data.headlineHighlight ? <> <em>{data.headlineHighlight}</em></> : null}
         </h2>
-        {data.description && <p className="text-lg text-slate-400 mb-8">{data.description}</p>}
-        <div className="flex flex-wrap justify-center gap-4">
+        {data.description && <p className="sub reveal">{data.description}</p>}
+        <div className="ctas reveal">
           {data.primaryCta && (
-            <a
-              href={data.primaryCta.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-            >
-              {data.primaryCta.label}
+            <a href={data.primaryCta.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
+              {data.primaryCta.label} →
             </a>
           )}
           {data.secondaryCta && (
-            <a
-              href={data.secondaryCta.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition-colors"
-            >
+            <a href={data.secondaryCta.url} target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-lg">
               {data.secondaryCta.label}
             </a>
           )}
         </div>
-        {data.footnote && <p className="text-sm text-slate-500 mt-6">{data.footnote}</p>}
+        {data.footnote && (
+          <p
+            className="reveal"
+            style={{
+              marginTop: 24,
+              color: 'var(--ink-4)',
+              fontFamily: 'var(--f-mono)',
+              fontSize: 11,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+            }}
+          >
+            {data.footnote}
+          </p>
+        )}
       </div>
     </section>
   )
 }
 
-// ─── Main CategoryIndexClient ────────────────────────────────────────────────
+// ─── Main ───────────────────────────────────────────────────────────────────
 
 interface CategoryIndexClientProps {
   data: any
@@ -441,9 +484,8 @@ interface CategoryIndexClientProps {
 
 export default function CategoryIndexClient({ data, category }: CategoryIndexClientProps) {
   if (!data) return null
-
   return (
-    <main>
+    <>
       <HeroSection data={data.hero} />
       {data.intro && <IntroSection data={data.intro} />}
       <FeaturedItemsSection items={data.featuredItems} category={category} />
@@ -452,6 +494,6 @@ export default function CategoryIndexClient({ data, category }: CategoryIndexCli
       <HowItWorksSection data={data.howItWorks} />
       <FAQSection data={data.faq} />
       {data.cta && <CTASection data={data.cta} />}
-    </main>
+    </>
   )
 }
