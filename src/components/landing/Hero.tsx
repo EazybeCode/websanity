@@ -132,7 +132,7 @@ export function Hero() {
               </div>
             </form>
             <div className="prompt-hint">
-              <span>{t.rich('promptHint', { kbd: () => <kbd>Enter</kbd> })}</span>
+              <span>{t.rich('promptHint', { kbd: (chunks) => <kbd>{chunks}</kbd> })}</span>
             </div>
           </div>
 

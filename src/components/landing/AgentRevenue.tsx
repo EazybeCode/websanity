@@ -135,7 +135,7 @@ export function AgentRevenue() {
                 </li>
               ))}
             </ul>
-            <a href="https://app.eazybe.com/" target="_blank" rel="noopener noreferrer" className="feat-link">{t('cta')}</a>
+            <a href="https://eazybe.info/85c80b" target="_blank" rel="noopener noreferrer" className="feat-link">{t('cta')}</a>
           </div>
           <div className="visual reveal">
             <div className="dash" ref={dashRef}>

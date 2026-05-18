@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 
-const APP_LINK = 'https://app.eazybe.com/'
+const APP_LINK = 'https://eazybe.info/85c80b'
 
 export function BannerCTA() {
   const t = useTranslations('landingV3.bannerCta')

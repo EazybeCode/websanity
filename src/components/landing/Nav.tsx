@@ -1,7 +1,17 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+
+// Prefix internal href paths with the active locale (e.g. "/hubspot-..." → "/br/hubspot-...").
+// External URLs, hash links, and the root "/#" stay untouched.
+function withLocale(href: string, locale: string): string {
+  if (locale === 'en') return href
+  if (!href || !href.startsWith('/')) return href
+  // Skip purely-hash placeholders like "/#" and absolute URLs
+  if (href === '/#' || href === '#') return href
+  return `/${locale}${href}`
+}
 
 const LOCALES = [
   { code: 'en', label: 'EN', country: 'gb', prefix: '' },
@@ -162,6 +172,8 @@ const RESOURCES = [
 
 export function Nav() {
   const t = useTranslations('landingV3.nav')
+  const locale = useLocale()
+  const lh = (href: string) => withLocale(href, locale)
   const [menuOpen, setMenuOpen] = useState(false)
   const [openSections, setOpenSections] = useState<Set<string>>(new Set())
 
@@ -311,7 +323,7 @@ export function Nav() {
             {INTEGRATIONS.map((item) => {
               const tr = itemLabel(item.name)
               return (
-                <a key={item.name} href={item.href} className="nav-dd-item">
+                <a key={item.name} href={lh(item.href)} className="nav-dd-item">
                   <span className="nav-dd-icon" style={{ background: item.bg }} dangerouslySetInnerHTML={{ __html: item.icon }} />
                   <span className="nav-dd-content">
                     <div className="nav-dd-name">{tr.name}</div>
@@ -321,7 +333,7 @@ export function Nav() {
               )
             })}
             <div style={{ gridColumn: '1 / -1' }} className="nav-dd-divider" />
-            <a href="/integrations" style={{ gridColumn: '1 / -1' }} className="nav-dd-item">
+            <a href={lh('/integrations')} style={{ gridColumn: '1 / -1' }} className="nav-dd-item">
               <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, color: 'var(--accent-ink)', letterSpacing: '0.04em', textAlign: 'center', width: '100%' }}>
                 {t('allIntegrations')}
               </span>
@@ -329,13 +341,13 @@ export function Nav() {
           </div>
         </div>
 
-        <div className="nav-item"><a href="/pricing"><span>{t('pricing')}</span></a></div>
+        <div className="nav-item"><a href={lh('/pricing')}><span>{t('pricing')}</span></a></div>
 
         <div className="nav-item">
           <a><span>{t('resources')}</span> <span className="nav-caret">▾</span></a>
           <div className="nav-dropdown">
             <div className="nav-dd-section">{t('sectionLearn')}</div>
-            <a href="/blog" className="nav-dd-item">
+            <a href={lh('/blog')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               </span>
@@ -433,7 +445,7 @@ export function Nav() {
                   const tr = itemLabel(a.name)
                   return (
                     <li key={a.name}>
-                      <a href={a.href} onClick={closeMenu}>
+                      <a href={lh(a.href)} onClick={closeMenu}>
                         <span className="nav-drawer-item-icon" style={{ background: a.bg }} dangerouslySetInnerHTML={{ __html: a.icon }} />
                         <span className="nav-drawer-item-body">
                           <span className="nav-drawer-item-name">{tr.name}</span>
@@ -461,7 +473,7 @@ export function Nav() {
                   const tr = itemLabel(i.name)
                   return (
                     <li key={i.name}>
-                      <a href={i.href} onClick={closeMenu}>
+                      <a href={lh(i.href)} onClick={closeMenu}>
                         <span className="nav-drawer-item-icon" style={{ background: i.bg }} dangerouslySetInnerHTML={{ __html: i.icon }} />
                         <span className="nav-drawer-item-body">
                           <span className="nav-drawer-item-name">{tr.name}</span>
@@ -472,7 +484,7 @@ export function Nav() {
                   )
                 })}
                 <li>
-                  <a href="/integrations" onClick={closeMenu} className="nav-drawer-see-all">
+                  <a href={lh('/integrations')} onClick={closeMenu} className="nav-drawer-see-all">
                     {t('allIntegrations')}
                   </a>
                 </li>
@@ -480,7 +492,7 @@ export function Nav() {
             </div>
 
             <div className="nav-drawer-link">
-              <a href="/pricing" onClick={closeMenu}>{t('pricing')}</a>
+              <a href={lh('/pricing')} onClick={closeMenu}>{t('pricing')}</a>
             </div>
 
             <div className={`nav-drawer-section${openSections.has('resources') ? ' open' : ''}`}>
@@ -498,7 +510,7 @@ export function Nav() {
                   const tr = itemLabel(r.name)
                   return (
                     <li key={r.name}>
-                      <a href={r.href} target={r.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" onClick={closeMenu}>
+                      <a href={lh(r.href)} target={r.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" onClick={closeMenu}>
                         <span className="nav-drawer-item-icon" style={{ background: r.bg }} dangerouslySetInnerHTML={{ __html: r.icon }} />
                         <span className="nav-drawer-item-body">
                           <span className="nav-drawer-item-name">{tr.name}</span>
