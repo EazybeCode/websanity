@@ -95,10 +95,10 @@
   position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
   width: calc(100% - 32px); max-width: 1180px;
   z-index: 100;
-  background: #ffffff;
+  background: #000000;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(15, 20, 35, 0.08);
+  border: 1px solid #ffffff;
   border-radius: 100px;
   padding: 10px 14px 10px 22px;
   display: flex; align-items: center; justify-content: space-between;
@@ -113,10 +113,20 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, transparent 60%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
+.landing .nav, .landing .nav .nav-logo, .landing .nav-links a, .landing .nav-links a span { color: #ffffff !important; }
+.landing .nav-links a:hover, .landing .nav-links a:hover span { color: #ffffff !important; opacity: 0.85; }
+.landing .nav-caret { color: rgba(255,255,255,0.7) !important; }
+.landing .nav .nav-lang-btn { color: #ffffff !important; }
+.landing .nav .nav-lang-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); }
+.landing .nav .btn-ghost { background: #ffffff; color: #0F1115; }
+.landing .nav .btn-ghost:hover { background: #f0f0f0; color: #0F1115; }
+.landing .nav .btn-primary { background: #6c5cc1; color: #ffffff; border: 1px solid transparent; }
+.landing .nav .btn-primary:hover { background: #5b4bae; }
+.landing .nav-burger span { background: #ffffff !important; }
 .landing .nav > * { position: relative; z-index: 1; }
 .landing .nav-logo {
   font-family: var(--f-display);
@@ -191,6 +201,63 @@
   transform: translateX(-100%); transition: transform .6s;
 }
 .landing .btn-primary:hover::before { transform: translateX(100%); }
+
+/* Cinematic shimmer on every CTA — buttons + custom CTA classes across landing */
+.landing .btn,
+.landing .feat-link,
+.landing .prompt-send,
+.landing .banner-cta-btn,
+.landing .banner-cta,
+.landing .hero-cta,
+.landing .step-cta,
+.landing .cta-pill,
+.landing .mid-cta-content a,
+.landing .final-cta .ctas a {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.landing .btn::after,
+.landing .feat-link::after,
+.landing .prompt-send::after,
+.landing .banner-cta-btn::after,
+.landing .banner-cta::after,
+.landing .hero-cta::after,
+.landing .step-cta::after,
+.landing .cta-pill::after,
+.landing .mid-cta-content a::after,
+.landing .final-cta .ctas a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform .6s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.landing .btn:hover::after,
+.landing .feat-link:hover::after,
+.landing .prompt-send:hover::after,
+.landing .banner-cta-btn:hover::after,
+.landing .banner-cta:hover::after,
+.landing .hero-cta:hover::after,
+.landing .step-cta:hover::after,
+.landing .cta-pill:hover::after,
+.landing .mid-cta-content a:hover::after,
+.landing .final-cta .ctas a:hover::after {
+  transform: translateX(100%);
+}
+.landing .btn > *,
+.landing .feat-link > *,
+.landing .prompt-send > *,
+.landing .banner-cta-btn > *,
+.landing .banner-cta > *,
+.landing .hero-cta > *,
+.landing .step-cta > *,
+.landing .cta-pill > *,
+.landing .mid-cta-content a > *,
+.landing .final-cta .ctas a > * { position: relative; z-index: 1; }
 .landing .btn-lg { padding: 14px 24px; font-size: 15px; }
 
 /* Nav dropdown */
@@ -3285,16 +3352,36 @@
 .landing [data-blog-content] a,
 .landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]) {
   text-decoration: none !important;
+  border-bottom: none !important;
   cursor: pointer;
 }
 .landing .blog-content a {
   color: var(--accent-ink) !important;
   transition: opacity .15s, color .15s;
 }
+.landing .blog-content a,
+.landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]) {
+  transition: color .2s ease;
+}
+
+/* TOC sidebar hover — soft iris-tinted background instead of dark gray */
+.landing .hover\:bg-slate-800\/50:hover {
+  background-color: color-mix(in oklab, var(--accent-ink) 10%, var(--paper)) !important;
+}
+
+/* Blog post page — pure white background */
+.landing:has(.blog-post-page),
+.landing .blog-post-page {
+  background: #ffffff !important;
+}
+.landing .blog-post-page header,
+.landing .blog-post-page main,
+.landing .blog-post-page section {
+  background: transparent !important;
+}
 .landing .blog-content a:hover,
 .landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]):hover {
-  opacity: 0.75;
-  color: color-mix(in oklab, var(--accent-ink) 80%, #000) !important;
+  color: #7FD6B0 !important;
   cursor: pointer;
 }
 

@@ -739,7 +739,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
 
   return (
     <BlogTranslationsProvider translations={translations} currentSlug={slug}>
-      <>
+      <div className="blog-post-page">
         <ReadingProgress />
 
       {/* Hero Section - Left Aligned */}
@@ -1401,7 +1401,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
           </div>
         </section>
       )}
-      </>
+      </div>
     </BlogTranslationsProvider>
   )
 }
