@@ -2983,6 +2983,62 @@
       "itemPartner": "Seja Nosso Parceiro",
       "itemContact": "Contato",
       "badgeNew": "NOVO"
+    },
+    "readMore": {
+      "tag": "Por que a Eazybe · Saiba Mais",
+      "headline": "Tudo o que você precisa saber sobre",
+      "headlineEm": "os melhores Agentes de IA no WhatsApp",
+      "subtitle": "O que faz um Agente de IA no WhatsApp, em que pontos os melhores superam os chatbots e o que eles substituem em uma stack comum de CRM + WhatsApp. Escrito para times de vendas e suporte que estão escolhendo a ferramenta certa.",
+      "itemHeadline": "Por que Agentes de IA de Vendas superam chatbots tradicionais e CRMs",
+      "itemAbout": "Agentes de IA de vendas no WhatsApp, integração com CRM, automação de vendas",
+      "h0": "O que é um Agente de IA no WhatsApp?",
+      "p0a": "Um Agente de IA no WhatsApp é um programa autônomo que lê, entende e responde mensagens do WhatsApp em nome da empresa. Diferente de um chatbot baseado em scripts, o Agente de IA usa modelos de linguagem para qualificar leads, responder dúvidas de suporte, sincronizar conversas com o CRM e disparar fluxos de vendas em tempo real.",
+      "p0b": "A Eazybe constrói Agentes de IA no WhatsApp sem código, treinados nas conversas reais dos seus melhores vendedores. Eles ficam ativos em 10 minutos como uma extensão do Chrome, rodando junto com o WhatsApp Web que seu time já usa, e gravam cada interação no HubSpot, Salesforce, Zoho, Pipedrive e mais 5+ CRMs.",
+      "h1": "Por que Agentes de IA no WhatsApp superam chatbots e CRMs tradicionais?",
+      "p1a": "Os vendedores querem três coisas da ferramenta: velocidade, contexto e memória do que já foi dito. A maioria dos chatbots de WhatsApp perde duas dessas. Os CRMs perdem as três, porque nem estão na conversa. Um Agente de IA no WhatsApp como a Eazybe fica no meio: lê cada chat enquanto ele acontece, escreve de volta no CRM e responde aos leads às 3h da manhã do mesmo jeito que às 3h da tarde.",
+      "p1b": "Isso pesa mais do que parece. Um lead que escreve às 23h tem aproximadamente o dobro de chance de converter se receber uma resposta real em um minuto, em vez de esperar até a manhã seguinte. Seu Agente de IA cuida da conversa do turno da noite. O vendedor pega no dia seguinte com toda a thread já registrada no HubSpot ou Salesforce.",
+      "p1c": "Agentes diferentes cuidam de etapas diferentes. Qualificação de Leads filtra os inbounds. Revenue Ops fica de olho em deals que esfriaram. Customer Success cuida do suporte e das renovações. Agent Builder é a saída para qualquer caso personalizado (renovação, NPS, recap pós-demo). Todos compartilham o mesmo contexto, então o deal não perde histórico quando muda de etapa.",
+      "p1d": "Resultado: menos digitação manual, menos threads que morrem sem motivo e pipelines que batem com o que está realmente rolando no chat.",
+      "h2": "Principais funções do melhor Agente de IA no WhatsApp",
+      "p2a": "A maioria das ferramentas de WhatsApp cai em dois grupos. Chatbots com script travam na primeira frase fora do roteiro. Plugins de CRM espelham mensagens sem entender o conteúdo. As melhores plataformas de Agente de IA no WhatsApp ficam num terceiro grupo: agentes que leem a conversa e gravam no registro certo.",
+      "p2b": "O que os times usam na Eazybe no dia a dia:",
+      "list2": [
+        "Sincronização bidirecional com HubSpot, Salesforce, Zoho, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets e webhooks para o resto.",
+        "Qualificação 24/7 dos leads que chegam, usando BANT, MEDDIC ou qualquer framework que seu time já roda.",
+        "Alertas de deal esquecido. Se um deal fica parado 48h, o Revenue Agent sinaliza e já rascunha um follow-up no tom do vendedor.",
+        "Treinamento das respostas a partir das conversas reais dos seus melhores reps, para a IA soar como o seu time e não como chatbot.",
+        "Broadcast com controle de ritmo para que seu número do WhatsApp não seja sinalizado pela Meta.",
+        "Agent Builder sem código para líderes de ops criarem agentes personalizados sem abrir chamado para engenharia.",
+        "Coexistência com WhatsApp Pessoal, Business App e Cloud API ao mesmo tempo. Ninguém precisa trocar de número.",
+        "Criptografia ponta a ponta em trânsito e em repouso. Meta Business Partner, LGPD/GDPR e SOC 2 Type II."
+      ],
+      "h3": "Agente de IA no WhatsApp vs. chatbots e CRMs tradicionais",
+      "p3a": "A stack típica é WhatsApp Business App + CRM + algum chatbot + ferramenta de notas de reunião. Cada um cuida de uma fatia do cliente e nenhum conversa com o outro. A Eazybe cuida da conversa ao vivo e grava direto no CRM que você já paga, então o resto da stack não precisa traduzir nada.",
+      "tableLabel": "Comparação Eazybe vs. stack de vendas tradicional",
+      "tableHead": ["Capacidade", "Stack Tradicional", "Eazybe"],
+      "tableRows": [
+        ["Sincronia WhatsApp ↔ CRM", "Copia-cola manual no fim do dia", "Em tempo real, bidirecional, automático"],
+        ["Lead fora de horário", "Resposta na manhã seguinte, lead frio", "IA qualifica em 60 segundos, 24/7"],
+        ["Visibilidade da saúde do deal", "Gestor revisa pipeline semanalmente", "Resumo Executivo diário automático"],
+        ["Tom e estilo da resposta", "Templates genéricos de chatbot", "Treinado nas conversas reais dos seus reps"],
+        ["Tempo de setup", "Projeto de TI de 4 a 8 semanas", "10 minutos, extensão do Chrome"],
+        ["Fluxos personalizados", "Chamado para engenharia", "Agent Builder drag-and-drop"],
+        ["Modelo de cobrança", "Por usuário + cobrança extra por mensagem", "Planos fixos com nível grátis para sempre"]
+      ],
+      "h4": "Para quem é um Agente de IA no WhatsApp?",
+      "p4a": "O Agente de IA da Eazybe é feito para times que já vivem no WhatsApp, mas cujo CRM ficou para trás. Mais especificamente:",
+      "list4": [
+        "Times inbound de alto volume em D2C, imobiliário, educação e turismo. Centenas de mensagens por dia, sem como registrar manualmente.",
+        "SDRs de outbound que rodam cadências pelo WhatsApp e ainda precisam gravar tudo no HubSpot ou Salesforce.",
+        "Startups lideradas pelo fundador, onde o fundador é o melhor closer e o resto do time tenta clonar esse estilo enquanto a empresa cresce.",
+        "Times de Customer Success cuidando de suporte e renovação no WhatsApp, que preferem um agente conectado à base de conhecimento em vez de um FAQ bot frágil.",
+        "Operações de vendas na Índia, Brasil, MENA, LATAM e Sudeste Asiático, onde o WhatsApp é o canal principal de vendas e não uma reflexão tardia.",
+        "RevOps e gestores que querem um único dashboard mostrando quais deals estão vivos, quais estão parados e quais reps estão de fato vendendo."
+      ],
+      "h5": "Como escolher o provedor certo de Agente de IA no WhatsApp",
+      "p5a": "Hoje, o WhatsApp é o canal de vendas em grande parte do mundo, e a maioria dos CRMs foi construída antes disso. O gap é real. Ferramentas que tentam tapar o buraco com chatbots ou exports no fim do dia não resolvem. O provedor certo de Agente de IA no WhatsApp fecha o gap lendo o chat e gravando no CRM no mesmo instante.",
+      "p5b": "A Eazybe é uma das principais plataformas de Agente de IA no WhatsApp fazendo exatamente isso. Instala como extensão do Chrome, roda junto com o WhatsApp Web que seu time já usa e começa a funcionar sem migração. Se você está perdendo deals por demora na resposta ou esquecimento da conversa, outro chatbot não vai resolver. Um Agente de IA que lê o chat e grava no CRM, sim.",
+      "ctaText": "Agendar Demo Gratuita"
     }
   }
 }
