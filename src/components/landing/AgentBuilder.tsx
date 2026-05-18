@@ -20,7 +20,7 @@ export function AgentBuilder() {
               <strong>Use case examples:</strong><br />
               Renewal Agent · Partner Onboarding · Pricing Objection
             </p>
-            <a href="#" className="feat-link">See How to Build →</a>
+            <a href="https://app.eazybe.com/" target="_blank" rel="noopener noreferrer" className="feat-link">See How to Build →</a>
           </div>
           <div className="visual reveal">
             <div style={{ background: 'var(--paper)', border: '1px solid var(--line)', borderRadius: 'var(--r-lg)', padding: 24, boxShadow: '0 8px 24px -12px rgba(0,0,0,0.08)' }}>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 const EXAMPLES = [
   'Qualify inbound leads with BANT and route hot ones to my top rep…',
@@ -13,6 +14,7 @@ const EXAMPLES = [
 
 
 export function Hero() {
+  const t = useTranslations('landingV3.hero')
   const [value, setValue] = useState('')
   const [placeholder, setPlaceholder] = useState('Alert my manager when any deal over $50k goes silent…')
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -94,18 +96,16 @@ export function Hero() {
       <section className="hero" data-tone="dark">
         <div className="container hero-inner">
           <span className="hero-tag">
-            <span className="pulse" /> WHATSAPP AI AGENT · CRM-NATIVE · 24/7
+            <span className="pulse" /> {t('tag')}
           </span>
-          <h1>WhatsApp AI Agents For Sales &amp; Support: <em>Build No-Code AI Agent On WhatsApp</em></h1>
-          <p className="hero-sub">
-            Deploy no code WhatsApp AI agents that qualify leads in 60 seconds, sync every chat to your CRM and reply in your top closer voice. Built for sales and support teams across 40+ countries.
-          </p>
+          <h1>{t('headline')} <em>{t('headlineEm')}</em></h1>
+          <p className="hero-sub">{t('subtitle')}</p>
 
           <div className="prompt-wrap">
             <div className="prompt-orb" />
             <label htmlFor="agent-prompt" className="prompt-label">
               <span className="prompt-label-dot" />
-              Describe what your AI agent should do
+              {t('promptLabel')}
               <span className="prompt-label-arrow">↓</span>
             </label>
             <form className="prompt-box" onSubmit={onSubmit}>
@@ -126,24 +126,24 @@ export function Hero() {
                   onFocus={() => { focused.current = true }}
                   onBlur={() => { focused.current = false }}
                 />
-                <button className="prompt-send" type="submit" aria-label="Build agent">
+                <button className="prompt-send" type="submit" aria-label={t('promptLabel')}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
                 </button>
               </div>
             </form>
             <div className="prompt-hint">
-              <span>Press <kbd>Enter</kbd> to build · Free forever plan</span>
+              <span>{t.rich('promptHint', { kbd: () => <kbd>Enter</kbd> })}</span>
             </div>
           </div>
 
           <div className="trust">
-            <span><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> 4.6 on HubSpot</span>
+            <span><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> {t('trustHubspot')}</span>
             <span className="sep" />
-            <span>2,000+ sales teams</span>
+            <span>{t('trustTeams')}</span>
             <span className="sep" />
-            <span>40+ countries</span>
+            <span>{t('trustCountries')}</span>
             <span className="sep" />
-            <span>Meta Business Partner</span>
+            <span>{t('trustMeta')}</span>
           </div>
         </div>
       </section>

@@ -1,10 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 
 const CYCLE_MS = 7000
 
 export function Problem() {
+  const t = useTranslations('landingV3.problem')
   const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -49,19 +51,19 @@ export function Problem() {
     <section className="problem">
       <div className="container">
         <div className="sec-head centered reveal">
-          <span className="sec-tag">The problem</span>
-          <h2>Selling On WhatsApp Is Easy. Without A <em>WhatsApp AI Agent</em>, Everything Around It Is Broken</h2>
-          <p>Your reps live in WhatsApp. Your pipeline lives in your CRM. The two never meet. So, deals slip, follow-ups vanish, and revenue quietly leaks out of conversations nobody can see.</p>
+          <span className="sec-tag">{t('tag')}</span>
+          <h2>{t('headline')} <em>{t('headlineEm')}</em>{t('headlineRest')}</h2>
+          <p>{t('subtitle')}</p>
         </div>
         <div className="problem-grid" ref={gridRef}>
           <div className="p-card reveal">
-            <div className="idx">01 · CRM Sync Agent</div>
-            <h3>200 chats today. <em>Zero in the CRM.</em></h3>
-            <p>Reps sell all day. Nothing&apos;s logged. No handoff. No trail.</p>
+            <div className="idx">{t('card1Idx')}</div>
+            <h3>{t('card1Title')} <em>{t('card1TitleEm')}</em></h3>
+            <p>{t('card1Desc')}</p>
             <div className="p-visual">
               <div className="scene-crm">
                 <div className="crm-head">
-                  <span><span className="dot" />crm / deals / acme-co</span>
+                  <span><span className="dot" />{t('card1CrmHead')}</span>
                   <span>Q4</span>
                 </div>
                 <div className="crm-rows">
@@ -69,33 +71,33 @@ export function Problem() {
                   <div className="crm-row" />
                   <div className="crm-row" />
                   <div className="crm-row" />
-                  <div className="crm-empty">No activity logged</div>
+                  <div className="crm-empty">{t('card1CrmEmpty')}</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="p-card reveal" style={{ transitionDelay: '.1s' }}>
-            <div className="idx">02 · Lead Qualification Agent</div>
-            <h3>11 PM lead. <em>By morning, gone.</em></h3>
-            <p>Nobody answers after hours. You lose them every night.</p>
+            <div className="idx">{t('card2Idx')}</div>
+            <h3>{t('card2Title')} <em>{t('card2TitleEm')}</em></h3>
+            <p>{t('card2Desc')}</p>
             <div className="p-visual">
               <div className="scene-chat">
-                <div className="chat-bubble them">Hey! Still taking new clients?</div>
-                <div className="chat-bubble time">11:47 PM</div>
+                <div className="chat-bubble them">{t('card2ChatMsg')}</div>
+                <div className="chat-bubble time">{t('card2ChatTime')}</div>
                 <div className="chat-bubble you"><span className="typing-dots"><span /><span /><span /></span></div>
                 <div className="chat-competitor">
                   <span className="x">⏳</span>
-                  <span>competitor replied 6:12 AM</span>
+                  <span>{t('card2Competitor')}</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="p-card reveal" style={{ transitionDelay: '.2s' }}>
-            <div className="idx">03 · Revenue Agent</div>
-            <h3>Deals ghosted. <em>Nobody noticed.</em></h3>
-            <p>Warm deals stall for weeks in silent threads. Revenue dies quiet.</p>
+            <div className="idx">{t('card3Idx')}</div>
+            <h3>{t('card3Title')} <em>{t('card3TitleEm')}</em></h3>
+            <p>{t('card3Desc')}</p>
             <div className="p-visual">
               <div className="scene-buried">
                 <div className="buried-chart">
@@ -106,10 +108,10 @@ export function Problem() {
                     <circle className="dot" cx="30" cy="28" r="1.8" />
                     <circle className="dot" cx="60" cy="42" r="1.8" />
                     <circle className="dot" cx="100" cy="55" r="1.8" />
-                    <text className="label" x="100" y="9" textAnchor="end">pipeline ↓</text>
+                    <text className="label" x="100" y="9" textAnchor="end">{t('card3ChartLabel')}</text>
                   </svg>
                 </div>
-                <div className="buried-label">15 threads · 0 synced</div>
+                <div className="buried-label">{t('card3BuriedLabel')}</div>
                 <div className="buried-stack">
                   <div className="buried-row" />
                   <div className="buried-row" />
@@ -123,23 +125,23 @@ export function Problem() {
           </div>
 
           <div className="p-card reveal" style={{ transitionDelay: '.3s' }}>
-            <div className="idx">04 · Customer Success Agent</div>
-            <h3>Customers ping. <em>Support sleeps.</em></h3>
-            <p>Same questions, every day. No one picks up until Monday.</p>
+            <div className="idx">{t('card4Idx')}</div>
+            <h3>{t('card4Title')} <em>{t('card4TitleEm')}</em></h3>
+            <p>{t('card4Desc')}</p>
             <div className="p-visual">
               <div className="scene-chat">
-                <div className="chat-bubble them">How do I reset my password?</div>
-                <div className="chat-bubble them">Still waiting…</div>
-                <div className="chat-bubble time">Saturday 11 PM</div>
+                <div className="chat-bubble them">{t('card4ChatMsg1')}</div>
+                <div className="chat-bubble them">{t('card4ChatMsg2')}</div>
+                <div className="chat-bubble time">{t('card4ChatTime')}</div>
                 <div className="chat-competitor">
                   <span className="x">⏳</span>
-                  <span>12 tickets unread since Friday</span>
+                  <span>{t('card4Competitor')}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <p className="problem-foot reveal">Each blind spot has an advanced <span>AI Agent on WhatsApp</span> that fixes it. ↓</p>
+        <p className="problem-foot reveal">{t('footnote')} <span>{t('footnoteEm')}</span> {t('footnoteRest')}</p>
 
         <div className="steps-cta">
           <div className="steps-cta-line">
@@ -149,9 +151,9 @@ export function Problem() {
                 <path d="M7.5 12.2l3 3 6-6" stroke="#fff" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
-            <span>Custom AI agents, trained on your best reps, ready to take over today.</span>
+            <span>{t('stepsCtaText')}</span>
           </div>
-          <a href="#agents" className="steps-cta-btn">Meet the Agents</a>
+          <a href="#agents" className="steps-cta-btn">{t('stepsCtaBtn')}</a>
         </div>
       </div>
     </section>

@@ -1,6 +1,11 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+
 const APP_LINK = 'https://app.eazybe.com/'
 
 export function BannerCTA() {
+  const t = useTranslations('landingV3.bannerCta')
   return (
     <section className="banner-cta-wrap">
       <div className="container">
@@ -15,16 +20,16 @@ export function BannerCTA() {
 
           <div className="banner-cta-copy">
             <div className="banner-cta-eyebrow">
-              <span className="banner-cta-dot" /> NEW · CUSTOM AGENT BUILDER
+              <span className="banner-cta-dot" /> {t('eyebrow')}
             </div>
             <h3>
-              Get A WhatsApp AI Agent Trained On Your Best Reps.
+              {t('headline')}
             </h3>
-            <p>Live in 10 minutes. No code, no migration, no IT team.</p>
+            <p>{t('subtitle')}</p>
           </div>
 
           <span className="banner-cta-btn">
-            🤖 Build Mine
+            {t('button')}
           </span>
         </a>
       </div>
