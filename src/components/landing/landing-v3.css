@@ -122,8 +122,8 @@
 .landing .nav-caret { color: rgba(255,255,255,0.7) !important; }
 .landing .nav .nav-lang-btn { color: #ffffff !important; }
 .landing .nav .nav-lang-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); }
-.landing .nav .btn-ghost { background: #ffffff; color: #0F1115; }
-.landing .nav .btn-ghost:hover { background: #f0f0f0; color: #0F1115; }
+.landing .nav .btn-ghost { background: #000000; color: #ffffff; border: 1px solid rgba(255,255,255,0.18); }
+.landing .nav .btn-ghost:hover { background: #1a1a1f; color: #ffffff; }
 .landing .nav .btn-primary { background: #6c5cc1; color: #ffffff; border: 1px solid transparent; }
 .landing .nav .btn-primary:hover { background: #5b4bae; }
 .landing .nav-burger span { background: #ffffff !important; }
@@ -2008,6 +2008,8 @@
   flex-direction: column;
   gap: 16px;
 }
+/* Hidden on desktop — only revealed on mobile when collapsed */
+.landing .faq-mobile-more { display: none; }
 .landing .faq-pill {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -2088,6 +2090,22 @@
 }
 @media (max-width: 720px) {
   .landing .faq-grid { grid-template-columns: 1fr; gap: 14px; }
+  /* Hide second column (FAQs 6-10) on mobile until Read More is clicked */
+  .landing .faq-grid:not(.faq-show-more) .faq-col-rest { display: none; }
+  .landing .faq-mobile-more {
+    display: block;
+    margin: 18px auto 0;
+    padding: 12px 24px;
+    border-radius: 100px;
+    background: #0F1115;
+    color: #ffffff;
+    border: none;
+    font-family: var(--f-sans);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .landing .faq-mobile-more:hover { background: #25252b; }
   .landing .faq-pill { border-radius: 22px; }
   .landing .faq-pill-q { padding: 16px 18px 16px 22px; font-size: 14.5px; }
   .landing .faq-pill-a > div { padding: 0 22px 18px; }
@@ -2720,14 +2738,32 @@
   right: 0;
   width: min(420px, 90vw);
   height: 100%;
-  background: var(--paper);
+  background: #000000;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
   transition: transform .3s cubic-bezier(.2, .9, .25, 1);
-  box-shadow: -20px 0 60px -20px rgba(0, 0, 0, 0.3);
+  box-shadow: -20px 0 60px -20px rgba(0, 0, 0, 0.6);
   overflow: hidden;
 }
+.landing .nav-drawer-panel,
+.landing .nav-drawer-panel a,
+.landing .nav-drawer-panel button { color: #ffffff !important; }
+.landing .nav-drawer-panel .nav-drawer-header,
+.landing .nav-drawer-panel .nav-drawer-section,
+.landing .nav-drawer-panel .nav-drawer-link { border-color: rgba(255,255,255,0.10) !important; }
+.landing .nav-drawer-panel .nav-drawer-close { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
+.landing .nav-drawer-panel .nav-drawer-close:hover { background: rgba(255,255,255,0.12); }
+.landing .nav-drawer-panel .nav-drawer-header,
+.landing .nav-drawer-panel .nav-drawer-ctas { background: #000000 !important; border-color: rgba(255,255,255,0.10) !important; }
+.landing .nav-drawer-panel .nav-drawer-ctas .btn-ghost { background: transparent; color: #ffffff !important; border: 1px solid rgba(255,255,255,0.18); }
+.landing .nav-drawer-panel .nav-drawer-ctas .btn-ghost:hover { background: rgba(255,255,255,0.08); }
+.landing .nav-drawer-panel .nav-drawer-ctas .btn-primary { background: #6c5cc1; color: #ffffff !important; border: 1px solid transparent; }
+.landing .nav-drawer-panel .nav-drawer-ctas .btn-primary:hover { background: #5b4bae; }
+.landing .nav-drawer-panel .nav-drawer-item-name { color: #ffffff !important; }
+.landing .nav-drawer-panel .nav-drawer-item-desc { color: rgba(255,255,255,0.65) !important; }
+.landing .nav-drawer-panel .nav-drawer-see-all { color: #A8E3C5 !important; }
 .landing .nav-drawer.open .nav-drawer-panel { transform: translateX(0); }
 .landing .nav-drawer-header {
   display: flex;

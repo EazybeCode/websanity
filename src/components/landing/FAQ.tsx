@@ -17,6 +17,7 @@ const ITEMS: { q: string; a: string }[] = [
 
 export function FAQ() {
   const [open, setOpen] = useState<Set<number>>(new Set())
+  const [showMoreMobile, setShowMoreMobile] = useState(false)
   const toggle = (i: number) => {
     setOpen((prev) => {
       const next = new Set(prev)
@@ -40,9 +41,9 @@ export function FAQ() {
           </p>
         </div>
 
-        <div className="faq-grid">
+        <div className={`faq-grid${showMoreMobile ? ' faq-show-more' : ''}`}>
           {columns.map((column, colIdx) => (
-            <div key={colIdx} className="faq-col">
+            <div key={colIdx} className={`faq-col${colIdx === 1 ? ' faq-col-rest' : ''}`}>
               {column.map((it, i) => {
                 const idx = colIdx === 0 ? i : i + half
                 const isOpen = open.has(idx)
@@ -69,6 +70,16 @@ export function FAQ() {
             </div>
           ))}
         </div>
+
+        {!showMoreMobile && (
+          <button
+            type="button"
+            className="faq-mobile-more"
+            onClick={() => setShowMoreMobile(true)}
+          >
+            Read More
+          </button>
+        )}
 
         <p className="faq-footnote">
           Didn&apos;t find your answer? <a href="https://wa.me/13024129610?text=Hi%20-%20I%20have%20a%20question%20about%20Eazybe." target="_blank" rel="noopener noreferrer">Let&apos;s connect with us!</a>
