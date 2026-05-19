@@ -2225,6 +2225,7 @@
     "workEmailRequired": "Por favor, use seu e-mail de trabalho (não Gmail, Yahoo, etc.)",
     "phoneLabel": "Telefone",
     "phonePlaceholder": "11 99999-9999",
+    "countryCodeLabel": "Código do país",
     "phoneRequired": "Telefone é obrigatório",
     "phoneInvalid": "Por favor, insira um telefone válido",
     "crmLabel": "Qual CRM você usa?",

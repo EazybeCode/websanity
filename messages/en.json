@@ -2058,6 +2058,7 @@
     "workEmailRequired": "Please use your work email (not Gmail, Yahoo, etc.)",
     "phoneLabel": "Phone Number",
     "phonePlaceholder": "234 567 8900",
+    "countryCodeLabel": "Country code",
     "phoneRequired": "Phone number is required",
     "phoneInvalid": "Please enter a valid phone number",
     "crmLabel": "Which CRM do you use?",

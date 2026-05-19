@@ -305,7 +305,9 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                     : 'border border-slate-700 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20'
                 }`}>
                   <select
+                    id="countryCode"
                     name="countryCode"
+                    aria-label={t('leadForm.countryCodeLabel')}
                     value={formData.countryCode}
                     onChange={handleChange}
                     disabled={isSubmitting}

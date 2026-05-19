@@ -2151,6 +2151,7 @@
     "workEmailRequired": "Lütfen iş e-postanızı kullanın (Gmail, Yahoo vb. değil)",
     "phoneLabel": "Telefon",
     "phonePlaceholder": "532 123 4567",
+    "countryCodeLabel": "Ülke kodu",
     "phoneRequired": "Telefon numarası gerekli",
     "phoneInvalid": "Lütfen geçerli bir telefon numarası girin",
     "crmLabel": "Hangi CRM'i kullanıyorsunuz?",
