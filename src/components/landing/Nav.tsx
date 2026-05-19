@@ -260,7 +260,7 @@ export function Nav() {
 
       <div className="nav-links">
         <div className="nav-item">
-          <a><span>{t('agents')}</span> <span className="nav-caret">▾</span></a>
+          <button type="button" className="nav-trigger" aria-haspopup="menu"><span>{t('agents')}</span> <span className="nav-caret">▾</span></button>
           <div className="nav-dropdown">
             <div className="nav-dd-section">{t('sectionAiAgents')}</div>
             <a href="/#" className="nav-dd-item">
@@ -314,7 +314,7 @@ export function Nav() {
         </div>
 
         <div className="nav-item">
-          <a><span>{t('integrations')}</span> <span className="nav-caret">▾</span></a>
+          <button type="button" className="nav-trigger" aria-haspopup="menu"><span>{t('integrations')}</span> <span className="nav-caret">▾</span></button>
           <div
             className="nav-dropdown"
             style={{ minWidth: 560, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, padding: 14 }}
@@ -344,7 +344,7 @@ export function Nav() {
         <div className="nav-item"><a href={lh('/pricing')}><span>{t('pricing')}</span></a></div>
 
         <div className="nav-item">
-          <a><span>{t('resources')}</span> <span className="nav-caret">▾</span></a>
+          <button type="button" className="nav-trigger" aria-haspopup="menu"><span>{t('resources')}</span> <span className="nav-caret">▾</span></button>
           <div className="nav-dropdown">
             <div className="nav-dd-section">{t('sectionLearn')}</div>
             <a href={lh('/blog')} className="nav-dd-item">

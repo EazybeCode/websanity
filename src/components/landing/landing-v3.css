@@ -117,10 +117,11 @@
   pointer-events: none;
   z-index: 0;
 }
-.landing .nav, .landing .nav .nav-logo, .landing .nav-links a, .landing .nav-links a span { color: #ffffff !important; }
-.landing .nav-links a { transition: color .2s ease; }
-.landing .nav-links a:hover, .landing .nav-links a:hover span { color: #6c5cc1 !important; opacity: 1; }
-.landing .nav-links a:hover .nav-caret { color: #6c5cc1 !important; }
+.landing .nav, .landing .nav .nav-logo, .landing .nav-links a, .landing .nav-links a span, .landing .nav-links .nav-trigger, .landing .nav-links .nav-trigger span { color: #ffffff !important; }
+.landing .nav-links a, .landing .nav-links .nav-trigger { transition: color .2s ease; }
+.landing .nav-links a:hover, .landing .nav-links a:hover span, .landing .nav-links .nav-trigger:hover, .landing .nav-links .nav-trigger:hover span { color: #6c5cc1 !important; opacity: 1; }
+.landing .nav-links a:hover .nav-caret, .landing .nav-links .nav-trigger:hover .nav-caret { color: #6c5cc1 !important; }
+.landing .nav-trigger { appearance: none; background: transparent; border: 0; padding: 0; font: inherit; cursor: pointer; }
 .landing .nav-caret { color: rgba(255,255,255,0.7) !important; transition: color .2s ease; }
 .landing .nav .nav-lang-btn { color: #ffffff !important; }
 .landing .nav .nav-lang-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); }
@@ -144,11 +145,11 @@
 @keyframes landing-spin { to { transform: rotate(360deg); } }
 
 .landing .nav-links { display: flex; gap: 28px; position: relative; }
-.landing .nav-links a {
+.landing .nav-links a, .landing .nav-links .nav-trigger {
   font-size: 14px; color: var(--ink-2); font-weight: 500;
   transition: color .2s;
 }
-.landing .nav-links a:hover { color: var(--ink); }
+.landing .nav-links a:hover, .landing .nav-links .nav-trigger:hover { color: var(--ink); }
 .landing .nav-ctas { display: flex; gap: 8px; align-items: center; }
 
 /* Nav language switcher */
@@ -264,7 +265,7 @@
 
 /* Nav dropdown */
 .landing .nav-item { position: relative; }
-.landing .nav-item > a { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+.landing .nav-item > a, .landing .nav-item > .nav-trigger { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
 .landing .nav-caret { font-size: 9px; opacity: 0.5; transition: transform .2s; }
 .landing .nav-item:hover .nav-caret { transform: rotate(180deg); opacity: 0.8; }
 .landing .nav-dropdown {
