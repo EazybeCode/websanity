@@ -2606,10 +2606,11 @@
   },
   "landingV3": {
     "hero": {
-      "tag": "AGENTE DE IA NO WHATSAPP · NATIVO DO CRM · 24/7",
-      "headline": "Agentes de IA no WhatsApp para Vendas e Atendimento:",
-      "headlineEm": "Crie seu Agente de IA sem código no WhatsApp",
-      "subtitle": "Implante agentes de IA no WhatsApp sem precisar de código: qualifique leads em 60 segundos, sincronize cada conversa com seu CRM e responda com o tom do seu melhor vendedor. Feito para times de vendas e suporte em mais de 40 países.",
+      "tag": "COMPATÍVEL COM HUBSPOT, SALESFORCE, ZOHO E MAIS",
+      "headline": "<em>Agentes de IA no WhatsApp</em> para Times de Vendas e Atendimento",
+      "headlineEm": "",
+      "subtitle": "Implante agentes de IA no WhatsApp sem código que qualificam leads em 60 segundos, sincronizam cada conversa com seu CRM e respondem exatamente como o seu melhor vendedor.",
+      "subtitleNote": "Funciona com qualquer número do WhatsApp — Pessoal, Business e API",
       "promptLabel": "Descreva o que seu agente de IA deve fazer",
       "promptHint": "Pressione <kbd>Enter</kbd> para criar · Plano grátis para sempre",
       "trustHubspot": "Nota 4.6 no HubSpot",
@@ -2685,9 +2686,9 @@
     },
     "problem": {
       "tag": "O problema",
-      "headline": "Vender no WhatsApp é fácil. Sem um",
+      "headline": "Vender no WhatsApp é fácil. Escalar sem um",
       "headlineEm": "Agente de IA no WhatsApp",
-      "headlineRest": ", tudo em volta vira bagunça",
+      "headlineRest": " não é",
       "subtitle": "Seus vendedores vivem no WhatsApp. Seu pipeline vive no CRM. Os dois nunca se encontram. O resultado: deals escapam, follow-ups somem e a receita vaza em silêncio por conversas que ninguém vê.",
       "card1Idx": "01 · Agente de Sincronia com CRM",
       "card1Title": "200 conversas hoje.",

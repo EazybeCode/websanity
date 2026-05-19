@@ -390,62 +390,9 @@ export function getHomepageJsonLd(locale: string): object[] {
           }
         ]
       },
-      // SoftwareApplication schema — rich-snippet card in Google + signal to AI Overview
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Eazybe WhatsApp AI Agent",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "WhatsApp AI Agent, CRM Integration, Sales Automation",
-        "operatingSystem": "Web, Chrome Extension",
-        "url": "https://eazybe.com/",
-        "description": "No-code WhatsApp AI Agent platform for sales and support teams. Qualifies leads 24/7, syncs every chat to HubSpot, Salesforce, Zoho, and 5+ other CRMs, and replies in your top rep's voice.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.6",
-          "ratingCount": "2000",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Eazybe",
-          "url": "https://eazybe.com/",
-          "logo": "https://eazybe.com/logo.png"
-        }
-      },
-      // Organization schema — strengthens entity recognition for Knowledge Graph + LLM grounding
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Eazybe",
-        "url": "https://eazybe.com/",
-        "logo": "https://eazybe.com/logo.png",
-        "description": "Eazybe builds no-code WhatsApp AI Agents for sales and support teams. Trusted by 2,000+ revenue teams across 40+ countries.",
-        "sameAs": [
-          "https://www.linkedin.com/company/eazybe",
-          "https://x.com/eazybe",
-          "https://www.facebook.com/eazybe",
-          "https://www.youtube.com/@eazybe"
-        ],
-        "areaServed": "Worldwide",
-        "knowsAbout": [
-          "WhatsApp AI Agent",
-          "AI Agents for WhatsApp",
-          "No-code WhatsApp AI Agent",
-          "WhatsApp CRM Integration",
-          "WhatsApp Sales Automation",
-          "WhatsApp Business Automation",
-          "AI Agent for WhatsApp Business",
-          "Lead Qualification Automation"
-        ]
-      },
+      // SoftwareApplication + Organization schemas are emitted globally
+      // (see GlobalStructuredData + data/global-schemas.ts), so they are
+      // intentionally omitted here to avoid duplicate JSON-LD on /.
       // BreadcrumbList Schema
       {
         "@context": "https://schema.org/",

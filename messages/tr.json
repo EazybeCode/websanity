@@ -2532,10 +2532,11 @@
   },
   "landingV3": {
     "hero": {
-      "tag": "WHATSAPP AI AGENT · CRM ENTEGRELİ · 7/24",
-      "headline": "Satış ve Destek için WhatsApp AI Agent:",
-      "headlineEm": "WhatsApp'ta Kodsuz AI Agent Oluşturun",
-      "subtitle": "Lead'leri 60 saniyede niteleyen, her sohbeti CRM'inize senkronize eden ve en iyi satışçınızın tonuyla yanıt veren kodsuz WhatsApp AI agent'larını dağıtın. 40+ ülkedeki satış ve destek ekipleri için tasarlandı.",
+      "tag": "HUBSPOT, SALESFORCE, ZOHO VE DAHA FAZLASIYLA UYUMLU",
+      "headline": "Satış ve Destek Ekipleri için <em>WhatsApp AI Agent</em>",
+      "headlineEm": "",
+      "subtitle": "Lead'leri 60 saniyede niteleyen, her sohbeti CRM'inize senkronize eden ve tam olarak en iyi satışçınızın tonuyla yanıt veren kodsuz WhatsApp AI Agent'larını dağıtın.",
+      "subtitleNote": "Her WhatsApp numarasıyla çalışır — Kişisel, Business ve API",
       "promptLabel": "AI agent'ınızın ne yapmasını istediğinizi yazın",
       "promptHint": "<kbd>Enter</kbd> ile oluştur · Sonsuza dek ücretsiz plan",
       "trustHubspot": "HubSpot'ta 4.6 puan",
@@ -2611,9 +2612,9 @@
     },
     "problem": {
       "tag": "Sorun",
-      "headline": "WhatsApp'ta satış kolay. Ancak bir",
+      "headline": "WhatsApp'ta satış kolay. Onu ölçeklendirmek bir",
       "headlineEm": "WhatsApp AI Agent",
-      "headlineRest": "olmadan etrafındaki her şey bozuk",
+      "headlineRest": " olmadan değil",
       "subtitle": "Temsilcileriniz WhatsApp'ta yaşar. Pipeline'ınız CRM'de yaşar. İkisi asla buluşmaz. Sonuç: deal'lar kayar, takipler kaybolur ve gelir, kimsenin göremediği konuşmalarda sessizce sızar.",
       "card1Idx": "01 · CRM Sync Agent",
       "card1Title": "Bugün 200 sohbet.",
