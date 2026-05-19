@@ -4,7 +4,11 @@ import { getHomepageMetadata, getHomepageJsonLd } from '@/data/homepage-seo'
 import { LandingPage } from '@/components/landing/LandingPage'
 import { routing } from '@/i18n/routing'
 
-export const revalidate = 30
+// Pure SSG: the page is fully prerendered for every locale at build time
+// and served from CDN cache thereafter. There's no runtime data on this
+// page (translations + SEO helpers are static), so ISR was unnecessary —
+// copy edits ship via a rebuild instead of a 30s background regeneration.
+export const dynamic = 'force-static'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
