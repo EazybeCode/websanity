@@ -189,13 +189,13 @@ export function AgentLeadQual() {
                   <span className="lqa-av-ring" />
                 </div>
                 <div className="info lqa-info">
-                  <h5>
+                  <h4>
                     {t('chatTitle')}
                     <span className="lqa-wa-chip">
                       <svg width="9" height="9" viewBox="0 0 24 24" fill="#25D366"><path d="M12 2C6.49 2 2 6.49 2 12c0 1.89.53 3.7 1.54 5.28L2 22l4.84-1.5c1.52.83 3.24 1.27 4.99 1.27h.01c5.51 0 10-4.49 10.01-10 0-2.67-1.04-5.18-2.93-7.07z"/></svg>
                       WhatsApp
                     </span>
-                  </h5>
+                  </h4>
                   <p>
                     <span className="lqa-live-dot" />
                     {t('live')}

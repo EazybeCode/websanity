@@ -140,7 +140,7 @@ export function AgentRevenue() {
           <div className="visual reveal">
             <div className="dash" ref={dashRef}>
               <div className="dash-head">
-                <h5>{t('dashTitle')} <em>{t('dashTitleEm')}</em></h5>
+                <h4>{t('dashTitle')} <em>{t('dashTitleEm')}</em></h4>
                 <span>{t('dashUpdated')}</span>
               </div>
               <div className="dash-grid">

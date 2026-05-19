@@ -1,13 +1,20 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import { LeadGenerationForm } from '@/components/lead/LeadGenerationForm'
 
 export function BeaBot() {
-  // Form is OPEN by default and lives in the corner. User can minimize to
-  // just the Bea avatar; reopen by clicking Bea again.
-  const [open, setOpen] = useState(true)
+  // Open by default on desktop (≥1024px) — mobile users start with the form
+  // collapsed and tap Bea to open it. Starting closed avoids an SSR/CSR
+  // hydration mismatch; the desktop auto-open happens client-side after mount.
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(min-width: 1024px)')
+    if (mq.matches) setOpen(true)
+  }, [])
 
   return (
     <>

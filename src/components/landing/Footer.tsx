@@ -144,7 +144,7 @@ export function Footer() {
                   aria-expanded={isOpen}
                   aria-controls={`footer-col-${idx}`}
                 >
-                  <h4>{t(c.titleKey)}</h4>
+                  <h3>{t(c.titleKey)}</h3>
                   <span className="footer-col-chev" aria-hidden="true">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="12" y1="5" x2="12" y2="19" />

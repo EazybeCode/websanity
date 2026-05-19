@@ -66,7 +66,7 @@ export function HowItWorks() {
         <div className="steps" ref={wrapRef}>
           <div className={`step${active === 0 ? ' active' : ''}`} data-step="1">
             <div className="step-num">1</div>
-            <h4>{t('step1Title')}</h4>
+            <h3>{t('step1Title')}</h3>
             <p>{t('step1Desc')}</p>
             <div className="step-scene scene-install">
               <div className="si-browser">
@@ -89,7 +89,7 @@ export function HowItWorks() {
 
           <div className={`step${active === 1 ? ' active' : ''}`} data-step="2">
             <div className="step-num">2</div>
-            <h4>{t('step2Title')}</h4>
+            <h3>{t('step2Title')}</h3>
             <p>{t('step2Desc')}</p>
             <div className="step-scene scene-connect">
               <div className="sc-left">
@@ -116,7 +116,7 @@ export function HowItWorks() {
 
           <div className={`step${active === 2 ? ' active' : ''}`} data-step="3">
             <div className="step-num">3</div>
-            <h4>{t('step3Title')}</h4>
+            <h3>{t('step3Title')}</h3>
             <p>{t('step3Desc')}</p>
             <div className="step-scene scene-activate">
               {[t('step3Agent1'), t('step3Agent2'), t('step3Agent3')].map((name, i) => (

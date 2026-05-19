@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -9,13 +9,6 @@ import { LeadGenerationForm } from './LeadGenerationForm'
 export const LeadMobileButton: React.FC = () => {
   const t = useTranslations()
   const [isExpanded, setIsExpanded] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsExpanded(true)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [])
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded)
