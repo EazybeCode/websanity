@@ -94,7 +94,10 @@ export function Hero() {
           <span className="hero-tag">
             <span className="pulse" /> {t('tag')}
           </span>
-          <h1>{t('headline')} <em>{t('headlineEm')}</em></h1>
+          <h1>
+            {t.rich('headline', { em: (chunks) => <em>{chunks}</em> })}
+            {t('headlineEm') ? <> <em>{t('headlineEm')}</em></> : null}
+          </h1>
           <p className="hero-sub">{t('subtitle')}</p>
 
           <div className="prompt-wrap">

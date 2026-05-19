@@ -2394,10 +2394,10 @@
   },
   "landingV3": {
     "hero": {
-      "tag": "WHATSAPP AI AGENT · CRM-NATIVE · 24/7",
-      "headline": "WhatsApp AI Agents For Sales & Support:",
-      "headlineEm": "Build No-Code AI Agent On WhatsApp",
-      "subtitle": "Deploy no code WhatsApp AI agents that qualify leads in 60 seconds, sync every chat to your CRM and reply in your top closer voice. Built for sales and support teams across 40+ countries.",
+      "tag": "COMPATIBLE WITH HUBSPOT, SALESFORCE, ZOHO & MORE",
+      "headline": "WhatsApp AI Agents For <em>CRM-Powered</em> Sales & Support Team",
+      "headlineEm": "",
+      "subtitle": "Deploy no-code WhatsApp AI Agents that qualify leads in 60 seconds, sync every chat to your CRM, and reply exactly like your best closer.",
       "promptLabel": "Describe what your AI agent should do",
       "promptHint": "Press <kbd>Enter</kbd> to build · Free forever plan",
       "trustHubspot": "4.6 on HubSpot",
@@ -2473,9 +2473,9 @@
     },
     "problem": {
       "tag": "The problem",
-      "headline": "Selling On WhatsApp Is Easy. Without A",
+      "headline": "Selling On WhatsApp Is Easy. Scaling It Without A",
       "headlineEm": "WhatsApp AI Agent",
-      "headlineRest": ", Everything Around It Is Broken",
+      "headlineRest": " Isn't",
       "subtitle": "Your reps live in WhatsApp. Your pipeline lives in your CRM. The two never meet. So, deals slip, follow-ups vanish, and revenue quietly leaks out of conversations nobody can see.",
       "card1Idx": "01 · CRM Sync Agent",
       "card1Title": "200 chats today.",
