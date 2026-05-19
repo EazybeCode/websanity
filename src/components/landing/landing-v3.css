@@ -4003,3 +4003,23 @@
   font-weight: 700;
 }
 
+/* ─── Perf: skip layout/paint for off-screen sections ────────────────────
+ * `content-visibility: auto` lets the browser defer layout, style, and
+ * paint work for an element until it is near the viewport. Once rendered
+ * the actual size is cached, so subsequent scrolls don't re-pay the cost.
+ *
+ * `contain-intrinsic-size: auto 700px` is the placeholder size used while
+ * a section is offscreen — without it, the section would be treated as 0
+ * height and scroll position would jump as content comes into view.
+ *
+ * The hero is intentionally excluded — it's the first paint and must
+ * lay out immediately. Same for the always-visible nav. */
+.landing .logo-bar,
+.landing .problem,
+.landing .section,
+.landing .agent,
+.landing .footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
+
