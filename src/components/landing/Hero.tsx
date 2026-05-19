@@ -21,11 +21,7 @@ export function Hero() {
   const focused = useRef(false)
 
   const redirectToApp = () => {
-    const prompt = value.trim()
-    const url = prompt
-      ? `https://app.eazybe.com/?prompt=${encodeURIComponent(prompt)}`
-      : 'https://app.eazybe.com/'
-    window.open(url, '_blank', 'noopener,noreferrer')
+    window.open('https://eazybe.info/85c80b', '_blank', 'noopener,noreferrer')
   }
 
   // Rotating placeholder typewriter
