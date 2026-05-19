@@ -356,14 +356,13 @@
   line-height: 1.08; letter-spacing: -0.025em;
   color: var(--ink); max-width: 22ch;
   margin: 0 auto 28px; padding-bottom: 0.05em;
-  text-wrap: balance;
 }
 .landing .hero h1 em { font-style: normal; color: var(--accent-ink); }
 
 .landing .hero-sub {
   font-size: 19px; color: var(--ink-3);
   max-width: 780px; margin: 0 auto 40px;
-  line-height: 1.5; text-wrap: balance;
+  line-height: 1.5;
 }
 .landing .hero-coexistence-note {
   font-family: var(--f-display);

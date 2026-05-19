@@ -90,7 +90,7 @@ const HomeRevenueInboxAnimation: React.FC = () => {
               >
                 <div className="relative">
                   <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 overflow-hidden">
-                    <img src={`https://picsum.photos/seed/${chat.name}/40/40`} alt={`${chat.name} contact avatar`} className="opacity-80" />
+                    <img src={`https://picsum.photos/seed/${chat.name}/40/40`} alt={`${chat.name} contact avatar`} className="opacity-80"  loading="lazy"/>
                   </div>
                   <div className={`absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full border-2 border-brand-black ${currentCat.color.replace('text-', 'bg-')}`} />
                 </div>

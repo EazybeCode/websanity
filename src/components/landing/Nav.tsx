@@ -62,7 +62,7 @@ function LanguageSwitcher() {
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <img className="nav-lang-flag" src={`https://flagcdn.com/w40/${current.country}.png`} alt="" width={20} height={15} />
+        <img className="nav-lang-flag" src={`https://flagcdn.com/w40/${current.country}.png`} alt="" width={20} height={15}  loading="lazy"/>
         <span className="nav-lang-label">{current.label}</span>
         <svg className="nav-lang-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <polyline points="6 9 12 15 18 9" />
@@ -79,7 +79,7 @@ function LanguageSwitcher() {
               className={`nav-lang-item${l.code === currentCode ? ' active' : ''}`}
               onClick={() => switchTo(l)}
             >
-              <img className="nav-lang-flag" src={`https://flagcdn.com/w40/${l.country}.png`} alt="" width={20} height={15} />
+              <img className="nav-lang-flag" src={`https://flagcdn.com/w40/${l.country}.png`} alt="" width={20} height={15}  loading="lazy"/>
               <span>{l.label}</span>
             </button>
           ))}

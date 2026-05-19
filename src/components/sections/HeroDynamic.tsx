@@ -141,7 +141,7 @@ export const HeroDynamic: React.FC<Props> = ({ data }) => {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.5 + i * 0.05 }}
                     >
-                      <img src={crm.logo} alt={crm.name} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                      <img src={crm.logo} alt={crm.name} className="w-full h-full object-contain" referrerPolicy="no-referrer"  loading="lazy"/>
                     </motion.div>
                   ))}
                 </div>

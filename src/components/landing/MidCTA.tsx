@@ -35,7 +35,7 @@ export function MidCTA() {
               style={{ top: a.top, left: a.left, width: a.size, height: a.size }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={a.src} alt="" className="mid-cta-face" referrerPolicy="no-referrer" />
+              <img src={a.src} alt="" className="mid-cta-face" referrerPolicy="no-referrer"  loading="lazy"/>
               {a.online && <span className="mid-cta-face-dot" />}
             </span>
           ))}
@@ -93,7 +93,7 @@ export function MidCTA() {
               style={{ top: a.top, right: a.right, width: a.size, height: a.size }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={a.src} alt="" className="mid-cta-face" referrerPolicy="no-referrer" />
+              <img src={a.src} alt="" className="mid-cta-face" referrerPolicy="no-referrer"  loading="lazy"/>
               {a.online && <span className="mid-cta-face-dot" />}
             </span>
           ))}

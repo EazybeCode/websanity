@@ -66,7 +66,7 @@ export function AgentSync() {
         ghost.style.left = sRect.left - stageRect.left + 'px'
         ghost.style.top = sRect.top - stageRect.top + 'px'
         ghost.innerHTML = `
-          <div class="sv3-av" style="background:${person.bg}"><img src="${person.photo}" alt="" /></div>
+          <div class="sv3-av" style="background:${person.bg}"><img src="${person.photo}" alt=""  loading="lazy"/></div>
           <div class="sv3-row-body">
             <div class="sv3-row-top"><strong>${person.name}</strong></div>
             <div class="sv3-row-msg">${person.msg}</div>
@@ -174,7 +174,7 @@ export function AgentSync() {
                       className={`sv3-row${focusIdx === i ? ' focus' : ''}${sentSet.has(i) ? ' sent' : ''}`}
                       data-idx={i}
                     >
-                      <div className="sv3-av" style={{ background: p.bg }}><img src={p.photo} alt="" /></div>
+                      <div className="sv3-av" style={{ background: p.bg }}><img src={p.photo} alt=""  loading="lazy"/></div>
                       <div className="sv3-row-body">
                         <div className="sv3-row-top"><strong>{p.name}</strong></div>
                         <div className="sv3-row-msg">{p.msg}</div>
@@ -204,7 +204,7 @@ export function AgentSync() {
                 <div className="sv3-rows sv3-crm-rows" ref={crmRowsRef}>
                   {crmRows.map((p) => (
                     <div key={p.id} className="sv3-row" data-cid={p.id}>
-                      <div className="sv3-av" style={{ background: p.bg }}><img src={p.photo} alt="" /></div>
+                      <div className="sv3-av" style={{ background: p.bg }}><img src={p.photo} alt=""  loading="lazy"/></div>
                       <div className="sv3-row-body">
                         <div className="sv3-row-top"><strong>{p.name}</strong></div>
                         <div className="sv3-row-msg">{p.msg}</div>

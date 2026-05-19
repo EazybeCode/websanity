@@ -35,9 +35,9 @@ export function AgentCustomerSuccess() {
                 <div className="info"><h4>{t('chatTitle')}</h4><p>{t('chatStatus')}</p></div>
               </div>
               <div className="chat-body">
-                <div className="msg"><span className="sm-av sm-av-user"><img src="https://i.pravatar.cc/96?img=33" alt="" /></span><div className="bub">{t('chatMsg1')}</div></div>
+                <div className="msg"><span className="sm-av sm-av-user"><img src="https://i.pravatar.cc/96?img=33" alt=""  loading="lazy"/></span><div className="bub">{t('chatMsg1')}</div></div>
                 <div className="msg ai"><span className="sm-av">CS</span><div className="bub">{t('chatBot1')}</div></div>
-                <div className="msg"><span className="sm-av sm-av-user"><img src="https://i.pravatar.cc/96?img=33" alt="" /></span><div className="bub">{t('chatMsg2')}</div></div>
+                <div className="msg"><span className="sm-av sm-av-user"><img src="https://i.pravatar.cc/96?img=33" alt=""  loading="lazy"/></span><div className="bub">{t('chatMsg2')}</div></div>
                 <div className="msg ai"><span className="sm-av">CS</span><div className="bub">{t('chatBot2')}</div></div>
               </div>
             </div>

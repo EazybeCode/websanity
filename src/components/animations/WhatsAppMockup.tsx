@@ -35,7 +35,7 @@ export const WhatsAppMockup: React.FC<WhatsAppMockupProps> = ({
       {/* WhatsApp Header */}
       <div className="h-12 bg-[#f0f2f5] flex items-center px-3 gap-3 border-b border-slate-200">
         <div className="w-9 h-9 rounded-full overflow-hidden border border-slate-300">
-          <img src={activeChatAvatar} alt={activeChatName} className="w-full h-full object-cover" />
+          <img src={activeChatAvatar} alt={activeChatName} className="w-full h-full object-cover"  loading="lazy"/>
         </div>
         <div className="flex-1">
           <div className="text-slate-800 font-semibold text-sm">{activeChatName}</div>

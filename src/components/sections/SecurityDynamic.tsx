@@ -96,7 +96,7 @@ export const SecurityDynamic: React.FC<Props> = ({ data }) => {
                         alt="Meta"
                         className="w-8 h-8"
                         referrerPolicy="no-referrer"
-                      />
+                       loading="lazy"/>
                     </div>
                   ) : isGdpr ? (
                     <GdprBadge />

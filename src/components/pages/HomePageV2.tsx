@@ -211,14 +211,14 @@ export default function HomePageV2() {
             <div className="logo-marquee">
               <div className="logo-track left">
                 {[...CLIENT_LOGOS_1, ...CLIENT_LOGOS_1].map((c, i) => (
-                  <img key={i} src={c.src} alt={c.name} referrerPolicy="no-referrer" />
+                  <img key={i} src={c.src} alt={c.name} referrerPolicy="no-referrer"  loading="lazy"/>
                 ))}
               </div>
             </div>
             <div className="logo-marquee">
               <div className="logo-track right">
                 {[...CLIENT_LOGOS_2, ...CLIENT_LOGOS_2].map((c, i) => (
-                  <img key={i} src={c.src} alt={c.name} referrerPolicy="no-referrer" />
+                  <img key={i} src={c.src} alt={c.name} referrerPolicy="no-referrer"  loading="lazy"/>
                 ))}
               </div>
             </div>

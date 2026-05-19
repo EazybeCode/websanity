@@ -272,7 +272,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
                   &ldquo;{t('trialModal.testimonialQuote')}&rdquo;
                 </p>
                 <div className="flex items-center gap-2">
-                  <img src="https://i.pravatar.cc/100?u=cx" className="w-6 h-6 rounded-full border border-slate-700" alt="User" />
+                  <img src="https://i.pravatar.cc/100?u=cx" className="w-6 h-6 rounded-full border border-slate-700" alt="User"  loading="lazy"/>
                   <div>
                     <h5 className="text-white font-bold text-[9px]">{t('trialModal.testimonialName')}</h5>
                     <p className="text-slate-500 font-mono text-[10px] uppercase tracking-widest">{t('trialModal.testimonialRole')}</p>

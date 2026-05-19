@@ -177,7 +177,7 @@ const WhatsAppCopilotMockup: React.FC<WhatsAppMockupProps> = ({ mode }) => {
         <div className="bg-[#f0f2f5] px-4 py-2 flex items-center justify-between border-b border-slate-300/50">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center border border-slate-300">
-              <img src={`https://api.dicebear.com/7.x/initials/svg?seed=EP&backgroundColor=2563EB`} alt="Avatar" className="w-full h-full rounded-full" />
+              <img src={`https://api.dicebear.com/7.x/initials/svg?seed=EP&backgroundColor=2563EB`} alt="Avatar" className="w-full h-full rounded-full"  loading="lazy"/>
             </div>
             <div>
               <div className="text-[#111b21] font-bold text-xs tracking-tight">Enterprise Client #042</div>

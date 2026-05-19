@@ -46,7 +46,7 @@ const HomeSyncAnimation: React.FC = () => {
                 src={crm.logo}
                 alt={crm.name}
                 className="w-6 h-6 rounded object-contain"
-              />
+               loading="lazy"/>
             </motion.div>
             <span className="text-[8px] font-medium text-slate-400 uppercase tracking-wide">{crm.name}</span>
           </motion.div>

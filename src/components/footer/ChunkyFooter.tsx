@@ -19,7 +19,7 @@ const MetaLogo: React.FC<{ size?: number }> = ({ size = 40 }) => (
     width={size}
     height={size * 0.6}
     style={{ objectFit: 'contain' }}
-  />
+   loading="lazy"/>
 )
 
 const getPlatformLinks = (t: (key: string) => string): FooterLink[] => [
@@ -303,7 +303,7 @@ export const ChunkyFooter: React.FC = () => {
                       </p>
                       <div className="flex items-center gap-3">
                         {testimonial.avatar ? (
-                          <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover border-2 border-slate-600" />
+                          <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover border-2 border-slate-600"  loading="lazy"/>
                         ) : (
                           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold text-lg">
                             {testimonial.name?.[0] || 'U'}

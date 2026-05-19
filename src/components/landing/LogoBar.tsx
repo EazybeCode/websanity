@@ -41,7 +41,7 @@ export function LogoBar() {
           <div className="logo-track fwd">
             {[...ROW1, ...ROW1].map(([slug, alt], i) => (
               // eslint-disable-next-line @next/next/no-img-element
-              <img key={`r1-${i}`} src={BASE + slug} alt={alt as string} referrerPolicy="no-referrer" />
+              <img key={`r1-${i}`} src={BASE + slug} alt={alt as string} referrerPolicy="no-referrer"  loading="lazy"/>
             ))}
           </div>
         </div>
@@ -50,7 +50,7 @@ export function LogoBar() {
           <div className="logo-track bwd">
             {[...ROW2, ...ROW2].map(([slug, alt], i) => (
               // eslint-disable-next-line @next/next/no-img-element
-              <img key={`r2-${i}`} src={BASE + slug} alt={alt as string} referrerPolicy="no-referrer" />
+              <img key={`r2-${i}`} src={BASE + slug} alt={alt as string} referrerPolicy="no-referrer"  loading="lazy"/>
             ))}
           </div>
         </div>

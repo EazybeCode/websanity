@@ -25,7 +25,7 @@ const HomeMiniCRMAnimation: React.FC = () => {
         <div className="p-2 bg-[#202c33] border-b border-[#2a3942] flex items-center justify-between relative z-10">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-full bg-slate-600 overflow-hidden border border-slate-500">
-              <img src="https://picsum.photos/seed/James/40/40" alt="James Wilson contact avatar" className="opacity-80" />
+              <img src="https://picsum.photos/seed/James/40/40" alt="James Wilson contact avatar" className="opacity-80"  loading="lazy"/>
             </div>
             <div>
               <div className="text-[9px] font-bold text-white leading-tight">James Wilson</div>

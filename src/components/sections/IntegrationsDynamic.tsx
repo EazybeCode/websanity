@@ -29,7 +29,7 @@ export const IntegrationsDynamic: React.FC<Props> = ({ data }) => {
                 alt={`${item.name} logo`}
                 className="w-12 h-12 object-contain mb-3 transition-transform duration-300 group-hover:scale-110"
                 referrerPolicy="no-referrer"
-              />
+               loading="lazy"/>
               <span className="text-xs font-bold text-slate-300">{item.name}</span>
             </div>
           ))}

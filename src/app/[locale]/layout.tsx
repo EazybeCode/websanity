@@ -54,7 +54,7 @@ export default async function LocaleLayout({
             Mirrors the equivalent rules in landing-v3.css. */}
         <style
           dangerouslySetInnerHTML={{
-            __html: `.landing .nav-dropdown{position:absolute;opacity:0;visibility:hidden;pointer-events:none}.landing .nav-drawer{position:fixed;inset:0;opacity:0;pointer-events:none}.landing .nav-drawer-section>ul{max-height:0;overflow:hidden}.landing .nav-burger{display:none}@media(max-width:880px){.landing .nav-links,.landing .nav-ctas{display:none}.landing .nav-burger{display:inline-flex}.landing .nav-dropdown{display:none}}`,
+            __html: `.landing .nav-dropdown{position:absolute;opacity:0;visibility:hidden;pointer-events:none}.landing .nav-drawer{position:fixed;inset:0;opacity:0;pointer-events:none}.landing .nav-drawer-section>ul{max-height:0;overflow:hidden}.landing .nav-burger{display:none}@media(max-width:880px){.landing .nav-links,.landing .nav-ctas{display:none}.landing .nav-burger{display:inline-flex}.landing .nav-dropdown{display:none}}.landing .hero-inner{text-align:center}.landing .hero h1{font-weight:400;font-size:clamp(32px,4.2vw,60px);line-height:1.08;letter-spacing:-0.025em;max-width:22ch;margin:0 auto 28px}.landing .hero-sub{font-size:19px;max-width:780px;margin:0 auto 40px;line-height:1.5}`,
           }}
         />
       </head>

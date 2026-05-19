@@ -41,7 +41,7 @@ const TemplatesAutomationAnimation: React.FC = () => {
               transition={{ delay: i * 0.1 }}
               className="w-5 h-5 rounded bg-brand-black/40 border border-brand-border flex items-center justify-center"
             >
-              <img src={crm.logo} alt={crm.name} className="w-3.5 h-3.5 rounded object-contain" />
+              <img src={crm.logo} alt={crm.name} className="w-3.5 h-3.5 rounded object-contain"  loading="lazy"/>
             </motion.div>
           ))}
         </div>
@@ -59,7 +59,7 @@ const TemplatesAutomationAnimation: React.FC = () => {
           >
             {/* CRM Trigger */}
             <div className="flex items-center gap-1.5 bg-brand-surface px-2 py-1 rounded border border-brand-border">
-              <img src={crms[0].logo} alt="CRM" className="w-3 h-3 rounded" />
+              <img src={crms[0].logo} alt="CRM" className="w-3 h-3 rounded"  loading="lazy"/>
               <span className="text-[6px] font-bold text-white">{trigger.event}</span>
             </div>
 

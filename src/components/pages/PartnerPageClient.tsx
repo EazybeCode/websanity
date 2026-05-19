@@ -349,7 +349,7 @@ export function PartnerPageClient() {
                     width={40}
                     height={40}
                     style={{ borderRadius: '50%', border: '2px solid var(--line)' }}
-                  />
+                   loading="lazy"/>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontWeight: 600, color: 'var(--ink)' }}>{testimonial.author}</div>
                     <div style={{ fontSize: 12, color: 'var(--ink-4)' }}>{testimonial.role}</div>

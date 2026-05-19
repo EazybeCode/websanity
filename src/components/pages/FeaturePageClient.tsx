@@ -184,7 +184,7 @@ const FeaturesSection: React.FC<{ features: any[]; slug: string }> = ({ features
                       src={urlFor(feature.image).width(800).height(600).url()}
                       alt={feature.headline || feature.badge || 'Feature illustration'}
                       style={{ width: '100%', borderRadius: 18, border: '1px solid var(--line)' }}
-                    />
+                     loading="lazy"/>
                   ) : (
                     <div
                       style={{
@@ -300,7 +300,7 @@ const TestimonialSection: React.FC<{ data: any }> = ({ data }) => {
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16, marginTop: 28 }}>
             {data.avatar ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={data.avatar} alt={data.author} style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid var(--line)' }} />
+              <img src={data.avatar} alt={data.author} style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid var(--line)' }}  loading="lazy"/>
             ) : (
               <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--bg-2)' }} />
             )}

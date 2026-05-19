@@ -247,7 +247,7 @@ const HeroSyncAnimation: React.FC<{ crm: { name: string; logo: string; color: st
           height={18}
           referrerPolicy="no-referrer"
           style={{ borderRadius: 4 }}
-        />
+         loading="lazy"/>
       </div>
 
       {/* Chat thread */}
@@ -260,7 +260,7 @@ const HeroSyncAnimation: React.FC<{ crm: { name: string; logo: string; color: st
             width={28}
             height={28}
             style={{ borderRadius: '50%', border: `2px solid ${crm.color}` }}
-          />
+           loading="lazy"/>
           <div
             style={{
               background: 'var(--bg-2)',
@@ -443,7 +443,7 @@ const PartnerBadge: React.FC<{ name: string; sub: string; logo: string }> = ({ n
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={logo} alt={name} width={22} height={22} referrerPolicy="no-referrer" />
+      <img src={logo} alt={name} width={22} height={22} referrerPolicy="no-referrer"  loading="lazy"/>
     </div>
     <div style={{ textAlign: 'left' }}>
       <div style={{ fontWeight: 600, fontSize: 13, color: 'var(--ink)' }}>{name}</div>
@@ -771,7 +771,7 @@ const ChatBubble: React.FC<{
     return (
       <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        {avatar && <img src={avatar} alt={name} width={32} height={32} style={{ borderRadius: '50%', border: `2px solid ${accent}` }} />}
+        {avatar && <img src={avatar} alt={name} width={32} height={32} style={{ borderRadius: '50%', border: `2px solid ${accent}` }}  loading="lazy"/>}
         <div
           style={{
             background: 'var(--bg-2)',

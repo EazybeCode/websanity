@@ -59,7 +59,7 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
                   alt={t('home.comparison.personalWhatsApp')}
                   className="w-10 h-10 mb-3"
                   referrerPolicy="no-referrer"
-                />
+                 loading="lazy"/>
                 <span className="text-xs font-bold text-slate-300">{t('home.comparison.personalWhatsApp')}</span>
               </div>
               <div className="bg-brand-card p-4 rounded-card border border-slate-700 shadow-sm flex flex-col items-center text-center">
@@ -69,7 +69,7 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
                     alt={t('home.comparison.businessApp')}
                     className="w-10 h-10"
                     referrerPolicy="no-referrer"
-                  />
+                   loading="lazy"/>
                   <div className="absolute -bottom-1 -right-1 bg-slate-800 rounded-full px-1 border border-slate-600 shadow-sm">
                     <span className="text-[8px] font-bold text-slate-200">B</span>
                   </div>
@@ -83,7 +83,7 @@ export const ComparisonDynamic: React.FC<Props> = ({ data }) => {
                     alt={t('home.comparison.businessApi')}
                     className="w-10 h-10 opacity-80"
                     referrerPolicy="no-referrer"
-                  />
+                   loading="lazy"/>
                   <div className="absolute -top-1 -right-1 bg-brand-cyan rounded-full p-1 border-2 border-slate-900 shadow-sm">
                     <Cloud size={10} className="text-white" />
                   </div>

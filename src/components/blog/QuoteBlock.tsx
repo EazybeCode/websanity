@@ -60,7 +60,7 @@ export const QuoteBlock: React.FC<{ data: QuoteData }> = ({ data }) => {
                 src={avatar}
                 alt={author}
                 className="w-12 h-12 rounded-full object-cover"
-              />
+               loading="lazy"/>
             )}
             <div>
               <p className="font-semibold text-white">{author}</p>
@@ -91,7 +91,7 @@ export const QuoteBlock: React.FC<{ data: QuoteData }> = ({ data }) => {
               src={avatar}
               alt={author}
               className="w-10 h-10 rounded-full object-cover"
-            />
+             loading="lazy"/>
           )}
           <div>
             <cite className="not-italic font-semibold text-white">

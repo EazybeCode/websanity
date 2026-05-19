@@ -421,7 +421,7 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
                             src={competitor.logo}
                             alt={competitor.name}
                             className="w-8 h-8 object-contain"
-                          />
+                           loading="lazy"/>
                         </div>
                         <span className={`text-base lg:text-lg font-bold ${competitor.highlight ? 'text-brand-blue' : 'text-white'}`}>
                           {competitor.name}
