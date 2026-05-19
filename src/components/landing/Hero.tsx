@@ -99,6 +99,7 @@ export function Hero() {
             {t('headlineEm') ? <> <em>{t('headlineEm')}</em></> : null}
           </h1>
           <p className="hero-sub">{t('subtitle')}</p>
+          <p className="hero-sub">{t('subtitleNote')}</p>
 
           <div className="prompt-wrap">
             <div className="prompt-orb" />
