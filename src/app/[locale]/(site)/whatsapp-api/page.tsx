@@ -1,8 +1,12 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
 import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
+
+export const viewport: Viewport = {
+  themeColor: '#020617',
+}
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
@@ -41,7 +45,6 @@ export async function generateMetadata({
         'max-video-preview': -1,
       },
     },
-    themeColor: '#020617',
     other: {
       'X-UA-Compatible': 'IE=edge',
       bingbot: 'index, follow',

@@ -1,5 +1,9 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+
+export const viewport: Viewport = {
+  themeColor: '#020617',
+}
 import { ComparisonPageClient } from '@/components/pages/ComparisonPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
 import { getComparisonPosts } from '@/lib/sanity-queries'
@@ -51,7 +55,6 @@ export async function generateMetadata({
         'max-video-preview': -1,
       },
     },
-    themeColor: '#020617',
     other: {
       'X-UA-Compatible': 'IE=edge',
       bingbot: 'index, follow',
