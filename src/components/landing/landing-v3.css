@@ -2563,7 +2563,7 @@
 
 /* CONTEXT ENGINE PILL */
 .landing .ce-pill {
-  position: relative; max-width: 820px; margin: 0 auto;
+  position: relative; max-width: 960px; margin: 0 auto;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: var(--r-lg);
@@ -2590,14 +2590,14 @@
 .landing .ce-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: 10px; color: var(--accent-a); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 24px; }
 .landing .ce-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-a); box-shadow: 0 0 8px var(--accent-a); animation: landing-ceBlink 2s ease-in-out infinite; }
 @keyframes landing-ceBlink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
-.landing .ce-flow { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: nowrap; font-family: var(--f-display); font-size: clamp(18px, 2vw, 26px); margin-bottom: 20px; color: #fff; }
+.landing .ce-flow { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: nowrap; font-family: var(--f-display); font-size: clamp(16px, 1.7vw, 22px); margin-bottom: 20px; color: #fff; }
 .landing .ce-node { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); border-radius: 100px; animation: landing-ceNodeFloat 4s ease-in-out infinite; white-space: nowrap; flex-shrink: 0; }
 .landing .ce-node.n1 { animation-delay: 0s; }
 .landing .ce-node.n3 { animation-delay: 2s; }
 @keyframes landing-ceNodeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 .landing .ce-brain { position: relative; font-style: italic; color: var(--accent-a); padding: 6px 18px; border-radius: 100px; background: color-mix(in oklab, var(--accent-a) 18%, transparent); border: 1px solid color-mix(in oklab, var(--accent-a) 40%, transparent); animation: landing-ceBrainPulse 2.4s ease-in-out infinite; white-space: nowrap; flex-shrink: 0; }
 @keyframes landing-ceBrainPulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent-a) 50%, transparent); } 50% { box-shadow: 0 0 0 8px color-mix(in oklab, var(--accent-a) 0%, transparent); } }
-.landing .ce-arrow { position: relative; width: 64px; height: 18px; flex-shrink: 0; }
+.landing .ce-arrow { position: relative; width: 48px; height: 18px; flex-shrink: 0; }
 .landing .ce-arrow-line { position: absolute; top: 50%; left: 0; right: 14px; height: 1.5px; background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(127,214,176,0.5), rgba(255,255,255,0.05)); transform: translateY(-50%); }
 .landing .ce-arrow-head { position: absolute; top: 50%; width: 0; height: 0; transform: translateY(-50%); border-top: 6px solid transparent; border-bottom: 6px solid transparent; right: 0; border-left: 10px solid var(--accent-a); }
 .landing .ce-arrow-pip { position: absolute; top: 50%; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-a); box-shadow: 0 0 10px var(--accent-a); transform: translateY(-50%); animation: landing-cePipRight 2s linear infinite; }
