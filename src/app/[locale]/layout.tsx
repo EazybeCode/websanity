@@ -47,6 +47,17 @@ export default async function LocaleLayout({
 
   return (
     <html lang={htmlLangMap[locale] || 'en'} className="dark" suppressHydrationWarning>
+      <head>
+        {/* Critical CSS: keep nav dropdowns + mobile drawer hidden at first
+            paint so Googlebot's screenshot (taken before the main stylesheet
+            applies) doesn't render every dropdown's content flat-stacked.
+            Mirrors the equivalent rules in landing-v3.css. */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `.landing .nav-dropdown{position:absolute;opacity:0;visibility:hidden;pointer-events:none}.landing .nav-drawer{position:fixed;inset:0;opacity:0;pointer-events:none}.landing .nav-drawer-section>ul{max-height:0;overflow:hidden}.landing .nav-burger{display:none}@media(max-width:880px){.landing .nav-links,.landing .nav-ctas{display:none}.landing .nav-burger{display:inline-flex}.landing .nav-dropdown{display:none}}`,
+          }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
         suppressHydrationWarning
