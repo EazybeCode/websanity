@@ -14,10 +14,10 @@ function withLocale(href: string, locale: string): string {
 }
 
 const LOCALES = [
-  { code: 'en', label: 'EN', country: 'gb', prefix: '' },
-  { code: 'br', label: 'BR', country: 'br', prefix: '/br' },
-  { code: 'es', label: 'ES', country: 'es', prefix: '/es' },
-  { code: 'tr', label: 'TR', country: 'tr', prefix: '/tr' },
+  { code: 'en', label: 'EN', country: 'gb', prefix: '', hreflang: 'en' },
+  { code: 'br', label: 'BR', country: 'br', prefix: '/br', hreflang: 'pt-BR' },
+  { code: 'es', label: 'ES', country: 'es', prefix: '/es', hreflang: 'es' },
+  { code: 'tr', label: 'TR', country: 'tr', prefix: '/tr', hreflang: 'tr' },
 ]
 
 function LanguageSwitcher() {
@@ -41,7 +41,43 @@ function LanguageSwitcher() {
   }, [open])
 
   const switchTo = (target: typeof LOCALES[number]) => {
+    // 1. Canonical: read the page's own <link rel="alternate" hrefLang="...">.
+    //    Sanity-driven posts (blog/comparison/features) have localized slugs;
+    //    only the page itself knows the right target URL.
+    //    React serializes JSX `hrefLang` to literal `hrefLang` in HTML (with
+    //    a capital L), which CSS attribute selectors don't always match. We
+    //    iterate and check the IDL `hreflang` property (and both attribute
+    //    casings) so we match regardless of source case.
+    const alts = document.querySelectorAll<HTMLLinkElement>('link[rel="alternate"]')
+    const alt = Array.from(alts).find(
+      (el) =>
+        (el.hreflang || el.getAttribute('hreflang') || el.getAttribute('hrefLang')) === target.hreflang
+    )
+    if (alt?.href) {
+      // The href in hreflang alternates is an absolute production URL
+      // (https://eazybe.com/...). Strip it to a path so we stay on the
+      // current origin — important for local dev (localhost:3001), preview
+      // deploys, and any future staging environment.
+      try {
+        const url = new URL(alt.href)
+        window.location.href = url.pathname + url.search + url.hash
+      } catch {
+        window.location.href = alt.href
+      }
+      return
+    }
+
+    // 2. Per-slug Sanity routes with NO hreflang map: don't synthesize
+    //    `/es/<english-slug>` (would 404 or render fallback English). Route
+    //    to the locale's section index instead. Mirrors useLanguage hook.
     const path = window.location.pathname
+    const perSlug = /^\/(?:(?:en|br|es|tr)\/)?(blog|comparison|features)\/[^/]+\/?$/.exec(path)
+    if (perSlug) {
+      window.location.href = (target.prefix || '') + `/${perSlug[1]}`
+      return
+    }
+
+    // 3. Static pages (home, /pricing, etc.) — naive prefix swap is safe.
     let rest = path
     for (const l of LOCALES) {
       if (l.prefix && (path === l.prefix || path.startsWith(l.prefix + '/'))) {
