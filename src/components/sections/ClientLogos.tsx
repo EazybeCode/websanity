@@ -83,7 +83,8 @@ export const ClientLogos: React.FC = () => {
                   src={company.logo}
                   alt={company.name}
                   className="max-w-full max-h-full object-contain opacity-50 dark:opacity-90 hover:opacity-100 transition-all duration-300 filter grayscale dark:brightness-200 hover:grayscale-0 hover:brightness-100"
-                  onError={(e) = loading="lazy"> {
+                  loading="lazy"
+                  onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     const fallback = document.createElement('span');
@@ -138,7 +139,8 @@ export const ClientLogos: React.FC = () => {
                   src={company.logo}
                   alt={company.name}
                   className="max-w-full max-h-full object-contain opacity-50 dark:opacity-90 hover:opacity-100 transition-all duration-300 filter grayscale dark:brightness-200 hover:grayscale-0 hover:brightness-100"
-                  onError={(e) = loading="lazy"> {
+                  loading="lazy"
+                  onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     const fallback = document.createElement('span');
