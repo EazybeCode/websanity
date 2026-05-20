@@ -404,7 +404,7 @@ export function getHomepageJsonLd(locale: string): object[] {
           "item": "https://eazybe.com/"
         }]
       },
-      // WebPage Schema
+      // WebPage Schema (with SpeakableSpecification for voice assistants)
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
@@ -413,7 +413,11 @@ export function getHomepageJsonLd(locale: string): object[] {
         "description": "Automate sales with WhatsApp AI Agents by Eazybe. Qualify leads, detect cold deals, use AI chatbots, and sync conversations with HubSpot, Salesforce, Zoho and other CRMs.",
         "inLanguage": "en-US",
         "datePublished": "2026-02-03T08:00:00+00:00",
-        "dateModified": "2026-02-03T10:30:00+00:00"
+        "dateModified": "2026-02-03T10:30:00+00:00",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".hero h1", ".hero-sub"]
+        }
       }
     ],
     br: [
@@ -560,6 +564,21 @@ export function getHomepageJsonLd(locale: string): object[] {
             "closes": "23:59"
           }
         ]
+      },
+      // WebPage Schema (with SpeakableSpecification for voice assistants)
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "url": "https://eazybe.com/br",
+        "name": "Agente de IA para WhatsApp: Crie agentes sem código | Eazybe",
+        "description": "Implante o melhor agente de IA para WhatsApp. Capture leads, automatize tarefas e integre seu CRM com agentes no-code ativos 24/7.",
+        "inLanguage": "pt-BR",
+        "datePublished": "2026-02-03T08:00:00+00:00",
+        "dateModified": "2026-02-03T10:30:00+00:00",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".hero h1", ".hero-sub"]
+        }
       }
     ],
     es: [
@@ -693,6 +712,21 @@ export function getHomepageJsonLd(locale: string): object[] {
             "closes": "23:59"
           }
         ]
+      },
+      // WebPage Schema (with SpeakableSpecification for voice assistants)
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "url": "https://eazybe.com/es",
+        "name": "Agente de IA para WhatsApp: Crea agentes sin código | Eazybe",
+        "description": "Despliega el mejor agente de IA para WhatsApp. Captura leads, automatiza tareas e integra tu CRM con agentes no-code activos 24/7.",
+        "inLanguage": "es-ES",
+        "datePublished": "2026-02-03T08:00:00+00:00",
+        "dateModified": "2026-02-03T10:30:00+00:00",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".hero h1", ".hero-sub"]
+        }
       }
     ],
     tr: [
@@ -800,6 +834,21 @@ export function getHomepageJsonLd(locale: string): object[] {
           "query-input": "required name=search_term_string"
         }
       },
+      // WebPage Schema (with SpeakableSpecification for voice assistants)
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "url": "https://eazybe.com/tr",
+        "name": "WhatsApp için Yapay Zeka Ajanı: Kodsuz ajanlar oluşturun | Eazybe",
+        "description": "WhatsApp için en iyi yapay zeka ajanını dağıtın. Lead toplayın, görevleri otomatikleştirin ve 7/24 çalışan kodsuz ajanlarla CRM'inizi entegre edin.",
+        "inLanguage": "tr-TR",
+        "datePublished": "2026-02-03T08:00:00+00:00",
+        "dateModified": "2026-02-03T10:30:00+00:00",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".hero h1", ".hero-sub"]
+        }
+      }
     ],
   }
 
