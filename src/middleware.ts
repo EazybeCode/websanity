@@ -11,6 +11,18 @@ export default async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone()
   const pathname = url.pathname
 
+  // Reject Server Action probes. The codebase has zero `'use server'`
+  // directives, so any inbound `Next-Action` header is either a stale
+  // tab from before we removed an action, or a bot scanning for one.
+  // Letting these through floods the production log with
+  // `Failed to find Server Action "x"` errors from the framework's own
+  // dispatcher. Short-circuiting at the edge keeps logs clean and saves
+  // the rendering cost. If a Server Action is ever introduced, remove
+  // this guard.
+  if (request.headers.get('next-action')) {
+    return new NextResponse(null, { status: 404 })
+  }
+
   // Strip Google Analytics cross-domain linker params (?_gl=..., _ga=...) and
   // common ad-tracking junk so internal URLs stay clean. Only redirects when
   // the params are present, so it costs nothing on normal traffic.
