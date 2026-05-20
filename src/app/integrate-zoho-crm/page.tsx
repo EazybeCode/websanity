@@ -33,7 +33,7 @@ const sendMessageToChromeExtension = (
 
 const getRedirectURI = async (): Promise<string> => {
   try {
-    const resp = await fetch("https://eazybe.com/api/v1/whatzapp/zoho/scopes")
+    const resp = await fetch("https://cerberus.eazybe.com/prod/api/v1/zoho/scopes")
     const response = await resp.json()
     return `https://accounts.zoho.com/oauth/v2/auth?scope=${response.data.scopes}&client_id=${CLIENT_ID_RAJAT}&response_type=code&access_type=offline&redirect_uri=${REDIRECT_URI}`
   } catch {
@@ -44,7 +44,7 @@ const getRedirectURI = async (): Promise<string> => {
 const getBearerToken = async (tempCode: string, tempAccountServerUrl: string) => {
   if (!tempCode) return
   try {
-    const resp = await fetch("https://eazybe.com/api/v1/whatzapp/zoho/auth/token", {
+    const resp = await fetch("https://cerberus.eazybe.com/prod/api/v1/zoho/auth/token", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
