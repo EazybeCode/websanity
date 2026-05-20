@@ -209,7 +209,7 @@ export function AgentLeadQual() {
                 {messages.map((m) => (
                   <div key={m.key} className={`msg${m.who === 'bot' ? ' ai' : ''}`}>
                     {m.who === 'bot' ? BotAvatar : (
-                      <span className="sm-av sm-av-user" style={{ background: convo.color }}><img src={convo.photo} alt=""  loading="lazy"/></span>
+                      <span className="sm-av sm-av-user" style={{ background: convo.color }}><img src={convo.photo} alt={`WhatsApp lead ${convo.name} chatting with Eazybe AI agent`} loading="lazy"/></span>
                     )}
                     <div className="bub">
                       {m.typing ? (

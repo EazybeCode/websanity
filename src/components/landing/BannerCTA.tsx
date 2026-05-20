@@ -15,7 +15,7 @@ export function BannerCTA() {
 
           <div className="banner-cta-icon" aria-hidden="true">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/bea.png" alt="" className="banner-cta-img"  loading="lazy"/>
+            <img src="/bea.png" alt="Bea — Eazybe's WhatsApp AI agent assistant" className="banner-cta-img" loading="lazy"/>
           </div>
 
           <div className="banner-cta-copy">
