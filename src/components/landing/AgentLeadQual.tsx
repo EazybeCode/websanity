@@ -171,7 +171,7 @@ export function AgentLeadQual() {
                 </li>
               ))}
             </ul>
-            <a href="https://wa.me/1234567890" className="feat-link">{t('cta')}</a>
+            <a href="#bea-form" className="feat-link" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event('eazybe:open-bea-form')) }}>{t('cta')}</a>
           </div>
 
           <div className="visual reveal">

@@ -11,8 +11,12 @@ export function FinalCTA() {
         <p className="sub reveal">{t('subtitle')}</p>
         <div className="ctas reveal">
           <a
-            href="https://wa.me/1234567890?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works."
+            href="#bea-form"
             className="btn btn-primary btn-lg"
+            onClick={(e) => {
+              e.preventDefault()
+              window.dispatchEvent(new Event('eazybe:open-bea-form'))
+            }}
           >
             {t('talkToAgent')}
           </a>

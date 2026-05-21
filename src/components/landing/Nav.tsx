@@ -200,7 +200,7 @@ const RESOURCES = [
   {
     name: 'Contact Sales',
     desc: 'Book a personalized demo',
-    href: 'https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works.',
+    href: '#bea-form',
     bg: '#FCE7E8',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E42527" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
   },
@@ -411,7 +411,7 @@ export function Nav() {
               </span>
             </a>
             <div className="nav-dd-divider" />
-            <a href="https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works." target="_blank" rel="noopener noreferrer" className="nav-dd-item">
+            <a href="#bea-form" className="nav-dd-item" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event('eazybe:open-bea-form')) }}>
               <span className="nav-dd-icon" style={{ background: '#FCE7E8' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E42527" strokeWidth="2" strokeLinecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               </span>
@@ -546,7 +546,18 @@ export function Nav() {
                   const tr = itemLabel(r.name)
                   return (
                     <li key={r.name}>
-                      <a href={lh(r.href)} target={r.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" onClick={closeMenu}>
+                      <a
+                        href={r.href === '#bea-form' ? '#bea-form' : lh(r.href)}
+                        target={r.href.startsWith('http') ? '_blank' : undefined}
+                        rel="noopener noreferrer"
+                        onClick={(e) => {
+                          if (r.href === '#bea-form') {
+                            e.preventDefault()
+                            window.dispatchEvent(new Event('eazybe:open-bea-form'))
+                          }
+                          closeMenu()
+                        }}
+                      >
                         <span className="nav-drawer-item-icon" style={{ background: r.bg }} dangerouslySetInnerHTML={{ __html: r.icon }} />
                         <span className="nav-drawer-item-body">
                           <span className="nav-drawer-item-name">{tr.name}</span>

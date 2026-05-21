@@ -2,9 +2,6 @@
 
 import { useTranslations } from 'next-intl'
 
-const WA_LINK =
-  'https://wa.me/13024129610?text=Hi%20-%20I%27d%20like%20to%20see%20how%20Eazybe%20works.'
-
 const LEFT_AVATARS = [
   { src: 'https://randomuser.me/api/portraits/women/68.jpg', top: '8%',  left: '22%', size: 92, online: true },
   { src: 'https://randomuser.me/api/portraits/men/45.jpg',   top: '30%', left: '6%',  size: 76, online: false },
@@ -53,7 +50,14 @@ export function MidCTA() {
           </p>
 
           <div className="mid-cta-action">
-            <a href={WA_LINK} className="mid-cta-btn" target="_blank" rel="noopener noreferrer">
+            <a
+              href="#bea-form"
+              className="mid-cta-btn"
+              onClick={(e) => {
+                e.preventDefault()
+                window.dispatchEvent(new Event('eazybe:open-bea-form'))
+              }}
+            >
               <svg
                 width="18"
                 height="18"

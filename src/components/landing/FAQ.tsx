@@ -72,7 +72,13 @@ export function FAQ() {
         )}
 
         <p className="faq-footnote">
-          {t('footnote')} <a href="https://wa.me/13024129610?text=Hi%20-%20I%20have%20a%20question%20about%20Eazybe." target="_blank" rel="noopener noreferrer">{t('footnoteLink')}</a>
+          {t('footnote')} <a
+            href="#bea-form"
+            onClick={(e) => {
+              e.preventDefault()
+              window.dispatchEvent(new Event('eazybe:open-bea-form'))
+            }}
+          >{t('footnoteLink')}</a>
         </p>
       </div>
     </section>

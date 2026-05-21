@@ -10,10 +10,28 @@ export function BeaBot() {
   // hydration mismatch; the desktop auto-open happens client-side after mount.
   const [open, setOpen] = useState(false)
 
+  const [pulse, setPulse] = useState(false)
+
   useEffect(() => {
     if (typeof window === 'undefined') return
     const mq = window.matchMedia('(min-width: 1024px)')
     if (mq.matches) setOpen(true)
+  }, [])
+
+  // Other CTAs (FinalCTA, MidCTA, FAQ footnote, Nav "Contact Sales", mobile
+  // bottom nav) dispatch this event to open the lead form instead of jumping
+  // straight to WhatsApp — the form is the lead-capture gate.
+  useEffect(() => {
+    const handler = () => {
+      setOpen(true)
+      setPulse(true)
+      window.setTimeout(() => setPulse(false), 1200)
+      window.setTimeout(() => {
+        document.querySelector('.bea-corner-form')?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+      }, 80)
+    }
+    window.addEventListener('eazybe:open-bea-form', handler)
+    return () => window.removeEventListener('eazybe:open-bea-form', handler)
   }, [])
 
   return (
@@ -94,7 +112,7 @@ export function BeaBot() {
       </button>
 
       {open && (
-        <div className="bea-corner-form" role="dialog" aria-label="Talk to Bea">
+        <div className={`bea-corner-form${pulse ? ' is-pulsing' : ''}`} role="dialog" aria-label="Talk to Bea">
           <button
             type="button"
             className="bea-corner-close"
