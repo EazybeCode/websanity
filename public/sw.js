@@ -1,64 +1,29 @@
-const CACHE_NAME = 'eazybe-v1'
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/index.css',
-  '/logo.png',
-  '/favicon.ico'
-]
-
-// Install event - cache critical assets
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache)
-    })
-  )
+// Kill-switch service worker.
+//
+// The old static site registered a cache-first service worker that served
+// stale HTML/JS and broke the Next.js app (blank pages, chunk 404s). This
+// replacement unregisters itself, deletes all caches, and reloads open tabs
+// so any browser still holding the old worker is cleaned up on its next
+// service-worker update check.
+self.addEventListener('install', () => {
+  self.skipWaiting()
 })
 
-// Fetch event - serve from cache, fallback to network
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      // Cache hit - return response
-      if (response) {
-        return response
-      }
-
-      // Clone the request
-      const fetchRequest = event.request.clone()
-
-      return fetch(fetchRequest).then((response) => {
-        // Check if valid response
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response
-        }
-
-        // Clone the response
-        const responseToCache = response.clone()
-
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache)
-        })
-
-        return response
-      })
-    })
-  )
-})
-
-// Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  const cacheWhitelist = [CACHE_NAME]
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName)
-          }
-        })
-      )
-    })
+    (async () => {
+      try {
+        const keys = await caches.keys()
+        await Promise.all(keys.map((k) => caches.delete(k)))
+        await self.registration.unregister()
+        const clients = await self.clients.matchAll({ type: 'window' })
+        clients.forEach((client) => client.navigate(client.url))
+      } catch {
+        // best-effort cleanup; nothing to do if it fails
+      }
+    })()
   )
 })
+
+// Pass every request straight to the network — never serve from cache.
+self.addEventListener('fetch', () => {})
