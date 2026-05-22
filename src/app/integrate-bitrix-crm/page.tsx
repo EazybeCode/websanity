@@ -31,7 +31,7 @@ const sendMessageToChromeExtension = () => {
 
 const saveBitrixToken = async (accessToken: string, refreshToken: string, endpoint: string, expires: number) => {
   try {
-    const response = await fetch("https://eazybe.com/api/v1/whatzapp/bitrix/createauth", {
+    const response = await fetch("https://cerberus.eazybe.com/prod/api/v1/bitrix/createauth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -57,7 +57,7 @@ const saveBitrixToken = async (accessToken: string, refreshToken: string, endpoi
 const getBearerToken = async (authCode: string) => {
   try {
     const response = await fetch(
-      `https://eazybe.com/api/v1/whatzapp/bitrix/authentication?client_id=${CLIENT_ID}&code=${authCode}&redirect_uri=${REDIRECT_URI}&grant_type=authorization_code`
+      `https://cerberus.eazybe.com/prod/api/v1/bitrix/authentication?client_id=${CLIENT_ID}&code=${authCode}&redirect_uri=${REDIRECT_URI}&grant_type=authorization_code`
     )
     const res = await response.json()
     const { data } = res || {}
