@@ -580,7 +580,7 @@ function FeatureComparisonTable({ features, onTalkToAgent }: { features: Compari
 interface PricingPageClientProps { pricingData: PricingData | null }
 
 export function PricingPageClient({ pricingData }: PricingPageClientProps) {
-  const [isAnnual, setIsAnnual] = useState(false)
+  const [isAnnual, setIsAnnual] = useState(true)
   const { getDynamicPrice, convertUsdAmount, loading: pricingLoading } = useDynamicPricing()
 
   const hero = pricingData?.hero || {
