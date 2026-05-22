@@ -274,6 +274,7 @@ function PricingCard({
   dynamicAnnualPrice,
   dynamicMonthlyAddonPrice,
   dynamicAnnualAddonPrice,
+  convertUsdAmount,
   transitionDelay,
   onTalkToAgent,
 }: {
@@ -284,6 +285,7 @@ function PricingCard({
   dynamicAnnualPrice?: number
   dynamicMonthlyAddonPrice?: number | null
   dynamicAnnualAddonPrice?: number | null
+  convertUsdAmount: (amount: number) => number
   transitionDelay?: string
   onTalkToAgent: () => void
 }) {
@@ -299,9 +301,15 @@ function PricingCard({
   const addonNote = addonPrice != null
     ? `+ ${currencyLabel ? `${currencyLabel} ` : ''}${priceSymbol}${addonPrice}/extra seat · 1 seat included`
     : plan.priceNote
-  const isPopular = plan.popular
+  const isPopular = plan.planKey === 'basic-ai'
   const isEnterprise = plan.enterprise
   const showPrice = !isEnterprise && price > 0
+  const formatFeatureText = (text: string) => {
+    if (currency !== 'INR') return text
+    if (text === '$60 wallet credit/mo') return `INR ${convertUsdAmount(60)} wallet credit/mo`
+    if (text === '$90 wallet credit/mo') return `INR ${convertUsdAmount(90)} wallet credit/mo`
+    return text
+  }
 
   return (
     <div
@@ -447,7 +455,7 @@ function PricingCard({
                 fontWeight: feature.highlight ? 500 : 400,
               }}
             >
-              {feature.text}
+              {formatFeatureText(feature.text)}
             </span>
           </li>
         ))}
@@ -573,7 +581,7 @@ interface PricingPageClientProps { pricingData: PricingData | null }
 
 export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const [isAnnual, setIsAnnual] = useState(false)
-  const { getDynamicPrice, loading: pricingLoading } = useDynamicPricing()
+  const { getDynamicPrice, convertUsdAmount, loading: pricingLoading } = useDynamicPricing()
 
   const hero = pricingData?.hero || {
     badge: 'Pricing',
@@ -741,6 +749,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
                   dynamicAnnualPrice={dp.annualPrice}
                   dynamicMonthlyAddonPrice={dp.monthlyAddonPrice}
                   dynamicAnnualAddonPrice={dp.annualAddonPrice}
+                  convertUsdAmount={convertUsdAmount}
                   transitionDelay={`${idx * 0.06}s`}
                   onTalkToAgent={openAgentForm}
                 />

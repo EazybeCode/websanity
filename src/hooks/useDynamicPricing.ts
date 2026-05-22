@@ -229,8 +229,14 @@ export function useDynamicPricing() {
     }
   }
 
+  const convertUsdAmount = (amount: number): number => {
+    const factor = state.multiplicationFactor !== 1 ? state.multiplicationFactor : state.exchangeRate
+    return Math.round(amount * factor)
+  }
+
   return {
     ...state,
     getDynamicPrice,
+    convertUsdAmount,
   }
 }
