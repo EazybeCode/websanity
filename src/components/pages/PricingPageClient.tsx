@@ -40,7 +40,8 @@ interface ComparisonFeatureRow {
   feature: string
   starter: boolean | string
   scaler: boolean | string
-  omnis: boolean | string
+  basicAi: boolean | string
+  proAi: boolean | string
   category?: string
 }
 
@@ -142,35 +143,36 @@ const defaultPricingPlans: PricingPlan[] = [
 ]
 
 const defaultComparisonFeatures: ComparisonFeatureRow[] = [
-  { feature: 'Team Inbox', starter: true, scaler: true, omnis: true, category: 'Core Features' },
-  { feature: 'Unlimited labels & funnels', starter: true, scaler: true, omnis: true, category: 'Core Features' },
-  { feature: 'Unlimited quick replies', starter: true, scaler: true, omnis: true, category: 'Core Features' },
-  { feature: 'Unlimited scheduled messages', starter: true, scaler: true, omnis: true, category: 'Core Features' },
-  { feature: 'WhatsApp chat backup', starter: true, scaler: true, omnis: true, category: 'Core Features' },
-  { feature: 'WhatsApp group chat backup', starter: false, scaler: false, omnis: true, category: 'Core Features' },
-  { feature: 'Unlimited message sync', starter: 'Limited', scaler: 'Limited', omnis: true, category: 'Core Features' },
-  { feature: 'HubSpot', starter: true, scaler: true, omnis: true, category: 'CRM Integrations' },
-  { feature: 'Zoho CRM', starter: true, scaler: true, omnis: true, category: 'CRM Integrations' },
-  { feature: 'Bitrix24', starter: true, scaler: true, omnis: true, category: 'CRM Integrations' },
-  { feature: 'Google Sheets', starter: true, scaler: true, omnis: true, category: 'CRM Integrations' },
-  { feature: 'Salesforce', starter: false, scaler: true, omnis: true, category: 'CRM Integrations' },
-  { feature: 'Webhook integrations', starter: false, scaler: true, omnis: true, category: 'CRM Integrations' },
-  { feature: 'Dedicated APIs', starter: false, scaler: true, omnis: true, category: 'CRM Integrations' },
-  { feature: 'Sync to deals/tickets', starter: false, scaler: false, omnis: true, category: 'CRM Integrations' },
-  { feature: 'Send messages from CRM', starter: true, scaler: true, omnis: true, category: 'Intelligence & AI' },
-  { feature: 'CRM property-to-WhatsApp labeling', starter: false, scaler: true, omnis: true, category: 'Intelligence & AI' },
-  { feature: 'Custom objects in mini CRM view', starter: false, scaler: true, omnis: true, category: 'Intelligence & AI' },
-  { feature: 'AI unreplied chats agent', starter: false, scaler: true, omnis: true, category: 'Intelligence & AI' },
-  { feature: 'Revenue Inbox', starter: false, scaler: false, omnis: true, category: 'Intelligence & AI' },
-  { feature: 'RevOps Agent (AI)', starter: false, scaler: false, omnis: true, category: 'Intelligence & AI' },
-  { feature: 'WhatsApp Web Copilot', starter: false, scaler: false, omnis: true, category: 'Intelligence & AI' },
-  { feature: 'CRM workflow integration', starter: false, scaler: true, omnis: true, category: 'Automation' },
-  { feature: 'Bulk messaging', starter: true, scaler: true, omnis: true, category: 'Automation' },
-  { feature: 'Auto-create contacts', starter: true, scaler: true, omnis: true, category: 'Automation' },
-  { feature: 'Email support', starter: true, scaler: true, omnis: true, category: 'Support' },
-  { feature: 'Priority support', starter: false, scaler: true, omnis: true, category: 'Support' },
-  { feature: 'Dedicated account manager', starter: false, scaler: false, omnis: true, category: 'Support' },
-  { feature: 'WhatsApp group assistance', starter: false, scaler: false, omnis: true, category: 'Support' },
+  { feature: 'Team Inbox', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
+  { feature: 'Unlimited labels & funnels', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
+  { feature: 'Unlimited quick replies', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
+  { feature: 'Unlimited scheduled messages', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
+  { feature: 'WhatsApp chat backup', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
+  { feature: 'HubSpot', starter: true, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
+  { feature: 'Zoho CRM', starter: true, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
+  { feature: 'Bitrix24', starter: true, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
+  { feature: 'Google Sheets', starter: true, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
+  { feature: 'Salesforce', starter: false, scaler: true, basicAi: false, proAi: true, category: 'CRM Integrations' },
+  { feature: 'Webhook integrations', starter: false, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
+  { feature: 'Dedicated APIs', starter: false, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
+  { feature: 'Send messages from CRM', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
+  { feature: 'CRM property-to-WhatsApp labeling', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
+  { feature: 'Custom objects in mini CRM view', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
+  { feature: 'AI unreplied chats agent', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
+  { feature: 'Lead qualifying agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
+  { feature: 'Sales agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
+  { feature: 'Customer success agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
+  { feature: 'Customer agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
+  { feature: 'CTWA ads Agent', starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
+  { feature: 'Voice AI', starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
+  { feature: "BrainBe - your company's brain", starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
+  { feature: '100+ integrations', starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
+  { feature: 'Wallet credit/mo', starter: false, scaler: false, basicAi: '$60 wallet credit/mo', proAi: '$90 wallet credit/mo', category: 'AI Agents' },
+  { feature: 'CRM workflow integration', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Automation' },
+  { feature: 'Bulk messaging', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Automation' },
+  { feature: 'Auto-create contacts', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Automation' },
+  { feature: 'Email support', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Support' },
+  { feature: 'Priority support', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Support' },
 ]
 
 const defaultFaqItems: FAQItem[] = [
@@ -198,6 +200,17 @@ const iconToPlanKey = (icon: string): string => {
 const aiPricingPlans: PricingPlan[] = defaultPricingPlans.filter((plan) =>
   plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
 )
+
+const removedOmnisFeatureNames = new Set([
+  'WhatsApp group chat backup',
+  'Unlimited message sync',
+  'Sync to deals/tickets',
+  'Revenue Inbox',
+  'RevOps Agent (AI)',
+  'WhatsApp Web Copilot',
+  'Dedicated account manager',
+  'WhatsApp group assistance',
+])
 
 // ─── UI helpers ─────────────────────────────────────────────────────────────
 
@@ -466,7 +479,17 @@ function PricingCard({
 
 // ─── Comparison table (grouped by category) ─────────────────────────────────
 
-function FeatureComparisonTable({ features, onTalkToAgent }: { features: ComparisonFeatureRow[]; onTalkToAgent: () => void }) {
+function FeatureComparisonTable({
+  features,
+  currency,
+  convertUsdAmount,
+  onTalkToAgent,
+}: {
+  features: ComparisonFeatureRow[]
+  currency: string
+  convertUsdAmount: (amount: number) => number
+  onTalkToAgent: () => void
+}) {
   const headerAgentBtn = (popular?: boolean) => (
     <button
       type="button"
@@ -499,6 +522,8 @@ function FeatureComparisonTable({ features, onTalkToAgent }: { features: Compari
   const renderVal = (v: boolean | string) => {
     if (v === true) return <span style={{ display: 'inline-flex', width: 22, height: 22, borderRadius: '50%', background: 'color-mix(in oklab, var(--ok) 18%, var(--paper))', color: 'var(--ok)', alignItems: 'center', justifyContent: 'center' }}>{Check}</span>
     if (v === false) return <span style={{ display: 'inline-flex', width: 22, height: 22, borderRadius: '50%', background: 'var(--bg-2)', color: 'var(--ink-4)', alignItems: 'center', justifyContent: 'center' }}>{XSym}</span>
+    if (currency === 'INR' && v === '$60 wallet credit/mo') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>INR {convertUsdAmount(60)} wallet credit/mo</span>
+    if (currency === 'INR' && v === '$90 wallet credit/mo') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>INR {convertUsdAmount(90)} wallet credit/mo</span>
     return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>{v}</span>
   }
 
@@ -509,7 +534,7 @@ function FeatureComparisonTable({ features, onTalkToAgent }: { features: Compari
         border: '1px solid var(--line)',
         borderRadius: 18,
         overflow: 'hidden',
-        maxWidth: 1000,
+        maxWidth: 1240,
         margin: '0 auto',
         boxShadow: '0 1px 0 rgba(15,17,21,0.02), 0 8px 24px -16px rgba(15,17,21,0.08)',
       }}
@@ -517,7 +542,7 @@ function FeatureComparisonTable({ features, onTalkToAgent }: { features: Compari
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: '2fr 1fr 1fr 1fr',
+          gridTemplateColumns: '2fr repeat(4, minmax(120px, 1fr))',
           padding: 18,
           background: 'var(--bg-2)',
           borderBottom: '1px solid var(--line)',
@@ -531,8 +556,9 @@ function FeatureComparisonTable({ features, onTalkToAgent }: { features: Compari
       >
         <div style={{ alignSelf: 'center' }}>Feature</div>
         <div style={{ textAlign: 'center' }}>Starter{headerAgentBtn(false)}</div>
-        <div style={{ textAlign: 'center' }}>Scaler{headerAgentBtn(true)}</div>
-        <div style={{ textAlign: 'center', color: 'var(--accent-ink)' }}>Omnis{headerAgentBtn(false)}</div>
+        <div style={{ textAlign: 'center' }}>Scaler{headerAgentBtn(false)}</div>
+        <div style={{ textAlign: 'center', color: 'var(--accent-ink)' }}>Basic AI{headerAgentBtn(true)}</div>
+        <div style={{ textAlign: 'center' }}>Pro AI{headerAgentBtn(false)}</div>
       </div>
       {Object.entries(grouped).map(([category, rows]) => (
         <React.Fragment key={category}>
@@ -556,7 +582,7 @@ function FeatureComparisonTable({ features, onTalkToAgent }: { features: Compari
               key={i}
               style={{
                 display: 'grid',
-                gridTemplateColumns: '2fr 1fr 1fr 1fr',
+                gridTemplateColumns: '2fr repeat(4, minmax(120px, 1fr))',
                 padding: '14px 18px',
                 borderBottom: '1px solid var(--line)',
                 alignItems: 'center',
@@ -566,7 +592,8 @@ function FeatureComparisonTable({ features, onTalkToAgent }: { features: Compari
               <div style={{ color: 'var(--ink-2)' }}>{row.feature}</div>
               <div style={{ textAlign: 'center' }}>{renderVal(row.starter)}</div>
               <div style={{ textAlign: 'center' }}>{renderVal(row.scaler)}</div>
-              <div style={{ textAlign: 'center' }}>{renderVal(row.omnis)}</div>
+              <div style={{ textAlign: 'center' }}>{renderVal(row.basicAi)}</div>
+              <div style={{ textAlign: 'center' }}>{renderVal(row.proAi)}</div>
             </div>
           ))}
         </React.Fragment>
@@ -581,7 +608,7 @@ interface PricingPageClientProps { pricingData: PricingData | null }
 
 export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const [isAnnual, setIsAnnual] = useState(true)
-  const { getDynamicPrice, convertUsdAmount, loading: pricingLoading } = useDynamicPricing()
+  const { getDynamicPrice, convertUsdAmount, userCurrency, loading: pricingLoading } = useDynamicPricing()
 
   const hero = pricingData?.hero || {
     badge: 'Pricing',
@@ -630,13 +657,26 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     subtitle: 'See exactly what you get with each plan.',
   }
 
-  const comparisonFeatures: ComparisonFeatureRow[] = pricingData?.comparisonSection?.features?.map((f) => ({
-    feature: f.feature,
-    category: f.category,
-    starter: parseComparisonValue(f.starter),
-    scaler: parseComparisonValue(f.scaler),
-    omnis: parseComparisonValue(f.omnis),
-  })) || defaultComparisonFeatures
+  const aiComparisonFeatures: ComparisonFeatureRow[] = defaultComparisonFeatures.filter((row) => row.category === 'AI Agents')
+  const comparisonFeatures: ComparisonFeatureRow[] = pricingData?.comparisonSection?.features
+    ? [
+        ...pricingData.comparisonSection.features
+          .filter((f) => !removedOmnisFeatureNames.has(f.feature))
+          .map((f) => {
+            const scalerValue = parseComparisonValue(f.scaler)
+            const isSalesforce = f.feature === 'Salesforce'
+            return {
+              feature: f.feature,
+              category: f.category,
+              starter: parseComparisonValue(f.starter),
+              scaler: scalerValue,
+              basicAi: isSalesforce ? false : scalerValue,
+              proAi: scalerValue,
+            }
+          }),
+        ...aiComparisonFeatures,
+      ]
+    : defaultComparisonFeatures
 
   const faqSection = pricingData?.faqSection || {
     badge: 'FAQ',
@@ -787,7 +827,12 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
             <p>{comparisonSection.subtitle}</p>
           </div>
           <div className="reveal">
-            <FeatureComparisonTable features={comparisonFeatures} onTalkToAgent={openAgentForm} />
+            <FeatureComparisonTable
+              features={comparisonFeatures}
+              currency={userCurrency}
+              convertUsdAmount={convertUsdAmount}
+              onTalkToAgent={openAgentForm}
+            />
           </div>
         </div>
       </section>
