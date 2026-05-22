@@ -116,11 +116,13 @@ const defaultPricingPlans: PricingPlan[] = [
     priceNote: '1 seat included',
     features: [
       { text: 'Everything in Scaler', included: true },
-      { text: 'Lead qualifying agent', included: true },
-      { text: 'Sales agent', included: true },
-      { text: 'Customer success agent', included: true },
-      { text: 'Customer agent', included: true },
-      { text: '$60 wallet credit/mo', included: true },
+      { text: 'Build up to 3 AI agents', included: true },
+      { text: 'Lead qualifying agent', included: true, highlight: true },
+      { text: 'Sales agent', included: true, highlight: true },
+      { text: 'Customer success agent', included: true, highlight: true },
+      { text: 'AI Agents builder', included: true },
+      { text: 'BrainBe knowledge base included', included: true },
+      { text: '$45 monthly credits (rollover)', included: true },
     ],
     cta: { label: 'Talk to our AI Agent', url: '/contact?plan=basic-ai' },
   },
@@ -131,12 +133,11 @@ const defaultPricingPlans: PricingPlan[] = [
     priceNote: '1 seat included',
     features: [
       { text: 'Everything in Basic AI', included: true },
-      { text: 'CTWA ads Agent', included: true },
-      { text: 'Voice AI', included: true },
+      { text: 'Click-to-WhatsApp Ads agent', included: true, highlight: true },
+      { text: 'Voice AI calling', included: true, highlight: true },
       { text: "BrainBe — your company's brain", included: true },
-      { text: 'Salesforce integration', included: true },
       { text: '100+ integrations (Email, Teams, Slack...)', included: true },
-      { text: '$90 wallet credit/mo', included: true },
+      { text: '$90 monthly credits (rollover)', included: true },
     ],
     cta: { label: 'Talk to our AI Agent', url: '/contact?plan=pro-ai' },
   },
@@ -163,11 +164,11 @@ const defaultComparisonFeatures: ComparisonFeatureRow[] = [
   { feature: 'Sales agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
   { feature: 'Customer success agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
   { feature: 'Customer agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
-  { feature: 'CTWA ads Agent', starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
-  { feature: 'Voice AI', starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
+  { feature: 'Click-to-WhatsApp Ads agent', starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
+  { feature: 'Voice AI calling', starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
   { feature: "BrainBe - your company's brain", starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
   { feature: '100+ integrations', starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
-  { feature: 'Wallet credit/mo', starter: false, scaler: false, basicAi: '$60 wallet credit/mo', proAi: '$90 wallet credit/mo', category: 'AI Agents' },
+  { feature: 'Monthly credits (rollover)', starter: false, scaler: false, basicAi: '$45 monthly credits (rollover)', proAi: '$90 monthly credits (rollover)', category: 'AI Agents' },
   { feature: 'CRM workflow integration', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Automation' },
   { feature: 'Bulk messaging', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Automation' },
   { feature: 'Auto-create contacts', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Automation' },
@@ -317,10 +318,14 @@ function PricingCard({
   const isPopular = plan.planKey === 'basic-ai'
   const isEnterprise = plan.enterprise
   const showPrice = !isEnterprise && price > 0
+  // AI plans (Basic AI / Pro AI) are a flat monthly platform price, not per-seat.
+  const isAiPlan = plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
+  const priceUnit = isAiPlan ? '/month' : '/seat'
+  // Wallet credit: $45 (45% of Basic AI $99) and $90 (45% of Pro AI $199).
   const formatFeatureText = (text: string) => {
     if (currency !== 'INR') return text
-    if (text === '$60 wallet credit/mo') return `INR ${convertUsdAmount(60)} wallet credit/mo`
-    if (text === '$90 wallet credit/mo') return `INR ${convertUsdAmount(90)} wallet credit/mo`
+    if (text === '$45 monthly credits (rollover)') return `INR ${convertUsdAmount(45)} monthly credits (rollover)`
+    if (text === '$90 monthly credits (rollover)') return `INR ${convertUsdAmount(90)} monthly credits (rollover)`
     return text
   }
 
@@ -404,17 +409,12 @@ function PricingCard({
             >
               {price}
             </span>
-            <span style={{ fontSize: 14, color: 'var(--ink-4)' }}>/user/mo</span>
+            <span style={{ fontSize: 14, color: 'var(--ink-4)' }}>{priceUnit}</span>
           </div>
         )}
         {addonNote && (
           <p style={{ marginTop: 6, fontSize: 13, color: 'var(--ink-3)', fontWeight: 500, marginBottom: 0 }}>
             {addonNote}
-          </p>
-        )}
-        {isAnnual && showPrice && (
-          <p style={{ marginTop: 6, fontSize: 12, color: 'var(--ok)', fontWeight: 500, marginBottom: 0 }}>
-            Billed annually ({currencyLabel ? `${currencyLabel} ` : ''}{priceSymbol}{annualPrice * 12}/user/year)
           </p>
         )}
       </div>
@@ -522,8 +522,8 @@ function FeatureComparisonTable({
   const renderVal = (v: boolean | string) => {
     if (v === true) return <span style={{ display: 'inline-flex', width: 22, height: 22, borderRadius: '50%', background: 'color-mix(in oklab, var(--ok) 18%, var(--paper))', color: 'var(--ok)', alignItems: 'center', justifyContent: 'center' }}>{Check}</span>
     if (v === false) return <span style={{ display: 'inline-flex', width: 22, height: 22, borderRadius: '50%', background: 'var(--bg-2)', color: 'var(--ink-4)', alignItems: 'center', justifyContent: 'center' }}>{XSym}</span>
-    if (currency === 'INR' && v === '$60 wallet credit/mo') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>INR {convertUsdAmount(60)} wallet credit/mo</span>
-    if (currency === 'INR' && v === '$90 wallet credit/mo') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>INR {convertUsdAmount(90)} wallet credit/mo</span>
+    if (currency === 'INR' && v === '$45 monthly credits (rollover)') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>INR {convertUsdAmount(45)} monthly credits (rollover)</span>
+    if (currency === 'INR' && v === '$90 monthly credits (rollover)') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>INR {convertUsdAmount(90)} monthly credits (rollover)</span>
     return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>{v}</span>
   }
 
@@ -779,6 +779,15 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
           <div className="card-grid pricing-plan-grid">
             {pricingPlans.map((plan, idx) => {
               const dp = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
+              // AI plans (Basic AI / Pro AI) charge per extra seat at the Scaler
+              // per-seat rate — for both monthly and yearly billing.
+              const isAiPlan = plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
+              const scalerPlan = pricingPlans.find((p) => p.planKey === 'scaler')
+              const scalerDp = scalerPlan
+                ? getDynamicPrice('scaler', scalerPlan.monthlyPrice, scalerPlan.annualPrice)
+                : null
+              const monthlyAddon = isAiPlan && scalerDp ? scalerDp.monthlyPrice : dp.monthlyAddonPrice
+              const annualAddon = isAiPlan && scalerDp ? scalerDp.annualPrice : dp.annualAddonPrice
               return (
                 <PricingCard
                   key={plan.name}
@@ -787,8 +796,8 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
                   dynamicCurrency={dp.currency}
                   dynamicMonthlyPrice={dp.monthlyPrice}
                   dynamicAnnualPrice={dp.annualPrice}
-                  dynamicMonthlyAddonPrice={dp.monthlyAddonPrice}
-                  dynamicAnnualAddonPrice={dp.annualAddonPrice}
+                  dynamicMonthlyAddonPrice={monthlyAddon}
+                  dynamicAnnualAddonPrice={annualAddon}
                   convertUsdAmount={convertUsdAmount}
                   transitionDelay={`${idx * 0.06}s`}
                   onTalkToAgent={openAgentForm}
