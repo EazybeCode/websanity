@@ -8,6 +8,7 @@ interface Plan {
   id: number
   plan_name: string
   amount: number
+  addon_price?: number | null
   isMonthly: number
 }
 
@@ -44,12 +45,31 @@ export interface DynamicPrice {
   currency: string
   monthlyPrice: number
   annualPrice: number
+  monthlyAddonPrice?: number | null
+  annualAddonPrice?: number | null
 }
 
 const PLAN_ID_MAP: Record<string, { monthly: number; yearly: number } | null> = {
   starter: { monthly: 10, yearly: 11 },
   scaler: { monthly: 4, yearly: 5 },
+  'basic-ai': { monthly: 2, yearly: 6 },
+  'pro-ai': { monthly: 17, yearly: 29 },
   omnis: null,
+}
+
+// Temporary fallback until the public planList endpoint includes AI plans.
+// These IDs and prices come from the AI plans payload shared by the billing API.
+const AI_PLAN_FALLBACKS: Plan[] = [
+  { id: 2, plan_name: 'BASIC AI', amount: 99, addon_price: 39, isMonthly: 1 },
+  { id: 6, plan_name: 'BASIC AI YEARLY', amount: 79, addon_price: 29, isMonthly: 0 },
+  { id: 17, plan_name: 'PRO AI', amount: 199, addon_price: 39, isMonthly: 1 },
+  { id: 29, plan_name: 'PRO AI YEARLY', amount: 159, addon_price: 29, isMonthly: 0 },
+]
+
+const withAiPlanFallbacks = (plans: Plan[]): Plan[] => {
+  const existingIds = new Set(plans.map(plan => plan.id))
+  const missingAiPlans = AI_PLAN_FALLBACKS.filter(plan => !existingIds.has(plan.id))
+  return [...plans, ...missingAiPlans]
 }
 
 export function useDynamicPricing() {
@@ -120,9 +140,9 @@ export function useDynamicPricing() {
     try {
       const res = await fetch('https://eazybe.com/api/v1/whatzapp/planList')
       const response = await res.json()
-      return response?.plan_list || []
+      return withAiPlanFallbacks(response?.plan_list || [])
     } catch {
-      return []
+      return AI_PLAN_FALLBACKS
     }
   }
 
@@ -173,11 +193,39 @@ export function useDynamicPricing() {
     return Math.round(finalAmount)
   }
 
+  const findApiPlan = (planKey: string, isMonthly: boolean): Plan | undefined => {
+    const planKeyLower = planKey.toLowerCase()
+    const planIds = PLAN_ID_MAP[planKeyLower]
+
+    if (planIds) {
+      const targetId = isMonthly ? planIds.monthly : planIds.yearly
+      return state.planList.find(p => p.id === targetId)
+    }
+
+    return state.planList.find(
+      p => p.plan_name.toLowerCase() === planKeyLower && p.isMonthly === (isMonthly ? 1 : 0)
+    )
+  }
+
+  const calculateAddonPrice = (planKey: string, isMonthly: boolean): number | null => {
+    const apiPlan = findApiPlan(planKey, isMonthly)
+    if (apiPlan?.addon_price == null) return null
+
+    const planKeyLower = planKey.toLowerCase()
+    const isScalerPlan = planKeyLower === 'scaler' || planKeyLower === 'plus'
+    const factor = isScalerPlan ? state.multiplicationFactorPlus : state.multiplicationFactor
+    const finalAmount = factor !== 1 ? apiPlan.addon_price * factor : apiPlan.addon_price * state.exchangeRate
+
+    return Math.round(finalAmount)
+  }
+
   const getDynamicPrice = (planKey: string, monthlyPrice: number, annualPrice: number): DynamicPrice => {
     return {
       currency: state.userCurrency,
       monthlyPrice: calculatePrice(planKey, monthlyPrice, true),
       annualPrice: calculatePrice(planKey, annualPrice, false),
+      monthlyAddonPrice: calculateAddonPrice(planKey, true),
+      annualAddonPrice: calculateAddonPrice(planKey, false),
     }
   }
 

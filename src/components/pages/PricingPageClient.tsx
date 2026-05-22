@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Zap, Rocket, Building2, Shield, Clock, MessageSquare, X } from 'lucide-react'
+import { Zap, Rocket, Building2, Shield, Clock, MessageSquare, X, Sparkles } from 'lucide-react'
 import { useDynamicPricing } from '@/hooks/useDynamicPricing'
 import { LeadGenerationForm } from '@/components/lead/LeadGenerationForm'
 
@@ -21,14 +21,15 @@ interface PricingFeature {
 
 interface PricingPlan {
   name: string
-  planKey: 'starter' | 'scaler' | 'omnis'
+  planKey: string
   description: string
   monthlyPrice: number
   annualPrice: number
   currency: string
-  icon: 'starter' | 'growth' | 'enterprise'
+  icon: 'starter' | 'growth' | 'enterprise' | 'sparkles'
   popular?: boolean
   enterprise?: boolean
+  priceNote?: string
   features: PricingFeature[]
   cta: { label: string; url: string }
 }
@@ -108,20 +109,35 @@ const defaultPricingPlans: PricingPlan[] = [
     cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
   },
   {
-    name: 'Omnis', planKey: 'omnis',
-    description: 'Full-stack revenue operations with AI agents and complete WhatsApp intelligence.',
-    monthlyPrice: 0, annualPrice: 0, currency: '$', icon: 'enterprise', enterprise: true,
+    name: 'Basic AI', planKey: 'basic-ai',
+    description: 'Get started with AI agents on top of your full Scaler stack.',
+    monthlyPrice: 0, annualPrice: 0, currency: 'USD', icon: 'sparkles',
+    priceNote: '1 seat included',
     features: [
       { text: 'Everything in Scaler', included: true },
-      { text: 'Revenue Inbox', included: true, highlight: true },
-      { text: 'RevOps Agent (AI)', included: true, highlight: true },
-      { text: 'WhatsApp Web Copilot', included: true, highlight: true },
-      { text: 'WhatsApp group chat backup', included: true },
-      { text: 'Unlimited message sync', included: true },
-      { text: 'Sync messages to deals/tickets', included: true },
-      { text: 'Dedicated account manager', included: true },
+      { text: 'Lead qualifying agent', included: true },
+      { text: 'Sales agent', included: true },
+      { text: 'Customer success agent', included: true },
+      { text: 'Customer agent', included: true },
+      { text: '$60 wallet credit/mo', included: true },
     ],
-    cta: { label: 'Contact Sales', url: '/contact?plan=omnis' },
+    cta: { label: 'Talk to our AI Agent', url: '/contact?plan=basic-ai' },
+  },
+  {
+    name: 'Pro AI', planKey: 'pro-ai',
+    description: 'Advanced agents, voice, ads automation and 100+ integrations.',
+    monthlyPrice: 0, annualPrice: 0, currency: 'USD', icon: 'growth', popular: true,
+    priceNote: '1 seat included',
+    features: [
+      { text: 'Everything in Basic AI', included: true },
+      { text: 'CTWA ads Agent', included: true },
+      { text: 'Voice AI', included: true },
+      { text: "BrainBe — your company's brain", included: true },
+      { text: 'Salesforce integration', included: true },
+      { text: '100+ integrations (Email, Teams, Slack...)', included: true },
+      { text: '$90 wallet credit/mo', included: true },
+    ],
+    cta: { label: 'Talk to our AI Agent', url: '/contact?plan=pro-ai' },
   },
 ]
 
@@ -166,18 +182,22 @@ const defaultFaqItems: FAQItem[] = [
   { question: 'What is your refund policy?', answer: 'No refunds — once payment is made it is non-refundable. We encourage using the free trial to evaluate first.' },
 ]
 
-const planIconMap = { starter: Zap, growth: Rocket, enterprise: Building2 }
+const planIconMap = { starter: Zap, growth: Rocket, enterprise: Building2, sparkles: Sparkles }
 
 const parseComparisonValue = (value: string): boolean | string => {
   if (value === 'true') return true
   if (value === 'false') return false
   return value
 }
-const iconToPlanKey = (icon: string): 'starter' | 'scaler' | 'omnis' => {
+const iconToPlanKey = (icon: string): string => {
   if (icon === 'starter') return 'starter'
   if (icon === 'growth') return 'scaler'
   return 'omnis'
 }
+
+const aiPricingPlans: PricingPlan[] = defaultPricingPlans.filter((plan) =>
+  plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
+)
 
 // ─── UI helpers ─────────────────────────────────────────────────────────────
 
@@ -247,23 +267,41 @@ function PricingToggle({
 // ─── Pricing card ───────────────────────────────────────────────────────────
 
 function PricingCard({
-  plan, isAnnual, dynamicCurrency, dynamicMonthlyPrice, dynamicAnnualPrice, transitionDelay, onTalkToAgent,
+  plan,
+  isAnnual,
+  dynamicCurrency,
+  dynamicMonthlyPrice,
+  dynamicAnnualPrice,
+  dynamicMonthlyAddonPrice,
+  dynamicAnnualAddonPrice,
+  transitionDelay,
+  onTalkToAgent,
 }: {
   plan: PricingPlan
   isAnnual: boolean
   dynamicCurrency?: string
   dynamicMonthlyPrice?: number
   dynamicAnnualPrice?: number
+  dynamicMonthlyAddonPrice?: number | null
+  dynamicAnnualAddonPrice?: number | null
   transitionDelay?: string
   onTalkToAgent: () => void
 }) {
   const Icon = planIconMap[plan.icon]
   const currency = dynamicCurrency || plan.currency
+  const isCurrencyCode = /^[A-Z]{3}$/.test(currency)
+  const currencyLabel = isCurrencyCode ? currency : ''
+  const priceSymbol = isCurrencyCode ? (currency === 'USD' ? '$' : '') : currency
   const monthlyPrice = dynamicMonthlyPrice ?? plan.monthlyPrice
   const annualPrice = dynamicAnnualPrice ?? plan.annualPrice
   const price = isAnnual ? annualPrice : monthlyPrice
+  const addonPrice = isAnnual ? dynamicAnnualAddonPrice : dynamicMonthlyAddonPrice
+  const addonNote = addonPrice != null
+    ? `+ ${currencyLabel ? `${currencyLabel} ` : ''}${priceSymbol}${addonPrice}/extra seat · 1 seat included`
+    : plan.priceNote
   const isPopular = plan.popular
   const isEnterprise = plan.enterprise
+  const showPrice = !isEnterprise && price > 0
 
   return (
     <div
@@ -316,7 +354,7 @@ function PricingCard({
       <p style={{ marginBottom: 22, fontSize: 13 }}>{plan.description}</p>
 
       <div style={{ marginBottom: 22 }}>
-        {isEnterprise ? (
+        {isEnterprise || !showPrice ? (
           <div
             style={{
               fontFamily: 'var(--f-display)',
@@ -327,11 +365,12 @@ function PricingCard({
               lineHeight: 1,
             }}
           >
-            Custom
+            {isEnterprise ? 'Custom' : 'Contact us'}
           </div>
         ) : (
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-            <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{currency}</span>
+            {currencyLabel && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{currencyLabel}</span>}
+            {priceSymbol && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{priceSymbol}</span>}
             <span
               style={{
                 fontFamily: 'var(--f-display)',
@@ -347,9 +386,14 @@ function PricingCard({
             <span style={{ fontSize: 14, color: 'var(--ink-4)' }}>/user/mo</span>
           </div>
         )}
-        {isAnnual && !isEnterprise && (
+        {addonNote && (
+          <p style={{ marginTop: 6, fontSize: 13, color: 'var(--ink-3)', fontWeight: 500, marginBottom: 0 }}>
+            {addonNote}
+          </p>
+        )}
+        {isAnnual && showPrice && (
           <p style={{ marginTop: 6, fontSize: 12, color: 'var(--ok)', fontWeight: 500, marginBottom: 0 }}>
-            Billed annually ({currency}{annualPrice * 12}/user/year)
+            Billed annually ({currencyLabel ? `${currencyLabel} ` : ''}{priceSymbol}{annualPrice * 12}/user/year)
           </p>
         )}
       </div>
@@ -528,7 +572,7 @@ function FeatureComparisonTable({ features, onTalkToAgent }: { features: Compari
 interface PricingPageClientProps { pricingData: PricingData | null }
 
 export function PricingPageClient({ pricingData }: PricingPageClientProps) {
-  const [isAnnual, setIsAnnual] = useState(true)
+  const [isAnnual, setIsAnnual] = useState(false)
   const { getDynamicPrice, loading: pricingLoading } = useDynamicPricing()
 
   const hero = pricingData?.hero || {
@@ -541,7 +585,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     saveBadgeText: 'SAVE 20%',
   }
 
-  const pricingPlans: PricingPlan[] = pricingData?.plans?.map((plan) => ({
+  const basePricingPlans: PricingPlan[] = pricingData?.plans?.map((plan) => ({
     name: plan.name,
     planKey: iconToPlanKey(plan.icon),
     description: plan.description,
@@ -554,6 +598,16 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     features: plan.features.map((f) => ({ text: f.text, included: f.included, highlight: f.highlight })),
     cta: plan.cta,
   })) || defaultPricingPlans
+
+  const pricingPlans: PricingPlan[] = [
+    ...basePricingPlans.filter((plan) =>
+      plan.planKey !== 'omnis' &&
+      plan.planKey !== 'basic-ai' &&
+      plan.planKey !== 'pro-ai' &&
+      plan.name.toLowerCase() !== 'omnis'
+    ),
+    ...aiPricingPlans,
+  ]
 
   const trustSignals = [
     { Icon: Shield, text: 'GDPR Compliant & Encrypted' },
@@ -674,7 +728,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       {/* Plans */}
       <section className="section" style={{ paddingTop: 30 }} id="pricing-plans">
         <div className="container">
-          <div className="card-grid cols-3">
+          <div className="card-grid pricing-plan-grid">
             {pricingPlans.map((plan, idx) => {
               const dp = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
               return (
@@ -685,6 +739,8 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
                   dynamicCurrency={dp.currency}
                   dynamicMonthlyPrice={dp.monthlyPrice}
                   dynamicAnnualPrice={dp.annualPrice}
+                  dynamicMonthlyAddonPrice={dp.monthlyAddonPrice}
+                  dynamicAnnualAddonPrice={dp.annualAddonPrice}
                   transitionDelay={`${idx * 0.06}s`}
                   onTalkToAgent={openAgentForm}
                 />
