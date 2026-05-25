@@ -2,8 +2,6 @@ import './landing-v3.css'
 import { Nav } from './Nav'
 import { Hero } from './Hero'
 import { LogoBar } from './LogoBar'
-import { Problem } from './Problem'
-import { ContextEngine } from './ContextEngine'
 import { AgentsHeader } from './AgentsHeader'
 import { AgentSync } from './AgentSync'
 import { AgentLeadQual } from './AgentLeadQual'
@@ -31,8 +29,6 @@ export function LandingPage() {
       <Nav />
       <Hero />
       <LogoBar />
-      <Problem />
-      <ContextEngine />
       <AgentsHeader />
       <AgentSync />
       <AgentLeadQual />

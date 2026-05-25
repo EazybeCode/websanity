@@ -2396,9 +2396,9 @@
   "landingV3": {
     "hero": {
       "tag": "COMPATIBLE WITH HUBSPOT, SALESFORCE, ZOHO & MORE",
-      "headline": "<em>WhatsApp AI Agents</em> For Sales & Support Teams",
+      "headline": "Sell More On <em>WhatsApp</em>. Spend Less On Ads. Sync Everything To Your CRM",
       "headlineEm": "",
-      "subtitle": "Deploy no-code WhatsApp AI Agents that qualify leads in 60 seconds, sync every chat to your CRM, and reply exactly like your best closer.",
+      "subtitle": "Our AI agents qualify every lead, save it to your CRM, and learn who actually buys — then teach your ads to find more buyers and skip the rest.",
       "subtitleNote": "Works with every WhatsApp number — Personal, Business, and API",
       "promptLabel": "Describe what your AI agent should do",
       "promptHint": "Press <kbd>Enter</kbd> to build · Free forever plan",
@@ -2533,20 +2533,20 @@
     },
     "agentLeadQual": {
       "tag": "Agent 02 · Lead Qualification · TRY IT LIVE",
-      "headline": "Your Best Rep's Instincts,",
-      "headlineEm": "Running 24/7",
-      "lede": "A lead messages at 11 PM. This agent responds instantly, using qualification patterns learned from your top closers. Asks the right questions. Scores intent. Routes hot prospects to the right rep.",
+      "headline": "Every Bit Of Ad Spend,",
+      "headlineEm": "Going To Real Buyers Only",
+      "lede": "You shouldn't pay the same for someone curious and someone ready to buy. This agent learns who's who, then points your ad budget at the people most likely to purchase — so your costs keep coming down.",
       "features": [
-        "Qualifies using your criteria (BANT, MEDDIC, or custom)",
-        "Multilingual, English, Portuguese, Spanish, and more",
-        "Reads CRM before every conversation",
-        "WhatsApp-native button flows"
+        "Scores intent on every message (BANT, MEDDIC, or custom)",
+        "Skips retargeting on tire-kickers — reclaims ad budget",
+        "Routes high-intent leads to your top closer instantly",
+        "Reads CRM before every reply · multilingual"
       ],
       "cta": "Chat with the Agent on WhatsApp →",
       "chatTitle": "Lead Qualification Agent",
       "live": "LIVE ·",
       "chattingWith": "chatting with {name}",
-      "training": "Continuously training on {count} conversations"
+      "training": "Real buyers scored across {count} conversations"
     },
     "agentRevenue": {
       "tag": "Agent 03 · Revenue Agent",

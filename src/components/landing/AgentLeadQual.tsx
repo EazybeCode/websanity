@@ -12,38 +12,36 @@ interface Convo {
   msgs: { who: 'user' | 'bot'; text: string }[]
 }
 
+// Each conversation is hardcoded in the lead's native language (the rest of
+// the page is i18n'd, but these chat bubbles stay constant — they're a demo
+// of the agent scoring intent in real time). Two are high-intent buyers
+// (HOT — routed + added to retargeting), two are curious tire-kickers
+// (COLD — skipped, ad-spend reclaimed). This mix makes the section's "every
+// bit of ad spend, going to real buyers only" claim demonstrable.
 const CONVOS: Convo[] = [
   { name: 'Sara P.', initials: 'SP', color: '#E4E8F1', lang: 'EN', photo: 'https://i.pravatar.cc/96?img=47', msgs: [
-    { who: 'user', text: 'Hi, I saw your ad. Interested in your product.' },
-    { who: 'bot',  text: "Great to hear! What's your company name and team size?" },
-    { who: 'user', text: 'TechCorp, about 50 sales reps.' },
-    { who: 'bot',  text: 'Perfect! Using HubSpot or Salesforce?' },
-    { who: 'user', text: 'HubSpot. Can we chat tomorrow at 3?' },
-    { who: 'bot',  text: 'Booked. Routing you to Priya, top closer for 50-rep teams.' },
+    { who: 'user', text: 'Saw your ad. Need this for our 50-rep team. Budget approved.' },
+    { who: 'bot',  text: 'Hot signal — budget + team fit confirmed.' },
+    { who: 'user', text: 'Need it live by end of month. Send the demo link.' },
+    { who: 'bot',  text: '✓ Score 94 · routed to AE · added to high-intent ad audience.' },
+  ]},
+  { name: 'Liam W.', initials: 'LW', color: '#F0EBF8', lang: 'EN', photo: 'https://i.pravatar.cc/96?img=68', msgs: [
+    { who: 'user', text: 'Just browsing. Curious how this works.' },
+    { who: 'bot',  text: 'Sure. What are you trying to solve, and how many people on your team?' },
+    { who: 'user', text: 'Solo founder, no team yet. Maybe in 6 months.' },
+    { who: 'bot',  text: '✗ Score 18 · not buying now · skipped retargeting · $42 ad budget reclaimed.' },
   ]},
   { name: 'Marco R.', initials: 'MR', color: '#D4D9E5', lang: 'ES', photo: 'https://i.pravatar.cc/96?img=15', msgs: [
-    { who: 'user', text: 'Hola, ¿pueden ayudar a un equipo de 20?' },
-    { who: 'bot',  text: '¡Sí! ¿Qué CRM usan actualmente?' },
-    { who: 'user', text: 'Pipedrive. Buscamos integración.' },
-    { who: 'bot',  text: 'Perfecto. ¿Presupuesto mensual aproximado?' },
-    { who: 'user', text: 'Unos $2K. ¿Tienen plan empresarial?' },
-    { who: 'bot',  text: 'Sí, te conecto con Luis ahora mismo.' },
+    { who: 'user', text: 'Equipo de 20 en Pipedrive. Presupuesto $3K/mes aprobado.' },
+    { who: 'bot',  text: 'Señales de compra claras. ¿Cuándo lo necesitas?' },
+    { who: 'user', text: 'Esta semana. Envíame la demo.' },
+    { who: 'bot',  text: '✓ Score 91 · ruteado a Luis · agregado a audiencia de alta intención.' },
   ]},
-  { name: 'Aisha K.', initials: 'AK', color: '#ECEFF7', lang: 'HI', photo: 'https://i.pravatar.cc/96?img=44', msgs: [
-    { who: 'user', text: 'Namaste, kya aap lead tracking karte hain?' },
-    { who: 'bot',  text: 'Haan! Aapki team ka size kya hai?' },
-    { who: 'user', text: '12 reps, mostly WhatsApp based.' },
-    { who: 'bot',  text: 'Perfect fit. Zoho ya HubSpot use karte ho?' },
-    { who: 'user', text: 'Zoho. Demo possible hai aaj?' },
-    { who: 'bot',  text: 'Done, Arjun aapko 5 min mein ping karega.' },
-  ]},
-  { name: 'João S.', initials: 'JS', color: '#D9DFEC', lang: 'PT', photo: 'https://i.pravatar.cc/96?img=12', msgs: [
-    { who: 'user', text: 'Oi, vocês atendem e-commerce?' },
-    { who: 'bot',  text: 'Sim! Qual plataforma você usa?' },
-    { who: 'user', text: 'Shopify + WhatsApp Business.' },
-    { who: 'bot',  text: 'Combinação perfeita. Quantos atendentes?' },
-    { who: 'user', text: '8 atendentes, 3 turnos.' },
-    { who: 'bot',  text: 'Ótimo, te envio a proposta em 2 min.' },
+  { name: 'Aanya R.', initials: 'AR', color: '#ECEFF7', lang: 'HI', photo: 'https://i.pravatar.cc/96?img=44', msgs: [
+    { who: 'user', text: 'College assignment ke liye research kar rahi hoon.' },
+    { who: 'bot',  text: 'No problem. Buy karne ka plan hai abhi?' },
+    { who: 'user', text: 'Nahi, sirf project ke liye.' },
+    { who: 'bot',  text: '✗ Score 9 · student research · retarget skipped · $38 ad budget saved.' },
   ]},
 ]
 

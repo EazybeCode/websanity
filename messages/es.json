@@ -2608,9 +2608,9 @@
   "landingV3": {
     "hero": {
       "tag": "COMPATIBLE CON HUBSPOT, SALESFORCE, ZOHO Y MÁS",
-      "headline": "<em>Agentes de IA en WhatsApp</em> para Equipos de Ventas y Soporte",
+      "headline": "Vende Más En <em>WhatsApp</em>. Gasta Menos En Anuncios. Sincroniza Todo Con Tu CRM",
       "headlineEm": "",
-      "subtitle": "Despliega agentes de IA en WhatsApp sin código que califican leads en 60 segundos, sincronizan cada conversación con tu CRM y responden exactamente como tu mejor closer.",
+      "subtitle": "Nuestros agentes de IA califican cada lead, lo guardan en tu CRM y aprenden quién realmente compra — luego enseñan a tus anuncios a encontrar más compradores y saltarse al resto.",
       "subtitleNote": "Funciona con cualquier número de WhatsApp — Personal, Business y API",
       "promptLabel": "Describe lo que tu agente de IA debe hacer",
       "promptHint": "Pulsa <kbd>Enter</kbd> para crearlo · Plan gratis para siempre",
@@ -2745,20 +2745,20 @@
     },
     "agentLeadQual": {
       "tag": "Agente 02 · Calificación de Leads · PRUÉBALO EN VIVO",
-      "headline": "El instinto de tu mejor rep,",
-      "headlineEm": "trabajando 24/7",
-      "lede": "Un lead escribe a las 23:00. Este agente responde al instante, usando patrones de calificación aprendidos de tus mejores closers. Hace las preguntas correctas. Puntúa la intención. Enruta a los prospectos calientes al rep adecuado.",
+      "headline": "Cada Parte De Tu Gasto En Anuncios,",
+      "headlineEm": "Solo Para Compradores Reales",
+      "lede": "No deberías pagar lo mismo por alguien curioso y alguien listo para comprar. Este agente aprende quién es quién y luego apunta tu presupuesto publicitario a las personas con más probabilidad de comprar — para que tus costos sigan bajando.",
       "features": [
-        "Califica con tu criterio (BANT, MEDDIC o personalizado)",
-        "Multilingüe: español, inglés, portugués y más",
-        "Lee el CRM antes de cada conversación",
-        "Flujos con botones nativos de WhatsApp"
+        "Puntúa la intención en cada mensaje (BANT, MEDDIC o personalizado)",
+        "Salta el retargeting a curiosos — recupera presupuesto publicitario",
+        "Enruta leads de alta intención a tu mejor closer al instante",
+        "Lee el CRM antes de cada respuesta · multilingüe"
       ],
       "cta": "Hablar con el Agente en WhatsApp →",
       "chatTitle": "Agente de Calificación de Leads",
       "live": "EN VIVO ·",
       "chattingWith": "hablando con {name}",
-      "training": "Entrenando continuamente con {count} conversaciones"
+      "training": "Compradores reales puntuados en {count} conversaciones"
     },
     "agentRevenue": {
       "tag": "Agente 03 · Ingresos",
