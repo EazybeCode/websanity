@@ -182,7 +182,17 @@ const FeaturedBlogCard: React.FC<{
         overflow: 'hidden',
       }}
     >
-      <div style={{ position: 'relative', minHeight: 280, overflow: 'hidden' }}>
+      <div
+        style={{
+          position: 'relative',
+          minHeight: 280,
+          overflow: 'hidden',
+          // Soft accent-tinted backdrop so when the image is shown in full
+          // (objectFit: contain) the letterbox area looks intentional, not
+          // empty. Mirrors the card background.
+          background: 'linear-gradient(135deg, rgba(91,75,174,0.06), rgba(127,214,176,0.06))',
+        }}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={post.featuredImage || '/logo.png'}
@@ -190,7 +200,7 @@ const FeaturedBlogCard: React.FC<{
           width={800}
           height={600}
           loading="eager"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
         <span
           style={{
