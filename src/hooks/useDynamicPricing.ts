@@ -138,7 +138,7 @@ export function useDynamicPricing() {
 
   const getPlansList = async (): Promise<Plan[]> => {
     try {
-      const res = await fetch('https://eazybe.com/api/v1/whatzapp/planList')
+      const res = await fetch('https://cerberus.eazybe.com/prod/api/v1/planList')
       const response = await res.json()
       return withAiPlanFallbacks(response?.plan_list || [])
     } catch {
@@ -149,7 +149,7 @@ export function useDynamicPricing() {
   const getLocalizedPlanAmount = async (currency: string): Promise<LocalizedCurrencyResponse | null> => {
     try {
       const res = await fetch(
-        `https://eazybe.com/api/v1/whatzapp/getLocalizedCurrency?user_currency=${currency}`,
+        `https://cerberus.eazybe.com/prod/api/v1/getLocalizedCurrency?user_currency=${currency}`,
         { method: 'POST', headers: { 'Content-Type': 'application/json' } }
       )
       return await res.json()
