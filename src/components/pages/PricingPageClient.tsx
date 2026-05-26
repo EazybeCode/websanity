@@ -323,9 +323,12 @@ function PricingCard({
   const priceUnit = isAiPlan ? '/month' : '/seat'
   // Wallet credit: $45 (45% of Basic AI $99) and $90 (45% of Pro AI $199).
   const formatFeatureText = (text: string) => {
-    if (currency !== 'INR') return text
-    if (text === '$45 monthly credits (rollover)') return `INR ${convertUsdAmount(45)} monthly credits (rollover)`
-    if (text === '$90 monthly credits (rollover)') return `INR ${convertUsdAmount(90)} monthly credits (rollover)`
+    // Localize wallet-credit amounts for any non-USD currency (INR, BRL, …) by
+    // multiplying the USD credit by the locale's factor (handled in convertUsdAmount).
+    const isLocalCurrency = isCurrencyCode && currency !== 'USD'
+    if (!isLocalCurrency) return text
+    if (text === '$45 monthly credits (rollover)') return `${currency} ${convertUsdAmount(45)} monthly credits (rollover)`
+    if (text === '$90 monthly credits (rollover)') return `${currency} ${convertUsdAmount(90)} monthly credits (rollover)`
     return text
   }
 
@@ -519,11 +522,13 @@ function FeatureComparisonTable({
     return acc
   }, {} as Record<string, ComparisonFeatureRow[]>)
 
+  // Localize wallet-credit amounts for any non-USD currency code (INR, BRL, …).
+  const isLocalCurrency = /^[A-Z]{3}$/.test(currency) && currency !== 'USD'
   const renderVal = (v: boolean | string) => {
     if (v === true) return <span style={{ display: 'inline-flex', width: 22, height: 22, borderRadius: '50%', background: 'color-mix(in oklab, var(--ok) 18%, var(--paper))', color: 'var(--ok)', alignItems: 'center', justifyContent: 'center' }}>{Check}</span>
     if (v === false) return <span style={{ display: 'inline-flex', width: 22, height: 22, borderRadius: '50%', background: 'var(--bg-2)', color: 'var(--ink-4)', alignItems: 'center', justifyContent: 'center' }}>{XSym}</span>
-    if (currency === 'INR' && v === '$45 monthly credits (rollover)') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>INR {convertUsdAmount(45)} monthly credits (rollover)</span>
-    if (currency === 'INR' && v === '$90 monthly credits (rollover)') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>INR {convertUsdAmount(90)} monthly credits (rollover)</span>
+    if (isLocalCurrency && v === '$45 monthly credits (rollover)') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>{currency} {convertUsdAmount(45)} monthly credits (rollover)</span>
+    if (isLocalCurrency && v === '$90 monthly credits (rollover)') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>{currency} {convertUsdAmount(90)} monthly credits (rollover)</span>
     return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>{v}</span>
   }
 
