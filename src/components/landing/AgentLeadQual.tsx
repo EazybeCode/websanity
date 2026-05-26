@@ -12,36 +12,36 @@ interface Convo {
   msgs: { who: 'user' | 'bot'; text: string }[]
 }
 
-// Each conversation is hardcoded in the lead's native language (the rest of
-// the page is i18n'd, but these chat bubbles stay constant — they're a demo
-// of the agent scoring intent in real time). Two are high-intent buyers
-// (HOT — routed + added to retargeting), two are curious tire-kickers
-// (COLD — skipped, ad-spend reclaimed). This mix makes the section's "every
-// bit of ad spend, going to real buyers only" claim demonstrable.
+// CTWA Agent demo — each conversation is hardcoded in the lead's native
+// language (the rest of the page is i18n'd, but these chat bubbles stay
+// constant because the demo is about WhatsApp's actual content). Every
+// conversation starts with a Click-to-WhatsApp ad click on Meta or Google,
+// and the bot's final reply explicitly closes the loop by flagging the
+// ad audience as buyer / not-buyer — that's the "CTWA Agent" promise.
 const CONVOS: Convo[] = [
   { name: 'Sara P.', initials: 'SP', color: '#E4E8F1', lang: 'EN', photo: 'https://i.pravatar.cc/96?img=47', msgs: [
-    { who: 'user', text: 'Saw your ad. Need this for our 50-rep team. Budget approved.' },
-    { who: 'bot',  text: 'Hot signal — budget + team fit confirmed.' },
-    { who: 'user', text: 'Need it live by end of month. Send the demo link.' },
-    { who: 'bot',  text: '✓ Score 94 · routed to AE · added to high-intent ad audience.' },
+    { who: 'user', text: 'Tapped your Meta ad. Need this for our 50-rep team — budget approved.' },
+    { who: 'bot',  text: 'Hot CTWA signal — team + budget confirmed.' },
+    { who: 'user', text: 'Need it live by end of month. Send the demo.' },
+    { who: 'bot',  text: '✓ Score 94 · routed to AE · Meta audience flagged: real buyer.' },
   ]},
   { name: 'Liam W.', initials: 'LW', color: '#F0EBF8', lang: 'EN', photo: 'https://i.pravatar.cc/96?img=68', msgs: [
-    { who: 'user', text: 'Just browsing. Curious how this works.' },
-    { who: 'bot',  text: 'Sure. What are you trying to solve, and how many people on your team?' },
+    { who: 'user', text: 'Clicked your Instagram ad — just exploring tools.' },
+    { who: 'bot',  text: 'Sure. What are you solving, and how big is your team?' },
     { who: 'user', text: 'Solo founder, no team yet. Maybe in 6 months.' },
-    { who: 'bot',  text: '✗ Score 18 · not buying now · skipped retargeting · $42 ad budget reclaimed.' },
+    { who: 'bot',  text: '✗ Score 18 · curious browser · Meta retarget skipped · $42 ad budget saved.' },
   ]},
   { name: 'Marco R.', initials: 'MR', color: '#D4D9E5', lang: 'ES', photo: 'https://i.pravatar.cc/96?img=15', msgs: [
-    { who: 'user', text: 'Equipo de 20 en Pipedrive. Presupuesto $3K/mes aprobado.' },
-    { who: 'bot',  text: 'Señales de compra claras. ¿Cuándo lo necesitas?' },
+    { who: 'user', text: 'Vi tu anuncio en Google. Equipo de 20, presupuesto $3K/mes aprobado.' },
+    { who: 'bot',  text: 'Señales de CTWA claras. ¿Cuándo arrancamos?' },
     { who: 'user', text: 'Esta semana. Envíame la demo.' },
-    { who: 'bot',  text: '✓ Score 91 · ruteado a Luis · agregado a audiencia de alta intención.' },
+    { who: 'bot',  text: '✓ Score 91 · ruteado a Luis · audiencia Google: comprador real.' },
   ]},
   { name: 'Aanya R.', initials: 'AR', color: '#ECEFF7', lang: 'HI', photo: 'https://i.pravatar.cc/96?img=44', msgs: [
-    { who: 'user', text: 'College assignment ke liye research kar rahi hoon.' },
+    { who: 'user', text: 'Insta ad pe click kiya — college project ke liye research.' },
     { who: 'bot',  text: 'No problem. Buy karne ka plan hai abhi?' },
-    { who: 'user', text: 'Nahi, sirf project ke liye.' },
-    { who: 'bot',  text: '✗ Score 9 · student research · retarget skipped · $38 ad budget saved.' },
+    { who: 'user', text: 'Nahi, sirf research ke liye.' },
+    { who: 'bot',  text: '✗ Score 9 · student research · Meta retarget skipped · $38 saved.' },
   ]},
 ]
 

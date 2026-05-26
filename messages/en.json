@@ -2532,7 +2532,7 @@
       "live": "Live"
     },
     "agentLeadQual": {
-      "tag": "Agent 02 · Lead Qualification · TRY IT LIVE",
+      "tag": "Agent 02 · CTWA Agent · TRY IT LIVE",
       "headline": "Every Bit Of Ad Spend,",
       "headlineEm": "Going To Real Buyers Only",
       "lede": "You shouldn't pay the same for someone curious and someone ready to buy. This agent learns who's who, then points your ad budget at the people most likely to purchase — so your costs keep coming down.",
@@ -2540,10 +2540,11 @@
         "Scores intent on every message (BANT, MEDDIC, or custom)",
         "Skips retargeting on tire-kickers — reclaims ad budget",
         "Routes high-intent leads to your top closer instantly",
-        "Reads CRM before every reply · multilingual"
+        "Reads CRM before every reply · multilingual",
+        "Works with every WhatsApp number — Personal, Business, and API"
       ],
       "cta": "Chat with the Agent on WhatsApp →",
-      "chatTitle": "Lead Qualification Agent",
+      "chatTitle": "CTWA Agent",
       "live": "LIVE ·",
       "chattingWith": "chatting with {name}",
       "training": "Real buyers scored across {count} conversations"

@@ -2744,7 +2744,7 @@
       "live": "En vivo"
     },
     "agentLeadQual": {
-      "tag": "Agente 02 · Calificación de Leads · PRUÉBALO EN VIVO",
+      "tag": "Agente 02 · Agente CTWA · PRUÉBALO EN VIVO",
       "headline": "Cada Parte De Tu Gasto En Anuncios,",
       "headlineEm": "Solo Para Compradores Reales",
       "lede": "No deberías pagar lo mismo por alguien curioso y alguien listo para comprar. Este agente aprende quién es quién y luego apunta tu presupuesto publicitario a las personas con más probabilidad de comprar — para que tus costos sigan bajando.",
@@ -2752,10 +2752,11 @@
         "Puntúa la intención en cada mensaje (BANT, MEDDIC o personalizado)",
         "Salta el retargeting a curiosos — recupera presupuesto publicitario",
         "Enruta leads de alta intención a tu mejor closer al instante",
-        "Lee el CRM antes de cada respuesta · multilingüe"
+        "Lee el CRM antes de cada respuesta · multilingüe",
+        "Funciona con cualquier número de WhatsApp — Personal, Business y API"
       ],
       "cta": "Hablar con el Agente en WhatsApp →",
-      "chatTitle": "Agente de Calificación de Leads",
+      "chatTitle": "Agente CTWA",
       "live": "EN VIVO ·",
       "chattingWith": "hablando con {name}",
       "training": "Compradores reales puntuados en {count} conversaciones"

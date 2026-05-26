@@ -2670,7 +2670,7 @@
       "live": "Canlı"
     },
     "agentLeadQual": {
-      "tag": "Agent 02 · Lead Qualification · CANLI DENE",
+      "tag": "Agent 02 · CTWA Agent · CANLI DENE",
       "headline": "Reklam Bütçenizin Her Kuruşu,",
       "headlineEm": "Sadece Gerçek Alıcılara",
       "lede": "Sadece meraklı biriyle satın almaya hazır biri için aynı parayı ödememelisiniz. Bu ajan kimin kim olduğunu öğrenir, sonra reklam bütçenizi satın alma olasılığı en yüksek kişilere yönlendirir — böylece maliyetleriniz düşmeye devam eder.",
@@ -2678,10 +2678,11 @@
         "Her mesajda niyet puanı verir (BANT, MEDDIC veya özel)",
         "Sadece meraklılar için yeniden hedeflemeyi atlar — reklam bütçesini geri kazandırır",
         "Yüksek niyetli lead'leri en iyi temsilcinize anında yönlendirir",
-        "Her yanıttan önce CRM'i okur · çok dilli"
+        "Her yanıttan önce CRM'i okur · çok dilli",
+        "Her WhatsApp numarasıyla çalışır — Kişisel, Business ve API"
       ],
       "cta": "WhatsApp'tan Agent'la Konuş →",
-      "chatTitle": "Lead Qualification Agent",
+      "chatTitle": "CTWA Agent",
       "live": "CANLI ·",
       "chattingWith": "{name} ile konuşuyor",
       "training": "{count} konuşmada gerçek alıcılar puanlandı"
