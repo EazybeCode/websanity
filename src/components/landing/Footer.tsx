@@ -79,7 +79,7 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
       { nameKey: 'itemAbout', href: '/about-us' },
       { nameKey: 'itemCareers', href: '#', badgeKey: 'itemHiring' },
       { nameKey: 'itemPartner', href: '/become-our-partner' },
-      { nameKey: 'itemContact', href: '/contact' },
+      { nameKey: 'itemContact', href: 'https://wa.me/+13322418095' },
     ],
   },
 ]
