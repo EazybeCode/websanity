@@ -13,6 +13,9 @@ export function AgentsHeader() {
           <p style={{ maxWidth: 720, width: '100%', textAlign: 'center', hyphens: 'auto' }}>
             {t('subtitle')}
           </p>
+          <p style={{ maxWidth: 720, width: '100%', textAlign: 'center', marginTop: 10, fontWeight: 500, color: 'var(--ink-2)' }}>
+            {t('subtitleNote')}
+          </p>
         </div>
       </div>
     </section>

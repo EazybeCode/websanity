@@ -2659,7 +2659,8 @@
       "headline": "Cinco",
       "headlineEm": "Agentes de IA en WhatsApp",
       "headlineRest": "para cada etapa de tu pipeline",
-      "subtitle": "Cada agente cubre una etapa distinta del funnel, del primer contacto a la renovación. Comparten el mismo motor de contexto: una oportunidad que entra por calificación nunca pierde su historial cuando avanza al cierre."
+      "subtitle": "Cada agente cubre una etapa distinta del funnel, del primer contacto a la renovación. Comparten el mismo motor de contexto: una oportunidad que entra por calificación nunca pierde su historial cuando avanza al cierre.",
+      "subtitleNote": "Funciona con cualquier número de WhatsApp — Personal, Business y API"
     },
     "contextEngine": {
       "tag": "EL MOTOR DE CONTEXTO DE EAZYBE",
@@ -2749,11 +2750,11 @@
       "headlineEm": "Solo Para Compradores Reales",
       "lede": "No deberías pagar lo mismo por alguien curioso y alguien listo para comprar. Este agente aprende quién es quién y luego apunta tu presupuesto publicitario a las personas con más probabilidad de comprar — para que tus costos sigan bajando.",
       "features": [
+        "Funciona con cualquier número de WhatsApp — Personal, Business y API",
         "Puntúa la intención en cada mensaje (BANT, MEDDIC o personalizado)",
         "Salta el retargeting a curiosos — recupera presupuesto publicitario",
         "Enruta leads de alta intención a tu mejor closer al instante",
-        "Lee el CRM antes de cada respuesta · multilingüe",
-        "Funciona con cualquier número de WhatsApp — Personal, Business y API"
+        "Lee el CRM antes de cada respuesta · multilingüe"
       ],
       "cta": "Hablar con el Agente en WhatsApp →",
       "chatTitle": "Agente CTWA",
