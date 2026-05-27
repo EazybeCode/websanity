@@ -2514,7 +2514,7 @@
       "stepsCtaBtn": "Meet the Agents"
     },
     "agentSync": {
-      "tag": "Agent 01 · CRM Sync · FREE · MOST POPULAR",
+      "tag": "Agent 01 · CRM Sync · MOST POPULAR",
       "headline": "Every WhatsApp conversation.",
       "headlineEm": "In your CRM.",
       "headlineEnd": "Automatically.",
@@ -2525,7 +2525,7 @@
         "Bi-directional, CRM updates flow back into WhatsApp",
         "Attachments, voice notes, media, all preserved"
       ],
-      "cta": "Deploy Free →",
+      "cta": "Deploy This Agent →",
       "paneInbox": "WhatsApp · Inbox",
       "paneCount": "5 chats",
       "savingPill": "saving to CRM",
