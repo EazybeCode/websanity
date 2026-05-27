@@ -397,6 +397,7 @@ const HowItWorksSection: React.FC<{ data: any }> = ({ data }) => {
 
 const FAQSection: React.FC<{ data: any }> = ({ data }) => {
   const [openIndices, setOpenIndices] = React.useState<Set<number>>(new Set([0]))
+  const [showMoreMobile, setShowMoreMobile] = React.useState(false)
   const toggle = (i: number) => {
     setOpenIndices((prev) => {
       const next = new Set(prev)
@@ -406,26 +407,54 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
     })
   }
   if (!data || !data.items) return null
+  const items = data.items as Array<{ question: string; answer: string }>
+  const half = Math.ceil(items.length / 2)
+  const columns = [items.slice(0, half), items.slice(half)]
   return (
-    <section className="section">
+    <section className="section" id="faq">
       <div className="container">
         <div className="sec-head centered reveal">
           {data.badge && <span className="sec-tag">{data.badge}</span>}
           {data.headline && <h2>{data.headline}</h2>}
         </div>
-        <div className="faq">
-          {data.items.map((item: any, idx: number) => (
-            <div key={idx} className={`faq-item reveal${openIndices.has(idx) ? ' open' : ''}`}>
-              <button className="faq-q" onClick={() => toggle(idx)}>
-                {item.question}
-                <span className="plus">
-                  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
-                </span>
-              </button>
-              <div className="faq-a">{item.answer}</div>
+        <div className={`faq-grid${showMoreMobile ? ' faq-show-more' : ''}`}>
+          {columns.map((column, colIdx) => (
+            <div key={colIdx} className={`faq-col${colIdx === 1 ? ' faq-col-rest' : ''}`}>
+              {column.map((item, i) => {
+                const idx = colIdx === 0 ? i : i + half
+                const isOpen = openIndices.has(idx)
+                return (
+                  <div key={idx} className={`faq-pill${isOpen ? ' open' : ''}`}>
+                    <button
+                      className="faq-pill-q"
+                      onClick={() => toggle(idx)}
+                      aria-expanded={isOpen}
+                    >
+                      <span>{item.question}</span>
+                      <span className="faq-pill-chev" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </span>
+                    </button>
+                    <div className="faq-pill-a">
+                      <div>{item.answer}</div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           ))}
         </div>
+        {!showMoreMobile && (
+          <button
+            type="button"
+            className="faq-mobile-more"
+            onClick={() => setShowMoreMobile(true)}
+          >
+            Read more
+          </button>
+        )}
       </div>
     </section>
   )

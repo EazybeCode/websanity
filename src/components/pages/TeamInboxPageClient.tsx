@@ -61,6 +61,7 @@ const FAQ_ITEMS = [
 export function TeamInboxPageClient() {
   const { openModal } = useTrialModal()
   const [openFaq, setOpenFaq] = useState<Set<number>>(new Set())
+  const [showMoreFaqMobile, setShowMoreFaqMobile] = useState(false)
   const toggleFaq = (i: number) => {
     setOpenFaq((prev) => {
       const next = new Set(prev)
@@ -289,19 +290,50 @@ export function TeamInboxPageClient() {
             <span className="sec-tag">FAQ</span>
             <h2>Team Inbox questions.</h2>
           </div>
-          <div className="faq">
-            {FAQ_ITEMS.map((item, i) => (
-              <div key={item.q} className={`faq-item reveal${openFaq.has(i) ? ' open' : ''}`}>
-                <button className="faq-q" onClick={() => toggleFaq(i)}>
-                  {item.q}
-                  <span className="plus">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-                  </span>
-                </button>
-                <div className="faq-a">{item.a}</div>
+          {(() => {
+            const half = Math.ceil(FAQ_ITEMS.length / 2)
+            const columns = [FAQ_ITEMS.slice(0, half), FAQ_ITEMS.slice(half)]
+            return (
+              <div className={`faq-grid${showMoreFaqMobile ? ' faq-show-more' : ''}`}>
+                {columns.map((column, colIdx) => (
+                  <div key={colIdx} className={`faq-col${colIdx === 1 ? ' faq-col-rest' : ''}`}>
+                    {column.map((item, i) => {
+                      const idx = colIdx === 0 ? i : i + half
+                      const isOpen = openFaq.has(idx)
+                      return (
+                        <div key={item.q} className={`faq-pill${isOpen ? ' open' : ''}`}>
+                          <button
+                            className="faq-pill-q"
+                            onClick={() => toggleFaq(idx)}
+                            aria-expanded={isOpen}
+                          >
+                            <span>{item.q}</span>
+                            <span className="faq-pill-chev" aria-hidden="true">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="6 9 12 15 18 9" />
+                              </svg>
+                            </span>
+                          </button>
+                          <div className="faq-pill-a">
+                            <div>{item.a}</div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            )
+          })()}
+          {!showMoreFaqMobile && (
+            <button
+              type="button"
+              className="faq-mobile-more"
+              onClick={() => setShowMoreFaqMobile(true)}
+            >
+              Read more
+            </button>
+          )}
         </div>
       </section>
 
