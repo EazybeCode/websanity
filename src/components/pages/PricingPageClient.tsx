@@ -320,7 +320,8 @@ function PricingCard({
   const showPrice = !isEnterprise && price > 0
   // AI plans (Basic AI / Pro AI) are a flat monthly platform price, not per-seat.
   const isAiPlan = plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
-  const priceUnit = isAiPlan ? '/month' : '/seat'
+  // AI plans: flat platform price ("/month"). Starter/Scaler: per-seat monthly.
+  const priceUnit = isAiPlan ? '/month' : '/seat/month'
   // Wallet credit: $45 (45% of Basic AI $99) and $90 (45% of Pro AI $199).
   const formatFeatureText = (text: string) => {
     // Localize wallet-credit amounts for any non-USD currency (INR, BRL, …) by
