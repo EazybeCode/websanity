@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useLocale } from 'next-intl'
 import { Zap, Rocket, Building2, Shield, Clock, MessageSquare, X, Sparkles } from 'lucide-react'
 import { useDynamicPricing } from '@/hooks/useDynamicPricing'
 import { LeadGenerationForm } from '@/components/lead/LeadGenerationForm'
@@ -179,11 +180,235 @@ const defaultComparisonFeatures: ComparisonFeatureRow[] = [
 const defaultFaqItems: FAQItem[] = [
   { question: 'Can I try Eazybe for free?', answer: 'Yes! We offer a 4-day free trial on Starter and Scaler plans. No credit card required.' },
   { question: 'How does per-user pricing work?', answer: 'You pay for each team member who actively uses Eazybe. A user is anyone who syncs their WhatsApp conversations to your CRM.' },
-  { question: 'Which CRMs do you integrate with?', answer: 'Starter integrates with HubSpot, Zoho CRM, Bitrix24, and Google Sheets. Scaler adds Salesforce and webhook integrations. Omnis includes dedicated APIs.' },
+  { question: 'Which CRMs do you integrate with?', answer: 'Starter integrates with HubSpot, Zoho CRM, Bitrix24, and Google Sheets. Scaler adds Salesforce and webhook integrations. AI plans add dedicated APIs.' },
   { question: 'Can I switch plans later?', answer: 'Absolutely! You can upgrade or downgrade at any time. Upgrades give immediate access; downgrades take effect at the next billing cycle.' },
   { question: 'Is my data secure?', answer: 'Yes. Bank-grade 256-bit encryption, GDPR compliant, Meta Business Partner verified, with regular security audits.' },
   { question: 'What is your refund policy?', answer: 'No refunds — once payment is made it is non-refundable. We encourage using the free trial to evaluate first.' },
 ]
+
+// ─── Localized fallbacks ────────────────────────────────────────────────────
+// When Sanity has no `pricingPage` doc for the active locale, the page renders
+// from these in-code fallbacks so non-English visitors don't get English copy.
+// Plan names + technical feature labels stay in English (brand/product nouns).
+
+type LocaleFallback = {
+  hero: { badge: string; headline: string; headlineHighlight: string; subheadline: string; billingToggleMonthly: string; billingToggleAnnual: string; saveBadgeText: string }
+  planDescriptions: { starter: string; scaler: string; basicAi: string; proAi: string }
+  ctas: { installFree: string; talkToAgent: string; bookDemo: string; readMore: string; noCreditCard: string }
+  comparisonSection: { badge: string; title: string; subtitle: string }
+  faqSection: { badge: string; title: string; subtitle: string; contactLinkText: string }
+  faqItems: FAQItem[]
+  finalCta: { headline: string; headlineEm: string; subtitle: string }
+  agentModal: { title: string; titleEm: string; subtitle: string }
+}
+
+const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
+  en: {
+    hero: {
+      badge: 'Pricing',
+      headline: 'Simple, transparent',
+      headlineHighlight: 'pricing.',
+      subheadline: 'Start free. Scale as you grow. No hidden fees, no surprises.',
+      billingToggleMonthly: 'Monthly',
+      billingToggleAnnual: 'Annual',
+      saveBadgeText: 'SAVE 20%',
+    },
+    planDescriptions: {
+      starter: 'Perfect for individuals and small teams getting started with WhatsApp CRM integration.',
+      scaler: 'For growing teams that need advanced integrations and AI-powered automation.',
+      basicAi: 'Get started with AI agents on top of your full Scaler stack.',
+      proAi: 'Advanced agents, voice, ads automation and 100+ integrations.',
+    },
+    ctas: {
+      installFree: 'Install for Free',
+      talkToAgent: 'Talk to our AI Agent',
+      bookDemo: 'Book a Demo',
+      readMore: 'Read more',
+      noCreditCard: 'No credit card required',
+    },
+    comparisonSection: {
+      badge: 'Compare Plans',
+      title: 'Feature-by-feature comparison',
+      subtitle: 'See exactly what you get with each plan.',
+    },
+    faqSection: {
+      badge: 'FAQ',
+      title: 'Frequently asked questions',
+      subtitle: "Can't find what you're looking for?",
+      contactLinkText: 'Contact our team',
+    },
+    faqItems: defaultFaqItems,
+    finalCta: {
+      headline: 'Ready to supercharge your',
+      headlineEm: 'WhatsApp sales?',
+      subtitle: 'Join thousands of teams using Eazybe to close more deals through WhatsApp.',
+    },
+    agentModal: {
+      title: 'Talk to our',
+      titleEm: 'AI Agent',
+      subtitle: "Drop your details — we'll build your WhatsApp agent in minutes.",
+    },
+  },
+  es: {
+    hero: {
+      badge: 'Precios',
+      headline: 'Precios simples,',
+      headlineHighlight: 'transparentes.',
+      subheadline: 'Empieza gratis. Escala a tu ritmo. Sin tarifas ocultas, sin sorpresas.',
+      billingToggleMonthly: 'Mensual',
+      billingToggleAnnual: 'Anual',
+      saveBadgeText: 'AHORRA 20%',
+    },
+    planDescriptions: {
+      starter: 'Perfecto para individuos y equipos pequeños que comienzan con la integración de WhatsApp CRM.',
+      scaler: 'Para equipos en crecimiento que necesitan integraciones avanzadas y automatización con IA.',
+      basicAi: 'Comienza con agentes de IA sobre tu paquete completo Scaler.',
+      proAi: 'Agentes avanzados, voz, automatización de anuncios y más de 100 integraciones.',
+    },
+    ctas: {
+      installFree: 'Instalar gratis',
+      talkToAgent: 'Habla con nuestro Agente de IA',
+      bookDemo: 'Reserva una demo',
+      readMore: 'Leer más',
+      noCreditCard: 'Sin tarjeta de crédito',
+    },
+    comparisonSection: {
+      badge: 'Comparar planes',
+      title: 'Comparación característica por característica',
+      subtitle: 'Ve exactamente lo que obtienes con cada plan.',
+    },
+    faqSection: {
+      badge: 'Preguntas frecuentes',
+      title: 'Preguntas frecuentes',
+      subtitle: '¿No encuentras lo que buscas?',
+      contactLinkText: 'Contacta a nuestro equipo',
+    },
+    faqItems: [
+      { question: '¿Puedo probar Eazybe gratis?', answer: '¡Sí! Ofrecemos una prueba gratis de 4 días en los planes Starter y Scaler. Sin tarjeta de crédito.' },
+      { question: '¿Cómo funciona el precio por usuario?', answer: 'Pagas por cada miembro del equipo que use Eazybe activamente. Un usuario es cualquier persona que sincroniza sus conversaciones de WhatsApp con tu CRM.' },
+      { question: '¿Con qué CRMs se integran?', answer: 'Starter se integra con HubSpot, Zoho CRM, Bitrix24 y Google Sheets. Scaler añade Salesforce e integraciones webhook. Los planes IA añaden APIs dedicadas.' },
+      { question: '¿Puedo cambiar de plan más adelante?', answer: '¡Por supuesto! Puedes subir o bajar de plan en cualquier momento. Las mejoras dan acceso inmediato; las bajadas surten efecto en el siguiente ciclo de facturación.' },
+      { question: '¿Mis datos están seguros?', answer: 'Sí. Cifrado de 256 bits de grado bancario, cumple GDPR, verificado como Meta Business Partner, con auditorías de seguridad regulares.' },
+      { question: '¿Cuál es vuestra política de reembolso?', answer: 'Sin reembolsos — una vez realizado el pago, no es reembolsable. Te recomendamos usar la prueba gratis para evaluar primero.' },
+    ],
+    finalCta: {
+      headline: '¿Listo para impulsar tus',
+      headlineEm: 'ventas en WhatsApp?',
+      subtitle: 'Únete a miles de equipos que usan Eazybe para cerrar más negocios en WhatsApp.',
+    },
+    agentModal: {
+      title: 'Habla con nuestro',
+      titleEm: 'Agente de IA',
+      subtitle: 'Déjanos tus datos — construiremos tu agente de WhatsApp en minutos.',
+    },
+  },
+  br: {
+    hero: {
+      badge: 'Preços',
+      headline: 'Preços simples,',
+      headlineHighlight: 'transparentes.',
+      subheadline: 'Comece grátis. Escale no seu ritmo. Sem taxas escondidas, sem surpresas.',
+      billingToggleMonthly: 'Mensal',
+      billingToggleAnnual: 'Anual',
+      saveBadgeText: 'ECONOMIZE 20%',
+    },
+    planDescriptions: {
+      starter: 'Perfeito para indivíduos e times pequenos começando com a integração WhatsApp CRM.',
+      scaler: 'Para times em crescimento que precisam de integrações avançadas e automação com IA.',
+      basicAi: 'Comece com agentes de IA sobre seu stack completo Scaler.',
+      proAi: 'Agentes avançados, voz, automação de anúncios e mais de 100 integrações.',
+    },
+    ctas: {
+      installFree: 'Instalar grátis',
+      talkToAgent: 'Fale com nosso Agente de IA',
+      bookDemo: 'Agende uma demo',
+      readMore: 'Ler mais',
+      noCreditCard: 'Sem cartão de crédito',
+    },
+    comparisonSection: {
+      badge: 'Compare planos',
+      title: 'Comparação detalhada de recursos',
+      subtitle: 'Veja exatamente o que você ganha com cada plano.',
+    },
+    faqSection: {
+      badge: 'Perguntas frequentes',
+      title: 'Perguntas frequentes',
+      subtitle: 'Não encontrou o que procura?',
+      contactLinkText: 'Fale com nossa equipe',
+    },
+    faqItems: [
+      { question: 'Posso testar o Eazybe gratuitamente?', answer: 'Sim! Oferecemos um teste grátis de 4 dias nos planos Starter e Scaler. Sem cartão de crédito.' },
+      { question: 'Como funciona o preço por usuário?', answer: 'Você paga por cada membro do time que usa o Eazybe ativamente. Um usuário é qualquer pessoa que sincroniza suas conversas do WhatsApp com seu CRM.' },
+      { question: 'Com quais CRMs vocês integram?', answer: 'Starter integra com HubSpot, Zoho CRM, Bitrix24 e Google Sheets. Scaler adiciona Salesforce e integrações webhook. Os planos AI adicionam APIs dedicadas.' },
+      { question: 'Posso trocar de plano depois?', answer: 'Claro! Você pode fazer upgrade ou downgrade a qualquer momento. Upgrades dão acesso imediato; downgrades entram em vigor no próximo ciclo de cobrança.' },
+      { question: 'Meus dados estão seguros?', answer: 'Sim. Criptografia de 256 bits de nível bancário, compatível com GDPR, verificado como Meta Business Partner, com auditorias de segurança regulares.' },
+      { question: 'Qual é a política de reembolso?', answer: 'Sem reembolsos — uma vez feito o pagamento, ele não é reembolsável. Recomendamos usar o teste grátis para avaliar primeiro.' },
+    ],
+    finalCta: {
+      headline: 'Pronto para turbinar suas',
+      headlineEm: 'vendas no WhatsApp?',
+      subtitle: 'Junte-se a milhares de times que usam o Eazybe para fechar mais negócios pelo WhatsApp.',
+    },
+    agentModal: {
+      title: 'Fale com nosso',
+      titleEm: 'Agente de IA',
+      subtitle: 'Deixe seus dados — vamos construir seu agente de WhatsApp em minutos.',
+    },
+  },
+  tr: {
+    hero: {
+      badge: 'Fiyatlandırma',
+      headline: 'Basit, şeffaf',
+      headlineHighlight: 'fiyatlandırma.',
+      subheadline: 'Ücretsiz başlayın. Büyüdükçe ölçeklendirin. Gizli ücret yok, sürpriz yok.',
+      billingToggleMonthly: 'Aylık',
+      billingToggleAnnual: 'Yıllık',
+      saveBadgeText: '%20 TASARRUF',
+    },
+    planDescriptions: {
+      starter: 'WhatsApp CRM entegrasyonuna yeni başlayan bireyler ve küçük ekipler için mükemmel.',
+      scaler: 'Gelişmiş entegrasyonlara ve yapay zeka destekli otomasyona ihtiyaç duyan büyüyen ekipler için.',
+      basicAi: 'Tam Scaler paketinizin üzerinde AI ajanlarıyla başlayın.',
+      proAi: 'Gelişmiş ajanlar, sesli arama, reklam otomasyonu ve 100+ entegrasyon.',
+    },
+    ctas: {
+      installFree: 'Ücretsiz Yükle',
+      talkToAgent: "AI Agent'ımızla konuşun",
+      bookDemo: 'Demo Ayırt',
+      readMore: 'Daha fazla',
+      noCreditCard: 'Kredi kartı gerekmez',
+    },
+    comparisonSection: {
+      badge: 'Planları Karşılaştır',
+      title: 'Özellik bazında karşılaştırma',
+      subtitle: 'Her planda tam olarak ne aldığınızı görün.',
+    },
+    faqSection: {
+      badge: 'SSS',
+      title: 'Sık sorulan sorular',
+      subtitle: 'Aradığınızı bulamadınız mı?',
+      contactLinkText: 'Ekibimizle iletişime geçin',
+    },
+    faqItems: [
+      { question: "Eazybe'yi ücretsiz deneyebilir miyim?", answer: 'Evet! Starter ve Scaler planlarında 4 günlük ücretsiz deneme sunuyoruz. Kredi kartı gerekmez.' },
+      { question: 'Kullanıcı başına fiyatlandırma nasıl işliyor?', answer: "Eazybe'yi aktif kullanan her ekip üyesi için ödeme yaparsınız. Kullanıcı, WhatsApp konuşmalarını CRM'inize senkronize eden herkesidir." },
+      { question: 'Hangi CRM\'lerle entegre oluyorsunuz?', answer: 'Starter, HubSpot, Zoho CRM, Bitrix24 ve Google Sheets ile entegre olur. Scaler, Salesforce ve webhook entegrasyonları ekler. AI planlar özel API\'ler ekler.' },
+      { question: 'Daha sonra plan değiştirebilir miyim?', answer: 'Kesinlikle! İstediğiniz zaman yükseltme veya düşürme yapabilirsiniz. Yükseltmeler anında erişim sağlar; düşürmeler bir sonraki fatura döneminde geçerli olur.' },
+      { question: 'Verilerim güvende mi?', answer: 'Evet. Banka seviyesinde 256-bit şifreleme, GDPR uyumlu, Meta Business Partner onaylı, düzenli güvenlik denetimleri.' },
+      { question: 'İade politikanız nedir?', answer: 'İade yok — ödeme yapıldıktan sonra iade edilemez. Önce ücretsiz denemeyi kullanmanızı öneririz.' },
+    ],
+    finalCta: {
+      headline: 'WhatsApp satışlarınızı',
+      headlineEm: 'hızlandırmaya hazır mısınız?',
+      subtitle: "WhatsApp üzerinden daha fazla anlaşma kapatmak için Eazybe'yi kullanan binlerce ekibe katılın.",
+    },
+    agentModal: {
+      title: 'AI',
+      titleEm: "Agent'ımızla konuşun",
+      subtitle: "Bilgilerinizi bırakın — WhatsApp agent'ınızı dakikalar içinde oluşturacağız.",
+    },
+  },
+}
 
 const planIconMap = { starter: Zap, growth: Rocket, enterprise: Building2, sparkles: Sparkles }
 
@@ -616,15 +841,31 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const [isAnnual, setIsAnnual] = useState(true)
   const { getDynamicPrice, convertUsdAmount, userCurrency, loading: pricingLoading } = useDynamicPricing()
 
-  const hero = pricingData?.hero || {
-    badge: 'Pricing',
-    headline: 'Simple, transparent',
-    headlineHighlight: 'pricing.',
-    subheadline: 'Start free. Scale as you grow. No hidden fees, no surprises.',
-    billingToggleMonthly: 'Monthly',
-    billingToggleAnnual: 'Annual',
-    saveBadgeText: 'SAVE 20%',
-  }
+  // Pick the locale-aware fallback. Sanity data takes priority if present;
+  // otherwise we use the in-code translations so non-English visitors don't
+  // see English copy. Falls back to English if Sanity returns nothing AND
+  // the active locale isn't in FALLBACK_BY_LOCALE.
+  const locale = useLocale()
+  const fallback = FALLBACK_BY_LOCALE[locale] || FALLBACK_BY_LOCALE.en
+
+  const hero = pricingData?.hero || fallback.hero
+
+  // Localized fallback plans — start from the English defaults (which carry
+  // canonical plan structure, features, prices, icons), then overlay the
+  // locale's description + CTA label so non-English visitors don't see
+  // English fallback prose.
+  const localizedDefaultPlans: PricingPlan[] = defaultPricingPlans.map((plan) => {
+    const localDesc =
+      plan.planKey === 'starter' ? fallback.planDescriptions.starter :
+      plan.planKey === 'scaler' ? fallback.planDescriptions.scaler :
+      plan.planKey === 'basic-ai' ? fallback.planDescriptions.basicAi :
+      plan.planKey === 'pro-ai' ? fallback.planDescriptions.proAi :
+      plan.description
+    const localCta = plan.cta.label === 'Install for Free' ? fallback.ctas.installFree
+      : plan.cta.label === 'Talk to our AI Agent' ? fallback.ctas.talkToAgent
+      : plan.cta.label
+    return { ...plan, description: localDesc, cta: { ...plan.cta, label: localCta } }
+  })
 
   const basePricingPlans: PricingPlan[] = pricingData?.plans?.map((plan) => ({
     name: plan.name,
@@ -638,7 +879,14 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     enterprise: plan.isEnterprise,
     features: plan.features.map((f) => ({ text: f.text, included: f.included, highlight: f.highlight })),
     cta: plan.cta,
-  })) || defaultPricingPlans
+  })) || localizedDefaultPlans
+
+  // AI plans always come from localizedDefaultPlans (Sanity doesn't manage
+  // the Basic AI / Pro AI rows yet). Filter from the locale-aware list so
+  // their descriptions + CTAs are in the active language.
+  const localizedAiPlans = localizedDefaultPlans.filter((plan) =>
+    plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
+  )
 
   const pricingPlans: PricingPlan[] = [
     ...basePricingPlans.filter((plan) =>
@@ -647,7 +895,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       plan.planKey !== 'pro-ai' &&
       plan.name.toLowerCase() !== 'omnis'
     ),
-    ...aiPricingPlans,
+    ...localizedAiPlans,
   ]
 
   const trustSignals = [
@@ -657,11 +905,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     { Icon: MessageSquare, text: 'No Credit Card Required' },
   ]
 
-  const comparisonSection = pricingData?.comparisonSection || {
-    badge: 'Compare Plans',
-    title: 'Feature-by-feature comparison',
-    subtitle: 'See exactly what you get with each plan.',
-  }
+  const comparisonSection = pricingData?.comparisonSection || fallback.comparisonSection
 
   const aiComparisonFeatures: ComparisonFeatureRow[] = defaultComparisonFeatures.filter((row) => row.category === 'AI Agents')
   const comparisonFeatures: ComparisonFeatureRow[] = pricingData?.comparisonSection?.features
@@ -684,13 +928,8 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       ]
     : defaultComparisonFeatures
 
-  const faqSection = pricingData?.faqSection || {
-    badge: 'FAQ',
-    title: 'Frequently asked questions',
-    subtitle: "Can't find what you're looking for?",
-    contactLinkText: 'Contact our team',
-  }
-  const faqItems: FAQItem[] = pricingData?.faqSection?.faqs?.map((f) => ({ question: f.question, answer: f.answer })) || defaultFaqItems
+  const faqSection = pricingData?.faqSection || fallback.faqSection
+  const faqItems: FAQItem[] = pricingData?.faqSection?.faqs?.map((f) => ({ question: f.question, answer: f.answer })) || fallback.faqItems
 
   const [openFaq, setOpenFaq] = useState<Set<number>>(new Set([0]))
   const [showMoreFaqMobile, setShowMoreFaqMobile] = useState(false)
@@ -724,8 +963,8 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               <X size={16} />
             </button>
             <div className="bea-form-head">
-              <h3>Talk to our <em>AI Agent</em></h3>
-              <p>Drop your details — we&apos;ll build your WhatsApp agent in minutes.</p>
+              <h3>{fallback.agentModal.title} <em>{fallback.agentModal.titleEm}</em></h3>
+              <p>{fallback.agentModal.subtitle}</p>
             </div>
             <LeadGenerationForm />
           </div>
@@ -907,7 +1146,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               className="faq-mobile-more"
               onClick={() => setShowMoreFaqMobile(true)}
             >
-              Read more
+              {fallback.ctas.readMore}
             </button>
           )}
         </div>
@@ -917,10 +1156,10 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       <section className="final-cta" data-tone="dark">
         <div className="container">
           <h2 className="reveal">
-            Ready to supercharge your<br />
-            <em>WhatsApp sales?</em>
+            {fallback.finalCta.headline}<br />
+            <em>{fallback.finalCta.headlineEm}</em>
           </h2>
-          <p className="sub reveal">Join thousands of teams using Eazybe to close more deals through WhatsApp.</p>
+          <p className="sub reveal">{fallback.finalCta.subtitle}</p>
           <div className="ctas reveal">
             <button
               type="button"
@@ -931,10 +1170,10 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.967-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488" />
               </svg>
-              Talk to our AI Agent
+              {fallback.ctas.talkToAgent}
             </button>
             <a href="https://calendly.com/d/cw67-pt3-y2m" className="btn btn-outline btn-lg">
-              Book a Demo
+              {fallback.ctas.bookDemo}
             </a>
           </div>
           <p
@@ -948,7 +1187,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               color: 'var(--ink-4)',
             }}
           >
-            No credit card required
+            {fallback.ctas.noCreditCard}
           </p>
         </div>
       </section>
