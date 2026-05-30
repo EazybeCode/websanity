@@ -41,9 +41,10 @@ export const TestimonialsColumn = (props: {
                     width={40}
                     height={40}
                     src={image}
-                    alt={name}
+                    alt={`${name}${role ? ', ' + role : ''} — Eazybe customer testimonial on WhatsApp AI Agent`}
                     className="h-10 w-10 rounded-full object-cover"
-                   loading="lazy"/>
+                    loading="lazy"
+                  />
                   <div className="flex flex-col">
                     <div className="font-medium tracking-tight leading-5 text-neutral-900">{name}</div>
                     <div className="text-sm leading-5 opacity-60 tracking-tight text-neutral-700">{role}</div>
