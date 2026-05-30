@@ -1,8 +1,33 @@
 # Eazybe
 
-> WhatsApp AI Agents for Sales Teams. Sync every WhatsApp conversation with your CRM automatically. Qualify leads with AI, detect deals going cold, and automate follow-ups — 24/7.
+> Know which WhatsApp conversations are turning into revenue. Eazybe connects WhatsApp, CRM, and ad sources so sales teams can see every lead, catch missed follow-ups, sync qualified conversations, and understand which campaigns create real pipeline.
 
-Eazybe is a Chrome extension and SaaS platform that integrates WhatsApp (personal, Business App, and Business API) with leading CRMs. Unlike competitors that force migration to API-only, Eazybe works with your existing WhatsApp setup — keeping chat history, workflows, and numbers intact. Trusted by 2,000+ sales teams worldwide.
+Eazybe is a Chrome extension and SaaS platform that integrates WhatsApp (personal, Business App, and Business API) with leading CRMs and ad platforms (Meta, Google). Unlike competitors that force migration to API-only, Eazybe works with your existing WhatsApp setup — keeping chat history, workflows, and numbers intact. Trusted by 2,000+ sales teams in 40+ countries.
+
+## What Makes Eazybe Different
+
+**Works with every WhatsApp number — Personal, Business, and API.** No migration, no number swap, no lost chat history. Eazybe is a Chrome extension that layers on top of WhatsApp Web your team already uses.
+
+**Closes the loop between WhatsApp conversations and ad spend.** When a Click-to-WhatsApp ad sends a lead into your inbox, Eazybe scores intent in real time, routes high-intent buyers to your top closer, skips retargeting on tire-kickers, and feeds the "real buyer vs. curious" signal back to Meta and Google so your ad budget compounds on people who actually buy.
+
+**Five purpose-built AI agents** — each owns a stage of the funnel, all share the same context engine so a deal that starts in qualification never loses its history when it moves to close.
+
+## The Five WhatsApp AI Agents
+
+### Agent 01 — CRM Sync Agent
+Auto-logs every WhatsApp chat to your CRM. Bi-directional sync — messages flow from WhatsApp to CRM, and CRM actions can trigger WhatsApp messages. Most popular agent; free to deploy on the Starter plan.
+
+### Agent 02 — CTWA Agent (Click-to-WhatsApp Ads)
+Scores intent on every CTWA-sourced lead and feeds the buyer/skip signal back to Meta and Google ad audiences. Real buyers get routed to top closers + added to high-intent retargeting. Curious leads are skipped — ad budget reclaimed. Cost per qualified lead keeps coming down.
+
+### Agent 03 — Revenue Agent
+Spots ghosted deals before they die. Surfaces at-risk pipeline by analyzing reply velocity, message gaps, and engagement signals. Flags deals stalling out so reps can intervene.
+
+### Agent 04 — Customer Success Agent
+Answers support 24/7 grounded in your knowledge base. Triages tickets, escalates the hard ones, summarizes conversation history for handovers.
+
+### Agent 05 — Agent Builder
+Build your own no-code WhatsApp AI agent for any use case — drag-and-drop flows, custom prompts, CRM-aware behavior. No engineering required.
 
 ## Core Platform Features
 
@@ -95,17 +120,30 @@ Generic webhook integration to connect WhatsApp data with any system. Send conve
 
 ## Differentiators
 
-### Works with Existing WhatsApp
-Other tools force migration to WhatsApp Business API only. Eazybe works with personal WhatsApp, WhatsApp Business App, AND WhatsApp Business API. Keep your existing setup, chat history, and phone numbers.
+### Works with Every WhatsApp Number
+Other tools force migration to WhatsApp Business API only. Eazybe works with personal WhatsApp, WhatsApp Business App, AND WhatsApp Business API — simultaneously. Keep your existing setup, chat history, and phone numbers.
 
-### Live in 30 Minutes
-Chrome extension install — no complex API setup, no phone number migration, no developer resources needed.
+### Closes the Ad-Spend Loop
+Eazybe is the only WhatsApp CRM that scores intent on Click-to-WhatsApp ad clicks and pushes the buyer/non-buyer signal back to Meta and Google. Your retargeting audiences sharpen automatically — ad budget goes to real buyers, not curious browsers.
+
+### Live in 10 Minutes
+Chrome extension install — no complex API setup, no phone number migration, no developer resources needed. Free forever plan available.
+
+### Built for Sales Teams That Speak Multiple Languages
+Multilingual AI agents handle conversations in English, Portuguese, Spanish, Turkish, Hindi, and more — same agent, your customers' native language.
 
 ### Data Security
 - Enterprise-grade security with SSL and 256-bit encryption
 - GDPR ready with fully compliant data processing
 - Meta Business Partner verified integration
 - Trusted by regulated industries: financial services, healthcare, insurance
+
+## Trust Signals
+- 2,000+ sales teams using Eazybe
+- 40+ countries
+- 4.6 average rating on HubSpot integration listing
+- 4.9/5 product rating
+- Meta Business Partner
 
 ## Company Information
 

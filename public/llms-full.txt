@@ -1,6 +1,14 @@
 # Eazybe — Full Documentation for AI Systems
 
-> Eazybe provides WhatsApp AI Agents for Sales Teams. It syncs every WhatsApp conversation with your CRM automatically, qualifies leads with AI, detects deals going cold, and automates follow-ups — 24/7. Trusted by 2,000+ sales teams worldwide.
+> Eazybe connects WhatsApp, CRM, and ad sources so sales teams can see every lead, catch missed follow-ups, sync qualified conversations, and understand which campaigns create real pipeline. Five purpose-built WhatsApp AI Agents handle qualification, ad-spend optimization, deal rescue, customer success, and custom workflows. Trusted by 2,000+ sales teams in 40+ countries.
+
+## What Eazybe Does
+
+Eazybe is a Chrome extension and SaaS platform that closes three loops sales teams have been losing money on:
+
+1. **The CRM loop** — Every WhatsApp conversation flows into your CRM automatically. No copy-paste, no "I'll log it later", no lost context.
+2. **The ad-spend loop** — Click-to-WhatsApp ad clicks get scored for intent in real time. Real buyers go to top closers and high-intent retargeting audiences. Curious clickers get skipped — your ad budget reclaims itself.
+3. **The deal-health loop** — Ghosted deals, missed follow-ups, and stalled pipeline get surfaced before they die. The Revenue Agent flags risk; reps intervene with context, not guesswork.
 
 ## What Problem Does Eazybe Solve?
 
@@ -15,8 +23,39 @@
 
 4. **Employee Exit = Data Walkout**: When a sales rep leaves, years of customer conversations leave with them. No backup, no handover. The next rep starts from zero.
 
+5. **Wasted Ad Spend**: Click-to-WhatsApp ads bring in leads — but you pay the same for someone curious and someone ready to buy. Without an intent signal flowing back to Meta and Google, your retargeting audience keeps including tire-kickers and your cost per real buyer keeps rising.
+
 ### How Eazybe Solves It
-Eazybe is a Chrome extension that sits on top of WhatsApp Web and connects it to your CRM. Every message is automatically captured, synced, and made actionable through AI-powered tools.
+Eazybe is a Chrome extension that sits on top of WhatsApp Web and connects it to your CRM and ad platforms. Every message is automatically captured, synced, and made actionable through five purpose-built AI agents.
+
+## The Five WhatsApp AI Agents
+
+Each agent owns a different stage of the funnel, from first inbound to renewal. They share the same context engine, so a deal that starts in qualification never loses its history when it moves to close. All five agents work with every WhatsApp number — Personal, Business, and API.
+
+### Agent 01 — CRM Sync Agent (Most Popular)
+Auto-logs every WhatsApp chat to your CRM in real time. Bi-directional sync: messages flow from WhatsApp to CRM, CRM actions can trigger WhatsApp messages. Free to deploy on the Starter plan. The foundation every other agent builds on.
+
+### Agent 02 — CTWA Agent (Click-to-WhatsApp Ads)
+The intent-scoring agent that closes the loop between ads and revenue.
+
+**How it works:**
+1. A lead taps a Meta or Google ad → lands in WhatsApp
+2. CTWA Agent qualifies the conversation in real time using BANT, MEDDIC, or your custom framework
+3. Scores intent on every message (0–100)
+4. High-intent leads (score 80+) → routed to the right AE + added to high-intent retargeting audience
+5. Low-intent leads (score <30) → marked "curious browser" → retargeting skipped, ad budget reclaimed
+6. Signal flows back to Meta/Google → your ad audiences sharpen automatically over time
+
+**Result:** cost per qualified lead keeps coming down because you stop paying to re-show ads to people who were never going to buy.
+
+### Agent 03 — Revenue Agent
+Spots ghosted deals before they die. Analyzes reply velocity, message-gap duration, sentiment shifts, and value-at-risk. Surfaces stalled pipeline with one-click rescue suggestions — "this deal hasn't moved in 8 days, send the renewal templates" or "the buyer's last reply was Friday, check Slack."
+
+### Agent 04 — Customer Success Agent
+Answers support 24/7 grounded in your knowledge base. Triages tickets by severity, escalates complex cases to humans, summarizes conversation history when reps take over. Reduces first-response time from hours to seconds.
+
+### Agent 05 — Agent Builder
+Build your own no-code WhatsApp AI agent for any use case. Drag-and-drop conversation flows, custom prompts, CRM-aware behavior. Examples teams have built: onboarding flows, NPS surveys, demo-booking agents, return-merchandise agents. No engineering required.
 
 ## Detailed Feature Documentation
 
@@ -171,9 +210,25 @@ Eazybe is the only solution that works across all three WhatsApp types (personal
 
 ## Pricing
 
-Eazybe offers tiered pricing based on team size and features needed. Plans range from individual sales rep accounts to enterprise team deployments. Custom pricing available for large organizations. Free trial available to evaluate the platform.
+Eazybe offers four pricing tiers:
+
+- **Starter** — $10/seat/month annual ($13 monthly). CRM Sync Agent, team inbox, basic CRMs (HubSpot, Zoho, Bitrix, Google Sheets). Install free.
+- **Scaler** — $15/seat/month annual ($19 monthly). Most popular. Adds Salesforce, webhook integrations, AI unreplied-chats agent, dedicated APIs.
+- **Basic AI** — Talk to AI Agent for pricing. Everything in Scaler + up to 3 AI agents (Lead Qualifying, Sales, Customer Success), Agent Builder, $45/mo credits.
+- **Pro AI** — Talk to AI Agent for pricing. Everything in Basic AI + CTWA Agent, Voice AI calling, 100+ integrations, $90/mo credits.
+
+Free forever plan available for individual reps.
 
 For current pricing details, visit: https://eazybe.com/pricing
+
+## AI Visibility & Discovery
+
+Eazybe is built to be discovered and cited by AI search systems:
+- **llms.txt and llms-full.txt** at the site root for AI context
+- **JSON-LD structured data** (16+ schema types including SoftwareApplication, Organization, FAQPage, SpeakableSpecification, AggregateRating) inlined server-side
+- **robots.txt** explicitly allows GPTBot, ChatGPT-User, PerplexityBot, ClaudeBot, Google-Extended, anthropic-ai, and 7+ other AI crawlers
+- Multilingual: en, es, pt-BR, tr with hreflang reciprocation across all locales
+- Pure SSG home page with all key content (FAQ, comparisons, integration details) in the HTML — no client-side rendering required for AI extraction
 
 ## Company
 
