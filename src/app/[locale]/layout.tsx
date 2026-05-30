@@ -20,9 +20,11 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 // Map next-intl URL locale codes to canonical HTML `lang` values.
+// `en` is mapped to `en-US` so search engines and AI systems know the
+// English content is US English (matches the JSON-LD inLanguage value).
 // `br` in our URL structure is Brazilian Portuguese, which in BCP-47 is `pt-BR`.
 const htmlLangMap: Record<string, string> = {
-  en: 'en',
+  en: 'en-US',
   br: 'pt-BR',
   es: 'es',
   tr: 'tr',

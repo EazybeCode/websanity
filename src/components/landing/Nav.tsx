@@ -5,11 +5,14 @@ import { useTranslations, useLocale } from 'next-intl'
 
 // Prefix internal href paths with the active locale (e.g. "/hubspot-..." → "/br/hubspot-...").
 // External URLs, hash links, and the root "/#" stay untouched.
+// Special case: root path "/" becomes "/<locale>" (no trailing slash) so the
+// logo link reads clean — `/br`, not `/br/`.
 function withLocale(href: string, locale: string): string {
   if (locale === 'en') return href
   if (!href || !href.startsWith('/')) return href
   // Skip purely-hash placeholders like "/#" and absolute URLs
   if (href === '/#' || href === '#') return href
+  if (href === '/') return `/${locale}`
   return `/${locale}${href}`
 }
 
@@ -268,7 +271,7 @@ export function Nav() {
   return (
     <>
     <nav className="nav">
-      <a href="/" className="nav-logo" aria-label={t('logoAria')} onClick={closeMenu}>
+      <a href={lh('/')} className="nav-logo" aria-label={t('logoAria')} onClick={closeMenu}>
         <img
           src="/logo.png"
           alt="Eazybe Logo"
@@ -444,7 +447,7 @@ export function Nav() {
         <div className="nav-drawer-backdrop" onClick={closeMenu} />
         <div className="nav-drawer-panel" role="dialog" aria-label="Main menu">
           <div className="nav-drawer-header">
-            <a href="/" className="nav-drawer-logo" onClick={closeMenu} aria-label={t('logoAria')}>
+            <a href={lh('/')} className="nav-drawer-logo" onClick={closeMenu} aria-label={t('logoAria')}>
               <img
                 src="/logo.png"
                 alt="Eazybe Logo"

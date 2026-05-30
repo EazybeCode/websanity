@@ -4,10 +4,12 @@ import { useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 
 // Prefix internal href paths with the active locale.
+// Special case: root path "/" becomes "/<locale>" (no trailing slash).
 function withLocale(href: string, locale: string): string {
   if (locale === 'en') return href
   if (!href || !href.startsWith('/')) return href
   if (href === '/#' || href === '#') return href
+  if (href === '/') return `/${locale}`
   return `/${locale}${href}`
 }
 
