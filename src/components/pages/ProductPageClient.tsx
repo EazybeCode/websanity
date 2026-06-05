@@ -141,7 +141,7 @@ const HeroSection: React.FC<{
             </span>
             <h1 className="reveal" style={{ textAlign: 'left', maxWidth: 'none', margin: '0 0 20px' }}>
               {t('integrations.hero.headlinePrefix')}{' '}
-              <em style={{ color: crm.color, fontStyle: 'italic' }}>{crm.name}</em>{' '}
+              <span style={{ color: crm.color }}>{crm.name}</span>{' '}
               {t('integrations.hero.headlineSuffix')}
             </h1>
             <p className="lede reveal" style={{ textAlign: 'left', margin: '0 0 28px' }}>
@@ -645,7 +645,7 @@ const PropertiesSection: React.FC<{
         <div className="sec-head centered reveal">
           <span className="sec-tag">{t('integrations.properties.badge') || 'Live properties'}</span>
           <h2>
-            {crm.name} <em>fields</em>, populated automatically.
+            {crm.name} <em>Fields</em>, Populated Automatically
           </h2>
           <p>Eazybe writes every WhatsApp signal into {crm.name} as a typed custom property — no manual data entry.</p>
         </div>
@@ -671,7 +671,7 @@ const MiniCRMSection: React.FC<{
         <div className="agent-copy reveal">
           <span className="sec-tag">{t('integrations.miniCrm.badge') || 'Inside the chat'}</span>
           <h3>
-            {crm.name} <em>{t('integrations.miniCrm.headline')}</em> WhatsApp Web.
+            {crm.name} <em>{t('integrations.miniCrm.headline')}</em> WhatsApp Web
           </h3>
           <p className="lede">
             Open any WhatsApp chat and Eazybe surfaces the matching {crm.name} record alongside — fields,
@@ -845,7 +845,7 @@ const TeamsSection: React.FC = () => (
     <div className="container">
       <div className="sec-head centered reveal">
         <span className="sec-tag">Who It&apos;s For</span>
-        <h2>Built for teams where <em>deals happen on WhatsApp</em></h2>
+        <h2>Built For Teams Where <em>Deals Happen On WhatsApp</em></h2>
       </div>
       <div className="teams-grid">
         {TEAM_AUDIENCES.map((a) => (
@@ -882,7 +882,7 @@ const SetupStepsSection: React.FC<{ crmName: string }> = ({ crmName }) => {
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">Live in 5 Minutes</span>
-          <h2>No developers. No IT tickets. <em>No waiting.</em></h2>
+          <h2>No Developers. No IT Tickets. <em>No Waiting</em></h2>
         </div>
         <div className="setup-steps">
           {steps.map((s) => (

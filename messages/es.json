@@ -1972,8 +1972,8 @@
       "certified": "Certificado"
     },
     "hero": {
-      "headlinePrefix": "La Integración Oficial",
-      "headlineSuffix": "con WhatsApp",
+      "headlinePrefix": "",
+      "headlineSuffix": "Integración WhatsApp",
       "description": "Deja de perder inteligencia de negocios en teléfonos personales. Cada mensaje, imagen y nota de voz se registra automáticamente en la Línea de Tiempo de Actividad de {crmName}.",
       "feature1": "Sincronización en tiempo real para chats 1-1 y grupales.",
       "feature2": "Asociación automática con Negocios y Tickets abiertos.",

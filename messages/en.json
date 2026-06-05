@@ -1805,7 +1805,7 @@
       "certified": "Certified"
     },
     "hero": {
-      "headlinePrefix": "The Official",
+      "headlinePrefix": "",
       "headlineSuffix": "WhatsApp Integration",
       "description": "Stop letting deal intelligence die on personal phones. Every message, image, and voice note is automatically logged to the {crmName} Activity Timeline.",
       "feature1": "Real-time sync for 1-on-1 and Group Chats.",
@@ -1818,7 +1818,7 @@
     },
     "miniCrm": {
       "badge": "Mini CRM",
-      "headline": "Mini CRM in",
+      "headline": "Mini CRM In",
       "description": "Access your entire {crmName} CRM directly inside WhatsApp. No tab switching, no guessing, no friction.",
       "instantContext": "Instant Context",
       "pipelineManagement": "Pipeline Management",
@@ -1854,10 +1854,10 @@
     },
     "comparison": {
       "badge": "Why teams switch to Eazybe",
-      "headline": "Works with the WhatsApp you already use",
-      "headline1": "Works with the",
-      "headline2": "WhatsApp you",
-      "headline3": "already use",
+      "headline": "Works With The WhatsApp You Already Use",
+      "headline1": "Works With The",
+      "headline2": "WhatsApp You",
+      "headline3": "Already Use",
       "description": "Other tools force you to abandon WhatsApp Business App and migrate to API-only. Eazybe works with both—keep your existing setup, your chat history, and your workflow.",
       "personalWhatsApp": "Personal WhatsApp",
       "businessApp": "WhatsApp Business App",

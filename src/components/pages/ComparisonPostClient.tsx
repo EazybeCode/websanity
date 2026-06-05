@@ -232,10 +232,10 @@ const createPortableTextComponents = (
     },
     list: {
       bullet: ({ children }: any) => (
-        <ul className="my-6 space-y-2.5 list-disc list-outside pl-10 marker:text-brand-cyan">{children}</ul>
+        <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan">{children}</ul>
       ),
       number: ({ children }: any) => (
-        <ol className="my-6 space-y-4 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold">{children}</ol>
+        <ol className="mt-8 mb-6 space-y-5 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold">{children}</ol>
       ),
     },
     listItem: {

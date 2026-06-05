@@ -1898,7 +1898,7 @@
       "certified": "Sertifikalı"
     },
     "hero": {
-      "headlinePrefix": "Resmi",
+      "headlinePrefix": "",
       "headlineSuffix": "WhatsApp Entegrasyonu",
       "description": "Anlaşma zekasının kişisel telefonlarda ölmesine izin vermeyi bırakın. Her mesaj, resim ve sesli not otomatik olarak {crmName} Aktivite Zaman Çizelgesine kaydedilir.",
       "feature1": "Bire bir ve Grup Sohbetleri için gerçek zamanlı senkronizasyon.",
