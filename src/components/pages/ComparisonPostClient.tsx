@@ -232,10 +232,10 @@ const createPortableTextComponents = (
     },
     list: {
       bullet: ({ children }: any) => (
-        <ul className="my-6 space-y-2.5 list-disc list-outside pl-7 md:pl-9 marker:text-brand-cyan">{children}</ul>
+        <ul className="my-6 space-y-2.5 list-disc list-outside pl-10 marker:text-brand-cyan">{children}</ul>
       ),
       number: ({ children }: any) => (
-        <ol className="my-6 space-y-4 list-decimal list-outside pl-7 md:pl-9 marker:text-brand-cyan marker:font-semibold">{children}</ol>
+        <ol className="my-6 space-y-4 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold">{children}</ol>
       ),
     },
     listItem: {
@@ -940,8 +940,8 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                           value={post.tldr}
                           components={{
                             list: {
-                              bullet: ({ children }) => <ul className="list-disc list-outside pl-5 md:pl-6 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
-                              number: ({ children }) => <ol className="list-decimal list-outside pl-5 md:pl-6 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
+                              bullet: ({ children }) => <ul className="list-disc list-outside pl-10 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
+                              number: ({ children }) => <ol className="list-decimal list-outside pl-10 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
                             },
                             marks: {
                               link: ({ children, value }) => (
