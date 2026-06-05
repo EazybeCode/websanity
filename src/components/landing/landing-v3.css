@@ -3740,7 +3740,7 @@
 .landing .blog-content strong, .landing .blog-content b { color: var(--ink) !important; font-weight: 700; }
 .landing .blog-content em, .landing .blog-content i { color: var(--ink-2) !important; }
 
-/* Links inside blog body / TL;DR / FAQ / cards — iris, no underline, hover dim */
+/* Links inside blog body / TL;DR / FAQ / cards — iris, no underline */
 .landing .blog-content a,
 .landing .blog-content a *,
 .landing [data-blog-content] a,
@@ -3750,8 +3750,9 @@
   cursor: pointer;
 }
 .landing .blog-content a {
-  color: var(--accent-ink) !important;
-  transition: opacity .15s, color .15s;
+  color: #4338CA !important;
+  font-weight: 500;
+  transition: color .15s, opacity .15s;
 }
 .landing .blog-content a,
 .landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]) {
@@ -3761,6 +3762,12 @@
 /* TOC sidebar hover — soft iris-tinted background instead of dark gray */
 .landing .hover\:bg-slate-800\/50:hover {
   background-color: color-mix(in oklab, var(--accent-ink) 10%, var(--paper)) !important;
+}
+
+/* Blog/Comparison TOC links — black on hover */
+.landing .blog-toc-nav a:hover,
+.landing .blog-toc-nav a:hover span {
+  color: #000000 !important;
 }
 
 /* Integration pages — Teams + Setup Steps sections */
@@ -3926,19 +3933,9 @@
   margin: 2.5rem 0 !important;
 }
 
-/* Drop cap — keep prominent (big + bold + accent) but no float, so all
-   following paragraphs stay flush against the article's left edge */
+/* Drop cap disabled — first letter renders at normal body size */
 .landing .blog-content > p:first-of-type::first-letter {
-  color: var(--accent-ink) !important;
-  font-family: var(--f-display, var(--f-sans));
-  font-weight: 800;
-  font-size: 3.4em !important;
-  line-height: 1 !important;
-  float: none !important;
-  display: inline-block;
-  vertical-align: -0.18em;
-  padding-right: 0.08em;
-  margin: 0 0.1em 0 0 !important;
+  all: unset;
 }
 /* Belt-and-braces: every child of .blog-content shares the same left edge */
 .landing .blog-content > *,

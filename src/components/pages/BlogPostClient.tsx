@@ -233,19 +233,26 @@ const createPortableTextComponents = (
       ),
     },
     list: {
-      bullet: ({ children }: any) => <ul className="my-6 space-y-3 pl-[15px] md:pl-5">{children}</ul>,
+      // Both lists share identical outer padding so markers line up on the
+      // same vertical edge. Numbered list gets more generous vertical
+      // rhythm (space-y-4) than bullet (space-y-2.5) — matches the image's
+      // wider numbered-item gaps where each step in a process feels like
+      // its own paragraph, while bullets stay tight as a single thought.
+      bullet: ({ children }: any) => (
+        <ul className="my-6 space-y-2.5 list-disc list-outside pl-7 md:pl-9 marker:text-brand-cyan">{children}</ul>
+      ),
       number: ({ children }: any) => (
-        <ol className="my-6 space-y-3 list-decimal list-outside pl-6 md:pl-8">{children}</ol>
+        <ol className="my-6 space-y-4 list-decimal list-outside pl-7 md:pl-9 marker:text-brand-cyan marker:font-semibold">{children}</ol>
       ),
     },
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-6 mb-1.5 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
           {children}
         </li>
       ),
       number: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-1.5">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
           {children}
         </li>
       ),
@@ -540,7 +547,7 @@ const StickyTableOfContents: React.FC<{
               {tocTitle || t('blog.detail.tocTitle')}
             </h4>
           </div>
-          <nav>
+          <nav className="blog-toc-nav">
             <ol className="space-y-1">
               {sections.map((item, i) => {
                 const isActive = activeSection === item.id
@@ -944,8 +951,11 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                           value={post.tldr}
                           components={{
                             list: {
-                              bullet: ({ children }) => <ul className="list-disc list-outside pl-0 md:pl-5 space-y-1.5 my-1 marker:text-brand-cyan last:mb-0">{children}</ul>,
-                              number: ({ children }) => <ol className="list-decimal list-outside pl-0 md:pl-5 space-y-1.5 my-1 marker:text-brand-cyan last:mb-0">{children}</ol>,
+                              // Tighter than main-body lists because TL;DR sits inside
+                              // a small bordered callout, but same marker color and
+                              // marker shape so the visual language stays consistent.
+                              bullet: ({ children }) => <ul className="list-disc list-outside pl-5 md:pl-6 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
+                              number: ({ children }) => <ol className="list-decimal list-outside pl-5 md:pl-6 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
                             },
                             marks: {
                               link: ({ children, value }) => (
@@ -1163,10 +1173,6 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 .blog-content hr {
                   border: none; height: 1px;
                   background: linear-gradient(to right, transparent, #334155, transparent); margin: 4rem 0;
-                }
-                .blog-content > p:first-of-type::first-letter {
-                  float: left; font-size: 4.5rem; line-height: 0.8; font-weight: 800;
-                  margin-right: 0.75rem; margin-top: 0.15rem; color: #06b6d4;
                 }
                 `,
                       }}

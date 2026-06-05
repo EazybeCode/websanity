@@ -231,19 +231,21 @@ const createPortableTextComponents = (
       ),
     },
     list: {
-      bullet: ({ children }: any) => <ul className="my-6 space-y-3 pl-[15px] md:pl-5">{children}</ul>,
+      bullet: ({ children }: any) => (
+        <ul className="my-6 space-y-2.5 list-disc list-outside pl-7 md:pl-9 marker:text-brand-cyan">{children}</ul>
+      ),
       number: ({ children }: any) => (
-        <ol className="my-6 space-y-3 list-decimal list-outside pl-6 md:pl-8">{children}</ol>
+        <ol className="my-6 space-y-4 list-decimal list-outside pl-7 md:pl-9 marker:text-brand-cyan marker:font-semibold">{children}</ol>
       ),
     },
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-6 mb-1.5 relative before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-r before:from-brand-cyan before:to-brand-blue">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
           {children}
         </li>
       ),
       number: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-1.5">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
           {children}
         </li>
       ),
@@ -254,7 +256,7 @@ const createPortableTextComponents = (
       ),
       em: ({ children }: any) => <em className="italic">{children}</em>,
       code: ({ children }: any) => (
-        <code className="bg-slate-800 text-brand-cyan px-2 py-1 rounded text-sm font-mono">
+        <code className="bg-slate-50 text-slate-900 px-1.5 py-0.5 rounded-md text-[0.88em] font-mono">
           {children}
         </code>
       ),
@@ -303,7 +305,7 @@ const createPortableTextComponents = (
               <img
                 src={value.url}
                 alt={value.alt || ''}
-                className="w-full rounded-2xl shadow-2xl border border-slate-800/50"
+                className="w-full rounded-2xl"
                 loading="lazy"
               />
             )}
@@ -538,7 +540,7 @@ const StickyTableOfContents: React.FC<{
               {tocTitle || t('blog.detail.tocTitle')}
             </h4>
           </div>
-          <nav>
+          <nav className="blog-toc-nav">
             <ol className="space-y-1">
               {sections.map((item, i) => {
                 const isActive = activeSection === item.id
@@ -737,7 +739,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
 
   return (
     <BlogTranslationsProvider translations={translations} currentSlug={slug}>
-      <>
+      <div className="blog-post-page">
         <ReadingProgress />
 
       {/* Hero Section - Left Aligned */}
@@ -894,7 +896,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
       {/* Featured Image */}
       {post.featuredImage && (
         <figure className="max-w-7xl mx-auto px-4 md:px-6 mb-3">
-          <div className={`relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden ${mobileAspectClass(post.featuredImageMobileRatio, 'aspect-[16/9]')} ${desktopAspectClass(post.featuredImageDesktopRatio, 'md:aspect-[2/1]')} shadow-xl md:shadow-2xl border border-slate-800/50`}>
+          <div className={`relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden ${mobileAspectClass(post.featuredImageMobileRatio, 'aspect-[16/9]')} ${desktopAspectClass(post.featuredImageDesktopRatio, 'md:aspect-[2/1]')}`}>
             <img
               src={post.featuredImage}
               alt={post.featuredImageAlt || post.title}
@@ -933,13 +935,13 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                     </div>
                     <div className="flex-1">
                       <h4 className="font-bold text-white mb-2">TL;DR</h4>
-                      <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_strong]:text-white [&_em]:italic [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:bg-brand-cyan/15 [&_code]:text-cyan-200 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded">
+                      <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_strong]:text-white [&_em]:italic [&_code]:font-mono [&_code]:text-[0.85em] [&_code]:bg-slate-900 [&_code]:text-slate-100 [&_code]:border [&_code]:border-slate-700 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-md">
                         <PortableText
                           value={post.tldr}
                           components={{
                             list: {
-                              bullet: ({ children }) => <ul className="list-disc list-outside pl-0 md:pl-5 space-y-1.5 my-1 marker:text-brand-cyan last:mb-0">{children}</ul>,
-                              number: ({ children }) => <ol className="list-decimal list-outside pl-0 md:pl-5 space-y-1.5 my-1 marker:text-brand-cyan last:mb-0">{children}</ol>,
+                              bullet: ({ children }) => <ul className="list-disc list-outside pl-5 md:pl-6 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
+                              number: ({ children }) => <ol className="list-decimal list-outside pl-5 md:pl-6 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
                             },
                             marks: {
                               link: ({ children, value }) => (
@@ -1042,7 +1044,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
               )}
 
               {/* Main Article Content */}
-              <article className="blog-content prose prose-invert max-w-none px-1">
+              <article className="blog-content prose max-w-none">
                 {Array.isArray(post.content) ? (
                   <PortableText value={post.content} components={portableTextComponents} />
                 ) : (
@@ -1152,15 +1154,11 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                 .blog-content tbody tr:hover { background: rgba(30, 41, 59, 0.4); }
                 .blog-content img {
                   max-width: 100%; height: auto; border-radius: 1rem;
-                  margin: 2.5rem 0; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+                  margin: 2.5rem 0;
                 }
                 .blog-content hr {
                   border: none; height: 1px;
                   background: linear-gradient(to right, transparent, #334155, transparent); margin: 4rem 0;
-                }
-                .blog-content > p:first-of-type::first-letter {
-                  float: left; font-size: 4.5rem; line-height: 0.8; font-weight: 800;
-                  margin-right: 0.75rem; margin-top: 0.15rem; color: #06b6d4;
                 }
                 `,
                       }}
@@ -1241,7 +1239,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
               {/* Author Section */}
               {post.author && (
                 <div className="mt-16 pt-10 border-t border-slate-800">
-                  <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left border border-slate-700/30">
+                  <div className="author-card-dark rounded-3xl p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left">
                     {(() => {
                       const authorUrl = post.author.slug ? `${locale === 'en' ? '' : `/${locale}`}/blog/authors/${post.author.slug}` : undefined
                       const avatar = post.author.image ? (
@@ -1315,27 +1313,6 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                 </div>
               )}
 
-              {/* Newsletter CTA */}
-              <div id="newsletter-cta-section" className="mt-16 p-8 bg-gradient-to-br from-brand-blue/10 to-brand-cyan/10 rounded-3xl border border-brand-cyan/20 text-center">
-                <h3 className="text-2xl font-bold text-white mb-3">
-                  {newsletterCta?.headline || t('blog.newsletter.headline')}
-                </h3>
-                <p className="text-lg text-slate-400 mb-8 max-w-md mx-auto">
-                  {newsletterCta?.description || t('blog.newsletter.description')}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                  <input
-                    type="email"
-                    placeholder={
-                      newsletterCta?.placeholder || t('blog.newsletter.placeholder')
-                    }
-                    className="flex-1 bg-brand-black border border-slate-700 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:border-brand-cyan outline-none transition-colors text-lg"
-                  />
-                  <button className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold py-4 px-8 rounded-xl transition-colors">
-                    {newsletterCta?.buttonText || t('blog.newsletter.buttonText')}
-                  </button>
-                </div>
-              </div>
             </div>
 
             {/* Right Column - Sticky Sidebar */}
@@ -1398,7 +1375,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
           </div>
         </section>
       )}
-      </>
+      </div>
     </BlogTranslationsProvider>
   )
 }
