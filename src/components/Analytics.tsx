@@ -3,12 +3,15 @@ import Script from 'next/script'
 export function Analytics() {
   return (
     <>
-      {/* Google Analytics */}
+      {/* Google Analytics — lazyOnload (browser-idle) so it doesn't block
+          the main thread during the first few seconds of interactive use.
+          Trades ~1-3s of "first pageview hit" lag for a notable Speed
+          Index improvement. */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-H5LHG23HEL"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
-      <Script id="ga4-init" strategy="afterInteractive">
+      <Script id="ga4-init" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
