@@ -17,10 +17,10 @@ function withLocale(href: string, locale: string): string {
 }
 
 const LOCALES = [
-  { code: 'en', label: 'EN', country: 'gb', prefix: '', hreflang: 'en' },
-  { code: 'br', label: 'BR', country: 'br', prefix: '/br', hreflang: 'pt-BR' },
-  { code: 'es', label: 'ES', country: 'es', prefix: '/es', hreflang: 'es' },
-  { code: 'tr', label: 'TR', country: 'tr', prefix: '/tr', hreflang: 'tr' },
+  { code: 'en', label: 'EN', country: 'gb', prefix: '', hreflang: 'en', name: 'English' },
+  { code: 'br', label: 'BR', country: 'br', prefix: '/br', hreflang: 'pt-BR', name: 'Português (Brasil)' },
+  { code: 'es', label: 'ES', country: 'es', prefix: '/es', hreflang: 'es', name: 'Español' },
+  { code: 'tr', label: 'TR', country: 'tr', prefix: '/tr', hreflang: 'tr', name: 'Türkçe' },
 ]
 
 function LanguageSwitcher() {
@@ -101,7 +101,7 @@ function LanguageSwitcher() {
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <img className="nav-lang-flag" src={`https://flagcdn.com/w40/${current.country}.png`} alt="" width={20} height={15}  loading="lazy"/>
+        <img className="nav-lang-flag" src={`/flags/${current.code}.png`} alt={`${current.name} flag`} width={20} height={15}  loading="lazy"/>
         <span className="nav-lang-label">{current.label}</span>
         <svg className="nav-lang-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <polyline points="6 9 12 15 18 9" />
@@ -118,7 +118,7 @@ function LanguageSwitcher() {
               className={`nav-lang-item${l.code === currentCode ? ' active' : ''}`}
               onClick={() => switchTo(l)}
             >
-              <img className="nav-lang-flag" src={`https://flagcdn.com/w40/${l.country}.png`} alt="" width={20} height={15}  loading="lazy"/>
+              <img className="nav-lang-flag" src={`/flags/${l.code}.png`} alt={`${l.name} flag`} width={20} height={15}  loading="lazy"/>
               <span>{l.label}</span>
             </button>
           ))}
