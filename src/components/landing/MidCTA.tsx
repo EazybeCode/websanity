@@ -3,17 +3,17 @@
 import { useTranslations } from 'next-intl'
 
 const LEFT_AVATARS = [
-  { src: 'https://randomuser.me/api/portraits/women/68.jpg', top: '8%',  left: '22%', size: 92, online: true },
-  { src: 'https://randomuser.me/api/portraits/men/45.jpg',   top: '30%', left: '6%',  size: 76, online: false },
-  { src: 'https://randomuser.me/api/portraits/women/44.jpg', top: '52%', left: '22%', size: 84, online: false },
-  { src: 'https://randomuser.me/api/portraits/men/22.jpg',   top: '74%', left: '8%',  size: 80, online: true },
+  { src: 'https://randomuser.me/api/portraits/women/68.jpg', top: '8%',  left: '22%', size: 92, online: true,  alt: 'Sales rep using WhatsApp AI agent' },
+  { src: 'https://randomuser.me/api/portraits/men/45.jpg',   top: '30%', left: '6%',  size: 76, online: false, alt: 'WhatsApp CRM customer avatar' },
+  { src: 'https://randomuser.me/api/portraits/women/44.jpg', top: '52%', left: '22%', size: 84, online: false, alt: 'Customer support agent on WhatsApp CRM' },
+  { src: 'https://randomuser.me/api/portraits/men/22.jpg',   top: '74%', left: '8%',  size: 80, online: true,  alt: 'Lead chatting with WhatsApp AI agent' },
 ]
 
 const RIGHT_AVATARS = [
-  { src: 'https://randomuser.me/api/portraits/women/29.jpg', top: '8%',  right: '22%', size: 92, online: false },
-  { src: 'https://randomuser.me/api/portraits/men/57.jpg',   top: '30%', right: '6%',  size: 76, online: true },
-  { src: 'https://randomuser.me/api/portraits/women/12.jpg', top: '52%', right: '22%', size: 84, online: false },
-  { src: 'https://randomuser.me/api/portraits/men/76.jpg',   top: '74%', right: '8%',  size: 80, online: false },
+  { src: 'https://randomuser.me/api/portraits/women/29.jpg', top: '8%',  right: '22%', size: 92, online: false, alt: 'Sales lead on WhatsApp CRM' },
+  { src: 'https://randomuser.me/api/portraits/men/57.jpg',   top: '30%', right: '6%',  size: 76, online: true,  alt: 'Customer using WhatsApp AI agent' },
+  { src: 'https://randomuser.me/api/portraits/women/12.jpg', top: '52%', right: '22%', size: 84, online: false, alt: 'WhatsApp CRM team member avatar' },
+  { src: 'https://randomuser.me/api/portraits/men/76.jpg',   top: '74%', right: '8%',  size: 80, online: false, alt: 'Account manager on WhatsApp AI agent platform' },
 ]
 
 export function MidCTA() {
@@ -32,7 +32,13 @@ export function MidCTA() {
               style={{ top: a.top, left: a.left, width: a.size, height: a.size }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={a.src} alt="" className="mid-cta-face" referrerPolicy="no-referrer"  loading="lazy"/>
+              <img
+                src={a.src}
+                alt={a.alt}
+                className="mid-cta-face"
+                referrerPolicy="no-referrer"
+                loading="lazy"
+              />
               {a.online && <span className="mid-cta-face-dot" />}
             </span>
           ))}
@@ -97,7 +103,13 @@ export function MidCTA() {
               style={{ top: a.top, right: a.right, width: a.size, height: a.size }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={a.src} alt="" className="mid-cta-face" referrerPolicy="no-referrer"  loading="lazy"/>
+              <img
+                src={a.src}
+                alt={a.alt}
+                className="mid-cta-face"
+                referrerPolicy="no-referrer"
+                loading="lazy"
+              />
               {a.online && <span className="mid-cta-face-dot" />}
             </span>
           ))}
