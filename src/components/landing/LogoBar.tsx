@@ -1,5 +1,3 @@
-'use client'
-
 import { useTranslations } from 'next-intl'
 
 // Self-hosted client logos under /public/clients/. Same 10 logos drive

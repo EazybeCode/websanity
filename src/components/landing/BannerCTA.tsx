@@ -1,5 +1,3 @@
-'use client'
-
 import { useTranslations } from 'next-intl'
 
 const APP_LINK = 'https://eazybe.info/85c80b'
