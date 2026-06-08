@@ -64,6 +64,7 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
       { nameKey: 'itemComparison', href: '/comparison' },
       { nameKey: 'itemWhatsappApi', href: '/whatsapp-api' },
       { nameKey: 'itemPricing', href: '/pricing' },
+      { nameKey: 'itemAbout', href: '/about-us' },
     ],
   },
   {
