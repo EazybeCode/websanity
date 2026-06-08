@@ -107,7 +107,7 @@ export function Footer() {
           <div className="footer-brand">
             <a href={lh('/')} aria-label={t('logoAria')} style={{ display: 'inline-block', marginBottom: 14 }}>
               <img
-                src="/logo.png"
+                src="/logo-small.png"
                 alt="Eazybe Logo"
                 width={137}
                 height={32}

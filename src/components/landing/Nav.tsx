@@ -273,7 +273,7 @@ export function Nav() {
     <nav className="nav">
       <a href={lh('/')} className="nav-logo" aria-label={t('logoAria')} onClick={closeMenu}>
         <img
-          src="/logo.png"
+          src="/logo-small.png"
           alt="Eazybe Logo"
           width={137}
           height={32}
@@ -449,7 +449,7 @@ export function Nav() {
           <div className="nav-drawer-header">
             <a href={lh('/')} className="nav-drawer-logo" onClick={closeMenu} aria-label={t('logoAria')}>
               <img
-                src="/logo.png"
+                src="/logo-small.png"
                 alt="Eazybe Logo"
                 width={120}
                 height={28}
