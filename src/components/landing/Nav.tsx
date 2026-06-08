@@ -353,7 +353,7 @@ export function Nav() {
         </div>
 
         <div className="nav-item">
-          <button type="button" className="nav-trigger" aria-haspopup="menu"><span>{t('integrations')}</span> <span className="nav-caret">▾</span></button>
+          <a href={lh('/integrations')} className="nav-trigger" aria-haspopup="menu"><span>{t('integrations')}</span> <span className="nav-caret">▾</span></a>
           <div
             className="nav-dropdown"
             style={{ minWidth: 560, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, padding: 14 }}
