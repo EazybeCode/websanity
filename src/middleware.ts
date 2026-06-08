@@ -6,6 +6,7 @@ import { getSanityRedirects, normalizeRedirectPath } from '@/lib/sanity-redirect
 const intlMiddleware = createMiddleware(routing)
 
 const PRODUCTION_URL = 'https://eazybe.com'
+const LOCALE_PREFIXED_CRM_CALLBACK = /^\/(?:en|br|es|tr)\/(integrate-(?:hubspot|zoho|salesforce|bitrix)-crm)\/?$/
 
 export default async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone()
@@ -21,6 +22,19 @@ export default async function middleware(request: NextRequest) {
   // this guard.
   if (request.headers.get('next-action')) {
     return new NextResponse(null, { status: 404 })
+  }
+
+  // CRM OAuth callbacks live at root-level routes such as
+  // `/integrate-hubspot-crm`. If a locale prefix is carried into the popup
+  // flow (`/br/integrate-hubspot-crm`, `/es/integrate-zoho-crm`, etc.), Next
+  // treats it as a localized marketing slug and renders the 404 page even
+  // though the CRM connection itself may have completed. Canonicalize these
+  // variants before next-intl routing while preserving the provider query
+  // string (`code`, `state`, `accounts-server`, encrypted params, ...).
+  const crmCallback = pathname.match(LOCALE_PREFIXED_CRM_CALLBACK)
+  if (crmCallback) {
+    url.pathname = `/${crmCallback[1]}`
+    return NextResponse.redirect(url, 302)
   }
 
   // Strip Google Analytics cross-domain linker params (?_gl=..., _ga=...) and
