@@ -16,6 +16,12 @@ const MODAL_TRIGGERS: Record<string, 'trial' | 'demo'> = {
   '#demo': 'demo',
 }
 
+// English CTA overrides — map the exact Sanity label to a replacement label + URL.
+// Non-English labels won't match these keys so they pass through.
+const CTA_OVERRIDES: Record<string, { label: string; url: string }> = {
+  'Install for Free': { label: 'Talk to our Agent', url: 'https://eazybe.info/85c80b' },
+}
+
 const TickIcon = (
   <svg width="11" height="11" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
 )
@@ -32,12 +38,14 @@ const HeroCta: React.FC<{
   showArrow?: boolean
 }> = ({ cta, variant, showArrow }) => {
   const { openModal } = useTrialModal()
-  const url = cta.url || ''
+  const override = cta.label ? CTA_OVERRIDES[cta.label] : undefined
+  const label = override?.label ?? cta.label
+  const url = override?.url ?? (cta.url || '')
   const modalKind = MODAL_TRIGGERS[url]
   const className = `btn btn-lg ${variant === 'primary' ? 'btn-primary' : 'btn-outline'}`
   const content = (
     <>
-      {cta.label}
+      {label}
       {showArrow && ' →'}
     </>
   )
@@ -50,6 +58,19 @@ const HeroCta: React.FC<{
   return <Link href={url || '#'} className={className}>{content}</Link>
 }
 
+// English title-case overrides for headings stored in Sanity in sentence case.
+// Each entry maps the exact CMS string to its title-cased replacement. Locale
+// safety: non-English headlines won't match these keys so they pass through.
+const TITLE_CASE_OVERRIDES: Record<string, string> = {
+  'Connect WhatsApp to': 'Connect WhatsApp To',
+  'your CRM': 'Your CRM',
+  'Why integrate WhatsApp with your CRM?': 'Why Integrate WhatsApp With Your CRM?',
+  'Every CRM integration includes': 'Every CRM Integration Includes',
+  'Connect in 3 steps': 'Connect In Just 3 Simple Steps',
+  'Common questions about CRM integrations': 'Common Questions About CRM Integrations',
+}
+const tc = (text?: string): string | undefined => (text ? TITLE_CASE_OVERRIDES[text] || text : text)
+
 const HeroSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data) return null
   return (
@@ -59,8 +80,8 @@ const HeroSection: React.FC<{ data: any }> = ({ data }) => {
           <span className="hero-tag reveal"><span className="pulse" /> {String(data.badge).toUpperCase()}</span>
         )}
         <h1 className="reveal">
-          {data.headline}
-          {data.headlineHighlight ? <> <em>{data.headlineHighlight}</em></> : null}
+          {tc(data.headline)}
+          {data.headlineHighlight ? <> <em>{tc(data.headlineHighlight)}</em></> : null}
         </h1>
         {data.description && <p className="lede reveal">{data.description}</p>}
 
@@ -81,7 +102,7 @@ const IntroSection: React.FC<{ data: any }> = ({ data }) => {
     <section className="section" style={{ paddingTop: 60, paddingBottom: 60 }}>
       <div className="container">
         <div className="sec-head centered reveal">
-          {data.headline && <h2>{data.headline}</h2>}
+          {data.headline && <h2>{tc(data.headline)}</h2>}
           {data.description && <p style={{ whiteSpace: 'pre-line' }}>{data.description}</p>}
         </div>
       </div>
@@ -90,6 +111,30 @@ const IntroSection: React.FC<{ data: any }> = ({ data }) => {
 }
 
 // ─── Featured items grid ────────────────────────────────────────────────────
+
+// Maps an integration slug to its real brand logo under /public/integrations/.
+// Slugs that have no published logo file fall through to the default checkmark.
+const INTEGRATION_LOGOS: Record<string, string> = {
+  hubspot: '/integrations/hubspot.svg',
+  salesforce: '/integrations/salesforce.svg',
+  zoho: '/integrations/zoho.svg',
+  bitrix24: '/integrations/bitrix.svg',
+  bitrix: '/integrations/bitrix.svg',
+  leadsquared: '/integrations/leadsquared.svg',
+  freshdesk: '/integrations/freshworks.svg',
+  freshworks: '/integrations/freshworks.svg',
+  pipedrive: '/integrations/pipedrive.svg',
+  'google-sheets': '/integrations/google-sheets.svg',
+  googlesheets: '/integrations/google-sheets.svg',
+  webhooks: '/integrations/custom-api.svg',
+  'custom-api': '/integrations/custom-api.svg',
+}
+
+const getLogoUrl = (slug: string | undefined): string | null => {
+  if (!slug) return null
+  const key = slug.toLowerCase().replace(/-whatsapp-integration$/, '')
+  return INTEGRATION_LOGOS[key] || null
+}
 
 const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ items, category }) => {
   const locale = useLocale()
@@ -126,7 +171,9 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
               <h2 style={{ fontSize: 'clamp(28px, 3vw, 36px)' }}>{L.featured}</h2>
             </div>
             <div className="card-grid cols-3" style={{ marginBottom: 56 }}>
-              {featuredItems.map((item, idx) => (
+              {featuredItems.map((item, idx) => {
+                const logoUrl = category === 'integration' ? getLogoUrl(item.slug) : null
+                return (
                 <Link
                   key={idx}
                   href={getItemUrl(item)}
@@ -152,7 +199,18 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
                         color: item.color || 'var(--accent-ink)',
                       }}
                     >
-                      {CardCheck}
+                      {logoUrl ? (
+                        <img
+                          src={logoUrl}
+                          alt={`${item.name} logo`}
+                          width={24}
+                          height={24}
+                          style={{ width: 24, height: 24, objectFit: 'contain' }}
+                          loading="lazy"
+                        />
+                      ) : (
+                        CardCheck
+                      )}
                     </div>
                     {item.tags && item.tags.length > 0 && (
                       <div style={{ display: 'flex', gap: 6 }}>
@@ -192,7 +250,8 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
                     {L.learnMore} <ArrowRight size={14} />
                   </div>
                 </Link>
-              ))}
+                )
+              })}
             </div>
           </>
         )}
@@ -211,7 +270,9 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
                 margin: '0 auto',
               }}
             >
-              {otherItems.map((item, idx) => (
+              {otherItems.map((item, idx) => {
+                const logoUrl = category === 'integration' ? getLogoUrl(item.slug) : null
+                return (
                 <Link
                   key={idx}
                   href={getItemUrl(item)}
@@ -232,13 +293,25 @@ const FeaturedItemsSection: React.FC<{ items: any[]; category: string }> = ({ it
                         justifyContent: 'center',
                       }}
                     >
-                      {TickIcon}
+                      {logoUrl ? (
+                        <img
+                          src={logoUrl}
+                          alt={`${item.name} logo`}
+                          width={20}
+                          height={20}
+                          style={{ width: 20, height: 20, objectFit: 'contain' }}
+                          loading="lazy"
+                        />
+                      ) : (
+                        TickIcon
+                      )}
                     </div>
                     <h3 style={{ fontSize: 16, marginBottom: 0 }}>{item.name}</h3>
                   </div>
                   <p style={{ fontSize: 13, marginBottom: 0 }}>{item.description}</p>
                 </Link>
-              ))}
+                )
+              })}
             </div>
           </>
         )}
@@ -266,7 +339,7 @@ const ComparisonSection: React.FC<{ data: any }> = ({ data }) => {
     <section id="comparison" className="section" data-tone="dark">
       <div className="container">
         <div className="sec-head centered reveal">
-          <h2>{data.headline}</h2>
+          <h2>{tc(data.headline)}</h2>
           {data.description && <p>{data.description}</p>}
         </div>
         <div
@@ -340,7 +413,7 @@ const BenefitsSection: React.FC<{ data: any }> = ({ data }) => {
       <div className="container">
         <div className="sec-head centered reveal">
           {data.badge && <span className="sec-tag">{data.badge}</span>}
-          {data.headline && <h2>{data.headline}</h2>}
+          {data.headline && <h2>{tc(data.headline)}</h2>}
         </div>
         <div className="card-grid cols-3">
           {data.items.map((item: any, idx: number) => (
@@ -365,7 +438,7 @@ const HowItWorksSection: React.FC<{ data: any }> = ({ data }) => {
       <div className="container">
         <div className="sec-head centered reveal">
           {data.badge && <span className="sec-tag">{data.badge}</span>}
-          {data.headline && <h2>{data.headline}</h2>}
+          {data.headline && <h2>{tc(data.headline)}</h2>}
           {data.description && <p>{data.description}</p>}
         </div>
         <div className="card-grid cols-3">
@@ -415,7 +488,7 @@ const FAQSection: React.FC<{ data: any }> = ({ data }) => {
       <div className="container">
         <div className="sec-head centered reveal">
           {data.badge && <span className="sec-tag">{data.badge}</span>}
-          {data.headline && <h2>{data.headline}</h2>}
+          {data.headline && <h2>{tc(data.headline)}</h2>}
         </div>
         <div className={`faq-grid${showMoreMobile ? ' faq-show-more' : ''}`}>
           {columns.map((column, colIdx) => (
