@@ -717,15 +717,6 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
                 </a>
               ))}
             </div>
-
-            <div className="text-center mt-12">
-              <Button
-                variant="outline"
-                onClick={() => openModal('trial')}
-              >
-                {t('articles.installFree')}
-              </Button>
-            </div>
           </div>
         </section>
       )}
