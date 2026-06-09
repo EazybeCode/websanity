@@ -2361,7 +2361,7 @@
       "userBaseDesc": "Trusted by 30,000+ businesses worldwide - more users than all other WhatsApp CRMs combined."
     },
     "cta": {
-      "title": "Ready to Transform Your WhatsApp Communication?",
+      "title": "Ready To Transform Your WhatsApp Communication?",
       "subtitle": "Join 30,000+ businesses already using Eazybe to close more deals, provide better support, and scale their operations.",
       "primary": "Start Your Free Trial",
       "secondary": "Book a Demo",
@@ -2384,7 +2384,9 @@
       "q6": "What integrations does Eazybe support?",
       "a6": "Eazybe integrates with 10+ platforms including HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar, and custom webhooks for any other platform. More integrations than any other WhatsApp CRM.",
       "q7": "Is there a free trial?",
-      "a7": "Yes! We offer a 7-day free trial on all plans with no credit card required. You can explore all features, test integrations, and see how Eazybe fits your workflow before committing."
+      "a7": "Yes! We offer a 7-day free trial on all plans with no credit card required. You can explore all features, test integrations, and see how Eazybe fits your workflow before committing.",
+      "q8": "How quickly can I get Eazybe up and running?",
+      "a8": "Most teams are live in under 15 minutes. Install the Chrome extension, connect your CRM with one click, and WhatsApp conversations start syncing in real time — no developers, no IT tickets, no week-long onboarding like with API-only competitors."
     },
     "articles": {
       "badge": "Comparison Articles",

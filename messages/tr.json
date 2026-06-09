@@ -2312,7 +2312,9 @@
       "q6": "Eazybe hangi entegrasyonları destekler?",
       "a6": "Eazybe HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar ve diğer herhangi bir platform için özel webhooks dahil 10'dan fazla platformla entegre olur. Diğer herhangi bir WhatsApp CRM'den daha fazla entegrasyon.",
       "q7": "Ücretsiz deneme var mı?",
-      "a7": "Evet! Tüm planlarda kredi kartı gerekmeden 7 günlük ücretsiz deneme sunuyoruz. Tüm özellikleri keşfedebilir, entegrasyonları test edebilir ve taahhüt etmeden önce Eazybe'nin iş akışınıza nasıl uyduğunu görebilirsiniz."
+      "a7": "Evet! Tüm planlarda kredi kartı gerekmeden 7 günlük ücretsiz deneme sunuyoruz. Tüm özellikleri keşfedebilir, entegrasyonları test edebilir ve taahhüt etmeden önce Eazybe'nin iş akışınıza nasıl uyduğunu görebilirsiniz.",
+      "q8": "Eazybe'yi ne kadar sürede çalışır hale getirebilirim?",
+      "a8": "Çoğu ekip 15 dakikadan kısa sürede aktif hale gelir. Chrome uzantısını yükleyin, CRM'inizi tek tıkla bağlayın ve WhatsApp konuşmaları gerçek zamanlı olarak senkronize edilmeye başlar — geliştirici, BT bileti veya yalnızca API sunan rakipler gibi haftalarca süren bir kurulum yok."
     },
     "articles": {
       "badge": "Karşılaştırma Makaleleri",

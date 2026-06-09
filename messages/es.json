@@ -2386,7 +2386,9 @@
       "q6": "¿Qué integraciones admite Eazybe?",
       "a6": "Eazybe se integra con más de 10 plataformas incluyendo HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar, y webhooks personalizados para cualquier otra plataforma. Más integraciones que cualquier otro CRM de WhatsApp.",
       "q7": "¿Hay una prueba gratuita?",
-      "a7": "¡Sí! Ofrecemos una prueba gratuita de 7 días en todos los planes sin necesidad de tarjeta de crédito. Puedes explorar todas las funciones, probar integraciones y ver cómo Eazybe se ajusta a tu flujo de trabajo antes de comprometerte."
+      "a7": "¡Sí! Ofrecemos una prueba gratuita de 7 días en todos los planes sin necesidad de tarjeta de crédito. Puedes explorar todas las funciones, probar integraciones y ver cómo Eazybe se ajusta a tu flujo de trabajo antes de comprometerte.",
+      "q8": "¿En cuánto tiempo puedo poner Eazybe en marcha?",
+      "a8": "La mayoría de los equipos está activa en menos de 15 minutos. Instala la extensión de Chrome, conecta tu CRM con un clic y las conversaciones de WhatsApp comienzan a sincronizarse en tiempo real — sin desarrolladores, sin tickets de TI, sin onboarding de semanas como con competidores que solo ofrecen API."
     },
     "articles": {
       "badge": "Artículos de Comparación",

@@ -134,7 +134,16 @@ interface ComparisonPageClientProps {
 export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: ComparisonPageClientProps = {}) {
   const { openModal } = useTrialModal()
   const t = useTranslations('comparisonHub')
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
+  const [openFaq, setOpenFaq] = useState<Set<number>>(new Set())
+  const [showMoreMobile, setShowMoreMobile] = useState(false)
+  const toggleFaq = (i: number) => {
+    setOpenFaq((prev) => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
+  }
   const localePrefix = locale === 'en' ? '' : `/${locale}`
 
   const tLimited = t('table.limited')
@@ -315,12 +324,13 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
     { question: t('faq.q5'), answer: t('faq.a5') },
     { question: t('faq.q6'), answer: t('faq.a6') },
     { question: t('faq.q7'), answer: t('faq.a7') },
+    { question: t('faq.q8'), answer: t('faq.a8') },
   ]
 
   return (
-    <div className="min-h-screen bg-brand-black font-sans text-slate-400 antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
+    <div className="min-h-screen font-sans antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-brand-black">
+      <section data-tone="dark" className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-brand-black">
         <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-blue/10 rounded-full blur-[120px] -z-10"></div>
 
@@ -333,7 +343,7 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
 
             <h1 className="text-4xl lg:text-6xl font-sans font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
               {t('hero.titlePrefix')}{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-brand-cyan to-brand-green">
+              <span style={{ color: '#A78BFA' }}>
                 {t('hero.titleHighlight')}
               </span>{' '}
               {t('hero.titleSuffix')}
@@ -343,22 +353,22 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
               {t('hero.subtitle')}
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                variant="primary"
-                size="lg"
-                icon={<ArrowRight className="w-4 h-4" />}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button
+                type="button"
+                className="btn btn-primary"
                 onClick={() => openModal('trial')}
               >
-                {t('hero.ctaPrimary')}
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
+                {t('hero.ctaPrimary')} →
+              </button>
+              <button
+                type="button"
+                className="btn"
+                style={{ background: '#5B4BAE', color: '#ffffff' }}
                 onClick={() => document.getElementById('comparison-table')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 {t('hero.ctaSecondary')}
-              </Button>
+              </button>
             </div>
 
             {/* Quick Stats */}
@@ -401,7 +411,7 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
             </p>
           </div>
 
-          <div className="relative rounded-2xl border border-slate-700 bg-brand-card overflow-hidden">
+          <div data-tone="dark" className="relative rounded-2xl border border-slate-700 bg-brand-card overflow-hidden">
             <div className="overflow-x-auto -mx-4 px-4 lg:mx-0 lg:px-0">
               <div className="min-w-[1200px]">
                 <div className="grid grid-cols-8 border-b border-slate-700 bg-brand-surface">
@@ -489,7 +499,7 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
       </section>
 
       {/* Why Eazybe Section */}
-      <section className="py-16 lg:py-24 bg-brand-black">
+      <section data-tone="dark" className="py-16 lg:py-24 bg-brand-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <SectionBadge variant="green" className="mb-6">
@@ -528,8 +538,8 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-brand-blue/10 via-brand-cyan/10 to-brand-green/10 border-y border-slate-800">
+      {/* CTA Section — clean white background, brand-gradient buttons pop */}
+      <section className="py-16 lg:py-24 border-y border-slate-800" style={{ background: '#ffffff' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-6">
             {t('cta.title')}
@@ -537,22 +547,22 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
           <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
             {t('cta.subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              variant="primary"
-              size="lg"
-              icon={<ArrowRight className="w-4 h-4" />}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button
+              type="button"
+              className="btn btn-primary"
               onClick={() => openModal('trial')}
             >
-              {t('cta.primary')}
-            </Button>
-            <Button
-              variant="secondary"
-              size="lg"
+              {t('cta.primary')} →
+            </button>
+            <button
+              type="button"
+              className="btn"
+              style={{ background: '#5B4BAE', color: '#ffffff' }}
               onClick={() => openModal('demo')}
             >
               {t('cta.secondary')}
-            </Button>
+            </button>
           </div>
           <p className="mt-6 text-sm text-slate-500">
             {t('cta.footnote')}
@@ -560,53 +570,68 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 lg:py-24 bg-brand-black">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <SectionBadge variant="cyan" className="mb-6">
-              <MessageSquare className="w-4 h-4" />
-              {t('faq.badge')}
-            </SectionBadge>
-            <h2 className="text-3xl lg:text-4xl font-sans font-bold text-white mb-4">
-              {t('faq.title')}
-            </h2>
-            <p className="text-lg text-slate-400">
+      {/* FAQ Section — pill-grid style matching the home page */}
+      <section className="section" id="faq" data-tone="dark" style={{ paddingTop: 60 }}>
+        <div className="container">
+          <div className="sec-head centered reveal">
+            <span className="sec-tag">{t('faq.badge')}</span>
+            <h2>{t('faq.title')}</h2>
+            <p style={{ maxWidth: 720, width: '100%', textAlign: 'center', hyphens: 'auto' }}>
               {t('faq.subtitle')}
             </p>
           </div>
 
-          <div className="space-y-4">
-            {faqItems.map((faq, index) => (
-              <div
-                key={index}
-                className="bg-brand-card border border-slate-700 rounded-xl overflow-hidden"
-              >
-                <button
-                  onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                  className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-slate-800/50 transition-colors"
-                >
-                  <span className="font-semibold text-white pr-4">{faq.question}</span>
-                  {expandedFaq === index ? (
-                    <AlertCircle className="w-5 h-5 text-brand-blue flex-shrink-0" />
-                  ) : (
-                    <AlertCircle className="w-5 h-5 text-slate-500 flex-shrink-0" />
-                  )}
-                </button>
-                {expandedFaq === index && (
-                  <div className="px-6 pb-5 pt-2">
-                    <p className="text-slate-400 leading-relaxed">{faq.answer}</p>
+          {(() => {
+            const half = Math.ceil(faqItems.length / 2)
+            const columns = [faqItems.slice(0, half), faqItems.slice(half)]
+            return (
+              <div className={`faq-grid${showMoreMobile ? ' faq-show-more' : ''}`}>
+                {columns.map((column, colIdx) => (
+                  <div key={colIdx} className={`faq-col${colIdx === 1 ? ' faq-col-rest' : ''}`}>
+                    {column.map((it, i) => {
+                      const idx = colIdx === 0 ? i : i + half
+                      const isOpen = openFaq.has(idx)
+                      return (
+                        <div key={it.question} className={`faq-pill${isOpen ? ' open' : ''}`}>
+                          <button
+                            className="faq-pill-q"
+                            onClick={() => toggleFaq(idx)}
+                            aria-expanded={isOpen}
+                          >
+                            <span>{it.question}</span>
+                            <span className="faq-pill-chev" aria-hidden="true">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="6 9 12 15 18 9" />
+                              </svg>
+                            </span>
+                          </button>
+                          <div className="faq-pill-a">
+                            <div>{it.answer}</div>
+                          </div>
+                        </div>
+                      )
+                    })}
                   </div>
-                )}
+                ))}
               </div>
-            ))}
-          </div>
+            )
+          })()}
+
+          {!showMoreMobile && (
+            <button
+              type="button"
+              className="faq-mobile-more"
+              onClick={() => setShowMoreMobile(true)}
+            >
+              Read more
+            </button>
+          )}
         </div>
       </section>
 
       {/* Comparison Articles — Sanity-driven */}
       {comparisonPosts.length > 0 && (
-        <section className="py-16 lg:py-24 bg-brand-surface border-y border-slate-800">
+        <section className="py-16 lg:py-24 border-y border-slate-800" style={{ background: '#ffffff' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <SectionBadge variant="green" className="mb-6">
