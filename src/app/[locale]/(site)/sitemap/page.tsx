@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getAlternates } from '@/lib/seo-helpers'
 
@@ -16,10 +16,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'landingV3.sitemap' })
   return {
-    title: 'Sitemap | Eazybe',
-    description:
-      'Human-readable map of every page on eazybe.com — products, integrations, comparisons, blog, and legal.',
+    title: `${t('title')} | Eazybe`,
+    description: t('subtitle'),
     alternates: getAlternates(locale, '/sitemap'),
     robots: { index: true, follow: true },
   }
@@ -35,18 +35,18 @@ type Node = Leaf | Branch
 
 const isBranch = (n: Node): n is Branch => Array.isArray((n as Branch).children)
 
-const FEATURES = [
-  { name: 'Team Inbox', slug: 'team-inbox' },
-  { name: 'WhatsApp CRM', slug: 'whatsapp-crm' },
-  { name: 'Cloud Backup', slug: 'cloud-backup' },
-  { name: 'Quick Reply', slug: 'quick-reply' },
-  { name: 'Scheduler', slug: 'scheduler' },
-  { name: 'Revenue Inbox', slug: 'revenue-inbox' },
-  { name: 'Rep Radar', slug: 'rep-radar' },
-  { name: 'WhatsApp Copilot', slug: 'whatsapp-copilot' },
+const FEATURES: Array<{ key: string; slug: string }> = [
+  { key: 'featureTeamInbox', slug: 'team-inbox' },
+  { key: 'featureWhatsappCrm', slug: 'whatsapp-crm' },
+  { key: 'featureCloudBackup', slug: 'cloud-backup' },
+  { key: 'featureQuickReply', slug: 'quick-reply' },
+  { key: 'featureScheduler', slug: 'scheduler' },
+  { key: 'featureRevenueInbox', slug: 'revenue-inbox' },
+  { key: 'featureRepRadar', slug: 'rep-radar' },
+  { key: 'featureWhatsappCopilot', slug: 'whatsapp-copilot' },
 ]
 
-const INTEGRATIONS = [
+const INTEGRATIONS: Array<{ name: string; slug: string }> = [
   { name: 'HubSpot', slug: 'hubspot' },
   { name: 'Salesforce', slug: 'salesforce' },
   { name: 'Zoho', slug: 'zoho' },
@@ -71,7 +71,7 @@ const LOCALE_NAMES: Record<string, string> = {
 // Renderers
 // ────────────────────────────────────────────────────────────────────────────
 
-function TreeNode({ node, depth }: { node: Node; depth: number }) {
+function TreeNode({ node }: { node: Node }) {
   if (isBranch(node)) {
     return (
       <li className="sitemap-node sitemap-branch">
@@ -92,7 +92,7 @@ function TreeNode({ node, depth }: { node: Node; depth: number }) {
           </summary>
           <ul className="sitemap-list">
             {node.children.map((child, i) => (
-              <TreeNode key={`${child.label}-${i}`} node={child} depth={depth + 1} />
+              <TreeNode key={`${child.label}-${i}`} node={child} />
             ))}
           </ul>
         </details>
@@ -119,68 +119,70 @@ export default async function SitemapPage({
 }) {
   const { locale } = await params
   setRequestLocale(locale)
+  const t = await getTranslations('landingV3.sitemap')
 
   const prefix = locale === 'en' ? '' : `/${locale}`
   const url = (path: string) => `${prefix}${path}`
+  const integrationSuffix = t('integrationSuffix')
 
   const tree: Node[] = [
-    { label: 'Home', href: url('/') || '/' },
+    { label: t('home'), href: url('/') || '/' },
     {
-      label: 'Product',
+      label: t('product'),
       href: url('/features'),
       children: [
         {
-          label: 'Features',
+          label: t('features'),
           href: url('/features'),
           children: [
-            { label: 'All Features', href: url('/features') },
+            { label: t('allFeatures'), href: url('/features') },
             ...FEATURES.map((f) => ({
-              label: f.name,
+              label: t(f.key as any),
               href: url(`/features/${f.slug}`),
             })),
           ],
         },
-        { label: 'Pricing', href: url('/pricing') },
-        { label: 'Comparison', href: url('/comparison') },
-        { label: 'About Us', href: url('/about-us') },
+        { label: t('pricing'), href: url('/pricing') },
+        { label: t('comparison'), href: url('/comparison') },
+        { label: t('aboutUs'), href: url('/about-us') },
       ],
     },
     {
-      label: 'Integrations',
+      label: t('integrations'),
       href: url('/integrations'),
       children: INTEGRATIONS.map((i) => ({
-        label: `${i.name} WhatsApp Integration`,
+        label: `${i.name} ${integrationSuffix}`,
         href: url(`/${i.slug}-whatsapp-integration`),
       })),
     },
     {
-      label: 'WhatsApp API',
+      label: t('whatsappApi'),
       href: url('/whatsapp-api'),
       children: [
-        { label: 'WhatsApp API Overview', href: url('/whatsapp-api') },
-        { label: 'Coexistence', href: url('/whatsapp-api/coexistence') },
+        { label: t('whatsappApiOverview'), href: url('/whatsapp-api') },
+        { label: t('coexistence'), href: url('/whatsapp-api/coexistence') },
       ],
     },
     {
-      label: 'Resources',
+      label: t('resources'),
       href: url('/blog'),
       children: [
-        { label: 'Blog', href: url('/blog') },
-        { label: 'Authors', href: url('/blog/authors') },
-        { label: 'Help Center', href: 'https://help.eazybe.com/introduction' },
-        { label: 'Become a Partner', href: url('/become-our-partner') },
+        { label: t('blog'), href: url('/blog') },
+        { label: t('authors'), href: url('/blog/authors') },
+        { label: t('helpCenter'), href: 'https://help.eazybe.com/introduction' },
+        { label: t('becomePartner'), href: url('/become-our-partner') },
       ],
     },
     {
-      label: 'Legal',
+      label: t('legal'),
       children: [
-        { label: 'Terms of Service', href: url('/terms') },
-        { label: 'Privacy Policy', href: url('/privacy') },
-        { label: 'Master Service Agreement', href: url('/msa') },
+        { label: t('terms'), href: url('/terms') },
+        { label: t('privacy'), href: url('/privacy') },
+        { label: t('msa'), href: url('/msa') },
       ],
     },
     {
-      label: 'Languages',
+      label: t('languages'),
       children: routing.locales.map((l) => ({
         label: LOCALE_NAMES[l] || l,
         href: l === 'en' ? '/sitemap' : `/${l}/sitemap`,
@@ -192,16 +194,13 @@ export default async function SitemapPage({
     <section className="section" style={{ paddingTop: 120, paddingBottom: 80 }}>
       <div className="container" style={{ maxWidth: 880 }}>
         <div className="sec-head" style={{ marginBottom: 32 }}>
-          <h1>Sitemap</h1>
-          <p style={{ marginTop: 8, color: 'var(--ink-3)' }}>
-            A human-readable index of every page on eazybe.com. Expand each section
-            to see what&rsquo;s inside.
-          </p>
+          <h1>{t('title')}</h1>
+          <p style={{ marginTop: 8, color: 'var(--ink-3)' }}>{t('subtitle')}</p>
         </div>
 
         <ul className="sitemap-list sitemap-root">
           {tree.map((node, i) => (
-            <TreeNode key={`${node.label}-${i}`} node={node} depth={0} />
+            <TreeNode key={`${node.label}-${i}`} node={node} />
           ))}
         </ul>
       </div>
