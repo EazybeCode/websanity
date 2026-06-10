@@ -2105,11 +2105,15 @@
   border-color: var(--line-2);
   box-shadow: 0 4px 14px -6px rgba(15, 20, 35, 0.08);
 }
-.landing .faq-pill.open {
+.landing .faq-pill.open,
+.landing details.faq-pill[open] {
   border-radius: 22px;
   border-color: rgba(15, 20, 35, 0.18);
   box-shadow: 0 6px 18px -8px rgba(15, 20, 35, 0.1);
 }
+/* Native <details>/<summary> usage — hide the default disclosure triangle */
+.landing details.faq-pill > summary { list-style: none; }
+.landing details.faq-pill > summary::-webkit-details-marker { display: none; }
 .landing .faq-pill-q {
   width: 100%;
   text-align: left;
@@ -2139,7 +2143,8 @@
   color: var(--ink-3);
   transition: transform .3s, color .3s, background .3s;
 }
-.landing .faq-pill.open .faq-pill-chev {
+.landing .faq-pill.open .faq-pill-chev,
+.landing details.faq-pill[open] .faq-pill-chev {
   transform: rotate(180deg);
   color: #fff;
   background: var(--ink);
@@ -2155,7 +2160,8 @@
   line-height: 1.6;
   color: var(--ink-3);
 }
-.landing .faq-pill.open .faq-pill-a { max-height: 340px; }
+.landing .faq-pill.open .faq-pill-a,
+.landing details.faq-pill[open] .faq-pill-a { max-height: 340px; }
 .landing .faq-footnote {
   margin-top: 36px;
   text-align: center;

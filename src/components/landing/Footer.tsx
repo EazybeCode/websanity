@@ -72,7 +72,7 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
       { nameKey: 'itemLiveChatWidget', href: '#', badgeKey: 'badgeNew' },
       { nameKey: 'itemChatLink', href: '#', badgeKey: 'badgeNew' },
       { nameKey: 'itemWhatsappTemplate', href: '#', badgeKey: 'badgeNew' },
-      { nameKey: 'itemQrGenerator', href: '#', badgeKey: 'badgeNew' },
+      { nameKey: 'itemQrGenerator', href: '/whatsapp-qr-code-generator', badgeKey: 'badgeNew' },
     ],
   },
   {
