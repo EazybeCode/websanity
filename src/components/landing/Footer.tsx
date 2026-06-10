@@ -189,6 +189,8 @@ export function Footer() {
             <a href={lh('/privacy')}>{t('privacy')}</a>
             <span className="footer-baseline-sep">|</span>
             <a href={lh('/msa')}>{t('msa')}</a>
+            <span className="footer-baseline-sep">|</span>
+            <a href={lh('/sitemap')}>{t('sitemap')}</a>
           </nav>
 
           <div className="footer-payments" role="group" aria-label="Accepted payment methods">
