@@ -159,8 +159,9 @@ export default async function SitemapPage({
       label: t('whatsappApi'),
       href: url('/whatsapp-api'),
       children: [
-        { label: t('whatsappApiOverview'), href: url('/whatsapp-api') },
         { label: t('coexistence'), href: url('/whatsapp-api/coexistence') },
+        { label: t('templates'), href: url('/whatsapp-api/templates') },
+        { label: t('broadcast'), href: url('/whatsapp-api/broadcast') },
       ],
     },
     {

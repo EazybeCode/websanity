@@ -77,6 +77,14 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
     ],
   },
   {
+    titleKey: 'colWhatsappApi',
+    items: [
+      { nameKey: 'itemCoexistence', href: '/whatsapp-api/coexistence' },
+      { nameKey: 'itemTemplates', href: '/whatsapp-api/templates' },
+      { nameKey: 'itemBroadcast', href: '/whatsapp-api/broadcast' },
+    ],
+  },
+  {
     titleKey: 'colCompany',
     items: [
       { nameKey: 'itemAbout', href: '/about-us' },

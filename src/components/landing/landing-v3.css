@@ -2341,6 +2341,7 @@
   transition: transform .3s;
 }
 .landing .footer-col.open .footer-col-chev { transform: rotate(45deg); }
+.landing .footer-col h3,
 .landing .footer-col h4 {
   display: inline-flex;
   align-items: center;
@@ -2353,6 +2354,7 @@
   letter-spacing: 0.08em;
   margin-bottom: 18px;
 }
+.landing .footer-col h3::before,
 .landing .footer-col h4::before {
   content: "";
   display: inline-block;
