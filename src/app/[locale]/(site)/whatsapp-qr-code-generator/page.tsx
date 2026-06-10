@@ -167,11 +167,24 @@ export default async function WhatsAppQrGeneratorPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
+      {/* Mobile-only centering for the hero left column */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @media (max-width: 640px) {
+              .qr-hero-left { text-align: center; }
+              .qr-hero-left h1 { margin-left: auto; margin-right: auto; }
+              .qr-hero-left p { margin-left: auto; margin-right: auto; }
+            }
+          `,
+        }}
+      />
+
       {/* Hero — two columns, text left, visual right */}
       <section className="section" style={{ paddingTop: 'clamp(96px, 12vw, 140px)', paddingBottom: 60, background: '#ffffff' }}>
         <div className="container" style={{ maxWidth: 1180 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 48, alignItems: 'center' }}>
-            <div>
+            <div className="qr-hero-left">
               <h1 style={{ fontFamily: 'var(--f-display)', fontWeight: 400, fontSize: locale === 'en' ? 'clamp(32px, 5vw, 55px)' : 'clamp(32px, 4.2vw, 60px)', lineHeight: 1.08, letterSpacing: '-0.025em', color: 'var(--ink)', margin: 0, paddingBottom: '0.05em' }}>
                 {t.hero.h1Lead} <span style={{ color: '#25D366' }}>{t.hero.h1Brand}</span> {t.hero.h1Rest}{' '}
                 <span style={{ display: 'inline-block', backgroundImage: 'linear-gradient(transparent 62%, color-mix(in oklab, var(--accent-ink) 25%, transparent) 62%)', paddingBottom: 2 }}>

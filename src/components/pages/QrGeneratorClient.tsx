@@ -280,14 +280,15 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
           </div>
         )}
 
-        <button
-          type="button"
-          onClick={onGenerate}
-          className="btn btn-primary"
-          style={{ width: '100%' }}
-        >
-          {L.btnGenerate}
-        </button>
+        <div style={{ textAlign: 'center' }}>
+          <button
+            type="button"
+            onClick={onGenerate}
+            className="btn btn-primary"
+          >
+            {L.btnGenerate}
+          </button>
+        </div>
       </div>
 
       {/* Output */}
