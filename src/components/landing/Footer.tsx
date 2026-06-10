@@ -62,7 +62,6 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
       { nameKey: 'itemBlog', href: '/blog' },
       { nameKey: 'itemHelpCenter', href: 'https://help.eazybe.com/introduction' },
       { nameKey: 'itemComparison', href: '/comparison' },
-      { nameKey: 'itemWhatsappApi', href: '/whatsapp-api' },
       { nameKey: 'itemPricing', href: '/pricing' },
       { nameKey: 'itemAbout', href: '/about-us' },
     ],
@@ -82,6 +81,7 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
       { nameKey: 'itemCoexistence', href: '/whatsapp-api/coexistence' },
       { nameKey: 'itemTemplates', href: '/whatsapp-api/templates' },
       { nameKey: 'itemBroadcast', href: '/whatsapp-api/broadcast' },
+      { nameKey: 'itemAllWhatsappApi', href: '/whatsapp-api' },
     ],
   },
   {
