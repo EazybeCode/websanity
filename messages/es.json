@@ -2974,6 +2974,22 @@
       "featureRepRadar": "Rep Radar",
       "featureWhatsappCopilot": "WhatsApp Copilot"
     },
+    "feeds": {
+      "title": "Feeds RSS",
+      "subtitle": "Suscríbete a las actualizaciones de Eazybe en tu lector de feeds favorito. Dos feeds — elige el o los que quieras.",
+      "blogTitle": "Feed del Blog",
+      "blogDescription": "Últimas publicaciones sobre WhatsApp CRM, agentes de IA y automatización de ventas del equipo de Eazybe.",
+      "comparisonTitle": "Feed de Comparaciones",
+      "comparisonDescription": "Análisis cara a cara de cada herramienta de WhatsApp CRM que probamos — Wati, Interakt, Respond.io y más.",
+      "feedUrl": "URL del feed",
+      "copyUrl": "Copiar URL",
+      "viewFeed": "Ver feed",
+      "howToTitle": "Cómo suscribirse",
+      "step1": "Copia la URL del feed de arriba",
+      "step2": "Abre tu lector de feeds (Feedly, Inoreader, NetNewsWire, etc.)",
+      "step3": "Pega la URL en el cuadro \"Añadir feed\" o \"Suscribirse\"",
+      "step4": "Listo — cada nueva publicación llega automáticamente"
+    },
     "footer": {
       "tagline": "Agentes de IA en WhatsApp para equipos de CRM. Diseñados para cómo realmente sucede la venta.",
       "connectLabel": "Conéctate con nosotros:",

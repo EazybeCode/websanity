@@ -2900,6 +2900,22 @@
       "featureRepRadar": "Rep Radar",
       "featureWhatsappCopilot": "WhatsApp Copilot"
     },
+    "feeds": {
+      "title": "RSS Beslemeleri",
+      "subtitle": "Favori beslemen okuyucundaki Eazybe güncellemelerine abone ol. İki besleme var — istediğin(leri) seç.",
+      "blogTitle": "Blog Beslemesi",
+      "blogDescription": "Eazybe ekibinden en yeni WhatsApp CRM, AI agent ve satış otomasyonu yazıları.",
+      "comparisonTitle": "Karşılaştırma Beslemesi",
+      "comparisonDescription": "Test ettiğimiz her WhatsApp CRM aracının karşılaştırmalı incelemeleri — Wati, Interakt, Respond.io ve daha fazlası.",
+      "feedUrl": "Besleme URL'si",
+      "copyUrl": "URL'yi Kopyala",
+      "viewFeed": "Beslemeyi Görüntüle",
+      "howToTitle": "Nasıl abone olunur",
+      "step1": "Yukarıdaki besleme URL'sini kopyalayın",
+      "step2": "Besleme okuyucunuzu açın (Feedly, Inoreader, NetNewsWire, vb.)",
+      "step3": "URL'yi \"Besleme Ekle\" veya \"Abone Ol\" kutusuna yapıştırın",
+      "step4": "Tamam — her yeni yazı otomatik olarak gelir"
+    },
     "footer": {
       "tagline": "CRM ekipleri için WhatsApp AI agent'ları. Satışın gerçekte nasıl yapıldığına göre tasarlandı.",
       "connectLabel": "Bizi takip edin:",
