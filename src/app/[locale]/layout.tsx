@@ -55,6 +55,13 @@ export default async function LocaleLayout({
             LCP for the H1 (which uses Inter). */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* RSS feed discovery — feed readers / browsers auto-detect this. */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Eazybe Blog RSS Feed"
+          href={locale === 'en' ? '/blog/feed.xml' : `/${locale}/blog/feed.xml`}
+        />
         {/* Critical CSS: keep nav dropdowns + mobile drawer hidden at first
             paint so Googlebot's screenshot (taken before the main stylesheet
             applies) doesn't render every dropdown's content flat-stacked.

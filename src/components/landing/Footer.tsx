@@ -191,6 +191,8 @@ export function Footer() {
             <a href={lh('/msa')}>{t('msa')}</a>
             <span className="footer-baseline-sep">|</span>
             <a href={lh('/sitemap')}>{t('sitemap')}</a>
+            <span className="footer-baseline-sep">|</span>
+            <a href={lh('/blog/feed.xml')} type="application/rss+xml">{t('rss')}</a>
           </nav>
 
           <div className="footer-payments" role="group" aria-label="Accepted payment methods">
