@@ -9,7 +9,9 @@ const nextConfig: NextConfig = {
   // just security hygiene — no reason to advertise the framework version.
   poweredByHeader: false,
   turbopack: {
-    root: '.',
+    // Next requires this to be an absolute path; the relative `.` triggers a
+    // boot-time warning even though Next would otherwise resolve it the same way.
+    root: process.cwd(),
   },
   images: {
     remotePatterns: [
