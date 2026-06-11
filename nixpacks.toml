@@ -1,0 +1,21 @@
+# Nixpacks build/runtime config for Coolify deploys.
+#
+# Two warnings used to fire on every deploy that this file silences:
+#
+# 1. "NIXPACKS_NODE_VERSION not set. Nixpacks will use Node.js 18 by default."
+#    Even though we resolve nodejs_24 from engines.node, Nixpacks still warns
+#    when the env var isn't explicitly set. Pinning it to 22 here matches the
+#    in-repo Dockerfile base (node:22-alpine) and Coolify's container env.
+#
+# 2. "npm warn config production Use `--omit=dev` instead."
+#    Nixpacks injects NPM_CONFIG_PRODUCTION=false so devDependencies install
+#    during build. npm reads that config key (now deprecated) every time it
+#    runs and emits the warning, including before the `start` script runs.
+#    The cleanest silencer is to bypass npm at startup — invoke `next` from
+#    PATH directly (Nixpacks already adds /app/node_modules/.bin to PATH).
+
+[variables]
+NIXPACKS_NODE_VERSION = "22"
+
+[start]
+cmd = "next start"
