@@ -963,7 +963,8 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                                   href={value?.href}
                                   target={value?.blank ? '_blank' : undefined}
                                   rel={value?.blank ? 'noopener noreferrer' : undefined}
-                                  className="text-brand-cyan hover:text-brand-blue transition-colors"
+                                  style={{ color: '#4338CA', fontWeight: 500 }}
+                                  className="hover:opacity-80 transition-opacity"
                                 >
                                   {children}
                                 </a>
