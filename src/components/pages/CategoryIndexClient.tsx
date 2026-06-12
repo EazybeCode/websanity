@@ -101,9 +101,11 @@ const IntroSection: React.FC<{ data: any }> = ({ data }) => {
   return (
     <section className="section" style={{ paddingTop: 60, paddingBottom: 60 }}>
       <div className="container">
-        <div className="sec-head centered reveal">
+        <div className="sec-head centered reveal" style={{ maxWidth: 'none' }}>
           {data.headline && <h2>{tc(data.headline)}</h2>}
-          {data.description && <p style={{ whiteSpace: 'pre-line' }}>{data.description}</p>}
+          {data.description && (
+            <p style={{ whiteSpace: 'pre-line', maxWidth: 'none' }}>{data.description}</p>
+          )}
         </div>
       </div>
     </section>
