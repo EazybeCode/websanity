@@ -864,7 +864,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     'Basit, şeffaf':
       { headline: 'Ücretsiz Başlayın', headlineHighlight: 'Büyüdükçe Ölçeklendirin' },
   }
-  const override = HEADLINE_OVERRIDES[heroRaw.headline]
+  const override = heroRaw.headline ? HEADLINE_OVERRIDES[heroRaw.headline] : undefined
   const hero = {
     ...heroRaw,
     headline: override?.headline ?? heroRaw.headline,
