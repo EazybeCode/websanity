@@ -1,6 +1,6 @@
 # Eazybe
 
-> Know which WhatsApp conversations are turning into revenue. Eazybe connects WhatsApp, CRM, and ad sources so sales teams can see every lead, catch missed follow-ups, sync qualified conversations, and understand which campaigns create real pipeline.
+> Turn WhatsApp into a revenue operating system. Connect WhatsApp to your CRM, deploy AI agents that qualify leads and never miss a follow-up, catch every slipping deal and turn idle chats into closed revenue.
 
 Eazybe is a Chrome extension and SaaS platform that integrates WhatsApp (personal, Business App, and Business API) with leading CRMs and ad platforms (Meta, Google). Unlike competitors that force migration to API-only, Eazybe works with your existing WhatsApp setup — keeping chat history, workflows, and numbers intact. Trusted by 2,000+ sales teams in 40+ countries.
 

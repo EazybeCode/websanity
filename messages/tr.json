@@ -2536,9 +2536,9 @@
   "landingV3": {
     "hero": {
       "tag": "HUBSPOT, SALESFORCE, ZOHO VE DAHA FAZLASIYLA UYUMLU",
-      "headline": "<em>WhatsApp</em> Konuşmalarınızdan Hangileri Gelire Dönüşüyor, Görün",
+      "headline": "<em>WhatsApp</em>'i Bir Gelir İşletim Sistemine Dönüştürün",
       "headlineEm": "",
-      "subtitle": "Eazybe; WhatsApp'ı, CRM'inizi ve reklam kaynaklarınızı birbirine bağlar — böylece satış ekipleri her lead'i görür, kaçırılan takipleri yakalar, nitelendirilmiş konuşmaları senkronize eder ve hangi kampanyaların gerçek pipeline yarattığını anlar.",
+      "subtitle": "WhatsApp'ı CRM'inize bağlayın, lead'leri nitelendiren ve takipleri asla kaçırmayan AI agent'ları devreye alın, kayan her anlaşmayı yakalayın ve durağan sohbetleri kapanan gelire dönüştürün.",
       "subtitleNote": "Her WhatsApp numarasıyla çalışır — Kişisel, Business ve API",
       "promptLabel": "AI agent'ınızın ne yapmasını istediğinizi yazın",
       "promptHint": "<kbd>Enter</kbd> ile oluştur · Sonsuza dek ücretsiz plan",
