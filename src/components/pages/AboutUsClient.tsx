@@ -32,7 +32,7 @@ export function AboutUsClient({ locale = 'en' }: { locale?: string }) {
               {t.story.headingStart} <em>{t.story.headingHighlight}</em>
             </h2>
           </div>
-          <div className="prose reveal">
+          <div className="prose reveal" style={{ maxWidth: 'none' }}>
             {t.story.paragraphs.map((p, i) => (
               <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
             ))}
