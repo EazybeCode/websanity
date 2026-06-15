@@ -2610,10 +2610,10 @@
   "landingV3": {
     "hero": {
       "tag": "COMPATÍVEL COM HUBSPOT, SALESFORCE, ZOHO E MAIS",
-      "headline": "Visibilidade Total E Agentes De IA Para Sua Equipe De Vendas No <em>WhatsApp</em>",
+      "headline": "Pare De Perder Leads No Seu Time De Vendas Do <em>WhatsApp</em>",
       "headlineEm": "",
-      "subtitle": "Funciona no WhatsApp Pessoal, no aplicativo Business e na API — Sem necessidade de migração. O WhatsApp de cada vendedor em uma caixa de entrada compartilhada e no seu CRM, com agentes de IA que qualificam e fazem follow-up.",
-      "subtitleNote": "Funciona com qualquer número do WhatsApp — Pessoal, Business e API",
+      "subtitle": "Funciona no WhatsApp Pessoal, no aplicativo Business e na API - Sem necessidade de migração. Um agente de IA no WhatsApp captura os leads que escapam das conversas dos seus vendedores, qualifica-os e cuida do follow-up — em uma caixa de entrada compartilhada e no seu CRM.",
+      "subtitleNote": "",
       "promptLabel": "Descreva o que seu agente de IA deve fazer",
       "promptHint": "Pressione <kbd>Enter</kbd> para criar · Plano grátis para sempre",
       "trustHubspot": "Nota 4.6 no HubSpot",
@@ -2662,7 +2662,7 @@
       "headlineEm": "Agentes de IA no WhatsApp",
       "headlineRest": "para cada etapa do seu funil",
       "subtitle": "Cada agente cuida de uma etapa diferente do funil, do primeiro contato à renovação. Eles compartilham a mesma central de contexto: um deal que entra na qualificação não perde o histórico quando avança para o fechamento.",
-      "subtitleNote": "Funciona com qualquer número do WhatsApp — Pessoal, Business e API"
+      "subtitleNote": ""
     },
     "contextEngine": {
       "tag": "A CENTRAL DE CONTEXTO DA EAZYBE",
@@ -2752,7 +2752,6 @@
       "headlineEm": "Só Para Compradores Reais",
       "lede": "Você não deveria pagar o mesmo por alguém curioso e por alguém pronto para comprar. Esse agente aprende quem é quem e direciona seu orçamento de anúncios para as pessoas com maior probabilidade de comprar — para que seus custos continuem caindo.",
       "features": [
-        "Funciona com qualquer número do WhatsApp — Pessoal, Business e API",
         "Pontua a intenção em cada mensagem (BANT, MEDDIC ou personalizado)",
         "Pula o retargeting de curiosos — recupera orçamento de anúncios",
         "Encaminha leads de alta intenção para seu melhor closer na hora",

@@ -2398,10 +2398,10 @@
   "landingV3": {
     "hero": {
       "tag": "COMPATIBLE WITH HUBSPOT, SALESFORCE, ZOHO & MORE",
-      "headline": "Full Visibility And AI Agents For Your <em>WhatsApp</em> Sales Team",
+      "headline": "Stop Losing Leads In Your <em>WhatsApp</em> Sales Team",
       "headlineEm": "",
-      "subtitle": "Works on Personal WhatsApp, the Business app and API — No migration needed. Every rep's WhatsApp in one shared inbox and your CRM with AI agents that qualify and follow up.",
-      "subtitleNote": "Works with every WhatsApp number — Personal, Business, and API",
+      "subtitle": "Works on Personal WhatsApp, the Business app, and API - No migration needed. A WhatsApp AI agent catches the leads slipping through your reps' chats, qualifies them and chases the follow-up — in one shared inbox and your CRM.",
+      "subtitleNote": "",
       "promptLabel": "Describe what your AI agent should do",
       "promptHint": "Press <kbd>Enter</kbd> to build · Free forever plan",
       "trustHubspot": "4.6 on HubSpot",
@@ -2450,7 +2450,7 @@
       "headlineEm": "WhatsApp AI Agents",
       "headlineRest": "For Every Stage Of Your Pipeline",
       "subtitle": "Each agent owns a different stage of the funnel, from first inbound to renewal. They share the same context engine, so a deal that starts in qualification never loses its history when it moves to close.",
-      "subtitleNote": "Works with every WhatsApp number — Personal, Business, and API"
+      "subtitleNote": ""
     },
     "contextEngine": {
       "tag": "THE EAZYBE CONTEXT ENGINE",
@@ -2540,7 +2540,6 @@
       "headlineEm": "Going To Real Buyers Only",
       "lede": "You shouldn't pay the same for someone curious and someone ready to buy. This agent learns who's who, then points your ad budget at the people most likely to purchase — so your costs keep coming down.",
       "features": [
-        "Works with every WhatsApp number — Personal, Business, and API",
         "Scores intent on every message (BANT, MEDDIC, or custom)",
         "Skips retargeting on tire-kickers — reclaims ad budget",
         "Routes high-intent leads to your top closer instantly",

@@ -2536,10 +2536,10 @@
   "landingV3": {
     "hero": {
       "tag": "HUBSPOT, SALESFORCE, ZOHO VE DAHA FAZLASIYLA UYUMLU",
-      "headline": "<em>WhatsApp</em> Satış Ekibiniz İçin Tam Görünürlük Ve AI Agent'lar",
+      "headline": "<em>WhatsApp</em> Satış Ekibinizde Lead Kaybetmeyi Bırakın",
       "headlineEm": "",
-      "subtitle": "Kişisel WhatsApp, Business uygulaması ve API üzerinde çalışır — Geçiş gerekmez. Her temsilcinin WhatsApp'i tek bir paylaşılan gelen kutusunda ve CRM'inizde; niteleyen ve takip yapan AI agent'larla.",
-      "subtitleNote": "Her WhatsApp numarasıyla çalışır — Kişisel, Business ve API",
+      "subtitle": "Kişisel WhatsApp, Business uygulaması ve API üzerinde çalışır - Geçiş gerekmez. Bir WhatsApp AI agent'ı, temsilcilerinizin sohbetlerinden kaçıp giden lead'leri yakalar, niteleyer ve takibi sürdürür — tek bir paylaşılan gelen kutusunda ve CRM'inizde.",
+      "subtitleNote": "",
       "promptLabel": "AI agent'ınızın ne yapmasını istediğinizi yazın",
       "promptHint": "<kbd>Enter</kbd> ile oluştur · Sonsuza dek ücretsiz plan",
       "trustHubspot": "HubSpot'ta 4.6 puan",
@@ -2588,7 +2588,7 @@
       "headlineEm": "5 WhatsApp AI Agent",
       "headlineRest": "",
       "subtitle": "Her agent, ilk gelen mesajdan yenilemeye kadar funnel'ın farklı bir aşamasını yönetir. Hepsi aynı bağlam motorunu paylaşır: kalifikasyonda başlayan bir fırsat, kapanışa geçtiğinde geçmişini asla kaybetmez.",
-      "subtitleNote": "Her WhatsApp numarasıyla çalışır — Kişisel, Business ve API"
+      "subtitleNote": ""
     },
     "contextEngine": {
       "tag": "EAZYBE BAĞLAM MOTORU",
@@ -2678,7 +2678,6 @@
       "headlineEm": "Sadece Gerçek Alıcılara",
       "lede": "Sadece meraklı biriyle satın almaya hazır biri için aynı parayı ödememelisiniz. Bu ajan kimin kim olduğunu öğrenir, sonra reklam bütçenizi satın alma olasılığı en yüksek kişilere yönlendirir — böylece maliyetleriniz düşmeye devam eder.",
       "features": [
-        "Her WhatsApp numarasıyla çalışır — Kişisel, Business ve API",
         "Her mesajda niyet puanı verir (BANT, MEDDIC veya özel)",
         "Sadece meraklılar için yeniden hedeflemeyi atlar — reklam bütçesini geri kazandırır",
         "Yüksek niyetli lead'leri en iyi temsilcinize anında yönlendirir",
