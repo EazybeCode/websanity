@@ -98,7 +98,10 @@ export function Hero() {
             {t.rich('headline', { em: (chunks) => <em>{chunks}</em>, br: () => <br /> })}
             {t('headlineEm') ? <> <em>{t('headlineEm')}</em></> : null}
           </h1>
-          <p className="hero-sub">{t('subtitle')}</p>
+          <div className="hero-sub-group">
+            <p className="hero-sub">{t('subtitle')}</p>
+            <p className="hero-sub">{t('subtitle2')}</p>
+          </div>
 
           <div className="prompt-wrap">
             <div className="prompt-orb" />
