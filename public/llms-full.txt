@@ -1,6 +1,6 @@
 # Eazybe — Full Documentation for AI Systems
 
-> Turn WhatsApp into a revenue operating system. Connect WhatsApp to your CRM, deploy AI agents that qualify leads and never miss a follow-up, catch every slipping deal and turn idle chats into closed revenue. Five purpose-built WhatsApp AI Agents handle qualification, ad-spend optimization, deal rescue, customer success, and custom workflows. Trusted by 2,000+ sales teams in 40+ countries.
+> Full visibility and AI agents for your WhatsApp sales team. Works on Personal WhatsApp, the Business app and API — no migration needed. Every rep's WhatsApp in one shared inbox and your CRM, with AI agents that qualify leads and follow up. Five purpose-built WhatsApp AI Agents handle qualification, ad-spend optimization, deal rescue, customer success, and custom workflows. Trusted by 2,000+ sales teams in 40+ countries.
 
 ## What Eazybe Does
 
