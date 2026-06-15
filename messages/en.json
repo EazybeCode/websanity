@@ -2450,7 +2450,7 @@
       "headlineEm": "WhatsApp AI Agents",
       "headlineRest": "For Every Stage Of Your Pipeline",
       "subtitle": "Each agent owns a different stage of the funnel, from first inbound to renewal. They share the same context engine, so a deal that starts in qualification never loses its history when it moves to close.",
-      "subtitleNote": ""
+      "subtitleNote": "Works with every WhatsApp number — Personal, Business, and API"
     },
     "contextEngine": {
       "tag": "THE EAZYBE CONTEXT ENGINE",
@@ -2540,6 +2540,7 @@
       "headlineEm": "Going To Real Buyers Only",
       "lede": "You shouldn't pay the same for someone curious and someone ready to buy. This agent learns who's who, then points your ad budget at the people most likely to purchase — so your costs keep coming down.",
       "features": [
+        "Works with every WhatsApp number — Personal, Business, and API",
         "Scores intent on every message (BANT, MEDDIC, or custom)",
         "Skips retargeting on tire-kickers — reclaims ad budget",
         "Routes high-intent leads to your top closer instantly",
