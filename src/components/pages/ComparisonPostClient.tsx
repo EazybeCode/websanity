@@ -32,6 +32,34 @@ import { TableBlock } from '@/components/blog/TableBlock'
 import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
 import { BlogTranslationsProvider, type BlogTranslation } from '@/contexts/BlogTranslationsContext'
 
+// ─── External link helpers (mark inline citations like the G2/Gartner pattern) ──
+
+function isExternalHref(href?: string): boolean {
+  if (!href || !href.startsWith('http')) return false
+  return !href.includes('eazybe.com') && !href.includes('eazybe.info')
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg
+      width="11"
+      height="11"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      style={{ display: 'inline-block', verticalAlign: 'baseline', marginLeft: 3, transform: 'translateY(1px)' }}
+    >
+      <path d="M15 3h6v6" />
+      <path d="M10 14L21 3" />
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    </svg>
+  )
+}
+
 // ─── Types ─────────────────────────────────────────────────────────────────
 
 interface PortableTextBlock {
@@ -260,16 +288,20 @@ const createPortableTextComponents = (
           {children}
         </code>
       ),
-      link: ({ children, value }: any) => (
-        <a
-          href={value?.href}
-          className="text-brand-cyan hover:text-brand-blue transition-colors"
-          target={value?.href?.startsWith('http') ? '_blank' : undefined}
-          rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-        >
-          {children}
-        </a>
-      ),
+      link: ({ children, value }: any) => {
+        const external = isExternalHref(value?.href)
+        return (
+          <a
+            href={value?.href}
+            className={`text-brand-cyan hover:text-brand-blue transition-colors${external ? ' underline underline-offset-2 decoration-1' : ''}`}
+            target={value?.href?.startsWith('http') ? '_blank' : undefined}
+            rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            {children}
+            {external && <ExternalLinkIcon />}
+          </a>
+        )
+      },
     },
     types: {
       image: ({ value }: any) => {
@@ -944,16 +976,20 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                               number: ({ children }) => <ol className="list-decimal list-outside pl-10 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
                             },
                             marks: {
-                              link: ({ children, value }) => (
-                                <a
-                                  href={value?.href}
-                                  target={value?.blank ? '_blank' : undefined}
-                                  rel={value?.blank ? 'noopener noreferrer' : undefined}
-                                  className="text-brand-cyan hover:text-brand-blue transition-colors"
-                                >
-                                  {children}
-                                </a>
-                              ),
+                              link: ({ children, value }) => {
+                                const external = isExternalHref(value?.href)
+                                return (
+                                  <a
+                                    href={value?.href}
+                                    target={value?.blank || external ? '_blank' : undefined}
+                                    rel={value?.blank || external ? 'noopener noreferrer' : undefined}
+                                    className={`text-brand-cyan hover:text-brand-blue transition-colors${external ? ' underline underline-offset-2 decoration-1' : ''}`}
+                                  >
+                                    {children}
+                                    {external && <ExternalLinkIcon />}
+                                  </a>
+                                )
+                              },
                             },
                           }}
                         />
@@ -1208,16 +1244,20 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                                   value={faq.answer}
                                   components={{
                                     marks: {
-                                      link: ({ children, value: markValue }: any) => (
-                                        <a
-                                          href={markValue?.href}
-                                          target={markValue?.openInNewTab ? '_blank' : undefined}
-                                          rel={markValue?.openInNewTab ? 'noopener noreferrer' : undefined}
-                                          className="text-brand-cyan hover:text-brand-blue underline transition-colors"
-                                        >
-                                          {children}
-                                        </a>
-                                      ),
+                                      link: ({ children, value: markValue }: any) => {
+                                        const external = isExternalHref(markValue?.href)
+                                        return (
+                                          <a
+                                            href={markValue?.href}
+                                            target={markValue?.openInNewTab || external ? '_blank' : undefined}
+                                            rel={markValue?.openInNewTab || external ? 'noopener noreferrer' : undefined}
+                                            className="text-brand-cyan hover:text-brand-blue underline underline-offset-2 decoration-1 transition-colors"
+                                          >
+                                            {children}
+                                            {external && <ExternalLinkIcon />}
+                                          </a>
+                                        )
+                                      },
                                     },
                                     block: {
                                       normal: ({ children }: any) => <p className="mb-2 last:mb-0">{children}</p>,
