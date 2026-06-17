@@ -83,6 +83,7 @@ interface BlogPost {
   featuredImageDesktopRatio?: string
   featuredImageCaption?: string
   publishedAt: string
+  updatedAt?: string
   readTime?: number
   author?: {
     name: string
@@ -867,7 +868,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                 <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
                   <span className="flex items-center gap-1">
                     <Calendar size={14} />
-                    {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                    Updated {new Date(post.updatedAt || post.publishedAt).toLocaleDateString('en-US', {
                       month: 'long',
                       day: 'numeric',
                       year: 'numeric',
