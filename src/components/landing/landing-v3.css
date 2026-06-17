@@ -902,6 +902,22 @@
 .landing .agent { padding: 110px 0; position: relative; }
 .landing .agent + .agent { border-top: 1px solid var(--line); }
 .landing .agent-inner { display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; align-items: center; }
+@media (min-width: 1025px) {
+  .landing .agent-inner-founder { grid-template-columns: 0.85fr 1.15fr; }
+}
+/* Founder card: LinkedIn pill is overlaid on the photo at all sizes */
+.landing .founder-overlay { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.landing .founder-overlay-text { flex: 1; min-width: 0; }
+.landing .founder-linkedin-mobile {
+  display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+  padding: 8px 14px; border-radius: 100px;
+  background: rgba(15, 17, 21, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff; font-size: 13px; font-weight: 500;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  text-decoration: none; line-height: 1;
+}
+.landing .founder-linkedin-mobile svg { color: var(--accent-a); }
 .landing .agent.reverse .agent-inner { direction: rtl; }
 .landing .agent.reverse .agent-inner > * { direction: ltr; }
 .landing .agent-copy .sec-tag { margin-bottom: 24px; }

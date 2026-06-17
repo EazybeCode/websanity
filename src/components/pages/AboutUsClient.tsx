@@ -49,7 +49,7 @@ export function AboutUsClient({ locale = 'en' }: { locale?: string }) {
               {t.founder.headingStart} <em>{t.founder.headingHighlight}</em>
             </h2>
           </div>
-          <div className="agent-inner" style={{ gridTemplateColumns: '0.85fr 1.15fr' }}>
+          <div className="agent-inner agent-inner-founder">
             <div className="reveal">
               <div
                 style={{
@@ -69,6 +69,7 @@ export function AboutUsClient({ locale = 'en' }: { locale?: string }) {
                   priority
                 />
                 <div
+                  className="founder-overlay"
                   style={{
                     position: 'absolute',
                     left: 0,
@@ -80,44 +81,34 @@ export function AboutUsClient({ locale = 'en' }: { locale?: string }) {
                     color: '#fff',
                   }}
                 >
-                  <h3
-                    style={{
-                      color: '#fff',
-                      fontFamily: 'var(--f-display)',
-                      fontSize: 26,
-                      fontWeight: 400,
-                      letterSpacing: '-0.01em',
-                      marginBottom: 4,
-                    }}
+                  <div className="founder-overlay-text">
+                    <h3
+                      style={{
+                        color: '#fff',
+                        fontFamily: 'var(--f-display)',
+                        fontSize: 26,
+                        fontWeight: 400,
+                        letterSpacing: '-0.01em',
+                        marginBottom: 4,
+                      }}
+                    >
+                      {t.founder.founderName}
+                    </h3>
+                    <p style={{ fontSize: 13, color: 'var(--accent-a)', fontWeight: 500 }}>
+                      {t.founder.founderTitle}
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.linkedin.com/in/sagar-dewan-b43b9931/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="founder-linkedin-mobile"
+                    aria-label="Sagar Dewan on LinkedIn"
                   >
-                    {t.founder.founderName}
-                  </h3>
-                  <p style={{ fontSize: 13, color: 'var(--accent-a)', fontWeight: 500 }}>
-                    {t.founder.founderTitle}
-                  </p>
+                    <Linkedin size={14} /> LinkedIn
+                  </a>
                 </div>
               </div>
-              <a
-                href="https://www.linkedin.com/in/sagar-dewan-b43b9931/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  marginTop: 18,
-                  padding: '8px 14px',
-                  background: 'var(--paper)',
-                  border: '1px solid var(--line)',
-                  borderRadius: 100,
-                  color: 'var(--ink-2)',
-                  fontSize: 13,
-                  fontWeight: 500,
-                  transition: 'all .2s',
-                }}
-              >
-                <Linkedin size={14} /> LinkedIn
-              </a>
             </div>
             <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <div
