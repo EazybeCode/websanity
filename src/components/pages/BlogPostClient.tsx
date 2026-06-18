@@ -987,8 +987,8 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                               // Tighter than main-body lists because TL;DR sits inside
                               // a small bordered callout, but same marker color and
                               // marker shape so the visual language stays consistent.
-                              bullet: ({ children }) => <ul className="list-disc list-outside pl-10 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
-                              number: ({ children }) => <ol className="list-decimal list-outside pl-10 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
+                              bullet: ({ children }) => <ul className="list-disc list-outside pl-0 ml-5 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
+                              number: ({ children }) => <ol className="list-decimal list-outside pl-0 ml-5 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
                             },
                             marks: {
                               link: ({ children, value }) => (
