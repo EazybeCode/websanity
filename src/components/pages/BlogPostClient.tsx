@@ -271,17 +271,17 @@ const createPortableTextComponents = (
         <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan">{children}</ul>
       ),
       number: ({ children }: any) => (
-        <ol className="mt-8 mb-6 space-y-5 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold">{children}</ol>
+        <ol className="mt-8 mb-6 space-y-7 list-decimal list-outside pl-12 marker:text-brand-cyan marker:font-bold">{children}</ol>
       ),
     },
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-3">
           {children}
         </li>
       ),
       number: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-3">
           {children}
         </li>
       ),

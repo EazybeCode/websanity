@@ -15,15 +15,18 @@ export function AgentBuilder() {
             <h3>{t('headline')} <em>{t('headlineEm')}</em></h3>
             <p className="lede">{t('lede')}</p>
             <ul className="feat-list">
-              <li><span className="tick">{Check}</span><strong style={{ marginRight: 6 }}>{t('defineLabel')}</strong> {t('defineDesc')}</li>
-              <li><span className="tick">{Check}</span><strong style={{ marginRight: 6 }}>{t('trainLabel')}</strong> {t('trainDesc')}</li>
-              <li><span className="tick">{Check}</span><strong style={{ marginRight: 6 }}>{t('deployLabel')}</strong> {t('deployDesc')}</li>
+              <li><span className="tick">{Check}</span><span><strong>{t('defineLabel')}:</strong> {t('defineDesc')}</span></li>
+              <li><span className="tick">{Check}</span><span><strong>{t('trainLabel')}:</strong> {t('trainDesc')}</span></li>
+              <li><span className="tick">{Check}</span><span><strong>{t('deployLabel')}:</strong> {t('deployDesc')}</span></li>
             </ul>
             <p className="lede" style={{ fontSize: 14, marginTop: 18 }}>
               <strong>{t('useCaseTitle')}</strong><br />
               {t('useCaseExamples')}
             </p>
-            <a href="https://eazybe.info/85c80b" target="_blank" rel="noopener noreferrer" className="feat-link">{t('cta')}</a>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginTop: 8 }}>
+              <a href="https://eazybe.info/85c80b" target="_blank" rel="noopener noreferrer" className="btn btn-outline">{t('cta')}</a>
+              <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t('ctaDemo')}</a>
+            </div>
           </div>
           <div className="visual reveal">
             <div style={{ background: 'var(--paper)', border: '1px solid var(--line)', borderRadius: 'var(--r-lg)', padding: 24, boxShadow: '0 8px 24px -12px rgba(0,0,0,0.08)' }}>

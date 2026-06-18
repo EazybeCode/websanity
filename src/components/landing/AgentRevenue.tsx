@@ -135,7 +135,10 @@ export function AgentRevenue() {
                 </li>
               ))}
             </ul>
-            <a href="https://eazybe.info/85c80b" target="_blank" rel="noopener noreferrer" className="feat-link">{t('cta')}</a>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginTop: 8 }}>
+              <a href="https://eazybe.info/85c80b" target="_blank" rel="noopener noreferrer" className="btn btn-outline">{t('cta')}</a>
+              <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t('ctaDemo')}</a>
+            </div>
           </div>
           <div className="visual reveal">
             <div className="dash" ref={dashRef}>

@@ -125,8 +125,38 @@
 .landing .nav-caret { color: rgba(255,255,255,0.7) !important; transition: color .2s ease; }
 .landing .nav .nav-lang-btn { color: #ffffff !important; }
 .landing .nav .nav-lang-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); }
-.landing .nav .btn-ghost { background: #000000; color: #ffffff; border: 1px solid rgba(255,255,255,0.18); }
-.landing .nav .btn-ghost:hover { background: #1a1a1f; color: #ffffff; }
+.landing .nav .btn-ghost {
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  box-shadow: 0 8px 24px -8px rgba(0,0,0,0.55);
+}
+.landing .nav .btn-ghost:hover {
+  background: #1a1a1f;
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 10px 28px -8px rgba(0,0,0,0.65);
+}
+/* White shimmer reads on the black bg, so revert to the default global sweep */
+.landing .nav .btn-ghost::after {
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%);
+}
+/* Try This Agent (in CRM Sync agent card) — same hover treatment as nav Book a Demo */
+.landing .agent-copy .btn-outline {
+  background: #ffffff;
+  color: #0F1115;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 2px rgba(15,17,21,0.10), 0 6px 14px -6px rgba(15,17,21,0.18);
+}
+.landing .agent-copy .btn-outline:hover {
+  background: #F1F4F9;
+  color: #0F1115;
+  border-color: transparent;
+  box-shadow: 0 1px 2px rgba(15,17,21,0.12), 0 8px 18px -6px rgba(15,17,21,0.22);
+}
+.landing .agent-copy .btn-outline::after {
+  background: linear-gradient(120deg, transparent 30%, rgba(91,75,174,0.22) 50%, transparent 70%);
+}
 .landing .nav .btn-primary { background: #6c5cc1; color: #ffffff; border: 1px solid transparent; }
 .landing .nav .btn-primary:hover { background: #5b4bae; }
 .landing .nav-burger span { background: #ffffff !important; }
