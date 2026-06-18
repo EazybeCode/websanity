@@ -22,7 +22,7 @@ export async function generateMetadata({
   // Override everything for English blog page with provided meta tags
   if (locale === 'en') {
     return {
-      title: 'WhatsApp CRM & Automation Blog - Guides, Tips, News | Eazybe',
+      title: 'Eazybe Blog - AI Agents, CRM, Automation, Latest Guides, Tips & News',
       description: 'Explore the Eazybe blog for insights on WhatsApp automation, chatbots, sales strategies, and CRM tools to streamline workflows and grow your business.',
       keywords: 'whatsapp automation, whatsapp chatbot, business automation, sales strategies, crm tools, marketing automation, customer engagement, automate whatsapp messages',
       authors: [{ name: 'Victor' }],
