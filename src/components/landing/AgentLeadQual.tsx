@@ -169,7 +169,7 @@ export function AgentLeadQual() {
                 </li>
               ))}
             </ul>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginTop: 8 }}>
+            <div className="agent-cta-pair" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginTop: 8 }}>
               <a href="#bea-form" className="btn btn-outline" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event('eazybe:open-bea-form')) }}>{t('cta')}</a>
               <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: '#6c5cc1', color: '#ffffff' }}>{t('ctaDemo')}</a>
             </div>

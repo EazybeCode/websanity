@@ -301,6 +301,12 @@
     padding: 12px 22px !important;
     font-size: 14px !important;
   }
+  /* Agent card CTA pair (e.g. CRM Sync): stack centered on mobile, each content-sized */
+  .landing .agent-cta-pair {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* Nav dropdown */
