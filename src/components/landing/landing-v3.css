@@ -294,8 +294,13 @@
 .landing .btn-lg { padding: 14px 24px; font-size: 15px; }
 /* Hero CTA pair: stack full-width on mobile so both buttons are visually equal */
 @media (max-width: 680px) {
-  .landing .hero-cta-pair { flex-direction: column; align-items: stretch; flex-wrap: nowrap; }
-  .landing .hero-cta-pair > a { width: 100%; justify-content: center; }
+  .landing .hero-cta-pair { flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: 10px; }
+  .landing .hero-cta-pair > a {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 22px !important;
+    font-size: 14px !important;
+  }
 }
 
 /* Nav dropdown */
