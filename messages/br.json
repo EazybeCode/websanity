@@ -1929,7 +1929,8 @@
       "articleSingular": "Artigo",
       "articlePlural": "Artigos",
       "emptyTitle": "Nenhum artigo encontrado com seus critérios.",
-      "clearFilters": "Limpar Filtros"
+      "clearFilters": "Limpar Filtros",
+      "readMore": "Ver Mais"
     },
     "categories": {
       "all": "Todos"

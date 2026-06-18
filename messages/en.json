@@ -1762,7 +1762,8 @@
       "articleSingular": "Article",
       "articlePlural": "Articles",
       "emptyTitle": "No articles found matching your criteria.",
-      "clearFilters": "Clear Filters"
+      "clearFilters": "Clear Filters",
+      "readMore": "Read More"
     },
     "categories": {
       "all": "All"

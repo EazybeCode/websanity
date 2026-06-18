@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Search, Calendar, Clock, Zap } from 'lucide-react'
 
@@ -174,25 +174,9 @@ const FeaturedBlogCard: React.FC<{
   return (
     <a
       href={blogPath}
-      className="card reveal"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        padding: 0,
-        overflow: 'hidden',
-      }}
+      className="card reveal blog-featured-card"
     >
-      <div
-        style={{
-          position: 'relative',
-          minHeight: 280,
-          overflow: 'hidden',
-          // Soft accent-tinted backdrop so when the image is shown in full
-          // (objectFit: contain) the letterbox area looks intentional, not
-          // empty. Mirrors the card background.
-          background: 'linear-gradient(135deg, rgba(91,75,174,0.06), rgba(127,214,176,0.06))',
-        }}
-      >
+      <div className="blog-featured-img">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={post.featuredImage || '/logo.png'}
@@ -221,7 +205,7 @@ const FeaturedBlogCard: React.FC<{
           {badgeText}
         </span>
       </div>
-      <div style={{ padding: 36, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div className="blog-featured-body">
         <span
           style={{
             fontFamily: 'var(--f-mono)',
@@ -238,7 +222,6 @@ const FeaturedBlogCard: React.FC<{
         <h3
           style={{
             fontFamily: 'var(--f-display)',
-            fontSize: 32,
             fontWeight: 400,
             letterSpacing: '-0.015em',
             color: 'var(--ink)',
@@ -294,6 +277,25 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({ allPosts, 
   const t = useTranslations()
   const [activeCategory, setActiveCategory] = useState<string>('All')
   const [searchQuery, setSearchQuery] = useState('')
+  // Page size: 6 on mobile, 12 on desktop. Default to desktop for SSR.
+  const [step, setStep] = useState(12)
+  const [visibleCount, setVisibleCount] = useState(12)
+
+  // Track viewport once and on resize crossing the 900px breakpoint.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(max-width: 900px)')
+    const apply = () => setStep(mq.matches ? 6 : 12)
+    apply()
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
+
+  // Reset the visible window whenever the page size or filters change,
+  // so a search/category click (or viewport flip) shows fresh first-N cards.
+  useEffect(() => {
+    setVisibleCount(step)
+  }, [step, activeCategory, searchQuery])
 
   const hero = blogIndex?.hero || {}
   const allArticlesSection = blogIndex?.allArticlesSection || {}
@@ -510,17 +512,30 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({ allPosts, 
               </button>
             </div>
           ) : (
-            <div className="card-grid cols-3">
-              {regularPosts.map((post, idx) => (
-                <BlogCard
-                  key={post._id}
-                  post={post}
-                  locale={locale}
-                  minReadSuffix={minReadSuffix}
-                  delay={idx * 0.04}
-                />
-              ))}
-            </div>
+            <>
+              <div className="card-grid cols-3">
+                {regularPosts.slice(0, visibleCount).map((post, idx) => (
+                  <BlogCard
+                    key={post._id}
+                    post={post}
+                    locale={locale}
+                    minReadSuffix={minReadSuffix}
+                    delay={idx * 0.04}
+                  />
+                ))}
+              </div>
+              {regularPosts.length > visibleCount && (
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 40 }}>
+                  <button
+                    type="button"
+                    onClick={() => setVisibleCount((c) => c + step)}
+                    className="btn btn-outline"
+                  >
+                    {t('blog.allArticles.readMore')}
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>

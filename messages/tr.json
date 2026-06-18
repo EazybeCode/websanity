@@ -1855,7 +1855,8 @@
       "articleSingular": "Makale",
       "articlePlural": "Makale",
       "emptyTitle": "Kriterlerinize uyan makale bulunamadı.",
-      "clearFilters": "Filtreleri Temizle"
+      "clearFilters": "Filtreleri Temizle",
+      "readMore": "Daha Fazla"
     },
     "categories": {
       "all": "Tümü"

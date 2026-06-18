@@ -3540,6 +3540,17 @@
 
 /* Generic card grid */
 .landing .card-grid { display: grid; gap: 20px; margin: 0 auto; }
+/* Blog featured card: 2-column grid on desktop, stacked + compact on mobile */
+.blog-featured-card { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; padding: 0; }
+.blog-featured-card .blog-featured-img { min-height: 280px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(91,75,174,0.06), rgba(127,214,176,0.06)); }
+.blog-featured-card .blog-featured-body { padding: 36px; display: flex; flex-direction: column; justify-content: center; }
+.blog-featured-card .blog-featured-body h3 { font-size: 32px; }
+@media (max-width: 900px) {
+  .blog-featured-card { grid-template-columns: 1fr; }
+  .blog-featured-card .blog-featured-img { min-height: 200px; aspect-ratio: 16/9; }
+  .blog-featured-card .blog-featured-body { padding: 22px; }
+  .blog-featured-card .blog-featured-body h3 { font-size: 22px; }
+}
 .landing .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 1000px; }
 .landing .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); max-width: 1100px; }
 .landing .pricing-plan-grid {
