@@ -292,6 +292,11 @@
 .landing .mid-cta-content a > *,
 .landing .final-cta .ctas a > * { position: relative; z-index: 1; }
 .landing .btn-lg { padding: 14px 24px; font-size: 15px; }
+/* Hero CTA pair: stack full-width on mobile so both buttons are visually equal */
+@media (max-width: 680px) {
+  .landing .hero-cta-pair { flex-direction: column; align-items: stretch; flex-wrap: nowrap; }
+  .landing .hero-cta-pair > a { width: 100%; justify-content: center; }
+}
 
 /* Nav dropdown */
 .landing .nav-item { position: relative; }

@@ -21,7 +21,7 @@ export function Hero() {
             <p className="hero-sub">{t('subtitle2')}</p>
           </div>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 28, marginBottom: 40 }}>
+          <div className="hero-cta-pair" style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 28, marginBottom: 40 }}>
             <a
               href="https://calendly.com/d/cw67-pt3-y2m"
               target="_blank"
@@ -47,6 +47,7 @@ export function Hero() {
               style={{
                 background: '#6c5cc1',
                 color: '#ffffff',
+                border: '1.5px solid transparent',
                 padding: '16px 30px',
                 fontSize: 16,
                 fontWeight: 600,
