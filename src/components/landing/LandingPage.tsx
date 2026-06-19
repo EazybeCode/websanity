@@ -2,13 +2,10 @@ import './landing-v3.css'
 import { Nav } from './Nav'
 import { Hero } from './Hero'
 import { LogoBar } from './LogoBar'
-import { OutcomeStats } from './OutcomeStats'
-import { Problems } from './Problems'
 import { AgentsHeader } from './AgentsHeader'
 import { AgentSync } from './AgentSync'
 import { AgentLeadQual } from './AgentLeadQual'
 import { AgentRevenue } from './AgentRevenue'
-import { AlertCallouts } from './AlertCallouts'
 import { AgentCustomerSuccess } from './AgentCustomerSuccess'
 import { AgentBuilder } from './AgentBuilder'
 import { Integrations } from './Integrations'
@@ -32,13 +29,10 @@ export function LandingPage() {
       <Nav />
       <Hero />
       <LogoBar />
-      <OutcomeStats />
-      <Problems />
       <AgentsHeader />
       <AgentSync />
       <AgentLeadQual />
       <AgentRevenue />
-      <AlertCallouts />
       <AgentCustomerSuccess />
       <AgentBuilder />
       <Integrations />
