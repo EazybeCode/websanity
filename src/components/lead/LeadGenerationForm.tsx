@@ -198,7 +198,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
 
       setIsSuccess(true)
       window.open(
-        'https://app.eazybe.com/signin?utm_medium=Organic&utm_source=website-form&utm_campaign=eazybe%20workspace',
+        'https://eazybe.info/wub',
         '_blank',
         'noopener,noreferrer',
       )
@@ -206,7 +206,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       console.error('Error submitting form:', error)
       setIsSuccess(true)
       window.open(
-        'https://app.eazybe.com/signin?utm_medium=Organic&utm_source=website-form&utm_campaign=eazybe%20workspace',
+        'https://eazybe.info/wub',
         '_blank',
         'noopener,noreferrer',
       )

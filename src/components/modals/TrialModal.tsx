@@ -115,7 +115,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
       if (hasSubmitted) {
         setIsSuccess(true)
         if (mode === 'trial') {
-          window.location.href = 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd'
+          window.location.href = 'https://eazybe.info/web'
         }
       } else {
         setIsSuccess(false)
@@ -139,7 +139,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
     let timeoutId: NodeJS.Timeout | null = null
     if (isSuccess && mode === 'trial') {
       timeoutId = setTimeout(() => {
-        window.location.href = 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd'
+        window.location.href = 'https://eazybe.info/web'
       }, 2000)
     }
     return () => {

@@ -147,8 +147,8 @@ const getFallbackNavigation = (t: (key: string) => string) => ({
       isMegaMenu: false,
     },
   ],
-  ctaButton: { label: t('nav.startFreeTrial'), href: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd', variant: 'primary' as const },
-  signInButton: { label: t('nav.signIn'), href: 'https://app.eazybe.com/login' },
+  ctaButton: { label: t('nav.startFreeTrial'), href: 'https://eazybe.info/web', variant: 'primary' as const },
+  signInButton: { label: t('nav.signIn'), href: 'https://eazybe.info/web' },
 })
 
 interface NavItemWithDropdownProps {

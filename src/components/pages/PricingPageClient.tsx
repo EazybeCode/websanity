@@ -91,7 +91,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Salesforce integration', included: false },
       { text: 'Revenue Inbox', included: false },
     ],
-    cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+    cta: { label: 'Install for Free', url: 'https://eazybe.info/web' },
   },
   {
     name: 'Scaler', planKey: 'scaler',
@@ -108,7 +108,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'CRM workflow integration', included: true },
       { text: 'RevOps Agent', included: false },
     ],
-    cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+    cta: { label: 'Install for Free', url: 'https://eazybe.info/web' },
   },
   {
     name: 'Basic AI', planKey: 'basic-ai',

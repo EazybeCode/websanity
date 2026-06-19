@@ -143,7 +143,7 @@ export default async function SubscriptionPage({
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 28, flexWrap: 'wrap' }}>
             <a
-              href="https://chromewebstore.google.com/detail/eazybe/iflackhliiapmhhgjlokjjagkfcbmooa"
+              href="https://eazybe.info/web"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
