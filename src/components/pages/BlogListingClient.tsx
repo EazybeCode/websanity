@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo, useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { Search, Calendar, Clock, Zap } from 'lucide-react'
 
@@ -297,6 +297,29 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({ allPosts, 
     setVisibleCount(step)
   }, [step, activeCategory, searchQuery])
 
+  // Reveal cards rendered after the initial mount. The global RevealOnScroll
+  // observer (in the site layout) only watches `.reveal` nodes that exist when
+  // it first runs, then disconnects — so cards added by "Read More" (or by a
+  // category/search change) would otherwise stay stuck at opacity:0. Mark any
+  // not-yet-shown cards in the grid as `.show`; per-card CSS transition-delay
+  // preserves the staggered fade-in.
+  const gridRef = useRef<HTMLDivElement>(null)
+  const initialRevealDone = useRef(false)
+  useEffect(() => {
+    if (!initialRevealDone.current) {
+      initialRevealDone.current = true
+      return // let RevealOnScroll handle the first paint
+    }
+    const grid = gridRef.current
+    if (!grid) return
+    const raf = requestAnimationFrame(() => {
+      grid
+        .querySelectorAll<HTMLElement>('.reveal:not(.show)')
+        .forEach((el) => el.classList.add('show'))
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [visibleCount, activeCategory, searchQuery])
+
   const hero = blogIndex?.hero || {}
   const allArticlesSection = blogIndex?.allArticlesSection || {}
   const featuredSection = blogIndex?.featuredSection || {}
@@ -513,7 +536,7 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({ allPosts, 
             </div>
           ) : (
             <>
-              <div className="card-grid cols-3">
+              <div ref={gridRef} className="card-grid cols-3">
                 {regularPosts.slice(0, visibleCount).map((post, idx) => (
                   <BlogCard
                     key={post._id}
