@@ -123,7 +123,7 @@ export function BeaBot() {
           </button>
           <div className="bea-form-head">
             <h3>Hi, I&apos;m <em>Bea</em></h3>
-            <p>Drop your details — I&apos;ll build your WhatsApp agent in minutes.</p>
+            <p>See how many leads you&apos;re losing on WhatsApp — in 60 seconds, free.</p>
           </div>
           <LeadGenerationForm />
         </div>

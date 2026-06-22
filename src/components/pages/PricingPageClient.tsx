@@ -246,7 +246,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
     agentModal: {
       title: 'Talk to our',
       titleEm: 'AI Agent',
-      subtitle: "Drop your details — we'll build your WhatsApp agent in minutes.",
+      subtitle: "See how many leads you're losing on WhatsApp — in 60 seconds, free.",
     },
   },
   es: {
@@ -299,7 +299,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
     agentModal: {
       title: 'Habla con nuestro',
       titleEm: 'Agente de IA',
-      subtitle: 'Déjanos tus datos — construiremos tu agente de WhatsApp en minutos.',
+      subtitle: 'Ve cuántos leads estás perdiendo en WhatsApp — en 60 segundos, gratis.',
     },
   },
   br: {
@@ -352,7 +352,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
     agentModal: {
       title: 'Fale com nosso',
       titleEm: 'Agente de IA',
-      subtitle: 'Deixe seus dados — vamos construir seu agente de WhatsApp em minutos.',
+      subtitle: 'Veja quantos leads você está perdendo no WhatsApp — em 60 segundos, grátis.',
     },
   },
   tr: {
@@ -405,7 +405,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
     agentModal: {
       title: 'AI',
       titleEm: "Agent'ımızla konuşun",
-      subtitle: "Bilgilerinizi bırakın — WhatsApp agent'ınızı dakikalar içinde oluşturacağız.",
+      subtitle: "WhatsApp'ta kaç lead kaybettiğinizi görün — 60 saniyede, ücretsiz.",
     },
   },
 }
