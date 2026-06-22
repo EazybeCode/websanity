@@ -23,7 +23,7 @@ export function Hero() {
 
           <div className="hero-cta-pair" style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 28, marginBottom: 40 }}>
             <a
-              href="https://calendly.com/d/cw67-pt3-y2m"
+              href="https://eazybe.info/demono"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-ghost btn-lg"

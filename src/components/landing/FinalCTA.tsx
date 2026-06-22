@@ -20,7 +20,7 @@ export function FinalCTA() {
           >
             {t('talkToAgent')}
           </a>
-          <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-lg">{t('bookDemo')}</a>
+          <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-lg">{t('bookDemo')}</a>
         </div>
 
         <div className="final-cta-trust">

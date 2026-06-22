@@ -1193,7 +1193,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               </svg>
               {fallback.ctas.talkToAgent}
             </button>
-            <a href="https://calendly.com/d/cw67-pt3-y2m" className="btn btn-outline btn-lg">
+            <a href="https://eazybe.info/demono" className="btn btn-outline btn-lg">
               {fallback.ctas.bookDemo}
             </a>
           </div>

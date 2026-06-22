@@ -138,7 +138,7 @@ export function HowItWorks() {
             </span>
             <span>{t('ctaFootnote')}</span>
           </div>
-          <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="steps-cta-btn">{t('ctaBtn')}</a>
+          <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="steps-cta-btn">{t('ctaBtn')}</a>
         </div>
       </div>
     </section>

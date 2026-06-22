@@ -21,8 +21,8 @@ export function AgentCustomerSuccess() {
               ))}
             </ul>
             <div className="agent-cta-pair" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginTop: 8 }}>
-              <a href="https://eazybe.info/85c80b" target="_blank" rel="noopener noreferrer" className="btn btn-outline">{t('cta')}</a>
-              <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: '#6c5cc1', color: '#ffffff' }}>{t('ctaDemo')}</a>
+              <a href="https://eazybe.info/web" target="_blank" rel="noopener noreferrer" className="btn btn-outline">{t('cta')}</a>
+              <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: '#6c5cc1', color: '#ffffff' }}>{t('ctaDemo')}</a>
             </div>
           </div>
           <div className="visual reveal">

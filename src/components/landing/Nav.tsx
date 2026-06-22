@@ -429,7 +429,7 @@ export function Nav() {
 
       <div className="nav-ctas">
         <LanguageSwitcher />
-        <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">{t('bookDemo')}</a>
+        <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">{t('bookDemo')}</a>
         <a
           href="https://eazybe.info/web"
           target="_blank"
@@ -575,7 +575,7 @@ export function Nav() {
           </div>
 
           <div className="nav-drawer-ctas">
-            <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" onClick={closeMenu}>{t('bookDemo')}</a>
+            <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" onClick={closeMenu}>{t('bookDemo')}</a>
             <a
               href="https://eazybe.info/web"
               target="_blank"
