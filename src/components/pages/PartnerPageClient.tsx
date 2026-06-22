@@ -102,7 +102,7 @@ export function PartnerPageClient() {
             style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 28, flexWrap: 'wrap' }}
           >
             <a href="#apply" className="btn btn-primary btn-lg">{t('applyNow')} →</a>
-            <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-lg">
+            <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-lg">
               {t('scheduleCall')}
             </a>
           </div>
@@ -465,7 +465,7 @@ export function PartnerPageClient() {
                 <Mail size={16} /> hey@eazybe.com
               </a>
               <a
-                href="https://calendly.com/d/cw67-pt3-y2m"
+                href="https://eazybe.info/demono"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

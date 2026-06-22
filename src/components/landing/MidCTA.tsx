@@ -76,7 +76,7 @@ export function MidCTA() {
               {t('primaryCta')}
               <span className="mid-cta-arrow">→</span>
             </a>
-            <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="mid-cta-btn-secondary">
+            <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="mid-cta-btn-secondary">
               {t('secondaryCta')}
             </a>
           </div>

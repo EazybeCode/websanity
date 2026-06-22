@@ -1,6 +1,6 @@
 # Eazybe — Full Documentation for AI Systems
 
-> Eazybe connects WhatsApp, CRM, and ad sources so sales teams can see every lead, catch missed follow-ups, sync qualified conversations, and understand which campaigns create real pipeline. Five purpose-built WhatsApp AI Agents handle qualification, ad-spend optimization, deal rescue, customer success, and custom workflows. Trusted by 2,000+ sales teams in 40+ countries.
+> Stop losing leads in your WhatsApp sales team. Works on Personal WhatsApp, the Business app, and API - no migration needed. A WhatsApp AI agent catches the leads slipping through your reps' chats, qualifies them, and chases the follow-up — in one shared inbox and your CRM. Five purpose-built WhatsApp AI Agents handle qualification, ad-spend optimization, deal rescue, customer success, and custom workflows. Trusted by 2,000+ sales teams in 40+ countries.
 
 ## What Eazybe Does
 

@@ -91,7 +91,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Salesforce integration', included: false },
       { text: 'Revenue Inbox', included: false },
     ],
-    cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+    cta: { label: 'Install for Free', url: 'https://eazybe.info/web' },
   },
   {
     name: 'Scaler', planKey: 'scaler',
@@ -108,7 +108,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'CRM workflow integration', included: true },
       { text: 'RevOps Agent', included: false },
     ],
-    cta: { label: 'Install for Free', url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd' },
+    cta: { label: 'Install for Free', url: 'https://eazybe.info/web' },
   },
   {
     name: 'Basic AI', planKey: 'basic-ai',
@@ -208,7 +208,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       badge: 'Pricing',
       headline: 'Simple, transparent',
       headlineHighlight: 'pricing.',
-      subheadline: 'Start free. Scale as you grow. No hidden fees, no surprises.',
+      subheadline: 'Start Free Scale As You Grow No hidden fees, no surprises.',
       billingToggleMonthly: 'Monthly',
       billingToggleAnnual: 'Annual',
       saveBadgeText: 'SAVE 20%',
@@ -848,7 +848,28 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const locale = useLocale()
   const fallback = FALLBACK_BY_LOCALE[locale] || FALLBACK_BY_LOCALE.en
 
-  const hero = pricingData?.hero || fallback.hero
+  const heroRaw = pricingData?.hero || fallback.hero
+  // String-level overrides for the hero H1 across all locales. Sanity
+  // stores the old phrasing per locale; this rewrites the headline on
+  // render without touching the CMS. Each locale matches its own
+  // current Sanity string so we don't have to coordinate translations
+  // between code and content.
+  const HEADLINE_OVERRIDES: Record<string, { headline: string; headlineHighlight: string }> = {
+    'Start free. Scale as':
+      { headline: 'Start Free Scale As', headlineHighlight: 'You Grow' },
+    'Preços simples,':
+      { headline: 'Comece Grátis Escale', headlineHighlight: 'Conforme Você Cresce' },
+    'Precios simples,':
+      { headline: 'Empieza Gratis Escala', headlineHighlight: 'A Tu Ritmo' },
+    'Basit, şeffaf':
+      { headline: 'Ücretsiz Başlayın', headlineHighlight: 'Büyüdükçe Ölçeklendirin' },
+  }
+  const override = heroRaw.headline ? HEADLINE_OVERRIDES[heroRaw.headline] : undefined
+  const hero = {
+    ...heroRaw,
+    headline: override?.headline ?? heroRaw.headline,
+    headlineHighlight: override?.headlineHighlight ?? heroRaw.headlineHighlight,
+  }
 
   // Localized fallback plans — start from the English defaults (which carry
   // canonical plan structure, features, prices, icons), then overlay the
@@ -1172,7 +1193,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               </svg>
               {fallback.ctas.talkToAgent}
             </button>
-            <a href="https://calendly.com/d/cw67-pt3-y2m" className="btn btn-outline btn-lg">
+            <a href="https://eazybe.info/demono" className="btn btn-outline btn-lg">
               {fallback.ctas.bookDemo}
             </a>
           </div>

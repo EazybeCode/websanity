@@ -197,27 +197,19 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       }
 
       setIsSuccess(true)
-      const waMessages: Record<string, string> = {
-        en: 'Build AI Agent for my Business in 2 Mins',
-        es: 'Crea un Agente de IA para mi Negocio en 2 Min',
-        tr: 'İşletmem için 2 Dakikada AI Ajanı Oluştur',
-        'pt-BR': 'Crie um Agente de IA para meu Negócio em 2 Min',
-        pt: 'Crie um Agente de IA para meu Negócio em 2 Min',
-        br: 'Crie um Agente de IA para meu Negócio em 2 Min',
-      }
-      const waMessage = encodeURIComponent(waMessages[locale] || waMessages.en)
-      window.open(`https://api.whatsapp.com/send/?phone=13024129610&text=${waMessage}&type=phone_number&app_absent=0`, '_blank')
+      window.open(
+        'https://eazybe.info/wub',
+        '_blank',
+        'noopener,noreferrer',
+      )
     } catch (error) {
       console.error('Error submitting form:', error)
       setIsSuccess(true)
-      const waMessages: Record<string, string> = {
-        en: 'Build AI Agent for my Business in 2 Mins',
-        es: 'Crea un Agente de IA para mi Negocio en 2 Min',
-        tr: 'İşletmem için 2 Dakikada AI Ajanı Oluştur',
-        br: 'Crie um Agente de IA para meu Negócio em 2 Min',
-      }
-      const waMessage = encodeURIComponent(waMessages[locale] || waMessages.en)
-      window.open(`https://api.whatsapp.com/send/?phone=13024129610&text=${waMessage}&type=phone_number&app_absent=0`, '_blank')
+      window.open(
+        'https://eazybe.info/wub',
+        '_blank',
+        'noopener,noreferrer',
+      )
     } finally {
       setIsSubmitting(false)
     }

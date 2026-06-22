@@ -187,7 +187,7 @@ export function ReadMore() {
         </div>
 
         <div className="readmore-cta-wrap">
-          <a href="https://calendly.com/d/cw67-pt3-y2m" target="_blank" rel="noopener noreferrer" className="readmore-cta">
+          <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="readmore-cta">
             {t('ctaText')}
             <span className="readmore-cta-arrow" aria-hidden="true">→</span>
           </a>

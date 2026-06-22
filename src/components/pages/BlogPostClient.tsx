@@ -33,6 +33,34 @@ import { TableBlock } from '@/components/blog/TableBlock'
 import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
 import { BlogTranslationsProvider, type BlogTranslation } from '@/contexts/BlogTranslationsContext'
 
+// ─── External link helpers (mark inline citations like the G2/Gartner pattern) ──
+
+function isExternalHref(href?: string): boolean {
+  if (!href || !href.startsWith('http')) return false
+  return !href.includes('eazybe.com') && !href.includes('eazybe.info')
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg
+      width="11"
+      height="11"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      style={{ display: 'inline-block', verticalAlign: 'baseline', marginLeft: 3, transform: 'translateY(1px)' }}
+    >
+      <path d="M15 3h6v6" />
+      <path d="M10 14L21 3" />
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    </svg>
+  )
+}
+
 // ─── Types ─────────────────────────────────────────────────────────────────
 
 interface PortableTextBlock {
@@ -56,6 +84,7 @@ interface BlogPost {
   featuredImageDesktopRatio?: string
   featuredImageCaption?: string
   publishedAt: string
+  updatedAt?: string
   readTime?: number
   author?: {
     name: string
@@ -242,17 +271,17 @@ const createPortableTextComponents = (
         <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan">{children}</ul>
       ),
       number: ({ children }: any) => (
-        <ol className="mt-8 mb-6 space-y-5 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold">{children}</ol>
+        <ol className="mt-8 mb-6 space-y-7 list-decimal list-outside pl-12 marker:text-brand-cyan marker:font-bold">{children}</ol>
       ),
     },
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-3">
           {children}
         </li>
       ),
       number: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-3">
           {children}
         </li>
       ),
@@ -267,16 +296,20 @@ const createPortableTextComponents = (
           {children}
         </code>
       ),
-      link: ({ children, value }: any) => (
-        <a
-          href={value?.href}
-          className="text-brand-cyan hover:text-brand-blue transition-colors"
-          target={value?.href?.startsWith('http') ? '_blank' : undefined}
-          rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-        >
-          {children}
-        </a>
-      ),
+      link: ({ children, value }: any) => {
+        const external = isExternalHref(value?.href)
+        return (
+          <a
+            href={value?.href}
+            className={`text-brand-cyan hover:text-brand-blue transition-colors${external ? ' underline underline-offset-2 decoration-1' : ''}`}
+            target={value?.href?.startsWith('http') ? '_blank' : undefined}
+            rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            {children}
+            {external && <ExternalLinkIcon />}
+          </a>
+        )
+      },
     },
     types: {
       image: ({ value }: any) => {
@@ -846,7 +879,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
                   <span className="flex items-center gap-1">
                     <Calendar size={14} />
-                    {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                    Updated {new Date(post.updatedAt || post.publishedAt).toLocaleDateString('en-US', {
                       month: 'long',
                       day: 'numeric',
                       year: 'numeric',
@@ -954,8 +987,8 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                               // Tighter than main-body lists because TL;DR sits inside
                               // a small bordered callout, but same marker color and
                               // marker shape so the visual language stays consistent.
-                              bullet: ({ children }) => <ul className="list-disc list-outside pl-10 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
-                              number: ({ children }) => <ol className="list-decimal list-outside pl-10 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
+                              bullet: ({ children }) => <ul className="list-disc list-outside pl-0 ml-5 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
+                              number: ({ children }) => <ol className="list-decimal list-outside pl-0 ml-5 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
                             },
                             marks: {
                               link: ({ children, value }) => (
@@ -963,7 +996,8 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                                   href={value?.href}
                                   target={value?.blank ? '_blank' : undefined}
                                   rel={value?.blank ? 'noopener noreferrer' : undefined}
-                                  className="text-brand-cyan hover:text-brand-blue transition-colors"
+                                  style={{ color: '#4338CA', fontWeight: 500 }}
+                                  className="hover:opacity-80 transition-opacity"
                                 >
                                   {children}
                                 </a>

@@ -98,7 +98,7 @@ export function getHomepageMetadata(locale: string): Metadata {
       openGraph: {
         type: 'website',
         url: `${BASE_URL}/br`,
-        title: 'Agente de IA para WhatsApp: Automatize vendas e conversas | Eazybe',
+        title: 'Agente de IA para WhatsApp: Crie agentes sem código | Eazybe',
         description: 'Automatize conversas no WhatsApp com agentes de IA. Integre com CRM, sincronize chats e gerencie vendas com uma caixa de entrada compartilhada.',
         images: [{ url: `${BASE_URL}/og-home.png`, width: 1200, height: 630, alt: 'Eazybe - Agentes de IA para WhatsApp e integra\u00e7\u00e3o com CRM' }],
         locale: 'pt_BR',
@@ -166,7 +166,7 @@ export function getHomepageMetadata(locale: string): Metadata {
       openGraph: {
         type: 'website',
         url: `${BASE_URL}/es`,
-        title: 'Agente de IA para WhatsApp: Automatiza ventas y soporte | Eazybe',
+        title: 'Agente de IA para WhatsApp: Crea agentes sin código | Eazybe',
         description: 'Crea agentes de IA para WhatsApp sin c\u00f3digo. Automatiza conversaciones, captura leads y sincroniza tu CRM en tiempo real.',
         images: [{ url: `${BASE_URL}/og-home.png`, width: 1200, height: 630, alt: 'Plataforma de agentes de IA para WhatsApp de Eazybe' }],
         locale: 'es_ES',
