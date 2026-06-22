@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { LeadGenerationForm } from '@/components/lead/LeadGenerationForm'
 
 export function BeaBot() {
+  const t = useTranslations('landingV3.beaForm')
   // Open by default on desktop (≥1024px) — mobile users start with the form
   // collapsed and tap Bea to open it. Starting closed avoids an SSR/CSR
   // hydration mismatch; the desktop auto-open happens client-side after mount.
@@ -122,8 +124,8 @@ export function BeaBot() {
             <X size={16} />
           </button>
           <div className="bea-form-head">
-            <h3>Hi, I&apos;m <em>Bea</em></h3>
-            <p>See how many leads you&apos;re losing on WhatsApp — in 60 seconds, free.</p>
+            <h3>{t('headTitle')} <em>{t('headTitleEm')}</em></h3>
+            <p>{t('headSubtitle')}</p>
           </div>
           <LeadGenerationForm />
         </div>

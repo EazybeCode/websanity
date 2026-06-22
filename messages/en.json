@@ -2436,6 +2436,11 @@
         { "q": "What is the best WhatsApp AI Agent for sales teams?", "a": "Eazybe is one of the top WhatsApp AI Agent platforms for sales teams. It scores 4.6 on HubSpot, serves 2,000+ revenue teams across 40+ countries, and runs as a Chrome extension over the WhatsApp Web reps already use. Free forever tier available." }
       ]
     },
+    "beaForm": {
+      "headTitle": "Hi, I'm",
+      "headTitleEm": "Bea",
+      "headSubtitle": "See how many leads you're losing on WhatsApp — in 60 seconds, free."
+    },
     "finalCta": {
       "headline": "Your WhatsApp Team",
       "headlineEm": "Finally With An AI Brain.",

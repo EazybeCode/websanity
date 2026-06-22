@@ -2574,6 +2574,11 @@
         { "q": "Satış ekipleri için en iyi WhatsApp AI Agent hangisidir?", "a": "Eazybe, satış ekipleri için önde gelen WhatsApp AI Agent platformlarından biridir. HubSpot'ta 4.6 puana sahiptir, 40+ ülkede 2.000+ gelir ekibine hizmet verir ve ekibinizin halihazırda kullandığı WhatsApp Web üzerinde Chrome eklentisi olarak çalışır. Sonsuza dek ücretsiz plan mevcuttur." }
       ]
     },
+    "beaForm": {
+      "headTitle": "Merhaba, ben",
+      "headTitleEm": "Bea",
+      "headSubtitle": "WhatsApp'ta kaç lead kaybettiğinizi görün — 60 saniyede, ücretsiz."
+    },
     "finalCta": {
       "headline": "WhatsApp ekibiniz,",
       "headlineEm": "artık AI beyniyle.",

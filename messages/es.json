@@ -2648,6 +2648,11 @@
         { "q": "¿Cuál es el mejor Agente de IA en WhatsApp para equipos de ventas?", "a": "Eazybe es una de las principales plataformas de Agente de IA en WhatsApp para equipos de ventas. Tiene 4.6 en HubSpot, atiende a más de 2.000 equipos comerciales en más de 40 países y funciona como extensión de Chrome sobre el WhatsApp Web que tu equipo ya usa. Plan gratis para siempre disponible." }
       ]
     },
+    "beaForm": {
+      "headTitle": "Hola, soy",
+      "headTitleEm": "Bea",
+      "headSubtitle": "Ve cuántos leads estás perdiendo en WhatsApp — en 60 segundos, gratis."
+    },
     "finalCta": {
       "headline": "Tu equipo de WhatsApp",
       "headlineEm": "por fin con cerebro de IA.",
