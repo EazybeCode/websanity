@@ -3,7 +3,6 @@ import { Nav } from '@/components/landing/Nav'
 import { Footer } from '@/components/landing/Footer'
 import { BeaBot } from '@/components/landing/BeaBot'
 import { RevealOnScroll } from '@/components/landing/RevealOnScroll'
-import { WelcomePopup } from '@/components/landing/WelcomePopup'
 import { SuppressExtensionHydrationWarning } from '@/components/landing/SuppressExtensionHydrationWarning'
 import { LeadSidebar } from '@/components/lead/LeadSidebar'
 import { LeadMobileButton } from '@/components/lead/LeadMobileButton'
@@ -18,7 +17,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <Footer />
       <BeaBot />
       <RevealOnScroll />
-      <WelcomePopup />
       <TrialModalWrapper />
       <LeadSidebar />
       <LeadMobileButton />
