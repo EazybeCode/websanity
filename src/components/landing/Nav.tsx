@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
+import { openChromeExtensionStorePopup } from '@/utils/openChromeExtensionStore'
 
 // Prefix internal href paths with the active locale (e.g. "/hubspot-..." → "/br/hubspot-...").
 // External URLs, hash links, and the root "/#" stay untouched.
@@ -432,8 +433,10 @@ export function Nav() {
         <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">{t('bookDemo')}</a>
         <a
           href="https://eazybe.info/web"
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={(e) => {
+            e.preventDefault()
+            openChromeExtensionStorePopup('https://eazybe.info/web')
+          }}
           className="btn btn-primary"
         >
           {t('talkToAgent')}
@@ -578,10 +581,12 @@ export function Nav() {
             <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" onClick={closeMenu}>{t('bookDemo')}</a>
             <a
               href="https://eazybe.info/web"
-              target="_blank"
-              rel="noopener noreferrer"
               className="btn btn-primary"
-              onClick={closeMenu}
+              onClick={(e) => {
+                e.preventDefault()
+                openChromeExtensionStorePopup('https://eazybe.info/web')
+                closeMenu()
+              }}
             >
               {t('talkToAgent')}
             </a>

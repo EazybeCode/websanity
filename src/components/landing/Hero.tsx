@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { openChromeExtensionStorePopup } from '@/utils/openChromeExtensionStore'
 
 export function Hero() {
   const t = useTranslations('landingV3.hero')
@@ -41,8 +42,10 @@ export function Hero() {
             </a>
             <a
               href="https://eazybe.info/web"
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={(e) => {
+                e.preventDefault()
+                openChromeExtensionStorePopup('https://eazybe.info/web')
+              }}
               className="btn btn-primary btn-lg"
               style={{
                 background: '#6c5cc1',
