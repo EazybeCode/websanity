@@ -4158,3 +4158,12 @@
   contain-intrinsic-size: auto 700px;
 }
 
+/* Hide CTAs that route to the Chrome Web Store on mobile — the extension
+   can't be installed on mobile, so showing "Start Free" / "Try This
+   Agent" / "See How to Build" / "Talk Our Agent on WhatsApp" is dead UI.
+   Applied to every anchor that points at eazybe.info/web (the shortlink
+   that forwards to the Chrome store). Desktop unchanged. */
+@media (max-width: 640px) {
+  .landing .hide-on-mobile-cta { display: none !important; }
+}
+

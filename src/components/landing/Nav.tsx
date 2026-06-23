@@ -437,7 +437,7 @@ export function Nav() {
             e.preventDefault()
             openChromeExtensionStorePopup('https://eazybe.info/web')
           }}
-          className="btn btn-primary"
+          className="btn btn-primary hide-on-mobile-cta"
         >
           {t('talkToAgent')}
         </a>
@@ -581,7 +581,7 @@ export function Nav() {
             <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" onClick={closeMenu}>{t('bookDemo')}</a>
             <a
               href="https://eazybe.info/web"
-              className="btn btn-primary"
+              className="btn btn-primary hide-on-mobile-cta"
               onClick={(e) => {
                 e.preventDefault()
                 openChromeExtensionStorePopup('https://eazybe.info/web')

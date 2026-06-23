@@ -46,7 +46,7 @@ export function Hero() {
                 e.preventDefault()
                 openChromeExtensionStorePopup('https://eazybe.info/web')
               }}
-              className="btn btn-primary btn-lg"
+              className="btn btn-primary btn-lg hide-on-mobile-cta"
               style={{
                 background: '#6c5cc1',
                 color: '#ffffff',
