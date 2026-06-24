@@ -55,8 +55,30 @@ const t: Record<string, Record<string, string>> = {
   tr: { home: 'Ana Sayfa', authors: 'Yazarlar', badge: 'Yazar', about: 'Hakk\u0131nda', articlesBy: 'Yaz\u0131lar\u0131:', noArticles: 'Hen\u00fcz makale yay\u0131nlanmad\u0131.' },
 }
 
+// Link only the FIRST "Eazybe" mention to the homepage (one internal link per page).
+// `state` is shared across the bio fields so we never link more than once.
+function linkEazybe(text: string, state: { linked: boolean }): React.ReactNode {
+  if (state.linked) return text
+  const idx = text.indexOf('Eazybe')
+  if (idx === -1) return text
+  state.linked = true
+  return (
+    <>
+      {text.slice(0, idx)}
+      <LocalizedLink
+        href="/"
+        className="text-violet-400 hover:text-violet-300 underline underline-offset-2"
+      >
+        Eazybe
+      </LocalizedLink>
+      {text.slice(idx + 6)}
+    </>
+  )
+}
+
 export function AuthorProfileClient({ author, locale }: { author: Author; locale: string }) {
   const l = t[locale] || t.en
+  const eazybeLink = { linked: false }
   const socials = author.socialLinks || {}
   const hasSocials = socials.twitter || socials.linkedin || socials.github || socials.website
 
@@ -118,7 +140,7 @@ export function AuthorProfileClient({ author, locale }: { author: Author; locale
                 )}
               </div>
               {author.bio && (
-                <p className="text-slate-300 leading-relaxed max-w-2xl mb-4">{author.bio}</p>
+                <p className="text-slate-300 leading-relaxed max-w-2xl mb-4">{linkEazybe(author.bio, eazybeLink)}</p>
               )}
 
               {/* Social Links */}
@@ -158,7 +180,7 @@ export function AuthorProfileClient({ author, locale }: { author: Author; locale
             <div className="mt-10 max-w-4xl">
               <h2 className="text-xl font-bold text-white mb-4">{l.about} {author.name}</h2>
               <div className="text-slate-300 leading-relaxed whitespace-pre-line">
-                {author.detailedBio}
+                {linkEazybe(author.detailedBio, eazybeLink)}
               </div>
             </div>
           )}
