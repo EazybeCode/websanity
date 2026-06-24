@@ -13,6 +13,17 @@ const DEMO_URL = 'https://eazybe.info/demono'
 export function SalesExpertBanner() {
   const t = useTranslations('salesBanner')
   const [open, setOpen] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(true)
+
+  // Desktop only — hide on mobile (the full-width bar overlaps the bottom-left CTAs).
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(max-width: 768px)')
+    const apply = () => setIsDesktop(!mq.matches)
+    apply()
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -35,7 +46,7 @@ export function SalesExpertBanner() {
     }
   }
 
-  if (!open) return null
+  if (!open || !isDesktop) return null
 
   return (
     <div
