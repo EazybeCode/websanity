@@ -1,4 +1,8 @@
 {
+  "salesBanner": {
+    "message": "Scaling WhatsApp past 10 people? <b>Talk to a sales expert.</b> We've seen how setups break at that size, and we'll show you the right one in 15 minutes.",
+    "cta": "Book a Free Demo"
+  },
   "nav": {
     "startFreeTrial": "Install for Free",
     "signIn": "Sign In",

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { Calendar, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 // Frequency cap: once dismissed, stay hidden for this many days.
 const STORAGE_KEY = 'eazybe:sales-banner'
@@ -10,6 +11,7 @@ const SHOW_DELAY_MS = 1500
 const DEMO_URL = 'https://eazybe.info/demono'
 
 export function SalesExpertBanner() {
+  const t = useTranslations('salesBanner')
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -79,8 +81,9 @@ export function SalesExpertBanner() {
             <Calendar size={18} />
           </span>
           <span style={{ fontSize: 15, lineHeight: 1.45 }}>
-            Scaling WhatsApp past 10 people? <strong style={{ fontWeight: 600 }}>Talk to a sales expert.</strong> We&apos;ve
-            seen how setups break at that size, and we&apos;ll show you the right one in 15 minutes.
+            {t.rich('message', {
+              b: (chunks) => <strong style={{ fontWeight: 600 }}>{chunks}</strong>,
+            })}
           </span>
         </span>
 
@@ -104,7 +107,7 @@ export function SalesExpertBanner() {
             flexShrink: 0,
           }}
         >
-          Book a Free Demo →
+          {t('cta')} →
         </a>
         <button
           type="button"
