@@ -5,6 +5,10 @@ import { getAuthorBySlug, getAllAuthorSlugs } from '@/lib/sanity-queries'
 import { getAlternates } from '@/lib/seo-helpers'
 import { AuthorProfileClient } from '@/components/pages/AuthorProfileClient'
 
+// ISR: revalidate so author edits in Sanity (bio, social links, etc.) appear
+// on live without a full redeploy — matching the blog pages' behaviour.
+export const revalidate = 10
+
 export async function generateStaticParams() {
   const authors = await getAllAuthorSlugs()
   if (!authors) return []
