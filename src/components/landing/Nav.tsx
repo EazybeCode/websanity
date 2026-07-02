@@ -373,10 +373,23 @@ export function Nav() {
               )
             })}
             <div style={{ gridColumn: '1 / -1' }} className="nav-dd-divider" />
-            <a href={lh('/integrations')} style={{ gridColumn: '1 / -1' }} className="nav-dd-item">
-              <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, color: 'var(--accent-ink)', letterSpacing: '0.04em', textAlign: 'center', width: '100%' }}>
+            <a
+              href={lh('/integrations')}
+              style={{
+                gridColumn: '1 / -1',
+                justifyContent: 'center',
+                background: 'rgba(91, 75, 174, 0.1)',
+              }}
+              className="nav-dd-item"
+            >
+              {/* A <div>, not a <span>: `.nav-links a span` forces color:#fff
+                  !important (for the dark top nav), which would override any
+                  inline color. Literal #5B4BAE (not --accent-ink) so it stays
+                  visible on the blog route, where the landing CSS vars aren't
+                  in scope. */}
+              <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11.5, fontWeight: 600, color: '#5B4BAE', letterSpacing: '0.04em', textAlign: 'center', width: '100%' }}>
                 {t('allIntegrations')}
-              </span>
+              </div>
             </a>
           </div>
         </div>
