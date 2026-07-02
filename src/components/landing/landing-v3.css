@@ -3620,9 +3620,17 @@
   margin-top: 2em; margin-bottom: 0.6em;
   line-height: 1.2;
 }
-.landing .prose h1 { font-size: 40px; margin-top: 0; }
-.landing .prose h2 { font-size: 28px; }
-.landing .prose h3 { font-size: 22px; }
+/* Mobile-first heading sizes; desktop sizes restored in the md media query
+   below. These .landing .prose rules override the Tailwind text-[..] utilities
+   on blog/comparison headings, so the responsive sizing must live here. */
+.landing .prose h1 { font-size: 22px; margin-top: 0; }
+.landing .prose h2 { font-size: 21px; }
+.landing .prose h3 { font-size: 19px; }
+@media (min-width: 768px) {
+  .landing .prose h1 { font-size: 40px; }
+  .landing .prose h2 { font-size: 28px; }
+  .landing .prose h3 { font-size: 22px; }
+}
 .landing .prose p { margin-bottom: 1.1em; }
 .landing .prose ul, .landing .prose ol { padding-left: 1.4em; margin-bottom: 1.1em; }
 .landing .prose li { margin-bottom: 0.4em; }

@@ -209,7 +209,7 @@ const createPortableTextComponents = (
         return (
           <h1
             id={id}
-            className="text-4xl font-extrabold text-white mt-16 mb-6 first:mt-0 scroll-mt-28"
+            className="text-[22px] md:text-4xl font-extrabold text-white mt-16 mb-6 first:mt-0 scroll-mt-28"
           >
             {children}
           </h1>
@@ -220,7 +220,7 @@ const createPortableTextComponents = (
         return (
           <h2
             id={id}
-            className="text-[19px] md:text-3xl font-bold text-white mt-3 mb-4 pt-3 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28"
+            className="text-[21px] md:text-3xl font-bold text-white mt-3 mb-4 pt-3 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28"
           >
             {children}
           </h2>
@@ -827,7 +827,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
           )}
 
           {/* Title */}
-          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mt-3 mb-3">
+          <h1 className="text-[22px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mt-3 mb-3">
             {post.title}
           </h1>
 
