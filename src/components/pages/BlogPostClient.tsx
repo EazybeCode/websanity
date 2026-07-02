@@ -93,6 +93,7 @@ interface BlogPost {
     image?: string
     url?: string
   }
+  tldrHeading?: string
   tldr?: any[]
   quickAnswer?: string
   tableOfContents?: Array<{ label: string; id: string }>
@@ -185,6 +186,26 @@ const extractHeadingsFromContent = (
       return { label: text, id: generateSlug(text) }
     })
     .filter((item) => item.label.length > 0)
+}
+
+// Rich-text caption renderer for images — supports bold, italic, and links
+// (schema link mark: href + openInNewTab). Legacy string captions still work
+// via the Array.isArray fallback at the render site.
+const imageCaptionComponents = {
+  marks: {
+    strong: ({ children }: any) => <strong className="font-semibold text-slate-400">{children}</strong>,
+    em: ({ children }: any) => <em className="italic">{children}</em>,
+    link: ({ children, value }: any) => (
+      <a
+        href={value?.href}
+        target={value?.openInNewTab ? '_blank' : undefined}
+        rel={value?.openInNewTab ? 'noopener noreferrer' : undefined}
+        className="text-brand-cyan underline hover:text-brand-blue transition-colors"
+      >
+        {children}
+      </a>
+    ),
+  },
 }
 
 const createPortableTextComponents = (
@@ -346,7 +367,11 @@ const createPortableTextComponents = (
             )}
             {value.caption && (
               <figcaption className="text-center text-slate-500 text-[12px] mt-4">
-                {value.caption}
+                {Array.isArray(value.caption) ? (
+                  <PortableText value={value.caption} components={imageCaptionComponents} />
+                ) : (
+                  value.caption
+                )}
               </figcaption>
             )}
           </figure>
@@ -973,7 +998,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                       <BookOpen size={24} />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-bold text-white mb-2">TL;DR</h4>
+                      <h4 className="font-bold text-white mb-2">{post.tldrHeading || 'TL;DR'}</h4>
                       <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_strong]:text-white [&_em]:italic [&_code]:font-mono [&_code]:text-[0.85em] [&_code]:bg-slate-900 [&_code]:text-slate-100 [&_code]:border [&_code]:border-slate-700 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-md">
                         <PortableText
                           value={post.tldr}

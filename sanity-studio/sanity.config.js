@@ -279,9 +279,33 @@ const blogPost = {
             },
             {
               name: 'caption',
-              type: 'string',
               title: 'Caption',
-              description: 'Optional caption displayed below the image',
+              description: 'Optional rich-text caption displayed below the image (supports bold, italic, and links)',
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [{ title: 'Normal', value: 'normal' }],
+                  lists: [],
+                  marks: {
+                    decorators: [
+                      { title: 'Bold', value: 'strong' },
+                      { title: 'Italic', value: 'em' },
+                    ],
+                    annotations: [
+                      {
+                        name: 'link',
+                        type: 'object',
+                        title: 'Link',
+                        fields: [
+                          { name: 'href', type: 'url', title: 'URL' },
+                          { name: 'openInNewTab', type: 'boolean', title: 'Open in new tab', initialValue: true },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             ...imageRatioFields,
           ],
@@ -374,6 +398,14 @@ const blogPost = {
       fieldset: 'metadata',
       of: [{ type: 'reference', to: [{ type: 'blogCategory' }] }],
       description: 'Tag this post with one or more category documents',
+    },
+    {
+      name: 'tldrHeading',
+      title: 'TL;DR Heading',
+      type: 'string',
+      fieldset: 'metadata',
+      description: 'Optional custom title for the summary section. Defaults to "TL;DR".',
+      initialValue: 'TL;DR',
     },
     {
       name: 'tldr',
@@ -853,6 +885,14 @@ const comparisonPost = {
       fieldset: 'metadata',
       of: [{ type: 'reference', to: [{ type: 'blogCategory' }] }],
       description: 'Tag this comparison with one or more category documents',
+    },
+    {
+      name: 'tldrHeading',
+      title: 'TL;DR Heading',
+      type: 'string',
+      fieldset: 'metadata',
+      description: 'Optional custom title for the summary section. Defaults to "TL;DR".',
+      initialValue: 'TL;DR',
     },
     {
       name: 'tldr',

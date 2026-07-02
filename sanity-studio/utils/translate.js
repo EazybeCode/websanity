@@ -144,10 +144,18 @@ export async function translatePortableText(blocks, targetLang) {
       }
 
       case 'quote': {
-        const text = await translateText(block.text, targetLang)
-        const author = await translateText(block.author, targetLang)
-        const attribution = await translateText(block.attribution, targetLang)
-        out.push({ ...block, text, author, attribution })
+        // Schema fields: content (quote text), author, role, company.
+        const [content, author, role, company] = await Promise.all([
+          translateText(block.content, targetLang),
+          translateText(block.author, targetLang),
+          translateText(block.role, targetLang),
+          translateText(block.company, targetLang),
+        ])
+        const next = { ...block, content, author, role, company }
+        // Legacy fields on older docs — translate if present so nothing is lost.
+        if (block.text !== undefined) next.text = await translateText(block.text, targetLang)
+        if (block.attribution !== undefined) next.attribution = await translateText(block.attribution, targetLang)
+        out.push(next)
         break
       }
 
@@ -159,16 +167,25 @@ export async function translatePortableText(blocks, targetLang) {
       }
 
       case 'buttonCTA': {
-        const label = await translateText(block.label, targetLang)
-        const description = await translateText(block.description, targetLang)
-        out.push({ ...block, label, description })
+        // Schema field: text (button label). Keep legacy label/description too.
+        const text = await translateText(block.text, targetLang)
+        const next = { ...block, text }
+        if (block.label !== undefined) next.label = await translateText(block.label, targetLang)
+        if (block.description !== undefined) next.description = await translateText(block.description, targetLang)
+        out.push(next)
         break
       }
 
       case 'fileDownload': {
-        const label = await translateText(block.label, targetLang)
-        const description = await translateText(block.description, targetLang)
-        out.push({ ...block, label, description })
+        // Schema fields: title (download title) + description. fileSize is a
+        // display-only value ("2.5 MB") and is intentionally not translated.
+        const [title, description] = await Promise.all([
+          translateText(block.title, targetLang),
+          translateText(block.description, targetLang),
+        ])
+        const next = { ...block, title, description }
+        if (block.label !== undefined) next.label = await translateText(block.label, targetLang)
+        out.push(next)
         break
       }
 
@@ -181,24 +198,38 @@ export async function translatePortableText(blocks, targetLang) {
       }
 
       case 'comparisonTable': {
-        const headline = await translateText(block.headline, targetLang)
-        const description = await translateText(block.description, targetLang)
+        // Schema fields: title, columns[].name (objects), rows[].feature,
+        // rows[].values[] (strings), cta.text. Columns/values tolerate the
+        // legacy plain-string shape too.
+        const title = await translateText(block.title, targetLang)
         const columns = await Promise.all(
-          (block.columns || []).map((col) => translateText(col, targetLang))
+          (block.columns || []).map(async (col) =>
+            typeof col === 'string'
+              ? await translateText(col, targetLang)
+              : { ...col, name: await translateText(col.name, targetLang) }
+          )
         )
         const rows = await Promise.all(
           (block.rows || []).map(async (row) => ({
             ...row,
             feature: await translateText(row.feature, targetLang),
             values: await Promise.all(
-              (row.values || []).map(async (v) => ({
-                ...v,
-                text: v?.text ? await translateText(v.text, targetLang) : v?.text,
-              }))
+              (row.values || []).map(async (v) =>
+                typeof v === 'string'
+                  ? await translateText(v, targetLang)
+                  : { ...v, text: v?.text ? await translateText(v.text, targetLang) : v?.text }
+              )
             ),
           }))
         )
-        out.push({ ...block, headline, description, columns, rows })
+        const next = { ...block, title, columns, rows }
+        if (block.cta?.text) {
+          next.cta = { ...block.cta, text: await translateText(block.cta.text, targetLang) }
+        }
+        // Legacy top-level fields on older docs.
+        if (block.headline !== undefined) next.headline = await translateText(block.headline, targetLang)
+        if (block.description !== undefined) next.description = await translateText(block.description, targetLang)
+        out.push(next)
         break
       }
 
@@ -269,6 +300,7 @@ export async function translatePostFields(fields, targetLang) {
     faq,
     quickAnswer,
     tldr,
+    tldrHeading,
     faqTitle,
     metaTitle,
     metaDescription,
@@ -286,6 +318,7 @@ export async function translatePostFields(fields, targetLang) {
     translateFaqs(fields.faq || [], targetLang),
     translateText(fields.quickAnswer, targetLang),
     translatePortableText(fields.tldr || [], targetLang),
+    translateText(fields.tldrHeading, targetLang),
     translateText(fields.faqTitle, targetLang),
     translateText(fields.metaTitle, targetLang),
     translateText(fields.metaDescription, targetLang),
@@ -305,6 +338,7 @@ export async function translatePostFields(fields, targetLang) {
     faq,
     quickAnswer,
     tldr,
+    tldrHeading,
     faqTitle,
     metaTitle,
     metaDescription,
