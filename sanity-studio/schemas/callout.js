@@ -8,13 +8,6 @@ export default {
   type: 'object',
   fields: [
     {
-      name: 'content',
-      title: 'Content',
-      type: 'array',
-      of: [{ type: 'block' }],
-      validation: Rule => Rule.required(),
-    },
-    {
       name: 'type',
       title: 'Callout Type',
       type: 'string',
@@ -29,12 +22,14 @@ export default {
         ],
       },
       initialValue: 'info',
+      validation: Rule => Rule.required(),
     },
     {
       name: 'icon',
       title: 'Icon',
       type: 'string',
-      description: 'Lucide icon name (e.g., "Info", "AlertCircle", "CheckCircle")',
+      description:
+        'Optional icon (Lucide SVG) shown beside the callout. Leave empty to render the callout with no icon.',
       options: {
         list: [
           { title: 'Info', value: 'Info' },
@@ -46,6 +41,13 @@ export default {
           { title: 'Star', value: 'Star' },
         ],
       },
+    },
+    {
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [{ type: 'block' }],
+      validation: Rule => Rule.required(),
     },
     {
       name: 'title',
@@ -61,7 +63,7 @@ export default {
     prepare({ type, content }) {
       const text = content?.[0]?.children?.[0]?.text || '';
       return {
-        title: `${type.toUpperCase()} Callout`,
+        title: `${(type || 'note').toUpperCase()} Callout`,
         subtitle: text.substring(0, 50),
       };
     },
