@@ -261,13 +261,14 @@ const createPortableTextComponents = (
     },
     list: {
       // Classic hanging indent, nudged right to align under the intro
-      // paragraph: 13px on mobile, 33px on desktop (md+). relative + left-[..]
-      // are responsive (an inline style can't be).
+      // paragraph: 13px on mobile, 33px on desktop (md+). On desktop the list
+      // width is capped (~849px) for readable line length. relative + left-[..]
+      // + max-w are responsive (an inline style can't be).
       bullet: ({ children }: any) => (
-        <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan relative left-[13px] md:left-[33px]">{children}</ul>
+        <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan relative left-[13px] md:left-[33px] md:max-w-[849px]">{children}</ul>
       ),
       number: ({ children }: any) => (
-        <ol className="mt-8 mb-6 space-y-5 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold relative left-[13px] md:left-[33px]">{children}</ol>
+        <ol className="mt-8 mb-6 space-y-5 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold relative left-[13px] md:left-[33px] md:max-w-[849px]">{children}</ol>
       ),
     },
     listItem: {
