@@ -93,9 +93,51 @@ export function SalesExpertBanner() {
           </span>
           <span style={{ fontSize: 15, lineHeight: 1.45 }}>
             {t.rich('message', {
-              b: (chunks) => <strong style={{ fontWeight: 600 }}>{chunks}</strong>,
+              b: (chunks) => (
+                <strong
+                  style={{
+                    fontWeight: 700,
+                    textDecoration: 'underline',
+                    textDecorationColor: 'var(--accent-a)',
+                    textDecorationThickness: '2px',
+                    textUnderlineOffset: '3px',
+                  }}
+                >
+                  {chunks}
+                </strong>
+              ),
             })}
           </span>
+        </span>
+
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            padding: '7px 14px',
+            borderRadius: 100,
+            background: 'rgba(255,255,255,0.12)',
+            border: '1px solid rgba(255,255,255,0.2)',
+            color: '#fff',
+            fontSize: 13,
+            fontWeight: 600,
+            whiteSpace: 'nowrap',
+            flexShrink: 0,
+          }}
+        >
+          <span
+            aria-hidden
+            style={{
+              width: 7,
+              height: 7,
+              borderRadius: '50%',
+              background: '#fbbf24',
+              flexShrink: 0,
+              boxShadow: '0 0 0 3px rgba(251,191,36,0.22)',
+            }}
+          />
+          {t('scarcity')}
         </span>
 
         <a
@@ -118,7 +160,7 @@ export function SalesExpertBanner() {
             flexShrink: 0,
           }}
         >
-          {t('cta')} →
+          {t('cta')}
         </a>
         <button
           type="button"

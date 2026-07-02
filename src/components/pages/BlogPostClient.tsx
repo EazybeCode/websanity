@@ -876,22 +876,22 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                     {post.author?.name || t('blog.detail.authorFallback')}
                   </p>
                 )}
-                <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
-                  <span className="flex items-center gap-1">
-                    <Calendar size={14} />
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 md:gap-x-4 text-xs md:text-sm text-slate-500 mt-1">
+                  <span className="flex items-center gap-1 whitespace-nowrap">
+                    <Calendar size={14} className="shrink-0" />
                     Updated {new Date(post.updatedAt || post.publishedAt).toLocaleDateString('en-US', {
                       month: 'long',
                       day: 'numeric',
                       year: 'numeric',
                     })}
                   </span>
-                  <span className="flex items-center gap-1">
-                    <Clock size={14} />
+                  <span className="flex items-center gap-1 whitespace-nowrap">
+                    <Clock size={14} className="shrink-0" />
                     {post.readTime} {detailLabels?.minReadSuffix || t('blog.detail.minRead')}
                   </span>
                   {viewCount > 0 && (
-                    <span className="flex items-center gap-1">
-                      <Eye size={14} />
+                    <span className="flex items-center gap-1 whitespace-nowrap">
+                      <Eye size={14} className="shrink-0" />
                       {viewCount.toLocaleString()} views
                     </span>
                   )}

@@ -1,7 +1,8 @@
 {
   "salesBanner": {
     "message": "WhatsApp'ı 10 kişinin üzerine mi büyütüyorsunuz? <b>Bir satış uzmanıyla konuşun.</b> Bu ölçekte kurulumların nerede bozulduğunu gördük; doğrusunu 15 dakikada gösterelim.",
-    "cta": "Ücretsiz demo ayırtın"
+    "cta": "Ücretsiz demo ayırtın",
+    "scarcity": "Sınırlı Demo Kontenjanı"
   },
   "nav": {
     "startFreeTrial": "Ücretsiz Yükle",
