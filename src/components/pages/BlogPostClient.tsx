@@ -262,28 +262,23 @@ const createPortableTextComponents = (
       ),
     },
     list: {
-      // Both lists share identical outer padding so markers line up on the
-      // same vertical edge. Numbered list gets more generous vertical
-      // rhythm (space-y-4) than bullet (space-y-2.5) — matches the image's
-      // wider numbered-item gaps where each step in a process feels like
-      // its own paragraph, while bullets stay tight as a single thought.
+      // Classic hanging indent. On desktop (md+) the list is nudged right 33px
+      // to align under the intro paragraph; on mobile there is no shift, just
+      // the base indent. (relative + md:left-[33px] — responsive, unlike an
+      // inline style.)
       bullet: ({ children }: any) => (
-        <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan">{children}</ul>
+        <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan relative md:left-[33px]">{children}</ul>
       ),
       number: ({ children }: any) => (
-        <ol className="mt-8 mb-6 space-y-7 list-decimal list-outside pl-12 marker:text-brand-cyan marker:font-bold">{children}</ol>
+        <ol className="mt-8 mb-6 space-y-5 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold relative md:left-[33px]">{children}</ol>
       ),
     },
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-3">
-          {children}
-        </li>
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed">{children}</li>
       ),
       number: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-3">
-          {children}
-        </li>
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed">{children}</li>
       ),
     },
     marks: {

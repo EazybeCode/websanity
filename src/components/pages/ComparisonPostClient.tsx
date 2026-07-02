@@ -260,23 +260,23 @@ const createPortableTextComponents = (
       ),
     },
     list: {
+      // Classic hanging indent. On desktop (md+) the list is nudged right 33px
+      // to align under the intro paragraph; on mobile there is no shift, just
+      // the base indent. (relative + md:left-[33px] — responsive, unlike an
+      // inline style.)
       bullet: ({ children }: any) => (
-        <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan">{children}</ul>
+        <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan relative md:left-[33px]">{children}</ul>
       ),
       number: ({ children }: any) => (
-        <ol className="mt-8 mb-6 space-y-5 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold">{children}</ol>
+        <ol className="mt-8 mb-6 space-y-5 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold relative md:left-[33px]">{children}</ol>
       ),
     },
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
-          {children}
-        </li>
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed">{children}</li>
       ),
       number: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
-          {children}
-        </li>
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed">{children}</li>
       ),
     },
     marks: {
