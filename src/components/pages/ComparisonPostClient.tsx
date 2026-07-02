@@ -963,7 +963,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
               {post.tldr && post.tldr.length > 0 && (
                 <div className="mt-0 mb-6 md:mb-5 p-5 md:p-6 rounded-xl border-l-4 border-brand-cyan/50 bg-gradient-to-r from-brand-blue/15 via-brand-cyan/10 to-blue-500/5">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 text-brand-cyan">
+                    <div className="hidden md:block flex-shrink-0 text-brand-cyan">
                       <BookOpen size={24} />
                     </div>
                     <div className="flex-1">
@@ -973,8 +973,8 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                           value={post.tldr}
                           components={{
                             list: {
-                              bullet: ({ children }) => <ul className="list-disc list-outside pl-0 ml-5 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
-                              number: ({ children }) => <ol className="list-decimal list-outside pl-0 ml-5 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
+                              bullet: ({ children }) => <ul className="list-disc list-outside pl-0 ml-5 space-y-0 md:space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
+                              number: ({ children }) => <ol className="list-decimal list-outside pl-0 ml-5 space-y-0 md:space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
                             },
                             marks: {
                               link: ({ children, value }) => {
