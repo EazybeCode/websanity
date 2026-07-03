@@ -4,6 +4,9 @@ import { getAuthors } from '@/lib/sanity-queries'
 import { getAlternates } from '@/lib/seo-helpers'
 import { AuthorsListClient } from '@/components/pages/AuthorsListClient'
 
+// ISR: keep the authors list fresh with Sanity edits without a full redeploy.
+export const revalidate = 10
+
 export async function generateMetadata({
   params,
 }: {

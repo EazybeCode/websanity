@@ -49,7 +49,7 @@ export function Hero() {
                 e.preventDefault()
                 openChromeExtensionStorePopup(CHROME_STORE_WEBSITE_URL)
               }}
-              className="btn btn-primary btn-lg"
+              className="btn btn-primary btn-lg hide-on-mobile-cta"
               style={{
                 background: '#6c5cc1',
                 color: '#ffffff',

@@ -378,6 +378,7 @@ export async function getBlogPost(slug: string, locale: string = 'en', preview: 
         url
       }
     ),
+    tldrHeading,
     tldr,
     quickAnswer,
     tableOfContents[]{
@@ -1119,6 +1120,7 @@ export async function getComparisonPost(slug: string, locale: string = 'en', pre
         url
       }
     ),
+    tldrHeading,
     tldr,
     quickAnswer,
     tableOfContents[]{

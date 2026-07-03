@@ -150,7 +150,13 @@ export function withIncomingTrackingParams(url: string): string {
 }
 
 /**
- * Opens the Chrome Web Store in the centered popup-style browser window used by the app.
+ * Opens the Chrome Web Store in a centered popup-style browser window.
+ *
+ * Single-step open: we go straight to `url` with `window.open(url, ...)`
+ * instead of the older about:blank → set location.href dance. The older
+ * pattern was leaving the popup stranded on the opener's origin under
+ * some dev / cross-origin conditions (e.g. dev server intercepting the
+ * navigation, resulting in localhost:3000/signin instead of the target).
  */
 export function openChromeExtensionStorePopup(url: string): Window | null {
   if (typeof window === "undefined") {
@@ -172,16 +178,12 @@ export function openChromeExtensionStorePopup(url: string): Window | null {
     "toolbar=no",
     "menubar=no",
     "status=no",
+    "noopener",
   ].join(",")
 
-  const popup = window.open("about:blank", "_blank", features)
-
-  if (!popup) {
-    return window.open(withIncomingTrackingParams(url), "_blank", features)
+  const popup = window.open(withIncomingTrackingParams(url), "_blank", features)
+  if (popup) {
+    popup.focus()
   }
-
-  popup.opener = null
-  popup.location.href = withIncomingTrackingParams(url)
-  popup.focus()
   return popup
 }

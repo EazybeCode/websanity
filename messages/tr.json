@@ -1,4 +1,9 @@
 {
+  "salesBanner": {
+    "message": "WhatsApp'ı 10 kişinin üzerine mi büyütüyorsunuz? <b>Bir satış uzmanıyla konuşun.</b> Bu ölçekte kurulumların nerede bozulduğunu gördük; doğrusunu 15 dakikada gösterelim.",
+    "cta": "Ücretsiz demo ayırtın",
+    "scarcity": "Sınırlı Demo Kontenjanı"
+  },
   "nav": {
     "startFreeTrial": "Ücretsiz Yükle",
     "signIn": "Giriş Yap",
@@ -1871,7 +1876,9 @@
       "faqTitle": "Sıkça Sorulan Sorular",
       "authorLabel": "Yazan",
       "authorFallback": "Eazybe Editör Ekibi",
-      "authorBioFallback": "İşletmelerin WhatsApp iletişimini gelire dönüştürmesine yardımcı oluyoruz."
+      "authorBioFallback": "İşletmelerin WhatsApp iletişimini gelire dönüştürmesine yardımcı oluyoruz.",
+      "readMore": "Daha Fazla Oku",
+      "readLess": "Daha Az Oku"
     },
     "sidebar": {
       "badge": "Ücretsiz Deneme",

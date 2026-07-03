@@ -57,7 +57,13 @@ const RenderContent: React.FC<{ content: any }> = ({ content }) => {
 }
 
 export const CalloutBlock: React.FC<{ data: CalloutData }> = ({ data }) => {
-  const { content, type = 'info', icon, title } = data
+  const { content, type, icon, title } = data
+
+  // Display logic:
+  //   - neither type nor icon selected → render nothing
+  //   - type only (icon empty)         → render the callout WITHOUT an icon
+  //   - type + icon                    → render the callout WITH the icon
+  if (!type && !icon) return null
 
   const icons: Record<string, React.ReactNode> = {
     Info: <Info size={24} />,
@@ -111,15 +117,19 @@ export const CalloutBlock: React.FC<{ data: CalloutData }> = ({ data }) => {
     },
   }
 
-  const style = typeStyles[type]
-  const iconToShow = icons[icon || style.icon]
+  // Fall back to a neutral style if type is somehow unset (icon-only case).
+  const style = (type && typeStyles[type]) || typeStyles.note
+  // Only show an icon when one is explicitly selected — no automatic fallback.
+  const iconToShow = icon ? icons[icon] : null
 
   return (
     <div
       className={`my-6 md:my-5 p-5 md:p-6 rounded-xl border-l-4 ${style.bg} ${style.border}`}
     >
       <div className="flex items-start gap-4">
-        <div className={`flex-shrink-0 ${style.iconColor}`}>{iconToShow}</div>
+        {iconToShow && (
+          <div className={`flex-shrink-0 ${style.iconColor}`}>{iconToShow}</div>
+        )}
         <div className="flex-1">
           {title && <h4 className="font-bold text-white mb-2">{title}</h4>}
           <RenderContent content={content} />

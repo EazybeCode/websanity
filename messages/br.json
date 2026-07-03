@@ -1,4 +1,9 @@
 {
+  "salesBanner": {
+    "message": "Escalando o WhatsApp para mais de 10 pessoas? <b>Fale com um especialista de vendas.</b> Já vimos onde as configurações falham nesse tamanho e mostramos a certa em 15 minutos.",
+    "cta": "Agende uma demo grátis",
+    "scarcity": "Vagas de demo limitadas"
+  },
   "nav": {
     "startFreeTrial": "Instalar Grátis",
     "signIn": "Entrar",
@@ -1945,7 +1950,9 @@
       "faqTitle": "Perguntas Frequentes",
       "authorLabel": "Escrito por",
       "authorFallback": "Equipe Editorial Eazybe",
-      "authorBioFallback": "Ajudando empresas a transformar sua comunicação pelo WhatsApp em receita."
+      "authorBioFallback": "Ajudando empresas a transformar sua comunicação pelo WhatsApp em receita.",
+      "readMore": "Ler mais",
+      "readLess": "Ler menos"
     },
     "sidebar": {
       "badge": "Teste Grátis",

@@ -3620,9 +3620,17 @@
   margin-top: 2em; margin-bottom: 0.6em;
   line-height: 1.2;
 }
-.landing .prose h1 { font-size: 40px; margin-top: 0; }
-.landing .prose h2 { font-size: 28px; }
-.landing .prose h3 { font-size: 22px; }
+/* Mobile-first heading sizes; desktop sizes restored in the md media query
+   below. These .landing .prose rules override the Tailwind text-[..] utilities
+   on blog/comparison headings, so the responsive sizing must live here. */
+.landing .prose h1 { font-size: 22px; margin-top: 0; }
+.landing .prose h2 { font-size: 21px; }
+.landing .prose h3 { font-size: 19px; }
+@media (min-width: 768px) {
+  .landing .prose h1 { font-size: 40px; }
+  .landing .prose h2 { font-size: 28px; }
+  .landing .prose h3 { font-size: 22px; }
+}
 .landing .prose p { margin-bottom: 1.1em; }
 .landing .prose ul, .landing .prose ol { padding-left: 1.4em; margin-bottom: 1.1em; }
 .landing .prose li { margin-bottom: 0.4em; }
@@ -4156,5 +4164,13 @@
 .landing .footer {
   content-visibility: auto;
   contain-intrinsic-size: auto 700px;
+}
+
+/* Hide CTAs that route to the Chrome Web Store on mobile — the extension
+   can't be installed on mobile, so showing "Start Free" / "Try This
+   Agent" / "See How to Build" / "Talk Our Agent on WhatsApp" is dead UI.
+   Applied to every anchor that points to the Chrome Web Store. Desktop unchanged. */
+@media (max-width: 640px) {
+  .landing .hide-on-mobile-cta { display: none !important; }
 }
 

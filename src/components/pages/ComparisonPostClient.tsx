@@ -27,6 +27,7 @@ import { SectionBadge } from '@/components/ui/SectionBadge'
 import { AccordionBlock } from '@/components/blog/AccordionBlock'
 import { ButtonCTABlock } from '@/components/blog/ButtonCTABlock'
 import { CalloutBlock } from '@/components/blog/CalloutBlock'
+import { AuthorBio } from '@/components/blog/AuthorBio'
 import { QuoteBlock } from '@/components/blog/QuoteBlock'
 import { TableBlock } from '@/components/blog/TableBlock'
 import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
@@ -92,6 +93,7 @@ interface BlogPost {
     image?: string
     url?: string
   }
+  tldrHeading?: string
   tldr?: any[]
   quickAnswer?: string
   tableOfContents?: Array<{ label: string; id: string }>
@@ -185,6 +187,26 @@ const extractHeadingsFromContent = (
     .filter((item) => item.label.length > 0)
 }
 
+// Rich-text caption renderer for images — supports bold, italic, and links
+// (schema link mark: href + openInNewTab). Legacy string captions still work
+// via the Array.isArray fallback at the render site.
+const imageCaptionComponents = {
+  marks: {
+    strong: ({ children }: any) => <strong className="font-semibold text-slate-400">{children}</strong>,
+    em: ({ children }: any) => <em className="italic">{children}</em>,
+    link: ({ children, value }: any) => (
+      <a
+        href={value?.href}
+        target={value?.openInNewTab ? '_blank' : undefined}
+        rel={value?.openInNewTab ? 'noopener noreferrer' : undefined}
+        className="text-brand-cyan underline hover:text-brand-blue transition-colors"
+      >
+        {children}
+      </a>
+    ),
+  },
+}
+
 const createPortableTextComponents = (
   content: PortableTextBlock[]
 ): PortableTextComponents => {
@@ -209,7 +231,7 @@ const createPortableTextComponents = (
         return (
           <h1
             id={id}
-            className="text-4xl font-extrabold text-white mt-16 mb-6 first:mt-0 scroll-mt-28"
+            className="text-[22px] md:text-4xl font-extrabold text-white mt-16 mb-6 first:mt-0 scroll-mt-28"
           >
             {children}
           </h1>
@@ -220,7 +242,7 @@ const createPortableTextComponents = (
         return (
           <h2
             id={id}
-            className="text-[19px] md:text-3xl font-bold text-white mt-3 mb-4 pt-3 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28"
+            className="text-[21px] md:text-3xl font-bold text-white mt-3 mb-4 pt-3 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28"
           >
             {children}
           </h2>
@@ -260,23 +282,23 @@ const createPortableTextComponents = (
       ),
     },
     list: {
+      // Classic hanging indent, nudged right to align under the intro
+      // paragraph: 13px on mobile, 33px on desktop (md+). On desktop the list
+      // width is capped (~849px) for readable line length. relative + left-[..]
+      // + max-w are responsive (an inline style can't be).
       bullet: ({ children }: any) => (
-        <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan">{children}</ul>
+        <ul className="mt-8 mb-6 space-y-3 list-disc list-outside pl-10 marker:text-brand-cyan relative left-[13px] md:left-[33px] md:max-w-[849px]">{children}</ul>
       ),
       number: ({ children }: any) => (
-        <ol className="mt-8 mb-6 space-y-5 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold">{children}</ol>
+        <ol className="mt-8 mb-6 space-y-5 list-decimal list-outside pl-10 marker:text-brand-cyan marker:font-semibold relative left-[13px] md:left-[33px] md:max-w-[849px]">{children}</ol>
       ),
     },
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
-          {children}
-        </li>
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed">{children}</li>
       ),
       number: ({ children }: any) => (
-        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed pl-1">
-          {children}
-        </li>
+        <li className="text-[14px] md:text-lg text-slate-300 leading-relaxed">{children}</li>
       ),
     },
     marks: {
@@ -344,7 +366,11 @@ const createPortableTextComponents = (
             )}
             {value.caption && (
               <figcaption className="text-center text-slate-500 text-[12px] mt-4">
-                {value.caption}
+                {Array.isArray(value.caption) ? (
+                  <PortableText value={value.caption} components={imageCaptionComponents} />
+                ) : (
+                  value.caption
+                )}
               </figcaption>
             )}
           </figure>
@@ -827,7 +853,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
           )}
 
           {/* Title */}
-          <h1 className="text-[20px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mt-3 mb-3">
+          <h1 className="text-[22px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mt-3 mb-3">
             {post.title}
           </h1>
 
@@ -865,22 +891,22 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                     {post.author?.name || t('blog.detail.authorFallback')}
                   </p>
                 )}
-                <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 mt-1">
-                  <span className="flex items-center gap-1">
-                    <Calendar size={14} />
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 md:gap-x-4 text-xs md:text-sm text-slate-500 mt-1">
+                  <span className="flex items-center gap-1 whitespace-nowrap">
+                    <Calendar size={14} className="shrink-0" />
                     Updated {new Date(post.updatedAt || post.publishedAt).toLocaleDateString('en-US', {
                       month: 'long',
                       day: 'numeric',
                       year: 'numeric',
                     })}
                   </span>
-                  <span className="flex items-center gap-1">
-                    <Clock size={14} />
+                  <span className="flex items-center gap-1 whitespace-nowrap">
+                    <Clock size={14} className="shrink-0" />
                     {post.readTime} {detailLabels?.minReadSuffix || t('blog.detail.minRead')}
                   </span>
                   {viewCount > 0 && (
-                    <span className="flex items-center gap-1">
-                      <Eye size={14} />
+                    <span className="flex items-center gap-1 whitespace-nowrap">
+                      <Eye size={14} className="shrink-0" />
                       {viewCount.toLocaleString()} views
                     </span>
                   )}
@@ -963,18 +989,18 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
               {post.tldr && post.tldr.length > 0 && (
                 <div className="mt-0 mb-6 md:mb-5 p-5 md:p-6 rounded-xl border-l-4 border-brand-cyan/50 bg-gradient-to-r from-brand-blue/15 via-brand-cyan/10 to-blue-500/5">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 text-brand-cyan">
+                    <div className="hidden md:block flex-shrink-0 text-brand-cyan">
                       <BookOpen size={24} />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-bold text-white mb-2">TL;DR</h4>
+                      <h4 className="font-bold text-white mb-2">{post.tldrHeading || 'TL;DR'}</h4>
                       <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_strong]:text-white [&_em]:italic [&_code]:font-mono [&_code]:text-[0.85em] [&_code]:bg-slate-900 [&_code]:text-slate-100 [&_code]:border [&_code]:border-slate-700 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-md">
                         <PortableText
                           value={post.tldr}
                           components={{
                             list: {
-                              bullet: ({ children }) => <ul className="list-disc list-outside pl-0 ml-5 space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
-                              number: ({ children }) => <ol className="list-decimal list-outside pl-0 ml-5 space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
+                              bullet: ({ children }) => <ul className="list-disc list-outside pl-0 ml-5 space-y-0 md:space-y-1.5 my-2 marker:text-brand-cyan last:mb-0">{children}</ul>,
+                              number: ({ children }) => <ol className="list-decimal list-outside pl-0 ml-5 space-y-0 md:space-y-2 my-2 marker:text-brand-cyan marker:font-semibold last:mb-0">{children}</ol>,
                             },
                             marks: {
                               link: ({ children, value }) => {
@@ -1346,9 +1372,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                           <LinkIcon size={18} />
                         </button>
                       </div>
-                      <p className="text-lg text-slate-400 leading-relaxed">
-                        {post.author.bio || t('blog.detail.authorBioFallback')}
-                      </p>
+                      <AuthorBio text={post.author.bio || t('blog.detail.authorBioFallback')} />
                     </div>
                   </div>
                 </div>
