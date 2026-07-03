@@ -23,7 +23,7 @@ const content = {
     integrations: "Integrations",
     blog: "Blog",
     features: "Features",
-    teamInbox: "Team Inbox",
+    comparison: "Comparison",
     popularIntegrations: "Popular Integrations",
     goBack: "Go back"
   },
@@ -37,7 +37,7 @@ const content = {
     integrations: "Integraciones",
     blog: "Blog",
     features: "Características",
-    teamInbox: "Bandeja de Equipo",
+    comparison: "Comparación",
     popularIntegrations: "Integraciones Populares",
     goBack: "Volver"
   },
@@ -51,7 +51,7 @@ const content = {
     integrations: "Integrações",
     blog: "Blog",
     features: "Recursos",
-    teamInbox: "Caixa de Entrada da Equipe",
+    comparison: "Comparação",
     popularIntegrations: "Integrações Populares",
     goBack: "Voltar"
   },
@@ -65,7 +65,7 @@ const content = {
     integrations: "Entegrasyonlar",
     blog: "Blog",
     features: "Özellikler",
-    teamInbox: "Takım Gelen Kutusu",
+    comparison: "Karşılaştırma",
     popularIntegrations: "Popüler Entegrasyonlar",
     goBack: "Geri git"
   }
@@ -106,7 +106,7 @@ function getLocalePaths(locale: keyof typeof content) {
     integrations: `${prefix}/integrations`,
     blog: `${prefix}/blog`,
     features: `${prefix}/features`,
-    teamInbox: `${prefix}/team-inbox`,
+    comparison: `${prefix}/comparison`,
   }
 }
 
@@ -123,7 +123,7 @@ export default function NotFound() {
   const t = content[locale]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-black via-brand-dark to-brand-black flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 relative">
+    <div data-tone="dark" className="min-h-screen bg-gradient-to-br from-brand-black via-brand-dark to-brand-black flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 relative">
       {/* Animated background pattern */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-brand-blue/10 rounded-full blur-3xl animate-pulse" />
@@ -195,10 +195,10 @@ export default function NotFound() {
               {t.features}
             </Link>
             <Link
-              href={paths.teamInbox}
+              href={paths.comparison}
               className="px-4 py-3 bg-white/5 hover:bg-white/10 rounded-lg text-gray-300 hover:text-white transition-all duration-200 text-sm font-medium"
             >
-              {t.teamInbox}
+              {t.comparison}
             </Link>
           </div>
 
