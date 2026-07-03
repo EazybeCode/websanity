@@ -1876,7 +1876,9 @@
       "faqTitle": "Sıkça Sorulan Sorular",
       "authorLabel": "Yazan",
       "authorFallback": "Eazybe Editör Ekibi",
-      "authorBioFallback": "İşletmelerin WhatsApp iletişimini gelire dönüştürmesine yardımcı oluyoruz."
+      "authorBioFallback": "İşletmelerin WhatsApp iletişimini gelire dönüştürmesine yardımcı oluyoruz.",
+      "readMore": "Daha Fazla Oku",
+      "readLess": "Daha Az Oku"
     },
     "sidebar": {
       "badge": "Ücretsiz Deneme",

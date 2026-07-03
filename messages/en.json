@@ -1783,7 +1783,9 @@
       "faqTitle": "Frequently Asked Questions",
       "authorLabel": "Written by",
       "authorFallback": "Eazybe Editorial",
-      "authorBioFallback": "Helping businesses transform their WhatsApp communication into revenue."
+      "authorBioFallback": "Helping businesses transform their WhatsApp communication into revenue.",
+      "readMore": "Read More",
+      "readLess": "Read Less"
     },
     "sidebar": {
       "badge": "Free Trial",

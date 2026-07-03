@@ -1950,7 +1950,9 @@
       "faqTitle": "Perguntas Frequentes",
       "authorLabel": "Escrito por",
       "authorFallback": "Equipe Editorial Eazybe",
-      "authorBioFallback": "Ajudando empresas a transformar sua comunicação pelo WhatsApp em receita."
+      "authorBioFallback": "Ajudando empresas a transformar sua comunicação pelo WhatsApp em receita.",
+      "readMore": "Ler mais",
+      "readLess": "Ler menos"
     },
     "sidebar": {
       "badge": "Teste Grátis",

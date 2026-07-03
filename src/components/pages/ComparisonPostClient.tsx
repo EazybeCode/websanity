@@ -27,6 +27,7 @@ import { SectionBadge } from '@/components/ui/SectionBadge'
 import { AccordionBlock } from '@/components/blog/AccordionBlock'
 import { ButtonCTABlock } from '@/components/blog/ButtonCTABlock'
 import { CalloutBlock } from '@/components/blog/CalloutBlock'
+import { AuthorBio } from '@/components/blog/AuthorBio'
 import { QuoteBlock } from '@/components/blog/QuoteBlock'
 import { TableBlock } from '@/components/blog/TableBlock'
 import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
@@ -1371,9 +1372,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                           <LinkIcon size={18} />
                         </button>
                       </div>
-                      <p className="text-lg text-slate-400 leading-relaxed">
-                        {post.author.bio || t('blog.detail.authorBioFallback')}
-                      </p>
+                      <AuthorBio text={post.author.bio || t('blog.detail.authorBioFallback')} />
                     </div>
                   </div>
                 </div>
