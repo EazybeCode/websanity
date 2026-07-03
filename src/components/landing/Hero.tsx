@@ -1,7 +1,10 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { openChromeExtensionStorePopup } from '@/utils/openChromeExtensionStore'
+import {
+  CHROME_STORE_WEBSITE_URL,
+  openChromeExtensionStorePopup,
+} from '@/utils/openChromeExtensionStore'
 
 export function Hero() {
   const t = useTranslations('landingV3.hero')
@@ -41,10 +44,10 @@ export function Hero() {
               {t('ctaBookDemo')}
             </a>
             <a
-              href="https://eazybe.info/web"
+              href={CHROME_STORE_WEBSITE_URL}
               onClick={(e) => {
                 e.preventDefault()
-                openChromeExtensionStorePopup('https://eazybe.info/web')
+                openChromeExtensionStorePopup(CHROME_STORE_WEBSITE_URL)
               }}
               className="btn btn-primary btn-lg"
               style={{

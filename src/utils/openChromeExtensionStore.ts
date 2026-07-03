@@ -1,5 +1,154 @@
 "use client"
 
+const CHROME_STORE_BASE_URL =
+  "https://chromewebstore.google.com/detail/whatsapp-ai-agents-with-c/clgficggccelgifppbcaepjdkklfcefd"
+
+export const CHROME_STORE_WEBSITE_URL = `${CHROME_STORE_BASE_URL}?utm_medium=Organic&utm_source=website&utm_campaign=eazybe%20workspace`
+export const CHROME_STORE_WEBSITE_FORM_URL = `${CHROME_STORE_BASE_URL}?utm_medium=Organic&utm_source=website-form&utm_campaign=eazybe%20workspace`
+
+const TRACKING_PARAM_PREFIXES = ["utm_"]
+const TRACKING_PARAM_NAMES = ["gclid", "fbclid", "li_fat_id"]
+const ATTRIBUTION_STORAGE_KEY = "eazybe_attribution_params"
+const ATTRIBUTION_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000
+
+type StoredAttribution = {
+  params: Record<string, string>
+  expiresAt: number
+}
+
+function getTrackingParamsFromSearch(search: string): URLSearchParams {
+  const params = new URLSearchParams()
+
+  const currentParams = new URLSearchParams(search)
+  currentParams.forEach((value, key) => {
+    if (TRACKING_PARAM_PREFIXES.some((prefix) => key.startsWith(prefix)) || TRACKING_PARAM_NAMES.includes(key)) {
+      params.set(key, value)
+    }
+  })
+
+  return params
+}
+
+function readStoredTrackingParams(): URLSearchParams {
+  const params = new URLSearchParams()
+
+  if (typeof window === "undefined") {
+    return params
+  }
+
+  try {
+    const raw = window.localStorage.getItem(ATTRIBUTION_STORAGE_KEY)
+    if (!raw) return params
+
+    const stored = JSON.parse(raw) as StoredAttribution
+    if (!stored.expiresAt || stored.expiresAt < Date.now()) {
+      window.localStorage.removeItem(ATTRIBUTION_STORAGE_KEY)
+      return params
+    }
+
+    Object.entries(stored.params || {}).forEach(([key, value]) => {
+      if (value) params.set(key, value)
+    })
+  } catch {
+    return params
+  }
+
+  return params
+}
+
+function writeStoredTrackingParams(params: URLSearchParams) {
+  if (typeof window === "undefined" || params.size === 0) {
+    return
+  }
+
+  const storedParams: Record<string, string> = {}
+  params.forEach((value, key) => {
+    storedParams[key] = value
+  })
+
+  try {
+    window.localStorage.setItem(
+      ATTRIBUTION_STORAGE_KEY,
+      JSON.stringify({
+        params: storedParams,
+        expiresAt: Date.now() + ATTRIBUTION_MAX_AGE_MS,
+      } satisfies StoredAttribution),
+    )
+  } catch {
+    // Attribution persistence is best-effort only.
+  }
+}
+
+export function captureIncomingTrackingParams() {
+  if (typeof window === "undefined") {
+    return
+  }
+
+  const params = getTrackingParamsFromSearch(window.location.search)
+  if (params.size === 0) {
+    return
+  }
+
+  writeStoredTrackingParams(params)
+
+  params.forEach((value, key) => {
+    try {
+      window.sessionStorage.setItem(key, value)
+    } catch {
+      // Session persistence is best-effort only.
+    }
+  })
+}
+
+function getIncomingTrackingParams(): URLSearchParams {
+  const params = new URLSearchParams()
+
+  if (typeof window === "undefined") {
+    return params
+  }
+
+  const storedParams = readStoredTrackingParams()
+  const currentParams = getTrackingParamsFromSearch(window.location.search)
+
+  storedParams.forEach((value, key) => {
+    params.set(key, value)
+  })
+
+  currentParams.forEach((value, key) => {
+    params.set(key, value)
+  })
+
+  for (const key of ["utm_source", "utm_medium", "utm_campaign"]) {
+    if (!params.has(key)) {
+      const value = (() => {
+        try {
+          return window.sessionStorage.getItem(key)
+        } catch {
+          return null
+        }
+      })()
+      if (value) params.set(key, value)
+    }
+  }
+
+  return params
+}
+
+export function withIncomingTrackingParams(url: string): string {
+  if (typeof window === "undefined") {
+    return url
+  }
+
+  const finalUrl = new URL(url, window.location.origin)
+  const incomingParams = getIncomingTrackingParams()
+
+  incomingParams.forEach((value, key) => {
+    finalUrl.searchParams.set(key, value)
+  })
+
+  return finalUrl.toString()
+}
+
 /**
  * Opens the Chrome Web Store in the centered popup-style browser window used by the app.
  */
@@ -28,11 +177,11 @@ export function openChromeExtensionStorePopup(url: string): Window | null {
   const popup = window.open("about:blank", "_blank", features)
 
   if (!popup) {
-    return window.open(url, "_blank", features)
+    return window.open(withIncomingTrackingParams(url), "_blank", features)
   }
 
   popup.opener = null
-  popup.location.href = url
+  popup.location.href = withIncomingTrackingParams(url)
   popup.focus()
   return popup
 }

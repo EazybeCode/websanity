@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
-import { openChromeExtensionStorePopup } from '@/utils/openChromeExtensionStore'
+import {
+  CHROME_STORE_WEBSITE_URL,
+  openChromeExtensionStorePopup,
+} from '@/utils/openChromeExtensionStore'
 
 // Prefix internal href paths with the active locale (e.g. "/hubspot-..." → "/br/hubspot-...").
 // External URLs, hash links, and the root "/#" stay untouched.
@@ -432,10 +435,10 @@ export function Nav() {
         <LanguageSwitcher />
         <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">{t('bookDemo')}</a>
         <a
-          href="https://eazybe.info/web"
+          href={CHROME_STORE_WEBSITE_URL}
           onClick={(e) => {
             e.preventDefault()
-            openChromeExtensionStorePopup('https://eazybe.info/web')
+            openChromeExtensionStorePopup(CHROME_STORE_WEBSITE_URL)
           }}
           className="btn btn-primary"
         >
@@ -580,11 +583,11 @@ export function Nav() {
           <div className="nav-drawer-ctas">
             <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" onClick={closeMenu}>{t('bookDemo')}</a>
             <a
-              href="https://eazybe.info/web"
+              href={CHROME_STORE_WEBSITE_URL}
               className="btn btn-primary"
               onClick={(e) => {
                 e.preventDefault()
-                openChromeExtensionStorePopup('https://eazybe.info/web')
+                openChromeExtensionStorePopup(CHROME_STORE_WEBSITE_URL)
                 closeMenu()
               }}
             >

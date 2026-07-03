@@ -10,6 +10,7 @@ import { ThemeToggle } from './ThemeToggle'
 import { LocalizedLink } from '@/components/LocalizedLink'
 import type { NavItem, NavigationData } from '@/hooks/useNavigation'
 import { useTrialModal } from '@/providers/TrialModalProvider'
+import { withIncomingTrackingParams } from '@/utils/openChromeExtensionStore'
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -222,7 +223,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                   className="w-full justify-center text-base bg-transparent border-slate-700 text-white"
                   onClick={() => {
                     if (signInButton.href) {
-                      window.location.href = signInButton.href
+                      window.location.href = withIncomingTrackingParams(signInButton.href)
                     }
                     onClose()
                   }}

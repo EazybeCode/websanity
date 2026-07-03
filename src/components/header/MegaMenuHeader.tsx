@@ -16,6 +16,7 @@ import { useNavigation, type NavItem } from '@/hooks/useNavigation'
 import { useTheme } from '@/hooks/useTheme'
 import { LocalizedLink } from '@/components/LocalizedLink'
 import { useTrialModal } from '@/providers/TrialModalProvider'
+import { CHROME_STORE_WEBSITE_URL } from '@/utils/openChromeExtensionStore'
 
 // Debounce utility for better INP
 function useDebounce<T extends (...args: unknown[]) => void>(callback: T, delay: number): T {
@@ -147,8 +148,8 @@ const getFallbackNavigation = (t: (key: string) => string) => ({
       isMegaMenu: false,
     },
   ],
-  ctaButton: { label: t('nav.startFreeTrial'), href: 'https://eazybe.info/web', variant: 'primary' as const },
-  signInButton: { label: t('nav.signIn'), href: 'https://eazybe.info/web' },
+  ctaButton: { label: t('nav.startFreeTrial'), href: CHROME_STORE_WEBSITE_URL, variant: 'primary' as const },
+  signInButton: { label: t('nav.signIn'), href: CHROME_STORE_WEBSITE_URL },
 })
 
 interface NavItemWithDropdownProps {

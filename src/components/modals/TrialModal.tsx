@@ -5,6 +5,7 @@ import { X, Send, Loader2, CheckCircle2, Zap, Target, Bot, Star } from 'lucide-r
 import { useTranslations, useLocale } from 'next-intl'
 import { CRMType, TrialFormData } from '@/types'
 import { type ModalMode } from '@/providers/TrialModalProvider'
+import { CHROME_STORE_WEBSITE_URL, withIncomingTrackingParams } from '@/utils/openChromeExtensionStore'
 
 interface TrialModalProps {
   isOpen: boolean
@@ -115,7 +116,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
       if (hasSubmitted) {
         setIsSuccess(true)
         if (mode === 'trial') {
-          window.location.href = 'https://eazybe.info/web'
+          window.location.href = withIncomingTrackingParams(CHROME_STORE_WEBSITE_URL)
         }
       } else {
         setIsSuccess(false)
@@ -139,7 +140,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
     let timeoutId: NodeJS.Timeout | null = null
     if (isSuccess && mode === 'trial') {
       timeoutId = setTimeout(() => {
-        window.location.href = 'https://eazybe.info/web'
+        window.location.href = withIncomingTrackingParams(CHROME_STORE_WEBSITE_URL)
       }, 2000)
     }
     return () => {

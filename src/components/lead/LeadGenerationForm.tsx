@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
+import { CHROME_STORE_WEBSITE_FORM_URL, withIncomingTrackingParams } from '@/utils/openChromeExtensionStore'
 
 interface FormData {
   email: string
@@ -198,7 +199,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
 
       setIsSuccess(true)
       window.open(
-        'https://eazybe.info/wub',
+        withIncomingTrackingParams(CHROME_STORE_WEBSITE_FORM_URL),
         '_blank',
         'noopener,noreferrer',
       )
@@ -206,7 +207,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       console.error('Error submitting form:', error)
       setIsSuccess(true)
       window.open(
-        'https://eazybe.info/wub',
+        withIncomingTrackingParams(CHROME_STORE_WEBSITE_FORM_URL),
         '_blank',
         'noopener,noreferrer',
       )

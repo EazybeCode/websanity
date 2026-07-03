@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl'
 import { Zap, Rocket, Building2, Shield, Clock, MessageSquare, X, Sparkles } from 'lucide-react'
 import { useDynamicPricing } from '@/hooks/useDynamicPricing'
 import { LeadGenerationForm } from '@/components/lead/LeadGenerationForm'
+import { CHROME_STORE_WEBSITE_URL } from '@/utils/openChromeExtensionStore'
 
 const WhatsAppGlyph = ({ size = 16 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -91,7 +92,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Salesforce integration', included: false },
       { text: 'Revenue Inbox', included: false },
     ],
-    cta: { label: 'Install for Free', url: 'https://eazybe.info/web' },
+    cta: { label: 'Install for Free', url: CHROME_STORE_WEBSITE_URL },
   },
   {
     name: 'Scaler', planKey: 'scaler',
@@ -108,7 +109,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'CRM workflow integration', included: true },
       { text: 'RevOps Agent', included: false },
     ],
-    cta: { label: 'Install for Free', url: 'https://eazybe.info/web' },
+    cta: { label: 'Install for Free', url: CHROME_STORE_WEBSITE_URL },
   },
   {
     name: 'Basic AI', planKey: 'basic-ai',

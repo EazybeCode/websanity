@@ -1,4 +1,7 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
+import { CHROME_STORE_WEBSITE_URL, withIncomingTrackingParams } from '@/utils/openChromeExtensionStore'
 
 const Check = (
   <svg fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
@@ -21,7 +24,7 @@ export function AgentCustomerSuccess() {
               ))}
             </ul>
             <div className="agent-cta-pair" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginTop: 8 }}>
-              <a href="https://eazybe.info/web" target="_blank" rel="noopener noreferrer" className="btn btn-outline">{t('cta')}</a>
+              <a href={CHROME_STORE_WEBSITE_URL} onClick={(e) => { e.currentTarget.href = withIncomingTrackingParams(CHROME_STORE_WEBSITE_URL) }} target="_blank" rel="noopener noreferrer" className="btn btn-outline">{t('cta')}</a>
               <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: '#6c5cc1', color: '#ffffff' }}>{t('ctaDemo')}</a>
             </div>
           </div>

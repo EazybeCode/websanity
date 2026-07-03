@@ -143,7 +143,7 @@ export default async function SubscriptionPage({
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 28, flexWrap: 'wrap' }}>
             <a
-              href="https://eazybe.info/web"
+              href="https://chromewebstore.google.com/detail/whatsapp-ai-agents-with-c/clgficggccelgifppbcaepjdkklfcefd?utm_medium=Organic&utm_source=website&utm_campaign=eazybe%20workspace"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
