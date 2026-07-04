@@ -55,3 +55,12 @@
   Cache-Control: public, max-age=86400
 /robots.txt
   Cache-Control: public, max-age=86400
+
+# LLM guidance files - serve as Markdown so AI crawlers and validators
+# parse the H1/structure correctly (default text/plain is read as non-markdown)
+/llms.txt
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=86400
+/llms-full.txt
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=86400

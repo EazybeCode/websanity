@@ -462,7 +462,7 @@ export function Nav() {
 
       {/* Mobile drawer — rendered OUTSIDE <nav> so its position: fixed
           escapes the nav's transform-induced containing block */}
-      <div className={`nav-drawer${menuOpen ? ' open' : ''}`} aria-hidden={!menuOpen}>
+      <div className={`nav-drawer${menuOpen ? ' open' : ''}`} inert={!menuOpen}>
         <div className="nav-drawer-backdrop" onClick={closeMenu} />
         <div className="nav-drawer-panel" role="dialog" aria-label="Main menu">
           <div className="nav-drawer-header">
