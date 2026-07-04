@@ -149,18 +149,30 @@ Multilingual AI agents handle conversations in English, Portuguese, Spanish, Tur
 
 - **Company**: Eazybe, Inc.
 - **Headquarters**: 8, The Green STE B, Dover, Delaware 19901, USA
-- **Website**: https://eazybe.com
+- **Website**: [eazybe.com](https://eazybe.com)
 - **Chrome Extension**: Available on Chrome Web Store
-- **Support**: https://help.eazybe.com
+- **Support**: [help.eazybe.com](https://help.eazybe.com)
 
 ## Key Pages
 
-- Homepage: https://eazybe.com
-- Pricing: https://eazybe.com/pricing
-- Blog: https://eazybe.com/blog
-- Integrations: https://eazybe.com/integrations
-- HubSpot Integration: https://eazybe.com/hubspot-whatsapp-integration
-- Salesforce Integration: https://eazybe.com/salesforce-whatsapp-integration
-- Zoho Integration: https://eazybe.com/zoho-whatsapp-integration
-- Freshdesk Integration: https://eazybe.com/freshdesk-whatsapp-integration
-- Help Center: https://help.eazybe.com
+- [Homepage](https://eazybe.com): WhatsApp AI Agents that qualify leads, sync every chat to your CRM, and reply like your best reps.
+- [Pricing](https://eazybe.com/pricing): Plans and pricing, including the free-forever tier.
+- [Integrations](https://eazybe.com/integrations): All supported CRM and tool integrations.
+- [Blog](https://eazybe.com/blog): Guides on WhatsApp automation, CRM integration, and AI agents.
+- [Comparisons](https://eazybe.com/comparison): How Eazybe compares to other WhatsApp CRM and AI agent tools.
+
+## Integrations
+
+- [HubSpot WhatsApp Integration](https://eazybe.com/hubspot-whatsapp-integration): Bi-directional sync of WhatsApp chats with HubSpot contacts, deals, and workflows.
+- [Salesforce WhatsApp Integration](https://eazybe.com/salesforce-whatsapp-integration): Sync WhatsApp conversations with Salesforce leads, contacts, and opportunities.
+- [Zoho WhatsApp Integration](https://eazybe.com/zoho-whatsapp-integration): Connect WhatsApp with Zoho CRM modules and AI agents.
+- [Pipedrive WhatsApp Integration](https://eazybe.com/pipedrive-whatsapp-integration): Sync WhatsApp chats with Pipedrive deals and update stages.
+- [Bitrix24 WhatsApp Integration](https://eazybe.com/bitrix24-whatsapp-integration): Log WhatsApp conversations into Bitrix24 CRM automatically.
+- [LeadSquared WhatsApp Integration](https://eazybe.com/leadsquared-whatsapp-integration): Capture and nurture WhatsApp leads inside LeadSquared.
+- [Freshdesk WhatsApp Integration](https://eazybe.com/freshdesk-whatsapp-integration): Sync WhatsApp support conversations with Freshworks.
+- [Google Sheets WhatsApp Integration](https://eazybe.com/google-sheets-whatsapp-integration): Export WhatsApp conversation data into Google Sheets.
+
+## Resources
+
+- [Help Center](https://help.eazybe.com): Setup guides, troubleshooting, and product documentation.
+- [Pricing](https://eazybe.com/pricing): Compare plans and start free.
