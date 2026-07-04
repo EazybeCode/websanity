@@ -149,6 +149,14 @@ export function Footer() {
                 </a>
               </div>
             </div>
+
+            {/* Partner badges — shown in the brand column below the socials */}
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/trust-badges/hubspot-partner.webp" alt="HubSpot App Partner" loading="lazy" className="h-12 w-auto rounded-md md:h-14" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/trust-badges/meta-businedd-partner.webp" alt="Meta Business Partner" loading="lazy" className="h-12 w-auto rounded-md md:h-14" />
+            </div>
           </div>
           {COLS.map((c, idx) => {
             const isOpen = openCols.has(idx)
@@ -190,13 +198,41 @@ export function Footer() {
               </div>
             )
           })}
+
+          {/* Awards & recognition — fills the empty bottom-right cells of the footer grid */}
+          <div className="col-span-2 flex items-start">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/trust-badges/awards.webp"
+              alt="Eazybe awards and certifications — Meta Business certifications and G2 Spring 2026 badges"
+              loading="lazy"
+              className="block h-auto w-full max-w-[520px]"
+            />
+          </div>
         </div>
+
         <div className="footer-watermark" aria-hidden="true" />{/* "EAZYBE" rendered via CSS ::before to keep it out of the a11y tree and contrast audits */}
 
         <div className="footer-baseline">
           <p className="footer-baseline-line">
             {t('copyright')} <span className="footer-baseline-sep">|</span> {t('copyrightSuffix')}
           </p>
+
+          {/* Security & compliance trust badges */}
+          <div className="mt-5 mb-1 text-center">
+            <p className="mb-3 md:mb-4 text-xs md:text-sm font-semibold text-white/90">{t('securityTitle')}</p>
+            <div className="flex flex-wrap items-center justify-center gap-1.5 md:gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/trust-badges/gdpr.webp" alt="GDPR Compliant" loading="lazy" className="h-9 w-auto md:h-12" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/trust-badges/ccpa.webp" alt="CCPA Ready" loading="lazy" className="h-9 w-auto md:h-12" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/trust-badges/privacy-shield.webp" alt="Privacy Shield Framework" loading="lazy" className="h-9 w-auto md:h-12" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/trust-badges/pci-dss.webp" alt="PCI DSS Compliant" loading="lazy" className="h-9 w-auto md:h-12" />
+            </div>
+          </div>
+
           <nav className="footer-baseline-links" aria-label={t('policyAria')}>
             <a href={lh('/terms')}>{t('terms')}</a>
             <span className="footer-baseline-sep">|</span>
