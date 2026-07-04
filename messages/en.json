@@ -2406,10 +2406,10 @@
   "landingV3": {
     "hero": {
       "tag": "COMPATIBLE WITH HUBSPOT, SALESFORCE, ZOHO & MORE",
-      "headline": "Stop Losing Leads In Your <em>WhatsApp</em> Sales Team",
+      "headline": "<em>WhatsApp AI Agents</em> - Stop Losing Leads In Your Sales Team",
       "headlineEm": "",
       "subtitle": "Works on Personal WhatsApp, the Business app, and API - No migration needed.",
-      "subtitle2": "A WhatsApp AI agent catches the leads slipping through your reps' chats, qualifies them and chases the follow-up — in one shared inbox and your CRM.",
+      "subtitle2": "A No-Code WhatsApp AI agent catches the leads slipping through your reps' chats, qualifies them and chases the follow-up — in one shared inbox and your CRM.",
       "subtitleNote": "",
       "promptLabel": "Describe what your AI agent should do",
       "promptHint": "Press <kbd>Enter</kbd> to build · Free forever plan",
@@ -2424,7 +2424,7 @@
     "faq": {
       "tag": "FAQ",
       "headline": "All Your",
-      "headlineEm": "WhatsApp AI Agent",
+      "headlineEm": "WhatsApp AI Agents",
       "headlineEnd": "Questions, Answered",
       "subtitle": "Get answers to common questions about setup, supported CRMs, security, and how Eazybe agents work day-to-day. Still stuck? Talk to our live agent on WhatsApp.",
       "readMore": "Read More",
@@ -2450,7 +2450,7 @@
     },
     "finalCta": {
       "headline": "Your WhatsApp Team",
-      "headlineEm": "Finally With An AI Brain.",
+      "headlineEm": "Finally With An AI Brain",
       "subtitle": "WhatsApp Agents that know your CRM, read your chats and sell like your best reps 24/7.",
       "talkToAgent": "Talk to our Agent on WhatsApp →",
       "bookDemo": "Book a Demo",
@@ -2463,10 +2463,10 @@
     },
     "agentsHeader": {
       "tag": "Meet The Agents",
-      "headline": "Five",
+      "headline": "Five Best",
       "headlineEm": "WhatsApp AI Agents",
       "headlineRest": "For Every Stage Of Your Pipeline",
-      "subtitle": "Each agent owns a different stage of the funnel, from first inbound to renewal. They share the same context engine, so a deal that starts in qualification never loses its history when it moves to close.",
+      "subtitle": "Each WhatsApp agent owns a different stage of the funnel, from first inbound to renewal. AI agents on WhatsApp share the same context engine. So, a deal that starts in qualification never loses its history when it moves to close.",
       "subtitleNote": "Works with every WhatsApp number — Personal, Business, and API"
     },
     "contextEngine": {
@@ -2478,7 +2478,7 @@
     },
     "bannerCta": {
       "eyebrow": "NEW · CUSTOM AGENT BUILDER",
-      "headline": "Get A WhatsApp AI Agent Trained On Your Best Reps.",
+      "headline": "Get No-Code WhatsApp AI Agents Trained On Your Best Reps.",
       "subtitle": "Live in 10 minutes. No code, no migration, no IT team.",
       "button": "🤖 Build Mine"
     },
@@ -2556,7 +2556,7 @@
       "tag": "Agent 02 · CTWA Agent · TRY IT LIVE",
       "headline": "Every Bit Of Ad Spend,",
       "headlineEm": "Going To Real Buyers Only",
-      "lede": "You shouldn't pay the same for someone curious and someone ready to buy. This agent learns who's who, then points your ad budget at the people most likely to purchase — so your costs keep coming down.",
+      "lede": "You shouldn't pay the same for someone curious and someone ready to buy. This WhatsApp AI agent learns who's who, then points your ad budget at the people most likely to purchase — so your costs keep coming down.",
       "features": [
         "Works with every WhatsApp number — Personal, Business, and API",
         "Scores intent on every message (BANT, MEDDIC, or custom)",
@@ -2591,7 +2591,7 @@
     },
     "agentCustomerSuccess": {
       "tag": "Agent 04 · Customer Success",
-      "headline": "Your Best Support Rep,",
+      "headline": "Your Best Support Rep Agent,",
       "headlineEm": "Available 24/7",
       "lede": "Answers support on WhatsApp instantly. Knowledge-base-powered. Hands off to a human with full context when it matters.",
       "features": [
@@ -2613,7 +2613,7 @@
     "agentBuilder": {
       "tag": "Agent 05 · Agent Builder · BUILD YOUR OWN",
       "headline": "Your Use Case, Your Data,",
-      "headlineEm": "Your AI Agent",
+      "headlineEm": "Your AI Agent On WhatsApp",
       "lede": "Not every team fits the lineup. Build the agent your team needs in a day.",
       "defineLabel": "DEFINE",
       "defineDesc": "Triggers, CRM fields",
@@ -2676,7 +2676,7 @@
     "customerStories": {
       "tag": "Customer Stories",
       "headline": "What Sales Teams Say About Our",
-      "headlineEm": "WhatsApp AI Agent",
+      "headlineEm": "Top WhatsApp AI Agent",
       "subtitle": "Real quotes from sales ops leads, founders, and revenue teams who switched to Eazybe in the last 90 days and what changed in their pipeline once their WhatsApp conversations started flowing into the CRM automatically.",
       "testimonials": [
         { "text": "Our HubSpot was a graveyard. Eazybe brought it back to life — every WhatsApp deal now flows in automatically.", "name": "Priya Sharma", "role": "Sales Ops Lead · SaaS · India" },

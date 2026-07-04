@@ -7,7 +7,7 @@ export function FinalCTA() {
   return (
     <section className="final-cta" data-tone="dark">
       <div className="container">
-        <h2 className="reveal">{t('headline')} <em>{t('headlineEm')}</em></h2>
+        <h2 className="reveal">{t('headline')} <br className="fct-h2-break" /><em>{t('headlineEm')}</em></h2>
         <p className="sub reveal">{t('subtitle')}</p>
         <div className="ctas reveal">
           <a

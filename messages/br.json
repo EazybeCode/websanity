@@ -2618,10 +2618,10 @@
   "landingV3": {
     "hero": {
       "tag": "COMPATÍVEL COM HUBSPOT, SALESFORCE, ZOHO E MAIS",
-      "headline": "Pare De Perder Leads No Seu Time De Vendas Do <em>WhatsApp</em>",
+      "headline": "<em>Agentes de IA no WhatsApp</em> - Pare De Perder Leads No Seu Time De Vendas",
       "headlineEm": "",
       "subtitle": "Funciona no WhatsApp Pessoal, no aplicativo Business e na API - Sem necessidade de migração.",
-      "subtitle2": "Um agente de IA no WhatsApp captura os leads que escapam das conversas dos seus vendedores, qualifica-os e cuida do follow-up — em uma caixa de entrada compartilhada e no seu CRM.",
+      "subtitle2": "Um agente de IA no WhatsApp sem código captura os leads que escapam das conversas dos seus vendedores, qualifica-os e cuida do follow-up — em uma caixa de entrada compartilhada e no seu CRM.",
       "subtitleNote": "",
       "promptLabel": "Descreva o que seu agente de IA deve fazer",
       "promptHint": "Pressione <kbd>Enter</kbd> para criar · Plano grátis para sempre",
@@ -2675,10 +2675,10 @@
     },
     "agentsHeader": {
       "tag": "Conheça os Agentes",
-      "headline": "Cinco",
+      "headline": "Os Cinco Melhores",
       "headlineEm": "Agentes de IA no WhatsApp",
       "headlineRest": "para cada etapa do seu funil",
-      "subtitle": "Cada agente cuida de uma etapa diferente do funil, do primeiro contato à renovação. Eles compartilham a mesma central de contexto: um deal que entra na qualificação não perde o histórico quando avança para o fechamento.",
+      "subtitle": "Cada agente de WhatsApp cuida de uma etapa diferente do funil, do primeiro contato à renovação. Os agentes de IA no WhatsApp compartilham a mesma central de contexto. Assim, um deal que entra na qualificação não perde o histórico quando avança para o fechamento.",
       "subtitleNote": "Funciona com qualquer número do WhatsApp — Pessoal, Business e API"
     },
     "contextEngine": {
@@ -2690,7 +2690,7 @@
     },
     "bannerCta": {
       "eyebrow": "NOVO · CRIADOR DE AGENTES PERSONALIZADOS",
-      "headline": "Tenha um Agente de IA no WhatsApp treinado nos seus melhores vendedores.",
+      "headline": "Tenha Agentes de IA no WhatsApp sem código treinados nos seus melhores vendedores.",
       "subtitle": "No ar em 10 minutos. Sem código, sem migração, sem TI.",
       "button": "🤖 Quero o meu"
     },
@@ -2768,7 +2768,7 @@
       "tag": "Agente 02 · Agente CTWA · TESTE AO VIVO",
       "headline": "Cada Real Em Anúncios,",
       "headlineEm": "Só Para Compradores Reais",
-      "lede": "Você não deveria pagar o mesmo por alguém curioso e por alguém pronto para comprar. Esse agente aprende quem é quem e direciona seu orçamento de anúncios para as pessoas com maior probabilidade de comprar — para que seus custos continuem caindo.",
+      "lede": "Você não deveria pagar o mesmo por alguém curioso e por alguém pronto para comprar. Esse agente de IA no WhatsApp aprende quem é quem e direciona seu orçamento de anúncios para as pessoas com maior probabilidade de comprar — para que seus custos continuem caindo.",
       "features": [
         "Funciona com qualquer número do WhatsApp — Pessoal, Business e API",
         "Pontua a intenção em cada mensagem (BANT, MEDDIC ou personalizado)",
@@ -2825,7 +2825,7 @@
     "agentBuilder": {
       "tag": "Agente 05 · Agent Builder · CRIE O SEU",
       "headline": "Seu caso de uso, seus dados,",
-      "headlineEm": "seu agente de IA",
+      "headlineEm": "seu agente de IA no WhatsApp",
       "lede": "Nem todo time se encaixa no padrão. Crie o agente que sua equipe precisa em um dia.",
       "defineLabel": "DEFINA",
       "defineDesc": "Gatilhos, campos do CRM",
@@ -2888,7 +2888,7 @@
     "customerStories": {
       "tag": "Histórias de Clientes",
       "headline": "O que os times de vendas dizem sobre nosso",
-      "headlineEm": "Agente de IA no WhatsApp",
+      "headlineEm": "principal Agente de IA no WhatsApp",
       "subtitle": "Depoimentos reais de líderes de Sales Ops, fundadores e times de receita que migraram para a Eazybe nos últimos 90 dias e o que mudou no pipeline depois que as conversas do WhatsApp começaram a entrar no CRM automaticamente.",
       "testimonials": [
         { "text": "Nosso HubSpot era um cemitério. A Eazybe trouxe ele de volta à vida — todo deal do WhatsApp agora entra automaticamente.", "name": "Priya Sharma", "role": "Líder de Sales Ops · SaaS · Índia" },

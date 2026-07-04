@@ -2544,10 +2544,10 @@
   "landingV3": {
     "hero": {
       "tag": "HUBSPOT, SALESFORCE, ZOHO VE DAHA FAZLASIYLA UYUMLU",
-      "headline": "<em>WhatsApp</em> Satış Ekibinizde Lead Kaybetmeyi Bırakın",
+      "headline": "<em>WhatsApp AI Ajanları</em> - Satış Ekibinizde Lead Kaybetmeyi Bırakın",
       "headlineEm": "",
       "subtitle": "Kişisel WhatsApp, Business uygulaması ve API üzerinde çalışır - Geçiş gerekmez.",
-      "subtitle2": "Bir WhatsApp AI agent'ı, temsilcilerinizin sohbetlerinden kaçıp giden lead'leri yakalar, niteleyer ve takibi sürdürür — tek bir paylaşılan gelen kutusunda ve CRM'inizde.",
+      "subtitle2": "Kodsuz bir WhatsApp AI agent'ı, temsilcilerinizin sohbetlerinden kaçıp giden lead'leri yakalar, niteleyer ve takibi sürdürür — tek bir paylaşılan gelen kutusunda ve CRM'inizde.",
       "subtitleNote": "",
       "promptLabel": "AI agent'ınızın ne yapmasını istediğinizi yazın",
       "promptHint": "<kbd>Enter</kbd> ile oluştur · Sonsuza dek ücretsiz plan",
@@ -2602,9 +2602,9 @@
     "agentsHeader": {
       "tag": "Agent'larla Tanışın",
       "headline": "Pipeline'ınızın her aşaması için",
-      "headlineEm": "5 WhatsApp AI Agent",
+      "headlineEm": "5 En İyi WhatsApp AI Agent",
       "headlineRest": "",
-      "subtitle": "Her agent, ilk gelen mesajdan yenilemeye kadar funnel'ın farklı bir aşamasını yönetir. Hepsi aynı bağlam motorunu paylaşır: kalifikasyonda başlayan bir fırsat, kapanışa geçtiğinde geçmişini asla kaybetmez.",
+      "subtitle": "Her WhatsApp agent'ı, ilk gelen mesajdan yenilemeye kadar funnel'ın farklı bir aşamasını yönetir. WhatsApp'taki AI agent'lar aynı bağlam motorunu paylaşır. Böylece, kalifikasyonda başlayan bir fırsat, kapanışa geçtiğinde geçmişini asla kaybetmez.",
       "subtitleNote": "Her WhatsApp numarasıyla çalışır — Kişisel, Business ve API"
     },
     "contextEngine": {
@@ -2616,7 +2616,7 @@
     },
     "bannerCta": {
       "eyebrow": "YENİ · ÖZEL AGENT BUILDER",
-      "headline": "En iyi temsilcilerinizle eğitilmiş bir WhatsApp AI Agent'ı edinin.",
+      "headline": "En iyi temsilcilerinizle eğitilmiş kodsuz WhatsApp AI Agent'ları edinin.",
       "subtitle": "10 dakikada canlıya alın. Kod yok, taşıma yok, IT ekibi yok.",
       "button": "🤖 Benimkini Oluştur"
     },
@@ -2694,7 +2694,7 @@
       "tag": "Agent 02 · CTWA Agent · CANLI DENE",
       "headline": "Reklam Bütçenizin Her Kuruşu,",
       "headlineEm": "Sadece Gerçek Alıcılara",
-      "lede": "Sadece meraklı biriyle satın almaya hazır biri için aynı parayı ödememelisiniz. Bu ajan kimin kim olduğunu öğrenir, sonra reklam bütçenizi satın alma olasılığı en yüksek kişilere yönlendirir — böylece maliyetleriniz düşmeye devam eder.",
+      "lede": "Sadece meraklı biriyle satın almaya hazır biri için aynı parayı ödememelisiniz. Bu WhatsApp AI agent'ı kimin kim olduğunu öğrenir, sonra reklam bütçenizi satın alma olasılığı en yüksek kişilere yönlendirir — böylece maliyetleriniz düşmeye devam eder.",
       "features": [
         "Her WhatsApp numarasıyla çalışır — Kişisel, Business ve API",
         "Her mesajda niyet puanı verir (BANT, MEDDIC veya özel)",
@@ -2751,7 +2751,7 @@
     "agentBuilder": {
       "tag": "Agent 05 · Agent Builder · KENDİNİ OLUŞTUR",
       "headline": "Sizin kullanım senaryonuz, verileriniz,",
-      "headlineEm": "AI agent'ınız",
+      "headlineEm": "WhatsApp'taki AI agent'ınız",
       "lede": "Her ekip standart kalıba uymaz. Ekibinizin ihtiyacı olan agent'ı bir günde oluşturun.",
       "defineLabel": "TANIMLA",
       "defineDesc": "Tetikleyiciler, CRM alanları",
@@ -2813,7 +2813,7 @@
     },
     "customerStories": {
       "tag": "Müşteri Hikâyeleri",
-      "headline": "Satış ekipleri WhatsApp AI",
+      "headline": "Satış ekipleri en iyi WhatsApp AI",
       "headlineEm": "Agent'ımız",
       "subtitle": "Son 90 günde Eazybe'ye geçen Sales Ops liderleri, kurucular ve gelir ekiplerinden gerçek yorumlar — WhatsApp konuşmaları otomatik olarak CRM'e akmaya başladığında pipeline'larında neler değişti.",
       "testimonials": [
