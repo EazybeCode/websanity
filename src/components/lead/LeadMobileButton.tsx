@@ -40,22 +40,18 @@ export const LeadMobileButton: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Minimized Button */}
-      <AnimatePresence>
-        {!isExpanded && (
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-            onClick={handleToggle}
-            className="fixed bottom-4 left-4 z-40 block lg:hidden bg-brand-blue hover:bg-blue-700 text-white px-4 py-3 rounded-full shadow-glow-blue transition-all duration-200"
-            aria-label="Open lead form"
-          >
-            <span className="text-sm font-semibold">{t('leadForm.downloadButton').replace(' \u2192', '')}</span>
-          </motion.button>
-        )}
-      </AnimatePresence>
+      {/* Minimized sticky side tab \u2014 flush to the left edge, vertically centered, mobile only.
+          Static (no fade-in) so it's always visible, even before hydration. */}
+      {!isExpanded && (
+        <button
+          onClick={handleToggle}
+          className="fixed left-0 top-1/2 -translate-y-1/2 z-40 block lg:hidden bg-brand-blue hover:bg-blue-700 text-white px-2.5 py-4 rounded-r-xl shadow-glow-blue transition-colors duration-200"
+          style={{ writingMode: 'vertical-rl' }}
+          aria-label="Open lead form"
+        >
+          <span className="text-sm font-semibold tracking-wide">{t('leadForm.downloadButton').replace(' \u2192', '')}</span>
+        </button>
+      )}
     </>
   )
 }

@@ -6,7 +6,6 @@ import { RevealOnScroll } from '@/components/landing/RevealOnScroll'
 import { SalesExpertBanner } from '@/components/landing/SalesExpertBanner'
 import { SuppressExtensionHydrationWarning } from '@/components/landing/SuppressExtensionHydrationWarning'
 import { LeadSidebar } from '@/components/lead/LeadSidebar'
-import { LeadMobileButton } from '@/components/lead/LeadMobileButton'
 import { TrialModalWrapper } from '@/components/modals/TrialModalWrapper'
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -21,7 +20,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <SalesExpertBanner />
       <TrialModalWrapper />
       <LeadSidebar />
-      <LeadMobileButton />
       <SuppressExtensionHydrationWarning />
     </div>
   )

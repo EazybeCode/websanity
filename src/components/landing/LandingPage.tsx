@@ -21,13 +21,13 @@ import { RevealOnScroll } from './RevealOnScroll'
 import { SalesExpertBanner } from './SalesExpertBanner'
 import { SuppressExtensionHydrationWarning } from './SuppressExtensionHydrationWarning'
 import { LeadSidebar } from '../lead/LeadSidebar'
-import { LeadMobileButton } from '../lead/LeadMobileButton'
 
 export function LandingPage() {
   return (
     <div className="landing" data-accent="iris" data-typeset="geist" suppressHydrationWarning>
       <div className="grain" aria-hidden />
       <Nav />
+      <main>
       <Hero />
       <LogoBar />
       <AgentsHeader />
@@ -43,13 +43,13 @@ export function LandingPage() {
       <BannerCTA />
       <FAQ />
       <FinalCTA />
+      </main>
       <Footer />
       <BeaBot />
       <RevealOnScroll />
       <SalesExpertBanner />
       <SuppressExtensionHydrationWarning />
       <LeadSidebar />
-      <LeadMobileButton />
     </div>
   )
 }
