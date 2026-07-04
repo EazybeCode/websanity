@@ -5,7 +5,11 @@ import { X, Send, Loader2, CheckCircle2, Zap, Target, Bot, Star } from 'lucide-r
 import { useTranslations, useLocale } from 'next-intl'
 import { CRMType, TrialFormData } from '@/types'
 import { type ModalMode } from '@/providers/TrialModalProvider'
-import { CHROME_STORE_WEBSITE_URL, withIncomingTrackingParams } from '@/utils/openChromeExtensionStore'
+import {
+  CHROME_STORE_WEBSITE_URL,
+  getHubSpotAttributionFields,
+  withIncomingTrackingParams,
+} from '@/utils/openChromeExtensionStore'
 
 interface TrialModalProps {
   isOpen: boolean
@@ -183,16 +187,10 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
         { name: 'email', value: formData.workEmail },
         { name: 'phone', value: finalPhone },
         { name: 'crm_used', value: formData.crmProvider },
-        { name: 'entry_page', value: sessionStorage.getItem('entry_page') || window.location.pathname },
-        { name: 'exit_page', value: window.location.pathname },
+        { name: 'source_name', value: mode === 'trial' ? 'website' : 'website-demo' },
       ]
 
-      const utmSource = sessionStorage.getItem('utm_source')
-      const utmMedium = sessionStorage.getItem('utm_medium')
-      const utmCampaign = sessionStorage.getItem('utm_campaign')
-      if (utmSource) fields.push({ name: 'utm_source', value: utmSource })
-      if (utmMedium) fields.push({ name: 'utm_medium', value: utmMedium })
-      if (utmCampaign) fields.push({ name: 'utm_campaign', value: utmCampaign })
+      fields.push(...getHubSpotAttributionFields(CHROME_STORE_WEBSITE_URL))
 
       const hubspotPayload: Record<string, unknown> = {
         portalId: '40009480',

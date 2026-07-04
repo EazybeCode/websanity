@@ -5,7 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
-import { CHROME_STORE_WEBSITE_FORM_URL, withIncomingTrackingParams } from '@/utils/openChromeExtensionStore'
+import {
+  CHROME_STORE_WEBSITE_FORM_URL,
+  getHubSpotAttributionFields,
+  withIncomingTrackingParams,
+} from '@/utils/openChromeExtensionStore'
 
 interface FormData {
   email: string
@@ -158,17 +162,10 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
         { name: "email", value: formData.email },
         { name: "language", value: getLanguageName() },
         { name: "crm_used", value: formData.crm || "Website" },
-        { name: "source_name", value: "website" },
-        { name: "entry_page", value: sessionStorage.getItem('entry_page') || window.location.pathname },
-        { name: "exit_page", value: window.location.pathname },
+        { name: "source_name", value: "website-form" },
       ]
 
-      const utmSource = sessionStorage.getItem('utm_source')
-      const utmMedium = sessionStorage.getItem('utm_medium')
-      const utmCampaign = sessionStorage.getItem('utm_campaign')
-      if (utmSource) fields.push({ name: "utm_source", value: utmSource })
-      if (utmMedium) fields.push({ name: "utm_medium", value: utmMedium })
-      if (utmCampaign) fields.push({ name: "utm_campaign", value: utmCampaign })
+      fields.push(...getHubSpotAttributionFields(CHROME_STORE_WEBSITE_FORM_URL))
 
       const formattedPhone = formData.countryCode + formatPhoneNumber(formData.phone)
       fields.push({ name: "phone", value: formattedPhone })

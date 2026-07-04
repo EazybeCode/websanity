@@ -16,6 +16,19 @@ type StoredAttribution = {
   expiresAt: number
 }
 
+export type HubSpotAttributionField = {
+  name: string
+  value: string
+}
+
+function safeStorageGet(storage: Storage | undefined, key: string): string | null {
+  try {
+    return storage?.getItem(key) || null
+  } catch {
+    return null
+  }
+}
+
 function getTrackingParamsFromSearch(search: string): URLSearchParams {
   const params = new URLSearchParams()
 
@@ -120,13 +133,7 @@ function getIncomingTrackingParams(): URLSearchParams {
 
   for (const key of ["utm_source", "utm_medium", "utm_campaign"]) {
     if (!params.has(key)) {
-      const value = (() => {
-        try {
-          return window.sessionStorage.getItem(key)
-        } catch {
-          return null
-        }
-      })()
+      const value = safeStorageGet(window.sessionStorage, key)
       if (value) params.set(key, value)
     }
   }
@@ -147,6 +154,42 @@ export function withIncomingTrackingParams(url: string): string {
   })
 
   return finalUrl.toString()
+}
+
+export function getChromeStoreTrackingParams(url: string): URLSearchParams {
+  if (typeof window === "undefined") {
+    return new URL(url).searchParams
+  }
+
+  return new URL(withIncomingTrackingParams(url), window.location.origin).searchParams
+}
+
+export function getHubSpotAttributionFields(url: string): HubSpotAttributionField[] {
+  if (typeof window === "undefined") {
+    return []
+  }
+
+  const fields: HubSpotAttributionField[] = []
+  const params = getChromeStoreTrackingParams(url)
+
+  params.forEach((value, key) => {
+    if (TRACKING_PARAM_PREFIXES.some((prefix) => key.startsWith(prefix)) || TRACKING_PARAM_NAMES.includes(key)) {
+      fields.push({ name: key, value })
+    }
+  })
+
+  const referrer = safeStorageGet(window.localStorage, "referrer") || document.referrer
+  const entryPage =
+    safeStorageGet(window.localStorage, "entryPage") ||
+    safeStorageGet(window.sessionStorage, "entry_page") ||
+    window.location.pathname
+  const exitPage = safeStorageGet(window.localStorage, "exitPage") || window.location.pathname
+
+  if (referrer) fields.push({ name: "referrer", value: referrer })
+  if (entryPage) fields.push({ name: "entry_page", value: entryPage })
+  if (exitPage) fields.push({ name: "exit_page", value: exitPage })
+
+  return fields
 }
 
 /**
