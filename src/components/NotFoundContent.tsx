@@ -39,19 +39,19 @@ export default function NotFoundContent() {
 
       <div className="relative max-w-2xl w-full mx-auto text-center">
         {/* 404 Number */}
-        <div className="mb-8">
-          <h1 className="text-[120px] sm:text-[150px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-cyan-400 leading-none select-none">
+        <div className="mb-3 sm:mb-8">
+          <h1 className="text-[72px] sm:text-[110px] md:text-[150px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-cyan-400 leading-none select-none">
             404
           </h1>
         </div>
 
         {/* Content */}
-        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">{t('title')}</h2>
-        <p className="text-lg text-gray-400 mb-6 max-w-lg mx-auto">{t('subtitle')}</p>
-        <p className="text-gray-500 mb-10 max-w-md mx-auto">{t('description')}</p>
+        <h2 className="text-xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">{t('title')}</h2>
+        <p className="text-base sm:text-lg text-gray-400 mb-4 sm:mb-6 max-w-lg mx-auto">{t('subtitle')}</p>
+        <p className="text-sm sm:text-base text-gray-500 mb-6 sm:mb-10 max-w-md mx-auto">{t('description')}</p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
           <Link
             href={homeLink}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105"

@@ -199,8 +199,10 @@ export function Footer() {
             )
           })}
 
-          {/* Awards & recognition — fills the empty bottom-right cells of the footer grid */}
-          <div className="col-span-2 flex items-start">
+          {/* Awards & recognition — spans the empty bottom-right cells only on the
+              wide 5-column grid (>=1140px); full-width single item otherwise so it
+              never overflows on mobile/tablet. */}
+          <div className="min-w-0 flex items-start min-[1140px]:col-span-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/trust-badges/awards.webp"
