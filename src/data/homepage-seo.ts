@@ -5,7 +5,7 @@ const BASE_URL = 'https://eazybe.com'
 export function getHomepageMetadata(locale: string): Metadata {
   const meta: Record<string, Metadata> = {
     en: {
-      title: 'WhatsApp AI Agent — No-Code AI Agents for Sales & Support | Eazybe',
+      title: 'No-Code WhatsApp AI Agents For Sales & Support | EazyBe',
       description: 'Build a no-code WhatsApp AI Agent that qualifies leads 24/7, syncs every chat to your CRM (HubSpot, Salesforce, Zoho), and replies in your top rep\'s voice. Trusted by 2,000+ teams in 40+ countries.',
       keywords: 'whatsapp ai agent, ai agents for whatsapp, whatsapp ai agents, ai agent for whatsapp, ai agent on whatsapp, no code whatsapp ai agent, ai agent for whatsapp automation, ai agent whatsapp business, best whatsapp ai agent, top whatsapp ai agent, whatsapp ai agent provider, build ai agent for whatsapp, benefits of using a whatsapp ai agent, ai whatsapp agent, whatsapp agent ai, agent ai whatsapp, ai in whatsapp',
       authors: [{ name: 'Eazybe' }],
