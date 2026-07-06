@@ -301,6 +301,8 @@
     padding: 12px 22px !important;
     font-size: 14px !important;
   }
+  /* Hero "Book A Demo" — shrink to fit its text on mobile (not full-width) */
+  .landing .hero .hero-demo-cta { width: auto !important; align-self: center; padding-left: 34px !important; padding-right: 34px !important; }
   /* Agent card CTA pair (e.g. CRM Sync): stack centered on mobile, each content-sized */
   .landing .agent-cta-pair {
     flex-direction: column;

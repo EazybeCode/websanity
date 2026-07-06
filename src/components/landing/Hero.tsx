@@ -30,7 +30,7 @@ export function Hero() {
               href="https://eazybe.info/demono"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-ghost btn-lg"
+              className="btn btn-ghost btn-lg hero-demo-cta"
               style={{
                 background: '#0F1115',
                 color: '#ffffff',
