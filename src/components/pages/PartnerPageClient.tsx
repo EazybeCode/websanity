@@ -32,7 +32,7 @@ const testimonialAvatars = [
 
 const benefitIcons = [DollarSign, Users, Rocket, Shield, Award, Zap]
 const benefitKeys = ['revenueShare', 'expandedPortfolio', 'mutualGrowth', 'prioritySupport', 'certifiedBadge', 'earlyAccess'] as const
-const partnerTypeKeys = ['affiliate', 'reseller', 'whitelabel'] as const
+const partnerTypeKeys = ['affiliate', 'reseller'] as const
 
 const Check = (
   <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
@@ -177,7 +177,7 @@ export function PartnerPageClient() {
             <h2>{t('modelsTitle')}</h2>
             <p>{t('modelsSubtitle')}</p>
           </div>
-          <div className="card-grid cols-3">
+          <div className="card-grid cols-2">
             {partnerTypeKeys.map((key, index) => {
               const whatYouGet = t.raw(`${key}.whatYouGet`) as string[]
               const idealFor = t.raw(`${key}.idealFor`) as string[]
