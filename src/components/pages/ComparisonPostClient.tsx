@@ -628,7 +628,7 @@ const StickyTableOfContents: React.FC<{
                     >
                       <span
                         className={`font-mono text-[10px] mt-0.5 w-5 flex-shrink-0 ${
-                          isActive ? 'text-brand-cyan' : 'text-slate-600'
+                          isActive ? 'text-brand-cyan' : 'text-slate-400'
                         }`}
                       >
                         {String(i + 1).padStart(2, '0')}
@@ -898,6 +898,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                       month: 'long',
                       day: 'numeric',
                       year: 'numeric',
+                      timeZone: 'UTC', // pin TZ so SSR and client hydration render the same date
                     })}
                   </span>
                   <span className="flex items-center gap-1 whitespace-nowrap">
@@ -907,7 +908,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                   {viewCount > 0 && (
                     <span className="flex items-center gap-1 whitespace-nowrap">
                       <Eye size={14} className="shrink-0" />
-                      {viewCount.toLocaleString()} views
+                      {viewCount.toLocaleString('en-US')} views
                     </span>
                   )}
                 </div>
@@ -1427,6 +1428,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                       month: 'short',
                       day: 'numeric',
                       year: 'numeric',
+                      timeZone: 'UTC', // pin TZ so SSR and client hydration render the same date
                     })}
                     readTime={`${relatedPost.readTime} ${
                       detailLabels?.minReadSuffix || t('blog.detail.minRead')
