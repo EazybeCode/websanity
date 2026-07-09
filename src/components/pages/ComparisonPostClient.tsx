@@ -334,6 +334,11 @@ const createPortableTextComponents = (
         const desktopRatio = cssAspectRatio(value.desktopRatio)
         const mobileRatio = cssAspectRatio(value.mobileRatio)
         const hasRatio = desktopRatio || mobileRatio
+        // Sanity asset URLs embed intrinsic size ("...-1672x941.webp"); expose it
+        // as width/height so the browser reserves space before load (CLS).
+        const dimsMatch = /-(\d+)x(\d+)\.\w+$/.exec(value.url)
+        const intrinsicW = dimsMatch ? Number(dimsMatch[1]) : undefined
+        const intrinsicH = dimsMatch ? Number(dimsMatch[2]) : undefined
 
         return (
           <figure className="my-5">
@@ -343,7 +348,9 @@ const createPortableTextComponents = (
                 <img
                   src={value.url}
                   alt={value.alt || ''}
-                  className="md:hidden w-full"
+                  width={intrinsicW}
+                  height={intrinsicH}
+                  className="md:hidden w-full h-auto"
                   style={mobileRatio ? { aspectRatio: mobileRatio, objectFit: 'contain' } : undefined}
                   loading="lazy"
                 />
@@ -351,7 +358,9 @@ const createPortableTextComponents = (
                 <img
                   src={value.url}
                   alt={value.alt || ''}
-                  className="hidden md:block w-full"
+                  width={intrinsicW}
+                  height={intrinsicH}
+                  className="hidden md:block w-full h-auto"
                   style={desktopRatio ? { aspectRatio: desktopRatio, objectFit: 'contain' } : undefined}
                   loading="lazy"
                 />
@@ -360,12 +369,14 @@ const createPortableTextComponents = (
               <img
                 src={value.url}
                 alt={value.alt || ''}
-                className="w-full rounded-2xl"
+                width={intrinsicW}
+                height={intrinsicH}
+                className="w-full h-auto rounded-2xl"
                 loading="lazy"
               />
             )}
             {value.caption && (
-              <figcaption className="text-center text-slate-500 text-[12px] mt-4">
+              <figcaption className="text-center text-slate-400 text-[12px] mt-4">
                 {Array.isArray(value.caption) ? (
                   <PortableText value={value.caption} components={imageCaptionComponents} />
                 ) : (

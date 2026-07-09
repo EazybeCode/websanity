@@ -192,18 +192,18 @@ export function Footer() {
               {/* Clutch award badges */}
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/trust-badges/clutch-ai-consulting-us-2026.webp" alt="Clutch — Top AI Consulting Company, United States 2026" loading="lazy" className="h-16 w-auto md:h-[72px]" />
+                <img src="/trust-badges/clutch-ai-consulting-us-2026.webp" width={440} height={424} alt="Clutch — Top AI Consulting Company, United States 2026" loading="lazy" className="h-16 w-auto md:h-[72px]" />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/trust-badges/clutch-software-developers-mo-2026.webp" alt="Clutch — Top Software Developers, Missouri 2026" loading="lazy" className="h-16 w-auto md:h-[72px]" />
+                <img src="/trust-badges/clutch-software-developers-mo-2026.webp" width={440} height={424} alt="Clutch — Top Software Developers, Missouri 2026" loading="lazy" className="h-16 w-auto md:h-[72px]" />
               </div>
             </div>
 
             {/* Partner badges — shown in the brand column below the socials */}
             <div className="mt-6 flex flex-wrap items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/trust-badges/hubspot-partner.webp" alt="HubSpot App Partner" loading="lazy" className="h-12 w-auto rounded-md md:h-14" />
+              <img src="/trust-badges/hubspot-partner.webp" width={1103} height={462} alt="HubSpot App Partner" loading="lazy" className="h-12 w-auto rounded-md md:h-14" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/trust-badges/meta-businedd-partner.webp" alt="Meta Business Partner" loading="lazy" className="h-12 w-auto rounded-md md:h-14" />
+              <img src="/trust-badges/meta-businedd-partner.webp" width={885} height={417} alt="Meta Business Partner" loading="lazy" className="h-12 w-auto rounded-md md:h-14" />
             </div>
           </div>
 
@@ -213,7 +213,7 @@ export function Footer() {
           <div className="min-w-0 flex items-start max-[820px]:mt-2 max-[820px]:mb-4 min-[821px]:hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/trust-badges/awards.webp"
+              src="/trust-badges/awards.webp" width={1897} height={829}
               alt="Eazybe awards and certifications — Meta Business certifications and G2 Spring 2026 badges"
               loading="lazy"
               className="block h-auto w-full max-w-[520px]"
@@ -230,7 +230,7 @@ export function Footer() {
           <div className="min-w-0 flex items-start max-[820px]:hidden min-[1140px]:col-span-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/trust-badges/awards.webp"
+              src="/trust-badges/awards.webp" width={1897} height={829}
               alt="Eazybe awards and certifications — Meta Business certifications and G2 Spring 2026 badges"
               loading="lazy"
               className="block h-auto w-full max-w-[520px]"
@@ -253,15 +253,15 @@ export function Footer() {
             <p className="mb-3 md:mb-4 text-xs md:text-sm font-semibold text-white/90">{t('securityTitle')}</p>
             <div className="flex flex-wrap items-center justify-center gap-1.5 md:gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/trust-badges/soc2-type2.webp" alt="SOC 2 Type II Certified" loading="lazy" className="h-9 w-auto md:h-12" />
+              <img src="/trust-badges/soc2-type2.webp" width={480} height={480} alt="SOC 2 Type II Certified" loading="lazy" className="h-9 w-auto md:h-12" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/trust-badges/gdpr.webp" alt="GDPR Compliant" loading="lazy" className="h-9 w-auto md:h-12" />
+              <img src="/trust-badges/gdpr.webp" width={1024} height={645} alt="GDPR Compliant" loading="lazy" className="h-9 w-auto md:h-12" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/trust-badges/ccpa.webp" alt="CCPA Ready" loading="lazy" className="h-9 w-auto md:h-12" />
+              <img src="/trust-badges/ccpa.webp" width={1254} height={673} alt="CCPA Ready" loading="lazy" className="h-9 w-auto md:h-12" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/trust-badges/privacy-shield.webp" alt="Privacy Shield Framework" loading="lazy" className="h-9 w-auto md:h-12" />
+              <img src="/trust-badges/privacy-shield.webp" width={1254} height={636} alt="Privacy Shield Framework" loading="lazy" className="h-9 w-auto md:h-12" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/trust-badges/pci-dss.webp" alt="PCI DSS Compliant" loading="lazy" className="h-9 w-auto md:h-12" />
+              <img src="/trust-badges/pci-dss.webp" width={1254} height={734} alt="PCI DSS Compliant" loading="lazy" className="h-9 w-auto md:h-12" />
             </div>
           </div>
 
