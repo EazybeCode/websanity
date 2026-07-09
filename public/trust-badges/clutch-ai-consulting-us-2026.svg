@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="212" viewBox="0 0 220 212" role="img" aria-label="Clutch — Top AI Consulting Company, United States 2026">
+  <defs>
+    <clipPath id="hexClipAiUs">
+      <path d="M56 18 H164 L208 106 L164 194 H56 L12 106 Z"/>
+    </clipPath>
+  </defs>
+  <!-- Hexagon body + outer border -->
+  <path d="M56 18 H164 L208 106 L164 194 H56 L12 106 Z" fill="#ffffff" stroke="#c5cad0" stroke-width="8" stroke-linejoin="round"/>
+  <!-- Inner thin border -->
+  <path d="M61 27 H159 L199 106 L159 185 H61 L21 106 Z" fill="none" stroke="#dee1e5" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Dark middle band -->
+  <g clip-path="url(#hexClipAiUs)">
+    <rect x="0" y="90" width="220" height="33" fill="#2b3642"/>
+  </g>
+  <!-- Separator ticks flanking the band -->
+  <line x1="72" y1="87" x2="148" y2="87" stroke="#d0d4d9" stroke-width="1.5"/>
+  <line x1="72" y1="126" x2="148" y2="126" stroke="#d0d4d9" stroke-width="1.5"/>
+  <!-- Top text -->
+  <text x="110" y="52" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#38434d" letter-spacing="1">TOP</text>
+  <text x="110" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#38434d" letter-spacing="0.6">AI CONSULTING</text>
+  <text x="110" y="81" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#38434d" letter-spacing="0.6">COMPANY</text>
+  <!-- Clutch wordmark -->
+  <text x="107" y="114" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="0.2">Clutch</text>
+  <circle cx="126" cy="99" r="2.8" fill="#ee3c33"/>
+  <!-- Bottom text -->
+  <text x="110" y="152" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#38434d" letter-spacing="0.6">UNITED STATES</text>
+  <text x="110" y="170" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#38434d" letter-spacing="1">2026</text>
+</svg>
