@@ -7,16 +7,21 @@ import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
 import { GlobalStructuredData } from '@/components/seo/GlobalStructuredData'
 
+// display: 'optional' — if the font isn't ready within ~100ms the page keeps
+// the size-adjusted fallback for that visit instead of swapping later. The
+// late swap was the whole CLS budget on blog posts (0.143: text above the
+// featured image reflows and shoves it down). Repeat visits get the cached
+// font immediately.
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'swap',
+  display: 'optional',
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains-mono',
-  display: 'swap',
+  display: 'optional',
 })
 
 // Map next-intl URL locale codes to canonical HTML `lang` values.
