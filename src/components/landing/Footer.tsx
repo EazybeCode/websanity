@@ -108,6 +108,46 @@ export function Footer() {
       return next
     })
   }
+  const renderCol = (c: (typeof COLS)[number], idx: number) => {
+    const isOpen = openCols.has(idx)
+    return (
+      <div key={c.titleKey} className={`footer-col${isOpen ? ' open' : ''}`}>
+        <button
+          type="button"
+          className="footer-col-toggle"
+          onClick={() => toggleCol(idx)}
+          aria-expanded={isOpen}
+          aria-controls={`footer-col-${idx}`}
+        >
+          <h3>{t(c.titleKey)}</h3>
+          <span className="footer-col-chev" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </span>
+        </button>
+        <ul id={`footer-col-${idx}`}>
+          {c.items.map((i, j) => {
+            const label = i.literalName ?? (i.nameKey ? t(i.nameKey) : '')
+            return (
+              <li key={`${idx}-${j}-${label}`}>
+                <a
+                  href={lh(i.href)}
+                  {...(i.href.startsWith('http')
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
+                >
+                  {label}
+                  {i.badgeKey && <span className="footer-col-badge">{t(i.badgeKey)}</span>}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    )
+  }
   return (
     <footer className="footer">
       <div className="container">
@@ -158,51 +198,11 @@ export function Footer() {
               <img src="/trust-badges/meta-businedd-partner.webp" alt="Meta Business Partner" loading="lazy" className="h-12 w-auto rounded-md md:h-14" />
             </div>
           </div>
-          {COLS.map((c, idx) => {
-            const isOpen = openCols.has(idx)
-            return (
-              <div key={c.titleKey} className={`footer-col${isOpen ? ' open' : ''}`}>
-                <button
-                  type="button"
-                  className="footer-col-toggle"
-                  onClick={() => toggleCol(idx)}
-                  aria-expanded={isOpen}
-                  aria-controls={`footer-col-${idx}`}
-                >
-                  <h3>{t(c.titleKey)}</h3>
-                  <span className="footer-col-chev" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="12" y1="5" x2="12" y2="19" />
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                  </span>
-                </button>
-                <ul id={`footer-col-${idx}`}>
-                  {c.items.map((i, j) => {
-                    const label = i.literalName ?? (i.nameKey ? t(i.nameKey) : '')
-                    return (
-                      <li key={`${idx}-${j}-${label}`}>
-                        <a
-                          href={lh(i.href)}
-                          {...(i.href.startsWith('http')
-                            ? { target: '_blank', rel: 'noopener noreferrer' }
-                            : {})}
-                        >
-                          {label}
-                          {i.badgeKey && <span className="footer-col-badge">{t(i.badgeKey)}</span>}
-                        </a>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )
-          })}
 
-          {/* Awards & recognition — spans the empty bottom-right cells only on the
-              wide 5-column grid (>=1140px); full-width single item otherwise so it
-              never overflows on mobile/tablet. */}
-          <div className="min-w-0 flex items-start min-[1140px]:col-span-2">
+          {/* Awards & recognition (mobile only) — on the ≤820px single-column stack
+              the badge sits right after the brand, before the Agents section. Hidden
+              on wider grids where the desktop copy below handles placement. */}
+          <div className="min-w-0 flex items-start max-[820px]:mt-2 max-[820px]:mb-4 min-[821px]:hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/trust-badges/awards.webp"
@@ -211,6 +211,26 @@ export function Footer() {
               className="block h-auto w-full max-w-[520px]"
             />
           </div>
+
+          {/* Row 1 columns: Agents, Integrations, Features, Resources */}
+          {COLS.slice(0, 4).map((c, idx) => renderCol(c, idx))}
+
+          {/* Awards & recognition (desktop/tablet) — placed at the start of row 2 (the
+              former Tools + WhatsApp API position, under the brand), spanning two columns
+              on the wide 5-column grid (>=1140px). Hidden on the ≤820px stack where the
+              mobile copy above renders it before the Agents section instead. */}
+          <div className="min-w-0 flex items-start max-[820px]:hidden min-[1140px]:col-span-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/trust-badges/awards.webp"
+              alt="Eazybe awards and certifications — Meta Business certifications and G2 Spring 2026 badges"
+              loading="lazy"
+              className="block h-auto w-full max-w-[520px]"
+            />
+          </div>
+
+          {/* Row 2 columns: Tools, WhatsApp API, Company (shifted right of the awards badge) */}
+          {COLS.slice(4).map((c, i) => renderCol(c, i + 4))}
         </div>
 
         <div className="footer-watermark" aria-hidden="true" />{/* "EAZYBE" rendered via CSS ::before to keep it out of the a11y tree and contrast audits */}
@@ -224,6 +244,8 @@ export function Footer() {
           <div className="mt-5 mb-1 text-center">
             <p className="mb-3 md:mb-4 text-xs md:text-sm font-semibold text-white/90">{t('securityTitle')}</p>
             <div className="flex flex-wrap items-center justify-center gap-1.5 md:gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/trust-badges/soc2-type2.webp" alt="SOC 2 Type II Certified" loading="lazy" className="h-9 w-auto md:h-12" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/trust-badges/gdpr.webp" alt="GDPR Compliant" loading="lazy" className="h-9 w-auto md:h-12" />
               {/* eslint-disable-next-line @next/next/no-img-element */}

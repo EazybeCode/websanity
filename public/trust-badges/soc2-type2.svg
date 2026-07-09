@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="AICPA SOC 2 Type II Certified">
+  <!-- Top half ring (blue) -->
+  <path d="M10 100 A90 90 0 0 1 190 100 Z" fill="#1f9bd7"/>
+  <!-- Bottom half ring (black) -->
+  <path d="M10 100 A90 90 0 0 0 190 100 Z" fill="#0a0a0a"/>
+  <!-- White interior -->
+  <circle cx="100" cy="100" r="67" fill="#ffffff"/>
+  <!-- Gray divider bar, extending beyond the seal -->
+  <rect x="-4" y="90" width="208" height="18" fill="#939598"/>
+  <!-- Top text -->
+  <text x="100" y="72" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#1f9bd7" letter-spacing="1">AICPA</text>
+  <!-- Bottom text -->
+  <text x="100" y="145" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" fill="#0a0a0a" letter-spacing="1">SOC</text>
+  <text x="100" y="163" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#0a0a0a">aicpa.org/soc</text>
+</svg>
