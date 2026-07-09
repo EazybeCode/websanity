@@ -21,7 +21,25 @@ export function Hero() {
             {t('headlineEm') ? <> <em>{t('headlineEm')}</em></> : null}
           </h1>
           <div className="hero-sub-group">
-            <p className="hero-sub">{t('subtitle')}</p>
+            <div className="hero-compat" role="list" aria-label={t('subtitle')}>
+              <span className="hero-compat-label">{t('compatLabel')}</span>
+              {(['compatPersonal', 'compatBusiness', 'compatApi'] as const).map((key) => (
+                <span key={key} className="hero-compat-chip" role="listitem">
+                  <svg viewBox="0 0 20 20" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M4 10.5l4 4 8-9" />
+                  </svg>
+                  {t(key)}
+                </span>
+              ))}
+              <span className="hero-compat-badge" role="listitem">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
+                  <path d="M13 2L4.5 13.5h5L10 22l8.5-11.5h-5L13 2z" />
+                </svg>
+                {t('compatNoMigration')}
+              </span>
+            </div>
+            {/* Mobile fallback: plain sentence instead of the chip row */}
+            <p className="hero-sub hero-sub-compat-mobile">{t('subtitle')}</p>
             <p className="hero-sub">{t('subtitle2')}</p>
           </div>
 

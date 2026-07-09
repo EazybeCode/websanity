@@ -412,6 +412,46 @@
   max-width: 780px; margin: 0 auto 40px;
   line-height: 1.5;
 }
+/* Hero compatibility chips — "Works on ✓Personal ✓Business ✓API ⚡No migration" */
+.landing .hero-compat {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 8px; max-width: 780px; margin: 0 auto;
+}
+.landing .hero-compat-label {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+  color: var(--ink-3); margin-right: 2px;
+}
+.landing .hero-compat-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 999px;
+  font-size: 13.5px; font-weight: 600; letter-spacing: 0.01em;
+  color: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(6px);
+  transition: border-color .25s, background .25s, transform .25s;
+}
+.landing .hero-compat-chip:hover {
+  border-color: color-mix(in oklab, var(--accent-a) 60%, transparent);
+  background: rgba(255,255,255,0.09);
+  transform: translateY(-1px);
+}
+.landing .hero-compat-chip svg { color: var(--accent-a); flex: none; }
+.landing .hero-compat-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 15px; border-radius: 999px;
+  font-size: 13.5px; font-weight: 700; letter-spacing: 0.01em;
+  color: #0F1A15;
+  background: linear-gradient(115deg, var(--accent-a), var(--accent-b));
+  box-shadow: 0 4px 18px -4px color-mix(in oklab, var(--accent-a) 55%, transparent);
+}
+.landing .hero-compat-badge svg { flex: none; }
+/* Chips are desktop-only: on mobile show the plain sentence instead */
+.landing .hero-sub-compat-mobile { display: none; }
+@media (max-width: 640px) {
+  .landing .hero-compat { display: none; }
+  .landing .hero-sub-compat-mobile { display: block; }
+}
 .landing .hero-sub-group {
   display: flex; flex-direction: column; align-items: center;
   gap: 20px;
