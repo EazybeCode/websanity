@@ -124,5 +124,8 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/(en|br|es|tr)/:path*', '/((?!api|_next|_vercel|integrate-|fb$|.*\\..*).+)'],
+  // `track` is excluded like `api`: /track/* paths are rewritten to API routes
+  // in next.config.ts (the production nginx 502s the /api/* prefix, so
+  // browser-facing endpoints use /track/* instead) and must bypass i18n.
+  matcher: ['/', '/(en|br|es|tr)/:path*', '/((?!api|track|_next|_vercel|integrate-|fb$|.*\\..*).+)'],
 }

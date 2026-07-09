@@ -797,7 +797,7 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
   // View count tracking — initial count from server, increment in background
   const [viewCount, setViewCount] = useState(initialViewCount)
   useEffect(() => {
-    fetch('/api/views', {
+    fetch('/track/views', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ slug, locale, type: 'comparison' }),

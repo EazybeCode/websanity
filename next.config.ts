@@ -66,6 +66,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       { source: '/sitemap-:lang.xml', destination: '/api/sitemap/:lang' },
+      // The production nginx routes the /api/* path prefix to a dead upstream
+      // (502), so browser-facing endpoints go through a non-/api path and get
+      // rewritten to the API route inside Next — same trick as the sitemap.
+      { source: '/track/views', destination: '/api/views' },
     ]
   },
   async redirects() {
