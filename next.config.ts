@@ -8,6 +8,14 @@ const nextConfig: NextConfig = {
   // Strip the `X-Powered-By: Next.js` response header. No SEO impact,
   // just security hygiene — no reason to advertise the framework version.
   poweredByHeader: false,
+  experimental: {
+    // Inline CSS into the HTML instead of <link> stylesheet chunks. The three
+    // render-blocking CSS requests (~53KB) were costing ~1.2s of FCP/LCP on
+    // Lighthouse's throttled mobile profile; inlined styles paint immediately.
+    // Trade-off: larger HTML payloads and no cross-page CSS caching — a good
+    // deal for a marketing site where most sessions are single-page.
+    inlineCss: true,
+  },
   turbopack: {
     // Next requires this to be an absolute path; the relative `.` triggers a
     // boot-time warning even though Next would otherwise resolve it the same way.

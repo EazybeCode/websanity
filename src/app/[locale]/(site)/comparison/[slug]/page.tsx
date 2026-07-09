@@ -15,8 +15,9 @@ import { ComparisonPostClient } from '@/components/pages/ComparisonPostClient'
 import { routing } from '@/i18n/routing'
 import { parseMetadataFromHtml, parseJsonLdSchemas } from '@/lib/parseMetadata'
 
-// ISR: revalidate every 10s to pick up Sanity changes
-export const revalidate = 10
+// 60s ISR window: raises the cache hit rate (TTFB was ~636ms on misses paying
+// full SSR + Sanity fetches); Sanity edits appear within a minute.
+export const revalidate = 60
 // Allow new slugs to render on-demand without rebuild
 export const dynamicParams = true
 

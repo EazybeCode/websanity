@@ -9,8 +9,9 @@ import { BlogPostClient } from '@/components/pages/BlogPostClient'
 import { routing } from '@/i18n/routing'
 import { parseMetadataFromHtml, parseJsonLdSchemas } from '@/lib/parseMetadata'
 
-// ISR: Revalidate pages every 10 seconds to pick up Sanity CMS changes immediately
-export const revalidate = 10
+// 60s ISR window: raises the cache hit rate (TTFB was ~636ms on misses paying
+// full SSR + Sanity fetches); Sanity edits appear within a minute.
+export const revalidate = 60
 
 export async function generateStaticParams() {
   const params: { locale: string; slug: string }[] = []
