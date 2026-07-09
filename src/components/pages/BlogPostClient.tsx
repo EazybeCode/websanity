@@ -999,7 +999,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                       <BookOpen size={24} />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-bold text-white mb-2">{post.tldrHeading || 'TL;DR'}</h4>
+                      <h2 className="font-bold text-white mb-2 text-base">{post.tldrHeading || 'TL;DR'}</h2>
                       <div className="text-[14px] md:text-base text-slate-300 leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_strong]:text-white [&_em]:italic [&_code]:font-mono [&_code]:text-[0.85em] [&_code]:bg-slate-900 [&_code]:text-slate-100 [&_code]:border [&_code]:border-slate-700 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-md">
                         <PortableText
                           value={post.tldr}
@@ -1041,9 +1041,9 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                       <Zap size={24} className="text-brand-cyan hidden md:block" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-white text-sm md:text-base lg:text-lg">
+                      <h2 className="font-bold text-white text-sm md:text-base lg:text-lg">
                         {detailLabels?.summaryTitle || t('blog.detail.summaryTitle')}
-                      </h4>
+                      </h2>
                       <p className="text-xs md:text-sm text-slate-500">
                         {detailLabels?.summarySubtitle || t('blog.detail.summarySubtitle')}
                       </p>
@@ -1353,14 +1353,14 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                       </p>
                       {post.author.slug ? (
                         <a href={`${locale === 'en' ? '' : `/${locale}`}/blog/authors/${post.author.slug}`} className="block">
-                          <h4 className="text-2xl font-bold text-white mb-4 hover:text-brand-cyan transition-colors">
+                          <h3 className="text-2xl font-bold text-white mb-4 hover:text-brand-cyan transition-colors">
                             {post.author.name}
-                          </h4>
+                          </h3>
                         </a>
                       ) : (
-                        <h4 className="text-2xl font-bold text-white mb-4">
+                        <h3 className="text-2xl font-bold text-white mb-4">
                           {post.author.name}
-                        </h4>
+                        </h3>
                       )}
                       {/* Mobile-only share buttons — moved from the top-fold header */}
                       <div className="flex md:hidden items-center gap-1 mb-4 justify-center sm:justify-start">
