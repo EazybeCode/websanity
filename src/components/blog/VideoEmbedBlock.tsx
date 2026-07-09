@@ -88,7 +88,7 @@ export const VideoEmbedBlock: React.FC<{ data: VideoData }> = ({ data }) => {
         )}
       </div>
       {title && (
-        <figcaption className="text-center text-slate-500 text-[12px] mt-4">
+        <figcaption className="text-center text-slate-400 text-[12px] mt-4">
           {title}
         </figcaption>
       )}

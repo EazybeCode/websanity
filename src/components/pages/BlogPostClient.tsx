@@ -367,7 +367,7 @@ const createPortableTextComponents = (
               />
             )}
             {value.caption && (
-              <figcaption className="text-center text-slate-500 text-[12px] mt-4">
+              <figcaption className="text-center text-slate-400 text-[12px] mt-4">
                 {Array.isArray(value.caption) ? (
                   <PortableText value={value.caption} components={imageCaptionComponents} />
                 ) : (
@@ -717,7 +717,7 @@ const RelatedPostCard: React.FC<{
         <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 leading-snug group-hover:text-brand-cyan transition-colors relative z-10 cursor-pointer">
           <span>{title}</span>
         </h3>
-        <div className="flex items-center gap-4 mt-auto pt-4 border-t border-slate-800 font-mono text-[10px] uppercase text-slate-500 font-bold">
+        <div className="flex items-center gap-4 mt-auto pt-4 border-t border-slate-800 font-mono text-[10px] uppercase text-slate-400 font-bold">
           <span className="flex items-center gap-1">
             <Clock size={12} /> {readTime}
           </span>
@@ -815,12 +815,12 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           {/* Breadcrumb Navigation */}
           <nav className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm mb-0">
-            <Link href={locale === 'en' ? '/' : `/${locale}`} className="text-slate-500 hover:text-white transition-colors">
+            <Link href={locale === 'en' ? '/' : `/${locale}`} className="text-slate-400 hover:text-white transition-colors">
               Home
             </Link>
             <ChevronRight size={12} className="text-slate-600 md:hidden" />
             <ChevronRight size={14} className="text-slate-600 hidden md:block" />
-            <Link href={blogPath} className="text-slate-500 hover:text-white transition-colors">
+            <Link href={blogPath} className="text-slate-400 hover:text-white transition-colors">
               Blog
             </Link>
             <ChevronRight size={12} className="text-slate-600 md:hidden" />
@@ -897,7 +897,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                     {post.author?.name || t('blog.detail.authorFallback')}
                   </p>
                 )}
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 md:gap-x-4 text-xs md:text-sm text-slate-500 mt-1">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 md:gap-x-4 text-xs md:text-sm text-slate-400 mt-1">
                   <span className="flex items-center gap-1 whitespace-nowrap">
                     <Calendar size={14} className="shrink-0" />
                     Updated {new Date(post.updatedAt || post.publishedAt).toLocaleDateString('en-US', {

@@ -67,7 +67,7 @@ export const TableBlock: React.FC<{ data: TableData }> = ({ data }) => {
         </table>
       </div>
       {caption && (
-        <figcaption className="text-center text-slate-500 text-sm mt-4 italic">
+        <figcaption className="text-center text-slate-400 text-sm mt-4 italic">
           {caption}
         </figcaption>
       )}

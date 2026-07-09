@@ -98,7 +98,7 @@ export const QuoteBlock: React.FC<{ data: QuoteData }> = ({ data }) => {
               {author}
             </cite>
             {role && (
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-slate-400">
                 {role}
                 {company && `, ${company}`}
               </p>
