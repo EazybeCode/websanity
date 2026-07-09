@@ -307,6 +307,22 @@ const blogPost = {
                 },
               ],
             },
+            {
+              name: 'translationMode',
+              title: 'Caption Translation Mode',
+              type: 'string',
+              description:
+                'Inherit English auto-translates the caption on every sync. ' +
+                'Custom translation keeps this locale\'s hand-authored caption and is never overwritten.',
+              options: {
+                list: [
+                  { title: 'Inherit English (auto-translate)', value: 'inherit' },
+                  { title: 'Custom translation (do not overwrite)', value: 'custom' },
+                ],
+                layout: 'radio',
+              },
+              initialValue: 'inherit',
+            },
             ...imageRatioFields,
           ],
         },

@@ -77,10 +77,15 @@ export async function translatePortableText(blocks, targetLang) {
       }
 
       case 'image': {
-        const [alt, caption] = await Promise.all([
-          translateText(block.alt, targetLang),
-          translateText(block.caption, targetLang),
-        ])
+        // Alt is a plain string. Caption is now Portable Text (array) but may
+        // be a legacy string on older docs — translateAny handles both.
+        // Honor the per-image translation mode: 'custom' means the editor will
+        // localize the caption by hand, so we inherit English verbatim here.
+        const alt = await translateText(block.alt, targetLang)
+        const caption =
+          block.translationMode === 'custom'
+            ? block.caption
+            : await translateAny(block.caption, targetLang)
         out.push({ ...block, alt, caption })
         break
       }
@@ -90,11 +95,14 @@ export async function translatePortableText(blocks, targetLang) {
           (block.images || []).map(async (img) => ({
             ...img,
             alt: await translateText(img.alt, targetLang),
-            caption: await translateText(img.caption, targetLang),
+            caption:
+              img.translationMode === 'custom'
+                ? img.caption
+                : await translateAny(img.caption, targetLang),
           }))
         )
         const title = await translateText(block.title, targetLang)
-        const caption = await translateText(block.caption, targetLang)
+        const caption = await translateAny(block.caption, targetLang)
         out.push({ ...block, images, title, caption })
         break
       }
@@ -277,9 +285,14 @@ async function translateFaqs(faqs, targetLang) {
  */
 export async function translateImage(image, targetLang) {
   if (!image || typeof image !== 'object') return image
+  // Alt is a plain string; caption is Portable Text (array) with a legacy
+  // string fallback. 'custom' translation mode inherits the English caption
+  // verbatim so a hand-authored localized caption is never overwritten.
   const [alt, caption] = await Promise.all([
     translateText(image.alt, targetLang),
-    translateText(image.caption, targetLang),
+    image.translationMode === 'custom'
+      ? image.caption
+      : translateAny(image.caption, targetLang),
   ])
   const next = { ...image }
   if (image.alt !== undefined) next.alt = alt
