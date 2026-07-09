@@ -22,6 +22,7 @@ import {
   Eye,
 } from 'lucide-react'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
+import { sanitySrcSet, sanityIntrinsicSize, SANITY_BODY_SIZES, SANITY_FEATURED_SIZES } from '@/lib/sanity-image'
 import Link from 'next/link'
 import { SectionBadge } from '@/components/ui/SectionBadge'
 import { AccordionBlock } from '@/components/blog/AccordionBlock'
@@ -347,6 +348,8 @@ const createPortableTextComponents = (
                 {/* Mobile */}
                 <img
                   src={value.url}
+                  srcSet={sanitySrcSet(value.url, intrinsicW)}
+                  sizes={SANITY_BODY_SIZES}
                   alt={value.alt || ''}
                   width={intrinsicW}
                   height={intrinsicH}
@@ -357,6 +360,8 @@ const createPortableTextComponents = (
                 {/* Desktop */}
                 <img
                   src={value.url}
+                  srcSet={sanitySrcSet(value.url, intrinsicW)}
+                  sizes={SANITY_BODY_SIZES}
                   alt={value.alt || ''}
                   width={intrinsicW}
                   height={intrinsicH}
@@ -368,6 +373,8 @@ const createPortableTextComponents = (
             ) : (
               <img
                 src={value.url}
+                srcSet={sanitySrcSet(value.url, intrinsicW)}
+                sizes={SANITY_BODY_SIZES}
                 alt={value.alt || ''}
                 width={intrinsicW}
                 height={intrinsicH}
@@ -970,12 +977,14 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
           <div className={`relative rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden ${mobileAspectClass(post.featuredImageMobileRatio, 'aspect-[16/9]')} ${desktopAspectClass(post.featuredImageDesktopRatio, 'md:aspect-[2/1]')}`}>
             <img
               src={post.featuredImage}
+              srcSet={sanitySrcSet(post.featuredImage, sanityIntrinsicSize(post.featuredImage)?.width)}
+              sizes={SANITY_FEATURED_SIZES}
               alt={post.featuredImageAlt || post.title}
               className="w-full h-full object-cover"
               loading="eager"
               fetchPriority="high"
-              width={1200}
-              height={630}
+              width={sanityIntrinsicSize(post.featuredImage)?.width ?? 1200}
+              height={sanityIntrinsicSize(post.featuredImage)?.height ?? 630}
             />
           </div>
           <figcaption className="text-center text-slate-400 text-[10px] md:text-xs mt-3">

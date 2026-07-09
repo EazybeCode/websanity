@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { preload } from 'react-dom'
+import { sanitySrcSet, sanityIntrinsicSize, SANITY_FEATURED_SIZES } from '@/lib/sanity-image'
 import { notFound } from 'next/navigation'
 import { draftMode } from 'next/headers'
 import { setRequestLocale } from 'next-intl/server'
@@ -224,8 +225,15 @@ export default async function BlogPostPage({
 
   // Preload the featured image (the LCP element) so the browser requests it
   // from the head instead of waiting to discover the <img> deep in the body.
+  // imageSrcSet/imageSizes must EXACTLY match the <img> in BlogPostClient so
+  // the preload is reused instead of double-downloading.
   if (post.featuredImage) {
-    preload(post.featuredImage, { as: 'image', fetchPriority: 'high' })
+    preload(post.featuredImage, {
+      as: 'image',
+      fetchPriority: 'high',
+      imageSrcSet: sanitySrcSet(post.featuredImage, sanityIntrinsicSize(post.featuredImage)?.width),
+      imageSizes: SANITY_FEATURED_SIZES,
+    })
   }
 
   // Fetch translations for language switcher
