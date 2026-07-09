@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { preload } from 'react-dom'
 import { notFound } from 'next/navigation'
 import { draftMode } from 'next/headers'
 import { setRequestLocale } from 'next-intl/server'
@@ -219,6 +220,12 @@ export default async function BlogPostPage({
 
   if (!post) {
     notFound()
+  }
+
+  // Preload the featured image (the LCP element) so the browser requests it
+  // from the head instead of waiting to discover the <img> deep in the body.
+  if (post.featuredImage) {
+    preload(post.featuredImage, { as: 'image', fetchPriority: 'high' })
   }
 
   // Fetch translations for language switcher

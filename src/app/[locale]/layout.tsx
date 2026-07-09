@@ -55,6 +55,10 @@ export default async function LocaleLayout({
             LCP for the H1 (which uses Inter). */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Pre-handshake the Sanity image CDN — blog featured images (the LCP
+            element on post pages) load from here, so DNS+TLS setup runs in
+            parallel with HTML parsing instead of delaying the image request. */}
+        <link rel="preconnect" href="https://cdn.sanity.io" />
         {/* RSS feed discovery — feed readers / browsers auto-detect this. */}
         <link
           rel="alternate"
