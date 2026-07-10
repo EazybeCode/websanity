@@ -33,8 +33,24 @@ export function SalesExpertBanner() {
     } catch {
       /* localStorage blocked — still allow the banner */
     }
-    const t = window.setTimeout(() => setOpen(true), SHOW_DELAY_MS)
-    return () => window.clearTimeout(t)
+    // Wait for the FIRST user interaction before arming the show timer.
+    // LCP measurement stops at first input, so a banner gated on interaction
+    // can never register as the page's LCP element — previously the bar
+    // painted late on a bare timer and became LCP (~7.3s render delay).
+    // Real users always scroll / move the mouse, so they still see it.
+    let timer: number | undefined
+    const events: (keyof WindowEventMap)[] = ['pointerdown', 'mousemove', 'wheel', 'scroll', 'keydown', 'touchstart']
+    const removeAll = () =>
+      events.forEach((e) => window.removeEventListener(e, onFirstInteraction))
+    const onFirstInteraction = () => {
+      removeAll()
+      timer = window.setTimeout(() => setOpen(true), SHOW_DELAY_MS)
+    }
+    events.forEach((e) => window.addEventListener(e, onFirstInteraction, { passive: true }))
+    return () => {
+      removeAll()
+      if (timer) window.clearTimeout(timer)
+    }
   }, [])
 
   const dismiss = () => {
