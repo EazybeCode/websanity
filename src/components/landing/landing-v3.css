@@ -4002,6 +4002,17 @@
 .landing .blog-post-page section {
   background: transparent !important;
 }
+/* MacBook-class 1280px viewports (e.g. MacBook Air 1280x800): the max-w-7xl
+   (1280px) content containers exactly fill the screen, so the centering auto
+   margins collapse to zero and the article sits flush against the edges.
+   Give those containers a real side gutter in this narrow band only —
+   smaller and larger viewports keep their existing spacing. */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .landing .blog-post-page .max-w-7xl {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
 .landing .blog-content a:hover,
 .landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]):hover {
   color: #7FD6B0 !important;
