@@ -9,7 +9,7 @@ targetKeyword: "Bitrix24 WhatsApp integration"
 category: "CRM Integrations"
 funnelStage: "BOFU"
 priority: "P0"
-status: "draft (needs fact-check)"
+status: "draft"
 author: "Eazybe Team"
 authoredAt: "2026-07-09"
 publishedAt:
@@ -19,7 +19,7 @@ publishedAt:
 
 Picture a 30-agent real estate team. Buyers WhatsApp one agent about a listing, someone else replies from a second number, and a third agent has the same lead saved under a slightly different name. A week later a manager asks a simple question — "Who owns this lead, and did anyone follow up?" — and nobody can answer. The chats live on personal phones. Half of them never make it into Bitrix24. The other half create duplicate contacts.
 
-That is the exact scenario one Gulf-and-India real estate operator described to us: *"real estate, real estate, real estate… assignment confusion… 30 users, not on personal phones."* They wanted to centralize client communication and sync WhatsApp contacts to Bitrix24 without every rep creating a new duplicate record.
+That is the exact scenario a residential real estate sales lead running a 30-agent team laid out: constant assignment confusion, client conversations trapped on personal phones, and duplicate contacts piling up in the CRM. What they wanted was simple — centralize client communication and sync WhatsApp contacts to Bitrix24 without every rep creating a new duplicate record.
 
 This guide is for that team. We will cover what a proper **Bitrix24 WhatsApp integration** actually does, how to link WhatsApp contacts to Bitrix24 without creating duplicates, what gets logged, how to give managers visibility across 30+ agents, and where a native setup is genuinely enough. Along the way we will show how **Eazybe** — a WhatsApp + CRM sync layer that runs as a Chrome extension over WhatsApp Web — fits real estate teams specifically.
 
@@ -36,7 +36,7 @@ This guide is for that team. We will cover what a proper **Bitrix24 WhatsApp int
 
 Real estate runs on WhatsApp. Buyers send a listing link at 9pm, ask for a floor plan on the weekend, and expect a reply in minutes. But WhatsApp on its own has three structural problems for a team of 30:
 
-- **No shared visibility.** Each agent's chats sit on their own device. A manager cannot see who is handling which buyer, or which enquiries went cold. As one operator put it: *"these are all going in different directions — one is not integrated with the other."*
+- **No shared visibility.** Each agent's chats sit on their own device. A manager cannot see who is handling which buyer, or which enquiries went cold — as one sales lead put it, the conversations all go in different directions, and none of them talk to the CRM.
 - **Lost history when reps leave.** When an agent quits, their client relationships walk out the door on their personal phone.
 - **Assignment chaos.** With multiple agents fielding portal leads, two people end up chatting the same buyer, or a hot lead sits unclaimed for hours.
 
@@ -82,7 +82,7 @@ A precise expectation to set: the sync interval is fixed at 3 minutes and the in
 
 ## Lead Assignment & Team Visibility For 30+ Agents
 
-This is where a WhatsApp-on-Bitrix24 setup earns its keep for a 30-person team. The core pain — *"assignment confusion"* and managers who *"can't see who replied or dropped a lead"* — is exactly what a shared inbox with roles solves.
+This is where a WhatsApp-on-Bitrix24 setup earns its keep for a 30-person team. The core pain — assignment confusion, and managers who can't see who replied or dropped a lead — is exactly what a shared inbox with roles solves.
 
 Eazybe's **Team Inbox** (also called the Revenue Inbox) is a shared workspace where multiple agents view and manage WhatsApp conversations from one dashboard, at workspace.eazybe.com. Two capabilities matter most here:
 
@@ -106,11 +106,11 @@ One honesty note on roles: Eazybe's docs use two role vocabularies across differ
 
 ## Keep Chats On The CRM, Not Personal Phones
 
-The operator's phrase was blunt: chats should be *"on the cloud, not personal phones."* When client conversations live only on agents' devices, the business is one resignation away from losing a relationship.
+The sales lead's ask was blunt: chats belong on the cloud, not on personal phones. When client conversations live only on agents' devices, the business is one resignation away from losing a relationship.
 
 A Bitrix24 WhatsApp integration flips that. Because linked conversations are logged onto the Bitrix24 contact record, the CRM becomes the durable home for client history. Team backups are handled through the Admin's Google Drive and surfaced in the Team Inbox, so a manager can review a departed rep's conversations without chasing a phone.
 
-Worth stating plainly for compliance-minded teams: Eazybe does **not** store your chat data on its own servers. Backups live in Bitrix24 and — for Team Inbox — in the Admin's Google Drive. Eazybe also states full **GDPR compliance** for the Bitrix24 integration and provides a **Data Processing Agreement (DPA)** on request via hey@eazybe.com.
+Worth stating plainly for compliance-minded teams: Eazybe does **not** store your chat data on its own servers. Backups live in Bitrix24 and — for Team Inbox — in the Admin's Google Drive. Eazybe also states **GDPR compliance** for the Bitrix24 integration and provides a **Data Processing Agreement (DPA)** on request via hey@eazybe.com.
 
 ---
 
@@ -134,7 +134,7 @@ Bitrix24 has its own WhatsApp channel options (typically via an Open Channel con
 |---|---|---|---|---|---|---|
 | **Eazybe** | **#1** | Inside **WhatsApp Web** (Chrome extension) with a Bitrix24 Mini-CRM sidebar | **No-API coexistence** on existing number (personal / Business App / API); ~5-min install, no migration | Yes — links by phone, logs 1:1 + group chats to the contact's General section every 3 min | **Flat per-seat** | Real estate teams keeping their number who want chats on Bitrix24 |
 | Bitrix24 native WhatsApp (Open Channel + BSP) | 2 | Inside the Bitrix24 UI | Requires **WhatsApp Business API** via a connected provider + Meta approval | Yes, within Bitrix24's channel model | Meta **per-conversation** fees via the BSP | Teams already fully on WABA and living inside Bitrix24 |
-| TimelinesAI | 3 | Separate shared-inbox app + CRM sync | Connects existing numbers; per-seat, a seat per connected number | Native CRM integrations (incl. Bitrix-style CRMs); depth varies | Per-seat (verify on timelines.ai) | Multi-number teams wanting a sync layer, less embedded UX |
+| TimelinesAI | 3 | Separate shared-inbox app + CRM sync | Connects existing WhatsApp numbers (multiple numbers per workspace) | Native CRM integrations (incl. Bitrix24); depth varies by plan | Per-seat / per user (verify on timelines.ai) | Multi-number teams wanting a sync layer, less embedded UX |
 | WATI / AiSensy / Interakt / DoubleTick (API-BSPs) | 4 | Separate API inbox | **WhatsApp Business API** setup + Meta approval required | Shared inbox + integrations; broadcast-first, shallower CRM sync | Subscription **plus Meta per-conversation** pass-through | Marketing broadcasts at volume, not CRM-first sales |
 
 *Fairness notes: Bitrix24's native WhatsApp is a real, capable channel — the honest contrast is coexistence-on-your-existing-number versus API onboarding, and where the rep works. API-BSPs like WATI, AiSensy, Interakt, and DoubleTick are legitimate official Meta platforms; their per-conversation billing is Meta's model, not a trick, and they do have inboxes and integrations. Verify all vendor prices on their own pricing pages before quoting — they change by region and over time.*
@@ -199,23 +199,7 @@ The Team Inbox provides chat assignment ("Assign to"), an Unreplied filter, and 
 Because linked conversations are logged onto the Bitrix24 contact record (and team backups sit in the Admin's Google Drive, surfaced in the Team Inbox), the relationship history stays with the business rather than walking out on a personal phone.
 
 **7. Is the Bitrix24 WhatsApp integration secure and compliant?**
-Eazybe states full GDPR compliance for the Bitrix24 integration and provides a DPA on request via hey@eazybe.com. Eazybe does not store your chat data on its own servers — backups live in Bitrix24 and, for Team Inbox, in the Admin's Google Drive.
+Eazybe states GDPR compliance for the Bitrix24 integration and provides a DPA on request via hey@eazybe.com. Eazybe does not store your chat data on its own servers — backups live in Bitrix24 and, for Team Inbox, in the Admin's Google Drive.
 
 **8. How long does setup take?**
 About five minutes and no developers: install the extension, connect Bitrix24 via the Marketplace, accept permissions, and start linking contacts. A free trial (4 days, extendable to 8) lets you test it first.
-
----
-
-### Internal Links Used
-- [/blog/whatsapp-coexistence](/blog/whatsapp-coexistence) — no number migration / coexistence
-- [/blog/ai-agents-for-real-estate](/blog/ai-agents-for-real-estate) — real estate vertical
-- [/blog/whatsapp-team-inbox](/blog/whatsapp-team-inbox) — team visibility & assignment
-
-### Target Keyword Placement
-Target keyword: **Bitrix24 WhatsApp integration**
-- Slug: `bitrix24-whatsapp-integration-real-estate`
-- SEO title: "Bitrix24 WhatsApp Integration For Real Estate Teams (2026)"
-- H1: "Bitrix24 WhatsApp Integration For Real Estate Teams (2026)"
-- Meta description: includes exact-match "Bitrix24 WhatsApp integration"
-- H2s using exact match: "Eazybe vs Bitrix24 Native WhatsApp: Comparison" and "FAQs Related To Bitrix24 WhatsApp Integration"; supporting H2s use the core action phrase "Sync WhatsApp Contacts To Bitrix24"
-- FAQ questions repeat exact-match "Bitrix24 WhatsApp integration" in Q4 and Q7
