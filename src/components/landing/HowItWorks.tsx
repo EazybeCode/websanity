@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 
 const CYCLE = 9000
 const STEP_DURATIONS = [0, 3000, 6000]
 
 export function HowItWorks() {
   const t = useTranslations('landingV3.howItWorks')
+  const { openModal } = useTrialModal()
   const wrapRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState<number>(0)
   const [logoActive, setLogoActive] = useState<Set<number>>(new Set())
@@ -138,7 +140,7 @@ export function HowItWorks() {
             </span>
             <span>{t('ctaFootnote')}</span>
           </div>
-          <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="steps-cta-btn">{t('ctaBtn')}</a>
+          <a href="https://eazybe.info/demono" onClick={(e) => { e.preventDefault(); openModal('demo') }} className="steps-cta-btn">{t('ctaBtn')}</a>
         </div>
       </div>
     </section>

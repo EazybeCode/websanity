@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations, useLocale } from 'next-intl'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 
 // Keep the FAQ JSON-LD in English for now: search engines crawl this once per
 // page; translating into 4 locales would require generating per-locale schema
@@ -86,6 +87,7 @@ const FAQ_JSONLD = {
 
 export function ReadMore() {
   const t = useTranslations('landingV3.readMore')
+  const { openModal } = useTrialModal()
   const locale = useLocale()
   const list2 = t.raw('list2') as string[]
   const list4 = t.raw('list4') as string[]
@@ -187,7 +189,7 @@ export function ReadMore() {
         </div>
 
         <div className="readmore-cta-wrap">
-          <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="readmore-cta">
+          <a href="https://eazybe.info/demono" onClick={(e) => { e.preventDefault(); openModal("demo") }} className="readmore-cta">
             {t('ctaText')}
             <span className="readmore-cta-arrow" aria-hidden="true">→</span>
           </a>

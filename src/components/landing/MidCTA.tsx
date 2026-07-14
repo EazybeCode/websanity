@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 
 const LEFT_AVATARS = [
   { src: 'https://randomuser.me/api/portraits/women/68.jpg', top: '8%',  left: '22%', size: 92, online: true,  alt: 'Sales rep using WhatsApp AI agent' },
@@ -18,6 +19,7 @@ const RIGHT_AVATARS = [
 
 export function MidCTA() {
   const t = useTranslations('landingV3.midCta')
+  const { openModal } = useTrialModal()
   return (
     <section className="mid-cta" data-tone="dark">
       <span className="mid-cta-glow" aria-hidden="true" />
@@ -76,7 +78,7 @@ export function MidCTA() {
               {t('primaryCta')}
               <span className="mid-cta-arrow">→</span>
             </a>
-            <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="mid-cta-btn-secondary">
+            <a href="https://eazybe.info/demono" onClick={(e) => { e.preventDefault(); openModal("demo") }} className="mid-cta-btn-secondary">
               {t('secondaryCta')}
             </a>
           </div>

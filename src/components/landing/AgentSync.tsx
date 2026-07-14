@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 import { CHROME_STORE_WEBSITE_URL, withIncomingTrackingParams } from '@/utils/openChromeExtensionStore'
 
 interface Person {
@@ -28,6 +29,7 @@ interface CrmRow extends Person { id: number }
 
 export function AgentSync() {
   const t = useTranslations('landingV3.agentSync')
+  const { openModal } = useTrialModal()
   const features = t.raw('features') as string[]
   const stageRef = useRef<HTMLDivElement>(null)
   const rowsRef = useRef<HTMLDivElement>(null)
@@ -158,7 +160,7 @@ export function AgentSync() {
             </ul>
             <div className="agent-cta-pair" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginTop: 8 }}>
               <a href={CHROME_STORE_WEBSITE_URL} onClick={(e) => { e.currentTarget.href = withIncomingTrackingParams(CHROME_STORE_WEBSITE_URL) }} target="_blank" rel="noopener noreferrer" className="btn btn-outline hide-on-mobile-cta">{t('cta')}</a>
-              <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t('ctaDemo')}</a>
+              <a href="https://eazybe.info/demono" onClick={(e) => { e.preventDefault(); openModal('demo') }} className="btn btn-primary">{t('ctaDemo')}</a>
             </div>
           </div>
           <div className="visual reveal sync-v3">

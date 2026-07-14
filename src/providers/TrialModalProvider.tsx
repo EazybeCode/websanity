@@ -37,10 +37,9 @@ export const TrialModalProvider: React.FC<{ children: ReactNode }> = ({ children
 
   const openModal = (modalMode: ModalMode = 'trial') => {
     ;(window as any).gtag?.('event', modalMode === 'demo' ? `book_demo_click_${locale}` : `install_free_click_${locale}`)
-    if (modalMode === 'demo') {
-      window.open('https://eazybe.info/demono', '_blank')
-      return
-    }
+    // Both modes now render an in-page modal (DemoModal for 'demo',
+    // TrialModal for 'trial') via TrialModalWrapper. The old
+    // `window.open('https://eazybe.info/demono')` shortcut is dropped.
     setMode(modalMode)
     setIsOpen(true)
   }

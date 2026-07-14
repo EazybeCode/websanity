@@ -2250,6 +2250,22 @@
     "thankYouMessage": "Enviaremos um e-mail em breve.",
     "thankYouSubtext": "Verifique sua caixa de entrada."
   },
+  "demoModal": {
+    "heading": "Agende uma <em>demonstração</em>",
+    "subheadline": "Conte-nos quem você é — você escolhe o horário em seguida.",
+    "nameLabel": "Seu Nome",
+    "namePlaceholder": "Alex Chen",
+    "emailLabel": "E-mail Corporativo",
+    "emailPlaceholder": "alex@empresa.com",
+    "phoneLabel": "Número de Telefone",
+    "phonePlaceholder": "555 000 0000",
+    "submitting": "Carregando…",
+    "submitButton": "Continuar para escolher o horário →",
+    "disclaimer": "Chamada de 20 minutos · Sem pressão de vendas",
+    "calendarHeading": "Escolha um <em>horário</em> que funcione",
+    "calendarSubtitle": "Preenchido para <b>{email}</b>",
+    "closeAria": "Fechar"
+  },
   "trialModal": {
     "heading": "Vamos Começar",
     "headingHighlight": "Sua Jornada",

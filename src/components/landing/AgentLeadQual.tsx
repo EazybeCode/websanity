@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 import { CHROME_STORE_WEBSITE_URL, withIncomingTrackingParams } from '@/utils/openChromeExtensionStore'
 
 interface Convo {
@@ -79,6 +80,7 @@ const MAX_VISIBLE = 4
 
 export function AgentLeadQual() {
   const t = useTranslations('landingV3.agentLeadQual')
+  const { openModal } = useTrialModal()
   const features = t.raw('features') as string[]
   const bodyRef = useRef<HTMLDivElement>(null)
   const [convo, setConvo] = useState<Convo>(CONVOS[0])
@@ -172,7 +174,7 @@ export function AgentLeadQual() {
             </ul>
             <div className="agent-cta-pair" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginTop: 8 }}>
               <a href={CHROME_STORE_WEBSITE_URL} onClick={(e) => { e.currentTarget.href = withIncomingTrackingParams(CHROME_STORE_WEBSITE_URL) }} target="_blank" rel="noopener noreferrer" className="btn btn-outline hide-on-mobile-cta">{t('cta')}</a>
-              <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: '#6c5cc1', color: '#ffffff' }}>{t('ctaDemo')}</a>
+              <a href="https://eazybe.info/demono" onClick={(e) => { e.preventDefault(); openModal('demo') }} className="btn btn-primary" style={{ background: '#6c5cc1', color: '#ffffff' }}>{t('ctaDemo')}</a>
             </div>
           </div>
 

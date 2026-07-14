@@ -45,8 +45,10 @@ export function Hero() {
           <div className="hero-cta-pair" style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 28, marginBottom: 40 }}>
             <a
               href="https://eazybe.info/demono"
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={(e) => {
+                e.preventDefault()
+                openModal('demo')
+              }}
               className="btn btn-ghost btn-lg hero-demo-cta"
               style={{
                 background: '#0F1115',

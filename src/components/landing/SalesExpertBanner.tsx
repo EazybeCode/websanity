@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { Calendar, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 
 // Frequency cap: once dismissed, stay hidden for this many days.
 const STORAGE_KEY = 'eazybe:sales-banner'
@@ -12,6 +13,7 @@ const DEMO_URL = 'https://eazybe.info/demono'
 
 export function SalesExpertBanner() {
   const t = useTranslations('salesBanner')
+  const { openModal } = useTrialModal()
   const [open, setOpen] = useState(false)
   const [isDesktop, setIsDesktop] = useState(true)
 
@@ -158,9 +160,11 @@ export function SalesExpertBanner() {
 
         <a
           href={DEMO_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={dismiss}
+          onClick={(e) => {
+            e.preventDefault()
+            openModal('demo')
+            dismiss()
+          }}
           style={{
             display: 'inline-flex',
             alignItems: 'center',

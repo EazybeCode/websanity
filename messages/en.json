@@ -2083,6 +2083,22 @@
     "thankYouMessage": "We'll send you an email shortly.",
     "thankYouSubtext": "Check your inbox for our message."
   },
+  "demoModal": {
+    "heading": "Book a <em>demo</em>",
+    "subheadline": "Tell us who you are — you'll pick a time next.",
+    "nameLabel": "Your Name",
+    "namePlaceholder": "Alex Chen",
+    "emailLabel": "Work Email",
+    "emailPlaceholder": "alex@company.io",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "555 000 0000",
+    "submitting": "Loading…",
+    "submitButton": "Continue to pick a time →",
+    "disclaimer": "20-minute call · No sales pressure",
+    "calendarHeading": "Pick a <em>time</em> that works",
+    "calendarSubtitle": "Prefilled for <b>{email}</b>",
+    "closeAria": "Close"
+  },
   "trialModal": {
     "heading": "Let's Get You",
     "headingHighlight": "Started",

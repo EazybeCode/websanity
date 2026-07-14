@@ -2176,6 +2176,22 @@
     "thankYouMessage": "Size kısa süre içinde bir e-posta göndereceğiz.",
     "thankYouSubtext": "Gelen kutunuzu kontrol edin."
   },
+  "demoModal": {
+    "heading": "Bir <em>demo</em> planla",
+    "subheadline": "Bize kim olduğunuzu anlatın — ardından bir zaman seçeceksiniz.",
+    "nameLabel": "Adınız",
+    "namePlaceholder": "Alex Chen",
+    "emailLabel": "İş E-postası",
+    "emailPlaceholder": "alex@sirket.com",
+    "phoneLabel": "Telefon Numarası",
+    "phonePlaceholder": "555 000 0000",
+    "submitting": "Yükleniyor…",
+    "submitButton": "Zaman seçmeye devam et →",
+    "disclaimer": "20 dakikalık görüşme · Satış baskısı yok",
+    "calendarHeading": "Size uygun bir <em>zaman</em> seçin",
+    "calendarSubtitle": "<b>{email}</b> için önceden dolduruldu",
+    "closeAria": "Kapat"
+  },
   "trialModal": {
     "heading": "Hadi Başlayalım",
     "headingHighlight": "Yolculuğunuza",

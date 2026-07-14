@@ -445,7 +445,11 @@ export function Nav() {
 
       <div className="nav-ctas">
         <LanguageSwitcher />
-        <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">{t('bookDemo')}</a>
+        <a
+          href="https://eazybe.info/demono"
+          onClick={(e) => { e.preventDefault(); openModal('demo') }}
+          className="btn btn-ghost"
+        >{t('bookDemo')}</a>
         <a
           href={CHROME_STORE_WEBSITE_URL}
           onClick={(e) => {
@@ -593,7 +597,11 @@ export function Nav() {
           </div>
 
           <div className="nav-drawer-ctas">
-            <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" onClick={closeMenu}>{t('bookDemo')}</a>
+            <a
+              href="https://eazybe.info/demono"
+              onClick={(e) => { e.preventDefault(); openModal('demo'); closeMenu() }}
+              className="btn btn-ghost"
+            >{t('bookDemo')}</a>
             <a
               href={CHROME_STORE_WEBSITE_URL}
               className="btn btn-primary hide-on-mobile-cta"

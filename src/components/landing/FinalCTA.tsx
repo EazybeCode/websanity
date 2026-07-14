@@ -1,9 +1,11 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 
 export function FinalCTA() {
   const t = useTranslations('landingV3.finalCta')
+  const { openModal } = useTrialModal()
   return (
     <section className="final-cta" data-tone="dark">
       <div className="container">
@@ -20,7 +22,7 @@ export function FinalCTA() {
           >
             {t('talkToAgent')}
           </a>
-          <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-lg">{t('bookDemo')}</a>
+          <a href="https://eazybe.info/demono" onClick={(e) => { e.preventDefault(); openModal('demo') }} className="btn btn-outline btn-lg">{t('bookDemo')}</a>
         </div>
 
         <div className="final-cta-trust">
