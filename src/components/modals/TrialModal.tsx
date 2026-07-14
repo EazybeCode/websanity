@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { X, Send, Loader2, CheckCircle2, Zap, Target, Bot, Star } from 'lucide-react'
+import { X, Send, Loader2, CheckCircle2 } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import { CRMType, TrialFormData } from '@/types'
 import { type ModalMode } from '@/providers/TrialModalProvider'
@@ -232,176 +232,359 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
 
   const showCalendly = isSuccess && mode === 'demo'
 
+  // Landing tokens inlined as hex so this modal renders correctly even on
+  // pages that don't load landing-v3.css (pricing, etc.).
+  const C = {
+    paper: '#FBFCFE',
+    bg2: '#ECEFF7',
+    ink: '#0F1115',
+    ink2: '#2A2E38',
+    ink3: '#5A6070',
+    ink4: '#8A90A0',
+    line: '#E4E8F1',
+    line2: '#D4D9E5',
+    accentInk: '#5B4BAE',       // iris
+    accentMint: '#7FD6B0',
+    err: '#C26A5A',
+    ok: '#5B8F6F',
+  }
+  const serif = "'Instrument Serif', Georgia, serif"
+  const sans = "'Geist', 'Inter', system-ui, sans-serif"
+
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-lg transition-all duration-500 overflow-y-auto"
       onClick={handleBackdropClick}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 50,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: 16,
+        background: 'rgba(15,17,21,0.55)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        overflowY: 'auto',
+        fontFamily: sans,
+      }}
     >
-      <div className={`relative w-full ${showCalendly ? 'max-w-4xl' : 'max-w-2xl'} bg-brand-surface border border-brand-border rounded-xl shadow-[0_0_80px_-20px_rgba(37,99,235,0.3)] overflow-hidden flex flex-col lg:flex-row ${showCalendly ? 'min-h-[750px]' : 'min-h-[380px]'} transition-all duration-300`}>
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          maxWidth: showCalendly ? 720 : 480,
+          background: C.paper,
+          border: `1px solid ${C.line}`,
+          borderRadius: 24,
+          boxShadow: '0 24px 60px -20px rgba(15,17,21,0.32), 0 4px 12px -6px rgba(15,17,21,0.08)',
+          padding: showCalendly ? '32px 28px 24px' : '40px 36px 32px',
+          transition: 'max-width .28s ease',
+        }}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          style={{
+            position: 'absolute', top: 14, right: 14,
+            width: 32, height: 32, borderRadius: 999,
+            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+            color: C.ink3, background: 'transparent',
+            border: `1px solid ${C.line}`,
+            cursor: 'pointer', transition: 'background .15s, color .15s, border-color .15s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = C.bg2
+            e.currentTarget.style.color = C.ink
+            e.currentTarget.style.borderColor = C.line2
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'transparent'
+            e.currentTarget.style.color = C.ink3
+            e.currentTarget.style.borderColor = C.line
+          }}
+        >
+          <X size={16} />
+        </button>
 
-        {!showCalendly && (
-          <div className="lg:w-[45%] relative bg-brand-black p-6 lg:p-8 flex flex-col justify-between overflow-hidden border-r border-slate-800/50">
-            <div className="absolute inset-0 opacity-[0.05] pointer-events-none"></div>
-            <div className="relative z-10 pt-2">
-              <h2 className="text-2xl lg:text-3xl font-sans font-extrabold text-white leading-[1.2] mb-6 tracking-tighter">
-                {t('trialModal.heading')}<br />
-                <span className="text-brand-blue">{t('trialModal.headingHighlight')}</span>
+        {!isSuccess ? (
+          <>
+            <header style={{ marginBottom: 24, paddingRight: 40 }}>
+              <h2 style={{
+                fontFamily: serif, fontWeight: 400,
+                fontSize: 30, lineHeight: 1.12, letterSpacing: '-0.015em',
+                color: C.ink, margin: 0,
+              }}>
+                {t('trialModal.heading')}{' '}
+                <em style={{ fontStyle: 'italic', color: C.accentInk }}>
+                  {t('trialModal.headingHighlight')}
+                </em>
               </h2>
-              <div className="space-y-3">
-                {[
-                  { icon: <Zap size={12} />, title: t('trialModal.feature1'), color: "text-brand-blue" },
-                  { icon: <Target size={12} />, title: t('trialModal.feature2'), color: "text-brand-cyan" },
-                  { icon: <Bot size={12} />, title: t('trialModal.feature3'), color: "text-brand-orange" },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2">
-                    <div className={`w-6 h-6 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center ${item.color}`}>
-                      {item.icon}
-                    </div>
-                    <h4 className="text-white font-bold text-[11px] tracking-tight">{item.title}</h4>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative z-10 mt-8 pt-6 border-t border-slate-800/40">
-              <div className="p-3 bg-slate-900/60 border border-slate-800/50 rounded-xl backdrop-blur-md">
-                <div className="flex gap-0.5 text-brand-orange mb-2">
-                  {[1,2,3,4,5].map(i => <Star key={i} size={8} fill="currentColor" />)}
-                </div>
-                <p className="text-slate-100 italic text-[10px] leading-snug mb-2">
-                  &ldquo;{t('trialModal.testimonialQuote')}&rdquo;
-                </p>
-                <div className="flex items-center gap-2">
-                  <img src="https://i.pravatar.cc/100?u=cx" className="w-6 h-6 rounded-full border border-slate-700" alt="User"  loading="lazy"/>
-                  <div>
-                    <h5 className="text-white font-bold text-[9px]">{t('trialModal.testimonialName')}</h5>
-                    <p className="text-slate-500 font-mono text-[10px] uppercase tracking-widest">{t('trialModal.testimonialRole')}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="absolute bottom-[-10%] right-[-10%] w-full h-[30%] bg-brand-blue/10 blur-[100px] rounded-full"></div>
-          </div>
-        )}
+              <p style={{
+                marginTop: 10, marginBottom: 0,
+                fontSize: 15, lineHeight: 1.5, color: C.ink3,
+              }}>
+                {t('trialModal.subheadline') || 'See how many leads you’re losing on WhatsApp — in 60 seconds, free.'}
+              </p>
+            </header>
 
-        <div className={`${showCalendly ? 'w-full' : 'lg:w-[55%]'} p-6 lg:p-8 relative flex flex-col justify-center`}>
-          <button onClick={onClose} className="absolute top-4 right-4 p-1 text-slate-500 hover:text-white transition-all hover:rotate-90 duration-300 z-10">
-            <X size={18} />
-          </button>
-
-          {!isSuccess ? (
-            <div className="max-w-sm mx-auto w-full">
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <div className="space-y-2.5">
-                  <div className="space-y-1 group">
-                    <label className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-slate-100 group-focus-within:text-brand-blue transition-colors">
-                      {t('trialModal.workEmailLabel')}
-                    </label>
-                    <input
-                      required
-                      type="email"
-                      placeholder={t('trialModal.workEmailPlaceholder')}
-                      value={formData.workEmail}
-                      onChange={(e) => handleEmailChange(e.target.value)}
-                      className={`w-full bg-brand-black/40 border ${emailError ? 'border-red-500' : 'border-slate-800'} rounded-lg px-3 py-2 text-white placeholder:text-slate-700 focus:outline-none focus:border-brand-blue transition-all font-sans text-xs`}
-                    />
-                    {emailError && <p className="text-red-400 text-[9px] mt-1">{emailError}</p>}
-                  </div>
-
-                  <div className="space-y-1 group">
-                    <label className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-slate-100 group-focus-within:text-brand-blue transition-colors">
-                      {t('trialModal.phoneLabel')}
-                    </label>
-                    <div className="flex gap-1.5">
-                      <div className="relative flex-[0.35]">
-                        <select
-                          value={selectedCountry}
-                          onChange={(e) => setSelectedCountry(e.target.value)}
-                          className="w-full bg-brand-black/40 border border-slate-800 rounded-lg px-2 py-2 text-white focus:outline-none focus:border-brand-blue transition-all font-sans appearance-none cursor-pointer text-[10px]"
-                        >
-                          {COUNTRY_CODES.map((c) => (
-                            <option key={`${c.code}-${c.label}`} value={c.code} className="bg-brand-surface">
-                              {c.icon} {c.code}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <input
-                        required
-                        type="tel"
-                        placeholder={t('trialModal.phonePlaceholder')}
-                        value={phoneValue}
-                        onChange={(e) => setPhoneValue(e.target.value)}
-                        className="flex-[0.65] bg-brand-black/40 border border-slate-800 rounded-lg px-3 py-2 text-white placeholder:text-slate-700 focus:outline-none focus:border-brand-blue transition-all font-sans text-xs"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-1 group">
-                    <label className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-slate-100 group-focus-within:text-brand-blue transition-colors">
-                      {t('trialModal.crmLabel')}
-                    </label>
-                    <div className="relative">
-                      <select
-                        value={formData.crmProvider}
-                        onChange={(e) => setFormData({ ...formData, crmProvider: e.target.value as CRMType })}
-                        className="w-full bg-brand-black/40 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand-blue transition-all font-sans appearance-none cursor-pointer text-xs"
-                      >
-                        <option value="" disabled className="bg-brand-surface">{t('trialModal.crmPlaceholder')}</option>
-                        {Object.values(CRMType).map((crm) => (
-                          <option key={crm} value={crm} className="bg-brand-surface">{crm}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-brand-blue text-white font-bold shadow-glow-blue hover:bg-blue-600 disabled:opacity-50 rounded-lg px-4 py-2.5 text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98] group"
-                  >
-                    {isSubmitting ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
-                    {isSubmitting ? t('trialModal.submitting') : mode === 'demo' ? t('trialModal.bookDemoButton') : t('trialModal.submitButton')}
-                  </button>
-                  <p className="mt-2 text-[10px] text-center text-slate-600 font-mono uppercase tracking-widest">
-                    {t('trialModal.disclaimer')}
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {/* Email */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <label style={{
+                  fontSize: 12, fontWeight: 600, letterSpacing: '0.02em',
+                  color: C.ink2, textTransform: 'none',
+                }}>
+                  {t('trialModal.workEmailLabel')}
+                </label>
+                <input
+                  required
+                  type="email"
+                  placeholder={t('trialModal.workEmailPlaceholder')}
+                  value={formData.workEmail}
+                  onChange={(e) => handleEmailChange(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '12px 14px',
+                    fontSize: 14,
+                    fontFamily: sans,
+                    color: C.ink,
+                    background: '#fff',
+                    border: `1px solid ${emailError ? C.err : C.line2}`,
+                    borderRadius: 12,
+                    outline: 'none',
+                    transition: 'border-color .15s, box-shadow .15s',
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = emailError ? C.err : C.accentInk
+                    e.currentTarget.style.boxShadow = emailError
+                      ? '0 0 0 3px rgba(194,106,90,0.14)'
+                      : '0 0 0 3px rgba(91,75,174,0.14)'
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = emailError ? C.err : C.line2
+                    e.currentTarget.style.boxShadow = 'none'
+                  }}
+                />
+                {emailError && (
+                  <p style={{ fontSize: 12, color: C.err, marginTop: 2, marginBottom: 0 }}>
+                    {emailError}
                   </p>
+                )}
+              </div>
+
+              {/* Phone */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <label style={{
+                  fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2,
+                }}>
+                  {t('trialModal.phoneLabel')}
+                </label>
+                <div style={{
+                  display: 'flex', alignItems: 'stretch',
+                  background: '#fff',
+                  border: `1px solid ${C.line2}`,
+                  borderRadius: 12,
+                  overflow: 'hidden',
+                  transition: 'border-color .15s, box-shadow .15s',
+                }}>
+                  <select
+                    value={selectedCountry}
+                    onChange={(e) => setSelectedCountry(e.target.value)}
+                    style={{
+                      minWidth: 96,
+                      padding: '12px 10px',
+                      fontSize: 13,
+                      fontFamily: sans,
+                      color: C.ink2,
+                      background: 'transparent',
+                      border: 'none',
+                      borderRight: `1px solid ${C.line}`,
+                      outline: 'none',
+                      appearance: 'none',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {COUNTRY_CODES.map((c) => (
+                      <option key={`${c.code}-${c.label}`} value={c.code}>
+                        {c.icon} {c.code}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    required
+                    type="tel"
+                    placeholder={t('trialModal.phonePlaceholder')}
+                    value={phoneValue}
+                    onChange={(e) => setPhoneValue(e.target.value)}
+                    style={{
+                      flex: 1,
+                      padding: '12px 14px',
+                      fontSize: 14,
+                      fontFamily: sans,
+                      color: C.ink,
+                      background: 'transparent',
+                      border: 'none',
+                      outline: 'none',
+                    }}
+                  />
                 </div>
-              </form>
+              </div>
+
+              {/* CRM */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <label style={{
+                  fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2,
+                }}>
+                  {t('trialModal.crmLabel')}
+                </label>
+                <select
+                  value={formData.crmProvider}
+                  onChange={(e) => setFormData({ ...formData, crmProvider: e.target.value as CRMType })}
+                  style={{
+                    width: '100%',
+                    padding: '12px 14px',
+                    fontSize: 14,
+                    fontFamily: sans,
+                    color: formData.crmProvider ? C.ink : C.ink4,
+                    background: '#fff',
+                    border: `1px solid ${C.line2}`,
+                    borderRadius: 12,
+                    outline: 'none',
+                    appearance: 'none',
+                    cursor: 'pointer',
+                    backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235A6070' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 14px center',
+                    paddingRight: 36,
+                  }}
+                >
+                  <option value="" disabled>{t('trialModal.crmPlaceholder')}</option>
+                  {Object.values(CRMType).map((crm) => (
+                    <option key={crm} value={crm}>{crm}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                style={{
+                  width: '100%',
+                  marginTop: 6,
+                  padding: '14px 22px',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  fontFamily: sans,
+                  letterSpacing: '-0.005em',
+                  color: '#fff',
+                  background: C.ink,
+                  border: `1px solid ${C.ink}`,
+                  borderRadius: 999,
+                  cursor: isSubmitting ? 'wait' : 'pointer',
+                  opacity: isSubmitting ? 0.65 : 1,
+                  display: 'inline-flex',
+                  alignItems: 'center', justifyContent: 'center',
+                  gap: 8,
+                  boxShadow: '0 8px 22px -10px rgba(15,17,21,0.45)',
+                  transition: 'transform .12s ease, box-shadow .2s ease, background .15s ease',
+                }}
+                onMouseEnter={(e) => {
+                  if (isSubmitting) return
+                  e.currentTarget.style.background = C.ink2
+                  e.currentTarget.style.transform = 'translateY(-1px)'
+                  e.currentTarget.style.boxShadow = '0 12px 26px -12px rgba(15,17,21,0.55)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = C.ink
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = '0 8px 22px -10px rgba(15,17,21,0.45)'
+                }}
+              >
+                {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={15} />}
+                {isSubmitting
+                  ? t('trialModal.submitting')
+                  : mode === 'demo'
+                    ? t('trialModal.bookDemoButton')
+                    : t('trialModal.submitButton')}
+              </button>
+
+              <p style={{
+                marginTop: 4, marginBottom: 0,
+                fontSize: 12, color: C.ink4, textAlign: 'center',
+              }}>
+                {t('trialModal.disclaimer')}
+              </p>
+            </form>
+          </>
+        ) : mode === 'trial' ? (
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center',
+            textAlign: 'center', padding: '32px 8px 24px', gap: 20,
+          }}>
+            <div style={{
+              width: 72, height: 72, borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              background: `color-mix(in oklab, ${C.accentMint} 22%, transparent)`,
+              border: `2px solid color-mix(in oklab, ${C.accentMint} 55%, transparent)`,
+              color: C.ok,
+            }}>
+              <CheckCircle2 size={36} />
             </div>
-          ) : mode === 'trial' ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center space-y-8">
-              <div className="relative w-24 h-24 bg-brand-green/10 border-2 border-brand-green/30 rounded-full flex items-center justify-center text-brand-green">
-                <CheckCircle2 size={48} />
+            <div>
+              <h3 style={{
+                fontFamily: serif, fontWeight: 400,
+                fontSize: 26, lineHeight: 1.15, letterSpacing: '-0.01em',
+                color: C.ink, margin: '0 0 6px',
+              }}>
+                {t('trialModal.successTitle')}
+              </h3>
+              <p style={{ fontSize: 14, color: C.ink3, margin: 0 }}>
+                {t('trialModal.successMessage')}{' '}
+                <span style={{ color: C.accentInk, fontWeight: 600 }}>{formData.workEmail}</span>.
+              </p>
+            </div>
+            <div style={{
+              fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.14em',
+              color: C.ink4, fontFamily: sans,
+            }}>
+              {t('trialModal.redirecting')}
+            </div>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
+              <div style={{
+                width: 40, height: 40, borderRadius: '50%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: `color-mix(in oklab, ${C.accentMint} 22%, transparent)`,
+                border: `2px solid color-mix(in oklab, ${C.accentMint} 55%, transparent)`,
+                color: C.ok,
+              }}>
+                <CheckCircle2 size={20} />
               </div>
               <div>
-                <h3 className="text-3xl font-sans font-extrabold text-white tracking-tight mb-2">{t('trialModal.successTitle')}</h3>
-                <p className="text-slate-400 text-sm">{t('trialModal.successMessage')} <span className="text-brand-cyan">{formData.workEmail}</span>.</p>
-              </div>
-              <div className="font-mono text-[9px] text-slate-700 uppercase tracking-widest animate-pulse">
-                {t('trialModal.redirecting')}
+                <h3 style={{
+                  fontFamily: serif, fontWeight: 400, fontSize: 20, lineHeight: 1.15,
+                  letterSpacing: '-0.01em', color: C.ink, margin: 0,
+                }}>
+                  {t('trialModal.successTitle')}
+                </h3>
+                <p style={{ fontSize: 13, color: C.ink3, margin: 0 }}>Pick a time that works</p>
               </div>
             </div>
-          ) : (
-            <div className="flex flex-col items-center w-full">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-brand-green/10 border-2 border-brand-green/30 rounded-full flex items-center justify-center text-brand-green">
-                  <CheckCircle2 size={20} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-sans font-extrabold text-white tracking-tight">{t('trialModal.successTitle')}</h3>
-                  <p className="text-slate-400 text-xs">Book a demo call with our team</p>
-                </div>
-              </div>
-              <div
-                className="calendly-inline-widget w-full rounded-lg overflow-hidden"
-                data-url="https://calendly.com/d/cw67-pt3-y2m"
-                style={{ minWidth: '320px', height: '650px' }}
-              />
-            </div>
-          )}
-        </div>
+            <div
+              className="calendly-inline-widget"
+              data-url="https://calendly.com/d/cw67-pt3-y2m"
+              style={{
+                minWidth: 320,
+                height: 650,
+                width: '100%',
+                borderRadius: 14,
+                overflow: 'hidden',
+                border: `1px solid ${C.line}`,
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   )

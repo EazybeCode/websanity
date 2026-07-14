@@ -21,6 +21,8 @@ import { RevealOnScroll } from './RevealOnScroll'
 import { SalesExpertBanner } from './SalesExpertBanner'
 import { SuppressExtensionHydrationWarning } from './SuppressExtensionHydrationWarning'
 import { LeadSidebar } from '../lead/LeadSidebar'
+import { LeadMobileButton } from '../lead/LeadMobileButton'
+import { TrialModalWrapper } from '../modals/TrialModalWrapper'
 
 export function LandingPage() {
   return (
@@ -50,6 +52,8 @@ export function LandingPage() {
       <SalesExpertBanner />
       <SuppressExtensionHydrationWarning />
       <LeadSidebar />
+      <LeadMobileButton />
+      <TrialModalWrapper />
     </div>
   )
 }

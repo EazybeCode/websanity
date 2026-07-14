@@ -2,10 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
-import {
-  CHROME_STORE_WEBSITE_URL,
-  openChromeExtensionStorePopup,
-} from '@/utils/openChromeExtensionStore'
+import { CHROME_STORE_WEBSITE_URL } from '@/utils/openChromeExtensionStore'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 
 // Prefix internal href paths with the active locale (e.g. "/hubspot-..." → "/br/hubspot-...").
 // External URLs, hash links, and the root "/#" stay untouched.
@@ -215,6 +213,7 @@ const RESOURCES = [
 
 export function Nav() {
   const t = useTranslations('landingV3.nav')
+  const { openModal } = useTrialModal()
   const locale = useLocale()
   const lh = (href: string) => withLocale(href, locale)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -451,7 +450,7 @@ export function Nav() {
           href={CHROME_STORE_WEBSITE_URL}
           onClick={(e) => {
             e.preventDefault()
-            openChromeExtensionStorePopup(CHROME_STORE_WEBSITE_URL)
+            openModal('trial')
           }}
           className="btn btn-primary hide-on-mobile-cta"
         >
@@ -600,7 +599,7 @@ export function Nav() {
               className="btn btn-primary hide-on-mobile-cta"
               onClick={(e) => {
                 e.preventDefault()
-                openChromeExtensionStorePopup(CHROME_STORE_WEBSITE_URL)
+                openModal('trial')
                 closeMenu()
               }}
             >

@@ -1,13 +1,12 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import {
-  CHROME_STORE_WEBSITE_URL,
-  openChromeExtensionStorePopup,
-} from '@/utils/openChromeExtensionStore'
+import { CHROME_STORE_WEBSITE_URL } from '@/utils/openChromeExtensionStore'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 
 export function Hero() {
   const t = useTranslations('landingV3.hero')
+  const { openModal } = useTrialModal()
 
   return (
     <>
@@ -65,7 +64,7 @@ export function Hero() {
               href={CHROME_STORE_WEBSITE_URL}
               onClick={(e) => {
                 e.preventDefault()
-                openChromeExtensionStorePopup(CHROME_STORE_WEBSITE_URL)
+                openModal('trial')
               }}
               className="btn btn-primary btn-lg hide-on-mobile-cta"
               style={{
