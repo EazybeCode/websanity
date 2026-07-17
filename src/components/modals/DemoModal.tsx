@@ -1,16 +1,16 @@
 'use client'
 
 /**
- * DemoModal — collects Name, Work Email, Phone then opens an embedded
+ * DemoModal — collects Work Email and Phone then opens an embedded
  * Calendly widget PRE-FILLED with those values so the user only has to
  * pick a time.
  *
  * Kept intentionally separate from TrialModal (which routes to the
  * Chrome Web Store post-submit and has a CRM-picker in its form). This
  * one is single-purpose: "book a demo → land on Calendly with a
- * pre-filled name/email so the calendar view is one click away."
+ * pre-filled email so the calendar view is one click away."
  *
- * Calendly prefill: passes { name, email, customAnswers: { a1: phone } }
+ * Calendly prefill: passes { email, customAnswers: { a1: phone } }
  * to Calendly.initInlineWidget. `a1` maps to the first custom question
  * on the Calendly event type — make sure the first custom question in
  * the Calendly dashboard is "Phone number" (or hide/remove any other
@@ -88,7 +88,6 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const tTrial = useTranslations('trialModal')
   const locale = useLocale()
 
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [selectedCountry, setSelectedCountry] = useState('+1')
   const [phone, setPhone] = useState('')
@@ -148,7 +147,6 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
     const finalPhone = `${selectedCountry}${phone.replace(/\s+/g, '')}`
     const url = new URL(CALENDLY_URL)
     // Native prefill fields
-    if (name.trim()) url.searchParams.set('name', name.trim())
     if (email.trim()) url.searchParams.set('email', email.trim())
     // Custom-question prefill (a1 = 1st custom question = Whatsapp Number)
     if (finalPhone) url.searchParams.set('a1', finalPhone)
@@ -178,7 +176,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
       script.addEventListener('load', init, { once: true })
       document.body.appendChild(script)
     }
-  }, [isOpen, step, name, email, phone, selectedCountry])
+  }, [isOpen, step, email, phone, selectedCountry])
 
   if (!isOpen) return null
 
@@ -208,11 +206,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
     try {
       const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1]
-      const [firstname, ...rest] = name.trim().split(/\s+/)
-      const lastname = rest.join(' ')
       const fields: { name: string; value: string }[] = [
-        { name: 'firstname', value: firstname || name.trim() },
-        { name: 'lastname', value: lastname },
         { name: 'email', value: email },
         { name: 'phone', value: finalPhone },
         { name: 'crm_used', value: 'Other' },
@@ -336,41 +330,6 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
             </header>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {/* Name */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <label style={{
-                  fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2,
-                }}>{t('nameLabel')}</label>
-                <input
-                  required
-                  type="text"
-                  autoComplete="name"
-                  placeholder={t('namePlaceholder')}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 14px',
-                    fontSize: 14,
-                    fontFamily: sans,
-                    color: C.ink,
-                    background: '#fff',
-                    border: `1px solid ${C.line2}`,
-                    borderRadius: 12,
-                    outline: 'none',
-                    transition: 'border-color .15s, box-shadow .15s',
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = C.accentInk
-                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(91,75,174,0.14)'
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = C.line2
-                    e.currentTarget.style.boxShadow = 'none'
-                  }}
-                />
-              </div>
-
               {/* Work Email */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                 <label style={{
