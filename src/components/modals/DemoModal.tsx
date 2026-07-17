@@ -1,16 +1,16 @@
 'use client'
 
 /**
- * DemoModal — collects Work Email and Phone then opens an embedded
+ * DemoModal — collects Name, Work Email, Phone then opens an embedded
  * Calendly widget PRE-FILLED with those values so the user only has to
  * pick a time.
  *
  * Kept intentionally separate from TrialModal (which routes to the
  * Chrome Web Store post-submit and has a CRM-picker in its form). This
  * one is single-purpose: "book a demo → land on Calendly with a
- * pre-filled email so the calendar view is one click away."
+ * pre-filled name/email so the calendar view is one click away."
  *
- * Calendly prefill: passes { email, customAnswers: { a1: phone } }
+ * Calendly prefill: passes { name, email, customAnswers: { a1: phone } }
  * to Calendly.initInlineWidget. `a1` maps to the first custom question
  * on the Calendly event type — make sure the first custom question in
  * the Calendly dashboard is "Phone number" (or hide/remove any other
@@ -95,8 +95,23 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const [emailError, setEmailError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [step, setStep] = useState<'form' | 'calendar'>('form')
+  const [isCalendlyReady, setIsCalendlyReady] = useState(false)
 
   const calendlyContainerRef = useRef<HTMLDivElement>(null)
+
+  // Derive a friendly name from the email prefix (everything before @).
+  // "john.doe@acme.com" -> "John Doe" for Calendly + HubSpot prefill.
+  const derivedName = (() => {
+    const prefix = email.split('@')[0] || ''
+    return prefix
+      .replace(/[._-]+/g, ' ')
+      .replace(/\d+/g, '')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join(' ')
+  })()
 
   // Country detection — same lightweight approach as TrialModal
   useEffect(() => {
@@ -129,6 +144,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
       setStep('form')
       setIsSubmitting(false)
       setEmailError('')
+      setIsCalendlyReady(false)
     }
   }, [isOpen])
 
@@ -147,10 +163,22 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
     const finalPhone = `${selectedCountry}${phone.replace(/\s+/g, '')}`
     const url = new URL(CALENDLY_URL)
     // Native prefill fields
+    if (derivedName) url.searchParams.set('name', derivedName)
     if (email.trim()) url.searchParams.set('email', email.trim())
     // Custom-question prefill (a1 = 1st custom question = Whatsapp Number)
     if (finalPhone) url.searchParams.set('a1', finalPhone)
     const urlWithPrefill = url.toString()
+
+    // Hide the loading spinner as soon as Calendly emits its first
+    // postMessage event — that fires after the widget's own iframe has
+    // painted the calendar, so the transition feels seamless.
+    const onCalendlyMessage = (e: MessageEvent) => {
+      const data = e.data
+      if (data && typeof data === 'object' && typeof data.event === 'string' && data.event.startsWith('calendly.')) {
+        setIsCalendlyReady(true)
+      }
+    }
+    window.addEventListener('message', onCalendlyMessage)
 
     const init = () => {
       const Calendly = (window as any).Calendly
@@ -176,7 +204,17 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
       script.addEventListener('load', init, { once: true })
       document.body.appendChild(script)
     }
-  }, [isOpen, step, email, phone, selectedCountry])
+
+    // Safety net — if Calendly's postMessage never lands (blocked, third
+    // party cookies off, etc.) hide the spinner after 5s so users aren't
+    // stuck staring at it.
+    const fallback = window.setTimeout(() => setIsCalendlyReady(true), 5000)
+
+    return () => {
+      window.removeEventListener('message', onCalendlyMessage)
+      window.clearTimeout(fallback)
+    }
+  }, [isOpen, step, derivedName, email, phone, selectedCountry])
 
   if (!isOpen) return null
 
@@ -206,7 +244,11 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
     try {
       const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1]
+      const [firstname, ...rest] = derivedName.split(/\s+/)
+      const lastname = rest.join(' ')
       const fields: { name: string; value: string }[] = [
+        { name: 'firstname', value: firstname || derivedName || email.split('@')[0] },
+        { name: 'lastname', value: lastname },
         { name: 'email', value: email },
         { name: 'phone', value: finalPhone },
         { name: 'crm_used', value: 'Other' },
@@ -496,17 +538,117 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                 })}
               </p>
             </header>
-            <div
-              ref={calendlyContainerRef}
-              style={{
-                width: '100%',
-                minWidth: 320,
-                height: 640,
-                borderRadius: 14,
-                overflow: 'hidden',
-                border: `1px solid ${C.line}`,
-              }}
-            />
+            <div style={{ position: 'relative', width: '100%' }}>
+              <div
+                ref={calendlyContainerRef}
+                style={{
+                  width: '100%',
+                  minWidth: 320,
+                  height: 640,
+                  borderRadius: 14,
+                  overflow: 'hidden',
+                  border: `1px solid ${C.line}`,
+                  opacity: isCalendlyReady ? 1 : 0,
+                  transition: 'opacity .35s ease',
+                }}
+              />
+              {!isCalendlyReady && (
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute', inset: 0,
+                    borderRadius: 14,
+                    border: `1px solid ${C.line}`,
+                    background: '#fff',
+                    overflow: 'hidden',
+                    pointerEvents: 'none',
+                    display: 'grid',
+                    gridTemplateColumns: 'minmax(220px, 32%) 1fr',
+                  }}
+                >
+                  {/* Left column — event details */}
+                  <div style={{
+                    padding: '28px 24px',
+                    borderRight: `1px solid ${C.line}`,
+                    background: C.paper,
+                    display: 'flex', flexDirection: 'column', gap: 14,
+                  }}>
+                    <div className="dm-skel" style={{ width: 90, height: 12, borderRadius: 6 }} />
+                    <div className="dm-skel" style={{ width: '80%', height: 22, borderRadius: 8 }} />
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 6 }}>
+                      <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                        <div className="dm-skel" style={{ width: 14, height: 14, borderRadius: 4 }} />
+                        <div className="dm-skel" style={{ flex: 1, height: 10, borderRadius: 5 }} />
+                      </div>
+                      <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                        <div className="dm-skel" style={{ width: 14, height: 14, borderRadius: 4 }} />
+                        <div className="dm-skel" style={{ flex: 1, height: 10, borderRadius: 5 }} />
+                      </div>
+                      <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                        <div className="dm-skel" style={{ width: 14, height: 14, borderRadius: 4 }} />
+                        <div className="dm-skel" style={{ width: '65%', height: 10, borderRadius: 5 }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right column — month grid */}
+                  <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: 18 }}>
+                    {/* Month header */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <div className="dm-skel" style={{ width: 130, height: 16, borderRadius: 6 }} />
+                      <div style={{ display: 'flex', gap: 8 }}>
+                        <div className="dm-skel" style={{ width: 28, height: 28, borderRadius: '50%' }} />
+                        <div className="dm-skel" style={{ width: 28, height: 28, borderRadius: '50%' }} />
+                      </div>
+                    </div>
+                    {/* Weekday row */}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8 }}>
+                      {Array.from({ length: 7 }).map((_, i) => (
+                        <div key={`w-${i}`} style={{ display: 'flex', justifyContent: 'center' }}>
+                          <div className="dm-skel" style={{ width: 18, height: 10, borderRadius: 4 }} />
+                        </div>
+                      ))}
+                    </div>
+                    {/* Day grid — 5 rows */}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8 }}>
+                      {Array.from({ length: 35 }).map((_, i) => (
+                        <div
+                          key={`d-${i}`}
+                          style={{
+                            aspectRatio: '1 / 1',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          }}
+                        >
+                          <div
+                            className="dm-skel"
+                            style={{
+                              width: '78%', height: '78%', borderRadius: '50%',
+                              animationDelay: `${(i % 7) * 60}ms`,
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    {/* Timezone footer */}
+                    <div style={{ marginTop: 'auto', display: 'flex', gap: 10, alignItems: 'center' }}>
+                      <div className="dm-skel" style={{ width: 12, height: 12, borderRadius: '50%' }} />
+                      <div className="dm-skel" style={{ width: 160, height: 10, borderRadius: 5 }} />
+                    </div>
+                  </div>
+                </div>
+              )}
+              <style>{`
+                .dm-skel {
+                  background: linear-gradient(90deg, ${C.bg2} 0%, ${C.line} 40%, ${C.bg2} 80%);
+                  background-size: 200% 100%;
+                  animation: dmShimmer 1.4s ease-in-out infinite;
+                }
+                @keyframes dmShimmer {
+                  0%   { background-position: 200% 0; }
+                  100% { background-position: -200% 0; }
+                }
+              `}</style>
+            </div>
           </>
         )}
       </div>
