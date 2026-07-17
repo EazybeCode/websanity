@@ -37,9 +37,12 @@ export const TrialModalProvider: React.FC<{ children: ReactNode }> = ({ children
 
   const openModal = (modalMode: ModalMode = 'trial') => {
     ;(window as any).gtag?.('event', modalMode === 'demo' ? `book_demo_click_${locale}` : `install_free_click_${locale}`)
-    // Both modes now render an in-page modal (DemoModal for 'demo',
-    // TrialModal for 'trial') via TrialModalWrapper. The old
-    // `window.open('https://eazybe.info/demono')` shortcut is dropped.
+    // Rebrandly click beacon — silent GET to the short link so its counter
+    // increments per Book a Demo click. The destination is never followed
+    // by the user; the Image request errors out silently once fetched.
+    if (modalMode === 'demo' && typeof window !== 'undefined') {
+      try { new Image().src = 'https://eazybe.info/b8y' } catch { /* ignore */ }
+    }
     setMode(modalMode)
     setIsOpen(true)
   }
