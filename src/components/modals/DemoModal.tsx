@@ -148,6 +148,47 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
     }
   }, [isOpen])
 
+  // Warm Calendly the moment the modal opens (not after form submit).
+  // - preconnect hints so DNS + TLS to calendly.com are done during
+  //   form-fill time (saves ~150-400ms on the eventual iframe request)
+  // - eagerly load widget.js so when the user hits Continue the script
+  //   is already parsed and initInlineWidget can fire instantly
+  useEffect(() => {
+    if (!isOpen) return
+    if (typeof document === 'undefined') return
+
+    const hints: HTMLLinkElement[] = []
+    const addHint = (rel: string, href: string, crossOrigin?: string) => {
+      if (document.querySelector(`link[rel="${rel}"][href="${href}"]`)) return
+      const link = document.createElement('link')
+      link.rel = rel
+      link.href = href
+      if (crossOrigin) link.crossOrigin = crossOrigin
+      document.head.appendChild(link)
+      hints.push(link)
+    }
+    addHint('preconnect', 'https://calendly.com', 'anonymous')
+    addHint('preconnect', 'https://assets.calendly.com', 'anonymous')
+    addHint('dns-prefetch', 'https://calendly.com')
+    addHint('dns-prefetch', 'https://assets.calendly.com')
+
+    // Kick off widget.js download in parallel with form fill
+    if (!(window as any).Calendly && !document.querySelector<HTMLScriptElement>(
+      'script[src="https://assets.calendly.com/assets/external/widget.js"]',
+    )) {
+      const script = document.createElement('script')
+      script.src = 'https://assets.calendly.com/assets/external/widget.js'
+      script.async = true
+      document.body.appendChild(script)
+    }
+
+    return () => {
+      // Leave the script; it caches for the tab lifetime. Only strip the
+      // preconnect hints — the browser has already used them by now.
+      hints.forEach((l) => l.parentNode?.removeChild(l))
+    }
+  }, [isOpen])
+
   // When we hit the calendar step, load Calendly's script (once) then
   // init the inline widget. Prefill is passed via URL query params —
   // more reliable than the JS `prefill` option when the base URL already
@@ -167,6 +208,10 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
     if (email.trim()) url.searchParams.set('email', email.trim())
     // Custom-question prefill (a1 = 1st custom question = Whatsapp Number)
     if (finalPhone) url.searchParams.set('a1', finalPhone)
+    // Match Calendly's own inline-widget contract so postMessage events
+    // fire back to us (used to hide the skeleton loader).
+    url.searchParams.set('embed_domain', window.location.hostname)
+    url.searchParams.set('embed_type', 'Inline')
     const urlWithPrefill = url.toString()
 
     // Hide the loading spinner as soon as Calendly emits its first
@@ -180,34 +225,30 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
     }
     window.addEventListener('message', onCalendlyMessage)
 
-    const init = () => {
-      const Calendly = (window as any).Calendly
-      if (!Calendly) return
-      container.innerHTML = ''
-      Calendly.initInlineWidget({
-        url: urlWithPrefill,
-        parentElement: container,
-      })
-    }
+    // Mount the iframe directly instead of going through Calendly's
+    // widget.js -> initInlineWidget() wrapper. That wrapper ultimately
+    // just injects <iframe src=...> into the container, so skipping it
+    // avoids one script parse + init round trip and lets the iframe
+    // start fetching the calendar HTML the instant the user submits.
+    container.innerHTML = ''
+    const iframe = document.createElement('iframe')
+    iframe.src = urlWithPrefill
+    iframe.title = 'Select a time — Calendly'
+    iframe.setAttribute('frameborder', '0')
+    // Native browser hints so the iframe is treated as high-priority
+    // and doesn't wait behind lazier resources on the page.
+    iframe.loading = 'eager'
+    iframe.setAttribute('fetchpriority', 'high')
+    iframe.style.width = '100%'
+    iframe.style.height = '100%'
+    iframe.style.border = '0'
+    // Belt-and-braces: hide the skeleton when the iframe itself paints,
+    // in case Calendly's own postMessage is delayed / blocked.
+    iframe.addEventListener('load', () => setIsCalendlyReady(true), { once: true })
+    container.appendChild(iframe)
 
-    const existing = document.querySelector<HTMLScriptElement>(
-      'script[src="https://assets.calendly.com/assets/external/widget.js"]',
-    )
-    if ((window as any).Calendly) {
-      init()
-    } else if (existing) {
-      existing.addEventListener('load', init, { once: true })
-    } else {
-      const script = document.createElement('script')
-      script.src = 'https://assets.calendly.com/assets/external/widget.js'
-      script.async = true
-      script.addEventListener('load', init, { once: true })
-      document.body.appendChild(script)
-    }
-
-    // Safety net — if Calendly's postMessage never lands (blocked, third
-    // party cookies off, etc.) hide the spinner after 5s so users aren't
-    // stuck staring at it.
+    // Safety net — if the iframe load event and postMessage both never
+    // land, hide the skeleton after 5s so users aren't stuck.
     const fallback = window.setTimeout(() => setIsCalendlyReady(true), 5000)
 
     return () => {
