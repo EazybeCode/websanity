@@ -182,10 +182,30 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
       document.body.appendChild(script)
     }
 
+    // Warm the actual calendar page in a hidden off-screen iframe while
+    // the user fills the form. Calendly's inline booking page ships
+    // hundreds of KB of JS/CSS/fonts + hits internal APIs on first paint —
+    // by the time the user submits, all of that is already fully cached
+    // and executed, so the visible iframe (with prefill query params)
+    // renders almost instantly.
+    let warmIframe: HTMLIFrameElement | null = null
+    const preWarmUrl = new URL(CALENDLY_URL)
+    preWarmUrl.searchParams.set('embed_domain', window.location.hostname)
+    preWarmUrl.searchParams.set('embed_type', 'Inline')
+    warmIframe = document.createElement('iframe')
+    warmIframe.src = preWarmUrl.toString()
+    warmIframe.setAttribute('aria-hidden', 'true')
+    warmIframe.setAttribute('tabindex', '-1')
+    warmIframe.setAttribute('title', 'Calendly preload')
+    warmIframe.style.cssText =
+      'position:fixed;left:-9999px;top:-9999px;width:1000px;height:800px;border:0;visibility:hidden;pointer-events:none;'
+    document.body.appendChild(warmIframe)
+
     return () => {
       // Leave the script; it caches for the tab lifetime. Only strip the
-      // preconnect hints — the browser has already used them by now.
+      // preconnect hints and the hidden pre-warm iframe.
       hints.forEach((l) => l.parentNode?.removeChild(l))
+      if (warmIframe) warmIframe.parentNode?.removeChild(warmIframe)
     }
   }, [isOpen])
 
@@ -283,6 +303,11 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
     const finalPhone = `${selectedCountry}${phone.replace(/\s+/g, '')}`
 
+    // Fire HubSpot in the background — don't block the calendar transition
+    // on it. HubSpot's Forms API typically adds 300-800ms; there's no
+    // reason the visitor should wait for that before seeing the calendar.
+    // We already validate the email client-side, so a failed POST is rare
+    // and the lead will still be recovered by the Calendly submission.
     try {
       const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1]
       const [firstname, ...rest] = derivedName.split(/\s+/)
@@ -309,26 +334,24 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
         },
       }
 
-      const response = await fetch(
+      // Fire and forget — logs errors but doesn't block.
+      fetch(
         `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_DEMO_FORM_GUID}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
+          keepalive: true,
         },
-      )
-
-      if (!response.ok) throw new Error('Form submission failed')
+      ).catch((err) => console.error('Demo HubSpot submit failed:', err))
 
       ;(window as any).gtag?.('event', `book_demo_submit_${locale}`)
-
-      setIsSubmitting(false)
-      setStep('calendar')
     } catch (error) {
       console.error('Demo form submission error:', error)
-      setIsSubmitting(false)
-      alert('There was an error submitting the form. Please try again.')
     }
+
+    setIsSubmitting(false)
+    setStep('calendar')
   }
 
   const handleBackdropClick = (e: React.MouseEvent) => {
