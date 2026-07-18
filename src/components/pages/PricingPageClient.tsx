@@ -102,6 +102,8 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Everything in Starter', included: true },
       { text: 'Salesforce integration', included: true, highlight: true },
       { text: 'Webhook integrations', included: true, highlight: true },
+      { text: 'Cloud connection', included: true, highlight: true },
+      { text: 'WhatsApp API', included: true, highlight: true },
       { text: 'Custom objects in mini CRM view', included: true },
       { text: 'CRM property-to-WhatsApp labeling', included: true },
       { text: 'AI unreplied chats agent', included: true, highlight: true },
@@ -119,6 +121,8 @@ const defaultPricingPlans: PricingPlan[] = [
     features: [
       { text: 'Everything in Scaler', included: true },
       { text: 'Build up to 3 AI agents', included: true },
+      { text: 'AI properties', included: true, highlight: true },
+      { text: 'AI labels', included: true, highlight: true },
       { text: 'Lead qualifying agent', included: true, highlight: true },
       { text: 'Sales agent', included: true, highlight: true },
       { text: 'Customer success agent', included: true, highlight: true },
@@ -157,11 +161,15 @@ const defaultComparisonFeatures: ComparisonFeatureRow[] = [
   { feature: 'Google Sheets', starter: true, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
   { feature: 'Salesforce', starter: false, scaler: true, basicAi: false, proAi: true, category: 'CRM Integrations' },
   { feature: 'Webhook integrations', starter: false, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
+  { feature: 'Cloud connection', starter: false, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
+  { feature: 'WhatsApp API', starter: false, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
   { feature: 'Dedicated APIs', starter: false, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
   { feature: 'Send messages from CRM', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
   { feature: 'CRM property-to-WhatsApp labeling', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
   { feature: 'Custom objects in mini CRM view', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
   { feature: 'AI unreplied chats agent', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
+  { feature: 'AI properties', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
+  { feature: 'AI labels', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
   { feature: 'Lead qualifying agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
   { feature: 'Sales agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
   { feature: 'Customer success agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
@@ -889,19 +897,32 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     return { ...plan, description: localDesc, cta: { ...plan.cta, label: localCta } }
   })
 
-  const basePricingPlans: PricingPlan[] = pricingData?.plans?.map((plan) => ({
-    name: plan.name,
-    planKey: iconToPlanKey(plan.icon),
-    description: plan.description,
-    monthlyPrice: plan.monthlyPrice,
-    annualPrice: plan.annualPrice,
-    currency: plan.currency,
-    icon: plan.icon as PricingPlan['icon'],
-    popular: plan.isPopular,
-    enterprise: plan.isEnterprise,
-    features: plan.features.map((f) => ({ text: f.text, included: f.included, highlight: f.highlight })),
-    cta: plan.cta,
-  })) || localizedDefaultPlans
+  const basePricingPlans: PricingPlan[] = pricingData?.plans?.map((plan) => {
+    const planKey = iconToPlanKey(plan.icon)
+    const sanityFeatures = plan.features.map((f) => ({ text: f.text, included: f.included, highlight: f.highlight }))
+    // Merge in any code-side features Sanity doesn't have yet (matched by
+    // text, case-insensitive), preserving Sanity's ordering for anything
+    // it already knows about. Lets us ship new features without a Sanity
+    // content update per environment.
+    const codeDefaults = localizedDefaultPlans.find((p) => p.planKey === planKey)?.features || []
+    const sanityTexts = new Set(sanityFeatures.map((f) => f.text.trim().toLowerCase()))
+    const missingFromSanity = codeDefaults.filter(
+      (f) => !sanityTexts.has(f.text.trim().toLowerCase())
+    )
+    return {
+      name: plan.name,
+      planKey,
+      description: plan.description,
+      monthlyPrice: plan.monthlyPrice,
+      annualPrice: plan.annualPrice,
+      currency: plan.currency,
+      icon: plan.icon as PricingPlan['icon'],
+      popular: plan.isPopular,
+      enterprise: plan.isEnterprise,
+      features: [...sanityFeatures, ...missingFromSanity],
+      cta: plan.cta,
+    }
+  }) || localizedDefaultPlans
 
   // AI plans always come from localizedDefaultPlans (Sanity doesn't manage
   // the Basic AI / Pro AI rows yet). Filter from the locale-aware list so
