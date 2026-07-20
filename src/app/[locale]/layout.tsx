@@ -64,6 +64,10 @@ export default async function LocaleLayout({
             element on post pages) load from here, so DNS+TLS setup runs in
             parallel with HTML parsing instead of delaying the image request. */}
         <link rel="preconnect" href="https://cdn.sanity.io" />
+        {/* The nav logo is above the fold on every page (and on pages whose
+            hero reveals late it is the measured LCP element) — preload it at
+            high priority so it paints with the first frame. 3.2KB PNG. */}
+        <link rel="preload" as="image" href="/logo-small.png" fetchPriority="high" />
         {/* RSS feed discovery — feed readers / browsers auto-detect this. */}
         <link
           rel="alternate"

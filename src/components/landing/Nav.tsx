@@ -280,6 +280,7 @@ export function Nav() {
           alt="Eazybe Logo"
           width={137}
           height={32}
+          fetchPriority="high"
           style={{ height: 32, width: 'auto', objectFit: 'contain' }}
         />
       </a>
