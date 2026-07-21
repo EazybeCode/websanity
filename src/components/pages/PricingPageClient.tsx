@@ -116,13 +116,12 @@ const defaultPricingPlans: PricingPlan[] = [
   {
     name: 'Basic AI', planKey: 'basic-ai',
     description: 'Get started with AI agents on top of your full Scaler stack.',
-    monthlyPrice: 0, annualPrice: 0, currency: 'USD', icon: 'sparkles',
-    priceNote: '1 seat included',
+    monthlyPrice: 99, annualPrice: 99, currency: '$', icon: 'sparkles',
     features: [
       { text: 'Everything in Scaler', included: true },
       { text: 'Build up to 3 AI agents', included: true },
-      { text: 'AI properties', included: true, highlight: true },
-      { text: 'AI labels', included: true, highlight: true },
+      { text: 'Intelligence-Led CRM Properties', included: true, highlight: true },
+      { text: 'AI-driven Chat Organization', included: true, highlight: true },
       { text: 'Lead qualifying agent', included: true, highlight: true },
       { text: 'Sales agent', included: true, highlight: true },
       { text: 'Customer success agent', included: true, highlight: true },
@@ -135,8 +134,7 @@ const defaultPricingPlans: PricingPlan[] = [
   {
     name: 'Pro AI', planKey: 'pro-ai',
     description: 'Advanced agents, voice, ads automation and 100+ integrations.',
-    monthlyPrice: 0, annualPrice: 0, currency: 'USD', icon: 'growth', popular: true,
-    priceNote: '1 seat included',
+    monthlyPrice: 199, annualPrice: 199, currency: '$', icon: 'growth', popular: true,
     features: [
       { text: 'Everything in Basic AI', included: true },
       { text: 'Click-to-WhatsApp Ads agent', included: true, highlight: true },
@@ -168,8 +166,8 @@ const defaultComparisonFeatures: ComparisonFeatureRow[] = [
   { feature: 'CRM property-to-WhatsApp labeling', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
   { feature: 'Custom objects in mini CRM view', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
   { feature: 'AI unreplied chats agent', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
-  { feature: 'AI properties', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
-  { feature: 'AI labels', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
+  { feature: 'Intelligence-Led CRM Properties', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
+  { feature: 'AI-driven Chat Organization', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
   { feature: 'Lead qualifying agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
   { feature: 'Sales agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
   { feature: 'Customer success agent', starter: false, scaler: false, basicAi: true, proAi: true, category: 'AI Agents' },
@@ -552,10 +550,9 @@ function PricingCard({
   const isPopular = plan.planKey === 'basic-ai'
   const isEnterprise = plan.enterprise
   const showPrice = !isEnterprise && price > 0
-  // AI plans (Basic AI / Pro AI) are a flat monthly platform price, not per-seat.
+  // AI plans (Basic AI / Pro AI) are now per-seat pricing, same unit as Starter/Scaler.
   const isAiPlan = plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
-  // AI plans: flat platform price ("/month"). Starter/Scaler: per-seat monthly.
-  const priceUnit = isAiPlan ? '/month' : '/seat/month'
+  const priceUnit = '/seat/month'
   // Wallet credit: $45 (45% of Basic AI $99) and $90 (45% of Pro AI $199).
   const formatFeatureText = (text: string) => {
     // Localize wallet-credit amounts for any non-USD currency (INR, BRL, …) by
@@ -1068,15 +1065,12 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
           <div className="card-grid pricing-plan-grid">
             {pricingPlans.map((plan, idx) => {
               const dp = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
-              // AI plans (Basic AI / Pro AI) charge per extra seat at the Scaler
-              // per-seat rate — for both monthly and yearly billing.
+              // AI plans are per-seat priced themselves — no "extra seat"
+              // addon note. Starter/Scaler still show the addon note from
+              // the billing-API's addon_price.
               const isAiPlan = plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
-              const scalerPlan = pricingPlans.find((p) => p.planKey === 'scaler')
-              const scalerDp = scalerPlan
-                ? getDynamicPrice('scaler', scalerPlan.monthlyPrice, scalerPlan.annualPrice)
-                : null
-              const monthlyAddon = isAiPlan && scalerDp ? scalerDp.monthlyPrice : dp.monthlyAddonPrice
-              const annualAddon = isAiPlan && scalerDp ? scalerDp.annualPrice : dp.annualAddonPrice
+              const monthlyAddon = isAiPlan ? null : dp.monthlyAddonPrice
+              const annualAddon = isAiPlan ? null : dp.annualAddonPrice
               return (
                 <PricingCard
                   key={plan.name}
