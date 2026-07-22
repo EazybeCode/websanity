@@ -9,6 +9,7 @@ import callout from './callout.js'
 import codeBlock from './codeBlock.js'
 import imageGallery from './imageGallery.js'
 import videoEmbed from './videoEmbed.js'
+import socialEmbed from './socialEmbed.js'
 import buttonCTA from './buttonCTA.js'
 import quote from './quote.js'
 import fileDownload from './fileDownload.js'
@@ -27,6 +28,7 @@ export default [
   codeBlock,
   imageGallery,
   videoEmbed,
+  socialEmbed,
   buttonCTA,
   quote,
   fileDownload,

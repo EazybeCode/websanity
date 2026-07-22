@@ -33,6 +33,7 @@ import { AuthorBio } from '@/components/blog/AuthorBio'
 import { QuoteBlock } from '@/components/blog/QuoteBlock'
 import { TableBlock } from '@/components/blog/TableBlock'
 import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
+import { SocialEmbedBlock } from '@/components/blog/SocialEmbedBlock'
 import { BlogTranslationsProvider, type BlogTranslation } from '@/contexts/BlogTranslationsContext'
 
 // ─── External link helpers (mark inline citations like the G2/Gartner pattern) ──
@@ -543,6 +544,10 @@ const createPortableTextComponents = (
       videoEmbed: ({ value }: any) => {
         if (!value) return null
         return <VideoEmbedBlock data={value} />
+      },
+      socialEmbed: ({ value }: any) => {
+        if (!value) return null
+        return <SocialEmbedBlock data={value} />
       },
     },
   }
