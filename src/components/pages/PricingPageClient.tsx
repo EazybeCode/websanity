@@ -119,15 +119,13 @@ const defaultPricingPlans: PricingPlan[] = [
     monthlyPrice: 99, annualPrice: 99, currency: '$', icon: 'sparkles',
     features: [
       { text: 'Everything in Scaler', included: true },
-      { text: 'Build up to 3 AI agents', included: true },
+      { text: 'AI agents', included: true, highlight: true },
       { text: 'Intelligence-Led CRM Properties', included: true, highlight: true },
       { text: 'AI-driven Chat Organization', included: true, highlight: true },
-      { text: 'Lead qualifying agent', included: true, highlight: true },
-      { text: 'Sales agent', included: true, highlight: true },
-      { text: 'Customer success agent', included: true, highlight: true },
-      { text: 'AI Agents builder', included: true },
       { text: 'BrainBe knowledge base included', included: true },
-      { text: '$45 monthly credits (rollover)', included: true },
+      { text: 'Includes $45 monthly credits (rollover)', included: true },
+      { text: 'Voice AI calling', included: false },
+      { text: '100+ integrations (Email, Teams, Slack...)', included: false },
     ],
     cta: { label: 'Talk to our AI Agent', url: '/contact?plan=basic-ai' },
   },
@@ -141,7 +139,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Voice AI calling', included: true, highlight: true },
       { text: "BrainBe — your company's brain", included: true },
       { text: '100+ integrations (Email, Teams, Slack...)', included: true },
-      { text: '$90 monthly credits (rollover)', included: true },
+      { text: 'Includes $90 monthly credits (rollover)', included: true },
     ],
     cta: { label: 'Talk to our AI Agent', url: '/contact?plan=pro-ai' },
   },
@@ -559,8 +557,8 @@ function PricingCard({
     // multiplying the USD credit by the locale's factor (handled in convertUsdAmount).
     const isLocalCurrency = isCurrencyCode && currency !== 'USD'
     if (!isLocalCurrency) return text
-    if (text === '$45 monthly credits (rollover)') return `${currency} ${convertUsdAmount(45)} monthly credits (rollover)`
-    if (text === '$90 monthly credits (rollover)') return `${currency} ${convertUsdAmount(90)} monthly credits (rollover)`
+    if (text === 'Includes $45 monthly credits (rollover)') return `Includes ${currency} ${convertUsdAmount(45)} monthly credits (rollover)`
+    if (text === 'Includes $90 monthly credits (rollover)') return `Includes ${currency} ${convertUsdAmount(90)} monthly credits (rollover)`
     return text
   }
 
@@ -708,6 +706,229 @@ function PricingCard({
           </li>
         ))}
       </ul>
+    </div>
+  )
+}
+
+// ─── Pricing calculator (Basic AI base + optional add-on tier) ─────────────
+
+interface CalcPlan {
+  planKey: string
+  name: string
+  perSeat: number
+}
+
+function PricingCalculator({
+  basicAi,
+  addonPlans,
+  currencyLabel,
+  priceSymbol,
+  isAnnual,
+}: {
+  basicAi: CalcPlan
+  addonPlans: CalcPlan[]
+  currencyLabel: string
+  priceSymbol: string
+  isAnnual: boolean
+}) {
+  const [baseSeats, setBaseSeats] = useState(1)
+  const [addonPlan, setAddonPlan] = useState<string>('none')
+  const [addonSeats, setAddonSeats] = useState(0)
+
+  const clampSeats = (n: number) => Math.max(0, Math.min(99, n))
+
+  const activeAddon = addonPlan === 'none' ? null : addonPlans.find((p) => p.planKey === addonPlan) ?? null
+
+  const baseSubtotal = basicAi.perSeat * baseSeats
+  const addonSubtotal = (activeAddon?.perSeat ?? 0) * addonSeats
+  const total = baseSubtotal + addonSubtotal
+  const totalSeats = baseSeats + (activeAddon ? addonSeats : 0)
+
+  const priceUnit = isAnnual ? '/mo billed annually' : '/month'
+  const formatMoney = (n: number) =>
+    `${currencyLabel ? `${currencyLabel} ` : ''}${priceSymbol}${n.toLocaleString('en-US')}`
+
+  const Stepper = ({
+    value,
+    onChange,
+    disabled,
+    label,
+  }: {
+    value: number
+    onChange: (n: number) => void
+    disabled?: boolean
+    label: string
+  }) => (
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <button
+        type="button"
+        onClick={() => onChange(clampSeats(value - 1))}
+        disabled={disabled || value === 0}
+        aria-label={`Remove one ${label} seat`}
+        style={{
+          width: 28,
+          height: 28,
+          borderRadius: '50%',
+          border: '1px solid var(--line-2)',
+          background: '#fff',
+          color: disabled || value === 0 ? 'var(--ink-4)' : 'var(--ink)',
+          cursor: disabled || value === 0 ? 'not-allowed' : 'pointer',
+          fontSize: 15,
+          lineHeight: 1,
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        −
+      </button>
+      <input
+        type="number"
+        min={0}
+        max={99}
+        value={value}
+        disabled={disabled}
+        onChange={(e) => onChange(clampSeats(parseInt(e.target.value || '0', 10)))}
+        aria-label={`${label} seats`}
+        style={{
+          width: 40,
+          height: 28,
+          textAlign: 'center',
+          fontSize: 13,
+          fontWeight: 600,
+          color: disabled ? 'var(--ink-4)' : 'var(--ink)',
+          border: '1px solid var(--line-2)',
+          borderRadius: 8,
+          background: '#fff',
+          outline: 'none',
+          MozAppearance: 'textfield',
+        }}
+      />
+      <button
+        type="button"
+        onClick={() => onChange(clampSeats(value + 1))}
+        disabled={disabled}
+        aria-label={`Add one ${label} seat`}
+        style={{
+          width: 28,
+          height: 28,
+          borderRadius: '50%',
+          border: '1px solid var(--line-2)',
+          background: '#fff',
+          color: disabled ? 'var(--ink-4)' : 'var(--ink)',
+          cursor: disabled ? 'not-allowed' : 'pointer',
+          fontSize: 15,
+          lineHeight: 1,
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        +
+      </button>
+    </div>
+  )
+
+  const chipBase = (selected: boolean) => ({
+    padding: '7px 12px',
+    borderRadius: 100,
+    border: selected ? '1px solid var(--accent-ink)' : '1px solid var(--line-2)',
+    background: selected
+      ? 'color-mix(in oklab, var(--accent-ink) 10%, var(--paper))'
+      : '#fff',
+    color: selected ? 'var(--accent-ink)' : 'var(--ink-2)',
+    fontSize: 12.5,
+    fontWeight: 600,
+    cursor: 'pointer',
+    lineHeight: 1.1,
+  })
+
+  return (
+    <div
+      className="reveal"
+      style={{
+        padding: '14px 20px',
+        borderRadius: 16,
+        border: '1px solid var(--line)',
+        background: 'linear-gradient(180deg, color-mix(in oklab, var(--accent-a) 6%, var(--paper)), var(--paper))',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 22,
+        flexWrap: 'wrap',
+        rowGap: 12,
+      }}
+    >
+      {/* Heading */}
+      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
+        <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--ink-3)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+          Calculate your price
+        </span>
+        <span style={{ fontSize: 12, color: 'var(--ink-4)', marginTop: 2 }}>
+          For your whole team
+        </span>
+      </div>
+
+      {/* Basic AI seats (base) */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>Basic AI seats</span>
+        <Stepper value={baseSeats} onChange={setBaseSeats} label="Basic AI" />
+      </div>
+
+      {/* Divider */}
+      <div style={{ width: 1, height: 24, background: 'var(--line)', flexShrink: 0 }} />
+
+      {/* Add-on tier chips + stepper */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 13, color: 'var(--ink-3)' }}>
+          Extra seats for teammates without AI:
+        </span>
+        {addonPlans.map((p) => {
+          const selected = addonPlan === p.planKey
+          return (
+            <button
+              key={p.planKey}
+              type="button"
+              onClick={() => setAddonPlan(p.planKey)}
+              style={chipBase(selected)}
+            >
+              {p.name}
+            </button>
+          )
+        })}
+        <button
+          type="button"
+          onClick={() => setAddonPlan('none')}
+          style={chipBase(addonPlan === 'none')}
+        >
+          None
+        </button>
+        {addonPlan !== 'none' && (
+          <Stepper value={addonSeats} onChange={setAddonSeats} label="add-on" />
+        )}
+      </div>
+
+      {/* Total, pinned right */}
+      <div
+        style={{
+          marginLeft: 'auto',
+          padding: '8px 14px',
+          borderRadius: 100,
+          background: 'var(--ink)',
+          color: '#fff',
+          display: 'inline-flex',
+          alignItems: 'baseline',
+          gap: 6,
+          fontFamily: 'inherit',
+        }}
+      >
+        <span style={{ fontSize: 11, fontWeight: 600, opacity: 0.65, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+          {totalSeats} {totalSeats === 1 ? 'seat' : 'seats'} ·
+        </span>
+        <span style={{ fontSize: 17, fontWeight: 700, letterSpacing: '-0.01em' }}>
+          {formatMoney(total)}
+        </span>
+        <span style={{ fontSize: 11, opacity: 0.65 }}>{priceUnit}</span>
+      </div>
     </div>
   )
 }
@@ -1062,6 +1283,44 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       {/* Plans */}
       <section className="section" style={{ paddingTop: 30 }} id="pricing-plans">
         <div className="container">
+          {(() => {
+            const basicAiPlan = pricingPlans.find((p) => p.planKey === 'basic-ai')
+            if (!basicAiPlan) return null
+            const basicAiDp = getDynamicPrice(basicAiPlan.planKey, basicAiPlan.monthlyPrice, basicAiPlan.annualPrice)
+            const basicAi: CalcPlan = {
+              planKey: basicAiPlan.planKey,
+              name: basicAiPlan.name,
+              perSeat: isAnnual ? basicAiDp.annualPrice : basicAiDp.monthlyPrice,
+            }
+            const addonPlans = ['starter', 'scaler']
+              .map((key): CalcPlan | null => {
+                const plan = pricingPlans.find((p) => p.planKey === key)
+                if (!plan) return null
+                const dp = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
+                return {
+                  planKey: plan.planKey,
+                  name: plan.name,
+                  perSeat: isAnnual ? dp.annualPrice : dp.monthlyPrice,
+                }
+              })
+              .filter((p): p is CalcPlan => p !== null)
+
+            const isCurrencyCode = /^[A-Z]{3}$/.test(basicAiDp.currency)
+            const currencyLabel = isCurrencyCode ? basicAiDp.currency : ''
+            const priceSymbol = isCurrencyCode ? (basicAiDp.currency === 'USD' ? '$' : '') : basicAiDp.currency
+
+            return (
+              <div style={{ marginBottom: 36 }}>
+                <PricingCalculator
+                  isAnnual={isAnnual}
+                  basicAi={basicAi}
+                  addonPlans={addonPlans}
+                  currencyLabel={currencyLabel}
+                  priceSymbol={priceSymbol}
+                />
+              </div>
+            )
+          })()}
           <div className="card-grid pricing-plan-grid">
             {pricingPlans.map((plan, idx) => {
               const dp = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
