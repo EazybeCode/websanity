@@ -719,27 +719,39 @@ interface CalcPlan {
 }
 
 function PricingCalculator({
-  basicAi,
-  addonPlans,
+  plans,
   currencyLabel,
   priceSymbol,
   isAnnual,
 }: {
-  basicAi: CalcPlan
-  addonPlans: CalcPlan[]
+  plans: CalcPlan[]
   currencyLabel: string
   priceSymbol: string
   isAnnual: boolean
 }) {
+  const defaultBase = plans.find((p) => p.planKey === 'basic-ai')?.planKey ?? plans[0]?.planKey ?? ''
+  const [basePlanKey, setBasePlanKey] = useState(defaultBase)
   const [baseSeats, setBaseSeats] = useState(1)
   const [addonPlan, setAddonPlan] = useState<string>('none')
   const [addonSeats, setAddonSeats] = useState(0)
 
   const clampSeats = (n: number) => Math.max(0, Math.min(99, n))
 
-  const activeAddon = addonPlan === 'none' ? null : addonPlans.find((p) => p.planKey === addonPlan) ?? null
+  const basePlan = plans.find((p) => p.planKey === basePlanKey) ?? plans[0]
+  // Add-on is only for non-AI seats (Starter/Scaler) and never for the plan
+  // that's already the base. When base is Pro AI there are no add-ons.
+  const addonOptions =
+    basePlanKey === 'pro-ai'
+      ? []
+      : plans.filter(
+          (p) =>
+            p.planKey !== basePlanKey &&
+            p.planKey !== 'basic-ai' &&
+            p.planKey !== 'pro-ai',
+        )
+  const activeAddon = addonPlan === 'none' ? null : addonOptions.find((p) => p.planKey === addonPlan) ?? null
 
-  const baseSubtotal = basicAi.perSeat * baseSeats
+  const baseSubtotal = (basePlan?.perSeat ?? 0) * baseSeats
   const addonSubtotal = (activeAddon?.perSeat ?? 0) * addonSeats
   const total = baseSubtotal + addonSubtotal
   const totalSeats = baseSeats + (activeAddon ? addonSeats : 0)
@@ -868,21 +880,67 @@ function PricingCalculator({
         </span>
       </div>
 
-      {/* Basic AI seats (base) */}
+      {/* Base plan dropdown + stepper */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>Basic AI seats</span>
-        <Stepper value={baseSeats} onChange={setBaseSeats} label="Basic AI" />
+        <span style={{ fontSize: 13, color: 'var(--ink-3)' }}>Base:</span>
+        <select
+          value={basePlanKey}
+          onChange={(e) => {
+            const newBase = e.target.value
+            setBasePlanKey(newBase)
+            // Reset add-on if it's no longer a valid option:
+            // - Pro AI base has no add-ons
+            // - AI plans (basic-ai / pro-ai) aren't valid add-ons
+            // - can't have same plan as base and add-on
+            if (
+              newBase === 'pro-ai' ||
+              addonPlan === newBase ||
+              addonPlan === 'basic-ai' ||
+              addonPlan === 'pro-ai'
+            ) {
+              setAddonPlan('none')
+            }
+          }}
+          aria-label="Base plan"
+          style={{
+            height: 32,
+            padding: '0 32px 0 12px',
+            fontSize: 13,
+            fontWeight: 600,
+            color: 'var(--ink)',
+            background: '#fff',
+            border: '1px solid var(--line-2)',
+            borderRadius: 100,
+            outline: 'none',
+            cursor: 'pointer',
+            appearance: 'none',
+            backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235A6070' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>")`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'right 10px center',
+            backgroundSize: '12px 12px',
+          }}
+        >
+          {plans.map((p) => (
+            <option key={p.planKey} value={p.planKey}>
+              {p.name}
+            </option>
+          ))}
+        </select>
+        <Stepper value={baseSeats} onChange={setBaseSeats} label="base" />
       </div>
 
-      {/* Divider */}
-      <div style={{ width: 1, height: 24, background: 'var(--line)', flexShrink: 0 }} />
+      {/* Divider — only if we have an add-on section to show */}
+      {addonOptions.length > 0 && (
+        <div style={{ width: 1, height: 24, background: 'var(--line)', flexShrink: 0 }} />
+      )}
 
-      {/* Add-on tier chips + stepper */}
+      {/* Add-on tier chips + stepper — hidden when Pro AI is the base */}
+      {addonOptions.length > 0 && (
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
         <span style={{ fontSize: 13, color: 'var(--ink-3)' }}>
-          Extra seats for teammates without AI:
+          {basePlanKey === 'basic-ai' ? 'Extra seats for teammates without AI:' : 'Add-on:'}
         </span>
-        {addonPlans.map((p) => {
+        {addonOptions.map((p) => {
           const selected = addonPlan === p.planKey
           return (
             <button
@@ -906,6 +964,7 @@ function PricingCalculator({
           <Stepper value={addonSeats} onChange={setAddonSeats} label="add-on" />
         )}
       </div>
+      )}
 
       {/* Total, pinned right */}
       <div
@@ -1284,15 +1343,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       <section className="section" style={{ paddingTop: 30 }} id="pricing-plans">
         <div className="container">
           {(() => {
-            const basicAiPlan = pricingPlans.find((p) => p.planKey === 'basic-ai')
-            if (!basicAiPlan) return null
-            const basicAiDp = getDynamicPrice(basicAiPlan.planKey, basicAiPlan.monthlyPrice, basicAiPlan.annualPrice)
-            const basicAi: CalcPlan = {
-              planKey: basicAiPlan.planKey,
-              name: basicAiPlan.name,
-              perSeat: isAnnual ? basicAiDp.annualPrice : basicAiDp.monthlyPrice,
-            }
-            const addonPlans = ['starter', 'scaler']
+            const calcPlans = ['starter', 'scaler', 'basic-ai', 'pro-ai']
               .map((key): CalcPlan | null => {
                 const plan = pricingPlans.find((p) => p.planKey === key)
                 if (!plan) return null
@@ -1305,16 +1356,19 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               })
               .filter((p): p is CalcPlan => p !== null)
 
-            const isCurrencyCode = /^[A-Z]{3}$/.test(basicAiDp.currency)
-            const currencyLabel = isCurrencyCode ? basicAiDp.currency : ''
-            const priceSymbol = isCurrencyCode ? (basicAiDp.currency === 'USD' ? '$' : '') : basicAiDp.currency
+            if (!calcPlans.length) return null
+
+            const basicAiPlan = pricingPlans.find((p) => p.planKey === 'basic-ai') || pricingPlans[0]
+            const dp = getDynamicPrice(basicAiPlan.planKey, basicAiPlan.monthlyPrice, basicAiPlan.annualPrice)
+            const isCurrencyCode = /^[A-Z]{3}$/.test(dp.currency)
+            const currencyLabel = isCurrencyCode ? dp.currency : ''
+            const priceSymbol = isCurrencyCode ? (dp.currency === 'USD' ? '$' : '') : dp.currency
 
             return (
               <div style={{ marginBottom: 36 }}>
                 <PricingCalculator
                   isAnnual={isAnnual}
-                  basicAi={basicAi}
-                  addonPlans={addonPlans}
+                  plans={calcPlans}
                   currencyLabel={currencyLabel}
                   priceSymbol={priceSymbol}
                 />
