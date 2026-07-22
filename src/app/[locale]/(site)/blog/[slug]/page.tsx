@@ -8,6 +8,7 @@ import { getBlogPost, getBlogPosts, getBlogIndex, getBlogPostTranslations } from
 import { BlogPostClient } from '@/components/pages/BlogPostClient'
 import { routing } from '@/i18n/routing'
 import { parseMetadataFromHtml, parseJsonLdSchemas } from '@/lib/parseMetadata'
+import { buildArticleSchema } from '@/lib/article-schema'
 
 // 60s ISR window: raises the cache hit rate (TTFB was ~636ms on misses paying
 // full SSR + Sanity fetches); Sanity edits appear within a minute.
@@ -273,8 +274,11 @@ export default async function BlogPostPage({
     }
   })
 
-  // Parse JSON-LD schemas from jsonLdSchemas HTML field using Cheerio
+  // Parse JSON-LD schemas from the jsonLdSchemas CMS field using Cheerio.
+  // A manually-entered Article here wins (rendered as-is); the auto-generated
+  // Article below is only used as a fallback when the CMS has none.
   const schemas = parseJsonLdSchemas(post.jsonLdSchemas)
+  const hasCmsArticle = schemas.some((s: any) => s?.['@type'] === 'Article')
 
   // Auto-generate BreadcrumbList JSON-LD (always)
   const SITE_BASE = 'https://eazybe.com'
@@ -303,6 +307,10 @@ export default async function BlogPostPage({
       },
     ],
   }
+
+  // Auto-generate Article JSON-LD from the post (localized via the post doc),
+  // only when the CMS field doesn't already provide one.
+  const articleSchema = hasCmsArticle ? null : buildArticleSchema(post, locale, 'blog')
 
   // Auto-generate FAQPage JSON-LD (only if FAQs exist)
   // Uses plainAnswer > answerText (extracted plain text) > stringified answer as fallback
@@ -374,6 +382,13 @@ export default async function BlogPostPage({
             Exit Preview
           </a>
         </div>
+      )}
+      {/* Auto-generated Article JSON-LD (fallback when the CMS has no Article) */}
+      {articleSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
       )}
       {/* Auto-generated BreadcrumbList JSON-LD (always) */}
       <script

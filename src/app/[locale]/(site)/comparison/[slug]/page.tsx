@@ -14,6 +14,7 @@ import {
 import { ComparisonPostClient } from '@/components/pages/ComparisonPostClient'
 import { routing } from '@/i18n/routing'
 import { parseMetadataFromHtml, parseJsonLdSchemas } from '@/lib/parseMetadata'
+import { buildArticleSchema } from '@/lib/article-schema'
 
 // 60s ISR window: raises the cache hit rate (TTFB was ~636ms on misses paying
 // full SSR + Sanity fetches); Sanity edits appear within a minute.
@@ -227,12 +228,16 @@ export default async function ComparisonPostPage({
     }
   })
 
-  // Parse any custom JSON-LD from jsonLdSchemas field
+  // Parse any custom JSON-LD from the jsonLdSchemas CMS field. A manually-entered
+  // Article here wins (rendered as-is); the auto-generated Article below is only a
+  // fallback when the CMS has none.
   const customSchemas = parseJsonLdSchemas(post.jsonLdSchemas)
+  const hasCmsArticle = customSchemas.some((s: any) => s?.['@type'] === 'Article')
 
   // Auto-generate BreadcrumbList JSON-LD (always)
   const SITE_BASE = 'https://eazybe.com'
   const localePathPrefix = locale === 'en' ? '' : `/${locale}`
+  const articleSchema = hasCmsArticle ? null : buildArticleSchema(post, locale, 'comparison')
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -328,6 +333,12 @@ export default async function ComparisonPostPage({
         </div>
       )}
 
+      {articleSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
