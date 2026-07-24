@@ -248,19 +248,10 @@ export function withIncomingTrackingParams(url: string): string {
 
   const finalUrl = new URL(url, window.location.origin)
   const incomingParams = getIncomingTrackingParams()
-  const attribution = getStoredWebsiteAttribution()
 
   incomingParams.forEach((value, key) => {
     finalUrl.searchParams.set(key, value)
   })
-
-  if (attribution.entryPage) {
-    finalUrl.searchParams.set("entry_page", attribution.entryPage)
-  }
-
-  if (attribution.exitPage) {
-    finalUrl.searchParams.set("exit_page", attribution.exitPage)
-  }
 
   return finalUrl.toString()
 }
