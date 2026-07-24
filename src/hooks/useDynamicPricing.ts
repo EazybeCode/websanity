@@ -72,6 +72,112 @@ const withAiPlanFallbacks = (plans: Plan[]): Plan[] => {
   return [...plans, ...missingAiPlans]
 }
 
+// Cache TTL: 30 minutes. Long enough to eliminate re-fetches on repeat
+// visits, short enough that a price change lands within half an hour.
+const CACHE_TTL_MS = 30 * 60 * 1000
+
+interface CacheEntry<T> {
+  data: T
+  expiresAt: number
+}
+
+const readCache = <T,>(key: string): T | null => {
+  try {
+    const raw = typeof window !== 'undefined' ? window.localStorage.getItem(key) : null
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as CacheEntry<T>
+    if (!parsed?.expiresAt || Date.now() > parsed.expiresAt) return null
+    return parsed.data
+  } catch {
+    return null
+  }
+}
+
+const writeCache = <T,>(key: string, data: T) => {
+  try {
+    if (typeof window === 'undefined') return
+    window.localStorage.setItem(
+      key,
+      JSON.stringify({ data, expiresAt: Date.now() + CACHE_TTL_MS } satisfies CacheEntry<T>),
+    )
+  } catch {
+    /* storage full / private mode — ignore */
+  }
+}
+
+// Hard cap so a hung upstream can't leave the page in "loading" forever.
+const FETCH_TIMEOUT_MS = 2500
+
+const fetchWithTimeout = async (
+  input: RequestInfo,
+  init?: RequestInit,
+): Promise<Response> => {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
+  try {
+    return await fetch(input, { ...init, signal: controller.signal })
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+const getCountryCode = async (): Promise<UserIpDetails | null> => {
+  const cached = readCache<UserIpDetails>('eazybe:pricing:userIp:v1')
+  if (cached) return cached
+  try {
+    const res = await fetchWithTimeout(`https://ipapi.co/json/?key=${IP_API_KEY}`)
+    const data = (await res.json()) as UserIpDetails
+    writeCache('eazybe:pricing:userIp:v1', data)
+    return data
+  } catch {
+    return null
+  }
+}
+
+const getPlansList = async (): Promise<Plan[]> => {
+  const cached = readCache<Plan[]>('eazybe:pricing:planList:v1')
+  if (cached) return cached
+  try {
+    const res = await fetchWithTimeout('https://cerberus.eazybe.com/prod/api/v1/planList')
+    const response = await res.json()
+    const merged = withAiPlanFallbacks(response?.plan_list || [])
+    writeCache('eazybe:pricing:planList:v1', merged)
+    return merged
+  } catch {
+    return AI_PLAN_FALLBACKS
+  }
+}
+
+const getLocalizedPlanAmount = async (currency: string): Promise<LocalizedCurrencyResponse | null> => {
+  const cacheKey = `eazybe:pricing:localized:v1:${currency}`
+  const cached = readCache<LocalizedCurrencyResponse>(cacheKey)
+  if (cached) return cached
+  try {
+    const res = await fetchWithTimeout(
+      `https://cerberus.eazybe.com/prod/api/v1/getLocalizedCurrency?user_currency=${currency}`,
+      { method: 'POST', headers: { 'Content-Type': 'application/json' } },
+    )
+    const data = (await res.json()) as LocalizedCurrencyResponse
+    writeCache(cacheKey, data)
+    return data
+  } catch {
+    return null
+  }
+}
+
+const getExchangeRateService = async (): Promise<ExchangeRateResponse | null> => {
+  const cached = readCache<ExchangeRateResponse>('eazybe:pricing:fx:v1')
+  if (cached) return cached
+  try {
+    const res = await fetchWithTimeout('https://cerberus.eazybe.com/prod/api/v1/exchangeRateService')
+    const data = (await res.json()) as ExchangeRateResponse
+    writeCache('eazybe:pricing:fx:v1', data)
+    return data
+  } catch {
+    return null
+  }
+}
+
 export function useDynamicPricing() {
   const [state, setState] = useState<DynamicPricingState>({
     userCurrency: 'USD',
@@ -90,11 +196,21 @@ export function useDynamicPricing() {
 
     const initialize = async () => {
       try {
-        const userIpDetails = await getCountryCode()
+        // Round 1: everything that doesn't need the visitor's currency runs
+        // in parallel. Was sequential (2-3s cumulative) — now bounded by
+        // the slowest single call (~500-800ms).
+        const [userIpDetails, planList, exchangeRateData] = await Promise.all([
+          getCountryCode(),
+          getPlansList(),
+          getExchangeRateService(),
+        ])
+
         const userCurrency = userIpDetails?.currency || 'USD'
-        const planList = await getPlansList()
-        const exchangeRateData = await getExchangeRateService()
         const exchangeRate = exchangeRateData?.conversion_rates?.[userCurrency.toUpperCase()] || 1
+
+        // Round 2: only the localized-currency call actually needs to know
+        // the currency (it's in the URL). Runs alone but that's fine — one
+        // extra ~500ms hop instead of three.
         const localizedData = await getLocalizedPlanAmount(userCurrency)
         const multiplicationFactor = localizedData?.status ? localizedData.message.multiplication_factor : 1
         const multiplicationFactorPlus = localizedData?.status ? localizedData.message.multiplication_factor_plus : 1
@@ -122,50 +238,6 @@ export function useDynamicPricing() {
 
     initialize()
   }, [initialized])
-
-  const getCountryCode = async (): Promise<UserIpDetails | null> => {
-    try {
-      const cached = localStorage.getItem('userIpDetailsData')
-      if (cached) return JSON.parse(cached)
-      const res = await fetch(`https://ipapi.co/json/?key=${IP_API_KEY}`)
-      const data = await res.json()
-      localStorage.setItem('userIpDetailsData', JSON.stringify(data))
-      return data
-    } catch {
-      return null
-    }
-  }
-
-  const getPlansList = async (): Promise<Plan[]> => {
-    try {
-      const res = await fetch('https://cerberus.eazybe.com/prod/api/v1/planList')
-      const response = await res.json()
-      return withAiPlanFallbacks(response?.plan_list || [])
-    } catch {
-      return AI_PLAN_FALLBACKS
-    }
-  }
-
-  const getLocalizedPlanAmount = async (currency: string): Promise<LocalizedCurrencyResponse | null> => {
-    try {
-      const res = await fetch(
-        `https://cerberus.eazybe.com/prod/api/v1/getLocalizedCurrency?user_currency=${currency}`,
-        { method: 'POST', headers: { 'Content-Type': 'application/json' } }
-      )
-      return await res.json()
-    } catch {
-      return null
-    }
-  }
-
-  const getExchangeRateService = async (): Promise<ExchangeRateResponse | null> => {
-    try {
-      const res = await fetch('https://cerberus.eazybe.com/prod/api/v1/exchangeRateService')
-      return await res.json()
-    } catch {
-      return null
-    }
-  }
 
   const calculatePrice = (planKey: string, baseAmount: number, isMonthly: boolean): number => {
     const planKeyLower = planKey.toLowerCase()

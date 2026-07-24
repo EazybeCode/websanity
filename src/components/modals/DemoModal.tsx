@@ -33,7 +33,17 @@ interface Props {
 const CALENDLY_URL =
   'https://calendly.com/eazybe/eazybe-demo-clone?hide_event_type_details=1&hide_gdpr_banner=1'
 const HUBSPOT_PORTAL_ID = '40009480'
-const HUBSPOT_DEMO_FORM_GUID = '9aedb83c-2475-483a-87cc-30712345cc77'
+// Locale-specific HubSpot form GUIDs. Each locale has its own form so
+// notifications / owner routing can be scoped by language. The submission
+// payload (fields, portal, endpoint) is identical — only the formGuid
+// changes. Non-mapped locales fall back to the English form.
+const HUBSPOT_DEMO_FORM_GUID_BY_LOCALE: Record<string, string> = {
+  en: '470166e7-1418-4bd9-9e1e-7252ad54070b',
+  es: 'e6630d0e-f941-42e0-abd5-c3686e4ce16c',
+  br: '922fbde6-ba79-4c8e-b784-a7bf67ef3708',
+  tr: '470166e7-1418-4bd9-9e1e-7252ad54070b', // TODO: replace when the Turkish form ID is provided
+}
+const DEFAULT_HUBSPOT_DEMO_FORM_GUID = HUBSPOT_DEMO_FORM_GUID_BY_LOCALE.en
 
 // Same country→phone map + phone code list the TrialModal uses. Kept
 // inline so this modal has zero shared state with TrialModal.
@@ -302,6 +312,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
     setIsSubmitting(true)
 
     const finalPhone = `${selectedCountry}${phone.replace(/\s+/g, '')}`
+    const formGuid = HUBSPOT_DEMO_FORM_GUID_BY_LOCALE[locale] || DEFAULT_HUBSPOT_DEMO_FORM_GUID
 
     // Fire HubSpot in the background — don't block the calendar transition
     // on it. HubSpot's Forms API typically adds 300-800ms; there's no
@@ -325,7 +336,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
       const payload = {
         portalId: HUBSPOT_PORTAL_ID,
-        formGuid: HUBSPOT_DEMO_FORM_GUID,
+        formGuid,
         fields,
         context: {
           pageUri: window.location.href,
@@ -336,7 +347,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
       // Fire and forget — logs errors but doesn't block.
       fetch(
-        `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_DEMO_FORM_GUID}`,
+        `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${formGuid}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

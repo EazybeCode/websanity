@@ -17,6 +17,16 @@ interface TrialModalProps {
   onClose: () => void
 }
 
+const HUBSPOT_PORTAL_ID = '40009480'
+// Per-locale form GUIDs — see DemoModal.tsx for the same pattern.
+const HUBSPOT_TRIAL_FORM_GUID_BY_LOCALE: Record<string, string> = {
+  en: '470166e7-1418-4bd9-9e1e-7252ad54070b',
+  es: 'e6630d0e-f941-42e0-abd5-c3686e4ce16c',
+  br: '922fbde6-ba79-4c8e-b784-a7bf67ef3708',
+  tr: '470166e7-1418-4bd9-9e1e-7252ad54070b', // TODO: swap in the Turkish form ID
+}
+const DEFAULT_HUBSPOT_TRIAL_FORM_GUID = HUBSPOT_TRIAL_FORM_GUID_BY_LOCALE.en
+
 // Map ISO country codes to phone codes
 const COUNTRY_TO_PHONE: Record<string, string> = {
   US: '+1', CA: '+1', MX: '+52',
@@ -180,6 +190,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
     }
     setIsSubmitting(true)
     const finalPhone = `${selectedCountry}${phoneValue.replace(/\s+/g, '')}`
+    const formGuid = HUBSPOT_TRIAL_FORM_GUID_BY_LOCALE[locale] || DEFAULT_HUBSPOT_TRIAL_FORM_GUID
 
     try {
       const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1]
@@ -193,8 +204,8 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
       fields.push(...getHubSpotAttributionFields(CHROME_STORE_WEBSITE_URL))
 
       const hubspotPayload: Record<string, unknown> = {
-        portalId: '40009480',
-        formGuid: '9aedb83c-2475-483a-87cc-30712345cc77',
+        portalId: HUBSPOT_PORTAL_ID,
+        formGuid,
         fields,
         context: {
           pageUri: window.location.href,
@@ -204,7 +215,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
       }
 
       const response = await fetch(
-        `https://api.hsforms.com/submissions/v3/integration/submit/40009480/9aedb83c-2475-483a-87cc-30712345cc77`,
+        `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${formGuid}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

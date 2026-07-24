@@ -205,6 +205,24 @@ type LocaleFallback = {
   faqItems: FAQItem[]
   finalCta: { headline: string; headlineEm: string; subtitle: string }
   agentModal: { title: string; titleEm: string; subtitle: string }
+  calculator: {
+    heading: string
+    subtitle: string
+    baseLabel: string
+    extraSeatsLabel: string
+    addOnLabel: string
+    none: string
+    seat: string
+    seats: string
+    totalSuffix: string
+    perMonth: string
+    perMonthAnnual: string
+  }
+  featureLabels: Record<string, string>
+  comparisonCategories: Record<string, string>
+  trustSignals: string[]
+  creditsIncludes: string
+  creditsRollover: string
 }
 
 const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
@@ -253,6 +271,29 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       titleEm: 'AI Agent',
       subtitle: "See how many leads you're losing on WhatsApp — in 60 seconds, free.",
     },
+    calculator: {
+      heading: 'Calculate your price',
+      subtitle: 'For your whole team',
+      baseLabel: 'Base:',
+      extraSeatsLabel: 'Extra seats for teammates without AI:',
+      addOnLabel: 'Add-on:',
+      none: 'None',
+      seat: 'seat',
+      seats: 'seats',
+      totalSuffix: 'Total',
+      perMonth: '/month',
+      perMonthAnnual: '/mo billed annually',
+    },
+    featureLabels: {},
+    comparisonCategories: {},
+    trustSignals: [
+      'GDPR Compliant & Encrypted',
+      '2-Minute Setup',
+      '4-Day Free Trial',
+      'No Credit Card Required',
+    ],
+    creditsIncludes: 'Includes',
+    creditsRollover: 'monthly credits (rollover)',
   },
   es: {
     hero: {
@@ -306,6 +347,65 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       titleEm: 'Agente de IA',
       subtitle: 'Ve cuántos leads estás perdiendo en WhatsApp — en 60 segundos, gratis.',
     },
+    calculator: {
+      heading: 'Calcula tu precio',
+      subtitle: 'Para todo tu equipo',
+      baseLabel: 'Base:',
+      extraSeatsLabel: 'Asientos extra para compañeros sin IA:',
+      addOnLabel: 'Complemento:',
+      none: 'Ninguno',
+      seat: 'asiento',
+      seats: 'asientos',
+      totalSuffix: 'Total',
+      perMonth: '/mes',
+      perMonthAnnual: '/mes facturado anualmente',
+    },
+    featureLabels: {
+      'Team Inbox': 'Bandeja de entrada del equipo',
+      'Unlimited labels & funnels': 'Etiquetas y embudos ilimitados',
+      'Unlimited quick replies': 'Respuestas rápidas ilimitadas',
+      'Unlimited scheduled messages': 'Mensajes programados ilimitados',
+      'WhatsApp chat backup': 'Copia de seguridad de chats de WhatsApp',
+      'Send messages from CRM': 'Enviar mensajes desde el CRM',
+      'Salesforce integration': 'Integración con Salesforce',
+      'Revenue Inbox': 'Bandeja de ingresos',
+      'Everything in Starter': 'Todo lo de Starter',
+      'Webhook integrations': 'Integraciones por webhook',
+      'Cloud connection': 'Conexión en la nube',
+      'WhatsApp API': 'API de WhatsApp',
+      'Custom objects in mini CRM view': 'Objetos personalizados en mini CRM',
+      'CRM property-to-WhatsApp labeling': 'Etiquetado de propiedades del CRM en WhatsApp',
+      'AI unreplied chats agent': 'Agente de IA para chats sin responder',
+      'Dedicated APIs': 'APIs dedicadas',
+      'CRM workflow integration': 'Integración de flujos de trabajo del CRM',
+      'RevOps Agent': 'Agente RevOps',
+      'Everything in Scaler': 'Todo lo de Scaler',
+      'AI agents': 'Agentes de IA',
+      'Intelligence-Led CRM Properties': 'Propiedades de CRM guiadas por inteligencia',
+      'AI-driven Chat Organization': 'Organización de chats por IA',
+      'BrainBe knowledge base included': 'Base de conocimientos BrainBe incluida',
+      'Voice AI calling': 'Llamadas con IA de voz',
+      '100+ integrations (Email, Teams, Slack...)': 'Más de 100 integraciones (Email, Teams, Slack...)',
+      'Everything in Basic AI': 'Todo lo de Basic AI',
+      'Click-to-WhatsApp Ads agent': 'Agente para anuncios Click-to-WhatsApp',
+      "BrainBe — your company's brain": 'BrainBe — el cerebro de tu empresa',
+    },
+    comparisonCategories: {
+      'Core Features': 'Funciones principales',
+      'CRM Integrations': 'Integraciones CRM',
+      'Intelligence & AI': 'Inteligencia e IA',
+      'AI Agents': 'Agentes de IA',
+      'Automation': 'Automatización',
+      'Support': 'Soporte',
+    },
+    trustSignals: [
+      'Compatible con GDPR y cifrado',
+      'Configuración en 2 minutos',
+      '4 días de prueba gratis',
+      'Sin tarjeta de crédito',
+    ],
+    creditsIncludes: 'Incluye',
+    creditsRollover: 'en créditos mensuales (acumulables)',
   },
   br: {
     hero: {
@@ -359,6 +459,65 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       titleEm: 'Agente de IA',
       subtitle: 'Veja quantos leads você está perdendo no WhatsApp — em 60 segundos, grátis.',
     },
+    calculator: {
+      heading: 'Calcule seu preço',
+      subtitle: 'Para toda a sua equipe',
+      baseLabel: 'Base:',
+      extraSeatsLabel: 'Assentos extras para membros sem IA:',
+      addOnLabel: 'Complemento:',
+      none: 'Nenhum',
+      seat: 'assento',
+      seats: 'assentos',
+      totalSuffix: 'Total',
+      perMonth: '/mês',
+      perMonthAnnual: '/mês cobrado anualmente',
+    },
+    featureLabels: {
+      'Team Inbox': 'Caixa de entrada da equipe',
+      'Unlimited labels & funnels': 'Etiquetas e funis ilimitados',
+      'Unlimited quick replies': 'Respostas rápidas ilimitadas',
+      'Unlimited scheduled messages': 'Mensagens agendadas ilimitadas',
+      'WhatsApp chat backup': 'Backup de conversas do WhatsApp',
+      'Send messages from CRM': 'Enviar mensagens do CRM',
+      'Salesforce integration': 'Integração com Salesforce',
+      'Revenue Inbox': 'Caixa de entrada de receita',
+      'Everything in Starter': 'Tudo do Starter',
+      'Webhook integrations': 'Integrações via webhook',
+      'Cloud connection': 'Conexão em nuvem',
+      'WhatsApp API': 'API do WhatsApp',
+      'Custom objects in mini CRM view': 'Objetos personalizados no mini CRM',
+      'CRM property-to-WhatsApp labeling': 'Etiquetagem de propriedade do CRM para WhatsApp',
+      'AI unreplied chats agent': 'Agente de IA para conversas sem resposta',
+      'Dedicated APIs': 'APIs dedicadas',
+      'CRM workflow integration': 'Integração de fluxo de trabalho do CRM',
+      'RevOps Agent': 'Agente RevOps',
+      'Everything in Scaler': 'Tudo do Scaler',
+      'AI agents': 'Agentes de IA',
+      'Intelligence-Led CRM Properties': 'Propriedades de CRM guiadas por inteligência',
+      'AI-driven Chat Organization': 'Organização de conversas por IA',
+      'BrainBe knowledge base included': 'Base de conhecimento BrainBe incluída',
+      'Voice AI calling': 'Chamadas por IA de voz',
+      '100+ integrations (Email, Teams, Slack...)': 'Mais de 100 integrações (E-mail, Teams, Slack...)',
+      'Everything in Basic AI': 'Tudo do Basic AI',
+      'Click-to-WhatsApp Ads agent': 'Agente para anúncios click-to-WhatsApp',
+      "BrainBe — your company's brain": 'BrainBe — o cérebro da sua empresa',
+    },
+    comparisonCategories: {
+      'Core Features': 'Recursos principais',
+      'CRM Integrations': 'Integrações de CRM',
+      'Intelligence & AI': 'Inteligência e IA',
+      'AI Agents': 'Agentes de IA',
+      'Automation': 'Automação',
+      'Support': 'Suporte',
+    },
+    trustSignals: [
+      'Conformidade LGPD e criptografado',
+      'Configuração em 2 minutos',
+      '4 dias de teste grátis',
+      'Sem necessidade de cartão de crédito',
+    ],
+    creditsIncludes: 'Inclui',
+    creditsRollover: 'em créditos mensais (com rollover)',
   },
   tr: {
     hero: {
@@ -412,6 +571,65 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       titleEm: "Agent'ımızla konuşun",
       subtitle: "WhatsApp'ta kaç lead kaybettiğinizi görün — 60 saniyede, ücretsiz.",
     },
+    calculator: {
+      heading: 'Fiyatınızı hesaplayın',
+      subtitle: 'Tüm ekibiniz için',
+      baseLabel: 'Temel:',
+      extraSeatsLabel: 'AI kullanmayan ekip için ekstra koltuklar:',
+      addOnLabel: 'Eklenti:',
+      none: 'Hiçbiri',
+      seat: 'koltuk',
+      seats: 'koltuk',
+      totalSuffix: 'Toplam',
+      perMonth: '/ay',
+      perMonthAnnual: '/ay yıllık faturalı',
+    },
+    featureLabels: {
+      'Team Inbox': 'Ekip Gelen Kutusu',
+      'Unlimited labels & funnels': 'Sınırsız etiket ve huni',
+      'Unlimited quick replies': 'Sınırsız hızlı yanıt',
+      'Unlimited scheduled messages': 'Sınırsız planlanmış mesaj',
+      'WhatsApp chat backup': 'WhatsApp sohbet yedeği',
+      'Send messages from CRM': "CRM'den mesaj gönderme",
+      'Salesforce integration': 'Salesforce entegrasyonu',
+      'Revenue Inbox': 'Gelir Gelen Kutusu',
+      'Everything in Starter': "Starter'daki her şey",
+      'Webhook integrations': 'Webhook entegrasyonları',
+      'Cloud connection': 'Bulut bağlantısı',
+      'WhatsApp API': 'WhatsApp API',
+      'Custom objects in mini CRM view': 'Mini CRM görünümünde özel nesneler',
+      'CRM property-to-WhatsApp labeling': "CRM özelliğinden WhatsApp'a etiketleme",
+      'AI unreplied chats agent': 'Yanıtsız sohbetler için AI ajanı',
+      'Dedicated APIs': "Özel API'ler",
+      'CRM workflow integration': 'CRM iş akışı entegrasyonu',
+      'RevOps Agent': 'RevOps Ajanı',
+      'Everything in Scaler': "Scaler'daki her şey",
+      'AI agents': 'AI ajanları',
+      'Intelligence-Led CRM Properties': 'Zeka odaklı CRM özellikleri',
+      'AI-driven Chat Organization': 'AI destekli sohbet organizasyonu',
+      'BrainBe knowledge base included': 'BrainBe bilgi tabanı dahil',
+      'Voice AI calling': 'Sesli AI aramaları',
+      '100+ integrations (Email, Teams, Slack...)': '100+ entegrasyon (E-posta, Teams, Slack...)',
+      'Everything in Basic AI': "Basic AI'deki her şey",
+      'Click-to-WhatsApp Ads agent': 'Click-to-WhatsApp Reklam ajanı',
+      "BrainBe — your company's brain": 'BrainBe — şirketinizin beyni',
+    },
+    comparisonCategories: {
+      'Core Features': 'Temel özellikler',
+      'CRM Integrations': 'CRM Entegrasyonları',
+      'Intelligence & AI': 'Zeka ve AI',
+      'AI Agents': 'AI Ajanları',
+      'Automation': 'Otomasyon',
+      'Support': 'Destek',
+    },
+    trustSignals: [
+      'GDPR uyumlu ve şifreli',
+      '2 dakikada kurulum',
+      '4 gün ücretsiz deneme',
+      'Kredi kartı gerekmez',
+    ],
+    creditsIncludes: 'Dahil',
+    creditsRollover: 'aylık kredi (devir)',
   },
 }
 
@@ -521,6 +739,9 @@ function PricingCard({
   convertUsdAmount,
   transitionDelay,
   onTalkToAgent,
+  featureLabels,
+  creditsIncludes,
+  creditsRollover,
 }: {
   plan: PricingPlan
   isAnnual: boolean
@@ -532,6 +753,9 @@ function PricingCard({
   convertUsdAmount: (amount: number) => number
   transitionDelay?: string
   onTalkToAgent: () => void
+  featureLabels: Record<string, string>
+  creditsIncludes: string
+  creditsRollover: string
 }) {
   const Icon = planIconMap[plan.icon]
   const currency = dynamicCurrency || plan.currency
@@ -553,13 +777,18 @@ function PricingCard({
   const priceUnit = '/seat/month'
   // Wallet credit: $45 (45% of Basic AI $99) and $90 (45% of Pro AI $199).
   const formatFeatureText = (text: string) => {
-    // Localize wallet-credit amounts for any non-USD currency (INR, BRL, …) by
-    // multiplying the USD credit by the locale's factor (handled in convertUsdAmount).
+    // Credits line: translate "Includes ... monthly credits (rollover)" plus
+    // convert USD amount to the visitor's currency when applicable.
     const isLocalCurrency = isCurrencyCode && currency !== 'USD'
-    if (!isLocalCurrency) return text
-    if (text === 'Includes $45 monthly credits (rollover)') return `Includes ${currency} ${convertUsdAmount(45)} monthly credits (rollover)`
-    if (text === 'Includes $90 monthly credits (rollover)') return `Includes ${currency} ${convertUsdAmount(90)} monthly credits (rollover)`
-    return text
+    const creditsMatch = text.match(/^Includes \$(\d+) monthly credits \(rollover\)$/)
+    if (creditsMatch) {
+      const usd = parseInt(creditsMatch[1], 10)
+      const amount = isLocalCurrency ? `${currency} ${convertUsdAmount(usd)}` : `$${usd}`
+      return `${creditsIncludes} ${amount} ${creditsRollover}`
+    }
+    // All other feature bullets: look up the locale-specific label. Falls
+    // back to English if the locale doesn't have a translation for it.
+    return featureLabels[text] || text
   }
 
   return (
@@ -723,11 +952,13 @@ function PricingCalculator({
   currencyLabel,
   priceSymbol,
   isAnnual,
+  copy,
 }: {
   plans: CalcPlan[]
   currencyLabel: string
   priceSymbol: string
   isAnnual: boolean
+  copy: LocaleFallback['calculator']
 }) {
   const defaultBase = plans.find((p) => p.planKey === 'basic-ai')?.planKey ?? plans[0]?.planKey ?? ''
   const [basePlanKey, setBasePlanKey] = useState(defaultBase)
@@ -756,7 +987,7 @@ function PricingCalculator({
   const total = baseSubtotal + addonSubtotal
   const totalSeats = baseSeats + (activeAddon ? addonSeats : 0)
 
-  const priceUnit = isAnnual ? '/mo billed annually' : '/month'
+  const priceUnit = isAnnual ? copy.perMonthAnnual : copy.perMonth
   const formatMoney = (n: number) =>
     `${currencyLabel ? `${currencyLabel} ` : ''}${priceSymbol}${n.toLocaleString('en-US')}`
 
@@ -873,16 +1104,16 @@ function PricingCalculator({
       {/* Heading */}
       <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
         <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--ink-3)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-          Calculate your price
+          {copy.heading}
         </span>
         <span style={{ fontSize: 12, color: 'var(--ink-4)', marginTop: 2 }}>
-          For your whole team
+          {copy.subtitle}
         </span>
       </div>
 
       {/* Base plan dropdown + stepper */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span style={{ fontSize: 13, color: 'var(--ink-3)' }}>Base:</span>
+        <span style={{ fontSize: 13, color: 'var(--ink-3)' }}>{copy.baseLabel}</span>
         <select
           value={basePlanKey}
           onChange={(e) => {
@@ -938,7 +1169,7 @@ function PricingCalculator({
       {addonOptions.length > 0 && (
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
         <span style={{ fontSize: 13, color: 'var(--ink-3)' }}>
-          {basePlanKey === 'basic-ai' ? 'Extra seats for teammates without AI:' : 'Add-on:'}
+          {basePlanKey === 'basic-ai' ? copy.extraSeatsLabel : copy.addOnLabel}
         </span>
         {addonOptions.map((p) => {
           const selected = addonPlan === p.planKey
@@ -958,7 +1189,7 @@ function PricingCalculator({
           onClick={() => setAddonPlan('none')}
           style={chipBase(addonPlan === 'none')}
         >
-          None
+          {copy.none}
         </button>
         {addonPlan !== 'none' && (
           <Stepper value={addonSeats} onChange={setAddonSeats} label="add-on" />
@@ -981,7 +1212,7 @@ function PricingCalculator({
         }}
       >
         <span style={{ fontSize: 11, fontWeight: 600, opacity: 0.65, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-          {totalSeats} {totalSeats === 1 ? 'seat' : 'seats'} ·
+          {totalSeats} {totalSeats === 1 ? copy.seat : copy.seats} · {copy.totalSuffix}
         </span>
         <span style={{ fontSize: 17, fontWeight: 700, letterSpacing: '-0.01em' }}>
           {formatMoney(total)}
@@ -999,11 +1230,17 @@ function FeatureComparisonTable({
   currency,
   convertUsdAmount,
   onTalkToAgent,
+  categoryLabels,
+  featureLabels,
+  talkToAgentLabel,
 }: {
   features: ComparisonFeatureRow[]
   currency: string
   convertUsdAmount: (amount: number) => number
   onTalkToAgent: () => void
+  categoryLabels: Record<string, string>
+  featureLabels: Record<string, string>
+  talkToAgentLabel: string
 }) {
   const headerAgentBtn = (popular?: boolean) => (
     <button
@@ -1024,7 +1261,7 @@ function FeatureComparisonTable({
       }}
     >
       <WhatsAppGlyph size={13} />
-      Talk to our AI Agent
+      {talkToAgentLabel}
     </button>
   )
   const grouped = features.reduce((acc, row) => {
@@ -1092,7 +1329,7 @@ function FeatureComparisonTable({
               color: 'var(--accent-ink)',
             }}
           >
-            {category}
+            {categoryLabels[category] || category}
           </div>
           {rows.map((row, i) => (
             <div
@@ -1106,7 +1343,7 @@ function FeatureComparisonTable({
                 fontSize: 14,
               }}
             >
-              <div style={{ color: 'var(--ink-2)' }}>{row.feature}</div>
+              <div style={{ color: 'var(--ink-2)' }}>{featureLabels[row.feature] || row.feature}</div>
               <div style={{ textAlign: 'center' }}>{renderVal(row.starter)}</div>
               <div style={{ textAlign: 'center' }}>{renderVal(row.scaler)}</div>
               <div style={{ textAlign: 'center' }}>{renderVal(row.basicAi)}</div>
@@ -1218,12 +1455,11 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     ...localizedAiPlans,
   ]
 
-  const trustSignals = [
-    { Icon: Shield, text: 'GDPR Compliant & Encrypted' },
-    { Icon: Zap, text: '2-Minute Setup' },
-    { Icon: Clock, text: '4-Day Free Trial' },
-    { Icon: MessageSquare, text: 'No Credit Card Required' },
-  ]
+  const trustSignalIcons = [Shield, Zap, Clock, MessageSquare]
+  const trustSignals = fallback.trustSignals.map((text, i) => ({
+    Icon: trustSignalIcons[i] ?? Shield,
+    text,
+  }))
 
   const comparisonSection = pricingData?.comparisonSection || fallback.comparisonSection
 
@@ -1371,6 +1607,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
                   plans={calcPlans}
                   currencyLabel={currencyLabel}
                   priceSymbol={priceSymbol}
+                  copy={fallback.calculator}
                 />
               </div>
             )
@@ -1397,6 +1634,9 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
                   convertUsdAmount={convertUsdAmount}
                   transitionDelay={`${idx * 0.06}s`}
                   onTalkToAgent={openAgentForm}
+                  featureLabels={fallback.featureLabels}
+                  creditsIncludes={fallback.creditsIncludes}
+                  creditsRollover={fallback.creditsRollover}
                 />
               )
             })}
@@ -1437,6 +1677,9 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               currency={userCurrency}
               convertUsdAmount={convertUsdAmount}
               onTalkToAgent={openAgentForm}
+              categoryLabels={fallback.comparisonCategories}
+              featureLabels={fallback.featureLabels}
+              talkToAgentLabel={fallback.ctas.talkToAgent}
             />
           </div>
         </div>
