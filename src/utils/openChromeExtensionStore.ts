@@ -149,17 +149,17 @@ function isWebsiteAttributionPage(pathname: string): boolean {
   )
 }
 
-function captureWebsiteEntryPage() {
-  if (typeof window === "undefined" || !isWebsiteAttributionPage(window.location.pathname)) {
+export function captureWebsitePageAttribution(pathname = window.location.pathname) {
+  if (typeof window === "undefined" || !isWebsiteAttributionPage(pathname)) {
     return
   }
 
+  const currentPage = normalizeWebsiteAttributionPath(pathname)
+
+  captureWebsiteReferrer()
+
   if (!safeStorageGet(window.localStorage, WEBSITE_ENTRY_PAGE_KEY)) {
-    safeStorageSet(
-      window.localStorage,
-      WEBSITE_ENTRY_PAGE_KEY,
-      normalizeWebsiteAttributionPath(window.location.pathname),
-    )
+    safeStorageSet(window.localStorage, WEBSITE_ENTRY_PAGE_KEY, currentPage)
   }
 }
 
@@ -171,7 +171,7 @@ function getWebsitePageAttribution() {
     }
   }
 
-  captureWebsiteEntryPage()
+  captureWebsitePageAttribution(window.location.pathname)
 
   const currentPage = isWebsiteAttributionPage(window.location.pathname)
     ? normalizeWebsiteAttributionPath(window.location.pathname)
