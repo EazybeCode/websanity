@@ -1,17 +1,15 @@
 "use client"
 
 import { useEffect } from "react"
-import { usePathname, useSearchParams } from "next/navigation"
-import { captureIncomingTrackingParams, captureWebsitePageAttribution } from "@/utils/openChromeExtensionStore"
+import { useSearchParams } from "next/navigation"
+import { captureIncomingTrackingParams } from "@/utils/openChromeExtensionStore"
 
 export function AttributionTracker() {
-  const pathname = usePathname()
   const searchParams = useSearchParams()
 
   useEffect(() => {
     captureIncomingTrackingParams()
-    captureWebsitePageAttribution(pathname)
-  }, [pathname, searchParams])
+  }, [searchParams])
 
   return null
 }

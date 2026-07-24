@@ -10,11 +10,8 @@ const TRACKING_PARAM_PREFIXES = ["utm_"]
 const TRACKING_PARAM_NAMES = ["gclid", "fbclid", "li_fat_id"]
 const ATTRIBUTION_STORAGE_KEY = "eazybe_attribution_params"
 const ATTRIBUTION_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000
-const WEBSITE_PAGE_JOURNEY_KEY = "pageJourney"
-const WEBSITE_ENTRY_PAGE_KEY = "entryPage"
-const WEBSITE_EXIT_PAGE_KEY = "exitPage"
 const WEBSITE_REFERRER_KEY = "referrer"
-const WEBSITE_PAGE_JOURNEY_LIMIT = 20
+const WEBSITE_ENTRY_PAGE_KEY = "entryPage"
 const LOCALE_PREFIX_PATTERN = /^\/(?:en|br|es|tr)(?=\/|$)/
 
 type StoredAttribution = {
@@ -41,31 +38,6 @@ function safeStorageSet(storage: Storage | undefined, key: string, value: string
   } catch {
     // Attribution persistence is best-effort only.
   }
-}
-
-function isWebsiteAttributionPage(pathname: string): boolean {
-  const pathWithoutLocale = pathname.replace(LOCALE_PREFIX_PATTERN, "") || "/"
-
-  return (
-    pathWithoutLocale !== "/fb" &&
-    !pathWithoutLocale.startsWith("/api/") &&
-    !pathWithoutLocale.startsWith("/integrate-")
-  )
-}
-
-function normalizeWebsiteAttributionPath(pathname: string): string {
-  const normalizedPathname = pathname || "/"
-  return normalizedPathname.replace(/\/$/, "") || "/"
-}
-
-function getCurrentWebsiteAttributionPath(): string | null {
-  if (typeof window === "undefined") {
-    return null
-  }
-
-  return isWebsiteAttributionPage(window.location.pathname)
-    ? normalizeWebsiteAttributionPath(window.location.pathname)
-    : null
 }
 
 function getTrackingParamsFromSearch(search: string): URLSearchParams {
@@ -152,72 +124,62 @@ export function captureIncomingTrackingParams() {
   })
 }
 
-export function captureWebsitePageAttribution(pathname = window.location.pathname) {
-  if (typeof window === "undefined" || !isWebsiteAttributionPage(pathname)) {
+function captureWebsiteReferrer() {
+  if (typeof window === "undefined") {
     return
   }
-
-  const currentPage = normalizeWebsiteAttributionPath(pathname)
-  const existingEntryPage = safeStorageGet(window.localStorage, WEBSITE_ENTRY_PAGE_KEY)
-
-  if (!existingEntryPage) {
-    safeStorageSet(window.localStorage, WEBSITE_ENTRY_PAGE_KEY, currentPage)
-    safeStorageSet(window.sessionStorage, "entry_page", currentPage)
-  }
-
-  safeStorageSet(window.localStorage, WEBSITE_EXIT_PAGE_KEY, currentPage)
-  safeStorageSet(window.sessionStorage, "exit_page", currentPage)
 
   if (!safeStorageGet(window.localStorage, WEBSITE_REFERRER_KEY) && document.referrer) {
     safeStorageSet(window.localStorage, WEBSITE_REFERRER_KEY, document.referrer)
   }
+}
 
-  try {
-    const rawJourney = window.localStorage.getItem(WEBSITE_PAGE_JOURNEY_KEY)
-    const journey = rawJourney ? (JSON.parse(rawJourney) as string[]) : []
-    const previousPage = journey[journey.length - 1]
+function normalizeWebsiteAttributionPath(pathname: string): string {
+  const normalizedPathname = pathname || "/"
+  return normalizedPathname.replace(/\/$/, "") || "/"
+}
 
-    if (previousPage !== currentPage) {
-      journey.push(currentPage)
-      window.localStorage.setItem(
-        WEBSITE_PAGE_JOURNEY_KEY,
-        JSON.stringify(journey.slice(-WEBSITE_PAGE_JOURNEY_LIMIT)),
-      )
-    }
-  } catch {
-    // Journey persistence is best-effort only.
+function isWebsiteAttributionPage(pathname: string): boolean {
+  const pathWithoutLocale = pathname.replace(LOCALE_PREFIX_PATTERN, "") || "/"
+
+  return (
+    pathWithoutLocale !== "/fb" &&
+    !pathWithoutLocale.startsWith("/api/") &&
+    !pathWithoutLocale.startsWith("/integrate-")
+  )
+}
+
+function captureWebsiteEntryPage() {
+  if (typeof window === "undefined" || !isWebsiteAttributionPage(window.location.pathname)) {
+    return
+  }
+
+  if (!safeStorageGet(window.localStorage, WEBSITE_ENTRY_PAGE_KEY)) {
+    safeStorageSet(
+      window.localStorage,
+      WEBSITE_ENTRY_PAGE_KEY,
+      normalizeWebsiteAttributionPath(window.location.pathname),
+    )
   }
 }
 
-export function getStoredWebsiteAttribution() {
+function getWebsitePageAttribution() {
   if (typeof window === "undefined") {
     return {
-      referrer: null,
       entryPage: null,
       exitPage: null,
-      pageJourney: null,
     }
   }
 
-  const rawJourney = safeStorageGet(window.localStorage, WEBSITE_PAGE_JOURNEY_KEY)
-  let pageJourney: string | null = null
+  captureWebsiteEntryPage()
 
-  try {
-    const journey = rawJourney ? (JSON.parse(rawJourney) as string[]) : []
-    pageJourney = journey.length ? journey.join(" > ") : null
-  } catch {
-    pageJourney = null
-  }
+  const currentPage = isWebsiteAttributionPage(window.location.pathname)
+    ? normalizeWebsiteAttributionPath(window.location.pathname)
+    : null
 
   return {
-    referrer: safeStorageGet(window.localStorage, WEBSITE_REFERRER_KEY),
-    entryPage:
-      safeStorageGet(window.localStorage, WEBSITE_ENTRY_PAGE_KEY) ||
-      safeStorageGet(window.sessionStorage, "entry_page"),
-    exitPage:
-      safeStorageGet(window.localStorage, WEBSITE_EXIT_PAGE_KEY) ||
-      safeStorageGet(window.sessionStorage, "exit_page"),
-    pageJourney,
+    entryPage: safeStorageGet(window.localStorage, WEBSITE_ENTRY_PAGE_KEY) || currentPage,
+    exitPage: currentPage,
   }
 }
 
@@ -254,8 +216,6 @@ export function withIncomingTrackingParams(url: string): string {
     return url
   }
 
-  captureWebsitePageAttribution(window.location.pathname)
-
   const finalUrl = new URL(url, window.location.origin)
   const incomingParams = getIncomingTrackingParams()
 
@@ -279,6 +239,8 @@ export function getHubSpotAttributionFields(url: string): HubSpotAttributionFiel
     return []
   }
 
+  captureWebsiteReferrer()
+
   const fields: HubSpotAttributionField[] = []
   const params = getChromeStoreTrackingParams(url)
 
@@ -288,16 +250,12 @@ export function getHubSpotAttributionFields(url: string): HubSpotAttributionFiel
     }
   })
 
-  const attribution = getStoredWebsiteAttribution()
-  const referrer = attribution.referrer || document.referrer
-  const currentWebsitePath = getCurrentWebsiteAttributionPath()
-  const entryPage = attribution.entryPage || currentWebsitePath
-  const exitPage = attribution.exitPage || currentWebsitePath
+  const referrer = safeStorageGet(window.localStorage, WEBSITE_REFERRER_KEY) || document.referrer
+  const { entryPage, exitPage } = getWebsitePageAttribution()
 
   if (referrer) fields.push({ name: "referrer", value: referrer })
   if (entryPage) fields.push({ name: "entry_page", value: entryPage })
   if (exitPage) fields.push({ name: "exit_page", value: exitPage })
-  if (attribution.pageJourney) fields.push({ name: "page_journey", value: attribution.pageJourney })
 
   return fields
 }

@@ -23,14 +23,10 @@ export default function FbPage() {
         rawWorkspaceId && !isNaN(Number(rawWorkspaceId)) ? Number(rawWorkspaceId) : null
 
       const referrer = localStorage.getItem('referrer')
-      const entryPage = localStorage.getItem('entryPage')
-      const exitPage = localStorage.getItem('exitPage')
 
       if (finalWorkspaceId) {
         const body: Record<string, any> = { workspaceId: finalWorkspaceId }
         if (referrer) body.referrer = referrer
-        if (entryPage) body.entry_page = entryPage
-        if (exitPage) body.exit_page = exitPage
 
         try {
           const resp = await fetch(
