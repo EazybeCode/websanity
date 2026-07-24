@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { setRequestLocale } from 'next-intl/server'
+import { TrackedChromeStoreLink } from '@/components/TrackedChromeStoreLink'
 
 export default async function SubscriptionPage({
   params,
@@ -142,14 +143,13 @@ export default async function SubscriptionPage({
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 28, flexWrap: 'wrap' }}>
-            <a
-              href="https://chromewebstore.google.com/detail/whatsapp-ai-agents-with-c/clgficggccelgifppbcaepjdkklfcefd?utm_medium=Organic&utm_source=website&utm_campaign=eazybe%20workspace"
+            <TrackedChromeStoreLink
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
             >
               Open Chrome Extension
-            </a>
+            </TrackedChromeStoreLink>
             <Link href={`/${locale}`} className="btn btn-outline">
               Back to Home
             </Link>
