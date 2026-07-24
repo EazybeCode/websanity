@@ -235,7 +235,7 @@ const createPortableTextComponents = (
         return (
           <h1
             id={id}
-            className="text-[22px] md:text-4xl font-extrabold text-white mt-16 mb-6 first:mt-0 scroll-mt-28"
+            className="text-[22px] md:text-4xl font-extrabold [font-synthesis:none] text-white mt-16 mb-6 first:mt-0 scroll-mt-28"
           >
             {children}
           </h1>
@@ -882,7 +882,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
           )}
 
           {/* Title */}
-          <h1 className="text-[22px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold text-white leading-[1.2] tracking-tight mt-3 mb-3">
+          <h1 className="text-[22px] sm:text-[22px] md:text-[28px] lg:text-[36px] font-extrabold [font-synthesis:none] text-white leading-[1.2] tracking-tight mt-3 mb-3">
             {post.title}
           </h1>
 
