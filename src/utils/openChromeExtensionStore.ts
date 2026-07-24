@@ -58,6 +58,16 @@ function normalizeWebsiteAttributionPath(pathname: string): string {
   return normalizedPathname.replace(/\/$/, "") || "/"
 }
 
+function getCurrentWebsiteAttributionPath(): string | null {
+  if (typeof window === "undefined") {
+    return null
+  }
+
+  return isWebsiteAttributionPage(window.location.pathname)
+    ? normalizeWebsiteAttributionPath(window.location.pathname)
+    : null
+}
+
 function getTrackingParamsFromSearch(search: string): URLSearchParams {
   const params = new URLSearchParams()
 
@@ -280,8 +290,9 @@ export function getHubSpotAttributionFields(url: string): HubSpotAttributionFiel
 
   const attribution = getStoredWebsiteAttribution()
   const referrer = attribution.referrer || document.referrer
-  const entryPage = attribution.entryPage || window.location.pathname
-  const exitPage = attribution.exitPage || window.location.pathname
+  const currentWebsitePath = getCurrentWebsiteAttributionPath()
+  const entryPage = attribution.entryPage || currentWebsitePath
+  const exitPage = attribution.exitPage || currentWebsitePath
 
   if (referrer) fields.push({ name: "referrer", value: referrer })
   if (entryPage) fields.push({ name: "entry_page", value: entryPage })
