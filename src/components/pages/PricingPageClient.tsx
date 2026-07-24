@@ -742,6 +742,7 @@ function PricingCard({
   featureLabels,
   creditsIncludes,
   creditsRollover,
+  pricingLoading,
 }: {
   plan: PricingPlan
   isAnnual: boolean
@@ -756,6 +757,7 @@ function PricingCard({
   featureLabels: Record<string, string>
   creditsIncludes: string
   creditsRollover: string
+  pricingLoading: boolean
 }) {
   const Icon = planIconMap[plan.icon]
   const currency = dynamicCurrency || plan.currency
@@ -857,19 +859,21 @@ function PricingCard({
           </div>
         ) : (
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-            {currencyLabel && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{currencyLabel}</span>}
-            {priceSymbol && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{priceSymbol}</span>}
+            {!pricingLoading && currencyLabel && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{currencyLabel}</span>}
+            {!pricingLoading && priceSymbol && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{priceSymbol}</span>}
             <span
+              className={pricingLoading ? 'eazybe-price-skel' : undefined}
               style={{
                 fontFamily: 'var(--f-display)',
                 fontSize: 56,
                 fontWeight: 400,
-                color: 'var(--ink)',
+                color: pricingLoading ? 'transparent' : 'var(--ink)',
                 letterSpacing: '-0.025em',
                 lineHeight: 1,
+                minWidth: pricingLoading ? 100 : undefined,
               }}
             >
-              {price}
+              {pricingLoading ? '000' : price}
             </span>
             <span style={{ fontSize: 14, color: 'var(--ink-4)' }}>{priceUnit}</span>
           </div>
@@ -953,12 +957,14 @@ function PricingCalculator({
   priceSymbol,
   isAnnual,
   copy,
+  pricingLoading,
 }: {
   plans: CalcPlan[]
   currencyLabel: string
   priceSymbol: string
   isAnnual: boolean
   copy: LocaleFallback['calculator']
+  pricingLoading: boolean
 }) {
   const defaultBase = plans.find((p) => p.planKey === 'basic-ai')?.planKey ?? plans[0]?.planKey ?? ''
   const [basePlanKey, setBasePlanKey] = useState(defaultBase)
@@ -1214,8 +1220,17 @@ function PricingCalculator({
         <span style={{ fontSize: 11, fontWeight: 600, opacity: 0.65, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
           {totalSeats} {totalSeats === 1 ? copy.seat : copy.seats} · {copy.totalSuffix}
         </span>
-        <span style={{ fontSize: 17, fontWeight: 700, letterSpacing: '-0.01em' }}>
-          {formatMoney(total)}
+        <span
+          className={pricingLoading ? 'eazybe-price-skel' : undefined}
+          style={{
+            fontSize: 17,
+            fontWeight: 700,
+            letterSpacing: '-0.01em',
+            color: pricingLoading ? 'transparent' : 'inherit',
+            minWidth: pricingLoading ? 70 : undefined,
+          }}
+        >
+          {pricingLoading ? '000' : formatMoney(total)}
         </span>
         <span style={{ fontSize: 11, opacity: 0.65 }}>{priceUnit}</span>
       </div>
@@ -1526,37 +1541,23 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
           </div>
         </div>
       )}
-      {pricingLoading && (
-        <div
-          role="status"
-          aria-live="polite"
-          aria-label="Loading pricing"
-          style={{
-            position: 'fixed',
-            top: 80,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'var(--bg, #ffffff)',
-            zIndex: 90,
-          }}
-        >
-          <span
-            style={{
-              width: 48,
-              height: 48,
-              border: '3px solid rgba(91, 75, 174, 0.18)',
-              borderTopColor: '#5b4bae',
-              borderRadius: '50%',
-              animation: 'pricing-loading-spin 0.9s linear infinite',
-            }}
-          />
-          <style>{`@keyframes pricing-loading-spin { to { transform: rotate(360deg); } }`}</style>
-        </div>
-      )}
+      {/* Global shimmer keyframes reused by the price-number skeletons in
+          PricingCard / PricingCalculator. Rendered once at the page root so
+          multiple cards share the same animation cycle. */}
+      <style>{`
+        @keyframes eazybe-price-shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+        .eazybe-price-skel {
+          display: inline-block;
+          border-radius: 8px;
+          background: linear-gradient(90deg, #ECEFF7 0%, #DDE2ED 40%, #ECEFF7 80%);
+          background-size: 200% 100%;
+          animation: eazybe-price-shimmer 1.2s ease-in-out infinite;
+          color: transparent;
+        }
+      `}</style>
       {/* Hero */}
       <section className="page-hero" data-tone="dark">
         <div className="container">
@@ -1608,6 +1609,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
                   currencyLabel={currencyLabel}
                   priceSymbol={priceSymbol}
                   copy={fallback.calculator}
+                  pricingLoading={pricingLoading}
                 />
               </div>
             )
@@ -1637,6 +1639,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
                   featureLabels={fallback.featureLabels}
                   creditsIncludes={fallback.creditsIncludes}
                   creditsRollover={fallback.creditsRollover}
+                  pricingLoading={pricingLoading}
                 />
               )
             })}

@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { LeadGenerationForm } from '@/components/lead/LeadGenerationForm'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 
 export function BeaBot() {
   const t = useTranslations('landingV3.beaForm')
+  const { isOpen: isModalOpen } = useTrialModal()
   // Open by default on desktop (≥1024px) — mobile users start with the form
   // collapsed and tap Bea to open it. Starting closed avoids an SSR/CSR
   // hydration mismatch; the desktop auto-open happens client-side after mount.
@@ -35,6 +37,13 @@ export function BeaBot() {
     window.addEventListener('eazybe:open-bea-form', handler)
     return () => window.removeEventListener('eazybe:open-bea-form', handler)
   }, [])
+
+  // Collapse Bea whenever the trial / demo modal opens from anywhere. The
+  // corner form and a centered modal on-screen at the same time is visual
+  // noise — the visitor's focus is on the modal they just triggered.
+  useEffect(() => {
+    if (isModalOpen) setOpen(false)
+  }, [isModalOpen])
 
   return (
     <>

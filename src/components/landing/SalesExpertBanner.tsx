@@ -13,7 +13,7 @@ const DEMO_URL = 'https://eazybe.info/demono'
 
 export function SalesExpertBanner() {
   const t = useTranslations('salesBanner')
-  const { openModal } = useTrialModal()
+  const { openModal, isOpen: isModalOpen } = useTrialModal()
   const [open, setOpen] = useState(false)
   const [isDesktop, setIsDesktop] = useState(true)
 
@@ -63,6 +63,15 @@ export function SalesExpertBanner() {
       /* ignore */
     }
   }
+
+  // Auto-dismiss when the trial / demo modal opens from anywhere on the
+  // page. If the visitor is already engaging with a form, the sticky
+  // sales banner underneath is noise — hide it and start the 7-day
+  // suppression window so it doesn't pop back on close.
+  useEffect(() => {
+    if (isModalOpen && open) dismiss()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isModalOpen])
 
   if (!open || !isDesktop) return null
 
