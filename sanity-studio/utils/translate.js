@@ -1,39 +1,159 @@
 /**
- * Google Translate integration for Sanity Studio
- * Uses the free Google Translate endpoint (no API key required)
+ * Claude-powered translation for Sanity Studio.
  *
- * Handles the full body block palette so translated documents preserve every
- * element (tables, quotes, callouts, accordions, images with alt/caption,
- * video captions, button labels, comparison tables, etc.).
+ * Replaces the old free Google Translate endpoint with Claude for accurate,
+ * natural es / pt-BR / tr translations. Every translatable field of a post /
+ * comparisonPost still funnels through `translatePostFields`, so the two Studio
+ * actions (createTranslations, syncFromEnglish) and TranslationLinks are
+ * unchanged.
+ *
+ * How it works (two-pass batching):
+ *   1. COLLECT pass — walk the document and gather every unique string
+ *      (no network calls; strings pass through unchanged).
+ *   2. One chunked Claude call translates the whole set together, so shared
+ *      terminology (CTAs, headings, product terms) stays consistent.
+ *   3. APPLY pass — walk the document again, substituting the translations.
+ *
+ * The full body-block palette is preserved (tables, quotes, callouts,
+ * accordions, images with alt/caption, video captions, button labels,
+ * comparison tables, etc.).
+ *
+ * Key handling: reads `SANITY_STUDIO_ANTHROPIC_API_KEY` (the Sanity-standard
+ * env prefix). Set it in `sanity-studio/.env` for LOCAL use only — do not bake
+ * it into a `sanity deploy` build, or it would ship in the public studio bundle.
  */
 
-const LANG_MAP = {
-  es: 'es',
-  tr: 'tr',
-  'pt-BR': 'pt',
+import Anthropic from '@anthropic-ai/sdk'
+
+// Default model. Swap to 'claude-haiku-4-5' or 'claude-sonnet-5' here if you
+// want cheaper/faster translation at some quality cost.
+const MODEL = 'claude-opus-4-8'
+
+const LANG_NAMES = {
+  es: 'Spanish (Spain)',
+  tr: 'Turkish',
+  'pt-BR': 'Brazilian Portuguese',
+}
+
+// ── Two-pass state ──────────────────────────────────────────────────────────
+// `translateText` consults these so the same walker code both collects strings
+// (pass 1) and applies cached translations (pass 2).
+let COLLECT = false
+let COLLECTED = null // Set<string> during the collect pass
+let CACHE = null // Map<string, string> during the apply pass
+
+// ── Claude batch translator ─────────────────────────────────────────────────
+
+function getClient() {
+  const apiKey =
+    typeof process !== 'undefined' && process.env
+      ? process.env.SANITY_STUDIO_ANTHROPIC_API_KEY
+      : undefined
+  if (!apiKey) {
+    throw new Error(
+      'Missing SANITY_STUDIO_ANTHROPIC_API_KEY. Add it to sanity-studio/.env and restart the Studio ' +
+        '(local only — do not include this key in a deployed build).'
+    )
+  }
+  // dangerouslyAllowBrowser: the Studio runs client-side. Safe only because the
+  // key is provided locally and never shipped in a deployed bundle.
+  return new Anthropic({ apiKey, dangerouslyAllowBrowser: true })
+}
+
+// Group strings into batches bounded by both item count and total characters,
+// so each Claude call stays well within a comfortable output size.
+function chunkStrings(arr, maxItems, maxChars) {
+  const out = []
+  let cur = []
+  let curChars = 0
+  for (const s of arr) {
+    const len = s.length
+    if (cur.length && (cur.length >= maxItems || curChars + len > maxChars)) {
+      out.push(cur)
+      cur = []
+      curChars = 0
+    }
+    cur.push(s)
+    curChars += len
+  }
+  if (cur.length) out.push(cur)
+  return out
 }
 
 /**
- * Translate a single string. Returns the original on empty / error.
+ * Translate an array of unique strings via Claude. Returns a Map(original →
+ * translated). On any error (missing key surfaces to the caller; a bad batch is
+ * left untranslated) the affected strings simply keep their English text.
+ */
+async function claudeTranslateBatch(strings, targetLang) {
+  const cache = new Map()
+  const unique = strings.filter((s) => s && typeof s === 'string' && s.trim())
+  if (unique.length === 0) return cache
+
+  const languageName = LANG_NAMES[targetLang] || targetLang
+  const client = getClient() // throws early if the key is missing
+  const batches = chunkStrings(unique, 40, 4000)
+
+  const system =
+    `You are a professional translator localizing a B2B SaaS marketing site (Eazybe — a WhatsApp CRM) ` +
+    `from English into ${languageName}.\n` +
+    `Translate each string in the JSON array into natural, fluent, idiomatic ${languageName} as a native ` +
+    `marketer would write it — not a literal word-for-word rendering. Keep the tone clear, confident, and concise.\n` +
+    `Do NOT translate: brand and product names (Eazybe, WhatsApp, HubSpot, Salesforce, Zoho, Bitrix24, ` +
+    `LeadSquared, Freshworks, Freshdesk), the acronyms CRM/API/SaaS/URL, URLs, email addresses, code, or ` +
+    `{{placeholder}} tokens.\n` +
+    `Preserve exactly: HTML tags, markdown, emojis, numbers, punctuation, and any leading/trailing whitespace.\n` +
+    `Return ONLY a JSON array of the translated strings, in the same order and with the same length as the ` +
+    `input array. No commentary, no code fences.`
+
+  for (const batch of batches) {
+    try {
+      const res = await client.messages.create({
+        model: MODEL,
+        max_tokens: 8192,
+        system,
+        messages: [{ role: 'user', content: JSON.stringify(batch) }],
+      })
+      const raw = (res.content || [])
+        .filter((b) => b.type === 'text')
+        .map((b) => b.text)
+        .join('')
+        .trim()
+      // Tolerate an accidental ```json fence.
+      const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '')
+      const arr = JSON.parse(cleaned)
+      if (Array.isArray(arr) && arr.length === batch.length) {
+        batch.forEach((src, i) => {
+          if (typeof arr[i] === 'string') cache.set(src, arr[i])
+        })
+      } else {
+        console.warn('Claude translation: batch length mismatch — leaving these strings in English.')
+      }
+    } catch (err) {
+      // Re-throw a missing-key error so the editor sees a clear message; for a
+      // per-batch failure, leave those strings untranslated and continue.
+      if (err instanceof Error && err.message.includes('SANITY_STUDIO_ANTHROPIC_API_KEY')) throw err
+      console.warn('Claude translation batch failed — leaving these strings in English:', err?.message || err)
+    }
+  }
+  return cache
+}
+
+// ── String translation (state-aware) ────────────────────────────────────────
+
+/**
+ * Translate a single string. During the collect pass it records the string and
+ * returns it unchanged; during the apply pass it returns the cached translation
+ * (or the original if none). Returns the original for empty input.
  */
 export async function translateText(text, targetLang) {
   if (!text || typeof text !== 'string' || !text.trim()) return text
-
-  const googleLang = LANG_MAP[targetLang] || targetLang
-
-  try {
-    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${googleLang}&dt=t&q=${encodeURIComponent(text)}`
-    const res = await fetch(url)
-    const data = await res.json()
-
-    if (data && data[0]) {
-      return data[0].map((segment) => segment[0]).join('')
-    }
-    return text
-  } catch (err) {
-    console.warn(`Translation failed for "${text.substring(0, 30)}...":`, err)
+  if (COLLECT) {
+    COLLECTED.add(text)
     return text
   }
+  if (CACHE && CACHE.has(text)) return CACHE.get(text)
+  return text
 }
 
 /**
@@ -301,11 +421,11 @@ export async function translateImage(image, targetLang) {
 }
 
 /**
- * Translate every translatable field of a post / comparisonPost document.
- * Structural fields (refs, dates, flags, schemas) are left for the caller to
- * copy verbatim. Top-level image alts/captions are translated here too.
+ * Walk every translatable field of a post / comparisonPost document. Runs once
+ * per pass (collect, then apply) — see `translatePostFields`. Structural fields
+ * (refs, dates, flags, schemas) are left for the caller to copy verbatim.
  */
-export async function translatePostFields(fields, targetLang) {
+async function walkPostFields(fields, targetLang) {
   const [
     title,
     excerpt,
@@ -362,5 +482,32 @@ export async function translatePostFields(fields, targetLang) {
     twitterDescription,
     featuredImage,
     socialShareImage,
+  }
+}
+
+/**
+ * Translate every translatable field of a post / comparisonPost document with
+ * Claude, using the two-pass batch strategy described at the top of the file.
+ */
+export async function translatePostFields(fields, targetLang) {
+  // Pass 1 — collect every unique translatable string (no network calls).
+  COLLECT = true
+  COLLECTED = new Set()
+  try {
+    await walkPostFields(fields, targetLang)
+  } finally {
+    COLLECT = false
+  }
+
+  // One chunked Claude call for the whole document → translation cache.
+  const strings = [...COLLECTED]
+  COLLECTED = null
+  CACHE = await claudeTranslateBatch(strings, targetLang)
+
+  // Pass 2 — rebuild the document from the cache.
+  try {
+    return await walkPostFields(fields, targetLang)
+  } finally {
+    CACHE = null
   }
 }
