@@ -78,6 +78,8 @@ const nextConfig: NextConfig = {
       // (502), so browser-facing endpoints go through a non-/api path and get
       // rewritten to the API route inside Next — same trick as the sitemap.
       { source: '/track/views', destination: '/api/views' },
+      // SEO & Discovery generator, called from the Sanity Studio document action.
+      { source: '/track/generate-seo', destination: '/api/generate-seo' },
     ]
   },
   async redirects() {

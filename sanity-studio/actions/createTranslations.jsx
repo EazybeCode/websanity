@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useClient } from 'sanity'
-import { translatePostFields } from '../utils/translate.js'
+import { translatePostFields, translateSlug } from '../utils/translate.js'
 
 const TARGET_LANGUAGES = [
   { code: 'es', label: 'Spanish', flag: '🇪🇸' },
@@ -9,6 +9,17 @@ const TARGET_LANGUAGES = [
 ]
 
 const SUPPORTED_TYPES = new Set(['post', 'comparisonPost'])
+
+// Translation expands text and overshoots SEO limits (titles 60, descriptions
+// 160). Trim at a word boundary so the meta stays a complete phrase.
+function capAtWord(str, max) {
+  if (!str) return str
+  const s = String(str).trim()
+  if (s.length <= max) return s
+  const cut = s.slice(0, max)
+  const sp = cut.lastIndexOf(' ')
+  return (sp > max * 0.6 ? cut.slice(0, sp) : cut).trim()
+}
 
 export function CreateTranslationsAction(props) {
   const { draft, published, type } = props
@@ -47,7 +58,16 @@ export function CreateTranslationsAction(props) {
         const created = []
 
         for (const lang of missing) {
-          const langSlug = `${slugBase}-${lang.code}`
+          // Localized, ASCII slug from the English SLUG (the keyword phrase —
+          // tighter than the title); fall back to the English slug + locale
+          // suffix if the model call fails.
+          let langSlug = ''
+          try {
+            langSlug = await translateSlug(slugBase || doc.title, lang.code)
+          } catch (e) {
+            langSlug = ''
+          }
+          if (!langSlug) langSlug = `${slugBase}-${lang.code}`
           const newId = `drafts.${type}-${langSlug}-${lang.code}`
 
           try {
@@ -68,6 +88,7 @@ export function CreateTranslationsAction(props) {
                 ogDescription: doc.ogDescription || '',
                 twitterTitle: doc.twitterTitle || '',
                 twitterDescription: doc.twitterDescription || '',
+                customMetaTags: doc.customMetaTags || '',
                 featuredImage: doc.featuredImage,
                 socialShareImage: doc.socialShareImage,
               },
@@ -92,13 +113,14 @@ export function CreateTranslationsAction(props) {
               tldr: translated.tldr,
               tldrHeading: translated.tldrHeading,
               faqTitle: translated.faqTitle,
-              metaTitle: translated.metaTitle,
-              metaDescription: translated.metaDescription,
+              // SEO limits enforced at a word boundary (titles 60, desc 160).
+              metaTitle: capAtWord(translated.metaTitle, 60),
+              metaDescription: capAtWord(translated.metaDescription, 160),
               metaKeywords: translated.metaKeywords,
-              ogTitle: translated.ogTitle,
-              ogDescription: translated.ogDescription,
-              twitterTitle: translated.twitterTitle,
-              twitterDescription: translated.twitterDescription,
+              ogTitle: capAtWord(translated.ogTitle, 60),
+              ogDescription: capAtWord(translated.ogDescription, 160),
+              twitterTitle: capAtWord(translated.twitterTitle, 60),
+              twitterDescription: capAtWord(translated.twitterDescription, 160),
 
               // Images — alt/caption translated, asset/hotspot preserved
               featuredImage: translated.featuredImage || doc.featuredImage,
@@ -112,7 +134,9 @@ export function CreateTranslationsAction(props) {
               tableOfContents: doc.tableOfContents,
               breadcrumbs: doc.breadcrumbs || [],
               jsonLdSchemas: doc.jsonLdSchemas,
-              customMetaTags: doc.customMetaTags,
+              // Discovery meta tags localized per locale (languageCode set,
+              // primaryTaxonomyEn/robots kept fixed); falls back to English.
+              customMetaTags: translated.customMetaTags || doc.customMetaTags,
               noindex: doc.noindex,
               nofollow: doc.nofollow,
 

@@ -92,49 +92,99 @@ async function claudeTranslateBatch(strings, targetLang) {
 
   const languageName = LANG_NAMES[targetLang] || targetLang
   const client = getClient() // throws early if the key is missing
-  const batches = chunkStrings(unique, 40, 4000)
+
+  // Preserve spacing deterministically. Portable Text splits a paragraph into
+  // several spans around bold/link marks, and the space between words often
+  // lives at a span's leading/trailing edge. We translate only the trimmed
+  // CORE of each string and re-attach the exact original edge whitespace, so
+  // the model can never drop or add a space and collapse adjacent spans
+  // ("from October" → "fromOctober").
+  const parts = new Map() // original string -> { leading, core, trailing }
+  const coreSet = new Set()
+  for (const s of unique) {
+    const leading = (s.match(/^\s+/) || [''])[0]
+    const trailing = (s.match(/\s+$/) || [''])[0]
+    const core = s.slice(leading.length, s.length - trailing.length)
+    parts.set(s, { leading, core, trailing })
+    if (core) coreSet.add(core)
+  }
 
   const system =
     `You are a professional translator localizing a B2B SaaS marketing site (Eazybe — a WhatsApp CRM) ` +
     `from English into ${languageName}.\n` +
     `Translate each string in the JSON array into natural, fluent, idiomatic ${languageName} as a native ` +
     `marketer would write it — not a literal word-for-word rendering. Keep the tone clear, confident, and concise.\n` +
+    `Each string may be a fragment of a larger sentence and can start or end mid-sentence; translate it as the ` +
+    `fragment it is. Do not add or remove words, punctuation, or surrounding spaces that were not there.\n` +
     `Do NOT translate: brand and product names (Eazybe, WhatsApp, HubSpot, Salesforce, Zoho, Bitrix24, ` +
     `LeadSquared, Freshworks, Freshdesk), the acronyms CRM/API/SaaS/URL, URLs, email addresses, code, or ` +
     `{{placeholder}} tokens.\n` +
-    `Preserve exactly: HTML tags, markdown, emojis, numbers, punctuation, and any leading/trailing whitespace.\n` +
+    `Preserve exactly: HTML tags, markdown, emojis, numbers, and punctuation.\n` +
     `Return ONLY a JSON array of the translated strings, in the same order and with the same length as the ` +
-    `input array. No commentary, no code fences.`
+    `input array. Use standard JSON: delimit every string with double quotes ("), never single quotes, and ` +
+    `escape any double quote inside a string as \\". No commentary, no code fences.`
 
-  for (const batch of batches) {
+  // Parse the model's reply into an array of exactly `expected` strings, or null
+  // if it isn't valid. Tolerates a ```json fence and a stray trailing comma; a
+  // single mis-delimited element (the Turkish-apostrophe glitch) simply fails
+  // here and triggers a retry of the whole batch.
+  const parseArray = (raw, expected) => {
+    const cleaned = raw
+      .replace(/^```(?:json)?\s*/i, '')
+      .replace(/\s*```$/i, '')
+      .trim()
     try {
-      const res = await client.messages.create({
-        model: MODEL,
-        max_tokens: 8192,
-        system,
-        messages: [{ role: 'user', content: JSON.stringify(batch) }],
-      })
-      const raw = (res.content || [])
-        .filter((b) => b.type === 'text')
-        .map((b) => b.text)
-        .join('')
-        .trim()
-      // Tolerate an accidental ```json fence.
-      const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '')
       const arr = JSON.parse(cleaned)
-      if (Array.isArray(arr) && arr.length === batch.length) {
-        batch.forEach((src, i) => {
-          if (typeof arr[i] === 'string') cache.set(src, arr[i])
-        })
-      } else {
-        console.warn('Claude translation: batch length mismatch — leaving these strings in English.')
-      }
-    } catch (err) {
-      // Re-throw a missing-key error so the editor sees a clear message; for a
-      // per-batch failure, leave those strings untranslated and continue.
-      if (err instanceof Error && err.message.includes('SANITY_STUDIO_ANTHROPIC_API_KEY')) throw err
-      console.warn('Claude translation batch failed — leaving these strings in English:', err?.message || err)
+      return Array.isArray(arr) && arr.length === expected ? arr : null
+    } catch {
+      return null
     }
+  }
+
+  const coreMap = new Map() // core -> translated core (edge-trimmed)
+  const batches = chunkStrings([...coreSet], 40, 4000)
+  for (const batch of batches) {
+    let arr = null
+    // Retry the batch a few times: a malformed-JSON reply is almost always a
+    // one-off formatting glitch that a fresh generation fixes.
+    for (let attempt = 0; attempt < 3 && !arr; attempt++) {
+      try {
+        const res = await client.messages.create({
+          model: MODEL,
+          max_tokens: 8192,
+          system,
+          messages: [{ role: 'user', content: JSON.stringify(batch) }],
+        })
+        const raw = (res.content || [])
+          .filter((b) => b.type === 'text')
+          .map((b) => b.text)
+          .join('')
+          .trim()
+        arr = parseArray(raw, batch.length)
+        if (!arr && attempt < 2) {
+          console.warn(`Claude translation: unparseable/mismatched batch — retry ${attempt + 1}/2.`)
+        }
+      } catch (err) {
+        // Re-throw a missing-key error so the editor sees a clear message; for a
+        // transient per-batch failure, retry, then leave untranslated.
+        if (err instanceof Error && err.message.includes('SANITY_STUDIO_ANTHROPIC_API_KEY')) throw err
+        console.warn('Claude translation batch error — retrying:', err?.message || err)
+      }
+    }
+    if (arr) {
+      batch.forEach((src, i) => {
+        // Trim the model's output too, so the re-attached edges are exact.
+        if (typeof arr[i] === 'string') coreMap.set(src, arr[i].trim())
+      })
+    } else {
+      console.warn('Claude translation: batch failed after retries — leaving these strings in English.')
+    }
+  }
+
+  // Re-attach the exact original leading/trailing whitespace to each core.
+  for (const [orig, { leading, core, trailing }] of parts) {
+    const translatedCore = coreMap.has(core) ? coreMap.get(core) : core
+    cache.set(orig, leading + translatedCore + trailing)
   }
   return cache
 }
@@ -420,6 +470,121 @@ export async function translateImage(image, targetLang) {
   return next
 }
 
+// ── Custom Meta Tags (HTML) ──────────────────────────────────────────────────
+// The "🏷️ Custom Meta Tags (HTML)" field is a raw block of <meta> tags holding
+// the AI-discovery values (searchTitle, user-problem, conversational-query, …).
+// We localize the human-readable CONTENT of the discovery tags, set languageCode
+// per locale, and keep the technical/brand tags fixed. State-aware: goes through
+// the same collect/apply passes as every other string (so terminology matches).
+
+// Discovery tags whose `content` gets translated. Everything not listed is kept
+// verbatim — primaryTaxonomyEn (always English), siteSection, productName, and
+// the robots/googlebot/bingbot directives.
+const CUSTOM_META_TRANSLATE = new Set([
+  'searchTitle', 'focusArea', 'primaryTopic', 'pageType',
+  'answer-type', 'target-audience', 'content-intent', 'conversational-query',
+  'ai-readability', 'context-window', 'user-problem', 'solution-summary',
+  'primary-benefit', 'use-case', 'implementation-difficulty', 'time-to-value',
+])
+// Studio language code → the `languageCode` meta value.
+const META_LANG_CODE = { es: 'es', tr: 'tr', 'pt-BR': 'pt', en: 'en' }
+
+function escMetaAttr(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+}
+
+/**
+ * Localize a Custom Meta Tags (HTML) blob. Parses each `<meta name content>`,
+ * translates the discovery values, sets languageCode for the locale, and keeps
+ * the technical/brand tags untouched. Returns the original string if it has no
+ * parseable meta tags.
+ */
+export async function translateCustomMetaTags(html, targetLang) {
+  if (!html || typeof html !== 'string' || !html.trim()) return html
+  const re = /<meta\s+name="([^"]+)"\s+content="([^"]*)"\s*\/?>/g
+  const tags = []
+  let m
+  while ((m = re.exec(html))) tags.push({ name: m[1], content: m[2] })
+  if (tags.length === 0) return html
+
+  const out = []
+  for (const t of tags) {
+    let content = t.content
+    if (t.name === 'languageCode') {
+      content = META_LANG_CODE[targetLang] || targetLang
+    } else if (CUSTOM_META_TRANSLATE.has(t.name)) {
+      content = await translateText(t.content, targetLang)
+    }
+    out.push(`<meta name="${escMetaAttr(t.name)}" content="${escMetaAttr(content)}"/>`)
+  }
+  return out.join('\n')
+}
+
+// ── URL slug ─────────────────────────────────────────────────────────────────
+// Slugs must be ASCII, lowercase, hyphenated. Fold accents (á→a, ç→c) and the
+// base letters NFD doesn't decompose (Turkish ı/İ, ş, ğ, etc.), then strip
+// anything that isn't a-z0-9 to hyphens.
+const SLUG_ASCII = {
+  ı: 'i', İ: 'i', ş: 's', Ş: 's', ğ: 'g', Ğ: 'g', ç: 'c', Ç: 'c',
+  ö: 'o', Ö: 'o', ü: 'u', Ü: 'u', ł: 'l', Ł: 'l', ø: 'o', Ø: 'o',
+  đ: 'd', Đ: 'd', æ: 'ae', Æ: 'ae', œ: 'oe', Œ: 'oe', ß: 'ss',
+}
+export function slugifyAscii(s) {
+  return String(s || '')
+    .replace(/[ıİşŞğĞçÇöÖüÜłŁøØđĐæÆœŒß]/g, (ch) => SLUG_ASCII[ch] || ch)
+    .normalize('NFD')
+    .replace(/\p{Mn}/gu, '')
+    .normalize('NFC')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .replace(/-{2,}/g, '-')
+    .slice(0, 80)
+    .replace(/-+$/g, '')
+}
+
+/**
+ * Produce a localized, SEO-friendly URL slug. Give it the English keyword
+ * phrase (ideally the English slug, de-hyphenated). Makes a small dedicated
+ * Claude call for a tight native equivalent, then folds it to a clean ASCII
+ * slug. Returns '' on failure so the caller can fall back to the English slug.
+ */
+export async function translateSlug(sourceText, targetLang) {
+  const text = (sourceText || '').replace(/-/g, ' ').trim()
+  if (!text) return ''
+  const languageName = LANG_NAMES[targetLang] || targetLang
+  let phrase = ''
+  try {
+    const client = getClient()
+    const res = await client.messages.create({
+      model: MODEL,
+      max_tokens: 60,
+      system:
+        `You generate a SHORT, SEO-friendly URL slug in ${languageName} from the given English keyword phrase.\n` +
+        `Produce the natural ${languageName} equivalent, optimized as a slug:\n` +
+        `- 3 to 5 words MAX — fewer is better; mirror the brevity of the English phrase, do not expand it.\n` +
+        `- Keyword-first. Drop articles, prepositions and filler (e.g. de, para, para que, için, ile, e, the, to, for, and).\n` +
+        `- Translate for meaning in natural ${languageName} word order, never word-for-word.\n` +
+        `- Keep brand/product names verbatim (WhatsApp, CRM, HubSpot, Salesforce, Zoho, Eazybe). No years or numbers.\n` +
+        `Return ONLY the phrase as plain lowercase words separated by single spaces — no punctuation, quotes, or commentary.`,
+      messages: [{ role: 'user', content: text }],
+    })
+    phrase = (res.content || [])
+      .filter((b) => b.type === 'text')
+      .map((b) => b.text)
+      .join('')
+      .trim()
+  } catch (err) {
+    if (err instanceof Error && err.message.includes('SANITY_STUDIO_ANTHROPIC_API_KEY')) throw err
+    return ''
+  }
+  return slugifyAscii(phrase)
+}
+
 /**
  * Walk every translatable field of a post / comparisonPost document. Runs once
  * per pass (collect, then apply) — see `translatePostFields`. Structural fields
@@ -444,6 +609,7 @@ async function walkPostFields(fields, targetLang) {
     twitterDescription,
     featuredImage,
     socialShareImage,
+    customMetaTags,
   ] = await Promise.all([
     translateText(fields.title, targetLang),
     translateText(fields.excerpt, targetLang),
@@ -462,6 +628,7 @@ async function walkPostFields(fields, targetLang) {
     translateText(fields.twitterDescription, targetLang),
     translateImage(fields.featuredImage, targetLang),
     translateImage(fields.socialShareImage, targetLang),
+    translateCustomMetaTags(fields.customMetaTags, targetLang),
   ])
 
   return {
@@ -482,6 +649,7 @@ async function walkPostFields(fields, targetLang) {
     twitterDescription,
     featuredImage,
     socialShareImage,
+    customMetaTags,
   }
 }
 

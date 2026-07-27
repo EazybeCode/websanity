@@ -5,6 +5,7 @@ import { visionTool } from '@sanity/vision'
 import customSchemaTypes from './schemas/index.js'
 import { TranslationLinks } from './schemas/TranslationLinks.jsx'
 import { CreateTranslationsAction } from './actions/createTranslations.jsx'
+import { GenerateSeoAction } from './actions/generateSeo.jsx'
 import { OpenPreviewAction } from './actions/openPreview.jsx'
 import { ReadTimeInput } from './components/ReadTimeInput.jsx'
 
@@ -1722,10 +1723,10 @@ export default defineConfig({
   document: {
     actions: (prev, context) => {
       if (context.schemaType === 'post') {
-        return [...prev, CreateTranslationsAction, OpenPreviewAction]
+        return [...prev, GenerateSeoAction, CreateTranslationsAction, OpenPreviewAction]
       }
       if (context.schemaType === 'comparisonPost') {
-        return [...prev, CreateTranslationsAction, OpenPreviewAction]
+        return [...prev, GenerateSeoAction, CreateTranslationsAction, OpenPreviewAction]
       }
       return prev
     },
