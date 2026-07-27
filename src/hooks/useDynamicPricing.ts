@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from 'react'
 
-const IP_API_KEY = "PORlxVDRsByNjeV4bt1sNXwptdhKTaK0TOjtqNPmtiHASDauUp"
+// Geolocation via ipwho.org; its nested response is flattened by
+// mapIpwhoToDetails() into the ipapi.co-shaped UserIpDetails this hook caches.
+const IPWHO_API_KEY = "lw_ipwho_6798357a_cf942a9434a1c3ba8f83ee2a467b2911"
+const IPWHO_URL = "https://api.ipwho.org/me"
 
 interface Plan {
   id: number
@@ -125,12 +128,22 @@ const getCountryCode = async (): Promise<UserIpDetails | null> => {
   const cached = readCache<UserIpDetails>('eazybe:pricing:userIp:v1')
   if (cached) return cached
   try {
-    const res = await fetchWithTimeout(`https://ipapi.co/json/?key=${IP_API_KEY}`)
-    const data = (await res.json()) as UserIpDetails
-    writeCache('eazybe:pricing:userIp:v1', data)
+    const res = await fetchWithTimeout(`${IPWHO_URL}?apiKey=${IPWHO_API_KEY}`)
+    const data = mapIpwhoToDetails(await res.json())
+    if (data) writeCache('eazybe:pricing:userIp:v1', data)
     return data
   } catch {
     return null
+  }
+}
+
+function mapIpwhoToDetails(raw: any): UserIpDetails | null {
+  if (!raw?.success || !raw?.data) return null
+  const geo = raw.data.geoLocation ?? {}
+  return {
+    currency: raw.data.currency?.code,
+    country_code: geo.countryCode,
+    country_name: geo.country,
   }
 }
 
