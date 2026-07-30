@@ -42,6 +42,11 @@ export const TrialModalProvider: React.FC<{ children: ReactNode }> = ({ children
     // by the user; the Image request errors out silently once fetched.
     if (modalMode === 'demo' && typeof window !== 'undefined') {
       try { new Image().src = 'https://eazybe.info/b8y' } catch { /* ignore */ }
+      // "Book a Demo" opens the Calendly booking in a NEW TAB (no on-page form
+      // or embed). eazybe.info/demono 301s to Calendly. Synchronous in the
+      // click handler so popup blockers allow it. Tracking above is preserved.
+      window.open('https://eazybe.info/demono', '_blank', 'noopener')
+      return
     }
     setMode(modalMode)
     setIsOpen(true)
