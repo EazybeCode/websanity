@@ -104,7 +104,10 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
   const [emailError, setEmailError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [step, setStep] = useState<'form' | 'calendar'>('form')
+  // Lead-capture form removed: open straight to the embedded Calendly on the
+  // same page (no Name/Email/Phone step). The 'form' branch is kept in the
+  // file but is no longer reachable.
+  const [step, setStep] = useState<'form' | 'calendar'>('calendar')
   const [isCalendlyReady, setIsCalendlyReady] = useState(false)
 
   const calendlyContainerRef = useRef<HTMLDivElement>(null)
@@ -151,7 +154,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   // Reset every time modal closes so the next visitor gets a fresh form
   useEffect(() => {
     if (!isOpen) {
-      setStep('form')
+      setStep('calendar')
       setIsSubmitting(false)
       setEmailError('')
       setIsCalendlyReady(false)
