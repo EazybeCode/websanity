@@ -211,6 +211,13 @@ const RESOURCES = [
   },
 ]
 
+// Mobile-only suffix for integration labels: the desktop dropdown shows
+// "HubSpot WhatsApp", the mobile drawer shows "HubSpot WhatsApp Integration"
+// (localized). Brand + WhatsApp come from the label; this adds the word.
+const INT_WORD: Record<string, string> = {
+  en: 'Integration', es: 'Integración', br: 'Integração', tr: 'Entegrasyonu',
+}
+
 export function Nav() {
   const t = useTranslations('landingV3.nav')
   const { openModal } = useTrialModal()
@@ -538,7 +545,7 @@ export function Nav() {
                       <a href={lh(i.href)} onClick={closeMenu}>
                         <span className="nav-drawer-item-icon" style={{ background: i.bg }} dangerouslySetInnerHTML={{ __html: i.icon }} />
                         <span className="nav-drawer-item-body">
-                          <span className="nav-drawer-item-name">{tr.name}</span>
+                          <span className="nav-drawer-item-name">{tr.name} {INT_WORD[locale] || INT_WORD.en}</span>
                           <span className="nav-drawer-item-desc">{tr.desc ?? i.desc}</span>
                         </span>
                       </a>

@@ -13,11 +13,22 @@ function withLocale(href: string, locale: string): string {
   return `/${locale}${href}`
 }
 
+// "<Brand> WhatsApp" label (matches the nav Integrations dropdown). Brand names
+// don't translate, so this is the same across locales.
+const intLabel = (brand: string) => `${brand} WhatsApp`
+
+// Mobile-only suffix word: desktop shows "HubSpot WhatsApp", mobile shows
+// "HubSpot WhatsApp Integration" (localized). Shown/hidden via .footer-int-word.
+const INT_WORD: Record<string, string> = {
+  en: 'Integration', es: 'Integración', br: 'Integração', tr: 'Entegrasyonu',
+}
+
 // Column structure with translation keys. Each item references a key in
 // landingV3.footer so its display label tracks the active locale. The `href`
 // stays static. `literalName` shortcircuits the translation (used for brand
-// names that don't change across locales).
-const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string; href: string; badgeKey?: string }[] }[] = [
+// names that don't change across locales). `brand` renders as the
+// "<brand> WhatsApp" label.
+const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string; brand?: string; href: string; badgeKey?: string }[] }[] = [
   {
     titleKey: 'colAgents',
     items: [
@@ -31,14 +42,14 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
   {
     titleKey: 'colIntegrations',
     items: [
-      { literalName: 'HubSpot', href: '/hubspot-whatsapp-integration' },
-      { literalName: 'Salesforce', href: '/salesforce-whatsapp-integration' },
-      { literalName: 'Zoho CRM', href: '/zoho-whatsapp-integration' },
-      { literalName: 'Pipedrive', href: '/pipedrive-whatsapp-integration' },
-      { literalName: 'Google Sheets', href: '/google-sheets-whatsapp-integration' },
-      { literalName: 'Bitrix24', href: '/bitrix24-whatsapp-integration' },
-      { literalName: 'Freshdesk', href: '/freshdesk-whatsapp-integration' },
-      { literalName: 'LeadSquared', href: '/leadsquared-whatsapp-integration' },
+      { brand: 'HubSpot', href: '/hubspot-whatsapp-integration' },
+      { brand: 'Salesforce', href: '/salesforce-whatsapp-integration' },
+      { brand: 'Zoho CRM', href: '/zoho-whatsapp-integration' },
+      { brand: 'Pipedrive', href: '/pipedrive-whatsapp-integration' },
+      { brand: 'Google Sheets', href: '/google-sheets-whatsapp-integration' },
+      { brand: 'Bitrix24', href: '/bitrix24-whatsapp-integration' },
+      { brand: 'Freshdesk', href: '/freshdesk-whatsapp-integration' },
+      { brand: 'LeadSquared', href: '/leadsquared-whatsapp-integration' },
       { nameKey: 'itemAllIntegrations', href: '/integrations' },
     ],
   },
@@ -129,7 +140,7 @@ export function Footer() {
         </button>
         <ul id={`footer-col-${idx}`}>
           {c.items.map((i, j) => {
-            const label = i.literalName ?? (i.nameKey ? t(i.nameKey) : '')
+            const label = i.brand ? intLabel(i.brand) : (i.literalName ?? (i.nameKey ? t(i.nameKey) : ''))
             return (
               <li key={`${idx}-${j}-${label}`}>
                 <a
@@ -139,6 +150,9 @@ export function Footer() {
                     : {})}
                 >
                   {label}
+                  {i.brand && (
+                    <span className="footer-int-word">{INT_WORD[locale] || INT_WORD.en}</span>
+                  )}
                   {i.badgeKey && <span className="footer-col-badge">{t(i.badgeKey)}</span>}
                 </a>
               </li>
