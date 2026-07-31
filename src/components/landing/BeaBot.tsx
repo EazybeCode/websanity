@@ -18,8 +18,11 @@ export function BeaBot() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const mq = window.matchMedia('(min-width: 1024px)')
-    if (mq.matches) setOpen(true)
+    // Auto-open the lead form 5s after load on ALL devices (desktop + mobile).
+    // Initial state stays false so SSR/CSR markup matches; the open happens
+    // client-side after mount, so there's no hydration mismatch.
+    const id = window.setTimeout(() => setOpen(true), 5000)
+    return () => window.clearTimeout(id)
   }, [])
 
   // Other CTAs (FinalCTA, MidCTA, FAQ footnote, Nav "Contact Sales", mobile
