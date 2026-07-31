@@ -1036,7 +1036,8 @@ export const ComparisonPostClient: React.FC<ComparisonPostClientProps> = ({
                                     href={value?.href}
                                     target={value?.blank || external ? '_blank' : undefined}
                                     rel={value?.blank || external ? 'noopener noreferrer' : undefined}
-                                    className={`text-brand-cyan hover:text-brand-blue transition-colors${external ? ' underline underline-offset-2 decoration-1' : ''}`}
+                                    style={{ color: '#4338CA', fontWeight: 500 }}
+                                    className="hover:opacity-80 transition-opacity"
                                   >
                                     {children}
                                     {external && <ExternalLinkIcon />}
