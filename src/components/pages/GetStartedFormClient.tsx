@@ -128,12 +128,99 @@ const BLOCKED_EMAIL_DOMAINS = new Set([
   'netflix.com', 'spotify.com', 'uber.com', 'doordash.com',
 ])
 
-const BENEFITS = [
-  'Two-way sync so HubSpot contacts and WhatsApp chats stay matched',
-  'Every WhatsApp message logged to the right HubSpot timeline',
-  'Send templates and reply without leaving HubSpot',
-  'Works with the workflows and pipelines you already run',
-]
+// Per-locale copy (hand-translated). `headB` is the gradient part of the headline.
+interface Copy {
+  headA: string; headB: string; body: string; benefits: string[]; trust: string
+  formHead: string; formSub: string
+  nameLabel: string; emailLabel: string; phoneLabel: string
+  namePh: string; emailPh: string
+  cta: string; ctaLoading: string; helper: string
+  errName: string; errEmail: string; errWorkEmail: string; errPhone: string
+  successTitle: string; successBody: (n: string) => string; backHome: string
+}
+
+const COPY: Record<string, Copy> = {
+  en: {
+    headA: 'Run WhatsApp', headB: 'inside HubSpot',
+    body: 'Connect the two in minutes. Message customers on WhatsApp, log every conversation to the right HubSpot contact, and keep your pipeline current without the copy-paste.',
+    benefits: [
+      'Two-way sync so HubSpot contacts and WhatsApp chats stay matched',
+      'Every WhatsApp message logged to the right HubSpot timeline',
+      'Send templates and reply without leaving HubSpot',
+      'Works with the workflows and pipelines you already run',
+    ],
+    trust: 'Trusted by sales teams syncing WhatsApp with HubSpot, Salesforce and Zoho.',
+    formHead: 'Start your HubSpot + WhatsApp setup', formSub: 'Tell us where to reach you. It takes under a minute.',
+    nameLabel: 'Name', emailLabel: 'Work Email', phoneLabel: 'Phone Number',
+    namePh: 'Jane Cooper', emailPh: 'jane@company.com',
+    cta: 'Install Free', ctaLoading: 'Installing…', helper: 'Free to start, no credit card.',
+    errName: 'Please enter your name.', errEmail: 'Enter a valid email address.',
+    errWorkEmail: 'Please use your work email.', errPhone: 'Enter a valid phone number.',
+    successTitle: "You're all set",
+    successBody: (n) => `Thanks, ${n}. We'll reach out to connect your HubSpot to WhatsApp and get you going. Check your inbox shortly.`,
+    backHome: 'Back to home',
+  },
+  es: {
+    headA: 'Usa WhatsApp', headB: 'dentro de HubSpot',
+    body: 'Conecta ambos en minutos. Escribe a tus clientes por WhatsApp, guarda cada conversación en el contacto correcto de HubSpot y mantén tu pipeline al día sin copiar y pegar.',
+    benefits: [
+      'Sincronización bidireccional para que los contactos de HubSpot y los chats de WhatsApp coincidan',
+      'Cada mensaje de WhatsApp se registra en la cronología correcta de HubSpot',
+      'Envía plantillas y responde sin salir de HubSpot',
+      'Funciona con los flujos de trabajo y pipelines que ya usas',
+    ],
+    trust: 'Equipos de ventas ya sincronizan WhatsApp con HubSpot, Salesforce y Zoho.',
+    formHead: 'Empieza tu configuración de HubSpot + WhatsApp', formSub: 'Dinos cómo contactarte. Toma menos de un minuto.',
+    nameLabel: 'Nombre', emailLabel: 'Correo de trabajo', phoneLabel: 'Número de teléfono',
+    namePh: 'Juan Pérez', emailPh: 'juan@empresa.com',
+    cta: 'Instalar gratis', ctaLoading: 'Instalando…', helper: 'Gratis para empezar, sin tarjeta.',
+    errName: 'Ingresa tu nombre.', errEmail: 'Ingresa un correo válido.',
+    errWorkEmail: 'Usa tu correo de trabajo.', errPhone: 'Ingresa un número válido.',
+    successTitle: '¡Todo listo!',
+    successBody: (n) => `Gracias, ${n}. Nos pondremos en contacto para conectar tu HubSpot con WhatsApp. Revisa tu correo pronto.`,
+    backHome: 'Volver al inicio',
+  },
+  br: {
+    headA: 'Use o WhatsApp', headB: 'dentro do HubSpot',
+    body: 'Conecte os dois em minutos. Fale com clientes no WhatsApp, registre cada conversa no contato certo do HubSpot e mantenha seu pipeline em dia sem copiar e colar.',
+    benefits: [
+      'Sincronização nos dois sentidos para manter contatos do HubSpot e conversas do WhatsApp alinhados',
+      'Cada mensagem do WhatsApp registrada na linha do tempo certa do HubSpot',
+      'Envie modelos e responda sem sair do HubSpot',
+      'Funciona com os fluxos e pipelines que você já usa',
+    ],
+    trust: 'Equipes de vendas já sincronizam o WhatsApp com HubSpot, Salesforce e Zoho.',
+    formHead: 'Comece sua configuração de HubSpot + WhatsApp', formSub: 'Diga como falar com você. Leva menos de um minuto.',
+    nameLabel: 'Nome', emailLabel: 'E-mail de trabalho', phoneLabel: 'Número de telefone',
+    namePh: 'João Silva', emailPh: 'joao@empresa.com',
+    cta: 'Instalar grátis', ctaLoading: 'Instalando…', helper: 'Grátis para começar, sem cartão.',
+    errName: 'Informe seu nome.', errEmail: 'Informe um e-mail válido.',
+    errWorkEmail: 'Use seu e-mail de trabalho.', errPhone: 'Informe um número válido.',
+    successTitle: 'Tudo pronto!',
+    successBody: (n) => `Obrigado, ${n}. Vamos entrar em contato para conectar seu HubSpot ao WhatsApp. Fique de olho no seu e-mail.`,
+    backHome: 'Voltar ao início',
+  },
+  tr: {
+    headA: "WhatsApp'ı", headB: "HubSpot'ta kullanın",
+    body: "İkisini dakikalar içinde bağlayın. Müşterilerinize WhatsApp'tan yazın, her görüşmeyi doğru HubSpot kişisine kaydedin ve kopyala-yapıştır olmadan pipeline'ınızı güncel tutun.",
+    benefits: [
+      "HubSpot kişileri ve WhatsApp sohbetlerini eşleştiren iki yönlü senkronizasyon",
+      "Her WhatsApp mesajı doğru HubSpot zaman çizelgesine kaydedilir",
+      "Şablon gönderin ve HubSpot'tan çıkmadan yanıtlayın",
+      "Zaten kullandığınız iş akışları ve pipeline'larla çalışır",
+    ],
+    trust: "Satış ekipleri WhatsApp'ı HubSpot, Salesforce ve Zoho ile senkronize ediyor.",
+    formHead: 'HubSpot + WhatsApp kurulumunuza başlayın', formSub: 'Size nasıl ulaşacağımızı söyleyin. Bir dakikadan az sürer.',
+    nameLabel: 'Ad', emailLabel: 'İş E-postası', phoneLabel: 'Telefon Numarası',
+    namePh: 'Ahmet Yılmaz', emailPh: 'ahmet@sirket.com',
+    cta: 'Ücretsiz Yükle', ctaLoading: 'Yükleniyor…', helper: 'Başlamak ücretsiz, kart gerekmez.',
+    errName: 'Lütfen adınızı girin.', errEmail: 'Geçerli bir e-posta girin.',
+    errWorkEmail: 'Lütfen iş e-postanızı kullanın.', errPhone: 'Geçerli bir telefon numarası girin.',
+    successTitle: 'Her şey hazır',
+    successBody: (n) => `Teşekkürler, ${n}. HubSpot'unuzu WhatsApp'a bağlamak için size ulaşacağız. Gelen kutunuzu kontrol edin.`,
+    backHome: 'Ana sayfaya dön',
+  },
+}
 
 // Official HubSpot sprocket mark.
 const HubSpotMark = () => (
@@ -168,6 +255,7 @@ const FieldError = ({ msg }: { msg: string }) => (
 
 export function GetStartedFormClient() {
   const locale = useLocale()
+  const c = COPY[locale] || COPY.en
   const localeDial = LOCALE_DIAL[locale] || LOCALE_DIAL.en
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -205,13 +293,13 @@ export function GetStartedFormClient() {
     return !!d && BLOCKED_EMAIL_DOMAINS.has(d)
   }
   const fieldError = (f: keyof Errors): string | undefined => {
-    if (f === 'name') return name.trim().length < 2 ? 'Please enter your name.' : undefined
+    if (f === 'name') return name.trim().length < 2 ? c.errName : undefined
     if (f === 'email') {
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Enter a valid email address.'
-      if (isPersonalEmail(email)) return 'Please use your work email.'
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return c.errEmail
+      if (isPersonalEmail(email)) return c.errWorkEmail
       return undefined
     }
-    if (f === 'phone') return phone.replace(/\D/g, '').length < 6 ? 'Enter a valid phone number.' : undefined
+    if (f === 'phone') return phone.replace(/\D/g, '').length < 6 ? c.errPhone : undefined
     return undefined
   }
   const validateOnBlur = (f: keyof Errors) => setErrors((p) => ({ ...p, [f]: fieldError(f) }))
@@ -300,19 +388,18 @@ export function GetStartedFormClient() {
           </span>
 
           <h1 className="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[#0F172A] md:text-[42px]">
-            Run WhatsApp{' '}
+            {c.headA}{' '}
             <span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(100deg, ${HUBSPOT}, ${WHATSAPP})` }}>
-              inside HubSpot
+              {c.headB}
             </span>
           </h1>
 
           <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#475569]">
-            Connect the two in minutes. Message customers on WhatsApp, log every conversation to the right
-            HubSpot contact, and keep your pipeline current without the copy-paste.
+            {c.body}
           </p>
 
           <ul className="mt-7 space-y-3.5">
-            {BENEFITS.map((b) => (
+            {c.benefits.map((b) => (
               <li key={b} className="flex items-start gap-3 text-[15px] text-[#1E293B]">
                 <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full" style={{ background: 'rgba(37,211,102,0.16)', color: '#0E9F55' }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M20 6 9 17l-5-5" /></svg>
@@ -323,7 +410,7 @@ export function GetStartedFormClient() {
           </ul>
 
           <p className="mt-8 text-xs text-[#94A3B8]">
-            Trusted by sales teams syncing WhatsApp with HubSpot, Salesforce and Zoho.
+            {c.trust}
           </p>
         </div>
 
@@ -335,41 +422,40 @@ export function GetStartedFormClient() {
                 <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full" style={{ background: 'rgba(37,211,102,0.14)', color: '#0E9F55' }}>
                   <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M20 6 9 17l-5-5" /></svg>
                 </div>
-                <h2 className="text-2xl font-bold text-[#0F172A]">You&apos;re all set</h2>
+                <h2 className="text-2xl font-bold text-[#0F172A]">{c.successTitle}</h2>
                 <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-[#475569]">
-                  Thanks, {name.trim().split(/\s+/)[0] || 'there'}. We&apos;ll reach out to connect your HubSpot to
-                  WhatsApp and get you going. Check your inbox shortly.
+                  {c.successBody(name.trim().split(/\s+/)[0] || (locale === 'tr' ? 'orada' : locale === 'es' ? 'hola' : locale === 'br' ? 'olá' : 'there'))}
                 </p>
                 <a href={locale === 'en' ? '/' : `/${locale}`} className="mt-6 inline-flex h-11 items-center justify-center rounded-xl border border-[#E2E8F0] px-5 text-sm font-medium text-[#334155] transition-colors hover:border-[#CBD5E1] hover:bg-[#F8FAFC]">
-                  Back to home
+                  {c.backHome}
                 </a>
               </div>
             ) : (
               <>
                 <header className="mb-6">
-                  <h2 className="text-xl font-bold text-[#0F172A] md:text-2xl">Start your HubSpot + WhatsApp setup</h2>
-                  <p className="mt-1.5 text-sm text-[#64748B]">Tell us where to reach you. It takes under a minute.</p>
+                  <h2 className="text-xl font-bold text-[#0F172A] md:text-2xl">{c.formHead}</h2>
+                  <p className="mt-1.5 text-sm text-[#64748B]">{c.formSub}</p>
                 </header>
 
                 <form onSubmit={handleSubmit} noValidate className="space-y-5">
                   <div>
-                    <label htmlFor="f-name" className={LABEL}>Name<span className="ml-1 text-[#DC2626]">*</span></label>
-                    <input id="f-name" type="text" required autoComplete="name" placeholder="Jane Cooper"
+                    <label htmlFor="f-name" className={LABEL}>{c.nameLabel}<span className="ml-1 text-[#DC2626]">*</span></label>
+                    <input id="f-name" type="text" required autoComplete="name" placeholder={c.namePh}
                       value={name} onChange={(e) => setName(e.target.value)} onBlur={() => validateOnBlur('name')}
                       className={`${FIELD_BASE} ${fieldRing(errors.name)}`} />
                     {errors.name && <FieldError msg={errors.name} />}
                   </div>
 
                   <div>
-                    <label htmlFor="f-email" className={LABEL}>Work Email<span className="ml-1 text-[#DC2626]">*</span></label>
-                    <input id="f-email" type="email" inputMode="email" required autoComplete="email" placeholder="jane@company.com"
+                    <label htmlFor="f-email" className={LABEL}>{c.emailLabel}<span className="ml-1 text-[#DC2626]">*</span></label>
+                    <input id="f-email" type="email" inputMode="email" required autoComplete="email" placeholder={c.emailPh}
                       value={email} onChange={(e) => setEmail(e.target.value)} onBlur={() => validateOnBlur('email')}
                       className={`${FIELD_BASE} ${fieldRing(errors.email)}`} />
                     {errors.email && <FieldError msg={errors.email} />}
                   </div>
 
                   <div>
-                    <label htmlFor="f-phone" className={LABEL}>Phone Number<span className="ml-1 text-[#DC2626]">*</span></label>
+                    <label htmlFor="f-phone" className={LABEL}>{c.phoneLabel}<span className="ml-1 text-[#DC2626]">*</span></label>
                     <div className={`flex items-stretch overflow-hidden rounded-xl bg-[#F8FAFC] transition-colors ${errors.phone ? 'border border-[#EF4444] focus-within:ring-2 focus-within:ring-[#EF444433]' : 'border border-[#E2E8F0] hover:border-[#CBD5E1] focus-within:border-[#25D366] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#25D36633]'}`}>
                       <select aria-label="Country code" value={countryCode} onChange={(e) => setCountryCode(e.target.value)}
                         className="h-12 shrink-0 cursor-pointer border-r border-[#E2E8F0] bg-transparent pl-4 pr-2 text-sm text-[#334155] outline-none">
@@ -397,17 +483,17 @@ export function GetStartedFormClient() {
                     {isSubmitting ? (
                       <span className="relative inline-flex items-center gap-2">
                         <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden><circle className="opacity-30" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" /></svg>
-                        Installing…
+                        {c.ctaLoading}
                       </span>
                     ) : (
                       <span className="relative inline-flex items-center gap-2">
-                        Install Free
+                        {c.cta}
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
                       </span>
                     )}
                   </button>
 
-                  <p className="text-center text-xs leading-relaxed text-[#94A3B8]">Free to start, no credit card.</p>
+                  <p className="text-center text-xs leading-relaxed text-[#94A3B8]">{c.helper}</p>
                 </form>
               </>
             )}
