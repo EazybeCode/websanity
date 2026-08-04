@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { mobileAspectClass, desktopAspectClass, cssAspectRatio } from '@/lib/aspect-ratio'
 import { SummarizeWithLLM } from '@/components/blog/SummarizeWithLLM'
+import PreferredSourceCTA from '@/components/PreferredSourceCTA'
 import {
   Calendar,
   Clock,
@@ -1266,6 +1267,9 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                   </>
                 )}
               </article>
+
+              {/* Google Preferred Sources CTA */}
+              <PreferredSourceCTA locale={locale} />
 
               {/* FAQs Section */}
               {post.faqs && post.faqs.length > 0 && (
