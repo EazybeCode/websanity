@@ -205,19 +205,6 @@ type LocaleFallback = {
   faqItems: FAQItem[]
   finalCta: { headline: string; headlineEm: string; subtitle: string }
   agentModal: { title: string; titleEm: string; subtitle: string }
-  calculator: {
-    heading: string
-    subtitle: string
-    baseLabel: string
-    extraSeatsLabel: string
-    addOnLabel: string
-    none: string
-    seat: string
-    seats: string
-    totalSuffix: string
-    perMonth: string
-    perMonthAnnual: string
-  }
   featureLabels: Record<string, string>
   comparisonCategories: Record<string, string>
   trustSignals: string[]
@@ -270,19 +257,6 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       title: 'Talk to our',
       titleEm: 'AI Agent',
       subtitle: "See how many leads you're losing on WhatsApp — in 60 seconds, free.",
-    },
-    calculator: {
-      heading: 'Calculate your price',
-      subtitle: 'For your whole team',
-      baseLabel: 'Base:',
-      extraSeatsLabel: 'Extra seats for teammates without AI:',
-      addOnLabel: 'Add-on:',
-      none: 'None',
-      seat: 'seat',
-      seats: 'seats',
-      totalSuffix: 'Total',
-      perMonth: '/month',
-      perMonthAnnual: '/mo billed annually',
     },
     featureLabels: {},
     comparisonCategories: {},
@@ -346,19 +320,6 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       title: 'Habla con nuestro',
       titleEm: 'Agente de IA',
       subtitle: 'Ve cuántos leads estás perdiendo en WhatsApp — en 60 segundos, gratis.',
-    },
-    calculator: {
-      heading: 'Calcula tu precio',
-      subtitle: 'Para todo tu equipo',
-      baseLabel: 'Base:',
-      extraSeatsLabel: 'Asientos extra para compañeros sin IA:',
-      addOnLabel: 'Complemento:',
-      none: 'Ninguno',
-      seat: 'asiento',
-      seats: 'asientos',
-      totalSuffix: 'Total',
-      perMonth: '/mes',
-      perMonthAnnual: '/mes facturado anualmente',
     },
     featureLabels: {
       'Team Inbox': 'Bandeja de entrada del equipo',
@@ -459,19 +420,6 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       titleEm: 'Agente de IA',
       subtitle: 'Veja quantos leads você está perdendo no WhatsApp — em 60 segundos, grátis.',
     },
-    calculator: {
-      heading: 'Calcule seu preço',
-      subtitle: 'Para toda a sua equipe',
-      baseLabel: 'Base:',
-      extraSeatsLabel: 'Assentos extras para membros sem IA:',
-      addOnLabel: 'Complemento:',
-      none: 'Nenhum',
-      seat: 'assento',
-      seats: 'assentos',
-      totalSuffix: 'Total',
-      perMonth: '/mês',
-      perMonthAnnual: '/mês cobrado anualmente',
-    },
     featureLabels: {
       'Team Inbox': 'Caixa de entrada da equipe',
       'Unlimited labels & funnels': 'Etiquetas e funis ilimitados',
@@ -570,19 +518,6 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       title: 'AI',
       titleEm: "Agent'ımızla konuşun",
       subtitle: "WhatsApp'ta kaç lead kaybettiğinizi görün — 60 saniyede, ücretsiz.",
-    },
-    calculator: {
-      heading: 'Fiyatınızı hesaplayın',
-      subtitle: 'Tüm ekibiniz için',
-      baseLabel: 'Temel:',
-      extraSeatsLabel: 'AI kullanmayan ekip için ekstra koltuklar:',
-      addOnLabel: 'Eklenti:',
-      none: 'Hiçbiri',
-      seat: 'koltuk',
-      seats: 'koltuk',
-      totalSuffix: 'Toplam',
-      perMonth: '/ay',
-      perMonthAnnual: '/ay yıllık faturalı',
     },
     featureLabels: {
       'Team Inbox': 'Ekip Gelen Kutusu',
@@ -943,300 +878,6 @@ function PricingCard({
   )
 }
 
-// ─── Pricing calculator (Basic AI base + optional add-on tier) ─────────────
-
-interface CalcPlan {
-  planKey: string
-  name: string
-  perSeat: number
-}
-
-function PricingCalculator({
-  plans,
-  currencyLabel,
-  priceSymbol,
-  isAnnual,
-  copy,
-  pricingLoading,
-}: {
-  plans: CalcPlan[]
-  currencyLabel: string
-  priceSymbol: string
-  isAnnual: boolean
-  copy: LocaleFallback['calculator']
-  pricingLoading: boolean
-}) {
-  const defaultBase = plans.find((p) => p.planKey === 'basic-ai')?.planKey ?? plans[0]?.planKey ?? ''
-  const [basePlanKey, setBasePlanKey] = useState(defaultBase)
-  const [baseSeats, setBaseSeats] = useState(1)
-  const [addonPlan, setAddonPlan] = useState<string>('none')
-  const [addonSeats, setAddonSeats] = useState(0)
-
-  const clampSeats = (n: number) => Math.max(0, Math.min(99, n))
-
-  const basePlan = plans.find((p) => p.planKey === basePlanKey) ?? plans[0]
-  // Add-on is only for non-AI seats (Starter/Scaler) and never for the plan
-  // that's already the base. When base is Pro AI there are no add-ons.
-  const addonOptions =
-    basePlanKey === 'pro-ai'
-      ? []
-      : plans.filter(
-          (p) =>
-            p.planKey !== basePlanKey &&
-            p.planKey !== 'basic-ai' &&
-            p.planKey !== 'pro-ai',
-        )
-  const activeAddon = addonPlan === 'none' ? null : addonOptions.find((p) => p.planKey === addonPlan) ?? null
-
-  const baseSubtotal = (basePlan?.perSeat ?? 0) * baseSeats
-  const addonSubtotal = (activeAddon?.perSeat ?? 0) * addonSeats
-  const total = baseSubtotal + addonSubtotal
-  const totalSeats = baseSeats + (activeAddon ? addonSeats : 0)
-
-  const priceUnit = isAnnual ? copy.perMonthAnnual : copy.perMonth
-  const formatMoney = (n: number) =>
-    `${currencyLabel ? `${currencyLabel} ` : ''}${priceSymbol}${n.toLocaleString('en-US')}`
-
-  const Stepper = ({
-    value,
-    onChange,
-    disabled,
-    label,
-  }: {
-    value: number
-    onChange: (n: number) => void
-    disabled?: boolean
-    label: string
-  }) => (
-    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-      <button
-        type="button"
-        onClick={() => onChange(clampSeats(value - 1))}
-        disabled={disabled || value === 0}
-        aria-label={`Remove one ${label} seat`}
-        style={{
-          width: 28,
-          height: 28,
-          borderRadius: '50%',
-          border: '1px solid var(--line-2)',
-          background: '#fff',
-          color: disabled || value === 0 ? 'var(--ink-4)' : 'var(--ink)',
-          cursor: disabled || value === 0 ? 'not-allowed' : 'pointer',
-          fontSize: 15,
-          lineHeight: 1,
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        −
-      </button>
-      <input
-        type="number"
-        min={0}
-        max={99}
-        value={value}
-        disabled={disabled}
-        onChange={(e) => onChange(clampSeats(parseInt(e.target.value || '0', 10)))}
-        aria-label={`${label} seats`}
-        style={{
-          width: 40,
-          height: 28,
-          textAlign: 'center',
-          fontSize: 13,
-          fontWeight: 600,
-          color: disabled ? 'var(--ink-4)' : 'var(--ink)',
-          border: '1px solid var(--line-2)',
-          borderRadius: 8,
-          background: '#fff',
-          outline: 'none',
-          MozAppearance: 'textfield',
-        }}
-      />
-      <button
-        type="button"
-        onClick={() => onChange(clampSeats(value + 1))}
-        disabled={disabled}
-        aria-label={`Add one ${label} seat`}
-        style={{
-          width: 28,
-          height: 28,
-          borderRadius: '50%',
-          border: '1px solid var(--line-2)',
-          background: '#fff',
-          color: disabled ? 'var(--ink-4)' : 'var(--ink)',
-          cursor: disabled ? 'not-allowed' : 'pointer',
-          fontSize: 15,
-          lineHeight: 1,
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        +
-      </button>
-    </div>
-  )
-
-  const chipBase = (selected: boolean) => ({
-    padding: '7px 12px',
-    borderRadius: 100,
-    border: selected ? '1px solid var(--accent-ink)' : '1px solid var(--line-2)',
-    background: selected
-      ? 'color-mix(in oklab, var(--accent-ink) 10%, var(--paper))'
-      : '#fff',
-    color: selected ? 'var(--accent-ink)' : 'var(--ink-2)',
-    fontSize: 12.5,
-    fontWeight: 600,
-    cursor: 'pointer',
-    lineHeight: 1.1,
-  })
-
-  return (
-    <div
-      className="reveal"
-      style={{
-        padding: '14px 20px',
-        borderRadius: 16,
-        border: '1px solid var(--line)',
-        background: 'linear-gradient(180deg, color-mix(in oklab, var(--accent-a) 6%, var(--paper)), var(--paper))',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 22,
-        flexWrap: 'wrap',
-        rowGap: 12,
-      }}
-    >
-      {/* Heading */}
-      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
-        <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--ink-3)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-          {copy.heading}
-        </span>
-        <span style={{ fontSize: 12, color: 'var(--ink-4)', marginTop: 2 }}>
-          {copy.subtitle}
-        </span>
-      </div>
-
-      {/* Base plan dropdown + stepper */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span style={{ fontSize: 13, color: 'var(--ink-3)' }}>{copy.baseLabel}</span>
-        <select
-          value={basePlanKey}
-          onChange={(e) => {
-            const newBase = e.target.value
-            setBasePlanKey(newBase)
-            // Reset add-on if it's no longer a valid option:
-            // - Pro AI base has no add-ons
-            // - AI plans (basic-ai / pro-ai) aren't valid add-ons
-            // - can't have same plan as base and add-on
-            if (
-              newBase === 'pro-ai' ||
-              addonPlan === newBase ||
-              addonPlan === 'basic-ai' ||
-              addonPlan === 'pro-ai'
-            ) {
-              setAddonPlan('none')
-            }
-          }}
-          aria-label="Base plan"
-          style={{
-            height: 32,
-            padding: '0 32px 0 12px',
-            fontSize: 13,
-            fontWeight: 600,
-            color: 'var(--ink)',
-            background: '#fff',
-            border: '1px solid var(--line-2)',
-            borderRadius: 100,
-            outline: 'none',
-            cursor: 'pointer',
-            appearance: 'none',
-            backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235A6070' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>")`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'right 10px center',
-            backgroundSize: '12px 12px',
-          }}
-        >
-          {plans.map((p) => (
-            <option key={p.planKey} value={p.planKey}>
-              {p.name}
-            </option>
-          ))}
-        </select>
-        <Stepper value={baseSeats} onChange={setBaseSeats} label="base" />
-      </div>
-
-      {/* Divider — only if we have an add-on section to show */}
-      {addonOptions.length > 0 && (
-        <div style={{ width: 1, height: 24, background: 'var(--line)', flexShrink: 0 }} />
-      )}
-
-      {/* Add-on tier chips + stepper — hidden when Pro AI is the base */}
-      {addonOptions.length > 0 && (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 13, color: 'var(--ink-3)' }}>
-          {basePlanKey === 'basic-ai' ? copy.extraSeatsLabel : copy.addOnLabel}
-        </span>
-        {addonOptions.map((p) => {
-          const selected = addonPlan === p.planKey
-          return (
-            <button
-              key={p.planKey}
-              type="button"
-              onClick={() => setAddonPlan(p.planKey)}
-              style={chipBase(selected)}
-            >
-              {p.name}
-            </button>
-          )
-        })}
-        <button
-          type="button"
-          onClick={() => setAddonPlan('none')}
-          style={chipBase(addonPlan === 'none')}
-        >
-          {copy.none}
-        </button>
-        {addonPlan !== 'none' && (
-          <Stepper value={addonSeats} onChange={setAddonSeats} label="add-on" />
-        )}
-      </div>
-      )}
-
-      {/* Total, pinned right */}
-      <div
-        style={{
-          marginLeft: 'auto',
-          padding: '8px 14px',
-          borderRadius: 100,
-          background: 'var(--ink)',
-          color: '#fff',
-          display: 'inline-flex',
-          alignItems: 'baseline',
-          gap: 6,
-          fontFamily: 'inherit',
-        }}
-      >
-        <span style={{ fontSize: 11, fontWeight: 600, opacity: 0.65, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-          {totalSeats} {totalSeats === 1 ? copy.seat : copy.seats} · {copy.totalSuffix}
-        </span>
-        <span
-          className={pricingLoading ? 'eazybe-price-skel' : undefined}
-          style={{
-            fontSize: 17,
-            fontWeight: 700,
-            letterSpacing: '-0.01em',
-            color: pricingLoading ? 'transparent' : 'inherit',
-            minWidth: pricingLoading ? 70 : undefined,
-          }}
-        >
-          {pricingLoading ? '000' : formatMoney(total)}
-        </span>
-        <span style={{ fontSize: 11, opacity: 0.65 }}>{priceUnit}</span>
-      </div>
-    </div>
-  )
-}
 
 // ─── Comparison table (grouped by category) ─────────────────────────────────
 
@@ -1541,9 +1182,9 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
           </div>
         </div>
       )}
-      {/* Global shimmer keyframes reused by the price-number skeletons in
-          PricingCard / PricingCalculator. Rendered once at the page root so
-          multiple cards share the same animation cycle. */}
+      {/* Global shimmer keyframes for the price-number skeletons in
+          PricingCard. Rendered once at the page root so multiple cards
+          share the same animation cycle. */}
       <style>{`
         @keyframes eazybe-price-shimmer {
           0%   { background-position: 200% 0; }
@@ -1579,41 +1220,6 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       {/* Plans */}
       <section className="section" style={{ paddingTop: 30 }} id="pricing-plans">
         <div className="container">
-          {(() => {
-            const calcPlans = ['starter', 'scaler', 'basic-ai', 'pro-ai']
-              .map((key): CalcPlan | null => {
-                const plan = pricingPlans.find((p) => p.planKey === key)
-                if (!plan) return null
-                const dp = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
-                return {
-                  planKey: plan.planKey,
-                  name: plan.name,
-                  perSeat: isAnnual ? dp.annualPrice : dp.monthlyPrice,
-                }
-              })
-              .filter((p): p is CalcPlan => p !== null)
-
-            if (!calcPlans.length) return null
-
-            const basicAiPlan = pricingPlans.find((p) => p.planKey === 'basic-ai') || pricingPlans[0]
-            const dp = getDynamicPrice(basicAiPlan.planKey, basicAiPlan.monthlyPrice, basicAiPlan.annualPrice)
-            const isCurrencyCode = /^[A-Z]{3}$/.test(dp.currency)
-            const currencyLabel = isCurrencyCode ? dp.currency : ''
-            const priceSymbol = isCurrencyCode ? (dp.currency === 'USD' ? '$' : '') : dp.currency
-
-            return (
-              <div style={{ marginBottom: 36 }}>
-                <PricingCalculator
-                  isAnnual={isAnnual}
-                  plans={calcPlans}
-                  currencyLabel={currencyLabel}
-                  priceSymbol={priceSymbol}
-                  copy={fallback.calculator}
-                  pricingLoading={pricingLoading}
-                />
-              </div>
-            )
-          })()}
           <div className="card-grid pricing-plan-grid">
             {pricingPlans.map((plan, idx) => {
               const dp = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
