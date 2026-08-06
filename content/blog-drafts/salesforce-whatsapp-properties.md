@@ -1,247 +1,184 @@
 ---
 _type: blogPost
-title: "WhatsApp Salesforce Properties: Push Sales Intelligence Into Salesforce — Not Just Chat Backup (2026)"
+title: "How to Update Salesforce From WhatsApp, Automatically"
 slug: "salesforce-whatsapp-properties"
-seoTitle: "WhatsApp Salesforce Properties: Intelligence, Not Backup (2026)"
-metaDescription: "WhatsApp Salesforce properties turn chats into analytics, engagement and industry fields on the Salesforce record — not just chat backup. See how Eazybe writes them."
-excerpt: "Your reps close on WhatsApp. Your system of record is Salesforce. And if you've already connected the two, the messages are safely backed up — landing in…"
-targetKeyword: "WhatsApp Salesforce properties"
+seoTitle: "Update Salesforce From WhatsApp, Automatically | Eazybe"
+metaDescription: "Update Salesforce from WhatsApp automatically. Eazybe reads every chat and keeps Contacts, Leads, Tasks and activities current — with no rep data entry."
+excerpt: "Your reps are closing deals in WhatsApp. They're fielding objections, agreeing on next steps, and quoting prices — all in a thread on someone's phone. Then…"
+targetKeyword: "update Salesforce from WhatsApp"
 category: "CRM Integrations"
 funnelStage: "BOFU"
 priority: "P1"
 status: draft            # draft | ready | published
 author: "Eazybe Team"
-authoredAt: "2026-07-10"
+authoredAt: "2026-07-25"
 publishedAt:
 ---
 
-# WhatsApp Salesforce Properties: Push Sales Intelligence Into Salesforce — Not Just Chat Backup (2026)
+# How to Update Salesforce From WhatsApp, Automatically
 
-Your reps close on WhatsApp. Your system of record is Salesforce. And if you've already connected the two, the messages are safely backed up — landing in the Contact's **Notes & Attachments** and in the **WhatsApp Chats by EazyBe** activity object on your Contacts and Leads. Good. That's the backup problem solved.
+Your reps are closing deals in WhatsApp. They're fielding objections, agreeing on next steps, and quoting prices — all in a thread on someone's phone. Then they switch tabs to Salesforce and type... almost none of it.
 
-Now open Salesforce and try to build a report list view of *Leads that went quiet this week with a slow first response.* You can't. The conversation is on the record as a stored transcript, but nothing about it is a **property** you can filter, sort, or report on. Salesforce knows a WhatsApp chat happened. It doesn't know what the chat *means*.
+Not because they're lazy. Because updating the CRM by hand is the least rewarding part of their day, and it's the first thing to slip when the pipeline gets busy. The result is a Salesforce org that's perpetually a few days — or a few conversations — behind reality.
 
-That gap is what this guide closes. Logging chats to a record is chat backup. The next layer — the one that actually moves pipeline — is writing **WhatsApp Salesforce properties**: structured fields on the Contact and Lead that let you filter by intent, sort by response time, and auto-fill the business fields your reps used to type by hand.
+That's the real problem with WhatsApp as a sales channel: it's a **black box**. Leadership can't see into it, and reps won't transcribe it. So your single source of truth quietly becomes your least accurate one.
 
-This is *not* a repeat of how to connect the two systems. If you're still setting up OAuth sync, the Mini-CRM, and no-migration backup, start with our [Salesforce WhatsApp integration guide](/salesforce-whatsapp-integration). This post is about what **lands on the Salesforce record** once the pipe is open — and why that's the difference between a logged chat and sales intelligence.
+This post is about closing that gap: how to **update Salesforce from WhatsApp** automatically, so the record reflects what was actually said — without depending on a rep to log it.
 
 > **TL;DR**
-> - **Chat backup ≠ WhatsApp Salesforce properties.** Backup drops messages into the Contact's **Notes & Attachments** and the **WhatsApp Chats by EazyBe** activity object. Properties turn those conversations into fields you can filter, sort, and report on inside Salesforce.
-> - Eazybe writes three families of properties from every conversation: **Analytics** (last message, response time, message counts), **Engagement Intelligence / EI** (intent, heartbeat, escalation, next steps, task-to-create), and **Industry** (auto-populated fields like product interest and region).
-> - These land on your **Salesforce Contact and Lead** records — via the Chrome extension over WhatsApp Web, so the **core sync and Mini-CRM work on all Salesforce editions** without onboarding the number onto the API.
-> - Chat backup runs on a ~**3-minute** cadence, one-way (WhatsApp → Salesforce); the one-time initial backup covers the **past 3 days** only.
-> - The payoff: you can finally answer *"which deals are alive, who's slow, and what's next"* from a Salesforce view instead of by re-reading chats.
+> - Salesforce goes stale because **reps won't update the CRM by hand** and WhatsApp is invisible to everyone else.
+> - **Eazybe backs up every WhatsApp chat into Salesforce automatically** (every ~3 minutes, one-way) and lets your team create and edit records right from the chat.
+> - It's **not just Contacts** — you can also update **Leads, Tasks, Events, and Call Logs** for both Contacts and Leads.
+> - You **self-select which properties** appear on each record, so only the fields that matter get touched.
+> - The AI intelligence layer gives you the **gist**, not 40 chat threads — while the full transcript stays safely archived on the record if you ever need it.
 
-*Also Read: [From Chat Backup to WhatsApp Sales Intelligence](/blog/whatsapp-sales-intelligence) · [Salesforce WhatsApp Integration](/salesforce-whatsapp-integration) · [WhatsApp Coexistence: Keep Your Number, Add CRM](/blog/whatsapp-coexistence)*
+*Also Read: [From Chat Backup to WhatsApp Sales Intelligence](/blog/whatsapp-sales-intelligence) · [WhatsApp Coexistence: Keep Your Number, Add CRM](/blog/whatsapp-coexistence)*
 
 ---
 
-## Chat Backup vs Sales Intelligence in Salesforce
+## Why Your Salesforce Is Always Out of Date
 
-Most "WhatsApp + Salesforce" tools stop at backup. They copy the conversation onto the record — for Contacts, into **Notes & Attachments**; for both Contacts and Leads, into a custom activity object called **WhatsApp Chats by EazyBe** (with attachments stored as downloadable links) — and call it done. Genuinely useful, and passive. The record has a transcript; it has nothing you can *act on at scale.*
+Ask any RevOps lead why their forecast is shaky and you'll eventually land on the same root cause: the data going into Salesforce is only as good as the rep's willingness to enter it.
 
-Sales intelligence is the active layer on top. Instead of only storing what was said, it reads the conversation and writes **structured properties** that describe the state of the relationship — so a Salesforce list view, report, or flow can do the thinking your reps currently do by scrolling.
+Manual CRM updates fail for predictable reasons:
 
-Here's the difference on one record:
+- **Timing.** The update happens "after this call" — which becomes end of day, which becomes never.
+- **Recall.** By the time a rep logs a chat, the specifics (the objection, the promised follow-up, the quoted number) have blurred.
+- **Incentives.** Reps are paid to close, not to type. Data entry always loses that trade-off.
 
-| Dimension | Chat Backup (the old default) | WhatsApp Salesforce Properties (Eazybe) |
+None of this is a discipline problem you can train away. It's structural. As long as updating Salesforce is a separate, manual step that lives outside the conversation, it will lag the conversation.
+
+## WhatsApp Is a Black Box (And Reps Won't Update the CRM)
+
+WhatsApp makes the problem worse than email ever did. Email at least sat in a system leadership could theoretically search. WhatsApp threads live on personal and business phones, scattered across your team — informal, fast, and completely opaque to anyone not in the chat.
+
+So two things are true at once:
+
+1. **The most important sales signals now happen in WhatsApp** — buying intent, price pushback, "can you send the contract," "we went with someone else."
+2. **Almost none of it reaches Salesforce**, because the person who saw it won't stop to log it.
+
+That's the black box. Your pipeline's real state is trapped in chat, and your CRM — the thing you actually run the business on — is guessing. The fix isn't nagging reps harder. It's making the update happen *from the conversation itself.*
+
+## What Does It Mean to Update Salesforce From WhatsApp?
+
+**To update Salesforce from WhatsApp means keeping your Salesforce records — Contacts, Leads, and their related activities — current directly from your WhatsApp conversations, so the CRM reflects what was actually discussed without a rep manually re-typing it.** In practice that's two things working together: every chat is automatically backed up onto the Salesforce record, and your team can create or edit records inside the chat window itself.
+
+The point is to remove the tab-switch and the memory step. The conversation and the CRM update become the same motion.
+
+## How Eazybe Reads Every Chat and Updates Salesforce For You
+
+[Eazybe](/salesforce-whatsapp-integration) runs as a Chrome extension over WhatsApp Web and connects to your Salesforce org (personal WhatsApp, the Business App, or the API via [coexistence](/blog/whatsapp-coexistence) — no number migration). Once connected, it keeps Salesforce honest in two ways.
+
+**1. It backs up the conversation automatically.** For any synced Contact or Lead, WhatsApp chats flow into Salesforce roughly every three minutes. No copy-paste, no "I'll log it later." The message history is on the record whether or not the rep lifts a finger.
+
+**2. It gives your team a mini-CRM inside the chat.** Next to the conversation, reps see a Salesforce panel where they can create or edit records on the spot — while the context is right in front of them, not reconstructed from memory hours later.
+
+On top of that, Eazybe's [sales-intelligence layer](/blog/whatsapp-sales-intelligence) reads conversations with AI and surfaces the gist — intent, next steps, what changed — so a human doesn't have to skim every thread to know what to update. That layer is **AI-assisted**: you decide which properties matter, and a person can review the read before it's trusted on a high-value deal. It points reps at the right record faster; it doesn't pretend to be an infallible auto-pilot.
+
+## Not Just Contacts: Leads, Tasks, Events, and Call Logs
+
+Keeping Salesforce current isn't only about a contact's name and phone number. The activity around a record is what tells the real story — and Eazybe's Salesforce mini-CRM covers more than the contact card.
+
+From inside WhatsApp, your team can create or edit:
+
+- **Leads** — create a new lead or link an existing one, and edit the lead profile.
+- **Contacts** — create new or link existing, and edit the contact profile.
+- **Tasks** — create, edit, or delete for both Contacts and Leads.
+- **Events** — create, edit, or delete for both Contacts and Leads.
+- **Call Logs** — create, edit, or delete for both Contacts and Leads.
+
+So a rep who agrees to send a proposal Friday can log the task without leaving the chat, and it lands on the right Salesforce record. To be straight with you: the mini-CRM today covers Leads and Contacts and their activities — it does **not** create Opportunities or Cases. More on that in Honest Limits below.
+
+## Self-Select the Properties You Want Updated
+
+A CRM record can carry dozens of fields, and most of them are noise for a given team. Eazybe lets you **choose which properties actually show up** on the Contact or Lead card you work from.
+
+Click **Edit** on the Contact or Lead card (or the Edit button on the create form) and a dialog opens where you pick which user properties appear — and mark each one **required or optional**. Click **Apply** to update the card, then **Save** to push it to Salesforce.
+
+That self-select step is what makes automatic updates safe. Instead of an AI writing to every field it can find, you define the handful of properties that matter — deal stage notes, product interest, region, budget, next step — and those are the only fields in play. You get a tight, relevant record instead of a bloated one.
+
+## The Gist, Not the Transcript: What Lands on the Salesforce Record
+
+Here's the distinction that matters most. When Eazybe backs up a chat, two different things are happening, and they land in two different places:
+
+- **The full transcript is archived, out of the way.** WhatsApp chats are stored in the **Notes & Attachments** section of the Contact record and in a custom activity object called **"WhatsApp Chats by EazyBe,"** which holds conversation data for both Contacts and Leads (attachments live there too). It's your searchable safety net — there if you ever need the exact wording.
+- **The gist is what you work from.** The self-selected properties on the card — intent, next step, product interest — are the concise read on where the relationship stands. A manager scanning the pipeline sees the *signal*, not forty raw threads to wade through.
+
+That's the whole idea: your reps stop reading conversations to manage them, and start managing from the properties the conversations produced.
+
+## How to Update Salesforce From WhatsApp (Setup in a Few Steps)
+
+Getting this running takes a few minutes, not an IT project. You'll need an **active Salesforce account** and the **permissions granted during the connection flow**.
+
+1. **Install Eazybe** on Chrome and open WhatsApp Web.
+2. **Connect Salesforce** and approve the permissions the integration requests.
+3. **Let the initial backup run** — Eazybe pulls the **past 3 days** of chat history to seed the records.
+4. **Self-select your properties** on the Contact and Lead cards so only the fields you care about appear.
+5. **Work as normal.** Chats then **auto-sync every ~3 minutes**, and any record you create or edit **pushes to Salesforce on Save**.
+
+From there it maintains itself. The transcript keeps flowing to the activity object, and your reps only touch the fields you chose to keep current.
+
+## Eazybe vs Manual Salesforce Updates: The Difference
+
+| Dimension | Manual Salesforce Updates | Eazybe (WhatsApp → Salesforce) |
 |---|---|---|
-| What lands on the record | Raw messages in Notes & Attachments + the WhatsApp Chats by EazyBe activity | Messages **plus** structured Salesforce fields |
-| Can you filter a Salesforce list view by it? | No | Yes — by response time, intent, escalation |
-| Answers "which deals are alive?" | No — you re-read the thread | Yes — heartbeat + last-activity properties |
-| Manual data entry | Still needed | Auto-populated from the conversation |
-| Report/dashboard-ready in Salesforce | Message counts only | Response time, intent mix, next steps, industry fields |
-| Where it lands | Contact/Lead activity records | Contact and Lead **fields** you can filter and report on |
+| Who does the data entry | The rep, from memory, after the chat | Chats auto-log; rep only edits the fields that matter |
+| When the record updates | "Later" — often never | Chats sync ~every 3 min; edits push on Save |
+| What's captured | Whatever the rep remembers to type | Every conversation, backed up to the record |
+| Objects kept current | Whatever the rep opens | Contacts, Leads, Tasks, Events, Call Logs |
+| Which fields get touched | Free-for-all | Self-selected properties you choose |
+| Leadership visibility | Depends on rep discipline | The record reflects what was actually said |
 
-> **The one-line version:** Chat backup tells Salesforce *what was said*. WhatsApp Salesforce properties tell Salesforce *what to do about it.*
+The difference isn't speed — it's whether the update depends on a human choosing to do the least fun part of their job.
 
-This post assumes the backup and Mini-CRM plumbing is already covered in the [integration guide](/salesforce-whatsapp-integration). From here, we're only talking about what turns into a property.
+## Honest Limits
 
----
+Automatic doesn't mean magic, and we'd rather set expectations correctly:
 
-## The WhatsApp Properties That Land on a Salesforce Record
+- **Chat sync is one-way** (WhatsApp → Salesforce). Eazybe brings the conversation *into* Salesforce; it isn't a two-way mirror.
+- **The initial backup is the past 3 days only** — not your entire chat history.
+- **The mini-CRM covers Leads and Contacts** (plus Tasks, Events, and Call Logs). It does **not** create Opportunities/Deals or Cases/Tickets today.
+- **Notes & Attachments is a backup location, not a notes-authoring feature** — it's where chats are stored, not a separate "add a note" action.
+- **The AI property-writing is AI-assisted.** A human self-selects which properties sync and should sanity-check them on high-value records. Treat the signals as strong prompts, not verdicts.
+- **Sending WhatsApp *from* Salesforce is a separate setup** (a Flow HTTP callout requiring a WhatsApp Business API number, an approved template, and Enterprise) — out of scope for keeping records updated.
 
-Eazybe writes three families of properties from each conversation. Think of them as increasing levels of *"so what?"* — from objective counts, to what the conversation *means*, to the business fields your industry runs on:
+Calling these out is the point: an integration you can trust is one that's clear about its edges.
 
-1. **Analytics properties** — the measured, objective facts (response time, last message, counts).
-2. **Engagement Intelligence (EI) properties** — the AI read on where the conversation stands (intent, heartbeat, escalation, next steps, task-to-create).
-3. **Industry properties** — auto-populated business fields pulled straight from what's being discussed.
-
-All three land where the rest of your CRM lives: on the **Salesforce Contact and Lead** records, written through Salesforce's official APIs. (Eazybe is a connector — it stores no chat content on its own servers; the data lives in your Salesforce org.) The next three sections break each family down.
-
----
-
-## Analytics Properties (Response Time, Last Message, Counts)
-
-These are the no-interpretation-needed numbers about a conversation — the ones a sales manager asks for constantly. They're **real, shipped analytics**, not an AI guess. Per contact, Eazybe measures and can surface:
-
-- **Who sent the last message** — you or the customer? A customer's message with no reply is a leak you can now *filter for* on the Salesforce record.
-- **When the last message was sent** — the freshness of the relationship, so a deal can't quietly go stale.
-- **Average response time for this contact** — how fast your team actually replies to *this* person.
-- **Number of messages sent** — outbound effort.
-- **Number of messages received** — inbound engagement.
-
-These aren't hypothetical — response-time analytics, unreplied-chat detection, and escalation flagging are shipped Eazybe features (the Analytics Dashboard, Team Performance/Leaderboard, Conversation Analytics, and the Unreplied Chats AI Agent). As **WhatsApp Salesforce properties**, they unlock the things managers ask for, right inside Salesforce: build a list view of *"customer sent last, no reply,"* sort a Lead queue by slowest response time, or find every account that's gone quiet for 7+ days.
-
-Because they report **inside Salesforce**, response-time and follow-up tracking sit next to your pipeline reporting instead of in a separate silo. We go deeper on building those views in the [sales intelligence pillar](/blog/whatsapp-sales-intelligence).
+**Ready to stop chasing reps for CRM updates?** [Connect WhatsApp to Salesforce with Eazybe →](/salesforce-whatsapp-integration) and let the conversations keep your records current.
 
 ---
 
-## Engagement Intelligence Signals on the Salesforce Record
+## FAQs Related To Updating Salesforce From WhatsApp
 
-Numbers tell you *how much*. **Engagement Intelligence (EI) tells you what's going on.** These are AI-read signals about the state and direction of a conversation, written onto the Salesforce Contact or Lead so a rep doesn't have to re-read forty threads to decide who to call:
+**1. How does Eazybe update Salesforce from WhatsApp automatically?**
+For any synced Contact or Lead, Eazybe backs up the WhatsApp conversation into Salesforce roughly every three minutes, and lets your team create or edit records directly from the chat window. Chats land in the Notes & Attachments section and in a custom activity object called "WhatsApp Chats by EazyBe."
 
-- **Intent** — is this person exploring, comparing, or ready to buy?
-- **Heartbeat** — is the deal still alive? A short *"any update?"* can be a pulse worth acting on, not noise.
-- **Escalation** — is this turning into a complaint or an urgent request that needs a manager *now*?
-- **Next steps** — what does the conversation imply you should do next (send a quote, book a call, share a doc)?
-- **Task to create** — should this become a Salesforce Task so it doesn't slip?
+**2. Is the sync two-way between WhatsApp and Salesforce?**
+No. Chat backup is one-way — WhatsApp to Salesforce. Eazybe brings the conversation into your CRM; it does not push Salesforce changes back into WhatsApp.
 
-This is where a Salesforce record stops being a filing cabinet and starts behaving like a coach. Instead of eyeballing the activity timeline, a manager can filter for *escalation* or sort by *intent* and work the three deals that matter today. Eazybe's escalation and unreplied-chat detection already run this way in the Team Inbox — flagging critical conversations and nudging before a hot lead goes cold.
+**3. Which Salesforce objects can I update from WhatsApp?**
+The mini-CRM lets you create or edit Leads and Contacts, and create, edit, or delete Tasks, Events, and Call Logs for both. It does not create Opportunities or Cases.
 
-> **Note on the term:** we use **"EI" for Engagement Intelligence** — the read on where a conversation stands and where it's heading, not sentiment scoring for its own sake.
+**4. Can I control which fields get updated?**
+Yes. Click Edit on the Contact or Lead card, choose which user properties appear, mark each required or optional, click Apply, then Save. Only the properties you self-select are in play.
 
-One honest caveat: **EI signals are AI-assisted, not oracle.** Intent and escalation reads are strong prompts for a human, not verdicts — and accuracy improves the more context a conversation carries. A two-word thread tells any system less than a real back-and-forth. Treat these properties as a fast way to point reps at the right conversation, with the rep still making the call.
+**5. Does it log the whole chat or just a summary?**
+Both, in different places. The full transcript is archived to the record (Notes & Attachments and the "WhatsApp Chats by EazyBe" activity object), while the self-selected properties give you the concise gist you actually work from.
 
----
+**6. How far back does the initial import go?**
+The initial integration backs up the past 3 days of chat history. After that, new chats sync automatically about every 3 minutes.
 
-## Auto-Populated Industry Fields
+**7. What do I need to set it up?**
+An active Salesforce account and the permissions granted during the connection flow. You install the Eazybe Chrome extension, connect Salesforce, approve access, and you're running in a few minutes.
 
-This is the layer that kills manual data entry in Salesforce — and the one that turns generic "WhatsApp Salesforce properties" into *your* properties. Eazybe reads what's actually being discussed and **auto-populates the business fields your industry runs on**, including custom Salesforce fields, onto the Contact or Lead.
-
-A customer messages, *"I want a pair of shoes,"* from a number that resolves to a particular country. Without a rep typing anything, the record can fill in:
-
-- **Product interest:** shoes
-- **Region / country:** from the number and context
-- plus whatever custom Salesforce fields your business runs on.
-
-The exact fields match your industry:
-
-- **E-commerce / retail:** product interest, size, region.
-- **Real estate:** listing, budget, location.
-- **Clinics / healthcare:** appointment type, urgency.
-- **Insurance:** policy type, coverage interest.
-
-The pattern is the same everywhere: **the conversation fills the Salesforce record, not the rep.** That's the difference between a tool that stores chats in an activity object and one that does your data entry for you. Auto-population removes the typing, not the judgment — so give the fields a glance on high-value deals before you forecast on them.
+**8. Do reps still have to enter data manually?**
+Far less. The conversation logs itself, and reps only touch the handful of self-selected properties that matter — instead of transcribing chats into Salesforce from memory.
 
 ---
 
-## How the Properties Sync Into Salesforce
+**Internal links used:**
+- `/blog/whatsapp-sales-intelligence` — the AI intelligence / gist-not-transcript layer
+- `/salesforce-whatsapp-integration` — the Salesforce integration and CTA
+- `/blog/whatsapp-coexistence` — connect your number with no migration
 
-Being specific here matters, because the sync mechanics decide what you can trust. Eazybe writes WhatsApp Salesforce properties through the **Chrome extension over WhatsApp Web** and the official Salesforce APIs — so the **core sync and Mini-CRM work on all Salesforce editions** without onboarding your number onto the WhatsApp Business API.
-
-A few facts, stated precisely rather than impressively:
-
-- **Cadence: about every 3 minutes, one-way.** Chat backup syncs on a ~3-minute interval, **WhatsApp → Salesforce**. It is not real-time message mirroring, and it is not two-way message sync — messaging happens in WhatsApp; Salesforce receives the backup and records.
-- **Initial backup is the past 3 days.** The one-time backfill covers the **last 3 days** of chat history; after that, only new messages sync. There's no full-history import from the backup path.
-- **Connection is OAuth-based.** You connect by selecting your Salesforce account and accepting permissions to view and sync WhatsApp chats — no credentials handled by Eazybe.
-- **Properties land as editable Salesforce fields.** From the **Salesforce Mini-CRM view inside WhatsApp**, you can create Contacts and Leads (or link to existing ones) and edit their profiles — selecting user properties, marking them required or optional, applying, and saving straight to Salesforce fields. You can also create **Tasks, Events, and Call Logs** against Contacts and Leads, and customize fields via the **Edit** button in the create/edit dialogs.
-- **Backfill freshness is visible.** The extension shows the last synced date and time, and admins can view each team member's **"Last Chat Synced"** in the Eazybe Workspace Dashboard — so you always know how current the records are.
-- **Nothing lives on Eazybe's servers.** The properties are written into your Salesforce org through official APIs. Eazybe is a connector, and the integration is **GDPR-compliant, with a DPA available on request.**
-
-One honest scoping note: the docs specify backup landing on **Contacts (Notes & Attachments)** and the **WhatsApp Chats by EazyBe** activity object for **Contacts and Leads** — not on Opportunities. So treat these as Contact- and Lead-level properties, and drive your Opportunity reporting from the Contact/Lead fields they associate to.
-
-*Also Read: [How WhatsApp Sales Intelligence Works](/blog/whatsapp-sales-intelligence)*
-
----
-
-## Eazybe vs Salesforce Native WhatsApp: What Actually Lands
-
-Salesforce's own WhatsApp (via Messaging for In-App and Web / Digital Engagement) is a real, capable channel. The question this section answers is narrow and checkable: once a chat happens, **what actually lands on the record as a usable property?**
-
-- **Native WhatsApp** logs the conversation as Messaging session records via Digital Engagement, and typically needs higher-tier Digital Engagement licensing built around the WhatsApp Business API. It's a strong two-way messaging channel — but a logged Messaging session is not the same as writing *properties*: response time and message counts don't arrive as conversation-level fields, engagement signals (intent, heartbeat, escalation, next steps) aren't inferred for you, and industry fields (product interest, region, budget) stay manual entry.
-- **Eazybe** writes the full chat backup onto the Contact/Lead (Notes & Attachments + the WhatsApp Chats by EazyBe activity, over WhatsApp Web), plus the analytics numbers as filterable Salesforce fields, the EI signals as AI-assisted reads on the record, and the industry fields filled straight from the conversation — all on all Salesforce editions for core sync, on the free WhatsApp Business App or a personal number with no migration. The data lives in your Salesforce org; Eazybe stores nothing.
-
-**When native is genuinely enough:** if you already run an API number, live in Salesforce Digital Engagement, and only need the messaging channel itself on the record — native can cover it. If you want the conversation to *become properties* your reps sort and your reports act on — response time and counts you can trust, engagement signals a human acts on, and industry fields that fill themselves — that's the Eazybe layer. And to be straight: sending WhatsApp **from inside Salesforce** (via a Record-Triggered Flow) is possible with Eazybe, but it requires a WABA, an approved template, and Enterprise edition — the *properties* in this post don't. For the full channel-level comparison, see the [Salesforce WhatsApp integration guide](/salesforce-whatsapp-integration) — this post deliberately doesn't repeat it.
-
----
-
-## Setup In A Few Steps
-
-You don't migrate your number to get WhatsApp Salesforce properties — the backup and Mini-CRM run through the Chrome extension over WhatsApp Web (the Cloud API is a separate optional layer via [coexistence](/blog/whatsapp-coexistence)):
-
-1. **Have an active Salesforce account.** Core sync and Mini-CRM work on all editions.
-2. **Install the Eazybe Chrome extension** and connect it to WhatsApp Web via QR.
-3. **Connect Salesforce over OAuth** — choose your Salesforce account and click **Accept** to grant the view-and-sync permissions.
-4. **Confirm chats are syncing.** Send a test message to a linked Contact and confirm it appears in **Notes & Attachments** / the **WhatsApp Chats by EazyBe** activity within a sync cycle (~3 minutes); check the last-synced timestamp in the extension.
-5. **Choose which properties land.** From the Salesforce Mini-CRM view, use the **Edit** button to pick the Contact/Lead fields (including custom ones) reps should fill and Eazybe should write to — marking each required or optional, then Apply and Save.
-6. **Map custom industry fields.** Add the custom Salesforce fields your industry runs on (product interest, listing, appointment type, policy) so auto-population has somewhere to write.
-7. **Build the views that use them.** Create Salesforce list views and reports on the analytics and EI fields — e.g., *"customer sent last, high intent, no reply in 4h."*
-
-Steps 1–4 get properties landing. Steps 5–7 are the intelligence you'll actually work from. There's a **4-day free trial** (extendable to 8 days by rating), so you can see real properties on real records before committing.
-
----
-
-## Honest Limits: What This Is (And Isn't)
-
-We'd rather be straight about the edges than oversell:
-
-- **Sync isn't instant, and it's one-way.** Chat backup runs on a ~3-minute cadence, WhatsApp → Salesforce. If you need sub-minute mirroring or two-way message replication, this isn't that.
-- **No full-history backfill.** The one-time initial backup is the **past 3 days** only. History that pre-dates connection won't appear from the backup path.
-- **Contact- and Lead-level, not Opportunities.** Backup lands on Contacts (Notes & Attachments) and the WhatsApp Chats by EazyBe activity for Contacts and Leads — not on Opportunity records.
-- **EI is AI-assisted, not a verdict.** Intent, heartbeat, and escalation are strong prompts for a human; reps stay in control, and accuracy grows with conversation context.
-- **Auto-populated fields deserve a glance.** Auto-population removes the typing, not the judgment — especially on high-value deals.
-- **Sending from Salesforce is a separate, gated layer.** WhatsApp from a Record-Triggered Flow needs a WABA, an approved template, and Enterprise edition — the properties covered here don't.
-
-Calling this out is the point: properties you can trust are properties that are honest about their limits.
-
----
-
-## Verdict: Stop Backing Up, Start Landing Intelligence
-
-Chat backup was the win of a few years ago — at least the messages weren't trapped on someone's phone. **The 2026 win is intelligence that lands on the record.** Every WhatsApp conversation becoming **analytics, engagement, and industry properties** on your Salesforce Contact and Lead — data your team can filter, forecast, and act on inside the CRM they already live in.
-
-If you can't currently build a Salesforce view that answers *"which deals are alive, who's slow, and what's next,"* you don't need more chat backup. You need your WhatsApp conversations to land as **WhatsApp Salesforce properties.**
-
-**Ready to push sales intelligence into Salesforce — not just chat backup?** [See what Eazybe writes onto your Salesforce record →](https://eazybe.com/salesforce-whatsapp-integration) Start free, no number migration required.
-
-> **Summarise this article with [ChatGPT](https://chat.openai.com) · [Claude](https://claude.ai) · [Gemini](https://gemini.google.com)**
-
----
-
-## FAQs Related To WhatsApp Salesforce Properties
-
-**1. What are WhatsApp Salesforce properties?**
-They're structured fields Eazybe writes onto your Salesforce Contact and Lead records from each WhatsApp conversation — analytics (response time, last message, counts), Engagement Intelligence signals (intent, heartbeat, escalation, next steps), and auto-populated industry fields (product interest, region, and your custom fields). Unlike a logged chat, a property is something you can filter, sort, and report on.
-
-**2. How is this different from just backing up WhatsApp chats to Salesforce?**
-Chat backup drops the conversation into the Contact's **Notes & Attachments** and the **WhatsApp Chats by EazyBe** activity object — a transcript. Properties turn those conversations into fields you can build list views and reports on. Backup tells Salesforce what was said; properties tell Salesforce what to do about it. If you only need the sync and Mini-CRM plumbing, start with the [Salesforce WhatsApp integration guide](/salesforce-whatsapp-integration).
-
-**3. Which analytics properties land on the record?**
-Per contact: who sent the last message, when it was sent, the average response time for that contact, the number of messages sent, and the number received. Together they show whether each relationship is being handled well — and let you filter for leads going cold.
-
-**4. What are Engagement Intelligence (EI) properties?**
-AI-read signals about the state of a conversation: the customer's intent, whether it's a live "heartbeat," whether it's escalating, what the next step should be, and whether a Salesforce Task should be created. Treat them as strong prompts for a rep, not final verdicts — accuracy improves the more context a conversation carries.
-
-**5. How do industry fields get auto-populated?**
-Eazybe reads what's being discussed and fills the business fields your industry runs on — including custom Salesforce fields. A customer saying "I want a pair of shoes" from a given country can auto-fill product interest and region; real estate fills listing and budget, a clinic fills appointment type and urgency. The conversation fills the record instead of the rep. Confirm high-value fields before you forecast on them.
-
-**6. How often do the properties sync into Salesforce, and how much history?**
-Chat backup syncs automatically on a ~3-minute cadence, one-way (WhatsApp → Salesforce). The one-time initial backup covers only the **past 3 days** of history; after that, only new messages sync. The extension shows the last-synced timestamp, and admins see each team member's "Last Chat Synced" in the Workspace Dashboard.
-
-**7. Does writing properties require the WhatsApp Business API or a specific Salesforce edition?**
-No. The core sync, Mini-CRM, and property writes run through the Chrome extension over WhatsApp Web on **all Salesforce editions** — no number migration and no WABA. WABA plus an approved template and Enterprise edition are only needed for the separate ability to *send* WhatsApp from a Salesforce Record-Triggered Flow.
-
-**8. Where does the data live — does Eazybe store my chats?**
-Eazybe stores no chat data on its own servers. Conversations and properties are written into your Salesforce org via official APIs (OAuth-based), and Salesforce handles storage. The integration is GDPR-compliant, with a DPA available on request.
-
----
-
-*Ready to turn WhatsApp conversations into Salesforce intelligence — response time, intent, and industry fields on every record? **[Connect WhatsApp to Salesforce with Eazybe →](https://eazybe.com/salesforce-whatsapp-integration)** Start free, no number migration required.*
-
-**About the author:** The Eazybe team builds the no-code WhatsApp AI-agent and CRM sync layer trusted by 2,000+ sales and support teams. Eazybe is GDPR-compliant, SOC 2 Type II, a Meta and HubSpot partner, and built on Meta's official WhatsApp Cloud API and Coexistence.
-
----
-
-### Internal links used
-- [/blog/whatsapp-sales-intelligence](/blog/whatsapp-sales-intelligence) — the sales-intelligence pillar this cluster ladders up to (2×)
-- [/salesforce-whatsapp-integration](/salesforce-whatsapp-integration) — connect/sync + Mini-CRM + no-migration (cross-linked, not repeated; 5×)
-- [/blog/whatsapp-coexistence](/blog/whatsapp-coexistence) — keep your number, add the Cloud API with no migration
-
-### Target-keyword placement ("WhatsApp Salesforce properties")
-- **URL slug:** /whatsapp-salesforce-properties
-- **SEO title:** "WhatsApp Salesforce Properties: Intelligence, Not Backup (2026)"
-- **Meta description:** front-loaded, first two words
-- **H1:** "WhatsApp Salesforce Properties: Push Sales Intelligence Into Salesforce — Not Just Chat Backup (2026)"
-- **H2s:** "The WhatsApp Properties That Land on a Salesforce Record", "Eazybe vs Salesforce Native WhatsApp: What Actually Lands", "FAQs Related To WhatsApp Salesforce Properties" (plus close variants across "Analytics Properties", "Engagement Intelligence Signals on the Salesforce Record", "How the Properties Sync Into Salesforce")
-- **Body + TL;DR + FAQ:** exact-match phrase used throughout with clean grammar; variants (analytics properties, Engagement Intelligence, industry fields, Contact/Lead properties) layered through the body
+**Target keyword ("update Salesforce from WhatsApp") placement:** slug (`update-salesforce-from-whatsapp`), SEO title, meta description, H1, the definition H2 ("What Does It Mean to Update Salesforce From WhatsApp?"), the setup H2 ("How to Update Salesforce From WhatsApp"), the FAQ H2 ("FAQs Related To Updating Salesforce From WhatsApp"), TL;DR, and FAQ #1 — plus variants (keep Salesforce updated from WhatsApp, WhatsApp to Salesforce sync, Salesforce WhatsApp integration) layered through the body.

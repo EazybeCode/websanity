@@ -1,220 +1,170 @@
 ---
 _type: blogPost
-title: "Push WhatsApp Sales Intelligence Into Bitrix24 — Not Just Chat Backup (2026)"
+title: "Update Bitrix24 From WhatsApp, Automatically"
 slug: "bitrix24-whatsapp-properties"
-seoTitle: "WhatsApp Bitrix24 Properties: Sales Intelligence, Not Backup"
-metaDescription: "WhatsApp Bitrix24 properties turn chats into analytics, engagement and industry fields on the Bitrix24 record — not just chat backup. See how Eazybe writes them."
-excerpt: "Your reps have been closing deals over WhatsApp for years, and — good news — those chats now back up into Bitrix24. Open a contact, scroll the activity…"
-targetKeyword: "WhatsApp Bitrix24 properties"
+seoTitle: "Update Bitrix24 From WhatsApp, Automatically | 2026"
+metaDescription: "Reps won't update the CRM. Eazybe reads every WhatsApp chat and updates Bitrix24 from WhatsApp automatically — leads, contacts, tasks, no manual entry."
+excerpt: "Open your Bitrix24 right now and pick any ten leads. How many have a current stage, a clear next step, and a note from the last conversation? If you're like…"
+targetKeyword: "update Bitrix24 from WhatsApp"
 category: "CRM Integrations"
 funnelStage: "BOFU"
 priority: "P1"
 status: draft            # draft | ready | published
 author: "Eazybe Team"
-authoredAt: "2026-07-10"
+authoredAt: "2026-07-25"
 publishedAt:
 ---
 
-# Push WhatsApp Sales Intelligence Into Bitrix24 — Not Just Chat Backup (2026)
+# Update Bitrix24 From WhatsApp, Automatically
 
-Your reps have been closing deals over WhatsApp for years, and — good news — those chats now back up into Bitrix24. Open a contact, scroll the activity timeline in the General section, and the whole conversation is right there on the record.
+Open your Bitrix24 right now and pick any ten leads. How many have a current stage, a clear next step, and a note from the last conversation? If you're like most teams, the honest answer is "two or three."
 
-So answer this from memory, without scrolling: *which of your open Bitrix24 deals went quiet this week? Which lead is your team slowest to reply to? Which "just checking in" message was actually a buying signal?*
+It's not that your reps are lazy. It's that the real selling is happening on **WhatsApp** — the questions, the objections, the "can you do 15% off," the "send me the contract Monday" — and none of it makes it back into the CRM. Nobody wants to finish a chat and then re-type it into a form.
 
-If you're guessing, you don't have a backup problem — you have a **properties** problem. The messages reached Bitrix24, but they landed as a timeline of text in the General section, not as fields you can sort, filter, and forecast on. The conversation is stored. It isn't *working*.
+So your Bitrix24 drifts. Deals look alive that died a week ago. Hot leads sit with no next action. And leadership makes pipeline calls on data that's quietly wrong.
 
-That gap is what this post is about. Chat backup preserves the words. **WhatsApp Bitrix24 properties** turn each conversation into structured values on the Bitrix24 record — response time, intent, next step, product interest — so your team prioritizes from a field instead of from memory.
-
-This is *not* a repeat of how to connect the two systems. If you're still setting up the sync, the Mini-CRM, and no-migration coexistence, start with our [Bitrix24 WhatsApp integration guide](/bitrix24-whatsapp-integration). This post is about what **lands on the Bitrix24 record** once the pipe is open.
+This post is about closing that gap: how to **update Bitrix24 from WhatsApp automatically**, so the record reflects what was actually said — without asking a single rep to log anything by hand.
 
 > **TL;DR**
-> - Chat backup drops messages into the **General section** of the Bitrix24 Contact's Page (the activity timeline). **WhatsApp Bitrix24 properties** drop *structured fields* onto the contact record — values you can sort a pipeline by.
-> - Eazybe writes three families of properties from every WhatsApp conversation: **Analytics** (last message, response time, message counts), **Engagement Intelligence / EI** (intent, heartbeat, escalation, next steps, task-to-create), and **Industry** (auto-filled fields like product interest and region).
-> - These land in your **Bitrix24** contact properties — via the Chrome extension over WhatsApp Web, so the core sync does **not** require the WhatsApp Business API.
-> - Sync runs **automatically, about every 3 minutes**, one-way (WhatsApp → Bitrix24); the one-time initial backup covers the **past 3 days** only, and **only chats with linked Bitrix24 contacts** sync.
-> - The payoff: you can finally answer *"which deals are alive, who's slow, and what's next"* from a Bitrix24 field instead of by re-reading the timeline.
+> - **Salespeople won't reliably update the CRM by hand**, so Bitrix24 goes stale and you lose visibility into your own pipeline.
+> - **Eazybe reads your WhatsApp conversations and updates Bitrix24 for you** — chats auto-sync every **3 minutes**, one-way (WhatsApp → Bitrix), backed up to the Contact's record.
+> - It's **not just contacts**: create or link **Leads and Contacts** in the Mini-CRM, and add **Activities, Comments, and Tasks** to each.
+> - You **self-select which properties** get updated; the AI-assisted layer drafts a **concise gist** against those fields — you review, not re-type.
+> - No CRM at all? **Google Sheets** works as a lightweight home. Either way, your record finally becomes an accurate single source of truth.
 
-*Also Read: [From Chat Backup to WhatsApp Sales Intelligence](/blog/whatsapp-sales-intelligence) · [Bitrix24 WhatsApp Integration](/bitrix24-whatsapp-integration) · [WhatsApp Coexistence: Keep Your Number, Add CRM](/blog/whatsapp-coexistence)*
+*Also Read: [From Chat Backup to WhatsApp Sales Intelligence](/blog/whatsapp-sales-intelligence) · [Bitrix24 + WhatsApp Integration](/bitrix24-whatsapp-integration) · [WhatsApp Coexistence: Keep Your Number, Add the API](/blog/whatsapp-coexistence)*
 
 ---
 
-## Chat Backup vs Sales Intelligence In Bitrix24
+## Why Your Bitrix24 Is Always Out of Date
 
-Most WhatsApp-to-Bitrix24 setups stop at backup. They copy the conversation into the **General section of the Contact's Page** — the activity timeline — and call it done. Genuinely useful, and Eazybe does this too: the full conversation history lands on the contact so anyone can view it inside the CRM. But a timeline is a document. You can read it; you can't *report* on it.
+**To update Bitrix24 from WhatsApp means keeping your Bitrix24 leads and contacts current with what's happening in your WhatsApp chats — logging the conversation, filling the fields, and adding the follow-up tasks — so the CRM matches reality instead of lagging behind it.**
 
-Sales intelligence is the active layer on top. Instead of only storing the conversation, it reads the conversation and writes **WhatsApp Bitrix24 properties** — discrete fields in the contact's Profile section that behave like every other Bitrix24 user property: viewable, editable, and something you can build a view or a report around.
+The reason Bitrix24 is perpetually behind is simple: updating it is manual, and manual work loses to a busy day every time. A rep closes a WhatsApp thread, tells themselves they'll update the lead later, and later never comes.
 
-Here's the difference on one record:
+Multiply that across a team and a month, and the CRM stops being a source of truth. It becomes a rough approximation of what someone remembered to enter.
 
-| Dimension | Chat Backup (the old default) | WhatsApp Bitrix24 Properties (Eazybe) |
+## WhatsApp Is a Black Box (And Reps Won't Update the CRM)
+
+Here's the uncomfortable part. The most important sales conversations your company has are invisible to everyone except the rep holding the phone.
+
+- **Leadership can't see it.** You can't coach, forecast, or spot a slipping deal from chats you'll never read.
+- **The CRM can't see it.** Bitrix24 only knows what someone typed into it — and most of it never gets typed.
+- **The next rep can't see it.** When someone leaves or goes on leave, the context leaves with them.
+
+Asking reps to fix this by hand doesn't work, and it never has. Data entry is the first thing to get skipped under pressure, and no amount of process nagging changes that. The fix isn't more discipline — it's removing the manual step entirely.
+
+## How Eazybe Reads Every Chat to Update Bitrix24 From WhatsApp
+
+**Eazybe** runs as a Chrome extension over WhatsApp Web and connects your number with no migration — personal WhatsApp, the WhatsApp Business App, or the API via [coexistence](/blog/whatsapp-coexistence). Once it's connected to your Bitrix24, it does the logging for you.
+
+Every WhatsApp conversation tied to a Bitrix24 contact is **backed up automatically to that contact's record** (it lands in the **General** section of the Contact's page in Bitrix). Chats **auto-sync every 3 minutes**, and the initial integration backs up the **past 3 days** so you start with recent history, not a blank slate.
+
+On top of that backup sits the intelligence layer. Instead of you re-reading forty threads, Eazybe reads the conversation and **drafts the updates** — the fields you chose, the notes worth keeping, the follow-up that shouldn't slip. It's **AI-assisted**, not autopilot: you decide which properties it fills and you stay in control of the record. (More on that model in [WhatsApp Sales Intelligence](/blog/whatsapp-sales-intelligence).)
+
+The point is that **you no longer depend on a rep to log anything.** The conversation updates Bitrix24 — the rep just keeps selling.
+
+## Not Just Contacts: Leads, Activities, Comments, and Tasks
+
+Keeping the CRM honest means more than saving a phone number. Through Eazybe's Mini-CRM view, you can update the objects Bitrix24 actually runs on:
+
+- **Leads** — create a new lead or link an existing one, and view or edit its profile properties.
+- **Contacts** — create or link a contact, and edit its profile fields directly.
+- **Activities** — add, edit, postpone, or delete activities on both Leads and Contacts, with notes.
+- **Comments** — add notes-style comments to track where a conversation stands in your process.
+- **Tasks** — create and manage follow-up tasks against a Lead or Contact so nothing goes cold.
+
+Two honesty notes up front, because we'd rather you not be surprised: Eazybe's Bitrix24 Mini-CRM covers **Leads and Contacts** — there's **no separate Deals or Tickets object** here, and call logging is handled through **Activities, Comments, and Tasks** rather than a call-log object. That's the real shape of the integration, and it's plenty to keep the record current.
+
+## Self-Select the Properties You Want Updated
+
+You don't want *everything* dumped onto a record — you want the handful of fields your team actually filters and reports on. Eazybe lets you choose them.
+
+In the **Profile** section you view and edit the record's user properties directly, then **Save**. On the create form, click **Edit** to select exactly which user properties (fields) appear and are editable. Pick budget, product interest, region, stage, source — whatever your pipeline is built on.
+
+From then on, the AI sifts each conversation and writes **only against the fields you selected**. You get signal on the properties that matter, not noise on the fifty you don't.
+
+## The Gist, Not the Transcript: What Lands on the Bitrix24 Record
+
+Nobody wants to scroll a raw WhatsApp transcript inside a CRM. What you want is the **gist** — the two lines that tell you where the deal stands.
+
+That's the difference between plain chat backup and an actually useful record:
+
+- The **full conversation** is preserved on the Contact for when you need to check the wording.
+- The **summary and the selected properties** give you the at-a-glance read: what they want, what stage they're at, what's next.
+
+So instead of a manager reading 40 chat threads to prep a pipeline review, they open the record and see the current state in seconds. The transcript is there if you need it; the gist is there so you usually don't.
+
+## How the Updates Sync (Setup in a Few Steps)
+
+Getting Eazybe to update Bitrix24 from WhatsApp takes a few minutes, not an IT project:
+
+1. **Connect your number** to Eazybe — personal WhatsApp, the Business App, or the API. No migration, same number.
+2. **Connect Bitrix24** — you'll need an **active Bitrix24 account** and to **accept the required permissions** during the integration.
+3. **Link your contacts.** Only chats tied to a Bitrix24 contact sync, and the first backup pulls the **past 3 days** of history.
+4. **Self-select your properties** so Eazybe fills the fields you care about — nothing more.
+5. **Let it run.** Chats **auto-sync every 3 minutes**, one-way (WhatsApp → Bitrix), and any Mini-CRM edits you make **push to Bitrix24 on Save** (you can open the live record with **View on Bitrix**).
+
+That's it. No zaps to maintain, no rep checklist to enforce.
+
+## Eazybe vs Manual Bitrix24 Updates: The Difference
+
+| What Happens | Manual Bitrix24 Updates | Eazybe (Auto-Updated From WhatsApp) |
 |---|---|---|
-| What lands on the record | Raw messages in the General-section timeline | Messages **plus** structured Bitrix24 properties |
-| Can you sort/filter the pipeline by it? | No | Yes — by response time, intent, escalation |
-| Answers "which deals are alive?" | No — you re-read the timeline | Yes — heartbeat + last-activity properties |
-| Manual data entry | Still needed | Auto-populated from the conversation |
-| Where it lives | Bitrix24 contact activity timeline | Bitrix24 contact **properties** (Profile section) |
-| What you can report on | Message counts | Response time, intent mix, next steps, industry fields |
-
-> **The one-line version:** Chat backup tells Bitrix24 *what was said*. WhatsApp Bitrix24 properties tell Bitrix24 *what to do about it*.
-
-This post assumes the backup and Mini-CRM plumbing is already covered in the [integration guide](/bitrix24-whatsapp-integration). From here, we're only talking about what turns into a property.
-
-## The WhatsApp Properties That Land On A Bitrix24 Record
-
-Eazybe writes three families of properties from each conversation. Think of them as increasing levels of *"so what?"* — from objective counts, to what the conversation *means*, to the business fields your industry runs on.
-
-1. **Analytics properties** — the measured, objective facts (response time, last message, counts).
-2. **Engagement Intelligence (EI) properties** — the AI read on where the conversation stands (intent, heartbeat, escalation, next steps, task-to-create).
-3. **Industry properties** — auto-populated business fields pulled straight from what's being discussed.
-
-Every family lands the same way: you edit the contact **Profile section** from the Bitrix Mini-CRM view inside WhatsApp, and **Save** writes those user properties straight to Bitrix24 through its official API. (Eazybe is a connector — it stores no chat content on its own servers; the data lives in your Bitrix24 account.) The next three sections break each family down.
-
-## Analytics Properties (Response Time, Last Message, Counts)
-
-These are the objective, no-interpretation-needed numbers about each conversation — the ones that answer *"is this relationship being handled well?"* They're real, shipped analytics, not an AI guess. Per Bitrix24 contact, Eazybe measures:
-
-- **Who sent the last message** — you or the customer? A customer's message sitting unanswered on a Bitrix24 contact is a leak you can now surface.
-- **When the last message was sent** — the freshness of the relationship, so a deal can't quietly go stale on the record.
-- **Average response time for this contact** — how fast your team actually replies to *this* person.
-- **Number of messages sent** — outbound effort.
-- **Number of messages received** — inbound engagement.
-
-These aren't hypothetical: response-time analytics, unreplied-chat detection, and escalation flagging are **shipped Eazybe features** — the Conversation Analytics and Team Performance/Leaderboard dashboards, plus the Unreplied Chats AI Agent and Hot Lead & Escalation Detection. As **WhatsApp Bitrix24 properties** written onto the contact, they unlock the things sales managers ask for constantly: find every contact where *"the customer sent last and no one replied,"* rank leads by slowest response time, or spot accounts that have gone quiet for a week.
-
-You can also see team health without opening Bitrix24: the extension shows the last synced date/time per chat, and admins view team **"Last Chat Synced"** in the Eazybe Workspace Dashboard (workspace.eazybe.com). Analytics is the backbone of the [sales-intelligence pillar](/blog/whatsapp-sales-intelligence) — Bitrix24 is just where these numbers land as properties.
-
-## Engagement Intelligence Signals On The Bitrix24 Record
-
-Analytics tells you *how much*; **Engagement Intelligence (EI) tells you what's going on.** These are AI-read signals about the state and direction of the conversation, written onto the Bitrix24 record as fields a rep or a manager can act on:
-
-- **Intent** — is this person exploring, comparing, or ready to buy?
-- **Heartbeat** — is the deal still alive? A short *"any update?"* can be a pulse worth acting on, not noise.
-- **Escalation** — is this turning into a complaint or an urgent request that needs a manager *now*?
-- **Next steps** — what does the conversation imply you should do next (send a quote, book a call, share a doc)?
-- **Task to create** — should this become a Bitrix24 task so it doesn't slip?
-
-This is where the Bitrix24 record stops being a filing cabinet and starts behaving like a coach. Instead of a rep re-reading forty threads in the timeline to decide who to call, the *escalation* and *intent* properties surface the three that matter today. And because Eazybe lets you add **Activities, Comments, and Tasks** against a Bitrix24 contact right from the Mini-CRM, a *next step* the AI surfaces can become a real Bitrix24 task instead of a forgotten note.
-
-Be clear-eyed about what EI is: **AI-assisted signals a human acts on**, not verdicts. Intent and escalation reads are strong prompts that get better the more context a conversation carries; your reps stay in control.
-
-> **Note on the term:** we use **"EI" for Engagement Intelligence** — the read on where a conversation stands and where it's heading, not sentiment scoring for its own sake.
-
-## Auto-Populated Industry Fields
-
-This is the layer that kills manual data entry in Bitrix24. Eazybe reads what's actually being discussed and **auto-populates the business fields your industry runs on** — straight into the contact's Profile section, including the custom user properties you've added.
-
-A customer messages *"I want a pair of shoes"* from a number that resolves to a particular country. Without a rep typing anything, the Bitrix24 record can fill:
-
-- **Product interest:** shoes
-- **Region / country:** from the number and context
-- and whatever custom Bitrix24 user properties your business runs on.
-
-The exact fields match your industry:
-
-- **E-commerce / retail:** product interest, size/model, country.
-- **Real estate:** listing type, budget, location.
-- **Clinics / healthcare:** appointment type, urgency.
-- **Insurance:** policy type, coverage interest.
-
-The principle is the same everywhere: **the conversation fills the Bitrix24 record, not the rep.** That's the difference between a tool that drops chats onto a timeline and one that does your data entry for you — and it's why these arrive as *properties*, in the Profile fields your Bitrix24 views and reports already read. Auto-population removes the typing, not the judgment — so give the fields a glance on high-value deals before you forecast on them.
-
-## How The Properties Sync Into Bitrix24
-
-Being specific here matters, because the sync mechanics decide what you can trust. Eazybe writes WhatsApp Bitrix24 properties through the **Chrome extension over WhatsApp Web** and Bitrix24's official API — so the **core sync does not require the WhatsApp Business API.** The mechanics, stated precisely rather than impressively:
-
-- **Cadence: automatic, about every 3 minutes.** Chat backup runs one-way (WhatsApp → Bitrix24) on a roughly 3-minute cycle. It is not instant, real-time message mirroring.
-- **Only linked contacts sync.** Chats back up only for contacts that already exist in — or are linked to — Bitrix24. A number with no Bitrix24 contact won't create phantom records or sync on its own.
-- **Initial backup is the past 3 days.** The one-time backfill covers the **last 3 days** of chat history; after that, only new messages sync. There's no full-history import.
-- **Chats land at the contact level.** Conversations back up to the **General section of the Contact's Page** — the contact activity timeline. Treat that as the home for the full transcript.
-- **You choose the properties.** From the Bitrix Mini-CRM view you can create Contacts and Leads (or link to existing Bitrix24 records), open the **Profile section**, and use the **Edit** button to select which user properties appear — then fill and **Save** to write straight to Bitrix24.
-- **Nothing lives on Eazybe's servers.** The properties are written into your Bitrix24 account through the official API. Eazybe is a connector; GDPR-compliant, with a DPA available on request.
-
-*Also Read: [How WhatsApp Sales Intelligence Works](/blog/whatsapp-sales-intelligence)*
-
-## Eazybe vs Bitrix24 Native WhatsApp: What Actually Lands
-
-Bitrix24's native WhatsApp channel (via its Open Channels / Contact Center) is a legitimate option, especially if you already route omnichannel messaging through Bitrix24. But the question this post cares about is narrow and checkable: once a chat happens, **what actually lands on the record as a usable property?**
-
-- **Native WhatsApp** connects the conversation as an Open Channel dialog from the point of connection onward — a real two-way channel. But the WhatsApp *conversation state* (intent, escalation, next step) and auto-populated **industry** fields aren't something the native channel writes onto the record, and there's no backfill of chats from before you connected.
-- **Eazybe** writes the analytics numbers, the EI signals, and the industry fields as properties in the contact's Profile section — the objective ones as measured facts, the AI ones as honest, human-in-the-loop signals — via the extension over WhatsApp Web, with **no number migration** for core sync.
-
-The durable difference isn't "who has WhatsApp." Both do. It's **whether the conversation turns into properties you can sort and forecast on** — and that's the layer native leaves to your reps' memory.
-
-One honest boundary, stated plainly: Eazybe's Bitrix24 integration is built around **contact-level chat backup and property editing plus cross-navigation** (a "Go to Bitrix" button from WhatsApp and a "Go Back to WhatsApp" button on the Bitrix24 Contacts page). It does **not** send WhatsApp from inside Bitrix24 or via Bitrix24 automation rules — if outbound-from-CRM is your priority, that's a different capability than the property layer covered here. For the full channel-level comparison, see the [Bitrix24 WhatsApp integration guide](/bitrix24-whatsapp-integration).
-
-## Setup In A Few Steps
-
-If the integration is already live, turning on properties is mostly configuration, not installation:
-
-1. **Have an active Bitrix24 account** and the Eazybe Chrome extension installed, connected to WhatsApp Web via QR.
-2. **Authorize Bitrix24 and accept every permission prompted** during integration — CRM Access (read/write contacts and leads), Activity Management, Timeline Access, and User Information. All must be accepted for backup and property writing to work.
-3. **Confirm chats are syncing.** Send a test message to a linked Bitrix24 contact and confirm it appears in the **General section** of the Contact's Page within a sync cycle (~3 minutes); the extension shows the last synced date/time.
-4. **Choose which properties land.** From the Mini-CRM view, open the contact **Profile section** and use the **Edit** button to pick the Bitrix24 user properties (including custom ones) reps should fill and Eazybe should write to.
-5. **Map custom industry fields.** Add the custom Bitrix24 user properties your industry runs on (product interest, listing, appointment type, policy) so auto-population has somewhere to write.
-6. **Work from Activities, Comments, and Tasks.** Turn the EI *next steps* into real Bitrix24 Tasks and Activities against the contact, so follow-ups get scheduled instead of forgotten.
-
-Steps 1–3 get properties landing. Steps 4–6 are the intelligence you'll actually work from. The heavier plumbing lives in the [Bitrix24 WhatsApp integration guide](/bitrix24-whatsapp-integration); this post is about what *lands* on the record.
+| Who does the data entry | Your reps, after each chat — if they remember | Eazybe reads the chat; you review |
+| When the record updates | Whenever someone finds time | Chats auto-sync every **3 minutes** |
+| What gets logged | Whatever the rep types out | The conversation, backed up to the Contact |
+| Which fields fill in | Only the ones a rep bothers with | The **user properties you self-selected** |
+| Coverage | The chats reps choose to log | Every chat **linked to a Bitrix24 contact** |
+| Net result | A perpetually stale pipeline | A record that reflects what was actually said |
 
 ## Honest Limits
 
-Sales intelligence is powerful, not magic — and we'd rather be straight about the edges:
+We'd rather set expectations than oversell, so here's the straight version:
 
-- **Sync isn't instant.** Chat backup runs one-way on a ~3-minute cadence. If you need sub-minute mirroring, this isn't that.
-- **No full-history backfill.** The one-time initial backup is the **past 3 days** only. History that pre-dates connection won't appear.
-- **Only linked contacts.** Properties and chats sync for contacts that exist in or are linked to Bitrix24 — unknown numbers won't auto-create records, and Eazybe doesn't claim automatic de-duplication of your Bitrix24 records.
-- **Backup is contact-level.** Chats land in the General section of the Contact's Page — plan for the timeline to live on the contact.
-- **EI is AI-assisted, not a verdict.** Intent, heartbeat, and escalation are strong prompts for a human; reps stay in control, and accuracy grows with conversation context.
-- **Auto-populated fields deserve a glance.** Auto-population removes the typing, not the judgment — especially on high-value deals.
+- **Sync is one-way (WhatsApp → Bitrix).** Eazybe keeps Bitrix24 current from your chats; it doesn't push messages the other direction, and **sending WhatsApp from inside Bitrix24 isn't part of this integration** — you send from WhatsApp/Eazybe.
+- **No Deals or Tickets object, and no dedicated call log.** The Bitrix24 Mini-CRM covers **Leads and Contacts**, plus Activities, Comments, and Tasks. There's also **no automatic deduplication** — you link an existing lead/contact or create a new one.
+- **Chat backup lands on the Contact's General section.** That's where conversations are stored; it isn't documented as landing on leads or other objects.
+- **The AI is assistive, not an oracle.** It drafts field updates and summaries from the conversation; a human still owns the record, especially on high-value deals. Two-word threads give it less to work with than rich ones.
+- **No Bitrix24? Google Sheets is a lightweight home.** You can back up chats to a Sheet, sync business labels two-way, and bulk-upload contacts — just don't expect deal-pipeline objects to live there. It's an honest, low-cost option, not a full CRM.
 
-Calling this out is the point: properties you can trust are properties that are honest about their limits.
+One thing that isn't a caveat: **where your data lives.** Eazybe is a connector and **stores no chat data on its own servers** — it sits in your Bitrix24 or your own Google Drive. Eazybe is **SOC 2 Type II** compliant, **GDPR**-ready, and a **Meta and HubSpot partner**.
 
-## Why Eazybe
-
-**Eazybe** runs as a Chrome extension over WhatsApp Web and connects your number with no migration — personal WhatsApp, the WhatsApp Business App, or the API via [coexistence](/blog/whatsapp-coexistence). On top of that connection, it does three things a plain backup tool doesn't: it **measures** every conversation (response time, last message, counts), **reads** every conversation (intent, heartbeat, escalation, next steps), and **writes it all as properties** into your Bitrix24 contact records — or into Eazybe itself if WhatsApp is your CRM.
-
-Trusted by 2,000+ teams, SOC 2 Type II, GDPR-compliant, and a Meta and HubSpot partner — with your data living in your Bitrix24 account, not a silo. It's the difference we keep coming back to: we don't just back up your sales conversations, we turn them into sales intelligence.
-
-**Ready to turn WhatsApp conversations into Bitrix24 properties your team can actually act on?** [See what Eazybe writes onto your Bitrix24 records →](https://eazybe.com/bitrix24-whatsapp-integration) Start free, no number migration required.
-
-> **Summarise this article with [ChatGPT](https://chat.openai.com) · [Claude](https://claude.ai) · [Gemini](https://gemini.google.com)**
+**Ready to stop hand-updating your CRM?** [See what Eazybe writes into Bitrix24 →](/bitrix24-whatsapp-integration)
 
 ---
 
-## FAQs Related To WhatsApp Bitrix24 Properties
+## FAQs Related To Updating Bitrix24 From WhatsApp
 
-**1. What are WhatsApp Bitrix24 properties?**
-They're structured fields Eazybe writes onto your Bitrix24 contact record from a WhatsApp conversation — analytics values (last message, response time, message counts), Engagement Intelligence signals (intent, heartbeat, escalation, next steps), and auto-populated industry fields (product interest, region, budget). Unlike a chat logged to the contact timeline, a property is something you can filter, sort, and report on.
+**1. Can Eazybe update Bitrix24 from WhatsApp automatically?**
+Yes. Once connected, Eazybe backs up every WhatsApp conversation tied to a Bitrix24 contact and keeps the record current — chats auto-sync every 3 minutes, one-way (WhatsApp → Bitrix). The AI-assisted layer drafts updates against the properties you selected, so your reps don't have to log anything by hand.
 
-**2. How is this different from just backing up WhatsApp chats to Bitrix24?**
-Backup drops the conversation into the **General section** of the Contact's Page — you can read it, but you can't sort a pipeline by it. Properties turn the same conversation into discrete fields you filter, route, and forecast on without opening the chat. Backup is table stakes; properties are the intelligence layer. The full sync and Mini-CRM plumbing is covered in the [Bitrix24 WhatsApp integration guide](/bitrix24-whatsapp-integration).
+**2. Which Bitrix24 objects can Eazybe create or update?**
+In the Mini-CRM you can create or link **Leads and Contacts** and edit their profile properties, plus add, edit, or delete **Activities, Comments, and Tasks** on both. Note there's no separate Deals or Tickets object, and calls are tracked via Activities, Comments, and Tasks rather than a call log.
 
-**3. Which analytics properties land on the Bitrix24 record?**
-Per contact: who sent the last message, when it was sent, the average response time for that contact, the number of messages sent, and the number received. Together they show whether each Bitrix24 relationship is being handled well — and let you find every "customer sent last, no reply" contact before it goes cold.
+**3. How often do WhatsApp chats sync to Bitrix24?**
+Every **3 minutes**, automatically. The initial integration backs up the **past 3 days** of history, and only chats that are linked to an existing Bitrix24 contact will sync. Any edits you make in the Mini-CRM push to Bitrix24 when you hit **Save**.
 
-**4. What are the Engagement Intelligence (EI) properties?**
-AI-read signals about the conversation's state: intent, whether the deal is a live "heartbeat," whether it's escalating, what the next step should be, and whether a Bitrix24 task should be created. Treat them as strong prompts a human acts on — not verdicts. Accuracy improves the more context a conversation carries.
+**4. Do I have to log WhatsApp messages into Bitrix24 manually?**
+No — that's the whole point. Conversations are backed up automatically to the Contact's **General** section, and the properties you chose get filled from the chat. You review the record instead of re-typing it.
 
-**5. Does Eazybe auto-fill custom Bitrix24 fields from the conversation?**
-Yes. Industry fields like product interest, region, budget, listing type, or appointment type can be auto-populated onto the contact from what's discussed. From the Bitrix Mini-CRM view you open the contact Profile section, use the **Edit** button to choose which user properties to populate, then Save to write to Bitrix24. Confirm high-value fields before you forecast on them.
+**5. Can I choose which Bitrix24 fields get updated?**
+Yes. In the Profile section you view and edit the record's user properties directly and Save, and on the create form you click **Edit** to select which user properties appear. Eazybe then writes only against the fields you self-selected.
 
-**6. How often do the properties sync into Bitrix24, and how much history?**
-Automatically and one-way (WhatsApp → Bitrix24) on a roughly 3-minute cycle — not instant. The one-time initial backup covers the **past 3 days** of conversations only; after that, only new messages sync, and only for contacts linked to Bitrix24.
+**6. Is the sync two-way? Can I send WhatsApp from Bitrix24?**
+The sync is **one-way** (WhatsApp → Bitrix): it keeps Bitrix24 updated from your chats. Sending WhatsApp messages from inside Bitrix24 isn't part of this integration — you message from WhatsApp/Eazybe, and the record updates from there.
 
-**7. Do I have to migrate my WhatsApp number to get these properties?**
-No. The backup, Mini-CRM, and property writing run via the Eazybe Chrome extension over WhatsApp Web, so you keep your existing number. Coexistence is an optional layer that adds the Cloud API without re-registering your number. You do need an active Bitrix24 account and to accept the CRM, Activity, Timeline, and User Information permissions during integration.
+**7. Where does my WhatsApp data actually live?**
+In your Bitrix24 (or your own Google Drive) — **not on Eazybe's servers**. Eazybe is a connector, is SOC 2 Type II compliant and GDPR-ready, and is a Meta and HubSpot partner.
 
-**8. Can I send WhatsApp from inside Bitrix24 with this?**
-No — that's outside what this integration does, and we won't claim it. Eazybe's Bitrix24 integration covers contact-level chat backup, property editing, Activities/Comments/Tasks, and cross-navigation ("Go to Bitrix" and "Go Back to WhatsApp" buttons). This post is specifically about what *lands* on the Bitrix24 record as a property, not what sends from it.
-
----
-
-**About the author:** The Eazybe team builds the no-code WhatsApp AI-agent and CRM sync layer trusted by 2,000+ sales and support teams. Eazybe is GDPR-compliant, SOC 2 Type II, a Meta and HubSpot partner, and built on Meta's official WhatsApp Cloud API and Coexistence.
+**8. What if my team doesn't use Bitrix24 at all?**
+You can point the same intelligence at a **Google Sheet** as a lightweight home — chat backup, two-way business-label sync, and bulk contact upload — or connect a different CRM. Just be aware a Sheet is a simple store, not a full pipeline system.
 
 ---
 
 **Internal links used:**
-- `/blog/whatsapp-sales-intelligence` — the umbrella sales-intelligence pillar this cluster ladders up to (2×)
-- `/bitrix24-whatsapp-integration` — the sync + Mini-CRM + no-migration plumbing (cross-linked, not repeated; 5×)
-- `/blog/whatsapp-coexistence` — connect the number and add the Cloud API with no migration
+- `/blog/whatsapp-sales-intelligence` — how Eazybe turns conversations into properties (the AI/intelligence layer)
+- `/bitrix24-whatsapp-integration` — the Bitrix24 integration and CTA
+- `/blog/whatsapp-coexistence` — connect your number with no migration
 
-**Target keyword ("WhatsApp Bitrix24 properties") placement:** SEO title, meta description, slug (`whatsapp-bitrix24-properties`), H1 (via "Sales Intelligence Into Bitrix24"), TL;DR, multiple H2s ("The WhatsApp Properties That Land On A Bitrix24 Record," "Analytics Properties," "How The Properties Sync Into Bitrix24," "Eazybe vs Bitrix24 Native WhatsApp"), the FAQ H2 ("FAQs Related To WhatsApp Bitrix24 Properties"), and front-loaded body copy — clean grammar throughout, with variants (Bitrix24 contact properties, analytics properties, Engagement Intelligence, industry fields) layered through the body.
+**Target keyword ("update Bitrix24 from WhatsApp") placement:** SEO title, meta description, slug (`/blog/update-bitrix24-from-whatsapp`), H1, the definition answer under "Why Your Bitrix24 Is Always Out of Date," the H2 "How Eazybe Reads Every Chat to Update Bitrix24 From WhatsApp," the comparison-table and FAQ headings ("Updating Bitrix24 From WhatsApp"), plus variants (update Bitrix24 leads/contacts from WhatsApp, sync WhatsApp to Bitrix24, auto-update the CRM) layered through the body.

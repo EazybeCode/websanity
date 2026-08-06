@@ -2,7 +2,7 @@
 
 Ready-to-edit draft blog posts for eazybe.com. **Pick one up, polish it, and publish it in Sanity Studio.**
 
-Each `.md` file = **one blog post**, written in the Eazybe blog voice, grounded in our product docs and real customer-call language. **24 posts, all fact-checked drafts.** They're **buyer-intent** and, increasingly, **sales-intelligence** pages — aimed at people ready to buy, not generic how-to traffic.
+Each `.md` file = **one blog post**, written in the Eazybe blog voice, grounded in our product docs and real customer-call language. **25 posts, all fact-checked drafts.** They're **buyer-intent** and, increasingly, **sales-intelligence** pages — aimed at people ready to buy, not generic how-to traffic.
 
 ## Start here: the Sales Intelligence cluster
 
@@ -16,8 +16,8 @@ The strategic center of gravity — Eazybe as **sales intelligence, not just cha
 | `auto-populate-crm-from-whatsapp.md` | Stop Typing WhatsApp Into Your CRM: Auto-Populate Properties From Chat _(industry layer)_ |
 | `whatsapp-crm-without-a-crm.md` | WhatsApp CRM Without a CRM: Run Sales Intelligence Inside Eazybe |
 
-**Per-CRM "push properties into [CRM]" posts** (intelligence angle — cross-link to, don't duplicate, the plain integration pages):
-`hubspot-whatsapp-properties.md` · `zoho-whatsapp-properties.md` · `salesforce-whatsapp-properties.md` · `bitrix24-whatsapp-properties.md` · `leadsquared-whatsapp-properties.md` · `odoo-whatsapp-properties.md` · `pipedrive-whatsapp-properties.md`
+**Per-CRM "update your CRM from WhatsApp" posts** — the black-box angle: *WhatsApp is a black box, reps won't update the CRM, so Eazybe reads every chat and pushes the right updates (contacts, deals, tickets — per what each CRM supports); you self-select which properties sync.* Cross-link to, don't duplicate, the plain integration pages.
+`hubspot-whatsapp-properties.md` · `zoho-whatsapp-properties.md` · `salesforce-whatsapp-properties.md` · `bitrix24-whatsapp-properties.md` · `leadsquared-whatsapp-properties.md` · `odoo-whatsapp-properties.md` · `pipedrive-whatsapp-properties.md` · **`google-sheets-whatsapp-properties.md`** _(no-CRM: same properties inside a Google Sheet)_
 
 ## The rest
 
