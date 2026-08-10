@@ -35,6 +35,7 @@ const optionalScopes = [
   'crm.objects.custom.read',
   'crm.schemas.custom.read',
   'crm.objects.leads.read',
+  'sales-email-read',
 ]
 
 const sendMessageToChromeExtension = (
