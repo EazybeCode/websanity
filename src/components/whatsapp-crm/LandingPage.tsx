@@ -2,6 +2,7 @@ import LeadForm from '@/components/whatsapp-crm/LeadForm'
 import Reveal from '@/components/whatsapp-crm/Reveal'
 import SyncDiagram from '@/components/whatsapp-crm/SyncDiagram'
 import CircuitTraces from '@/components/whatsapp-crm/CircuitTraces'
+import WhatsAppMark from '@/components/whatsapp-crm/WhatsAppMark'
 import { VISUALS, type VisualKey } from '@/components/whatsapp-crm/ValueVisuals'
 import StickyCta from '@/components/whatsapp-crm/StickyCta'
 import { CRM_LOGOS, PRICE_ANCHOR, type PageContent } from '@/data/whatsapp-crm-content'
@@ -77,6 +78,13 @@ export default async function WhatsAppCrmPage({
 
   const c = content
 
+  // Headline tail split so the mark can never be orphaned onto its own line:
+  // everything but the final word wraps freely, the final word travels with
+  // the logo.
+  const tailWords = c.hero.h1Tail.trim().split(' ')
+  const tailLast = tailWords.pop() ?? ''
+  const tailHead = tailWords.join(' ')
+
   return (
     <>
       {/* ── NAV — logo + one CTA, no menu ── */}
@@ -104,7 +112,24 @@ export default async function WhatsAppCrmPage({
           <div className="relative mx-auto max-w-6xl px-5 py-12 lg:grid lg:grid-cols-[60fr_40fr] lg:gap-12 lg:py-16">
             <div>
               <h1 className="text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-wc-ink text-balance lg:text-[50px]">
-                {c.hero.h1Lead} <span className="whitespace-nowrap">{crmName}</span> {c.hero.h1Tail}
+                {c.hero.h1Lead} <span className="whitespace-nowrap">{crmName}</span>{' '}
+                {tailHead}{tailHead && ' '}
+                {/* Only the LAST word is glued to the mark. Wrapping the whole
+                    tail in nowrap forced an early break and stranded "your CRM"
+                    on a short line. Splitting on the final space works for any
+                    locale — pt-BR ends on "número", not "number". */}
+                <span className="whitespace-nowrap">
+                  {tailLast}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/integrations/whatsapp.svg"
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="ml-[0.3em] inline-block size-[1.02em] align-[-0.18em]"
+                    fetchPriority="high"
+                  />
+                </span>
               </h1>
               <p className="mt-5 max-w-[38em] text-[16px] leading-relaxed text-wc-ink-2 lg:text-[18px]">
                 {c.hero.h2}
@@ -355,6 +380,7 @@ export default async function WhatsAppCrmPage({
               they run brighter here than in the hero. */}
           <CircuitTraces tone="dark" />
           <CircuitTraces tone="dark" flip />
+          <WhatsAppMark tone="dark" className="-right-24 -top-20 hidden size-[460px] lg:block" />
           <div className="relative mx-auto max-w-6xl px-5">
             {/* Full container width — no measure cap. */}
             <h2 className="text-center text-[30px] leading-[1.15] tracking-[-0.02em] text-white text-balance lg:text-[39px]">
