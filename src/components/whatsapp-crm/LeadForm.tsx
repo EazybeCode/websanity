@@ -327,6 +327,7 @@ export default function LeadForm({
 declare global {
   interface Window {
     dataLayer?: Record<string, unknown>[]
-    gtag?: (...args: unknown[]) => void
+    // `gtag` is declared globally (as `any`) in FbPageClient.tsx — do not
+    // redeclare it here; a differing optional modifier breaks the build.
   }
 }
