@@ -317,6 +317,16 @@ export default function WhatsAppCrmBrLayout({ children }: { children: React.Reac
             }}
           />
         )}
+        {/* Google Ads tag (AW-11159326120). Fired directly from the lead
+            form's submit + redirect handlers (LeadForm.tsx) — no GTM
+            dependency. If GTM is ever set up to fire these same conversions,
+            remove this to avoid double-counting. */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11159326120" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-11159326120');`,
+          }}
+        />
       </head>
       <body
         className="wc bg-white font-sans text-wc-ink antialiased"
