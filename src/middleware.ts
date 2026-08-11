@@ -127,5 +127,9 @@ export const config = {
   // `track` is excluded like `api`: /track/* paths are rewritten to API routes
   // in next.config.ts (the production nginx 502s the /api/* prefix, so
   // browser-facing endpoints use /track/* instead) and must bypass i18n.
-  matcher: ['/', '/(en|br|es|tr)/:path*', '/((?!api|track|_next|_vercel|integrate-|fb$|.*\\..*).+)'],
+  // `lp` is excluded like `fb`: paid-traffic landing pages (/lp/en/…) own
+  // their own <html>/<body>, carry no site chrome and hold their locale in
+  // the path, so they must not be rewritten into the i18n locale tree.
+  // /br/lp/… needs no entry — a static segment already beats [locale].
+  matcher: ['/', '/(en|br|es|tr)/:path*', '/((?!api|track|lp|_next|_vercel|integrate-|fb$|.*\\..*).+)'],
 }

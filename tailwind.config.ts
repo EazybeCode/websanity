@@ -13,6 +13,25 @@ const config: Config = {
         display: ['var(--font-inter)', 'Inter', 'sans-serif'],
       },
       colors: {
+        // Paid-search LP (/whatsapp-crm). Neutrals carry a faint green bias so
+        // they sit with the accent instead of fighting it. `accent` is deepened
+        // from WhatsApp green (#25D366 → 2.2:1 on white, fails WCAG AA) to
+        // #0E7A46 → 5.4:1. Accent is reserved for CTAs only.
+        wc: {
+          accent: '#0E7A46',
+          'accent-deep': '#0A5C35',
+          'accent-mid': '#16A34A',
+          ink: '#0C1510',
+          'ink-2': '#4B5B52',
+          'ink-3': '#7C8C83',
+          rule: '#DCE5DF',
+          soft: '#F4F7F5',
+          tint: '#EAF1EC',
+          dark: '#0C1A12',
+          'dark-2': '#12251A',
+          'dark-rule': '#26402F',
+          danger: '#B42318',
+        },
         brand: {
           black: '#020617',
           surface: '#0F172A',

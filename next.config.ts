@@ -78,6 +78,9 @@ const nextConfig: NextConfig = {
       // (502), so browser-facing endpoints go through a non-/api path and get
       // rewritten to the API route inside Next — same trick as the sitemap.
       { source: '/track/views', destination: '/api/views' },
+      // Paid LP lead form. Must stay off the /api/* prefix — production
+      // nginx routes that to a dead upstream and every conversion would 502.
+      { source: '/track/crm-lead', destination: '/api/crm-lead' },
       // SEO & Discovery generator, called from the Sanity Studio document action.
       { source: '/track/generate-seo', destination: '/api/generate-seo' },
     ]
