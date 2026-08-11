@@ -176,6 +176,10 @@ export default function LeadForm({
        * late callback cannot double-navigate.
        */
       push('generate_lead', { crm: values.crm })
+      // Google Ads — Event 1: Form Fill (direct gtag; tag loaded in layout).
+      window.gtag?.('event', 'conversion', {
+        send_to: 'AW-11159326120/w1YnCPum8t8cEKibl8kp',
+      })
 
       // Confirmation first, then the hand-off. The pause doubles as the
       // window the Google Ads tag needs: navigating in the same tick as the
@@ -184,6 +188,16 @@ export default function LeadForm({
       // more than the tag needs.
       setDone(true)
       window.setTimeout(() => {
+        // Distinct WhatsApp-redirect event, fired at the actual hand-off so
+        // it can map to its own Google Ads conversion separate from the lead.
+        push('redirect_whatsapp', { crm: values.crm, destination: f.thankYouUrl })
+        // Google Ads — Event 2: WhatsApp redirect. gtag uses sendBeacon, so
+        // the hit survives the navigation on the next line.
+        window.gtag?.('event', 'conversion', {
+          send_to: 'AW-11159326120/n2TiCNf49N8cEKibl8kp',
+          value: 1.0,
+          currency: 'INR',
+        })
         window.location.href = f.thankYouUrl
       }, 2600)
     } catch {
@@ -311,5 +325,8 @@ export default function LeadForm({
 }
 
 declare global {
-  interface Window { dataLayer?: Record<string, unknown>[] }
+  interface Window {
+    dataLayer?: Record<string, unknown>[]
+    gtag?: (...args: unknown[]) => void
+  }
 }
