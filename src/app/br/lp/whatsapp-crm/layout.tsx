@@ -64,7 +64,14 @@ export const viewport: Viewport = {
 }
 
 export default function WhatsAppCrmBrLayout({ children }: { children: React.ReactNode }) {
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID
+  /**
+   * Same container the rest of the site loads — Analytics.tsx hard-codes
+   * GTM-K4C7HNNN and never reads an env var. These pages sit outside the
+   * root layout, so they need their own copy; gating it on an env var that
+   * was never set is why Google reported "tag not detected" here while the
+   * homepage was fine. The env var still wins if present, for staging.
+   */
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-K4C7HNNN'
 
   return (
     <html lang="pt-BR" className={`${geist.variable} ${geistMono.variable} ${hedvig.variable}`}>
