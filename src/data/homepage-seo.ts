@@ -5,7 +5,7 @@ const BASE_URL = 'https://eazybe.com'
 export function getHomepageMetadata(locale: string): Metadata {
   const meta: Record<string, Metadata> = {
     en: {
-      title: 'No-Code WhatsApp AI Agents For Sales & Support | EazyBe',
+      title: 'Eazybe - Sales Intelligence Platform For WhatsApp & CRM',
       description: 'Build a no-code WhatsApp AI Agent that qualifies leads 24/7, syncs every chat to your CRM (HubSpot, Salesforce, Zoho), and replies in your top rep\'s voice. Trusted by 2,000+ teams in 40+ countries.',
       keywords: 'whatsapp ai agent, ai agents for whatsapp, whatsapp ai agents, ai agent for whatsapp, ai agent on whatsapp, no code whatsapp ai agent, ai agent for whatsapp automation, ai agent whatsapp business, best whatsapp ai agent, top whatsapp ai agent, whatsapp ai agent provider, build ai agent for whatsapp, benefits of using a whatsapp ai agent, ai whatsapp agent, whatsapp agent ai, agent ai whatsapp, ai in whatsapp',
       authors: [{ name: 'Eazybe' }],
@@ -77,7 +77,7 @@ export function getHomepageMetadata(locale: string): Metadata {
       },
     },
     br: {
-      title: 'Agente de IA para WhatsApp: Crie agentes sem c\u00f3digo | Eazybe',
+      title: 'Eazybe - Plataforma de inteligência de vendas para WhatsApp e CRM',
       description: 'Implante o melhor agente de IA para WhatsApp. Capture leads, automatize tarefas e integre seu CRM com agentes no-code ativos 24/7.',
       keywords: 'Agente de IA para WhatsApp, Agentes de IA para WhatsApp, Agentes de IA no WhatsApp, Agente de IA No-Code para WhatsApp, Crie um Agente de IA para WhatsApp',
       authors: [{ name: 'Eazybe' }],
@@ -145,7 +145,7 @@ export function getHomepageMetadata(locale: string): Metadata {
       },
     },
     es: {
-      title: 'Agente de IA para WhatsApp: Crea agentes sin c\u00f3digo | Eazybe',
+      title: 'Eazybe - Plataforma de inteligencia de ventas para WhatsApp y CRM',
       description: 'Implementa el mejor agente de IA para WhatsApp sin c\u00f3digo. Captura leads, automatiza conversaciones y sincroniza tu CRM con agentes de IA que trabajan 24/7.',
       keywords: 'agente de IA para WhatsApp, automatizaci\u00f3n WhatsApp IA, chatbot WhatsApp IA, agentes de ventas con IA, soporte con IA WhatsApp, integraci\u00f3n CRM WhatsApp, agentes no-code WhatsApp, automatizar WhatsApp',
       authors: [{ name: 'Eazybe' }],
@@ -215,7 +215,7 @@ export function getHomepageMetadata(locale: string): Metadata {
       },
     },
     tr: {
-      title: 'WhatsApp AI Ajan\u0131: Kodsuz AI Ajanlar\u0131 Olu\u015fturun | Eazybe',
+      title: 'Eazybe - WhatsApp ve CRM için satış zekâsı platformu',
       description: "WhatsApp i\u00e7in en iyi AI ajan\u0131n\u0131 kullan\u0131n. Lead yakala\u0131n, konu\u015fmalar\u0131 otomatikle\u015ftirin ve CRM'inizi 7/24 \u00e7al\u0131\u015fan kodsuz AI ajanlarla senkronize edin.",
       keywords: 'whatsapp ai ajan\u0131, whatsapp yapay zeka ajan\u0131, whatsapp otomasyon ai, whatsapp chatbot ai, sat\u0131\u015f i\u00e7in ai ajan\u0131, destek i\u00e7in ai ajan\u0131, whatsapp crm entegrasyonu, kodsuz whatsapp ai ajan\u0131',
       authors: [{ name: 'Eazybe' }],
