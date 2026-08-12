@@ -128,7 +128,11 @@ export default function LeadForm({
 
   // Eazybe connects to a CRM the team already runs, so "Other / none yet" is
   // not a lead this form can serve. Blocked at submit, with the reason shown.
-  const noCrm = values.crm === f.noCrmValue
+  // Locales opt into this gate by setting `noCrmValue`. An empty value turns
+  // it off entirely — without the truthiness check an empty setting would
+  // match the empty <select> and disable the button before anyone picks
+  // anything, which is the opposite of switching the gate off.
+  const noCrm = !!f.noCrmValue && values.crm === f.noCrmValue
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()

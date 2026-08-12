@@ -49,7 +49,10 @@ export const content: PageContent = {
     crmPlaceholder: 'Selecione',
     country: 'País',
     crmOptions: ['HubSpot', 'Pipedrive', 'Zoho', 'Bitrix24', 'Salesforce', 'Outro / ainda não tenho'],
-    noCrmValue: 'Outro / ainda não tenho',
+    // Empty on purpose: picking "Outro / ainda não tenho" does NOT disable
+    // submit here. A team still choosing a CRM is a lead worth having —
+    // Eazybe connects to five of them and they are about to pick one.
+    noCrmValue: '',
     noCrmNote:
       'A Eazybe conecta a um CRM que você já usa. Escolha o seu acima, ou fale com a gente que ajudamos a escolher.',
     errors: {
