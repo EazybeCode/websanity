@@ -16,13 +16,20 @@ import {
 } from 'lucide-react'
 import { LocalizedLink } from '@/components/LocalizedLink'
 
+/**
+ * `logo` points at a real brand mark under /public/integrations/. It is
+ * optional: an entry without one falls back to its name, which is better
+ * than an approximated logo sitting next to genuine ones. Every entry has
+ * a real mark today.
+ */
 const integrations = [
-  { name: 'Zoho CRM', url: '/zoho-whatsapp-integration' },
-  { name: 'HubSpot', url: '/hubspot-whatsapp-integration' },
-  { name: 'Salesforce', url: '/salesforce-whatsapp-integration' },
-  { name: 'Pipedrive', url: '/pipedrive-whatsapp-integration' },
-  { name: 'Freshsales', url: '/freshsales-whatsapp-integration' },
-  { name: 'Monday.com', url: '/monday-whatsapp-integration' },
+  { name: 'Zoho CRM', url: '/zoho-whatsapp-integration', logo: '/integrations/zoho.svg' },
+  { name: 'HubSpot', url: '/hubspot-whatsapp-integration', logo: '/integrations/hubspot.svg' },
+  { name: 'Salesforce', url: '/salesforce-whatsapp-integration', logo: '/integrations/salesforce.svg' },
+  { name: 'Pipedrive', url: '/pipedrive-whatsapp-integration', logo: '/integrations/pipedrive.svg' },
+  // Freshdesk is a Freshworks product and shares its mark.
+  { name: 'Freshdesk', url: '/freshdesk-whatsapp-integration', logo: '/integrations/freshworks.svg' },
+  { name: 'LeadSquared', url: '/leadsquared-whatsapp-integration', logo: '/integrations/leadsquared.svg' },
 ]
 
 const testimonialAvatars = [
@@ -329,7 +336,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* How to apply */}
-      <section className="section">
+      <section className="section" style={{ paddingBottom: 80 }}>
         <div className="container">
           <div className="sec-head centered reveal">
             <span className="sec-tag">{t('simpleProcess')}</span>
@@ -447,14 +454,27 @@ export function PartnerPageClient() {
                 key={integration.name}
                 href={integration.url}
                 style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 10,
                   fontFamily: 'var(--f-display)',
-                  fontSize: 18,
+                  fontSize: 17,
                   fontWeight: 400,
                   color: 'var(--ink-2)',
-                  fontStyle: 'italic',
                   transition: 'color .2s',
                 }}
               >
+                {integration.logo && (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={integration.logo}
+                    alt=""
+                    width={26}
+                    height={26}
+                    loading="lazy"
+                    style={{ width: 26, height: 26, objectFit: 'contain', flexShrink: 0 }}
+                  />
+                )}
                 {integration.name}
               </LocalizedLink>
             ))}
@@ -463,7 +483,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* Apply section */}
-      <section id="apply" className="section">
+      <section id="apply" className="section" style={{ paddingBottom: 80 }}>
         <div className="container">
           <div className="sec-head centered reveal">
             <span className="sec-tag">{t('applyTag')}</span>
