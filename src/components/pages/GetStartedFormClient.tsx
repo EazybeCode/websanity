@@ -139,6 +139,53 @@ interface Copy {
   successTitle: string; successBody: (n: string) => string; backHome: string
 }
 
+// Marketplace-variant copy overrides. Only the fields that need to sound like
+// "you came from the HubSpot marketplace" are overridden — everything else
+// (form labels, errors, success, benefits list, trust line) is reused from
+// the default COPY block above so the two variants stay consistent.
+interface MarketplaceOverride {
+  badge: string
+  headA: string
+  headB: string
+  body: string
+  formHead: string
+  formSub: string
+}
+const MARKETPLACE_COPY: Record<string, MarketplaceOverride> = {
+  en: {
+    badge: 'From the HubSpot App Marketplace',
+    headA: 'Welcome — install',
+    headB: 'Eazybe for HubSpot',
+    body: 'You found us on the HubSpot App Marketplace. Fill in three details and we\'ll take you straight to the Chrome extension, so you can start sending WhatsApp messages from inside HubSpot in the next minute.',
+    formHead: 'Get your HubSpot × WhatsApp install',
+    formSub: 'Three fields, then straight to the extension.',
+  },
+  es: {
+    badge: 'Desde el App Marketplace de HubSpot',
+    headA: 'Bienvenido — instala',
+    headB: 'Eazybe para HubSpot',
+    body: 'Nos encontraste en el App Marketplace de HubSpot. Completa tres datos y te llevamos directo a la extensión de Chrome para que empieces a enviar mensajes de WhatsApp desde HubSpot en menos de un minuto.',
+    formHead: 'Obtén tu instalación de HubSpot × WhatsApp',
+    formSub: 'Tres campos y directo a la extensión.',
+  },
+  br: {
+    badge: 'Do App Marketplace do HubSpot',
+    headA: 'Bem-vindo — instale',
+    headB: 'o Eazybe para HubSpot',
+    body: 'Você nos encontrou no App Marketplace do HubSpot. Preencha três dados e vamos direto para a extensão do Chrome, para você começar a enviar mensagens de WhatsApp dentro do HubSpot em menos de um minuto.',
+    formHead: 'Faça sua instalação HubSpot × WhatsApp',
+    formSub: 'Três campos e direto para a extensão.',
+  },
+  tr: {
+    badge: "HubSpot App Marketplace'ten",
+    headA: 'Hoş geldiniz — kurun',
+    headB: 'HubSpot için Eazybe',
+    body: "Bizi HubSpot App Marketplace'te buldunuz. Üç bilgiyi girin, sizi doğrudan Chrome uzantısına götürelim; bir dakika içinde HubSpot'un içinden WhatsApp mesajları göndermeye başlayın.",
+    formHead: 'HubSpot × WhatsApp kurulumunuzu alın',
+    formSub: 'Üç alan, sonra doğrudan uzantıya.',
+  },
+}
+
 const COPY: Record<string, Copy> = {
   en: {
     headA: 'Run WhatsApp', headB: 'inside HubSpot',
@@ -253,9 +300,26 @@ const FieldError = ({ msg }: { msg: string }) => (
   </p>
 )
 
-export function GetStartedFormClient() {
+interface GetStartedFormClientProps {
+  // "marketplace" swaps the eyebrow badge / headline / body so the page reads
+  // as "you came from the HubSpot marketplace, install now". Everything else
+  // (form, submission, success flow, benefits list) is identical.
+  variant?: 'default' | 'marketplace'
+  // Slug used for the browser-language auto-redirect. Defaults to the
+  // /hubspot-marketplace-form path this component was originally built for.
+  pageSlug?: string
+}
+
+export function GetStartedFormClient({
+  variant = 'default',
+  pageSlug = 'hubspot-marketplace-form',
+}: GetStartedFormClientProps = {}) {
   const locale = useLocale()
-  const c = COPY[locale] || COPY.en
+  const baseCopy = COPY[locale] || COPY.en
+  const override = variant === 'marketplace' ? MARKETPLACE_COPY[locale] || MARKETPLACE_COPY.en : null
+  const c: Copy = override
+    ? { ...baseCopy, headA: override.headA, headB: override.headB, body: override.body, formHead: override.formHead, formSub: override.formSub }
+    : baseCopy
   const localeDial = LOCALE_DIAL[locale] || LOCALE_DIAL.en
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -277,16 +341,19 @@ export function GetStartedFormClient() {
   useEffect(() => {
     if (typeof window === 'undefined' || locale !== 'en') return
     try {
-      if (sessionStorage.getItem('hmf-locale-routed')) return
+      // Session key is per-slug so the /hubspot-marketplace and
+      // /hubspot-marketplace-form pages don't share a redirect flag.
+      const routedKey = `hmf-locale-routed:${pageSlug}`
+      if (sessionStorage.getItem(routedKey)) return
       if (/bot|crawler|spider|googlebot|bingbot|slurp/i.test(navigator.userAgent || '')) return
       const primary = ((navigator.languages && navigator.languages[0]) || navigator.language || 'en').toLowerCase()
       const target = primary.startsWith('es') ? 'es' : primary.startsWith('pt') ? 'br' : primary.startsWith('tr') ? 'tr' : null
-      sessionStorage.setItem('hmf-locale-routed', '1')
-      if (target) window.location.replace(`/${target}/hubspot-marketplace-form${window.location.search}`)
+      sessionStorage.setItem(routedKey, '1')
+      if (target) window.location.replace(`/${target}/${pageSlug}${window.location.search}`)
     } catch {
       /* ignore */
     }
-  }, [locale])
+  }, [locale, pageSlug])
 
   const isPersonalEmail = (v: string) => {
     const d = v.split('@')[1]?.toLowerCase().trim()
@@ -384,7 +451,11 @@ export function GetStartedFormClient() {
           </div>
 
           <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide" style={{ borderColor: 'rgba(255,122,89,0.35)', color: '#D9603F', background: 'rgba(255,122,89,0.08)' }}>
-            HubSpot <span style={{ color: '#94A3B8' }}>×</span> WhatsApp
+            {override ? (
+              override.badge
+            ) : (
+              <>HubSpot <span style={{ color: '#94A3B8' }}>×</span> WhatsApp</>
+            )}
           </span>
 
           <h1 className="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[#0F172A] md:text-[42px]">

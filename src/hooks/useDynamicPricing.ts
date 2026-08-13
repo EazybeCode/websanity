@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useLocale } from 'next-intl'
 
 interface Plan {
   id: number
@@ -58,8 +59,8 @@ const PLAN_ID_MAP: Record<string, { monthly: number; yearly: number } | null> = 
 // Temporary fallback until the public planList endpoint includes AI plans.
 // These IDs and prices come from the AI plans payload shared by the billing API.
 const AI_PLAN_FALLBACKS: Plan[] = [
-  { id: 2, plan_name: 'BASIC AI', amount: 99, addon_price: 39, isMonthly: 1 },
-  { id: 6, plan_name: 'BASIC AI YEARLY', amount: 79, addon_price: 29, isMonthly: 0 },
+  { id: 2, plan_name: 'BASIC AI', amount: 79, addon_price: 39, isMonthly: 1 },
+  { id: 6, plan_name: 'BASIC AI YEARLY', amount: 59, addon_price: 29, isMonthly: 0 },
   { id: 17, plan_name: 'PRO AI', amount: 199, addon_price: 39, isMonthly: 1 },
   { id: 29, plan_name: 'PRO AI YEARLY', amount: 159, addon_price: 29, isMonthly: 0 },
 ]
@@ -178,7 +179,19 @@ const getExchangeRateService = async (): Promise<ExchangeRateResponse | null> =>
   }
 }
 
+// Locale → currency override for languages that map cleanly to one
+// country/currency. Overrides the IP-based lookup so a Brazilian visitor
+// on a VPN, corporate proxy, or with a failed IP lookup still sees BRL
+// on /br/. Spanish and English intentionally aren't listed — they're
+// spoken across too many currency zones for a locale-based override to
+// be right, so those keep IP-only detection.
+const LOCALE_TO_CURRENCY: Record<string, string> = {
+  br: 'BRL', // Portuguese (pt-BR)
+  tr: 'TRY', // Turkish
+}
+
 export function useDynamicPricing() {
+  const locale = useLocale()
   const [state, setState] = useState<DynamicPricingState>({
     userCurrency: 'USD',
     exchangeRate: 1,
@@ -205,7 +218,11 @@ export function useDynamicPricing() {
           getExchangeRateService(),
         ])
 
-        const userCurrency = userIpDetails?.currency || 'USD'
+        // Locale override wins over IP: a visitor on /br/ has actively
+        // chosen Portuguese and should see BRL regardless of where their
+        // IP resolves to.
+        const localeCurrency = LOCALE_TO_CURRENCY[locale]
+        const userCurrency = localeCurrency || userIpDetails?.currency || 'USD'
         const exchangeRate = exchangeRateData?.conversion_rates?.[userCurrency.toUpperCase()] || 1
 
         // Round 2: only the localized-currency call actually needs to know

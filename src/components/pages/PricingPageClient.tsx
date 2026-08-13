@@ -116,7 +116,7 @@ const defaultPricingPlans: PricingPlan[] = [
   {
     name: 'Basic AI', planKey: 'basic-ai',
     description: 'Get started with AI agents on top of your full Scaler stack.',
-    monthlyPrice: 99, annualPrice: 99, currency: '$', icon: 'sparkles',
+    monthlyPrice: 79, annualPrice: 59, currency: '$', icon: 'sparkles',
     features: [
       { text: 'Everything in Scaler', included: true },
       { text: 'AI agents', included: true, highlight: true },
