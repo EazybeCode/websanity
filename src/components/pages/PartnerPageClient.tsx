@@ -12,6 +12,7 @@ import {
   Globe,
   CheckCircle2,
   Mail,
+  Trophy,
 } from 'lucide-react'
 import { LocalizedLink } from '@/components/LocalizedLink'
 
@@ -121,9 +122,9 @@ export function PartnerPageClient() {
             }}
           >
             {[
-              { Icon: Shield, text: 'Official WhatsApp Business Solution Provider' },
-              { Icon: CheckCircle2, text: 'SOC 2 Type II Compliant' },
-              { Icon: Globe, text: 'Available in 100+ Countries' },
+              { Icon: Shield, text: t('badgeBsp') },
+              { Icon: CheckCircle2, text: t('badgeSoc2') },
+              { Icon: Globe, text: t('badgeCountries') },
             ].map(({ Icon, text }) => (
               <div key={text} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, color: 'var(--ink-3)', fontSize: 13 }}>
                 <Icon size={18} style={{ color: 'var(--accent-ink)', flexShrink: 0, marginTop: 2 }} />
@@ -134,8 +135,54 @@ export function PartnerPageClient() {
         </div>
       </section>
 
+      {/* Commission tiers — sits before Benefits because the money answers
+          the first question a prospective partner has; the reasons to
+          partner land better once the rate is known. */}
+      <section className="section" style={{ paddingTop: 80, paddingBottom: 80 }}>
+        <div className="container">
+          <div
+            className="reveal"
+            style={{
+              background: 'var(--surface-2, #F7F8F9)',
+              border: '1px solid var(--line)',
+              borderRadius: 20,
+              padding: '40px 32px',
+            }}
+          >
+            <div className="sec-head centered" style={{ marginBottom: 28 }}>
+              <h2>{t('tiersTitle')}</h2>
+              <p>{t('tiersSubtitle')}</p>
+            </div>
+
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                gap: 24,
+                maxWidth: 820,
+                margin: '0 auto',
+              }}
+            >
+              {[
+                { Icon: Award, name: t('growthName'), share: t('growthShare'), desc: t('growthDesc') },
+                { Icon: Trophy, name: t('premierName'), share: t('premierShare'), desc: t('premierDesc') },
+              ].map(({ Icon, name, share, desc }, i) => (
+                <div key={name} className="reveal" style={{ textAlign: 'center', transitionDelay: `${i * 0.06}s` }}>
+                  {/* margin auto, not text-align: a global rule makes these
+                      SVGs display:block, so centring has to be on the box. */}
+                  <Icon size={34} strokeWidth={1.5} style={{ color: 'var(--accent-ink)', display: 'block', margin: '0 auto' }} />
+                  <h3 style={{ marginTop: 12, marginBottom: 4 }}>{name}</h3>
+                  <div style={{ fontWeight: 600, marginBottom: 6 }}>{share}</div>
+                  <p style={{ color: 'var(--ink-3)', maxWidth: 380, margin: '0 auto' }}>{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits */}
-      <section className="section">
+      <section className="section" style={{ paddingTop: 80 }}>
         <div className="container">
           <div className="sec-head centered reveal">
             <span className="sec-tag">{t('benefitsSubtitle')}</span>
@@ -326,7 +373,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* Testimonials */}
-      <section className="section">
+      <section className="section" style={{ paddingTop: 80 }}>
         <div className="container">
           <div className="sec-head centered reveal">
             <span className="sec-tag">{t('testimonialsSubtitle')}</span>
@@ -419,7 +466,7 @@ export function PartnerPageClient() {
       <section id="apply" className="section">
         <div className="container">
           <div className="sec-head centered reveal">
-            <span className="sec-tag">Apply Today</span>
+            <span className="sec-tag">{t('applyTag')}</span>
             <h2>{t('applyTitle')}</h2>
             <p>{t('applyDesc')}</p>
           </div>
@@ -484,10 +531,10 @@ export function PartnerPageClient() {
       </section>
 
       {/* FAQ */}
-      <section className="section">
+      <section className="section" style={{ paddingTop: 80 }}>
         <div className="container">
           <div className="sec-head centered reveal">
-            <span className="sec-tag">FAQ</span>
+            <span className="sec-tag">{t('faqTag')}</span>
             <h2>{t('faqTitle')}</h2>
             <p>{t('faqDesc')}</p>
           </div>
@@ -507,6 +554,8 @@ export function PartnerPageClient() {
                             className="faq-pill-q"
                             onClick={() => toggleFaq(idx)}
                             aria-expanded={isOpen}
+                            aria-controls={`faq-panel-${idx}`}
+                            id={`faq-q-${idx}`}
                           >
                             <span>{faq.question}</span>
                             <span className="faq-pill-chev" aria-hidden="true">
@@ -515,7 +564,12 @@ export function PartnerPageClient() {
                               </svg>
                             </span>
                           </button>
-                          <div className="faq-pill-a">
+                          <div
+                            className="faq-pill-a"
+                            id={`faq-panel-${idx}`}
+                            role="region"
+                            aria-labelledby={`faq-q-${idx}`}
+                          >
                             <div>{faq.answer}</div>
                           </div>
                         </div>
@@ -532,7 +586,7 @@ export function PartnerPageClient() {
               className="faq-mobile-more"
               onClick={() => setShowMoreFaqMobile(true)}
             >
-              Read more
+              {t('readMore')}
             </button>
           )}
           <div
