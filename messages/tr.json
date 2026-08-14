@@ -2885,6 +2885,7 @@
       "agentBuilder": "Agent Builder",
       "pricing": "Fiyatlar",
       "resources": "Kaynaklar",
+      "partner": "İş Ortaklığı",
       "bookDemo": "Demo Planla",
       "talkToAgent": "Ücretsiz Başla →",
       "openMenu": "Menüyü aç",
@@ -2929,6 +2930,8 @@
       "resHelpCenterDesc": "Dokümanlar, eğitimler, API referansı",
       "resCustomerStories": "Müşteri Hikâyeleri",
       "resCustomerStoriesDesc": "Ekiplerin WhatsApp ROI'larını 10× nasıl artırdığını görün",
+      "resComparison": "Karşılaştırma",
+      "resComparisonDesc": "Eazybe ile diğer WhatsApp araçları",
       "resContactSales": "Satışla İletişime Geç",
       "resContactSalesDesc": "Kişiselleştirilmiş bir demo planla"
     },

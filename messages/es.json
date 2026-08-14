@@ -2959,6 +2959,7 @@
       "agentBuilder": "Agent Builder",
       "pricing": "Precios",
       "resources": "Recursos",
+      "partner": "Partners",
       "bookDemo": "Reservar Demo",
       "talkToAgent": "Empieza Gratis →",
       "openMenu": "Abrir menú",
@@ -3003,6 +3004,8 @@
       "resHelpCenterDesc": "Documentación, tutoriales, referencia de API",
       "resCustomerStories": "Casos de Clientes",
       "resCustomerStoriesDesc": "Mira cómo los equipos multiplicaron por 10 su ROI en WhatsApp",
+      "resComparison": "Comparativas",
+      "resComparisonDesc": "Eazybe frente a otras herramientas de WhatsApp",
       "resContactSales": "Contactar Ventas",
       "resContactSalesDesc": "Reservar una demo personalizada"
     },
