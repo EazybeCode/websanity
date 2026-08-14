@@ -10,18 +10,21 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
 
+  // Keys must match the routing locales in src/i18n/routing.ts (en | br | es | tr).
+  // This map previously used `pt`, which never matched, so /br silently fell back
+  // to the English title and description.
   const titles: Record<string, string> = {
-    en: 'Become Our Partner - Earn Up to 50% Revenue Share | Eazybe',
-    pt: 'Torne-se Nosso Parceiro - Ganhe Ate 50% de Receita | Eazybe',
-    es: 'Sea Nuestro Socio - Gane Hasta 50% de Ingresos | Eazybe',
-    tr: 'Ortaqimiz Olun - %50\'ye Kadar Gelir Payi Kazanin | Eazybe',
+    en: 'Become Our Partner - Earn Up to 30% Revenue Share | Eazybe',
+    br: 'Torne-se Nosso Parceiro - Ganhe Até 30% de Receita | Eazybe',
+    es: 'Sea Nuestro Socio - Gane Hasta 30% de Ingresos | Eazybe',
+    tr: 'Ortağımız Olun - %30\'a Kadar Gelir Payı Kazanın | Eazybe',
   }
 
   const descriptions: Record<string, string> = {
-    en: 'Partner with the #1 WhatsApp CRM. Earn up to 50% revenue share as an affiliate, reseller, or white label partner. Free to join, 24-hour approval.',
-    pt: 'Seja parceiro do CRM WhatsApp #1. Ganhe ate 50% de participacao na receita como afiliado, revendedor ou parceiro white label.',
-    es: 'Asociese con el CRM de WhatsApp #1. Gane hasta el 50% de participacion en ingresos como afiliado, revendedor o socio white label.',
-    tr: '#1 WhatsApp CRM ile ortak olun. Bagli kurulusu, bayisi veya beyaz etiket ortagi olarak %50\'ye kadar gelir payi kazanin.',
+    en: 'Partner with #1 Sales Intelligence Platform. Earn up to 30% revenue share as an affiliate, growth or premier champion partner. Free to join, 24-hour approval.',
+    br: 'Seja parceiro da Plataforma de Sales Intelligence #1. Ganhe até 30% de receita como parceiro Affiliate, Growth ou Premier Champion. Grátis, aprovação em 24h.',
+    es: 'Asóciese con la Plataforma de Sales Intelligence #1. Gane hasta un 30% de ingresos como socio Affiliate, Growth o Premier Champion. Gratis, aprobación en 24h.',
+    tr: '#1 Sales Intelligence Platformu ile ortak olun. Affiliate, Growth veya Premier Champion ortağı olarak %30\'a kadar gelir payı kazanın. Ücretsiz, 24 saatte onay.',
   }
 
   return {

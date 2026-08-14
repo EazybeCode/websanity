@@ -40,7 +40,6 @@ const testimonialAvatars = [
 
 const benefitIcons = [DollarSign, Users, Rocket, Shield, Award, Zap]
 const benefitKeys = ['revenueShare', 'expandedPortfolio', 'mutualGrowth', 'prioritySupport', 'certifiedBadge', 'earlyAccess'] as const
-const partnerTypeKeys = ['affiliate', 'reseller'] as const
 
 const Check = (
   <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
@@ -55,7 +54,7 @@ export function PartnerPageClient() {
   const testimonials = t.raw('testimonials') as Array<{ quote: string; author: string; role: string; earnings: string }>
   const faqs = t.raw('faqs') as Array<{ question: string; answer: string }>
 
-  const [openFaq, setOpenFaq] = useState<Set<number>>(new Set([0]))
+  const [openFaq, setOpenFaq] = useState<Set<number>>(new Set())
   const [showMoreFaqMobile, setShowMoreFaqMobile] = useState(false)
   const toggleFaq = (i: number) => setOpenFaq((p) => {
     const n = new Set(p)
@@ -189,7 +188,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* Benefits */}
-      <section className="section" style={{ paddingTop: 80 }}>
+      <section className="section" data-tone="dark" style={{ paddingTop: 80 }}>
         <div className="container">
           <div className="sec-head centered reveal">
             <span className="sec-tag">{t('benefitsSubtitle')}</span>
@@ -216,118 +215,6 @@ export function PartnerPageClient() {
                   </div>
                   <h3>{t(`benefits.${key}.title`)}</h3>
                   <p>{t(`benefits.${key}.description`)}</p>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Partnership models */}
-      <section className="section" data-tone="dark">
-        <div className="container">
-          <div className="sec-head centered reveal">
-            <span className="sec-tag">{t('modelsDesc')}</span>
-            <h2>{t('modelsTitle')}</h2>
-            <p>{t('modelsSubtitle')}</p>
-          </div>
-          <div className="card-grid cols-2">
-            {partnerTypeKeys.map((key, index) => {
-              const whatYouGet = t.raw(`${key}.whatYouGet`) as string[]
-              const idealFor = t.raw(`${key}.idealFor`) as string[]
-              const partnerName = t(`${key}.name`)
-              return (
-                <div key={key} className="card reveal" style={{ transitionDelay: `${index * 0.05}s`, paddingTop: 36 }}>
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: -14,
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      padding: '6px 14px 6px 10px',
-                      background: 'var(--ink)',
-                      color: 'var(--paper)',
-                      borderRadius: 100,
-                      fontFamily: 'var(--f-mono)',
-                      fontSize: 11,
-                      fontWeight: 600,
-                      letterSpacing: '0.06em',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 5,
-                    }}
-                  >
-                    <DollarSign size={12} /> {t(`${key}.commission`)}
-                  </div>
-                  <h3 style={{ textAlign: 'center', marginBottom: 4 }}>{partnerName}</h3>
-                  <div style={{ textAlign: 'center', color: 'var(--accent-ink)', fontWeight: 500, fontSize: 14, marginBottom: 10 }}>
-                    {t(`${key}.title`)}
-                  </div>
-                  <p style={{ textAlign: 'center', marginBottom: 18 }}>{t(`${key}.description`)}</p>
-
-                  <div style={{ marginBottom: 16 }}>
-                    <div
-                      style={{
-                        fontFamily: 'var(--f-mono)',
-                        fontSize: 10,
-                        letterSpacing: '0.1em',
-                        textTransform: 'uppercase',
-                        color: 'var(--ink-4)',
-                        marginBottom: 8,
-                      }}
-                    >
-                      What You Get
-                    </div>
-                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                      {whatYouGet.map((item, i) => (
-                        <li key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13, color: 'var(--ink-2)' }}>
-                          <span style={{ color: 'var(--ok)', flexShrink: 0, marginTop: 2 }}>{Check}</span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div style={{ paddingTop: 14, borderTop: '1px solid var(--line)' }}>
-                    <div
-                      style={{
-                        fontFamily: 'var(--f-mono)',
-                        fontSize: 10,
-                        letterSpacing: '0.1em',
-                        textTransform: 'uppercase',
-                        color: 'var(--ink-4)',
-                        marginBottom: 8,
-                      }}
-                    >
-                      Ideal for
-                    </div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
-                      {idealFor.map((item, i) => (
-                        <span
-                          key={i}
-                          style={{
-                            padding: '3px 9px',
-                            background: 'color-mix(in oklab, var(--accent-a) 14%, var(--paper))',
-                            border: '1px solid color-mix(in oklab, var(--accent-a) 30%, var(--line))',
-                            color: 'var(--accent-ink)',
-                            borderRadius: 100,
-                            fontSize: 11,
-                            fontWeight: 500,
-                          }}
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <a
-                    href="#apply"
-                    className="btn btn-primary"
-                    style={{ width: '100%', justifyContent: 'center', marginTop: 18 }}
-                  >
-                    Apply as {partnerName} →
-                  </a>
                 </div>
               )
             })}
@@ -551,7 +438,7 @@ export function PartnerPageClient() {
       </section>
 
       {/* FAQ */}
-      <section className="section" style={{ paddingTop: 80 }}>
+      <section className="section faq-ink" style={{ paddingTop: 80 }}>
         <div className="container">
           <div className="sec-head centered reveal">
             <span className="sec-tag">{t('faqTag')}</span>

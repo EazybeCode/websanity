@@ -2274,6 +2274,32 @@
 }
 .landing .faq-pill.open .faq-pill-a,
 .landing details.faq-pill[open] .faq-pill-a { max-height: 340px; }
+/* Inked FAQ pills — black surface with light type, opt-in per section via
+   `.faq-ink` on the wrapping <section>. Scoped deliberately: `.faq-pill` is
+   shared by ~10 other pages (pricing, comparison, feature, tool pages, …)
+   which must keep the default light pills. */
+.landing .faq-ink .faq-pill {
+  background: var(--ink);
+  border-color: rgba(255, 255, 255, 0.10);
+}
+.landing .faq-ink .faq-pill:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 6px 18px -8px rgba(15, 20, 35, 0.35);
+}
+.landing .faq-ink .faq-pill.open,
+.landing .faq-ink details.faq-pill[open] {
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 10px 26px -10px rgba(15, 20, 35, 0.42);
+}
+.landing .faq-ink .faq-pill-q { color: var(--paper); }
+.landing .faq-ink .faq-pill-chev { color: rgba(255, 255, 255, 0.62); }
+.landing .faq-ink .faq-pill.open .faq-pill-chev,
+.landing .faq-ink details.faq-pill[open] .faq-pill-chev {
+  color: var(--ink);
+  background: #ffffff;
+}
+.landing .faq-ink .faq-pill-a > div { color: rgba(255, 255, 255, 0.72); }
+
 .landing .faq-footnote {
   margin-top: 36px;
   text-align: center;

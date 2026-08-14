@@ -2378,7 +2378,7 @@
     "benefitsSubtitle": "Başarınızı Sağlayacak Ortak Avantajları",
     "benefits": {
       "revenueShare": {
-        "title": "%50'ye Kadar Gelir Payı",
+        "title": "%30'a Kadar Gelir Payı",
         "subtitle": "Sektörün En Yükseği",
         "description": "Her başvuruda sektör lideri komisyonlar kazanın. Şeffaf gelir modelimiz, getirdiğiniz her müşteri için adil ödüller garanti eder."
       },
@@ -2565,6 +2565,14 @@
       {
         "question": "Ortaklar ne tür destek alır?",
         "answer": "Ortaklar, başarılı olmanıza yardımcı olmak için özel hesap yöneticileri, daha hızlı yanıt süreleri, ürün ekibimize doğrudan erişim, ortak pazarlama fırsatları ve özel eğitim oturumları ile öncelikli destek alır."
+      },
+      {
+        "question": "Bir yönlendirmeden ne kadar süre kazanç elde ederim?",
+        "answer": "O müşteriden ilk yılı boyunca kazanmaya devam edersiniz ve oranınız yönlendirdiğiniz toplam ARR ile birlikte yükselir. 25.000 USD altında oran %20'dir. Bu eşiği geçtiğinizde Premier Champion seviyesine, yani %30'a çıkarsınız."
+      },
+      {
+        "question": "Müşteri yönlendirmek için teknik bilgi gerekir mi?",
+        "answer": "Hayır. Ortaklarımızın çoğu, şirketlere satış konusunda zaten danışmanlık veren danışmanlar ve ajanslar. Tanıştırmayı siz yapıyorsunuz, demo ve kurulum dahil gerisini biz üstleniyoruz."
       }
     ],
     "finalCtaTitle": "Bizimle büyümeye hazır mısınız?",

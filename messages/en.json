@@ -2154,7 +2154,7 @@
     "benefitsSubtitle": "Partner Benefits That Drive Your Success",
     "benefits": {
       "revenueShare": {
-        "title": "Up to 50% Revenue Share",
+        "title": "Up to 30% Revenue Share",
         "subtitle": "Highest in Industry",
         "description": "Earn industry-leading commissions on every referral. Our transparent revenue model ensures fair rewards for every client you bring."
       },
@@ -2296,6 +2296,14 @@
       {
         "question": "What kind of support do partners get?",
         "answer": "Partners get priority support with dedicated account managers, faster response times, direct access to our product team, co-marketing opportunities, and exclusive training sessions to help you succeed."
+      },
+      {
+        "question": "How long do I keep earning on a referral?",
+        "answer": "You keep earning on that client for their whole first year, and your rate scales with how much ARR you've referred in total. Under $25,000 that's 20%. Once you cross it, you move up to Premier Champion at 30%."
+      },
+      {
+        "question": "Do I need technical experience to refer clients?",
+        "answer": "No. Most of our partners are consultants and agencies who already advise businesses on how they sell. You make the introduction and we take it from there, including the demo and the setup."
       }
     ],
     "finalCtaTitle": "Ready to grow with us?",

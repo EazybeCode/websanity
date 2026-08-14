@@ -2452,7 +2452,7 @@
     "benefitsSubtitle": "Benefícios para Parceiros Que Impulsionam Seu Sucesso",
     "benefits": {
       "revenueShare": {
-        "title": "Até 50% de Participação em Receita",
+        "title": "Até 30% de Participação em Receita",
         "subtitle": "A Mais Alta do Setor",
         "description": "Ganhe comissões líderes do setor em cada indicação. Nosso modelo de receita transparente garante recompensas justas por cada cliente que você trouxer."
       },
@@ -2639,6 +2639,14 @@
       {
         "question": "Que tipo de suporte os parceiros recebem?",
         "answer": "Os parceiros recebem suporte prioritário com gerentes de conta dedicados, tempos de resposta mais rápidos, acesso direto à nossa equipe de produto, oportunidades de co-marketing e sessões de treinamento exclusivas para ajudá-los a ter sucesso."
+      },
+      {
+        "question": "Por quanto tempo recebo comissão por uma indicação?",
+        "answer": "Você continua recebendo por aquele cliente durante todo o primeiro ano dele, e sua taxa acompanha o total de ARR que você já indicou. Abaixo de US$ 25.000 são 20%. Ao passar disso, você sobe para Premier Champion com 30%."
+      },
+      {
+        "question": "Preciso de conhecimento técnico para indicar clientes?",
+        "answer": "Não. A maioria dos nossos parceiros são consultores e agências que já orientam empresas sobre como vender. Você faz a apresentação e nós assumimos daí, incluindo a demo e a configuração."
       }
     ],
     "finalCtaTitle": "Pronto para crescer conosco?",

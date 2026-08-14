@@ -2452,7 +2452,7 @@
     "benefitsSubtitle": "Beneficios para Socios Que Impulsan Tu Éxito",
     "benefits": {
       "revenueShare": {
-        "title": "Hasta 50% de Participación en Ingresos",
+        "title": "Hasta 30% de Participación en Ingresos",
         "subtitle": "La Más Alta del Sector",
         "description": "Gana comisiones líderes de la industria por cada referido. Nuestro modelo de ingresos transparente garantiza recompensas justas por cada cliente que traigas."
       },
@@ -2639,6 +2639,14 @@
       {
         "question": "¿Qué tipo de soporte reciben los socios?",
         "answer": "Los socios reciben soporte prioritario con gerentes de cuenta dedicados, tiempos de respuesta más rápidos, acceso directo a nuestro equipo de producto, oportunidades de co-marketing y sesiones de capacitación exclusivas para ayudarte a tener éxito."
+      },
+      {
+        "question": "¿Durante cuánto tiempo cobro por una recomendación?",
+        "answer": "Sigues cobrando por ese cliente durante todo su primer año, y tu porcentaje acompaña al ARR total que hayas recomendado. Por debajo de 25.000 USD es un 20%. Cuando lo superas, subes a Premier Champion con un 30%."
+      },
+      {
+        "question": "¿Necesito conocimientos técnicos para recomendar clientes?",
+        "answer": "No. La mayoría de nuestros socios son consultores y agencias que ya asesoran a empresas sobre cómo venden. Tú haces la presentación y nosotros seguimos desde ahí, incluida la demo y la configuración."
       }
     ],
     "finalCtaTitle": "¿Listo para crecer con nosotros?",
