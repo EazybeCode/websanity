@@ -2126,9 +2126,9 @@
   },
   "partner": {
     "heroBadge": "Join 30,000+ Successful Partners Worldwide",
-    "heroHeadline": "Partner With",
-    "heroHighlight": "#1 WhatsApp CRM",
-    "heroSubheadline": "Help businesses transform their customer communication while you earn industry-leading commissions.",
+    "heroHeadline": "Earn Upto 30% Commission As An",
+    "heroHighlight": "EazyBe Partner",
+    "heroSubheadline": "Earn up to 30% commission for every customer you refer successfully. Free to join and only takes 5 minutes to apply.",
     "freeToJoin": "Free to Join",
     "hourApproval": "24-Hour Approval",
     "dedicatedSupport": "Dedicated Support",
@@ -2161,17 +2161,17 @@
       "expandedPortfolio": {
         "title": "Expanded Service Portfolio",
         "subtitle": "Add Value",
-        "description": "Add WhatsApp CRM integration to your offerings. Help clients automate sales, support, and marketing through world's most popular messaging platform."
+        "description": "Add WhatsApp CRM integration to your offerings. Help clients automate sales, support and marketing through world's most popular messaging platform."
       },
       "mutualGrowth": {
         "title": "Mutual Growth Engine",
         "subtitle": "Grow Together",
-        "description": "Access exclusive partner resources, co-marketing opportunities, and dedicated account management to accelerate your business growth."
+        "description": "Access exclusive partner resources, co-marketing opportunities and dedicated account management to accelerate your business growth."
       },
       "prioritySupport": {
         "title": "Priority Partner Support",
         "subtitle": "24/7 Support",
-        "description": "Get direct access to our product team, priority support queue, and dedicated partner success manager for faster resolutions."
+        "description": "Get direct access to our product team, priority support queue and dedicated partner success manager for faster resolutions."
       },
       "certifiedBadge": {
         "title": "Certified Partner Badge",
@@ -2181,7 +2181,7 @@
       "earlyAccess": {
         "title": "Early Access Features",
         "subtitle": "Stay Ahead",
-        "description": "Be the first to access new features, beta programs, and product updates. Give your clients the competitive edge they need."
+        "description": "Be the first to access new features, beta programs and product updates. Give your clients the competitive edge they need."
       }
     },
     "modelsTitle": "Partnership Models",
@@ -2199,7 +2199,7 @@
       "commission": "Up to 40%",
       "title": "Your Clients. Our Technology.",
       "name": "Reseller Partner",
-      "description": "You sell and manage client relationships; we power you with complete backend - technology, automation, support, and training.",
+      "description": "You sell and manage client relationships; we power you with complete backend - technology, automation, support and training.",
       "whatYouGet": ["White-glove onboarding", "Partner portal access", "Co-branded materials", "Technical training"],
       "idealFor": ["Digital Agencies", "IT Consultants"]
     },
@@ -2238,7 +2238,7 @@
         "earnings": "$25K+"
       },
       {
-        "quote": "As an affiliate, I love the transparent tracking and monthly payouts. My audience trusts my recommendations, and Eazybe delivers every time.",
+        "quote": "As an affiliate, I love the transparent tracking and monthly payouts. My audience trusts my recommendations and Eazybe delivers every time.",
         "author": "Alex Johnson",
         "role": "Tech Blogger & Influencer",
         "earnings": "$15K+"
@@ -2246,7 +2246,7 @@
     ],
     "integrationsTitle": "Help your clients integrate with their favorite CRM platforms",
     "applyTitle": "Your Partnership Journey Starts Here",
-    "applyDesc": "Join our global ecosystem of innovators, agencies, and consultants who are transforming business communication and earning along the way.",
+    "applyDesc": "Join our global ecosystem of innovators, agencies and consultants who are transforming business communication and earning along the way.",
     "fastApproval": "Fast Approval",
     "fastApprovalDesc": "Most applications approved within 24-48 hours",
     "dedicatedSupportTitle": "Dedicated Support",
@@ -2267,7 +2267,7 @@
     "typeReseller": "Reseller Partner (up to 40% commission)",
     "typeWhitelabel": "White Label Partner (up to 50% commission)",
     "tellUs": "Tell Us About Your Business",
-    "tellUsPlaceholder": "Describe your business, target audience, and how you plan to promote Eazybe...",
+    "tellUsPlaceholder": "Describe your business, target audience and how you plan to promote Eazybe...",
     "submitApplication": "Submit Partner Application",
     "faqTitle": "Frequently Asked Questions",
     "faqDesc": "Everything you need to know about the Eazybe Partner Program",
@@ -2279,27 +2279,27 @@
       },
       {
         "question": "What is the commission structure?",
-        "answer": "We offer three partner tiers: Affiliate (up to 30% commission), Reseller (up to 40% commission), and White Label (up to 50% commission). Commissions are paid monthly via your preferred payment method."
+        "answer": "We offer three partner tiers: Affiliate (up to 30% commission), Reseller (up to 40% commission) and White Label (up to 50% commission). Commissions are paid monthly via your preferred payment method."
       },
       {
         "question": "Is there a cost to join?",
-        "answer": "No! Joining the Eazybe partner program is completely free. There are no upfront costs, no minimum commitments, and no hidden fees. You start earning from your first successful referral."
+        "answer": "No! Joining the Eazybe partner program is completely free. There are no upfront costs, no minimum commitments and no hidden fees. You start earning from your first successful referral."
       },
       {
         "question": "What marketing materials are provided?",
-        "answer": "We provide a comprehensive partner toolkit including tracking links, co-branded marketing materials, email templates, social media content, case studies, and product demos. Everything you need to effectively promote Eazybe."
+        "answer": "We provide a comprehensive partner toolkit including tracking links, co-branded marketing materials, email templates, social media content, case studies and product demos. Everything you need to effectively promote Eazybe."
       },
       {
         "question": "How are referrals tracked?",
-        "answer": "Each partner receives unique tracking links and a dedicated partner portal to monitor clicks, sign-ups, and conversions in real-time. Our transparent tracking ensures you get credit for every referral."
+        "answer": "Each partner receives unique tracking links and a dedicated partner portal to monitor clicks, sign-ups and conversions in real-time. Our transparent tracking ensures you get credit for every referral."
       },
       {
         "question": "What kind of support do partners get?",
-        "answer": "Partners get priority support with dedicated account managers, faster response times, direct access to our product team, co-marketing opportunities, and exclusive training sessions to help you succeed."
+        "answer": "Partners get priority support with dedicated account managers, faster response times, direct access to our product team, co-marketing opportunities and exclusive training sessions to help you succeed."
       },
       {
         "question": "How long do I keep earning on a referral?",
-        "answer": "You keep earning on that client for their whole first year, and your rate scales with how much ARR you've referred in total. Under $25,000 that's 20%. Once you cross it, you move up to Premier Champion at 30%."
+        "answer": "You keep earning on that client for their whole first year and your rate scales with how much ARR you've referred in total. Under $25,000 that's 20%. Once you cross it, you move up to Premier Champion at 30%."
       },
       {
         "question": "Do I need technical experience to refer clients?",
