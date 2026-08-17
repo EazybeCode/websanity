@@ -135,6 +135,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     { path: '/whatsapp-chat-link-generator', changefreq: 'monthly', priority: 0.7 },
     { path: '/whatsapp-chat-widget', changefreq: 'monthly', priority: 0.7 },
     { path: '/marketing-roi-calculator', changefreq: 'monthly', priority: 0.7 },
+    { path: '/tools', changefreq: 'monthly', priority: 0.7 },
     { path: '/become-our-partner', changefreq: 'monthly', priority: 0.7 },
     { path: '/msa', changefreq: 'monthly', priority: 0.3 },
     { path: '/privacy', changefreq: 'monthly', priority: 0.3 },

@@ -60,6 +60,22 @@ const ICON_INSTANT = (
 
 const SITE_URL = 'https://eazybe.com'
 
+/** Links the first "Eazybe" in a sentence to the homepage. Done at render time
+ *  rather than by splitting the string in the content file, because every
+ *  locale's copy already contains the brand name verbatim. */
+function linkBrand(text: string) {
+  const BRAND = 'Eazybe'
+  const i = text.indexOf(BRAND)
+  if (i === -1) return text
+  return (
+    <>
+      {text.slice(0, i)}
+      <a className="roi-brand-link" href={SITE_URL}>{BRAND}</a>
+      {text.slice(i + BRAND.length)}
+    </>
+  )
+}
+
 export default async function MarketingRoiCalculatorPage({
   params,
 }: {
@@ -155,6 +171,14 @@ export default async function MarketingRoiCalculatorPage({
                a narrow column; the body copy keeps a readable measure. */
             .roi-cta-head h2 { max-width: none; }
             .roi-cta-head p { max-width: 720px; }
+            /* .landing a { color: inherit } outranks a bare class, so scope it. */
+            .landing .roi-brand-link {
+              color: var(--accent-ink); font-weight: 600;
+              border-bottom: 1px solid color-mix(in oklab, var(--accent-ink) 35%, transparent);
+              transition: color .16s ease, border-color .16s ease;
+            }
+            .landing .roi-brand-link:hover { color: var(--ink); border-color: var(--ink); }
+            .landing .roi-brand-link:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
             /* Filled accent secondary CTA. #5b4bae is the same violet the shared
                button styles already use for hover, so this stays on-palette.
                Selectors are prefixed with .landing because the shared rule
@@ -368,7 +392,7 @@ export default async function MarketingRoiCalculatorPage({
         <div className="container" style={{ maxWidth: 1100, textAlign: 'center' }}>
           <div className="sec-head centered roi-cta-head" style={{ marginBottom: 28 }}>
             <h2>{t.finalCta.h2}</h2>
-            <p>{t.finalCta.body}</p>
+            <p>{linkBrand(t.finalCta.body)}</p>
           </div>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href={locale === 'en' ? '/pricing' : `/${locale}/pricing`} className="btn btn-primary btn-lg">
