@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
-import { CHROME_STORE_WEBSITE_URL } from '@/utils/openChromeExtensionStore'
+import { INSTALL_REDIRECT_URL } from '@/utils/openChromeExtensionStore'
 import { useTrialModal } from '@/providers/TrialModalProvider'
 
 // Prefix internal href paths with the active locale (e.g. "/hubspot-..." → "/br/hubspot-...").
@@ -478,7 +478,7 @@ export function Nav() {
           className="btn btn-ghost"
         >{t('bookDemo')}</a>
         <a
-          href={CHROME_STORE_WEBSITE_URL}
+          href={INSTALL_REDIRECT_URL}
           onClick={(e) => {
             e.preventDefault()
             openModal('trial')
@@ -634,7 +634,7 @@ export function Nav() {
               className="btn btn-ghost"
             >{t('bookDemo')}</a>
             <a
-              href={CHROME_STORE_WEBSITE_URL}
+              href={INSTALL_REDIRECT_URL}
               className="btn btn-primary hide-on-mobile-cta"
               onClick={(e) => {
                 e.preventDefault()

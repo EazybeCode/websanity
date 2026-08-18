@@ -7,6 +7,7 @@ import { CRMType, TrialFormData } from '@/types'
 import { type ModalMode } from '@/providers/TrialModalProvider'
 import {
   CHROME_STORE_WEBSITE_URL,
+  INSTALL_REDIRECT_URL,
   getHubSpotAttributionFields,
   withIncomingTrackingParams,
 } from '@/utils/openChromeExtensionStore'
@@ -130,7 +131,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
       if (hasSubmitted) {
         setIsSuccess(true)
         if (mode === 'trial') {
-          window.location.href = withIncomingTrackingParams(CHROME_STORE_WEBSITE_URL)
+          window.location.href = withIncomingTrackingParams(INSTALL_REDIRECT_URL)
         }
       } else {
         setIsSuccess(false)
@@ -154,7 +155,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
     let timeoutId: NodeJS.Timeout | null = null
     if (isSuccess && mode === 'trial') {
       timeoutId = setTimeout(() => {
-        window.location.href = withIncomingTrackingParams(CHROME_STORE_WEBSITE_URL)
+        window.location.href = withIncomingTrackingParams(INSTALL_REDIRECT_URL)
       }, 2000)
     }
     return () => {

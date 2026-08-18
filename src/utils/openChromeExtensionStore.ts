@@ -6,6 +6,15 @@ const CHROME_STORE_BASE_URL =
 export const CHROME_STORE_WEBSITE_URL = `${CHROME_STORE_BASE_URL}?utm_medium=Organic&utm_source=website&utm_campaign=eazybe%20workspace`
 export const CHROME_STORE_WEBSITE_FORM_URL = `${CHROME_STORE_BASE_URL}?utm_medium=Organic&utm_source=website-form&utm_campaign=eazybe%20workspace`
 
+// Rebrandly shortlink used as the actual "install" destination for every
+// Start Free / install-CTA on the site. Redirects to the Chrome Web Store
+// and lets us track total install-CTA clicks in Rebrandly independent of
+// Chrome Web Store analytics. Any component that used to link straight to
+// CHROME_STORE_WEBSITE_URL as an install target should point here instead.
+// (CHROME_STORE_WEBSITE_URL stays exported so getHubSpotAttributionFields
+// can still use it as the URL template for extracting UTM params.)
+export const INSTALL_REDIRECT_URL = "https://eazybe.info/1f46a7"
+
 const TRACKING_PARAM_PREFIXES = ["utm_"]
 const TRACKING_PARAM_NAMES = ["gclid", "fbclid", "li_fat_id"]
 const ATTRIBUTION_STORAGE_KEY = "eazybe_attribution_params"

@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { CHROME_STORE_WEBSITE_URL } from '@/utils/openChromeExtensionStore'
+import { INSTALL_REDIRECT_URL } from '@/utils/openChromeExtensionStore'
 import { useTrialModal } from '@/providers/TrialModalProvider'
 
 export function Hero() {
@@ -63,7 +63,7 @@ export function Hero() {
               {t('ctaBookDemo')}
             </a>
             <a
-              href={CHROME_STORE_WEBSITE_URL}
+              href={INSTALL_REDIRECT_URL}
               onClick={(e) => {
                 e.preventDefault()
                 openModal('trial')

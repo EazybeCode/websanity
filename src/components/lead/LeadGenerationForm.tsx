@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
 import {
   CHROME_STORE_WEBSITE_FORM_URL,
+  INSTALL_REDIRECT_URL,
   getHubSpotAttributionFields,
   withIncomingTrackingParams,
 } from '@/utils/openChromeExtensionStore'
@@ -196,7 +197,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
 
       setIsSuccess(true)
       window.open(
-        withIncomingTrackingParams(CHROME_STORE_WEBSITE_FORM_URL),
+        withIncomingTrackingParams(INSTALL_REDIRECT_URL),
         '_blank',
         'noopener,noreferrer',
       )
@@ -204,7 +205,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       console.error('Error submitting form:', error)
       setIsSuccess(true)
       window.open(
-        withIncomingTrackingParams(CHROME_STORE_WEBSITE_FORM_URL),
+        withIncomingTrackingParams(INSTALL_REDIRECT_URL),
         '_blank',
         'noopener,noreferrer',
       )

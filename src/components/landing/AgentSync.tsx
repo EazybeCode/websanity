@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { useTrialModal } from '@/providers/TrialModalProvider'
-import { CHROME_STORE_WEBSITE_URL } from '@/utils/openChromeExtensionStore'
+import { INSTALL_REDIRECT_URL } from '@/utils/openChromeExtensionStore'
 
 interface Person {
   name: string
@@ -159,7 +159,7 @@ export function AgentSync() {
               ))}
             </ul>
             <div className="agent-cta-pair" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginTop: 8 }}>
-              <a href={CHROME_STORE_WEBSITE_URL} onClick={(e) => { e.preventDefault(); openModal('trial') }} className="btn btn-outline hide-on-mobile-cta">{t('cta')}</a>
+              <a href={INSTALL_REDIRECT_URL} onClick={(e) => { e.preventDefault(); openModal('trial') }} className="btn btn-outline hide-on-mobile-cta">{t('cta')}</a>
               <a href="https://eazybe.info/demono" onClick={(e) => { e.preventDefault(); openModal('demo') }} className="btn btn-primary">{t('ctaDemo')}</a>
             </div>
           </div>
