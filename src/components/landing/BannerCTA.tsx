@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-const APP_LINK = 'https://eazybe.info/85c80b'
+const APP_LINK = 'https://eazybe.info/1f46a7'
 
 export function BannerCTA() {
   const t = useTranslations('landingV3.bannerCta')

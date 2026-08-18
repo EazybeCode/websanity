@@ -2,7 +2,7 @@
 
 import type { AnchorHTMLAttributes, ReactNode } from "react"
 import {
-  CHROME_STORE_WEBSITE_URL,
+  INSTALL_REDIRECT_URL,
   withIncomingTrackingParams,
 } from "@/utils/openChromeExtensionStore"
 
@@ -18,9 +18,9 @@ export function TrackedChromeStoreLink({
   return (
     <a
       {...props}
-      href={CHROME_STORE_WEBSITE_URL}
+      href={INSTALL_REDIRECT_URL}
       onClick={(event) => {
-        event.currentTarget.href = withIncomingTrackingParams(CHROME_STORE_WEBSITE_URL)
+        event.currentTarget.href = withIncomingTrackingParams(INSTALL_REDIRECT_URL)
         onClick?.(event)
       }}
     >
