@@ -37,17 +37,15 @@ export const TrialModalProvider: React.FC<{ children: ReactNode }> = ({ children
 
   const openModal = (modalMode: ModalMode = 'trial') => {
     ;(window as any).gtag?.('event', modalMode === 'demo' ? `book_demo_click_${locale}` : `install_free_click_${locale}`)
-    // Rebrandly click beacon — silent GET to the short link so its counter
-    // increments per Book a Demo click. The destination is never followed
-    // by the user; the Image request errors out silently once fetched.
+    // Rebrandly click beacon — silent GET to the shortlink so the counter
+    // increments per Book a Demo click without navigating the user.
     if (modalMode === 'demo' && typeof window !== 'undefined') {
       try { new Image().src = 'https://eazybe.info/b8y' } catch { /* ignore */ }
-      // "Book a Demo" opens the Calendly booking in a NEW TAB (no on-page form
-      // or embed). eazybe.info/demono 301s to Calendly. Synchronous in the
-      // click handler so popup blockers allow it. Tracking above is preserved.
-      window.open('https://eazybe.info/demono', '_blank', 'noopener')
-      return
     }
+    // Both Book a Demo (DemoModal) and Start Free (TrialModal) open an
+    // in-page lead-capture form. The old "window.open(eazybe.info/demono)"
+    // short-circuit was reverted — we want the form back so the lead is
+    // captured before the calendar step.
     setMode(modalMode)
     setIsOpen(true)
   }
