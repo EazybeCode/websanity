@@ -7,10 +7,13 @@ import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
 import {
   CHROME_STORE_WEBSITE_FORM_URL,
-  INSTALL_REDIRECT_URL,
   getHubSpotAttributionFields,
   withIncomingTrackingParams,
 } from '@/utils/openChromeExtensionStore'
+
+// Where the Bea form sends people after submit — the demo-booking shortlink,
+// matching the trial modal, not the Chrome-install redirect.
+const BEA_SUBMIT_REDIRECT_URL = 'https://eazybe.info/demono'
 
 interface FormData {
   email: string
@@ -197,7 +200,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
 
       setIsSuccess(true)
       window.open(
-        withIncomingTrackingParams(INSTALL_REDIRECT_URL),
+        withIncomingTrackingParams(BEA_SUBMIT_REDIRECT_URL),
         '_blank',
         'noopener,noreferrer',
       )
@@ -205,7 +208,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       console.error('Error submitting form:', error)
       setIsSuccess(true)
       window.open(
-        withIncomingTrackingParams(INSTALL_REDIRECT_URL),
+        withIncomingTrackingParams(BEA_SUBMIT_REDIRECT_URL),
         '_blank',
         'noopener,noreferrer',
       )
