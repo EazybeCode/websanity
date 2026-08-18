@@ -7,10 +7,13 @@ import { CRMType, TrialFormData } from '@/types'
 import { type ModalMode } from '@/providers/TrialModalProvider'
 import {
   CHROME_STORE_WEBSITE_URL,
-  INSTALL_REDIRECT_URL,
   getHubSpotAttributionFields,
   withIncomingTrackingParams,
 } from '@/utils/openChromeExtensionStore'
+
+// Where the "Let's Get You Started" (trial) form sends people after submit.
+// The demo-booking shortlink, per marketing — not the Chrome-install redirect.
+const TRIAL_SUBMIT_REDIRECT_URL = 'https://eazybe.info/demono'
 
 interface TrialModalProps {
   isOpen: boolean
@@ -131,7 +134,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
       if (hasSubmitted) {
         setIsSuccess(true)
         if (mode === 'trial') {
-          window.location.href = withIncomingTrackingParams(INSTALL_REDIRECT_URL)
+          window.location.href = withIncomingTrackingParams(TRIAL_SUBMIT_REDIRECT_URL)
         }
       } else {
         setIsSuccess(false)
@@ -155,7 +158,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
     let timeoutId: NodeJS.Timeout | null = null
     if (isSuccess && mode === 'trial') {
       timeoutId = setTimeout(() => {
-        window.location.href = withIncomingTrackingParams(INSTALL_REDIRECT_URL)
+        window.location.href = withIncomingTrackingParams(TRIAL_SUBMIT_REDIRECT_URL)
       }, 2000)
     }
     return () => {
