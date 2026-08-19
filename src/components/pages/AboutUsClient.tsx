@@ -12,6 +12,25 @@ export function AboutUsClient({ locale = 'en' }: { locale?: string }) {
 
   return (
     <>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            /* The shared rule caps .page-hero .lede at 640px and is used by 13
+               other components, so widen it only here. */
+            .landing .page-hero .about-hero-lede { max-width: none; }
+            /* .landing a { color: inherit } outranks a bare class, so scope it.
+               Cyan matches the inline link colour used in the story section. */
+            .landing .about-hero-link {
+              color: #06B6D4; text-decoration: underline;
+              text-underline-offset: 2px;
+              transition: color .16s ease;
+            }
+            .landing .about-hero-link:hover { color: #22D3EE; }
+            .landing .about-hero-link:focus-visible { outline: 2px solid #06B6D4; outline-offset: 2px; border-radius: 3px; }
+          `,
+        }}
+      />
+
       {/* Hero */}
       <section className="page-hero" data-tone="dark">
         <div className="container">
@@ -19,7 +38,22 @@ export function AboutUsClient({ locale = 'en' }: { locale?: string }) {
           <h1 className="reveal">
             {t.hero.headingStart} <em>{t.hero.headingHighlight}</em>
           </h1>
-          <p className="lede reveal">{t.hero.paragraph}</p>
+          <p className="lede reveal about-hero-lede">
+            {(() => {
+              const { paragraph, paragraphLinkPhrase } = t.hero
+              const i = paragraph.indexOf(paragraphLinkPhrase)
+              if (i === -1) return paragraph
+              return (
+                <>
+                  {paragraph.slice(0, i)}
+                  <a className="about-hero-link" href={locale === 'en' ? '/integrations' : `/${locale}/integrations`}>
+                    {paragraphLinkPhrase}
+                  </a>
+                  {paragraph.slice(i + paragraphLinkPhrase.length)}
+                </>
+              )
+            })()}
+          </p>
         </div>
       </section>
 

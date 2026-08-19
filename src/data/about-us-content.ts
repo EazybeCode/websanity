@@ -5,6 +5,9 @@ export interface AboutUsContent {
     headingStart: string
     headingHighlight: string
     paragraph: string
+    /** Substring of `paragraph` to render as a link to /integrations.
+     *  Per-locale because each language phrases it differently. */
+    paragraphLinkPhrase: string
   }
   story: {
     badge: string
@@ -41,6 +44,7 @@ const content: Record<string, AboutUsContent> = {
       headingStart: 'Get To Know About',
       headingHighlight: 'EazyBe',
       paragraph: 'Eazybe is a CRM Integration Solution Provider and WhatsApp AI agents platform that helps businesses manage customer chats, automate follow-ups, sync data with CRMs, and manage their sales pipeline \u2014 all from one place.',
+      paragraphLinkPhrase: 'CRM Integration Solution Provider',
     },
     story: {
       badge: 'Our Story',
@@ -90,6 +94,7 @@ const content: Record<string, AboutUsContent> = {
       headingStart: 'Conhe\u00e7a a',
       headingHighlight: 'EazyBe',
       paragraph: 'A Eazybe \u00e9 uma provedora de solu\u00e7\u00f5es de integra\u00e7\u00e3o com CRM e plataforma de agentes de IA para WhatsApp que ajuda empresas a gerenciar conversas com clientes, automatizar follow-ups, sincronizar dados com CRMs e gerenciar seu pipeline de vendas \u2014 tudo em um s\u00f3 lugar.',
+      paragraphLinkPhrase: 'provedora de solu\u00e7\u00f5es de integra\u00e7\u00e3o com CRM',
     },
     story: {
       badge: 'Nossa Hist\u00f3ria',
@@ -139,6 +144,7 @@ const content: Record<string, AboutUsContent> = {
       headingStart: 'Conoce a',
       headingHighlight: 'EazyBe',
       paragraph: 'Eazybe es un proveedor de soluciones de integraci\u00f3n con CRM y plataforma de agentes de IA para WhatsApp que ayuda a las empresas a gestionar conversaciones con clientes, automatizar seguimientos, sincronizar datos con CRMs y gestionar su pipeline de ventas \u2014 todo desde un solo lugar.',
+      paragraphLinkPhrase: 'proveedor de soluciones de integraci\u00f3n con CRM',
     },
     story: {
       badge: 'Nuestra Historia',
@@ -188,6 +194,7 @@ const content: Record<string, AboutUsContent> = {
       headingStart: 'EazyBe\u2019yi',
       headingHighlight: 'Tan\u0131y\u0131n',
       paragraph: 'Eazybe, i\u015fletmelerin m\u00fc\u015fteri sohbetlerini y\u00f6netmesine, takipleri otomatikle\u015ftirmesine, verileri CRM\u2019lerle senkronize etmesine ve sat\u0131\u015f hatt\u0131n\u0131 y\u00f6netmesine yard\u0131mc\u0131 olan bir CRM Entegrasyon \u00c7\u00f6z\u00fcm Sa\u011flay\u0131c\u0131s\u0131 ve WhatsApp Yapay Zeka ajanlar\u0131 platformudur \u2014 hepsi tek bir yerden.',
+      paragraphLinkPhrase: 'CRM Entegrasyon \u00c7\u00f6z\u00fcm Sa\u011flay\u0131c\u0131s\u0131',
     },
     story: {
       badge: 'Hikayemiz',
