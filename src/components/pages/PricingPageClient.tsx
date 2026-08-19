@@ -98,7 +98,6 @@ const defaultPricingPlans: PricingPlan[] = [
     name: 'Scaler', planKey: 'scaler',
     description: 'For growing teams that need advanced integrations and AI-powered automation.',
     monthlyPrice: 19, annualPrice: 15, currency: '$', icon: 'growth', popular: true,
-    priceNote: '1 number · 3 users included',
     features: [
       { text: 'Everything in Starter', included: true },
       { text: 'Salesforce integration', included: true, highlight: true },
@@ -117,7 +116,6 @@ const defaultPricingPlans: PricingPlan[] = [
     name: 'Basic AI', planKey: 'basic-ai',
     description: 'Get started with AI agents on top of your full Scaler stack.',
     monthlyPrice: 79, annualPrice: 59, currency: '$', icon: 'sparkles',
-    priceNote: '1 number · 5 users included',
     features: [
       { text: 'Everything in Scaler', included: true },
       { text: 'AI agents', included: true, highlight: true },
@@ -147,6 +145,7 @@ const defaultPricingPlans: PricingPlan[] = [
 ]
 
 const defaultComparisonFeatures: ComparisonFeatureRow[] = [
+  { feature: 'WhatsApp API number', starter: false, scaler: '1 · 3 users included', basicAi: '1 · 5 users included', proAi: '1 · 5 users included', category: 'Core Features' },
   { feature: 'Team Inbox', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
   { feature: 'Unlimited labels & funnels', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
   { feature: 'Unlimited quick replies', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
@@ -335,6 +334,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Webhook integrations': 'Integraciones por webhook',
       'Cloud connection': 'Conexión en la nube',
       'WhatsApp API': 'API de WhatsApp',
+      'WhatsApp API number': 'Número de API de WhatsApp',
+      '1 · 3 users included': '1 · 3 usuarios incluidos',
+      '1 · 5 users included': '1 · 5 usuarios incluidos',
       'Custom objects in mini CRM view': 'Objetos personalizados en mini CRM',
       'CRM property-to-WhatsApp labeling': 'Etiquetado de propiedades del CRM en WhatsApp',
       'AI unreplied chats agent': 'Agente de IA para chats sin responder',
@@ -343,8 +345,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'RevOps Agent': 'Agente RevOps',
       'Everything in Scaler': 'Todo lo de Scaler',
       'AI agents': 'Agentes de IA',
-      '1 number · 3 users included': '1 número · 3 usuarios incluidos',
-      '1 number · 5 users included': '1 número · 5 usuarios incluidos',
+      'Users included': 'Usuarios incluidos',
+      '3 users': '3 usuarios',
+      '5 users': '5 usuarios',
       'AI agent cost': 'Coste del agente de IA',
       'reply': 'respuesta',
       'Intelligence-Led CRM Properties': 'Propiedades de CRM guiadas por inteligencia',
@@ -438,6 +441,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Webhook integrations': 'Integrações via webhook',
       'Cloud connection': 'Conexão em nuvem',
       'WhatsApp API': 'API do WhatsApp',
+      'WhatsApp API number': 'Número de API do WhatsApp',
+      '1 · 3 users included': '1 · 3 usuários incluídos',
+      '1 · 5 users included': '1 · 5 usuários incluídos',
       'Custom objects in mini CRM view': 'Objetos personalizados no mini CRM',
       'CRM property-to-WhatsApp labeling': 'Etiquetagem de propriedade do CRM para WhatsApp',
       'AI unreplied chats agent': 'Agente de IA para conversas sem resposta',
@@ -446,8 +452,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'RevOps Agent': 'Agente RevOps',
       'Everything in Scaler': 'Tudo do Scaler',
       'AI agents': 'Agentes de IA',
-      '1 number · 3 users included': '1 número · 3 usuários incluídos',
-      '1 number · 5 users included': '1 número · 5 usuários incluídos',
+      'Users included': 'Usuários incluídos',
+      '3 users': '3 usuários',
+      '5 users': '5 usuários',
       'AI agent cost': 'Custo do agente de IA',
       'reply': 'resposta',
       'Intelligence-Led CRM Properties': 'Propriedades de CRM guiadas por inteligência',
@@ -541,6 +548,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Webhook integrations': 'Webhook entegrasyonları',
       'Cloud connection': 'Bulut bağlantısı',
       'WhatsApp API': 'WhatsApp API',
+      'WhatsApp API number': 'WhatsApp API numarası',
+      '1 · 3 users included': '1 · 3 kullanıcı dahil',
+      '1 · 5 users included': '1 · 5 kullanıcı dahil',
       'Custom objects in mini CRM view': 'Mini CRM görünümünde özel nesneler',
       'CRM property-to-WhatsApp labeling': "CRM özelliğinden WhatsApp'a etiketleme",
       'AI unreplied chats agent': 'Yanıtsız sohbetler için AI ajanı',
@@ -549,8 +559,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'RevOps Agent': 'RevOps Ajanı',
       'Everything in Scaler': "Scaler'daki her şey",
       'AI agents': 'AI ajanları',
-      '1 number · 3 users included': '1 numara · 3 kullanıcı dahil',
-      '1 number · 5 users included': '1 numara · 5 kullanıcı dahil',
+      'Users included': 'Dahil kullanıcılar',
+      '3 users': '3 kullanıcı',
+      '5 users': '5 kullanıcı',
       'AI agent cost': 'AI ajan maliyeti',
       'reply': 'yanıt',
       'Intelligence-Led CRM Properties': 'Zeka odaklı CRM özellikleri',
@@ -832,7 +843,7 @@ function PricingCard({
           </div>
         )}
         {addonNote && (
-          <p style={{ marginTop: 6, fontSize: 13, color: 'var(--ink-3)', fontWeight: 500, marginBottom: 0 }}>
+          <p style={{ marginTop: 6, fontSize: 13, color: 'var(--ink-3)', fontWeight: 500, marginBottom: 0, whiteSpace: 'pre-line' }}>
             {featureLabels[addonNote] || addonNote}
           </p>
         )}
@@ -999,7 +1010,7 @@ function FeatureComparisonTable({
     if (v === false) return <span style={{ display: 'inline-flex', width: 22, height: 22, borderRadius: '50%', background: 'var(--bg-2)', color: 'var(--ink-4)', alignItems: 'center', justifyContent: 'center' }}>{XSym}</span>
     if (isLocalCurrency && v === '$45 monthly credits (rollover)') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>{currency} {convertUsdAmount(45)} monthly credits (rollover)</span>
     if (isLocalCurrency && v === '$90 monthly credits (rollover)') return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>{currency} {convertUsdAmount(90)} monthly credits (rollover)</span>
-    return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>{v}</span>
+    return <span style={{ fontSize: 13, color: 'var(--ink-2)', fontWeight: 500 }}>{featureLabels[v] || v}</span>
   }
 
   return (
@@ -1200,9 +1211,14 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const comparisonSection = pricingData?.comparisonSection || fallback.comparisonSection
 
   const aiComparisonFeatures: ComparisonFeatureRow[] = defaultComparisonFeatures.filter((row) => row.category === 'AI Agents')
+  // Rows we always want at the top of "Core Features", regardless of what
+  // Sanity has. Merged in below when Sanity is the source of truth.
+  const injectedCoreRows: ComparisonFeatureRow[] = defaultComparisonFeatures.filter(
+    (row) => row.category === 'Core Features' && row.feature === 'WhatsApp API number',
+  )
   const comparisonFeatures: ComparisonFeatureRow[] = pricingData?.comparisonSection?.features
-    ? [
-        ...pricingData.comparisonSection.features
+    ? (() => {
+        const sanityRows = pricingData.comparisonSection.features
           .filter((f) => !removedOmnisFeatureNames.has(f.feature))
           .map((f) => {
             const scalerValue = parseComparisonValue(f.scaler)
@@ -1214,10 +1230,13 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               scaler: scalerValue,
               basicAi: isSalesforce ? false : scalerValue,
               proAi: scalerValue,
-            }
-          }),
-        ...aiComparisonFeatures,
-      ]
+            } as ComparisonFeatureRow
+          })
+        const sanityFeatureNames = new Set(sanityRows.map((r) => r.feature))
+        const missingInjected = injectedCoreRows.filter((r) => !sanityFeatureNames.has(r.feature))
+        // Prepend injected Core rows so they show first in that category.
+        return [...missingInjected, ...sanityRows, ...aiComparisonFeatures]
+      })()
     : defaultComparisonFeatures
 
   const faqSection = pricingData?.faqSection || fallback.faqSection
