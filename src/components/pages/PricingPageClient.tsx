@@ -98,6 +98,7 @@ const defaultPricingPlans: PricingPlan[] = [
     name: 'Scaler', planKey: 'scaler',
     description: 'For growing teams that need advanced integrations and AI-powered automation.',
     monthlyPrice: 19, annualPrice: 15, currency: '$', icon: 'growth', popular: true,
+    priceNote: '1 number · 3 users included',
     features: [
       { text: 'Everything in Starter', included: true },
       { text: 'Salesforce integration', included: true, highlight: true },
@@ -116,6 +117,7 @@ const defaultPricingPlans: PricingPlan[] = [
     name: 'Basic AI', planKey: 'basic-ai',
     description: 'Get started with AI agents on top of your full Scaler stack.',
     monthlyPrice: 79, annualPrice: 59, currency: '$', icon: 'sparkles',
+    priceNote: '1 number · 5 users included',
     features: [
       { text: 'Everything in Scaler', included: true },
       { text: 'AI agents', included: true, highlight: true },
@@ -123,8 +125,6 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'AI-driven Chat Organization', included: true, highlight: true },
       { text: 'BrainBe knowledge base included', included: true },
       { text: 'Includes $45 monthly credits (rollover)', included: true },
-      { text: 'Lite LLM · $0.005/action', included: true, highlight: true },
-      { text: 'Heavy LLM · $0.01/action', included: true, highlight: true },
       { text: 'Voice AI calling', included: false },
       { text: '100+ integrations (Email, Teams, Slack...)', included: false },
     ],
@@ -141,8 +141,6 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: "BrainBe — your company's brain", included: true },
       { text: '100+ integrations (Email, Teams, Slack...)', included: true },
       { text: 'Includes $90 monthly credits (rollover)', included: true },
-      { text: 'Lite LLM · $0.005/action', included: true, highlight: true },
-      { text: 'Heavy LLM · $0.01/action', included: true, highlight: true },
     ],
     cta: { label: 'Talk to our AI Agent', url: '/contact?plan=pro-ai' },
   },
@@ -345,8 +343,10 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'RevOps Agent': 'Agente RevOps',
       'Everything in Scaler': 'Todo lo de Scaler',
       'AI agents': 'Agentes de IA',
-      'Lite LLM · $0.005/action': 'Lite LLM · $0.005/acción',
-      'Heavy LLM · $0.01/action': 'Heavy LLM · $0.01/acción',
+      '1 number · 3 users included': '1 número · 3 usuarios incluidos',
+      '1 number · 5 users included': '1 número · 5 usuarios incluidos',
+      'AI agent cost': 'Coste del agente de IA',
+      'reply': 'respuesta',
       'Intelligence-Led CRM Properties': 'Propiedades de CRM guiadas por inteligencia',
       'AI-driven Chat Organization': 'Organización de chats por IA',
       'BrainBe knowledge base included': 'Base de conocimientos BrainBe incluida',
@@ -446,8 +446,10 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'RevOps Agent': 'Agente RevOps',
       'Everything in Scaler': 'Tudo do Scaler',
       'AI agents': 'Agentes de IA',
-      'Lite LLM · $0.005/action': 'Lite LLM · $0.005/ação',
-      'Heavy LLM · $0.01/action': 'Heavy LLM · $0.01/ação',
+      '1 number · 3 users included': '1 número · 3 usuários incluídos',
+      '1 number · 5 users included': '1 número · 5 usuários incluídos',
+      'AI agent cost': 'Custo do agente de IA',
+      'reply': 'resposta',
       'Intelligence-Led CRM Properties': 'Propriedades de CRM guiadas por inteligência',
       'AI-driven Chat Organization': 'Organização de conversas por IA',
       'BrainBe knowledge base included': 'Base de conhecimento BrainBe incluída',
@@ -547,8 +549,10 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'RevOps Agent': 'RevOps Ajanı',
       'Everything in Scaler': "Scaler'daki her şey",
       'AI agents': 'AI ajanları',
-      'Lite LLM · $0.005/action': 'Lite LLM · $0,005/işlem',
-      'Heavy LLM · $0.01/action': 'Heavy LLM · $0,01/işlem',
+      '1 number · 3 users included': '1 numara · 3 kullanıcı dahil',
+      '1 number · 5 users included': '1 numara · 5 kullanıcı dahil',
+      'AI agent cost': 'AI ajan maliyeti',
+      'reply': 'yanıt',
       'Intelligence-Led CRM Properties': 'Zeka odaklı CRM özellikleri',
       'AI-driven Chat Organization': 'AI destekli sohbet organizasyonu',
       'BrainBe knowledge base included': 'BrainBe bilgi tabanı dahil',
@@ -712,9 +716,14 @@ function PricingCard({
   const annualPrice = dynamicAnnualPrice ?? plan.annualPrice
   const price = isAnnual ? annualPrice : monthlyPrice
   const addonPrice = isAnnual ? dynamicAnnualAddonPrice : dynamicMonthlyAddonPrice
-  const addonNote = addonPrice != null
+  // An explicit plan.priceNote wins over the auto-generated addon note.
+  // Lets Scaler / Basic AI advertise their bundled user counts instead of
+  // the default "+ $X/extra seat · 1 seat included" template.
+  const addonNote = plan.priceNote
+    ? plan.priceNote
+    : addonPrice != null
     ? `+ ${currencyLabel ? `${currencyLabel} ` : ''}${priceSymbol}${addonPrice}/extra seat · 1 seat included`
-    : plan.priceNote
+    : undefined
   const isPopular = plan.planKey === 'basic-ai'
   const isEnterprise = plan.enterprise
   const showPrice = !isEnterprise && price > 0
@@ -824,7 +833,7 @@ function PricingCard({
         )}
         {addonNote && (
           <p style={{ marginTop: 6, fontSize: 13, color: 'var(--ink-3)', fontWeight: 500, marginBottom: 0 }}>
-            {addonNote}
+            {featureLabels[addonNote] || addonNote}
           </p>
         )}
       </div>
@@ -883,6 +892,53 @@ function PricingCard({
           </li>
         ))}
       </ul>
+
+      {isAiPlan && (
+        <div
+          style={{
+            marginTop: 'auto',
+            padding: '12px 14px',
+            borderRadius: 12,
+            border: '1px solid color-mix(in oklab, var(--accent-ink) 22%, var(--line))',
+            background:
+              'linear-gradient(180deg, color-mix(in oklab, var(--accent-ink) 6%, var(--paper)) 0%, var(--paper) 100%)',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: '0.09em',
+              textTransform: 'uppercase',
+              color: 'var(--accent-ink)',
+              marginBottom: 8,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+            }}
+          >
+            <Sparkles size={11} /> {featureLabels['AI agent cost'] || 'AI agent cost'}
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
+              <span style={{ fontSize: 12.5, color: 'var(--ink-2)', fontWeight: 500 }}>
+                {featureLabels['Lite LLM'] || 'Lite LLM'}
+              </span>
+              <span style={{ fontSize: 13, color: 'var(--ink)', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
+                $0.005<span style={{ color: 'var(--ink-4)', fontWeight: 500 }}>/{featureLabels['reply'] || 'reply'}</span>
+              </span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
+              <span style={{ fontSize: 12.5, color: 'var(--ink-2)', fontWeight: 500 }}>
+                {featureLabels['Heavy LLM'] || 'Heavy LLM'}
+              </span>
+              <span style={{ fontSize: 13, color: 'var(--ink)', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
+                $0.01<span style={{ color: 'var(--ink-4)', fontWeight: 500 }}>/{featureLabels['reply'] || 'reply'}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -1076,14 +1132,25 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     return { ...plan, description: localDesc, cta: { ...plan.cta, label: localCta } }
   })
 
+  // Features that Sanity still ships but we want hidden from the plan
+  // cards on the live site. Match by lowercase text so casing drift in
+  // Sanity doesn't break the filter. Ship this list here instead of
+  // waiting for a content editor to remove them in Studio.
+  const HIDDEN_SANITY_FEATURES = new Set<string>([
+    'ai unreplied chats agent',
+  ])
+
   const basePricingPlans: PricingPlan[] = pricingData?.plans?.map((plan) => {
     const planKey = iconToPlanKey(plan.icon)
-    const sanityFeatures = plan.features.map((f) => ({ text: f.text, included: f.included, highlight: f.highlight }))
+    const codePlan = localizedDefaultPlans.find((p) => p.planKey === planKey)
+    const sanityFeatures = plan.features
+      .map((f) => ({ text: f.text, included: f.included, highlight: f.highlight }))
+      .filter((f) => !HIDDEN_SANITY_FEATURES.has(f.text.trim().toLowerCase()))
     // Merge in any code-side features Sanity doesn't have yet (matched by
     // text, case-insensitive), preserving Sanity's ordering for anything
     // it already knows about. Lets us ship new features without a Sanity
     // content update per environment.
-    const codeDefaults = localizedDefaultPlans.find((p) => p.planKey === planKey)?.features || []
+    const codeDefaults = codePlan?.features || []
     const sanityTexts = new Set(sanityFeatures.map((f) => f.text.trim().toLowerCase()))
     const missingFromSanity = codeDefaults.filter(
       (f) => !sanityTexts.has(f.text.trim().toLowerCase())
@@ -1098,6 +1165,10 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       icon: plan.icon as PricingPlan['icon'],
       popular: plan.isPopular,
       enterprise: plan.isEnterprise,
+      // Fall back to the code-side priceNote when Sanity has none. Lets
+      // "1 number · N users included" show on Scaler / Basic AI even
+      // though those plans are Sanity-managed.
+      priceNote: codePlan?.priceNote,
       features: [...sanityFeatures, ...missingFromSanity],
       cta: plan.cta,
     }
