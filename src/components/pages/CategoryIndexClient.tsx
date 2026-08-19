@@ -71,7 +71,7 @@ const TITLE_CASE_OVERRIDES: Record<string, string> = {
 }
 const tc = (text?: string): string | undefined => (text ? TITLE_CASE_OVERRIDES[text] || text : text)
 
-const HeroSection: React.FC<{ data: any }> = ({ data }) => {
+const HeroSection: React.FC<{ data: any; wideLede?: boolean }> = ({ data, wideLede }) => {
   if (!data) return null
   return (
     <section className="page-hero" data-tone="dark">
@@ -83,7 +83,9 @@ const HeroSection: React.FC<{ data: any }> = ({ data }) => {
           {tc(data.headline)}
           {data.headlineHighlight ? <> <em>{tc(data.headlineHighlight)}</em></> : null}
         </h1>
-        {data.description && <p className="lede reveal">{data.description}</p>}
+        {data.description && (
+          <p className={`lede reveal${wideLede ? ' category-hero-lede-wide' : ''}`}>{data.description}</p>
+        )}
 
         <div className="reveal" style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 36, flexWrap: 'wrap' }}>
           {data.primaryCta && <HeroCta cta={data.primaryCta} variant="primary" showArrow />}
@@ -590,7 +592,14 @@ export default function CategoryIndexClient({ data, category }: CategoryIndexCli
   if (!data) return null
   return (
     <>
-      <HeroSection data={data.hero} />
+      {/* The shared .page-hero .lede caps at 640px; /integrations opts out so
+          its intro spans the container. Features and whatsapp-api keep the cap. */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `.landing .page-hero .category-hero-lede-wide { max-width: none; }`,
+        }}
+      />
+      <HeroSection data={data.hero} wideLede={category === 'integration'} />
       {data.intro && <IntroSection data={data.intro} />}
       <FeaturedItemsSection items={data.featuredItems} category={category} />
       {data.comparisonTable && <ComparisonSection data={data.comparisonTable} />}
