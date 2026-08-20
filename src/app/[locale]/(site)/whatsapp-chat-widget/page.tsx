@@ -365,7 +365,7 @@ export default async function WhatsAppChatWidgetPage({
           </div>
           <p style={{ fontSize: 17, lineHeight: 1.6, color: '#2A4150', margin: '0 auto 32px', maxWidth: 580 }}>{t.cta.subtitle}</p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="https://eazybe.info/1f46a7" target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t.cta.primary}</a>
+            <a href="https://eazybe.info/6c2a82" target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t.cta.primary}</a>
             <a href="https://eazybe.info/demono" target="_blank" rel="noopener noreferrer" className="btn" style={{ background: '#5B4BAE', color: '#ffffff' }}>{t.cta.secondary}</a>
           </div>
           <p style={{ marginTop: 22, fontSize: 13, color: '#5A6070' }}>{t.cta.footnote}</p>

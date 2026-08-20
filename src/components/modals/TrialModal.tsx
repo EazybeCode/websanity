@@ -12,8 +12,10 @@ import {
 } from '@/utils/openChromeExtensionStore'
 
 // Where the "Let's Get You Started" (trial) form sends people after submit.
-// The demo-booking shortlink, per marketing — not the Chrome-install redirect.
-const TRIAL_SUBMIT_REDIRECT_URL = 'https://eazybe.info/demono'
+// Dedicated Rebrandly shortlink per marketing — separate from the Chrome
+// install redirect and the demo shortlink so post-form clicks are counted
+// on their own.
+const TRIAL_SUBMIT_REDIRECT_URL = 'https://eazybe.info/6c2a82'
 
 interface TrialModalProps {
   isOpen: boolean

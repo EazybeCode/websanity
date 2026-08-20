@@ -13,7 +13,7 @@ export const CHROME_STORE_WEBSITE_FORM_URL = `${CHROME_STORE_BASE_URL}?utm_mediu
 // CHROME_STORE_WEBSITE_URL as an install target should point here instead.
 // (CHROME_STORE_WEBSITE_URL stays exported so getHubSpotAttributionFields
 // can still use it as the URL template for extracting UTM params.)
-export const INSTALL_REDIRECT_URL = "https://eazybe.info/1f46a7"
+export const INSTALL_REDIRECT_URL = "https://eazybe.info/6c2a82"
 
 const TRACKING_PARAM_PREFIXES = ["utm_"]
 const TRACKING_PARAM_NAMES = ["gclid", "fbclid", "li_fat_id"]
