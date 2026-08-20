@@ -210,8 +210,8 @@ export const content: PageContent = {
     mp4: '/whatsapp-crm/product.mp4',
     poster: '/whatsapp-crm/product-poster.jpg',
     alt:
-      'Eazybe dentro do WhatsApp Web: a conversa à esquerda e, à direita, um painel de CRM onde a IA preencheu CRM de destino, estado da conversa, urgência, etapa e intenção',
-    caption: 'A Eazybe lendo uma conversa real e preenchendo os campos do CRM ao lado.',
+      'Eazybe dentro do WhatsApp: a conversa à esquerda e, à direita, um painel Eazybe AI Analysis onde a IA preencheu estado da conversa, urgência, etapa e intenção e escreveu um resumo curto do que o vendedor precisa fazer em seguida',
+    caption: 'A Eazybe lendo uma conversa real, preenchendo os campos do CRM ao lado e resumindo o próximo passo.',
     width: 1112,
     height: 492,
   },

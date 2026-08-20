@@ -87,10 +87,10 @@ const en = {
     },
     country: 'Country',
     crmOptions: CRM_OPTIONS.map(String),
-    noCrmValue: 'Other / none yet',
-    // Shown when "Other / none yet" is picked — the submit is disabled, so
-    // the reason has to be visible. A dead button with no explanation is the
-    // worst version of this.
+    // Empty disables the gate: "Other / none yet" submits like any other
+    // option. Set this back to 'Other / none yet' to block the submit and
+    // surface `noCrmNote` instead.
+    noCrmValue: '',
     noCrmNote: 'Eazybe connects to a CRM you already run. Pick yours above, or talk to us and we will help you choose one.',
     sending: 'Connecting…',
     success: {
@@ -283,8 +283,8 @@ const en = {
     webm: '/whatsapp-crm/product.webm',
     mp4: '/whatsapp-crm/product.mp4',
     poster: '/whatsapp-crm/product-poster.jpg',
-    alt: 'Eazybe inside WhatsApp Web: the conversation on the left, and a CRM panel on the right where the AI has filled in destination CRM, conversation state, urgency, stage and intent',
-    caption: 'Eazybe reading a live conversation and filling the CRM fields beside it.',
+    alt: 'Eazybe inside WhatsApp: the conversation on the left, and an Eazybe AI Analysis panel on the right where the AI has filled in conversation state, urgency, stage and intent, then written a short summary of what the rep needs to do next',
+    caption: 'Eazybe reading a live conversation, filling the CRM fields beside it and summarising what to do next.',
     width: 1112,
     height: 492,
   },

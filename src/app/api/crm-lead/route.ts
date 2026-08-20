@@ -54,10 +54,10 @@ export async function POST(request: NextRequest) {
   } else if (digits.length < 7 || digits.length > 15) {
     bad.push('phone')
   }
-  // The client disables submit for this, but the client is not the rule —
-  // Eazybe connects to a CRM the team already runs, so this is not a lead
-  // this endpoint can serve.
-  if (!crm || crm === 'Other / none yet') bad.push('crm')
+  // A CRM must be picked, but "Other / none yet" is now an accepted answer:
+  // the landing page no longer gates on it, so rejecting it here would 400
+  // every one of those submissions and lose the lead.
+  if (!crm) bad.push('crm')
   if (bad.length) return NextResponse.json({ error: 'Validation failed', fields: bad }, { status: 400 })
 
   const lead = {
