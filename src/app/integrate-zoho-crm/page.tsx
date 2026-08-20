@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { decryptParams } from '@/lib/decrypt-params'
 import { StandaloneShell } from '@/components/StandaloneShell'
 
-const EXTENSION_ID_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
+const EXTENSION_ID_PRODUCTION = "aihpfgoknheimieofcfjiobnmddldjeb"
 const CLIENT_ID_RAJAT = "1000.77NM4BCO7LABBJ3FKDXGIEIKODXMQI"
 const CLIENT_SECRET_RAJAT = "6cc2985329348dc754bfe0b721b5a4a850ef50e330"
 const REDIRECT_URI = "https://eazybe.com/integrate-zoho-crm"
@@ -12,7 +12,7 @@ const REDIRECT_URI = "https://eazybe.com/integrate-zoho-crm"
 const sendMessageToChromeExtension = (
   status: boolean,
   time: number = 10,
-  extensionId: string = "fpnlneiiaeclcckbcoldjhcpaofgdmfl",
+  extensionId: string = "aihpfgoknheimieofcfjiobnmddldjeb",
   key?: string
 ) => {
   setTimeout(() => {

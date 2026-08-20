@@ -27,7 +27,7 @@ const ptContent = {
     description: 'Colete todas as suas ferramentas exclusivas em um só lugar. Projetamos e desenvolvemos soluções web modernas com design profissional usando as mais recentes tecnologias e tendências.',
     primaryCta: {
       label: 'Instalar Grátis',
-      url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd'
+      url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/aihpfgoknheimieofcfjiobnmddldjeb'
     },
     secondaryCta: {
       label: 'Ver Todas as Integrações',
@@ -310,7 +310,7 @@ const ptContent = {
     description: 'Deixe-nos ajudá-lo a encontrar o produto perfeito que seja mais adequado às suas necessidades e desejos.',
     primaryCta: {
       label: 'Instalar Agora',
-      url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd'
+      url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/aihpfgoknheimieofcfjiobnmddldjeb'
     },
     secondaryCta: {
       label: 'Agende uma demonstração',

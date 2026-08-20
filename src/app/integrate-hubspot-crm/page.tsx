@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { decryptParams } from '@/lib/decrypt-params'
 import { StandaloneShell } from '@/components/StandaloneShell'
 
-const EXTENSION_ID_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
+const EXTENSION_ID_PRODUCTION = "aihpfgoknheimieofcfjiobnmddldjeb"
 const clientId = 'afc8d801-b77d-43db-a963-6a6993568749'
 const clientSecret = '46e6a98e-6072-4385-a481-0de345d6f5e3'
 const redirectUri = 'https://eazybe.com/integrate-hubspot-crm'
@@ -41,7 +41,7 @@ const optionalScopes = [
 const sendMessageToChromeExtension = (
   status: boolean,
   time: number = 10,
-  extensionId: string = "fpnlneiiaeclcckbcoldjhcpaofgdmfl",
+  extensionId: string = "aihpfgoknheimieofcfjiobnmddldjeb",
   key?: string
 ) => {
   setTimeout(() => {

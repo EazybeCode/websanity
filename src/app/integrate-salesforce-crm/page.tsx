@@ -5,7 +5,7 @@ import { decryptParams } from '@/lib/decrypt-params'
 import { StandaloneShell } from '@/components/StandaloneShell'
 
 const APP_URL_PREFIX_V2 = "https://cerberus.eazybe.com/prod/api/v2/"
-const EXTENSION_ID_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
+const EXTENSION_ID_PRODUCTION = "aihpfgoknheimieofcfjiobnmddldjeb"
 const REDIRECT_URI = "https://eazybe.com/integrate-salesforce-crm"
 const SALESFORCE_DOMAIN = "login.salesforce"
 const RESPONSE_TYPE = "code"
@@ -50,7 +50,7 @@ const createAuthSalesforce = (
 const sendMessageToChromeExtension = (
   status: boolean,
   time: number = 10,
-  extensionId: string = "clgficggccelgifppbcaepjdkklfcefd",
+  extensionId: string = "aihpfgoknheimieofcfjiobnmddldjeb",
   key?: string
 ) => {
   setTimeout(() => {

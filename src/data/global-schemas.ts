@@ -25,7 +25,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "image": `${BASE_URL}/logo.png`,
         "description": "Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets.",
         "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/aihpfgoknheimieofcfjiobnmddldjeb",
         "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
         "offers": {
           "@type": "AggregateOffer",
@@ -113,7 +113,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "image": `${BASE_URL}/logo.png`,
         "description": "A Eazybe ajuda equipes de vendas a automatizar conversas no WhatsApp com agentes de IA, qualificar leads, identificar negócios frios e sincronizar chats com plataformas de CRM como HubSpot, Zoho, Salesforce e Google Sheets.",
         "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/aihpfgoknheimieofcfjiobnmddldjeb",
         "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
         "offers": {
           "@type": "AggregateOffer",
@@ -201,7 +201,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "image": `${BASE_URL}/logo.png`,
         "description": "Eazybe ayuda a los equipos de ventas a automatizar conversaciones de WhatsApp con agentes de IA, calificar leads, detectar oportunidades estancadas y sincronizar chats con CRM como HubSpot, Zoho, Salesforce y Google Sheets.",
         "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/aihpfgoknheimieofcfjiobnmddldjeb",
         "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
         "offers": {
           "@type": "AggregateOffer",
@@ -289,7 +289,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "image": `${BASE_URL}/logo.png`,
         "description": "Eazybe, satış ekiplerinin WhatsApp konuşmalarını yapay zeka ajanları ile otomatikleştirmesine, lead'leri nitelendirmesine, soğuyan fırsatları tespit etmesine ve sohbetleri HubSpot, Zoho, Salesforce ve Google Sheets gibi CRM platformlarıyla senkronize etmesine yardımcı olur.",
         "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/clgficggccelgifppbcaepjdkklfcefd",
+        "downloadUrl": "https://chrome.google.com/webstore/detail/aihpfgoknheimieofcfjiobnmddldjeb",
         "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
         "offers": {
           "@type": "AggregateOffer",

@@ -1,7 +1,7 @@
 "use client"
 
 const CHROME_STORE_BASE_URL =
-  "https://chromewebstore.google.com/detail/whatsapp-ai-agents-with-c/clgficggccelgifppbcaepjdkklfcefd"
+  "https://chromewebstore.google.com/detail/whatsapp-ai-agents-with-c/aihpfgoknheimieofcfjiobnmddldjeb"
 
 export const CHROME_STORE_WEBSITE_URL = `${CHROME_STORE_BASE_URL}?utm_medium=Organic&utm_source=website&utm_campaign=eazybe%20workspace`
 export const CHROME_STORE_WEBSITE_FORM_URL = `${CHROME_STORE_BASE_URL}?utm_medium=Organic&utm_source=website-form&utm_campaign=eazybe%20workspace`

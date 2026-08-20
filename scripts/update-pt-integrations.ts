@@ -26,7 +26,7 @@ const ptContent = {
     description: 'Seu CRM não vê as conversas do WhatsApp. O Eazybe conecta os pontos — sincronizando cada mensagem para HubSpot, Salesforce, Zoho e mais. Sem migração de API. Funciona com WhatsApp pessoal.',
     primaryCta: {
       label: 'Instalar Grátis',
-      url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/clgficggccelgifppbcaepjdkklfcefd'
+      url: 'https://chromewebstore.google.com/detail/eazybe-best-whatsapp-web/aihpfgoknheimieofcfjiobnmddldjeb'
     },
     secondaryCta: {
       label: 'Ver Todas as Integrações',

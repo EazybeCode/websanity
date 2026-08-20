@@ -5,7 +5,7 @@ import { decryptParams } from '@/lib/decrypt-params'
 import { StandaloneShell } from '@/components/StandaloneShell'
 
 const CLIENT_ID = "app.6448e61fad4676.49982309"
-const EXTENSION_ID_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
+const EXTENSION_ID_PRODUCTION = "aihpfgoknheimieofcfjiobnmddldjeb"
 const REDIRECT_URI = "https://eazybe.com/integrate-bitrix-crm"
 
 const getClientRedirectURL = (): string | null => {
