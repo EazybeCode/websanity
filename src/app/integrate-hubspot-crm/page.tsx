@@ -60,29 +60,55 @@ const sendMessageToChromeExtension = (
   }, time)
 }
 
-const getBearerToken = (authCode: string) => {
+const getAuthToken = async (workspaceId: string) => {
+  const authToken = localStorage.getItem("authToken")
+  if (authToken) return authToken
+
+  const res = await fetch(
+    `https://cerberus.eazybe.com/prod/api/v2/auth/token-by-workspace?workspace_id=${workspaceId}`
+  )
+  const data = await res.json()
+  return data?.access_token
+}
+
+const getBearerToken = async (authCode: string) => {
   const workspaceId = localStorage.getItem("workspaceId")
 
-  fetch(
-    `https://cerberus.eazybe.com/prod/api/v1/hubspotauthentication?workspace_id=${workspaceId}&grant_type=authorization_code&code=${authCode}&redirect_uri=${redirectUri}&client_id=${clientId}&client_secret=${clientSecret}`,
-    { method: "POST" }
-  )
-    .then((res) => res.json())
-    .then((data) => {
+  try {
+    const authToken = workspaceId ? await getAuthToken(workspaceId) : null
+
+    await fetch(
+      "https://cerberus.eazybe.com/prod/api/v2/hubspot",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
+        },
+        body: JSON.stringify({
+          workspace_id: Number(workspaceId),
+          grant_type: "authorization_code",
+          code: authCode,
+          redirect_uri: redirectUri,
+          client_id: clientId,
+          client_secret: clientSecret,
+        }),
+      }
+    )
+
       ;(window as any).gtag?.("event", "Hubspotintegrated")
       ;(window as any).gtagAW?.("event", "Hubspotintegrated")
       const extensionId = localStorage.getItem("extensionId")
       sendMessageToChromeExtension(true, 500, extensionId || undefined)
       setTimeout(() => { window.close() }, 1000)
-    })
-    .catch((error) => {
-      console.error("Error during getBearerToken:", error)
-      ;(window as any).gtag?.("event", "Hubspotintegrated")
-      ;(window as any).gtagAW?.("event", "Hubspotintegrated")
-      const extensionId = localStorage.getItem("extensionId")
-      sendMessageToChromeExtension(true, 500, extensionId || undefined)
-      setTimeout(() => { window.close() }, 1000)
-    })
+  } catch (error) {
+    console.error("Error during getBearerToken:", error)
+    ;(window as any).gtag?.("event", "Hubspotintegrated")
+    ;(window as any).gtagAW?.("event", "Hubspotintegrated")
+    const extensionId = localStorage.getItem("extensionId")
+    sendMessageToChromeExtension(true, 500, extensionId || undefined)
+    setTimeout(() => { window.close() }, 1000)
+  }
 }
 
 const buildAuthUrl = () => {
@@ -118,11 +144,13 @@ export default function IntegrateHubspotCrmPage() {
       const workspaceId = urlParamsObject['workspaceid'] || null
       const email = urlParamsObject['user_email'] || null
       const extensionId = urlParamsObject['extensionId'] || null
+      const authToken = urlParamsObject['authToken'] || null
       const autoConnect = urlParamsObject['connect'] === "true"
 
       if (workspaceId) localStorage.setItem("workspaceId", workspaceId)
       if (email) localStorage.setItem("email", email)
       if (extensionId) localStorage.setItem("extensionId", extensionId)
+      if (authToken) localStorage.setItem("authToken", authToken)
 
       if (autoConnect) {
         window.location.href = buildAuthUrl()
