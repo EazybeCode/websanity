@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { PartnerDirectory } from '@/components/pages/PartnerDirectory'
+import { PARTNERS, type PartnerRecord } from '@/data/partner-directory'
 import {
   Users,
   DollarSign,
@@ -48,7 +50,12 @@ const Star = (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
 )
 
-export function PartnerPageClient() {
+export function PartnerPageClient({
+  partners = PARTNERS,
+}: {
+  /** Sanity-managed partner list; defaults to the static sample data. */
+  partners?: PartnerRecord[]
+} = {}) {
   const t = useTranslations('partner')
   const steps = t.raw('steps') as Array<{ step: string; title: string; desc: string }>
   const testimonials = t.raw('testimonials') as Array<{ quote: string; author: string; role: string; earnings: string }>
@@ -186,6 +193,48 @@ export function PartnerPageClient() {
           </div>
         </div>
       </section>
+
+      {/* Current partners directory — renders nothing when the list is empty,
+          so deactivating every partner in Sanity hides the whole section. */}
+      {partners.length > 0 && (
+        <section className="section" style={{ paddingTop: 20, paddingBottom: 80 }}>
+          <div className="container" style={{ maxWidth: 1240 }}>
+            <div className="sec-head centered" style={{ marginBottom: 30 }}>
+              <h2>{t('dirHeading')} <em>{t('dirHeadingHighlight')}</em></h2>
+            </div>
+            <PartnerDirectory
+              labels={{
+                heading: t('dirHeading'),
+                headingHighlight: t('dirHeadingHighlight'),
+                searchPlaceholder: t('dirSearchPlaceholder'),
+                filters: t('dirFilters'),
+                resetAll: t('dirResetAll'),
+                activeFilters: t('dirActiveFilters'),
+                clearAll: t('dirClearAll'),
+                // t.raw: these carry a literal "{count}" that the directory
+                // splits on itself. t() would read it as an ICU placeholder
+                // and fail without a `count` argument.
+                showing: t.raw('dirShowing') as string,
+                showingOne: t.raw('dirShowingOne') as string,
+                empty: t('dirEmpty'),
+                readMore: t('dirReadMore'),
+                readLess: t('dirReadLess'),
+                regionLabel: t('dirRegionLabel'),
+                crmLabel: t('dirCrmLabel'),
+                specialtyLabel: t('dirSpecialtyLabel'),
+                regions: { brasil: t('dirRegionBrasil'), latam: t('dirRegionLatam'), row: t('dirRegionRow') },
+                crms: {
+                  hubspot: t('dirCrmHubspot'), pipedrive: t('dirCrmPipedrive'),
+                  salesforce: t('dirCrmSalesforce'), zoho: t('dirCrmZoho'), other: t('dirCrmOther'),
+                },
+                verified: t('dirVerified'),
+                viewPost: t('dirViewPost'),
+              }}
+              partners={partners}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Benefits */}
       <section className="section" data-tone="dark" style={{ paddingTop: 80 }}>

@@ -1966,6 +1966,15 @@ export default defineConfig({
               ),
             S.divider(),
             S.listItem()
+              .title('Current Partners at Eazybe')
+              .icon(() => '🤝')
+              .child(
+                S.documentTypeList('partner')
+                  .title('Current Partners at Eazybe')
+                  .filter('_type == "partner"')
+                  .defaultOrdering([{ field: 'order', direction: 'asc' }])
+              ),
+            S.listItem()
               .title('Redirects')
               .icon(() => '🔀')
               .child(

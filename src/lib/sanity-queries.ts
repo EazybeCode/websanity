@@ -1,4 +1,11 @@
 import { sanityClient, sanityDraftClient } from './sanity'
+import {
+  CRM_ORDER,
+  REGION_ORDER,
+  type PartnerCrm,
+  type PartnerRecord,
+  type PartnerRegion,
+} from '@/data/partner-directory'
 
 // ─── Language mapping ────────────────────────────────────────────────────────
 
@@ -1162,4 +1169,118 @@ export async function getComparisonPostTranslations(translationGroupId: string) 
     _id, "slug": slug.current, language
   }`
   return sanityClient.fetch(query, { translationGroupId })
+}
+
+// ─── Partners ("Current Partners at Eazybe" directory) ───────────────────────
+
+const PARTNER_CRM_LABELS: Record<PartnerCrm, string> = {
+  hubspot: 'HubSpot',
+  pipedrive: 'Pipedrive',
+  salesforce: 'Salesforce',
+  zoho: 'Zoho',
+  other: 'Other',
+}
+
+interface SanityPartnerRow {
+  _id: string
+  name: string | null
+  partnerTier: string | null
+  crmPlatform: string | null
+  crmOtherLabel: string | null
+  country: string | null
+  region: string | null
+  descriptionBlocks: Array<{ children?: Array<{ text?: string }> }> | null
+  specialties: Array<string | null> | null
+}
+
+const partnerBlockText = (b: { children?: Array<{ text?: string }> }) =>
+  (b.children ?? []).map((c) => c.text ?? '').join('').trim()
+
+function toPartnerRecord(row: SanityPartnerRow): PartnerRecord {
+  const name = row.name?.trim() || 'Partner'
+  const crm: PartnerCrm = (CRM_ORDER as string[]).includes(row.crmPlatform ?? '')
+    ? (row.crmPlatform as PartnerCrm)
+    : 'other'
+  const region: PartnerRegion = (REGION_ORDER as string[]).includes(row.region ?? '')
+    ? (row.region as PartnerRegion)
+    : 'row'
+  const blocks = row.descriptionBlocks ?? []
+  // Editorial convention: the first paragraph is the card summary, everything
+  // after it goes behind "Read more".
+  const detail = blocks.slice(1).map(partnerBlockText).filter(Boolean).join(' ')
+  return {
+    id: row._id,
+    name,
+    initials:
+      name
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((w) => w[0]!.toUpperCase())
+        .join('') || 'P',
+    tier: row.partnerTier?.trim() || 'Partner',
+    crm,
+    crmLabel:
+      crm === 'other'
+        ? row.crmOtherLabel?.trim() || PARTNER_CRM_LABELS.other
+        : PARTNER_CRM_LABELS[crm],
+    country: row.country?.trim() || '',
+    region,
+    summary: blocks.length ? partnerBlockText(blocks[0]) : '',
+    detail: detail || undefined,
+    specialties: (row.specialties ?? []).flatMap((s) => {
+      const v = s?.trim()
+      return v ? [v] : []
+    }),
+  }
+}
+
+/**
+ * Active partners for the /become-our-partner directory, localized.
+ *
+ * `locale` is a routing locale (en | es | br | tr) — the partner schema keys
+ * its per-locale fields the same way, so no pt-BR mapping here. Each locale
+ * either inherits English (Translation Mode = "inherit") or shows its own
+ * value with an English fallback while the translation is empty.
+ *
+ * `$mode` is passed pre-computed ("esMode" etc.) because GROQ silently
+ * resolves computed bracket keys like field[$locale + "Mode"] to null.
+ *
+ * Returns null when the CMS is unreachable (sanityClient.fetch swallows
+ * errors into null) so callers can fall back; an empty array is a real
+ * editorial state — every partner deactivated — and hides the section.
+ */
+export async function getPartners(locale: string = 'en'): Promise<PartnerRecord[] | null> {
+  const query = `*[_type == "partner" && !(_id in path("drafts.**")) && activeStatus != false]
+    | order(coalesce(order, 9999) asc, lower(partnerName.en) asc) {
+    _id,
+    "name": select(
+      $locale == "en" => partnerName.en,
+      partnerName[$mode] == "inherit" => partnerName.en,
+      coalesce(partnerName[$locale], partnerName.en)
+    ),
+    partnerTier,
+    crmPlatform,
+    crmOtherLabel,
+    country,
+    region,
+    "descriptionBlocks": select(
+      $locale == "en" => description.en,
+      description[$mode] == "inherit" => description.en,
+      count(description[$locale]) > 0 => description[$locale],
+      description.en
+    ),
+    "specialties": select(
+      $locale == "en" => specialties.en,
+      specialties[$mode] == "inherit" => specialties.en,
+      count(specialties[$locale]) > 0 => specialties[$locale],
+      specialties.en
+    )
+  }`
+  const rows: SanityPartnerRow[] | null = await sanityClient.fetch(query, {
+    locale,
+    mode: `${locale}Mode`,
+  })
+  if (rows === null) return null
+  return rows.map(toPartnerRecord)
 }

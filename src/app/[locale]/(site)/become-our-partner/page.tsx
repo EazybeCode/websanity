@@ -2,6 +2,13 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { PartnerPageClient } from '@/components/pages/PartnerPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
+import { getPartners } from '@/lib/sanity-queries'
+import { PARTNERS, type PartnerRecord } from '@/data/partner-directory'
+
+// Partner directory content is managed in Sanity ("Current Partners at
+// Eazybe") — re-render at most once a minute so CMS edits go live on
+// their own without a redeploy.
+export const revalidate = 60
 
 export async function generateMetadata({
   params,
@@ -86,6 +93,11 @@ export default async function PartnerPage({
 
   const schemas = [breadcrumbSchema, faqSchema]
 
+  // Directory cards come from Sanity; an empty list simply hides the section
+  // (that's the editors' off switch). getPartners returns null only when the
+  // CMS is unreachable — fall back to the static list so the page still builds.
+  const partners: PartnerRecord[] = (await getPartners(locale)) ?? PARTNERS
+
   return (
     <>
       {schemas.map((schema, index) => (
@@ -95,7 +107,7 @@ export default async function PartnerPage({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
-      <PartnerPageClient />
+      <PartnerPageClient partners={partners} />
     </>
   )
 }
