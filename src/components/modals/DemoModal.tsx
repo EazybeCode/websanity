@@ -1,24 +1,24 @@
 'use client'
 
 /**
- * DemoModal — collects Name, Work Email, Phone then opens an embedded
- * Calendly widget PRE-FILLED with those values so the user only has to
- * pick a time.
+ * DemoModal — fully custom two-column Book-a-Demo flow.
  *
- * Kept intentionally separate from TrialModal (which routes to the
- * Chrome Web Store post-submit and has a CRM-picker in its form). This
- * one is single-purpose: "book a demo → land on Calendly with a
- * pre-filled name/email so the calendar view is one click away."
+ *   left  = lead form (Name + Work Email + Phone)  → HubSpot lead capture
+ *   right = custom date picker + time-slot picker  → Calendly booking via
+ *           our /api/calendly/* server-side proxy (Calendly PAT stays
+ *           on the server; the browser never sees it)
  *
- * Calendly prefill: passes { name, email, customAnswers: { a1: phone } }
- * to Calendly.initInlineWidget. `a1` maps to the first custom question
- * on the Calendly event type — make sure the first custom question in
- * the Calendly dashboard is "Phone number" (or hide/remove any other
- * questions above it) so the phone lands in the right field.
+ * On "Book my demo" both writes fire in parallel:
+ *   - HubSpot Forms API POST (fire-and-forget, keepalive)
+ *   - POST /api/calendly/book -> Calendly POST /invitees
+ * When the Calendly write returns 2xx the modal flips to a success screen.
+ * Calendly's normal notifications, calendar invites, and workflows all fire
+ * because we go through their real invitee-create endpoint — no iframe,
+ * no external redirect, no Calendly-hosted confirmation page.
  */
 
-import React, { useEffect, useRef, useState } from 'react'
-import { X, Send, Loader2 } from 'lucide-react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { X, Send, Loader2, CheckCircle2 } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import {
   CHROME_STORE_WEBSITE_URL,
@@ -30,23 +30,15 @@ interface Props {
   onClose: () => void
 }
 
-const CALENDLY_URL =
-  'https://calendly.com/eazybe/eazybe-demo-clone?hide_event_type_details=1&hide_gdpr_banner=1'
 const HUBSPOT_PORTAL_ID = '40009480'
-// Locale-specific HubSpot form GUIDs. Each locale has its own form so
-// notifications / owner routing can be scoped by language. The submission
-// payload (fields, portal, endpoint) is identical — only the formGuid
-// changes. Non-mapped locales fall back to the English form.
 const HUBSPOT_DEMO_FORM_GUID_BY_LOCALE: Record<string, string> = {
   en: '470166e7-1418-4bd9-9e1e-7252ad54070b',
   es: 'e6630d0e-f941-42e0-abd5-c3686e4ce16c',
   br: '922fbde6-ba79-4c8e-b784-a7bf67ef3708',
-  tr: '470166e7-1418-4bd9-9e1e-7252ad54070b', // TODO: replace when the Turkish form ID is provided
+  tr: '470166e7-1418-4bd9-9e1e-7252ad54070b',
 }
 const DEFAULT_HUBSPOT_DEMO_FORM_GUID = HUBSPOT_DEMO_FORM_GUID_BY_LOCALE.en
 
-// Same country→phone map + phone code list the TrialModal uses. Kept
-// inline so this modal has zero shared state with TrialModal.
 const COUNTRY_TO_PHONE: Record<string, string> = {
   US: '+1', CA: '+1', MX: '+52',
   GB: '+44', DE: '+49', FR: '+33', ES: '+34', IT: '+39', NL: '+31', BE: '+32', CH: '+41', AT: '+43',
@@ -64,7 +56,6 @@ const COUNTRY_CODES = [
   { code: '+1', label: 'US/CA' }, { code: '+52', label: 'MX' },
   { code: '+44', label: 'UK' }, { code: '+49', label: 'DE' }, { code: '+33', label: 'FR' },
   { code: '+34', label: 'ES' }, { code: '+39', label: 'IT' }, { code: '+31', label: 'NL' },
-  { code: '+32', label: 'BE' }, { code: '+41', label: 'CH' }, { code: '+43', label: 'AT' },
   { code: '+55', label: 'BR' }, { code: '+54', label: 'AR' },
   { code: '+91', label: 'IN' }, { code: '+86', label: 'CN' }, { code: '+81', label: 'JP' },
   { code: '+82', label: 'KR' }, { code: '+65', label: 'SG' }, { code: '+60', label: 'MY' },
@@ -93,204 +84,141 @@ const C = {
 const serif = "'Instrument Serif', Georgia, serif"
 const sans = "'Geist', 'Inter', system-ui, sans-serif"
 
+// ── date helpers ────────────────────────────────────────────────────────────
+
+const DAY_MS = 24 * 60 * 60 * 1000
+const iso = (d: Date) => d.toISOString()
+const dateKey = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate())
+const addDays = (d: Date, n: number) => new Date(d.getTime() + n * DAY_MS)
+const sameDay = (a: Date, b: Date) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
+
+interface CalendlyTimeSlot {
+  status: string
+  invitees_remaining: number
+  start_time: string // ISO
+  scheduling_url: string
+}
+
 export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const t = useTranslations('demoModal')
   const tTrial = useTranslations('trialModal')
   const locale = useLocale()
 
+  // Form state
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [selectedCountry, setSelectedCountry] = useState('+1')
   const [phone, setPhone] = useState('')
-
   const [emailError, setEmailError] = useState('')
+
+  // Calendar / booking state
+  const [slotsByDate, setSlotsByDate] = useState<Record<string, CalendlyTimeSlot[]>>({})
+  const [loadingSlots, setLoadingSlots] = useState(false)
+  const [slotsError, setSlotsError] = useState('')
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  const [selectedSlot, setSelectedSlot] = useState<CalendlyTimeSlot | null>(null)
+  const [timezone, setTimezone] = useState<string>('UTC')
+
+  // Submit state
   const [isSubmitting, setIsSubmitting] = useState(false)
-  // Two-step flow: 'form' collects Email + Phone for the HubSpot lead
-  // capture, then flips to 'calendar' with the Calendly widget pre-filled
-  // so the visitor only needs to pick a time.
-  const [step, setStep] = useState<'form' | 'calendar'>('form')
-  const [isCalendlyReady, setIsCalendlyReady] = useState(false)
+  const [bookingError, setBookingError] = useState('')
+  const [isSuccess, setIsSuccess] = useState(false)
 
-  const calendlyContainerRef = useRef<HTMLDivElement>(null)
-
-  // Derive a friendly name from the email prefix (everything before @).
-  // "john.doe@acme.com" -> "John Doe" for Calendly + HubSpot prefill.
-  const derivedName = (() => {
-    const prefix = email.split('@')[0] || ''
-    return prefix
-      .replace(/[._-]+/g, ' ')
-      .replace(/\d+/g, '')
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean)
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
-      .join(' ')
-  })()
-
-  // Country detection — same lightweight approach as TrialModal
+  // Auto-detect country + timezone on open.
   useEffect(() => {
     if (!isOpen) return
-    const detectCountry = async () => {
+    try {
+      setTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC')
+    } catch {
+      /* keep default */
+    }
+    const detect = async () => {
       try {
-        const response = await fetch('https://api.country.is/')
-        const data = await response.json()
+        const res = await fetch('https://api.country.is/')
+        const data = await res.json()
         if (data.country && COUNTRY_TO_PHONE[data.country]) {
           setSelectedCountry(COUNTRY_TO_PHONE[data.country])
         }
       } catch {
         try {
           const browserLocale = navigator.language || (navigator as any).userLanguage
-          if (browserLocale && browserLocale.includes('-')) {
-            const countryCode = browserLocale.split('-')[1]?.toUpperCase()
-            if (countryCode && COUNTRY_TO_PHONE[countryCode]) {
-              setSelectedCountry(COUNTRY_TO_PHONE[countryCode])
-            }
-          }
-        } catch { /* keep default */ }
+          const countryCode = browserLocale?.split('-')[1]?.toUpperCase()
+          if (countryCode && COUNTRY_TO_PHONE[countryCode]) setSelectedCountry(COUNTRY_TO_PHONE[countryCode])
+        } catch { /* ignore */ }
       }
     }
-    detectCountry()
+    detect()
   }, [isOpen])
 
-  // Reset every time modal closes so the next visitor gets a fresh form
+  // Reset on close so the next visitor gets a clean form.
   useEffect(() => {
     if (!isOpen) {
-      setStep('form')
       setIsSubmitting(false)
       setEmailError('')
-      setIsCalendlyReady(false)
+      setBookingError('')
+      setIsSuccess(false)
+      setSelectedDate(null)
+      setSelectedSlot(null)
     }
   }, [isOpen])
 
-  // Warm Calendly the moment the modal opens (not after form submit).
-  // - preconnect hints so DNS + TLS to calendly.com are done during
-  //   form-fill time (saves ~150-400ms on the eventual iframe request)
-  // - eagerly load widget.js so when the user hits Continue the script
-  //   is already parsed and initInlineWidget can fire instantly
+  // Fetch the next 7 days of available slots (one API call — Calendly's
+  // per-request cap is 7 days, which matches the visible date strip).
+  const fetchNext7Days = useCallback(async () => {
+    setLoadingSlots(true)
+    setSlotsError('')
+    const now = new Date()
+    const start = new Date(now.getTime() + 60_000)
+    // End of the 7th day from today (inclusive), so a 7-slot strip has
+    // every day fully covered.
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const end = new Date(startOfToday.getTime() + 7 * DAY_MS - 1)
+
+    try {
+      const url = new URL('/api/calendly/available-times', window.location.origin)
+      url.searchParams.set('locale', locale)
+      url.searchParams.set('start', iso(start))
+      url.searchParams.set('end', iso(end))
+      const res = await fetch(url.toString())
+      if (!res.ok) throw new Error(`Failed to load slots (${res.status})`)
+      const data = (await res.json()) as { collection?: CalendlyTimeSlot[] }
+      const grouped: Record<string, CalendlyTimeSlot[]> = {}
+      ;(data.collection || []).forEach((slot) => {
+        if (slot.status !== 'available' || slot.invitees_remaining <= 0) return
+        const d = new Date(slot.start_time)
+        const k = dateKey(d)
+        if (!grouped[k]) grouped[k] = []
+        grouped[k].push(slot)
+      })
+      setSlotsByDate(grouped)
+      // Auto-select the earliest date that has any open slots so the user
+      // lands on a state where time slots are already visible below.
+      const startOfToday = new Date()
+      startOfToday.setHours(0, 0, 0, 0)
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(startOfToday.getTime() + i * DAY_MS)
+        if ((grouped[dateKey(d)] || []).length > 0) {
+          setSelectedDate(d)
+          break
+        }
+      }
+    } catch (err) {
+      console.error('Calendly available-times fetch failed:', err)
+      setSlotsError('Could not load available times. Please try again.')
+    } finally {
+      setLoadingSlots(false)
+    }
+  }, [locale])
+
   useEffect(() => {
     if (!isOpen) return
-    if (typeof document === 'undefined') return
+    setSelectedDate(null)
+    setSelectedSlot(null)
+    fetchNext7Days()
+  }, [isOpen, fetchNext7Days])
 
-    const hints: HTMLLinkElement[] = []
-    const addHint = (rel: string, href: string, crossOrigin?: string) => {
-      if (document.querySelector(`link[rel="${rel}"][href="${href}"]`)) return
-      const link = document.createElement('link')
-      link.rel = rel
-      link.href = href
-      if (crossOrigin) link.crossOrigin = crossOrigin
-      document.head.appendChild(link)
-      hints.push(link)
-    }
-    addHint('preconnect', 'https://calendly.com', 'anonymous')
-    addHint('preconnect', 'https://assets.calendly.com', 'anonymous')
-    addHint('dns-prefetch', 'https://calendly.com')
-    addHint('dns-prefetch', 'https://assets.calendly.com')
-
-    // Kick off widget.js download in parallel with form fill
-    if (!(window as any).Calendly && !document.querySelector<HTMLScriptElement>(
-      'script[src="https://assets.calendly.com/assets/external/widget.js"]',
-    )) {
-      const script = document.createElement('script')
-      script.src = 'https://assets.calendly.com/assets/external/widget.js'
-      script.async = true
-      document.body.appendChild(script)
-    }
-
-    // Warm the actual calendar page in a hidden off-screen iframe while
-    // the user fills the form. Calendly's inline booking page ships
-    // hundreds of KB of JS/CSS/fonts + hits internal APIs on first paint —
-    // by the time the user submits, all of that is already fully cached
-    // and executed, so the visible iframe (with prefill query params)
-    // renders almost instantly.
-    let warmIframe: HTMLIFrameElement | null = null
-    const preWarmUrl = new URL(CALENDLY_URL)
-    preWarmUrl.searchParams.set('embed_domain', window.location.hostname)
-    preWarmUrl.searchParams.set('embed_type', 'Inline')
-    warmIframe = document.createElement('iframe')
-    warmIframe.src = preWarmUrl.toString()
-    warmIframe.setAttribute('aria-hidden', 'true')
-    warmIframe.setAttribute('tabindex', '-1')
-    warmIframe.setAttribute('title', 'Calendly preload')
-    warmIframe.style.cssText =
-      'position:fixed;left:-9999px;top:-9999px;width:1000px;height:800px;border:0;visibility:hidden;pointer-events:none;'
-    document.body.appendChild(warmIframe)
-
-    return () => {
-      // Leave the script; it caches for the tab lifetime. Only strip the
-      // preconnect hints and the hidden pre-warm iframe.
-      hints.forEach((l) => l.parentNode?.removeChild(l))
-      if (warmIframe) warmIframe.parentNode?.removeChild(warmIframe)
-    }
-  }, [isOpen])
-
-  // When we hit the calendar step, load Calendly's script (once) then
-  // init the inline widget. Prefill is passed via URL query params —
-  // more reliable than the JS `prefill` option when the base URL already
-  // has query params (like our hide_event_type_details flags), and it
-  // populates the built-in name/email fields AND custom answers (a1..an)
-  // in one go. `a1` maps to the first custom question on the event; make
-  // sure that slot is "Whatsapp Number?" in the Calendly dashboard.
-  useEffect(() => {
-    if (!isOpen || step !== 'calendar') return
-    const container = calendlyContainerRef.current
-    if (!container) return
-
-    const finalPhone = `${selectedCountry}${phone.replace(/\s+/g, '')}`
-    const url = new URL(CALENDLY_URL)
-    // Native prefill fields
-    if (derivedName) url.searchParams.set('name', derivedName)
-    if (email.trim()) url.searchParams.set('email', email.trim())
-    // Custom-question prefill (a1 = 1st custom question = Whatsapp Number)
-    if (finalPhone) url.searchParams.set('a1', finalPhone)
-    // Match Calendly's own inline-widget contract so postMessage events
-    // fire back to us (used to hide the skeleton loader).
-    url.searchParams.set('embed_domain', window.location.hostname)
-    url.searchParams.set('embed_type', 'Inline')
-    const urlWithPrefill = url.toString()
-
-    // Hide the loading spinner as soon as Calendly emits its first
-    // postMessage event — that fires after the widget's own iframe has
-    // painted the calendar, so the transition feels seamless.
-    const onCalendlyMessage = (e: MessageEvent) => {
-      const data = e.data
-      if (data && typeof data === 'object' && typeof data.event === 'string' && data.event.startsWith('calendly.')) {
-        setIsCalendlyReady(true)
-      }
-    }
-    window.addEventListener('message', onCalendlyMessage)
-
-    // Mount the iframe directly instead of going through Calendly's
-    // widget.js -> initInlineWidget() wrapper. That wrapper ultimately
-    // just injects <iframe src=...> into the container, so skipping it
-    // avoids one script parse + init round trip and lets the iframe
-    // start fetching the calendar HTML the instant the user submits.
-    container.innerHTML = ''
-    const iframe = document.createElement('iframe')
-    iframe.src = urlWithPrefill
-    iframe.title = 'Select a time — Calendly'
-    iframe.setAttribute('frameborder', '0')
-    // Native browser hints so the iframe is treated as high-priority
-    // and doesn't wait behind lazier resources on the page.
-    iframe.loading = 'eager'
-    iframe.setAttribute('fetchpriority', 'high')
-    iframe.style.width = '100%'
-    iframe.style.height = '100%'
-    iframe.style.border = '0'
-    // Belt-and-braces: hide the skeleton when the iframe itself paints,
-    // in case Calendly's own postMessage is delayed / blocked.
-    iframe.addEventListener('load', () => setIsCalendlyReady(true), { once: true })
-    container.appendChild(iframe)
-
-    // Safety net — if the iframe load event and postMessage both never
-    // land, hide the skeleton after 5s so users aren't stuck.
-    const fallback = window.setTimeout(() => setIsCalendlyReady(true), 5000)
-
-    return () => {
-      window.removeEventListener('message', onCalendlyMessage)
-      window.clearTimeout(fallback)
-    }
-  }, [isOpen, step, derivedName, email, phone, selectedCountry])
-
-  if (!isOpen) return null
+  const today = startOfDay(new Date())
 
   const isPersonalEmail = (e: string) => {
     const domain = e.split('@')[1]?.toLowerCase()
@@ -299,45 +227,43 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
   const handleEmailChange = (v: string) => {
     setEmail(v)
-    if (v && v.includes('@') && isPersonalEmail(v)) {
-      setEmailError(tTrial('workEmailError'))
-    } else {
-      setEmailError('')
-    }
+    if (v && v.includes('@') && isPersonalEmail(v)) setEmailError(tTrial('workEmailError'))
+    else setEmailError('')
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (isPersonalEmail(email)) {
-      setEmailError(tTrial('workEmailError'))
-      return
-    }
+  const formValid =
+    name.trim().length >= 2 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+    !isPersonalEmail(email) &&
+    phone.replace(/\D/g, '').length >= 6
+
+  const canBook = formValid && !!selectedSlot && !isSubmitting
+
+  const handleBook = async () => {
+    if (!canBook || !selectedSlot) return
     setIsSubmitting(true)
+    setBookingError('')
 
     const finalPhone = `${selectedCountry}${phone.replace(/\s+/g, '')}`
     const formGuid = HUBSPOT_DEMO_FORM_GUID_BY_LOCALE[locale] || DEFAULT_HUBSPOT_DEMO_FORM_GUID
 
-    // Fire HubSpot in the background — don't block the calendar transition
-    // on it. HubSpot's Forms API typically adds 300-800ms; there's no
-    // reason the visitor should wait for that before seeing the calendar.
-    // We already validate the email client-side, so a failed POST is rare
-    // and the lead will still be recovered by the Calendly submission.
+    // 1) HubSpot lead capture — fire-and-forget with keepalive so the write
+    //    survives the state change to the success screen. Errors are logged,
+    //    not blocking — the booking still lands.
     try {
       const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1]
-      const [firstname, ...rest] = derivedName.split(/\s+/)
+      const [firstname, ...rest] = name.trim().split(/\s+/)
       const lastname = rest.join(' ')
       const fields: { name: string; value: string }[] = [
-        { name: 'firstname', value: firstname || derivedName || email.split('@')[0] },
+        { name: 'firstname', value: firstname || name.trim() },
         { name: 'lastname', value: lastname },
-        { name: 'email', value: email },
+        { name: 'email', value: email.trim() },
         { name: 'phone', value: finalPhone },
         { name: 'crm_used', value: 'Other' },
         { name: 'source_name', value: 'website-demo' },
       ]
-
       fields.push(...getHubSpotAttributionFields(CHROME_STORE_WEBSITE_URL))
-
-      const payload = {
+      const hsPayload = {
         portalId: HUBSPOT_PORTAL_ID,
         formGuid,
         fields,
@@ -347,33 +273,56 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
           ...(hutk ? { hutk } : {}),
         },
       }
-
-      // Fire and forget — logs errors but doesn't block.
-      fetch(
-        `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${formGuid}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: true,
-        },
-      ).catch((err) => console.error('Demo HubSpot submit failed:', err))
-
+      fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${formGuid}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(hsPayload),
+        keepalive: true,
+      }).catch((err) => console.error('Demo HubSpot submit failed:', err))
       ;(window as any).gtag?.('event', `book_demo_submit_${locale}`)
-    } catch (error) {
-      console.error('Demo form submission error:', error)
+    } catch (err) {
+      console.error('Demo HubSpot prep failed:', err)
     }
 
-    setIsSubmitting(false)
-    setStep('calendar')
+    // 2) Actual Calendly booking via server proxy.
+    try {
+      const res = await fetch('/api/calendly/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          locale,
+          startTime: selectedSlot.start_time,
+          name: name.trim(),
+          email: email.trim(),
+          timezone,
+          phone: finalPhone,
+        }),
+      })
+      if (!res.ok) {
+        const errText = await res.text().catch(() => '')
+        console.error('Calendly booking failed:', res.status, errText)
+        setBookingError('We couldn\'t book that time. Please pick another slot or try again.')
+        setIsSubmitting(false)
+        // Refresh slots — the one they picked may have been taken.
+        fetchNext7Days()
+        return
+      }
+      setIsSuccess(true)
+      setIsSubmitting(false)
+    } catch (err) {
+      console.error('Calendly booking network error:', err)
+      setBookingError('Network error while booking. Please try again.')
+      setIsSubmitting(false)
+    }
   }
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) onClose()
   }
 
-  const inCalendar = step === 'calendar'
+  if (!isOpen) return null
 
+  // ── render ────────────────────────────────────────────────────────────────
   return (
     <div
       onClick={handleBackdropClick}
@@ -392,12 +341,12 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
         style={{
           position: 'relative',
           width: '100%',
-          maxWidth: inCalendar ? 900 : 480,
+          maxWidth: isSuccess ? 520 : 1080,
           background: C.paper,
           border: `1px solid ${C.line}`,
           borderRadius: 24,
-          boxShadow: '0 24px 60px -20px rgba(15,17,21,0.32), 0 4px 12px -6px rgba(15,17,21,0.08)',
-          padding: inCalendar ? '28px 24px 20px' : '40px 36px 32px',
+          boxShadow: '0 32px 80px -24px rgba(15,17,21,0.35), 0 4px 16px -6px rgba(15,17,21,0.06)',
+          padding: isSuccess ? '44px 40px 36px' : '32px 36px 30px',
           transition: 'max-width .28s ease',
         }}
       >
@@ -411,325 +360,458 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
             display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
             color: C.ink3, background: 'transparent',
             border: `1px solid ${C.line}`,
-            cursor: 'pointer', transition: 'background .15s, color .15s, border-color .15s',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = C.bg2
-            e.currentTarget.style.color = C.ink
-            e.currentTarget.style.borderColor = C.line2
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'transparent'
-            e.currentTarget.style.color = C.ink3
-            e.currentTarget.style.borderColor = C.line
+            cursor: 'pointer',
           }}
         >
           <X size={16} />
         </button>
 
-        {!inCalendar ? (
+        {isSuccess ? (
+          <div style={{ textAlign: 'center', padding: '20px 4px 4px' }}>
+            <div style={{
+              width: 64, height: 64, borderRadius: '50%',
+              background: 'rgba(127,214,176,0.18)', color: C.ok,
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              marginBottom: 18,
+            }}>
+              <CheckCircle2 size={32} />
+            </div>
+            <h2 style={{
+              fontFamily: serif, fontWeight: 400,
+              fontSize: 30, lineHeight: 1.12, letterSpacing: '-0.015em',
+              color: C.ink, margin: 0,
+            }}>
+              You&apos;re booked
+            </h2>
+            <p style={{ marginTop: 10, marginBottom: 0, fontSize: 15, color: C.ink3 }}>
+              Confirmation sent to <strong style={{ color: C.ink2 }}>{email}</strong>. A calendar invite for{' '}
+              <strong style={{ color: C.ink2 }}>
+                {selectedSlot ? new Date(selectedSlot.start_time).toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
+                  weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: timezone,
+                }) : ''}
+              </strong>{' '}
+              is on its way.
+            </p>
+          </div>
+        ) : (
           <>
-            <header style={{ marginBottom: 22, paddingRight: 40 }}>
+            <header style={{ marginBottom: 20, paddingRight: 40 }}>
               <h2 style={{
                 fontFamily: serif, fontWeight: 400,
-                fontSize: 30, lineHeight: 1.12, letterSpacing: '-0.015em',
+                fontSize: 26, lineHeight: 1.15, letterSpacing: '-0.015em',
                 color: C.ink, margin: 0,
               }}>
                 {t.rich('heading', {
-                  em: (chunks) => (
-                    <em style={{ fontStyle: 'italic', color: C.accentInk }}>{chunks}</em>
-                  ),
+                  em: (chunks) => <em style={{ fontStyle: 'italic', color: C.accentInk }}>{chunks}</em>,
                 })}
               </h2>
-              <p style={{
-                marginTop: 8, marginBottom: 0,
-                fontSize: 15, lineHeight: 1.5, color: C.ink3,
-              }}>
-                {t('subheadline')}
+              <p style={{ marginTop: 6, marginBottom: 0, fontSize: 14, color: C.ink3 }}>
+                Pick a time and tell us who you are — we&apos;ll take it from there.
               </p>
             </header>
 
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {/* Work Email */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <label style={{
-                  fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2,
-                }}>{t('emailLabel')}</label>
-                <input
-                  required
-                  type="email"
-                  autoComplete="email"
-                  placeholder={t('emailPlaceholder')}
-                  value={email}
-                  onChange={(e) => handleEmailChange(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 14px',
-                    fontSize: 14,
-                    fontFamily: sans,
-                    color: C.ink,
-                    background: '#fff',
-                    border: `1px solid ${emailError ? C.err : C.line2}`,
-                    borderRadius: 12,
-                    outline: 'none',
-                    transition: 'border-color .15s, box-shadow .15s',
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = emailError ? C.err : C.accentInk
-                    e.currentTarget.style.boxShadow = emailError
-                      ? '0 0 0 3px rgba(194,106,90,0.14)'
-                      : '0 0 0 3px rgba(91,75,174,0.14)'
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = emailError ? C.err : C.line2
-                    e.currentTarget.style.boxShadow = 'none'
-                  }}
-                />
-                {emailError && (
-                  <p style={{ fontSize: 12, color: C.err, marginTop: 2, marginBottom: 0 }}>
-                    {emailError}
-                  </p>
-                )}
-              </div>
-
-              {/* Phone */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <label style={{
-                  fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2,
-                }}>{t('phoneLabel')}</label>
-                <div style={{
-                  display: 'flex', alignItems: 'stretch',
-                  background: '#fff',
-                  border: `1px solid ${C.line2}`,
-                  borderRadius: 12,
-                  overflow: 'hidden',
-                }}>
-                  <select
-                    value={selectedCountry}
-                    onChange={(e) => setSelectedCountry(e.target.value)}
-                    style={{
-                      minWidth: 96,
-                      padding: '12px 10px',
-                      fontSize: 13,
-                      fontFamily: sans,
-                      color: C.ink2,
-                      background: 'transparent',
-                      border: 'none',
-                      borderRight: `1px solid ${C.line}`,
-                      outline: 'none',
-                      appearance: 'none',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    {COUNTRY_CODES.map((c) => (
-                      <option key={`${c.code}-${c.label}`} value={c.code}>
-                        {c.label} {c.code}
-                      </option>
-                    ))}
-                  </select>
+            <div
+              style={{
+                display: 'grid',
+                // Right column collapses once a time is picked so the user
+                // sees only their form + a clean selected-slot summary.
+                gridTemplateColumns: selectedSlot ? 'minmax(0, 1fr)' : 'minmax(0, 1fr) minmax(0, 1.3fr)',
+                gap: 28,
+                alignItems: 'start',
+                maxWidth: selectedSlot ? 520 : '100%',
+                margin: selectedSlot ? '0 auto' : undefined,
+                transition: 'max-width .3s ease',
+              }}
+              className="demo-modal-grid"
+            >
+              {/* ── LEFT: form ─────────────────────────────────────────── */}
+              <form
+                onSubmit={(e) => { e.preventDefault(); handleBook() }}
+                style={{ display: 'flex', flexDirection: 'column', gap: 14 }}
+              >
+                {/* Name */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2 }}>
+                    Your Name
+                  </label>
                   <input
                     required
-                    type="tel"
-                    autoComplete="tel"
-                    placeholder={t('phonePlaceholder')}
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    style={{
-                      flex: 1,
-                      padding: '12px 14px',
-                      fontSize: 14,
-                      fontFamily: sans,
-                      color: C.ink,
-                      background: 'transparent',
-                      border: 'none',
-                      outline: 'none',
-                    }}
+                    type="text"
+                    autoComplete="name"
+                    placeholder="Alex Chen"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    style={inputStyle(false)}
                   />
                 </div>
-              </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                style={{
-                  width: '100%',
-                  marginTop: 6,
-                  padding: '14px 22px',
-                  fontSize: 15,
-                  fontWeight: 600,
-                  fontFamily: sans,
-                  letterSpacing: '-0.005em',
-                  color: '#fff',
-                  background: C.ink,
-                  border: `1px solid ${C.ink}`,
-                  borderRadius: 999,
-                  cursor: isSubmitting ? 'wait' : 'pointer',
-                  opacity: isSubmitting ? 0.65 : 1,
-                  display: 'inline-flex',
-                  alignItems: 'center', justifyContent: 'center',
-                  gap: 8,
-                  boxShadow: '0 8px 22px -10px rgba(15,17,21,0.45)',
-                  transition: 'transform .12s ease, box-shadow .2s ease, background .15s ease',
-                }}
-                onMouseEnter={(e) => {
-                  if (isSubmitting) return
-                  e.currentTarget.style.background = C.ink2
-                  e.currentTarget.style.transform = 'translateY(-1px)'
-                  e.currentTarget.style.boxShadow = '0 12px 26px -12px rgba(15,17,21,0.55)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = C.ink
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = '0 8px 22px -10px rgba(15,17,21,0.45)'
-                }}
-              >
-                {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={15} />}
-                {isSubmitting ? t('submitting') : t('submitButton')}
-              </button>
+                {/* Email */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2 }}>
+                    {t('emailLabel')}
+                  </label>
+                  <input
+                    required
+                    type="email"
+                    autoComplete="email"
+                    placeholder={t('emailPlaceholder')}
+                    value={email}
+                    onChange={(e) => handleEmailChange(e.target.value)}
+                    style={inputStyle(!!emailError)}
+                  />
+                  {emailError && (
+                    <p style={{ fontSize: 12, color: C.err, marginTop: 2, marginBottom: 0 }}>{emailError}</p>
+                  )}
+                </div>
 
-              <p style={{
-                marginTop: 4, marginBottom: 0,
-                fontSize: 12, color: C.ink4, textAlign: 'center',
-              }}>
-                {t('disclaimer')}
-              </p>
-            </form>
-          </>
-        ) : (
-          <>
-            <header style={{ marginBottom: 14, paddingRight: 40 }}>
-              <h2 style={{
-                fontFamily: serif, fontWeight: 400,
-                fontSize: 22, lineHeight: 1.15, letterSpacing: '-0.01em',
-                color: C.ink, margin: 0,
-              }}>
-                {t.rich('calendarHeading', {
-                  em: (chunks) => (
-                    <em style={{ fontStyle: 'italic', color: C.accentInk }}>{chunks}</em>
-                  ),
-                })}
-              </h2>
-              <p style={{ marginTop: 4, marginBottom: 0, fontSize: 13, color: C.ink3 }}>
-                {t.rich('calendarSubtitle', {
-                  b: (chunks) => <strong style={{ color: C.ink2 }}>{chunks}</strong>,
-                  email,
-                })}
-              </p>
-            </header>
-            <div style={{ position: 'relative', width: '100%' }}>
-              <div
-                ref={calendlyContainerRef}
-                style={{
-                  width: '100%',
-                  minWidth: 320,
-                  height: 640,
-                  borderRadius: 14,
-                  overflow: 'hidden',
-                  border: `1px solid ${C.line}`,
-                  opacity: isCalendlyReady ? 1 : 0,
-                  transition: 'opacity .35s ease',
-                }}
-              />
-              {!isCalendlyReady && (
-                <div
-                  aria-hidden="true"
-                  style={{
-                    position: 'absolute', inset: 0,
-                    borderRadius: 14,
-                    border: `1px solid ${C.line}`,
+                {/* Phone */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2 }}>
+                    {t('phoneLabel')}
+                  </label>
+                  <div style={{
+                    display: 'flex', alignItems: 'stretch',
                     background: '#fff',
+                    border: `1px solid ${C.line2}`,
+                    borderRadius: 12,
                     overflow: 'hidden',
-                    pointerEvents: 'none',
-                    display: 'grid',
-                    gridTemplateColumns: 'minmax(220px, 32%) 1fr',
+                  }}>
+                    <select
+                      value={selectedCountry}
+                      onChange={(e) => setSelectedCountry(e.target.value)}
+                      style={{
+                        minWidth: 96, padding: '12px 10px', fontSize: 13, fontFamily: sans,
+                        color: C.ink2, background: 'transparent', border: 'none',
+                        borderRight: `1px solid ${C.line}`, outline: 'none', cursor: 'pointer',
+                      }}
+                    >
+                      {COUNTRY_CODES.map((c) => (
+                        <option key={`${c.code}-${c.label}`} value={c.code}>{c.label} {c.code}</option>
+                      ))}
+                    </select>
+                    <input
+                      required
+                      type="tel"
+                      autoComplete="tel"
+                      placeholder={t('phonePlaceholder')}
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      style={{
+                        flex: 1, padding: '12px 14px', fontSize: 14, fontFamily: sans,
+                        color: C.ink, background: 'transparent', border: 'none', outline: 'none',
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Selection summary — becomes a proper appointment card
+                    the moment a time is picked. Includes a "change" link
+                    so the visitor can go back to the picker even though
+                    the calendar is now hidden. */}
+                {selectedSlot ? (
+                  <div
+                    style={{
+                      padding: '14px 16px',
+                      borderRadius: 14,
+                      background:
+                        'linear-gradient(160deg, color-mix(in oklab, #6E5CE0 10%, #FBFCFE) 0%, color-mix(in oklab, #7FD6B0 6%, #FBFCFE) 100%)',
+                      border: '1px solid color-mix(in oklab, #5B4BAE 30%, #E4E8F1)',
+                    }}
+                  >
+                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.accentInk, marginBottom: 6 }}>
+                      Your demo
+                    </div>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: C.ink, lineHeight: 1.3 }}>
+                      {new Date(selectedSlot.start_time).toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
+                        weekday: 'long', month: 'short', day: 'numeric',
+                      })}
+                    </div>
+                    <div style={{ fontSize: 20, fontWeight: 700, color: C.ink, marginTop: 2, letterSpacing: '-0.01em' }}>
+                      {new Date(selectedSlot.start_time).toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
+                        hour: 'numeric', minute: '2-digit', timeZone: timezone,
+                      })}
+                    </div>
+                    <div style={{ fontSize: 11.5, color: C.ink4, marginTop: 4 }}>
+                      30 min · Google Meet · {timezone}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedSlot(null)}
+                      style={{
+                        marginTop: 10,
+                        padding: '0',
+                        background: 'transparent',
+                        border: 'none',
+                        color: C.accentInk,
+                        fontSize: 12,
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        textDecoration: 'underline',
+                        textDecorationColor: 'color-mix(in oklab, #5B4BAE 40%, transparent)',
+                        textUnderlineOffset: 3,
+                      }}
+                    >
+                      Change time
+                    </button>
+                  </div>
+                ) : null}
+
+                {bookingError && (
+                  <p style={{ fontSize: 12.5, color: C.err, marginTop: 0, marginBottom: 0 }}>{bookingError}</p>
+                )}
+
+                <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
+                  {selectedSlot && (
+                    <button
+                      type="button"
+                      onClick={() => setSelectedSlot(null)}
+                      disabled={isSubmitting}
+                      aria-label="Go back to time picker"
+                      style={{
+                        padding: '15px 18px',
+                        fontSize: 14, fontWeight: 700, fontFamily: sans,
+                        color: C.ink2,
+                        background: '#fff',
+                        border: `1px solid ${C.line2}`,
+                        borderRadius: 999,
+                        cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                        display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                        transition: 'background .12s ease, border-color .12s ease',
+                        flexShrink: 0,
+                      }}
+                      onMouseEnter={(e) => {
+                        if (isSubmitting) return
+                        e.currentTarget.style.background = C.bg2
+                        e.currentTarget.style.borderColor = C.line
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = '#fff'
+                        e.currentTarget.style.borderColor = C.line2
+                      }}
+                    >
+                      ← Back
+                    </button>
+                  )}
+                <button
+                  type="submit"
+                  disabled={!canBook}
+                  style={{
+                    flex: 1,
+                    padding: '15px 22px',
+                    fontSize: 15, fontWeight: 700, fontFamily: sans, letterSpacing: '-0.005em',
+                    color: '#fff',
+                    background: canBook
+                      ? 'linear-gradient(135deg, #7B65F0 0%, #5B4BAE 50%, #7FD6B0 130%)'
+                      : C.bg2,
+                    border: 'none',
+                    borderRadius: 999,
+                    cursor: canBook ? 'pointer' : 'not-allowed',
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+                    boxShadow: canBook
+                      ? '0 14px 32px -12px rgba(91,75,174,0.6), inset 0 -1px 0 rgba(255,255,255,0.14)'
+                      : 'none',
+                    transition: 'transform .12s ease, box-shadow .2s ease',
+                    outline: canBook ? '1px solid rgba(255,255,255,0.15)' : 'none',
+                    outlineOffset: canBook ? -1 : 0,
+                  } as React.CSSProperties}
+                  onMouseEnter={(e) => {
+                    if (!canBook) return
+                    e.currentTarget.style.transform = 'translateY(-1px)'
+                    e.currentTarget.style.boxShadow = '0 18px 36px -12px rgba(91,75,174,0.7), inset 0 -1px 0 rgba(255,255,255,0.18)'
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!canBook) return
+                    e.currentTarget.style.transform = 'translateY(0)'
+                    e.currentTarget.style.boxShadow = '0 14px 32px -12px rgba(91,75,174,0.6), inset 0 -1px 0 rgba(255,255,255,0.14)'
                   }}
                 >
-                  {/* Left column — event details */}
-                  <div style={{
-                    padding: '28px 24px',
-                    borderRight: `1px solid ${C.line}`,
-                    background: C.paper,
-                    display: 'flex', flexDirection: 'column', gap: 14,
-                  }}>
-                    <div className="dm-skel" style={{ width: 90, height: 12, borderRadius: 6 }} />
-                    <div className="dm-skel" style={{ width: '80%', height: 22, borderRadius: 8 }} />
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 6 }}>
-                      <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                        <div className="dm-skel" style={{ width: 14, height: 14, borderRadius: 4 }} />
-                        <div className="dm-skel" style={{ flex: 1, height: 10, borderRadius: 5 }} />
-                      </div>
-                      <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                        <div className="dm-skel" style={{ width: 14, height: 14, borderRadius: 4 }} />
-                        <div className="dm-skel" style={{ flex: 1, height: 10, borderRadius: 5 }} />
-                      </div>
-                      <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                        <div className="dm-skel" style={{ width: 14, height: 14, borderRadius: 4 }} />
-                        <div className="dm-skel" style={{ width: '65%', height: 10, borderRadius: 5 }} />
-                      </div>
-                    </div>
-                  </div>
+                  {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={15} />}
+                  {isSubmitting
+                    ? t('submitting')
+                    : selectedSlot
+                    ? 'Confirm demo booking'
+                    : 'Pick a time above'}
+                </button>
+                </div>
+                <p style={{ marginTop: 0, marginBottom: 0, fontSize: 11.5, color: C.ink4, textAlign: 'center' }}>
+                  {t('disclaimer')}
+                </p>
+              </form>
 
-                  {/* Right column — month grid */}
-                  <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: 18 }}>
-                    {/* Month header */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <div className="dm-skel" style={{ width: 130, height: 16, borderRadius: 6 }} />
-                      <div style={{ display: 'flex', gap: 8 }}>
-                        <div className="dm-skel" style={{ width: 28, height: 28, borderRadius: '50%' }} />
-                        <div className="dm-skel" style={{ width: 28, height: 28, borderRadius: '50%' }} />
-                      </div>
-                    </div>
-                    {/* Weekday row */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8 }}>
-                      {Array.from({ length: 7 }).map((_, i) => (
-                        <div key={`w-${i}`} style={{ display: 'flex', justifyContent: 'center' }}>
-                          <div className="dm-skel" style={{ width: 18, height: 10, borderRadius: 4 }} />
-                        </div>
-                      ))}
-                    </div>
-                    {/* Day grid — 5 rows */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8 }}>
-                      {Array.from({ length: 35 }).map((_, i) => (
-                        <div
-                          key={`d-${i}`}
+              {/* ── RIGHT: next-7-days strip + time slots
+                       Hidden entirely once a time is picked so the user sees
+                       only their form + selected-slot summary. Everything
+                       past the 7-day window is rendered as a dimmed "booked"
+                       pill so the visitor understands scarcity. */}
+              {!selectedSlot && (
+                <div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: C.ink3, marginBottom: 10, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                    Pick a day
+                  </div>
+                  {/* 7-day horizontal strip */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 6, marginBottom: 18 }}>
+                    {Array.from({ length: 7 }, (_, i) => addDays(today, i)).map((d) => {
+                      const key = dateKey(d)
+                      const daySlots = slotsByDate[key] || []
+                      const available = daySlots.length > 0
+                      const isSelected = selectedDate && sameDay(d, selectedDate)
+                      return (
+                        <button
+                          key={key}
+                          type="button"
+                          disabled={!available}
+                          onClick={() => { setSelectedDate(d); setSelectedSlot(null) }}
                           style={{
-                            aspectRatio: '1 / 1',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            padding: '10px 4px',
+                            borderRadius: 12,
+                            border: '1px solid',
+                            borderColor: isSelected
+                              ? C.accentInk
+                              : available
+                              ? 'color-mix(in oklab, #5B4BAE 20%, #E4E8F1)'
+                              : C.line,
+                            background: isSelected
+                              ? 'linear-gradient(160deg, #6E5CE0 0%, #5B4BAE 100%)'
+                              : available
+                              ? '#fff'
+                              : C.bg2,
+                            color: isSelected ? '#fff' : available ? C.ink : C.ink4,
+                            cursor: available ? 'pointer' : 'not-allowed',
+                            transition: 'background .12s ease, border-color .12s ease, transform .12s ease',
+                            fontFamily: sans,
+                            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2,
+                            boxShadow: isSelected ? '0 8px 20px -10px rgba(91,75,174,0.6)' : 'none',
                           }}
                         >
-                          <div
-                            className="dm-skel"
-                            style={{
-                              width: '78%', height: '78%', borderRadius: '50%',
-                              animationDelay: `${(i % 7) * 60}ms`,
-                            }}
-                          />
+                          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.85 }}>
+                            {d.toLocaleString(locale === 'br' ? 'pt-BR' : locale, { weekday: 'short' })}
+                          </span>
+                          <span style={{ fontSize: 18, fontWeight: 700, lineHeight: 1 }}>
+                            {d.getDate()}
+                          </span>
+                          <span style={{ fontSize: 9.5, fontWeight: 600, opacity: 0.75 }}>
+                            {available ? `${daySlots.length} open` : 'Booked'}
+                          </span>
+                        </button>
+                      )
+                    })}
+                  </div>
+
+                  {/* Time slots */}
+                  <div>
+                    {slotsError ? (
+                      <p style={{ fontSize: 13, color: C.err }}>{slotsError}</p>
+                    ) : loadingSlots ? (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: C.ink3, fontSize: 13 }}>
+                        <Loader2 size={14} className="animate-spin" /> Loading available times…
+                      </div>
+                    ) : !selectedDate ? (
+                      <div
+                        style={{
+                          padding: '18px 16px',
+                          borderRadius: 14,
+                          background: C.bg2,
+                          border: `1px dashed ${C.line2}`,
+                          color: C.ink3,
+                          fontSize: 13,
+                          textAlign: 'center',
+                        }}
+                      >
+                        Tap a day above to see available times ↑
+                      </div>
+                    ) : (
+                      <div>
+                        <div style={{ fontSize: 12, fontWeight: 700, color: C.ink3, marginBottom: 10, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                          {selectedDate.toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
+                            weekday: 'long', month: 'short', day: 'numeric',
+                          })}
+                          <span style={{ fontWeight: 500, color: C.ink4, marginLeft: 8, textTransform: 'none', letterSpacing: 0 }}>
+                            · {timezone}
+                          </span>
                         </div>
-                      ))}
-                    </div>
-                    {/* Timezone footer */}
-                    <div style={{ marginTop: 'auto', display: 'flex', gap: 10, alignItems: 'center' }}>
-                      <div className="dm-skel" style={{ width: 12, height: 12, borderRadius: '50%' }} />
-                      <div className="dm-skel" style={{ width: 160, height: 10, borderRadius: 5 }} />
-                    </div>
+                        <div
+                          style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(96px, 1fr))',
+                            gap: 8,
+                            maxHeight: 200,
+                            overflowY: 'auto',
+                            paddingRight: 4,
+                          }}
+                        >
+                          {((slotsByDate[dateKey(selectedDate)] ?? []) as CalendlyTimeSlot[]).map((slot) => {
+                            // selectedSlot is guaranteed null in this branch (see the enclosing
+                            // `{!selectedSlot && ...}`); the calendar hides the moment a slot is picked.
+                            const isSelected = false
+                            return (
+                              <button
+                                key={slot.start_time}
+                                type="button"
+                                onClick={() => setSelectedSlot(slot)}
+                                style={{
+                                  padding: '11px 8px',
+                                  borderRadius: 10,
+                                  fontSize: 13.5, fontWeight: 700, fontFamily: sans,
+                                  border: `1px solid ${isSelected ? C.accentInk : 'color-mix(in oklab, #5B4BAE 15%, #E4E8F1)'}`,
+                                  background: isSelected
+                                    ? 'linear-gradient(160deg, #6E5CE0 0%, #5B4BAE 100%)'
+                                    : '#fff',
+                                  color: isSelected ? '#fff' : C.ink,
+                                  cursor: 'pointer',
+                                  boxShadow: isSelected ? '0 8px 20px -10px rgba(91,75,174,0.55)' : 'none',
+                                  transition: 'background .12s ease, border-color .12s ease',
+                                }}
+                              >
+                                {new Date(slot.start_time).toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
+                                  hour: 'numeric', minute: '2-digit', timeZone: timezone,
+                                })}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
-              <style>{`
-                .dm-skel {
-                  background: linear-gradient(90deg, ${C.bg2} 0%, ${C.line} 40%, ${C.bg2} 80%);
-                  background-size: 200% 100%;
-                  animation: dmShimmer 1.4s ease-in-out infinite;
-                }
-                @keyframes dmShimmer {
-                  0%   { background-position: 200% 0; }
-                  100% { background-position: -200% 0; }
-                }
-              `}</style>
             </div>
+
+            <style>{`
+              @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+              .animate-spin { animation: spin 1s linear infinite; }
+              @media (max-width: 760px) {
+                .demo-modal-grid { grid-template-columns: 1fr !important; }
+              }
+            `}</style>
           </>
         )}
       </div>
     </div>
   )
+}
+
+function inputStyle(hasError: boolean): React.CSSProperties {
+  return {
+    width: '100%',
+    padding: '12px 14px',
+    fontSize: 14,
+    fontFamily: sans,
+    color: C.ink,
+    background: '#fff',
+    border: `1px solid ${hasError ? C.err : C.line2}`,
+    borderRadius: 12,
+    outline: 'none',
+    transition: 'border-color .15s, box-shadow .15s',
+  }
+}
+
+function arrowButtonStyle(disabled: boolean): React.CSSProperties {
+  return {
+    width: 30, height: 30, borderRadius: 8,
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+    background: '#fff',
+    border: `1px solid ${C.line2}`,
+    color: disabled ? C.line2 : C.ink2,
+    cursor: disabled ? 'not-allowed' : 'pointer',
+  }
 }

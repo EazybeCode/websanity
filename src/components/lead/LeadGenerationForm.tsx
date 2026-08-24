@@ -8,12 +8,8 @@ import { Button } from '@/components/ui/Button'
 import {
   CHROME_STORE_WEBSITE_FORM_URL,
   getHubSpotAttributionFields,
-  withIncomingTrackingParams,
 } from '@/utils/openChromeExtensionStore'
-
-// Where the Bea form sends people after submit — the demo-booking shortlink,
-// matching the trial modal, not the Chrome-install redirect.
-const BEA_SUBMIT_REDIRECT_URL = 'https://eazybe.info/demono'
+import { CalendlySlotPicker } from '@/components/booking/CalendlySlotPicker'
 
 interface FormData {
   email: string
@@ -198,20 +194,12 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
         ;(window as any).gtag?.('event', `steal_roadmap_submit_${locale}`)
       }
 
+      // Lead captured — swap the form for the in-place Calendly picker so
+      // the visitor books the demo without leaving the corner form.
       setIsSuccess(true)
-      window.open(
-        withIncomingTrackingParams(BEA_SUBMIT_REDIRECT_URL),
-        '_blank',
-        'noopener,noreferrer',
-      )
     } catch (error) {
       console.error('Error submitting form:', error)
       setIsSuccess(true)
-      window.open(
-        withIncomingTrackingParams(BEA_SUBMIT_REDIRECT_URL),
-        '_blank',
-        'noopener,noreferrer',
-      )
     } finally {
       setIsSubmitting(false)
     }
@@ -230,28 +218,28 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
       <AnimatePresence mode="wait">
         {isSuccess ? (
           <motion.div
-            key="thank-you"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="w-full text-center"
+            key="calendly-picker"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            className="w-full"
+            data-bea-picker="active"
           >
-            <div>
-              <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-bold text-white mb-3">
-                {t('leadForm.thankYouTitle')}
+            <div className="mb-3">
+              <h2 className="text-lg font-bold text-white mb-1">
+                Book your demo
               </h2>
-              <p className="text-slate-300 mb-2">
-                {t('leadForm.thankYouMessage')}
-              </p>
-              <p className="text-slate-400 text-sm">
-                {t('leadForm.thankYouSubtext')}
+              <p className="text-slate-300 text-xs">
+                Pick a time — we&apos;ll send the invite to <span className="text-white font-semibold">{formData.email}</span>
               </p>
             </div>
+            <CalendlySlotPicker
+              locale={locale}
+              variant="dark"
+              name={formData.email.split('@')[0]}
+              email={formData.email}
+              phone={formData.countryCode + formData.phone.replace(/\D/g, '')}
+            />
           </motion.div>
         ) : !showForm ? (
           <div key="intro-container">
