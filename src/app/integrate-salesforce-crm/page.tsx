@@ -6,6 +6,7 @@ import { StandaloneShell } from '@/components/StandaloneShell'
 
 const APP_URL_PREFIX_V2 = "https://cerberus.eazybe.com/prod/api/v2/"
 const EXTENSION_ID_PRODUCTION = "aihpfgoknheimieofcfjiobnmddldjeb"
+const EXTENSION_ID_LEGACY_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
 const REDIRECT_URI = "https://eazybe.com/integrate-salesforce-crm"
 const SALESFORCE_DOMAIN = "login.salesforce"
 const RESPONSE_TYPE = "code"
@@ -55,16 +56,16 @@ const sendMessageToChromeExtension = (
 ) => {
   setTimeout(() => {
     if ((window as any).chrome?.runtime) {
-      ;(window as any).chrome.runtime.sendMessage(
-        EXTENSION_ID_PRODUCTION,
-        { key: key ?? "SALESFORCE_CONNECTED" },
-        (response: any) => { console.log("response:", response) }
-      )
-      ;(window as any).chrome.runtime.sendMessage(
-        extensionId,
-        { key: key ?? "SALESFORCE_CONNECTED" },
-        (response: any) => { console.log("response:", response) }
-      )
+      const ids = [extensionId, EXTENSION_ID_PRODUCTION, EXTENSION_ID_LEGACY_PRODUCTION]
+        .filter((id, index, arr): id is string => Boolean(id) && arr.indexOf(id) === index)
+
+      ids.forEach((id) => {
+        ;(window as any).chrome.runtime.sendMessage(
+          id,
+          { key: key ?? "SALESFORCE_CONNECTED" },
+          (response: any) => { console.log("response:", response) }
+        )
+      })
     }
   }, time)
 }

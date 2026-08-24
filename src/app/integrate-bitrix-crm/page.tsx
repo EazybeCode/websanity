@@ -6,6 +6,7 @@ import { StandaloneShell } from '@/components/StandaloneShell'
 
 const CLIENT_ID = "app.6448e61fad4676.49982309"
 const EXTENSION_ID_PRODUCTION = "aihpfgoknheimieofcfjiobnmddldjeb"
+const EXTENSION_ID_LEGACY_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
 const REDIRECT_URI = "https://eazybe.com/integrate-bitrix-crm"
 
 const getClientRedirectURL = (): string | null => {
@@ -20,7 +21,8 @@ const sendMessageToChromeExtension = () => {
 
   setTimeout(() => {
     const message = { key: "BITRIX_CONNECTED" }
-    const ids = [localExtensionId, EXTENSION_ID_PRODUCTION].filter(Boolean) as string[]
+    const ids = [localExtensionId, EXTENSION_ID_PRODUCTION, EXTENSION_ID_LEGACY_PRODUCTION]
+      .filter((id, index, arr): id is string => Boolean(id) && arr.indexOf(id) === index)
     ids.forEach((id) => {
       ;(window as any).chrome.runtime.sendMessage(id, message, (response: any) => {
         console.log("response:", response)

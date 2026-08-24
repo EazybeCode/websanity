@@ -5,6 +5,7 @@ import { decryptParams } from '@/lib/decrypt-params'
 import { StandaloneShell } from '@/components/StandaloneShell'
 
 const EXTENSION_ID_PRODUCTION = "aihpfgoknheimieofcfjiobnmddldjeb"
+const EXTENSION_ID_LEGACY_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
 const clientId = 'afc8d801-b77d-43db-a963-6a6993568749'
 const clientSecret = '46e6a98e-6072-4385-a481-0de345d6f5e3'
 const redirectUri = 'https://eazybe.com/integrate-hubspot-crm'
@@ -46,16 +47,16 @@ const sendMessageToChromeExtension = (
 ) => {
   setTimeout(() => {
     if ((window as any).chrome?.runtime) {
-      ;(window as any).chrome.runtime.sendMessage(
-        extensionId,
-        { key: key ?? "HUBSPOT_CONNECTED" },
-        (response: any) => { console.log("response:", response) }
-      )
-      ;(window as any).chrome.runtime.sendMessage(
-        EXTENSION_ID_PRODUCTION,
-        { key: key ?? "HUBSPOT_CONNECTED" },
-        (response: any) => { console.log("response:", response) }
-      )
+      const ids = [extensionId, EXTENSION_ID_PRODUCTION, EXTENSION_ID_LEGACY_PRODUCTION]
+        .filter((id, index, arr): id is string => Boolean(id) && arr.indexOf(id) === index)
+
+      ids.forEach((id) => {
+        ;(window as any).chrome.runtime.sendMessage(
+          id,
+          { key: key ?? "HUBSPOT_CONNECTED" },
+          (response: any) => { console.log("response:", response) }
+        )
+      })
     }
   }, time)
 }

@@ -5,6 +5,7 @@ import { decryptParams } from '@/lib/decrypt-params'
 import { StandaloneShell } from '@/components/StandaloneShell'
 
 const EXTENSION_ID_PRODUCTION = "aihpfgoknheimieofcfjiobnmddldjeb"
+const EXTENSION_ID_LEGACY_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
 const CLIENT_ID_RAJAT = "1000.77NM4BCO7LABBJ3FKDXGIEIKODXMQI"
 const CLIENT_SECRET_RAJAT = "6cc2985329348dc754bfe0b721b5a4a850ef50e330"
 const REDIRECT_URI = "https://eazybe.com/integrate-zoho-crm"
@@ -17,16 +18,16 @@ const sendMessageToChromeExtension = (
 ) => {
   setTimeout(() => {
     if ((window as any).chrome?.runtime) {
-      ;(window as any).chrome.runtime.sendMessage(
-        extensionId,
-        { key: key ?? "ZOHO_CONNECTED" },
-        (response: any) => { console.log("response:", response) }
-      )
-      ;(window as any).chrome.runtime.sendMessage(
-        EXTENSION_ID_PRODUCTION,
-        { key: key ?? "ZOHO_CONNECTED" },
-        (response: any) => { console.log("response:", response) }
-      )
+      const ids = [extensionId, EXTENSION_ID_PRODUCTION, EXTENSION_ID_LEGACY_PRODUCTION]
+        .filter((id, index, arr): id is string => Boolean(id) && arr.indexOf(id) === index)
+
+      ids.forEach((id) => {
+        ;(window as any).chrome.runtime.sendMessage(
+          id,
+          { key: key ?? "ZOHO_CONNECTED" },
+          (response: any) => { console.log("response:", response) }
+        )
+      })
     }
   }, time)
 }
