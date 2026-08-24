@@ -10,6 +10,22 @@ const CLIENT_ID_RAJAT = "1000.77NM4BCO7LABBJ3FKDXGIEIKODXMQI"
 const CLIENT_SECRET_RAJAT = "6cc2985329348dc754bfe0b721b5a4a850ef50e330"
 const REDIRECT_URI = "https://eazybe.com/integrate-zoho-crm"
 
+type ExtensionResponse = unknown
+
+type BrowserWindow = Window & {
+  chrome?: {
+    runtime?: {
+      sendMessage: (
+        extensionId: string,
+        message: { key: string },
+        callback?: (response: ExtensionResponse) => void
+      ) => void
+    }
+  }
+  gtag?: (event: string, eventName: string) => void
+  gtagAW?: (event: string, eventName: string) => void
+}
+
 const sendMessageToChromeExtension = (
   status: boolean,
   time: number = 10,
@@ -17,15 +33,17 @@ const sendMessageToChromeExtension = (
   key?: string
 ) => {
   setTimeout(() => {
-    if ((window as any).chrome?.runtime) {
+    const browserWindow = window as BrowserWindow
+
+    if (browserWindow.chrome?.runtime) {
       const ids = [extensionId, EXTENSION_ID_PRODUCTION, EXTENSION_ID_LEGACY_PRODUCTION]
         .filter((id, index, arr): id is string => Boolean(id) && arr.indexOf(id) === index)
 
       ids.forEach((id) => {
-        ;(window as any).chrome.runtime.sendMessage(
+        browserWindow.chrome?.runtime?.sendMessage(
           id,
           { key: key ?? "ZOHO_CONNECTED" },
-          (response: any) => { console.log("response:", response) }
+          (response: ExtensionResponse) => { console.log("response:", response) }
         )
       })
     }
@@ -45,7 +63,7 @@ const getRedirectURI = async (): Promise<string> => {
 const getBearerToken = async (tempCode: string, tempAccountServerUrl: string) => {
   if (!tempCode) return
   try {
-    const resp = await fetch("https://cerberus.eazybe.com/prod/api/v1/zoho/auth/token", {
+    const resp = await fetch("https://cerberus.eazybe.com/prod/api/v2/zoho/auth/token", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -58,9 +76,10 @@ const getBearerToken = async (tempCode: string, tempAccountServerUrl: string) =>
       }),
     })
     const response = await resp.json()
-    if (response?.result) {
-      ;(window as any).gtag?.("event", "Zohointegrated")
-      ;(window as any).gtagAW?.("event", "Zohointegrated")
+    if (resp.ok && response?.result !== false) {
+      const browserWindow = window as BrowserWindow
+      browserWindow.gtag?.("event", "Zohointegrated")
+      browserWindow.gtagAW?.("event", "Zohointegrated")
       sendMessageToChromeExtension(true, 500, localStorage.getItem("extensionId") || undefined)
       setTimeout(() => { window.close() }, 1000)
     }
@@ -91,11 +110,13 @@ export default function IntegrateZohoCrmPage() {
       const workspaceId = urlParamsObject['workspaceid'] || null
       const email = urlParamsObject['user_email'] || null
       const extensionId = urlParamsObject['extensionId'] || null
+      const authToken = urlParamsObject['authToken'] || null
       const autoConnect = urlParamsObject['connect'] === "true"
 
       if (workspaceId) localStorage.setItem("workspaceId", workspaceId)
       if (email) localStorage.setItem("email", email)
       if (extensionId) localStorage.setItem("extensionId", extensionId)
+      if (authToken) localStorage.setItem("authToken", authToken)
 
       if (autoConnect) {
         window.location.href = await getRedirectURI()
