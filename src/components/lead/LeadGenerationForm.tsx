@@ -13,7 +13,7 @@ import {
 
 // Where the Bea form sends people after submit — the demo-booking shortlink,
 // matching the trial modal, not the Chrome-install redirect.
-const BEA_SUBMIT_REDIRECT_URL = 'https://eazybe.info/6c2a82'
+const BEA_SUBMIT_REDIRECT_URL = 'https://eazybe.info/demono'
 
 interface FormData {
   email: string

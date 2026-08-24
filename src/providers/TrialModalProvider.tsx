@@ -5,10 +5,18 @@ import { useLocale } from 'next-intl'
 
 export type ModalMode = 'trial' | 'demo'
 
+interface OpenModalOptions {
+  /** Overrides where the trial form sends the user after a successful
+   *  submit (default: TrialModal's TRIAL_SUBMIT_REDIRECT_URL). */
+  redirectUrl?: string
+}
+
 interface TrialModalContextType {
   isOpen: boolean
   mode: ModalMode
-  openModal: (mode?: ModalMode) => void
+  /** Per-open redirect override; undefined = the modal's default. */
+  redirectUrl?: string
+  openModal: (mode?: ModalMode, options?: OpenModalOptions) => void
   closeModal: () => void
 }
 
@@ -22,6 +30,7 @@ export const useTrialModal = () => {
     return {
       isOpen: false,
       mode: 'trial' as ModalMode,
+      redirectUrl: undefined,
       openModal: () => {}, // no-op during SSR
       closeModal: () => {}, // no-op during SSR
     }
@@ -33,9 +42,10 @@ export const useTrialModal = () => {
 export const TrialModalProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [mode, setMode] = useState<ModalMode>('trial')
+  const [redirectUrl, setRedirectUrl] = useState<string | undefined>(undefined)
   const locale = useLocale()
 
-  const openModal = (modalMode: ModalMode = 'trial') => {
+  const openModal = (modalMode: ModalMode = 'trial', options?: OpenModalOptions) => {
     ;(window as any).gtag?.('event', modalMode === 'demo' ? `book_demo_click_${locale}` : `install_free_click_${locale}`)
     // Rebrandly click beacon — silent GET to the shortlink so the counter
     // increments per Book a Demo click without navigating the user.
@@ -47,13 +57,16 @@ export const TrialModalProvider: React.FC<{ children: ReactNode }> = ({ children
     // short-circuit was reverted — we want the form back so the lead is
     // captured before the calendar step.
     setMode(modalMode)
+    // Set (or clear) the per-open redirect so an override from one CTA never
+    // leaks into a later open from a different button.
+    setRedirectUrl(options?.redirectUrl)
     setIsOpen(true)
   }
 
   const closeModal = () => setIsOpen(false)
 
   return (
-    <TrialModalContext.Provider value={{ isOpen, mode, openModal, closeModal }}>
+    <TrialModalContext.Provider value={{ isOpen, mode, redirectUrl, openModal, closeModal }}>
       {children}
     </TrialModalContext.Provider>
   )

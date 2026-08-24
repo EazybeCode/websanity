@@ -1,13 +1,23 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 
 const APP_LINK = 'https://eazybe.info/6c2a82'
 
 export function BannerCTA() {
   const t = useTranslations('landingV3.bannerCta')
+  const { openModal } = useTrialModal()
   return (
     <section className="banner-cta-wrap">
       <div className="container">
-        <a href={APP_LINK} className="banner-cta" target="_blank" rel="noopener noreferrer">
+        {/* Opens the trial form; after submit the user is sent to the demo
+            shortlink. Direct APP_LINK href kept as a no-JS fallback. */}
+        <a
+          href={APP_LINK}
+          onClick={(e) => { e.preventDefault(); openModal('trial', { redirectUrl: 'https://eazybe.info/demono' }) }}
+          className="banner-cta"
+        >
           <span className="banner-cta-rail" aria-hidden="true" />
           <span className="banner-cta-glow" aria-hidden="true" />
 

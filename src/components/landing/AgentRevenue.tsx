@@ -139,7 +139,7 @@ export function AgentRevenue() {
               ))}
             </ul>
             <div className="agent-cta-pair" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginTop: 8 }}>
-              <a href={INSTALL_REDIRECT_URL} onClick={(e) => { e.preventDefault(); openModal('trial') }} className="btn btn-outline hide-on-mobile-cta">{t('cta')}</a>
+              <a href={INSTALL_REDIRECT_URL} onClick={(e) => { e.preventDefault(); openModal('trial', { redirectUrl: 'https://eazybe.info/demono' }) }} className="btn btn-outline hide-on-mobile-cta">{t('cta')}</a>
               <a href="https://eazybe.info/demono" onClick={(e) => { e.preventDefault(); openModal('demo') }} className="btn btn-primary">{t('ctaDemo')}</a>
             </div>
           </div>

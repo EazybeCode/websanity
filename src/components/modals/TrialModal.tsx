@@ -21,6 +21,9 @@ interface TrialModalProps {
   isOpen: boolean
   mode: ModalMode
   onClose: () => void
+  /** Where to send the user after a successful trial submit. Set per-CTA via
+   *  openModal options; falls back to TRIAL_SUBMIT_REDIRECT_URL. */
+  redirectUrl?: string
 }
 
 const HUBSPOT_PORTAL_ID = '40009480'
@@ -88,9 +91,10 @@ const PERSONAL_EMAIL_DOMAINS = [
   'yandex.com', 'gmx.com',
 ]
 
-export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose }) => {
+export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose, redirectUrl }) => {
   const t = useTranslations()
   const locale = useLocale()
+  const trialRedirectUrl = redirectUrl || TRIAL_SUBMIT_REDIRECT_URL
   const [selectedCountry, setSelectedCountry] = useState(COUNTRY_CODES[0].code)
   const [phoneValue, setPhoneValue] = useState('')
   const [formData, setFormData] = useState<TrialFormData>({
@@ -136,13 +140,13 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
       if (hasSubmitted) {
         setIsSuccess(true)
         if (mode === 'trial') {
-          window.location.href = withIncomingTrackingParams(TRIAL_SUBMIT_REDIRECT_URL)
+          window.location.href = withIncomingTrackingParams(trialRedirectUrl)
         }
       } else {
         setIsSuccess(false)
       }
     }
-  }, [isOpen, mode, hasSubmitted])
+  }, [isOpen, mode, hasSubmitted, trialRedirectUrl])
 
   useEffect(() => {
     if (isSuccess && mode === 'demo') {
@@ -160,13 +164,13 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose })
     let timeoutId: NodeJS.Timeout | null = null
     if (isSuccess && mode === 'trial') {
       timeoutId = setTimeout(() => {
-        window.location.href = withIncomingTrackingParams(TRIAL_SUBMIT_REDIRECT_URL)
+        window.location.href = withIncomingTrackingParams(trialRedirectUrl)
       }, 2000)
     }
     return () => {
       if (timeoutId) clearTimeout(timeoutId)
     }
-  }, [isSuccess, mode])
+  }, [isSuccess, mode, trialRedirectUrl])
 
   if (!isOpen) return null
 
