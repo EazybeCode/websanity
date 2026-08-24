@@ -60,19 +60,38 @@ const getRedirectURI = async (): Promise<string> => {
   }
 }
 
-const getBearerToken = async (tempCode: string, tempAccountServerUrl: string) => {
+const getAuthToken = async (workspaceId: string) => {
+  const res = await fetch(
+    `https://cerberus.eazybe.com/prod/api/v2/auth/token-by-workspace?workspace_id=${workspaceId}`
+  )
+  const data = await res.json()
+  return data?.access_token
+}
+
+const getBearerToken = async (
+  tempCode: string,
+  tempAccountServerUrl: string,
+  effectiveAuthToken: string | null
+) => {
   if (!tempCode) return
+  const workspaceId = localStorage.getItem("workspaceId")
+
   try {
+    const authToken = effectiveAuthToken || (workspaceId ? await getAuthToken(workspaceId) : null)
+
     const resp = await fetch("https://cerberus.eazybe.com/prod/api/v2/zoho/auth/token", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
+      },
       body: JSON.stringify({
         temp_account_server_url: tempAccountServerUrl,
         client_id: CLIENT_ID_RAJAT,
         client_secret: CLIENT_SECRET_RAJAT,
         redirect_uri: REDIRECT_URI,
         temp_code: tempCode,
-        workspace_id: localStorage.getItem("workspaceId"),
+        workspace_id: workspaceId,
       }),
     })
     const response = await resp.json()
@@ -118,13 +137,16 @@ export default function IntegrateZohoCrmPage() {
       if (extensionId) localStorage.setItem("extensionId", extensionId)
       if (authToken) localStorage.setItem("authToken", authToken)
 
+      const savedAuthToken = localStorage.getItem("authToken")
+      const effectiveAuthToken = authToken || savedAuthToken
+
       if (autoConnect) {
         window.location.href = await getRedirectURI()
         return
       }
 
       if (urlParamsObject?.code) {
-        getBearerToken(urlParamsObject.code, urlParamsObject["accounts-server"])
+        getBearerToken(urlParamsObject.code, urlParamsObject["accounts-server"], effectiveAuthToken)
       }
     }
 
