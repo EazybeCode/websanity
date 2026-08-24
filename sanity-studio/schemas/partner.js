@@ -20,12 +20,13 @@ const LOCALES = [
 ]
 
 const SPECIALTY_OPTIONS = [
-  'Deal Syncing',
-  'Enterprise RevOps',
-  'Funnel Optimization',
-  'Pipedrive Setup',
-  'Sales Consulting',
-  'Salesforce Customization',
+  'HubSpot agency',
+  'CRM Partners',
+  'CRM Consultants',
+  'CRM Implementation',
+  'RevOps',
+  'B2B Sales Consulting',
+  'Marketing Agencies',
 ]
 
 const modeField = ({ id, flag, title }) => ({
@@ -114,7 +115,7 @@ const partner = {
       fieldset: 'identity',
       options: { hotspot: true },
       description:
-        'Stored for the partner profile. The directory card currently renders a two-letter monogram of the name, not this image.',
+        'Shown in the small square tile on the directory card. Without one, the card shows a two-letter monogram of the name. Square images work best.',
     },
     {
       name: 'websiteUrl',
@@ -194,7 +195,7 @@ const partner = {
       type: 'object',
       fieldset: 'content',
       description:
-        'First paragraph = the card summary. Any further paragraphs appear behind "Read more". Formatting is stored but the card renders plain text today.',
+        'First paragraph = the card summary. Any further paragraphs appear behind "Read more". Bold, italic and links render on the card.',
       fields: [
         {
           name: 'en',

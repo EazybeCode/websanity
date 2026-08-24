@@ -26,11 +26,22 @@ export interface PartnerTestimonial {
   rating: number
 }
 
+/** One run of text in a partner description, with its inline formatting. */
+export interface PartnerRichSpan {
+  text: string
+  bold?: boolean
+  italic?: boolean
+  href?: string
+  newTab?: boolean
+}
+
 export interface PartnerRecord {
   id: string
   name: string
-  /** Two-letter monogram for the avatar tile. */
+  /** Two-letter monogram for the avatar tile, shown when there is no logo. */
   initials: string
+  /** Logo image URL (from Sanity); rendered in the avatar tile when set. */
+  logoUrl?: string
   tier: string
   crm: PartnerCrm
   /** CRM label as displayed — kept separate so "Other" can name the tool. */
@@ -40,6 +51,10 @@ export interface PartnerRecord {
   summary: string
   /** Shown after "Read more" is expanded. Optional. */
   detail?: string
+  /** Formatted variants of summary/detail (bold, italic, links). When set,
+   *  the card renders these; the plain strings remain for search. */
+  summaryRich?: PartnerRichSpan[]
+  detailRich?: PartnerRichSpan[]
   specialties: string[]
   testimonial?: PartnerTestimonial
 }
@@ -59,7 +74,7 @@ export const PARTNERS: PartnerRecord[] = [
       'Enterprise Salesforce integration consultants crafting custom WhatsApp omnichannel workflows and real-time CRM deal syncing.',
     detail:
       'Works with revenue teams running Salesforce at scale, covering data model design, WhatsApp routing rules and reporting handover.',
-    specialties: ['Salesforce Customization', 'Enterprise RevOps', 'Deal Syncing'],
+    specialties: ['CRM Implementation', 'RevOps', 'CRM Consultants'],
   },
   {
     id: 'pipeline-accelerators',
@@ -74,7 +89,7 @@ export const PARTNERS: PartnerRecord[] = [
       'Pipedrive CRM specialists focusing on sales velocity, automated follow-up sequences, and WhatsApp deal pipeline synchronization.',
     detail:
       'Typical engagements cover pipeline redesign, follow-up automation and getting WhatsApp threads onto the right deal.',
-    specialties: ['Pipedrive Setup', 'Sales Consulting', 'Funnel Optimization'],
+    specialties: ['CRM Partners', 'B2B Sales Consulting', 'Marketing Agencies'],
   },
 ]
 

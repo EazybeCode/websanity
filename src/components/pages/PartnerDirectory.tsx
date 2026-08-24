@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { Fragment, useMemo, useState, type ReactNode } from 'react'
 import {
   PARTNERS,
   REGION_ORDER,
@@ -8,6 +8,7 @@ import {
   type PartnerCrm,
   type PartnerRecord,
   type PartnerRegion,
+  type PartnerRichSpan,
 } from '@/data/partner-directory'
 
 export interface PartnerDirectoryLabels {
@@ -90,7 +91,9 @@ const STYLES = `
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--bg-2); border: 1px solid var(--line);
   font-family: var(--f-mono); font-size: 13px; font-weight: 600; color: var(--ink-2);
+  overflow: hidden;
 }
+.pd-avatar img { width: 100%; height: 100%; object-fit: contain; }
 .pd-name { margin: 0 0 8px; font-size: 19px; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
 .pd-badges { display: flex; gap: 6px; flex-wrap: wrap; }
 .pd-badge { font-size: 12px; padding: 3px 9px; border-radius: 100px; background: var(--bg-2); border: 1px solid var(--line); color: var(--ink-3); white-space: nowrap; }
@@ -98,6 +101,10 @@ const STYLES = `
 .pd-badge.is-crm { color: var(--accent-ink); background: color-mix(in oklab, var(--accent-a) 12%, #fff); border-color: color-mix(in oklab, var(--accent-a) 30%, var(--line)); }
 .pd-summary { margin: 16px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
 .pd-detail { margin: 8px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-3); }
+.pd-summary strong, .pd-detail strong { color: var(--ink); font-weight: 600; }
+.landing .pd-summary a, .landing .pd-detail a { color: var(--accent-ink); font-weight: 600; }
+.landing .pd-summary a:hover, .landing .pd-detail a:hover { text-decoration: underline; }
+.landing .pd-summary a:focus-visible, .landing .pd-detail a:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; border-radius: 4px; }
 .landing .pd-more {
   margin-top: 10px; font-size: 14px; font-weight: 600; color: var(--accent-ink);
   background: none; border: none; padding: 4px 0; cursor: pointer; font-family: var(--f-sans);
@@ -165,12 +172,41 @@ function Stars({ rating }: { rating: number }) {
   )
 }
 
+/** Renders the formatted spans when the CMS provided them, otherwise the
+ *  plain string — so static sample data keeps working unchanged. */
+function RichText({ spans, fallback }: { spans?: PartnerRichSpan[]; fallback: string }) {
+  if (!spans?.length) return <>{fallback}</>
+  return (
+    <>
+      {spans.map((s, i) => {
+        let node: ReactNode = s.text
+        if (s.bold) node = <strong>{node}</strong>
+        if (s.italic) node = <em>{node}</em>
+        if (s.href) {
+          node = (
+            <a
+              href={s.href}
+              target={s.newTab ? '_blank' : undefined}
+              rel={s.newTab ? 'noopener noreferrer' : undefined}
+            >
+              {node}
+            </a>
+          )
+        }
+        return <Fragment key={i}>{node}</Fragment>
+      })}
+    </>
+  )
+}
+
 function Card({ p, labels }: { p: PartnerRecord; labels: PartnerDirectoryLabels }) {
   const [open, setOpen] = useState(false)
   return (
     <article className="pd-card">
       <div className="pd-card-head">
-        <span className="pd-avatar" aria-hidden="true">{p.initials}</span>
+        <span className="pd-avatar" aria-hidden="true">
+          {p.logoUrl ? <img src={p.logoUrl} alt="" loading="lazy" /> : p.initials}
+        </span>
         <div style={{ minWidth: 0 }}>
           <h3 className="pd-name">{p.name}</h3>
           <div className="pd-badges">
@@ -181,8 +217,10 @@ function Card({ p, labels }: { p: PartnerRecord; labels: PartnerDirectoryLabels 
         </div>
       </div>
 
-      <p className="pd-summary">{p.summary}</p>
-      {open && p.detail && <p className="pd-detail">{p.detail}</p>}
+      <p className="pd-summary"><RichText spans={p.summaryRich} fallback={p.summary} /></p>
+      {open && p.detail && (
+        <p className="pd-detail"><RichText spans={p.detailRich} fallback={p.detail} /></p>
+      )}
       {p.detail && (
         <button type="button" className="pd-more" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
           {open ? labels.readLess : labels.readMore}

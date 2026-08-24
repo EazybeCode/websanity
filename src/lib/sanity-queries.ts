@@ -5,6 +5,7 @@ import {
   type PartnerCrm,
   type PartnerRecord,
   type PartnerRegion,
+  type PartnerRichSpan,
 } from '@/data/partner-directory'
 
 // ─── Language mapping ────────────────────────────────────────────────────────
@@ -1181,6 +1182,11 @@ const PARTNER_CRM_LABELS: Record<PartnerCrm, string> = {
   other: 'Other',
 }
 
+interface SanityPartnerBlock {
+  children?: Array<{ text?: string; marks?: string[] }>
+  markDefs?: Array<{ _key: string; href?: string; openInNewTab?: boolean }>
+}
+
 interface SanityPartnerRow {
   _id: string
   name: string | null
@@ -1189,12 +1195,41 @@ interface SanityPartnerRow {
   crmOtherLabel: string | null
   country: string | null
   region: string | null
-  descriptionBlocks: Array<{ children?: Array<{ text?: string }> }> | null
+  logoUrl: string | null
+  descriptionBlocks: SanityPartnerBlock[] | null
   specialties: Array<string | null> | null
 }
 
-const partnerBlockText = (b: { children?: Array<{ text?: string }> }) =>
+const partnerBlockText = (b: SanityPartnerBlock) =>
   (b.children ?? []).map((c) => c.text ?? '').join('').trim()
+
+/** Portable Text block → flat spans carrying bold/italic/link, which is all
+ *  the partner description editor offers. */
+const partnerBlockSpans = (b: SanityPartnerBlock): PartnerRichSpan[] =>
+  (b.children ?? []).flatMap((c) => {
+    const text = c.text ?? ''
+    if (!text) return []
+    const marks = c.marks ?? []
+    const span: PartnerRichSpan = { text }
+    if (marks.includes('strong')) span.bold = true
+    if (marks.includes('em')) span.italic = true
+    const link = (b.markDefs ?? []).find((d) => d.href && marks.includes(d._key))
+    if (link?.href) {
+      span.href = link.href
+      if (link.openInNewTab !== false) span.newTab = true
+    }
+    return [span]
+  })
+
+/** Concatenate blocks' spans with a space between blocks (mirrors how the
+ *  plain-text detail joins paragraphs). */
+const partnerBlocksSpans = (blocks: SanityPartnerBlock[]): PartnerRichSpan[] =>
+  blocks.reduce<PartnerRichSpan[]>((acc, b) => {
+    const spans = partnerBlockSpans(b)
+    if (!spans.length) return acc
+    if (acc.length) acc.push({ text: ' ' })
+    return acc.concat(spans)
+  }, [])
 
 function toPartnerRecord(row: SanityPartnerRow): PartnerRecord {
   const name = row.name?.trim() || 'Partner'
@@ -1226,8 +1261,12 @@ function toPartnerRecord(row: SanityPartnerRow): PartnerRecord {
         : PARTNER_CRM_LABELS[crm],
     country: row.country?.trim() || '',
     region,
+    // The avatar tile renders at 46px; ask the Sanity CDN for a 2x-crisp thumb.
+    logoUrl: row.logoUrl ? `${row.logoUrl}?w=96&h=96&fit=max&auto=format` : undefined,
     summary: blocks.length ? partnerBlockText(blocks[0]) : '',
     detail: detail || undefined,
+    summaryRich: blocks.length ? partnerBlockSpans(blocks[0]) : undefined,
+    detailRich: detail ? partnerBlocksSpans(blocks.slice(1)) : undefined,
     specialties: (row.specialties ?? []).flatMap((s) => {
       const v = s?.trim()
       return v ? [v] : []
@@ -1264,6 +1303,7 @@ export async function getPartners(locale: string = 'en'): Promise<PartnerRecord[
     crmOtherLabel,
     country,
     region,
+    "logoUrl": logo.asset->url,
     "descriptionBlocks": select(
       $locale == "en" => description.en,
       description[$mode] == "inherit" => description.en,
