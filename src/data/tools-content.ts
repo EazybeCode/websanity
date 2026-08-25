@@ -37,6 +37,7 @@ const HREFS = {
   link: '/whatsapp-chat-link-generator',
   widget: '/whatsapp-chat-widget',
   roi: '/marketing-roi-calculator',
+  waPricing: '/whatsapp-pricing-calculator',
 } as const
 
 const en: ToolsPageContent = {
@@ -59,7 +60,7 @@ const en: ToolsPageContent = {
   },
   grid: {
     h2: 'Pick A Tool',
-    subtitle: 'Four tools, each one free and ready to use right now.',
+    subtitle: 'Five tools, each one free and ready to use right now.',
     tryIt: 'Try it free',
     freeBadge: 'Free',
   },
@@ -90,6 +91,13 @@ const en: ToolsPageContent = {
       href: HREFS.roi,
       name: 'Marketing ROI Calculator',
       tagline: 'Work out ROI, ROAS, cost per lead and customer acquisition cost from your spend and attributed revenue.',
+      category: 'Measurement',
+      icon: 'calculator',
+    },
+    {
+      href: HREFS.waPricing,
+      name: 'WhatsApp Pricing Calculator',
+      tagline: 'Estimate your monthly WhatsApp API bill from your message volumes, with editable per-country rates.',
       category: 'Measurement',
       icon: 'calculator',
     },
@@ -133,7 +141,7 @@ const br: ToolsPageContent = {
   },
   grid: {
     h2: 'Escolha Uma Ferramenta',
-    subtitle: 'Quatro ferramentas, todas gratuitas e prontas para usar agora.',
+    subtitle: 'Cinco ferramentas, todas gratuitas e prontas para usar agora.',
     tryIt: 'Usar grátis',
     freeBadge: 'Grátis',
   },
@@ -164,6 +172,14 @@ const br: ToolsPageContent = {
       href: HREFS.roi,
       name: 'Calculadora de ROI de Marketing',
       tagline: 'Calcule ROI, ROAS, custo por lead e custo de aquisição a partir do seu investimento e da receita atribuída.',
+      category: 'Medição',
+      icon: 'calculator',
+    },
+    {
+      // Localized slug: the grid prefixes '/br' itself.
+      href: '/calculadora-de-precos-do-whatsapp',
+      name: 'Calculadora de Preços do WhatsApp',
+      tagline: 'Estime sua fatura mensal da API do WhatsApp a partir dos volumes de mensagens, com taxas editáveis por país.',
       category: 'Medição',
       icon: 'calculator',
     },
@@ -207,7 +223,7 @@ const es: ToolsPageContent = {
   },
   grid: {
     h2: 'Elige Una Herramienta',
-    subtitle: 'Cuatro herramientas, todas gratuitas y listas para usar ahora.',
+    subtitle: 'Cinco herramientas, todas gratuitas y listas para usar ahora.',
     tryIt: 'Usar gratis',
     freeBadge: 'Gratis',
   },
@@ -238,6 +254,14 @@ const es: ToolsPageContent = {
       href: HREFS.roi,
       name: 'Calculadora de ROI de Marketing',
       tagline: 'Calcula ROI, ROAS, coste por lead y coste de adquisición a partir de tu inversión y los ingresos atribuidos.',
+      category: 'Medición',
+      icon: 'calculator',
+    },
+    {
+      // Localized slug: the grid prefixes '/es' itself.
+      href: '/calculadora-de-precios-de-whatsapp',
+      name: 'Calculadora de Precios de WhatsApp',
+      tagline: 'Estima tu factura mensual de la API de WhatsApp a partir de tus volúmenes de mensajes, con tarifas editables por país.',
       category: 'Medición',
       icon: 'calculator',
     },
@@ -281,7 +305,7 @@ const tr: ToolsPageContent = {
   },
   grid: {
     h2: 'Bir Araç Seçin',
-    subtitle: 'Dört araç, hepsi ücretsiz ve şimdi kullanıma hazır.',
+    subtitle: 'Beş araç, hepsi ücretsiz ve şimdi kullanıma hazır.',
     tryIt: 'Ücretsiz dene',
     freeBadge: 'Ücretsiz',
   },
@@ -312,6 +336,14 @@ const tr: ToolsPageContent = {
       href: HREFS.roi,
       name: 'Pazarlama ROI Hesaplayıcı',
       tagline: 'Harcamanız ve atfedilen gelirinizden ROI, ROAS, lead başına maliyet ve müşteri edinme maliyetini hesaplayın.',
+      category: 'Ölçüm',
+      icon: 'calculator',
+    },
+    {
+      // Localized slug: the grid prefixes '/tr' itself.
+      href: '/whatsapp-fiyat-hesaplayici',
+      name: 'WhatsApp Fiyat Hesaplayıcı',
+      tagline: 'Aylık WhatsApp API faturanızı mesaj hacimlerinizden tahmin edin; ülke bazlı tarifeler düzenlenebilir.',
       category: 'Ölçüm',
       icon: 'calculator',
     },
