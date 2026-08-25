@@ -122,7 +122,6 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Intelligence-Led CRM Properties', included: true, highlight: true },
       { text: 'AI-driven Chat Organization', included: true, highlight: true },
       { text: 'BrainBe knowledge base included', included: true },
-      { text: 'Includes $45 monthly credits (rollover)', included: true },
       { text: 'Voice AI calling', included: false },
       { text: '100+ integrations (Email, Teams, Slack...)', included: false },
     ],
