@@ -17,7 +17,7 @@
  * no external redirect, no Calendly-hosted confirmation page.
  */
 
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { X, Send, Loader2, CheckCircle2 } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import {
@@ -92,6 +92,19 @@ const dateKey = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padS
 const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate())
 const addDays = (d: Date, n: number) => new Date(d.getTime() + n * DAY_MS)
 const sameDay = (a: Date, b: Date) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
+// Same as dateKey but computed in a specific timezone. Prevents Brazilian
+// slots from being bucketed under the wrong day when the browser clock is
+// in a different zone (see CalendlySlotPicker for the same fix).
+const dateKeyInTz = (d: Date, tz: string) => {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: tz,
+    year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(d)
+  const y = parts.find((p) => p.type === 'year')?.value
+  const m = parts.find((p) => p.type === 'month')?.value
+  const day = parts.find((p) => p.type === 'day')?.value
+  return `${y}-${m}-${day}`
+}
 
 // Friendly timezone label — "GMT−3" instead of the raw "America/Sao_Paulo".
 function friendlyTz(tz: string): string {
@@ -228,7 +241,9 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const [emailError, setEmailError] = useState('')
 
   // Calendar / booking state
-  const [slotsByDate, setSlotsByDate] = useState<Record<string, CalendlyTimeSlot[]>>({})
+  // Raw slots — grouping happens via useMemo in the visitor's timezone
+  // so the buckets stay correct when timezone arrives async from /api/geo.
+  const [rawSlots, setRawSlots] = useState<CalendlyTimeSlot[]>([])
   const [loadingSlots, setLoadingSlots] = useState(false)
   const [slotsError, setSlotsError] = useState('')
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
@@ -307,26 +322,11 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
       const res = await fetch(url.toString())
       if (!res.ok) throw new Error(`Failed to load slots (${res.status})`)
       const data = (await res.json()) as { collection?: CalendlyTimeSlot[] }
-      const grouped: Record<string, CalendlyTimeSlot[]> = {}
-      ;(data.collection || []).forEach((slot) => {
-        if (slot.status !== 'available' || slot.invitees_remaining <= 0) return
-        const d = new Date(slot.start_time)
-        const k = dateKey(d)
-        if (!grouped[k]) grouped[k] = []
-        grouped[k].push(slot)
-      })
-      setSlotsByDate(grouped)
-      // Auto-select the earliest date that has any open slots so the user
-      // lands on a state where time slots are already visible below.
-      const startOfToday = new Date()
-      startOfToday.setHours(0, 0, 0, 0)
-      for (let i = 0; i < 7; i++) {
-        const d = new Date(startOfToday.getTime() + i * DAY_MS)
-        if ((grouped[dateKey(d)] || []).length > 0) {
-          setSelectedDate(d)
-          break
-        }
-      }
+      const available = (data.collection || []).filter(
+        (s) => s.status === 'available' && s.invitees_remaining > 0,
+      )
+      available.sort((a, b) => a.start_time.localeCompare(b.start_time))
+      setRawSlots(available)
     } catch (err) {
       console.error('Calendly available-times fetch failed:', err)
       setSlotsError('Could not load available times. Please try again.')
@@ -341,6 +341,32 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
     setSelectedSlot(null)
     fetchNext7Days()
   }, [isOpen, fetchNext7Days])
+
+  // Group in the visitor's real timezone; recomputes if timezone changes.
+  const slotsByDate = useMemo(() => {
+    const grouped: Record<string, CalendlyTimeSlot[]> = {}
+    rawSlots.forEach((s) => {
+      const k = dateKeyInTz(new Date(s.start_time), timezone)
+      if (!grouped[k]) grouped[k] = []
+      grouped[k].push(s)
+    })
+    return grouped
+  }, [rawSlots, timezone])
+
+  // Auto-select the earliest date that has slots (re-runs when grouping
+  // shifts because the IP-based timezone arrives).
+  useEffect(() => {
+    if (!isOpen || selectedDate) return
+    const startOfToday = new Date()
+    startOfToday.setHours(0, 0, 0, 0)
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(startOfToday.getTime() + i * DAY_MS)
+      if ((slotsByDate[dateKeyInTz(d, timezone)] || []).length > 0) {
+        setSelectedDate(d)
+        break
+      }
+    }
+  }, [isOpen, slotsByDate, timezone, selectedDate])
 
   const today = startOfDay(new Date())
 
@@ -775,7 +801,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                   {/* 7-day horizontal strip */}
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 6, marginBottom: 18 }}>
                     {Array.from({ length: 7 }, (_, i) => addDays(today, i)).map((d) => {
-                      const key = dateKey(d)
+                      const key = dateKeyInTz(d, timezone)
                       const daySlots = slotsByDate[key] || []
                       const available = daySlots.length > 0
                       const isSelected = selectedDate && sameDay(d, selectedDate)
@@ -860,7 +886,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                             paddingRight: 4,
                           }}
                         >
-                          {((slotsByDate[dateKey(selectedDate)] ?? []) as CalendlyTimeSlot[]).map((slot) => {
+                          {((slotsByDate[dateKeyInTz(selectedDate, timezone)] ?? []) as CalendlyTimeSlot[]).map((slot) => {
                             // selectedSlot is guaranteed null in this branch (see the enclosing
                             // `{!selectedSlot && ...}`); the calendar hides the moment a slot is picked.
                             const isSelected = false

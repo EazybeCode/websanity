@@ -10,11 +10,25 @@
  * which use the CALENDLY_PAT env var server-side.
  */
 
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Loader2, Send, CheckCircle2 } from 'lucide-react'
 
 const DAY_MS = 24 * 60 * 60 * 1000
 const dateKey = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+// Same as dateKey but the day is computed IN THE TARGET TIMEZONE, not the
+// browser's local zone. Needed so a Brazilian slot at 20:00 UTC on Aug 28
+// (5:00 PM São Paulo) doesn't get bucketed as Aug 29 when the browser is
+// in India. `en-CA` gives us a stable "YYYY-MM-DD" shape from formatToParts.
+const dateKeyInTz = (d: Date, tz: string) => {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: tz,
+    year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(d)
+  const y = parts.find((p) => p.type === 'year')?.value
+  const m = parts.find((p) => p.type === 'month')?.value
+  const day = parts.find((p) => p.type === 'day')?.value
+  return `${y}-${m}-${day}`
+}
 const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate())
 const addDays = (d: Date, n: number) => new Date(d.getTime() + n * DAY_MS)
 const sameDay = (a: Date, b: Date) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
@@ -140,7 +154,10 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
   const dark = variant === 'dark'
   const c = PICKER_COPY[locale] || PICKER_COPY.en
 
-  const [slotsByDate, setSlotsByDate] = useState<Record<string, CalendlyTimeSlot[]>>({})
+  // Raw slots keyed by their UTC ISO start_time. Grouping into per-day
+  // buckets happens at render via useMemo so it respects the currently
+  // resolved timezone (which arrives async from /api/geo).
+  const [rawSlots, setRawSlots] = useState<CalendlyTimeSlot[]>([])
   const [loadingSlots, setLoadingSlots] = useState(false)
   const [slotsError, setSlotsError] = useState('')
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
@@ -190,20 +207,13 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
       const res = await fetch(url.toString())
       if (!res.ok) throw new Error(`slots ${res.status}`)
       const data = (await res.json()) as { collection?: CalendlyTimeSlot[] }
-      const grouped: Record<string, CalendlyTimeSlot[]> = {}
-      ;(data.collection || []).forEach((s) => {
-        if (s.status !== 'available' || s.invitees_remaining <= 0) return
-        const k = dateKey(new Date(s.start_time))
-        if (!grouped[k]) grouped[k] = []
-        grouped[k].push(s)
-      })
-      setSlotsByDate(grouped)
-      // Auto-select the earliest non-Sunday date that has slots.
-      for (let i = 0; i < 14; i++) {
-        const d = new Date(startOfToday.getTime() + i * DAY_MS)
-        if (d.getDay() === 0) continue
-        if ((grouped[dateKey(d)] || []).length > 0) { setSelectedDate(d); break }
-      }
+      const available = (data.collection || []).filter(
+        (s) => s.status === 'available' && s.invitees_remaining > 0,
+      )
+      // Sort by UTC start (naturally chronological in any timezone) so the
+      // grouped view can render slots in time order without re-sorting.
+      available.sort((a, b) => a.start_time.localeCompare(b.start_time))
+      setRawSlots(available)
     } catch (err) {
       console.error('CalendlySlotPicker fetch failed:', err)
       setSlotsError(c.loadError)
@@ -213,6 +223,34 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
   }, [locale])
 
   useEffect(() => { fetchSlots() }, [fetchSlots])
+
+  // Group slots by the display timezone (recomputes if timezone changes).
+  const slotsByDate = useMemo(() => {
+    const grouped: Record<string, CalendlyTimeSlot[]> = {}
+    rawSlots.forEach((s) => {
+      const k = dateKeyInTz(new Date(s.start_time), timezone)
+      if (!grouped[k]) grouped[k] = []
+      grouped[k].push(s)
+    })
+    return grouped
+  }, [rawSlots, timezone])
+
+  // Auto-select the earliest non-Sunday date that has slots, re-running
+  // whenever grouping changes so the initial pick lands after the IP-based
+  // timezone upgrade too.
+  useEffect(() => {
+    if (selectedDate) return
+    const startOfToday = new Date()
+    startOfToday.setHours(0, 0, 0, 0)
+    for (let i = 0; i < 14; i++) {
+      const d = new Date(startOfToday.getTime() + i * DAY_MS)
+      if (d.getDay() === 0) continue
+      if ((slotsByDate[dateKeyInTz(d, timezone)] || []).length > 0) {
+        setSelectedDate(d)
+        break
+      }
+    }
+  }, [slotsByDate, timezone, selectedDate])
 
   const handleBook = async () => {
     if (!selectedSlot || isSubmitting) return
@@ -311,7 +349,7 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
         return (
       <div style={{ display: 'grid', gridTemplateColumns: `repeat(${days.length}, 1fr)`, gap: 4, marginBottom: 12 }}>
         {days.map((d) => {
-          const key = dateKey(d)
+          const key = dateKeyInTz(d, timezone)
           const daySlots = slotsByDate[key] || []
           const available = daySlots.length > 0
           const isSelected = selectedDate && sameDay(d, selectedDate)
@@ -364,7 +402,7 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
             display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(76px, 1fr))', gap: 4,
             maxHeight: 148, overflowY: 'auto', paddingRight: 2,
           }}>
-            {(slotsByDate[dateKey(selectedDate)] || []).map((slot) => {
+            {(slotsByDate[dateKeyInTz(selectedDate, timezone)] || []).map((slot) => {
               const isSelected = selectedSlot?.start_time === slot.start_time
               return (
                 <button
