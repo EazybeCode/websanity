@@ -18,6 +18,10 @@ interface GeoResponse {
   country_code: string | null
   country_name: string | null
   currency: string | null
+  /** IANA timezone id (e.g. "America/Sao_Paulo") derived from the IP.
+   *  Correctly follows VPNs — the browser's Intl.DateTimeFormat only
+   *  ever returns the OS timezone, which VPNs don't touch. */
+  timezone: string | null
   seen_ip: string | null
 }
 
@@ -30,6 +34,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<GeoRespons
     country_code: null,
     country_name: null,
     currency: null,
+    timezone: null,
     seen_ip: clientIp || null,
   }
 
@@ -50,6 +55,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<GeoRespons
       country_code: countryCode,
       country_name: data.country ?? null,
       currency: countryCode ? COUNTRY_CURRENCY[countryCode] ?? null : null,
+      timezone: data.timezone?.id ?? null,
       seen_ip: clientIp || null,
     })
   } catch {

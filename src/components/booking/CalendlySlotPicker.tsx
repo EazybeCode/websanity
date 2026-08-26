@@ -19,6 +19,21 @@ const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDat
 const addDays = (d: Date, n: number) => new Date(d.getTime() + n * DAY_MS)
 const sameDay = (a: Date, b: Date) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 
+// Friendly timezone label — "GMT−3" instead of the raw "America/Sao_Paulo".
+// Falls back to the IANA id if the browser can't compute an offset.
+function friendlyTz(tz: string): string {
+  try {
+    const parts = new Intl.DateTimeFormat('en', {
+      timeZone: tz,
+      timeZoneName: 'shortOffset',
+      hour: 'numeric',
+    }).formatToParts(new Date())
+    const name = parts.find((p) => p.type === 'timeZoneName')?.value
+    if (name) return name.replace('GMT', 'GMT').replace('-', '−')
+  } catch { /* ignore */ }
+  return tz
+}
+
 interface CalendlyTimeSlot {
   status: string
   invitees_remaining: number
@@ -137,8 +152,27 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
 
   const today = startOfDay(new Date())
 
+  // Timezone priority:
+  //   1) IP-based via /api/geo (correctly follows VPN — visitor sees times
+  //      in the country their IP resolves to, not the OS clock).
+  //   2) Browser Intl (OS timezone) as fallback.
+  //   3) UTC as final safety net.
   useEffect(() => {
-    try { setTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC') } catch { /* ignore */ }
+    let cancelled = false
+    const setFromBrowser = () => {
+      try {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+        if (!cancelled && tz) setTimezone(tz)
+      } catch { /* ignore */ }
+    }
+    setFromBrowser()
+    fetch('/api/geo')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { timezone?: string | null } | null) => {
+        if (!cancelled && data?.timezone) setTimezone(data.timezone)
+      })
+      .catch(() => { /* keep browser fallback */ })
+    return () => { cancelled = true }
   }, [])
 
   const fetchSlots = useCallback(async () => {
@@ -325,7 +359,6 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
         <div style={{ marginBottom: 10 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: p.textMuted, marginBottom: 6, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             {selectedDate.toLocaleString(locale === 'br' ? 'pt-BR' : locale, { weekday: 'long', month: 'short', day: 'numeric' })}
-            <span style={{ fontWeight: 500, color: p.textDim, marginLeft: 6, textTransform: 'none', letterSpacing: 0 }}>· {timezone}</span>
           </div>
           <div style={{
             display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(76px, 1fr))', gap: 4,

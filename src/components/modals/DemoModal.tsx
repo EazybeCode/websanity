@@ -93,6 +93,20 @@ const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDat
 const addDays = (d: Date, n: number) => new Date(d.getTime() + n * DAY_MS)
 const sameDay = (a: Date, b: Date) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 
+// Friendly timezone label — "GMT−3" instead of the raw "America/Sao_Paulo".
+function friendlyTz(tz: string): string {
+  try {
+    const parts = new Intl.DateTimeFormat('en', {
+      timeZone: tz,
+      timeZoneName: 'shortOffset',
+      hour: 'numeric',
+    }).formatToParts(new Date())
+    const name = parts.find((p) => p.type === 'timeZoneName')?.value
+    if (name) return name.replace('-', '−')
+  } catch { /* ignore */ }
+  return tz
+}
+
 interface CalendlyTimeSlot {
   status: string
   invitees_remaining: number
@@ -100,10 +114,111 @@ interface CalendlyTimeSlot {
   scheduling_url: string
 }
 
+// Per-locale copy for the DemoModal-specific strings the picker copy
+// dictionary doesn't cover (picker labels live in CalendlySlotPicker).
+interface ModalCopy {
+  subtitle: string
+  nameLabel: string
+  namePlaceholder: string
+  yourDemoEyebrow: string
+  meetingMeta: () => string
+  changeTime: string
+  back: string
+  cta: string
+  ctaChooseTime: string
+  ctaConfirm: string
+  bookingErrorSlot: string
+  successTitle: string
+  successBody: (email: string, when: string) => React.ReactNode
+}
+
+const MODAL_COPY: Record<string, ModalCopy> = {
+  en: {
+    subtitle: "Pick a time and tell us who you are — we'll take it from there.",
+    nameLabel: 'Your Name',
+    namePlaceholder: 'Alex Chen',
+    yourDemoEyebrow: 'Your demo',
+    meetingMeta: () => `30 min · Google Meet`,
+    changeTime: 'Change time',
+    back: '← Back',
+    cta: 'Book my demo',
+    ctaChooseTime: 'Pick a time above',
+    ctaConfirm: 'Confirm demo booking',
+    bookingErrorSlot: "We couldn't book that time. Please pick another slot or try again.",
+    successTitle: "You're booked",
+    successBody: (email, when) => (
+      <>Confirmation sent to <strong style={{ color: C.ink2 }}>{email}</strong>. A calendar invite for{' '}
+      <strong style={{ color: C.ink2 }}>{when}</strong> is on its way.</>
+    ),
+  },
+  es: {
+    subtitle: 'Elige un horario y cuéntanos quién eres — nosotros nos encargamos del resto.',
+    nameLabel: 'Tu nombre',
+    namePlaceholder: 'Alex Chen',
+    yourDemoEyebrow: 'Tu demo',
+    meetingMeta: () => `30 min · Google Meet`,
+    changeTime: 'Cambiar horario',
+    back: '← Volver',
+    cta: 'Reservar mi demo',
+    ctaChooseTime: 'Elige un horario arriba',
+    ctaConfirm: 'Confirmar reserva de la demo',
+    bookingErrorSlot: 'No pudimos reservar ese horario. Elige otro o inténtalo de nuevo.',
+    successTitle: '¡Reservado!',
+    successBody: (email, when) => (
+      <>Confirmación enviada a <strong style={{ color: C.ink2 }}>{email}</strong>. La invitación al calendario para{' '}
+      <strong style={{ color: C.ink2 }}>{when}</strong> ya está en camino.</>
+    ),
+  },
+  br: {
+    subtitle: 'Escolha um horário e conte quem você é — o resto é com a gente.',
+    nameLabel: 'Seu nome',
+    namePlaceholder: 'Alex Chen',
+    yourDemoEyebrow: 'Sua demo',
+    meetingMeta: () => `30 min · Google Meet`,
+    changeTime: 'Trocar horário',
+    back: '← Voltar',
+    cta: 'Reservar minha demo',
+    ctaChooseTime: 'Escolha um horário acima',
+    ctaConfirm: 'Confirmar reserva da demo',
+    bookingErrorSlot: 'Não conseguimos reservar esse horário. Escolha outro ou tente novamente.',
+    successTitle: 'Tudo certo!',
+    successBody: (email, when) => (
+      <>Confirmação enviada para <strong style={{ color: C.ink2 }}>{email}</strong>. O convite do calendário para{' '}
+      <strong style={{ color: C.ink2 }}>{when}</strong> está a caminho.</>
+    ),
+  },
+  tr: {
+    subtitle: 'Bir zaman seçin ve kim olduğunuzu söyleyin — gerisini biz hallederiz.',
+    nameLabel: 'Adınız',
+    namePlaceholder: 'Alex Chen',
+    yourDemoEyebrow: 'Demonuz',
+    meetingMeta: () => `30 dk · Google Meet`,
+    changeTime: 'Saati değiştir',
+    back: '← Geri',
+    cta: 'Demoyu rezerve et',
+    ctaChooseTime: 'Yukarıdan bir saat seçin',
+    ctaConfirm: 'Demo rezervasyonunu onayla',
+    bookingErrorSlot: 'O saat rezerve edilemedi. Başka bir saat seçin veya tekrar deneyin.',
+    successTitle: 'Rezerve edildi',
+    successBody: (email, when) => (
+      <>Onay <strong style={{ color: C.ink2 }}>{email}</strong> adresine gönderildi.{' '}
+      <strong style={{ color: C.ink2 }}>{when}</strong> için takvim daveti yolda.</>
+    ),
+  },
+}
+
+const LOCALE_DEFAULT_TIMEZONE: Record<string, string> = {
+  br: 'America/Sao_Paulo',
+  es: 'Europe/Madrid',
+  tr: 'Europe/Istanbul',
+  // en intentionally omitted — English visitors are global, browser detection wins.
+}
+
 export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const t = useTranslations('demoModal')
   const tTrial = useTranslations('trialModal')
   const locale = useLocale()
+  const mc = MODAL_COPY[locale] || MODAL_COPY.en
 
   // Form state
   const [name, setName] = useState('')
@@ -125,14 +240,23 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const [bookingError, setBookingError] = useState('')
   const [isSuccess, setIsSuccess] = useState(false)
 
-  // Auto-detect country + timezone on open.
+  // Timezone priority: IP-based via /api/geo (follows VPN) → browser Intl
+  // (OS clock) → UTC. Locale-forced defaults are no longer needed — the
+  // IP lookup gets it right for both /br/ and English-language visitors.
   useEffect(() => {
     if (!isOpen) return
+    // Kick off with browser detection so the field is populated immediately.
     try {
       setTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC')
-    } catch {
-      /* keep default */
-    }
+    } catch { /* keep default */ }
+    // Then upgrade to the IP-based timezone (correctly follows VPNs).
+    let cancelled = false
+    fetch('/api/geo')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { timezone?: string | null } | null) => {
+        if (!cancelled && data?.timezone) setTimezone(data.timezone)
+      })
+      .catch(() => { /* keep browser fallback */ })
     const detect = async () => {
       try {
         const res = await fetch('https://api.country.is/')
@@ -301,7 +425,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
       if (!res.ok) {
         const errText = await res.text().catch(() => '')
         console.error('Calendly booking failed:', res.status, errText)
-        setBookingError('We couldn\'t book that time. Please pick another slot or try again.')
+        setBookingError(mc.bookingErrorSlot)
         setIsSubmitting(false)
         // Refresh slots — the one they picked may have been taken.
         fetchNext7Days()
@@ -406,7 +530,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                 })}
               </h2>
               <p style={{ marginTop: 6, marginBottom: 0, fontSize: 14, color: C.ink3 }}>
-                Pick a time and tell us who you are — we&apos;ll take it from there.
+                {mc.subtitle}
               </p>
             </header>
 
@@ -438,7 +562,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                     required
                     type="text"
                     autoComplete="name"
-                    placeholder="Alex Chen"
+                    placeholder={mc.namePlaceholder}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     style={inputStyle(false)}
@@ -532,7 +656,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                       })}
                     </div>
                     <div style={{ fontSize: 11.5, color: C.ink4, marginTop: 4 }}>
-                      30 min · Google Meet · {timezone}
+                      {mc.meetingMeta()}
                     </div>
                     <button
                       type="button"
@@ -551,7 +675,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                         textUnderlineOffset: 3,
                       }}
                     >
-                      Change time
+                      {mc.changeTime}
                     </button>
                   </div>
                 ) : null}
@@ -589,7 +713,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                         e.currentTarget.style.borderColor = C.line2
                       }}
                     >
-                      ← Back
+                      {mc.back}
                     </button>
                   )}
                 <button
@@ -629,8 +753,8 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                   {isSubmitting
                     ? t('submitting')
                     : selectedSlot
-                    ? 'Confirm demo booking'
-                    : 'Pick a time above'}
+                    ? mc.ctaConfirm
+                    : mc.ctaChooseTime}
                 </button>
                 </div>
                 <p style={{ marginTop: 0, marginBottom: 0, fontSize: 11.5, color: C.ink4, textAlign: 'center' }}>
@@ -725,9 +849,6 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                           {selectedDate.toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
                             weekday: 'long', month: 'short', day: 'numeric',
                           })}
-                          <span style={{ fontWeight: 500, color: C.ink4, marginLeft: 8, textTransform: 'none', letterSpacing: 0 }}>
-                            · {timezone}
-                          </span>
                         </div>
                         <div
                           style={{
