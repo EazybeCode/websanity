@@ -24,6 +24,7 @@ import {
   CHROME_STORE_WEBSITE_URL,
   getHubSpotAttributionFields,
 } from '@/utils/openChromeExtensionStore'
+import { CRMType } from '@/types'
 
 interface Props {
   isOpen: boolean
@@ -131,12 +132,15 @@ interface CalendlyTimeSlot {
 // dictionary doesn't cover (picker labels live in CalendlySlotPicker).
 interface ModalCopy {
   subtitle: string
-  nameLabel: string
-  namePlaceholder: string
+  step1Label: string
+  step2Label: string
+  crmLabel: string
+  crmPlaceholder: string
   yourDemoEyebrow: string
   meetingMeta: () => string
   changeTime: string
   back: string
+  continueLabel: string
   cta: string
   ctaChooseTime: string
   ctaConfirm: string
@@ -148,12 +152,15 @@ interface ModalCopy {
 const MODAL_COPY: Record<string, ModalCopy> = {
   en: {
     subtitle: "Pick a time and tell us who you are — we'll take it from there.",
-    nameLabel: 'Your Name',
-    namePlaceholder: 'Alex Chen',
-    yourDemoEyebrow: 'Your demo',
+    step1Label: 'Your details',
+    step2Label: 'Pick a time',
+    crmLabel: 'Which CRM do you use?',
+    crmPlaceholder: 'Select your CRM',
+        yourDemoEyebrow: 'Your demo',
     meetingMeta: () => `30 min · Google Meet`,
     changeTime: 'Change time',
     back: '← Back',
+    continueLabel: 'Pick a time slot →',
     cta: 'Book my demo',
     ctaChooseTime: 'Pick a time above',
     ctaConfirm: 'Confirm demo booking',
@@ -166,12 +173,15 @@ const MODAL_COPY: Record<string, ModalCopy> = {
   },
   es: {
     subtitle: 'Elige un horario y cuéntanos quién eres — nosotros nos encargamos del resto.',
-    nameLabel: 'Tu nombre',
-    namePlaceholder: 'Alex Chen',
-    yourDemoEyebrow: 'Tu demo',
+    step1Label: 'Tus datos',
+    step2Label: 'Elige un horario',
+    crmLabel: '¿Qué CRM usas?',
+    crmPlaceholder: 'Selecciona tu CRM',
+        yourDemoEyebrow: 'Tu demo',
     meetingMeta: () => `30 min · Google Meet`,
     changeTime: 'Cambiar horario',
     back: '← Volver',
+    continueLabel: 'Elegir un horario →',
     cta: 'Reservar mi demo',
     ctaChooseTime: 'Elige un horario arriba',
     ctaConfirm: 'Confirmar reserva de la demo',
@@ -184,12 +194,15 @@ const MODAL_COPY: Record<string, ModalCopy> = {
   },
   br: {
     subtitle: 'Escolha um horário e conte quem você é — o resto é com a gente.',
-    nameLabel: 'Seu nome',
-    namePlaceholder: 'Alex Chen',
-    yourDemoEyebrow: 'Sua demo',
+    step1Label: 'Seus dados',
+    step2Label: 'Escolha um horário',
+    crmLabel: 'Qual CRM você usa?',
+    crmPlaceholder: 'Selecione seu CRM',
+        yourDemoEyebrow: 'Sua demo',
     meetingMeta: () => `30 min · Google Meet`,
     changeTime: 'Trocar horário',
     back: '← Voltar',
+    continueLabel: 'Escolher um horário →',
     cta: 'Reservar minha demo',
     ctaChooseTime: 'Escolha um horário acima',
     ctaConfirm: 'Confirmar reserva da demo',
@@ -202,12 +215,15 @@ const MODAL_COPY: Record<string, ModalCopy> = {
   },
   tr: {
     subtitle: 'Bir zaman seçin ve kim olduğunuzu söyleyin — gerisini biz hallederiz.',
-    nameLabel: 'Adınız',
-    namePlaceholder: 'Alex Chen',
-    yourDemoEyebrow: 'Demonuz',
+    step1Label: 'Bilgileriniz',
+    step2Label: 'Bir saat seçin',
+    crmLabel: "Hangi CRM'i kullanıyorsunuz?",
+    crmPlaceholder: 'CRM seçin',
+        yourDemoEyebrow: 'Demonuz',
     meetingMeta: () => `30 dk · Google Meet`,
     changeTime: 'Saati değiştir',
     back: '← Geri',
+    continueLabel: 'Bir saat seçin →',
     cta: 'Demoyu rezerve et',
     ctaChooseTime: 'Yukarıdan bir saat seçin',
     ctaConfirm: 'Demo rezervasyonunu onayla',
@@ -234,7 +250,10 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const mc = MODAL_COPY[locale] || MODAL_COPY.en
 
   // Form state
-  const [name, setName] = useState('')
+  const [crm, setCrm] = useState<CRMType | ''>('')
+  // Wizard step. Start on 'details' — user fills form first, then advances
+  // to 'time' to pick a slot. Keeps each screen focused.
+  const [step, setStep] = useState<'details' | 'time'>('details')
   const [email, setEmail] = useState('')
   const [selectedCountry, setSelectedCountry] = useState('+1')
   const [phone, setPhone] = useState('')
@@ -299,6 +318,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
       setIsSuccess(false)
       setSelectedDate(null)
       setSelectedSlot(null)
+      setStep('details')
     }
   }, [isOpen])
 
@@ -382,10 +402,10 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   }
 
   const formValid =
-    name.trim().length >= 2 &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
     !isPersonalEmail(email) &&
-    phone.replace(/\D/g, '').length >= 6
+    phone.replace(/\D/g, '').length >= 6 &&
+    !!crm
 
   const canBook = formValid && !!selectedSlot && !isSubmitting
 
@@ -397,19 +417,30 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
     const finalPhone = `${selectedCountry}${phone.replace(/\s+/g, '')}`
     const formGuid = HUBSPOT_DEMO_FORM_GUID_BY_LOCALE[locale] || DEFAULT_HUBSPOT_DEMO_FORM_GUID
 
+    // Name isn't collected in the form anymore (kept it lean per user
+    // request). Derive a passable first/last from the email prefix so both
+    // HubSpot and Calendly still get structured name data.
+    const derived = (email.split('@')[0] || '')
+      .replace(/[._-]+/g, ' ')
+      .replace(/\d+/g, '')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+    const firstname = derived[0] || 'Friend'
+    const lastname = derived.slice(1).join(' ')
+
     // 1) HubSpot lead capture — fire-and-forget with keepalive so the write
     //    survives the state change to the success screen. Errors are logged,
     //    not blocking — the booking still lands.
     try {
       const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1]
-      const [firstname, ...rest] = name.trim().split(/\s+/)
-      const lastname = rest.join(' ')
       const fields: { name: string; value: string }[] = [
-        { name: 'firstname', value: firstname || name.trim() },
+        { name: 'firstname', value: firstname },
         { name: 'lastname', value: lastname },
         { name: 'email', value: email.trim() },
         { name: 'phone', value: finalPhone },
-        { name: 'crm_used', value: 'Other' },
+        { name: 'crm_used', value: crm || 'Other' },
         { name: 'source_name', value: 'website-demo' },
       ]
       fields.push(...getHubSpotAttributionFields(CHROME_STORE_WEBSITE_URL))
@@ -442,7 +473,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
         body: JSON.stringify({
           locale,
           startTime: selectedSlot.start_time,
-          name: name.trim(),
+          name: `${firstname}${lastname ? ' ' + lastname : ''}`,
           email: email.trim(),
           timezone,
           phone: finalPhone,
@@ -491,7 +522,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
         style={{
           position: 'relative',
           width: '100%',
-          maxWidth: isSuccess ? 520 : 1080,
+          maxWidth: isSuccess ? 520 : step === 'details' ? 480 : 640,
           background: C.paper,
           border: `1px solid ${C.line}`,
           borderRadius: 24,
@@ -545,56 +576,56 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
           </div>
         ) : (
           <>
-            <header style={{ marginBottom: 20, paddingRight: 40 }}>
+            <header style={{ marginBottom: 22, paddingRight: 40 }}>
               <h2 style={{
                 fontFamily: serif, fontWeight: 400,
-                fontSize: 26, lineHeight: 1.15, letterSpacing: '-0.015em',
+                fontSize: 24, lineHeight: 1.15, letterSpacing: '-0.015em',
                 color: C.ink, margin: 0,
               }}>
                 {t.rich('heading', {
                   em: (chunks) => <em style={{ fontStyle: 'italic', color: C.accentInk }}>{chunks}</em>,
                 })}
               </h2>
-              <p style={{ marginTop: 6, marginBottom: 0, fontSize: 14, color: C.ink3 }}>
-                {mc.subtitle}
-              </p>
             </header>
 
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                // Wizard: submit on step 1 advances to step 2 (if the form
+                // is valid); submit on step 2 fires the actual booking.
+                if (step === 'details') {
+                  if (formValid) setStep('time')
+                } else if (canBook) {
+                  handleBook()
+                }
+              }}
+              style={{ display: 'flex', flexDirection: 'column', gap: 20 }}
+            >
             <div
               style={{
                 display: 'grid',
-                // Right column collapses once a time is picked so the user
-                // sees only their form + a clean selected-slot summary.
-                gridTemplateColumns: selectedSlot ? 'minmax(0, 1fr)' : 'minmax(0, 1fr) minmax(0, 1.3fr)',
-                gap: 28,
+                gridTemplateColumns: 'minmax(0, 1fr)',
+                gap: 20,
                 alignItems: 'start',
-                maxWidth: selectedSlot ? 520 : '100%',
-                margin: selectedSlot ? '0 auto' : undefined,
+                maxWidth: step === 'details' ? 460 : 620,
+                margin: '0 auto',
                 transition: 'max-width .3s ease',
+                width: '100%',
               }}
               className="demo-modal-grid"
             >
-              {/* ── LEFT: form ─────────────────────────────────────────── */}
-              <form
-                onSubmit={(e) => { e.preventDefault(); handleBook() }}
-                style={{ display: 'flex', flexDirection: 'column', gap: 14 }}
-              >
-                {/* Name */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2 }}>
-                    Your Name
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    autoComplete="name"
-                    placeholder={mc.namePlaceholder}
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    style={inputStyle(false)}
-                  />
+              {step === 'details' && (
+              /* ── STEP 1: form fields ────────────────────────────────── */
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: C.accentInk, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                  <span style={{
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    width: 18, height: 18, borderRadius: 999,
+                    background: C.accentInk, color: '#fff',
+                    fontSize: 10, fontWeight: 800, marginRight: 8,
+                  }}>1</span>
+                  {mc.step1Label}
                 </div>
-
                 {/* Email */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                   <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2 }}>
@@ -654,150 +685,67 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                   </div>
                 </div>
 
-                {/* Selection summary — becomes a proper appointment card
-                    the moment a time is picked. Includes a "change" link
-                    so the visitor can go back to the picker even though
-                    the calendar is now hidden. */}
-                {selectedSlot ? (
-                  <div
+                {/* CRM dropdown */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: C.ink2 }}>
+                    {mc.crmLabel}
+                  </label>
+                  <select
+                    required
+                    value={crm}
+                    onChange={(e) => setCrm(e.target.value as CRMType | '')}
                     style={{
-                      padding: '14px 16px',
-                      borderRadius: 14,
-                      background:
-                        'linear-gradient(160deg, color-mix(in oklab, #6E5CE0 10%, #FBFCFE) 0%, color-mix(in oklab, #7FD6B0 6%, #FBFCFE) 100%)',
-                      border: '1px solid color-mix(in oklab, #5B4BAE 30%, #E4E8F1)',
+                      ...inputStyle(false),
+                      cursor: 'pointer',
+                      appearance: 'none',
+                      color: crm ? C.ink : C.ink4,
+                      backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235A6070' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>")`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 12px center',
+                      backgroundSize: '12px 12px',
+                      paddingRight: 36,
                     }}
                   >
-                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.accentInk, marginBottom: 6 }}>
-                      Your demo
-                    </div>
-                    <div style={{ fontSize: 16, fontWeight: 700, color: C.ink, lineHeight: 1.3 }}>
-                      {new Date(selectedSlot.start_time).toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
-                        weekday: 'long', month: 'short', day: 'numeric',
-                      })}
-                    </div>
-                    <div style={{ fontSize: 20, fontWeight: 700, color: C.ink, marginTop: 2, letterSpacing: '-0.01em' }}>
-                      {new Date(selectedSlot.start_time).toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
-                        hour: 'numeric', minute: '2-digit', timeZone: timezone,
-                      })}
-                    </div>
-                    <div style={{ fontSize: 11.5, color: C.ink4, marginTop: 4 }}>
-                      {mc.meetingMeta()}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedSlot(null)}
-                      style={{
-                        marginTop: 10,
-                        padding: '0',
-                        background: 'transparent',
-                        border: 'none',
-                        color: C.accentInk,
-                        fontSize: 12,
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        textDecoration: 'underline',
-                        textDecorationColor: 'color-mix(in oklab, #5B4BAE 40%, transparent)',
-                        textUnderlineOffset: 3,
-                      }}
-                    >
-                      {mc.changeTime}
-                    </button>
-                  </div>
-                ) : null}
-
-                {bookingError && (
-                  <p style={{ fontSize: 12.5, color: C.err, marginTop: 0, marginBottom: 0 }}>{bookingError}</p>
-                )}
-
-                <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
-                  {selectedSlot && (
-                    <button
-                      type="button"
-                      onClick={() => setSelectedSlot(null)}
-                      disabled={isSubmitting}
-                      aria-label="Go back to time picker"
-                      style={{
-                        padding: '15px 18px',
-                        fontSize: 14, fontWeight: 700, fontFamily: sans,
-                        color: C.ink2,
-                        background: '#fff',
-                        border: `1px solid ${C.line2}`,
-                        borderRadius: 999,
-                        cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                        display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-                        transition: 'background .12s ease, border-color .12s ease',
-                        flexShrink: 0,
-                      }}
-                      onMouseEnter={(e) => {
-                        if (isSubmitting) return
-                        e.currentTarget.style.background = C.bg2
-                        e.currentTarget.style.borderColor = C.line
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = '#fff'
-                        e.currentTarget.style.borderColor = C.line2
-                      }}
-                    >
-                      {mc.back}
-                    </button>
-                  )}
-                <button
-                  type="submit"
-                  disabled={!canBook}
-                  style={{
-                    flex: 1,
-                    padding: '15px 22px',
-                    fontSize: 15, fontWeight: 700, fontFamily: sans, letterSpacing: '-0.005em',
-                    color: '#fff',
-                    background: canBook
-                      ? 'linear-gradient(135deg, #7B65F0 0%, #5B4BAE 50%, #7FD6B0 130%)'
-                      : C.bg2,
-                    border: 'none',
-                    borderRadius: 999,
-                    cursor: canBook ? 'pointer' : 'not-allowed',
-                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-                    boxShadow: canBook
-                      ? '0 14px 32px -12px rgba(91,75,174,0.6), inset 0 -1px 0 rgba(255,255,255,0.14)'
-                      : 'none',
-                    transition: 'transform .12s ease, box-shadow .2s ease',
-                    outline: canBook ? '1px solid rgba(255,255,255,0.15)' : 'none',
-                    outlineOffset: canBook ? -1 : 0,
-                  } as React.CSSProperties}
-                  onMouseEnter={(e) => {
-                    if (!canBook) return
-                    e.currentTarget.style.transform = 'translateY(-1px)'
-                    e.currentTarget.style.boxShadow = '0 18px 36px -12px rgba(91,75,174,0.7), inset 0 -1px 0 rgba(255,255,255,0.18)'
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!canBook) return
-                    e.currentTarget.style.transform = 'translateY(0)'
-                    e.currentTarget.style.boxShadow = '0 14px 32px -12px rgba(91,75,174,0.6), inset 0 -1px 0 rgba(255,255,255,0.14)'
-                  }}
-                >
-                  {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={15} />}
-                  {isSubmitting
-                    ? t('submitting')
-                    : selectedSlot
-                    ? mc.ctaConfirm
-                    : mc.ctaChooseTime}
-                </button>
+                    <option value="" disabled>{mc.crmPlaceholder}</option>
+                    {Object.values(CRMType).map((v) => (
+                      <option key={v} value={v}>{v}</option>
+                    ))}
+                  </select>
                 </div>
-                <p style={{ marginTop: 0, marginBottom: 0, fontSize: 11.5, color: C.ink4, textAlign: 'center' }}>
-                  {t('disclaimer')}
-                </p>
-              </form>
 
-              {/* ── RIGHT: next-7-days strip + time slots
-                       Hidden entirely once a time is picked so the user sees
-                       only their form + selected-slot summary. Everything
-                       past the 7-day window is rendered as a dimmed "booked"
-                       pill so the visitor understands scarcity. */}
-              {!selectedSlot && (
-                <div>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: C.ink3, marginBottom: 10, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                    Pick a day
+              </div>
+              )}
+
+              {step === 'time' && (
+              /* ── STEP 2: date + time picker ────────────────────────── */
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, gap: 12 }}>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: C.accentInk, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                    <span style={{
+                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                      width: 18, height: 18, borderRadius: 999,
+                      background: C.accentInk, color: '#fff',
+                      fontSize: 10, fontWeight: 800, marginRight: 8,
+                    }}>2</span>
+                    {mc.step2Label}
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => { setStep('details'); setSelectedSlot(null) }}
+                    style={{
+                      padding: '6px 12px',
+                      fontSize: 12, fontWeight: 700, fontFamily: sans,
+                      color: C.ink3,
+                      background: 'transparent',
+                      border: `1px solid ${C.line2}`,
+                      borderRadius: 999,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {mc.back}
+                  </button>
+                </div>
+                <div>
                   {/* 7-day horizontal strip */}
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 6, marginBottom: 18 }}>
                     {Array.from({ length: 7 }, (_, i) => addDays(today, i)).map((d) => {
@@ -920,8 +868,113 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                     )}
                   </div>
                 </div>
+              </div>
               )}
             </div>
+
+            {/* ── FOOTER: centered CTA + selected-slot summary ─────────── */}
+            <div style={{ marginTop: 4, display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: 12 }}>
+              {selectedSlot && (
+                <div
+                  style={{
+                    padding: '12px 16px',
+                    borderRadius: 14,
+                    background:
+                      'linear-gradient(160deg, color-mix(in oklab, #6E5CE0 10%, #FBFCFE) 0%, color-mix(in oklab, #7FD6B0 6%, #FBFCFE) 100%)',
+                    border: '1px solid color-mix(in oklab, #5B4BAE 30%, #E4E8F1)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14,
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <div>
+                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.accentInk, marginBottom: 4 }}>
+                      {mc.yourDemoEyebrow}
+                    </div>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: C.ink, lineHeight: 1.3 }}>
+                      {new Date(selectedSlot.start_time).toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
+                        weekday: 'long', month: 'short', day: 'numeric',
+                      })}
+                      <span style={{ marginLeft: 6, color: C.accentInk }}>
+                        · {new Date(selectedSlot.start_time).toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
+                          hour: 'numeric', minute: '2-digit', timeZone: timezone,
+                        })}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: 11.5, color: C.ink4, marginTop: 2 }}>{mc.meetingMeta()}</div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedSlot(null)}
+                    style={{
+                      padding: '8px 14px', fontSize: 12, fontWeight: 700,
+                      color: C.accentInk, background: '#fff',
+                      border: `1px solid color-mix(in oklab, #5B4BAE 30%, ${C.line2})`,
+                      borderRadius: 999, cursor: 'pointer', flexShrink: 0,
+                    }}
+                  >
+                    {mc.changeTime}
+                  </button>
+                </div>
+              )}
+
+              {bookingError && (
+                <p style={{ fontSize: 12.5, color: C.err, margin: 0, textAlign: 'center' }}>{bookingError}</p>
+              )}
+
+              {(() => {
+                const ctaEnabled = step === 'details' ? formValid : canBook
+                const ctaLabel = isSubmitting
+                  ? t('submitting')
+                  : step === 'details'
+                  ? mc.continueLabel
+                  : selectedSlot
+                  ? mc.ctaConfirm
+                  : mc.ctaChooseTime
+                return (
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <button
+                      type="submit"
+                      disabled={!ctaEnabled}
+                      style={{
+                        minWidth: 280,
+                        padding: '15px 34px',
+                        fontSize: 15, fontWeight: 700, fontFamily: sans, letterSpacing: '-0.005em',
+                        color: '#fff',
+                        background: ctaEnabled
+                          ? 'linear-gradient(135deg, #7B65F0 0%, #5B4BAE 50%, #7FD6B0 130%)'
+                          : C.bg2,
+                        border: 'none',
+                        borderRadius: 999,
+                        cursor: ctaEnabled ? 'pointer' : 'not-allowed',
+                        display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+                        boxShadow: ctaEnabled
+                          ? '0 14px 32px -12px rgba(91,75,174,0.6), inset 0 -1px 0 rgba(255,255,255,0.14)'
+                          : 'none',
+                        transition: 'transform .12s ease, box-shadow .2s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!ctaEnabled) return
+                        e.currentTarget.style.transform = 'translateY(-1px)'
+                        e.currentTarget.style.boxShadow = '0 18px 36px -12px rgba(91,75,174,0.7), inset 0 -1px 0 rgba(255,255,255,0.18)'
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!ctaEnabled) return
+                        e.currentTarget.style.transform = 'translateY(0)'
+                        e.currentTarget.style.boxShadow = '0 14px 32px -12px rgba(91,75,174,0.6), inset 0 -1px 0 rgba(255,255,255,0.14)'
+                      }}
+                    >
+                      {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={15} />}
+                      {ctaLabel}
+                    </button>
+                  </div>
+                )
+              })()}
+
+              <p style={{ margin: 0, fontSize: 11.5, color: C.ink4, textAlign: 'center' }}>
+                {t('disclaimer')}
+              </p>
+            </div>
+            </form>
 
             <style>{`
               @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
