@@ -78,6 +78,10 @@ const nextConfig: NextConfig = {
       // (502), so browser-facing endpoints go through a non-/api path and get
       // rewritten to the API route inside Next — same trick as the sitemap.
       { source: '/track/views', destination: '/api/views' },
+      // Same endpoint under a path that ad-block lists don't match — the
+      // "/track/" substring is on EasyPrivacy-style lists, which silently
+      // swallowed a share of real view beacons. Old path kept for cached HTML.
+      { source: '/pv', destination: '/api/views' },
       // Paid LP lead form. Must stay off the /api/* prefix — production
       // nginx routes that to a dead upstream and every conversion would 502.
       { source: '/track/crm-lead', destination: '/api/crm-lead' },

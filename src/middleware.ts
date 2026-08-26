@@ -131,5 +131,7 @@ export const config = {
   // their own <html>/<body>, carry no site chrome and hold their locale in
   // the path, so they must not be rewritten into the i18n locale tree.
   // /br/lp/… needs no entry — a static segment already beats [locale].
-  matcher: ['/', '/(en|br|es|tr)/:path*', '/((?!api|track|lp|_next|_vercel|integrate-|fb$|.*\\..*).+)'],
+  // `pv` is the ad-blocker-safe alias of /track/views (see next.config.ts)
+  // and must bypass i18n the same way.
+  matcher: ['/', '/(en|br|es|tr)/:path*', '/((?!api|track|pv$|lp|_next|_vercel|integrate-|fb$|.*\\..*).+)'],
 }

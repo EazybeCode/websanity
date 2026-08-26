@@ -809,7 +809,9 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
   // View count tracking — initial count from server, increment in background
   const [viewCount, setViewCount] = useState(initialViewCount)
   useEffect(() => {
-    fetch('/track/views', {
+    // "/pv" instead of "/track/views": paths containing "/track/" are on
+    // common ad-block lists, which silently dropped a share of real views.
+    fetch('/pv', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ slug, locale }),
