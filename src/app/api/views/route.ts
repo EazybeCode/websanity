@@ -50,7 +50,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ views: currentCount * 7, recorded: true })
     } catch (writeError) {
       console.error('View count write failed (check SANITY_API_TOKEN):', writeError)
-      return NextResponse.json({ views: (doc.viewCount || 0) * 7, recorded: false })
+      // Expose only the failure class, so ops can confirm the cause from the
+      // public response without server access. 401/403 ⇒ the env token.
+      const status = (writeError as { statusCode?: number })?.statusCode
+      const reason = status === 401 || status === 403 ? 'auth' : 'other'
+      return NextResponse.json({ views: (doc.viewCount || 0) * 7, recorded: false, reason })
     }
   } catch (error) {
     console.error('View count error:', error)
