@@ -17,12 +17,14 @@ import comparisonTable from './comparisonTable.js'
 import author from './author.js'
 import blogCategory from './blogCategory.js'
 import partner from './partner.js'
+import caseStudy from './caseStudy.js'
 
 export default [
   // Document types
   author,
   blogCategory,
   partner,
+  caseStudy,
   // Object types (used within arrays/fields)
   table,
   accordion,

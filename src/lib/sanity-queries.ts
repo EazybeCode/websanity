@@ -1172,6 +1172,28 @@ export async function getComparisonPostTranslations(translationGroupId: string) 
   return sanityClient.fetch(query, { translationGroupId })
 }
 
+// ─── Case studies (/case-studies/*) ──────────────────────────────────────────
+
+/**
+ * One case study by slug + locale, or null (CMS unreachable / none exists) —
+ * callers fall back to their static content.
+ *
+ * On localhost (next dev) DRAFTS are included, so Studio edits show up
+ * without publishing anything. Production only ever sees PUBLISHED docs.
+ */
+export async function getCaseStudy(slug: string, locale: string = 'en') {
+  const sanityLanguage = toSanityLang(locale)
+  const client = process.env.NODE_ENV === 'development' ? sanityDraftClient : sanityClient
+  const query = `*[_type == "caseStudy" && slug.current == $slug && language == $sanityLanguage][0]{
+    _id, company, industry, referredBy, facts[]{ value, label },
+    title, excerpt, cardHeadline, body, keyTakeaways, publishedAt,
+    metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription,
+    twitterTitle, twitterDescription, customMetaTags,
+    "logoUrl": logo.asset->url
+  }`
+  return client.fetch(query, { slug, sanityLanguage })
+}
+
 // ─── Partners ("Current Partners at Eazybe" directory) ───────────────────────
 
 const PARTNER_CRM_LABELS: Record<PartnerCrm, string> = {

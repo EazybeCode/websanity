@@ -1975,6 +1975,15 @@ export default defineConfig({
                   .defaultOrdering([{ field: 'order', direction: 'asc' }])
               ),
             S.listItem()
+              .title('Case Studies')
+              .icon(() => '📈')
+              .child(
+                S.documentTypeList('caseStudy')
+                  .title('Case Studies (/case-studies/*)')
+                  .filter('_type == "caseStudy"')
+                  .defaultOrdering([{ field: 'order', direction: 'asc' }])
+              ),
+            S.listItem()
               .title('Redirects')
               .icon(() => '🔀')
               .child(
