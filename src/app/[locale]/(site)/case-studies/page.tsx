@@ -3,8 +3,11 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getCanonicalOnly } from '@/lib/seo-helpers'
 import { getCaseStudiesPageContent } from '@/data/case-studies-content'
+import { getCaseStudyCardOverrides } from '@/lib/sanity-queries'
 
 export const dynamic = 'force-static'
+// Re-render every minute so logos uploaded in Sanity show up.
+export const revalidate = 60
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -43,6 +46,7 @@ export default async function CaseStudiesPage({
   const { locale } = await params
   setRequestLocale(locale)
   const t = getCaseStudiesPageContent(locale)
+  const cms = await getCaseStudyCardOverrides(locale)
 
   const localePath = locale === 'en' ? '' : `/${locale}`
   const homeUrl = `${SITE_URL}${locale === 'en' ? '/' : `/${locale}`}`
@@ -74,7 +78,8 @@ export default async function CaseStudiesPage({
       <style
         dangerouslySetInnerHTML={{
           __html: `
-            .cs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; align-items: stretch; }
+            /* Cards keep a sane width and center when there are only a few. */
+            .cs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 400px)); gap: 22px; align-items: stretch; justify-content: center; }
             .cs-card {
               display: flex; flex-direction: column; align-items: flex-start;
               background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 26px;
@@ -92,7 +97,9 @@ export default async function CaseStudiesPage({
               background: color-mix(in oklab, var(--accent-a) 14%, #fff);
               border: 1px solid color-mix(in oklab, var(--accent-a) 32%, var(--line));
               font-family: var(--f-mono); font-size: 13px; font-weight: 600; color: var(--accent-ink);
+              overflow: hidden;
             }
+            .cs-avatar img { width: 100%; height: 100%; object-fit: contain; padding: 4px; background: #fff; border-radius: inherit; }
             .cs-company { font-size: 15px; font-weight: 700; color: var(--ink); }
             .cs-industry { display: inline-block; margin-top: 3px; font-size: 12px; padding: 2px 9px; border-radius: 100px;
               background: var(--bg-2); border: 1px solid var(--line); color: var(--ink-3); }
@@ -161,24 +168,30 @@ export default async function CaseStudiesPage({
             <p>{t.grid.subtitle}</p>
           </div>
           <div className="cs-grid">
-            {t.cards.map((c) => (
+            {t.cards.map((c) => {
+              const slug = c.href?.split('/').pop()
+              const over = slug ? cms[slug] : undefined
+              return (
               <article key={c.company} className="cs-card">
                 <div className="cs-card-head">
-                  <span className="cs-avatar" aria-hidden="true">{c.initials}</span>
+                  <span className="cs-avatar" aria-hidden="true">
+                    {over?.logoUrl ? <img src={`${over.logoUrl}?w=88&h=88&fit=max&auto=format`} alt="" loading="lazy" /> : c.initials}
+                  </span>
                   <div>
-                    <div className="cs-company">{c.company}</div>
-                    <span className="cs-industry">{c.industry}</span>
+                    <div className="cs-company">{over?.company || c.company}</div>
+                    <span className="cs-industry">{over?.industry || c.industry}</span>
                   </div>
                 </div>
-                <h3 className="cs-headline">{c.headline}</h3>
-                <p className="cs-summary">{c.summary}</p>
+                <h3 className="cs-headline">{over?.headline || c.headline}</h3>
+                <p className="cs-summary">{over?.summary || c.summary}</p>
                 {c.href && (
                   <a className="cs-link" href={locale === 'en' ? c.href : `/${locale}${c.href}`}>
                     {t.grid.readStory} →
                   </a>
                 )}
               </article>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>

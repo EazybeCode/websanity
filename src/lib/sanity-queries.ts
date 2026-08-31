@@ -1181,6 +1181,55 @@ export async function getComparisonPostTranslations(translationGroupId: string) 
  * On localhost (next dev) DRAFTS are included, so Studio edits show up
  * without publishing anything. Production only ever sees PUBLISHED docs.
  */
+export interface CaseStudyCardOverride {
+  company?: string
+  industry?: string
+  headline?: string
+  summary?: string
+  logoUrl?: string
+}
+
+/**
+ * Published caseStudy card fields for the /case-studies hub, keyed by slug.
+ * Prefers the doc in the page's language and falls back to English, so the
+ * hub reflects Studio edits (headline, summary, industry, logo) within a
+ * minute without touching the static fallback copy.
+ */
+export async function getCaseStudyCardOverrides(locale: string): Promise<Record<string, CaseStudyCardOverride>> {
+  const sanityLanguage = toSanityLang(locale)
+  const rows = await sanityClient.fetch<Array<{
+    slug: string | null
+    language: string | null
+    company: string | null
+    industry: string | null
+    cardHeadline: string | null
+    title: string | null
+    excerpt: string | null
+    logoUrl: string | null
+  }> | null>(
+    `*[_type == "caseStudy" && language in [$sanityLanguage, "en"]]{
+      "slug": slug.current, language, company, industry,
+      cardHeadline, title, excerpt,
+      "logoUrl": logo.asset->url
+    }`,
+    { sanityLanguage }
+  )
+  const map: Record<string, CaseStudyCardOverride> = {}
+  for (const row of rows ?? []) {
+    if (!row.slug) continue
+    // English is the fallback; a doc in the page's own language wins.
+    if (map[row.slug] && row.language === 'en' && sanityLanguage !== 'en') continue
+    map[row.slug] = {
+      company: row.company ?? undefined,
+      industry: row.industry ?? undefined,
+      headline: row.cardHeadline || row.title || undefined,
+      summary: row.excerpt ?? undefined,
+      logoUrl: row.logoUrl ?? undefined,
+    }
+  }
+  return map
+}
+
 export async function getCaseStudy(slug: string, locale: string = 'en') {
   const sanityLanguage = toSanityLang(locale)
   const client = process.env.NODE_ENV === 'development' ? sanityDraftClient : sanityClient

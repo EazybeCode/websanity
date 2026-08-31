@@ -2,13 +2,9 @@
  * Localized copy for /case-studies. Same shape as the other static marketing
  * pages: strings only, icons/markup stay in the page component.
  *
- * ⚠️ THE STORY CARDS BELOW ARE SAMPLE DATA, NOT REAL CUSTOMERS. The company
- * names are invented and the outcomes are illustrative. Replace them with
- * real, approved customer stories before treating this page as proof.
- * Deliberately: no named-person quotes and no logos — a sample endorsement
- * with a name on it would be a fabricated testimonial. A card with no `href`
- * renders without a "Read the story" link, so cards are safe to ship before
- * their full write-ups exist.
+ * Only real, approved customer stories belong here (the sample cards were
+ * removed 2026-08-31). A card with no `href` renders without a "Read the
+ * story" link, so a card can ship before its full write-up exists.
  */
 
 export interface CaseStudyCard {
@@ -72,54 +68,6 @@ const en: CaseStudiesPageContent = {
         'Brazil’s compact machinery rental specialist unified WhatsApp and HubSpot: quotes went from 24–48 hours to under 3, and lease extensions stopped depending on rep memory.',
       href: '/case-studies/lokmaxltda',
     },
-    {
-      initials: 'BR',
-      company: 'Brightlane Realty',
-      industry: 'Real estate',
-      headline: 'Site-visit leads stopped going cold in personal chats',
-      summary:
-        'Every broker conversation now lands in the CRM automatically, so follow-ups happen on schedule instead of whenever someone remembers the chat exists.',
-    },
-    {
-      initials: 'ML',
-      company: 'Medlink Clinics',
-      industry: 'Healthcare',
-      headline: 'Appointment requests answered around the clock',
-      summary:
-        'An AI agent handles the repeat questions at night and on weekends, and the morning shift starts from a synced inbox instead of a backlog.',
-    },
-    {
-      initials: 'LU',
-      company: 'Lumo Learning',
-      industry: 'Education',
-      headline: 'Counsellors share one WhatsApp pipeline',
-      summary:
-        'Admissions moved from six personal numbers to a shared team inbox, so a counsellor going on leave no longer takes their pipeline with them.',
-    },
-    {
-      initials: 'CX',
-      company: 'Corex Industrial',
-      industry: 'Manufacturing',
-      headline: 'Quotes and negotiations visible to managers for the first time',
-      summary:
-        'Long-cycle B2B deals run on WhatsApp for months. Chat sync gave managers the deal trail without asking reps to write reports about it.',
-    },
-    {
-      initials: 'VY',
-      company: 'Vaya Travel',
-      industry: 'Travel',
-      headline: 'Seasonal demand spikes without seasonal hiring',
-      summary:
-        'Booking-window rushes used to mean missed messages. Funnels and reminders now keep every enquiry moving even when the team is at capacity.',
-    },
-    {
-      initials: 'FS',
-      company: 'Ferro Motors',
-      industry: 'Automotive',
-      headline: 'Scheduled follow-ups cut test-drive no-shows',
-      summary:
-        'Reminders go out from the rep’s own number at the right moment, and the showroom team sees which conversations actually turned into visits.',
-    },
   ],
   finalCta: {
     h2: 'Your Team Could Be The Next Story',
@@ -162,54 +110,6 @@ const br: CaseStudiesPageContent = {
       summary:
         'A especialista brasileira em locação de máquinas compactas unificou WhatsApp e HubSpot: cotações caíram de 24–48 horas para menos de 3, e as extensões de contrato deixaram de depender da memória do vendedor.',
       href: '/case-studies/lokmaxltda',
-    },
-    {
-      initials: 'BR',
-      company: 'Brightlane Realty',
-      industry: 'Imobiliário',
-      headline: 'Leads de visita pararam de esfriar em chats pessoais',
-      summary:
-        'Toda conversa dos corretores agora cai no CRM automaticamente, então o follow-up acontece no prazo, e não quando alguém lembra que o chat existe.',
-    },
-    {
-      initials: 'ML',
-      company: 'Medlink Clinics',
-      industry: 'Saúde',
-      headline: 'Pedidos de agendamento respondidos a qualquer hora',
-      summary:
-        'Um agente de IA cuida das perguntas repetidas à noite e nos fins de semana, e o turno da manhã começa de uma caixa sincronizada, não de um acúmulo.',
-    },
-    {
-      initials: 'LU',
-      company: 'Lumo Learning',
-      industry: 'Educação',
-      headline: 'Consultores compartilham um único pipeline no WhatsApp',
-      summary:
-        'A captação saiu de seis números pessoais para uma caixa de entrada de equipe; um consultor de férias não leva mais o pipeline junto.',
-    },
-    {
-      initials: 'CX',
-      company: 'Corex Industrial',
-      industry: 'Indústria',
-      headline: 'Cotações e negociações visíveis para os gestores pela primeira vez',
-      summary:
-        'Negócios B2B de ciclo longo passam meses no WhatsApp. A sincronização deu aos gestores a trilha do negócio sem pedir relatório a ninguém.',
-    },
-    {
-      initials: 'VY',
-      company: 'Vaya Travel',
-      industry: 'Turismo',
-      headline: 'Picos de demanda sem contratação sazonal',
-      summary:
-        'A alta temporada significava mensagens perdidas. Funis e lembretes agora mantêm cada consulta andando mesmo com o time no limite.',
-    },
-    {
-      initials: 'FS',
-      company: 'Ferro Motors',
-      industry: 'Automotivo',
-      headline: 'Menos faltas ao test-drive com follow-ups agendados',
-      summary:
-        'Os lembretes saem do número do próprio vendedor na hora certa, e a loja vê quais conversas realmente viraram visitas.',
     },
   ],
   finalCta: {
@@ -254,54 +154,6 @@ const es: CaseStudiesPageContent = {
         'El especialista brasileño en alquiler de maquinaria compacta unificó WhatsApp y HubSpot: las cotizaciones pasaron de 24–48 horas a menos de 3, y las extensiones de contrato dejaron de depender de la memoria del vendedor.',
       href: '/case-studies/lokmaxltda',
     },
-    {
-      initials: 'BR',
-      company: 'Brightlane Realty',
-      industry: 'Inmobiliario',
-      headline: 'Los leads de visita dejaron de enfriarse en chats personales',
-      summary:
-        'Cada conversación de los agentes cae ahora en el CRM automáticamente, así que el seguimiento ocurre a tiempo y no cuando alguien recuerda que el chat existe.',
-    },
-    {
-      initials: 'ML',
-      company: 'Medlink Clinics',
-      industry: 'Salud',
-      headline: 'Solicitudes de cita respondidas a cualquier hora',
-      summary:
-        'Un agente de IA atiende las preguntas repetidas de noche y en fin de semana, y el turno de mañana arranca desde una bandeja sincronizada, no desde un atasco.',
-    },
-    {
-      initials: 'LU',
-      company: 'Lumo Learning',
-      industry: 'Educación',
-      headline: 'Los asesores comparten un solo pipeline de WhatsApp',
-      summary:
-        'Admisiones pasó de seis números personales a una bandeja de equipo; un asesor de vacaciones ya no se lleva su pipeline consigo.',
-    },
-    {
-      initials: 'CX',
-      company: 'Corex Industrial',
-      industry: 'Industria',
-      headline: 'Cotizaciones y negociaciones visibles para los gerentes por primera vez',
-      summary:
-        'Las ventas B2B de ciclo largo pasan meses en WhatsApp. La sincronización dio a los gerentes el rastro del negocio sin pedirle informes a nadie.',
-    },
-    {
-      initials: 'VY',
-      company: 'Vaya Travel',
-      industry: 'Viajes',
-      headline: 'Picos de demanda sin contratación estacional',
-      summary:
-        'La temporada alta significaba mensajes perdidos. Los embudos y recordatorios mantienen ahora cada consulta en movimiento aunque el equipo esté al límite.',
-    },
-    {
-      initials: 'FS',
-      company: 'Ferro Motors',
-      industry: 'Automoción',
-      headline: 'Menos ausencias a la prueba de manejo con seguimientos programados',
-      summary:
-        'Los recordatorios salen del número del propio vendedor en el momento justo, y el concesionario ve qué conversaciones se convirtieron en visitas.',
-    },
   ],
   finalCta: {
     h2: 'Tu equipo puede ser la próxima historia',
@@ -344,54 +196,6 @@ const tr: CaseStudiesPageContent = {
       summary:
         "Brezilya'nın kompakt makine kiralama uzmanı WhatsApp ile HubSpot'u birleştirdi: teklif süresi 24–48 saatten 3 saatin altına indi, sözleşme uzatmaları temsilci hafızasına bağlı olmaktan çıktı.",
       href: '/case-studies/lokmaxltda',
-    },
-    {
-      initials: 'BR',
-      company: 'Brightlane Realty',
-      industry: 'Gayrimenkul',
-      headline: 'Yer gösterme talepleri kişisel sohbetlerde soğumayı bıraktı',
-      summary:
-        "Danışmanların her konuşması artık otomatik olarak CRM'e düşüyor; takip, birinin sohbeti hatırlamasına değil takvime bağlı.",
-    },
-    {
-      initials: 'ML',
-      company: 'Medlink Clinics',
-      industry: 'Sağlık',
-      headline: 'Randevu talepleri günün her saati yanıtlanıyor',
-      summary:
-        'Tekrarlanan soruları geceleri ve hafta sonları bir Yapay Zeka ajanı karşılıyor; sabah vardiyası birikmiş yığından değil, senkron bir kutudan başlıyor.',
-    },
-    {
-      initials: 'LU',
-      company: 'Lumo Learning',
-      industry: 'Eğitim',
-      headline: "Danışmanlar tek bir WhatsApp hattında çalışıyor",
-      summary:
-        'Kayıt süreci altı kişisel numaradan ortak bir ekip gelen kutusuna taşındı; izne çıkan danışman artık pipeline’ını yanında götürmüyor.',
-    },
-    {
-      initials: 'CX',
-      company: 'Corex Industrial',
-      industry: 'Üretim',
-      headline: 'Teklifler ve pazarlıklar ilk kez yöneticilere görünür oldu',
-      summary:
-        "Uzun döngülü B2B satışlar aylarca WhatsApp'ta ilerliyor. Sohbet senkronu, temsilcilerden rapor istemeden yöneticilere satışın izini verdi.",
-    },
-    {
-      initials: 'VY',
-      company: 'Vaya Travel',
-      industry: 'Seyahat',
-      headline: 'Sezonluk talep artışı, sezonluk işe alım olmadan',
-      summary:
-        'Rezervasyon yoğunluğu eskiden kaçan mesajlar demekti. Huniler ve hatırlatmalar, ekip kapasite sınırındayken bile her talebi ilerletiyor.',
-    },
-    {
-      initials: 'FS',
-      company: 'Ferro Motors',
-      industry: 'Otomotiv',
-      headline: 'Planlı takiplerle test sürüşüne gelmeme oranı düştü',
-      summary:
-        'Hatırlatmalar tam zamanında temsilcinin kendi numarasından gidiyor ve showroom ekibi hangi konuşmaların gerçekten ziyarete dönüştüğünü görüyor.',
     },
   ],
   finalCta: {
