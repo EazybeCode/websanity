@@ -7,7 +7,15 @@ import { useEffect, useState } from 'react'
  * Highlights the section currently in view; plain anchor links otherwise, so
  * it degrades to a normal jump list without JavaScript.
  */
-export function CaseStudyToc({ title, items }: { title: string; items: { id: string; label: string }[] }) {
+export function CaseStudyToc({
+  title,
+  items,
+  cta,
+}: {
+  title: string
+  items: { id: string; label: string }[]
+  cta?: React.ReactNode
+}) {
   const [active, setActive] = useState<string>(items[0]?.id ?? '')
 
   useEffect(() => {
@@ -39,6 +47,7 @@ export function CaseStudyToc({ title, items }: { title: string; items: { id: str
           </li>
         ))}
       </ul>
+      {cta}
     </nav>
   )
 }

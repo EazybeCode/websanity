@@ -679,3 +679,93 @@ export async function translatePostFields(fields, targetLang) {
     CACHE = null
   }
 }
+
+// ─── Case studies ────────────────────────────────────────────────────────────
+// Separate walker on purpose: case studies carry company facts / card copy
+// instead of FAQ / TL;DR, and must never share code paths with the blog and
+// comparison translation flow above.
+
+async function walkCaseStudyFields(fields, targetLang) {
+  const [
+    title,
+    excerpt,
+    cardHeadline,
+    industry,
+    body,
+    keyTakeaways,
+    facts,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
+    ogTitle,
+    ogDescription,
+    twitterTitle,
+    twitterDescription,
+    featuredImage,
+    customMetaTags,
+  ] = await Promise.all([
+    translateText(fields.title, targetLang),
+    translateText(fields.excerpt, targetLang),
+    translateText(fields.cardHeadline, targetLang),
+    translateText(fields.industry, targetLang),
+    translatePortableText(fields.body || [], targetLang),
+    translatePortableText(fields.keyTakeaways || [], targetLang),
+    Promise.all((fields.facts || []).map(async (f) => ({
+      ...f,
+      value: await translateText(f?.value, targetLang),
+      label: await translateText(f?.label, targetLang),
+    }))),
+    translateText(fields.metaTitle, targetLang),
+    translateText(fields.metaDescription, targetLang),
+    translateText(fields.metaKeywords, targetLang),
+    translateText(fields.ogTitle, targetLang),
+    translateText(fields.ogDescription, targetLang),
+    translateText(fields.twitterTitle, targetLang),
+    translateText(fields.twitterDescription, targetLang),
+    translateImage(fields.featuredImage, targetLang),
+    translateCustomMetaTags(fields.customMetaTags, targetLang),
+  ])
+
+  return {
+    title,
+    excerpt,
+    cardHeadline,
+    industry,
+    body,
+    keyTakeaways,
+    facts,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
+    ogTitle,
+    ogDescription,
+    twitterTitle,
+    twitterDescription,
+    featuredImage,
+    customMetaTags,
+  }
+}
+
+/**
+ * Translate every translatable field of a caseStudy document with Claude,
+ * using the same two-pass batch strategy as translatePostFields.
+ */
+export async function translateCaseStudyFields(fields, targetLang) {
+  COLLECT = true
+  COLLECTED = new Set()
+  try {
+    await walkCaseStudyFields(fields, targetLang)
+  } finally {
+    COLLECT = false
+  }
+
+  const strings = [...COLLECTED]
+  COLLECTED = null
+  CACHE = await claudeTranslateBatch(strings, targetLang)
+
+  try {
+    return await walkCaseStudyFields(fields, targetLang)
+  } finally {
+    CACHE = null
+  }
+}

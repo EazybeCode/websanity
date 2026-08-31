@@ -50,6 +50,8 @@ const bodyBlocks = [
   { type: 'quote' },
 ]
 
+import { CaseStudyTranslationLinks } from './CaseStudyTranslationLinks.jsx'
+
 const caseStudy = {
   name: 'caseStudy',
   title: 'Case Study',
@@ -80,6 +82,14 @@ const caseStudy = {
       title: '🔗 Translation Group ID',
       type: 'string',
       description: 'Same ID across all language versions links them together.',
+    },
+    {
+      name: 'translationLinks',
+      title: '🌐 Translations',
+      type: 'string',
+      components: {
+        field: CaseStudyTranslationLinks,
+      },
     },
 
     // === COMPANY ===
@@ -195,6 +205,14 @@ const caseStudy = {
       options: { hotspot: true },
       fields: [{ name: 'alt', type: 'string', title: 'Alt Text' }],
       description: 'For social sharing and the hub card. 1200×630 recommended.',
+    },
+    {
+      name: 'author',
+      title: '✍️ Author',
+      type: 'reference',
+      to: [{ type: 'author' }],
+      fieldset: 'content',
+      description: 'Shown as the author profile card at the end of the story. Optional.',
     },
     {
       name: 'publishedAt',

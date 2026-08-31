@@ -1189,7 +1189,14 @@ export async function getCaseStudy(slug: string, locale: string = 'en') {
     title, excerpt, cardHeadline, body, keyTakeaways, publishedAt,
     metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription,
     twitterTitle, twitterDescription, customMetaTags,
-    "logoUrl": logo.asset->url
+    "logoUrl": logo.asset->url,
+    "author": author->{
+      name,
+      "slug": slug.current,
+      "image": image.asset->url,
+      position,
+      bio
+    }
   }`
   return client.fetch(query, { slug, sanityLanguage })
 }

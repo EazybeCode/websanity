@@ -3,9 +3,8 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getCanonicalOnly } from '@/lib/seo-helpers'
 import { getLokmaxContent } from '@/data/case-study-lokmax'
-import { CaseStudyToc } from '@/components/pages/CaseStudyToc'
 import { getCaseStudy } from '@/lib/sanity-queries'
-import { CaseStudyBody, caseStudyToc, caseStudyReadMinutes, type PtBlock } from '@/components/pages/CaseStudyBody'
+import { CaseStudyBody, caseStudyReadMinutes, type PtBlock } from '@/components/pages/CaseStudyBody'
 
 // Content is managed in Sanity ("Case Studies" section). A PUBLISHED caseStudy
 // doc with this slug takes over the article; the static content below is the
@@ -87,12 +86,19 @@ export default async function LokmaxCaseStudyPage({
     .join('')
     .padEnd(2, company.slice(1, 2).toUpperCase())
     .slice(0, 2)
+  const logoUrl: string | null = doc?.logoUrl ?? null
   const heroEyebrow = doc?.industry ? `Case Study · ${doc.industry}` : t.hero.eyebrow
   const heroDek = doc?.excerpt || t.hero.subtitle
   const heroFacts: { value: string; label: string }[] = doc?.facts?.length ? doc.facts : t.hero.facts
   const bylineSub = doc
     ? `${doc.referredBy ? `A growth story referred by ${doc.referredBy} · ` : ''}${caseStudyReadMinutes(doc.body as PtBlock[])} min read`
     : `${t.hero.referral} · ${t.article.readTime}`
+
+  // Hero byline shows the author profile when one is set in Sanity; the
+  // company stays on the dark facts card and breadcrumb.
+  const heroAuthor: { name: string; slug?: string; image?: string; position?: string } | null =
+    doc?.author?.name ? doc.author : null
+  const authorUrl = heroAuthor?.slug ? `${prefix}/blog/authors/${heroAuthor.slug}` : null
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -113,17 +119,6 @@ export default async function LokmaxCaseStudyPage({
     publisher: { '@type': 'Organization', name: 'Eazybe', url: SITE_URL },
     about: { '@type': 'Organization', name: 'Lokmax' },
   }
-
-  const tocItems = doc
-    ? caseStudyToc(doc.body as PtBlock[])
-    : [
-        { id: 'story', label: t.reality.h2 },
-        { id: 'problem', label: t.problems.h2 },
-        { id: 'solution', label: t.solution.h2 },
-        { id: 'how', label: t.how.h2 },
-        { id: 'results', label: t.beforeAfter.h2 },
-        { id: 'shift', label: t.shifts.h2 },
-      ]
 
   const share = [
     { label: 'LinkedIn', icon: ShareIcons.linkedin, href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}` },
@@ -148,9 +143,10 @@ export default async function LokmaxCaseStudyPage({
 
             /* Split hero: text left, visual right on a soft blob. */
             .lka-hgrid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
-            .lka-pill {
+            /* .landing scope so the white text beats the landing theme's inherited ink color */
+            .landing .lka-pill {
               display: inline-block; padding: 5px 14px; border-radius: 8px;
-              background: var(--accent-ink); color: #fff;
+              background: var(--accent-ink); color: #fff !important;
               font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
             }
             .lka-byline { display: flex; align-items: center; gap: 12px; margin-top: 30px; }
@@ -160,8 +156,12 @@ export default async function LokmaxCaseStudyPage({
               background: color-mix(in oklab, var(--accent-a) 16%, #fff);
               border: 1px solid color-mix(in oklab, var(--accent-a) 40%, var(--line));
               font-family: var(--f-mono); font-size: 14px; font-weight: 600; color: var(--accent-ink);
+              overflow: hidden;
             }
+            .lka-avatar img { width: 100%; height: 100%; object-fit: contain; padding: 5px; background: #fff; border-radius: inherit; }
             .lka-byline-name { font-size: 15px; font-weight: 700; color: var(--ink); }
+            .landing a.lka-byline-link { display: inline-block; color: var(--ink); }
+            .landing a.lka-byline-link:hover { color: var(--accent-ink); }
             .lka-byline-sub { margin-top: 2px; font-size: 13.5px; color: var(--ink-3); }
             .lka-visual-wrap { position: relative; }
             .lka-visual-wrap::before {
@@ -181,6 +181,34 @@ export default async function LokmaxCaseStudyPage({
               background: color-mix(in oklab, #7FD6B0 16%, transparent);
               border: 1px solid color-mix(in oklab, #7FD6B0 45%, transparent);
               font-family: var(--f-mono); font-size: 24px; font-weight: 600; color: #7FD6B0;
+              position: relative; overflow: visible;
+            }
+            /* Liquid-glass logo tile: the logo's own colors bleed out as a soft
+               blurred glow behind a frosted pane. */
+            .lka-visual-mark.has-logo {
+              background: rgba(255, 255, 255, 0.08);
+              border: 1px solid rgba(255, 255, 255, 0.22);
+              backdrop-filter: blur(14px) saturate(1.4);
+              -webkit-backdrop-filter: blur(14px) saturate(1.4);
+              box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+            }
+            .lka-visual-mark .lka-mark-glow {
+              position: absolute; inset: -22%; z-index: 0; border-radius: inherit;
+              object-fit: contain; width: 144%; height: 144%;
+              filter: blur(22px) saturate(1.8) brightness(1.15);
+              opacity: 0.75; pointer-events: none;
+              animation: lka-glow-drift 7s ease-in-out infinite alternate;
+            }
+            .lka-visual-mark .lka-mark-img {
+              position: relative; z-index: 1; width: 100%; height: 100%;
+              object-fit: contain; padding: 12px; border-radius: inherit;
+            }
+            @keyframes lka-glow-drift {
+              from { transform: translate(-3%, -2%) scale(1); opacity: 0.6; }
+              to   { transform: translate(3%, 2%) scale(1.08); opacity: 0.85; }
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .lka-visual-mark .lka-mark-glow { animation: none; }
             }
             .lka-visual-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 24px; }
             /* Explicit colors: the panel sits in a light section, so inherited
@@ -203,25 +231,28 @@ export default async function LokmaxCaseStudyPage({
 
             /* Article layout: sticky TOC on the left (aligned with the hero's
                left edge), prose beside it. */
-            .lka-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); justify-content: start; }
-            .lka-toc { position: sticky; top: 96px; align-self: start; }
-            .lka-toc-title { font-family: var(--f-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
-            .lka-toc ul { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
-            .lka-toc li a {
-              display: block; padding: 7px 0 7px 14px; margin-left: -2px; border-left: 2px solid transparent;
-              font-size: 13.5px; line-height: 1.45; color: var(--ink-3);
-              transition: color .16s ease, border-color .16s ease;
-            }
-            .landing .lka-toc li a { color: var(--ink-3); }
-            .landing .lka-toc li a:hover { color: var(--ink); }
-            .landing .lka-toc li a.is-active { color: var(--accent-ink); border-left-color: var(--accent-ink); font-weight: 600; }
-            .landing .lka-toc li a:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+            /* Single centered reading column, equal air left and right. */
+            .lka-layout { max-width: 880px; margin: 0 auto; }
 
             .lka-prose h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(26px, 3vw, 34px);
               letter-spacing: -0.02em; line-height: 1.2; color: var(--ink); margin: 52px 0 18px; scroll-margin-top: 96px; }
             .lka-prose h2:first-child { margin-top: 0; }
             .lka-prose h3 { font-size: 19px; font-weight: 700; color: var(--ink); margin: 32px 0 10px; }
             .lka-prose p { margin: 0 0 18px; font-size: 16.5px; line-height: 1.75; color: var(--ink-2); }
+            /* Highlighted hyperlinks — .landing scope needed to beat .landing a { color: inherit } */
+            .landing .lka-prose a {
+              color: var(--accent-ink); font-weight: 600;
+              text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--accent-ink) 45%, transparent);
+              text-decoration-thickness: 1.5px; text-underline-offset: 3px;
+              transition: color .15s ease, text-decoration-color .15s ease, background .15s ease;
+            }
+            .landing .lka-prose a:hover {
+              color: color-mix(in oklab, var(--accent-ink) 80%, #000);
+              text-decoration-color: currentColor;
+              background: color-mix(in oklab, var(--accent-ink) 10%, transparent);
+              border-radius: 3px;
+            }
+            .landing .lka-prose a:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; border-radius: 3px; }
             .lka-prose ul { margin: 0 0 18px; padding-left: 0; list-style: none; display: grid; gap: 8px; }
             .lka-prose ul li { font-size: 15px; line-height: 1.6; color: var(--ink-3); font-style: italic;
               padding-left: 14px; border-left: 2px solid color-mix(in oklab, var(--accent-ink) 40%, var(--line)); }
@@ -295,6 +326,37 @@ export default async function LokmaxCaseStudyPage({
             .lka-cms-figure { margin: 0 0 18px; }
             .lka-cms-figure img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); }
             .lka-cms-figure figcaption { margin-top: 8px; font-size: 13px; color: var(--ink-3); text-align: center; }
+            /* Author profile card (case-study only) */
+            .lka-author {
+              margin-top: 56px; padding: clamp(24px, 3vw, 34px); border-radius: 20px;
+              display: flex; gap: 22px; align-items: flex-start;
+              background: color-mix(in oklab, var(--accent-a) 7%, #fff);
+              border: 1px solid color-mix(in oklab, var(--accent-a) 28%, var(--line));
+            }
+            .lka-author-img {
+              width: 84px; height: 84px; flex-shrink: 0; border-radius: 18px; object-fit: cover;
+              border: 2px solid color-mix(in oklab, var(--accent-a) 55%, #fff);
+            }
+            .lka-author-mono {
+              width: 84px; height: 84px; flex-shrink: 0; border-radius: 18px;
+              display: inline-flex; align-items: center; justify-content: center;
+              background: color-mix(in oklab, var(--accent-a) 18%, #fff);
+              border: 1px solid color-mix(in oklab, var(--accent-a) 45%, var(--line));
+              font-family: var(--f-mono); font-size: 30px; font-weight: 600; color: var(--accent-ink);
+            }
+            .lka-author-label {
+              font-family: var(--f-mono); font-size: 11px; letter-spacing: .09em;
+              text-transform: uppercase; color: var(--ink-3);
+            }
+            .landing .lka-author-name {
+              display: inline-block; margin-top: 6px; font-size: 20px; font-weight: 700; color: var(--ink);
+            }
+            .landing a.lka-author-name:hover { color: var(--accent-ink); }
+            .lka-author-role { margin-top: 2px; font-size: 13.5px; font-weight: 600; color: var(--accent-ink); }
+            .lka-author-bio { margin: 10px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-2); }
+            @media (max-width: 640px) {
+              .lka-author { flex-direction: column; align-items: center; text-align: center; }
+            }
             .lka-prose ol { margin: 0 0 18px; padding-left: 22px; display: grid; gap: 8px; }
             .lka-prose ol li { font-size: 15.5px; line-height: 1.65; color: var(--ink-2); }
             .lka-kt {
@@ -312,13 +374,6 @@ export default async function LokmaxCaseStudyPage({
             .landing .lka-back:hover { color: var(--ink); }
             .landing .lka-back:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
 
-            @media (max-width: 980px) {
-              .lka-layout { grid-template-columns: minmax(0, 1fr); }
-              .lka-toc { position: static; margin-bottom: 8px; }
-              .lka-toc ul { display: flex; flex-wrap: wrap; gap: 4px 14px; border-left: none; }
-              .lka-toc li a { border-left: none; padding: 6px 0; margin-left: 0; }
-              .landing .lka-toc li a.is-active { border-left: none; text-decoration: underline; text-underline-offset: 4px; }
-            }
             @media (prefers-reduced-motion: reduce) {
               .landing .lka-share a { transition: none; }
               .landing .lka-share a:hover { transform: none; }
@@ -373,9 +428,25 @@ export default async function LokmaxCaseStudyPage({
               </p>
 
               <div className="lka-byline">
-                <span className="lka-avatar" aria-hidden="true">{initials}</span>
+                <span className="lka-avatar" aria-hidden="true">
+                  {heroAuthor?.image ? (
+                    <img src={`${heroAuthor.image}?w=92&h=92&fit=crop&auto=format`} alt="" loading="lazy" style={{ objectFit: 'cover', padding: 0 }} />
+                  ) : logoUrl ? (
+                    <img src={`${logoUrl}?w=92&h=92&fit=max&auto=format`} alt="" loading="lazy" />
+                  ) : (
+                    initials
+                  )}
+                </span>
                 <div>
-                  <div className="lka-byline-name">{company}</div>
+                  {heroAuthor ? (
+                    authorUrl ? (
+                      <a className="lka-byline-name lka-byline-link" href={authorUrl}>{heroAuthor.name}</a>
+                    ) : (
+                      <div className="lka-byline-name">{heroAuthor.name}</div>
+                    )
+                  ) : (
+                    <div className="lka-byline-name">{company}</div>
+                  )}
                   <div className="lka-byline-sub">{bylineSub}</div>
                 </div>
               </div>
@@ -393,7 +464,16 @@ export default async function LokmaxCaseStudyPage({
             {/* Right: visual panel on a soft blob */}
             <div className="lka-visual-wrap">
               <div className="lka-visual">
-                <span className="lka-visual-mark" aria-hidden="true">{initials}</span>
+                <span className={`lka-visual-mark${logoUrl ? ' has-logo' : ''}`} aria-hidden="true">
+                  {logoUrl ? (
+                    <>
+                      <img className="lka-mark-glow" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt="" loading="lazy" />
+                      <img className="lka-mark-img" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt="" loading="lazy" />
+                    </>
+                  ) : (
+                    initials
+                  )}
+                </span>
                 <div className="lka-visual-facts">
                   {heroFacts.map((f) => (
                     <div key={f.label}>
@@ -412,8 +492,6 @@ export default async function LokmaxCaseStudyPage({
       <section className="section" style={{ paddingTop: 30, paddingBottom: 80, background: '#ffffff' }}>
         <div className="container">
           <div className="lka-layout">
-            <CaseStudyToc title={t.article.tocTitle} items={tocItems} />
-
             {doc ? (
               <article className="lka-prose">
                 {Array.isArray(doc.keyTakeaways) && doc.keyTakeaways.length > 0 && (
@@ -423,6 +501,35 @@ export default async function LokmaxCaseStudyPage({
                   </div>
                 )}
                 <CaseStudyBody body={doc.body as PtBlock[]} />
+
+                {/* Author profile — case-study-only card, independent from the
+                    blog/comparison author sections. */}
+                {doc.author?.name && (
+                  <div className="lka-author">
+                    {doc.author.image ? (
+                      <img
+                        className="lka-author-img"
+                        src={`${doc.author.image}?w=192&h=192&fit=crop&auto=format`}
+                        alt={doc.author.name}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span className="lka-author-mono" aria-hidden="true">{doc.author.name[0]}</span>
+                    )}
+                    <div>
+                      <div className="lka-author-label">Written by</div>
+                      {doc.author.slug ? (
+                        <a className="lka-author-name" href={`${prefix}/blog/authors/${doc.author.slug}`}>
+                          {doc.author.name}
+                        </a>
+                      ) : (
+                        <span className="lka-author-name">{doc.author.name}</span>
+                      )}
+                      {doc.author.position && <div className="lka-author-role">{doc.author.position}</div>}
+                      {doc.author.bio && <p className="lka-author-bio">{doc.author.bio}</p>}
+                    </div>
+                  </div>
+                )}
               </article>
             ) : (
             <article className="lka-prose">
