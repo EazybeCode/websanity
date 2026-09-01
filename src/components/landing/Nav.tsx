@@ -196,13 +196,6 @@ const RESOURCES = [
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
   },
   {
-    name: 'Customer Stories',
-    desc: 'See how teams 10× their WhatsApp ROI',
-    href: '/#',
-    bg: '#FBEBDA',
-    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E3F26" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
-  },
-  {
     name: 'Comparison',
     desc: 'Eazybe vs other WhatsApp tools',
     href: '/comparison',
@@ -254,7 +247,6 @@ export function Nav() {
       'Custom API':               { nameKey: 'intCustom', descKey: 'intCustomDesc' },
       'Blog':                     { nameKey: 'resBlog', descKey: 'resBlogDesc' },
       'Help Center':              { nameKey: 'resHelpCenter', descKey: 'resHelpCenterDesc' },
-      'Customer Stories':         { nameKey: 'resCustomerStories', descKey: 'resCustomerStoriesDesc' },
       'Comparison':               { nameKey: 'resComparison', descKey: 'resComparisonDesc' },
       'Contact Sales':            { nameKey: 'resContactSales', descKey: 'resContactSalesDesc' },
     }
@@ -436,15 +428,6 @@ export function Nav() {
                 <div className="nav-dd-desc">{t('resHelpCenterDesc')}</div>
               </span>
             </a>
-            <a href="/#" className="nav-dd-item">
-              <span className="nav-dd-icon" style={{ background: '#FBEBDA' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E3F26" strokeWidth="2" strokeLinecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              </span>
-              <span className="nav-dd-content">
-                <div className="nav-dd-name">{t('resCustomerStories')}</div>
-                <div className="nav-dd-desc">{t('resCustomerStoriesDesc')}</div>
-              </span>
-            </a>
             <a href={lh('/comparison')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E7EEFB' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B6BC4" strokeWidth="2" strokeLinecap="round"><line x1="6" y1="20" x2="6" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="14"/></svg>
@@ -467,7 +450,29 @@ export function Nav() {
           </div>
         </div>
 
-        <div className="nav-item"><a href={lh('/become-our-partner')}><span>{t('partner')}</span></a></div>
+        <div className="nav-item">
+          <button type="button" className="nav-trigger" aria-haspopup="menu"><span>{t('affiliate')}</span> <span className="nav-caret">▾</span></button>
+          <div className="nav-dropdown">
+            <a href={lh('/become-our-partner')} className="nav-dd-item">
+              <span className="nav-dd-icon" style={{ background: '#F0EBF8' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" strokeWidth="2" strokeLinecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              <span className="nav-dd-content">
+                <div className="nav-dd-name">{t('partner')}</div>
+                <div className="nav-dd-desc">{t('affPartnerDesc')}</div>
+              </span>
+            </a>
+            <a href={lh('/case-studies')} className="nav-dd-item">
+              <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </span>
+              <span className="nav-dd-content">
+                <div className="nav-dd-name">{t('affCaseStudies')}</div>
+                <div className="nav-dd-desc">{t('affCaseStudiesDesc')}</div>
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <div className="nav-ctas">
@@ -624,6 +629,9 @@ export function Nav() {
 
             <div className="nav-drawer-link">
               <a href={lh('/become-our-partner')} onClick={closeMenu}>{t('partner')}</a>
+            </div>
+            <div className="nav-drawer-link">
+              <a href={lh('/case-studies')} onClick={closeMenu}>{t('affCaseStudies')}</a>
             </div>
           </div>
 

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
-import { getCanonicalOnly } from '@/lib/seo-helpers'
+import { getAlternates } from '@/lib/seo-helpers'
 import { getCaseStudiesPageContent } from '@/data/case-studies-content'
 import { getCaseStudyCardOverrides } from '@/lib/sanity-queries'
 
@@ -23,10 +23,8 @@ export async function generateMetadata({
   return {
     title: t.meta.title,
     description: t.meta.description,
-    // Noindex while the directory still carries sample stories. Canonical-only
-    // alternates: noindex pages must not declare hreflang clusters.
-    alternates: getCanonicalOnly(locale, '/case-studies'),
-    robots: { index: false, follow: false },
+    alternates: getAlternates(locale, '/case-studies'),
+    robots: { index: true, follow: true },
     openGraph: {
       type: 'website',
       title: t.meta.title.replace(' | Eazybe', ''),

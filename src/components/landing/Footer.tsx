@@ -71,6 +71,7 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
     titleKey: 'colResources',
     items: [
       { nameKey: 'itemBlog', href: '/blog' },
+      { nameKey: 'itemCaseStudies', href: '/case-studies' },
       { nameKey: 'itemHelpCenter', href: 'https://help.eazybe.com/introduction' },
       { nameKey: 'itemComparison', href: '/comparison' },
       { nameKey: 'itemPricing', href: '/pricing' },

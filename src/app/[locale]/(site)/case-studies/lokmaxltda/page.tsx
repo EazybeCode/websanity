@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
-import { getCanonicalOnly } from '@/lib/seo-helpers'
+import { getAlternates } from '@/lib/seo-helpers'
 import { getLokmaxContent } from '@/data/case-study-lokmax'
 import { getCaseStudy } from '@/lib/sanity-queries'
-import { CaseStudyBody, caseStudyReadMinutes, type PtBlock } from '@/components/pages/CaseStudyBody'
+import { CaseStudyBody, type PtBlock } from '@/components/pages/CaseStudyBody'
 
 // Content is managed in Sanity ("Case Studies" section). A PUBLISHED caseStudy
 // doc with this slug takes over the article; the static content below is the
@@ -27,10 +27,8 @@ export async function generateMetadata({
   return {
     title: doc?.metaTitle || t.meta.title,
     description: doc?.metaDescription || t.meta.description,
-    // Noindex for now. Canonical-only alternates: noindex pages must not
-    // declare hreflang clusters.
-    alternates: getCanonicalOnly(locale, '/case-studies/lokmaxltda'),
-    robots: { index: false, follow: false },
+    alternates: getAlternates(locale, '/case-studies/lokmaxltda'),
+    robots: { index: true, follow: true },
     openGraph: {
       type: 'article',
       title: (doc?.ogTitle || doc?.metaTitle || t.meta.title).replace(' | Eazybe', ''),
@@ -90,15 +88,6 @@ export default async function LokmaxCaseStudyPage({
   const heroEyebrow = doc?.industry ? `Case Study · ${doc.industry}` : t.hero.eyebrow
   const heroDek = doc?.excerpt || t.hero.subtitle
   const heroFacts: { value: string; label: string }[] = doc?.facts?.length ? doc.facts : t.hero.facts
-  const bylineSub = doc
-    ? `${doc.referredBy ? `A growth story referred by ${doc.referredBy} · ` : ''}${caseStudyReadMinutes(doc.body as PtBlock[])} min read`
-    : `${t.hero.referral} · ${t.article.readTime}`
-
-  // Hero byline shows the author profile when one is set in Sanity; the
-  // company stays on the dark facts card and breadcrumb.
-  const heroAuthor: { name: string; slug?: string; image?: string; position?: string } | null =
-    doc?.author?.name ? doc.author : null
-  const authorUrl = heroAuthor?.slug ? `${prefix}/blog/authors/${heroAuthor.slug}` : null
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -149,20 +138,6 @@ export default async function LokmaxCaseStudyPage({
               background: var(--accent-ink); color: #fff !important;
               font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
             }
-            .lka-byline { display: flex; align-items: center; gap: 12px; margin-top: 30px; }
-            .lka-avatar {
-              width: 46px; height: 46px; flex-shrink: 0; border-radius: 999px;
-              display: inline-flex; align-items: center; justify-content: center;
-              background: color-mix(in oklab, var(--accent-a) 16%, #fff);
-              border: 1px solid color-mix(in oklab, var(--accent-a) 40%, var(--line));
-              font-family: var(--f-mono); font-size: 14px; font-weight: 600; color: var(--accent-ink);
-              overflow: hidden;
-            }
-            .lka-avatar img { width: 100%; height: 100%; object-fit: contain; padding: 5px; background: #fff; border-radius: inherit; }
-            .lka-byline-name { font-size: 15px; font-weight: 700; color: var(--ink); }
-            .landing a.lka-byline-link { display: inline-block; color: var(--ink); }
-            .landing a.lka-byline-link:hover { color: var(--accent-ink); }
-            .lka-byline-sub { margin-top: 2px; font-size: 13.5px; color: var(--ink-3); }
             .lka-visual-wrap { position: relative; }
             .lka-visual-wrap::before {
               content: ''; position: absolute; inset: -12% -18% -18% -8%; z-index: 0; border-radius: 48% 52% 55% 45% / 55% 48% 52% 45%;
@@ -393,7 +368,7 @@ export default async function LokmaxCaseStudyPage({
             </ol>
           </nav>
           <div className="lka-hgrid">
-            {/* Left: pill, headline, dek, byline */}
+            {/* Left: pill, headline, dek, share */}
             <div>
               <span className="lka-pill">{heroEyebrow}</span>
               <h1
@@ -426,30 +401,6 @@ export default async function LokmaxCaseStudyPage({
               <p style={{ margin: '18px 0 0', fontSize: 17.5, lineHeight: 1.65, color: 'var(--ink-2)' }}>
                 {heroDek}
               </p>
-
-              <div className="lka-byline">
-                <span className="lka-avatar" aria-hidden="true">
-                  {heroAuthor?.image ? (
-                    <img src={`${heroAuthor.image}?w=92&h=92&fit=crop&auto=format`} alt="" loading="lazy" style={{ objectFit: 'cover', padding: 0 }} />
-                  ) : logoUrl ? (
-                    <img src={`${logoUrl}?w=92&h=92&fit=max&auto=format`} alt="" loading="lazy" />
-                  ) : (
-                    initials
-                  )}
-                </span>
-                <div>
-                  {heroAuthor ? (
-                    authorUrl ? (
-                      <a className="lka-byline-name lka-byline-link" href={authorUrl}>{heroAuthor.name}</a>
-                    ) : (
-                      <div className="lka-byline-name">{heroAuthor.name}</div>
-                    )
-                  ) : (
-                    <div className="lka-byline-name">{company}</div>
-                  )}
-                  <div className="lka-byline-sub">{bylineSub}</div>
-                </div>
-              </div>
 
               <div className="lka-share">
                 <span className="lka-share-label">{t.article.shareLabel}</span>
