@@ -1244,7 +1244,7 @@ export async function getCaseStudy(slug: string, locale: string = 'en') {
       "slug": slug.current,
       "image": image.asset->url,
       position,
-      bio
+      "bio": coalesce(bio, detailedBio)
     }
   }`
   return client.fetch(query, { slug, sanityLanguage })
