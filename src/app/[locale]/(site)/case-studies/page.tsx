@@ -154,7 +154,25 @@ export default async function CaseStudiesPage({
           <div style={{ marginTop: 28 }}>
             <a href="#stories" className="btn btn-primary btn-lg">{t.hero.cta}</a>
           </div>
-          <p style={{ marginTop: 18, fontSize: 13, color: 'var(--ink-3)' }}>{t.hero.footnote}</p>
+          <p style={{ marginTop: 18, fontSize: 13, color: 'var(--ink-3)' }}>
+            {(() => {
+              const text = t.hero.footnote
+              const i = text.indexOf('Eazybe')
+              if (i === -1) return text
+              return (
+                <>
+                  {text.slice(0, i)}
+                  <a
+                    href={`https://eazybe.com${locale === 'en' ? '/' : `/${locale}`}`}
+                    style={{ color: 'var(--accent-ink)', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3 }}
+                  >
+                    Eazybe
+                  </a>
+                  {text.slice(i + 'Eazybe'.length)}
+                </>
+              )
+            })()}
+          </p>
         </div>
       </section>
 

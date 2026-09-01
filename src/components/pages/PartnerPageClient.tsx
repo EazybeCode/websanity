@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
-import { useTranslations } from 'next-intl'
+import React, { useEffect, useRef, useState } from 'react'
+import { useLocale, useTranslations } from 'next-intl'
 import { PartnerDirectory } from '@/components/pages/PartnerDirectory'
 import { PARTNERS, type PartnerRecord } from '@/data/partner-directory'
 import {
@@ -34,6 +34,134 @@ const integrations = [
   { name: 'LeadSquared', url: '/leadsquared-whatsapp-integration', logo: '/integrations/leadsquared.svg' },
 ]
 
+/**
+ * Interactive "How to apply" stepper: steps auto-advance every few seconds
+ * (paused on hover/focus, disabled for reduced-motion users), and any step
+ * can be opened directly. Completed steps show a check; the active card
+ * carries a progress bar for the auto-advance.
+ */
+function ApplyStepper({ steps }: { steps: Array<{ step: string; title: string; desc: string }> }) {
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const reduced = useRef(false)
+
+  useEffect(() => {
+    reduced.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  }, [])
+
+  useEffect(() => {
+    if (paused || reduced.current) return
+    const id = setInterval(() => setActive((a) => (a + 1) % steps.length), 4000)
+    return () => clearInterval(id)
+  }, [paused, steps.length, active])
+
+  return (
+    <div
+      className="pp-stepper"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .pp-stepper { max-width: 720px; margin: 0 auto; }
+            .pp-step { position: relative; padding-left: 62px; }
+            .pp-step:not(:last-child)::before {
+              content: ''; position: absolute; left: 21px; top: 48px; bottom: -4px; width: 2px;
+              background: var(--line); border-radius: 2px;
+            }
+            .pp-step.is-done:not(:last-child)::before { background: color-mix(in oklab, var(--accent-a) 55%, var(--line)); }
+            .pp-step-chip {
+              position: absolute; left: 0; top: 4px; width: 44px; height: 44px; border-radius: 12px;
+              display: flex; align-items: center; justify-content: center;
+              background: color-mix(in oklab, var(--accent-a) 10%, var(--paper));
+              border: 1px solid color-mix(in oklab, var(--accent-a) 26%, var(--line));
+              color: var(--accent-ink); font-family: var(--f-display); font-size: 19px;
+              transition: background .2s ease, border-color .2s ease, transform .2s ease;
+            }
+            .pp-step.is-active .pp-step-chip {
+              background: var(--accent-ink); border-color: var(--accent-ink); color: #fff; transform: scale(1.06);
+            }
+            .pp-step.is-done .pp-step-chip {
+              background: color-mix(in oklab, var(--accent-a) 26%, var(--paper));
+              border-color: color-mix(in oklab, var(--accent-a) 55%, var(--line));
+            }
+            .pp-step-btn {
+              display: block; width: 100%; text-align: left; cursor: pointer;
+              background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+              padding: 16px 20px; margin-bottom: 14px;
+              transition: border-color .2s ease, box-shadow .2s ease;
+            }
+            .pp-step-btn:hover { border-color: color-mix(in oklab, var(--accent-a) 45%, var(--line)); }
+            .pp-step.is-active .pp-step-btn {
+              border-color: color-mix(in oklab, var(--accent-a) 55%, var(--line));
+              box-shadow: 0 14px 30px -22px rgba(15, 17, 21, 0.4);
+            }
+            .pp-step-btn:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+            .pp-step-title { font-size: 16.5px; font-weight: 700; color: var(--ink); }
+            .pp-step-body {
+              display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease;
+            }
+            .pp-step.is-active .pp-step-body { grid-template-rows: 1fr; }
+            .pp-step-body > div { overflow: hidden; }
+            .pp-step-desc { margin: 8px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
+            .pp-step-bar {
+              margin-top: 14px; height: 3px; border-radius: 3px; overflow: hidden;
+              background: color-mix(in oklab, var(--accent-a) 18%, var(--line));
+            }
+            .pp-step-bar > span {
+              display: block; height: 100%; width: 0; background: var(--accent-ink); border-radius: inherit;
+              animation: pp-step-fill 4s linear forwards;
+            }
+            .pp-stepper.is-paused .pp-step-bar > span { animation-play-state: paused; }
+            @keyframes pp-step-fill { to { width: 100%; } }
+            @media (prefers-reduced-motion: reduce) {
+              .pp-step-chip, .pp-step-btn, .pp-step-body { transition: none; }
+              .pp-step-bar { display: none; }
+            }
+          `,
+        }}
+      />
+      <div className={paused ? 'is-paused' : undefined}>
+        {steps.map((item, index) => {
+          const state = index === active ? 'is-active' : index < active ? 'is-done' : ''
+          return (
+            <div key={index} className={`pp-step ${state}`}>
+              <span className="pp-step-chip" aria-hidden="true">
+                {index < active ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                ) : (
+                  item.step
+                )}
+              </span>
+              <button
+                type="button"
+                className="pp-step-btn"
+                aria-expanded={index === active}
+                onClick={() => setActive(index)}
+              >
+                <div className="pp-step-title">{item.title}</div>
+                <div className="pp-step-body">
+                  <div>
+                    <p className="pp-step-desc">{item.desc}</p>
+                    {index === active && !reduced.current && (
+                      <div className="pp-step-bar" aria-hidden="true">
+                        <span key={active} style={paused ? { animationPlayState: 'paused' } : undefined} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </button>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 const testimonialAvatars = [
   'https://i.pravatar.cc/150?img=11',
   'https://i.pravatar.cc/150?img=5',
@@ -57,6 +185,8 @@ export function PartnerPageClient({
   partners?: PartnerRecord[]
 } = {}) {
   const t = useTranslations('partner')
+  const locale = useLocale()
+  const homeHref = locale === 'en' ? 'https://eazybe.com/' : `https://eazybe.com/${locale}`
   const steps = t.raw('steps') as Array<{ step: string; title: string; desc: string }>
   const testimonials = t.raw('testimonials') as Array<{ quote: string; author: string; role: string; earnings: string }>
   const faqs = t.raw('faqs') as Array<{ question: string; answer: string }>
@@ -124,24 +254,49 @@ export function PartnerPageClient({
           <div
             className="reveal"
             style={{
-              marginTop: 56,
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 24,
-              maxWidth: 720,
               margin: '56px auto 0',
-              borderTop: '1px solid var(--line)',
-              paddingTop: 24,
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: 14,
             }}
           >
             {[
-              { Icon: Shield, text: t('badgeBsp') },
-              { Icon: CheckCircle2, text: t('badgeSoc2') },
-              { Icon: Globe, text: t('badgeCountries') },
-            ].map(({ Icon, text }) => (
-              <div key={text} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, color: 'var(--ink-3)', fontSize: 13 }}>
-                <Icon size={18} style={{ color: 'var(--accent-ink)', flexShrink: 0, marginTop: 2 }} />
-                <span style={{ fontWeight: 500 }}>{text}</span>
+              { Icon: Shield, text: t('badgeBsp'), tint: '#7FD6B0' },
+              { Icon: CheckCircle2, text: t('badgeGdpr'), tint: '#8FB7F5' },
+              { Icon: Globe, text: t('badgeCountries'), tint: '#E8C77E' },
+            ].map(({ Icon, text, tint }) => (
+              <div
+                key={text}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  padding: '6px 14px 6px 7px',
+                  borderRadius: 999,
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.13)',
+                  boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                }}
+              >
+                <span
+                  style={{
+                    width: 24,
+                    height: 24,
+                    flexShrink: 0,
+                    borderRadius: 999,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: `color-mix(in oklab, ${tint} 16%, transparent)`,
+                    border: `1px solid color-mix(in oklab, ${tint} 40%, transparent)`,
+                  }}
+                >
+                  <Icon size={12} style={{ color: tint }} />
+                </span>
+                <span style={{ fontSize: 12, fontWeight: 600, color: '#E8EAF0', lineHeight: 1.3, textAlign: 'left' }}>
+                  {text}
+                </span>
               </div>
             ))}
           </div>
@@ -242,7 +397,26 @@ export function PartnerPageClient({
           <div className="sec-head centered reveal">
             <span className="sec-tag">{t('benefitsSubtitle')}</span>
             <h2>{t('whyPartnerTitle')}</h2>
-            <p>{t('whyPartnerDesc')}</p>
+            <p>
+              {(() => {
+                const desc = t('whyPartnerDesc')
+                const term = 'WhatsApp CRM'
+                const i = desc.indexOf(term)
+                if (i === -1) return desc
+                return (
+                  <>
+                    {desc.slice(0, i)}
+                    <a
+                      href={`https://eazybe.com${locale === 'en' ? '' : `/${locale}`}/features/whatsapp-crm`}
+                      style={{ color: '#7FD6B0', textDecoration: 'underline', textUnderlineOffset: 3 }}
+                    >
+                      {term}
+                    </a>
+                    {desc.slice(i + term.length)}
+                  </>
+                )
+              })()}
+            </p>
           </div>
           <div className="card-grid cols-3">
             {benefitKeys.map((key, index) => {
@@ -263,7 +437,23 @@ export function PartnerPageClient({
                     {t(`benefits.${key}.subtitle`)}
                   </div>
                   <h3>{t(`benefits.${key}.title`)}</h3>
-                  <p>{t(`benefits.${key}.description`)}</p>
+                  <p>
+                    {(() => {
+                      const desc = t(`benefits.${key}.description`)
+                      if (key !== 'certifiedBadge') return desc
+                      const i = desc.indexOf('Eazybe')
+                      if (i === -1) return desc
+                      return (
+                        <>
+                          {desc.slice(0, i)}
+                          <a href={homeHref} style={{ color: '#7FD6B0', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+                            Eazybe
+                          </a>
+                          {desc.slice(i + 'Eazybe'.length)}
+                        </>
+                      )
+                    })()}
+                  </p>
                 </div>
               )
             })}
@@ -279,39 +469,7 @@ export function PartnerPageClient({
             <h2>{t('howToApplyTitle')}</h2>
             <p>{t('howToApplyDesc')}</p>
           </div>
-          <div style={{ maxWidth: 720, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {steps.map((item, index) => (
-              <div
-                key={index}
-                className="card reveal"
-                style={{ transitionDelay: `${index * 0.05}s`, display: 'flex', gap: 18, alignItems: 'flex-start' }}
-              >
-                <span
-                  style={{
-                    flexShrink: 0,
-                    width: 44,
-                    height: 44,
-                    borderRadius: 12,
-                    background: 'color-mix(in oklab, var(--accent-a) 14%, var(--paper))',
-                    border: '1px solid color-mix(in oklab, var(--accent-a) 30%, var(--line))',
-                    color: 'var(--accent-ink)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'var(--f-display)',
-                    fontSize: 20,
-                    fontWeight: 400,
-                  }}
-                >
-                  {item.step}
-                </span>
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ marginBottom: 4 }}>{item.title}</h3>
-                  <p style={{ marginBottom: 0 }}>{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ApplyStepper steps={steps} />
         </div>
       </section>
 
