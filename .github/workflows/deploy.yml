@@ -30,6 +30,14 @@ jobs:
             echo "==> Pulling latest main"
             git fetch origin main
             git reset --hard origin/main
+            echo "==> Refreshing SANITY_API_TOKEN in .env"
+            if [ -n "${{ secrets.SANITY_API_TOKEN_PROD }}" ]; then
+              sed -i '/^SANITY_API_TOKEN=/d' .env
+              printf 'SANITY_API_TOKEN=%s\n' "${{ secrets.SANITY_API_TOKEN_PROD }}" >> .env
+              echo "==> Token refreshed"
+            else
+              echo "==> SANITY_API_TOKEN_PROD secret not set; leaving .env unchanged"
+            fi
             echo "==> Running deploy.sh"
             ./deploy.sh
             echo "==> Deploy finished"
