@@ -136,6 +136,8 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     { path: '/whatsapp-chat-widget', changefreq: 'monthly', priority: 0.7 },
     { path: '/marketing-roi-calculator', changefreq: 'monthly', priority: 0.7 },
     { path: '/tools', changefreq: 'monthly', priority: 0.7 },
+    { path: '/case-studies', changefreq: 'weekly', priority: 0.7 },
+    { path: '/case-studies/lokmaxltda', changefreq: 'monthly', priority: 0.7 },
     { path: '/become-our-partner', changefreq: 'monthly', priority: 0.7 },
     { path: '/msa', changefreq: 'monthly', priority: 0.3 },
     { path: '/privacy', changefreq: 'monthly', priority: 0.3 },
@@ -153,6 +155,25 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
       alternates: allLocaleAlternates(page.path),
     })
   }
+
+  // ── WhatsApp pricing calculator (localized slugs per locale) ────────────
+  // Paths already carry their locale prefix, so no localeUrl() here.
+  const WA_PRICING_PATHS: Record<string, string> = {
+    en: '/whatsapp-pricing-calculator',
+    br: '/br/calculadora-de-precos-do-whatsapp',
+    es: '/es/calculadora-de-precios-de-whatsapp',
+    tr: '/tr/whatsapp-fiyat-hesaplayici',
+  }
+  entries.push({
+    loc: `${SITE_URL}${WA_PRICING_PATHS[lang] ?? WA_PRICING_PATHS.en}`,
+    changefreq: 'monthly',
+    priority: isDefault ? 0.7 : 0.6,
+    lastmod: getBuildDate(),
+    alternates: [
+      { lang: 'x-default', url: `${SITE_URL}${WA_PRICING_PATHS.en}` },
+      ...LOCALES.map((l) => ({ lang: toHreflang(l), url: `${SITE_URL}${WA_PRICING_PATHS[l]}` })),
+    ],
+  })
 
   // ── Integration pages ───────────────────────────────────────────────────
   for (const slug of INTEGRATION_SLUGS) {

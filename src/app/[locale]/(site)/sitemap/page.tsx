@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getAlternates } from '@/lib/seo-helpers'
+import { WA_PRICING_PATH_BY_LOCALE } from '@/data/whatsapp-pricing-content'
 
 export const dynamic = 'force-static'
 
@@ -170,8 +171,21 @@ export default async function SitemapPage({
       children: [
         { label: t('blog'), href: url('/blog') },
         { label: t('authors'), href: url('/blog/authors') },
+        { label: t('caseStudies'), href: url('/case-studies') },
         { label: t('helpCenter'), href: 'https://help.eazybe.com/introduction' },
         { label: t('becomePartner'), href: url('/become-our-partner') },
+      ],
+    },
+    {
+      label: t('freeTools'),
+      href: url('/tools'),
+      children: [
+        { label: t('allTools'), href: url('/tools') },
+        { label: t('toolPricingCalc'), href: WA_PRICING_PATH_BY_LOCALE[locale] ?? WA_PRICING_PATH_BY_LOCALE.en },
+        { label: t('toolRoiCalc'), href: url('/marketing-roi-calculator') },
+        { label: t('toolQr'), href: url('/whatsapp-qr-code-generator') },
+        { label: t('toolChatLink'), href: url('/whatsapp-chat-link-generator') },
+        { label: t('toolChatWidget'), href: url('/whatsapp-chat-widget') },
       ],
     },
     {
