@@ -63,6 +63,16 @@ function escapeXml(text: string | null | undefined): string {
     .replace(/'/g, '&apos;')
 }
 
+// MIME type for the enclosure, derived from the image URL's extension.
+function enclosureType(url: string): string {
+  const ext = url.split('?')[0].split('.').pop()?.toLowerCase()
+  const types: Record<string, string> = {
+    webp: 'image/webp', png: 'image/png', gif: 'image/gif',
+    jpg: 'image/jpeg', jpeg: 'image/jpeg', avif: 'image/avif', svg: 'image/svg+xml',
+  }
+  return (ext && types[ext]) || 'image/jpeg'
+}
+
 function cdata(text: string | null | undefined): string {
   if (!text) return '<![CDATA[]]>'
   const safe = String(text).replace(/]]>/g, ']]]]><![CDATA[>')
@@ -108,7 +118,7 @@ export async function buildRssResponse(kind: FeedKind, locale: string): Promise<
         post.author?.name ? `<dc:creator>${cdata(post.author.name)}</dc:creator>` : '',
         post.category ? `<category>${cdata(post.category)}</category>` : '',
         post.featuredImage
-          ? `<enclosure url="${escapeXml(post.featuredImage)}" type="image/jpeg" length="0" />`
+          ? `<enclosure url="${escapeXml(post.featuredImage)}" type="${enclosureType(post.featuredImage)}" length="0" />`
           : '',
       ].filter(Boolean)
       return `    <item>\n      ${lines.join('\n      ')}\n    </item>`
