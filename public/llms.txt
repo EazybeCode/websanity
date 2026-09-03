@@ -157,9 +157,22 @@ Multilingual AI agents handle conversations in English, Portuguese, Spanish, Tur
 
 - [Homepage](https://eazybe.com): WhatsApp AI Agents that qualify leads, sync every chat to your CRM, and reply like your best reps.
 - [Pricing](https://eazybe.com/pricing): Plans and pricing, including the free-forever tier.
+- [Features](https://eazybe.com/features): Every platform feature, including [WhatsApp CRM](https://eazybe.com/features/whatsapp-crm), [Team Inbox](https://eazybe.com/features/team-inbox), and [Cloud Backup](https://eazybe.com/features/cloud-backup).
 - [Integrations](https://eazybe.com/integrations): All supported CRM and tool integrations.
+- [Case Studies](https://eazybe.com/case-studies): Real customer results — e.g. Lokmax, Brazil's compact machinery rental specialist, cut quote turnaround from 24-48 hours to under 3 by unifying WhatsApp and HubSpot with Eazybe.
+- [WhatsApp API](https://eazybe.com/whatsapp-api): Coexistence, templates, and broadcast on the official Cloud API.
 - [Blog](https://eazybe.com/blog): Guides on WhatsApp automation, CRM integration, and AI agents.
-- [Comparisons](https://eazybe.com/comparison): How Eazybe compares to other WhatsApp CRM and AI agent tools.
+- [Comparisons](https://eazybe.com/comparison): How Eazybe compares to other WhatsApp CRM and AI agent tools (Wati, AiSensy, Cooby, DoubleTick, Gallabox, GreenTick, Interakt, Rasayel, TimelinesAI, and more).
+- [Partner Program](https://eazybe.com/become-our-partner): Earn up to 30% commission as an Eazybe partner; includes the directory of current partners.
+
+## Free Tools
+
+- [All Tools](https://eazybe.com/tools): Directory of free WhatsApp tools.
+- [WhatsApp Pricing Calculator](https://eazybe.com/whatsapp-pricing-calculator): Estimate WhatsApp Business API conversation costs by market and volume.
+- [Marketing ROI Calculator](https://eazybe.com/marketing-roi-calculator): ROI, ROAS, CPL, CAC, and breakeven calculator.
+- [WhatsApp QR Code Generator](https://eazybe.com/whatsapp-qr-code-generator): Generate a scannable QR that opens a WhatsApp chat.
+- [WhatsApp Chat Link Generator](https://eazybe.com/whatsapp-chat-link-generator): Create wa.me click-to-chat links.
+- [WhatsApp Chat Widget](https://eazybe.com/whatsapp-chat-widget): Free website chat widget for WhatsApp.
 
 ## Integrations
 
@@ -176,3 +189,8 @@ Multilingual AI agents handle conversations in English, Portuguese, Spanish, Tur
 
 - [Help Center](https://help.eazybe.com): Setup guides, troubleshooting, and product documentation.
 - [Pricing](https://eazybe.com/pricing): Compare plans and start free.
+- [Case Studies](https://eazybe.com/case-studies): How teams run WhatsApp with Eazybe, with real numbers.
+
+## Languages
+
+The site is fully localized in English (eazybe.com), Portuguese (eazybe.com/br), Spanish (eazybe.com/es), and Turkish (eazybe.com/tr), with hreflang reciprocation and locale-specific URLs for tool pages and translated blog content.

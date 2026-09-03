@@ -200,6 +200,36 @@ Build your own no-code WhatsApp AI agent for any use case. Drag-and-drop convers
 ### Key Differentiator
 Eazybe is the only solution that works across all three WhatsApp types (personal, Business App, and Business API) simultaneously, with full CRM integration and AI capabilities. Competitors force businesses to abandon their existing WhatsApp setup and migrate entirely to the API, losing chat history and requiring technical implementation.
 
+## Customer Case Studies
+
+Published at https://eazybe.com/case-studies
+
+### Lokmax (Equipment Rental, Brazil)
+Brazil's compact machinery rental specialist — 16+ years in business, 5,000+ clients across Brazil, based in Nova Lima, MG. Deals negotiated on WhatsApp while HubSpot showed blank activity logs. After connecting reps' personal WhatsApp to HubSpot with Eazybe:
+- Quote turnaround dropped from 24-48 hours to under 3
+- Availability confirmations got 70% faster; lease extensions became proactive instead of memory-dependent
+- Handoffs carry the full chat history, so clients never restate their project
+Full story: https://eazybe.com/case-studies/lokmaxltda
+
+## Free Tools
+
+Free, no-signup tools published under https://eazybe.com/tools:
+
+- **WhatsApp Pricing Calculator** (https://eazybe.com/whatsapp-pricing-calculator) — estimates Meta's per-conversation WhatsApp Business API costs with editable market presets (India, Brazil, Mexico, Indonesia, North America, UK), monthly volume by category, and blended cost per paid message. Localized URLs: /br/calculadora-de-precos-do-whatsapp, /es/calculadora-de-precios-de-whatsapp, /tr/whatsapp-fiyat-hesaplayici.
+- **Marketing ROI Calculator** (https://eazybe.com/marketing-roi-calculator) — ROI, ROAS, CPL, CAC, conversion rate, and breakeven, computed in the browser.
+- **WhatsApp QR Code Generator** (https://eazybe.com/whatsapp-qr-code-generator) — scannable QR that opens a WhatsApp chat with a prefilled message.
+- **WhatsApp Chat Link Generator** (https://eazybe.com/whatsapp-chat-link-generator) — wa.me click-to-chat links.
+- **WhatsApp Chat Widget** (https://eazybe.com/whatsapp-chat-widget) — free website chat widget for WhatsApp.
+
+## Partner Program
+
+https://eazybe.com/become-our-partner
+
+- Up to 30% commission per referred customer; free to join, application takes minutes, 24-48 hour review.
+- Aimed at HubSpot agencies, CRM partners/consultants/implementers, RevOps and B2B sales consultancies, and marketing agencies.
+- Includes a public directory of current partners (e.g. Hook Digital, Actavox, Markivis) with region, CRM focus, and specialties.
+- Case-study referrals: the Lokmax story came through partner Hook Digital.
+
 ## Security and Compliance
 
 - **Encryption:** SSL and 256-bit encryption for all data in transit and at rest
