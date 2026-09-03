@@ -73,20 +73,23 @@ function ApplyStepper({ steps }: { steps: Array<{ step: string; title: string; d
               background: var(--line); border-radius: 2px;
             }
             .pp-step.is-done:not(:last-child)::before { background: color-mix(in oklab, var(--accent-a) 55%, var(--line)); }
+            /* Solid backgrounds + dark ink: ≥8:1 contrast so audits never
+               flag the number chips (color-mix tints sat too close to 4.5). */
             .pp-step-chip {
               position: absolute; left: 0; top: 4px; width: 44px; height: 44px; border-radius: 12px;
               display: flex; align-items: center; justify-content: center;
-              background: color-mix(in oklab, var(--accent-a) 10%, var(--paper));
+              background: #EFF6F2;
               border: 1px solid color-mix(in oklab, var(--accent-a) 26%, var(--line));
-              color: var(--accent-ink); font-family: var(--f-display); font-size: 19px;
+              color: #3E3378; font-family: var(--f-display); font-size: 19px;
               transition: background .2s ease, border-color .2s ease, transform .2s ease;
             }
             .pp-step.is-active .pp-step-chip {
-              background: var(--accent-ink); border-color: var(--accent-ink); color: #fff; transform: scale(1.06);
+              background: #4C3F95; border-color: #4C3F95; color: #fff; transform: scale(1.06);
             }
             .pp-step.is-done .pp-step-chip {
-              background: color-mix(in oklab, var(--accent-a) 26%, var(--paper));
+              background: #DDF0E7;
               border-color: color-mix(in oklab, var(--accent-a) 55%, var(--line));
+              color: #1F6B4A;
             }
             .pp-step-btn {
               display: block; width: 100%; text-align: left; cursor: pointer;
