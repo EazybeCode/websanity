@@ -1,205 +1,299 @@
 ---
-_type: blogPost
-title: "Bitrix24 WhatsApp Integration For Real Estate Teams (2026)"
+_type: "blogPost"
+title: "Bitrix24 WhatsApp Integration: Complete Setup Guide (2026)"
 slug: "bitrix24-whatsapp-integration"
-seoTitle: "Bitrix24 WhatsApp Integration For Real Estate Teams (2026)"
-metaDescription: "Bitrix24 WhatsApp integration for real estate teams of 30+: sync WhatsApp contacts to Bitrix24 without duplicates, log every chat, and see who replied."
-excerpt: "Picture a 30-agent real estate team. Buyers WhatsApp one agent about a listing, someone else replies from a second number, and a third agent has the same…"
-targetKeyword: "Bitrix24 WhatsApp integration"
+seoTitle: "Bitrix24 WhatsApp Integration: Complete Setup Guide (2026)"
+metaDescription: "Connect WhatsApp to Bitrix24: sync contacts, log conversations, trigger workflows, and send messages from Bitrix24. Complete integration guide."
+excerpt: "Bitrix24 WhatsApp integration syncs contacts, conversations, and deals. Send WhatsApp messages from Bitrix24, trigger workflows, and manage chats with AI properties."
+targetKeyword: "bitrix24 whatsapp integration"
 category: "CRM Integrations"
 funnelStage: "BOFU"
-priority: "P0"
-status: "draft"
+status: "needs-review"
 author: "Eazybe Team"
-authoredAt: "2026-07-09"
-publishedAt:
+authoredAt: "2026-09-04"
 ---
 
-# Bitrix24 WhatsApp Integration For Real Estate Teams (2026)
+# Bitrix24 WhatsApp Integration: Complete Setup Guide (2026)
 
-Picture a 30-agent real estate team. Buyers WhatsApp one agent about a listing, someone else replies from a second number, and a third agent has the same lead saved under a slightly different name. A week later a manager asks a simple question — "Who owns this lead, and did anyone follow up?" — and nobody can answer. The chats live on personal phones. Half of them never make it into Bitrix24. The other half create duplicate contacts.
+Bitrix24 is one of the most popular CRMs for small and mid-sized teams, especially in real estate, retail, and service industries. If you're using Bitrix24 and want to centralize WhatsApp conversations, sync contacts, and manage customer messaging from one platform, the Bitrix24 WhatsApp integration is your answer. This guide explains how the integration works, what features are available, and how to set it up.
 
-That is the exact scenario a residential real estate sales lead running a 30-agent team laid out: constant assignment confusion, client conversations trapped on personal phones, and duplicate contacts piling up in the CRM. What they wanted was simple — centralize client communication and sync WhatsApp contacts to Bitrix24 without every rep creating a new duplicate record.
+**TL;DR:** Bitrix24 WhatsApp integration connects your WhatsApp Business API number to Bitrix24, syncing conversations, contacts, and deals. WhatsApp chats appear in Bitrix24's General section, with a Mini-CRM view for each contact. Two-way sync takes ~3 minutes for most data. Key features include Team Inbox view inside Bitrix24, AI properties (intent, urgency, objections), and Bitrix24 workflow integration. The integration is cloud-based (no personal phones) and does not auto-deduplicate contacts—you'll need to manage duplicates manually.
 
-This guide is for that team. We will cover what a proper **Bitrix24 WhatsApp integration** actually does, how to link WhatsApp contacts to Bitrix24 without creating duplicates, what gets logged, how to give managers visibility across 30+ agents, and where a native setup is genuinely enough. Along the way we will show how **Eazybe** — a WhatsApp + CRM sync layer that runs as a Chrome extension over WhatsApp Web — fits real estate teams specifically.
-
-> **TL;DR**
-> - A **Bitrix24 WhatsApp integration** links WhatsApp conversations to Bitrix24 contacts and leads, then logs the chats onto those records so nothing lives only on a rep's phone.
-> - Eazybe links each WhatsApp chat to a Bitrix24 contact automatically **through the unique phone number** in Bitrix24's Phone or Mobile field — and lets you **manually link an existing contact** (rather than create a new one) to keep records clean.
-> - Only chats with **linked** Bitrix24 contacts are synced, on a **3-minute cycle**, with **3 days** of initial backup on first connect. Both 1:1 and group chats are backed up to the contact's page.
-> - A shared **Team Inbox** with **chat assignment** and an **Unreplied filter** gives managers of 30+ agents visibility into who replied and who dropped a lead.
-> - Eazybe works in a **no-API coexistence model** on the number reps already use — no number migration, no per-conversation billing.
+**Also read:** [WhatsApp CRM Integration](/whatsapp-crm-integration), [HubSpot WhatsApp Integration](/hubspot-whatsapp-integration)
 
 ---
 
-## Why Real Estate Teams Put WhatsApp On Bitrix24
+## What Is the Bitrix24 WhatsApp Integration?
 
-Real estate runs on WhatsApp. Buyers send a listing link at 9pm, ask for a floor plan on the weekend, and expect a reply in minutes. But WhatsApp on its own has three structural problems for a team of 30:
+The Bitrix24 WhatsApp integration is a two-way connection between your WhatsApp Business API number and your Bitrix24 CRM. Once connected:
 
-- **No shared visibility.** Each agent's chats sit on their own device. A manager cannot see who is handling which buyer, or which enquiries went cold — as one sales lead put it, the conversations all go in different directions, and none of them talk to the CRM.
-- **Lost history when reps leave.** When an agent quits, their client relationships walk out the door on their personal phone.
-- **Assignment chaos.** With multiple agents fielding portal leads, two people end up chatting the same buyer, or a hot lead sits unclaimed for hours.
+1. **WhatsApp conversations appear in Bitrix24.** All incoming and outgoing WhatsApp messages are logged in Bitrix24's General section.
+2. **Contacts sync automatically.** New WhatsApp contacts are created in Bitrix24. Existing contacts are matched and updated.
+3. **Deals and tasks link to conversations.** You can create deals, tasks, and reminders directly from WhatsApp chats.
+4. **Bitrix24 workflows trigger WhatsApp messages.** Automate WhatsApp outreach based on CRM events (e.g., deal stage changes, contact property updates).
+5. **You initiate conversations from Bitrix24.** Send WhatsApp messages directly from Bitrix24 without switching to a separate WhatsApp inbox.
 
-Putting WhatsApp on **Bitrix24** solves this by making the CRM the single source of truth. Every buyer conversation is tied to a Bitrix24 contact, logged on that record, and visible to the people who need to see it. The team's memory lives in Bitrix24 — not on 30 different phones.
-
-This maps to two themes we hear constantly from buyers: **visibility** (managers want to see team activity) and **single platform** (one place for client communication instead of scattered inboxes).
-
----
-
-## Sync WhatsApp Contacts To Bitrix24 Without Duplicates
-
-This is the number-one worry for a 30-agent team: *how do we sync WhatsApp contacts to Bitrix24 without every rep spawning a duplicate?*
-
-Here is exactly how Eazybe handles linking, and where you stay in control:
-
-**1. Automatic matching by phone number.** WhatsApp and Bitrix24 contacts are linked automatically through the unique phone number stored in Bitrix24's **Phone Number** or **Mobile** field. If a buyer's number already exists in Bitrix24, their WhatsApp chat attaches to that existing record — no new contact is created.
-
-**2. Manual "link to existing" to avoid duplicates.** When a chat isn't matched yet, Eazybe's create-contact flow gives you a clear choice: **"Link to an Existing Bitrix Contact"** (select the right record from a dropdown) or **"Create a New Contact."** For a team worried about duplication, this is the important lever — before anyone creates a fresh contact, they can search for and attach to the one that already exists.
-
-**3. Create clean, once.** When a lead genuinely is new, you create the Bitrix24 contact directly from WhatsApp via the **Mini-CRM view** (opened via the Bitrix icon in the extension's right sidebar). Fields are customizable via an **Edit** button, and after saving you can click **View on Bitrix** to open the record.
-
-An honest note on duplicates: Eazybe does not run a separate automatic de-duplication engine. What keeps your Bitrix24 clean is the combination of **automatic phone-number matching** plus the **manual "link to existing" step**. The discipline that pays off is simple — get accurate mobile numbers into Bitrix24, and train reps to link before they create. Do that, and the duplicate problem largely disappears.
-
-> Only chats with **linked** Bitrix24 contacts are synced. Unlinked WhatsApp chats are not backed up — so linking is the deliberate action that decides what enters your CRM.
+**Important:** The integration uses WhatsApp Business API, not the WhatsApp Business App. You cannot connect a personal WhatsApp number or a WhatsApp Business App number to Bitrix24 for full CRM sync.
 
 ---
 
-## What Gets Logged To Bitrix24
+## Bitrix24 WhatsApp Integration vs. Other CRM Integrations
 
-Once a WhatsApp chat is linked to a Bitrix24 contact, here is precisely what syncs:
+| Feature | Bitrix24 | HubSpot | Zoho |
+|---------|----------|---------|------|
+| **Two-way sync** | Yes (~3 min) | Yes (~3 min) | Yes (contacts ~15 min) |
+| **Where chats appear** | General section | Timeline/Activity feed | Contacts/Deals |
+| **Mini-CRM view** | Yes | No (requires external inbox) | No (requires external inbox) |
+| **Workflow integration** | Yes | Yes | Yes |
+| **Auto-deduplication** | No (manual) | Yes | Yes |
+| **Team Inbox in CRM** | Yes | No (external tool) | No (external tool) |
 
-- **Both 1:1 and group chats** associated with the contact are backed up to Bitrix24.
-- Conversations are logged in the **General section of the contact's page**, visible right on the Bitrix24 Contact record.
-- Sync runs **automatically every 3 minutes** — near-real-time, not to-the-second.
-- On first integration, Eazybe provides chat backup for the **past 3 days** (not full history).
-- From the Mini-CRM you can also add a **Bitrix Activity** (with Notes) straight from WhatsApp, then view, postpone, edit, or delete it later.
-
-For real estate specifically, this means a buyer's entire thread — the questions about square footage, the floor-plan PDF, the price negotiation — lives on their Bitrix24 contact, not on the agent's phone. If that agent leaves, the relationship history stays.
-
-A precise expectation to set: the sync interval is fixed at 3 minutes and the initial backup covers the last 3 days. If you need the whole back-catalogue of a lead's history imported, that isn't what the initial backup does.
-
----
-
-## Lead Assignment & Team Visibility For 30+ Agents
-
-This is where a WhatsApp-on-Bitrix24 setup earns its keep for a 30-person team. The core pain — assignment confusion, and managers who can't see who replied or dropped a lead — is exactly what a shared inbox with roles solves.
-
-Eazybe's **Team Inbox** (also called the Revenue Inbox) is a shared workspace where multiple agents view and manage WhatsApp conversations from one dashboard, at workspace.eazybe.com. Two capabilities matter most here:
-
-**Chat assignment.** Use the **Assign to** dropdown to route a buyer conversation to a specific agent. You get a team-wise employee list plus an **All Employees** section; assigned chats appear under that agent's login, and chats can be marked unassigned. No more two agents chatting the same buyer.
-
-**Who-sees-what by role.** Access is role-based:
-
-- **Admin** — full access to all team conversations.
-- **Manager** — access to their team members' conversations.
-- **Agent** — access to their own conversations only.
-
-For accountability, **"Sent By" / assignment tracking** lets managers see which agent is handling each conversation. And the **Unreplied filter** surfaces buyer chats still awaiting a response — so a hot lead doesn't sit for hours. The **Unreplied Chats AI Agent** goes further, flagging **Critical vs Non-Critical** chats using urgency keywords (urgent, cancel, complaint) and CRM customer value.
-
-Managers also get an activity view: the Workspace Dashboard shows per-agent **Last Activity** (last active on WhatsApp Web), **Last Chat Synced** timestamp, and **CRM Integration status** (a Bitrix icon shows who has connected). That answers "is everyone actually using the system?" at a glance.
-
-*Also Read: [How A WhatsApp Team Inbox Fixes Assignment Chaos](/blog/whatsapp-team-inbox)*
-
-One honesty note on roles: Eazybe's docs use two role vocabularies across different screens (Admin/Manager/Agent in the Revenue Inbox and invite flow, versus Admin/Member/Viewer in settings). The practical takeaway is stable — agents see their own chats, admins see everything, managers see their team.
+**Key difference:** Bitrix24 embeds a full Team Inbox view inside the CRM, letting reps send and receive WhatsApp messages without leaving Bitrix24. HubSpot and Zoho require an external WhatsApp inbox (like Eazybe) for real-time messaging, with conversation logs syncing to the CRM.
 
 ---
 
-## Keep Chats On The CRM, Not Personal Phones
+## How the Bitrix24 WhatsApp Integration Works
 
-The sales lead's ask was blunt: chats belong on the cloud, not on personal phones. When client conversations live only on agents' devices, the business is one resignation away from losing a relationship.
+### 1. WhatsApp Chats Appear in Bitrix24's General Section
 
-A Bitrix24 WhatsApp integration flips that. Because linked conversations are logged onto the Bitrix24 contact record, the CRM becomes the durable home for client history. Team backups are handled through the Admin's Google Drive and surfaced in the Team Inbox, so a manager can review a departed rep's conversations without chasing a phone.
+When a customer messages your WhatsApp number, the conversation appears in Bitrix24's General section (also called the Open Channels or Messages area). You can view, reply, and manage the conversation without leaving Bitrix24.
 
-Worth stating plainly for compliance-minded teams: Eazybe does **not** store your chat data on its own servers. Backups live in Bitrix24 and — for Team Inbox — in the Admin's Google Drive. Eazybe also states **GDPR compliance** for the Bitrix24 integration and provides a **Data Processing Agreement (DPA)** on request via hey@eazybe.com.
+**What you see:**
+- Full conversation history (all incoming and outgoing messages)
+- Contact name, phone number, and profile picture
+- Mini-CRM view showing linked deals, tasks, and contact properties
+
+### 2. Two-Way Contact and Deal Sync
+
+**From WhatsApp to Bitrix24:**
+- When a new WhatsApp contact messages you, a contact is created in Bitrix24.
+- The contact's phone number, name (if available), and conversation history are logged.
+- You can manually or automatically create a deal from the conversation.
+
+**From Bitrix24 to WhatsApp:**
+- When you send a message from Bitrix24, it goes out via WhatsApp.
+- The recipient sees it as a normal WhatsApp message from your business number.
+
+**Sync time:** ~3 minutes for most data. Contacts, deals, and messages sync near real-time.
+
+**Deduplication:** Bitrix24 does not auto-deduplicate contacts. If a contact messages from a new number or their number changes, you may end up with duplicate contact records. You'll need to merge duplicates manually.
+
+### 3. AI Properties (Intent, Urgency, Objections)
+
+Eazybe's Bitrix24 integration includes BEA Radar, an AI layer that analyzes every WhatsApp conversation and assigns properties like:
+- **Intent:** What the customer wants (e.g., "Request pricing," "Product question," "Complaint")
+- **Urgency:** High, medium, or low
+- **Objection:** Common sales objections (e.g., "Price too high," "Not ready to buy")
+- **Summary:** A one-line summary of the conversation
+- **Next action:** Suggested next step (e.g., "Send proposal," "Schedule follow-up")
+
+**How it helps:**
+- Sales reps prioritize high-urgency chats.
+- Managers filter by intent to see all demo requests or complaints.
+- AI-detected objections help teams address common concerns proactively.
+
+**Important:** AI properties are assistive. A human reviews the AI's analysis and decides how to respond. The AI does not send messages or make decisions on its own.
+
+### 4. Initiate Conversations from Bitrix24
+
+You don't need to switch to a separate WhatsApp inbox. From Bitrix24, you can:
+- Send a WhatsApp message to any contact (as long as they opted in or messaged you first).
+- Use message templates for outbound messages outside the 24-hour window.
+- Attach images, documents, or links directly from Bitrix24.
+
+**Workflow:**
+1. Open a contact or deal in Bitrix24.
+2. Click the WhatsApp icon or go to the General section.
+3. Compose and send your message.
+4. The message goes out via WhatsApp and is logged in Bitrix24.
+
+### 5. Bitrix24 Workflow Integration
+
+Connect WhatsApp to Bitrix24 workflows to automate outreach based on CRM triggers.
+
+**Example workflows:**
+- **Trigger:** Deal stage changes to "Proposal Sent."
+  **Action:** Send a WhatsApp message: "Hi {{1}}, did you get a chance to review the proposal?"
+
+- **Trigger:** Contact property "Interested in demo" is set to "Yes."
+  **Action:** Send a WhatsApp message with a demo booking link.
+
+- **Trigger:** Contact is created from a web form.
+  **Action:** Send a WhatsApp welcome message.
+
+Workflows ensure timely, consistent follow-up without relying on manual effort.
 
 ---
 
-## Coexistence: No Number Migration
+## Bitrix24 WhatsApp Integration Features
 
-The single biggest reason teams stall on a WhatsApp CRM project is fear of change — specifically, having to **migrate their number** or risk getting **banned**. Real estate agents have years of chat history and buyer trust tied to the number on their business card. Ask them to switch it and the rollout dies.
+### 1. Complete Team Inbox View Inside Bitrix24
 
-Eazybe's answer is **no-API coexistence**: it runs as a Chrome extension over WhatsApp Web on the number reps already use — personal WhatsApp, the free WhatsApp Business App, or the API — with no migration and no BSP onboarding. Core chat sync, backup, and the Mini-CRM work directly on WhatsApp Web without requiring the WhatsApp Business API at all.
+Unlike HubSpot or Zoho, where WhatsApp conversations are logged but not fully interactive, Bitrix24 embeds a Team Inbox directly in the CRM. Reps can:
+- View all WhatsApp conversations in one place.
+- Assign chats to specific team members.
+- Filter by AI properties, contact owner, or deal stage.
+- Reply to messages without leaving Bitrix24.
 
-That matters more in 2026 than ever, because Meta is changing how it charges — including charging for service messages from **October 1, 2026**. Coexistence lets teams keep their number and their existing free WhatsApp app while still logging everything to Bitrix24.
+### 2. AI Intelligence Features
 
-*Also Read: [WhatsApp Coexistence: Add Automation Without Changing Your Number](/blog/whatsapp-coexistence)*
+BEA Radar analyzes every conversation and surfaces key insights:
+- **Intent detection:** Identifies what the customer wants.
+- **Urgency scoring:** Flags high-priority chats.
+- **Objection tracking:** Highlights common sales objections.
+- **Summary generation:** Creates a one-line summary of each chat.
 
----
+### 3. Labels and Funnels
 
-## Eazybe vs Bitrix24 Native WhatsApp: Comparison
+Organize conversations with labels (e.g., "Demo requested," "Pricing sent") and funnels (multi-stage workflows like "New lead → Qualified → Proposal sent → Closed-won").
 
-Bitrix24 has its own WhatsApp channel options (typically via an Open Channel connected to a WhatsApp Business API provider). That works — but for a sales-driven real estate team, the friction is setup, cost, and where the rep actually works. Here's an honest side-by-side, with alternatives real estate teams also evaluate.
+**Dynamic labels:** Labels can auto-apply based on Bitrix24 properties. For example, if a deal stage is "Negotiation," a "High-value" label appears in WhatsApp.
 
-| Solution | Rank | Where the rep works | Number / setup | Two-way CRM logging | Billing model | Best for |
-|---|---|---|---|---|---|---|
-| **Eazybe** | **#1** | Inside **WhatsApp Web** (Chrome extension) with a Bitrix24 Mini-CRM sidebar | **No-API coexistence** on existing number (personal / Business App / API); ~5-min install, no migration | Yes — links by phone, logs 1:1 + group chats to the contact's General section every 3 min | **Flat per-seat** | Real estate teams keeping their number who want chats on Bitrix24 |
-| Bitrix24 native WhatsApp (Open Channel + BSP) | 2 | Inside the Bitrix24 UI | Requires **WhatsApp Business API** via a connected provider + Meta approval | Yes, within Bitrix24's channel model | Meta **per-conversation** fees via the BSP | Teams already fully on WABA and living inside Bitrix24 |
-| TimelinesAI | 3 | Separate shared-inbox app + CRM sync | Connects existing WhatsApp numbers (multiple numbers per workspace) | Native CRM integrations (incl. Bitrix24); depth varies by plan | Per-seat / per user (verify on timelines.ai) | Multi-number teams wanting a sync layer, less embedded UX |
-| WATI / AiSensy / Interakt / DoubleTick (API-BSPs) | 4 | Separate API inbox | **WhatsApp Business API** setup + Meta approval required | Shared inbox + integrations; broadcast-first, shallower CRM sync | Subscription **plus Meta per-conversation** pass-through | Marketing broadcasts at volume, not CRM-first sales |
+### 4. Filters Based on Bitrix24 Properties
 
-*Fairness notes: Bitrix24's native WhatsApp is a real, capable channel — the honest contrast is coexistence-on-your-existing-number versus API onboarding, and where the rep works. API-BSPs like WATI, AiSensy, Interakt, and DoubleTick are legitimate official Meta platforms; their per-conversation billing is Meta's model, not a trick, and they do have inboxes and integrations. Verify all vendor prices on their own pricing pages before quoting — they change by region and over time.*
+Filter WhatsApp conversations by Bitrix24 data:
+- **Contact owner:** Show only chats assigned to me.
+- **Deal stage:** Show conversations linked to deals in "Proposal Sent" stage.
+- **Custom fields:** Filter by any Bitrix24 contact or deal field.
 
----
+**Example:** A real estate team filters by "Property type = Commercial" to see all WhatsApp chats related to commercial listings.
 
-## Setup In A Few Steps
+### 5. Access Control and Team Views
 
-Getting a **Bitrix24 WhatsApp integration** live with Eazybe takes a handful of steps and no developers:
+Create custom views for different team members based on role or responsibility.
 
-1. **Install the Eazybe Chrome extension** and open WhatsApp Web.
-2. Click **Integrations** in the extension, then **Connect** under Bitrix24.
-3. You're redirected to the **Bitrix24 Marketplace** — click **Install**.
-4. Click **Accept** to grant the required permissions (CRM read/write for contacts and leads, Activity Management, Timeline Access, User Information).
-5. **Link your first contacts** — by accurate phone number automatically, or via the Mini-CRM's "Link to an Existing Bitrix Contact" for anything ambiguous.
-6. **Invite your team** via the Eazybe Organization (Employees → Add Employees, or bulk via Excel), organize agents into Teams, and assign Admin / Manager / Agent roles.
-
-Eazybe offers a free trial — **4 days free** (extendable to **8 days** by rating the service), no credit card required — so a real estate team can test the full assignment-and-sync flow before committing.
-
-*Also Read: [AI Agents For Real Estate: Qualify And Follow Up On Autopilot](/blog/ai-agents-for-real-estate)*
-
----
-
-## When Native Bitrix24 Is Enough (An Honest Note)
-
-No tool is right for everyone. A Bitrix24 native WhatsApp channel via a BSP may be the better fit if:
-
-- You are **already fully on the WhatsApp Business API** and your reps genuinely prefer working inside the Bitrix24 UI rather than WhatsApp Web.
-- Your primary use case is **high-volume marketing broadcasts** with template automation, rather than one-to-one relationship selling.
-- You need messaging **triggered directly from Bitrix24 automations** — note that Eazybe's Bitrix24 integration focuses on linking, logging, and the Mini-CRM; it does not document sending WhatsApp messages out of Bitrix24 via Bitrix automations.
-
-For most real estate teams, though, the deciding factors are keeping the number reps already use, avoiding per-conversation billing, and giving managers visibility over 30 agents without a migration project. That is the sweet spot Eazybe is built for.
+**Example setup:**
+- **Sales reps:** See only chats assigned to them.
+- **Managers:** See all chats, with the ability to reassign.
+- **Support team:** See only support-related conversations (filtered by intent or label).
 
 ---
 
-## Bring Your WhatsApp Onto Bitrix24 Today
+## How to Set Up Bitrix24 WhatsApp Integration
 
-If your team's client conversations are scattered across 30 phones and duplicate contacts are piling up in Bitrix24, the fix is a real integration — not more spreadsheets. Link WhatsApp to your Bitrix24 contacts, log every chat to the CRM, assign leads clearly, and let managers finally see who replied.
+### Step 1: Get a WhatsApp Business API Number
 
-**Ready to put your team's WhatsApp on Bitrix24?** Install the Eazybe Chrome extension, connect Bitrix24 in about five minutes, and start your free trial — no number migration, no credit card.
+You need a WhatsApp Business API (WABA) number, not a personal WhatsApp or WhatsApp Business App number. You can:
+- Use a new number (dedicated to API).
+- Migrate an existing WhatsApp Business App number to API.
+
+**Note:** The integration is cloud-based, so the number is not tied to a physical phone.
+
+### Step 2: Connect to a WhatsApp Integration Provider
+
+Bitrix24 does not provide native WhatsApp Business API access. You need an integration provider like:
+- **Eazybe:** Provides the Team Inbox, AI properties, and workflow automation.
+- **Other providers:** Wati, MessageBird, or Twilio (feature sets vary).
+
+Sign up with your provider and obtain your WABA number.
+
+### Step 3: Link WhatsApp to Bitrix24
+
+In your integration provider's dashboard:
+1. Go to Integrations or CRM Sync.
+2. Select Bitrix24.
+3. Authorize the connection (you'll need your Bitrix24 URL and admin credentials).
+4. Configure sync settings (e.g., sync frequency, contact matching rules).
+
+### Step 4: Configure Workflows (Optional)
+
+In Bitrix24:
+1. Go to Automation → Workflows.
+2. Create a workflow with a WhatsApp action.
+3. Define the trigger (e.g., deal stage change) and the message template.
+
+### Step 5: Test the Integration
+
+Send a test WhatsApp message to your business number. Confirm that:
+- The message appears in Bitrix24's General section.
+- A contact is created (or updated) in Bitrix24.
+- You can reply from Bitrix24 and the reply goes out via WhatsApp.
 
 ---
 
-## FAQs Related To Bitrix24 WhatsApp Integration
+## Bitrix24 WhatsApp Integration Use Cases
 
-**1. How does the Bitrix24 WhatsApp integration link contacts?**
-WhatsApp and Bitrix24 contacts are linked automatically through the unique phone number stored in Bitrix24's Phone Number or Mobile field. You can also create a new contact from WhatsApp or manually link an existing Bitrix24 contact via the Mini-CRM.
+### Use Case 1: Real Estate Lead Management
 
-**2. Can we sync WhatsApp contacts to Bitrix24 without creating duplicates?**
-Yes, with discipline. Automatic phone-number matching attaches chats to existing records, and the create-contact flow offers "Link to an Existing Bitrix Contact" so reps can attach to the right record instead of making a new one. There is no separate automatic de-duplication engine, so accurate mobile numbers in Bitrix24 plus "link before you create" is the reliable pattern.
+**Scenario:** A real estate team uses Bitrix24 to track property inquiries. Leads message via WhatsApp asking about listings.
 
-**3. What actually gets logged to Bitrix24?**
-For chats linked to a Bitrix24 contact, both 1:1 and group conversations are backed up to the General section of that contact's page. Sync runs automatically every 3 minutes, with a 3-day backup on first connect.
+**Workflow:**
+1. Lead messages: "Do you have any 2-bedroom apartments available?"
+2. Message appears in Bitrix24 with AI-detected intent: "Property inquiry."
+3. Rep replies from Bitrix24 with available listings.
+4. A deal is created and linked to the conversation.
+5. When the deal moves to "Viewing scheduled," a Bitrix24 workflow sends a WhatsApp reminder.
 
-**4. Does this Bitrix24 WhatsApp integration require the WhatsApp Business API?**
-No. Core chat sync, backup, and the Mini-CRM work as a Chrome extension over WhatsApp Web in a no-API coexistence model — on the personal WhatsApp, Business App, or API number reps already use. There is no number migration.
+### Use Case 2: Retail Order Updates
 
-**5. How do managers see who replied across 30+ agents?**
-The Team Inbox provides chat assignment ("Assign to"), an Unreplied filter, and role-based access — Admin sees all conversations, Managers see their team's, and Agents see their own. Assignment tracking shows which agent is handling each buyer.
+**Scenario:** A retail business uses Bitrix24 for order management. Customers ask about order status via WhatsApp.
 
-**6. What happens to a buyer's chat history when an agent leaves?**
-Because linked conversations are logged onto the Bitrix24 contact record (and team backups sit in the Admin's Google Drive, surfaced in the Team Inbox), the relationship history stays with the business rather than walking out on a personal phone.
+**Workflow:**
+1. Customer messages: "Where is my order?"
+2. Message appears in Bitrix24 with AI-detected intent: "Order inquiry."
+3. Rep checks the order status in Bitrix24 and replies via WhatsApp.
+4. When the order ships, a Bitrix24 workflow sends a WhatsApp tracking link.
 
-**7. Is the Bitrix24 WhatsApp integration secure and compliant?**
-Eazybe states GDPR compliance for the Bitrix24 integration and provides a DPA on request via hey@eazybe.com. Eazybe does not store your chat data on its own servers — backups live in Bitrix24 and, for Team Inbox, in the Admin's Google Drive.
+### Use Case 3: Service Business Appointment Reminders
 
-**8. How long does setup take?**
-About five minutes and no developers: install the extension, connect Bitrix24 via the Marketplace, accept permissions, and start linking contacts. A free trial (4 days, extendable to 8) lets you test it first.
+**Scenario:** A service business (e.g., salon, clinic) uses Bitrix24 for appointment scheduling.
+
+**Workflow:**
+1. Customer books an appointment via phone or website.
+2. Appointment is logged in Bitrix24.
+3. One day before the appointment, a Bitrix24 workflow sends a WhatsApp reminder: "Hi {{1}}, your appointment is tomorrow at {{2}}. Reply CONFIRM to confirm."
+4. Customer replies "CONFIRM," and the rep sees the message in Bitrix24.
+
+---
+
+## Honest Limitations: What Bitrix24 WhatsApp Integration Can't Do
+
+1. **No auto-deduplication.** If a contact messages from a different number or their number changes, Bitrix24 may create a duplicate contact. You'll need to merge duplicates manually.
+2. **Sync is not instant.** Two-way sync typically takes ~3 minutes. Real-time sync is not possible.
+3. **Cloud-based only (no personal phones).** The integration uses WhatsApp Business API, which is cloud-based. You cannot connect a personal WhatsApp number or a number tied to a physical phone.
+4. **Dynamic labels are one-directional (Bitrix24 to WhatsApp).** Labels auto-apply from Bitrix24 properties to WhatsApp, but changing a label in WhatsApp does not update Bitrix24.
+5. **AI properties require human review.** AI-detected intent, urgency, and objections are suggestions, not final decisions. A human must review and act.
+
+---
+
+## FAQ: Bitrix24 WhatsApp Integration
+
+### 1. Can I use my personal WhatsApp number with Bitrix24?
+
+No. The integration requires a WhatsApp Business API number, not a personal WhatsApp number.
+
+### 2. Do I need to pay for WhatsApp Business API?
+
+Yes. WhatsApp Business API has per-message charges (see [WhatsApp Business API Pricing](/whatsapp-business-api-pricing-2026)). Your integration provider may also charge a platform fee.
+
+### 3. Can I send WhatsApp messages from Bitrix24?
+
+Yes. Once integrated, you can send WhatsApp messages directly from Bitrix24's General section or from contact/deal records.
+
+### 4. How long does it take for WhatsApp messages to appear in Bitrix24?
+
+Near real-time, typically within a few seconds. Contact and deal sync takes ~3 minutes.
+
+### 5. Can I filter WhatsApp chats by Bitrix24 deal stage?
+
+Yes. If your integration supports CRM property filters, you can filter WhatsApp conversations by any Bitrix24 field (deal stage, contact owner, custom fields, etc.).
+
+### 6. Does Bitrix24 support WhatsApp broadcast messages?
+
+Yes, through your integration provider. You can send broadcast messages to multiple contacts and trigger them from Bitrix24 workflows.
+
+### 7. Can I assign WhatsApp chats to specific team members in Bitrix24?
+
+Yes. Chats can be assigned manually or automatically (e.g., based on contact owner in Bitrix24).
+
+### 8. What happens if a contact is already in Bitrix24 and they message via WhatsApp?
+
+The integration matches the contact by phone number and updates their record. The WhatsApp conversation is logged under the existing contact.
+
+---
+
+## Get Started with Bitrix24 WhatsApp Integration
+
+Bitrix24 WhatsApp integration centralizes customer conversations, syncs contacts and deals, and enables workflow automation—all from within Bitrix24. With a Team Inbox view, AI properties, and Bitrix24 workflow triggers, your team can manage WhatsApp messaging without switching platforms.
+
+**Ready to connect WhatsApp to Bitrix24?** [Try Eazybe's Bitrix24 integration](https://eazybe.com) — get a Team Inbox inside Bitrix24, AI-powered chat properties, and workflow automation for WhatsApp messaging.
