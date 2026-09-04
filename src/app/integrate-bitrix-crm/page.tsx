@@ -8,11 +8,75 @@ const CLIENT_ID = "app.6448e61fad4676.49982309"
 const EXTENSION_ID_PRODUCTION = "aihpfgoknheimieofcfjiobnmddldjeb"
 const EXTENSION_ID_LEGACY_PRODUCTION = "clgficggccelgifppbcaepjdkklfcefd"
 const REDIRECT_URI = "https://eazybe.com/integrate-bitrix-crm"
+const BITRIX_MARKETPLACE_SOURCE = "bitrix_marketplace"
+const BITRIX_MARKETPLACE_CONTEXT_KEY = "eazybe_bitrix_marketplace_return_url"
+const ALLOWED_WORKSPACE_ORIGINS = new Set([
+  "https://dev-app.eazybe.com",
+  "https://app.eazybe.com",
+])
 
-const getClientRedirectURL = (): string | null => {
+const getMarketplaceReturnURL = (candidate?: string | null): string | null => {
+  if (!candidate) return null
+
+  try {
+    const url = new URL(candidate)
+    if (!ALLOWED_WORKSPACE_ORIGINS.has(url.origin)) return null
+
+    url.pathname = "/integrations"
+    url.search = ""
+    url.hash = ""
+    url.searchParams.set("section", "bitrix24")
+    url.searchParams.set("source", BITRIX_MARKETPLACE_SOURCE)
+    return url.toString()
+  } catch {
+    return null
+  }
+}
+
+const readMarketplaceReturnURL = (): string | null =>
+  getMarketplaceReturnURL(localStorage.getItem(BITRIX_MARKETPLACE_CONTEXT_KEY))
+
+const saveMarketplaceReturnURL = (explicitReturnURL?: string | null): string | null => {
+  const returnURL =
+    getMarketplaceReturnURL(explicitReturnURL) ||
+    getMarketplaceReturnURL(document.referrer)
+
+  if (returnURL) {
+    localStorage.setItem(BITRIX_MARKETPLACE_CONTEXT_KEY, returnURL)
+  }
+  return returnURL
+}
+
+const redirectMarketplaceCallbackToWorkspace = (
+  returnURL: string,
+  callbackParams: Record<string, string>
+) => {
+  const workspaceURL = new URL(returnURL)
+  const forwardedParams = [
+    "code",
+    "domain",
+    "member_id",
+    "scope",
+    "server_domain",
+  ]
+
+  forwardedParams.forEach((key) => {
+    const value = callbackParams[key]
+    if (value) workspaceURL.searchParams.set(key, value)
+  })
+  localStorage.removeItem(BITRIX_MARKETPLACE_CONTEXT_KEY)
+  window.location.replace(workspaceURL.toString())
+}
+
+const getClientRedirectURL = (marketplace = false): string | null => {
   const domain = localStorage.getItem("bitrixDomain")
   if (!domain) return null
-  return `https://${domain}/oauth/authorize/?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}`
+  const url = new URL(`https://${domain}/oauth/authorize/`)
+  url.searchParams.set("client_id", CLIENT_ID)
+  url.searchParams.set("response_type", "code")
+  url.searchParams.set("redirect_uri", REDIRECT_URI)
+  if (marketplace) url.searchParams.set("state", BITRIX_MARKETPLACE_SOURCE)
+  return url.toString()
 }
 
 const sendMessageToChromeExtension = () => {
@@ -96,15 +160,22 @@ export default function IntegrateBitrixCrmPage() {
       const authToken = urlParamsObject["authToken"] || null
       const bitrixDomain = urlParamsObject["domain"] || localStorage.getItem("bitrixDomain") || null
       const autoConnect = urlParamsObject["connect"] === "true"
+      const isMarketplaceEntry = urlParamsObject["source"] === BITRIX_MARKETPLACE_SOURCE
+      const isMarketplaceCallback =
+        isMarketplaceEntry ||
+        urlParamsObject["state"] === BITRIX_MARKETPLACE_SOURCE
 
       if (workspaceId) localStorage.setItem("workspaceId", workspaceId)
       if (email) localStorage.setItem("email", email)
       if (extensionId) localStorage.setItem("extensionId", extensionId)
       if (authToken) localStorage.setItem("authToken", authToken)
       if (bitrixDomain) localStorage.setItem("bitrixDomain", bitrixDomain)
+      if (isMarketplaceEntry) {
+        saveMarketplaceReturnURL(urlParamsObject["return_url"])
+      }
 
       if (autoConnect && bitrixDomain) {
-        const redirectURL = getClientRedirectURL()
+        const redirectURL = getClientRedirectURL(isMarketplaceEntry)
         if (redirectURL) {
           window.location.href = redirectURL
           return
@@ -112,6 +183,13 @@ export default function IntegrateBitrixCrmPage() {
       }
 
       if (urlParamsObject?.code) {
+        const marketplaceReturnURL = isMarketplaceCallback
+          ? readMarketplaceReturnURL()
+          : null
+        if (marketplaceReturnURL) {
+          redirectMarketplaceCallbackToWorkspace(marketplaceReturnURL, urlParamsObject)
+          return
+        }
         await getBearerToken(urlParamsObject.code)
       }
     }
