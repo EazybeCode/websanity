@@ -615,7 +615,7 @@ async function walkPostFields(fields, targetLang) {
     translateText(fields.excerpt, targetLang),
     translatePortableText(fields.body || [], targetLang),
     translateFaqs(fields.faq || [], targetLang),
-    translateText(fields.quickAnswer, targetLang),
+    translateAny(fields.quickAnswer, targetLang), // string (legacy) or rich blocks
     translatePortableText(fields.tldr || [], targetLang),
     translateText(fields.tldrHeading, targetLang),
     translateText(fields.faqTitle, targetLang),

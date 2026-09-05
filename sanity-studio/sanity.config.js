@@ -463,10 +463,33 @@ const blogPost = {
     {
       name: 'quickAnswer',
       title: 'Quick Answer',
-      type: 'text',
+      type: 'array',
       fieldset: 'metadata',
-      rows: 4,
-      description: 'Short direct answer shown at the top of the post (for featured snippets)',
+      description: 'Short direct answer. Supports bullet points, bold/italic, and hyperlinks.',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Paragraph', value: 'normal' }],
+          lists: [{ title: 'Bullet Points', value: 'bullet' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  { name: 'href', type: 'url', title: 'URL' },
+                  { name: 'openInNewTab', type: 'boolean', title: 'Open in new tab', initialValue: true },
+                ],
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       name: 'tableOfContents',
@@ -951,10 +974,33 @@ const comparisonPost = {
     {
       name: 'quickAnswer',
       title: 'Quick Answer',
-      type: 'text',
+      type: 'array',
       fieldset: 'metadata',
-      rows: 4,
-      description: 'Short direct answer shown at the top (for featured snippets)',
+      description: 'Short direct answer. Supports bullet points, bold/italic, and hyperlinks.',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Paragraph', value: 'normal' }],
+          lists: [{ title: 'Bullet Points', value: 'bullet' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  { name: 'href', type: 'url', title: 'URL' },
+                  { name: 'openInNewTab', type: 'boolean', title: 'Open in new tab', initialValue: true },
+                ],
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       name: 'tableOfContents',

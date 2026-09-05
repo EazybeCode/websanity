@@ -1,5 +1,7 @@
 'use client'
 
+import { quickAnswerToHtml } from '@/lib/quick-answer-html'
+
 import React, { useEffect, useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
@@ -99,7 +101,7 @@ interface BlogPost {
   }
   tldrHeading?: string
   tldr?: any[]
-  quickAnswer?: string
+  quickAnswer?: string | import('@/lib/quick-answer-html').QuickAnswerBlock[]
   tableOfContents?: Array<{ label: string; id: string }>
   faqTitle?: string
   faqs?: Array<{ question: string; answer: any; plainAnswer?: string; answerText?: string }>
@@ -1062,7 +1064,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
               )}
 
               {/* Summary Box */}
-              {post.quickAnswer && (
+              {quickAnswerToHtml(post.quickAnswer) && (
                 <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue/5 border border-brand-cyan/20 rounded-xl md:rounded-2xl p-5 md:p-7 lg:p-8 mb-6 md:mb-10">
                   <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-5">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-brand-cyan/10 flex items-center justify-center">
@@ -1080,7 +1082,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                   </div>
                   <div
                     className="text-sm md:text-base lg:text-lg text-slate-300 leading-relaxed [&>p]:mb-3 [&>ul]:space-y-2 [&>ul>li]:flex [&>ul>li]:gap-2 [&>ul>li]:before:content-['->'] [&>ul>li]:before:text-brand-cyan"
-                    dangerouslySetInnerHTML={{ __html: post.quickAnswer }}
+                    dangerouslySetInnerHTML={{ __html: quickAnswerToHtml(post.quickAnswer) }}
                   />
                 </div>
               )}
