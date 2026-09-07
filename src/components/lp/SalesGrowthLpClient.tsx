@@ -250,9 +250,6 @@ export function SalesGrowthLpClient() {
                 >
                   {submitting ? 'Submitting…' : 'Get started free →'}
                 </button>
-                <p style={{ marginTop: 12, fontSize: 11.5, lineHeight: 1.5, color: '#8A8F9E', textAlign: 'center', margin: '12px 0 0' }}>
-                  Free 14-day trial • No credit card required
-                </p>
               </form>
             </>
           )}
