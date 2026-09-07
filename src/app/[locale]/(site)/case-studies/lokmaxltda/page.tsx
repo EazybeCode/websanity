@@ -415,16 +415,16 @@ export default async function LokmaxCaseStudyPage({
             {/* Right: visual panel on a soft blob */}
             <div className="lka-visual-wrap">
               <div className="lka-visual">
-                <span className={`lka-visual-mark${logoUrl ? ' has-logo' : ''}`} aria-hidden="true">
-                  {logoUrl ? (
-                    <>
-                      <img className="lka-mark-glow" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt="" loading="lazy" />
-                      <img className="lka-mark-img" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt="" loading="lazy" />
-                    </>
-                  ) : (
-                    initials
-                  )}
-                </span>
+                {/* Logo alt derives from the company name; the blurred glow
+                    copy stays decorative. */}
+                {logoUrl ? (
+                  <span className="lka-visual-mark has-logo">
+                    <img className="lka-mark-glow" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt="" aria-hidden="true" loading="lazy" />
+                    <img className="lka-mark-img" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt={`${company} logo`} loading="lazy" />
+                  </span>
+                ) : (
+                  <span className="lka-visual-mark" aria-hidden="true">{initials}</span>
+                )}
                 <div className="lka-visual-facts">
                   {heroFacts.map((f) => (
                     <div key={f.label}>

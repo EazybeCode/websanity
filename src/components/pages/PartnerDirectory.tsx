@@ -204,9 +204,15 @@ function Card({ p, labels }: { p: PartnerRecord; labels: PartnerDirectoryLabels 
   return (
     <article className="pd-card">
       <div className="pd-card-head">
-        <span className="pd-avatar" aria-hidden="true">
-          {p.logoUrl ? <img src={p.logoUrl} alt="" loading="lazy" /> : p.initials}
-        </span>
+        {/* Alt text derives from the partner name, so Studio needs no
+            separate alt field and it stays correct when partners rename. */}
+        {p.logoUrl ? (
+          <span className="pd-avatar">
+            <img src={p.logoUrl} alt={`${p.name} logo`} loading="lazy" />
+          </span>
+        ) : (
+          <span className="pd-avatar" aria-hidden="true">{p.initials}</span>
+        )}
         <div style={{ minWidth: 0 }}>
           <h3 className="pd-name">{p.name}</h3>
           <div className="pd-badges">

@@ -115,7 +115,7 @@ const partner = {
       fieldset: 'identity',
       options: { hotspot: true },
       description:
-        'Shown in the small square tile on the directory card. Without one, the card shows a two-letter monogram of the name. Square images work best.',
+        'Shown in the small square tile on the directory card. Without one, the card shows a two-letter monogram of the name. Square images work best. Alt text is generated automatically from the Partner Name ("<name> logo") — no need to add it here.',
     },
     {
       name: 'websiteUrl',

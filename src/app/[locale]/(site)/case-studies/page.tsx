@@ -190,9 +190,14 @@ export default async function CaseStudiesPage({
               return (
               <article key={c.company} className="cs-card">
                 <div className="cs-card-head">
-                  <span className="cs-avatar" aria-hidden="true">
-                    {over?.logoUrl ? <img src={`${over.logoUrl}?w=88&h=88&fit=max&auto=format`} alt="" loading="lazy" /> : c.initials}
-                  </span>
+                  {/* Alt text derives from the company name — no Studio field needed. */}
+                  {over?.logoUrl ? (
+                    <span className="cs-avatar">
+                      <img src={`${over.logoUrl}?w=88&h=88&fit=max&auto=format`} alt={`${over?.company || c.company} logo`} loading="lazy" />
+                    </span>
+                  ) : (
+                    <span className="cs-avatar" aria-hidden="true">{c.initials}</span>
+                  )}
                   <div>
                     <div className="cs-company">{over?.company || c.company}</div>
                     <span className="cs-industry">{over?.industry || c.industry}</span>

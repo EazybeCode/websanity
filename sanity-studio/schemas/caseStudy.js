@@ -120,7 +120,7 @@ const caseStudy = {
       type: 'image',
       fieldset: 'company',
       options: { hotspot: true },
-      description: 'Optional. Cards fall back to a monogram of the company name.',
+      description: 'Optional. Cards fall back to a monogram of the company name. Alt text is generated automatically from the Company Name ("<company> logo") — no need to add it here.',
     },
     {
       name: 'facts',

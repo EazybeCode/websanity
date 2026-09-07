@@ -565,7 +565,7 @@ export function PartnerPageClient({
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
                     src={integration.logo}
-                    alt=""
+                    alt={`${integration.name} logo`}
                     width={26}
                     height={26}
                     loading="lazy"
