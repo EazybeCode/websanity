@@ -38,21 +38,71 @@ const COUNTRY_CODES = [
   { code: '+234', country: 'NG' },
 ]
 
-const CRM_OPTIONS = ['HubSpot', 'Salesforce', 'Zoho', 'Other', 'None']
+// Submitted CRM values stay canonical English so HubSpot reporting is
+// consistent across locales; only the visible labels localize.
+const CRM_VALUES = ['HubSpot', 'Salesforce', 'Zoho', 'Other', 'None'] as const
 
-// After a successful submit, the visitor lands on the page for their CRM
-// (1s delay so the success state registers before navigation).
-const CRM_REDIRECTS: Record<string, string> = {
-  HubSpot: '/hubspot-whatsapp-integration',
-  Salesforce: '/salesforce-whatsapp-integration',
-  Zoho: '/zoho-whatsapp-integration',
-  Other: '/',
-  None: '/',
+export type LpLocale = 'en' | 'es' | 'br'
+
+// Full copy per locale (exact translations of the EN card).
+const LP_TX: Record<LpLocale, any> = {
+  en: {
+    htmlLang: 'en', language: 'English', defaultCode: '+91', prefix: '',
+    h1: 'Grow your WhatsApp sales',
+    sub: 'Tell us where to reach you and our team will show you how Eazybe fits your CRM.',
+    emailLabel: 'Work Email', emailPlaceholder: 'you@company.com',
+    phoneLabel: 'Phone Number', phonePlaceholder: '98765 43210', countryAria: 'Country code',
+    crmLabel: 'Which CRM You Used', crmPlaceholder: 'Select your CRM',
+    crmLabels: { HubSpot: 'HubSpot', Salesforce: 'Salesforce', Zoho: 'Zoho', Other: 'Other', None: 'None' },
+    errEmailReq: 'Work email is required', errEmailInvalid: 'Enter a valid email address', errEmailPersonal: 'Please use your work email',
+    errPhoneReq: 'Phone number is required', errPhoneInvalid: 'Enter a valid phone number', errCrm: 'Please pick an option',
+    submit: 'Get started free →', submitting: 'Submitting…',
+    doneTitle: "Thanks — you're in", doneBody: 'Taking you to the right place…',
+  },
+  es: {
+    htmlLang: 'es', language: 'Spanish', defaultCode: '+34', prefix: '/es',
+    h1: 'Haz crecer tus ventas por WhatsApp',
+    sub: 'Dinos dónde contactarte y nuestro equipo te mostrará cómo Eazybe encaja con tu CRM.',
+    emailLabel: 'Correo de trabajo', emailPlaceholder: 'tu@empresa.com',
+    phoneLabel: 'Número de teléfono', phonePlaceholder: '612 345 678', countryAria: 'Código de país',
+    crmLabel: 'Qué CRM usas', crmPlaceholder: 'Selecciona tu CRM',
+    crmLabels: { HubSpot: 'HubSpot', Salesforce: 'Salesforce', Zoho: 'Zoho', Other: 'Otro', None: 'Ninguno' },
+    errEmailReq: 'El correo de trabajo es obligatorio', errEmailInvalid: 'Introduce un correo válido', errEmailPersonal: 'Usa tu correo de trabajo',
+    errPhoneReq: 'El número de teléfono es obligatorio', errPhoneInvalid: 'Introduce un número válido', errCrm: 'Selecciona una opción',
+    submit: 'Comienza gratis →', submitting: 'Enviando…',
+    doneTitle: '¡Listo! Ya estás dentro', doneBody: 'Te llevamos al lugar indicado…',
+  },
+  br: {
+    htmlLang: 'pt-BR', language: 'Portuguese', defaultCode: '+55', prefix: '/br',
+    h1: 'Faça suas vendas no WhatsApp crescerem',
+    sub: 'Diga onde falar com você e nosso time mostra como a Eazybe se encaixa no seu CRM.',
+    emailLabel: 'E-mail de trabalho', emailPlaceholder: 'voce@empresa.com',
+    phoneLabel: 'Número de telefone', phonePlaceholder: '11 91234 5678', countryAria: 'Código do país',
+    crmLabel: 'Qual CRM você usa', crmPlaceholder: 'Selecione seu CRM',
+    crmLabels: { HubSpot: 'HubSpot', Salesforce: 'Salesforce', Zoho: 'Zoho', Other: 'Outro', None: 'Nenhum' },
+    errEmailReq: 'O e-mail de trabalho é obrigatório', errEmailInvalid: 'Digite um e-mail válido', errEmailPersonal: 'Use seu e-mail de trabalho',
+    errPhoneReq: 'O número de telefone é obrigatório', errPhoneInvalid: 'Digite um número válido', errCrm: 'Selecione uma opção',
+    submit: 'Comece grátis →', submitting: 'Enviando…',
+    doneTitle: 'Pronto! Você está dentro', doneBody: 'Levando você para o lugar certo…',
+  },
 }
 
-export function SalesGrowthLpClient() {
+// After a successful submit, the visitor lands on the page for their CRM in
+// their own locale (1s delay so the success state registers first).
+const crmRedirect = (crm: string, prefix: string): string => {
+  const map: Record<string, string> = {
+    HubSpot: '/hubspot-whatsapp-integration',
+    Salesforce: '/salesforce-whatsapp-integration',
+    Zoho: '/zoho-whatsapp-integration',
+  }
+  if (map[crm]) return `${prefix}${map[crm]}`
+  return prefix || '/'
+}
+
+export function SalesGrowthLpClient({ locale = 'en' }: { locale?: LpLocale }) {
+  const tx = LP_TX[locale] || LP_TX.en
   const [email, setEmail] = useState('')
-  const [countryCode, setCountryCode] = useState('+91')
+  const [countryCode, setCountryCode] = useState(tx.defaultCode)
   const [phone, setPhone] = useState('')
   const [crm, setCrm] = useState('')
   const [errors, setErrors] = useState<{ email?: string; phone?: string; crm?: string }>({})
@@ -63,12 +113,12 @@ export function SalesGrowthLpClient() {
     const next: typeof errors = {}
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     const domain = email.split('@')[1]?.toLowerCase()
-    if (!email.trim()) next.email = 'Work email is required'
-    else if (!emailOk) next.email = 'Enter a valid email address'
-    else if (PERSONAL_EMAIL_DOMAINS.includes(domain)) next.email = 'Please use your work email'
-    if (!phone.trim()) next.phone = 'Phone number is required'
-    else if (phone.trim().length < 7) next.phone = 'Enter a valid phone number'
-    if (!crm) next.crm = 'Please pick an option'
+    if (!email.trim()) next.email = tx.errEmailReq
+    else if (!emailOk) next.email = tx.errEmailInvalid
+    else if (PERSONAL_EMAIL_DOMAINS.includes(domain)) next.email = tx.errEmailPersonal
+    if (!phone.trim()) next.phone = tx.errPhoneReq
+    else if (phone.trim().length < 7) next.phone = tx.errPhoneInvalid
+    if (!crm) next.crm = tx.errCrm
     setErrors(next)
     return Object.keys(next).length === 0
   }
@@ -85,7 +135,7 @@ export function SalesGrowthLpClient() {
       const formId = '33a52d62-3ee7-4b06-8976-ec0c1fde9658'
       const fields = [
         { name: 'email', value: email },
-        { name: 'language', value: 'English' },
+        { name: 'language', value: tx.language },
         // Contact property the site's other lead form also sets — the CRM
         // choice lands on the contact record under "CRM used".
         { name: 'crm_used', value: crm },
@@ -106,12 +156,12 @@ export function SalesGrowthLpClient() {
           },
         }),
       })
-      ;(window as any).gtag?.('event', 'lp_sales_growth_submit')
+      ;(window as any).gtag?.('event', `lp_sales_growth_submit_${locale}`)
       setDone(true)
-      setTimeout(() => { window.location.href = CRM_REDIRECTS[crm] || '/' }, 1000)
+      setTimeout(() => { window.location.href = crmRedirect(crm, tx.prefix) }, 1000)
     } catch {
       setDone(true)
-      setTimeout(() => { window.location.href = CRM_REDIRECTS[crm] || '/' }, 1000)
+      setTimeout(() => { window.location.href = crmRedirect(crm, tx.prefix) }, 1000)
     } finally {
       setSubmitting(false)
     }
@@ -159,9 +209,9 @@ export function SalesGrowthLpClient() {
               <div style={{ width: 52, height: 52, borderRadius: '50%', background: '#DDF0E7', color: '#1F6B4A', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
                 <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
               </div>
-              <h1 style={{ fontSize: 21, fontWeight: 700, color: '#0F1115', margin: '0 0 8px' }}>Thanks — you&apos;re in</h1>
+              <h1 style={{ fontSize: 21, fontWeight: 700, color: '#0F1115', margin: '0 0 8px' }}>{tx.doneTitle}</h1>
               <p style={{ fontSize: 14.5, lineHeight: 1.6, color: '#5A6072', margin: 0 }}>
-                Taking you to the right place…
+                {tx.doneBody}
               </p>
             </div>
           ) : (
@@ -172,20 +222,20 @@ export function SalesGrowthLpClient() {
               </div>
               {/* globals.css force-capitalises h1s site-wide; keep ad message match. */}
               <h1 style={{ fontSize: 22, fontWeight: 700, color: '#0F1115', margin: '0 0 6px', lineHeight: 1.25, textTransform: 'none' }}>
-                Grow your WhatsApp sales
+                {tx.h1}
               </h1>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: '#5A6072', margin: '0 0 20px' }}>
-                Tell us where to reach you and our team will show you how Eazybe fits your CRM.
+                {tx.sub}
               </p>
 
               <form onSubmit={handleSubmit} noValidate>
                 <div style={{ marginBottom: 14 }}>
-                  <label htmlFor="lp-email" style={labelStyle}>Work Email <span style={{ color: '#C0362C' }}>*</span></label>
+                  <label htmlFor="lp-email" style={labelStyle}>{tx.emailLabel} <span style={{ color: '#C0362C' }}>*</span></label>
                   <input
                     id="lp-email"
                     type="email"
                     autoComplete="email"
-                    placeholder="you@company.com"
+                    placeholder={tx.emailPlaceholder}
                     value={email}
                     onChange={(e) => { setEmail(e.target.value); setErrors((p) => ({ ...p, email: undefined })) }}
                     disabled={submitting}
@@ -195,10 +245,10 @@ export function SalesGrowthLpClient() {
                 </div>
 
                 <div style={{ marginBottom: 14 }}>
-                  <label htmlFor="lp-phone" style={labelStyle}>Phone Number <span style={{ color: '#C0362C' }}>*</span></label>
+                  <label htmlFor="lp-phone" style={labelStyle}>{tx.phoneLabel} <span style={{ color: '#C0362C' }}>*</span></label>
                   <div style={{ display: 'flex', gap: 8 }}>
                     <select
-                      aria-label="Country code"
+                      aria-label={tx.countryAria}
                       value={countryCode}
                       onChange={(e) => setCountryCode(e.target.value)}
                       disabled={submitting}
@@ -212,7 +262,7 @@ export function SalesGrowthLpClient() {
                       id="lp-phone"
                       type="tel"
                       autoComplete="tel"
-                      placeholder="98765 43210"
+                      placeholder={tx.phonePlaceholder}
                       value={phone}
                       onChange={(e) => { setPhone(e.target.value); setErrors((p) => ({ ...p, phone: undefined })) }}
                       disabled={submitting}
@@ -223,7 +273,7 @@ export function SalesGrowthLpClient() {
                 </div>
 
                 <div style={{ marginBottom: 20 }}>
-                  <label htmlFor="lp-crm" style={labelStyle}>Which CRM You Used <span style={{ color: '#C0362C' }}>*</span></label>
+                  <label htmlFor="lp-crm" style={labelStyle}>{tx.crmLabel} <span style={{ color: '#C0362C' }}>*</span></label>
                   <select
                     id="lp-crm"
                     value={crm}
@@ -231,9 +281,9 @@ export function SalesGrowthLpClient() {
                     disabled={submitting}
                     style={{ ...inputBase, cursor: 'pointer', color: crm ? '#0F1115' : '#8A8F9E', borderColor: errors.crm ? '#C0362C' : '#D9DDE7' }}
                   >
-                    <option value="" disabled>Select your CRM</option>
-                    {CRM_OPTIONS.map((o) => (
-                      <option key={o} value={o} style={{ color: '#0F1115' }}>{o}</option>
+                    <option value="" disabled>{tx.crmPlaceholder}</option>
+                    {CRM_VALUES.map((o) => (
+                      <option key={o} value={o} style={{ color: '#0F1115' }}>{tx.crmLabels[o]}</option>
                     ))}
                   </select>
                   {errors.crm && <p style={errStyle} role="alert">{errors.crm}</p>}
@@ -248,7 +298,7 @@ export function SalesGrowthLpClient() {
                     opacity: submitting ? 0.7 : 1,
                   }}
                 >
-                  {submitting ? 'Submitting…' : 'Get started free →'}
+                  {submitting ? tx.submitting : tx.submit}
                 </button>
               </form>
             </>
