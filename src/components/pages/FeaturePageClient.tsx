@@ -1,7 +1,8 @@
-'use client'
+﻿'use client'
 
 import React from 'react'
 import Link from 'next/link'
+import { TrendingUp, ShoppingBag, Briefcase, Calendar, Users, Zap, Shield, BarChart3, Headphones, MessageSquare, Check as CheckIcon } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import { useTrialModal } from '@/providers/TrialModalProvider'
 import { urlFor } from '@/lib/sanity'
@@ -159,7 +160,7 @@ const HeroSection: React.FC<{ data: any }> = ({ data }) => {
  * fully visible on every card — only emphasis moves — so nothing is hidden
  * from readers or crawlers. Auto-cycling is disabled for reduced motion.
  */
-const BenefitsSection: React.FC<{ data: any }> = ({ data }) => {
+export const BenefitsSection: React.FC<{ data: any }> = ({ data }) => {
   const [active, setActive] = React.useState(0)
   const [paused, setPaused] = React.useState(false)
   const reduced = React.useRef(false)
@@ -468,7 +469,7 @@ const HowItWorksStepper: React.FC<{ steps: any[] }> = ({ steps }) => {
   )
 }
 
-const HowItWorksSection: React.FC<{ data: any }> = ({ data }) => {
+export const HowItWorksSection: React.FC<{ data: any }> = ({ data }) => {
   if (!data || !data.steps) return null
   return (
     <section className="section">
@@ -488,19 +489,148 @@ const HowItWorksSection: React.FC<{ data: any }> = ({ data }) => {
 
 // ─── Use cases ──────────────────────────────────────────────────────────────
 
-const UseCasesSection: React.FC<{ data: any }> = ({ data }) => {
+/**
+ * Interactive use-cases grid (dark twin of BenefitsSection's spotlight):
+ * a highlight cycles across the cards every 4s with a progress bar on the
+ * active card; hover/focus pauses it, clicking a card moves it there.
+ * Cards stay fully readable at all times — only emphasis moves.
+ */
+const UC_ICONS: Record<string, React.ComponentType<any>> = {
+  'trending-up': TrendingUp,
+  'shopping-bag': ShoppingBag,
+  'briefcase': Briefcase,
+  'calendar': Calendar,
+  'users': Users,
+  'zap': Zap,
+  'shield': Shield,
+  'bar-chart-2': BarChart3,
+  'headphones': Headphones,
+  'message-square': MessageSquare,
+}
+
+// Tinted medallion palette, cycled per card (green / blue / gold / violet).
+const UC_TINTS = [
+  { color: '#7FD6B0', rgb: '37,211,102' },
+  { color: '#8FB7F5', rgb: '96,165,250' },
+  { color: '#E8C77E', rgb: '214,178,90' },
+  { color: '#C4B5FD', rgb: '167,139,250' },
+]
+
+export const UseCasesSection: React.FC<{ data: any }> = ({ data }) => {
+  const [active, setActive] = React.useState(0)
+  const [paused, setPaused] = React.useState(false)
+  const reduced = React.useRef(false)
+  const count = data?.items?.length ?? 0
+
+  React.useEffect(() => {
+    reduced.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  }, [])
+
+  React.useEffect(() => {
+    if (paused || reduced.current || count < 2) return
+    const id = setInterval(() => setActive((a) => (a + 1) % count), 4000)
+    return () => clearInterval(id)
+  }, [paused, count, active])
+
   if (!data || !data.items) return null
   return (
     <section className="section" data-tone="dark">
       <div className="container">
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              .uc-card {
+                position: relative; cursor: pointer; padding-bottom: 36px; overflow: hidden;
+                background-image: linear-gradient(165deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01) 55%);
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+                transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease, opacity .5s ease;
+              }
+              .uc-card:hover { border-color: rgba(255,255,255,0.22); transform: translateY(-2px); }
+              /* Gradient hairline across the top of the active card. */
+              .uc-card::before {
+                content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px;
+                background: linear-gradient(90deg, transparent, var(--uc-tint-strong), transparent);
+                opacity: 0; transition: opacity .3s ease;
+              }
+              .uc-card.is-active::before { opacity: 1; }
+              .uc-card.is-active {
+                border-color: var(--uc-tint-border);
+                box-shadow:
+                  inset 0 1px 0 rgba(255,255,255,0.1),
+                  0 0 0 1px var(--uc-tint-border),
+                  0 24px 60px -30px var(--uc-tint-glow);
+                transform: translateY(-5px);
+              }
+              .uc-card:focus-visible { outline: 2px solid var(--accent-a); outline-offset: 2px; }
+              .uc-icon {
+                width: 46px; height: 46px; border-radius: 14px;
+                display: inline-flex; align-items: center; justify-content: center;
+                margin-bottom: 18px;
+                background: var(--uc-tint-bg);
+                border: 1px solid var(--uc-tint-border);
+                color: var(--uc-tint);
+                transition: transform .3s ease, box-shadow .3s ease;
+              }
+              .uc-icon svg { width: 21px; height: 21px; }
+              .uc-card.is-active .uc-icon {
+                transform: scale(1.08);
+                box-shadow: 0 0 24px -4px var(--uc-tint-glow);
+              }
+              .uc-bar {
+                position: absolute; left: 20px; right: 20px; bottom: 15px; height: 3px;
+                border-radius: 3px; overflow: hidden;
+                background: var(--uc-tint-bg);
+              }
+              .uc-bar > span {
+                display: block; height: 100%; width: 0; background: var(--uc-tint-strong); border-radius: inherit;
+                animation: uc-fill 4s linear forwards;
+              }
+              @keyframes uc-fill { to { width: 100%; } }
+              @media (prefers-reduced-motion: reduce) {
+                .uc-card, .uc-icon { transition: none; }
+                .uc-card.is-active, .uc-card:hover { transform: none; }
+                .uc-card.is-active .uc-icon { transform: none; }
+                .uc-bar { display: none; }
+              }
+            `,
+          }}
+        />
         <div className="sec-head centered reveal">
           {data.badge && <span className="sec-tag">{data.badge}</span>}
           {data.headline && <h2>{data.headline}</h2>}
         </div>
-        <div className="card-grid cols-3">
-          {data.items.map((item: any, idx: number) => (
-            <div key={idx} className="card reveal" style={{ transitionDelay: `${idx * 0.05}s` }}>
-              <div className="card-icon">{Check}</div>
+        {/* `reveal` stays on the static wrapper — RevealOnScroll adds `show`
+            to the DOM node, and a re-rendered dynamic className would wipe it.
+            4 items get a 2×2 grid — in cols-3 the fourth card would wrap
+            alone next to an empty hole. */}
+        <div
+          className={`card-grid ${count === 4 ? 'cols-2' : 'cols-3'} reveal`}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
+        >
+          {data.items.map((item: any, idx: number) => {
+            const tint = UC_TINTS[idx % UC_TINTS.length]
+            const Icon = UC_ICONS[item.icon] || CheckIcon
+            return (
+            <div
+              key={idx}
+              role="button"
+              tabIndex={0}
+              className={`card uc-card${idx === active ? ' is-active' : ''}`}
+              style={{
+                '--uc-tint': tint.color,
+                '--uc-tint-strong': `rgb(${tint.rgb})`,
+                '--uc-tint-bg': `rgba(${tint.rgb},0.13)`,
+                '--uc-tint-border': `rgba(${tint.rgb},0.4)`,
+                '--uc-tint-glow': `rgba(${tint.rgb},0.35)`,
+              } as React.CSSProperties}
+              aria-pressed={idx === active}
+              onClick={() => setActive(idx)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(idx) } }}
+            >
+              <span className="uc-icon" aria-hidden="true"><Icon /></span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
               {item.benefits && item.benefits.length > 0 && (
@@ -513,8 +643,14 @@ const UseCasesSection: React.FC<{ data: any }> = ({ data }) => {
                   ))}
                 </ul>
               )}
+              {idx === active && !reduced.current && count > 1 && (
+                <div className="uc-bar" aria-hidden="true">
+                  <span key={active} style={paused ? { animationPlayState: 'paused' } : undefined} />
+                </div>
+              )}
             </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
@@ -564,7 +700,7 @@ const TestimonialSection: React.FC<{ data: any }> = ({ data }) => {
 
 // ─── FAQ ────────────────────────────────────────────────────────────────────
 
-const FAQSection: React.FC<{ data: any }> = ({ data }) => {
+export const FAQSection: React.FC<{ data: any }> = ({ data }) => {
   // All items start collapsed — open only on click.
   const [openIndices, setOpenIndices] = React.useState<Set<number>>(new Set())
   const [showMoreMobile, setShowMoreMobile] = React.useState(false)

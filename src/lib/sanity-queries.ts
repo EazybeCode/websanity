@@ -973,7 +973,10 @@ export async function getCoexistence(locale: string = 'en') {
     }
   }`
 
-  const localeData = await sanityClient.fetch<Record<string, any> | null>(query, {
+  // Dev renders drafts too (same pattern as getFeature) so translated
+  // coexistence drafts can be previewed on localhost before publishing.
+  const coexClient = process.env.NODE_ENV === 'development' ? sanityDraftClient : sanityClient
+  const localeData = await coexClient.fetch<Record<string, any> | null>(query, {
     docId: `productPage-coexistence-${locale}`,
   })
 
