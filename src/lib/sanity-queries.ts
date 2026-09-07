@@ -635,7 +635,10 @@ export async function getFeature(slug: string, locale: string = 'en') {
     }
   }`
 
-  const localeData = await sanityClient.fetch<Record<string, any> | null>(query, {
+  // Dev renders drafts too (same pattern as getCaseStudy) so translated
+  // productPage drafts can be previewed on localhost before publishing.
+  const featureClient = process.env.NODE_ENV === 'development' ? sanityDraftClient : sanityClient
+  const localeData = await featureClient.fetch<Record<string, any> | null>(query, {
     slug,
     language,
   })

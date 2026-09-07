@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { CheckCircle2, FileText, Zap, Shield } from 'lucide-react'
 
 const WhatsAppIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
@@ -10,103 +10,149 @@ const WhatsAppIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   </svg>
 )
 
-const templates = [
-  { name: 'Welcome', icon: '👋', status: 'approved' },
-  { name: 'Order Update', icon: '📦', status: 'approved' },
-  { name: 'Appointment', icon: '📅', status: 'approved' },
-]
+// Colors live in inline styles — see TemplatesProblemAnimation for why.
+const ink = { light: '#e9edef', muted: '#8696a0', green: '#25D366', blue: '#60a5fa' }
 
-const TemplatesSolutionAnimation: React.FC = () => {
+// Mock-UI labels per site locale (en | es | br | tr).
+const TX: Record<string, { header: string; approved: string; templates: Array<{ name: string; icon: string }>; preApproved: string; ready: string; oneClick: string; send: string; sending: string; footer: string }> = {
+  en: {
+    header: 'Message Templates', approved: 'Approved',
+    templates: [
+      { name: 'Welcome', icon: '👋' },
+      { name: 'Order Update', icon: '📦' },
+      { name: 'Appointment', icon: '📅' },
+    ],
+    preApproved: 'Pre-approved template', ready: 'Ready',
+    oneClick: 'One-Click Send', send: 'SEND', sending: 'Sending to 1,000+ contacts…',
+    footer: 'Meta-Approved Templates',
+  },
+  es: {
+    header: 'Plantillas de mensajes', approved: 'Aprobadas',
+    templates: [
+      { name: 'Bienvenida', icon: '👋' },
+      { name: 'Actualización de pedido', icon: '📦' },
+      { name: 'Cita', icon: '📅' },
+    ],
+    preApproved: 'Plantilla preaprobada', ready: 'Lista',
+    oneClick: 'Envío en un clic', send: 'ENVIAR', sending: 'Enviando a más de 1.000 contactos…',
+    footer: 'Plantillas aprobadas por Meta',
+  },
+  br: {
+    header: 'Modelos de mensagem', approved: 'Aprovados',
+    templates: [
+      { name: 'Boas-vindas', icon: '👋' },
+      { name: 'Atualização do pedido', icon: '📦' },
+      { name: 'Compromisso', icon: '📅' },
+    ],
+    preApproved: 'Modelo pré-aprovado', ready: 'Pronto',
+    oneClick: 'Envio em um clique', send: 'ENVIAR', sending: 'Enviando para mais de 1.000 contatos…',
+    footer: 'Modelos aprovados pela Meta',
+  },
+  tr: {
+    header: 'Mesaj şablonları', approved: 'Onaylı',
+    templates: [
+      { name: 'Karşılama', icon: '👋' },
+      { name: 'Sipariş güncellemesi', icon: '📦' },
+      { name: 'Randevu', icon: '📅' },
+    ],
+    preApproved: 'Önceden onaylı şablon', ready: 'Hazır',
+    oneClick: 'Tek tıkla gönderim', send: 'GÖNDER', sending: '1.000+ kişiye gönderiliyor…',
+    footer: 'Meta onaylı şablonlar',
+  },
+}
+
+const TemplatesSolutionAnimation: React.FC<{ locale?: string }> = ({ locale = 'en' }) => {
+  const t = TX[locale] || TX.en
+  const reduceMotion = useReducedMotion()
   return (
-    <div className="w-full aspect-[4/3] bg-brand-card rounded-2xl border border-brand-border shadow-lg overflow-hidden flex flex-col relative">
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+    <div className="relative w-full aspect-[4/3] max-sm:aspect-auto bg-slate-50 rounded-2xl border border-slate-200 shadow-lg p-3">
+      <div className="w-full h-full rounded-xl overflow-hidden shadow-xl flex flex-col" style={{ background: '#0b141a' }}>
 
-      {/* Header */}
-      <div className="p-2.5 bg-brand-surface border-b border-brand-border flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-lg bg-[#25D366] flex items-center justify-center">
-            <WhatsAppIcon className="w-3.5 h-3.5 text-white" />
+        {/* Header */}
+        <div className="px-3 py-2.5 flex items-center justify-between" style={{ background: '#202c33', borderBottom: '1px solid #2a3942' }}>
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-lg flex items-center justify-center" style={{ background: '#25D366', color: '#ffffff' }}>
+              <WhatsAppIcon className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[9px] font-mono uppercase tracking-wider" style={{ color: ink.muted }}>{t.header}</span>
           </div>
-          <span className="text-[8px] font-mono text-slate-400 uppercase">Message Templates</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded-full" style={{ background: 'rgba(37,211,102,0.12)', border: '1px solid rgba(37,211,102,0.4)' }}>
+            <Shield className="w-2.5 h-2.5" style={{ color: ink.green }} />
+            <span className="text-[8px] font-mono uppercase font-bold" style={{ color: ink.green }}>{t.approved}</span>
+          </div>
         </div>
-        <div className="flex items-center gap-1.5 bg-brand-green/10 border border-brand-green/30 px-2 py-1 rounded-full">
-          <Shield className="w-2.5 h-2.5 text-brand-green" />
-          <span className="text-[7px] font-mono text-brand-green uppercase font-bold">Approved</span>
-        </div>
-      </div>
 
-      {/* Template list */}
-      <div className="flex-1 p-3 space-y-2">
-        {templates.map((template, i) => (
+        {/* Template list */}
+        <div className="flex-1 px-3 py-3 flex flex-col justify-evenly gap-2">
+          {t.templates.map((template, i) => (
+            <motion.div
+              key={template.name}
+              className="rounded-lg px-2.5 py-2 flex items-center justify-between"
+              style={{ background: '#202c33', border: '1px solid #2a3942' }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.2 }}
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center text-sm" style={{ background: '#111b21' }}>
+                  {template.icon}
+                </div>
+                <div>
+                  <div className="text-[10px] font-bold" style={{ color: ink.light }}>{template.name}</div>
+                  <div className="text-[8px]" style={{ color: ink.muted }}>{t.preApproved}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3" style={{ color: ink.green }} />
+                <span className="text-[8px] font-mono uppercase" style={{ color: ink.green }}>{t.ready}</span>
+              </div>
+            </motion.div>
+          ))}
+
+          {/* One-click send visualization */}
           <motion.div
-            key={template.name}
-            className="bg-brand-black/40 border border-brand-border rounded-lg p-2 flex items-center justify-between group hover:border-brand-cyan/50 transition-colors cursor-pointer"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.2 }}
+            className="rounded-lg px-2.5 py-2"
+            style={{ background: 'rgba(37,99,235,0.12)', border: '1px solid rgba(96,165,250,0.35)' }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
           >
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-brand-surface flex items-center justify-center text-sm">
-                {template.icon}
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-1.5">
+                <Zap className="w-3 h-3" style={{ color: ink.blue }} />
+                <span className="text-[9px] font-bold" style={{ color: ink.light }}>{t.oneClick}</span>
               </div>
-              <div>
-                <div className="text-[8px] font-bold text-white">{template.name}</div>
-                <div className="text-[6px] text-slate-500">Pre-approved template</div>
-              </div>
-            </div>
-            <motion.div
-              className="flex items-center gap-1"
-              whileHover={{ scale: 1.05 }}
-            >
-              <CheckCircle2 className="w-3 h-3 text-brand-green" />
-              <span className="text-[6px] font-mono text-brand-green uppercase">Ready</span>
-            </motion.div>
-          </motion.div>
-        ))}
-
-        {/* One-click send visualization */}
-        <motion.div
-          className="mt-3 bg-brand-blue/10 border border-brand-blue/30 rounded-lg p-2"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-        >
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-1.5">
-              <Zap className="w-3 h-3 text-brand-blue" />
-              <span className="text-[7px] font-bold text-white">One-Click Send</span>
-            </div>
-            <motion.div
-              className="bg-brand-blue px-2 py-0.5 rounded text-[6px] text-white font-bold"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              SEND
-            </motion.div>
-          </div>
-          <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map((_, i) => (
               <motion.div
-                key={i}
-                className="flex-1 h-1 bg-brand-blue/30 rounded-full overflow-hidden"
+                className="px-2 py-0.5 rounded text-[8px] font-bold"
+                style={{ background: '#2563eb', color: '#ffffff' }}
+                animate={reduceMotion ? undefined : { scale: [1, 1.05, 1] }}
+                transition={reduceMotion ? undefined : { duration: 1.5, repeat: Infinity }}
               >
-                <motion.div
-                  className="h-full bg-brand-blue"
-                  initial={{ width: '0%' }}
-                  animate={{ width: '100%' }}
-                  transition={{ delay: 1 + i * 0.1, duration: 0.3 }}
-                />
+                {t.send}
               </motion.div>
-            ))}
-          </div>
-          <div className="text-[5px] text-slate-500 mt-1 text-center">Sending to 1,000+ contacts...</div>
-        </motion.div>
-      </div>
+            </div>
+            <div className="flex gap-1">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <div key={i} className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: 'rgba(96,165,250,0.25)' }}>
+                  <motion.div
+                    className="h-full"
+                    style={{ background: ink.blue }}
+                    initial={{ width: '0%' }}
+                    animate={{ width: '100%' }}
+                    transition={{ delay: 1 + i * 0.15, duration: 0.4 }}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="text-[7px] mt-1.5 text-center" style={{ color: ink.muted }}>{t.sending}</div>
+          </motion.div>
+        </div>
 
-      {/* Footer */}
-      <div className="p-2 bg-brand-surface border-t border-brand-border flex items-center justify-center gap-2">
-        <FileText className="w-3 h-3 text-brand-cyan" />
-        <span className="text-[7px] font-mono text-slate-400 uppercase">Meta-Approved Templates</span>
+        {/* Footer */}
+        <div className="px-3 py-2 flex items-center justify-center gap-2" style={{ background: '#202c33', borderTop: '1px solid #2a3942' }}>
+          <FileText className="w-3 h-3" style={{ color: ink.green }} />
+          <span className="text-[8px] font-mono uppercase tracking-wider" style={{ color: ink.muted }}>{t.footer}</span>
+        </div>
       </div>
     </div>
   )
