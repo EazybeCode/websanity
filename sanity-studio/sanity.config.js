@@ -1758,13 +1758,249 @@ const redirect = {
   },
 }
 
+// Product Page Schema (/whatsapp-api/* and /features/* section pages).
+// These documents existed in the dataset since Jan 2026 (created via API
+// scripts) but had no Studio schema, so they were invisible in the Studio.
+const ctaObject = (name, title) => ({
+  name,
+  title,
+  type: 'object',
+  fields: [
+    { name: 'label', type: 'string', title: 'Button Label' },
+    { name: 'url', type: 'string', title: 'Destination URL' },
+  ],
+})
+
+const productPage = {
+  name: 'productPage',
+  title: 'Product Page',
+  type: 'document',
+  fieldsets: [
+    { name: 'seo', title: '🔍 SEO', options: { collapsible: true, collapsed: true } },
+  ],
+  fields: [
+    {
+      name: 'language',
+      title: '🌍 Language',
+      type: 'string',
+      options: {
+        list: [
+          { title: '🇬🇧 English (en)', value: 'en' },
+          { title: '🇪🇸 Spanish (es)', value: 'es' },
+          { title: '🇹🇷 Turkish (tr)', value: 'tr' },
+          { title: '🇧🇷 Portuguese (pt-BR)', value: 'pt-BR' },
+        ],
+      },
+      initialValue: 'en',
+      validation: Rule => Rule.required(),
+    },
+    { name: 'title', title: 'Page Title', type: 'string', validation: Rule => Rule.required() },
+    {
+      name: 'slug',
+      title: 'URL Slug',
+      type: 'slug',
+      options: { source: 'title', isUnique: () => true },
+      description: 'Same slug across all languages (the page is looked up by slug + language).',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'WhatsApp API (/whatsapp-api/*)', value: 'whatsapp-api' },
+          { title: 'Feature (/features/*)', value: 'feature' },
+        ],
+      },
+    },
+    {
+      name: 'hero',
+      title: '🎯 Hero',
+      type: 'object',
+      fields: [
+        { name: 'badge', type: 'string', title: 'Badge' },
+        { name: 'headline', type: 'string', title: 'Headline' },
+        { name: 'headlineHighlight', type: 'string', title: 'Headline Highlight' },
+        { name: 'description', type: 'text', rows: 3, title: 'Description' },
+        ctaObject('primaryCta', 'Primary CTA'),
+        ctaObject('secondaryCta', 'Secondary CTA'),
+        {
+          name: 'stats',
+          title: 'Stats',
+          type: 'array',
+          of: [{
+            type: 'object',
+            fields: [
+              { name: 'value', type: 'string', title: 'Value' },
+              { name: 'label', type: 'string', title: 'Label' },
+            ],
+            preview: { select: { value: 'value', label: 'label' }, prepare: ({ value, label }) => ({ title: `${value} — ${label}` }) },
+          }],
+        },
+      ],
+    },
+    {
+      name: 'benefits',
+      title: '💎 Benefits',
+      type: 'object',
+      fields: [
+        { name: 'badge', type: 'string', title: 'Badge' },
+        { name: 'headline', type: 'string', title: 'Headline' },
+        {
+          name: 'items',
+          title: 'Items',
+          type: 'array',
+          of: [{
+            type: 'object',
+            fields: [
+              { name: 'icon', type: 'string', title: 'Icon' },
+              { name: 'title', type: 'string', title: 'Title' },
+              { name: 'description', type: 'text', rows: 3, title: 'Description' },
+            ],
+            preview: { select: { title: 'title' } },
+          }],
+        },
+      ],
+    },
+    {
+      name: 'features',
+      title: '🧩 Feature Sections',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'badge', type: 'string', title: 'Badge' },
+          { name: 'headline', type: 'string', title: 'Headline' },
+          { name: 'description', type: 'text', rows: 3, title: 'Description' },
+          { name: 'image', type: 'string', title: 'Visual Key', description: 'Internal key for the illustration/animation (do not translate).' },
+          { name: 'points', title: 'Points', type: 'array', of: [{ type: 'string' }] },
+          ctaObject('cta', 'CTA'),
+        ],
+        preview: { select: { title: 'headline', subtitle: 'badge' } },
+      }],
+    },
+    {
+      name: 'howItWorks',
+      title: '🛠️ How It Works',
+      type: 'object',
+      fields: [
+        { name: 'badge', type: 'string', title: 'Badge' },
+        { name: 'headline', type: 'string', title: 'Headline' },
+        { name: 'description', type: 'text', rows: 2, title: 'Description' },
+        {
+          name: 'steps',
+          title: 'Steps',
+          type: 'array',
+          of: [{
+            type: 'object',
+            fields: [
+              { name: 'number', type: 'string', title: 'Number' },
+              { name: 'title', type: 'string', title: 'Title' },
+              { name: 'description', type: 'text', rows: 2, title: 'Description' },
+            ],
+            preview: { select: { number: 'number', title: 'title' }, prepare: ({ number, title }) => ({ title: `${number} — ${title}` }) },
+          }],
+        },
+      ],
+    },
+    {
+      name: 'useCases',
+      title: '📦 Use Cases',
+      type: 'object',
+      fields: [
+        { name: 'badge', type: 'string', title: 'Badge' },
+        { name: 'headline', type: 'string', title: 'Headline' },
+        {
+          name: 'items',
+          title: 'Items',
+          type: 'array',
+          of: [{
+            type: 'object',
+            fields: [
+              { name: 'icon', type: 'string', title: 'Icon' },
+              { name: 'title', type: 'string', title: 'Title' },
+              { name: 'description', type: 'text', rows: 3, title: 'Description' },
+              { name: 'benefits', title: 'Benefits', type: 'array', of: [{ type: 'string' }] },
+            ],
+            preview: { select: { title: 'title' } },
+          }],
+        },
+      ],
+    },
+    {
+      name: 'testimonial',
+      title: '💬 Testimonial',
+      type: 'object',
+      fields: [
+        { name: 'quote', type: 'text', rows: 3, title: 'Quote' },
+        { name: 'author', type: 'string', title: 'Author' },
+        { name: 'title', type: 'string', title: 'Author Title' },
+        { name: 'company', type: 'string', title: 'Company' },
+      ],
+    },
+    {
+      name: 'faq',
+      title: '❓ FAQ',
+      type: 'object',
+      fields: [
+        { name: 'badge', type: 'string', title: 'Badge' },
+        { name: 'headline', type: 'string', title: 'Headline' },
+        {
+          name: 'items',
+          title: 'Items',
+          type: 'array',
+          of: [{
+            type: 'object',
+            fields: [
+              { name: 'question', type: 'string', title: 'Question' },
+              { name: 'answer', type: 'text', rows: 4, title: 'Answer' },
+            ],
+            preview: { select: { title: 'question' } },
+          }],
+        },
+      ],
+    },
+    {
+      name: 'cta',
+      title: '🚀 Bottom CTA',
+      type: 'object',
+      fields: [
+        { name: 'headline', type: 'string', title: 'Headline' },
+        { name: 'headlineHighlight', type: 'string', title: 'Headline Highlight' },
+        { name: 'description', type: 'text', rows: 2, title: 'Description' },
+        { name: 'footnote', type: 'string', title: 'Footnote' },
+        ctaObject('primaryCta', 'Primary CTA'),
+        ctaObject('secondaryCta', 'Secondary CTA'),
+      ],
+    },
+    {
+      name: 'seo',
+      title: 'SEO',
+      type: 'object',
+      fieldset: 'seo',
+      fields: [
+        { name: 'metaTitle', type: 'string', title: 'Meta Title', validation: Rule => Rule.max(60).warning('⚠️ Over 60 chars may be truncated in Google') },
+        { name: 'metaDescription', type: 'text', rows: 3, title: 'Meta Description', validation: Rule => Rule.max(160).warning('⚠️ Over 160 chars may be truncated') },
+      ],
+    },
+  ],
+  preview: {
+    select: { title: 'title', language: 'language', slug: 'slug.current', category: 'category' },
+    prepare({ title, language, slug, category }) {
+      const langFlag = { en: '🇬🇧', es: '🇪🇸', tr: '🇹🇷', 'pt-BR': '🇧🇷' }[language] || '🌐'
+      return { title: `${langFlag} ${title || 'Untitled'}`, subtitle: `/${category === 'feature' ? 'features' : 'whatsapp-api'}/${slug || ''}` }
+    },
+  },
+}
+
 export default defineConfig({
   name: 'eazybe-cms',
   title: 'Eazybe CMS',
   projectId: '5awzi0t4',
   dataset: 'production',
   schema: {
-    types: [blogPost, comparisonPost, feature, integration, page, categoryIndexPage, redirect, ...customSchemaTypes],
+    types: [blogPost, comparisonPost, feature, integration, page, categoryIndexPage, redirect, productPage, ...customSchemaTypes],
   },
   document: {
     actions: (prev, context) => {
@@ -1985,6 +2221,52 @@ export default defineConfig({
                 S.documentTypeList('feature')
                   .title('Feature Pages (/features/*)')
                   .filter('_type == "feature"')
+              ),
+            S.listItem()
+              .title('WhatsApp API Pages')
+              .icon(() => '📱')
+              .child(
+                S.list()
+                  .title('Product Pages')
+                  .items([
+                    S.listItem()
+                      .title('All Product Pages')
+                      .icon(() => '📋')
+                      .child(
+                        S.documentTypeList('productPage')
+                          .title('Product Pages (/whatsapp-api/*, /features/*)')
+                          .filter('_type == "productPage"')
+                      ),
+                    S.divider(),
+                    S.listItem()
+                      .title('🇬🇧 English')
+                      .child(
+                        S.documentTypeList('productPage')
+                          .title('English Product Pages')
+                          .filter('_type == "productPage" && language == "en"')
+                      ),
+                    S.listItem()
+                      .title('🇪🇸 Spanish')
+                      .child(
+                        S.documentTypeList('productPage')
+                          .title('Spanish Product Pages')
+                          .filter('_type == "productPage" && language == "es"')
+                      ),
+                    S.listItem()
+                      .title('🇹🇷 Turkish')
+                      .child(
+                        S.documentTypeList('productPage')
+                          .title('Turkish Product Pages')
+                          .filter('_type == "productPage" && language == "tr"')
+                      ),
+                    S.listItem()
+                      .title('🇧🇷 Portuguese')
+                      .child(
+                        S.documentTypeList('productPage')
+                          .title('Portuguese Product Pages')
+                          .filter('_type == "productPage" && language == "pt-BR"')
+                      ),
+                  ])
               ),
             S.listItem()
               .title('Integrations')
