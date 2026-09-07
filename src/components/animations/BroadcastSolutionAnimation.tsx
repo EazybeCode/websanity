@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { CheckCircle2, Zap, Send } from 'lucide-react'
 
 const WhatsAppIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
@@ -10,105 +10,122 @@ const WhatsAppIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   </svg>
 )
 
-const BroadcastSolutionAnimation: React.FC = () => {
-  const [metrics, setMetrics] = useState({ sent: 0, delivered: 0, read: 0 })
+// Colors as inline styles — see TemplatesProblemAnimation for why.
+const ink = { light: '#e9edef', muted: '#8696a0', green: '#25D366', blue: '#60a5fa', cyan: '#22d3ee' }
+
+// Mock-UI labels per site locale (en | es | br | tr).
+const TX: Record<string, Record<string, string>> = {
+  en: { header: 'API Broadcast', unlimited: 'Unlimited', sent: 'Sent', delivered: 'Delivered', readRate: 'Read Rate', stream: 'Live Stream', apiSent: 'API_SENT', live: 'LIVE', footer: 'No Limits via Official API' },
+  es: { header: 'Difusión por API', unlimited: 'Sin límites', sent: 'Enviados', delivered: 'Entregados', readRate: 'Tasa de lectura', stream: 'Flujo en vivo', apiSent: 'API_SENT', live: 'EN VIVO', footer: 'Sin límites con la API oficial' },
+  br: { header: 'Transmissão via API', unlimited: 'Sem limites', sent: 'Enviadas', delivered: 'Entregues', readRate: 'Taxa de leitura', stream: 'Fluxo ao vivo', apiSent: 'API_SENT', live: 'AO VIVO', footer: 'Sem limites com a API oficial' },
+  tr: { header: 'API ile toplu gönderim', unlimited: 'Sınırsız', sent: 'Gönderilen', delivered: 'Teslim edilen', readRate: 'Okunma oranı', stream: 'Canlı akış', apiSent: 'API_SENT', live: 'CANLI', footer: 'Resmi API ile sınırsız' },
+}
+
+const BroadcastSolutionAnimation: React.FC<{ locale?: string }> = ({ locale = 'en' }) => {
+  const t = TX[locale] || TX.en
+  const reduceMotion = useReducedMotion()
+  const [metrics, setMetrics] = useState({ sent: 4820, delivered: 4723, read: 3615 })
   const [activeStream, setActiveStream] = useState(0)
 
   useEffect(() => {
+    if (reduceMotion) return
     const interval = setInterval(() => {
       setMetrics(prev => {
         const nextSent = prev.sent >= 5000 ? 0 : prev.sent + Math.floor(Math.random() * 50) + 20
-        return {
-          sent: nextSent,
-          delivered: Math.floor(nextSent * 0.98),
-          read: Math.floor(nextSent * 0.75),
-        }
+        return { sent: nextSent, delivered: Math.floor(nextSent * 0.98), read: Math.floor(nextSent * 0.75) }
       })
       setActiveStream(prev => (prev + 1) % 5)
-    }, 150)
-
+    }, 180)
     return () => clearInterval(interval)
-  }, [])
+  }, [reduceMotion])
+
+  const tile: React.CSSProperties = { background: '#202c33', border: '1px solid #2a3942' }
 
   return (
-    <div className="w-full aspect-[4/3] bg-brand-card rounded-2xl border border-brand-border shadow-lg overflow-hidden flex flex-col relative">
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+    <div className="relative w-full aspect-[4/3] max-sm:aspect-auto bg-slate-50 rounded-2xl border border-slate-200 shadow-lg p-3">
+      <div className="w-full h-full rounded-xl overflow-hidden shadow-xl flex flex-col" style={{ background: '#0b141a' }}>
 
-      {/* Header */}
-      <div className="p-2.5 bg-brand-surface border-b border-brand-border flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-lg bg-[#25D366] flex items-center justify-center">
-            <WhatsAppIcon className="w-3.5 h-3.5 text-white" />
+        {/* Header */}
+        <div className="px-3 py-2.5 flex items-center justify-between" style={{ background: '#202c33', borderBottom: '1px solid #2a3942' }}>
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-lg flex items-center justify-center" style={{ background: '#25D366', color: '#ffffff' }}>
+              <WhatsAppIcon className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[9px] font-mono uppercase tracking-wider" style={{ color: ink.muted }}>{t.header}</span>
           </div>
-          <span className="text-[8px] font-mono text-slate-400 uppercase">API Broadcast</span>
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded-full" style={{ background: 'rgba(96,165,250,0.12)', border: '1px solid rgba(96,165,250,0.4)' }}>
+            <Zap className="w-2.5 h-2.5" style={{ color: ink.blue }} />
+            <span className="text-[8px] font-mono font-bold uppercase" style={{ color: ink.blue }}>{t.unlimited}</span>
+          </div>
         </div>
-        <div className="flex items-center gap-1.5 bg-brand-blue/10 px-2 py-0.5 rounded border border-brand-blue/20">
-          <Zap className="w-2.5 h-2.5 text-brand-blue" />
-          <span className="text-[6px] font-mono font-bold text-brand-blue uppercase">Unlimited</span>
-        </div>
-      </div>
 
-      {/* Main content */}
-      <div className="flex-1 p-3 flex gap-3">
-        {/* Metrics column */}
-        <div className="w-[40%] space-y-2">
-          <div className="p-2 bg-slate-900/50 rounded-lg border border-slate-800">
-            <div className="text-[6px] font-mono text-slate-500 uppercase mb-1">Sent</div>
-            <div className="text-lg font-bold text-white font-mono">{metrics.sent.toLocaleString()}</div>
-            <div className="mt-1 h-1 w-full bg-slate-800 rounded-full overflow-hidden">
-              <motion.div className="h-full bg-brand-cyan" style={{ width: '85%' }} />
+        {/* Main content */}
+        <div className="flex-1 px-3 py-3 flex gap-2.5 max-sm:flex-col">
+          {/* Metrics column */}
+          <div className="w-[40%] max-sm:w-full flex flex-col justify-evenly gap-2">
+            <div className="p-2 rounded-lg" style={tile}>
+              <div className="text-[8px] font-mono uppercase mb-0.5" style={{ color: ink.muted }}>{t.sent}</div>
+              <div className="text-base font-bold font-mono" style={{ color: ink.light }}>{metrics.sent.toLocaleString()}</div>
+            </div>
+            <div className="p-2 rounded-lg" style={tile}>
+              <div className="text-[8px] font-mono uppercase mb-0.5" style={{ color: ink.muted }}>{t.delivered}</div>
+              <div className="text-base font-bold font-mono" style={{ color: ink.cyan }}>{metrics.delivered.toLocaleString()}</div>
+            </div>
+            <div className="p-2 rounded-lg" style={tile}>
+              <div className="text-[8px] font-mono uppercase mb-0.5" style={{ color: ink.muted }}>{t.readRate}</div>
+              <div className="text-base font-bold font-mono" style={{ color: ink.green }}>
+                {Math.min(98, Math.floor((metrics.read / (metrics.sent || 1)) * 100))}%
+              </div>
             </div>
           </div>
-          <div className="p-2 bg-slate-900/50 rounded-lg border border-slate-800">
-            <div className="text-[6px] font-mono text-slate-500 uppercase mb-1">Delivered</div>
-            <div className="text-lg font-bold text-brand-cyan font-mono">{metrics.delivered.toLocaleString()}</div>
-          </div>
-          <div className="p-2 bg-slate-900/50 rounded-lg border border-slate-800">
-            <div className="text-[6px] font-mono text-slate-500 uppercase mb-1">Read Rate</div>
-            <div className="text-lg font-bold text-brand-green font-mono">
-              {Math.min(98, Math.floor((metrics.read / (metrics.sent || 1)) * 100))}%
-            </div>
-          </div>
-        </div>
 
-        {/* Stream visualizer */}
-        <div className="flex-1 bg-slate-900/80 rounded-lg border border-slate-800 p-2 relative overflow-hidden">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-[7px] font-bold text-white uppercase">Live Stream</span>
-            <div className="flex gap-0.5">
-              {[0, 1, 2].map(i => (
-                <div key={i} className={`w-1 h-1 rounded-full ${i === activeStream % 3 ? 'bg-brand-cyan' : 'bg-slate-800'}`} />
+          {/* Stream visualizer */}
+          <div className="flex-1 rounded-lg p-2.5 relative overflow-hidden" style={{ background: '#111b21', border: '1px solid #2a3942' }}>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[9px] font-bold uppercase" style={{ color: ink.light }}>{t.stream}</span>
+              <div className="flex gap-0.5">
+                {[0, 1, 2].map(i => (
+                  <div key={i} className="w-1 h-1 rounded-full" style={{ background: i === activeStream % 3 ? ink.cyan : '#2a3942' }} />
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              {[0, 1, 2, 3, 4].map(i => (
+                <motion.div
+                  key={i}
+                  className="flex items-center gap-2 p-1.5 rounded"
+                  style={i === activeStream
+                    ? { background: 'rgba(34,211,238,0.15)', border: '1px solid rgba(34,211,238,0.35)' }
+                    : { background: 'rgba(34,211,238,0.04)', border: '1px solid rgba(34,211,238,0.1)', opacity: 0.45 }}
+                  animate={{ x: i === activeStream ? 2 : 0 }}
+                >
+                  <CheckCircle2 className="w-2.5 h-2.5 flex-shrink-0" style={{ color: i === activeStream ? ink.cyan : ink.muted }} />
+                  <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: '#2a3942' }}>
+                    <div className="h-full w-3/4" style={{ background: 'rgba(34,211,238,0.5)' }} />
+                  </div>
+                  <span className="text-[7px] font-mono" style={{ color: ink.cyan }}>{t.apiSent}</span>
+                </motion.div>
               ))}
             </div>
-          </div>
 
-          <div className="space-y-1">
-            {[0, 1, 2, 3, 4].map(i => (
+            <div className="absolute bottom-2 right-2 flex items-center gap-1">
               <motion.div
-                key={i}
-                className={`flex items-center gap-2 p-1.5 rounded transition-all ${i === activeStream ? 'bg-brand-cyan/20 border border-brand-cyan/30' : 'bg-brand-cyan/5 border border-brand-cyan/10 opacity-40'}`}
-                animate={{ x: i === activeStream ? 2 : 0 }}
-              >
-                <CheckCircle2 className={`w-2.5 h-2.5 ${i === activeStream ? 'text-brand-cyan' : 'text-slate-600'}`} />
-                <div className="flex-1 h-1 bg-slate-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-brand-cyan w-3/4 opacity-50" />
-                </div>
-                <span className="text-[5px] font-mono text-brand-cyan">API_SENT</span>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="absolute bottom-2 right-2 flex items-center gap-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse shadow-glow-cyan" />
-            <span className="text-[5px] font-mono font-bold text-brand-cyan">LIVE</span>
+                className="w-1.5 h-1.5 rounded-full"
+                style={{ background: ink.cyan }}
+                animate={reduceMotion ? undefined : { opacity: [1, 0.3, 1] }}
+                transition={reduceMotion ? undefined : { duration: 1.4, repeat: Infinity }}
+              />
+              <span className="text-[7px] font-mono font-bold" style={{ color: ink.cyan }}>{t.live}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Footer */}
-      <div className="p-2 bg-brand-surface border-t border-brand-border flex items-center justify-center gap-2">
-        <Send className="w-3 h-3 text-brand-green" />
-        <span className="text-[7px] font-mono text-slate-400 uppercase">No Limits via Official API</span>
+        {/* Footer */}
+        <div className="px-3 py-2 flex items-center justify-center gap-2" style={{ background: '#202c33', borderTop: '1px solid #2a3942' }}>
+          <Send className="w-3 h-3" style={{ color: ink.green }} />
+          <span className="text-[8px] font-mono uppercase tracking-wider" style={{ color: ink.muted }}>{t.footer}</span>
+        </div>
       </div>
     </div>
   )

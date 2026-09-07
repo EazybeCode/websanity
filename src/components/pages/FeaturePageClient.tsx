@@ -35,6 +35,7 @@ import TemplatesAutomationAnimation from '@/components/animations/TemplatesAutom
 import BroadcastProblemAnimation from '@/components/animations/BroadcastProblemAnimation'
 import BroadcastSolutionAnimation from '@/components/animations/BroadcastSolutionAnimation'
 import BroadcastAutomationAnimation from '@/components/animations/BroadcastAutomationAnimation'
+import BroadcastAnalyticsAnimation from '@/components/animations/BroadcastAnalyticsAnimation'
 
 const animationMap: Record<string, Record<number, React.FC<{ locale?: string }>>> = {
   'team-inbox': { 0: LabelAnimation, 1: UnifiedDashboardAnimation, 2: RoutingAnimation },
@@ -46,7 +47,7 @@ const animationMap: Record<string, Record<number, React.FC<{ locale?: string }>>
   'whatsapp-crm': { 0: WhatsAppCRMChaosAnimation, 1: WhatsAppCRMLabelAnimation, 2: WhatsAppCRMSyncAnimation },
   'revenue-inbox': { 0: RevenueInboxComparisonAnimation, 1: RevenueInboxScoringAnimation, 2: RevenueInboxAlertsAnimation },
   'templates': { 0: TemplatesProblemAnimation, 1: TemplatesSolutionAnimation, 2: TemplatesAutomationAnimation },
-  'broadcast': { 0: BroadcastProblemAnimation, 1: BroadcastSolutionAnimation, 2: BroadcastAutomationAnimation },
+  'broadcast': { 0: BroadcastProblemAnimation, 1: BroadcastSolutionAnimation, 2: BroadcastAutomationAnimation, 3: BroadcastAnalyticsAnimation },
 }
 
 const Check = (
