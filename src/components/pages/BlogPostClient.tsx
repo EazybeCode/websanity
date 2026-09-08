@@ -939,12 +939,6 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                     <Clock size={14} className="shrink-0" />
                     {post.readTime} {detailLabels?.minReadSuffix || t('blog.detail.minRead')}
                   </span>
-                  {viewCount > 0 && (
-                    <span className="flex items-center gap-1 whitespace-nowrap">
-                      <Eye size={14} className="shrink-0" />
-                      {viewCount.toLocaleString('en-US')} views
-                    </span>
-                  )}
                 </div>
               </div>
             </div>
