@@ -53,7 +53,18 @@ interface CalendlyTimeSlot {
   invitees_remaining: number
   start_time: string
   scheduling_url: string
+  // Host-tz shift day this slot belongs to (YYYY-MM-DD). Groups all slots
+  // of the same shift under one day tab regardless of how they map into
+  // the visitor's calendar dates.
+  shift_day?: string
+  shift_weekday?: string
 }
+
+// Bridge: the picker used to fetch from /api/calendly/*. It now hits
+// /api/gcal/* backed by Google Calendar directly (Fireflies gets auto-added
+// as an attendee on every booking). The response shape from /api/gcal/slots
+// intentionally mirrors Calendly's — no changes needed downstream.
+
 
 interface Props {
   locale: string
@@ -160,9 +171,16 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
   const [rawSlots, setRawSlots] = useState<CalendlyTimeSlot[]>([])
   const [loadingSlots, setLoadingSlots] = useState(false)
   const [slotsError, setSlotsError] = useState('')
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  // Selected day is now a host-tz shift_day (YYYY-MM-DD) — slots are
+  // grouped by shift rather than by the visitor's local calendar date.
+  const [selectedShiftDay, setSelectedShiftDay] = useState<string | null>(null)
   const [selectedSlot, setSelectedSlot] = useState<CalendlyTimeSlot | null>(null)
-  const [timezone, setTimezone] = useState('UTC')
+  // Starts as 'UTC' (a sentinel) during SSR / first hydration render, then
+  // gets replaced with the browser's IANA zone in a mount effect below,
+  // and again with the IP-based zone when /api/geo resolves. The slot
+  // fetch is gated on `timezone !== 'UTC'` so we never actually fire a
+  // request with the sentinel.
+  const [timezone, setTimezone] = useState<string>('UTC')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [bookingError, setBookingError] = useState('')
   const [isSuccess, setIsSuccess] = useState(false)
@@ -170,19 +188,18 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
   const today = startOfDay(new Date())
 
   // Timezone priority:
-  //   1) IP-based via /api/geo (correctly follows VPN — visitor sees times
-  //      in the country their IP resolves to, not the OS clock).
+  //   1) IP-based via /api/geo (VPN-aware — visitor sees times in the
+  //      country their IP resolves to, not the OS clock).
   //   2) Browser Intl (OS timezone) as fallback.
-  //   3) UTC as final safety net.
+  //   3) 'UTC' sentinel — the picker won't fetch while this is the state.
   useEffect(() => {
     let cancelled = false
-    const setFromBrowser = () => {
-      try {
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
-        if (!cancelled && tz) setTimezone(tz)
-      } catch { /* ignore */ }
-    }
-    setFromBrowser()
+    // Set browser tz synchronously on mount so we're never stuck on the
+    // UTC sentinel — the fetch effect gates on tz !== 'UTC'.
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+      if (!cancelled && tz) setTimezone(tz)
+    } catch { /* ignore */ }
     fetch('/api/geo')
       .then((r) => (r.ok ? r.json() : null))
       .then((data: { timezone?: string | null } | null) => {
@@ -192,72 +209,86 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
     return () => { cancelled = true }
   }, [])
 
+  // A monotonic token to invalidate in-flight fetches. If timezone
+  // changes (VPN case), the previous fetch's response is thrown away.
+  const fetchTokenRef = React.useRef(0)
+
   const fetchSlots = useCallback(async () => {
+    // 'UTC' is our sentinel for "haven't detected a real tz yet" (SSR /
+    // pre-hydration). Never send that to the server — the visitor's 10-10
+    // window would come back in the wrong timezone and get bucketed at
+    // absurd hours in the browser.
+    if (timezone === 'UTC') return
+    const token = ++fetchTokenRef.current
     setLoadingSlots(true)
     setSlotsError('')
     const now = new Date()
     const start = new Date(now.getTime() + 60_000)
     const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-    const end = new Date(startOfToday.getTime() + 7 * DAY_MS - 1)
+    const end = new Date(startOfToday.getTime() + 14 * DAY_MS - 1)
     try {
-      const url = new URL('/api/calendly/available-times', window.location.origin)
-      url.searchParams.set('locale', locale)
+      const url = new URL('/api/gcal/slots', window.location.origin)
       url.searchParams.set('start', start.toISOString())
       url.searchParams.set('end', end.toISOString())
+      url.searchParams.set('tz', timezone)
       const res = await fetch(url.toString())
+      if (token !== fetchTokenRef.current) return // stale
       if (!res.ok) throw new Error(`slots ${res.status}`)
       const data = (await res.json()) as { collection?: CalendlyTimeSlot[] }
+      if (token !== fetchTokenRef.current) return
       const available = (data.collection || []).filter(
         (s) => s.status === 'available' && s.invitees_remaining > 0,
       )
-      // Sort by UTC start (naturally chronological in any timezone) so the
-      // grouped view can render slots in time order without re-sorting.
       available.sort((a, b) => a.start_time.localeCompare(b.start_time))
       setRawSlots(available)
     } catch (err) {
-      console.error('CalendlySlotPicker fetch failed:', err)
+      if (token !== fetchTokenRef.current) return
+      console.error('GCal slots fetch failed:', err)
       setSlotsError(c.loadError)
     } finally {
-      setLoadingSlots(false)
+      if (token === fetchTokenRef.current) setLoadingSlots(false)
     }
-  }, [locale])
+  }, [timezone])
 
   useEffect(() => { fetchSlots() }, [fetchSlots])
 
-  // Group slots by the display timezone (recomputes if timezone changes).
-  const slotsByDate = useMemo(() => {
+  // Group by the server-emitted host-tz shift_day.
+  const slotsByShift = useMemo(() => {
     const grouped: Record<string, CalendlyTimeSlot[]> = {}
     rawSlots.forEach((s) => {
-      const k = dateKeyInTz(new Date(s.start_time), timezone)
+      const k = s.shift_day || dateKeyInTz(new Date(s.start_time), timezone)
       if (!grouped[k]) grouped[k] = []
       grouped[k].push(s)
     })
     return grouped
   }, [rawSlots, timezone])
 
-  // Auto-select the earliest non-Sunday date that has slots, re-running
-  // whenever grouping changes so the initial pick lands after the IP-based
-  // timezone upgrade too.
+  // Ordered list of shift days present in the response — this drives the
+  // day strip. Each entry carries the weekday from the host-tz calendar.
+  const shiftDays = useMemo(() => {
+    const seen: Record<string, string> = {}
+    rawSlots.forEach((s) => {
+      if (s.shift_day && !seen[s.shift_day]) seen[s.shift_day] = s.shift_weekday || ''
+    })
+    return Object.keys(seen).sort().map((sd) => {
+      const [y, m, d] = sd.split('-').map(Number)
+      return { shift_day: sd, weekday: seen[sd], y, m, d }
+    })
+  }, [rawSlots])
+
+  // Auto-select the first shift day with slots.
   useEffect(() => {
-    if (selectedDate) return
-    const startOfToday = new Date()
-    startOfToday.setHours(0, 0, 0, 0)
-    for (let i = 0; i < 14; i++) {
-      const d = new Date(startOfToday.getTime() + i * DAY_MS)
-      if (d.getDay() === 0) continue
-      if ((slotsByDate[dateKeyInTz(d, timezone)] || []).length > 0) {
-        setSelectedDate(d)
-        break
-      }
-    }
-  }, [slotsByDate, timezone, selectedDate])
+    if (selectedShiftDay) return
+    const first = shiftDays.find((sd) => (slotsByShift[sd.shift_day] || []).length > 0)
+    if (first) setSelectedShiftDay(first.shift_day)
+  }, [shiftDays, slotsByShift, selectedShiftDay])
 
   const handleBook = async () => {
     if (!selectedSlot || isSubmitting) return
     setIsSubmitting(true)
     setBookingError('')
     try {
-      const res = await fetch('/api/calendly/book', {
+      const res = await fetch('/api/gcal/book', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -266,7 +297,7 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
         }),
       })
       if (!res.ok) {
-        console.error('Calendly booking failed:', res.status, await res.text().catch(() => ''))
+        console.error('GCal booking failed:', res.status, await res.text().catch(() => ''))
         setBookingError(c.slotTakenError)
         setIsSubmitting(false)
         fetchSlots()
@@ -337,28 +368,28 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
         Pick a day
       </div>
       {(() => {
-        // Show the next N business days (skip Sundays — the team doesn't
-        // take demos on Sunday and we don't want to advertise the slot).
-        // Walk forward from today until we've collected 7 non-Sunday days.
-        const days: Date[] = []
-        for (let i = 0; days.length < 7 && i < 21; i++) {
-          const d = addDays(today, i)
-          if (d.getDay() === 0) continue // 0 = Sunday
-          days.push(d)
-        }
+        // Day strip is now driven by the server's shift_days (host tz).
+        // We show up to 7 upcoming shift days.
+        const days = shiftDays.slice(0, 7)
+        if (days.length === 0) return null
         return (
       <div style={{ display: 'grid', gridTemplateColumns: `repeat(${days.length}, 1fr)`, gap: 4, marginBottom: 12 }}>
-        {days.map((d) => {
-          const key = dateKeyInTz(d, timezone)
-          const daySlots = slotsByDate[key] || []
+        {days.map(({ shift_day, weekday, y, m, d }) => {
+          const daySlots = slotsByShift[shift_day] || []
           const available = daySlots.length > 0
-          const isSelected = selectedDate && sameDay(d, selectedDate)
+          const isSelected = selectedShiftDay === shift_day
+          // Weekday label localized via the locale param, computed from
+          // the host-tz calendar date (parsed as UTC to match the emitter).
+          const localized = new Date(Date.UTC(y, m - 1, d)).toLocaleString(
+            locale === 'br' ? 'pt-BR' : locale,
+            { weekday: 'short', timeZone: 'UTC' },
+          ).slice(0, 3)
           return (
             <button
-              key={key}
+              key={shift_day}
               type="button"
               disabled={!available}
-              onClick={() => { setSelectedDate(d); setSelectedSlot(null) }}
+              onClick={() => { setSelectedShiftDay(shift_day); setSelectedSlot(null) }}
               style={{
                 padding: '8px 2px',
                 borderRadius: 10,
@@ -374,9 +405,9 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
               }}
             >
               <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.85 }}>
-                {d.toLocaleString(locale === 'br' ? 'pt-BR' : locale, { weekday: 'short' }).slice(0, 3)}
+                {localized || weekday}
               </span>
-              <span style={{ fontSize: 16, fontWeight: 700, lineHeight: 1 }}>{d.getDate()}</span>
+              <span style={{ fontSize: 16, fontWeight: 700, lineHeight: 1 }}>{d}</span>
               <span style={{ fontSize: 8.5, fontWeight: 600, opacity: 0.75 }}>
                 {available ? c.open(daySlots.length) : c.full}
               </span>
@@ -393,16 +424,22 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: p.textMuted, fontSize: 12, marginBottom: 10 }}>
           <Loader2 size={12} className="animate-spin" /> {c.loading}
         </div>
-      ) : selectedDate ? (
+      ) : selectedShiftDay ? (
         <div style={{ marginBottom: 10 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: p.textMuted, marginBottom: 6, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            {selectedDate.toLocaleString(locale === 'br' ? 'pt-BR' : locale, { weekday: 'long', month: 'short', day: 'numeric' })}
+            {(() => {
+              const [y, m, d] = selectedShiftDay.split('-').map(Number)
+              return new Date(Date.UTC(y, m - 1, d)).toLocaleString(
+                locale === 'br' ? 'pt-BR' : locale,
+                { weekday: 'long', month: 'short', day: 'numeric', timeZone: 'UTC' },
+              )
+            })()}
           </div>
           <div style={{
             display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(76px, 1fr))', gap: 4,
             maxHeight: 148, overflowY: 'auto', paddingRight: 2,
           }}>
-            {(slotsByDate[dateKeyInTz(selectedDate, timezone)] || []).map((slot) => {
+            {(slotsByShift[selectedShiftDay] || []).map((slot) => {
               const isSelected = selectedSlot?.start_time === slot.start_time
               return (
                 <button

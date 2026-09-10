@@ -98,6 +98,7 @@ const defaultPricingPlans: PricingPlan[] = [
     name: 'Scaler', planKey: 'scaler',
     description: 'For growing teams that need advanced integrations and AI-powered automation.',
     monthlyPrice: 19, annualPrice: 15, currency: '$', icon: 'growth', popular: true,
+    priceNote: '3 users included',
     features: [
       { text: 'Everything in Starter', included: true },
       { text: 'Salesforce integration', included: true, highlight: true },
@@ -116,6 +117,7 @@ const defaultPricingPlans: PricingPlan[] = [
     name: 'Basic AI', planKey: 'basic-ai',
     description: 'Get started with AI agents on top of your full Scaler stack.',
     monthlyPrice: 79, annualPrice: 59, currency: '$', icon: 'sparkles',
+    priceNote: '5 users included',
     features: [
       { text: 'Everything in Scaler', included: true },
       { text: 'AI agents', included: true, highlight: true },
@@ -131,6 +133,7 @@ const defaultPricingPlans: PricingPlan[] = [
     name: 'Pro AI', planKey: 'pro-ai',
     description: 'Advanced agents, voice, ads automation and 100+ integrations.',
     monthlyPrice: 199, annualPrice: 199, currency: '$', icon: 'growth', popular: true,
+    priceNote: '5 users included',
     features: [
       { text: 'Everything in Basic AI', included: true },
       { text: 'Click-to-WhatsApp Ads agent', included: true, highlight: true },
@@ -174,7 +177,7 @@ const defaultComparisonFeatures: ComparisonFeatureRow[] = [
   { feature: 'Voice AI calling', starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
   { feature: "BrainBe - your company's brain", starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
   { feature: '100+ integrations', starter: false, scaler: false, basicAi: false, proAi: true, category: 'AI Agents' },
-  { feature: 'Monthly credits (rollover)', starter: false, scaler: false, basicAi: '$45 monthly credits (rollover)', proAi: '$90 monthly credits (rollover)', category: 'AI Agents' },
+  { feature: 'Monthly credits (rollover)', starter: false, scaler: false, basicAi: false, proAi: '$90 monthly credits (rollover)', category: 'AI Agents' },
   { feature: 'CRM workflow integration', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Automation' },
   { feature: 'Bulk messaging', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Automation' },
   { feature: 'Auto-create contacts', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Automation' },
@@ -346,6 +349,11 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Everything in Scaler': 'Todo lo de Scaler',
       'AI agents': 'Agentes de IA',
       'Users included': 'Usuarios incluidos',
+      '3 users included': '3 usuarios incluidos',
+      '5 users included': '5 usuarios incluidos',
+      'Extra user': 'Usuario extra',
+      'user': 'usuario',
+      'An AI specialist to build your agents with you': 'Un especialista en IA que construye tus agentes contigo',
       '3 users': '3 usuarios',
       '5 users': '5 usuarios',
       'AI agent cost': 'Coste del agente de IA',
@@ -356,7 +364,6 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Voice AI calling': 'Llamadas con IA de voz',
       '100+ integrations (Email, Teams, Slack...)': 'Más de 100 integraciones (Email, Teams, Slack...)',
       'Everything in Basic AI': 'Todo lo de Basic AI',
-      'An AI specialist to build your agents with you': 'Un especialista en IA que construye tus agentes contigo',
       'Click-to-WhatsApp Ads agent': 'Agente para anuncios Click-to-WhatsApp',
       "BrainBe — your company's brain": 'BrainBe — el cerebro de tu empresa',
     },
@@ -454,6 +461,11 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Everything in Scaler': 'Tudo do Scaler',
       'AI agents': 'Agentes de IA',
       'Users included': 'Usuários incluídos',
+      '3 users included': '3 usuários incluídos',
+      '5 users included': '5 usuários incluídos',
+      'Extra user': 'Usuário extra',
+      'user': 'usuário',
+      'An AI specialist to build your agents with you': 'Um especialista em IA que constrói seus agentes com você',
       '3 users': '3 usuários',
       '5 users': '5 usuários',
       'AI agent cost': 'Custo do agente de IA',
@@ -464,7 +476,6 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Voice AI calling': 'Chamadas por IA de voz',
       '100+ integrations (Email, Teams, Slack...)': 'Mais de 100 integrações (E-mail, Teams, Slack...)',
       'Everything in Basic AI': 'Tudo do Basic AI',
-      'An AI specialist to build your agents with you': 'Um especialista em IA que constrói seus agentes com você',
       'Click-to-WhatsApp Ads agent': 'Agente para anúncios click-to-WhatsApp',
       "BrainBe — your company's brain": 'BrainBe — o cérebro da sua empresa',
     },
@@ -562,6 +573,11 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Everything in Scaler': "Scaler'daki her şey",
       'AI agents': 'AI ajanları',
       'Users included': 'Dahil kullanıcılar',
+      '3 users included': '3 kullanıcı dahil',
+      '5 users included': '5 kullanıcı dahil',
+      'Extra user': 'Ekstra kullanıcı',
+      'user': 'kullanıcı',
+      'An AI specialist to build your agents with you': 'Ajanlarınızı sizinle birlikte kuran bir AI uzmanı',
       '3 users': '3 kullanıcı',
       '5 users': '5 kullanıcı',
       'AI agent cost': 'AI ajan maliyeti',
@@ -572,7 +588,6 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Voice AI calling': 'Sesli AI aramaları',
       '100+ integrations (Email, Teams, Slack...)': '100+ entegrasyon (E-posta, Teams, Slack...)',
       'Everything in Basic AI': "Basic AI'deki her şey",
-      'An AI specialist to build your agents with you': 'Ajanlarınızı sizinle birlikte kuran bir AI uzmanı',
       'Click-to-WhatsApp Ads agent': 'Click-to-WhatsApp Reklam ajanı',
       "BrainBe — your company's brain": 'BrainBe — şirketinizin beyni',
     },
@@ -736,14 +751,22 @@ function PricingCard({
   const addonNote = plan.priceNote
     ? plan.priceNote
     : addonPrice != null
-    ? `+ ${currencyLabel ? `${currencyLabel} ` : ''}${priceSymbol}${addonPrice}/extra seat · 1 seat included`
+    ? `+ ${currencyLabel ? `${currencyLabel} ` : ''}${priceSymbol}${addonPrice}/extra user · 1 user included`
     : undefined
   const isPopular = plan.planKey === 'basic-ai'
   const isEnterprise = plan.enterprise
   const showPrice = !isEnterprise && price > 0
   // AI plans (Basic AI / Pro AI) are now per-seat pricing, same unit as Starter/Scaler.
   const isAiPlan = plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
-  const priceUnit = '/seat/month'
+  // Paid plans are billed per WhatsApp number (with a bundled user count
+  // spelled out in the priceNote just below). Kept short as "/number/month"
+  // — the earlier "/WhatsApp number/month" felt too heavy in the price row.
+  // Starter is free (Chrome-only) so its unit rarely renders; still, use
+  // "/user/month" for it so the word "seat" never surfaces on the page.
+  const priceUnit =
+    plan.planKey === 'scaler' || plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
+      ? '/number/month'
+      : '/user/month'
   // Wallet credit: $45 (45% of Basic AI $99) and $90 (45% of Pro AI $199).
   const formatFeatureText = (text: string) => {
     // Credits line: translate "Includes ... monthly credits (rollover)" plus
@@ -848,6 +871,14 @@ function PricingCard({
         {addonNote && (
           <p style={{ marginTop: 6, fontSize: 13, color: 'var(--ink-3)', fontWeight: 500, marginBottom: 0, whiteSpace: 'pre-line' }}>
             {featureLabels[addonNote] || addonNote}
+          </p>
+        )}
+        {/* Extra-user pricing (1/3 the WhatsApp number price) — only on the
+            paid plans that include bundled users. Computed from the same
+            localized `price` so it always matches the currency shown above. */}
+        {(plan.planKey === 'scaler' || plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai') && price > 0 && (
+          <p style={{ marginTop: 2, fontSize: 12.5, color: 'var(--ink-4)', fontWeight: 500, marginBottom: 0 }}>
+            {(featureLabels['Extra user'] || 'Extra user')}: {currencyLabel ? `${currencyLabel} ` : ''}{priceSymbol}{Math.round(price / 3)}/{featureLabels['user'] || 'user'}
           </p>
         )}
       </div>

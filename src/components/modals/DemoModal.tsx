@@ -126,6 +126,10 @@ interface CalendlyTimeSlot {
   invitees_remaining: number
   start_time: string // ISO
   scheduling_url: string
+  // Host-tz shift day (YYYY-MM-DD). Groups all slots of one shift under
+  // one day tab even when the shift crosses midnight for the visitor.
+  shift_day?: string
+  shift_weekday?: string
 }
 
 // Per-locale copy for the DemoModal-specific strings the picker copy
@@ -265,7 +269,10 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const [rawSlots, setRawSlots] = useState<CalendlyTimeSlot[]>([])
   const [loadingSlots, setLoadingSlots] = useState(false)
   const [slotsError, setSlotsError] = useState('')
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  // Day picker is now driven by the server's host-tz shift_day so the
+  // whole shift stays on one tab even when it crosses midnight for the
+  // visitor (Indian visitors keep 2:30 AM under the same day as 11 AM).
+  const [selectedShiftDay, setSelectedShiftDay] = useState<string | null>(null)
   const [selectedSlot, setSelectedSlot] = useState<CalendlyTimeSlot | null>(null)
   const [timezone, setTimezone] = useState<string>('UTC')
 
@@ -316,9 +323,10 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
       setEmailError('')
       setBookingError('')
       setIsSuccess(false)
-      setSelectedDate(null)
+      setSelectedShiftDay(null)
       setSelectedSlot(null)
       setStep('details')
+      hubspotSubmittedRef.current = false
     }
   }, [isOpen])
 
@@ -327,6 +335,9 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const fetchNext7Days = useCallback(async () => {
     setLoadingSlots(true)
     setSlotsError('')
+    // Don't hit the server with the 'UTC' sentinel — we'd get slots in the
+    // wrong zone and bucket them at nonsense hours in the browser.
+    if (timezone === 'UTC') return
     const now = new Date()
     const start = new Date(now.getTime() + 60_000)
     // End of the 7th day from today (inclusive), so a 7-slot strip has
@@ -335,10 +346,10 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
     const end = new Date(startOfToday.getTime() + 7 * DAY_MS - 1)
 
     try {
-      const url = new URL('/api/calendly/available-times', window.location.origin)
-      url.searchParams.set('locale', locale)
+      const url = new URL('/api/gcal/slots', window.location.origin)
       url.searchParams.set('start', iso(start))
       url.searchParams.set('end', iso(end))
+      url.searchParams.set('tz', timezone)
       const res = await fetch(url.toString())
       if (!res.ok) throw new Error(`Failed to load slots (${res.status})`)
       const data = (await res.json()) as { collection?: CalendlyTimeSlot[] }
@@ -348,47 +359,50 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
       available.sort((a, b) => a.start_time.localeCompare(b.start_time))
       setRawSlots(available)
     } catch (err) {
-      console.error('Calendly available-times fetch failed:', err)
+      console.error('GCal slots fetch failed:', err)
       setSlotsError('Could not load available times. Please try again.')
     } finally {
       setLoadingSlots(false)
     }
-  }, [locale])
+  }, [timezone])
 
   useEffect(() => {
     if (!isOpen) return
-    setSelectedDate(null)
+    setSelectedShiftDay(null)
     setSelectedSlot(null)
     fetchNext7Days()
   }, [isOpen, fetchNext7Days])
 
-  // Group in the visitor's real timezone; recomputes if timezone changes.
-  const slotsByDate = useMemo(() => {
+  // Group by the server-emitted host-tz shift_day (falls back to visitor-tz
+  // calendar day if an older response is somehow in flight).
+  const slotsByShift = useMemo(() => {
     const grouped: Record<string, CalendlyTimeSlot[]> = {}
     rawSlots.forEach((s) => {
-      const k = dateKeyInTz(new Date(s.start_time), timezone)
+      const k = s.shift_day || dateKeyInTz(new Date(s.start_time), timezone)
       if (!grouped[k]) grouped[k] = []
       grouped[k].push(s)
     })
     return grouped
   }, [rawSlots, timezone])
 
-  // Auto-select the earliest date that has slots (re-runs when grouping
-  // shifts because the IP-based timezone arrives).
-  useEffect(() => {
-    if (!isOpen || selectedDate) return
-    const startOfToday = new Date()
-    startOfToday.setHours(0, 0, 0, 0)
-    for (let i = 0; i < 7; i++) {
-      const d = new Date(startOfToday.getTime() + i * DAY_MS)
-      if ((slotsByDate[dateKeyInTz(d, timezone)] || []).length > 0) {
-        setSelectedDate(d)
-        break
-      }
-    }
-  }, [isOpen, slotsByDate, timezone, selectedDate])
+  // Ordered list of shift days present in the response — drives day strip.
+  const shiftDays = useMemo(() => {
+    const seen: Record<string, string> = {}
+    rawSlots.forEach((s) => {
+      if (s.shift_day && !seen[s.shift_day]) seen[s.shift_day] = s.shift_weekday || ''
+    })
+    return Object.keys(seen).sort().map((sd) => {
+      const [y, m, d] = sd.split('-').map(Number)
+      return { shift_day: sd, weekday: seen[sd], y, m, d }
+    })
+  }, [rawSlots])
 
-  const today = startOfDay(new Date())
+  // Auto-select the first shift day that has slots.
+  useEffect(() => {
+    if (!isOpen || selectedShiftDay) return
+    const first = shiftDays.find((sd) => (slotsByShift[sd.shift_day] || []).length > 0)
+    if (first) setSelectedShiftDay(first.shift_day)
+  }, [isOpen, shiftDays, slotsByShift, selectedShiftDay])
 
   const isPersonalEmail = (e: string) => {
     const domain = e.split('@')[1]?.toLowerCase()
@@ -409,35 +423,41 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
   const canBook = formValid && !!selectedSlot && !isSubmitting
 
-  const handleBook = async () => {
-    if (!canBook || !selectedSlot) return
-    setIsSubmitting(true)
-    setBookingError('')
+  // Guard so we don't double-post to HubSpot if the visitor bounces
+  // between step 1 and step 2 before booking. Ref (not state) so it
+  // doesn't trigger a re-render.
+  const hubspotSubmittedRef = React.useRef(false)
 
-    const finalPhone = `${selectedCountry}${phone.replace(/\s+/g, '')}`
-    const formGuid = HUBSPOT_DEMO_FORM_GUID_BY_LOCALE[locale] || DEFAULT_HUBSPOT_DEMO_FORM_GUID
-
-    // Name isn't collected in the form anymore (kept it lean per user
-    // request). Derive a passable first/last from the email prefix so both
-    // HubSpot and Calendly still get structured name data.
-    const derived = (email.split('@')[0] || '')
+  // Derive a passable first/last from the email prefix — the form no
+  // longer collects a name field, but HubSpot and Calendly both want
+  // structured name data.
+  const derivedNameParts = React.useMemo(() => {
+    const parts = (email.split('@')[0] || '')
       .replace(/[._-]+/g, ' ')
       .replace(/\d+/g, '')
       .trim()
       .split(/\s+/)
       .filter(Boolean)
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
-    const firstname = derived[0] || 'Friend'
-    const lastname = derived.slice(1).join(' ')
+    return {
+      firstname: parts[0] || 'Friend',
+      lastname: parts.slice(1).join(' '),
+    }
+  }, [email])
 
-    // 1) HubSpot lead capture — fire-and-forget with keepalive so the write
-    //    survives the state change to the success screen. Errors are logged,
-    //    not blocking — the booking still lands.
+  // Fire the HubSpot lead-capture the MOMENT step 1 is complete, not
+  // just on final booking. Keeps the lead for visitors who fill the
+  // form but bounce at the calendar step. Idempotent via the ref.
+  const sendHubspotLead = React.useCallback(() => {
+    if (hubspotSubmittedRef.current || !formValid) return
+    hubspotSubmittedRef.current = true
+    const finalPhone = `${selectedCountry}${phone.replace(/\s+/g, '')}`
+    const formGuid = HUBSPOT_DEMO_FORM_GUID_BY_LOCALE[locale] || DEFAULT_HUBSPOT_DEMO_FORM_GUID
     try {
       const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1]
       const fields: { name: string; value: string }[] = [
-        { name: 'firstname', value: firstname },
-        { name: 'lastname', value: lastname },
+        { name: 'firstname', value: derivedNameParts.firstname },
+        { name: 'lastname', value: derivedNameParts.lastname },
         { name: 'email', value: email.trim() },
         { name: 'phone', value: finalPhone },
         { name: 'crm_used', value: crm || 'Other' },
@@ -459,15 +479,35 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(hsPayload),
         keepalive: true,
-      }).catch((err) => console.error('Demo HubSpot submit failed:', err))
+      }).catch((err) => {
+        // Reset so a retry can go through — visitor may still complete
+        // the booking after a transient failure.
+        hubspotSubmittedRef.current = false
+        console.error('Demo HubSpot submit failed:', err)
+      })
       ;(window as any).gtag?.('event', `book_demo_submit_${locale}`)
     } catch (err) {
+      hubspotSubmittedRef.current = false
       console.error('Demo HubSpot prep failed:', err)
     }
+  }, [formValid, selectedCountry, phone, locale, email, crm, derivedNameParts])
 
-    // 2) Actual Calendly booking via server proxy.
+  const handleBook = async () => {
+    if (!canBook || !selectedSlot) return
+    setIsSubmitting(true)
+    setBookingError('')
+
+    const finalPhone = `${selectedCountry}${phone.replace(/\s+/g, '')}`
+    const { firstname, lastname } = derivedNameParts
+
+    // Belt-and-braces: fire HubSpot here too in case the visitor advanced
+    // to step 2 before sendHubspotLead ran (shouldn't happen — the wizard
+    // onSubmit fires it — but the ref guard makes this cheap and safe).
+    sendHubspotLead()
+
+    // 2) Real booking on the host's Google Calendar (Fireflies auto-added).
     try {
-      const res = await fetch('/api/calendly/book', {
+      const res = await fetch('/api/gcal/book', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -477,11 +517,12 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
           email: email.trim(),
           timezone,
           phone: finalPhone,
+          crm: crm || undefined,
         }),
       })
       if (!res.ok) {
         const errText = await res.text().catch(() => '')
-        console.error('Calendly booking failed:', res.status, errText)
+        console.error('GCal booking failed:', res.status, errText)
         setBookingError(mc.bookingErrorSlot)
         setIsSubmitting(false)
         // Refresh slots — the one they picked may have been taken.
@@ -594,7 +635,11 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                 // Wizard: submit on step 1 advances to step 2 (if the form
                 // is valid); submit on step 2 fires the actual booking.
                 if (step === 'details') {
-                  if (formValid) setStep('time')
+                  if (formValid) {
+                    // Capture the lead now — even if they bounce on step 2.
+                    sendHubspotLead()
+                    setStep('time')
+                  }
                 } else if (canBook) {
                   handleBook()
                 }
@@ -746,19 +791,22 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                   </button>
                 </div>
                 <div>
-                  {/* 7-day horizontal strip */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 6, marginBottom: 18 }}>
-                    {Array.from({ length: 7 }, (_, i) => addDays(today, i)).map((d) => {
-                      const key = dateKeyInTz(d, timezone)
-                      const daySlots = slotsByDate[key] || []
+                  {/* 7-day horizontal strip — driven by host-tz shift days */}
+                  <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.max(shiftDays.length, 1)}, 1fr)`, gap: 6, marginBottom: 18 }}>
+                    {shiftDays.slice(0, 7).map(({ shift_day, weekday, y, m, d }) => {
+                      const daySlots = slotsByShift[shift_day] || []
                       const available = daySlots.length > 0
-                      const isSelected = selectedDate && sameDay(d, selectedDate)
+                      const isSelected = selectedShiftDay === shift_day
+                      const localized = new Date(Date.UTC(y, m - 1, d)).toLocaleString(
+                        locale === 'br' ? 'pt-BR' : locale,
+                        { weekday: 'short', timeZone: 'UTC' },
+                      )
                       return (
                         <button
-                          key={key}
+                          key={shift_day}
                           type="button"
                           disabled={!available}
-                          onClick={() => { setSelectedDate(d); setSelectedSlot(null) }}
+                          onClick={() => { setSelectedShiftDay(shift_day); setSelectedSlot(null) }}
                           style={{
                             padding: '10px 4px',
                             borderRadius: 12,
@@ -782,10 +830,10 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                           }}
                         >
                           <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.85 }}>
-                            {d.toLocaleString(locale === 'br' ? 'pt-BR' : locale, { weekday: 'short' })}
+                            {localized || weekday}
                           </span>
                           <span style={{ fontSize: 18, fontWeight: 700, lineHeight: 1 }}>
-                            {d.getDate()}
+                            {d}
                           </span>
                           <span style={{ fontSize: 9.5, fontWeight: 600, opacity: 0.75 }}>
                             {available ? `${daySlots.length} open` : 'Booked'}
@@ -803,7 +851,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: C.ink3, fontSize: 13 }}>
                         <Loader2 size={14} className="animate-spin" /> Loading available times…
                       </div>
-                    ) : !selectedDate ? (
+                    ) : !selectedShiftDay ? (
                       <div
                         style={{
                           padding: '18px 16px',
@@ -820,9 +868,13 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                     ) : (
                       <div>
                         <div style={{ fontSize: 12, fontWeight: 700, color: C.ink3, marginBottom: 10, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                          {selectedDate.toLocaleString(locale === 'br' ? 'pt-BR' : locale, {
-                            weekday: 'long', month: 'short', day: 'numeric',
-                          })}
+                          {(() => {
+                            const [y, m, d] = selectedShiftDay.split('-').map(Number)
+                            return new Date(Date.UTC(y, m - 1, d)).toLocaleString(
+                              locale === 'br' ? 'pt-BR' : locale,
+                              { weekday: 'long', month: 'short', day: 'numeric', timeZone: 'UTC' },
+                            )
+                          })()}
                         </div>
                         <div
                           style={{
@@ -834,7 +886,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                             paddingRight: 4,
                           }}
                         >
-                          {((slotsByDate[dateKeyInTz(selectedDate, timezone)] ?? []) as CalendlyTimeSlot[]).map((slot) => {
+                          {((slotsByShift[selectedShiftDay] ?? []) as CalendlyTimeSlot[]).map((slot) => {
                             // selectedSlot is guaranteed null in this branch (see the enclosing
                             // `{!selectedSlot && ...}`); the calendar hides the moment a slot is picked.
                             const isSelected = false
