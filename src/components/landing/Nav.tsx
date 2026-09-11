@@ -388,16 +388,15 @@ export function Nav() {
               style={{
                 gridColumn: '1 / -1',
                 justifyContent: 'center',
-                background: 'rgba(91, 75, 174, 0.1)',
+                background: 'rgba(167, 139, 250, 0.16)',
               }}
               className="nav-dd-item"
             >
               {/* A <div>, not a <span>: `.nav-links a span` forces color:#fff
                   !important (for the dark top nav), which would override any
-                  inline color. Literal #5B4BAE (not --accent-ink) so it stays
-                  visible on the blog route, where the landing CSS vars aren't
-                  in scope. */}
-              <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11.5, fontWeight: 600, color: '#5B4BAE', letterSpacing: '0.04em', textAlign: 'center', width: '100%' }}>
+                  inline color. Light lavender so it reads on the dark glass
+                  dropdown, independent of the landing CSS vars. */}
+              <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11.5, fontWeight: 600, color: '#cfc3fa', letterSpacing: '0.04em', textAlign: 'center', width: '100%' }}>
                 {t('allIntegrations')}
               </div>
             </a>
