@@ -149,6 +149,10 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
   const tLimited = t('table.limited')
   const tSevenDays = t('table.sevenDays')
 
+  // Eazybe starting price is shown in local currency on the BR, ES and TR sites
+  const eazybeStartingPrice =
+    locale === 'br' ? 'R$63' : locale === 'es' ? '€16' : locale === 'tr' ? '923 ₺' : '$19'
+
   const featureComparisons: FeatureComparison[] = [
     {
       category: t('table.categories.core'),
@@ -251,7 +255,7 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
       features: [
         {
           name: t('table.features.startingPriceMonthly'),
-          values: { eazybe: '$29', wati: '$49', interakt: '$39', quickreply: '$29', cooby: '$19', timelines: '$25', rasayel: '$35' },
+          values: { eazybe: eazybeStartingPrice, wati: '$49', interakt: '$39', quickreply: '$29', cooby: '$19', timelines: '$25', rasayel: '$35' },
           highlight: 'eazybe'
         },
         {
@@ -341,7 +345,16 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
               {t('hero.badge')}
             </SectionBadge>
 
-            <h1 className="text-4xl lg:text-6xl font-sans font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
+            <h1
+              className="text-white mb-6"
+              style={{
+                fontFamily: 'var(--f-display)',
+                fontWeight: 400,
+                fontSize: 'clamp(32px, 4.2vw, 60px)',
+                lineHeight: 1.08,
+                letterSpacing: '-0.025em',
+              }}
+            >
               {t('hero.titlePrefix')}{' '}
               <span style={{ color: '#A78BFA' }}>
                 {t('hero.titleHighlight')}
