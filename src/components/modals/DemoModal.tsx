@@ -94,6 +94,9 @@ const PERSONAL_EMAIL_DOMAINS = [
   'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com',
   'icloud.com', 'aol.com', 'mail.com', 'protonmail.com', 'zoho.com',
   'yandex.com', 'gmx.com',
+  // Placeholder / reserved domains — no real business uses these.
+  'company.com', 'example.com', 'example.org', 'example.net',
+  'test.com', 'domain.com', 'mydomain.com',
 ]
 
 // Landing tokens inlined so the modal renders correctly even on pages

@@ -25,6 +25,9 @@ const PERSONAL_EMAIL_DOMAINS = new Set([
   'msn.com', 'aol.com', 'icloud.com', 'me.com', 'mac.com', 'protonmail.com',
   'proton.me', 'mail.com', 'zoho.com', 'yandex.com', 'gmx.com',
   'rediffmail.com', 'bol.com.br', 'uol.com.br', 'terra.com.br', 'ig.com.br',
+  // Placeholder / reserved domains — no real business uses these.
+  'company.com', 'example.com', 'example.org', 'example.net',
+  'test.com', 'domain.com', 'mydomain.com',
 ])
 
 export async function POST(request: NextRequest) {

@@ -23,6 +23,9 @@ const PERSONAL_EMAIL_DOMAINS = [
   'live.com', 'msn.com', 'aol.com', 'icloud.com', 'me.com', 'mac.com',
   'protonmail.com', 'proton.me', 'mail.com', 'zoho.com', 'yandex.com',
   'gmx.com', 'rediffmail.com',
+  // Placeholder / reserved domains — no real business uses these.
+  'company.com', 'example.com', 'example.org', 'example.net',
+  'test.com', 'domain.com', 'mydomain.com',
 ]
 
 const COUNTRY_CODES = [
