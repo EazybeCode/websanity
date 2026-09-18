@@ -12,6 +12,7 @@
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Loader2, Send, CheckCircle2 } from 'lucide-react'
+import { withDetected, shortOffset } from '@/lib/timezones'
 
 const DAY_MS = 24 * 60 * 60 * 1000
 const dateKey = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
@@ -364,6 +365,54 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
 
   return (
     <div>
+      {/* Timezone override — auto-detected via /api/geo, but visitors can
+          switch (VPN edge cases, laptops set to the wrong OS clock, users
+          buying on behalf of an office in a different zone). Changing this
+          triggers fetchSlots via the `timezone` dependency. */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: p.textMuted }}>
+          Timezone
+        </span>
+        <select
+          value={timezone === 'UTC' ? '' : timezone}
+          onChange={(e) => { setTimezone(e.target.value); setSelectedShiftDay(null); setSelectedSlot(null) }}
+          aria-label="Change timezone"
+          style={{
+            flex: 1,
+            padding: '6px 10px',
+            fontSize: 12, fontWeight: 600, fontFamily: 'inherit',
+            border: `1px solid ${p.borderStrong}`,
+            borderRadius: 8,
+            background: p.pillBg,
+            color: p.text,
+            cursor: 'pointer',
+            appearance: 'none',
+            backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'><path d='M1 1l4 4 4-4' stroke='${encodeURIComponent(p.textMuted)}' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>")`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'right 10px center',
+            paddingRight: 26,
+          }}
+        >
+          {(() => {
+            const opts = withDetected(timezone === 'UTC' ? null : timezone)
+            const grouped: Record<string, typeof opts> = {}
+            for (const o of opts) (grouped[o.group] ||= []).push(o)
+            return Object.entries(grouped).map(([group, list]) => (
+              <optgroup key={group} label={group}>
+                {list.map((o) => {
+                  const off = shortOffset(o.id)
+                  return (
+                    <option key={o.id} value={o.id}>
+                      {o.label}{off ? ` (${off})` : ''}
+                    </option>
+                  )
+                })}
+              </optgroup>
+            ))
+          })()}
+        </select>
+      </div>
+
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: p.textMuted, marginBottom: 8 }}>
         Pick a day
       </div>

@@ -81,12 +81,18 @@ export async function GET(req: NextRequest) {
     const url = new URL(req.url)
     const startParam = url.searchParams.get('start')
     const endParam = url.searchParams.get('end')
-    // `tz` is the visitor's timezone (from IP or browser). The shift is
-    // generated in this zone so the visitor always sees 11:00 AM – 02:30 AM
-    // in their own clock. Defaults to Asia/Kolkata if omitted.
-    const tz = url.searchParams.get('tz') || 'Asia/Kolkata'
+    // `tz` is the visitor's timezone (from IP or browser). Required — the
+    // shift is generated in this zone. Previously we defaulted to
+    // Asia/Kolkata if omitted, which meant any request that raced the
+    // client's tz detection (or hit this route from an older bundle)
+    // silently served IST slots to LATAM visitors. Now we fail fast so the
+    // client is forced to detect and send a real timezone.
+    const tz = url.searchParams.get('tz')
     if (!startParam || !endParam) {
       return NextResponse.json({ error: 'start and end (ISO) required' }, { status: 400 })
+    }
+    if (!tz) {
+      return NextResponse.json({ error: 'tz (IANA timezone) is required' }, { status: 400 })
     }
     const rangeStart = new Date(startParam)
     const rangeEnd = new Date(endParam)

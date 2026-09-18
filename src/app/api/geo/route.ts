@@ -45,20 +45,30 @@ export async function GET(request: NextRequest): Promise<NextResponse<GeoRespons
     const res = await fetch(url, { cache: 'no-store' })
     const data = await res.json()
 
+    // Per-visitor data — never cache. Without this an upstream proxy could
+    // serve the first requester's country/tz back to every subsequent
+    // visitor, which is how LATAM users ended up seeing IST times.
+    const noCache = { 'Cache-Control': 'no-store, private, max-age=0' } as const
+
     if (!data?.success) {
-      return NextResponse.json(empty)
+      return NextResponse.json(empty, { headers: noCache })
     }
 
     const countryCode: string | null = data.country_code ?? null
-    return NextResponse.json({
-      ip: data.ip ?? clientIp ?? null,
-      country_code: countryCode,
-      country_name: data.country ?? null,
-      currency: countryCode ? COUNTRY_CURRENCY[countryCode] ?? null : null,
-      timezone: data.timezone?.id ?? null,
-      seen_ip: clientIp || null,
-    })
+    return NextResponse.json(
+      {
+        ip: data.ip ?? clientIp ?? null,
+        country_code: countryCode,
+        country_name: data.country ?? null,
+        currency: countryCode ? COUNTRY_CURRENCY[countryCode] ?? null : null,
+        timezone: data.timezone?.id ?? null,
+        seen_ip: clientIp || null,
+      },
+      { headers: noCache },
+    )
   } catch {
-    return NextResponse.json(empty)
+    return NextResponse.json(empty, {
+      headers: { 'Cache-Control': 'no-store, private, max-age=0' },
+    })
   }
 }

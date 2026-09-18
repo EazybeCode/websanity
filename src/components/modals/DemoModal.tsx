@@ -25,6 +25,7 @@ import {
   getHubSpotAttributionFields,
 } from '@/utils/openChromeExtensionStore'
 import { CRMType } from '@/types'
+import { withDetected, shortOffset } from '@/lib/timezones'
 
 interface Props {
   isOpen: boolean
@@ -430,6 +431,13 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
     if (first) setSelectedShiftDay(first.shift_day)
   }, [isOpen, shiftDays, slotsByShift, selectedShiftDay])
 
+  // Curated timezone list for the dropdown, with the auto-detected zone
+  // pinned to the top ("Detected" group) even if it isn't in the list.
+  const tzOptions = useMemo(
+    () => withDetected(timezone === 'UTC' ? null : timezone),
+    [timezone],
+  )
+
   const isPersonalEmail = (e: string) => {
     const domain = e.split('@')[1]?.toLowerCase()
     return PERSONAL_EMAIL_DOMAINS.includes(domain || '')
@@ -817,6 +825,54 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                   </button>
                 </div>
                 <div>
+                  {/* Timezone override — auto-detected via /api/geo, but
+                      visitors can switch (VPN edge cases, wrong OS clock,
+                      buying on behalf of an office in a different zone).
+                      Changing this bumps `timezone` state and triggers a
+                      re-fetch of slots. */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+                    <span style={{ fontSize: 10, fontWeight: 700, color: C.ink3, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                      Timezone
+                    </span>
+                    <select
+                      value={timezone === 'UTC' ? '' : timezone}
+                      onChange={(e) => { setTimezone(e.target.value); setSelectedShiftDay(null); setSelectedSlot(null) }}
+                      aria-label="Change timezone"
+                      style={{
+                        flex: 1,
+                        padding: '7px 12px',
+                        fontSize: 12, fontWeight: 600, fontFamily: sans,
+                        color: C.ink,
+                        background: '#fff',
+                        border: `1px solid ${C.line2}`,
+                        borderRadius: 10,
+                        cursor: 'pointer',
+                        appearance: 'none',
+                        backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'><path d='M1 1l4 4 4-4' stroke='%235A6070' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>")`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'right 12px center',
+                        paddingRight: 30,
+                      }}
+                    >
+                      {(() => {
+                        const opts = tzOptions
+                        const grouped: Record<string, typeof opts> = {}
+                        for (const o of opts) (grouped[o.group] ||= []).push(o)
+                        return Object.entries(grouped).map(([group, list]) => (
+                          <optgroup key={group} label={group}>
+                            {list.map((o) => {
+                              const off = shortOffset(o.id)
+                              return (
+                                <option key={o.id} value={o.id}>
+                                  {o.label}{off ? ` (${off})` : ''}
+                                </option>
+                              )
+                            })}
+                          </optgroup>
+                        ))
+                      })()}
+                    </select>
+                  </div>
                   {/* 7-day horizontal strip — driven by host-tz shift days */}
                   <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.max(shiftDays.length, 1)}, 1fr)`, gap: 6, marginBottom: 18 }}>
                     {shiftDays.slice(0, 7).map(({ shift_day, weekday, y, m, d }) => {
