@@ -24,6 +24,8 @@ import {
   Rocket,
   Eye,
   Tag,
+  Copy,
+  Check,
 } from 'lucide-react'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import { sanitySrcSet, sanityIntrinsicSize, SANITY_BODY_SIZES, SANITY_FEATURED_SIZES } from '@/lib/sanity-image'
@@ -214,6 +216,71 @@ const imageCaptionComponents = {
   },
 }
 
+// Code blocks hold WhatsApp message templates — one click copies the whole
+// template, with a brief "copied" check as feedback.
+const CodeBlockWithCopy: React.FC<{ value: any }> = ({ value }) => {
+  const [copied, setCopied] = useState(false)
+  if (!value) return null
+
+  const handleCopy = async () => {
+    const text = (value.code || '').replace(/\r\n/g, '\n')
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard unavailable (http / older browser) — fall back silently
+      const ta = document.createElement('textarea')
+      ta.value = text
+      document.body.appendChild(ta)
+      ta.select()
+      try {
+        document.execCommand('copy')
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      } finally {
+        document.body.removeChild(ta)
+      }
+    }
+  }
+
+  return (
+    <figure className="my-8">
+      {value.filename && (
+        <div className="text-xs text-slate-500 mb-2 font-mono">{value.filename}</div>
+      )}
+      <div className="relative">
+        <button
+          type="button"
+          onClick={handleCopy}
+          aria-label={copied ? 'Copied' : 'Copy to clipboard'}
+          title={copied ? 'Copied!' : 'Copy'}
+          className={`absolute top-3 right-3 z-10 flex items-center justify-center w-9 h-9 rounded-lg border transition-all cursor-pointer ${
+            copied
+              ? 'bg-emerald-500 border-emerald-400 text-white'
+              : 'bg-slate-800 border-slate-600 text-slate-300 hover:bg-emerald-500 hover:border-emerald-400 hover:text-white'
+          }`}
+        >
+          {copied ? <Check size={16} /> : <Copy size={16} />}
+        </button>
+        <pre
+          className={`bg-slate-900 rounded-xl p-4 md:p-6 pr-14 whitespace-pre-wrap break-words border border-slate-700 ${
+            value.theme === 'light' ? 'light' : ''
+          }`}
+        >
+          <code
+            className={`text-sm md:text-base ${
+              value.language ? `language-${value.language}` : ''
+            }`}
+          >
+            {value.code}
+          </code>
+        </pre>
+      </div>
+    </figure>
+  )
+}
+
 const createPortableTextComponents = (
   content: PortableTextBlock[]
 ): PortableTextComponents => {
@@ -400,29 +467,7 @@ const createPortableTextComponents = (
           </figure>
         )
       },
-      codeBlock: ({ value }: any) => {
-        if (!value) return null
-        return (
-          <figure className="my-8">
-            {value.filename && (
-              <div className="text-xs text-slate-500 mb-2 font-mono">{value.filename}</div>
-            )}
-            <pre
-              className={`bg-slate-900 rounded-xl p-4 md:p-6 overflow-x-auto border border-slate-700 ${
-                value.theme === 'light' ? 'light' : ''
-              }`}
-            >
-              <code
-                className={`text-sm md:text-base ${
-                  value.language ? `language-${value.language}` : ''
-                }`}
-              >
-                {value.code}
-              </code>
-            </pre>
-          </figure>
-        )
-      },
+      codeBlock: ({ value }: any) => <CodeBlockWithCopy value={value} />,
       imageGallery: ({ value }: any) => {
         if (!value || !value.images?.length) return null
         const gridCols =
@@ -1231,7 +1276,9 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
                 }
                 .blog-content pre {
                   background: #0f172a; padding: 1.75rem; border-radius: 1rem;
-                  overflow-x: auto; margin: 2.5rem 0; border: 1px solid #1e293b;
+                  margin: 2.5rem 0; border: 1px solid #1e293b;
+                  /* message templates, not code: wrap at the content width instead of scrolling sideways */
+                  white-space: pre-wrap; overflow-wrap: break-word;
                 }
                 .blog-content pre code { background: none; padding: 0; font-size: 0.95rem; line-height: 1.7; }
                 .blog-content table {
