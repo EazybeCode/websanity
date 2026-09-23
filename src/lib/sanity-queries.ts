@@ -170,7 +170,16 @@ export async function getPricing(locale: string = 'en') {
       footnote
     }
   }`
-  return sanityClient.fetch(query, { language })
+  // The pricing page renders every field with a hardcoded default fallback,
+  // so a slow Sanity response never needs to block first paint. We race the
+  // fetch against a 500 ms budget — the SSR either gets Sanity-driven copy
+  // or gracefully falls back to the defaults, and the next revalidation
+  // cycle (30 s ISR) fills in the Sanity content once it's warmed up.
+  const SANITY_SSR_BUDGET_MS = 500
+  return Promise.race([
+    sanityClient.fetch(query, { language }),
+    new Promise((resolve) => setTimeout(() => resolve(null), SANITY_SSR_BUDGET_MS)),
+  ])
 }
 
 // ─── Product (Integration Pages) ────────────────────────────────────────────

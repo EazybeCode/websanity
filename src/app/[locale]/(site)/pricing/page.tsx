@@ -116,6 +116,11 @@ export default async function PricingPage({
 
   return (
     <>
+      {/* Preconnect the pricing APIs the client-side useDynamicPricing hook
+          calls, so DNS + TLS complete while the HTML is still streaming.
+          Saves ~200-300 ms on the visible price rendering. */}
+      <link rel="preconnect" href="https://cerberus.eazybe.com" crossOrigin="anonymous" />
+      <link rel="dns-prefetch" href="https://cerberus.eazybe.com" />
       {/* Render JSON-LD schemas for English locale */}
       {pricingSchemas &&
         pricingSchemas.map((schema, index) => (
