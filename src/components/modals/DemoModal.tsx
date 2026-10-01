@@ -308,23 +308,33 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const [bookingError, setBookingError] = useState('')
   const [isSuccess, setIsSuccess] = useState(false)
 
-  // Timezone priority: IP-based via /api/geo (follows VPN) → browser Intl
-  // (OS clock) → UTC. Locale-forced defaults are no longer needed — the
-  // IP lookup gets it right for both /br/ and English-language visitors.
+  // Timezone priority (flipped Oct-2026 after Brazil/Mexico visitors kept
+  // getting booked into IST):
+  //   1) Browser Intl — the OS clock, correct for 99% of users and reliable
+  //      even when the visitor is on a VPN that resolves to another country.
+  //   2) IP via /api/geo — ONLY used as a fallback when the browser can't
+  //      produce a valid IANA zone (very old browser, Intl stripped). Never
+  //      overrides a working browser zone, so a Brazilian with BRT keeps
+  //      BRT even if Coolify's proxy chain mis-reads their IP as India.
+  //   3) 'UTC' sentinel as the final floor.
   useEffect(() => {
     if (!isOpen) return
-    // Kick off with browser detection so the field is populated immediately.
+    let browserTz: string | null = null
     try {
-      setTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC')
+      browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || null
+      if (browserTz) setTimezone(browserTz)
     } catch { /* keep default */ }
-    // Then upgrade to the IP-based timezone (correctly follows VPNs).
     let cancelled = false
-    fetch('/api/geo')
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data: { timezone?: string | null } | null) => {
-        if (!cancelled && data?.timezone) setTimezone(data.timezone)
-      })
-      .catch(() => { /* keep browser fallback */ })
+    // IP tz is only taken when the browser didn't give us one, so a
+    // misdetecting proxy/VPN can never silently overwrite a good zone.
+    if (!browserTz) {
+      fetch('/api/geo')
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data: { timezone?: string | null } | null) => {
+          if (!cancelled && data?.timezone) setTimezone(data.timezone)
+        })
+        .catch(() => { /* keep sentinel */ })
+    }
     const detect = async () => {
       try {
         const res = await fetch('https://api.country.is/')

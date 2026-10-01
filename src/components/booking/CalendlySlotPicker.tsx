@@ -188,25 +188,27 @@ export const CalendlySlotPicker: React.FC<Props> = ({ locale, name, email, phone
 
   const today = startOfDay(new Date())
 
-  // Timezone priority:
-  //   1) IP-based via /api/geo (VPN-aware — visitor sees times in the
-  //      country their IP resolves to, not the OS clock).
-  //   2) Browser Intl (OS timezone) as fallback.
+  // Timezone priority (flipped Oct-2026 — Brazilian / Mexican visitors
+  // were silently getting booked into IST when /api/geo mis-read their IP):
+  //   1) Browser Intl — OS clock. Reliable even on a VPN.
+  //   2) IP via /api/geo — ONLY as a fallback when the browser doesn't
+  //      give us an IANA zone. Never overrides a good browser value.
   //   3) 'UTC' sentinel — the picker won't fetch while this is the state.
   useEffect(() => {
     let cancelled = false
-    // Set browser tz synchronously on mount so we're never stuck on the
-    // UTC sentinel — the fetch effect gates on tz !== 'UTC'.
+    let browserTz: string | null = null
     try {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
-      if (!cancelled && tz) setTimezone(tz)
+      browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || null
+      if (browserTz && !cancelled) setTimezone(browserTz)
     } catch { /* ignore */ }
-    fetch('/api/geo')
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data: { timezone?: string | null } | null) => {
-        if (!cancelled && data?.timezone) setTimezone(data.timezone)
-      })
-      .catch(() => { /* keep browser fallback */ })
+    if (!browserTz) {
+      fetch('/api/geo')
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data: { timezone?: string | null } | null) => {
+          if (!cancelled && data?.timezone) setTimezone(data.timezone)
+        })
+        .catch(() => { /* keep sentinel */ })
+    }
     return () => { cancelled = true }
   }, [])
 
