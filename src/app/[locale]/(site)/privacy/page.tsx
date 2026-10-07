@@ -180,10 +180,39 @@ export default async function PrivacyPage({
             </div>
           </div>
 
+          {/* Child Safety Standards — required by Google Play's app policy
+              for apps that handle user communication. We embed the policy
+              here (rather than a separate /child-safety page) so it lives
+              under the same canonical privacy URL the store listing cites. */}
+          <div className="mb-12">
+            <h2 style={{fontFamily: "var(--f-display)", fontSize: 24, fontWeight: 400, color: "var(--ink)", marginBottom: 16, display: "flex", alignItems: "center", gap: 12, letterSpacing: "-0.01em"}}>
+              <span style={{display: "inline-flex", alignItems: "center", justifyContent: "center", width: 30, height: 30, borderRadius: 8, background: "color-mix(in oklab, var(--accent-a) 18%, var(--paper))", color: "var(--accent-ink)", fontFamily: "var(--f-mono)", fontSize: 13, fontWeight: 600, border: "1px solid color-mix(in oklab, var(--accent-a) 30%, var(--line))"}}>7</span>
+              {isBr ? 'Padrões de Segurança Infantil' : isEs ? 'Estándares de Seguridad Infantil' : isTr ? 'Çocuk Güvenliği Standartları' : 'Child Safety Standards'}
+            </h2>
+            <div style={{paddingLeft: 42, color: "var(--ink-2)", fontSize: 16, lineHeight: 1.7}}>
+              <p>Eazybe, developed by Eazybe Inc., is committed to protecting children. We have zero tolerance for Child Sexual Abuse and Exploitation (CSAE) on our platform.</p>
+              <p style={{marginTop: 16}}><strong style={{color: "var(--ink)"}}>What is prohibited.</strong> Using Eazybe to create, share, store, or promote any of the following is strictly prohibited:</p>
+              <ul style={{paddingLeft: 18, marginTop: 8, marginBottom: 16, color: "var(--ink-3)", lineHeight: 1.7}}>
+                <li>Child sexual abuse material (CSAM)</li>
+                <li>Grooming, or contacting minors for sexual purposes</li>
+                <li>Any content that sexualizes, exploits, or endangers minors</li>
+              </ul>
+              <p><strong style={{color: "var(--ink)"}}>How we enforce this.</strong></p>
+              <ul style={{paddingLeft: 18, marginTop: 8, marginBottom: 16, color: "var(--ink-3)", lineHeight: 1.7}}>
+                <li>We remove violating content immediately.</li>
+                <li>We permanently ban accounts involved.</li>
+                <li>We report confirmed cases to the National Center for Missing &amp; Exploited Children (NCMEC) and local law enforcement, as required by law.</li>
+              </ul>
+              <p><strong style={{color: "var(--ink)"}}>How to report.</strong> If you see anything that puts a child at risk, report it in-app via Help / Support, or email <a href="mailto:hey@eazybe.com" style={{color: "var(--accent-ink)", borderBottom: "1px solid color-mix(in oklab, var(--accent-ink) 40%, transparent)"}}>hey@eazybe.com</a>. All reports are reviewed promptly and kept confidential.</p>
+              <p style={{marginTop: 12}}><strong style={{color: "var(--ink)"}}>Legal compliance.</strong> Eazybe complies with all applicable child safety laws and regulations in the regions where we operate.</p>
+              <p style={{marginTop: 12}}><strong style={{color: "var(--ink)"}}>Child safety contact:</strong> <a href="mailto:hey@eazybe.com" style={{color: "var(--accent-ink)", borderBottom: "1px solid color-mix(in oklab, var(--accent-ink) 40%, transparent)"}}>hey@eazybe.com</a></p>
+            </div>
+          </div>
+
           {/* Contact Information */}
           <div style={{marginBottom: 32, padding: 24, background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 14}}>
             <h2 style={{fontFamily: "var(--f-display)", fontSize: 24, fontWeight: 400, color: "var(--ink)", marginBottom: 16, display: "flex", alignItems: "center", gap: 12, letterSpacing: "-0.01em"}}>
-              <span style={{display: "inline-flex", alignItems: "center", justifyContent: "center", width: 30, height: 30, borderRadius: 8, background: "color-mix(in oklab, var(--accent-a) 18%, var(--paper))", color: "var(--accent-ink)", fontFamily: "var(--f-mono)", fontSize: 13, fontWeight: 600, border: "1px solid color-mix(in oklab, var(--accent-a) 30%, var(--line))"}}>7</span>
+              <span style={{display: "inline-flex", alignItems: "center", justifyContent: "center", width: 30, height: 30, borderRadius: 8, background: "color-mix(in oklab, var(--accent-a) 18%, var(--paper))", color: "var(--accent-ink)", fontFamily: "var(--f-mono)", fontSize: 13, fontWeight: 600, border: "1px solid color-mix(in oklab, var(--accent-a) 30%, var(--line))"}}>8</span>
               {isBr ? 'Informacoes de Contato' : isEs ? 'Informacion de Contacto' : isTr ? 'Iletisim Bilgileri' : 'Contact Information'}
             </h2>
             <div style={{color: "var(--ink-2)", fontSize: 16, lineHeight: 1.7}}>
