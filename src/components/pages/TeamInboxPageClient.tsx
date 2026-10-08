@@ -77,7 +77,7 @@ export function TeamInboxPageClient() {
       <section className="page-hero">
         <div className="container">
           <span className="hero-tag reveal"><span className="pulse" /> TEAM INBOX · UNIFIED · NO API</span>
-          <h1 className="reveal">All your team&apos;s WhatsApp, <em>one dashboard.</em></h1>
+          <h1 className="reveal">All Your Team&apos;s WhatsApp, <em>One Dashboard.</em></h1>
           <p className="lede reveal">
             Managing 10+ reps with individual WhatsApp numbers? Team Inbox brings every conversation
             into one view. Route leads, track responses, ensure coverage. Works with WhatsApp

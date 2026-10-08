@@ -4401,3 +4401,64 @@
   .landing .hide-on-mobile-cta { display: none !important; }
 }
 
+
+/* ── Liquid-glass animation panels ─────────────────────────────────────────
+   All animated "GIF-style" visuals (feature-page animation cards rendered
+   inside .fp-visual, plus the landing scene panels) get the same liquid
+   glass treatment as the nav: translucent pane, backdrop blur, bright
+   top-edge highlight and soft colored glow behind so the frost reads.
+   NOTE: only the standard backdrop-filter property — lightningcss emits the
+   -webkit prefix itself; hand-writing both breaks Chrome (see nav bug). */
+.landing .p-visual,
+.landing .sv3-pane,
+.landing .lqa-chat,
+.landing .dash,
+.landing .sync-v3,
+.landing .fp-visual > div[class] {
+  background: rgba(252, 253, 254, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3),
+    0 0 0 1px rgba(15, 23, 42, 0.07),
+    0 28px 70px -30px rgba(11, 13, 18, 0.35) !important;
+}
+
+/* colored glow blobs BEHIND the glass so the blur has something to frost */
+.landing .fp-visual { position: relative; }
+.landing .fp-visual::before {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  background:
+    radial-gradient(34% 40% at 16% 20%, color-mix(in oklab, var(--accent-ink, #5B4BAE) 38%, transparent), transparent 70%),
+    radial-gradient(30% 36% at 85% 72%, color-mix(in oklab, var(--accent-a, #7FD6B0) 45%, transparent), transparent 70%),
+    radial-gradient(26% 30% at 62% 6%, rgba(29, 95, 180, 0.22), transparent 70%);
+  filter: blur(34px);
+  z-index: 0;
+  pointer-events: none;
+}
+.landing .fp-visual > * { position: relative; z-index: 1; }
+
+/* on dark duotone sections the pane stays light glass (inner UI is light-
+   themed) but the ring flips so the edge still reads against near-black */
+.landing [data-tone="dark"] .fp-visual > div[class] {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 30px 80px -30px rgba(0, 0, 0, 0.75) !important;
+}
+
+/* no-blur fallback: keep panels opaque so content never floats on raw bg */
+@supports not (backdrop-filter: blur(1px)) {
+  .landing .p-visual,
+  .landing .sv3-pane,
+  .landing .lqa-chat,
+  .landing .dash,
+  .landing .sync-v3,
+  .landing .fp-visual > div[class] {
+    background: #fafbfc !important;
+  }
+}

@@ -89,6 +89,10 @@ export function buildFaqPageSchema(
 ): object | null {
   if (!items || items.length === 0) return null
 
+  // Answers may carry [label](url) markdown links (rendered as anchors on
+  // the page) — schema text must be plain, so keep only the label.
+  const stripMdLinks = (s: string) => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+
   const mainEntity = items
     .filter((item) => item?.question && item?.answer)
     .map((item) => ({
@@ -96,7 +100,7 @@ export function buildFaqPageSchema(
       name: item.question,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: item.answer,
+        text: stripMdLinks(String(item.answer)),
       },
     }))
 

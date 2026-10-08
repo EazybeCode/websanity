@@ -1940,6 +1940,23 @@ const productPage = {
       ],
     },
     {
+      name: 'testimonials',
+      title: '💬 Testimonials (carousel)',
+      description: 'When filled, the page shows these reviews as a rotating carousel instead of the single Testimonial above.',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'quote', type: 'text', rows: 3, title: 'Quote' },
+          { name: 'author', type: 'string', title: 'Author' },
+          { name: 'title', type: 'string', title: 'Author Title' },
+          { name: 'company', type: 'string', title: 'Company' },
+          { name: 'avatar', type: 'image', title: 'Avatar' },
+        ],
+        preview: { select: { title: 'author', subtitle: 'quote', media: 'avatar' } },
+      }],
+    },
+    {
       name: 'faq',
       title: '❓ FAQ',
       type: 'object',

@@ -626,6 +626,14 @@ export async function getFeature(slug: string, locale: string = 'en') {
       company,
       "avatar": avatar.asset->url
     },
+    testimonials[]{
+      _key,
+      quote,
+      author,
+      title,
+      company,
+      "avatar": avatar.asset->url
+    },
     faq{
       badge,
       headline,

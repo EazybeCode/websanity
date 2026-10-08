@@ -659,39 +659,144 @@ export const UseCasesSection: React.FC<{ data: any }> = ({ data }) => {
 
 // ─── Testimonial ────────────────────────────────────────────────────────────
 
-const TestimonialSection: React.FC<{ data: any }> = ({ data }) => {
-  if (!data) return null
+const AVATAR_GRADIENTS = [
+  'linear-gradient(135deg, #5B4BAE, #8B7BD8)',
+  'linear-gradient(135deg, #0E7A5F, #34B38A)',
+  'linear-gradient(135deg, #B4551D, #E8945A)',
+  'linear-gradient(135deg, #1D5FB4, #5AA0E8)',
+  'linear-gradient(135deg, #8A1DB4, #C45AE8)',
+  'linear-gradient(135deg, #B41D4B, #E85A86)',
+]
+
+const TestimonialSection: React.FC<{ data: any; list?: any[] }> = ({ data, list }) => {
+  const reviews = React.useMemo(() => {
+    const arr = Array.isArray(list) && list.length ? list : data ? [data] : []
+    return arr.filter((r) => r && r.quote)
+  }, [data, list])
+  const [idx, setIdx] = React.useState(0)
+  const [paused, setPaused] = React.useState(false)
+
+  React.useEffect(() => {
+    if (paused || reviews.length < 2) return
+    const t = setInterval(() => setIdx((i) => (i + 1) % reviews.length), 6000)
+    return () => clearInterval(t)
+  }, [paused, reviews.length])
+
+  if (!reviews.length) return null
+  const r = reviews[idx]
+  const initials = (r.author || '')
+    .split(/\s+/)
+    .map((w: string) => w[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
+
   return (
-    <section className="section">
+    <section className="section" style={{ paddingTop: 72, paddingBottom: 72 }}>
+      <style>{`
+        @keyframes tst-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        .tst-slide { animation: tst-in .45s cubic-bezier(.22,.8,.3,1) both; }
+        .tst-dot { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: #ADB3C2; transition: all .3s ease; }
+        .tst-dot:hover { background: #8A90A3; }
+        .tst-dot[data-active="true"] { width: 26px; border-radius: 99px; background: var(--accent-ink, #5B4BAE); }
+        @media (prefers-reduced-motion: reduce) { .tst-slide { animation: none; } }
+      `}</style>
       <div className="container">
-        <div className="reveal" style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
-          <div style={{ fontFamily: 'var(--f-display)', fontSize: 64, color: 'var(--accent-ink)', lineHeight: 1, marginBottom: 12 }}>“</div>
-          <blockquote
+        <div
+          className="reveal"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          style={{
+            maxWidth: 800,
+            margin: '0 auto',
+            textAlign: 'center',
+            background: 'var(--paper, #FFFFFF)',
+            border: '1px solid var(--line)',
+            borderRadius: 'var(--r-xl, 32px)',
+            padding: 'clamp(36px, 5vw, 56px)',
+            paddingBottom: 28,
+            boxShadow: '0 24px 70px -36px rgba(11, 13, 18, 0.22)',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            aria-hidden
             style={{
-              fontFamily: 'var(--f-display)',
-              fontSize: 'clamp(22px, 2.6vw, 32px)',
-              fontStyle: 'italic',
-              color: 'var(--ink)',
-              lineHeight: 1.35,
-              letterSpacing: '-0.01em',
+              position: 'absolute',
+              inset: 0,
+              background: 'radial-gradient(60% 50% at 50% 0%, color-mix(in oklab, var(--accent-ink, #5B4BAE) 7%, transparent), transparent)',
+              pointerEvents: 'none',
             }}
-          >
-            {data.quote}
-          </blockquote>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16, marginTop: 28 }}>
-            {data.avatar ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={data.avatar} alt={data.author} style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid var(--line)' }}  loading="lazy"/>
-            ) : (
-              <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--bg-2)' }} />
-            )}
-            <div style={{ textAlign: 'left' }}>
-              <div style={{ fontWeight: 600, color: 'var(--ink)' }}>{data.author}</div>
-              <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, color: 'var(--ink-4)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                {data.title}{data.company ? `, ${data.company}` : ''}
+          />
+          <div className="tst-slide" key={idx} style={{ position: 'relative', minHeight: 'clamp(230px, 24vw, 260px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 18 }} aria-label="5 out of 5 stars">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <svg key={i} width="17" height="17" viewBox="0 0 24 24" fill="var(--accent-ink, #5B4BAE)" aria-hidden>
+                  <path d="M12 2l2.95 6.33 6.93.84-5.12 4.75 1.35 6.85L12 17.4l-6.11 3.37 1.35-6.85L2.12 9.17l6.93-.84L12 2z" />
+                </svg>
+              ))}
+            </div>
+            <blockquote
+              style={{
+                fontFamily: 'var(--f-display)',
+                fontSize: 'clamp(19px, 2.1vw, 26px)',
+                fontWeight: 500,
+                color: 'var(--ink)',
+                lineHeight: 1.45,
+                letterSpacing: '-0.01em',
+                margin: 0,
+              }}
+            >
+              &ldquo;{r.quote}&rdquo;
+            </blockquote>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14, marginTop: 28 }}>
+              {r.avatar ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={r.avatar} alt={r.author} style={{ width: 46, height: 46, borderRadius: '50%', border: '1px solid var(--line)' }} loading="lazy" />
+              ) : (
+                <div
+                  style={{
+                    width: 46,
+                    height: 46,
+                    borderRadius: '50%',
+                    background: AVATAR_GRADIENTS[idx % AVATAR_GRADIENTS.length],
+                    color: '#fff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: 700,
+                    fontSize: 14,
+                    letterSpacing: '0.02em',
+                  }}
+                  aria-hidden
+                >
+                  {initials}
+                </div>
+              )}
+              <div style={{ textAlign: 'left' }}>
+                <div style={{ fontWeight: 600, color: 'var(--ink)', fontSize: 15 }}>{r.author}</div>
+                <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10.5, color: 'var(--ink-4)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                  {r.title}{r.company ? `, ${r.company}` : ''}
+                </div>
               </div>
             </div>
           </div>
+          {reviews.length > 1 && (
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 26, position: 'relative' }}>
+              {reviews.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className="tst-dot"
+                  data-active={i === idx}
+                  aria-label={`Show review ${i + 1}`}
+                  onClick={() => setIdx(i)}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -700,7 +805,86 @@ const TestimonialSection: React.FC<{ data: any }> = ({ data }) => {
 
 // ─── FAQ ────────────────────────────────────────────────────────────────────
 
+// Localized slugs for blog posts linked from FAQ answers via markdown
+// [text](https://eazybe.com/blog/<en-slug>). Published translations only.
+const FAQ_BLOG_SLUG_I18N: Record<string, Record<string, string>> = {
+  'whatsapp-team-inbox': {
+    es: 'bandeja-de-entrada-del-equipo-de-whatsapp',
+    br: 'caixa-de-entrada-da-equipe-whatsapp',
+    tr: 'whatsapp-ekip-gelen-kutusu',
+  },
+  'top-7-crm-with-whatsapp-integration': {
+    es: 'las-7-crm-con-integracion-whatsapp',
+    br: 'as-7-crm-com-integracao-whatsapp',
+    tr: 'top-7-crm-whatsapp-entegrasyonu',
+  },
+  'whatsapp-chat-sync': {
+    es: 'sincronizacion-de-chat-de-whatsapp',
+    br: 'sincronizacao-de-bate-papo-do-whatsapp',
+    tr: 'whatsapp-sohbet-senkronizasyonu',
+  },
+  'whatsapp-message-templates': {
+    es: 'plantillas-de-mensajes-de-whatsapp',
+    br: 'modelos-de-mensagens-whatsapp',
+    tr: 'whatsapp-mesaj-sablonlari',
+  },
+  'how-to-schedule-messages-on-whatsapp': {
+    es: 'como-programar-mensajes-en-whatsapp',
+    br: 'como-agendar-mensagens-no-whatsapp',
+    tr: 'whatsapp-mesaj-zamanlama',
+  },
+  'whatsapp-sales-intelligence': {
+    es: 'inteligencia-de-ventas-whatsapp',
+    br: 'inteligencia-de-vendas-whatsapp',
+    tr: 'whatsapp-satis-zekasi',
+  },
+  'whatsapp-sales-tracking': {
+    es: 'seguimiento-de-ventas-de-whatsapp',
+    br: 'rastreamento-de-vendas-do-whatsapp',
+    tr: 'whatsapp-satis-takibi',
+  },
+  'ai-sales-agent': {
+    es: 'agente-de-ventas-con-ia',
+    br: 'agente-de-vendas-com-ia',
+    tr: 'yapay-zeka-satis-temsilcisi',
+  },
+}
+
+const localizeFaqHref = (href: string, locale: string): string => {
+  if (!href) return href
+  // External (non-eazybe) links and already-localized paths pass through.
+  if (/^https?:\/\//.test(href) && !/eazybe\.com/.test(href)) return href
+  const path = href.replace(/^https?:\/\/(www\.)?eazybe\.com/, '')
+  if (/^\/(es|br|tr)\//.test(path)) return `https://eazybe.com${path}`
+  const m = path.match(/^\/blog\/([^/?#]+)(.*)$/)
+  if (m && locale !== 'en') {
+    const locSlug = FAQ_BLOG_SLUG_I18N[m[1]]?.[locale] || m[1]
+    return `https://eazybe.com/${locale}/blog/${locSlug}${m[2] || ''}`
+  }
+  if (locale !== 'en') return `https://eazybe.com/${locale}${path}`
+  return `https://eazybe.com${path}`
+}
+
+// Renders plain answer text, turning [label](url) markdown into links.
+const FaqAnswer: React.FC<{ text: string; locale: string }> = ({ text, locale }) => {
+  const parts = String(text || '').split(/(\[[^\]]+\]\([^)]+\))/g)
+  return (
+    <>
+      {parts.map((part, i) => {
+        const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+        if (!m) return <React.Fragment key={i}>{part}</React.Fragment>
+        return (
+          <a key={i} href={localizeFaqHref(m[2], locale)} style={{ color: 'var(--accent-ink, #5B4BAE)', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+            {m[1]}
+          </a>
+        )
+      })}
+    </>
+  )
+}
+
 export const FAQSection: React.FC<{ data: any }> = ({ data }) => {
+  const locale = useLocale()
   // All items start collapsed — open only on click.
   const [openIndices, setOpenIndices] = React.useState<Set<number>>(new Set())
   const [showMoreMobile, setShowMoreMobile] = React.useState(false)
@@ -744,7 +928,7 @@ export const FAQSection: React.FC<{ data: any }> = ({ data }) => {
                       </span>
                     </button>
                     <div className="faq-pill-a">
-                      <div>{item.answer}</div>
+                      <div><FaqAnswer text={item.answer} locale={locale} /></div>
                     </div>
                   </div>
                 )
@@ -845,7 +1029,7 @@ export default function FeaturePageClient({ feature, slug }: FeaturePageClientPr
       <FeaturesSection features={data?.features} slug={slug} locale={locale} />
       <HowItWorksSection data={data?.howItWorks} />
       <UseCasesSection data={data?.useCases} />
-      {data?.testimonial && <TestimonialSection data={data.testimonial} />}
+      {(data?.testimonials?.length || data?.testimonial) && <TestimonialSection data={data.testimonial} list={data.testimonials} />}
       <FAQSection data={data?.faq} />
     </>
   )
