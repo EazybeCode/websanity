@@ -203,6 +203,13 @@ const RESOURCES = [
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B6BC4" stroke-width="2" stroke-linecap="round"><line x1="6" y1="20" x2="6" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="14"/></svg>',
   },
   {
+    name: 'About Us',
+    desc: 'The team behind Eazybe',
+    href: '/about-us',
+    bg: '#FDF3E3',
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C98A2B" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  },
+  {
     name: 'Contact Sales',
     desc: 'Book a personalized demo',
     href: 'https://wa.me/916364346419',
@@ -248,6 +255,7 @@ export function Nav() {
       'Blog':                     { nameKey: 'resBlog', descKey: 'resBlogDesc' },
       'Help Center':              { nameKey: 'resHelpCenter', descKey: 'resHelpCenterDesc' },
       'Comparison':               { nameKey: 'resComparison', descKey: 'resComparisonDesc' },
+      'About Us':                 { nameKey: 'resAbout', descKey: 'resAboutDesc' },
       'Contact Sales':            { nameKey: 'resContactSales', descKey: 'resContactSalesDesc' },
     }
     const entry = map[name]
@@ -434,6 +442,15 @@ export function Nav() {
               <span className="nav-dd-content">
                 <div className="nav-dd-name">{t('resComparison')}</div>
                 <div className="nav-dd-desc">{t('resComparisonDesc')}</div>
+              </span>
+            </a>
+            <a href={lh('/about-us')} className="nav-dd-item">
+              <span className="nav-dd-icon" style={{ background: '#FDF3E3' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C98A2B" strokeWidth="2" strokeLinecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              <span className="nav-dd-content">
+                <div className="nav-dd-name">{t('resAbout')}</div>
+                <div className="nav-dd-desc">{t('resAboutDesc')}</div>
               </span>
             </a>
             <div className="nav-dd-divider" />
