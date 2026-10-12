@@ -1,0 +1,41 @@
+{
+  "source": "eazybe-v366-restored-light-colors.html",
+  "assets": [
+    "problem-art-v223/invisible.png",
+    "problem-art-v223/manual.png",
+    "problem-art-v223/slow.png",
+    "problem-art-v223/outreach.png",
+    "refined-crm/hubspot.png",
+    "crm-logos/hubspot.png",
+    "refined-crm/salesforce.png",
+    "crm-logos/salesforce.png",
+    "refined-crm/zoho.png",
+    "crm-logos/zoho.png",
+    "refined-crm/pipedrive.png",
+    "crm-logos/pipedrive.png",
+    "refined-crm/odoo.png",
+    "crm-logos/odoo.svg",
+    "crm-art-v259/google-sheets.png",
+    "crm-logos/google-sheets.png",
+    "crm-art-v259/freshdesk.png",
+    "crm-logos/freshdesk.png",
+    "refined-crm/bitrix24.png",
+    "crm-logos/bitrix24.png",
+    "refined-crm/leadsquared.png",
+    "crm-logos/leadsquared.png"
+  ],
+  "sections": [
+    "home",
+    "customer-proof314",
+    "companies",
+    "problems",
+    "phones",
+    "insights",
+    "agents",
+    "integrations",
+    "automation",
+    "security",
+    "faq"
+  ],
+  "ctaCount": 11
+}

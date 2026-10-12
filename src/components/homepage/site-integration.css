@@ -1,0 +1,91 @@
+/* The approved CSS is scoped to #eazybe-system337, never the shared footer/forms. */
+#eazybe-system337 { isolation: isolate; overflow-x: clip; font-family: 'Geist', var(--font-inter), Arial, sans-serif; }
+#eazybe-system337 section, #eazybe-system337 [id^="conversation-story-"] { scroll-margin-top: 150px; }
+#eazybe-system337 .motion-control { z-index: 30 !important; }
+#eazybe-system337 .section-nav { z-index: 40 !important; }
+.approved-site-nav { overflow: visible; }
+.approved-site-nav.approved-site-nav .nav.nav.nav { top: 0; left: 0; transform: none; width: 100%; max-width: none; border-radius: 0; border: 0; padding: 16px max(24px, calc((100vw - 1440px)/2)); background: #10213b; box-shadow: none; }
+.approved-site-nav .nav::before, .approved-site-nav .nav::after { display: none; }
+.approved-site-nav.is-past-hero .nav.nav.nav { background: #fff; border-bottom: 1px solid #dce5ef; }
+.approved-site-nav.is-past-hero .nav .nav-logo,
+.approved-site-nav.is-past-hero .nav .nav-links > .nav-item > a,
+.approved-site-nav.is-past-hero .nav .nav-links > .nav-item > button,
+.approved-site-nav.is-past-hero .nav .nav-links > .nav-item > button span,
+.approved-site-nav.is-past-hero .nav .nav-lang-trigger,
+.approved-site-nav.is-past-hero .nav .btn-ghost { color: #233952 !important; }
+.approved-site-nav.is-past-hero .nav .nav-logo img { filter: brightness(0); }
+.approved-site-nav.is-past-hero .nav-burger { color: #233952 !important; }
+.approved-site-nav.is-past-hero .nav-burger span { background: #233952; }
+.approved-site-nav.is-past-hero .nav .nav-links > .nav-item > a span,
+.approved-site-nav.is-past-hero .nav .nav-lang-btn,
+.approved-site-nav.is-past-hero .nav .nav-lang-btn span { color: #233952 !important; }
+.approved-site-nav.is-past-hero .nav .btn-ghost { color: #fff !important; }
+.approved-site-nav.is-past-hero .nav .nav-burger span { background: #233952 !important; }
+
+/* Homepage CTA styling follows the approved square blue button system. */
+.approved-site-nav .nav-ctas .btn,
+.approved-site-nav .nav-drawer-ctas .btn {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+.approved-site-nav .nav-ctas .btn-primary,
+.approved-site-nav .nav-drawer-ctas .btn-primary {
+  background: #4361ee !important;
+  border: 1px solid #4361ee !important;
+  color: #fff !important;
+}
+.approved-site-nav .nav-ctas .btn-ghost,
+.approved-site-nav .nav-drawer-ctas .btn-ghost {
+  background: transparent !important;
+  border: 1px solid #63728a !important;
+  color: #fff !important;
+}
+.approved-site-nav.is-past-hero .nav .nav-ctas .btn-ghost {
+  color: #233952 !important;
+  border-color: #a8b6ca !important;
+}
+.approved-site-nav .nav-ctas .btn-primary:hover { background: #3452df !important; }
+
+/* Scope Bea's palette to this homepage without changing the footer. */
+.approved-site-footer .bea-wrap { --accent-a: #a8b8ff; }
+.approved-site-footer .bea-tooltip {
+  background: #10213b;
+  border-color: #344763;
+  box-shadow: 0 12px 32px rgba(16,33,59,.18);
+}
+.approved-site-footer .bea-tooltip::after { background: #10213b; border-color: #344763; }
+.approved-site-footer .bea-tooltip-name { color: #fff; }
+.approved-site-footer .bea-tooltip-msg { color: #d3ddec; }
+.approved-site-footer .bea-tooltip-cta { border-top-color: #344763; }
+.approved-site-footer .bea-bot::before { background: radial-gradient(closest-side,rgba(67,97,238,.3),rgba(168,184,255,.15) 50%,transparent 80%); }
+.approved-site-footer .bea-tooltip,
+.approved-site-footer .bea-tooltip::after { background: #10213b !important; border-color: #344763 !important; }
+
+/* The native forms share the homepage's blue, square visual system. */
+.approved-site-footer .conversion-modal {
+  --conversion-accent: #4361ee;
+  --conversion-soft: #dce6ff;
+  --conversion-selected: #4361ee;
+  color: #233952;
+}
+.approved-site-footer .conversion-modal :is(div, input, select, button, span) { border-radius: 0 !important; }
+.approved-site-footer .conversion-modal h2 {
+  font-family: var(--font-inter), Arial, sans-serif !important;
+  font-weight: 700 !important;
+  color: #233952 !important;
+  letter-spacing: -.035em !important;
+}
+.approved-site-footer .conversion-modal h2 em { font-style: normal !important; color: #4361ee !important; }
+.approved-site-footer .conversion-modal button { box-shadow: none !important; }
+.approved-site-footer .conversion-modal button[type="submit"] {
+  background: #4361ee !important;
+  color: #fff !important;
+}
+.approved-site-footer .conversion-modal button[type="submit"]:disabled {
+  background: #dce5f4 !important;
+  color: #61738f !important;
+}
+.approved-site-footer .conversion-modal :is(input,select):focus-visible { outline: 2px solid #4361ee; outline-offset: 2px; }
+
+#eazybe-system337 .trust-stat.hubspot img.trust-icon316 { width: 40px; height: 40px; object-fit: contain; display: block; margin-bottom: 28px; }

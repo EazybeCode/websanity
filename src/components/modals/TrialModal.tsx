@@ -264,8 +264,8 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose, r
     ink4: '#8A90A0',
     line: '#E4E8F1',
     line2: '#D4D9E5',
-    accentInk: '#5B4BAE',       // iris
-    accentMint: '#7FD6B0',
+    accentInk: 'var(--conversion-accent, #5B4BAE)',       // iris
+    accentMint: 'var(--conversion-soft, #7FD6B0)',
     err: '#C26A5A',
     ok: '#5B8F6F',
   }
@@ -274,6 +274,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose, r
 
   return (
     <div
+      className="conversion-modal"
       onClick={handleBackdropClick}
       style={{
         position: 'fixed', inset: 0, zIndex: 50,

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getHomepageMetadata, getHomepageJsonLd } from '@/data/homepage-seo'
-import { LandingPage } from '@/components/landing/LandingPage'
+import { ApprovedHomepage } from '@/components/homepage/ApprovedHomepage'
 import { routing } from '@/i18n/routing'
 
 // Pure SSG: the page is fully prerendered for every locale at build time
@@ -43,7 +43,7 @@ export default async function HomePage({
         />
       ))}
 
-      <LandingPage />
+      <ApprovedHomepage locale={locale} />
     </>
   )
 }

@@ -106,7 +106,7 @@ const C = {
   paper: '#FBFCFE', bg2: '#ECEFF7',
   ink: '#0F1115', ink2: '#2A2E38', ink3: '#5A6070', ink4: '#8A90A0',
   line: '#E4E8F1', line2: '#D4D9E5',
-  accentInk: '#5B4BAE', accentMint: '#7FD6B0',
+  accentInk: 'var(--conversion-accent, #5B4BAE)', accentMint: 'var(--conversion-soft, #7FD6B0)',
   err: '#C26A5A', ok: '#5B8F6F',
 }
 const serif = "'Instrument Serif', Georgia, serif"
@@ -591,6 +591,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
   // ── render ────────────────────────────────────────────────────────────────
   return (
     <div
+      className="conversion-modal"
       onClick={handleBackdropClick}
       style={{
         position: 'fixed', inset: 0, zIndex: 50,
@@ -906,10 +907,10 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                             borderColor: isSelected
                               ? C.accentInk
                               : available
-                              ? 'color-mix(in oklab, #5B4BAE 20%, #E4E8F1)'
+                              ? 'color-mix(in oklab, var(--conversion-accent, #5B4BAE) 20%, #E4E8F1)'
                               : C.line,
                             background: isSelected
-                              ? 'linear-gradient(160deg, #6E5CE0 0%, #5B4BAE 100%)'
+                              ? 'var(--conversion-selected, linear-gradient(160deg, #6E5CE0 0%, #5B4BAE 100%))'
                               : available
                               ? '#fff'
                               : C.bg2,
@@ -991,9 +992,9 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                                   padding: '11px 8px',
                                   borderRadius: 10,
                                   fontSize: 13.5, fontWeight: 700, fontFamily: sans,
-                                  border: `1px solid ${isSelected ? C.accentInk : 'color-mix(in oklab, #5B4BAE 15%, #E4E8F1)'}`,
+                                  border: `1px solid ${isSelected ? C.accentInk : 'color-mix(in oklab, var(--conversion-accent, #5B4BAE) 15%, #E4E8F1)'}`,
                                   background: isSelected
-                                    ? 'linear-gradient(160deg, #6E5CE0 0%, #5B4BAE 100%)'
+                                    ? 'var(--conversion-selected, linear-gradient(160deg, #6E5CE0 0%, #5B4BAE 100%))'
                                     : '#fff',
                                   color: isSelected ? '#fff' : C.ink,
                                   cursor: 'pointer',
