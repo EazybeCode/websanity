@@ -52,29 +52,6 @@ else
     a.removeAttribute('aria-current'); }); } let pending = false; addEventListener('scroll', () => { if (pending)
     return; pending = true; requestAnimationFrame(() => { sync(); pending = false; }); }, { passive: true }); sync(); })();
 (() => { const section = document.getElementById('integrations'), buttons = [...section.querySelectorAll('.c209-brands>button')]; function lum(hex) { const c = hex.slice(1).match(/../g).map(x => parseInt(x, 16) / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4); return c[0] * .2126 + c[1] * .7152 + c[2] * .0722; } function select(b) { const l = lum(b.dataset.crmBg), dark = lum('#080d16'), ink = (l + .05) / (dark + .05) > 1.05 / (l + .05) ? '#080d16' : '#ffffff'; section.style.setProperty('--crm-bg', b.dataset.crmBg); section.style.setProperty('--crm-accent', b.dataset.crmAccent); section.style.setProperty('--crm-ink', ink); buttons.forEach(x => x.setAttribute('aria-pressed', String(x === b))); const img = section.querySelector('.crm-real258 img'); img.src = b.dataset.crmScreen; img.alt = b.dataset.crmName + ': ' + b.dataset.crmView; section.querySelector('.crm-real258').href = b.dataset.crmScreen; section.querySelector('.c209-foot a').href = b.dataset.crmScreen; section.querySelector('.c209-foot span').textContent = b.dataset.crmName + ' · ' + b.dataset.crmView; } buttons.forEach(b => listen(b, 'click', () => select(b))); select(buttons[0]); })();
-(() => { const root = document.querySelector('#integrations'), layer = root.querySelector('.crm-native274'); const regions = { HubSpot: [48, 54, 50, 38], Salesforce: [3, 48, 94, 23], Zoho: [22, 33, 75, 39], Pipedrive: [47, 43, 50, 45], Odoo: [3, 31, 56, 62], Bitrix24: [48, 55, 50, 24], LeadSquared: [33, 51, 64, 38], Freshdesk: [31, 54, 48, 30] }; let timers = [], visible = false; const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches; function stop() { timers.forEach(clearTimeout); timers = []; } function play() { stop(); const name = root.querySelector('[data-crm-name][aria-pressed="true"]').dataset.crmName; layer.replaceChildren(); const sheets = name === 'Google Sheets'; const rect = regions[name] || [3, 48, 94, 23]; const entries = sheets ? [[26.9, 31.5, 21.6, 4.2, '', 'Please send the quote'], [59.2, 31.5, 10.6, 4.2, '', '$18,000'], [89.3, 31.5, 10.6, 4.2, '', 'Just now']] : [[...rect, 'WhatsApp chat backup', '“Our budget is $18,000. Please send the updated quote.”']]; entries.forEach((entry, i) => { const [x, y, w, h, title, value] = entry; const el = document.createElement('div'); el.className = 'native-entry274' + (sheets ? ' native-cell274' : ''); Object.assign(el.style, { left: x + '%', top: y + '%', width: w + '%', height: h + '%' }); if (title) {
-    const head = document.createElement('strong');
-    head.textContent = translate(title);
-    el.append(head);
-} const content = document.createElement('div'); content.className = 'native-value274'; const text = document.createElement('p'); text.textContent = translate(value); content.append(text); if (!sheets) {
-    const call = document.createElement('p');
-    call.textContent = translate('Call activity · 6 min · Completed');
-    const budget = document.createElement('p');
-    budget.textContent = translate('Budget updated · $18,000');
-    content.append(call, budget);
-    const saved = document.createElement('small');
-    saved.textContent = translate('✓ Automatically saved · Just now');
-    content.append(saved);
-} el.append(content); layer.append(el); if (reduced)
-    el.classList.add('saved');
-else
-    timers.push(setTimeout(() => el.classList.add('saved'), 900 + i * 1000)); }); if (!reduced)
-    timers.push(setTimeout(() => { if (visible)
-        play(); }, 8000)); } root.querySelectorAll('[data-crm-name]').forEach(b => listen(b, 'click', play)); play(); if ('IntersectionObserver' in window)
-    new IntersectionObserver(e => { visible = e[0].isIntersecting; if (visible)
-        play();
-    else
-        stop(); }, { threshold: .2 }).observe(layer); })();
 (() => { const stories = [...document.querySelectorAll('#insights .sales-story299')], panels = [...document.querySelectorAll('#insights .sales-live299')]; function select(index) { stories.forEach((el, i) => { el.classList.toggle('is-active', i === index); el.querySelector('button').setAttribute('aria-current', i === index ? 'step' : 'false'); panels[i].hidden = i !== index; }); } function sync() { if (innerWidth <= 540)
     return; let active = 0; stories.forEach((el, i) => { if (el.getBoundingClientRect().top < innerHeight * .5)
     active = i; }); select(active); } stories.forEach((el, i) => listen(el.querySelector('button'), 'click', () => { select(i); if (innerWidth > 540)
