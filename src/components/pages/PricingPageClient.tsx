@@ -130,7 +130,7 @@ const defaultPricingPlans: PricingPlan[] = [
     cta: { label: 'Talk to our AI Agent', url: '/contact?plan=basic-ai' },
   },
   {
-    name: 'Custom AI: Contact Us', planKey: 'pro-ai',
+    name: 'Custom AI', planKey: 'pro-ai',
     description: 'Advanced agents, voice, ads automation and 100+ integrations.',
     // Custom-priced: the enterprise flag renders "Custom" instead of a price.
     // The numbers stay only as fallbacks for code paths that expect them.
@@ -239,7 +239,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       starter: 'Starter',
       scaler: 'Scaler',
       basicAi: 'Basic AI',
-      proAi: 'Custom AI: Contact Us',
+      proAi: 'Custom AI',
     },
     ctas: {
       installFree: 'Install for Free',
@@ -301,7 +301,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       starter: 'Inicial',
       scaler: 'Escala',
       basicAi: 'IA Básica',
-      proAi: 'IA Personalizada: Contáctanos',
+      proAi: 'IA Personalizada',
     },
     ctas: {
       installFree: 'Instalar gratis',
@@ -354,7 +354,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'WhatsApp API': 'API de WhatsApp',
       'WhatsApp API number': 'Número de API de WhatsApp',
       '1 · 3 users included': '1 · 3 usuarios incluidos',
-      'Custom': 'Personalizado',
+      'Custom': 'Contáctanos',
       '1 · 5 users included': '1 · 5 usuarios incluidos',
       'Custom objects in mini CRM view': 'Objetos personalizados en mini CRM',
       'CRM property-to-WhatsApp labeling': 'Etiquetado de propiedades del CRM en WhatsApp',
@@ -420,7 +420,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       starter: 'Inicial',
       scaler: 'Escala',
       basicAi: 'IA Básica',
-      proAi: 'IA Personalizada: Fale Conosco',
+      proAi: 'IA Personalizada',
     },
     ctas: {
       installFree: 'Instalar grátis',
@@ -473,7 +473,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'WhatsApp API': 'API do WhatsApp',
       'WhatsApp API number': 'Número de API do WhatsApp',
       '1 · 3 users included': '1 · 3 usuários incluídos',
-      'Custom': 'Personalizado',
+      'Custom': 'Fale Conosco',
       '1 · 5 users included': '1 · 5 usuários incluídos',
       'Custom objects in mini CRM view': 'Objetos personalizados no mini CRM',
       'CRM property-to-WhatsApp labeling': 'Etiquetagem de propriedade do CRM para WhatsApp',
@@ -539,7 +539,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       starter: 'Başlangıç',
       scaler: 'Büyüme',
       basicAi: 'Temel Yapay Zeka',
-      proAi: 'Özel Yapay Zeka: Bize Ulaşın',
+      proAi: 'Özel Yapay Zeka',
     },
     ctas: {
       installFree: 'Ücretsiz Yükle',
@@ -592,7 +592,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'WhatsApp API': 'WhatsApp API',
       'WhatsApp API number': 'WhatsApp API numarası',
       '1 · 3 users included': '1 · 3 kullanıcı dahil',
-      'Custom': 'Özel',
+      'Custom': 'Bize Ulaşın',
       '1 · 5 users included': '1 · 5 kullanıcı dahil',
       'Custom objects in mini CRM view': 'Mini CRM görünümünde özel nesneler',
       'CRM property-to-WhatsApp labeling': "CRM özelliğinden WhatsApp'a etiketleme",
@@ -871,14 +871,14 @@ function PricingCard({
               // "Personalizado" (es/pt-BR) is much longer than "Custom", so it
               // steps down to 34px to stay on one line in the card. Short labels
               // (Custom, tr "Özel") keep the full 44px.
-              fontSize: isEnterprise && (featureLabels['Custom'] || 'Custom').length > 8 ? 34 : 44,
+              fontSize: isEnterprise && (featureLabels['Custom'] || 'Contact Us').length > 8 ? 34 : 44,
               fontWeight: 400,
               color: 'var(--ink)',
               letterSpacing: '-0.02em',
               lineHeight: 1,
             }}
           >
-            {isEnterprise ? featureLabels['Custom'] || 'Custom' : 'Contact us'}
+            {isEnterprise ? featureLabels['Custom'] || 'Contact Us' : 'Contact us'}
           </div>
         ) : (
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
