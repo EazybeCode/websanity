@@ -15,8 +15,9 @@ import '../../../globals.css'
 // size and spacing rather than from heavier and heavier type.
 // Self-hosted by next/font, so no CDN request and no invisible-text flash.
 const geist = Geist({
+  // Variable font — next/font v16+ rejects `weight` arrays on variable
+  // fonts and crashes the build with the "reading '1'" error. Omit it.
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
   variable: '--font-inter', // reuses the token the Tailwind sans stack reads
   display: 'swap',
 })
@@ -32,8 +33,8 @@ const hedvig = Hedvig_Letters_Serif({
 })
 
 const geistMono = Geist_Mono({
+  // Variable font — see note on `geist` above.
   subsets: ['latin'],
-  weight: ['400', '500'],
   variable: '--font-wc-mono',
   display: 'swap',
 })
