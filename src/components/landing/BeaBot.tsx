@@ -18,6 +18,10 @@ export function BeaBot() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return
+    // Paid-ads landings (LinkedIn campaigns via eazybe.info short links) must not
+    // get the auto-opened form — the visitor should see the page they clicked the
+    // ad for. Bea stays available via her corner button and the CTA events.
+    if (new URLSearchParams(window.location.search).get('utm_source') === 'linkedin-ads') return
     // Auto-open the lead form 5s after load on ALL devices (desktop + mobile).
     // Initial state stays false so SSR/CSR markup matches; the open happens
     // client-side after mount, so there's no hydration mismatch.
