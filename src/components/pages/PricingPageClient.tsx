@@ -130,10 +130,12 @@ const defaultPricingPlans: PricingPlan[] = [
     cta: { label: 'Talk to our AI Agent', url: '/contact?plan=basic-ai' },
   },
   {
-    name: 'Pro AI', planKey: 'pro-ai',
+    name: 'Custom AI: Contact Us', planKey: 'pro-ai',
     description: 'Advanced agents, voice, ads automation and 100+ integrations.',
+    // Custom-priced: the enterprise flag renders "Custom" instead of a price.
+    // The numbers stay only as fallbacks for code paths that expect them.
     monthlyPrice: 199, annualPrice: 199, currency: '$', icon: 'growth', popular: true,
-    priceNote: '5 users included',
+    enterprise: true,
     features: [
       { text: 'Everything in Basic AI', included: true },
       { text: 'Click-to-WhatsApp Ads agent', included: true, highlight: true },
@@ -202,6 +204,7 @@ const defaultFaqItems: FAQItem[] = [
 type LocaleFallback = {
   hero: { badge: string; headline: string; headlineHighlight: string; subheadline: string; billingToggleMonthly: string; billingToggleAnnual: string; saveBadgeText: string }
   planDescriptions: { starter: string; scaler: string; basicAi: string; proAi: string }
+  planNames: { starter: string; scaler: string; basicAi: string; proAi: string }
   ctas: { installFree: string; talkToAgent: string; bookDemo: string; readMore: string; noCreditCard: string }
   comparisonSection: { badge: string; title: string; subtitle: string }
   faqSection: { badge: string; title: string; subtitle: string; contactLinkText: string }
@@ -231,6 +234,12 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       scaler: 'For growing teams that need advanced integrations and AI-powered automation.',
       basicAi: 'Get started with AI agents on top of your full Scaler stack.',
       proAi: 'Advanced agents, voice, ads automation and 100+ integrations.',
+    },
+    planNames: {
+      starter: 'Starter',
+      scaler: 'Scaler',
+      basicAi: 'Basic AI',
+      proAi: 'Custom AI: Contact Us',
     },
     ctas: {
       installFree: 'Install for Free',
@@ -285,8 +294,14 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
     planDescriptions: {
       starter: 'Perfecto para individuos y equipos pequeños que comienzan con la integración de WhatsApp CRM.',
       scaler: 'Para equipos en crecimiento que necesitan integraciones avanzadas y automatización con IA.',
-      basicAi: 'Comienza con agentes de IA sobre tu paquete completo Scaler.',
+      basicAi: 'Comienza con agentes de IA sobre tu paquete completo Escala.',
       proAi: 'Agentes avanzados, voz, automatización de anuncios y más de 100 integraciones.',
+    },
+    planNames: {
+      starter: 'Inicial',
+      scaler: 'Escala',
+      basicAi: 'IA Básica',
+      proAi: 'IA Personalizada: Contáctanos',
     },
     ctas: {
       installFree: 'Instalar gratis',
@@ -333,12 +348,13 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Send messages from CRM': 'Enviar mensajes desde el CRM',
       'Salesforce integration': 'Integración con Salesforce',
       'Revenue Inbox': 'Bandeja de ingresos',
-      'Everything in Starter': 'Todo lo de Starter',
+      'Everything in Starter': 'Todo lo del plan Inicial',
       'Webhook integrations': 'Integraciones por webhook',
       'Cloud connection': 'Conexión en la nube',
       'WhatsApp API': 'API de WhatsApp',
       'WhatsApp API number': 'Número de API de WhatsApp',
       '1 · 3 users included': '1 · 3 usuarios incluidos',
+      'Custom': 'Personalizado',
       '1 · 5 users included': '1 · 5 usuarios incluidos',
       'Custom objects in mini CRM view': 'Objetos personalizados en mini CRM',
       'CRM property-to-WhatsApp labeling': 'Etiquetado de propiedades del CRM en WhatsApp',
@@ -346,7 +362,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Dedicated APIs': 'APIs dedicadas',
       'CRM workflow integration': 'Integración de flujos de trabajo del CRM',
       'RevOps Agent': 'Agente RevOps',
-      'Everything in Scaler': 'Todo lo de Scaler',
+      'Everything in Scaler': 'Todo lo del plan Escala',
       'AI agents': 'Agentes de IA',
       'Users included': 'Usuarios incluidos',
       '3 users included': '3 usuarios incluidos',
@@ -363,7 +379,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'BrainBe knowledge base included': 'Base de conocimientos BrainBe incluida',
       'Voice AI calling': 'Llamadas con IA de voz',
       '100+ integrations (Email, Teams, Slack...)': 'Más de 100 integraciones (Email, Teams, Slack...)',
-      'Everything in Basic AI': 'Todo lo de Basic AI',
+      'Everything in Basic AI': 'Todo lo de IA Básica',
       'Click-to-WhatsApp Ads agent': 'Agente para anuncios Click-to-WhatsApp',
       "BrainBe — your company's brain": 'BrainBe — el cerebro de tu empresa',
     },
@@ -397,8 +413,14 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
     planDescriptions: {
       starter: 'Perfeito para indivíduos e times pequenos começando com a integração WhatsApp CRM.',
       scaler: 'Para times em crescimento que precisam de integrações avançadas e automação com IA.',
-      basicAi: 'Comece com agentes de IA sobre seu stack completo Scaler.',
+      basicAi: 'Comece com agentes de IA sobre seu stack completo Escala.',
       proAi: 'Agentes avançados, voz, automação de anúncios e mais de 100 integrações.',
+    },
+    planNames: {
+      starter: 'Inicial',
+      scaler: 'Escala',
+      basicAi: 'IA Básica',
+      proAi: 'IA Personalizada: Fale Conosco',
     },
     ctas: {
       installFree: 'Instalar grátis',
@@ -445,12 +467,13 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Send messages from CRM': 'Enviar mensagens do CRM',
       'Salesforce integration': 'Integração com Salesforce',
       'Revenue Inbox': 'Caixa de entrada de receita',
-      'Everything in Starter': 'Tudo do Starter',
+      'Everything in Starter': 'Tudo do plano Inicial',
       'Webhook integrations': 'Integrações via webhook',
       'Cloud connection': 'Conexão em nuvem',
       'WhatsApp API': 'API do WhatsApp',
       'WhatsApp API number': 'Número de API do WhatsApp',
       '1 · 3 users included': '1 · 3 usuários incluídos',
+      'Custom': 'Personalizado',
       '1 · 5 users included': '1 · 5 usuários incluídos',
       'Custom objects in mini CRM view': 'Objetos personalizados no mini CRM',
       'CRM property-to-WhatsApp labeling': 'Etiquetagem de propriedade do CRM para WhatsApp',
@@ -458,7 +481,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Dedicated APIs': 'APIs dedicadas',
       'CRM workflow integration': 'Integração de fluxo de trabalho do CRM',
       'RevOps Agent': 'Agente RevOps',
-      'Everything in Scaler': 'Tudo do Scaler',
+      'Everything in Scaler': 'Tudo do plano Escala',
       'AI agents': 'Agentes de IA',
       'Users included': 'Usuários incluídos',
       '3 users included': '3 usuários incluídos',
@@ -475,7 +498,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'BrainBe knowledge base included': 'Base de conhecimento BrainBe incluída',
       'Voice AI calling': 'Chamadas por IA de voz',
       '100+ integrations (Email, Teams, Slack...)': 'Mais de 100 integrações (E-mail, Teams, Slack...)',
-      'Everything in Basic AI': 'Tudo do Basic AI',
+      'Everything in Basic AI': 'Tudo de IA Básica',
       'Click-to-WhatsApp Ads agent': 'Agente para anúncios click-to-WhatsApp',
       "BrainBe — your company's brain": 'BrainBe — o cérebro da sua empresa',
     },
@@ -509,8 +532,14 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
     planDescriptions: {
       starter: 'WhatsApp CRM entegrasyonuna yeni başlayan bireyler ve küçük ekipler için mükemmel.',
       scaler: 'Gelişmiş entegrasyonlara ve yapay zeka destekli otomasyona ihtiyaç duyan büyüyen ekipler için.',
-      basicAi: 'Tam Scaler paketinizin üzerinde AI ajanlarıyla başlayın.',
+      basicAi: 'Tam Büyüme paketinizin üzerinde Yapay Zeka ajanlarıyla başlayın.',
       proAi: 'Gelişmiş ajanlar, sesli arama, reklam otomasyonu ve 100+ entegrasyon.',
+    },
+    planNames: {
+      starter: 'Başlangıç',
+      scaler: 'Büyüme',
+      basicAi: 'Temel Yapay Zeka',
+      proAi: 'Özel Yapay Zeka: Bize Ulaşın',
     },
     ctas: {
       installFree: 'Ücretsiz Yükle',
@@ -557,12 +586,13 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Send messages from CRM': "CRM'den mesaj gönderme",
       'Salesforce integration': 'Salesforce entegrasyonu',
       'Revenue Inbox': 'Gelir Gelen Kutusu',
-      'Everything in Starter': "Starter'daki her şey",
+      'Everything in Starter': 'Başlangıç planındaki her şey',
       'Webhook integrations': 'Webhook entegrasyonları',
       'Cloud connection': 'Bulut bağlantısı',
       'WhatsApp API': 'WhatsApp API',
       'WhatsApp API number': 'WhatsApp API numarası',
       '1 · 3 users included': '1 · 3 kullanıcı dahil',
+      'Custom': 'Özel',
       '1 · 5 users included': '1 · 5 kullanıcı dahil',
       'Custom objects in mini CRM view': 'Mini CRM görünümünde özel nesneler',
       'CRM property-to-WhatsApp labeling': "CRM özelliğinden WhatsApp'a etiketleme",
@@ -570,7 +600,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Dedicated APIs': "Özel API'ler",
       'CRM workflow integration': 'CRM iş akışı entegrasyonu',
       'RevOps Agent': 'RevOps Ajanı',
-      'Everything in Scaler': "Scaler'daki her şey",
+      'Everything in Scaler': 'Büyüme planındaki her şey',
       'AI agents': 'AI ajanları',
       'Users included': 'Dahil kullanıcılar',
       '3 users included': '3 kullanıcı dahil',
@@ -587,7 +617,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'BrainBe knowledge base included': 'BrainBe bilgi tabanı dahil',
       'Voice AI calling': 'Sesli AI aramaları',
       '100+ integrations (Email, Teams, Slack...)': '100+ entegrasyon (E-posta, Teams, Slack...)',
-      'Everything in Basic AI': "Basic AI'deki her şey",
+      'Everything in Basic AI': 'Temel Yapay Zeka planındaki her şey',
       'Click-to-WhatsApp Ads agent': 'Click-to-WhatsApp Reklam ajanı',
       "BrainBe — your company's brain": 'BrainBe — şirketinizin beyni',
     },
@@ -838,14 +868,17 @@ function PricingCard({
           <div
             style={{
               fontFamily: 'var(--f-display)',
-              fontSize: 44,
+              // "Personalizado" (es/pt-BR) is much longer than "Custom", so it
+              // steps down to 34px to stay on one line in the card. Short labels
+              // (Custom, tr "Özel") keep the full 44px.
+              fontSize: isEnterprise && (featureLabels['Custom'] || 'Custom').length > 8 ? 34 : 44,
               fontWeight: 400,
               color: 'var(--ink)',
               letterSpacing: '-0.02em',
               lineHeight: 1,
             }}
           >
-            {isEnterprise ? 'Custom' : 'Contact us'}
+            {isEnterprise ? featureLabels['Custom'] || 'Custom' : 'Contact us'}
           </div>
         ) : (
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
@@ -876,7 +909,7 @@ function PricingCard({
         {/* Extra-user pricing (1/3 the WhatsApp number price) — only on the
             paid plans that include bundled users. Computed from the same
             localized `price` so it always matches the currency shown above. */}
-        {(plan.planKey === 'scaler' || plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai') && price > 0 && (
+        {(plan.planKey === 'scaler' || plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai') && !isEnterprise && price > 0 && (
           <p style={{ marginTop: 2, fontSize: 12.5, color: 'var(--ink-4)', fontWeight: 500, marginBottom: 0 }}>
             {(featureLabels['Extra user'] || 'Extra user')}: {currencyLabel ? `${currencyLabel} ` : ''}{priceSymbol}{Math.round(price / 3)}/{featureLabels['user'] || 'user'}
           </p>
@@ -999,6 +1032,7 @@ function FeatureComparisonTable({
   categoryLabels,
   featureLabels,
   talkToAgentLabel,
+  planNames,
 }: {
   features: ComparisonFeatureRow[]
   currency: string
@@ -1007,6 +1041,7 @@ function FeatureComparisonTable({
   categoryLabels: Record<string, string>
   featureLabels: Record<string, string>
   talkToAgentLabel: string
+  planNames: { starter: string; scaler: string; basicAi: string; proAi: string }
 }) {
   const headerAgentBtn = (popular?: boolean) => (
     <button
@@ -1075,10 +1110,10 @@ function FeatureComparisonTable({
         }}
       >
         <div style={{ alignSelf: 'center' }}>Feature</div>
-        <div style={{ textAlign: 'center' }}>Starter{headerAgentBtn(false)}</div>
-        <div style={{ textAlign: 'center' }}>Scaler{headerAgentBtn(false)}</div>
-        <div style={{ textAlign: 'center', color: 'var(--accent-ink)' }}>Basic AI{headerAgentBtn(true)}</div>
-        <div style={{ textAlign: 'center' }}>Pro AI{headerAgentBtn(false)}</div>
+        <div style={{ textAlign: 'center' }}>{planNames.starter}{headerAgentBtn(false)}</div>
+        <div style={{ textAlign: 'center' }}>{planNames.scaler}{headerAgentBtn(false)}</div>
+        <div style={{ textAlign: 'center', color: 'var(--accent-ink)' }}>{planNames.basicAi}{headerAgentBtn(true)}</div>
+        <div style={{ textAlign: 'center' }}>{planNames.proAi}{headerAgentBtn(false)}</div>
       </div>
       {Object.entries(grouped).map(([category, rows]) => (
         <React.Fragment key={category}>
@@ -1165,6 +1200,12 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   // locale's description + CTA label so non-English visitors don't see
   // English fallback prose.
   const localizedDefaultPlans: PricingPlan[] = defaultPricingPlans.map((plan) => {
+    const localName =
+      plan.planKey === 'starter' ? fallback.planNames.starter :
+      plan.planKey === 'scaler' ? fallback.planNames.scaler :
+      plan.planKey === 'basic-ai' ? fallback.planNames.basicAi :
+      plan.planKey === 'pro-ai' ? fallback.planNames.proAi :
+      plan.name
     const localDesc =
       plan.planKey === 'starter' ? fallback.planDescriptions.starter :
       plan.planKey === 'scaler' ? fallback.planDescriptions.scaler :
@@ -1174,7 +1215,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
     const localCta = plan.cta.label === 'Install for Free' ? fallback.ctas.installFree
       : plan.cta.label === 'Talk to our AI Agent' ? fallback.ctas.talkToAgent
       : plan.cta.label
-    return { ...plan, description: localDesc, cta: { ...plan.cta, label: localCta } }
+    return { ...plan, name: localName, description: localDesc, cta: { ...plan.cta, label: localCta } }
   })
 
   // Features that Sanity still ships but we want hidden from the plan
@@ -1201,7 +1242,12 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       (f) => !sanityTexts.has(f.text.trim().toLowerCase())
     )
     return {
-      name: plan.name,
+      // Sanity plan docs carry English names; the per-locale planNames win so
+      // /es /br /tr show localized tier names even when Sanity is the source.
+      name:
+        planKey === 'starter' ? fallback.planNames.starter :
+        planKey === 'scaler' ? fallback.planNames.scaler :
+        plan.name,
       planKey,
       description: plan.description,
       monthlyPrice: plan.monthlyPrice,
@@ -1420,6 +1466,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               convertUsdAmount={convertUsdAmount}
               onTalkToAgent={openAgentForm}
               categoryLabels={fallback.comparisonCategories}
+              planNames={fallback.planNames}
               featureLabels={fallback.featureLabels}
               talkToAgentLabel={fallback.ctas.talkToAgent}
             />
