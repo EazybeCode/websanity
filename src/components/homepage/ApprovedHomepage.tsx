@@ -17,11 +17,22 @@ export function ApprovedHomepage({ locale = 'en' }: { locale?: string }) {
   const { markup, dictionary } = getHomepageContent(locale)
   return (
     <>
-      {/* approved-home.css is 2.3MB raw; served as a cacheable static file instead of
-          being inlined into the HTML by the inlineCss experiment (it was the bulk of a
-          5.7MB document and pushed the LCP h1 to the end of the byte stream). React
-          hoists this link into <head> with the given precedence. */}
-      <link rel="stylesheet" href="/homepage/approved-home.css" precedence="default" />
+      {/* approved-home.css is 2.3MB raw — parsing it blocked the LCP h1 for seconds, so
+          it ships split (scripts/split-homepage-css.js regenerates both parts from
+          public/homepage/approved-home.css after a design re-export):
+          - critical (hero/nav/global, ~0.5MB) stays render-blocking;
+          - rest (below-fold sections, ~1.7MB) loads async via an injected link, which
+            never blocks first paint; those sections are off-screen until it lands. */}
+      <link rel="stylesheet" href="/homepage/approved-home-critical.css" precedence="default" />
+      <script
+        dangerouslySetInnerHTML={{
+          __html:
+            "(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='/homepage/approved-home-rest.css';document.head.appendChild(l);})()",
+        }}
+      />
+      <noscript>
+        <link rel="stylesheet" href="/homepage/approved-home-rest.css" />
+      </noscript>
       <div className="landing approved-site-nav" data-accent="iris" data-typeset="geist">
         <Nav />
       </div>
