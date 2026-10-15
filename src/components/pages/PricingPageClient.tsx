@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react'
 import { useLocale } from 'next-intl'
-import { Zap, Rocket, Building2, Shield, Clock, MessageSquare, X, Sparkles } from 'lucide-react'
+import { Zap, Rocket, Building2, Shield, Clock, MessageSquare, X, Sparkles, Calendar } from 'lucide-react'
 import { useDynamicPricing } from '@/hooks/useDynamicPricing'
 import { LeadGenerationForm } from '@/components/lead/LeadGenerationForm'
 import { CHROME_STORE_WEBSITE_URL } from '@/utils/openChromeExtensionStore'
+import { useTrialModal } from '@/providers/TrialModalProvider'
 
 const WhatsAppGlyph = ({ size = 16 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -141,7 +142,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'Click-to-WhatsApp Ads agent', included: true, highlight: true },
       { text: 'Voice AI calling', included: true, highlight: true },
       { text: "BrainBe — your company's brain", included: true },
-      { text: '100+ integrations (Email, Teams, Slack...)', included: true },
+      { text: '100+ integrations (Email, Teams, Slack...)', included: true },
       { text: 'An AI specialist to build your agents with you', included: true, highlight: true },
     ],
     cta: { label: 'Talk to our AI Agent', url: '/contact?plan=pro-ai' },
@@ -744,6 +745,7 @@ function PricingCard({
   convertUsdAmount,
   transitionDelay,
   onTalkToAgent,
+  onBookDemo,
   featureLabels,
   creditsIncludes,
   creditsRollover,
@@ -759,6 +761,7 @@ function PricingCard({
   convertUsdAmount: (amount: number) => number
   transitionDelay?: string
   onTalkToAgent: () => void
+  onBookDemo: () => void
   featureLabels: Record<string, string>
   creditsIncludes: string
   creditsRollover: string
@@ -918,10 +921,33 @@ function PricingCard({
         type="button"
         onClick={onTalkToAgent}
         className={`btn ${isPopular ? 'btn-primary' : 'btn-outline'}`}
-        style={{ width: '100%', justifyContent: 'center', display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 24 }}
+        style={{ width: '100%', justifyContent: 'center', display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 10 }}
       >
         <WhatsAppGlyph size={16} />
         Talk to our AI Agent
+      </button>
+      {/* Secondary Book-a-Demo CTA — opens the global DemoModal via the
+          TrialModalProvider so a visitor on this card goes straight to
+          picking a time with sales. */}
+      <button
+        type="button"
+        onClick={onBookDemo}
+        className="btn"
+        style={{
+          width: '100%',
+          justifyContent: 'center',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 8,
+          marginBottom: 24,
+          background: 'transparent',
+          border: '1px solid var(--line-2)',
+          color: 'var(--ink-2)',
+          fontWeight: 600,
+        }}
+      >
+        <Calendar size={15} />
+        {featureLabels['Book a Demo'] || 'Book a Demo'}
       </button>
 
       <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px', display: 'flex', flexDirection: 'column', gap: 9, flex: 1 }}>
@@ -1331,6 +1357,8 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
 
   const [showAgentForm, setShowAgentForm] = useState(false)
   const openAgentForm = () => setShowAgentForm(true)
+  const { openModal } = useTrialModal()
+  const openDemo = () => openModal('demo')
 
   return (
     <>
@@ -1419,6 +1447,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
                   convertUsdAmount={convertUsdAmount}
                   transitionDelay={`${idx * 0.06}s`}
                   onTalkToAgent={openAgentForm}
+                  onBookDemo={openDemo}
                   featureLabels={fallback.featureLabels}
                   creditsIncludes={fallback.creditsIncludes}
                   creditsRollover={fallback.creditsRollover}
