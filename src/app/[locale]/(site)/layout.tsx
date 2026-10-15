@@ -1,5 +1,4 @@
 import '@/components/landing/landing-v3.css'
-import Script from 'next/script'
 import { Nav } from '@/components/landing/Nav'
 import { Footer } from '@/components/landing/Footer'
 import { BeaBot } from '@/components/landing/BeaBot'
@@ -22,13 +21,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <TrialModalWrapper />
       <LeadSidebar />
       <SuppressExtensionHydrationWarning />
-      <Script
-        id="eazybe-website-agent"
-        src="https://dev-app.eazybe.com/widget.js"
-        data-agent-id="6aaa473968b8e813a33217fc"
-        strategy="afterInteractive"
-        async
-      />
     </div>
   )
 }

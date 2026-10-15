@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
 import { GlobalStructuredData } from '@/components/seo/GlobalStructuredData'
+import Script from 'next/script'
 
 // display: 'optional' — if the font isn't ready within ~100ms the page keeps
 // the size-adjusted fallback for that visit instead of swapping later. The
@@ -96,6 +97,13 @@ export default async function LocaleLayout({
           </Providers>
           <Analytics />
         </NextIntlClientProvider>
+        <Script
+          id="eazybe-website-agent"
+          src="https://dev-app.eazybe.com/widget.js"
+          data-agent-id="6aaa473968b8e813a33217fc"
+          strategy="afterInteractive"
+          async
+        />
       </body>
     </html>
   )
