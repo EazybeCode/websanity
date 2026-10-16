@@ -52,6 +52,17 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale)
   const messages = await getMessages()
+  // These namespaces are consumed exclusively by server components (legal pages,
+  // static content rendered with getTranslations), so they never need to reach the
+  // browser. Filtering them out of the client provider trims ~45KB of raw messages
+  // from every page's hydration payload. Server-side translation is unaffected —
+  // it reads from the request config, not this provider.
+  const SERVER_ONLY_NAMESPACES = new Set([
+    'msa', 'privacy', 'terms', 'categoryIndex', 'pricing', 'coexistencePage',
+  ])
+  const clientMessages = Object.fromEntries(
+    Object.entries(messages).filter(([ns]) => !SERVER_ONLY_NAMESPACES.has(ns))
+  )
 
   return (
     <html lang={htmlLangMap[locale] || 'en'} className="dark" suppressHydrationWarning>
@@ -89,7 +100,7 @@ export default async function LocaleLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={clientMessages}>
           <Providers>
             <GlobalStructuredData locale={locale} />
             {children}

@@ -24,10 +24,14 @@ export function ApprovedHomepage({ locale = 'en' }: { locale?: string }) {
           - rest (below-fold sections, ~1.7MB) loads async via an injected link, which
             never blocks first paint; those sections are off-screen until it lands. */}
       <link rel="stylesheet" href="/homepage/approved-home-critical.css" precedence="default" />
+      {/* media="print" keeps the below-fold stylesheet at lowest network priority
+          and out of the critical request chain (a plain injected link is fetched
+          High-priority and Lighthouse counts it as critical); it flips to "all"
+          the moment it arrives. */}
       <script
         dangerouslySetInnerHTML={{
           __html:
-            "(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='/homepage/approved-home-rest.css';document.head.appendChild(l);})()",
+            "(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='/homepage/approved-home-rest.css';l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);})()",
         }}
       />
       <noscript>
