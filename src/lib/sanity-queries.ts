@@ -332,6 +332,7 @@ export async function getBlogPosts(locale: string = 'en', limit?: number) {
     excerpt,
     category,
     language,
+    translationGroupId,
     "featuredImage": featuredImage.asset->url,
     publishedAt,
     readTime,
@@ -340,6 +341,13 @@ export async function getBlogPosts(locale: string = 'en', limit?: number) {
     }
   }`
   return sanityClient.fetch(query, { language })
+}
+
+// Translation-group ids of the English posts matching the given slugs — used to
+// tag the same posts across every locale (slugs differ per language, tgids don't).
+export async function getTranslationGroupIdsBySlugs(slugs: string[]) {
+  const query = `*[_type == "post" && language == "en" && slug.current in $slugs && defined(translationGroupId)].translationGroupId`
+  return sanityClient.fetch(query, { slugs })
 }
 
 // ─── Blog Post (single) ────────────────────────────────────────────────────

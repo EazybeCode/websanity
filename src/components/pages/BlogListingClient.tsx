@@ -16,6 +16,8 @@ interface BlogPost {
   publishedAt: string
   readTime?: number
   author?: { name: string }
+  /** Localized tab label set by the page for curated post groups (AI Agents, CRM Integrations). */
+  extraTab?: string
   /** URL segment the post lives under; comparison posts link to /comparison/<slug>. */
   basePath?: 'blog' | 'comparison'
 }
@@ -342,6 +344,20 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({ allPosts, 
       { name: 'Case Studies', value: 'Case Studies' },
       { name: 'Security', value: 'Security' },
     ]),
+    // Curated groups (AI Agents, CRM Integrations, ...) are tagged by the page
+    // with localized labels; surface each as a tab unless Sanity already has it.
+    ...(() => {
+      const existing = new Set((blogIndex?.categories || []).map((c) => c.value))
+      const seen = new Set<string>()
+      const tabs: BlogCategory[] = []
+      for (const p of allPosts) {
+        if (p.extraTab && !existing.has(p.extraTab) && !seen.has(p.extraTab)) {
+          seen.add(p.extraTab)
+          tabs.push({ name: p.extraTab, value: p.extraTab })
+        }
+      }
+      return tabs
+    })(),
     // Comparison posts are merged into allPosts by the page with their own
     // localized category label; surface that label as a filter tab.
     ...(() => {

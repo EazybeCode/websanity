@@ -1,6 +1,86 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
-import { getBlogPosts, getBlogIndex, getComparisonPosts } from '@/lib/sanity-queries'
+import { getBlogPosts, getBlogIndex, getComparisonPosts, getTranslationGroupIdsBySlugs } from '@/lib/sanity-queries'
+
+// English slugs of the AI-agent posts; their translationGroupIds tag the same
+// posts in every locale under the "AI Agents" category tab. Most of these have
+// an empty category in Sanity, so this is listing-only labeling, not a CMS edit.
+const AI_AGENT_EN_SLUGS = [
+  'ai-sales-agent',
+  'ai-voice-agent',
+  'ai-agent-vs-chatbot',
+  'ai-agents-for-banking',
+  'ai-agents-for-insurance',
+  'ai-agent-for-healthcare',
+  'ai-agents-for-ecommerce',
+  'ai-agents-for-real-estate',
+  'ai-agents-in-education',
+  'ai-for-travel-agents',
+  'best-ai-agents-for-customer-support',
+  'meta-business-agent-vs-whatsapp-crm',
+  'whatsapp-lead-qualification',
+]
+
+// English slugs of CRM-integration posts, grouped the same way. On English the
+// label matches the existing Sanity "CRM Integrations" tab value exactly, so the
+// existing tab simply gains the full set instead of a duplicate appearing.
+const CRM_INTEGRATION_EN_SLUGS = [
+  'how-to-integrate-whatsapp-with-crm',
+  'top-7-crm-with-whatsapp-integration',
+  'hubspot-whatsapp-properties',
+  'hubspot-conversation-analytics',
+  'whatsapp-hubspot-reporting',
+  'how-to-update-zoho-crm-from-whatsapp',
+  'salesforce-whatsapp-properties',
+  'how-to-update-pipedrive-from-whatsapp',
+  'bitrix24-whatsapp-properties',
+  'how-to-update-leadsquared-from-whatsapp',
+  'google-sheets-whatsapp-properties',
+  'whatsapp-chat-sync',
+]
+
+// English slugs of selling-on-WhatsApp posts for the "WhatsApp for Sales" tab
+// (the English label matches the existing Sanity tab value, which already held
+// three of these; the group fills it out and localizes it for es/br/tr).
+const WHATSAPP_SALES_EN_SLUGS = [
+  'how-to-increase-sales',
+  'sales-efficiency',
+  'whatsapp-sales-tracking',
+  'whatsapp-sales-best-practices',
+  'whatsapp-sales-funnel',
+  'whatsapp-sales-intelligence',
+  'whatsapp-sales-performance-analytics',
+  'revenue-intelligence-vs-sales-intelligence',
+  'top-revenue-intelligence-platforms-for-b2b-sales',
+  'conversation-intelligence',
+  'sales-closing-techniques',
+  'sales-enablement',
+  'sales-enablement-tools',
+  'whatsapp-follow-up',
+  'whatsapp-web-for-business',
+]
+
+// English slugs of support-focused posts for the "WhatsApp for Support" tab
+// (the Sanity tab existed on English but matched zero posts until now).
+const WHATSAPP_SUPPORT_EN_SLUGS = [
+  'whatsapp-team-inbox',
+  'whatsapp-chatbot-builder',
+  'whatsapp-message-templates',
+  'whatsapp-group-management',
+  'whatsapp-business-tools',
+]
+
+// English slugs of step-by-step guides for the "How-To Guides" tab.
+const HOW_TO_EN_SLUGS = [
+  'how-to-schedule-messages-on-whatsapp',
+  'how-to-appear-offline-on-whatsapp',
+  'how-to-read-deleted-messages-on-whatsapp',
+  'click-to-whatsapp-ads',
+  'whatsapp-green-tick',
+  'whatsapp-poll',
+  'whatsapp-broadcast-message',
+  'whatsapp-bulk-message-sender',
+]
 import { BlogListingClient } from '@/components/pages/BlogListingClient'
 import { BlogJsonLd } from '@/components/BlogJsonLd'
 
@@ -358,11 +438,49 @@ export default async function BlogListingPage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const [blogPosts, comparisonPosts, blogIndex] = await Promise.all([
+  const [blogPosts, comparisonPosts, blogIndex, aiAgentTgids, crmTgids, salesTgids, supportTgids, howToTgids] = await Promise.all([
     getBlogPosts(locale),
     getComparisonPosts(locale),
     getBlogIndex(locale),
+    getTranslationGroupIdsBySlugs(AI_AGENT_EN_SLUGS),
+    getTranslationGroupIdsBySlugs(CRM_INTEGRATION_EN_SLUGS),
+    getTranslationGroupIdsBySlugs(WHATSAPP_SALES_EN_SLUGS),
+    getTranslationGroupIdsBySlugs(WHATSAPP_SUPPORT_EN_SLUGS),
+    getTranslationGroupIdsBySlugs(HOW_TO_EN_SLUGS),
   ])
+
+  // Label curated post groups (matched across locales by translation group) so
+  // the category filter picks them up under localized tabs. extraTab tells the
+  // client to surface the label as a filter tab if it isn't already one.
+  const aiAgentsCategoryLabel =
+    { en: 'AI Agents', es: 'Agentes de IA', br: 'Agentes de IA', tr: 'Yapay Zeka Ajanları' }[locale] || 'AI Agents'
+  const crmCategoryLabel =
+    { en: 'CRM Integrations', es: 'Integraciones CRM', br: 'Integrações CRM', tr: 'CRM Entegrasyonları' }[locale] || 'CRM Integrations'
+  const salesCategoryLabel =
+    { en: 'WhatsApp for Sales', es: 'WhatsApp para Ventas', br: 'WhatsApp para Vendas', tr: 'Satış için WhatsApp' }[locale] || 'WhatsApp for Sales'
+  const howToCategoryLabel =
+    { en: 'How-To Guides', es: 'Guías Prácticas', br: 'Guias Práticos', tr: 'Nasıl Yapılır Rehberleri' }[locale] || 'How-To Guides'
+  const supportCategoryLabel =
+    { en: 'WhatsApp for Support', es: 'WhatsApp para Soporte', br: 'WhatsApp para Suporte', tr: 'Destek için WhatsApp' }[locale] || 'WhatsApp for Support'
+  const aiTgidSet = new Set<string>(aiAgentTgids || [])
+  const crmTgidSet = new Set<string>(crmTgids || [])
+  const salesTgidSet = new Set<string>(salesTgids || [])
+  const supportTgidSet = new Set<string>(supportTgids || [])
+  const howToTgidSet = new Set<string>(howToTgids || [])
+  type TaggablePost = { translationGroupId?: string; category?: string; extraTab?: string }
+  const taggedBlogPosts = (blogPosts || []).map((p: TaggablePost) => {
+    if (p.translationGroupId && aiTgidSet.has(p.translationGroupId))
+      return { ...p, category: aiAgentsCategoryLabel, extraTab: aiAgentsCategoryLabel }
+    if (p.translationGroupId && crmTgidSet.has(p.translationGroupId))
+      return { ...p, category: crmCategoryLabel, extraTab: crmCategoryLabel }
+    if (p.translationGroupId && salesTgidSet.has(p.translationGroupId))
+      return { ...p, category: salesCategoryLabel, extraTab: salesCategoryLabel }
+    if (p.translationGroupId && supportTgidSet.has(p.translationGroupId))
+      return { ...p, category: supportCategoryLabel, extraTab: supportCategoryLabel }
+    if (p.translationGroupId && howToTgidSet.has(p.translationGroupId))
+      return { ...p, category: howToCategoryLabel, extraTab: howToCategoryLabel }
+    return p
+  })
 
   // Comparison posts join the blog listing under their own category tab.
   // They keep their /comparison/<slug> URLs via basePath; the category label
@@ -371,7 +489,7 @@ export default async function BlogListingPage({
     { en: 'Comparison', es: 'Comparativas', br: 'Comparativos', tr: 'Karşılaştırmalar' }[locale] || 'Comparison'
   type ListingPost = { _id: string; publishedAt: string; category?: string }
   const allPosts = [
-    ...(blogPosts || []),
+    ...taggedBlogPosts,
     ...(comparisonPosts || []).map((p: ListingPost) => ({
       ...p,
       category: comparisonCategoryLabel,
