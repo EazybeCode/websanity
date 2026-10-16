@@ -56,11 +56,10 @@ export default async function LocaleLayout({
   return (
     <html lang={htmlLangMap[locale] || 'en'} className="dark" suppressHydrationWarning>
       <head>
-        {/* Pre-handshake the Google Fonts CDN so font CSS + WOFF2 fetches
-            kick off in parallel with HTML parsing, cutting ~200-300ms off
-            LCP for the H1 (which uses Inter). */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* No Google Fonts preconnects: next/font self-hosts Inter/JetBrains
+            Mono from /_next/static/media, so the page never contacts the
+            Google Fonts CDN — the handshakes were pure waste (Lighthouse
+            flagged them as unused preconnects). */}
         {/* Pre-handshake the Sanity image CDN — blog featured images (the LCP
             element on post pages) load from here, so DNS+TLS setup runs in
             parallel with HTML parsing instead of delaying the image request. */}
