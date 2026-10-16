@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
-import { getBlogPosts, getBlogIndex } from '@/lib/sanity-queries'
+import { getBlogPosts, getBlogIndex, getComparisonPosts } from '@/lib/sanity-queries'
 import { BlogListingClient } from '@/components/pages/BlogListingClient'
 import { BlogJsonLd } from '@/components/BlogJsonLd'
 
@@ -358,10 +358,29 @@ export default async function BlogListingPage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const [allPosts, blogIndex] = await Promise.all([
+  const [blogPosts, comparisonPosts, blogIndex] = await Promise.all([
     getBlogPosts(locale),
+    getComparisonPosts(locale),
     getBlogIndex(locale),
   ])
+
+  // Comparison posts join the blog listing under their own category tab.
+  // They keep their /comparison/<slug> URLs via basePath; the category label
+  // doubles as the localized tab name in BlogListingClient.
+  const comparisonCategoryLabel =
+    { en: 'Comparison', es: 'Comparativas', br: 'Comparativos', tr: 'Karşılaştırmalar' }[locale] || 'Comparison'
+  type ListingPost = { _id: string; publishedAt: string; category?: string }
+  const allPosts = [
+    ...(blogPosts || []),
+    ...(comparisonPosts || []).map((p: ListingPost) => ({
+      ...p,
+      category: comparisonCategoryLabel,
+      basePath: 'comparison' as const,
+    })),
+  ].sort(
+    (a: ListingPost, b: ListingPost) =>
+      new Date(b.publishedAt || 0).getTime() - new Date(a.publishedAt || 0).getTime()
+  )
 
   // Only add JSON-LD schemas for English blog page
   if (locale === 'en') {

@@ -16,6 +16,13 @@ interface BlogPost {
   publishedAt: string
   readTime?: number
   author?: { name: string }
+  /** URL segment the post lives under; comparison posts link to /comparison/<slug>. */
+  basePath?: 'blog' | 'comparison'
+}
+
+const postPath = (post: BlogPost, locale: string) => {
+  const base = post.basePath || 'blog'
+  return locale === 'en' ? `/${base}/${post.slug}` : `/${locale}/${base}/${post.slug}`
 }
 
 interface BlogCategory { name: string; value: string }
@@ -60,7 +67,7 @@ const BlogCard: React.FC<{ post: BlogPost; locale: string; minReadSuffix: string
   minReadSuffix,
   delay,
 }) => {
-  const blogPath = locale === 'en' ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`
+  const blogPath = postPath(post, locale)
 
   return (
     <a
@@ -170,7 +177,7 @@ const FeaturedBlogCard: React.FC<{
   badgeText: string
   minReadSuffix: string
 }> = ({ post, locale, badgeText, minReadSuffix }) => {
-  const blogPath = locale === 'en' ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`
+  const blogPath = postPath(post, locale)
   return (
     <a
       href={blogPath}
@@ -335,6 +342,12 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({ allPosts, 
       { name: 'Case Studies', value: 'Case Studies' },
       { name: 'Security', value: 'Security' },
     ]),
+    // Comparison posts are merged into allPosts by the page with their own
+    // localized category label; surface that label as a filter tab.
+    ...(() => {
+      const cmp = allPosts.find((p) => p.basePath === 'comparison')
+      return cmp ? [{ name: cmp.category, value: cmp.category }] : []
+    })(),
   ]
 
   const filteredPosts = useMemo(() => {
