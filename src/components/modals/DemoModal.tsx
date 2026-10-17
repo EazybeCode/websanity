@@ -605,6 +605,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
       }}
     >
       <div
+        className="demo-modal-card"
         style={{
           position: 'relative',
           width: '100%',
@@ -706,7 +707,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
             >
               {step === 'details' && (
               /* ── STEP 1: form fields ────────────────────────────────── */
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: C.accentInk, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                   <span style={{
                     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
@@ -751,7 +752,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                       value={selectedCountry}
                       onChange={(e) => setSelectedCountry(e.target.value)}
                       style={{
-                        minWidth: 96, padding: '12px 10px', fontSize: 13, fontFamily: sans,
+                        flex: '0 0 auto', width: 96, padding: '12px 10px', fontSize: 13, fontFamily: sans,
                         color: C.ink2, background: 'transparent', border: 'none',
                         borderRight: `1px solid ${C.line}`, outline: 'none', cursor: 'pointer',
                       }}
@@ -768,7 +769,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       style={{
-                        flex: 1, padding: '12px 14px', fontSize: 14, fontFamily: sans,
+                        flex: '1 1 0', minWidth: 0, width: 0, padding: '12px 14px', fontSize: 14, fontFamily: sans,
                         color: C.ink, background: 'transparent', border: 'none', outline: 'none',
                       }}
                     />
@@ -1081,7 +1082,7 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
                       type="submit"
                       disabled={!ctaEnabled}
                       style={{
-                        minWidth: 280,
+                        minWidth: 'min(280px, 100%)',
                         padding: '15px 34px',
                         fontSize: 15, fontWeight: 700, fontFamily: sans, letterSpacing: '-0.005em',
                         color: '#fff',
@@ -1126,6 +1127,9 @@ export const DemoModal: React.FC<Props> = ({ isOpen, onClose }) => {
               .animate-spin { animation: spin 1s linear infinite; }
               @media (max-width: 760px) {
                 .demo-modal-grid { grid-template-columns: 1fr !important; }
+              }
+              @media (max-width: 480px) {
+                .demo-modal-card { padding: 28px 20px 24px !important; }
               }
             `}</style>
           </>
