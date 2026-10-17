@@ -98,6 +98,145 @@ export function initializeHomepage(root: HTMLElement, dictionary: Record<string,
     motion.textContent = translate(paused ? 'Play motion' : 'Pause motion')
     motion.setAttribute('aria-pressed', String(paused))
   })
+  // Mobile accordion for the Conversation Management stories (#phones): on small
+  // screens each sidebar link reveals its article (visual + copy) directly below
+  // itself instead of the four blocks rendering as one long stacked column.
+  const phonesLayout = root.querySelector<HTMLElement>('#phones .m221-scroll-layout')
+  if (phonesLayout) {
+    const storyLinks = Array.from(phonesLayout.querySelectorAll<HTMLAnchorElement>('.m221-sidebar nav a'))
+    const rowsHost = phonesLayout.querySelector<HTMLElement>('.m221-rows')
+    const storyRows = storyLinks.map((link) => root.querySelector<HTMLElement>(link.hash)).filter((r): r is HTMLElement => !!r)
+    const accordionMq = window.matchMedia('(max-width: 760px)')
+    let accordionOn = false
+    const setOpenStory = (index: number) => {
+      storyLinks.forEach((link, i) => {
+        link.classList.toggle('m221-acc-open', i === index)
+        link.setAttribute('aria-expanded', String(i === index))
+        storyRows[i]?.classList.toggle('m221-acc-visible', i === index)
+      })
+    }
+    const enableAccordion = () => {
+      if (accordionOn || storyRows.length !== storyLinks.length) return
+      accordionOn = true
+      phonesLayout.classList.add('m221-accordion')
+      storyLinks.forEach((link, i) => link.after(storyRows[i]))
+      setOpenStory(0)
+    }
+    const disableAccordion = () => {
+      if (!accordionOn) return
+      accordionOn = false
+      phonesLayout.classList.remove('m221-accordion')
+      storyRows.forEach((row) => {
+        row.classList.remove('m221-acc-visible')
+        rowsHost?.appendChild(row)
+      })
+      storyLinks.forEach((link) => { link.classList.remove('m221-acc-open'); link.removeAttribute('aria-expanded') })
+    }
+    // Auto-advance like the outreach chapters ("01 / Your number, upgraded"):
+    // while the section is on screen, the open story moves to the next one every
+    // 7s, with a progress line filling under the open title so the cycling is
+    // legible. A manual tap selects that story and restarts the clock. Paused
+    // when off-screen, tab hidden, on "Pause motion" and reduced motion.
+    const reducedMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let accordionVisible = false
+    let storyElapsed = 0
+    const progressBars = storyLinks.map((link) => {
+      const track = document.createElement('span')
+      track.className = 'm221-acc-progress'
+      track.setAttribute('aria-hidden', 'true')
+      const fill = document.createElement('i')
+      track.appendChild(fill)
+      link.appendChild(track)
+      return fill
+    })
+    const resetProgress = () => { storyElapsed = 0; progressBars.forEach((bar) => { bar.style.transform = 'scaleX(0)' }) }
+    const openStoryAndReset = (index: number) => { setOpenStory(index); resetProgress() }
+    let previousTick = 0
+    const storyTick = (now: number) => {
+      requestFrame(storyTick)
+      const dt = previousTick ? Math.min(now - previousTick, 100) : 0
+      previousTick = now
+      if (!accordionOn || !accordionVisible || document.hidden || reducedMotionMq.matches || root.classList.contains('paused')) return
+      const current = storyLinks.findIndex((link) => link.classList.contains('m221-acc-open'))
+      if (current === -1) return
+      storyElapsed = Math.min(7000, storyElapsed + dt)
+      progressBars[current].style.transform = `scaleX(${storyElapsed / 7000})`
+      if (storyElapsed >= 7000) openStoryAndReset((current + 1) % storyLinks.length)
+    }
+    requestFrame(storyTick)
+    const visibilityObserver = new OwnedIntersectionObserver((entries) => {
+      accordionVisible = entries[0].isIntersecting
+    }, { threshold: 0.15 })
+    visibilityObserver.observe(phonesLayout)
+    const applyAccordionMq = () => {
+      if (accordionMq.matches) enableAccordion()
+      else disableAccordion()
+      resetProgress()
+    }
+    listen(accordionMq, 'change', applyAccordionMq)
+    removers.push(disableAccordion)
+    applyAccordionMq()
+    // Capture phase so the global smooth-scroll anchor handler below never runs
+    // for these links while the accordion is active.
+    listen(phonesLayout, 'click', ((event: MouseEvent) => {
+      if (!accordionOn) return
+      const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('.m221-sidebar nav a') : null
+      if (!link) return
+      event.preventDefault()
+      event.stopPropagation()
+      openStoryAndReset(storyLinks.indexOf(link))
+    }) as EventListener, { capture: true })
+  }
+
+  // Mobile: in each Outreach chapter (#automation), show the visual for the open
+  // story point directly below that point instead of after all three. The points
+  // keep their own toggle / auto-advance / progress (approved-interactions); this
+  // only follows the "active" class and moves the visual stage under it. Desktop
+  // keeps the original side-by-side layout (DOM restored above 760px).
+  const outreachSections = Array.from(root.querySelectorAll<HTMLElement>('#automation .outreach-section'))
+  if (outreachSections.length) {
+    const pointsMq = window.matchMedia('(max-width: 760px)')
+    const stages = outreachSections.map((section) => {
+      const visual = section.querySelector<HTMLElement>('.outreach-visual')
+      const points = Array.from(section.querySelectorAll<HTMLElement>('.outreach-story-point'))
+      return visual && points.length ? { visual, points, home: visual.parentElement!, next: visual.nextSibling } : null
+    }).filter((s): s is NonNullable<typeof s> => !!s)
+    let pointsOn = false
+    const place = (stage: (typeof stages)[number]) => {
+      const active = stage.points.find((point) => point.classList.contains('active')) || stage.points[0]
+      if (stage.visual.previousElementSibling === active) return
+      active.after(stage.visual)
+      stage.visual.classList.remove('opoint-enter')
+      void stage.visual.offsetWidth
+      stage.visual.classList.add('opoint-enter')
+    }
+    const enablePoints = () => {
+      if (pointsOn) return
+      pointsOn = true
+      root.querySelector('#automation')?.classList.add('opoint-mobile')
+      stages.forEach(place)
+    }
+    const disablePoints = () => {
+      if (!pointsOn) return
+      pointsOn = false
+      root.querySelector('#automation')?.classList.remove('opoint-mobile')
+      stages.forEach((stage) => {
+        stage.visual.classList.remove('opoint-enter')
+        stage.home.insertBefore(stage.visual, stage.next)
+      })
+    }
+    const activeWatcher = new OwnedMutationObserver((mutations) => {
+      if (!pointsOn) return
+      const touched = new Set(mutations.map((m) => (m.target as HTMLElement).closest('.outreach-section')))
+      stages.forEach((stage) => { if (touched.has(stage.points[0].closest('.outreach-section'))) place(stage) })
+    })
+    stages.forEach((stage) => stage.points.forEach((point) => activeWatcher.observe(point, { attributes: true, attributeFilter: ['class'] })))
+    const applyPointsMq = () => (pointsMq.matches ? enablePoints() : disablePoints())
+    listen(pointsMq, 'change', applyPointsMq)
+    removers.push(disablePoints)
+    applyPointsMq()
+  }
+
   // Native anchor navigation avoids the prototype's shadow-root dependency.
   listen(root, 'click', ((event: MouseEvent) => {
     const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href^="#"]') : null
