@@ -237,6 +237,29 @@ export function initializeHomepage(root: HTMLElement, dictionary: Record<string,
     applyPointsMq()
   }
 
+  // Mobile FAQ: show the first five questions with a "More" button that reveals
+  // the rest. Desktop always shows all of them (CSS limits the collapse and the
+  // button to <= 760px), so this only toggles state; nothing moves in the DOM.
+  const faqList = root.querySelector<HTMLElement>('#faq .faq')
+  if (faqList && faqList.querySelectorAll('details').length > 5) {
+    faqList.id = faqList.id || 'faq-list'
+    faqList.classList.add('faq-collapsed')
+    const more = document.createElement('button')
+    more.type = 'button'
+    more.className = 'faq-more'
+    more.textContent = translate('More')
+    more.setAttribute('aria-expanded', 'false')
+    more.setAttribute('aria-controls', faqList.id)
+    faqList.after(more)
+    listen(more, 'click', () => {
+      faqList.classList.remove('faq-collapsed')
+      more.setAttribute('aria-expanded', 'true')
+      more.hidden = true
+      faqList.querySelectorAll<HTMLElement>('details')[5]?.querySelector('summary')?.focus()
+    })
+    removers.push(() => { more.remove(); faqList.classList.remove('faq-collapsed') })
+  }
+
   // Native anchor navigation avoids the prototype's shadow-root dependency.
   listen(root, 'click', ((event: MouseEvent) => {
     const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href^="#"]') : null
