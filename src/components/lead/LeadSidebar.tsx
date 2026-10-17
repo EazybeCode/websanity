@@ -52,7 +52,7 @@ export const LeadSidebar: React.FC = () => {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
             onClick={handleToggle}
-            className="fixed left-0 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-2 bg-brand-blue hover:bg-blue-700 text-white p-4 rounded-r-xl shadow-glow-blue transition-all duration-200 hover:pl-5"
+            className="lead-tab-glass left-0 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-2 p-4 rounded-r-xl hover:pl-5"
             aria-label="Open lead form"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
