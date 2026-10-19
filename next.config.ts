@@ -1,3 +1,4 @@
+import path from "node:path"
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
 import { redirectRules } from "./src/lib/redirects"
@@ -20,6 +21,19 @@ const nextConfig: NextConfig = {
     // Next requires this to be an absolute path; the relative `.` triggers a
     // boot-time warning even though Next would otherwise resolve it the same way.
     root: process.cwd(),
+  },
+  // Next always ships its polyfill-module (Array.prototype.at/flat, Object.hasOwn,
+  // trimStart…) regardless of browserslist. Every browser in our browserslist has
+  // these natively, so drop the ~12 KiB from the client bundle.
+  webpack(config, { isServer }) {
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        [path.join(process.cwd(), "node_modules/next/dist/build/polyfills/polyfill-module.js")]: false,
+        "next/dist/build/polyfills/polyfill-module": false,
+      }
+    }
+    return config
   },
   images: {
     remotePatterns: [

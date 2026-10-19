@@ -135,8 +135,7 @@ const partner = {
         list: ['Platinum Partner', 'Elite Partner', 'Gold Partner'],
         layout: 'dropdown',
       },
-      validation: (Rule) => Rule.required(),
-      description: 'Shown as the first badge on the card.',
+      description: 'Optional. Shown as the first badge on the card; no badge when empty.',
     },
     {
       name: 'crmPlatform',
@@ -153,8 +152,7 @@ const partner = {
         ],
         layout: 'dropdown',
       },
-      validation: (Rule) => Rule.required(),
-      description: 'Drives the CRM badge and the CRM filter facet.',
+      description: 'Optional. Drives the CRM badge and the CRM filter facet; no badge when empty.',
     },
     {
       name: 'crmOtherLabel',
@@ -232,6 +230,15 @@ const partner = {
           of: [{ type: 'string' }],
           options: { list: SPECIALTY_OPTIONS },
         },
+        {
+          name: 'enOther',
+          title: '🇬🇧 Other specialties',
+          type: 'array',
+          of: [{ type: 'string' }],
+          options: { layout: 'tags' },
+          description:
+            'Not in the list above? Type a specialty and press Enter. These show after the ticked ones and join the Specialty filter.',
+        },
         ...LOCALES.flatMap((l) => [
           modeField(l),
           {
@@ -260,7 +267,15 @@ const partner = {
       title: 'Display Order',
       type: 'number',
       fieldset: 'publishing',
-      description: 'Lower numbers show first. Partners without one sort last, A–Z.',
+      // New partners land at the end of the list: highest existing order + 1.
+      initialValue: async (_params, { getClient }) => {
+        const max = await getClient({ apiVersion: '2024-01-01' }).fetch(
+          'coalesce(math::max(*[_type == "partner" && defined(order)].order), 0)',
+        )
+        return Math.floor(max) + 1
+      },
+      description:
+        'Filled in automatically for new partners (next number after the current last one). Lower numbers show first; change it to move a partner up.',
     },
   ],
   preview: {

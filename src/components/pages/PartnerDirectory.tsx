@@ -216,8 +216,8 @@ function Card({ p, labels }: { p: PartnerRecord; labels: PartnerDirectoryLabels 
         <div style={{ minWidth: 0 }}>
           <h3 className="pd-name">{p.name}</h3>
           <div className="pd-badges">
-            <span className="pd-badge is-tier">{p.tier}</span>
-            <span className="pd-badge is-crm">{p.crmLabel}</span>
+            {p.tier && <span className="pd-badge is-tier">{p.tier}</span>}
+            {p.crmLabel && <span className="pd-badge is-crm">{p.crmLabel}</span>}
             <span className="pd-badge">{p.country}</span>
           </div>
         </div>

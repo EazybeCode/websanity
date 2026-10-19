@@ -1362,10 +1362,11 @@ function toPartnerRecord(row: SanityPartnerRow): PartnerRecord {
         .slice(0, 2)
         .map((w) => w[0]!.toUpperCase())
         .join('') || 'P',
-    tier: row.partnerTier?.trim() || 'Partner',
+    tier: row.partnerTier?.trim() || '',
     crm,
-    crmLabel:
-      crm === 'other'
+    crmLabel: !row.crmPlatform
+      ? ''
+      : crm === 'other'
         ? row.crmOtherLabel?.trim() || PARTNER_CRM_LABELS.other
         : PARTNER_CRM_LABELS[crm],
     country: row.country?.trim() || '',
@@ -1376,10 +1377,14 @@ function toPartnerRecord(row: SanityPartnerRow): PartnerRecord {
     detail: detail || undefined,
     summaryRich: blocks.length ? partnerBlockSpans(blocks[0]) : undefined,
     detailRich: detail ? partnerBlocksSpans(blocks.slice(1)) : undefined,
-    specialties: (row.specialties ?? []).flatMap((s) => {
-      const v = s?.trim()
-      return v ? [v] : []
-    }),
+    specialties: [
+      ...new Set(
+        (row.specialties ?? []).flatMap((s) => {
+          const v = s?.trim()
+          return v ? [v] : []
+        }),
+      ),
+    ],
   }
 }
 
@@ -1420,10 +1425,10 @@ export async function getPartners(locale: string = 'en'): Promise<PartnerRecord[
       description.en
     ),
     "specialties": select(
-      $locale == "en" => specialties.en,
-      specialties[$mode] == "inherit" => specialties.en,
+      $locale == "en" => [...coalesce(specialties.en, []), ...coalesce(specialties.enOther, [])],
+      specialties[$mode] == "inherit" => [...coalesce(specialties.en, []), ...coalesce(specialties.enOther, [])],
       count(specialties[$locale]) > 0 => specialties[$locale],
-      specialties.en
+      [...coalesce(specialties.en, []), ...coalesce(specialties.enOther, [])]
     )
   }`
   const rows: SanityPartnerRow[] | null = await sanityClient.fetch(query, {
