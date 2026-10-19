@@ -70,11 +70,15 @@ export function initializeHomepage(root: HTMLElement, dictionary: Record<string,
   let pending = false
   const update = () => {
     pending = false
+    // All reads before any write, so the browser lays out once per frame.
     const bottom = nativeNav?.getBoundingClientRect().bottom ?? 76
+    const heroBottom = hero?.getBoundingClientRect().bottom ?? 0
+    const firstTop = firstSection?.getBoundingClientRect().top ?? 0
+    const footerTop = footer?.getBoundingClientRect().top ?? Infinity
     root.style.setProperty('--subnav-top', `${bottom}px`)
     root.style.setProperty('--nav212-height', `${bottom}px`)
-    navHost?.classList.toggle('is-past-hero', (hero?.getBoundingClientRect().bottom ?? 0) <= bottom)
-    if (subnav && firstSection) subnav.hidden = firstSection.getBoundingClientRect().top > bottom + 16 || (footer?.getBoundingClientRect().top ?? Infinity) < bottom + 65
+    navHost?.classList.toggle('is-past-hero', heroBottom <= bottom)
+    if (subnav && firstSection) subnav.hidden = firstTop > bottom + 16 || footerTop < bottom + 65
   }
   const schedule = () => { if (!pending) { pending = true; requestFrame(update) } }
   listen(window, 'scroll', schedule, { passive: true })
@@ -207,8 +211,9 @@ export function initializeHomepage(root: HTMLElement, dictionary: Record<string,
       if (stage.visual.previousElementSibling === active) return
       active.after(stage.visual)
       stage.visual.classList.remove('opoint-enter')
-      void stage.visual.offsetWidth
-      stage.visual.classList.add('opoint-enter')
+      // Re-add on the next frame to restart the entrance animation without
+      // forcing a synchronous layout (the old offsetWidth read did).
+      requestFrame(() => stage.visual.classList.add('opoint-enter'))
     }
     const enablePoints = () => {
       if (pointsOn) return
