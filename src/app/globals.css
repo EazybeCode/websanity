@@ -164,6 +164,15 @@ html.light .text-gradient-primary {
     linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 40%);
 }
 .lead-tab-glass > * { position: relative; }
+
+/* Google Preferred Sources box: the .landing theme force-recolours text-white to
+   ink and text-slate-500 to #8A90A0 (both !important), which failed WCAG contrast.
+   Id-scoped so these win; teal end keeps white text >= 4.5:1 across the gradient. */
+#preferred-source-cta .psc-body { color: #4b5563 !important; }
+#preferred-source-cta .psc-btn {
+  color: #fff !important;
+  background-image: linear-gradient(to right, #2563eb, #0e7490) !important;
+}
 .lead-tab-glass.lead-tab-glass:hover {
   background: linear-gradient(165deg, rgba(66, 99, 235, 0.86), rgba(44, 70, 201, 0.86) 55%, rgba(30, 48, 150, 0.88));
   box-shadow:
