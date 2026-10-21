@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl'
 import { mobileAspectClass, desktopAspectClass, cssAspectRatio } from '@/lib/aspect-ratio'
 import { SummarizeWithLLM } from '@/components/blog/SummarizeWithLLM'
 import PreferredSourceCTA from '@/components/PreferredSourceCTA'
+import { computeHeadingLevels } from '@/lib/heading-levels'
 import {
   Calendar,
   Clock,
@@ -285,6 +286,7 @@ const createPortableTextComponents = (
   content: PortableTextBlock[]
 ): PortableTextComponents => {
   const headingIds = new Map<string, string>()
+  const headingLevels = computeHeadingLevels(content)
   if (Array.isArray(content)) {
     content
       .filter(
@@ -297,53 +299,19 @@ const createPortableTextComponents = (
         headingIds.set(block._key, generateSlug(text))
       })
   }
+  // Keeps the editor's chosen look, but emits a tag that never skips a level.
+  const heading = (style: number, className: string) => ({ children, value }: any) => {
+    const id = headingIds.get(value._key) || generateSlug(String(children))
+    const Tag = `h${headingLevels.get(value._key) ?? style}` as 'h2'
+    return <Tag id={id} className={className}>{children}</Tag>
+  }
 
   return {
     block: {
-      h1: ({ children, value }: any) => {
-        const id = headingIds.get(value._key) || generateSlug(String(children))
-        return (
-          <h1
-            id={id}
-            className="text-[22px] md:text-4xl font-extrabold [font-synthesis:none] text-white mt-16 mb-6 first:mt-0 scroll-mt-28"
-          >
-            {children}
-          </h1>
-        )
-      },
-      h2: ({ children, value }: any) => {
-        const id = headingIds.get(value._key) || generateSlug(String(children))
-        return (
-          <h2
-            id={id}
-            className="text-[21px] md:text-3xl font-bold text-white mt-3 mb-4 pt-3 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28"
-          >
-            {children}
-          </h2>
-        )
-      },
-      h3: ({ children, value }: any) => {
-        const id = headingIds.get(value._key) || generateSlug(String(children))
-        return (
-          <h3
-            id={id}
-            className="text-[16px] md:text-2xl font-semibold text-slate-100 mt-3 mb-3 scroll-mt-28"
-          >
-            {children}
-          </h3>
-        )
-      },
-      h4: ({ children, value }: any) => {
-        const id = headingIds.get(value._key) || generateSlug(String(children))
-        return (
-          <h4
-            id={id}
-            className="text-xl font-semibold text-slate-200 mt-8 mb-3 scroll-mt-28"
-          >
-            {children}
-          </h4>
-        )
-      },
+      h1: heading(1, 'text-[22px] md:text-4xl font-extrabold [font-synthesis:none] text-white mt-16 mb-6 first:mt-0 scroll-mt-28'),
+      h2: heading(2, 'text-[21px] md:text-3xl font-bold text-white mt-3 mb-4 pt-3 border-t border-slate-800/50 first:border-t-0 first:pt-0 first:mt-0 scroll-mt-28'),
+      h3: heading(3, 'text-[16px] md:text-2xl font-semibold text-slate-100 mt-3 mb-3 scroll-mt-28'),
+      h4: heading(4, 'text-xl font-semibold text-slate-200 mt-8 mb-3 scroll-mt-28'),
       normal: ({ children }: any) => (
         <p className="text-[14px] md:text-lg text-slate-300 leading-relaxed mb-3">
           {children}
