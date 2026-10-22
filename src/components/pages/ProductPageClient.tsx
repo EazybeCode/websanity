@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { useTrialModal } from '@/providers/TrialModalProvider'
 
 // ─── CRM Configuration ──────────────────────────────────────────────────────
@@ -113,6 +113,187 @@ const CRM_PROPERTY_FIELDS: Record<string, Array<{ label: string; type: string; v
   ],
 }
 
+// ─── Locale copy for the hardcoded sections ─────────────────────────────────
+// Everything below the Sanity-driven hero lives in code, so it needs its own
+// translations. `{crm}` is interpolated at render time so one dictionary
+// covers every integration page (HubSpot, Salesforce, Zoho, …).
+
+type PageCopy = {
+  chatThem: string
+  chatMe: string
+  syncing: (crm: string) => string
+  synced: (crm: string) => string
+  contact: string
+  live: string
+  firstName: string
+  lastName: string
+  company: string
+  lastWhatsapp: string
+  dealValue: string
+  justNow: string
+  hrsAgo: string
+  miniDesc: (crm: string) => string
+  syncedTo: (crm: string) => string
+  propsTitle: (crm: string) => [string, string, string]
+  propsDesc: (crm: string) => string
+  propDescs: Record<string, string>
+  teamsTag: string
+  teamsTitle: [string, string]
+  teams: Array<{ title: string; bullets: string[] }>
+  setupTag: string
+  setupTitle: [string, string]
+  steps: (crm: string) => Array<{ title: string; desc: string }>
+  faqTitle: (crm: string) => [string, string, string]
+  faqDesc: (crm: string) => string
+  faqFootQ: string
+  faqFootLink: string
+  ctaTitle: string
+  ctaDesc: (crm: string) => string
+}
+
+const PAGE_COPY: Record<string, PageCopy> = {
+  en: {
+    chatThem: 'Hi! Following up on the enterprise quote.',
+    chatMe: 'Just sent it over to your email, Sarah.',
+    syncing: (c) => `SYNCING TO ${c.toUpperCase()}…`,
+    synced: (c) => `SYNCED → ${c.toUpperCase()}`,
+    contact: 'Contact',
+    live: 'LIVE',
+    firstName: 'First name',
+    lastName: 'Last name',
+    company: 'Company',
+    lastWhatsapp: 'Last WhatsApp',
+    dealValue: 'Deal value',
+    justNow: 'Just now',
+    hrsAgo: '2 hrs ago',
+    miniDesc: (c) => `Open any WhatsApp chat and Eazybe surfaces the matching ${c} record alongside — fields, deals, activity log — all editable, all synced back.`,
+    syncedTo: (c) => `Synced to ${c}`,
+    propsTitle: (c) => [`${c} `, 'Fields', ', Populated Automatically'],
+    propsDesc: (c) => `Eazybe writes every WhatsApp signal into ${c} as a typed custom property — no manual data entry.`,
+    propDescs: {},
+    teamsTag: "Who It's For",
+    teamsTitle: ['Built For Teams Where ', 'Deals Happen On WhatsApp'],
+    teams: [
+      { title: 'Sales Teams', bullets: ['Full conversation visibility', 'Deal-linked chat history', 'Response time tracking'] },
+      { title: 'Sales Managers', bullets: ['Team-wide visibility', 'Performance monitoring', 'Pipeline reality check'] },
+      { title: 'Customer Success', bullets: ['Full customer history', 'Seamless handoffs', 'Ticket creation from chats'] },
+    ],
+    setupTag: 'Live in 5 Minutes',
+    setupTitle: ['No Developers. No IT Tickets. ', 'No Waiting'],
+    steps: (c) => [
+      { title: 'Install Extension', desc: 'Add Eazybe to Chrome. One click, 60 seconds.' },
+      { title: `Connect ${c}`, desc: 'OAuth login, no API keys, no developer needed.' },
+      { title: 'Open WhatsApp Web', desc: `The ${c} sidebar appears automatically.` },
+      { title: 'Start Closing Deals', desc: `Every message flows to ${c}. You're live.` },
+    ],
+    faqTitle: (c) => ['All Your ', `${c} + WhatsApp`, ' Questions, Answered'],
+    faqDesc: (c) => `Get answers to common questions about setup, supported features, security, and how the ${c} integration works day-to-day. Still stuck? Talk to our live agent on WhatsApp.`,
+    faqFootQ: "Didn't find your answer?",
+    faqFootLink: "Let's connect with us!",
+    ctaTitle: 'Bring WhatsApp into ',
+    ctaDesc: (c) => `Install Eazybe, connect ${c}, watch every chat sync — automatically.`,
+  },
+  br: {
+    chatThem: 'Oi! Passando para falar da proposta enterprise.',
+    chatMe: 'Acabei de enviar para o seu e-mail, Sarah.',
+    syncing: (c) => `SINCRONIZANDO COM ${c.toUpperCase()}…`,
+    synced: (c) => `SINCRONIZADO → ${c.toUpperCase()}`,
+    contact: 'Contato',
+    live: 'AO VIVO',
+    firstName: 'Nome',
+    lastName: 'Sobrenome',
+    company: 'Empresa',
+    lastWhatsapp: 'Último WhatsApp',
+    dealValue: 'Valor do negócio',
+    justNow: 'Agora mesmo',
+    hrsAgo: 'há 2 horas',
+    miniDesc: (c) => `Abra qualquer conversa do WhatsApp e o Eazybe mostra o registro correspondente do ${c} ao lado — campos, negócios e histórico de atividades — tudo editável e sincronizado de volta.`,
+    syncedTo: (c) => `Sincronizado com ${c}`,
+    propsTitle: (c) => ['Campos do ', c, ' preenchidos automaticamente'],
+    propsDesc: (c) => `O Eazybe registra cada sinal do WhatsApp no ${c} como uma propriedade personalizada — sem digitação manual.`,
+    propDescs: {
+      'Calculated based on rolling 30-day window.': 'Calculado com base nos últimos 30 dias.',
+      'Aggregate sum of all logged WhatsApp segments.': 'Soma de todas as mensagens do WhatsApp registradas.',
+      'Heuristic-based intent scoring from chat history.': 'Pontuação de intenção com base no histórico da conversa.',
+      'Real-time sync of engagement signals.': 'Sincronização em tempo real dos sinais de engajamento.',
+      'End-to-end encrypted channel with HubSpot.': 'Canal criptografado de ponta a ponta com o HubSpot.',
+      'NLP-extracted conversation state.': 'Status da conversa identificado por IA.',
+    },
+    teamsTag: 'Para quem é',
+    teamsTitle: ['Feito para equipes que ', 'fecham negócios pelo WhatsApp'],
+    teams: [
+      { title: 'Equipes de vendas', bullets: ['Visibilidade total das conversas', 'Histórico de chat vinculado ao negócio', 'Acompanhamento do tempo de resposta'] },
+      { title: 'Gestores de vendas', bullets: ['Visão de toda a equipe', 'Acompanhamento de desempenho', 'Pipeline sem achismo'] },
+      { title: 'Customer Success', bullets: ['Histórico completo do cliente', 'Passagens de bastão sem atrito', 'Tickets criados a partir das conversas'] },
+    ],
+    setupTag: 'Pronto em 5 minutos',
+    setupTitle: ['Sem desenvolvedores. Sem chamados de TI. ', 'Sem espera'],
+    steps: (c) => [
+      { title: 'Instale a extensão', desc: 'Adicione o Eazybe ao Chrome. Um clique, 60 segundos.' },
+      { title: `Conecte o ${c}`, desc: 'Login via OAuth, sem chaves de API e sem desenvolvedor.' },
+      { title: 'Abra o WhatsApp Web', desc: `A barra lateral do ${c} aparece automaticamente.` },
+      { title: 'Comece a fechar negócios', desc: `Cada mensagem vai para o ${c}. Pronto, está no ar.` },
+    ],
+    faqTitle: (c) => ['Todas as suas dúvidas sobre ', `${c} + WhatsApp`, ', respondidas'],
+    faqDesc: (c) => `Respostas para as dúvidas mais comuns sobre configuração, recursos, segurança e como a integração com o ${c} funciona no dia a dia. Ainda com dúvidas? Fale com nosso atendente no WhatsApp.`,
+    faqFootQ: 'Não encontrou sua resposta?',
+    faqFootLink: 'Fale com a gente!',
+    ctaTitle: 'Leve o WhatsApp para o ',
+    ctaDesc: (c) => `Instale o Eazybe, conecte o ${c} e veja cada conversa sincronizar — automaticamente.`,
+  },
+  es: {
+    chatThem: '¡Hola! Te escribo por la cotización enterprise.',
+    chatMe: 'Te la acabo de enviar a tu correo, Sarah.',
+    syncing: (c) => `SINCRONIZANDO CON ${c.toUpperCase()}…`,
+    synced: (c) => `SINCRONIZADO → ${c.toUpperCase()}`,
+    contact: 'Contacto',
+    live: 'EN VIVO',
+    firstName: 'Nombre',
+    lastName: 'Apellido',
+    company: 'Empresa',
+    lastWhatsapp: 'Último WhatsApp',
+    dealValue: 'Valor del negocio',
+    justNow: 'Justo ahora',
+    hrsAgo: 'hace 2 horas',
+    miniDesc: (c) => `Abre cualquier chat de WhatsApp y Eazybe muestra al lado el registro correspondiente de ${c} — campos, negocios e historial de actividad — todo editable y sincronizado de vuelta.`,
+    syncedTo: (c) => `Sincronizado con ${c}`,
+    propsTitle: (c) => ['Campos de ', c, ' completados automáticamente'],
+    propsDesc: (c) => `Eazybe registra cada señal de WhatsApp en ${c} como una propiedad personalizada — sin carga manual de datos.`,
+    propDescs: {
+      'Calculated based on rolling 30-day window.': 'Calculado sobre los últimos 30 días.',
+      'Aggregate sum of all logged WhatsApp segments.': 'Suma de todos los mensajes de WhatsApp registrados.',
+      'Heuristic-based intent scoring from chat history.': 'Puntuación de intención según el historial del chat.',
+      'Real-time sync of engagement signals.': 'Sincronización en tiempo real de las señales de interacción.',
+      'End-to-end encrypted channel with HubSpot.': 'Canal cifrado de extremo a extremo con HubSpot.',
+      'NLP-extracted conversation state.': 'Estado de la conversación detectado por IA.',
+    },
+    teamsTag: 'Para quién es',
+    teamsTitle: ['Hecho para equipos que ', 'cierran negocios por WhatsApp'],
+    teams: [
+      { title: 'Equipos de ventas', bullets: ['Visibilidad total de las conversaciones', 'Historial de chat vinculado al negocio', 'Seguimiento del tiempo de respuesta'] },
+      { title: 'Gerentes de ventas', bullets: ['Visibilidad de todo el equipo', 'Seguimiento del desempeño', 'Pipeline sin suposiciones'] },
+      { title: 'Customer Success', bullets: ['Historial completo del cliente', 'Traspasos sin fricción', 'Tickets creados desde los chats'] },
+    ],
+    setupTag: 'Listo en 5 minutos',
+    setupTitle: ['Sin desarrolladores. Sin tickets de TI. ', 'Sin esperas'],
+    steps: (c) => [
+      { title: 'Instala la extensión', desc: 'Agrega Eazybe a Chrome. Un clic, 60 segundos.' },
+      { title: `Conecta ${c}`, desc: 'Inicio de sesión con OAuth, sin claves de API ni desarrolladores.' },
+      { title: 'Abre WhatsApp Web', desc: `La barra lateral de ${c} aparece automáticamente.` },
+      { title: 'Empieza a cerrar negocios', desc: `Cada mensaje llega a ${c}. Ya estás en marcha.` },
+    ],
+    faqTitle: (c) => ['Todas tus preguntas sobre ', `${c} + WhatsApp`, ', respondidas'],
+    faqDesc: (c) => `Respuestas a las preguntas más comunes sobre configuración, funciones, seguridad y cómo funciona la integración con ${c} en el día a día. ¿Sigues con dudas? Habla con nuestro agente por WhatsApp.`,
+    faqFootQ: '¿No encontraste tu respuesta?',
+    faqFootLink: '¡Escríbenos!',
+    ctaTitle: 'Lleva WhatsApp a ',
+    ctaDesc: (c) => `Instala Eazybe, conecta ${c} y mira cómo cada chat se sincroniza — automáticamente.`,
+  },
+}
+
+const getCopy = (locale: string): PageCopy =>
+  PAGE_COPY[locale === 'pt' || locale === 'pt-BR' ? 'br' : locale] || PAGE_COPY.en
+
 const Check = (
   <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
 )
@@ -129,7 +310,8 @@ const HeroSection: React.FC<{
   crm: { name: string; logo: string; color: string }
   crmSlug: string
   t: ReturnType<typeof useTranslations>
-}> = ({ crm, t }) => {
+  c: PageCopy
+}> = ({ crm, t, c }) => {
   const { openModal } = useTrialModal()
   return (
     <section className="page-hero hero-split" data-tone="dark">
@@ -183,7 +365,7 @@ const HeroSection: React.FC<{
           </div>
 
           <div className="reveal hero-split-visual">
-            <HeroSyncAnimation crm={crm} />
+            <HeroSyncAnimation crm={crm} c={c} />
           </div>
         </div>
       </div>
@@ -193,7 +375,7 @@ const HeroSection: React.FC<{
 
 // ─── Animated hero visual: WhatsApp chat → CRM sync ─────────────────────────
 
-const HeroSyncAnimation: React.FC<{ crm: { name: string; logo: string; color: string } }> = ({ crm }) => {
+const HeroSyncAnimation: React.FC<{ crm: { name: string; logo: string; color: string }; c: PageCopy }> = ({ crm, c }) => {
   const [step, setStep] = useState(0)
 
   useEffect(() => {
@@ -273,7 +455,7 @@ const HeroSyncAnimation: React.FC<{ crm: { name: string; logo: string; color: st
               lineHeight: 1.45,
             }}
           >
-            Hi! Following up on the enterprise quote.
+            {c.chatThem}
           </div>
         </div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start', flexDirection: 'row-reverse' }}>
@@ -305,7 +487,7 @@ const HeroSyncAnimation: React.FC<{ crm: { name: string; logo: string; color: st
               lineHeight: 1.45,
             }}
           >
-            {step >= 2 ? 'Just sent it over to your email, Sarah.' : (
+            {step >= 2 ? c.chatMe : (
               <span style={{ display: 'inline-flex', gap: 3 }}>
                 {[0, 1, 2].map((i) => (
                   <span
@@ -353,7 +535,7 @@ const HeroSyncAnimation: React.FC<{ crm: { name: string; logo: string; color: st
             animation: 'landing-lqaLive 1.6s ease-in-out infinite',
           }}
         />
-        {step >= 3 ? `SYNCED → ${crm.name.toUpperCase()}` : `SYNCING TO ${crm.name.toUpperCase()}…`}
+        {step >= 3 ? c.synced(crm.name) : c.syncing(crm.name)}
       </div>
 
       {/* CRM record */}
@@ -378,15 +560,15 @@ const HeroSyncAnimation: React.FC<{ crm: { name: string; logo: string; color: st
             textTransform: 'uppercase',
           }}
         >
-          <span>{crm.name} · Contact</span>
-          <span style={{ color: crm.color }}>● LIVE</span>
+          <span>{crm.name} · {c.contact}</span>
+          <span style={{ color: crm.color }}>● {c.live}</span>
         </div>
         {[
-          ['First name', 'Sarah'],
-          ['Last name', 'Chen'],
-          ['Company', 'Enterprise Solutions Inc.'],
-          ['Last WhatsApp', step >= 1 ? 'Just now' : '2 hrs ago'],
-          ['Deal value', step >= 3 ? '$45,000' : '—'],
+          [c.firstName, 'Sarah'],
+          [c.lastName, 'Chen'],
+          [c.company, 'Enterprise Solutions Inc.'],
+          [c.lastWhatsapp, step >= 1 ? c.justNow : c.hrsAgo],
+          [c.dealValue, step >= 3 ? '$45,000' : '—'],
         ].map(([k, v], i) => (
           <div
             key={k}
@@ -636,7 +818,8 @@ const PropertiesSection: React.FC<{
   crm: { name: string; color: string }
   crmSlug: string
   t: ReturnType<typeof useTranslations>
-}> = ({ crm, crmSlug, t }) => {
+  c: PageCopy
+}> = ({ crm, crmSlug, t, c }) => {
   const fields = CRM_PROPERTY_FIELDS[crmSlug] || []
   if (fields.length === 0) return null
   return (
@@ -645,13 +828,13 @@ const PropertiesSection: React.FC<{
         <div className="sec-head centered reveal">
           <span className="sec-tag">{t('integrations.properties.badge') || 'Live properties'}</span>
           <h2>
-            {crm.name} <em>Fields</em>, Populated Automatically
+            {c.propsTitle(crm.name)[0]}<em>{c.propsTitle(crm.name)[1]}</em>{c.propsTitle(crm.name)[2]}
           </h2>
-          <p>Eazybe writes every WhatsApp signal into {crm.name} as a typed custom property — no manual data entry.</p>
+          <p>{c.propsDesc(crm.name)}</p>
         </div>
         <div className="card-grid cols-3">
           {fields.map((field, idx) => (
-            <PropertyCard key={field.label} field={field} index={idx} accent={crm.color} />
+            <PropertyCard key={field.label} field={{ ...field, desc: c.propDescs[field.desc] || field.desc }} index={idx} accent={crm.color} />
           ))}
         </div>
       </div>
@@ -664,7 +847,8 @@ const PropertiesSection: React.FC<{
 const MiniCRMSection: React.FC<{
   crm: { name: string; color: string }
   t: ReturnType<typeof useTranslations>
-}> = ({ crm, t }) => (
+  c: PageCopy
+}> = ({ crm, t, c }) => (
   <section className="agent">
     <div className="container">
       <div className="agent-inner">
@@ -673,10 +857,7 @@ const MiniCRMSection: React.FC<{
           <h3>
             {crm.name} <em>{t('integrations.miniCrm.headline')}</em> WhatsApp Web
           </h3>
-          <p className="lede">
-            Open any WhatsApp chat and Eazybe surfaces the matching {crm.name} record alongside — fields,
-            deals, activity log — all editable, all synced back.
-          </p>
+          <p className="lede">{c.miniDesc(crm.name)}</p>
         </div>
         <div className="visual reveal">
           <div
@@ -717,9 +898,9 @@ const MiniCRMSection: React.FC<{
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               <ChatBubble side="them" accent={crm.color} avatar="https://i.pravatar.cc/100?u=sarah" name="Sarah">
-                Hi! Following up on the enterprise quote.
+                {c.chatThem}
               </ChatBubble>
-              <ChatBubble side="me" accent={crm.color}>Just sent it over to your email, Sarah.</ChatBubble>
+              <ChatBubble side="me" accent={crm.color}>{c.chatMe}</ChatBubble>
               <div
                 style={{
                   marginTop: 6,
@@ -739,12 +920,12 @@ const MiniCRMSection: React.FC<{
                     marginBottom: 8,
                   }}
                 >
-                  Synced to {crm.name}
+                  {c.syncedTo(crm.name)}
                 </div>
                 {[
-                  ['First name', 'Sarah'],
-                  ['Last name', 'Chen'],
-                  ['Company', 'Enterprise Solutions Inc.'],
+                  [c.firstName, 'Sarah'],
+                  [c.lastName, 'Chen'],
+                  [c.company, 'Enterprise Solutions Inc.'],
                 ].map(([k, v]) => (
                   <div key={k} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, padding: '4px 0', color: 'var(--ink-2)' }}>
                     <span style={{ color: 'var(--ink-3)' }}>{k}</span>
@@ -825,30 +1006,15 @@ const ChatBubble: React.FC<{
 
 // ─── Built-for-teams section ────────────────────────────────────────────────
 
-const TEAM_AUDIENCES: Array<{ title: string; bullets: string[] }> = [
-  {
-    title: 'Sales Teams',
-    bullets: ['Full conversation visibility', 'Deal-linked chat history', 'Response time tracking'],
-  },
-  {
-    title: 'Sales Managers',
-    bullets: ['Team-wide visibility', 'Performance monitoring', 'Pipeline reality check'],
-  },
-  {
-    title: 'Customer Success',
-    bullets: ['Full customer history', 'Seamless handoffs', 'Ticket creation from chats'],
-  },
-]
-
-const TeamsSection: React.FC = () => (
+const TeamsSection: React.FC<{ c: PageCopy }> = ({ c }) => (
   <section className="section">
     <div className="container">
       <div className="sec-head centered reveal">
-        <span className="sec-tag">Who It&apos;s For</span>
-        <h2>Built For Teams Where <em>Deals Happen On WhatsApp</em></h2>
+        <span className="sec-tag">{c.teamsTag}</span>
+        <h2>{c.teamsTitle[0]}<em>{c.teamsTitle[1]}</em></h2>
       </div>
       <div className="teams-grid">
-        {TEAM_AUDIENCES.map((a) => (
+        {c.teams.map((a) => (
           <div key={a.title} className="team-card reveal">
             <h3>{a.title}</h3>
             <ul>
@@ -870,19 +1036,14 @@ const TeamsSection: React.FC = () => (
 
 // ─── Setup steps section ────────────────────────────────────────────────────
 
-const SetupStepsSection: React.FC<{ crmName: string }> = ({ crmName }) => {
-  const steps = [
-    { n: '01', title: 'Install Extension', desc: 'Add Eazybe to Chrome. One click, 60 seconds.' },
-    { n: '02', title: `Connect ${crmName}`, desc: 'OAuth login, no API keys, no developer needed.' },
-    { n: '03', title: 'Open WhatsApp Web', desc: `The ${crmName} sidebar appears automatically.` },
-    { n: '04', title: 'Start Closing Deals', desc: `Every message flows to ${crmName}. You're live.` },
-  ]
+const SetupStepsSection: React.FC<{ crmName: string; c: PageCopy }> = ({ crmName, c }) => {
+  const steps = c.steps(crmName).map((s, i) => ({ n: `0${i + 1}`, ...s }))
   return (
     <section className="section" data-tone="dark">
       <div className="container">
         <div className="sec-head centered reveal">
-          <span className="sec-tag">Live in 5 Minutes</span>
-          <h2>No Developers. No IT Tickets. <em>No Waiting</em></h2>
+          <span className="sec-tag">{c.setupTag}</span>
+          <h2>{c.setupTitle[0]}<em>{c.setupTitle[1]}</em></h2>
         </div>
         <div className="setup-steps">
           {steps.map((s) => (
@@ -900,7 +1061,7 @@ const SetupStepsSection: React.FC<{ crmName: string }> = ({ crmName }) => {
 
 // ─── FAQ ────────────────────────────────────────────────────────────────────
 
-const FAQSection: React.FC<{ data: any; crmName: string }> = ({ data, crmName }) => {
+const FAQSection: React.FC<{ data: any; crmName: string; c: PageCopy }> = ({ data, crmName, c }) => {
   const [open, setOpen] = useState<Set<number>>(new Set())
   if (!data || !data.items) return null
   const toggle = (i: number) => setOpen((p) => {
@@ -917,9 +1078,9 @@ const FAQSection: React.FC<{ data: any; crmName: string }> = ({ data, crmName })
       <div className="container">
         <div className="sec-head centered reveal">
           <span className="sec-tag">FAQ</span>
-          <h2>All Your <em>{crmName} + WhatsApp</em> Questions, Answered</h2>
+          <h2>{c.faqTitle(crmName)[0]}<em>{c.faqTitle(crmName)[1]}</em>{c.faqTitle(crmName)[2]}</h2>
           <p style={{ maxWidth: 720, width: '100%', textAlign: 'center', hyphens: 'auto' }}>
-            Get answers to common questions about setup, supported features, security, and how the {crmName} integration works day-to-day. Still stuck? Talk to our live agent on WhatsApp.
+            {c.faqDesc(crmName)}
           </p>
         </div>
 
@@ -954,7 +1115,7 @@ const FAQSection: React.FC<{ data: any; crmName: string }> = ({ data, crmName })
         </div>
 
         <p className="faq-footnote">
-          Didn&apos;t find your answer? <a href="https://wa.me/13024129610?text=Hi%20-%20I%20have%20a%20question%20about%20Eazybe." target="_blank" rel="noopener noreferrer">Let&apos;s connect with us!</a>
+          {c.faqFootQ} <a href="https://wa.me/13024129610?text=Hi%20-%20I%20have%20a%20question%20about%20Eazybe." target="_blank" rel="noopener noreferrer">{c.faqFootLink}</a>
         </p>
       </div>
     </section>
@@ -963,16 +1124,16 @@ const FAQSection: React.FC<{ data: any; crmName: string }> = ({ data, crmName })
 
 // ─── Final CTA ──────────────────────────────────────────────────────────────
 
-const CTASection: React.FC<{ crm: { name: string }; t: ReturnType<typeof useTranslations> }> = ({ crm, t }) => {
+const CTASection: React.FC<{ crm: { name: string }; t: ReturnType<typeof useTranslations>; c: PageCopy }> = ({ crm, t, c }) => {
   const { openModal } = useTrialModal()
   return (
     <section className="final-cta" data-tone="dark">
       <div className="container">
         <h2 className="reveal">
-          Bring WhatsApp into <em>{crm.name}.</em>
+          {c.ctaTitle}<em>{crm.name}.</em>
         </h2>
         <p className="sub reveal">
-          Install Eazybe, connect {crm.name}, watch every chat sync — automatically.
+          {c.ctaDesc(crm.name)}
         </p>
         <div className="ctas reveal">
           <button onClick={() => openModal('trial')} className="btn btn-primary btn-lg">
@@ -996,18 +1157,19 @@ interface ProductPageClientProps {
 
 export default function ProductPageClient({ product, crmSlug }: ProductPageClientProps) {
   const t = useTranslations()
+  const c = getCopy(useLocale())
   const crm = crmConfig[crmSlug] || { name: crmSlug, logo: '', color: '#5B4BAE' }
 
   return (
     <>
-      <HeroSection crm={crm} crmSlug={crmSlug} t={t} />
+      <HeroSection crm={crm} crmSlug={crmSlug} t={t} c={c} />
       <FeatureComparisonSection t={t} />
-      <MiniCRMSection crm={crm} t={t} />
-      <PropertiesSection crm={crm} crmSlug={crmSlug} t={t} />
-      <TeamsSection />
-      <SetupStepsSection crmName={crm.name} />
-      {product?.faq && <FAQSection data={product.faq} crmName={crm.name} />}
-      <CTASection crm={crm} t={t} />
+      <MiniCRMSection crm={crm} t={t} c={c} />
+      <PropertiesSection crm={crm} crmSlug={crmSlug} t={t} c={c} />
+      <TeamsSection c={c} />
+      <SetupStepsSection crmName={crm.name} c={c} />
+      {product?.faq && <FAQSection data={product.faq} crmName={crm.name} c={c} />}
+      <CTASection crm={crm} t={t} c={c} />
     </>
   )
 }

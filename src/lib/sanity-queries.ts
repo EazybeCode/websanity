@@ -293,8 +293,11 @@ export async function getProduct(slug: string, locale: string = 'en') {
   const cacheKey = `${slug}-${language}`
   let translatedEnglish = productTranslateCache.get(cacheKey)
   if (!translatedEnglish) {
-    translatedEnglish = await deepTranslate(englishData, language)
-    productTranslateCache.set(cacheKey, translatedEnglish)
+    const ctx = { failed: 0 }
+    translatedEnglish = await deepTranslate(englishData, language, undefined, ctx)
+    // Only memoize a fully translated payload — otherwise strings that hit
+    // a rate-limit would stay English until the server restarts.
+    if (ctx.failed === 0) productTranslateCache.set(cacheKey, translatedEnglish)
   }
 
   if (!localeData) return translatedEnglish
@@ -706,20 +709,34 @@ const categoryTranslateCache = new Map<string, any>()
 
 // Google's free Translate endpoint — same one used by scripts/bulk-translate.mjs.
 // Best-effort: returns the original on failure so the page keeps rendering.
-async function gTranslate(text: string, targetLang: string): Promise<string> {
+async function gTranslate(
+  text: string,
+  targetLang: string,
+  ctx?: { failed: number },
+): Promise<string> {
   if (!text || !text.trim()) return text
   const map: Record<string, string> = { es: 'es', tr: 'tr', 'pt-BR': 'pt', en: 'en' }
   const tl = map[targetLang] || targetLang
   if (tl === 'en') return text
-  try {
-    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`
-    const res = await fetch(url)
-    const data = await res.json()
-    if (data && data[0]) return data[0].map((s: any) => s[0]).join('')
-    return text
-  } catch {
-    return text
+  // The free endpoint rate-limits bursts (deepTranslate fires many calls in
+  // parallel), so retry a couple of times before giving up.
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`
+      const res = await fetch(url)
+      if (res.ok) {
+        const data = await res.json()
+        if (data && data[0]) return data[0].map((s: any) => s[0]).join('')
+      }
+    } catch {
+      /* retry */
+    }
+    await new Promise((r) => setTimeout(r, 400 * (attempt + 1)))
   }
+  // Still failing: return English so the page renders, but flag it so the
+  // caller doesn't cache a half-translated payload forever.
+  if (ctx) ctx.failed++
+  return text
 }
 
 // Recursively translate every string in a category-index payload, skipping
@@ -742,18 +759,23 @@ const NON_TRANSLATABLE_KEYS = new Set([
   'type',
 ])
 
-async function deepTranslate(value: any, targetLang: string, parentKey?: string): Promise<any> {
+async function deepTranslate(
+  value: any,
+  targetLang: string,
+  parentKey?: string,
+  ctx?: { failed: number },
+): Promise<any> {
   if (value == null) return value
   if (parentKey && NON_TRANSLATABLE_KEYS.has(parentKey)) return value
-  if (typeof value === 'string') return gTranslate(value, targetLang)
+  if (typeof value === 'string') return gTranslate(value, targetLang, ctx)
   if (Array.isArray(value)) {
-    return Promise.all(value.map((item) => deepTranslate(item, targetLang, parentKey)))
+    return Promise.all(value.map((item) => deepTranslate(item, targetLang, parentKey, ctx)))
   }
   if (typeof value === 'object') {
     const out: Record<string, any> = {}
     await Promise.all(
       Object.entries(value).map(async ([k, v]) => {
-        out[k] = NON_TRANSLATABLE_KEYS.has(k) ? v : await deepTranslate(v, targetLang, k)
+        out[k] = NON_TRANSLATABLE_KEYS.has(k) ? v : await deepTranslate(v, targetLang, k, ctx)
       }),
     )
     return out
