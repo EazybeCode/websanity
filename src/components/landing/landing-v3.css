@@ -4444,6 +4444,9 @@
 /* on dark duotone sections the pane stays light glass (inner UI is light-
    themed) but the ring flips so the edge still reads against near-black */
 .landing [data-tone="dark"] .fp-visual > div[class] {
+  /* 72% white over near-black reads as muddy grey; keep the glass edge but
+     make the pane nearly opaque so the light UI inside keeps its contrast */
+  background: rgba(252, 253, 254, 0.96) !important;
   border-color: rgba(255, 255, 255, 0.35) !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.85),

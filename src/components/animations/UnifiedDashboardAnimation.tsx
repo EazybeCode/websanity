@@ -1,99 +1,257 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { Users, LayoutDashboard, Search, Bell, Activity } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { Inbox, Search, CheckCheck, Clock3 } from 'lucide-react'
 
-const UnifiedDashboardAnimation: React.FC = () => {
-  const [activeStream, setActiveStream] = useState(0)
+// Colors are inline on purpose: `.landing .text-slate-*` utilities are remapped
+// to the --ink tokens, which flip to near-white inside data-tone="dark"
+// sections and made this light panel unreadable.
+const C = {
+  panel: '#ffffff',
+  soft: '#f6f8fb',
+  line: '#e4e8ef',
+  ink: '#0f172a',
+  body: '#334155',
+  muted: '#5b6576',
+  green: '#128c4b',
+  greenBg: '#e8f7ee',
+  amber: '#b45309',
+  amberBg: '#fef3e2',
+  violet: '#5b4bae',
+  mark: '#fde68a',
+}
+
+type Row = { name: string; rep: number; replied: boolean; wait?: string; time: string; unread?: number }
+
+// Same five chats in every locale; only the copy changes.
+const ROWS: Row[] = [
+  { name: 'Rahul Mehta', rep: 0, replied: false, wait: '2m', time: '10:42', unread: 2 },
+  { name: 'Ana Souza', rep: 1, replied: true, time: '10:38' },
+  { name: 'Lucía Gómez', rep: 2, replied: false, wait: '14m', time: '10:27' },
+  { name: 'Emre Kaya', rep: 0, replied: true, time: '10:15' },
+  { name: 'David Chen', rep: 1, replied: true, time: '09:58' },
+]
+const REPS = [
+  { name: 'Priya', color: '#5b4bae', bg: '#efedfb' },
+  { name: 'Arjun', color: '#0e7490', bg: '#e3f5f9' },
+  { name: 'Neha', color: '#b4235a', bg: '#fbe8f0' },
+]
+
+type Copy = {
+  title: string
+  sub: string
+  live: string
+  search: string
+  query: string
+  all: string
+  rep: string
+  unreplied: string
+  replied: string
+  msgs: [string, string, string, string, string]
+}
+
+// Labels per site locale (en | es | br | tr). `query` must appear in msgs[2] and msgs[4].
+const TX: Record<string, Copy> = {
+  en: {
+    title: 'Team Inbox', sub: '4 numbers · 3 reps', live: 'Live', search: 'Search all chats', query: 'contract',
+    all: 'All', rep: 'Rep', unreplied: 'Unreplied', replied: 'Replied',
+    msgs: ['Can you share pricing for 20 seats?', 'Tuesday works for the demo, thanks!', 'Still waiting on the contract draft', 'Does it work with HubSpot?', 'I will sign the contract today'],
+  },
+  es: {
+    title: 'Team Inbox', sub: '4 números · 3 agentes', live: 'En vivo', search: 'Buscar en todos los chats', query: 'contrato',
+    all: 'Todos', rep: 'Agente', unreplied: 'Sin responder', replied: 'Respondido',
+    msgs: ['¿Me pasas el precio para 20 usuarios?', 'El martes me va bien para la demo', 'Sigo esperando el borrador del contrato', '¿Funciona con HubSpot?', 'Hoy firmo el contrato'],
+  },
+  br: {
+    title: 'Team Inbox', sub: '4 números · 3 vendedores', live: 'Ao vivo', search: 'Buscar em todas as conversas', query: 'contrato',
+    all: 'Todas', rep: 'Vendedor', unreplied: 'Sem resposta', replied: 'Respondida',
+    msgs: ['Pode me passar o preço para 20 usuários?', 'Terça funciona para a demo, obrigado!', 'Ainda aguardo a minuta do contrato', 'Funciona com o HubSpot?', 'Vou assinar o contrato hoje'],
+  },
+  tr: {
+    title: 'Team Inbox', sub: '4 numara · 3 temsilci', live: 'Canlı', search: 'Tüm sohbetlerde ara', query: 'sözleşme',
+    all: 'Tümü', rep: 'Temsilci', unreplied: 'Yanıtsız', replied: 'Yanıtlandı',
+    msgs: ['20 kullanıcı için fiyat paylaşır mısınız?', 'Demo için salı uygun, teşekkürler!', 'Hâlâ sözleşme taslağını bekliyorum', 'HubSpot ile çalışıyor mu?', 'Sözleşmeyi bugün imzalıyorum'],
+  },
+}
+
+// 0 = all chats (live update), 1 = filter by rep, 2 = unreplied, 3 = search
+const SCENES = 4
+const SCENE_MS = 3600
+
+const UnifiedDashboardAnimation: React.FC<{ locale?: string }> = ({ locale = 'en' }) => {
+  const t = TX[locale] || TX.en
+  const reduceMotion = useReducedMotion()
+  const [scene, setScene] = useState(0)
+  const [chars, setChars] = useState(0)
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveStream(prev => (prev + 1) % 4)
-    }, 4000)
-    return () => clearInterval(timer)
-  }, [])
+    if (reduceMotion) return
+    const id = setInterval(() => {
+      setScene((s) => (s + 1) % SCENES)
+      setChars(0)
+    }, SCENE_MS)
+    return () => clearInterval(id)
+  }, [reduceMotion])
+
+  // Type the search query out during the search scene.
+  useEffect(() => {
+    if (scene !== 3) return
+    const id = setInterval(() => setChars((c) => Math.min(c + 1, t.query.length)), 90)
+    return () => clearInterval(id)
+  }, [scene, t.query])
+
+  const typed = scene === 3 ? t.query.slice(0, chars) : ''
+  const searching = scene === 3 && typed.length === t.query.length
+  const visible = ROWS.map((r, i) => ({ ...r, i })).filter((r) => {
+    if (scene === 1) return r.rep === 0
+    if (scene === 2) return !r.replied
+    if (scene === 3) return !searching || t.msgs[r.i].toLowerCase().includes(t.query.toLowerCase())
+    return true
+  })
+
+  const chips = [
+    { key: 0, label: t.all },
+    { key: 1, label: `${t.rep}: ${REPS[0].name}` },
+    { key: 2, label: t.unreplied },
+  ]
+
+  const highlight = (text: string) => {
+    if (!searching) return text
+    const at = text.toLowerCase().indexOf(t.query.toLowerCase())
+    if (at < 0) return text
+    return (
+      <>
+        {text.slice(0, at)}
+        <mark style={{ background: C.mark, color: C.ink, borderRadius: 3, padding: '0 2px' }}>{text.slice(at, at + t.query.length)}</mark>
+        {text.slice(at + t.query.length)}
+      </>
+    )
+  }
 
   return (
-    <div className="relative w-full aspect-[4/3] bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden flex flex-col shadow-2xl">
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] pointer-events-none" style={{ filter: 'invert(1)' }}></div>
+    <div
+      className="udx relative w-full aspect-[4/3] max-sm:aspect-auto rounded-2xl overflow-hidden flex flex-col"
+      style={{ background: C.panel, border: `1px solid ${C.line}`, boxShadow: '0 24px 60px -24px rgba(15,23,42,0.45)', fontFamily: 'var(--f-sans, Inter, system-ui, sans-serif)' }}
+    >
+      <style>{`
+        @keyframes udx-pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+        @keyframes udx-caret { 0%,49% { opacity: 1 } 50%,100% { opacity: 0 } }
+        .udx .udx-dot { animation: udx-pulse 1.6s ease-in-out infinite }
+        .udx .udx-caret { animation: udx-caret 1s step-end infinite }
+        @media (prefers-reduced-motion: reduce) { .udx .udx-dot, .udx .udx-caret { animation: none } }
+        @media (max-width: 639px) { .udx { height: 456px } }
+        @media (max-width: 420px) { .udx .udx-hide-sm { display: none !important } }
+      `}</style>
 
-      {/* Admin Cockpit Header */}
-      <div className="h-16 border-b border-slate-200 bg-white/90 backdrop-blur-md flex items-center px-6 justify-between z-10 relative">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-brand-blue/10 rounded-lg border border-brand-blue/20 shadow-sm">
-            <LayoutDashboard className="w-4 h-4 text-brand-blue" />
+      {/* Header */}
+      <div className="flex items-center justify-between" style={{ padding: '12px 16px', borderBottom: `1px solid ${C.line}` }}>
+        <div className="flex items-center" style={{ gap: 10 }}>
+          <div className="flex items-center justify-center" style={{ width: 34, height: 34, borderRadius: 10, background: C.greenBg }}>
+            <Inbox style={{ width: 18, height: 18, color: C.green }} />
           </div>
-          <div className="flex flex-col">
-            <span className="font-mono text-[10px] font-bold text-slate-900 tracking-widest uppercase leading-none">Team Dashboard</span>
-            <span className="text-[8px] text-brand-green font-mono uppercase mt-1 flex items-center gap-1 font-bold">
-              <span className="w-1 h-1 rounded-full bg-brand-green animate-pulse"></span> Master Active
-            </span>
+          <div className="flex flex-col" style={{ lineHeight: 1.2 }}>
+            <span style={{ fontSize: 15, fontWeight: 700, color: C.ink }}>{t.title}</span>
+            <span style={{ fontSize: 12, color: C.muted }}>{t.sub}</span>
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <Search className="w-3.5 h-3.5 text-slate-400" />
-          <div className="relative">
-            <Bell className="w-3.5 h-3.5 text-slate-400" />
-            <div className="absolute -top-1 -right-1 w-2 h-2 bg-brand-orange rounded-full border border-white"></div>
-          </div>
-          <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-600 border border-slate-200">
-            HQ
-          </div>
+        <div className="flex items-center" style={{ gap: 6, padding: '4px 10px', borderRadius: 999, background: C.greenBg }}>
+          <span className="udx-dot" style={{ width: 7, height: 7, borderRadius: 999, background: C.green }} />
+          <span style={{ fontSize: 12, fontWeight: 600, color: C.green }}>{t.live}</span>
         </div>
       </div>
 
-      <div className="flex-1 p-6 relative z-10 flex flex-col gap-6 overflow-hidden">
-        {/* Statistics Bar */}
-        <div className="grid grid-cols-3 gap-4">
-          {[
-            { label: 'Active', val: '18', color: 'text-brand-blue' },
-            { label: 'Avg Time', val: '1.2m', color: 'text-brand-cyan' },
-            { label: 'Growth', val: '+12%', color: 'text-brand-green' }
-          ].map((stat, i) => (
-            <div key={i} className="bg-white border border-slate-100 p-3 rounded-xl flex flex-col items-center shadow-sm">
-              <span className={`text-xl font-bold font-mono leading-none mb-1 ${stat.color}`}>{stat.val}</span>
-              <span className="text-[8px] font-mono text-slate-400 uppercase tracking-widest font-bold">{stat.label}</span>
-            </div>
-          ))}
+      {/* Search + filters */}
+      <div style={{ padding: '10px 16px 8px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div
+          className="flex items-center"
+          style={{ gap: 8, padding: '7px 10px', borderRadius: 10, background: C.soft, border: `1px solid ${scene === 3 ? C.violet : C.line}`, transition: 'border-color .3s' }}
+        >
+          <Search style={{ width: 15, height: 15, color: C.muted, flexShrink: 0 }} />
+          <span style={{ fontSize: 13, color: typed ? C.ink : C.muted, whiteSpace: 'nowrap', overflow: 'hidden' }}>
+            {typed || t.search}
+          </span>
+          {scene === 3 && <span className="udx-caret" style={{ width: 1.5, height: 15, background: C.violet, marginLeft: -6 }} />}
         </div>
+        <div className="flex flex-wrap" style={{ gap: 6 }}>
+          {chips.map((c) => {
+            const on = scene === c.key || (c.key === 0 && scene === 3)
+            return (
+              <span
+                key={c.key}
+                style={{
+                  fontSize: 12, fontWeight: 600, padding: '4px 10px', borderRadius: 999,
+                  color: on ? '#fff' : C.body, background: on ? C.violet : C.soft,
+                  border: `1px solid ${on ? C.violet : C.line}`, transition: 'all .3s',
+                }}
+              >
+                {c.label}
+              </span>
+            )
+          })}
+        </div>
+      </div>
 
-        {/* Central Dashboard Monitor */}
-        <div className="flex-1 bg-white/50 border border-slate-200 rounded-2xl relative overflow-hidden flex flex-col shadow-inner">
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/5 to-transparent pointer-events-none"></div>
-
-          {/* Agent Stream Items */}
-          <div className="p-4 flex flex-col gap-3">
-            {[
-              { agent: 'Account Manager A', msg: 'Updated client profile...', status: 'Live', color: 'blue' },
-              { agent: 'Sales Team South', msg: 'Lead qualified successfully', status: 'Sync', color: 'cyan' },
-              { agent: 'Customer Success', msg: 'Meeting scheduled for 3PM', status: 'Note', color: 'green' }
-            ].map((stream, idx) => (
-              <div key={idx} className={`flex items-start gap-3 p-3 rounded-xl border transition-all duration-700 ${
-                activeStream === idx ? 'bg-white border-slate-300 translate-x-1 shadow-md' : 'bg-white/40 border-transparent opacity-60'
-              }`}>
-                <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-[10px] text-slate-600 bg-slate-100 border border-slate-200 shadow-sm">
-                  {idx + 1}
+      {/* Conversations */}
+      <div className="flex-1 overflow-hidden" style={{ padding: '2px 10px 10px' }}>
+        <AnimatePresence initial={false} mode="popLayout">
+          {visible.map((r) => {
+            const rep = REPS[r.rep]
+            const fresh = scene === 0 && r.i === 0
+            return (
+              <motion.div
+                key={r.name}
+                layout={!reduceMotion}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0, backgroundColor: fresh ? '#f1fbf5' : 'rgba(255,255,255,0)' }}
+                exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                transition={{ duration: reduceMotion ? 0 : 0.35 }}
+                className="flex items-center"
+                style={{ gap: 10, padding: '8px 6px', borderRadius: 10, borderBottom: `1px solid ${C.line}` }}
+              >
+                <div
+                  className="flex items-center justify-center"
+                  style={{ width: 34, height: 34, borderRadius: 999, background: C.soft, border: `1px solid ${C.line}`, fontSize: 12, fontWeight: 700, color: C.body, flexShrink: 0 }}
+                >
+                  {r.name.split(' ').map((p) => p[0]).join('')}
                 </div>
-                <div className="flex-1">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className={`text-[9px] font-bold uppercase font-mono tracking-wider ${activeStream === idx ? 'text-slate-900' : 'text-slate-400'}`}>{stream.agent}</span>
-                    <span className={`text-[7px] font-mono uppercase px-2 py-0.5 rounded-full font-bold ${idx === activeStream ? 'bg-blue-50 text-brand-blue border border-blue-100' : 'bg-slate-100 text-slate-500'}`}>
-                      {stream.status}
+                <div className="flex-1" style={{ minWidth: 0 }}>
+                  <div className="flex items-center" style={{ gap: 6 }}>
+                    <span style={{ fontSize: 13, fontWeight: 700, color: C.ink, whiteSpace: 'nowrap' }}>{r.name}</span>
+                    <span style={{ fontSize: 11, fontWeight: 600, padding: '1px 7px', borderRadius: 999, color: rep.color, background: rep.bg, whiteSpace: 'nowrap' }}>
+                      {rep.name}
                     </span>
                   </div>
-                  <div className={`text-[9px] truncate max-w-[150px] font-medium ${activeStream === idx ? 'text-slate-600' : 'text-slate-400'}`}>&quot;{stream.msg}&quot;</div>
+                  <div style={{ fontSize: 12.5, color: C.body, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: 2 }}>
+                    {highlight(t.msgs[r.i])}
+                  </div>
                 </div>
-                <Activity className={`w-3 h-3 ${idx === activeStream ? 'text-brand-blue animate-pulse' : 'text-slate-300'}`} />
-              </div>
-            ))}
-          </div>
-
-          {/* Pulse Network Overlay */}
-          <div className="absolute bottom-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-white/90 rounded-full border border-slate-200 backdrop-blur-sm shadow-sm">
-             <div className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-ping"></div>
-             <span className="text-[7px] font-mono text-brand-blue tracking-widest font-bold">SECURE CHANNEL</span>
-          </div>
-        </div>
+                <div className="flex flex-col items-end" style={{ gap: 4, flexShrink: 0 }}>
+                  <span className="udx-hide-sm" style={{ fontSize: 11, color: C.muted }}>{r.time}</span>
+                  {r.replied ? (
+                    <span className="flex items-center" style={{ gap: 3, fontSize: 11, fontWeight: 600, color: C.green }}>
+                      <CheckCheck style={{ width: 13, height: 13 }} />
+                      <span className="udx-hide-sm">{t.replied}</span>
+                    </span>
+                  ) : (
+                    <span className="flex items-center" style={{ gap: 3, fontSize: 11, fontWeight: 600, color: C.amber, background: C.amberBg, padding: '1px 6px', borderRadius: 999 }}>
+                      <Clock3 style={{ width: 12, height: 12 }} />
+                      {r.wait}
+                    </span>
+                  )}
+                </div>
+                {r.unread && fresh ? (
+                  <span
+                    className="flex items-center justify-center"
+                    style={{ minWidth: 18, height: 18, borderRadius: 999, background: C.green, color: '#fff', fontSize: 11, fontWeight: 700, flexShrink: 0 }}
+                  >
+                    {r.unread}
+                  </span>
+                ) : null}
+              </motion.div>
+            )
+          })}
+        </AnimatePresence>
       </div>
     </div>
   )
