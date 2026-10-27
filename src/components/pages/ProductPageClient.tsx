@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import { useTrialModal } from '@/providers/TrialModalProvider'
+import '@/components/homepage-v16/brand-chrome.css'
+import './brand-pages.css'
 
 // ─── CRM Configuration ──────────────────────────────────────────────────────
 
@@ -834,7 +836,7 @@ const PropertiesSection: React.FC<{
         </div>
         <div className="card-grid cols-3">
           {fields.map((field, idx) => (
-            <PropertyCard key={field.label} field={{ ...field, desc: c.propDescs[field.desc] || field.desc }} index={idx} accent={crm.color} />
+            <PropertyCard key={field.label} field={{ ...field, desc: c.propDescs[field.desc] || field.desc }} index={idx} accent="var(--accent-ink)" />
           ))}
         </div>
       </div>
@@ -1161,7 +1163,15 @@ export default function ProductPageClient({ product, crmSlug }: ProductPageClien
   const crm = crmConfig[crmSlug] || { name: crmSlug, logo: '', color: '#5B4BAE' }
 
   return (
-    <>
+    <div className="v16-brand">
+      {/* Brand type (Geist / Geist Mono), same source as the v16 homepage. */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+        precedence="default"
+      />
       <HeroSection crm={crm} crmSlug={crmSlug} t={t} c={c} />
       <FeatureComparisonSection t={t} />
       <MiniCRMSection crm={crm} t={t} c={c} />
@@ -1170,6 +1180,6 @@ export default function ProductPageClient({ product, crmSlug }: ProductPageClien
       <SetupStepsSection crmName={crm.name} c={c} />
       {product?.faq && <FAQSection data={product.faq} crmName={crm.name} c={c} />}
       <CTASection crm={crm} t={t} c={c} />
-    </>
+    </div>
   )
 }

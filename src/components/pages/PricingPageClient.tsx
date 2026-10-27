@@ -7,6 +7,10 @@ import { useDynamicPricing } from '@/hooks/useDynamicPricing'
 import { LeadGenerationForm } from '@/components/lead/LeadGenerationForm'
 import { CHROME_STORE_WEBSITE_URL } from '@/utils/openChromeExtensionStore'
 import { useTrialModal } from '@/providers/TrialModalProvider'
+import { BusinessNumbersSection } from './BusinessNumbersSection'
+import { PricingCountrySelect } from './PricingCountrySelect'
+import '@/components/homepage-v16/brand-chrome.css'
+import './brand-pages.css'
 
 const WhatsAppGlyph = ({ size = 16 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -1187,7 +1191,7 @@ interface PricingPageClientProps { pricingData: PricingData | null }
 
 export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const [isAnnual, setIsAnnual] = useState(true)
-  const { getDynamicPrice, convertUsdAmount, userCurrency, loading: pricingLoading } = useDynamicPricing()
+  const { getDynamicPrice, convertUsdAmount, userCurrency, countryCode, setCountry, loading: pricingLoading } = useDynamicPricing()
 
   // Pick the locale-aware fallback. Sanity data takes priority if present;
   // otherwise we use the in-code translations so non-English visitors don't
@@ -1361,7 +1365,15 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const openDemo = () => openModal('demo')
 
   return (
-    <>
+    <div className="v16-brand v16-pricing">
+      {/* Brand type (Geist / Geist Mono), same source as the v16 homepage. */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+        precedence="default"
+      />
       {showAgentForm && (
         <div className="bea-modal-overlay" onClick={() => setShowAgentForm(false)}>
           <div
@@ -1418,6 +1430,9 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
               onToggle={setIsAnnual}
               labels={{ monthly: hero.billingToggleMonthly, annual: hero.billingToggleAnnual, saveBadge: hero.saveBadgeText }}
             />
+          </div>
+          <div className="reveal" style={{ display: 'flex', justifyContent: 'center' }}>
+            <PricingCountrySelect value={countryCode} onChange={setCountry} />
           </div>
         </div>
       </section>
@@ -1477,6 +1492,9 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
           </div>
         </div>
       </section>
+
+      {/* Voice numbers add-on */}
+      <BusinessNumbersSection />
 
       {/* Comparison */}
       <section className="section" data-tone="dark">
@@ -1600,6 +1618,6 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
           </p>
         </div>
       </section>
-    </>
+    </div>
   )
 }

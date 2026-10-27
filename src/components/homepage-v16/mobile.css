@@ -1,0 +1,109 @@
+/*
+ * v16 homepage — tablet & phone layout. The design export (home-v16.css + inline
+ * styles in markup.json) was drawn for 1440px only; these overrides adapt it.
+ * Everything is scoped under #ezv16 and only applies below 900px. Inline styles
+ * are matched in their CSSOM form ("prop: value"), which is how markup.json stores
+ * them. Wide product mockups are additionally zoomed to fit by initialize-v16.ts.
+ */
+
+@media (max-width: 900px) {
+  /* ---------- Shared ---------- */
+
+  /* Multi-column layouts stack. */
+  #ezv16 :is(
+    [style*='grid-template-columns: minmax(0px, 1.1fr) minmax(0px, 1fr)'],
+    [style*='grid-template-columns: minmax(0px, 1fr) minmax(0px, 1.1fr)'],
+    [style*='grid-template-columns: minmax(0px, 1.2fr) minmax(0px, 1fr)'],
+    [style*='grid-template-columns: 380px minmax(0px, 1fr)'],
+    [style*='grid-template-columns: minmax(0px, 1fr) 380px'],
+    [style*='grid-template-columns: minmax(0px, 1fr) 120px minmax(0px, 1fr)'],
+    [style*='grid-template-columns: minmax(0px, 1fr) 320px minmax(0px, 1fr)']
+  ) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+  /* Four-up card rows -> two-up. */
+  #ezv16 :is([style*='grid-template-columns: repeat(4, 1fr)'], [style*='grid-template-columns: repeat(4, minmax(0px, 1fr))']) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  /* Side-by-side flex sections wrap instead of squeezing. */
+  #ezv16 [style*='flex: 1 1 400px'],
+  #ezv16 [style*='flex: 1.2 1 520px'] {
+    flex-basis: 100% !important;
+    min-width: 0 !important;
+  }
+  /* Section paddings. */
+  #ezv16 [style*='padding: 112px 32px'] {
+    padding: 72px 20px !important;
+  }
+  #ezv16 [style*='padding: 128px 0px 96px'] {
+    padding: 80px 0 64px !important;
+  }
+
+  /* Headlines. */
+  #ezv16 h1 {
+    font-size: clamp(34px, 9vw, 52px) !important;
+    line-height: 1.08 !important;
+    max-width: 100% !important;
+  }
+  #ezv16 h2 {
+    font-size: clamp(28px, 7.4vw, 40px) !important;
+    line-height: 1.12 !important;
+  }
+  #ezv16 .v16-s2 .st .ttl {
+    font-size: clamp(26px, 6.8vw, 36px) !important;
+  }
+  #ezv16 .v16-s2 .st .txt {
+    font-size: 16px !important;
+  }
+
+  /* ---------- How Eazybe works (StoryFlow) ---------- */
+
+  /* Step tabs: one swipeable row instead of three wrapped rows. */
+  #ezv16 .snav > div {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    gap: 24px !important;
+    padding: 12px 20px 8px !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  #ezv16 .snav > div::-webkit-scrollbar {
+    display: none;
+  }
+  #ezv16 .snav > div > a {
+    flex: none;
+    white-space: nowrap;
+  }
+
+  /* Timeline rail moves to the left edge; content gets the width back. */
+  #ezv16 .v16-s2 .st .rail {
+    left: 19px !important;
+  }
+  #ezv16 .v16-s2 .st .dot {
+    left: 4px !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 14px !important;
+    top: 72px !important;
+  }
+  #ezv16 .v16-s2 [style*='padding: 136px 72px 150px 176px'] {
+    padding: 76px 20px 88px 48px !important;
+  }
+  /* CTA pairs inside each step wrap. */
+  #ezv16 .v16-s2 .cta {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 560px) {
+  /* Four-up rows -> single column on phones. */
+  #ezv16 :is([style*='grid-template-columns: repeat(4, 1fr)'], [style*='grid-template-columns: repeat(4, minmax(0px, 1fr))']) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  /* CRM picker: three columns of logos get cramped -> two. */
+  #ezv16 [role='tablist'][style*='repeat(3, minmax(0px, 1fr))'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}

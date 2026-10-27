@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useLocale } from 'next-intl'
+import { COUNTRY_CURRENCY } from '@/lib/countryCurrency'
 
 interface Plan {
   id: number
@@ -31,11 +32,15 @@ interface ExchangeRateResponse {
 }
 
 interface DynamicPricingState {
+  /** ISO 3166-1 alpha-2 country the prices are shown for (detected or picked). */
+  countryCode: string
   userCurrency: string
   exchangeRate: number
   multiplicationFactor: number
   multiplicationFactorPlus: number
   planList: Plan[]
+  /** Exchange rates kept so a country change can re-price without refetching. */
+  conversionRates: Record<string, number>
   loading: boolean
   error: Error | null
 }
@@ -189,15 +194,45 @@ const LOCALE_TO_CURRENCY: Record<string, string> = {
   br: 'BRL', // Portuguese (pt-BR)
   tr: 'TRY', // Turkish
 }
+const LOCALE_TO_COUNTRY: Record<string, string> = { br: 'BR', tr: 'TR' }
+
+// A country the visitor picked in the pricing page's country selector. Wins over
+// locale and IP detection, and persists across visits (no expiry).
+const PICKED_COUNTRY_KEY = 'eazybe:pricing:country:v1'
+const readPickedCountry = (): string | null => {
+  try {
+    const v = typeof window !== 'undefined' ? window.localStorage.getItem(PICKED_COUNTRY_KEY) : null
+    return v && COUNTRY_CURRENCY[v] ? v : null
+  } catch {
+    return null
+  }
+}
+const writePickedCountry = (code: string) => {
+  try {
+    window.localStorage.setItem(PICKED_COUNTRY_KEY, code)
+  } catch {
+    /* storage blocked — selection still applies for this visit */
+  }
+}
+
+const currencyFactors = async (currency: string) => {
+  const localizedData = await getLocalizedPlanAmount(currency)
+  return {
+    multiplicationFactor: localizedData?.status ? localizedData.message.multiplication_factor : 1,
+    multiplicationFactorPlus: localizedData?.status ? localizedData.message.multiplication_factor_plus : 1,
+  }
+}
 
 export function useDynamicPricing() {
   const locale = useLocale()
   const [state, setState] = useState<DynamicPricingState>({
+    countryCode: 'US',
     userCurrency: 'USD',
     exchangeRate: 1,
     multiplicationFactor: 1,
     multiplicationFactorPlus: 1,
     planList: [],
+    conversionRates: {},
     loading: true,
     error: null,
   })
@@ -218,26 +253,36 @@ export function useDynamicPricing() {
           getExchangeRateService(),
         ])
 
-        // Locale override wins over IP: a visitor on /br/ has actively
-        // chosen Portuguese and should see BRL regardless of where their
-        // IP resolves to.
+        // A country picked in the selector wins; then the locale override (a
+        // visitor on /br/ has actively chosen Portuguese and should see BRL
+        // regardless of where their IP resolves to); then IP detection.
+        const picked = readPickedCountry()
         const localeCurrency = LOCALE_TO_CURRENCY[locale]
-        const userCurrency = localeCurrency || userIpDetails?.currency || 'USD'
-        const exchangeRate = exchangeRateData?.conversion_rates?.[userCurrency.toUpperCase()] || 1
+        const userCurrency = picked
+          ? COUNTRY_CURRENCY[picked]
+          : localeCurrency || userIpDetails?.currency || 'USD'
+        const countryCode =
+          picked ||
+          (localeCurrency ? LOCALE_TO_COUNTRY[locale] : null) ||
+          (userIpDetails?.country_code && COUNTRY_CURRENCY[userIpDetails.country_code.toUpperCase()]
+            ? userIpDetails.country_code.toUpperCase()
+            : 'US')
+        const conversionRates = exchangeRateData?.conversion_rates || {}
+        const exchangeRate = conversionRates[userCurrency.toUpperCase()] || 1
 
         // Round 2: only the localized-currency call actually needs to know
         // the currency (it's in the URL). Runs alone but that's fine — one
         // extra ~500ms hop instead of three.
-        const localizedData = await getLocalizedPlanAmount(userCurrency)
-        const multiplicationFactor = localizedData?.status ? localizedData.message.multiplication_factor : 1
-        const multiplicationFactorPlus = localizedData?.status ? localizedData.message.multiplication_factor_plus : 1
+        const { multiplicationFactor, multiplicationFactorPlus } = await currencyFactors(userCurrency)
 
         setState({
+          countryCode,
           userCurrency,
           exchangeRate,
           multiplicationFactor,
           multiplicationFactorPlus,
           planList,
+          conversionRates,
           loading: false,
           error: null,
         })
@@ -318,6 +363,29 @@ export function useDynamicPricing() {
     }
   }
 
+  /** Show prices for another country (from the pricing page's country selector). */
+  const setCountry = async (code: string) => {
+    const countryCode = code.toUpperCase()
+    const userCurrency = COUNTRY_CURRENCY[countryCode]
+    if (!userCurrency) return
+    writePickedCountry(countryCode)
+    setState(prev => ({ ...prev, countryCode, loading: true }))
+    const { multiplicationFactor, multiplicationFactorPlus } = await currencyFactors(userCurrency)
+    setState(prev =>
+      // Ignore a stale response if the visitor picked again meanwhile.
+      prev.countryCode !== countryCode
+        ? prev
+        : {
+            ...prev,
+            userCurrency,
+            exchangeRate: prev.conversionRates[userCurrency] || 1,
+            multiplicationFactor,
+            multiplicationFactorPlus,
+            loading: false,
+          },
+    )
+  }
+
   const convertUsdAmount = (amount: number): number => {
     const factor = state.multiplicationFactor !== 1 ? state.multiplicationFactor : state.exchangeRate
     return Math.round(amount * factor)
@@ -327,5 +395,6 @@ export function useDynamicPricing() {
     ...state,
     getDynamicPrice,
     convertUsdAmount,
+    setCountry,
   }
 }

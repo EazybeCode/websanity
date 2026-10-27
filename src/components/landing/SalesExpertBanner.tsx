@@ -77,6 +77,7 @@ export function SalesExpertBanner() {
 
   return (
     <div
+      className="seb"
       role="region"
       aria-label="Talk to our sales expert"
       style={{
@@ -105,6 +106,7 @@ export function SalesExpertBanner() {
       >
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 12, flex: '1 1 auto', minWidth: 240 }}>
           <span
+            className="seb-icon"
             style={{
               flexShrink: 0,
               width: 34,
@@ -118,10 +120,11 @@ export function SalesExpertBanner() {
           >
             <Calendar size={18} />
           </span>
-          <span style={{ fontSize: 15, lineHeight: 1.45 }}>
+          <span className="seb-msg" style={{ fontSize: 15, lineHeight: 1.45 }}>
             {t.rich('message', {
               b: (chunks) => (
                 <strong
+                  className="seb-strong"
                   style={{
                     fontWeight: 700,
                     textDecoration: 'underline',
@@ -138,6 +141,7 @@ export function SalesExpertBanner() {
         </span>
 
         <span
+          className="seb-pill"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -154,6 +158,7 @@ export function SalesExpertBanner() {
           }}
         >
           <span
+            className="seb-dot"
             aria-hidden
             style={{
               width: 7,
@@ -168,6 +173,7 @@ export function SalesExpertBanner() {
         </span>
 
         <a
+          className="seb-cta"
           href={DEMO_URL}
           onClick={(e) => {
             e.preventDefault()
@@ -192,6 +198,7 @@ export function SalesExpertBanner() {
           {t('cta')}
         </a>
         <button
+          className="seb-close"
           type="button"
           aria-label="Dismiss"
           onClick={dismiss}

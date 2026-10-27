@@ -1,0 +1,727 @@
+/*
+ * Site pages restyled to the brand guidelines (v1.2 · Brand v3): the CRM integration
+ * pages (ProductPageClient) and the pricing page (PricingPageClient), each wrapped in
+ * .v16-brand. Design only: every section, text and Sanity field is unchanged.
+ *
+ * The templates are driven by the landing theme variables, so most of the restyle is a
+ * token swap scoped to .v16-brand (light sections) and its dark-tone sections. The
+ * rest fixes shapes (6/8/10/16px corners, 1px hairlines), type (Geist Bold headings,
+ * Geist Mono labels) and colour rules (ink headlines with one blue phrase, Eazybe Blue
+ * page CTAs). Nav / Footer / Bea / sales banner come from homepage-v16/brand-chrome.css,
+ * which matches this page's layout wrapper via :has(.v16-brand).
+ */
+
+/* ---------- Tokens ---------- */
+
+.landing .v16-brand {
+  --accent-a: #7c98ff;
+  --accent-b: #c9d5ff;
+  --accent-c: #e6ecfc;
+  --accent-ink: #2b59ff;
+
+  --bg: #ffffff;
+  --bg-2: #f4f4f5;
+  --paper: #ffffff;
+  --ink: #0b0b0c;
+  --ink-2: #26262b;
+  --ink-3: #5a5c64;
+  --ink-4: #8a8c93;
+  --line: #e6e6e3;
+  --line-2: #d6d6d2;
+  --ok: #2ec27e;
+  --warn: #ffd43b;
+  --err: #ff5b4d;
+
+  --f-display: 'Geist', 'Inter', sans-serif;
+  --f-sans: 'Geist', 'Inter', sans-serif;
+  --f-mono: 'Geist Mono', ui-monospace, monospace;
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 16px;
+}
+
+/* Dark sections: ink page, #111114 / #17171B surfaces, white 8% hairlines, glow accent. */
+.landing .v16-brand [data-tone='dark'] {
+  --bg: #0b0b0c;
+  --bg-2: #111114;
+  --paper: #17171b;
+  --ink: #ffffff;
+  --ink-2: #e6e6e8;
+  --ink-3: #b4b4bc;
+  --ink-4: #8a8c93;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.14);
+  --accent-ink: #7c98ff;
+  --accent-a: #7c98ff;
+  background-color: #0b0b0c;
+  /* the brand's faint dot grid behind dark sections */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* No film grain: the brand is crisp (dot grid on dark, flat white on light). */
+.landing:has(> main .v16-brand) > .grain {
+  display: none;
+}
+
+/* ---------- Nav: the homepage's full-width bar instead of the floating glass pill ---------- */
+
+.landing.landing:has(> main .v16-brand) .nav.nav.nav {
+  top: 0;
+  left: 0;
+  transform: none;
+  width: 100%;
+  max-width: none;
+  border-radius: 0;
+  border: 0;
+  padding: 16px max(24px, calc((100vw - 1440px) / 2));
+}
+.landing.landing:has(> main .v16-brand) .nav::before,
+.landing.landing:has(> main .v16-brand) .nav::after {
+  display: none;
+}
+
+/* ---------- Type ---------- */
+
+.landing .v16-brand h1,
+.landing .v16-brand h2,
+.landing .v16-brand h3 {
+  font-family: 'Geist', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.landing .v16-brand .page-hero h1 {
+  font-size: clamp(40px, 4.6vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+.landing .v16-brand .sec-head h2 {
+  font-weight: 700;
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+/* One colour phrase per headline: blue shimmer on light, glow shimmer on dark. */
+.landing .v16-brand .sec-head h2 em,
+.landing .v16-brand .agent-copy h3 em,
+.landing .v16-brand .page-hero h1 em,
+.landing .v16-brand .page-hero h1 > span,
+.landing .v16-brand .final-cta h2 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #2b59ff 0%, #2b59ff 38%, #9fb4ff 50%, #2b59ff 62%, #2b59ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  animation: v16-brand-shim 3.5s linear infinite;
+}
+.landing .v16-brand [data-tone='dark'] .sec-head h2 em,
+.landing .v16-brand [data-tone='dark'] .agent-copy h3 em,
+.landing .v16-brand .page-hero h1 em,
+.landing .v16-brand .page-hero h1 > span,
+.landing .v16-brand .final-cta h2 em {
+  background-image: linear-gradient(90deg, #7c98ff 0%, #7c98ff 38%, #ffffff 50%, #7c98ff 62%, #7c98ff 100%);
+  filter: drop-shadow(0 0 18px rgba(43, 89, 255, 0.45));
+}
+@keyframes v16-brand-shim {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing .v16-brand .sec-head h2 em,
+  .landing .v16-brand .agent-copy h3 em,
+  .landing .v16-brand .page-hero h1 em,
+  .landing .v16-brand .page-hero h1 > span,
+  .landing .v16-brand .final-cta h2 em { animation: none; }
+}
+
+/* Section labels: Eazybe Blue, sentence-weight, no dash rule (brand eyebrow). */
+.landing .v16-brand .sec-tag {
+  font-family: 'Geist', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--accent-ink);
+}
+.landing .v16-brand .sec-tag::before {
+  display: none;
+}
+/* Hero chip: mono "live data" chip, 6px corners, hairline. */
+.landing .v16-brand .hero-tag {
+  border-radius: 6px;
+  border-color: var(--line-2);
+  background: var(--bg-2);
+  color: var(--ink-3);
+}
+
+/* ---------- Buttons: page CTA in Eazybe Blue, secondary as hairline outline; 8px ---------- */
+
+.landing .v16-brand .btn {
+  border-radius: 8px;
+  font-weight: 600;
+}
+.landing .v16-brand .btn-primary,
+.landing .v16-brand .final-cta .ctas a:first-child {
+  background: #2b59ff !important;
+  color: #ffffff !important;
+  border: 1px solid #2b59ff !important;
+  border-radius: 8px !important;
+}
+.landing .v16-brand .btn-primary:hover,
+.landing .v16-brand .final-cta .ctas a:first-child:hover {
+  background: #2149e0 !important;
+  border-color: #2149e0 !important;
+}
+.landing .v16-brand .btn-outline,
+.landing .v16-brand .final-cta .ctas a:not(:first-child) {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line-2) !important;
+  border-radius: 8px !important;
+}
+.landing .v16-brand .btn-outline:hover,
+.landing .v16-brand .final-cta .ctas a:not(:first-child):hover {
+  border-color: var(--ink-3) !important;
+}
+.landing .v16-brand [data-tone='dark'] .btn-outline,
+.landing .v16-brand .final-cta .ctas a:not(:first-child) {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.landing .v16-brand .feat-list .tick {
+  background: #2ec27e;
+}
+
+/* ---------- Boxes: 10/16px corners, 1px hairlines, corner-lit edge on light ---------- */
+
+.landing .v16-brand .card,
+.landing .v16-brand .team-card,
+.landing .v16-brand .setup-step {
+  border-radius: 16px !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: none !important;
+}
+.landing .v16-brand section:not([data-tone='dark']) .card,
+.landing .v16-brand section:not([data-tone='dark']) .team-card {
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(140deg, rgba(43, 89, 255, 0.7), #e6e6e3 30%, #e6e6e3 70%, rgba(43, 89, 255, 0.35)) border-box !important;
+  box-shadow: 0 14px 34px rgba(43, 89, 255, 0.08) !important;
+}
+.landing .v16-brand [data-tone='dark'] .card,
+.landing .v16-brand [data-tone='dark'] .setup-step {
+  background: #111114 !important;
+}
+
+/* ---------- FAQ: hairline rows with 10px corners instead of bubbly pills ---------- */
+
+.landing .v16-brand .faq-pill {
+  border-radius: 10px !important;
+  border-color: var(--line) !important;
+  box-shadow: none !important;
+}
+.landing .v16-brand .faq-pill.open,
+.landing .v16-brand details.faq-pill[open] {
+  border-radius: 10px !important;
+  border-color: rgba(43, 89, 255, 0.45) !important;
+}
+.landing .v16-brand .faq-pill-chev {
+  border-radius: 6px;
+}
+.landing .v16-brand .faq-pill.open .faq-pill-chev,
+.landing .v16-brand details.faq-pill[open] .faq-pill-chev {
+  background: #2b59ff;
+}
+
+/* ---------- Hero backdrop: dot grid + one soft blue light above the headline ---------- */
+
+/* Replaces the animated three-colour mesh haze. */
+.landing .v16-brand .page-hero::after {
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 30% -10%, rgba(43, 89, 255, 0.38), rgba(43, 89, 255, 0) 70%);
+  filter: none;
+  animation: none;
+  mix-blend-mode: normal;
+}
+/* The mockup's CRM-coloured haze becomes a faint blue glow (no coloured panels behind product). */
+.landing .v16-brand .page-hero div[style*='blur(40px)'] {
+  background: radial-gradient(circle at 70% 30%, rgba(43, 89, 255, 0.14), transparent 60%) !important;
+}
+
+/* ---------- Pricing: business numbers add-on ---------- */
+
+.landing .v16-brand .v16-numbers {
+  border-top: 1px solid var(--line);
+}
+.landing .v16-numbers-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 72px;
+  align-items: center;
+}
+.landing .v16-numbers-copy h2 {
+  margin: 0 0 16px;
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+.landing .v16-numbers-copy h2 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #2b59ff 0%, #2b59ff 38%, #9fb4ff 50%, #2b59ff 62%, #2b59ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: v16-brand-shim 3.5s linear infinite;
+}
+.landing .v16-numbers-sub {
+  margin: 0 0 28px;
+  max-width: 520px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.landing .v16-numbers-points {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+}
+.landing .v16-numbers-points li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 18px 18px 0;
+}
+.landing .v16-numbers-points li + li {
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+.landing .v16-numbers-points strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.landing .v16-numbers-points span {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+.landing .v16-numbers-facts {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.landing .v16-numbers-facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.landing .v16-numbers-tick {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #2ec27e;
+  color: #fff;
+}
+.landing .v16-numbers-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Dark product box with a corner-lit blue edge, on the white section. */
+.landing .v16-numbers-visual {
+  position: relative;
+  padding: 40px;
+  border-radius: 16px;
+  background: #0b0b0c radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.landing .v16-numbers-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(140deg, rgba(43, 89, 255, 0.9), rgba(255, 255, 255, 0.06) 35%, rgba(255, 255, 255, 0.06) 65%, rgba(43, 89, 255, 0.45));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.landing .v16-numbers-visual::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -40px;
+  width: 70%;
+  height: 160px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(43, 89, 255, 0.35), transparent);
+  pointer-events: none;
+}
+.landing .v16-numbers-card {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  border-radius: 12px;
+  background: #111114;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.landing .v16-numbers-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.landing .v16-numbers-flag {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(43, 89, 255, 0.16);
+  border: 1px solid rgba(124, 152, 255, 0.3);
+  color: #7c98ff;
+  font: 600 12px 'Geist Mono', monospace;
+}
+.landing .v16-numbers-card-label {
+  font: 500 10.5px 'Geist Mono', monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8c93;
+}
+.landing .v16-numbers-num {
+  margin-top: 4px;
+  font: 600 22px 'Geist Mono', monospace;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.landing .v16-numbers-loc {
+  margin-top: 2px;
+  font-size: 13px;
+  color: #b4b4bc;
+}
+.landing .v16-numbers-verified {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(46, 194, 126, 0.12);
+  border: 1px solid rgba(46, 194, 126, 0.3);
+  color: #2ec27e;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.landing .v16-numbers-used {
+  margin: 16px 0 10px;
+  font: 500 10.5px 'Geist Mono', monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8c93;
+}
+.landing .v16-numbers-channels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.landing .v16-numbers-channels li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #17171b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 14px;
+  font-weight: 500;
+  animation: v16-num-in 0.5s ease both;
+}
+.landing .v16-numbers-ch-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(43, 89, 255, 0.14);
+  color: #7c98ff;
+}
+/* "Live" indicator: the number is active on this channel. */
+.landing .v16-numbers-on {
+  margin-left: auto;
+  width: 34px;
+  height: 20px;
+  border-radius: 999px;
+  background: #2ec27e;
+  box-shadow: 0 0 12px rgba(46, 194, 126, 0.45);
+  position: relative;
+}
+.landing .v16-numbers-on::after {
+  content: '';
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+}
+@keyframes v16-num-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing .v16-numbers-channels li,
+  .landing .v16-numbers-copy h2 em { animation: none; }
+}
+@media (max-width: 900px) {
+  .landing .v16-numbers-grid { grid-template-columns: 1fr; gap: 40px; }
+  .landing .v16-numbers-visual { padding: 20px; }
+}
+@media (max-width: 560px) {
+  .landing .v16-numbers-points { grid-template-columns: 1fr; }
+  .landing .v16-numbers-points li,
+  .landing .v16-numbers-points li + li { padding: 14px 0; border-left: 0; border-top: 1px solid var(--line); }
+  .landing .v16-numbers-points li:first-child { border-top: 0; }
+  .landing .v16-numbers-num { font-size: 18px; }
+  .landing .v16-numbers-card-head { flex-wrap: wrap; }
+  .landing .v16-numbers-verified { margin-left: 54px; }
+}
+
+/* ---------- Pricing: plan cards + billing toggle ---------- */
+/* Inline styles are matched in both serialisations: SSR writes 'prop:value', client
+   updates write 'prop: value'. */
+
+/* Prices: Geist Bold, tight tracking (not the thin display cut). */
+.landing .v16-pricing .pricing-plan-grid [style*='font-size: 56px'],
+.landing .v16-pricing .pricing-plan-grid [style*='font-size:56px'],
+.landing .v16-pricing .pricing-plan-grid [style*='font-size: 44px'],
+.landing .v16-pricing .pricing-plan-grid [style*='font-size:44px'],
+.landing .v16-pricing .pricing-plan-grid [style*='font-size: 34px'],
+.landing .v16-pricing .pricing-plan-grid [style*='font-size:34px']{
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+}
+/* Chips and badges: 6px corners; buttons inside cards: 8px (never bubbly). */
+.landing .v16-pricing .pricing-plan-grid span[style*='border-radius: 999px'],
+.landing .v16-pricing .pricing-plan-grid span[style*='border-radius:999px']{
+  border-radius: 6px !important;
+}
+.landing .v16-pricing .pricing-plan-grid button[style*='border-radius: 999px'],
+.landing .v16-pricing .pricing-plan-grid button[style*='border-radius:999px'],
+.landing .v16-pricing .pricing-plan-grid button[style*='border-radius: 100px'],
+.landing .v16-pricing .pricing-plan-grid button[style*='border-radius:100px'],
+.landing .v16-pricing .pricing-plan-grid a[style*='border-radius: 100px'],
+.landing .v16-pricing .pricing-plan-grid a[style*='border-radius:100px']{
+  border-radius: 8px !important;
+}
+/* Monthly / Annual toggle: segmented control with 10px / 8px corners. */
+.landing .v16-pricing .page-hero div[style*='border-radius: 100px'],
+.landing .v16-pricing .page-hero div[style*='border-radius:100px']{
+  border-radius: 10px !important;
+}
+.landing .v16-pricing .page-hero button[style*='border-radius: 100px'],
+.landing .v16-pricing .page-hero button[style*='border-radius:100px'],
+.landing .v16-pricing .page-hero span[style*='border-radius: 100px'],
+.landing .v16-pricing .page-hero span[style*='border-radius:100px']{
+  border-radius: 8px !important;
+}
+
+/* ======================================================================
+ * Site-wide (every page under the (site) layout and LandingShell)
+ * ====================================================================== */
+
+/* Headings: Geist Bold, tight tracking, on every template (several pages set their
+   own thin display cut). */
+.landing .v16-brand h1,
+.landing .v16-brand h2 {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.035em !important;
+}
+
+/* Legacy purple (#5B4BAE / #6C5CC1) and lavender (#A78BFA) written as inline styles
+   become Eazybe Blue / Blue glow. Inline styles appear as 'prop:value' (SSR) or
+   'prop: value' / rgb() (client updates), so each form is matched. */
+.landing .v16-brand :is(
+  [style*='background:#5b4bae' i], [style*='background: #5b4bae' i],
+  [style*='background:#6c5cc1' i], [style*='background: #6c5cc1' i],
+  [style*='background: rgb(91, 75, 174)'], [style*='background-color: rgb(91, 75, 174)'],
+  [style*='background-color:#5b4bae' i], [style*='background-color: #5b4bae' i]
+) {
+  background: #2b59ff !important;
+  border-color: #2b59ff !important;
+}
+.landing .v16-brand :is(
+  [style^='color:#5b4bae' i], [style*=';color:#5b4bae' i], [style^='color: #5b4bae' i], [style*='; color: #5b4bae' i],
+  [style^='color: rgb(91, 75, 174)'], [style*='; color: rgb(91, 75, 174)']
+) {
+  color: #2b59ff !important;
+}
+.landing .v16-brand :is(
+  [style^='color:#a78bfa' i], [style*=';color:#a78bfa' i], [style^='color: #a78bfa' i], [style*='; color: #a78bfa' i],
+  [style^='color: rgb(167, 139, 250)'], [style*='; color: rgb(167, 139, 250)']
+) {
+  color: #7c98ff !important;
+}
+/* Purple-tinted chips (rgba(91,75,174,x)) -> blue tint with a glow hairline. */
+.landing .v16-brand :is([style*='background:rgba(91, 75, 174' i], [style*='background: rgba(91, 75, 174' i]) {
+  background: rgba(43, 89, 255, 0.14) !important;
+  border-color: rgba(124, 152, 255, 0.3) !important;
+}
+/* Purple gradients (bars, glows) -> blue. */
+.landing .v16-brand [style*='linear-gradient' i]:is([style*='#5b4bae' i], [style*='#a78bfa' i], [style*='#6c5cc1' i]) {
+  background: linear-gradient(90deg, #7c98ff 0%, #2b59ff 100%) !important;
+}
+
+/* WhatsApp-green words inside headlines -> the brand's one blue shimmer phrase.
+   (Green stays on real WhatsApp UI: buttons, bubbles, icons.) */
+.landing .v16-brand :is(h1, h2) > span:is([style*='#25d366' i], [style*='rgb(37, 211, 102)']) {
+  background: linear-gradient(90deg, #2b59ff 0%, #2b59ff 38%, #9fb4ff 50%, #2b59ff 62%, #2b59ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  animation: v16-brand-shim 3.5s linear infinite;
+}
+.landing .v16-brand [data-tone='dark'] :is(h1, h2) > span:is([style*='#25d366' i], [style*='rgb(37, 211, 102)']) {
+  background-image: linear-gradient(90deg, #7c98ff 0%, #7c98ff 38%, #ffffff 50%, #7c98ff 62%, #7c98ff 100%);
+}
+
+/* Shared-stylesheet purple (ghost hover, drawer CTA, mobile tabs, lead sidebar). */
+.landing .v16-brand .btn-ghost:hover {
+  background: #2b59ff;
+}
+.landing:has(.v16-brand) .mob-tab.active,
+.landing:has(.v16-brand) .mob-tab.active .mob-tab-icon {
+  color: #2b59ff;
+}
+.landing:has(.v16-brand) .lead-sidebar-panel .bg-brand-blue,
+.landing:has(.v16-brand) .lead-sidebar-panel .bg-saas-gradient {
+  background-color: #2b59ff !important;
+}
+
+/* Lavender headline phrases on dark heroes -> the dark-section glow shimmer. */
+.landing .v16-brand :is(h1, h2) > span:is([style*='#a78bfa' i], [style*='rgb(167, 139, 250)']) {
+  background: linear-gradient(90deg, #7c98ff 0%, #7c98ff 38%, #ffffff 50%, #7c98ff 62%, #7c98ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  filter: drop-shadow(0 0 18px rgba(43, 89, 255, 0.45));
+  animation: v16-brand-shim 3.5s linear infinite;
+}
+
+/* Page-level violet "Book a demo" buttons (case studies, ROI + pricing calculators):
+   secondary CTA = hairline outline next to the blue primary. */
+.landing .v16-brand :is(.cs-cta-demo, .roi-cta-demo, .wpc-cta-demo, .lka-cta-demo) {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line-2) !important;
+  border-radius: 8px !important;
+}
+.landing .v16-brand :is(.cs-cta-demo, .roi-cta-demo, .wpc-cta-demo, .lka-cta-demo):hover {
+  border-color: var(--ink-3) !important;
+}
+.landing .v16-brand :is(.cs-cta-demo, .roi-cta-demo, .wpc-cta-demo, .lka-cta-demo):focus-visible {
+  outline-color: #2b59ff !important;
+}
+
+/* Inline purple borders (selected options, mockup outlines) -> Eazybe Blue. */
+.landing .v16-brand [style*='border' i]:is([style*='#5b4bae' i], [style*='#6c5cc1' i], [style*='rgb(91, 75, 174)'], [style*='rgb(108, 92, 193)']) {
+  border-color: #2b59ff !important;
+}
+.landing .v16-brand [style*='border' i]:is([style*='rgba(91, 75, 174' i], [style*='rgba(91,75,174' i]) {
+  border-color: rgba(43, 89, 255, 0.35) !important;
+}
+
+/* ---------- Pricing: country selector (hero) ---------- */
+
+.landing .v16-country {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #b4b4bc;
+}
+.landing .v16-country-field {
+  position: relative;
+  display: inline-flex;
+}
+.landing .v16-country select {
+  appearance: none;
+  -webkit-appearance: none;
+  min-width: 240px;
+  max-width: min(340px, 86vw);
+  padding: 9px 36px 9px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #111114;
+  color: #ffffff;
+  font: 500 14px 'Geist', sans-serif;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  transition: border-color 0.2s ease;
+}
+.landing .v16-country select:hover {
+  border-color: rgba(124, 152, 255, 0.5);
+}
+.landing .v16-country select:focus-visible {
+  outline: 2px solid #7c98ff;
+  outline-offset: 2px;
+}
+.landing .v16-country select:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.landing .v16-country select option {
+  background: #111114;
+  color: #ffffff;
+}
+.landing .v16-country-caret {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin-top: -2px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #b4b4bc;
+  pointer-events: none;
+}
+
+/* Long localized prices (e.g. INR 1960): let the unit ("/number/month") wrap to
+   the next line instead of spilling out of the card. */
+.landing .v16-pricing .pricing-plan-grid div:has(> span:is([style*='font-size: 56px'], [style*='font-size:56px'])) {
+  flex-wrap: wrap !important;
+  row-gap: 2px;
+}
