@@ -660,7 +660,7 @@
   border-color: rgba(43, 89, 255, 0.35) !important;
 }
 
-/* ---------- Pricing: country selector (hero) ---------- */
+/* ---------- Pricing: country selector (hero) — searchable combobox ---------- */
 
 .landing .v16-country {
   display: inline-flex;
@@ -674,49 +674,153 @@
 }
 .landing .v16-country-field {
   position: relative;
-  display: inline-flex;
 }
-.landing .v16-country select {
-  appearance: none;
-  -webkit-appearance: none;
-  min-width: 240px;
+.landing .v16-country-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 250px;
   max-width: min(340px, 86vw);
-  padding: 9px 36px 9px 12px;
+  padding: 9px 14px 9px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: #111114;
-  color: #ffffff;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#111114, #111114) padding-box,
+    linear-gradient(140deg, rgba(43, 89, 255, 0.75), rgba(255, 255, 255, 0.08) 35%, rgba(255, 255, 255, 0.08) 65%, rgba(43, 89, 255, 0.35)) border-box;
+  color: #fff;
   font: 500 14px 'Geist', sans-serif;
   cursor: pointer;
-  text-overflow: ellipsis;
-  transition: border-color 0.2s ease;
+  transition: box-shadow 0.2s ease;
 }
-.landing .v16-country select:hover {
-  border-color: rgba(124, 152, 255, 0.5);
+.landing .v16-country-trigger:hover,
+.landing .v16-country-trigger[aria-expanded='true'] {
+  box-shadow: 0 0 0 3px rgba(43, 89, 255, 0.18), 0 10px 30px rgba(43, 89, 255, 0.18);
 }
-.landing .v16-country select:focus-visible {
+.landing .v16-country-trigger:focus-visible {
   outline: 2px solid #7c98ff;
   outline-offset: 2px;
 }
-.landing .v16-country select:disabled {
+.landing .v16-country-trigger:disabled {
   opacity: 0.6;
   cursor: progress;
 }
-.landing .v16-country select option {
-  background: #111114;
-  color: #ffffff;
+.landing .v16-country-flag {
+  flex: none;
+  font-size: 16px;
+  line-height: 1;
+}
+.landing .v16-country-value,
+.landing .v16-country-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+.landing .v16-country-cur {
+  flex: none;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(43, 89, 255, 0.16);
+  color: #7c98ff;
+  font: 500 11px 'Geist Mono', monospace;
+  letter-spacing: 0.02em;
 }
 .landing .v16-country-caret {
-  position: absolute;
-  right: 14px;
-  top: 50%;
+  flex: none;
   width: 0;
   height: 0;
-  margin-top: -2px;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 5px solid #b4b4bc;
-  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+.landing .v16-country-trigger[aria-expanded='true'] .v16-country-caret {
+  transform: rotate(180deg);
+}
+
+.landing .v16-country-panel {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(340px, 90vw);
+  padding: 8px;
+  border-radius: 12px;
+  background: #111114;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.8), 0 18px 50px rgba(43, 89, 255, 0.12);
+  text-align: left;
+  animation: v16-country-in 0.16s ease;
+}
+@keyframes v16-country-in {
+  from { opacity: 0; transform: translate(-50%, -4px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+.landing .v16-country-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  background: #17171b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #8a8c93;
+}
+.landing .v16-country-search:focus-within {
+  border-color: rgba(124, 152, 255, 0.55);
+}
+.landing .v16-country-search input {
+  flex: 1;
+  min-width: 0;
+  height: 38px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font: 400 14px 'Geist', sans-serif;
+}
+.landing .v16-country-search input::placeholder {
+  color: #8a8c93;
+}
+.landing .v16-country-list {
+  position: relative; /* options' offsetTop is measured from the list */
+  max-height: 280px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+}
+.landing .v16-country-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  color: #e6e6e8;
+  font-size: 14px;
+  cursor: pointer;
+}
+.landing .v16-country-opt.is-active {
+  background: #17171b;
+  color: #fff;
+}
+.landing .v16-country-opt.is-selected {
+  color: #fff;
+  box-shadow: inset 2px 0 0 #2b59ff;
+}
+.landing .v16-country-empty {
+  padding: 14px 10px;
+  color: #8a8c93;
+  font-size: 13px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing .v16-country-panel { animation: none; }
 }
 
 /* Long localized prices (e.g. INR 1960): let the unit ("/number/month") wrap to
@@ -724,4 +828,13 @@
 .landing .v16-pricing .pricing-plan-grid div:has(> span:is([style*='font-size: 56px'], [style*='font-size:56px'])) {
   flex-wrap: wrap !important;
   row-gap: 2px;
+}
+
+/* Pricing hero hosts the country picker panel, which opens below the hero:
+   don't clip it, and keep the hero above the plans section (same z-index 2
+   otherwise, and later siblings paint on top). The hero glow (::after) is
+   inset:0 here, so nothing else spills out. */
+.landing .v16-pricing .page-hero {
+  overflow: visible;
+  z-index: 3;
 }

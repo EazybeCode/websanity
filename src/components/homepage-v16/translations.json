@@ -136,7 +136,6 @@
   "Pick your contacts from WhatsApp Web, Google Sheets, your CRM or our public API, write one message and send it to all of them in one tap. Every customer gets it on WhatsApp, with their own name in it.": "Escolha seus contatos no WhatsApp Web, no Google Sheets, no seu CRM ou na nossa API pública, escreva uma mensagem e envie para todos com um toque. Cada cliente recebe no WhatsApp, com o próprio nome.",
   "From WhatsApp Web": "Pelo WhatsApp Web",
   "Pick a label like Hot leads and send to every chat in it.": "Escolha uma etiqueta como Leads quentes e envie para todas as conversas dela.",
-  "From Google Sheets": "Pelo Google Sheets",
   "Upload a sheet. Each message is filled in with the right name.": "Suba uma planilha. Cada mensagem sai com o nome certo.",
   "From your CRM": "Pelo seu CRM",
   "Send to any HubSpot, Salesforce or Zoho list.": "Envie para qualquer lista do HubSpot, Salesforce ou Zoho.",
@@ -344,7 +343,8 @@
   "Pick your CRM": "Escolha seu CRM",
   "Privacy settings mockup (try it)": "Simulação das configurações de privacidade (experimente)",
   "Access level": "Nível de acesso",
-  "Compliance": "Conformidade"
+  "Compliance": "Conformidade",
+  "Upload a list": "Envie uma lista"
  },
  "es": {
   "Personal WhatsApp": "WhatsApp personal",
@@ -483,7 +483,6 @@
   "Pick your contacts from WhatsApp Web, Google Sheets, your CRM or our public API, write one message and send it to all of them in one tap. Every customer gets it on WhatsApp, with their own name in it.": "Elige tus contactos desde WhatsApp Web, Google Sheets, tu CRM o nuestra API pública, escribe un mensaje y envíalo a todos con un toque. Cada cliente lo recibe en WhatsApp, con su propio nombre.",
   "From WhatsApp Web": "Desde WhatsApp Web",
   "Pick a label like Hot leads and send to every chat in it.": "Elige una etiqueta como Leads calientes y envía a todos sus chats.",
-  "From Google Sheets": "Desde Google Sheets",
   "Upload a sheet. Each message is filled in with the right name.": "Sube una hoja. Cada mensaje se completa con el nombre correcto.",
   "From your CRM": "Desde tu CRM",
   "Send to any HubSpot, Salesforce or Zoho list.": "Envía a cualquier lista de HubSpot, Salesforce o Zoho.",
@@ -691,7 +690,8 @@
   "Pick your CRM": "Elige tu CRM",
   "Privacy settings mockup (try it)": "Maqueta de ajustes de privacidad (pruébala)",
   "Access level": "Nivel de acceso",
-  "Compliance": "Cumplimiento"
+  "Compliance": "Cumplimiento",
+  "Upload a list": "Sube una lista"
  },
  "tr": {
   "Personal WhatsApp": "Kişisel WhatsApp",
@@ -830,7 +830,6 @@
   "Pick your contacts from WhatsApp Web, Google Sheets, your CRM or our public API, write one message and send it to all of them in one tap. Every customer gets it on WhatsApp, with their own name in it.": "Kişilerinizi WhatsApp Web, Google Sheets, CRM'iniz veya açık API'miz üzerinden seçin, tek bir mesaj yazın ve tek dokunuşla hepsine gönderin. Her müşteri mesajı WhatsApp'ta, kendi adıyla alır.",
   "From WhatsApp Web": "WhatsApp Web'den",
   "Pick a label like Hot leads and send to every chat in it.": "Sıcak potansiyel müşteriler gibi bir etiket seçin ve içindeki her sohbete gönderin.",
-  "From Google Sheets": "Google Sheets'ten",
   "Upload a sheet. Each message is filled in with the right name.": "Bir tablo yükleyin. Her mesaj doğru adla doldurulur.",
   "From your CRM": "CRM'inizden",
   "Send to any HubSpot, Salesforce or Zoho list.": "Herhangi bir HubSpot, Salesforce veya Zoho listesine gönderin.",
@@ -1038,6 +1037,7 @@
   "Pick your CRM": "CRM'inizi seçin",
   "Privacy settings mockup (try it)": "Gizlilik ayarları örneği (deneyin)",
   "Access level": "Erişim düzeyi",
-  "Compliance": "Uyumluluk"
+  "Compliance": "Uyumluluk",
+  "Upload a list": "Liste yükleyin"
  }
 }

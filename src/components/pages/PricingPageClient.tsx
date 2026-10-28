@@ -790,6 +790,7 @@ function PricingCard({
     : undefined
   const isPopular = plan.planKey === 'basic-ai'
   const isEnterprise = plan.enterprise
+  const isCustomAi = plan.planKey === 'pro-ai'
   const showPrice = !isEnterprise && price > 0
   // AI plans (Basic AI / Pro AI) are now per-seat pricing, same unit as Starter/Scaler.
   const isAiPlan = plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
@@ -925,14 +926,14 @@ function PricingCard({
         type="button"
         onClick={onTalkToAgent}
         className={`btn ${isPopular ? 'btn-primary' : 'btn-outline'}`}
-        style={{ width: '100%', justifyContent: 'center', display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 10 }}
+        style={{ width: '100%', justifyContent: 'center', display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: isCustomAi ? 10 : 24 }}
       >
         <WhatsAppGlyph size={16} />
         Talk to our AI Agent
       </button>
-      {/* Secondary Book-a-Demo CTA — opens the global DemoModal via the
-          TrialModalProvider so a visitor on this card goes straight to
-          picking a time with sales. */}
+      {/* Secondary Book-a-Demo CTA — Custom AI only (it's sold through a
+          demo); opens the global DemoModal via the TrialModalProvider. */}
+      {isCustomAi && (
       <button
         type="button"
         onClick={onBookDemo}
@@ -953,6 +954,7 @@ function PricingCard({
         <Calendar size={15} />
         {featureLabels['Book a Demo'] || 'Book a Demo'}
       </button>
+      )}
 
       <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px', display: 'flex', flexDirection: 'column', gap: 9, flex: 1 }}>
         {plan.features.map((feature, i) => (
@@ -998,6 +1000,73 @@ function PricingCard({
           </li>
         ))}
       </ul>
+
+      {/* Voice Number ADD-ON — one number bought from Eazybe works on all
+          channels. Optional paid add-on on every plan (price varies by country,
+          so "+ Add number" opens the demo/quote modal). */}
+      <div style={{ marginBottom: 14 }}>
+        <div
+          style={{
+            fontSize: 10,
+            fontWeight: 700,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'var(--ink-4)',
+            marginBottom: 6,
+          }}
+        >
+          Optional add-on
+        </div>
+        <div
+          style={{
+            padding: 12,
+            borderRadius: 12,
+            background: 'var(--paper)',
+            border: '1.5px dashed var(--line-2)',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span
+              aria-hidden="true"
+              style={{
+                width: 16,
+                height: 16,
+                borderRadius: 4,
+                flexShrink: 0,
+                background: 'var(--paper)',
+                border: '1.5px solid var(--line-2)',
+              }}
+            />
+            <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: 'var(--ink)', whiteSpace: 'nowrap' }}>
+              Voice Number
+            </span>
+          </div>
+          <div style={{ fontSize: 11.5, color: 'var(--ink-3)', marginTop: 4 }}>
+            One number for all channels
+          </div>
+          <button
+            type="button"
+            onClick={onBookDemo}
+            style={{
+              marginTop: 10,
+              width: '100%',
+              fontSize: 12,
+              fontWeight: 600,
+              color: 'var(--accent-ink)',
+              background: 'color-mix(in oklab, var(--accent-a) 10%, var(--paper))',
+              border: '1px solid color-mix(in oklab, var(--accent-ink) 28%, var(--line))',
+              padding: '6px 10px',
+              borderRadius: 999,
+              cursor: 'pointer',
+            }}
+          >
+            + Add number
+          </button>
+          <div style={{ marginTop: 6, fontSize: 10.5, color: 'var(--ink-4)', textAlign: 'center' }}>
+            Price varies by country
+          </div>
+        </div>
+      </div>
 
       {isAiPlan && (
         <div
