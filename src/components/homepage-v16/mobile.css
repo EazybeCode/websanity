@@ -440,3 +440,48 @@
     line-height: 1.15 !important;
   }
 }
+
+/* Hero "Works with HubSpot, Salesforce, Zoho and more" badge: at 13px it needs
+   ~334px (Turkish ~354px), but the hero kept 32px side padding, so it broke onto
+   two lines under the icon on every phone. Tighter hero padding + a smaller,
+   single-line badge in every locale down to 320px. */
+@media (max-width: 600px) {
+  #ezv16 section[style*='padding: 88px 32px 96px'] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  #ezv16 section[style*='padding: 88px 32px 96px'] > div:has(> img[src*='6a67410485ac']) {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+    gap: 6px !important;
+    white-space: nowrap;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  #ezv16 section[style*='padding: 88px 32px 96px'] > div:has(> img[src*='6a67410485ac']) > img {
+    flex: 0 0 auto;
+  }
+}
+@media (max-width: 380px) {
+  #ezv16 section[style*='padding: 88px 32px 96px'] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  /* still one line: text scales with the screen (10.4px at 320px, 12px at ~370px) */
+  #ezv16 section[style*='padding: 88px 32px 96px'] > div:has(> img[src*='6a67410485ac']) {
+    font-size: clamp(10px, 3.25vw, 12px) !important;
+    padding: 6px 8px !important;
+  }
+}
+
+/* Customer logo marquee on phones: logos a little smaller (80%), tiles shrunk to
+   match so spacing stays even. The scroll is percentage-based, so it still loops. */
+@media (max-width: 600px) {
+  #ezv16 :is(.pmq, .pmq2) [style*='width: 236px; height: 72px'] {
+    width: 180px !important;
+    height: 56px !important;
+  }
+  #ezv16 :is(.pmq, .pmq2) [style*='width: 236px; height: 72px'] img {
+    transform: scale(0.8);
+  }
+}
