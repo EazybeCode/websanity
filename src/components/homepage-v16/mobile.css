@@ -429,3 +429,14 @@
     box-sizing: border-box;
   }
 }
+
+/* Phones: every h3 section title (step titles + the Conversation management row
+   headings, which stayed at their 36px desktop size) at one size: 26px. FAQ
+   questions (also h3) keep their own size. */
+@media (max-width: 600px) {
+  #ezv16 h3:not(.fq-q),
+  #ezv16 .v16-s2 .st h3.ttl {
+    font-size: 26px !important;
+    line-height: 1.15 !important;
+  }
+}

@@ -65,5 +65,11 @@ export function getV16Content(locale: string): { markup: string; labels: V16Labe
       if (value) $(element).attr(attribute, translate(value))
     }
   })
+  // Internal page links (e.g. "Explore outreach" -> /whatsapp-api/broadcast) go to
+  // the same locale's page; in-page anchors and external URLs are left alone.
+  $('a[href^="/"]').each((_, element) => {
+    const href = $(element).attr('href')!
+    if (!href.startsWith('//') && !href.startsWith(`/${locale}/`)) $(element).attr('href', `/${locale}${href}`)
+  })
   return { markup: $.html(), labels }
 }
