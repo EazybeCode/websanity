@@ -6,6 +6,82 @@
  * them. Wide product mockups are additionally zoomed to fit by initialize-v16.ts.
  */
 
+/* Conversation management: the chat -> CRM card mockup is ~670px wide next to a
+   380px text column, which only fits from ~1360px. Below that, stack the row with
+   the copy first so the mockup never runs under the heading. */
+@media (max-width: 1360px) {
+  #ezv16 #cm :is(
+    [style*='grid-template-columns: minmax(0px, 1fr) 380px'],
+    [style*='grid-template-columns: 380px minmax(0px, 1fr)']
+  ) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px !important;
+  }
+  #ezv16 #cm [style*='grid-template-columns: minmax(0px, 1fr) 380px'] > :last-child {
+    order: -1;
+  }
+  /* Stacked, the connector would stretch edge to edge; keep the pair compact. */
+  #ezv16 #cm [style*='display: flex; align-items: center; gap: 0px; min-width: 0px; width: 100%'] {
+    max-width: 720px;
+  }
+}
+
+/* Sales intelligence panels on phones: the 44px/48px desktop padding left the CRM
+   card ~180px wide, and its value slots (fixed 120px, values absolutely placed)
+   spilled past the card edge. Tighten the panels and let the slots flex. */
+@media (max-width: 600px) {
+  #ezv16 #intel [style*='padding: 44px 48px'] {
+    padding: 24px 18px !important;
+  }
+  #ezv16 #intel [style*='position: relative; min-width: 120px; height: 20px'] {
+    min-width: 0 !important;
+    flex: 1 1 auto;
+    margin-left: 12px;
+  }
+  #ezv16 #intel [style*='display: flex; justify-content: space-between; align-items: center; padding: 12px 0px'] > span:first-child {
+    white-space: nowrap;
+  }
+  #ezv16 #intel [style*='padding: 4px 20px; background: rgb(23, 23, 27)'] {
+    padding: 4px 16px !important;
+  }
+  #ezv16 #intel [style*='font-size: 17px; line-height: 1.8'] {
+    font-size: 16px !important;
+    line-height: 1.75 !important;
+  }
+}
+
+/* Outreach sub-headings ("Broadcast from anywhere", "Auto dialer"): 28px on desktop, 24px on phones. */
+@media (max-width: 600px) {
+  #ezv16 #outreach h4[style*='font-size: 28px'] {
+    font-size: 24px !important;
+  }
+}
+
+/* Phones: zooming the side-by-side pair made it unreadable (~48%). Stack the chat
+   card over the CRM card at full size with a vertical connector instead. */
+@media (max-width: 600px) {
+  #ezv16 #cm [style*='display: flex; align-items: center; gap: 0px; min-width: 0px; width: 100%'] {
+    flex-direction: column;
+    max-width: none;
+  }
+  #ezv16 #cm [style*='display: flex; align-items: center; gap: 0px; min-width: 0px; width: 100%'] > :is([style*='width: 320px'], [style*='width: 300px']) {
+    width: 100% !important;
+    max-width: 340px;
+  }
+  #ezv16 #cm [style*='flex: 1 1 60px; min-width: 50px'] {
+    flex: none !important;
+    width: 2px !important;
+    min-width: 0 !important;
+    height: 40px !important;
+    background: linear-gradient(180deg, rgba(124, 152, 255, 0.15), rgba(124, 152, 255, 0.9)) !important;
+  }
+  #ezv16 #cm [style*='flex: 1 1 60px; min-width: 50px'] > span {
+    top: auto !important;
+    bottom: -6px !important;
+    right: -5px !important;
+  }
+}
+
 @media (max-width: 900px) {
   /* ---------- Shared ---------- */
 

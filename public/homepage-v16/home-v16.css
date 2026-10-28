@@ -1488,6 +1488,7 @@
 #ezv16 .v16-s5 .fq-list summary:focus-visible{outline:2px solid #2B59FF;outline-offset:4px;border-radius:6px}
 #ezv16 .v16-s5 .fq-n{flex:none;width:20px;font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;color:#8A8C93}
 #ezv16 .v16-s5 .fq-q{flex:1}
+#ezv16 .v16-s5 h3.fq-q{margin:0;font:inherit;letter-spacing:inherit;line-height:inherit;color:inherit;text-transform:none !important}
 #ezv16 .v16-s5 .fq-i{flex:none;position:relative;width:14px;height:14px;align-self:center}
 #ezv16 .v16-s5 .fq-i::before,#ezv16 .v16-s5 .fq-i::after{content:'';position:absolute;left:0;top:6px;width:14px;height:2px;background:#0B0B0C;transition:transform .25s ease,background .25s ease}
 #ezv16 .v16-s5 .fq-i::after{transform:rotate(90deg)}

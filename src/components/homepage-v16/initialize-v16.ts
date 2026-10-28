@@ -59,12 +59,11 @@ function fitWideMockups(root: HTMLElement) {
   const els = Array.from(root.querySelectorAll<HTMLElement>(WIDE_MOCKUPS.join(','))).filter(
     (el) => getComputedStyle(el).position !== 'absolute',
   )
-  // Desktop keeps the design as drawn; only tablets / phones (mobile.css range) scale.
-  const small = window.matchMedia('(max-width: 900px)')
+  // Runs at every width: a mockup that already fits is left at its drawn size, so
+  // full desktop is unchanged, while laptop widths and browser zoom shrink it.
   const fit = () => {
     els.forEach((el) => {
       el.style.zoom = ''
-      if (!small.matches) return
       // Measure against the nearest ancestor that itself fits the page (a parent
       // can be stretched by this very element).
       let box = el.parentElement
