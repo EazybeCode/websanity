@@ -182,6 +182,17 @@ html.light .text-gradient-primary {
     0 16px 38px -10px rgba(20, 32, 110, 0.65);
 }
 .lead-tab-glass:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+/* Phones and tablets (tab is hidden from lg up): at ~50px wide, once the .landing button padding applies, it covered
+   the left edge of content, which starts ~48px in. Slim it so it clears. */
+@media (max-width: 1023px) {
+  .lead-tab-glass.lead-tab-glass {
+    padding: 12px 5px;
+  }
+  .lead-tab-glass.lead-tab-glass > span {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
 @supports not (backdrop-filter: blur(1px)) {
   .lead-tab-glass.lead-tab-glass { background: #2c46c9; }
 }
