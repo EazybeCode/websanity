@@ -34,6 +34,7 @@ import Link from 'next/link'
 import { SectionBadge } from '@/components/ui/SectionBadge'
 import { AccordionBlock } from '@/components/blog/AccordionBlock'
 import { ButtonCTABlock } from '@/components/blog/ButtonCTABlock'
+import { AppDownloadCard } from '@/components/blog/AppDownloadCard'
 import { CalloutBlock } from '@/components/blog/CalloutBlock'
 import { AuthorBio } from '@/components/blog/AuthorBio'
 import { QuoteBlock } from '@/components/blog/QuoteBlock'
@@ -714,6 +715,8 @@ const StickyTableOfContents: React.FC<{
           {sidebarCta?.footnote || t('blog.sidebar.footnote')}
         </p>
       </div>
+
+      <AppDownloadCard />
     </div>
   )
 }

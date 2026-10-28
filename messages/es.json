@@ -1959,7 +1959,11 @@
       "headline": "Transforma Tus Ventas en WhatsApp",
       "description": "Únete a más de 1,000 empresas usando Eazybe para gestionar conversaciones.",
       "buttonText": "Iniciar Prueba Gratis",
-      "footnote": "Sin tarjeta de crédito"
+      "footnote": "Sin tarjeta de crédito",
+      "appTitle": "Escanea para descargar la app móvil",
+      "appGetItOn": "DISPONIBLE EN",
+      "appBadgeAria": "Descarga Eazybe en Google Play",
+      "appQrAlt": "Código QR para descargar la app de Eazybe en Google Play"
     },
     "newsletter": {
       "headline": "¿Te gustó este artículo?",

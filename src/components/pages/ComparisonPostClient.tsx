@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { mobileAspectClass, desktopAspectClass, cssAspectRatio } from '@/lib/aspect-ratio'
 import { SummarizeWithLLM } from '@/components/blog/SummarizeWithLLM'
+import { AppDownloadCard } from '@/components/blog/AppDownloadCard'
 import PreferredSourceCTA from '@/components/PreferredSourceCTA'
 import { computeHeadingLevels } from '@/lib/heading-levels'
 import {
@@ -663,6 +664,8 @@ const StickyTableOfContents: React.FC<{
           {sidebarCta?.footnote || t('blog.sidebar.footnote')}
         </p>
       </div>
+
+      <AppDownloadCard />
     </div>
   )
 }

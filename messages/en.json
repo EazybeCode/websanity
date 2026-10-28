@@ -1792,7 +1792,11 @@
       "headline": "Transform Your WhatsApp Sales",
       "description": "Join 1,000+ businesses using Eazybe to manage conversations.",
       "buttonText": "Install for Free",
-      "footnote": "No credit card required"
+      "footnote": "No credit card required",
+      "appTitle": "Scan to download the mobile app",
+      "appGetItOn": "GET IT ON",
+      "appBadgeAria": "Get Eazybe on Google Play",
+      "appQrAlt": "QR code to download the Eazybe app on Google Play"
     },
     "newsletter": {
       "headline": "Enjoyed this article?",

@@ -1885,7 +1885,11 @@
       "headline": "WhatsApp Satışlarınızı Dönüştürün",
       "description": "Konuşmaları yönetmek için Eazybe kullanan 1.000'den fazla işletmeye katılın.",
       "buttonText": "Ücretsiz Denemeyi Başlat",
-      "footnote": "Kredi kartı gerekmez"
+      "footnote": "Kredi kartı gerekmez",
+      "appTitle": "Mobil uygulamayı indirmek için tarayın",
+      "appGetItOn": "HEMEN İNDİRİN",
+      "appBadgeAria": "Eazybe'yi Google Play'den indirin",
+      "appQrAlt": "Eazybe uygulamasını Google Play'den indirmek için QR kod"
     },
     "newsletter": {
       "headline": "Bu makaleyi beğendiniz mi?",
