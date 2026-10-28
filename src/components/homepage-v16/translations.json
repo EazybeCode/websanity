@@ -344,7 +344,12 @@
   "Privacy settings mockup (try it)": "Simulação das configurações de privacidade (experimente)",
   "Access level": "Nível de acesso",
   "Compliance": "Conformidade",
-  "Upload a list": "Envie uma lista"
+  "Upload a list": "Envie uma lista",
+  "Priya Rao profile photo": "Foto de perfil de Priya Rao",
+  "Carolina Mendes profile photo": "Foto de perfil de Carolina Mendes",
+  "Meera profile photo": "Foto de perfil de Meera",
+  "Arjun profile photo": "Foto de perfil de Arjun",
+  "Ahmed Khan profile photo": "Foto de perfil de Ahmed Khan"
  },
  "es": {
   "Personal WhatsApp": "WhatsApp personal",
@@ -691,7 +696,12 @@
   "Privacy settings mockup (try it)": "Maqueta de ajustes de privacidad (pruébala)",
   "Access level": "Nivel de acceso",
   "Compliance": "Cumplimiento",
-  "Upload a list": "Sube una lista"
+  "Upload a list": "Sube una lista",
+  "Priya Rao profile photo": "Foto de perfil de Priya Rao",
+  "Carolina Mendes profile photo": "Foto de perfil de Carolina Mendes",
+  "Meera profile photo": "Foto de perfil de Meera",
+  "Arjun profile photo": "Foto de perfil de Arjun",
+  "Ahmed Khan profile photo": "Foto de perfil de Ahmed Khan"
  },
  "tr": {
   "Personal WhatsApp": "Kişisel WhatsApp",
@@ -1038,6 +1048,11 @@
   "Privacy settings mockup (try it)": "Gizlilik ayarları örneği (deneyin)",
   "Access level": "Erişim düzeyi",
   "Compliance": "Uyumluluk",
-  "Upload a list": "Liste yükleyin"
+  "Upload a list": "Liste yükleyin",
+  "Priya Rao profile photo": "Priya Rao profil fotoğrafı",
+  "Carolina Mendes profile photo": "Carolina Mendes profil fotoğrafı",
+  "Meera profile photo": "Meera profil fotoğrafı",
+  "Arjun profile photo": "Arjun profil fotoğrafı",
+  "Ahmed Khan profile photo": "Ahmed Khan profil fotoğrafı"
  }
 }
