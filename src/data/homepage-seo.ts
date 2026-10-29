@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getV16Faq } from '@/components/homepage-v16/localize-v16'
+import { ORG_ID, SOFTWARE_ID } from '@/data/global-schemas'
 
 const BASE_URL = 'https://eazybe.com'
 
@@ -7,7 +8,7 @@ export function getHomepageMetadata(locale: string): Metadata {
   const meta: Record<string, Metadata> = {
     en: {
       title: 'Eazybe - Sales Intelligence Platform For WhatsApp & CRM',
-      description: 'Build a no-code WhatsApp AI Agent that qualifies leads 24/7, syncs every chat to your CRM (HubSpot, Salesforce, Zoho), and replies in your top rep\'s voice. Trusted by 2,000+ teams in 40+ countries.',
+      description: 'Connect your team\'s personal WhatsApp numbers, groups and calls to HubSpot, Salesforce, Zoho and more. AI handles qualification and follow-ups.',
       keywords: 'whatsapp ai agent, ai agents for whatsapp, whatsapp ai agents, ai agent for whatsapp, ai agent on whatsapp, no code whatsapp ai agent, ai agent for whatsapp automation, ai agent whatsapp business, best whatsapp ai agent, top whatsapp ai agent, whatsapp ai agent provider, build ai agent for whatsapp, benefits of using a whatsapp ai agent, ai whatsapp agent, whatsapp agent ai, agent ai whatsapp, ai in whatsapp',
       authors: [{ name: 'Eazybe' }],
       robots: {
@@ -291,13 +292,18 @@ export function getHomepageMetadata(locale: string): Metadata {
 }
 
 const LANGUAGE_TAGS: Record<string, string> = { en: 'en-US', br: 'pt-BR', es: 'es-ES', tr: 'tr-TR' }
+const pageUrl = (locale: string) => (locale === 'en' ? `${BASE_URL}/` : `${BASE_URL}/${locale}`)
 
 // FAQPage + WebPage are built from what the page actually renders (visible FAQ,
 // real <title>/description, hero H1) so they stay in sync with the content.
 function getHomepageFaqJsonLd(locale: string): object {
+  const url = pageUrl(locale)
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    "mainEntityOfPage": { "@id": `${url}#webpage` },
+    "publisher": { "@id": ORG_ID },
     "inLanguage": LANGUAGE_TAGS[locale] ?? LANGUAGE_TAGS.en,
     "mainEntity": getV16Faq(locale).map(({ question, answer }) => ({
       "@type": "Question",
@@ -312,10 +318,14 @@ function getHomepageWebPageJsonLd(locale: string): object {
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "url": locale === 'en' ? `${BASE_URL}/` : `${BASE_URL}/${locale}`,
+    "@id": `${pageUrl(locale)}#webpage`,
+    "url": pageUrl(locale),
     "name": String(meta.title),
     "description": meta.description,
     "inLanguage": LANGUAGE_TAGS[locale] ?? LANGUAGE_TAGS.en,
+    "publisher": { "@id": ORG_ID },
+    "about": { "@id": SOFTWARE_ID },
+    "mainEntity": { "@id": `${pageUrl(locale)}#faq` },
     "datePublished": "2026-02-03T08:00:00+00:00",
     // Static page: this is the build/deploy time, i.e. when the content last changed.
     "dateModified": new Date().toISOString(),

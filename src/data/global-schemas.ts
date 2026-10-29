@@ -14,6 +14,9 @@ const CHROME_STORE_URL = 'https://chrome.google.com/webstore/detail/aihpfgoknhei
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.eazybe.workspace'
 // Real product screen from the homepage CRM section
 const SCREENSHOT_URL = `${BASE_URL}/homepage/refined-crm/hubspot.webp`
+// Stable node ids so page-level schemas (WebPage, FAQPage) can reference these
+export const ORG_ID = `${BASE_URL}/#organization`
+export const SOFTWARE_ID = `${BASE_URL}/#software`
 
 export function getGlobalSchemas(locale: string): GlobalSchemas {
   const schemas: Record<string, GlobalSchemas> = {
@@ -21,6 +24,8 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
       softwareApplication: {
         "@context": "https://schema.org/",
         "@type": "SoftwareApplication",
+        "@id": SOFTWARE_ID,
+        "publisher": { "@id": ORG_ID },
         "name": "Eazybe",
         "applicationCategory": "BusinessApplication",
         "applicationSubCategory": "WhatsApp CRM Integration, Sales Intelligence, AI Agents for WhatsApp and Calls",
@@ -61,6 +66,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
       organization: {
         "@context": "https://schema.org/",
         "@type": "Organization",
+        "@id": ORG_ID,
         "name": "Eazybe",
         "url": `${BASE_URL}/`,
         "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 1608, "height": 377 },
@@ -112,6 +118,8 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
       softwareApplication: {
         "@context": "https://schema.org/",
         "@type": "SoftwareApplication",
+        "@id": SOFTWARE_ID,
+        "publisher": { "@id": ORG_ID },
         "name": "Eazybe",
         "applicationCategory": "BusinessApplication",
         "applicationSubCategory": "Integração do WhatsApp com CRM, Inteligência de vendas, Agentes de IA para WhatsApp e ligações",
@@ -152,6 +160,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
       organization: {
         "@context": "https://schema.org/",
         "@type": "Organization",
+        "@id": ORG_ID,
         "name": "Eazybe",
         "url": `${BASE_URL}/br`,
         "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 1608, "height": 377 },
@@ -203,6 +212,8 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
       softwareApplication: {
         "@context": "https://schema.org/",
         "@type": "SoftwareApplication",
+        "@id": SOFTWARE_ID,
+        "publisher": { "@id": ORG_ID },
         "name": "Eazybe",
         "applicationCategory": "BusinessApplication",
         "applicationSubCategory": "Integración de WhatsApp con CRM, Inteligencia de ventas, Agentes de IA para WhatsApp y llamadas",
@@ -243,6 +254,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
       organization: {
         "@context": "https://schema.org/",
         "@type": "Organization",
+        "@id": ORG_ID,
         "name": "Eazybe",
         "url": `${BASE_URL}/es`,
         "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 1608, "height": 377 },
@@ -294,6 +306,8 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
       softwareApplication: {
         "@context": "https://schema.org/",
         "@type": "SoftwareApplication",
+        "@id": SOFTWARE_ID,
+        "publisher": { "@id": ORG_ID },
         "name": "Eazybe",
         "applicationCategory": "BusinessApplication",
         "applicationSubCategory": "WhatsApp CRM Entegrasyonu, Satış Zekası, WhatsApp ve Aramalar için Yapay Zeka Ajanları",
@@ -334,6 +348,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
       organization: {
         "@context": "https://schema.org/",
         "@type": "Organization",
+        "@id": ORG_ID,
         "name": "Eazybe",
         "url": `${BASE_URL}/tr`,
         "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 1608, "height": 377 },
