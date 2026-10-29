@@ -6,7 +6,7 @@ import { initializeV16 } from './initialize-v16'
 import type { V16Labels } from './localize-v16'
 
 export function HomepageV16Content({ markup, labels }: { markup: string; labels: V16Labels }) {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const { openModal } = useTrialModal()
   // One stable object: React 19 re-applies innerHTML whenever the
   // dangerouslySetInnerHTML object changes (even with an identical string), so an
@@ -20,8 +20,9 @@ export function HomepageV16Content({ markup, labels }: { markup: string; labels:
     return initializeV16(root, labels)
   }, [labels])
 
+  // <main> marks the page body as the primary content (Nav/Footer sit outside it).
   return (
-    <div
+    <main
       ref={ref}
       id="ezv16"
       className="fp"

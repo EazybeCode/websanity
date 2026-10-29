@@ -169,14 +169,14 @@ const AGENTS = [
 ]
 
 const INTEGRATIONS = [
-  { name: 'HubSpot', desc: 'Bi-directional sync', href: "/hubspot-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/hubspot.webp" width="20" height="20" alt="" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
-  { name: 'Salesforce', desc: 'Deals, contacts, activities', href: "/salesforce-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/salesforce.webp" width="20" height="20" alt="" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
-  { name: 'Zoho CRM', desc: 'Native Zoho sync', href: "/zoho-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/zoho.webp" width="20" height="20" alt="" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
-  { name: 'Pipedrive', desc: 'Pipeline auto-sync', href: "/pipedrive-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/pipedrive.webp" width="20" height="20" alt="" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
-  { name: 'Bitrix24', desc: 'CRM + tasks + chat', href: "/bitrix24-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/bitrix24.webp" width="20" height="20" alt="" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
-  { name: 'LeadSquared', desc: 'Lead capture + nurture', href: "/leadsquared-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/leadsquared.webp" width="20" height="20" alt="" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
-  { name: 'Freshworks', desc: 'Freshsales + Freshdesk', href: "/freshdesk-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/freshdesk.webp" width="20" height="20" alt="" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
-  { name: 'Google Sheets', desc: 'Spreadsheet-as-CRM', href: "/google-sheets-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/google-sheets.webp" width="20" height="20" alt="" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'HubSpot', desc: 'Bi-directional sync', href: "/hubspot-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/hubspot.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Salesforce', desc: 'Deals, contacts, activities', href: "/salesforce-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/salesforce.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Zoho CRM', desc: 'Native Zoho sync', href: "/zoho-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/zoho.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Pipedrive', desc: 'Pipeline auto-sync', href: "/pipedrive-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/pipedrive.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Bitrix24', desc: 'CRM + tasks + chat', href: "/bitrix24-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/bitrix24.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'LeadSquared', desc: 'Lead capture + nurture', href: "/leadsquared-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/leadsquared.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Freshworks', desc: 'Freshsales + Freshdesk', href: "/freshdesk-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/freshdesk.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Google Sheets', desc: 'Spreadsheet-as-CRM', href: "/google-sheets-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/google-sheets.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
   { name: 'Custom API', desc: 'Webhooks + REST API', href: "/webhooks-whatsapp-integration", bg: '#F0EBF8', icon: '<svg width="18" height="18" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#0F1115"/><path d="M9 9l-3 3 3 3M15 9l3 3-3 3" stroke="#A78BFA" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
 ]
 
@@ -569,6 +569,8 @@ export function Nav() {
                 alt="Eazybe Logo"
                 width={120}
                 height={28}
+                loading="lazy"
+                decoding="async"
                 style={{ height: 28, width: 'auto', objectFit: 'contain' }}
               />
             </a>

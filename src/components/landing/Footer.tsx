@@ -175,6 +175,8 @@ export function Footer() {
                 alt="Eazybe Logo"
                 width={137}
                 height={32}
+                loading="lazy"
+                decoding="async"
                 style={{ height: 32, width: 'auto', objectFit: 'contain' }}
               />
             </a>
