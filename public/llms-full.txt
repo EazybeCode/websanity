@@ -4,10 +4,10 @@
 
 ## What Eazybe Does
 
-Eazybe is a Chrome extension, Android app ([Eazybe on Google Play](https://play.google.com/store/apps/details?id=com.eazybe.workspace)) and SaaS platform for teams that sell over WhatsApp and the phone. It works as four parts of one connected flow, from first message to closed deal:
+Eazybe is a Chrome extension, Android app ([Eazybe on Google Play](https://play.google.com/store/apps/details?id=com.eazybe.workspace)) and SaaS platform for teams that sell over WhatsApp and the phone. Most deals die quietly, long before anyone marks them lost: a chat nobody logged, a follow-up nobody sent, and the lead moves on. Eazybe fixes that in four parts of one connected flow, from first message to closed deal (back up every business conversation, reach out, understand, and let AI do the work). Teams usually start with the part where they leak the most deals:
 
 1. **Conversation management** — Auto-sync conversations to your CRM. Your team's personal WhatsApp numbers and your customer WhatsApp groups are connected; chats, files, voice notes and calls land on the right contact and deal.
-2. **Outreach** — WhatsApp and calling workflows, connected: broadcast from anywhere (approved templates on the official WhatsApp Cloud API) and an auto dialer for call lists.
+2. **Outreach** — WhatsApp and calling workflows, connected: broadcast from anywhere (pick contacts from WhatsApp Web, Google Sheets, your CRM or the public API and send one personalised message to all of them) and an auto dialer that works through a call list and saves every call.
 3. **Sales intelligence** — AI mines WhatsApp chats and calls for budget, urgency and buying intent, saves them as CRM fields, and alerts the team when a lead is ready to buy.
 4. **AI agents** — Every lead answered in seconds, on WhatsApp and on the phone. WhatsApp, Voice and Website agents qualify leads, book meetings and hand over to the right rep.
 
@@ -34,6 +34,10 @@ It also closes three loops sales teams lose money on:
 
 ### How Eazybe Solves It
 Eazybe sits on top of the WhatsApp your team already uses (via the Chrome extension on WhatsApp Web and the Android app) and connects it, along with calls, to your CRM and ad platforms. Every message and call is captured, synced, and made actionable by AI agents that work across WhatsApp, the phone and your website.
+
+Your CRM only knows what reps remember to type in. Connect WhatsApp, and client chats and calls land on the right contact with fields filled in. No new phones, nothing to migrate: it works with the CRM you already pay for (HubSpot, Salesforce, Zoho CRM, Pipedrive, Odoo, Bitrix24, LeadSquared, Freshworks and more).
+
+Reply-time alerts keep hot deals from slipping: if nobody replies to a customer within the SLA (for example 30 minutes), Eazybe sends a WhatsApp message to the deal owner.
 
 ## AI Agents
 
@@ -175,7 +179,7 @@ Build your own no-code WhatsApp AI agent for any use case. Drag-and-drop convers
 
 **Call tracking:** Logs every call's time, length and outcome in the CRM. Works with SIM calls on Android and virtual calls; every call is saved beside the customer's WhatsApp chats.
 
-**Auto dialer:** Reps run through call lists with bulk dialling instead of dialling numbers one by one.
+**Auto dialer:** Pick a call list from WhatsApp Web, Google Sheets, your CRM (HubSpot, Salesforce, Zoho, Eazybe CRM or your Workspace) or the public API and press start. Eazybe calls your customers, rings the next number as soon as a call ends, shows customers a local number from their own country, and saves each recording and outcome back to the contact with the next step set.
 
 **Voice numbers:** Buy a voice number from Eazybe and use one business line for voice calls, SMS, the WhatsApp Business app and the WhatsApp API. Available in the US, Canada and Puerto Rico; Eazybe handles number verification, and the number (and customer history) stays with the company when a rep leaves. Offered as an optional add-on on every plan.
 
@@ -185,14 +189,14 @@ Build your own no-code WhatsApp AI agent for any use case. Drag-and-drop convers
 
 ### 12. Outreach: Broadcast and WhatsApp Cloud API
 
-- **Broadcast from anywhere:** templated campaigns to large lists on the official WhatsApp Cloud API.
+- **Broadcast from anywhere:** pick your contacts, write one message and send it to all of them in one tap; every customer gets it on WhatsApp with their own name in it. Contacts can come from a WhatsApp Web label (e.g. "Hot leads"), an uploaded Google Sheet, any HubSpot, Salesforce or Zoho list, or the public API (trigger broadcasts from your own app or website). Large templated campaigns run on the official WhatsApp Cloud API.
 - **Coexistence:** Eazybe can set up the Cloud API on an existing WhatsApp Business number without losing the app or chat history.
 - **Templates:** approved message templates for marketing, utility and authentication messages.
 - The Cloud API is only needed for things like large broadcasts; most of Eazybe works with the number a rep already has.
 
 ### 13. Privacy Controls
 
-You decide what syncs. Eazybe only syncs the business chats you pick, so personal conversations stay personal; private chats and groups are never synced. Access levels decide who sees what. When a rep leaves, their chats, files and call history stay with the customer record for the next rep, while they keep their own number.
+Reps won't use a tool that pulls in their personal WhatsApp. With Eazybe, personal and private group chats never sync. Only the business chats you select reach your CRM, and admins decide who sees them (access levels). Eazybe carries SOC 2 Type II, GDPR, CCPA and PCI DSS badges for IT and legal review. When a rep leaves, their chats, files and call history stay with the customer record for the next rep, while they keep their own number.
 
 ### 14. Mobile App
 

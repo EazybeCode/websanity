@@ -64,7 +64,7 @@
   "How Eazybe works": "Como o Eazybe funciona",
   "From first message to": "Da primeira mensagem ao",
   "closed deal.": "negócio fechado.",
-  "Four parts of Eazybe, one connected flow: back up every conversation, reach out, understand, and let AI do the work.": "Quatro partes do Eazybe, um só fluxo conectado: salve cada conversa, faça contato, entenda e deixe a IA trabalhar.",
+  "Most deals die quietly, long before anyone marks them lost. A chat nobody logged, a follow-up nobody sent, and the lead moves on. Eazybe fixes that in four parts, one connected flow: back up every business conversation, reach out, understand, and let AI do the work. Start with the one where your team leaks the most deals.": "A maioria dos negócios morre em silêncio, muito antes de alguém marcá-los como perdidos. Uma conversa que ninguém registrou, um follow-up que ninguém enviou, e o lead vai embora. O Eazybe resolve isso em quatro partes, um só fluxo conectado: salve cada conversa de negócios, faça contato, entenda e deixe a IA trabalhar. Comece pela parte em que sua equipe mais perde negócios.",
   "Conversation management": "Gestão de conversas",
   "Sales intelligence": "Inteligência de vendas",
   "Auto-sync conversations to": "Sincronize conversas automaticamente com",
@@ -306,7 +306,7 @@
   "From what customers said": "A partir do que os clientes disseram",
   "Your conversations.": "Suas conversas.",
   "Your controls.": "Seu controle.",
-  "You decide what syncs. Private chats stay private.": "Você decide o que sincroniza. Conversas privadas continuam privadas.",
+  "Reps won’t use a tool that pulls in their personal WhatsApp. With Eazybe, personal and private group chats never sync. Only the business chats you select reach your CRM, and admins decide who sees them. Forward this to your IT or legal team. The certifications are below.": "Vendedores não vão usar uma ferramenta que puxa o WhatsApp pessoal deles. Com o Eazybe, conversas pessoais e grupos privados nunca são sincronizados. Só as conversas de negócios que você escolhe chegam ao seu CRM, e os administradores decidem quem as vê. Encaminhe isto para sua equipe de TI ou jurídico. As certificações estão logo abaixo.",
   "Sync business chats": "Sincronizar conversas comerciais",
   "Only the business chats you select": "Só as conversas comerciais que você escolher",
   "Personal and private group chats": "Conversas pessoais e grupos privados",
@@ -349,7 +349,8 @@
   "Carolina Mendes profile photo": "Foto de perfil de Carolina Mendes",
   "Meera profile photo": "Foto de perfil de Meera",
   "Arjun profile photo": "Foto de perfil de Arjun",
-  "Ahmed Khan profile photo": "Foto de perfil de Ahmed Khan"
+  "Ahmed Khan profile photo": "Foto de perfil de Ahmed Khan",
+  "Your CRM only knows what reps remember to type in. Connect WhatsApp, and client chats and calls land on the right contact with fields filled in. No new phones, nothing to migrate. Pick your CRM and see where everything lands.": "Seu CRM só sabe o que os vendedores lembram de digitar. Conecte o WhatsApp, e as conversas e ligações com clientes chegam ao contato certo com os campos já preenchidos. Sem celulares novos, nada para migrar. Escolha seu CRM e veja onde tudo vai parar."
  },
  "es": {
   "Personal WhatsApp": "WhatsApp personal",
@@ -416,7 +417,7 @@
   "How Eazybe works": "Cómo funciona Eazybe",
   "From first message to": "Del primer mensaje al",
   "closed deal.": "negocio cerrado.",
-  "Four parts of Eazybe, one connected flow: back up every conversation, reach out, understand, and let AI do the work.": "Cuatro partes de Eazybe, un solo flujo conectado: respalda cada conversación, contacta, entiende y deja que la IA haga el trabajo.",
+  "Most deals die quietly, long before anyone marks them lost. A chat nobody logged, a follow-up nobody sent, and the lead moves on. Eazybe fixes that in four parts, one connected flow: back up every business conversation, reach out, understand, and let AI do the work. Start with the one where your team leaks the most deals.": "La mayoría de los negocios se pierden en silencio, mucho antes de que alguien los marque como perdidos. Un chat que nadie registró, un seguimiento que nadie envió, y el lead se va. Eazybe lo resuelve en cuatro partes, un solo flujo conectado: respalda cada conversación de negocio, contacta, entiende y deja que la IA haga el trabajo. Empieza por la parte donde tu equipo pierde más negocios.",
   "Conversation management": "Gestión de conversaciones",
   "Sales intelligence": "Inteligencia de ventas",
   "Auto-sync conversations to": "Sincroniza tus conversaciones automáticamente con",
@@ -658,7 +659,7 @@
   "From what customers said": "A partir de lo que dijeron los clientes",
   "Your conversations.": "Tus conversaciones.",
   "Your controls.": "Tus reglas.",
-  "You decide what syncs. Private chats stay private.": "Tú decides qué se sincroniza. Los chats privados siguen siendo privados.",
+  "Reps won’t use a tool that pulls in their personal WhatsApp. With Eazybe, personal and private group chats never sync. Only the business chats you select reach your CRM, and admins decide who sees them. Forward this to your IT or legal team. The certifications are below.": "Tus vendedores no usarán una herramienta que se meta en su WhatsApp personal. Con Eazybe, los chats personales y los grupos privados nunca se sincronizan. Solo los chats de negocio que eliges llegan a tu CRM, y los administradores deciden quién los ve. Reenvía esto a tu equipo de TI o legal. Las certificaciones están abajo.",
   "Sync business chats": "Sincronizar chats de negocio",
   "Only the business chats you select": "Solo los chats de negocio que elijas",
   "Personal and private group chats": "Chats personales y grupos privados",
@@ -701,7 +702,8 @@
   "Carolina Mendes profile photo": "Foto de perfil de Carolina Mendes",
   "Meera profile photo": "Foto de perfil de Meera",
   "Arjun profile photo": "Foto de perfil de Arjun",
-  "Ahmed Khan profile photo": "Foto de perfil de Ahmed Khan"
+  "Ahmed Khan profile photo": "Foto de perfil de Ahmed Khan",
+  "Your CRM only knows what reps remember to type in. Connect WhatsApp, and client chats and calls land on the right contact with fields filled in. No new phones, nothing to migrate. Pick your CRM and see where everything lands.": "Tu CRM solo sabe lo que tus vendedores se acuerdan de escribir. Conecta WhatsApp y los chats y llamadas con clientes llegan al contacto correcto con los campos ya completados. Sin teléfonos nuevos, sin nada que migrar. Elige tu CRM y mira dónde queda cada cosa."
  },
  "tr": {
   "Personal WhatsApp": "Kişisel WhatsApp",
@@ -768,7 +770,7 @@
   "How Eazybe works": "Eazybe nasıl çalışır",
   "From first message to": "İlk mesajdan",
   "closed deal.": "kapanan anlaşmaya.",
-  "Four parts of Eazybe, one connected flow: back up every conversation, reach out, understand, and let AI do the work.": "Eazybe'nin dört parçası, tek bir bağlantılı akış: her konuşmayı yedekleyin, müşterilere ulaşın, onları anlayın ve işi yapay zekâya bırakın.",
+  "Most deals die quietly, long before anyone marks them lost. A chat nobody logged, a follow-up nobody sent, and the lead moves on. Eazybe fixes that in four parts, one connected flow: back up every business conversation, reach out, understand, and let AI do the work. Start with the one where your team leaks the most deals.": "Çoğu fırsat, kimse onu kaybedildi olarak işaretlemeden çok önce sessizce kaybolur. Kimsenin kaydetmediği bir sohbet, kimsenin göndermediği bir takip mesajı ve müşteri adayı başka yere gider. Eazybe bunu dört parçada, tek bir bağlantılı akışla çözer: her iş görüşmesini yedekleyin, iletişime geçin, anlayın ve işi Yapay Zeka'ya bırakın. Ekibinizin en çok fırsat kaçırdığı parçadan başlayın.",
   "Conversation management": "Konuşma yönetimi",
   "Sales intelligence": "Satış zekâsı",
   "Auto-sync conversations to": "Konuşmaları otomatik olarak",
@@ -1010,7 +1012,7 @@
   "From what customers said": "Müşterilerin söylediklerinden",
   "Your conversations.": "Konuşmalarınız.",
   "Your controls.": "Kontrol sizde.",
-  "You decide what syncs. Private chats stay private.": "Neyin senkronize edileceğine siz karar verirsiniz. Özel sohbetler özel kalır.",
+  "Reps won’t use a tool that pulls in their personal WhatsApp. With Eazybe, personal and private group chats never sync. Only the business chats you select reach your CRM, and admins decide who sees them. Forward this to your IT or legal team. The certifications are below.": "Satış temsilcileri kişisel WhatsApp'larını içeri çeken bir aracı kullanmaz. Eazybe ile kişisel sohbetler ve özel grup sohbetleri asla senkronize edilmez. CRM'inize yalnızca sizin seçtiğiniz iş sohbetleri ulaşır ve bunları kimin göreceğine yöneticiler karar verir. Bunu BT veya hukuk ekibinize iletin. Sertifikalar aşağıda.",
   "Sync business chats": "İş sohbetlerini senkronize et",
   "Only the business chats you select": "Yalnızca seçtiğiniz iş sohbetleri",
   "Personal and private group chats": "Kişisel ve özel grup sohbetleri",
@@ -1053,6 +1055,7 @@
   "Carolina Mendes profile photo": "Carolina Mendes profil fotoğrafı",
   "Meera profile photo": "Meera profil fotoğrafı",
   "Arjun profile photo": "Arjun profil fotoğrafı",
-  "Ahmed Khan profile photo": "Ahmed Khan profil fotoğrafı"
+  "Ahmed Khan profile photo": "Ahmed Khan profil fotoğrafı",
+  "Your CRM only knows what reps remember to type in. Connect WhatsApp, and client chats and calls land on the right contact with fields filled in. No new phones, nothing to migrate. Pick your CRM and see where everything lands.": "CRM'iniz yalnızca satış temsilcilerinin girmeyi hatırladıklarını bilir. WhatsApp'ı bağlayın; müşteri sohbetleri ve aramaları, alanları doldurulmuş şekilde doğru kişiye kaydedilsin. Yeni telefon yok, taşınacak bir şey yok. CRM'inizi seçin ve her şeyin nereye kaydedildiğini görün."
  }
 }
