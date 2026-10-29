@@ -105,7 +105,7 @@ export async function generateMetadata({
       title: 'Eazybe Blog - AI Agents, CRM, Automation, Latest Guides, Tips & News',
       description: 'Explore the Eazybe blog for insights on WhatsApp automation, chatbots, sales strategies, and CRM tools to streamline workflows and grow your business.',
       keywords: 'whatsapp automation, whatsapp chatbot, business automation, sales strategies, crm tools, marketing automation, customer engagement, automate whatsapp messages',
-      authors: [{ name: 'Victor' }],
+      authors: [{ name: 'Eazybe' }],
       robots: {
         index: true,
         follow: true,
