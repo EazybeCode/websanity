@@ -10,6 +10,10 @@ export interface GlobalSchemas {
 }
 
 const BASE_URL = 'https://eazybe.com'
+const CHROME_STORE_URL = 'https://chrome.google.com/webstore/detail/aihpfgoknheimieofcfjiobnmddldjeb'
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.eazybe.workspace'
+// Real product screen from the homepage CRM section
+const SCREENSHOT_URL = `${BASE_URL}/homepage/refined-crm/hubspot.webp`
 
 export function getGlobalSchemas(locale: string): GlobalSchemas {
   const schemas: Record<string, GlobalSchemas> = {
@@ -19,21 +23,22 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "@type": "SoftwareApplication",
         "name": "Eazybe",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "CRM Integration, WhatsApp Automation, AI Agents for WhatsApp",
-        "operatingSystem": "Web, Chrome Extension",
+        "applicationSubCategory": "WhatsApp CRM Integration, Sales Intelligence, AI Agents for WhatsApp and Calls",
+        "operatingSystem": "Web, Chrome Extension, Android",
         "url": `${BASE_URL}/`,
         "image": `${BASE_URL}/logo.png`,
-        "description": "Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets.",
-        "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/aihpfgoknheimieofcfjiobnmddldjeb",
-        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "description": "Eazybe powers sales conversations across WhatsApp and calls. It connects your team's personal WhatsApp numbers, WhatsApp groups and calls to your CRM (HubSpot, Salesforce, Zoho, Pipedrive and more), and lets AI handle qualification and follow-ups.",
+        "downloadUrl": CHROME_STORE_URL,
+        "installUrl": PLAY_STORE_URL,
+        "screenshot": SCREENSHOT_URL,
+        // Live pricing page (US): Starter annual $19 → Basic AI monthly $79; 3 priced plans (Custom AI = contact sales)
         "offers": {
           "@type": "AggregateOffer",
           "url": `${BASE_URL}/pricing`,
           "priceCurrency": "USD",
-          "lowPrice": 29,
-          "highPrice": 49,
-          "offerCount": 5,
+          "lowPrice": 19,
+          "highPrice": 79,
+          "offerCount": 3,
           "availability": "https://schema.org/InStock"
         },
         "aggregateRating": {
@@ -44,12 +49,13 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "ratingCount": 30597
         },
         "featureList": [
-          "WhatsApp AI agents",
-          "Lead qualification",
-          "Cold deal detection",
-          "AI-powered reply suggestions",
-          "Shared inbox for team collaboration",
-          "WhatsApp CRM integration"
+          "WhatsApp CRM sync",
+          "WhatsApp groups in the CRM",
+          "Call tracking and auto dialer",
+          "Broadcast from WhatsApp Web, Google Sheets, CRM or API",
+          "Sales intelligence (AI-filled CRM fields)",
+          "WhatsApp, Voice and Website AI agents",
+          "Privacy controls for business chats"
         ]
       },
       organization: {
@@ -57,7 +63,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "@type": "Organization",
         "name": "Eazybe",
         "url": `${BASE_URL}/`,
-        "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 600, "height": 60 },
+        "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 1608, "height": 377 },
         "image": `${BASE_URL}/logo.png`,
         "description": "Eazybe helps sales teams automate WhatsApp conversations with WhatsApp AI agents, qualify leads, detect cold deals, and sync chats with CRM platforms like HubSpot, Zoho, Salesforce, and Google Sheets.",
         "foundingDate": "2022-09-13",
@@ -66,14 +72,15 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "name": "Sagar Dewan",
           "sameAs": ["https://www.linkedin.com/in/sagar-dewan-b43b9931/"]
         },
-        "parentOrganization": { "@type": "Organization", "name": "Eazybe Inc." },
+        "legalName": "Eazybe, Inc.",
         "sameAs": [
           "https://x.com/EazybeHQ",
           "https://www.linkedin.com/company/eazybe",
           "https://www.youtube.com/@eazybe",
           "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
           "https://www.threads.com/@eazybe.supercharge",
-          "https://www.instagram.com/eazybe.supercharge/"
+          "https://www.instagram.com/eazybe.supercharge/",
+          PLAY_STORE_URL
         ],
         "contactPoint": {
           "@type": "ContactPoint",
@@ -107,21 +114,22 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "@type": "SoftwareApplication",
         "name": "Eazybe",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Integração com CRM, Automação para WhatsApp, Agentes de IA para WhatsApp",
-        "operatingSystem": "Web, Extensão Chrome",
+        "applicationSubCategory": "Integração do WhatsApp com CRM, Inteligência de vendas, Agentes de IA para WhatsApp e ligações",
+        "operatingSystem": "Web, Extensão Chrome, Android",
         "url": `${BASE_URL}/br`,
         "image": `${BASE_URL}/logo.png`,
-        "description": "A Eazybe ajuda equipes de vendas a automatizar conversas no WhatsApp com agentes de IA, qualificar leads, identificar negócios frios e sincronizar chats com plataformas de CRM como HubSpot, Zoho, Salesforce e Google Sheets.",
-        "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/aihpfgoknheimieofcfjiobnmddldjeb",
-        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "description": "O Eazybe impulsiona conversas de vendas no WhatsApp e em ligações. Conecta os números pessoais de WhatsApp da sua equipe, os grupos de WhatsApp e as ligações ao seu CRM (HubSpot, Salesforce, Zoho, Pipedrive e mais) e deixa a IA cuidar da qualificação e dos follow-ups.",
+        "downloadUrl": CHROME_STORE_URL,
+        "installUrl": PLAY_STORE_URL,
+        "screenshot": SCREENSHOT_URL,
+        // Live /br/pricing (BRL): Inicial anual R$63 → IA Básica mensal R$261
         "offers": {
           "@type": "AggregateOffer",
           "url": `${BASE_URL}/br/pricing`,
           "priceCurrency": "BRL",
-          "lowPrice": 96,
-          "highPrice": 162,
-          "offerCount": 5,
+          "lowPrice": 63,
+          "highPrice": 261,
+          "offerCount": 3,
           "availability": "https://schema.org/InStock"
         },
         "aggregateRating": {
@@ -132,12 +140,13 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "ratingCount": 30597
         },
         "featureList": [
-          "Agentes de IA para WhatsApp",
-          "Qualificação de leads",
-          "Detecção de negócios frios",
-          "Sugestões de resposta com IA",
-          "Caixa de entrada compartilhada para equipes",
-          "Integração de CRM com WhatsApp"
+          "Sincronização do WhatsApp com o CRM",
+          "Grupos de WhatsApp no CRM",
+          "Rastreamento de ligações e discador automático",
+          "Disparos a partir do WhatsApp Web, Google Sheets, CRM ou API",
+          "Inteligência de vendas (campos do CRM preenchidos pela IA)",
+          "Agentes de IA para WhatsApp, voz e site",
+          "Controles de privacidade para conversas de negócios"
         ]
       },
       organization: {
@@ -145,7 +154,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "@type": "Organization",
         "name": "Eazybe",
         "url": `${BASE_URL}/br`,
-        "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 600, "height": 60 },
+        "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 1608, "height": 377 },
         "image": `${BASE_URL}/logo.png`,
         "description": "A Eazybe ajuda equipes de vendas a automatizar conversas no WhatsApp com agentes de IA, qualificar leads, identificar negócios frios e sincronizar chats com plataformas de CRM como HubSpot, Zoho, Salesforce e Google Sheets.",
         "foundingDate": "2022-09-13",
@@ -154,14 +163,15 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "name": "Sagar Dewan",
           "sameAs": ["https://www.linkedin.com/in/sagar-dewan-b43b9931/"]
         },
-        "parentOrganization": { "@type": "Organization", "name": "Eazybe Inc." },
+        "legalName": "Eazybe, Inc.",
         "sameAs": [
           "https://x.com/EazybeHQ",
           "https://www.linkedin.com/company/eazybe",
           "https://www.youtube.com/@eazybe",
           "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
           "https://www.threads.com/@eazybe.supercharge",
-          "https://www.instagram.com/eazybe.supercharge/"
+          "https://www.instagram.com/eazybe.supercharge/",
+          PLAY_STORE_URL
         ],
         "contactPoint": {
           "@type": "ContactPoint",
@@ -195,21 +205,22 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "@type": "SoftwareApplication",
         "name": "Eazybe",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Integración CRM, Automatización de WhatsApp, Agentes de IA para WhatsApp",
-        "operatingSystem": "Web, Chrome Extension",
+        "applicationSubCategory": "Integración de WhatsApp con CRM, Inteligencia de ventas, Agentes de IA para WhatsApp y llamadas",
+        "operatingSystem": "Web, Extensión de Chrome, Android",
         "url": `${BASE_URL}/es`,
         "image": `${BASE_URL}/logo.png`,
-        "description": "Eazybe ayuda a los equipos de ventas a automatizar conversaciones de WhatsApp con agentes de IA, calificar leads, detectar oportunidades estancadas y sincronizar chats con CRM como HubSpot, Zoho, Salesforce y Google Sheets.",
-        "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/aihpfgoknheimieofcfjiobnmddldjeb",
-        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "description": "Eazybe impulsa las conversaciones de venta en WhatsApp y llamadas. Conecta a tu CRM (HubSpot, Salesforce, Zoho, Pipedrive y más) los números personales de WhatsApp de tu equipo, los grupos de WhatsApp y las llamadas, y deja que la IA se encargue de calificar y dar seguimiento.",
+        "downloadUrl": CHROME_STORE_URL,
+        "installUrl": PLAY_STORE_URL,
+        "screenshot": SCREENSHOT_URL,
+        // Live /es/pricing for Spain (EUR): Inicial anual €17 → IA Básica mensual €71
         "offers": {
           "@type": "AggregateOffer",
           "url": `${BASE_URL}/es/pricing`,
           "priceCurrency": "EUR",
-          "lowPrice": 25,
-          "highPrice": 42,
-          "offerCount": 5,
+          "lowPrice": 17,
+          "highPrice": 71,
+          "offerCount": 3,
           "availability": "https://schema.org/InStock"
         },
         "aggregateRating": {
@@ -220,12 +231,13 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "ratingCount": 30597
         },
         "featureList": [
-          "Agentes de IA para WhatsApp",
-          "Calificación de leads",
-          "Detección de oportunidades estancadas",
-          "Sugerencias de respuesta con IA",
-          "Bandeja de entrada compartida para equipos",
-          "Integración de WhatsApp con CRM"
+          "Sincronización de WhatsApp con el CRM",
+          "Grupos de WhatsApp en el CRM",
+          "Seguimiento de llamadas y marcador automático",
+          "Difusiones desde WhatsApp Web, Google Sheets, CRM o API",
+          "Inteligencia de ventas (campos del CRM completados por IA)",
+          "Agentes de IA para WhatsApp, voz y sitio web",
+          "Controles de privacidad para chats de negocio"
         ]
       },
       organization: {
@@ -233,7 +245,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "@type": "Organization",
         "name": "Eazybe",
         "url": `${BASE_URL}/es`,
-        "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 600, "height": 60 },
+        "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 1608, "height": 377 },
         "image": `${BASE_URL}/logo.png`,
         "description": "Eazybe ayuda a los equipos de ventas a automatizar conversaciones de WhatsApp con agentes de IA, calificar leads, detectar oportunidades estancadas y sincronizar chats con CRM como HubSpot, Zoho, Salesforce y Google Sheets.",
         "foundingDate": "2022-09-13",
@@ -242,14 +254,15 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "name": "Sagar Dewan",
           "sameAs": ["https://www.linkedin.com/in/sagar-dewan-b43b9931/"]
         },
-        "parentOrganization": { "@type": "Organization", "name": "Eazybe Inc." },
+        "legalName": "Eazybe, Inc.",
         "sameAs": [
           "https://x.com/EazybeHQ",
           "https://www.linkedin.com/company/eazybe",
           "https://www.youtube.com/@eazybe",
           "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
           "https://www.threads.com/@eazybe.supercharge",
-          "https://www.instagram.com/eazybe.supercharge/"
+          "https://www.instagram.com/eazybe.supercharge/",
+          PLAY_STORE_URL
         ],
         "contactPoint": {
           "@type": "ContactPoint",
@@ -283,21 +296,22 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "@type": "SoftwareApplication",
         "name": "Eazybe",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "CRM Entegrasyonu, WhatsApp Otomasyonu, WhatsApp için Yapay Zeka Ajanları",
-        "operatingSystem": "Web, Chrome Uzantısı",
+        "applicationSubCategory": "WhatsApp CRM Entegrasyonu, Satış Zekası, WhatsApp ve Aramalar için Yapay Zeka Ajanları",
+        "operatingSystem": "Web, Chrome Uzantısı, Android",
         "url": `${BASE_URL}/tr`,
         "image": `${BASE_URL}/logo.png`,
-        "description": "Eazybe, satış ekiplerinin WhatsApp konuşmalarını yapay zeka ajanları ile otomatikleştirmesine, lead'leri nitelendirmesine, soğuyan fırsatları tespit etmesine ve sohbetleri HubSpot, Zoho, Salesforce ve Google Sheets gibi CRM platformlarıyla senkronize etmesine yardımcı olur.",
-        "softwareVersion": "latest",
-        "downloadUrl": "https://chrome.google.com/webstore/detail/aihpfgoknheimieofcfjiobnmddldjeb",
-        "screenshot": "https://cdn.prod.website-files.com/64cb8fe9dae4f2e5a069eb37/687f71bf8e51d6931ee45917_hero_image_without_AI-p-1080.webp",
+        "description": "Eazybe, WhatsApp'ta ve aramalarda satış konuşmalarınıza güç verir. Ekibinizin kişisel WhatsApp numaralarını, WhatsApp gruplarını ve aramalarını CRM'inize (HubSpot, Salesforce, Zoho, Pipedrive ve daha fazlası) bağlar; nitelendirme ve takipleri Yapay Zeka'ya bırakır.",
+        "downloadUrl": CHROME_STORE_URL,
+        "installUrl": PLAY_STORE_URL,
+        "screenshot": SCREENSHOT_URL,
+        // Live /tr/pricing (TRY): Başlangıç yıllık ₺947 → Temel Yapay Zeka aylık ₺3939 (moves with the exchange rate)
         "offers": {
           "@type": "AggregateOffer",
           "url": `${BASE_URL}/tr/pricing`,
           "priceCurrency": "TRY",
-          "lowPrice": 1272,
-          "highPrice": 2149,
-          "offerCount": 5,
+          "lowPrice": 947,
+          "highPrice": 3939,
+          "offerCount": 3,
           "availability": "https://schema.org/InStock"
         },
         "aggregateRating": {
@@ -308,12 +322,13 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "ratingCount": 30597
         },
         "featureList": [
-          "WhatsApp yapay zeka ajanları",
-          "Lead nitelendirme",
-          "Soğuk fırsat tespiti",
-          "Yapay zeka destekli yanıt önerileri",
-          "Ekipler için ortak gelen kutusu",
-          "WhatsApp CRM entegrasyonu"
+          "WhatsApp CRM senkronizasyonu",
+          "CRM'de WhatsApp grupları",
+          "Arama takibi ve otomatik arayıcı",
+          "WhatsApp Web, Google Sheets, CRM veya API'den toplu mesaj",
+          "Satış zekası (Yapay Zeka ile doldurulan CRM alanları)",
+          "WhatsApp, sesli arama ve web sitesi için Yapay Zeka ajanları",
+          "İş sohbetleri için gizlilik kontrolleri"
         ]
       },
       organization: {
@@ -321,7 +336,7 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         "@type": "Organization",
         "name": "Eazybe",
         "url": `${BASE_URL}/tr`,
-        "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 600, "height": 60 },
+        "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png`, "width": 1608, "height": 377 },
         "image": `${BASE_URL}/logo.png`,
         "description": "Eazybe, satış ekiplerinin WhatsApp konuşmalarını yapay zeka ajanları ile otomatikleştirmesine, lead'leri nitelendirmesine, soğuyan fırsatları tespit etmesine ve sohbetleri HubSpot, Zoho, Salesforce ve Google Sheets gibi CRM platformlarıyla senkronize etmesine yardımcı olur.",
         "foundingDate": "2022-09-13",
@@ -330,14 +345,15 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "name": "Sagar Dewan",
           "sameAs": ["https://www.linkedin.com/in/sagar-dewan-b43b9931/"]
         },
-        "parentOrganization": { "@type": "Organization", "name": "Eazybe Inc." },
+        "legalName": "Eazybe, Inc.",
         "sameAs": [
           "https://x.com/EazybeHQ",
           "https://www.linkedin.com/company/eazybe",
           "https://www.youtube.com/@eazybe",
           "https://www.facebook.com/EazyBe.WhatsApp.Marketing/",
           "https://www.threads.com/@eazybe.supercharge",
-          "https://www.instagram.com/eazybe.supercharge/"
+          "https://www.instagram.com/eazybe.supercharge/",
+          PLAY_STORE_URL
         ],
         "contactPoint": {
           "@type": "ContactPoint",

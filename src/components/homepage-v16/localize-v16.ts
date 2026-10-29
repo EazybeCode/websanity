@@ -73,3 +73,22 @@ export function getV16Content(locale: string): { markup: string; labels: V16Labe
   })
   return { markup: $.html(), labels }
 }
+
+/**
+ * The FAQ exactly as the locale's page renders it (#faq-list), so the FAQPage
+ * JSON-LD can never drift from the visible questions and answers.
+ */
+export function getV16Faq(locale: string): { question: string; answer: string }[] {
+  const $ = load(getV16Content(locale).markup, {}, false)
+  return $('#faq-list details')
+    .toArray()
+    .map((item) => ({
+      question: $(item).find('.fq-q').text().trim(),
+      answer: $(item)
+        .children('p')
+        .toArray()
+        .map((p) => $(p).text().trim())
+        .join(' '),
+    }))
+    .filter((entry) => entry.question && entry.answer)
+}
