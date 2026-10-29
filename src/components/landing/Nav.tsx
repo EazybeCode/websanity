@@ -225,8 +225,36 @@ const INT_WORD: Record<string, string> = {
   en: 'Integration', es: 'Integración', br: 'Integração', tr: 'Entegrasyonu',
 }
 
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.eazybe.workspace'
+
+// "Get it on Google Play" badge. <div>s, not <span>s: `.nav-links a span` forces
+// color:#fff !important and turns purple on hover.
+function PlayBadge({ label, aria }: { label: string; aria: string }) {
+  return (
+    <a
+      href={PLAY_STORE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={aria}
+      style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 12px', borderRadius: 8, background: '#000', color: '#fff', border: '1px solid #A6A6A6' }}
+    >
+      <svg width="20" height="22" viewBox="0 0 24 26" aria-hidden="true">
+        <path fill="#00D7FE" d="M1.1.6C.8.9.6 1.4.6 2v22c0 .6.2 1.1.5 1.4l.1.1L13.5 13.1v-.3L1.2.5z" />
+        <path fill="#FFCE00" d="M17.6 17.3l-4.1-4.2v-.3l4.1-4.1.1.1 4.9 2.8c1.4.8 1.4 2.1 0 2.9l-4.9 2.8z" />
+        <path fill="#FF3A44" d="M17.7 17.2L13.5 13 1.1 25.4c.5.5 1.2.5 2.1.1l14.5-8.3" />
+        <path fill="#00F076" d="M17.7 8.8L3.2.5C2.3 0 1.6.1 1.1.6L13.5 13z" />
+      </svg>
+      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1, color: '#fff', textAlign: 'left' }}>
+        <div style={{ fontSize: 9, letterSpacing: '0.04em' }}>{label}</div>
+        <div style={{ fontSize: 15, fontWeight: 600, marginTop: 2 }}>Google Play</div>
+      </div>
+    </a>
+  )
+}
+
 export function Nav() {
   const t = useTranslations('landingV3.nav')
+  const tApp = useTranslations('blog.sidebar')
   const { openModal } = useTrialModal()
   const locale = useLocale()
   const lh = (href: string) => withLocale(href, locale)
@@ -415,7 +443,8 @@ export function Nav() {
 
         <div className="nav-item">
           <button type="button" className="nav-trigger" aria-haspopup="menu"><span>{t('resources')}</span> <span className="nav-caret">▾</span></button>
-          <div className="nav-dropdown">
+          <div className="nav-dropdown" style={{ display: 'flex', gap: 6 }}>
+            <div style={{ minWidth: 280 }}>
             <div className="nav-dd-section">{t('sectionLearn')}</div>
             <a href={lh('/blog')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
@@ -463,6 +492,23 @@ export function Nav() {
                 <div className="nav-dd-desc">{t('resContactSalesDesc')}</div>
               </span>
             </a>
+            </div>
+            {/* Mobile app: QR to scan with a phone + Play badge */}
+            <div
+              style={{
+                width: 184, flex: '0 0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center',
+                justifyContent: 'center', gap: 12, padding: '14px 12px', borderLeft: '1px solid rgba(255,255,255,0.12)',
+              }}
+            >
+              <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35, textAlign: 'center', color: '#fff' }}>
+                {tApp('appTitle')}
+              </div>
+              <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ display: 'block', borderRadius: 10, overflow: 'hidden' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/blog/eazybe-app-qr.svg" width={144} height={144} alt={tApp('appQrAlt')} loading="lazy" style={{ display: 'block' }} />
+              </a>
+              <PlayBadge label={tApp('appGetItOn')} aria={tApp('appBadgeAria')} />
+            </div>
           </div>
         </div>
 
@@ -640,6 +686,10 @@ export function Nav() {
                     </li>
                   )
                 })}
+                {/* On a phone there's nothing to scan: link the Play listing directly. */}
+                <li style={{ padding: '8px 0 4px' }}>
+                  <PlayBadge label={tApp('appGetItOn')} aria={tApp('appBadgeAria')} />
+                </li>
               </ul>
             </div>
 
