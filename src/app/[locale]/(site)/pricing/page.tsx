@@ -20,25 +20,30 @@ export async function generateMetadata({
   // SERP-friendly titles per locale. Authoritative in code across all
   // locales so the SEO titles can't drift from editor-made changes in
   // Sanity. ~54-57 characters each, within SERP truncation limits.
+  // Plan names match each locale's pricing cards (the Omnis plan was retired).
   const titlesByLocale: Record<string, string> = {
-    en: 'WhatsApp CRM Pricing - Starter, Scaler, Omnis | Eazybe',
-    es: 'Precios de WhatsApp CRM - Starter, Scaler, Omnis | Eazybe',
-    br: 'Preços do WhatsApp CRM - Starter, Scaler, Omnis | Eazybe',
-    tr: 'WhatsApp CRM Fiyatları - Starter, Scaler, Omnis | Eazybe',
+    en: 'WhatsApp CRM Pricing: Starter, Scaler & AI Plans | Eazybe',
+    es: 'Precios de WhatsApp CRM: Inicial, Escala y planes IA | Eazybe',
+    br: 'Preços do WhatsApp CRM: Inicial, Escala e planos IA | Eazybe',
+    tr: 'WhatsApp CRM Fiyatları: Başlangıç, Büyüme, Yapay Zeka | Eazybe',
   }
   const title = titlesByLocale[locale] || titlesByLocale.en
+  // Also authoritative in code: the Sanity pricing seo text still described Omnis
+  // and was served in English on every locale.
+  const descriptionsByLocale: Record<string, string> = {
+    en: 'Eazybe pricing: Starter and Scaler plans for WhatsApp CRM sync, plus Basic AI and Custom AI agent plans. 4-day free trial, no credit card required.',
+    es: 'Precios de Eazybe: planes Inicial y Escala para sincronizar WhatsApp con tu CRM, más los planes IA Básica e IA Personalizada. Prueba gratis de 4 días.',
+    br: 'Preços da Eazybe: planos Inicial e Escala para sincronizar o WhatsApp com seu CRM, além dos planos IA Básica e IA Personalizada. Teste grátis de 4 dias.',
+    tr: 'Eazybe fiyatları: WhatsApp-CRM senkronizasyonu için Başlangıç ve Büyüme planları, ayrıca Temel ve Özel Yapay Zeka planları. 4 günlük ücretsiz deneme.',
+  }
+  const description = descriptionsByLocale[locale] || descriptionsByLocale.en
 
   return {
     title,
-    description:
-      seo?.metaDescription ||
-      'Simple, transparent pricing for WhatsApp CRM integration. Start free with Starter, scale with Scaler, or go all-in with Omnis.',
+    description,
     openGraph: {
       title,
-      description:
-        seo?.ogDescription ||
-        seo?.metaDescription ||
-        'Simple, transparent pricing for WhatsApp CRM integration.',
+      description,
       ...(seo?.ogImage && { images: [{ url: seo.ogImage }] }),
     },
     alternates: getAlternates(locale, '/pricing'),

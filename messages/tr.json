@@ -301,7 +301,7 @@
       },
       {
         "question": "Hangi CRM'lerle entegre oluyorsunuz?",
-        "answer": "Başlangıç, HubSpot, Zoho CRM, Bitrix24 ve Google Sheets ile entegre olur. Ölçekleyici, özel CRM'ler için Salesforce ve webhook entegrasyonları ekler. Omnis, özel API'ler ve anlaşmalara/biletlere senkronizasyon içerir."
+        "answer": "Başlangıç, HubSpot, Zoho CRM, Bitrix24 ve Google Sheets ile entegre olur. Büyüme, özel CRM'ler için Salesforce ve webhook entegrasyonları ekler."
       },
       {
         "question": "Daha sonra plan değiştirebilir miyim?",
@@ -2336,7 +2336,7 @@
       "q3": "Eazybe hangi özel özellikleri sunuyor?",
       "a3": "Eazybe başka hiçbir yerde bulamayacağınız özel özellikler sunar: WhatsApp Sohbet Yedekleme, Salesforce Entegrasyonu, WhatsApp Web Yardımcı Pilot, Gelir Gelen Kutusu, RevOps Ajanı, YZ Yanıtsız Sohbet Ajanı ve Bitrix24 Entegrasyonu. Bu özellikler Wati, Interakt, QuickReply, Cooby, Timelines veya Rasayel üzerinde mevcut değildir.",
       "q4": "Eazybe kurumsal ekipler için uygun mu?",
-      "a4": "Kesinlikle! Eazybe her büyüklükteki işletmeye hizmet eder. Omnis planımız kurumsal ekipler için özel APIler, sınırsız mesaj senkronizasyonu, Gelir Gelen Kutusu, RevOps Ajanı ve özel bir hesap yöneticisi içerir. İşletmenizin ihtiyaçlarına göre ölçekleniriz.",
+      "a4": "Kesinlikle! Eazybe her büyüklükteki işletmeye hizmet eder. İşletmenizin ihtiyaçlarına göre ölçekleniriz.",
       "q5": "Başka bir platformdan geçiş yapabilir miyim?",
       "a5": "Evet! Herhangi bir WhatsApp CRM platformundan geçişi kolaylaştırıyoruz. Mevcut kişilerinizi, mesajlarınızı ve iş akışlarınızı içe aktarın. Ekibimiz, Wati, Interakt, QuickReply, Cooby veya başka bir platformdan sorunsuz bir geçiş sağlamak için yıllık planlara ücretsiz geçiş desteği sunar.",
       "q6": "Eazybe hangi entegrasyonları destekler?",

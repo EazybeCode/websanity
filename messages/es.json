@@ -301,7 +301,7 @@
       },
       {
         "question": "¿Con qué CRMs se integran?",
-        "answer": "El plan Inicial se integra con HubSpot, Zoho CRM, Bitrix24 y Google Sheets. Escalador agrega Salesforce e integraciones via webhook para CRMs personalizados. Omnis incluye APIs dedicadas y sincronización a negocios/tickets."
+        "answer": "El plan Inicial se integra con HubSpot, Zoho CRM, Bitrix24 y Google Sheets. Escala agrega Salesforce e integraciones via webhook para CRMs personalizados."
       },
       {
         "question": "¿Puedo cambiar de plan después?",
@@ -2410,7 +2410,7 @@
       "q3": "¿Qué funciones exclusivas ofrece Eazybe?",
       "a3": "Eazybe ofrece funciones exclusivas que no encontrarás en ningún otro lugar: Copia de Seguridad de Chats de WhatsApp, Integración con Salesforce, Copiloto de WhatsApp Web, Bandeja de Ingresos, Agente RevOps, Agente IA de Chats Sin Responder e Integración con Bitrix24. Estas funciones no están disponibles en Wati, Interakt, QuickReply, Cooby, Timelines ni Rasayel.",
       "q4": "¿Es Eazybe adecuado para equipos empresariales?",
-      "a4": "¡Por supuesto! Eazybe atiende a empresas de todos los tamaños. Nuestro plan Omnis incluye APIs dedicadas, sincronización ilimitada de mensajes, Bandeja de Ingresos, Agente RevOps y un gerente de cuenta dedicado para equipos empresariales. Escalamos según las necesidades de tu negocio.",
+      "a4": "¡Por supuesto! Eazybe atiende a empresas de todos los tamaños. Escalamos según las necesidades de tu negocio.",
       "q5": "¿Puedo migrar desde otra plataforma?",
       "a5": "¡Sí! Hacemos que la migración desde cualquier plataforma de CRM de WhatsApp sea fácil. Importa tus contactos, mensajes y flujos de trabajo existentes. Nuestro equipo brinda soporte gratuito de migración en los planes anuales para garantizar una transición fluida desde Wati, Interakt, QuickReply, Cooby o cualquier otra plataforma.",
       "q6": "¿Qué integraciones admite Eazybe?",
