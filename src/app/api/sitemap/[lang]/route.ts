@@ -1,5 +1,7 @@
 import { NextRequest } from 'next/server'
 import { sanityClient } from '@/lib/sanity'
+// Git date each code-built page last changed (regenerate: node scripts/sitemap-lastmod.mjs)
+import CODE_LASTMOD from '@/data/sitemap-lastmod.json'
 
 const SITE_URL = 'https://eazybe.com'
 const LOCALES = ['en', 'br', 'es', 'tr']
@@ -41,10 +43,18 @@ function formatDate(date: string | Date): string {
 }
 
 /**
- * Gets the build date for static pages that don't have their own lastmod
+ * Real last-modified date for a page: the newer of the git date of its code
+ * (sitemap-lastmod.json) and the Sanity _updatedAt of its content, if any.
+ * Never the build date: a lastmod that changes on every build teaches Google
+ * to ignore it.
  */
-function getBuildDate(): string {
-  return new Date().toISOString().split('T')[0]
+function newest(...dates: Array<string | undefined>): string | undefined {
+  const valid = dates.filter(Boolean).map((d) => formatDate(d!))
+  return valid.length ? valid.sort().at(-1) : undefined
+}
+
+function codeDate(key: string): string | undefined {
+  return (CODE_LASTMOD as Record<string, string>)[key]
 }
 
 // ─── XML builders ───────────────────────────────────────────────────────────
@@ -105,6 +115,34 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
   const entries: SitemapEntry[] = []
   const isDefault = lang === 'en'
 
+  // _updatedAt of the Sanity documents behind the static pages, for this locale
+  // (falling back to the English document when a locale has none).
+  let pageDocs: Array<{ _type: string; language?: string; slug?: string; _updatedAt: string }> = []
+  try {
+    pageDocs = await sanityClient.fetch(
+      `*[_type in ["pricingPage","comparisonPage","blogIndex","categoryIndexPage","productPage"] && !(_id in path("drafts.**"))]{
+        _type, language, "slug": slug.current, _updatedAt
+      }`
+    ) ?? []
+  } catch (error) {
+    console.warn('Sitemap: Could not fetch page dates:', error)
+  }
+  const sanityDate = (type: string, slug?: string): string | undefined => {
+    const docs = pageDocs.filter((d) => d._type === type && (slug === undefined || d.slug === slug))
+    const doc = docs.find((d) => d.language && toLocale(d.language) === lang) ?? docs.find((d) => d.language === 'en') ?? docs[0]
+    return doc?._updatedAt
+  }
+  const STATIC_SANITY: Record<string, () => string | undefined> = {
+    '/pricing': () => sanityDate('pricingPage'),
+    '/comparison': () => sanityDate('comparisonPage'),
+    '/blog': () => sanityDate('blogIndex'),
+    '/features': () => sanityDate('categoryIndexPage', 'features'),
+    '/integrations': () => sanityDate('categoryIndexPage', 'integrations'),
+    '/whatsapp-api': () => sanityDate('categoryIndexPage', 'whatsapp-api'),
+    '/whatsapp-api/coexistence': () => sanityDate('productPage', 'coexistence'),
+    '/features/team-inbox': () => sanityDate('productPage', 'team-inbox'),
+  }
+
   // ── Homepage ────────────────────────────────────────────────────────────
   const homeAlternates: Array<{ lang: string; url: string }> = [
     { lang: 'x-default', url: `${SITE_URL}/` },
@@ -117,6 +155,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     loc: isDefault ? `${SITE_URL}/` : `${SITE_URL}/${lang}`,
     changefreq: 'daily',
     priority: 1.0, // All homepages get priority 1.0
+    lastmod: codeDate('/'),
     alternates: homeAlternates,
   })
 
@@ -139,9 +178,8 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     { path: '/case-studies', changefreq: 'weekly', priority: 0.7 },
     { path: '/case-studies/lokmaxltda', changefreq: 'monthly', priority: 0.7 },
     { path: '/become-our-partner', changefreq: 'monthly', priority: 0.7 },
-    { path: '/msa', changefreq: 'monthly', priority: 0.3 },
-    { path: '/privacy', changefreq: 'monthly', priority: 0.3 },
-    { path: '/terms', changefreq: 'monthly', priority: 0.3 },
+    // /msa, /privacy and /terms are noindex, so they stay out of the sitemap
+    // (listing them gives "Submitted URL marked noindex" in Search Console).
   ]
 
   for (const page of staticPages) {
@@ -151,7 +189,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
       loc: localeUrl(lang, page.path),
       changefreq: page.changefreq,
       priority,
-      lastmod: getBuildDate(), // Add lastmod for static pages
+      lastmod: newest(codeDate(page.path), STATIC_SANITY[page.path]?.()),
       alternates: allLocaleAlternates(page.path),
     })
   }
@@ -168,7 +206,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     loc: `${SITE_URL}${WA_PRICING_PATHS[lang] ?? WA_PRICING_PATHS.en}`,
     changefreq: 'monthly',
     priority: isDefault ? 0.7 : 0.6,
-    lastmod: getBuildDate(),
+    lastmod: codeDate('/whatsapp-pricing-calculator'),
     alternates: [
       { lang: 'x-default', url: `${SITE_URL}${WA_PRICING_PATHS.en}` },
       ...LOCALES.map((l) => ({ lang: toHreflang(l), url: `${SITE_URL}${WA_PRICING_PATHS[l]}` })),
@@ -182,7 +220,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
       loc: localeUrl(lang, path),
       changefreq: 'daily',
       priority: 0.9,
-      lastmod: getBuildDate(),
+      lastmod: newest(codeDate('/integration-page'), sanityDate('productPage', `${slug}-whatsapp-integration`)),
       alternates: allLocaleAlternates(path),
     })
   }
@@ -302,44 +340,48 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
 
   // ── Feature / WhatsApp API pages from Sanity ────────────────────────────
   try {
-    const sanityLangMap: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }
-    const sanityLang = sanityLangMap[lang] || lang
-
+    // All locales at once: the slug is shared across languages, so the locales
+    // that have the page become its hreflang alternates.
     const pages: Array<{
       slug: string
       category: string
+      language: string
       _updatedAt: string
     }> = await sanityClient.fetch(
-      `*[_type == "productPage" && slug.current != "coexistence" && slug.current != "team-inbox" && language == $language]{
+      `*[_type == "productPage" && category in ["feature", "whatsapp-api"] && slug.current != "coexistence" && slug.current != "team-inbox" && !(_id in path("drafts.**"))]{
         "slug": slug.current,
         category,
+        language,
         _updatedAt
-      }`,
-      { language: sanityLang }
+      }`
     ) ?? []
 
-    for (const page of pages) {
-      let path = ''
-      if (page.category === 'feature') {
-        path = `/features/${page.slug}`
-      } else if (page.category === 'whatsapp-api') {
-        path = `/whatsapp-api/${page.slug}`
-      } else {
-        continue
-      }
+    for (const page of pages.filter((p) => p.language && toLocale(p.language) === lang)) {
+      const path = page.category === 'feature' ? `/features/${page.slug}` : `/whatsapp-api/${page.slug}`
+      const locales = [...new Set(
+        pages.filter((p) => p.slug === page.slug && p.category === page.category && p.language).map((p) => toLocale(p.language))
+      )].filter((l) => LOCALES.includes(l))
 
       entries.push({
         loc: localeUrl(lang, path),
         changefreq: 'monthly',
         priority: 0.8,
-        lastmod: formatDate(page._updatedAt),
+        lastmod: newest(codeDate('/product-page'), page._updatedAt),
+        alternates: locales.length > 1
+          ? [
+              { lang: 'x-default', url: localeUrl(locales.includes('en') ? 'en' : lang, path) },
+              ...locales.map((l) => ({ lang: toHreflang(l), url: localeUrl(l, path) })),
+            ]
+          : undefined,
       })
     }
   } catch (error) {
     console.warn('Sitemap: Could not fetch product pages:', error)
   }
 
-  return buildSitemapXml(entries)
+  // One entry per URL (a document duplicated in Sanity would otherwise be listed twice).
+  const seen = new Set<string>()
+  return buildSitemapXml(entries.filter((e) => !seen.has(e.loc) && seen.add(e.loc)))
 }
 
 // ─── Route handler ──────────────────────────────────────────────────────────
