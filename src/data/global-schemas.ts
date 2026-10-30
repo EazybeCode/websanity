@@ -17,6 +17,17 @@ const SCREENSHOT_URL = `${BASE_URL}/homepage/refined-crm/hubspot.webp`
 // Stable node ids so page-level schemas (WebPage, FAQPage) can reference these
 export const ORG_ID = `${BASE_URL}/#organization`
 export const SOFTWARE_ID = `${BASE_URL}/#software`
+// Market signals for the localized pages. Eazybe is SaaS with no local office, so the
+// es/br/tr pages describe the market served and support coverage (areaServed,
+// contactPoint) instead of a LocalBusiness/ProfessionalService address.
+const SUPPORT_PHONE = '+1-309-929-4280'
+const SUPPORT_HOURS = {
+  "@type": "OpeningHoursSpecification",
+  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  "opens": "00:00",
+  "closes": "23:59"
+}
+const SPANISH_MARKETS = ['ES', 'MX', 'CO', 'AR', 'CL', 'PE']
 
 export function getGlobalSchemas(locale: string): GlobalSchemas {
   const schemas: Record<string, GlobalSchemas> = {
@@ -182,13 +193,16 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "https://www.instagram.com/eazybe.supercharge/",
           PLAY_STORE_URL
         ],
+        "areaServed": { "@type": "Country", "name": "Brazil" },
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "suporte ao cliente",
           "email": "support@eazybe.com",
+          "telephone": SUPPORT_PHONE,
           "url": `${BASE_URL}/br`,
-          "areaServed": "Brazil",
-          "availableLanguage": ["Português"]
+          "areaServed": "BR",
+          "availableLanguage": ["Portuguese", "English"],
+          "hoursAvailable": SUPPORT_HOURS
         },
         "address": {
           "@type": "PostalAddress",
@@ -276,13 +290,16 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "https://www.instagram.com/eazybe.supercharge/",
           PLAY_STORE_URL
         ],
+        "areaServed": ['Spain', 'Mexico', 'Colombia', 'Argentina', 'Chile', 'Peru'].map((name) => ({ "@type": "Country", "name": name })),
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer support",
           "email": "support@eazybe.com",
+          "telephone": SUPPORT_PHONE,
           "url": `${BASE_URL}/es`,
-          "areaServed": "ES",
-          "availableLanguage": ["Spanish"]
+          "areaServed": SPANISH_MARKETS,
+          "availableLanguage": ["Spanish", "English"],
+          "hoursAvailable": SUPPORT_HOURS
         },
         "address": {
           "@type": "PostalAddress",
@@ -370,13 +387,16 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
           "https://www.instagram.com/eazybe.supercharge/",
           PLAY_STORE_URL
         ],
+        "areaServed": { "@type": "Country", "name": "Türkiye" },
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "müşteri desteği",
           "email": "support@eazybe.com",
+          "telephone": SUPPORT_PHONE,
           "url": `${BASE_URL}/tr`,
           "areaServed": "TR",
-          "availableLanguage": ["Türkçe"]
+          "availableLanguage": ["Turkish", "English"],
+          "hoursAvailable": SUPPORT_HOURS
         },
         "address": {
           "@type": "PostalAddress",

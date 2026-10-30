@@ -381,11 +381,7 @@ export function getHomepageJsonLd(locale: string): object[] {
         "url": "https://eazybe.com/br",
         "name": "Eazybe",
         "description": "Integra\u00e7\u00e3o CRM com WhatsApp | Eazybe - Plataforma de Vendas. Integra\u00e7\u00e3o com HubSpot, Zoho, Salesforce, Google Sheets e mais.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Eazybe",
-          "url": "https://eazybe.com/br"
-        },
+        "publisher": { "@id": ORG_ID },
         "inLanguage": "pt-BR",
         "potentialAction": {
           "@type": "SearchAction",
@@ -396,45 +392,8 @@ export function getHomepageJsonLd(locale: string): object[] {
           "query-input": "required name=search_term_string"
         }
       },
-      // ProfessionalService Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "@id": "https://eazybe.com/br/#professionalservice",
-        "name": "Eazybe",
-        "url": "https://eazybe.com/br",
-        "image": ["https://eazybe.com/logo.png"],
-        "logo": "https://eazybe.com/logo.png",
-        "telephone": "+13099294280",
-        "priceRange": "A partir de $92/m\u00eas",
-        "address": {
-          "@type": "PostalAddress",
-          "addressRegion": "RJ",
-          "postalCode": "25943-380",
-          "addressCountry": "BR"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": -22.870241,
-          "longitude": -43.232622
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday"
-            ],
-            "opens": "00:00",
-            "closes": "23:59"
-          }
-        ]
-      },
+      // No LocalBusiness/ProfessionalService: Eazybe has no office in Brazil. The market
+      // and support coverage live on the Organization (areaServed, contactPoint).
     ],
     es: [
       // BreadcrumbList Schema
@@ -463,10 +422,7 @@ export function getHomepageJsonLd(locale: string): object[] {
         "url": "https://eazybe.com/es",
         "name": "Eazybe",
         "description": "Integraci\u00f3n CRM con WhatsApp | Eazybe - Plataforma de ventas. Integraci\u00f3n con HubSpot, Zoho, Salesforce, Google Sheets y m\u00e1s.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Eazybe"
-        },
+        "publisher": { "@id": ORG_ID },
         "inLanguage": "es-ES",
         "potentialAction": {
           "@type": "SearchAction",
@@ -477,33 +433,8 @@ export function getHomepageJsonLd(locale: string): object[] {
           "query-input": "required name=search_term_string"
         }
       },
-      // ProfessionalService Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Eazybe",
-        "url": "https://eazybe.com/es",
-        "image": ["https://eazybe.com/logo.png"],
-        "logo": "https://eazybe.com/logo.png",
-        "telephone": "+13099294280",
-        "priceRange": "Desde $92/mes",
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday"
-            ],
-            "opens": "00:00",
-            "closes": "23:59"
-          }
-        ]
-      },
+      // No LocalBusiness/ProfessionalService: Eazybe has no office in Spain or LATAM.
+      // The market and support coverage live on the Organization (areaServed, contactPoint).
     ],
     tr: [
       // BreadcrumbList Schema
@@ -532,10 +463,7 @@ export function getHomepageJsonLd(locale: string): object[] {
         "url": "https://eazybe.com/tr",
         "name": "Eazybe",
         "description": "WhatsApp ile CRM entegrasyonu | Eazybe - Sat\u0131\u015f Platformu. HubSpot, Zoho, Salesforce, Google Sheets ve daha fazlas\u0131 ile entegrasyon.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Eazybe"
-        },
+        "publisher": { "@id": ORG_ID },
         "inLanguage": "tr-TR",
         "potentialAction": {
           "@type": "SearchAction",
