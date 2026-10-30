@@ -178,6 +178,7 @@ const INTEGRATIONS = [
   { name: 'LeadSquared', desc: 'Lead capture + nurture', href: "/leadsquared-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/leadsquared.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
   { name: 'Freshworks', desc: 'Freshsales + Freshdesk', href: "/freshdesk-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/freshdesk.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
   { name: 'Google Sheets', desc: 'Spreadsheet-as-CRM', href: "/google-sheets-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/google-sheets.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'monday.com', desc: 'Sync chats to your boards', href: "/monday-whatsapp-integration", bg: '#FFFFFF', icon: '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8" width="4.4" height="10.5" rx="2.2" transform="rotate(-24 4.7 13.25)" fill="#F62B54"/><rect x="9.8" y="8" width="4.4" height="10.5" rx="2.2" transform="rotate(-24 12 13.25)" fill="#FFCC00"/><circle cx="19.2" cy="16.3" r="2.4" fill="#00CA72"/></svg>' },
   { name: 'Custom API', desc: 'Webhooks + REST API', href: "/webhooks-whatsapp-integration", bg: '#F0EBF8', icon: '<svg width="18" height="18" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#0F1115"/><path d="M9 9l-3 3 3 3M15 9l3 3-3 3" stroke="#A78BFA" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
 ]
 
@@ -275,7 +276,7 @@ const MCP_ORBIT = [
 
 // "Featured" side panel of the Integrations dropdown, promoting the Eazybe MCP page.
 // <div>s, not <span>s, inside the link: `.nav-links a span` forces color:#fff.
-function McpFeatured({ href, label, lead, text }: { href: string; label: string; lead: string; text: string }) {
+function McpFeatured({ href, label, lead, text, worksWith, cta }: { href: string; label: string; lead: string; text: string; worksWith: string; cta: string }) {
   return (
     <a
       href={href}
@@ -302,6 +303,20 @@ function McpFeatured({ href, label, lead, text }: { href: string; label: string;
           <strong style={{ color: '#fff', fontWeight: 600 }}>{lead}</strong> {text}
         </div>
         <div aria-hidden style={{ color: 'rgba(255,255,255,0.55)', fontSize: 15, lineHeight: 1 }}>↗</div>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6 }}>
+        <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10.5, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginRight: 2 }}>
+          {worksWith}
+        </div>
+        {MCP_ORBIT.filter((o) => o.label !== 'Eazybe').map((o) => (
+          <div key={o.label} style={{ fontSize: 11.5, fontWeight: 600, color: '#fff', padding: '3px 9px', borderRadius: 99, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
+            {o.label}
+          </div>
+        ))}
+      </div>
+      {/* Bottom-aligned with "All integrations" in the left column. */}
+      <div style={{ marginTop: 'auto', padding: '10px 12px', borderRadius: 12, background: 'rgba(167, 139, 250, 0.16)', textAlign: 'center', fontFamily: 'var(--f-mono)', fontSize: 11.5, fontWeight: 600, letterSpacing: '0.04em', color: '#cfc3fa' }}>
+        {cta} →
       </div>
     </a>
   )
@@ -334,6 +349,7 @@ export function Nav() {
       'LeadSquared':              { nameKey: 'intLeadSquared', descKey: 'intLeadSquaredDesc' },
       'Freshworks':               { nameKey: 'intFreshworks', descKey: 'intFreshworksDesc' },
       'Google Sheets':            { nameKey: 'intGoogleSheets', descKey: 'intGoogleSheetsDesc' },
+      'monday.com':               { nameKey: 'intMonday', descKey: 'intMondayDesc' },
       'Custom API':               { nameKey: 'intCustom', descKey: 'intCustomDesc' },
       'Blog':                     { nameKey: 'resBlog', descKey: 'resBlogDesc' },
       'Help Center':              { nameKey: 'resHelpCenter', descKey: 'resHelpCenterDesc' },
@@ -491,7 +507,14 @@ export function Nav() {
               </div>
             </a>
           </div>
-          <McpFeatured href={lh('/mcp')} label={t('featured')} lead={t('mcpFeaturedLead')} text={t('mcpFeaturedText')} />
+          <McpFeatured
+            href={lh('/mcp')}
+            label={t('featured')}
+            lead={t('mcpFeaturedLead')}
+            text={t('mcpFeaturedText')}
+            worksWith={t('mcpWorksWith')}
+            cta={t('mcpCta')}
+          />
           </div>
         </div>
 
