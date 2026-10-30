@@ -297,6 +297,8 @@ export function Footer() {
             <a href={lh('/sitemap')}>{t('sitemap')}</a>
             <span className="footer-baseline-sep">|</span>
             <a href={lh('/feeds')}>{t('rss')}</a>
+            <span className="footer-baseline-sep">|</span>
+            <a href={lh('/security')}>{t('security')}</a>
           </nav>
 
           <div className="footer-payments" role="group" aria-label="Accepted payment methods">
