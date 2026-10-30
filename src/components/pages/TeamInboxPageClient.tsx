@@ -342,7 +342,7 @@ export function TeamInboxPageClient() {
         <div className="container">
           <h2 className="reveal">Turn WhatsApp into your<br /><em>Revenue Engine.</em></h2>
           <p className="sub reveal">
-            Join 2,000+ teams who finally see what is happening in chat. Sync conversations,
+            Join 30,000+ users who finally see what is happening in chat. Sync conversations,
             automate workflows, and close deals faster.
           </p>
           <div className="ctas reveal">

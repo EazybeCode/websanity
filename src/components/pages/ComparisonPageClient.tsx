@@ -389,8 +389,8 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
             <div className="mt-16 flex justify-center">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 max-w-3xl">
                 {[
-                  { value: '50K+', label: t('hero.stats.activeUsers') },
-                  { value: '4.8/5', label: t('hero.stats.chromeRating') },
+                  { value: '30K+', label: t('hero.stats.activeUsers') },
+                  { value: '4.2/5', label: t('hero.stats.chromeRating') },
                   { value: '70%', label: t('hero.stats.costSavings') },
                   { value: '20+', label: t('hero.stats.platformsCompared') }
                 ].map((stat, index) => (

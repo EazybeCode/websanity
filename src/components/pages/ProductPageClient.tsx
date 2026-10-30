@@ -180,7 +180,7 @@ const PAGE_COPY: Record<string, PageCopy> = {
       { title: 'Sales Managers', bullets: ['Team-wide visibility', 'Performance monitoring', 'Pipeline reality check'] },
       { title: 'Customer Success', bullets: ['Full customer history', 'Seamless handoffs', 'Ticket creation from chats'] },
     ],
-    setupTag: 'Live in 5 Minutes',
+    setupTag: 'Live in 2 Minutes',
     setupTitle: ['No Developers. No IT Tickets. ', 'No Waiting'],
     steps: (c) => [
       { title: 'Install Extension', desc: 'Add Eazybe to Chrome. One click, 60 seconds.' },
@@ -228,7 +228,7 @@ const PAGE_COPY: Record<string, PageCopy> = {
       { title: 'Gestores de vendas', bullets: ['Visão de toda a equipe', 'Acompanhamento de desempenho', 'Pipeline sem achismo'] },
       { title: 'Customer Success', bullets: ['Histórico completo do cliente', 'Passagens de bastão sem atrito', 'Tickets criados a partir das conversas'] },
     ],
-    setupTag: 'Pronto em 5 minutos',
+    setupTag: 'Pronto em 2 minutos',
     setupTitle: ['Sem desenvolvedores. Sem chamados de TI. ', 'Sem espera'],
     steps: (c) => [
       { title: 'Instale a extensão', desc: 'Adicione o Eazybe ao Chrome. Um clique, 60 segundos.' },
@@ -276,7 +276,7 @@ const PAGE_COPY: Record<string, PageCopy> = {
       { title: 'Gerentes de ventas', bullets: ['Visibilidad de todo el equipo', 'Seguimiento del desempeño', 'Pipeline sin suposiciones'] },
       { title: 'Customer Success', bullets: ['Historial completo del cliente', 'Traspasos sin fricción', 'Tickets creados desde los chats'] },
     ],
-    setupTag: 'Listo en 5 minutos',
+    setupTag: 'Listo en 2 minutos',
     setupTitle: ['Sin desarrolladores. Sin tickets de TI. ', 'Sin esperas'],
     steps: (c) => [
       { title: 'Instala la extensión', desc: 'Agrega Eazybe a Chrome. Un clic, 60 segundos.' },

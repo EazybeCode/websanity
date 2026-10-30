@@ -131,7 +131,7 @@
   "footerCta": {
     "headline": "¿Listo para automatizar",
     "headlineHighlight": "tus ventas en WhatsApp?",
-    "subheadline": "Únete a más de 2.000 equipos que usan Eazybe para capturar leads, automatizar seguimientos y sincronizar cada conversación con su CRM."
+    "subheadline": "Únete a más de 30.000 usuarios que usan Eazybe para capturar leads, automatizar seguimientos y sincronizar cada conversación con su CRM."
   },
   "language": {
     "select": "Idioma",
@@ -175,7 +175,7 @@
     "free": "Gratis",
     "trustSignals": {
       "gdprCompliant": "Compatible con GDPR",
-      "setupTime": "Configuración en 5 minutos",
+      "setupTime": "Configuración en 2 minutos",
       "freeTrial": "Prueba gratis de 4 días",
       "noCreditCard": "Sin tarjeta de crédito"
     },
@@ -1525,7 +1525,7 @@
           },
           {
             "question": "¿Cuánto tiempo toma la configuración?",
-            "answer": "La mayoría de los equipos están funcionando en menos de 5 minutos. Solo escanea un código QR y listo."
+            "answer": "La mayoría de los equipos están funcionando en unos 2 minutos. Solo escanea un código QR y listo."
           },
           {
             "question": "¿Mis datos están seguros?",
@@ -1957,7 +1957,7 @@
     "sidebar": {
       "badge": "Prueba Gratis",
       "headline": "Transforma Tus Ventas en WhatsApp",
-      "description": "Únete a más de 1,000 empresas usando Eazybe para gestionar conversaciones.",
+      "description": "Únete a más de 30.000 usuarios que gestionan sus conversaciones con Eazybe.",
       "buttonText": "Iniciar Prueba Gratis",
       "footnote": "Sin tarjeta de crédito",
       "appTitle": "Escanea para descargar la app móvil",
@@ -2388,7 +2388,7 @@
       "securityTitle": "Seguridad Empresarial",
       "securityDesc": "Cumple con RGPD, verificado como Partner de Meta Business, con cifrado de nivel bancario y protección de datos.",
       "setupTitle": "Configuración Más Rápida",
-      "setupDesc": "Comienza en menos de 5 minutos. Sin tarifas de configuración ni tarjeta de crédito para la prueba.",
+      "setupDesc": "Comienza en 2 minutos. Sin tarifas de configuración ni tarjeta de crédito para la prueba.",
       "userBaseTitle": "Mayor Base de Usuarios",
       "userBaseDesc": "Confiado por más de 30,000 empresas en todo el mundo - más usuarios que todos los demás CRMs de WhatsApp combinados."
     },
@@ -2418,7 +2418,7 @@
       "q7": "¿Hay una prueba gratuita?",
       "a7": "¡Sí! Ofrecemos una prueba gratuita de 4 días en todos los planes sin necesidad de tarjeta de crédito. Puedes explorar todas las funciones, probar integraciones y ver cómo Eazybe se ajusta a tu flujo de trabajo antes de comprometerte.",
       "q8": "¿En cuánto tiempo puedo poner Eazybe en marcha?",
-      "a8": "La mayoría de los equipos está activa en menos de 15 minutos. Instala la extensión de Chrome, conecta tu CRM con un clic y las conversaciones de WhatsApp comienzan a sincronizarse en tiempo real — sin desarrolladores, sin tickets de TI, sin onboarding de semanas como con competidores que solo ofrecen API."
+      "a8": "La mayoría de los equipos está activa en 2 minutos. Instala la extensión de Chrome, conecta tu CRM con un clic y las conversaciones de WhatsApp comienzan a sincronizarse en tiempo real — sin desarrolladores, sin tickets de TI, sin onboarding de semanas como con competidores que solo ofrecen API."
     },
     "articles": {
       "badge": "Artículos de Comparación",
@@ -2702,8 +2702,8 @@
       "ctaStartFree": "Empezar Gratis →",
       "ctaBookDemo": "Agendar Demo",
       "ctaFootnote": "Plan gratis para siempre · Sin tarjeta de crédito",
-      "trustHubspot": "4.6 en HubSpot",
-      "trustTeams": "Más de 2.000 equipos de ventas",
+      "trustHubspot": "4,3 en HubSpot",
+      "trustTeams": "Más de 30.000 usuarios",
       "trustCountries": "Más de 40 países",
       "trustMeta": "Meta Business Partner"
     },
@@ -2717,18 +2717,18 @@
       "footnote": "¿No encuentras tu respuesta?",
       "footnoteLink": "¡Hablemos!",
       "items": [
-        { "q": "¿Qué es Eazybe?", "a": "Eazybe es una extensión de Chrome que convierte el WhatsApp Web que tu equipo ya usa en una herramienta de ventas. Sincroniza cada chat con HubSpot, Salesforce, Zoho o el CRM que uses, y añade agentes de IA que califican leads y mantienen los registros al día mientras los representantes conservan sus propios números. Más de 2,000 equipos de ventas la usan, y hay un nivel gratuito para empezar." },
+        { "q": "¿Qué es Eazybe?", "a": "Eazybe es una extensión de Chrome que convierte el WhatsApp Web que tu equipo ya usa en una herramienta de ventas. Sincroniza cada chat con HubSpot, Salesforce, Zoho o el CRM que uses, y añade agentes de IA que califican leads y mantienen los registros al día mientras los representantes conservan sus propios números. Tiene más de 30.000 usuarios, y hay un nivel gratuito para empezar." },
         { "q": "¿Cómo funciona Eazybe?", "a": "Instalas la extensión, abres WhatsApp Web y conectas tu CRM con un clic, lo que toma unos diez minutos en total. A partir de ahí, los chats, contactos y adjuntos se registran solos en el registro correcto. Los agentes de IA pasan dos o tres días aprendiendo de tu historial de conversaciones y luego empiezan a calificar leads y redactar respuestas por su cuenta." },
-        { "q": "¿Qué es un Agente de IA en WhatsApp y cómo funciona?", "a": "Un Agente de IA en WhatsApp es un programa autónomo que lee, entiende y responde mensajes de WhatsApp en nombre de tu empresa. Usa modelos de lenguaje grandes para calificar leads, resolver tickets de soporte, sincronizar chats con tu CRM y disparar flujos en tiempo real. Eazybe se instala como una extensión de Chrome sobre WhatsApp Web y queda lista en 10 minutos, sin necesidad de código." },
+        { "q": "¿Qué es un Agente de IA en WhatsApp y cómo funciona?", "a": "Un Agente de IA en WhatsApp es un programa autónomo que lee, entiende y responde mensajes de WhatsApp en nombre de tu empresa. Usa modelos de lenguaje grandes para calificar leads, resolver tickets de soporte, sincronizar chats con tu CRM y disparar flujos en tiempo real. Eazybe se instala como una extensión de Chrome sobre WhatsApp Web y queda lista en 2 minutos, sin necesidad de código." },
         { "q": "¿En qué se diferencia un Agente de IA en WhatsApp de un chatbot tipo WATI o Gallabox?", "a": "Los chatbots siguen guiones y se rompen apenas el cliente se sale del libreto. Un Agente de IA en WhatsApp usa IA generativa para entender el contexto completo de la conversación, tu historial en el CRM y el estilo de tus mejores comerciales, y responde con un tono humano mientras actualiza tu pipeline en simultáneo." },
         { "q": "¿Necesito la API de WhatsApp Business para usar un agente de IA?", "a": "No. Eazybe funciona al mismo tiempo con WhatsApp Personal, la app de WhatsApp Business y la WhatsApp Cloud API. Sin cambiar de número, sin migración y sin proyecto de TI." },
         { "q": "¿Puedo probar el Agente de IA en WhatsApp antes de comprometerme?", "a": "Sí. Haz clic en \"Habla con nuestro agente en WhatsApp\" en cualquier parte de esta página. Nuestro Agente de Calificación en vivo te calificará en menos de 60 segundos, exactamente la misma experiencia que tendrían tus leads." },
         { "q": "¿Con qué CRMs se integra el Agente de IA de Eazybe?", "a": "HubSpot, Salesforce, Zoho CRM, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets y cualquier otro sistema vía webhooks o API REST. OAuth con un clic, sincronización bidireccional y sin captura manual de datos." },
-        { "q": "¿Cuánto tarda en desplegarse un Agente de IA en WhatsApp?", "a": "La sincronización con el CRM queda lista en 10 minutos. Los Agentes de IA tardan entre 2 y 3 días en entrenarse con tu historial de conversaciones y llegar a calidad de producción. Después de eso, el agente funciona 24/7 sin supervisión." },
+        { "q": "¿Cuánto tarda en desplegarse un Agente de IA en WhatsApp?", "a": "La sincronización con el CRM queda lista en 2 minutos. Los Agentes de IA tardan entre 2 y 3 días en entrenarse con tu historial de conversaciones y llegar a calidad de producción. Después de eso, el agente funciona 24/7 sin supervisión." },
         { "q": "¿Eazybe es una plataforma de Agente de IA en WhatsApp sin código?", "a": "Sí. Líderes de operaciones sin perfil técnico pueden diseñar y desplegar agentes personalizados con el Agent Builder de arrastrar y soltar: sin scripts, sin código y sin abrir tickets a ingeniería." },
         { "q": "¿Mis datos de WhatsApp y CRM están seguros con Eazybe?", "a": "Sí. Cifrado de extremo a extremo en tránsito y en reposo. Meta Business Partner. Cumplimos con el GDPR y estamos certificados SOC 2 Type II. Nunca almacenamos credenciales de WhatsApp en nuestros servidores." },
         { "q": "¿En qué se diferencia un Agente de IA en WhatsApp de Gong o Chorus?", "a": "Gong y Chorus graban llamadas agendadas. Un Agente de IA en WhatsApp trabaja sobre las conversaciones de chat continuas donde, en regiones WhatsApp-first, realmente avanzan la mayoría de los negocios 24/7, no solo durante las reuniones." },
-        { "q": "¿Cuál es el mejor Agente de IA en WhatsApp para equipos de ventas?", "a": "Eazybe es una de las principales plataformas de Agente de IA en WhatsApp para equipos de ventas. Tiene 4.6 en HubSpot, atiende a más de 2.000 equipos comerciales en más de 40 países y funciona como extensión de Chrome sobre el WhatsApp Web que tu equipo ya usa. Plan gratis para siempre disponible." }
+        { "q": "¿Cuál es el mejor Agente de IA en WhatsApp para equipos de ventas?", "a": "Eazybe es una de las principales plataformas de Agente de IA en WhatsApp para equipos de ventas. Tiene 4,3 en HubSpot y más de 30.000 usuarios en más de 40 países y funciona como extensión de Chrome sobre el WhatsApp Web que tu equipo ya usa. Plan gratis para siempre disponible." }
       ]
     },
     "beaForm": {
@@ -2742,8 +2742,8 @@
       "subtitle": "Agentes de WhatsApp que conocen tu CRM, leen tus chats y venden como tus mejores comerciales 24/7.",
       "talkToAgent": "Habla con nuestro Agente en WhatsApp →",
       "bookDemo": "Agendar Demo",
-      "trustHubspot": "4.6 en HubSpot",
-      "trustTeams": "Más de 2.000 equipos de ventas",
+      "trustHubspot": "4,3 en HubSpot",
+      "trustTeams": "Más de 30.000 usuarios",
       "trustCountries": "Más de 40 países",
       "trustMeta": "Meta Business Partner",
       "trustCompliance": "GDPR · SOC 2 Type II",
@@ -2767,7 +2767,7 @@
     "bannerCta": {
       "eyebrow": "NUEVO · CREADOR DE AGENTES PERSONALIZADOS",
       "headline": "Consigue Agentes de IA en WhatsApp sin código entrenados con tus mejores vendedores.",
-      "subtitle": "Listo en 10 minutos. Sin código, sin migración, sin equipo de TI.",
+      "subtitle": "Listo en 2 minutos. Sin código, sin migración, sin equipo de TI.",
       "button": "🤖 Quiero el mío"
     },
     "midCta": {
@@ -2777,8 +2777,8 @@
       "subtitle": "Nuestro Agente de Calificación está en línea. Envíale un mensaje y te calificará en 60 segundos, exactamente como lo haría con un lead tuyo.",
       "primaryCta": "Hablar con nuestro Agente de WhatsApp",
       "secondaryCta": "Reservar Demo Gratis",
-      "trustHubspot": "4.6 en HubSpot",
-      "trustTeams": "Más de 2.000 equipos de ventas",
+      "trustHubspot": "4,3 en HubSpot",
+      "trustTeams": "Más de 30.000 usuarios",
       "trustCountries": "Más de 40 países"
     },
     "problem": {
@@ -2929,13 +2929,13 @@
       "deployBtn": "Desplegar Agente"
     },
     "logoBar": {
-      "trustedBy": "— La elección de más de 2.000 equipos de ingresos en todo el mundo —"
+      "trustedBy": "— La elección de más de 30.000 usuarios en todo el mundo —"
     },
     "howItWorks": {
       "tag": "Empieza ya",
       "headline": "Crea un",
       "headlineEm": "Agente de IA en WhatsApp",
-      "headlineEnd": "en 10 minutos, no en 10 semanas",
+      "headlineEnd": "en 2 minutos, no en 10 semanas",
       "subtitle": "Tres pasos, una extensión de Chrome, cero migración. Instala Eazybe junto al WhatsApp Web que tu equipo ya usa, conecta tu CRM con un clic y activa los agentes que necesites. Tu primera sincronización arranca en el momento en que enciendes el interruptor.",
       "step1Title": "Instala",
       "step1Desc": "Agrega la extensión de Eazybe a Chrome. 30 segundos.",
@@ -2987,6 +2987,9 @@
     },
     "nav": {
       "mcp": "MCP",
+      "featured": "Destacado",
+      "mcpFeaturedLead": "Eazybe MCP",
+      "mcpFeaturedText": "conecta tu WhatsApp, llamadas y CRM con Claude y Codex.",
       "agents": "Agentes",
       "integrations": "Integraciones",
       "agentBuilder": "Agent Builder",
@@ -3123,6 +3126,7 @@
       "msa": "MSA",
       "sitemap": "Mapa del sitio",
       "rss": "Feed RSS",
+      "security": "Seguridad",
       "weAccept": "Aceptamos",
       "moreCount": "+2 más",
       "disclaimer": "Aviso: Eazybe es un producto independiente y no está afiliado, respaldado ni patrocinado por WhatsApp LLC ni Meta Platforms, Inc. WhatsApp es una marca registrada de WhatsApp LLC en EE. UU. y otros países. HubSpot, Salesforce, Zoho, Pipedrive y el resto de marcas y logos de terceros mencionados en este sitio son marcas de sus respectivos propietarios. El uso de Eazybe está sujeto a la Política Comercial de WhatsApp y a los términos de cada servicio conectado. Los usuarios son los únicos responsables de garantizar que sus prácticas de mensajería cumplan con las leyes aplicables, las normas antispam y las políticas de cada plataforma en su jurisdicción.",
@@ -3178,7 +3182,7 @@
       "itemAbout": "Agentes de IA de ventas en WhatsApp, integración con CRM, automatización de ventas",
       "h0": "¿Qué es un Agente de IA en WhatsApp?",
       "p0a": "Un Agente de IA en WhatsApp es un programa autónomo que lee, entiende y responde mensajes de WhatsApp en nombre de un negocio. A diferencia de un chatbot basado en scripts, el Agente de IA usa modelos de lenguaje para calificar leads, responder preguntas de soporte, sincronizar conversaciones al CRM y disparar flujos de venta en tiempo real.",
-      "p0b": "Eazybe construye Agentes de IA en WhatsApp sin código, entrenados con las conversaciones reales de tus mejores vendedores. Se instalan en 10 minutos como extensión de Chrome, corren junto al WhatsApp Web que tu equipo ya usa y registran cada interacción en HubSpot, Salesforce, Zoho, Pipedrive y 5+ CRMs.",
+      "p0b": "Eazybe construye Agentes de IA en WhatsApp sin código, entrenados con las conversaciones reales de tus mejores vendedores. Se instalan en 2 minutos como extensión de Chrome, corren junto al WhatsApp Web que tu equipo ya usa y registran cada interacción en HubSpot, Salesforce, Zoho, Pipedrive y 5+ CRMs.",
       "h1": "¿Por qué los Agentes de IA en WhatsApp superan a los chatbots y CRMs tradicionales?",
       "p1a": "Los reps de ventas quieren tres cosas de la herramienta: velocidad, contexto y memoria de lo que ya se dijo. La mayoría de los chatbots de WhatsApp falla en dos; la mayoría de los CRMs falla en las tres, porque ni siquiera están en la conversación. Un Agente de IA en WhatsApp como Eazybe se sienta en el medio: lee cada chat en tiempo real, escribe al CRM y responde a los leads a las 3am igual que a las 3pm.",
       "p1b": "Esto pesa más de lo que suena. Un lead que escribe a las 23:00 tiene alrededor del doble de probabilidades de convertir si recibe una respuesta real en un minuto, en vez de esperar a la mañana siguiente. Tu Agente de IA cubre el turno de noche. El rep la retoma al día siguiente con todo el hilo ya cargado en HubSpot o Salesforce.",
@@ -3243,7 +3247,7 @@
     "pill": "Conecta WhatsApp a tu agente de IA",
     "startFree": "Empieza gratis",
     "bookDemo": "Agenda una demo",
-    "fine": "Incluido en todos los planes de pago · ★ 4,6 en HubSpot Marketplace",
+    "fine": "Incluido en todos los planes de pago · ★ 4,3 en HubSpot Marketplace",
     "samplePrompt": "¿Quién de mi equipo no ha respondido hoy a un lead caliente?",
     "setup": {
       "claude": [
@@ -3298,11 +3302,11 @@
     "storiesSub": "El servidor MCP funciona sobre el mismo workspace que tu equipo usa cada día. Los mismos chats, los mismos permisos, el mismo CRM.",
     "stats": [
       [
-        "2.000+",
-        "equipos de ventas"
+        "30.000+",
+        "usuarios"
       ],
       [
-        "4,6★",
+        "4,3★",
         "HubSpot Marketplace"
       ],
       [

@@ -1,6 +1,6 @@
 # Eazybe — Full Documentation for AI Systems
 
-> Powering sales conversations across WhatsApp and calls. Eazybe connects your team's personal WhatsApp numbers, WhatsApp groups and calls to your CRM, and lets AI handle qualification and follow-ups. Works on Personal WhatsApp, the Business app and the API — no migration needed. Trusted by 2,000+ sales teams in 40+ countries.
+> Powering sales conversations across WhatsApp and calls. Eazybe connects your team's personal WhatsApp numbers, WhatsApp groups and calls to your CRM, and lets AI handle qualification and follow-ups. Works on Personal WhatsApp, the Business app and the API — no migration needed. Trusted by 30,000+ users in 40+ countries.
 
 ## What Eazybe Does
 
@@ -210,20 +210,20 @@ The Eazybe Android app is available on Google Play under the name "Eazybe": http
 - **Automation:** Trigger WhatsApp messages from HubSpot Workflows
 - **Reporting:** WhatsApp conversation metrics available in HubSpot reporting dashboards
 - **Custom properties:** Map WhatsApp data to custom HubSpot properties
-- **Setup time:** Under 30 minutes via Chrome extension
+- **Setup time:** About 2 minutes via Chrome extension
 
 ### Salesforce Integration
 - **Sync scope:** Leads, Contacts, Accounts, Opportunities
 - **Message logging:** WhatsApp messages logged as Activities on Salesforce records
 - **Automation:** Integrate with Salesforce Flows for triggered WhatsApp messaging
 - **Custom objects:** Map WhatsApp data to custom Salesforce objects
-- **Setup time:** Under 30 minutes
+- **Setup time:** About 2 minutes
 
 ### Zoho CRM Integration
 - **Sync scope:** Leads, Contacts, Deals, Accounts
 - **AI agents:** Use Zoho-integrated AI agents for automated WhatsApp responses
 - **Automation:** Connect with Zoho Workflows and Blueprints
-- **Setup time:** Under 30 minutes
+- **Setup time:** About 2 minutes
 
 ### Other Supported CRMs
 - **Pipedrive:** Deals, Contacts, Activities sync
@@ -244,7 +244,7 @@ The Eazybe Android app is available on Google Play under the name "Eazybe": http
 | Works with personal WhatsApp | No | Yes |
 | Works with WhatsApp Business App | No | Yes |
 | Works with WhatsApp Business API | Yes | Yes |
-| Setup time | Days-weeks | 30 minutes |
+| Setup time | Days-weeks | 2 minutes |
 | CRM bi-directional sync | Limited | Full |
 | AI-powered deal prioritization | Rare | Built-in |
 | Team performance analytics | Basic | Advanced (Rep Radar) |

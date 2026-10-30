@@ -131,7 +131,7 @@
   "footerCta": {
     "headline": "WhatsApp satışlarınızı",
     "headlineHighlight": "otomatikleştirmeye hazır mısınız?",
-    "subheadline": "Potansiyel müşterileri yakalamak, takipleri otomatikleştirmek ve her konuşmayı CRM ile senkronize etmek için Eazybe'yi kullanan 2.000'den fazla ekibe katılın."
+    "subheadline": "Potansiyel müşterileri yakalamak, takipleri otomatikleştirmek ve her konuşmayı CRM ile senkronize etmek için Eazybe'yi kullanan 30.000'den fazla kullanıcıya katılın."
   },
   "language": {
     "select": "Dil",
@@ -175,7 +175,7 @@
     "free": "Ücretsiz",
     "trustSignals": {
       "gdprCompliant": "KVKK Uyumlu",
-      "setupTime": "5 dakikada kurulum",
+      "setupTime": "2 dakikada kurulum",
       "freeTrial": "4 günlük ücretsiz deneme",
       "noCreditCard": "Kredi kartı gerekmez"
     },
@@ -1525,7 +1525,7 @@
           },
           {
             "question": "Kurulum ne kadar sürer?",
-            "answer": "Çoğu ekip 5 dakikadan kısa sürede çalışmaya başlar. Sadece bir QR kodu tarayın ve başlayın."
+            "answer": "Çoğu ekip yaklaşık 2 dakikada çalışmaya başlar. Sadece bir QR kodu tarayın ve başlayın."
           },
           {
             "question": "Verilerim güvende mi?",
@@ -1883,7 +1883,7 @@
     "sidebar": {
       "badge": "Ücretsiz Deneme",
       "headline": "WhatsApp Satışlarınızı Dönüştürün",
-      "description": "Konuşmaları yönetmek için Eazybe kullanan 1.000'den fazla işletmeye katılın.",
+      "description": "Konuşmalarını Eazybe ile yöneten 30.000'den fazla kullanıcıya katılın.",
       "buttonText": "Ücretsiz Denemeyi Başlat",
       "footnote": "Kredi kartı gerekmez",
       "appTitle": "Mobil uygulamayı indirmek için tarayın",
@@ -2314,7 +2314,7 @@
       "securityTitle": "Kurumsal Güvenlik",
       "securityDesc": "GDPR uyumlu, Meta Business Ortağı onaylı, banka düzeyinde şifreleme ve veri koruması ile.",
       "setupTitle": "En Hızlı Kurulum",
-      "setupDesc": "5 dakikadan kısa sürede başlayın. Deneme için kurulum ücreti veya kredi kartı gerekmez.",
+      "setupDesc": "2 dakikada başlayın. Deneme için kurulum ücreti veya kredi kartı gerekmez.",
       "userBaseTitle": "En Geniş Kullanıcı Tabanı",
       "userBaseDesc": "Dünya çapında 30.000'den fazla işletme tarafından güvenilen - tüm diğer WhatsApp CRM'lerinin toplamından daha fazla kullanıcı."
     },
@@ -2344,7 +2344,7 @@
       "q7": "Ücretsiz deneme var mı?",
       "a7": "Evet! Tüm planlarda kredi kartı gerekmeden 4 günlük ücretsiz deneme sunuyoruz. Tüm özellikleri keşfedebilir, entegrasyonları test edebilir ve taahhüt etmeden önce Eazybe'nin iş akışınıza nasıl uyduğunu görebilirsiniz.",
       "q8": "Eazybe'yi ne kadar sürede çalışır hale getirebilirim?",
-      "a8": "Çoğu ekip 15 dakikadan kısa sürede aktif hale gelir. Chrome uzantısını yükleyin, CRM'inizi tek tıkla bağlayın ve WhatsApp konuşmaları gerçek zamanlı olarak senkronize edilmeye başlar — geliştirici, BT bileti veya yalnızca API sunan rakipler gibi haftalarca süren bir kurulum yok."
+      "a8": "Çoğu ekip 2 dakikada aktif hale gelir. Chrome uzantısını yükleyin, CRM'inizi tek tıkla bağlayın ve WhatsApp konuşmaları gerçek zamanlı olarak senkronize edilmeye başlar — geliştirici, BT bileti veya yalnızca API sunan rakipler gibi haftalarca süren bir kurulum yok."
     },
     "articles": {
       "badge": "Karşılaştırma Makaleleri",
@@ -2628,8 +2628,8 @@
       "ctaStartFree": "Ücretsiz Başla →",
       "ctaBookDemo": "Demo Planlayın",
       "ctaFootnote": "Sonsuza dek ücretsiz plan · Kredi kartı gerekmez",
-      "trustHubspot": "HubSpot'ta 4.6 puan",
-      "trustTeams": "2.000+ satış ekibi",
+      "trustHubspot": "HubSpot'ta 4,3 puan",
+      "trustTeams": "30.000+ kullanıcı",
       "trustCountries": "40+ ülke",
       "trustMeta": "Meta Business Partner"
     },
@@ -2643,18 +2643,18 @@
       "footnote": "Cevabını bulamadınız mı?",
       "footnoteLink": "Bizimle iletişime geçin!",
       "items": [
-        { "q": "Eazybe nedir?", "a": "Eazybe, ekibinizin zaten kullandığı WhatsApp Web’i bir satış aracına dönüştüren bir Chrome uzantısıdır. Her sohbeti HubSpot, Salesforce, Zoho veya kullandığınız CRM’e senkronize eder; temsilciler kendi numaralarını korurken lead nitelendiren ve kayıtları güncel tutan Yapay Zeka ajanları ekler. 2.000’den fazla satış ekibi kullanıyor ve başlamak için ücretsiz bir katman var." },
+        { "q": "Eazybe nedir?", "a": "Eazybe, ekibinizin zaten kullandığı WhatsApp Web’i bir satış aracına dönüştüren bir Chrome uzantısıdır. Her sohbeti HubSpot, Salesforce, Zoho veya kullandığınız CRM’e senkronize eder; temsilciler kendi numaralarını korurken lead nitelendiren ve kayıtları güncel tutan Yapay Zeka ajanları ekler. 30.000’den fazla kullanıcısı var ve başlamak için ücretsiz bir katman var." },
         { "q": "Eazybe nasıl çalışır?", "a": "Uzantıyı kurarsınız, WhatsApp Web’i açarsınız ve CRM’inizi tek tıkla bağlarsınız; toplamda yaklaşık on dakika sürer. O andan itibaren sohbetler, kişiler ve ekler doğru kayda kendiliğinden işlenir. Yapay Zeka ajanları iki üç gün konuşma geçmişinizden öğrenir, sonra lead’leri nitelendirmeye ve yanıt taslaklarını kendi başına yazmaya başlar." },
-        { "q": "WhatsApp AI Agent nedir ve nasıl çalışır?", "a": "WhatsApp AI Agent, bir işletme adına WhatsApp mesajlarını okuyan, anlayan ve yanıtlayan otonom bir AI programıdır. Lead'leri nitelendirmek, destek taleplerini yanıtlamak, sohbetleri CRM'inize senkronize etmek ve iş akışlarını gerçek zamanlı tetiklemek için büyük dil modelleri kullanır. Eazybe, WhatsApp Web üzerinde Chrome eklentisi olarak yüklenir ve 10 dakikada, kod gerektirmeden çalışmaya başlar." },
+        { "q": "WhatsApp AI Agent nedir ve nasıl çalışır?", "a": "WhatsApp AI Agent, bir işletme adına WhatsApp mesajlarını okuyan, anlayan ve yanıtlayan otonom bir AI programıdır. Lead'leri nitelendirmek, destek taleplerini yanıtlamak, sohbetleri CRM'inize senkronize etmek ve iş akışlarını gerçek zamanlı tetiklemek için büyük dil modelleri kullanır. Eazybe, WhatsApp Web üzerinde Chrome eklentisi olarak yüklenir ve 2 dakikada, kod gerektirmeden çalışmaya başlar." },
         { "q": "WhatsApp AI Agent ile WATI veya Gallabox gibi bir chatbot arasındaki fark nedir?", "a": "Chatbot'lar senaryoyu takip eder ve müşteri senaryo dışı bir şey söyler söylemez tıkanır. WhatsApp AI Agent ise üretken AI kullanarak konuşmanın tam bağlamını, CRM geçmişinizi ve en iyi temsilcilerinizin tarzını okuyup insan tonunda yanıt yazarken pipeline'ınızı da aynı anda günceller." },
         { "q": "AI agent kullanmak için WhatsApp Business API'sine ihtiyacım var mı?", "a": "Hayır. Eazybe; kişisel WhatsApp, WhatsApp Business uygulaması ve WhatsApp Cloud API ile aynı anda çalışır. Numara değiştirmeye, taşımaya veya IT projesine gerek yoktur." },
         { "q": "Karar vermeden önce WhatsApp AI Agent'ı deneyebilir miyim?", "a": "Evet. Bu sayfanın herhangi bir yerinde \"WhatsApp'tan Agent'ımızla Konuş\" düğmesine tıklayın. Canlı Lead Qualification Agent'ımız 60 saniyenin altında sizi nitelendirir — kendi lead'lerinizin yaşayacağı deneyimin aynısı." },
         { "q": "Eazybe WhatsApp AI Agent hangi CRM'lerle entegre olur?", "a": "HubSpot, Salesforce, Zoho CRM, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets ve webhook ya da REST API üzerinden başka herhangi bir sistem. Tek tıkla OAuth, çift yönlü senkronizasyon ve manuel veri girişi yok." },
-        { "q": "WhatsApp AI Agent'ı devreye almak ne kadar sürer?", "a": "CRM Sync 10 dakikada canlıya alınır. AI agent'lar, konuşma geçmişiniz üzerinde eğitilip prodüksiyon kalitesine ulaşmak için 2-3 gün ister. Ondan sonra agent 7/24 gözetimsiz çalışır." },
+        { "q": "WhatsApp AI Agent'ı devreye almak ne kadar sürer?", "a": "CRM Sync 2 dakikada canlıya alınır. AI agent'lar, konuşma geçmişiniz üzerinde eğitilip prodüksiyon kalitesine ulaşmak için 2-3 gün ister. Ondan sonra agent 7/24 gözetimsiz çalışır." },
         { "q": "Eazybe kodsuz bir WhatsApp AI Agent platformu mu?", "a": "Evet. Teknik olmayan operasyon liderleri, sürükle-bırak Agent Builder ile özel agent'ları tasarlayıp dağıtabilir — script yok, kod yok, mühendislik talebi yok." },
         { "q": "WhatsApp ve CRM verilerim Eazybe ile güvende mi?", "a": "Evet. Aktarımda ve depolamada uçtan uca şifreleme. Meta Business Partner. KVKK/GDPR uyumlu. SOC 2 Type II sertifikalı. WhatsApp kimlik bilgilerinizi sunucularımızda asla saklamayız." },
         { "q": "WhatsApp AI Agent, Gong veya Chorus'tan nasıl farklı?", "a": "Gong ve Chorus, planlı çağrıları kaydeder. WhatsApp AI Agent ise WhatsApp-öncelikli bölgelerde anlaşmaların çoğunlukla ilerlediği sürekli sohbet konuşmaları üzerinde çalışır — yalnız toplantılarda değil, 7/24." },
-        { "q": "Satış ekipleri için en iyi WhatsApp AI Agent hangisidir?", "a": "Eazybe, satış ekipleri için önde gelen WhatsApp AI Agent platformlarından biridir. HubSpot'ta 4.6 puana sahiptir, 40+ ülkede 2.000+ gelir ekibine hizmet verir ve ekibinizin halihazırda kullandığı WhatsApp Web üzerinde Chrome eklentisi olarak çalışır. Sonsuza dek ücretsiz plan mevcuttur." }
+        { "q": "Satış ekipleri için en iyi WhatsApp AI Agent hangisidir?", "a": "Eazybe, satış ekipleri için önde gelen WhatsApp AI Agent platformlarından biridir. HubSpot'ta 4,3 puana sahiptir, 40+ ülkede 30.000+ kullanıcıya hizmet verir ve ekibinizin halihazırda kullandığı WhatsApp Web üzerinde Chrome eklentisi olarak çalışır. Sonsuza dek ücretsiz plan mevcuttur." }
       ]
     },
     "beaForm": {
@@ -2668,8 +2668,8 @@
       "subtitle": "CRM'inizi tanıyan, sohbetlerinizi okuyan ve en iyi temsilcileriniz gibi 7/24 satan WhatsApp Agent'ları.",
       "talkToAgent": "WhatsApp'tan Agent'ımızla Konuş →",
       "bookDemo": "Demo Planla",
-      "trustHubspot": "HubSpot'ta 4.6 puan",
-      "trustTeams": "2.000+ satış ekibi",
+      "trustHubspot": "HubSpot'ta 4,3 puan",
+      "trustTeams": "30.000+ kullanıcı",
       "trustCountries": "40+ ülke",
       "trustMeta": "Meta Business Partner",
       "trustCompliance": "KVKK/GDPR · SOC 2 Type II",
@@ -2693,7 +2693,7 @@
     "bannerCta": {
       "eyebrow": "YENİ · ÖZEL AGENT BUILDER",
       "headline": "En iyi temsilcilerinizle eğitilmiş kodsuz WhatsApp AI Agent'ları edinin.",
-      "subtitle": "10 dakikada canlıya alın. Kod yok, taşıma yok, IT ekibi yok.",
+      "subtitle": "2 dakikada canlıya alın. Kod yok, taşıma yok, IT ekibi yok.",
       "button": "🤖 Benimkini Oluştur"
     },
     "midCta": {
@@ -2703,8 +2703,8 @@
       "subtitle": "Lead Qualification Agent'ımız çevrimiçi. Bir mesaj gönderin; sizi 60 saniyenin altında niteleyecek — kendi lead'lerinizin yaşayacağı deneyimin aynısı.",
       "primaryCta": "WhatsApp AI Agent'ımızla konuş",
       "secondaryCta": "Ücretsiz Demo Planla",
-      "trustHubspot": "HubSpot'ta 4.6 puan",
-      "trustTeams": "2.000+ satış ekibi",
+      "trustHubspot": "HubSpot'ta 4,3 puan",
+      "trustTeams": "30.000+ kullanıcı",
       "trustCountries": "40+ ülke"
     },
     "problem": {
@@ -2855,12 +2855,12 @@
       "deployBtn": "Agent'ı Dağıt"
     },
     "logoBar": {
-      "trustedBy": "— Dünya genelinde 2.000+ gelir ekibinin tercihi —"
+      "trustedBy": "— Dünya genelinde 30.000+ kullanıcının tercihi —"
     },
     "howItWorks": {
       "tag": "Hemen Başlayın",
       "headline": "10 hafta değil,",
-      "headlineEm": "10 dakikada",
+      "headlineEm": "2 dakikada",
       "headlineEnd": "bir WhatsApp AI Agent oluşturun",
       "subtitle": "Üç adım, bir Chrome eklentisi, sıfır taşıma. Temsilcilerinizin halihazırda kullandığı WhatsApp Web'in yanına Eazybe'yi kurun, CRM'inizi tek tıkla bağlayın ve ihtiyacınız olan agent'ları açın. İlk senkronizasyonunuz, anahtarı çevirdiğiniz anda başlar.",
       "step1Title": "Kur",
@@ -2913,6 +2913,9 @@
     },
     "nav": {
       "mcp": "MCP",
+      "featured": "Öne çıkan",
+      "mcpFeaturedLead": "Eazybe MCP",
+      "mcpFeaturedText": "WhatsApp’ınızı, aramalarınızı ve CRM’inizi Claude ve Codex’e bağlar.",
       "agents": "Agent'lar",
       "integrations": "Entegrasyonlar",
       "agentBuilder": "Agent Builder",
@@ -3049,6 +3052,7 @@
       "msa": "MSA",
       "sitemap": "Site haritası",
       "rss": "RSS Beslemesi",
+      "security": "Güvenlik",
       "weAccept": "Kabul ediyoruz",
       "moreCount": "+2 daha",
       "disclaimer": "Sorumluluk Reddi: Eazybe bağımsız bir üründür; WhatsApp LLC veya Meta Platforms, Inc. ile bağlantılı, onlar tarafından onaylanmış veya sponsor edilmiş değildir. WhatsApp, ABD ve diğer ülkelerde WhatsApp LLC'nin tescilli markasıdır. HubSpot, Salesforce, Zoho, Pipedrive ve bu sitede atıfta bulunulan diğer tüm üçüncü taraf markalar ve logolar ilgili sahiplerinin markalarıdır. Eazybe kullanımı WhatsApp Ticari Politikasına ve bağlantılı her hizmetin koşullarına tabidir. Kullanıcılar; mesajlaşma uygulamalarının kendi ülkelerindeki yürürlükteki yasalara, anti-spam düzenlemelerine ve platform politikalarına uygun olmasını sağlamaktan yalnız başlarına sorumludur.",
@@ -3104,7 +3108,7 @@
       "itemAbout": "WhatsApp AI satış agent'ları, CRM entegrasyonu, satış otomasyonu",
       "h0": "WhatsApp AI Agent nedir?",
       "p0a": "WhatsApp AI Agent, bir işletme adına WhatsApp mesajlarını okuyan, anlayan ve yanıtlayan otonom bir AI programıdır. Sabit senaryolar üzerine kurulu kural tabanlı chatbot'lardan farklı olarak, lead'leri nitelendirmek, destek sorularını yanıtlamak, konuşmaları CRM'inize senkronize etmek ve satış akışlarını gerçek zamanlı tetiklemek için büyük dil modelleri kullanır.",
-      "p0b": "Eazybe; en iyi temsilcilerinizin gerçek konuşmalarıyla eğitilmiş, kodsuz WhatsApp AI agent'ları kurar. Chrome eklentisi olarak 10 dakikada devreye girer, ekibinizin halihazırda kullandığı WhatsApp Web'in yanında çalışır ve her etkileşimi HubSpot, Salesforce, Zoho, Pipedrive ve 5+ CRM'e geri yazar.",
+      "p0b": "Eazybe; en iyi temsilcilerinizin gerçek konuşmalarıyla eğitilmiş, kodsuz WhatsApp AI agent'ları kurar. Chrome eklentisi olarak 2 dakikada devreye girer, ekibinizin halihazırda kullandığı WhatsApp Web'in yanında çalışır ve her etkileşimi HubSpot, Salesforce, Zoho, Pipedrive ve 5+ CRM'e geri yazar.",
       "h1": "WhatsApp AI Agent'lar geleneksel chatbot ve CRM'leri neden geçer?",
       "p1a": "Satış temsilcileri araçtan üç şey ister: hız, bağlam ve daha önce ne söylendiğinin hafızası. WhatsApp chatbot'larının çoğu bunlardan ikisini kaçırır; CRM'lerin çoğu üçünü birden kaçırır çünkü konuşmanın içinde değildirler. Eazybe gibi bir WhatsApp AI Agent ortada durur: her sohbeti anlık okur, CRM'inize yazar ve gece 3'te de gündüz 3'te olduğu gibi yanıtlar.",
       "p1b": "Bu kulağa geldiğinden çok daha önemli. Gece 23'te yazan bir lead, ertesi sabaha kadar beklemek yerine bir dakika içinde gerçek bir yanıt aldığında yaklaşık iki kat daha yüksek dönüşüm olasılığına sahiptir. AI agent'ınız gece vardiyasını üstlenir; temsilci ertesi gün, konuşmanın tamamı HubSpot veya Salesforce'a kaydedilmiş şekilde devralır.",
@@ -3169,7 +3173,7 @@
     "pill": "WhatsApp'ı yapay zeka ajanınıza bağlayın",
     "startFree": "Ücretsiz başla",
     "bookDemo": "Demo planla",
-    "fine": "Tüm ücretli planlara dahil · HubSpot Marketplace'te ★ 4,6",
+    "fine": "Tüm ücretli planlara dahil · HubSpot Marketplace'te ★ 4,3",
     "samplePrompt": "Ekibimde bugün sıcak bir müşteri adayına yanıt vermeyen kim var?",
     "setup": {
       "claude": [
@@ -3224,11 +3228,11 @@
     "storiesSub": "MCP sunucusu, ekibinizin her gün kullandığı aynı çalışma alanında çalışır. Aynı sohbetler, aynı izinler, aynı CRM.",
     "stats": [
       [
-        "2.000+",
-        "satış ekibi"
+        "30.000+",
+        "kullanıcı"
       ],
       [
-        "4,6★",
+        "4,3★",
         "HubSpot Marketplace"
       ],
       [

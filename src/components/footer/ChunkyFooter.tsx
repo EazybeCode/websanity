@@ -221,7 +221,7 @@ export const ChunkyFooter: React.FC = () => {
       visitHelpCenter: 'Visit our Help Center',
     },
     br: {
-      trustedBy: 'Confiado por mais de 10.000 empresas',
+      trustedBy: 'Usado por mais de 30.000 usuários',
       testimonialsTitle: 'Amado por',
       testimonialsHighlight: 'Equipes Mundiais',
       testimonialsSubtitle: 'Veja o que nossos clientes tem a dizer sobre transformar sua comunicacao pelo WhatsApp',
@@ -233,7 +233,7 @@ export const ChunkyFooter: React.FC = () => {
       visitHelpCenter: 'Visite nosso Centro de Ajuda',
     },
     es: {
-      trustedBy: 'Confiado por mas de 10,000 empresas',
+      trustedBy: 'Usado por más de 30.000 usuarios',
       testimonialsTitle: 'Amado por',
       testimonialsHighlight: 'Equipos Mundiales',
       testimonialsSubtitle: 'Vea lo que nuestros clientes tienen que decir sobre transformar su comunicacion de WhatsApp',
@@ -245,7 +245,7 @@ export const ChunkyFooter: React.FC = () => {
       visitHelpCenter: 'Visita nuestro Centro de Ayuda',
     },
     tr: {
-      trustedBy: '10.000+ isletme tarafindan guveniliyor',
+      trustedBy: '30.000+ kullanıcı tarafından kullanılıyor',
       testimonialsTitle: 'Sevilen',
       testimonialsHighlight: 'Kuresel Ekipler',
       testimonialsSubtitle: 'Musterilerimizin WhatsApp iletisimlerini donusturme hakkinda ne soylediklerini gorun',

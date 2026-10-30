@@ -1,7 +1,7 @@
 {
  "br": {
   "Personal WhatsApp": "WhatsApp pessoal",
-  "Sales teams": "Equipes de vendas",
+  "Users": "Usuários",
   "Countries": "Países",
   "Outreach": "Prospecção",
   "AI agents": "Agentes de IA",
@@ -57,7 +57,7 @@
   "Official Business Partner": "Parceiro oficial de negócios",
   "Trusted by": "Usado por",
   "worldwide": "no mundo todo",
-  "2,000+ sales teams": "mais de 2.000 equipes de vendas",
+  "30,000+ users": "mais de 30.000 usuários",
   "Satrack": "Satrack",
   "Orbidi": "Orbidi",
   "UniAcco": "UniAcco",
@@ -354,7 +354,7 @@
  },
  "es": {
   "Personal WhatsApp": "WhatsApp personal",
-  "Sales teams": "Equipos de ventas",
+  "Users": "Usuarios",
   "Countries": "Países",
   "Outreach": "Contacto proactivo",
   "AI agents": "Agentes de IA",
@@ -410,7 +410,7 @@
   "Official Business Partner": "Socio comercial oficial",
   "Trusted by": "La elección de",
   "worldwide": "en todo el mundo",
-  "2,000+ sales teams": "2,000+ equipos de ventas",
+  "30,000+ users": "30.000+ usuarios",
   "Satrack": "Satrack",
   "Orbidi": "Orbidi",
   "UniAcco": "UniAcco",
@@ -707,7 +707,7 @@
  },
  "tr": {
   "Personal WhatsApp": "Kişisel WhatsApp",
-  "Sales teams": "Satış ekibi",
+  "Users": "Kullanıcı",
   "Countries": "Ülke",
   "Outreach": "Müşteri erişimi",
   "AI agents": "Yapay zekâ ajanları",
@@ -763,7 +763,7 @@
   "Official Business Partner": "Resmi iş ortağı",
   "Trusted by": "Dünya genelinde",
   "worldwide": "tercihi",
-  "2,000+ sales teams": "2.000+ satış ekibinin",
+  "30,000+ users": "30.000+ kullanıcının",
   "Satrack": "Satrack",
   "Orbidi": "Orbidi",
   "UniAcco": "UniAcco",
