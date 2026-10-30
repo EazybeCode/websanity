@@ -19,6 +19,8 @@ export async function generateMetadata({
     description: DESCRIPTION,
     openGraph: { title: TITLE, description: DESCRIPTION },
     alternates: getAlternates(locale, '/mcp'),
+    // Kept out of search for now (noindex, nofollow); also left out of the sitemap.
+    robots: { index: false, follow: false },
   }
 }
 
