@@ -37,6 +37,7 @@ import BroadcastProblemAnimation from '@/components/animations/BroadcastProblemA
 import BroadcastSolutionAnimation from '@/components/animations/BroadcastSolutionAnimation'
 import BroadcastAutomationAnimation from '@/components/animations/BroadcastAutomationAnimation'
 import BroadcastAnalyticsAnimation from '@/components/animations/BroadcastAnalyticsAnimation'
+import { FEATURE_REVIEWS } from '@/data/feature-reviews'
 
 const animationMap: Record<string, Record<number, React.FC<{ locale?: string }>>> = {
   'team-inbox': { 0: LabelAnimation, 1: UnifiedDashboardAnimation, 2: RoutingAnimation },
@@ -668,13 +669,25 @@ const AVATAR_GRADIENTS = [
   'linear-gradient(135deg, #B41D4B, #E85A86)',
 ]
 
+// Country name in the page's language (e.g. CO → Colombia / Colômbia / Kolombiya).
+function regionName(code: string, locale: string) {
+  try {
+    return new Intl.DisplayNames([locale === 'br' ? 'pt-BR' : locale], { type: 'region' }).of(code) ?? code
+  } catch {
+    return code
+  }
+}
+
 const TestimonialSection: React.FC<{ data: any; list?: any[] }> = ({ data, list }) => {
+  const locale = useLocale()
   const reviews = React.useMemo(() => {
     const arr = Array.isArray(list) && list.length ? list : data ? [data] : []
     return arr.filter((r) => r && r.quote)
   }, [data, list])
   const [idx, setIdx] = React.useState(0)
   const [paused, setPaused] = React.useState(false)
+  // Store avatars are hotlinked; if one stops loading, fall back to initials.
+  const [failedAvatars, setFailedAvatars] = React.useState<Set<string>>(() => new Set())
 
   React.useEffect(() => {
     if (paused || reviews.length < 2) return
@@ -686,7 +699,7 @@ const TestimonialSection: React.FC<{ data: any; list?: any[] }> = ({ data, list 
   const r = reviews[idx]
   const initials = (r.author || '')
     .split(/\s+/)
-    .map((w: string) => w[0])
+    .map((w: string) => w.match(/\p{L}/u)?.[0])
     .filter(Boolean)
     .slice(0, 2)
     .join('')
@@ -697,9 +710,9 @@ const TestimonialSection: React.FC<{ data: any; list?: any[] }> = ({ data, list 
       <style>{`
         @keyframes tst-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
         .tst-slide { animation: tst-in .45s cubic-bezier(.22,.8,.3,1) both; }
-        .tst-dot { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: #ADB3C2; transition: all .3s ease; }
-        .tst-dot:hover { background: #8A90A3; }
-        .tst-dot[data-active="true"] { width: 26px; border-radius: 99px; background: var(--accent-ink, #5B4BAE); }
+        .tst-dot.tst-dot { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: #ADB3C2; transition: all .3s ease; }
+        .tst-dot.tst-dot:hover { background: #8A90A3; }
+        .tst-dot.tst-dot[data-active="true"] { width: 26px; border-radius: 99px; background: var(--accent-ink, #5B4BAE); }
         @media (prefers-reduced-motion: reduce) { .tst-slide { animation: none; } }
       `}</style>
       <div className="container">
@@ -731,9 +744,9 @@ const TestimonialSection: React.FC<{ data: any; list?: any[] }> = ({ data, list 
             }}
           />
           <div className="tst-slide" key={idx} style={{ position: 'relative', minHeight: 'clamp(230px, 24vw, 260px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 18 }} aria-label="5 out of 5 stars">
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 18 }} aria-label={`${r.rating ?? 5} out of 5 stars`}>
               {[0, 1, 2, 3, 4].map((i) => (
-                <svg key={i} width="17" height="17" viewBox="0 0 24 24" fill="var(--accent-ink, #5B4BAE)" aria-hidden>
+                <svg key={i} width="17" height="17" viewBox="0 0 24 24" fill={i < (r.rating ?? 5) ? 'var(--accent-ink, #5B4BAE)' : 'var(--line, #D9DCE3)'} aria-hidden>
                   <path d="M12 2l2.95 6.33 6.93.84-5.12 4.75 1.35 6.85L12 17.4l-6.11 3.37 1.35-6.85L2.12 9.17l6.93-.84L12 2z" />
                 </svg>
               ))}
@@ -752,9 +765,18 @@ const TestimonialSection: React.FC<{ data: any; list?: any[] }> = ({ data, list 
               &ldquo;{r.quote}&rdquo;
             </blockquote>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14, marginTop: 28 }}>
-              {r.avatar ? (
+              {r.avatar && !failedAvatars.has(r.avatar) ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={r.avatar} alt={r.author} style={{ width: 46, height: 46, borderRadius: '50%', border: '1px solid var(--line)' }} loading="lazy" />
+                <img
+                  src={r.avatar}
+                  alt={r.author}
+                  width={46}
+                  height={46}
+                  referrerPolicy="no-referrer"
+                  onError={() => setFailedAvatars((s) => new Set(s).add(r.avatar))}
+                  style={{ width: 46, height: 46, borderRadius: '50%', border: '1px solid var(--line)', objectFit: 'cover' }}
+                  loading="lazy"
+                />
               ) : (
                 <div
                   style={{
@@ -777,9 +799,21 @@ const TestimonialSection: React.FC<{ data: any; list?: any[] }> = ({ data, list 
               )}
               <div style={{ textAlign: 'left' }}>
                 <div style={{ fontWeight: 600, color: 'var(--ink)', fontSize: 15 }}>{r.author}</div>
-                <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10.5, color: 'var(--ink-4)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                  {r.title}{r.company ? `, ${r.company}` : ''}
-                </div>
+                {(r.title || r.company || r.region) && (
+                  <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10.5, color: 'var(--ink-4)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                    {[r.title, r.company, r.region && regionName(r.region, locale)]
+                      .filter((part, i, parts) => part && !(i === 2 && parts[1]?.includes(part)))
+                      .join(', ')}
+                  </div>
+                )}
+                {/* Plain-text attribution: the stores have no per-review permalink, and
+                    their review pages open on the newest reviews, not this one. */}
+                {r.source && (
+                  <div style={{ fontSize: 12.5, color: 'var(--ink-3)' }}>
+                    {r.source}
+                    {r.date && ` · ${new Date(r.date).toLocaleDateString(locale === 'br' ? 'pt-BR' : locale, { month: 'short', year: 'numeric', timeZone: 'UTC' })}`}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -1019,6 +1053,10 @@ export default function FeaturePageClient({ feature, slug }: FeaturePageClientPr
   const locale = useLocale()
   const translatedData = getTranslatedFallbackData(slug, t)
   const data = feature || translatedData
+  // Real public reviews (src/data/feature-reviews.ts) replace the placeholder
+  // testimonials stored in Sanity for the /features/* pages.
+  const realReviews = FEATURE_REVIEWS[locale]?.[slug] ?? FEATURE_REVIEWS.en[slug]
+  const testimonials = realReviews ?? data?.testimonials
 
   if (!data) return null
 
@@ -1029,7 +1067,7 @@ export default function FeaturePageClient({ feature, slug }: FeaturePageClientPr
       <FeaturesSection features={data?.features} slug={slug} locale={locale} />
       <HowItWorksSection data={data?.howItWorks} />
       <UseCasesSection data={data?.useCases} />
-      {(data?.testimonials?.length || data?.testimonial) && <TestimonialSection data={data.testimonial} list={data.testimonials} />}
+      {(testimonials?.length || data?.testimonial) && <TestimonialSection data={realReviews ? null : data.testimonial} list={testimonials} />}
       <FAQSection data={data?.faq} />
     </>
   )
