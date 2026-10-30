@@ -218,7 +218,7 @@ export function getHomepageMetadata(locale: string): Metadata {
     },
     tr: {
       title: 'Eazybe - WhatsApp ve CRM için satış zekâsı platformu',
-      description: "WhatsApp i\u00e7in en iyi AI ajan\u0131n\u0131 kullan\u0131n. Lead yakala\u0131n, konu\u015fmalar\u0131 otomatikle\u015ftirin ve CRM'inizi 7/24 \u00e7al\u0131\u015fan kodsuz AI ajanlarla senkronize edin.",
+      description: "Ekibinizin WhatsApp numaralar\u0131n\u0131, gruplar\u0131n\u0131 ve aramalar\u0131n\u0131 HubSpot, Salesforce ve Zoho'ya ba\u011flay\u0131n. Lead'leri yakalay\u0131n, takipleri Yapay Zeka yaps\u0131n.",
       keywords: 'whatsapp ai ajan\u0131, whatsapp yapay zeka ajan\u0131, whatsapp otomasyon ai, whatsapp chatbot ai, sat\u0131\u015f i\u00e7in ai ajan\u0131, destek i\u00e7in ai ajan\u0131, whatsapp crm entegrasyonu, kodsuz whatsapp ai ajan\u0131',
       authors: [{ name: 'Eazybe' }],
       robots: {
@@ -238,8 +238,8 @@ export function getHomepageMetadata(locale: string): Metadata {
       openGraph: {
         type: 'website',
         url: `${BASE_URL}/tr`,
-        title: 'WhatsApp AI Ajan\u0131: Sat\u0131\u015f ve destek otomasyonu | Eazybe',
-        description: 'Kodsuz WhatsApp AI ajanlar\u0131 ile konu\u015fmalar\u0131 otomatikle\u015ftirin, lead yakala\u0131n ve CRM verilerinizi ger\u00e7ek zamanl\u0131 senkronize edin.',
+        title: "Sat\u0131\u015f zek\u00e2s\u0131 platformu: WhatsApp ve aramalar CRM'inizde | Eazybe",
+        description: "Ki\u015fisel WhatsApp numaralar\u0131n\u0131z\u0131, gruplar\u0131n\u0131z\u0131 ve aramalar\u0131n\u0131z\u0131 CRM'inize ba\u011flay\u0131n. Lead'leri yakalay\u0131n, takipleri Yapay Zeka yaps\u0131n.",
         images: [{ url: `${BASE_URL}/og-home-tr.png`, width: 1200, height: 630, alt: 'Eazybe: Satış konuşmalarınıza güç veriyoruz: WhatsApp\'ta ve aramalarda' }],
         locale: 'tr_TR',
         alternateLocale: ['en_US', 'pt_BR', 'es_ES'],
@@ -249,8 +249,8 @@ export function getHomepageMetadata(locale: string): Metadata {
         card: 'summary_large_image',
         site: '@eazybe',
         creator: '@eazybe',
-        title: 'WhatsApp AI Ajanlar\u0131 | Sat\u0131\u015f ve destek otomasyonu',
-        description: "WhatsApp AI ajanlar\u0131 ile lead yakala\u0131n, m\u00fc\u015fteri mesajlar\u0131n\u0131 otomatik y\u00f6netin ve CRM'inizi entegre edin.",
+        title: "Sat\u0131\u015f zek\u00e2s\u0131 platformu: WhatsApp ve aramalar CRM'inizde | Eazybe",
+        description: "Ki\u015fisel WhatsApp numaralar\u0131n\u0131z\u0131, gruplar\u0131n\u0131z\u0131 ve aramalar\u0131n\u0131z\u0131 CRM'inize ba\u011flay\u0131n. Lead'leri yakalay\u0131n, takipleri Yapay Zeka yaps\u0131n.",
         images: [{ url: `${BASE_URL}/og-home-tr.png`, width: 1200, height: 630, alt: 'Eazybe: Satış konuşmalarınıza güç veriyoruz: WhatsApp\'ta ve aramalarda' }],
       },
       alternates: {
@@ -269,7 +269,7 @@ export function getHomepageMetadata(locale: string): Metadata {
         'article:section': 'Teknoloji',
         'article:tag': 'WhatsApp AI Ajan\u0131',
         'twitter:label1': 'De\u011ferlendirme',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Fiyat',
         'twitter:data2': '\u00dccretsiz',
         'answer-type': '\u00fcr\u00fcn bilgisi, kar\u015f\u0131la\u015ft\u0131rma, rehber',
@@ -279,7 +279,7 @@ export function getHomepageMetadata(locale: string): Metadata {
         'ai-readability': 'konu\u015fma dili, profesyonel, \u00e7\u00f6z\u00fcm odakl\u0131',
         'context-window': "whatsapp ai ajanlar\u0131, sat\u0131\u015f otomasyonu, m\u00fc\u015fteri deste\u011fi otomasyonu, crm entegrasyonu, lead y\u00f6netimi, i\u015f mesajla\u015fmas\u0131",
         'user-problem': "ekipler WhatsApp'ta lead kaybediyor, takipleri ka\u00e7\u0131r\u0131yor ve sat\u0131\u015f ile destek s\u00fcre\u00e7leri da\u011f\u0131n\u0131k ilerliyor",
-        'solution-summary': 'kodsuz WhatsApp AI ajanlar\u0131 ile konu\u015fmalar\u0131 otomatikle\u015ftirme ve CRM ile senkronizasyon',
+        'solution-summary': 'WhatsApp numaralar\u0131, gruplar ve aramalar\u0131 CRM ile senkronize etme; nitelendirme ve takipleri Yapay Zeka ile otomatikle\u015ftirme',
         'primary-benefit': 'WhatsApp \u00fczerinden sat\u0131\u015f ve destek s\u00fcre\u00e7lerini otomatikle\u015ftirerek lead kayb\u0131n\u0131 \u00f6nlemek',
         'use-case': "sat\u0131\u015f ve destek ekiplerinin WhatsApp konu\u015fmalar\u0131n\u0131 CRM ile entegre \u015fekilde y\u00f6netmesi",
         'implementation-difficulty': 'kolay, kod gerektirmez',
