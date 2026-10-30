@@ -446,6 +446,17 @@
   border-top: 1px solid rgba(255, 255, 255, 0.14);
   transform: translateX(-50%) rotate(45deg);
 }
+/* Wide Integrations dropdown: centred under its trigger like the others, but shifted by
+   --dd-shift (set in Nav.tsx on hover) when centring would push it past the viewport
+   edge. The arrow moves back by the same amount so it still points at the trigger. */
+.landing .nav-dropdown.nav-dropdown-clamp { transform: translateX(calc(-50% + var(--dd-shift, 0px))) translateY(-6px); }
+.landing .nav-item:hover .nav-dropdown.nav-dropdown-clamp,
+.landing .nav-item:focus-within .nav-dropdown.nav-dropdown-clamp { transform: translateX(calc(-50% + var(--dd-shift, 0px))) translateY(0); }
+.landing .nav-dropdown.nav-dropdown-clamp::before { left: calc(50% - var(--dd-shift, 0px)); }
+/* Its "Featured" (Eazybe MCP) panel needs the extra width, so it only shows from 1200px. */
+@media (max-width: 1199px) {
+  .landing .nav-dd-featured { display: none !important; }
+}
 @keyframes nav-glass-sheen-dd {
   0%   { background-position: 135% 0, 0 0, 0 0; }
   55%  { background-position: -45% 0, 0 0, 0 0; }

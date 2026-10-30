@@ -253,6 +253,60 @@ function PlayBadge({ label, aria }: { label: string; aria: string }) {
   )
 }
 
+// Keeps a wide, centred dropdown inside the viewport: measures it centred and sets
+// --dd-shift to the smallest nudge that clears both edges (0 when it already fits).
+function clampDropdown(event: React.SyntheticEvent<HTMLElement>) {
+  const dd = event.currentTarget.querySelector<HTMLElement>('.nav-dropdown-clamp')
+  if (!dd) return
+  dd.style.setProperty('--dd-shift', '0px')
+  const { left, right } = dd.getBoundingClientRect()
+  const margin = 16
+  const shift = left < margin ? margin - left : right > window.innerWidth - margin ? window.innerWidth - margin - right : 0
+  dd.style.setProperty('--dd-shift', `${Math.round(shift)}px`)
+}
+
+// Tiles orbiting the Eazybe MCP card: the AI clients it works with today, plus Eazybe.
+const MCP_ORBIT = [
+  { label: 'Claude', pos: { left: '6%', top: '52%' }, bg: '#D97757', svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg>' },
+  { label: 'Claude Code', pos: { left: '24%', top: '14%' }, bg: '#6E5BD8', svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l4 4-4 4M12 17h7"/></svg>' },
+  { label: 'Codex', pos: { left: '58%', top: '14%' }, bg: '#1B1C1F', svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M12 2.5l8.5 4.9v9.2L12 21.5l-8.5-4.9V7.4z"/><path d="M12 12l8.5-4.6M12 12L3.5 7.4M12 12v9.5"/></svg>' },
+  { label: 'Eazybe', pos: { left: '76%', top: '52%' }, bg: '#2B59FF', svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l2-4.9A8.4 8.4 0 0 1 21 11.5z"/></svg>' },
+]
+
+// "Featured" side panel of the Integrations dropdown, promoting the Eazybe MCP page.
+// <div>s, not <span>s, inside the link: `.nav-links a span` forces color:#fff.
+function McpFeatured({ href, label, lead, text }: { href: string; label: string; lead: string; text: string }) {
+  return (
+    <a
+      href={href}
+      className="nav-dd-featured"
+      style={{ width: 250, flex: '0 0 auto', display: 'flex', flexDirection: 'column', gap: 12, padding: '4px 4px 4px 18px', borderLeft: '1px solid rgba(255,255,255,0.12)', textDecoration: 'none' }}
+    >
+      <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>
+        {label}
+      </div>
+      <div aria-hidden style={{ position: 'relative', height: 150, borderRadius: 14, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', left: '50%', top: '30%', width: 190, height: 190, marginLeft: -95, borderRadius: '50%', border: '1.5px dashed rgba(255,255,255,0.22)' }} />
+        {MCP_ORBIT.map((o) => (
+          <div
+            key={o.label}
+            title={o.label}
+            style={{ position: 'absolute', ...o.pos, width: 44, height: 44, borderRadius: 12, background: '#fff', boxShadow: '0 6px 16px -6px rgba(0,0,0,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <div style={{ width: 28, height: 28, borderRadius: 8, background: o.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }} dangerouslySetInnerHTML={{ __html: o.svg }} />
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+        <div style={{ fontSize: 13.5, lineHeight: 1.45, color: 'rgba(255,255,255,0.7)' }}>
+          <strong style={{ color: '#fff', fontWeight: 600 }}>{lead}</strong> {text}
+        </div>
+        <div aria-hidden style={{ color: 'rgba(255,255,255,0.55)', fontSize: 15, lineHeight: 1 }}>↗</div>
+      </div>
+    </a>
+  )
+}
+
 export function Nav() {
   const t = useTranslations('landingV3.nav')
   const tApp = useTranslations('blog.sidebar')
@@ -401,12 +455,10 @@ export function Nav() {
           </div>
         </div>
 
-        <div className="nav-item">
+        <div className="nav-item" onMouseEnter={clampDropdown} onFocus={clampDropdown}>
           <a href={lh('/integrations')} className="nav-trigger" aria-haspopup="menu"><span>{t('integrations')}</span> <span className="nav-caret">▾</span></a>
-          <div
-            className="nav-dropdown"
-            style={{ minWidth: 560, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, padding: 14 }}
-          >
+          <div className="nav-dropdown nav-dropdown-clamp" style={{ display: 'flex', gap: 6, padding: 14 }}>
+          <div style={{ minWidth: 560, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, alignContent: 'start' }}>
             <div style={{ gridColumn: '1 / -1' }} className="nav-dd-section">{t('sectionCrms')}</div>
             {INTEGRATIONS.map((item) => {
               const tr = itemLabel(item.name)
@@ -438,6 +490,8 @@ export function Nav() {
                 {t('allIntegrations')}
               </div>
             </a>
+          </div>
+          <McpFeatured href={lh('/mcp')} label={t('featured')} lead={t('mcpFeaturedLead')} text={t('mcpFeaturedText')} />
           </div>
         </div>
 
