@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { getV16Faq } from '@/components/homepage-v16/localize-v16'
-import { ORG_ID, SOFTWARE_ID } from '@/data/global-schemas'
+import { ORG_ID, SOFTWARE_ID, getGlobalSchemas } from '@/data/global-schemas'
 
 const BASE_URL = 'https://eazybe.com'
 
@@ -339,9 +339,8 @@ function getHomepageWebPageJsonLd(locale: string): object {
 export function getHomepageJsonLd(locale: string): object[] {
   const schemas: Record<string, object[]> = {
     en: [
-      // SoftwareApplication + Organization schemas are emitted globally
-      // (see GlobalStructuredData + data/global-schemas.ts), so they are
-      // intentionally omitted here to avoid duplicate JSON-LD on /.
+      // Organization is emitted globally (GlobalStructuredData); the
+      // SoftwareApplication is added for every locale in the return below.
       // BreadcrumbList Schema
       {
         "@context": "https://schema.org/",
@@ -551,5 +550,12 @@ export function getHomepageJsonLd(locale: string): object[] {
   }
 
   const key = schemas[locale] ? locale : 'en'
-  return [getHomepageFaqJsonLd(key), ...schemas[key], getHomepageWebPageJsonLd(key)]
+  // The product schema (with its aggregateRating) lives on the homepage only: see the
+  // note in GlobalStructuredData.
+  return [
+    getGlobalSchemas(locale).softwareApplication,
+    getHomepageFaqJsonLd(key),
+    ...schemas[key],
+    getHomepageWebPageJsonLd(key),
+  ]
 }
