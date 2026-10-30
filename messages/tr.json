@@ -1916,7 +1916,7 @@
       "feature1": "Bire bir ve Grup Sohbetleri için gerçek zamanlı senkronizasyon.",
       "feature2": "Açık Anlaşmalar ve Biletlerle otomatik ilişkilendirme.",
       "feature3": "Temsilciler ayrıldığında tam konuşma geçmişi korunur.",
-      "startTrial": "7 Günlük Ücretsiz Denemeyi Başlat",
+      "startTrial": "4 Günlük Ücretsiz Denemeyi Başlat",
       "bookDemo": "Demo Rezervasyonu Yap",
       "metaPartner": "İş Ortağı",
       "appPartner": "Uygulama Ortağı"
@@ -2242,7 +2242,7 @@
       "titleHighlight": "#1 Tercih",
       "titleSuffix": "WhatsApp CRM için",
       "subtitle": "Eazybe'nin 20'den fazla önde gelen WhatsApp CRM platformuyla nasıl karşılaştırıldığını görün. Daha fazla özellik, daha iyi entegrasyonlar ve yenilmez fiyatlandırma - hepsi tek bir güçlü platformda.",
-      "ctaPrimary": "7 Günlük Ücretsiz Denemeyi Başlat",
+      "ctaPrimary": "4 Günlük Ücretsiz Denemeyi Başlat",
       "ctaSecondary": "Özellikleri Karşılaştır",
       "stats": {
         "activeUsers": "Aktif Kullanıcı",
@@ -2322,7 +2322,7 @@
       "subtitle": "Daha fazla anlaşma kapatmak, daha iyi destek sağlamak ve operasyonlarını ölçeklendirmek için Eazybe'yi kullanan 30.000+ işletmeye katılın.",
       "primary": "Ücretsiz Denemeyi Başlat",
       "secondary": "Demo Rezervasyonu",
-      "footnote": "Kredi kartı gerekmez - 7 günlük ücretsiz deneme - İstediğiniz zaman iptal edin"
+      "footnote": "Kredi kartı gerekmez - 4 günlük ücretsiz deneme - İstediğiniz zaman iptal edin"
     },
     "faq": {
       "badge": "SSS",
@@ -2341,7 +2341,7 @@
       "q6": "Eazybe hangi entegrasyonları destekler?",
       "a6": "Eazybe HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar ve diğer herhangi bir platform için özel webhooks dahil 10'dan fazla platformla entegre olur. Diğer herhangi bir WhatsApp CRM'den daha fazla entegrasyon.",
       "q7": "Ücretsiz deneme var mı?",
-      "a7": "Evet! Tüm planlarda kredi kartı gerekmeden 7 günlük ücretsiz deneme sunuyoruz. Tüm özellikleri keşfedebilir, entegrasyonları test edebilir ve taahhüt etmeden önce Eazybe'nin iş akışınıza nasıl uyduğunu görebilirsiniz.",
+      "a7": "Evet! Tüm planlarda kredi kartı gerekmeden 4 günlük ücretsiz deneme sunuyoruz. Tüm özellikleri keşfedebilir, entegrasyonları test edebilir ve taahhüt etmeden önce Eazybe'nin iş akışınıza nasıl uyduğunu görebilirsiniz.",
       "q8": "Eazybe'yi ne kadar sürede çalışır hale getirebilirim?",
       "a8": "Çoğu ekip 15 dakikadan kısa sürede aktif hale gelir. Chrome uzantısını yükleyin, CRM'inizi tek tıkla bağlayın ve WhatsApp konuşmaları gerçek zamanlı olarak senkronize edilmeye başlar — geliştirici, BT bileti veya yalnızca API sunan rakipler gibi haftalarca süren bir kurulum yok."
     },

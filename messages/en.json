@@ -1823,7 +1823,7 @@
       "feature1": "Real-time sync for 1-on-1 and Group Chats.",
       "feature2": "Automatic association with open Deals and Tickets.",
       "feature3": "Complete conversation history retained when reps leave.",
-      "startTrial": "Start 7-Day Free Trial",
+      "startTrial": "Start 4-Day Free Trial",
       "bookDemo": "Book a Demo",
       "metaPartner": "Business Partner",
       "appPartner": "App Partner"
@@ -2361,7 +2361,7 @@
       "titleHighlight": "#1 Choice",
       "titleSuffix": "for Whatsapp CRM",
       "subtitle": "See how Eazybe compares to 20+ leading WhatsApp CRM platforms. More features, better integrations, and unbeatable pricing - all in one powerful platform.",
-      "ctaPrimary": "Start 7-Day Free Trial",
+      "ctaPrimary": "Start 4-Day Free Trial",
       "ctaSecondary": "Compare Features",
       "stats": {
         "activeUsers": "Active Users",
@@ -2441,7 +2441,7 @@
       "subtitle": "Join 30,000+ businesses already using Eazybe to close more deals, provide better support, and scale their operations.",
       "primary": "Start Your Free Trial",
       "secondary": "Book a Demo",
-      "footnote": "No credit card required - 7-day free trial - Cancel anytime"
+      "footnote": "No credit card required - 4-day free trial - Cancel anytime"
     },
     "faq": {
       "badge": "FAQ",
@@ -2460,7 +2460,7 @@
       "q6": "What integrations does Eazybe support?",
       "a6": "Eazybe integrates with 10+ platforms including HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar, and custom webhooks for any other platform. More integrations than any other WhatsApp CRM.",
       "q7": "Is there a free trial?",
-      "a7": "Yes! We offer a 7-day free trial on all plans with no credit card required. You can explore all features, test integrations, and see how Eazybe fits your workflow before committing.",
+      "a7": "Yes! We offer a 4-day free trial on all plans with no credit card required. You can explore all features, test integrations, and see how Eazybe fits your workflow before committing.",
       "q8": "How quickly can I get Eazybe up and running?",
       "a8": "Most teams are live in under 15 minutes. Install the Chrome extension, connect your CRM with one click, and WhatsApp conversations start syncing in real time — no developers, no IT tickets, no week-long onboarding like with API-only competitors."
     },

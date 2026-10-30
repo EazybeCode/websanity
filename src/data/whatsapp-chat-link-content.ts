@@ -229,7 +229,7 @@ const en: ChatLinkPageContent = {
       "Eazybe captures every inbound WhatsApp chat into your CRM. The lead gets scored before your reps see it, and our AI keeps the conversation going when nobody's online. Works with HubSpot, Salesforce, and Zoho.",
     primary: 'Try Eazybe Free →',
     secondary: 'Book a Demo',
-    footnote: '7-day free trial · No credit card required · Cancel anytime',
+    footnote: '4-day free trial · No credit card required · Cancel anytime',
   },
   generator: {
     formTitle: 'Generate your chat link',
@@ -372,7 +372,7 @@ const br: ChatLinkPageContent = {
       'O Eazybe captura cada conversa de WhatsApp recebida no seu CRM. O lead é qualificado antes dos seus vendedores verem, e nossa IA mantém a conversa quando ninguém está online. Funciona com HubSpot, Salesforce e Zoho.',
     primary: 'Teste o Eazybe Grátis →',
     secondary: 'Agendar Demo',
-    footnote: '7 dias grátis · Sem cartão de crédito · Cancele quando quiser',
+    footnote: '4 dias grátis · Sem cartão de crédito · Cancele quando quiser',
   },
   generator: {
     formTitle: 'Gere seu link de conversa',
@@ -515,7 +515,7 @@ const es: ChatLinkPageContent = {
       'Eazybe captura cada chat entrante de WhatsApp en tu CRM. El lead se califica antes de que tus reps lo vean y nuestra IA mantiene la conversación cuando nadie está en línea. Funciona con HubSpot, Salesforce y Zoho.',
     primary: 'Prueba Eazybe Gratis →',
     secondary: 'Agendar Demo',
-    footnote: 'Prueba de 7 días · Sin tarjeta de crédito · Cancela cuando quieras',
+    footnote: 'Prueba de 4 días · Sin tarjeta de crédito · Cancela cuando quieras',
   },
   generator: {
     formTitle: 'Genera tu enlace de chat',
@@ -658,7 +658,7 @@ const tr: ChatLinkPageContent = {
       "Eazybe, her gelen WhatsApp sohbetini CRM'inize alır. Lead, temsilcileriniz görmeden önce puanlanır ve kimse çevrimiçi değilken AI'mız sohbete devam eder. HubSpot, Salesforce ve Zoho ile çalışır.",
     primary: "Eazybe'yi Ücretsiz Deneyin →",
     secondary: 'Demo Planlayın',
-    footnote: '7 gün ücretsiz · Kredi kartı gerekmez · İstediğiniz zaman iptal edin',
+    footnote: '4 gün ücretsiz · Kredi kartı gerekmez · İstediğiniz zaman iptal edin',
   },
   generator: {
     formTitle: 'Sohbet linkinizi oluşturun',
