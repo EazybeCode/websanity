@@ -117,10 +117,10 @@ export function FreshdeskStructuredData() {
     },
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: 4.9,
+      ratingValue: 4.2,
       bestRating: 5,
       worstRating: 1,
-      ratingCount: 30597
+      ratingCount: 1100
     }
   }
 

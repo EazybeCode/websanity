@@ -6,7 +6,8 @@
  * This component is added to the locale layout so the schema appears on every page
  * without interfering with page-specific schemas.
  *
- * The SoftwareApplication schema (with the 4.9★ aggregateRating) is NOT global: Google
+ * The SoftwareApplication schema (with its aggregateRating: 4.2 from ~1,100 ratings, the main
+ * Chrome Web Store listing — keep it matched to a public source) is NOT global: Google
  * requires a rating to describe the page's main item, and repeating it on blog /
  * comparison / author pages raised "Review has multiple aggregate ratings" in Search
  * Console. It is emitted on the homepage only (getHomepageJsonLd).

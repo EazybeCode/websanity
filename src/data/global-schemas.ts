@@ -48,10 +48,10 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": 4.9,
+          "ratingValue": 4.2,
           "bestRating": 5,
           "worstRating": 1,
-          "ratingCount": 30597
+          "ratingCount": 1100
         },
         "featureList": [
           "WhatsApp CRM sync",
@@ -142,10 +142,10 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": 4.9,
+          "ratingValue": 4.2,
           "bestRating": 5,
           "worstRating": 1,
-          "ratingCount": 30597
+          "ratingCount": 1100
         },
         "featureList": [
           "Sincronização do WhatsApp com o CRM",
@@ -236,10 +236,10 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": 4.9,
+          "ratingValue": 4.2,
           "bestRating": 5,
           "worstRating": 1,
-          "ratingCount": 30597
+          "ratingCount": 1100
         },
         "featureList": [
           "Sincronización de WhatsApp con el CRM",
@@ -330,10 +330,10 @@ export function getGlobalSchemas(locale: string): GlobalSchemas {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": 4.9,
+          "ratingValue": 4.2,
           "bestRating": 5,
           "worstRating": 1,
-          "ratingCount": 30597
+          "ratingCount": 1100
         },
         "featureList": [
           "WhatsApp CRM senkronizasyonu",
