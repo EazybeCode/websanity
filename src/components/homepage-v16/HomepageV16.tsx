@@ -25,13 +25,8 @@ export function HomepageV16({ locale = 'en' }: { locale?: string }) {
   const { markup, labels } = getV16Content(locale)
   return (
     <>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
-        precedence="default"
-      />
+      {/* Geist is self-hosted by the locale layout (geist-fonts.css). home-v16.css is
+          also preloaded by a Link header (next.config.ts) so its fetch starts at first byte. */}
       <link rel="stylesheet" href="/homepage-v16/home-v16.css" precedence="default" />
       <div className="landing approved-site-nav v16-chrome" data-accent="iris" data-typeset="geist">
         <Nav />

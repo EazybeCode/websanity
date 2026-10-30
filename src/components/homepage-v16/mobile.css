@@ -503,3 +503,17 @@
     transform: scale(0.8);
   }
 }
+
+/* Perf (all widths): skip style/layout/paint for the long below-fold blocks until
+   they near the viewport (same technique as landing-v3.css's section rule). The
+   "How Eazybe works" section alone is ~13,000px / ~900 elements on a phone, and its
+   looping mockup animations kept re-running style work while off screen. `auto`
+   remembers each block's real height once rendered; the px values are phone-width
+   placeholders so the scrollbar doesn't jump before then. */
+#ezv16 #cm { content-visibility: auto; contain-intrinsic-size: auto 3600px; }
+#ezv16 #outreach { content-visibility: auto; contain-intrinsic-size: auto 4200px; }
+#ezv16 #intel { content-visibility: auto; contain-intrinsic-size: auto 1900px; }
+#ezv16 #agents { content-visibility: auto; contain-intrinsic-size: auto 2450px; }
+#ezv16 > .v16-s3 { content-visibility: auto; contain-intrinsic-size: auto 1500px; }
+#ezv16 > .v16-s4 { content-visibility: auto; contain-intrinsic-size: auto 1000px; }
+#ezv16 > .v16-s5 { content-visibility: auto; contain-intrinsic-size: auto 800px; }

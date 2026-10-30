@@ -7,22 +7,28 @@ import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
 import { GlobalStructuredData } from '@/components/seo/GlobalStructuredData'
 import Script from 'next/script'
+import '../geist-fonts.css'
 
 // display: 'optional' — if the font isn't ready within ~100ms the page keeps
 // the size-adjusted fallback for that visit instead of swapping later. The
 // late swap was the whole CLS budget on blog posts (0.143: text above the
 // featured image reflows and shoves it down). Repeat visits get the cached
 // font immediately.
+// preload: false — every page now renders in Geist (geist-fonts.css); Inter is
+// only a fallback in the font stacks and JetBrains Mono styles a single label,
+// so preloading them spent first-load bandwidth on files no text paints with.
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'optional',
+  preload: false,
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains-mono',
   display: 'optional',
+  preload: false,
 })
 
 // Map next-intl URL locale codes to canonical HTML `lang` values.
@@ -79,6 +85,10 @@ export default async function LocaleLayout({
             hero reveals late it is the measured LCP element) — preload it at
             high priority so it paints with the first frame. 3.2KB PNG. */}
         <link rel="preload" as="image" href="/logo-small.png" fetchPriority="high" />
+        {/* Brand type (self-hosted Geist, see geist-fonts.css): preload the latin
+            files so they arrive with the first paint instead of after CSS parse. */}
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/geist/geist-latin.woff2" crossOrigin="" />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/geist/geist-mono-latin.woff2" crossOrigin="" />
         {/* RSS feed discovery — feed readers / browsers auto-detect this. */}
         <link
           rel="alternate"

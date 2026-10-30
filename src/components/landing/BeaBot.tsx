@@ -22,11 +22,25 @@ export function BeaBot() {
     // get the auto-opened form — the visitor should see the page they clicked the
     // ad for. Bea stays available via her corner button and the CTA events.
     if (new URLSearchParams(window.location.search).get('utm_source') === 'linkedin-ads') return
-    // Auto-open the lead form 5s after load on ALL devices (desktop + mobile).
+    // Auto-open the lead form 5s after load on desktop. On mobile (<1024px) the
+    // 5s clock starts at the visitor's first scroll instead: a form covering the
+    // hero before they've engaged hurt Speed Index and the first impression.
     // Initial state stays false so SSR/CSR markup matches; the open happens
     // client-side after mount, so there's no hydration mismatch.
-    const id = window.setTimeout(() => setOpen(true), 5000)
-    return () => window.clearTimeout(id)
+    let id: number | undefined
+    const start = () => {
+      window.removeEventListener('scroll', start)
+      id = window.setTimeout(() => setOpen(true), 5000)
+    }
+    if (window.matchMedia('(max-width: 1023px)').matches) {
+      window.addEventListener('scroll', start, { passive: true })
+    } else {
+      start()
+    }
+    return () => {
+      window.removeEventListener('scroll', start)
+      window.clearTimeout(id)
+    }
   }, [])
 
   // Other CTAs (FinalCTA, MidCTA, FAQ footnote, Nav "Contact Sales", mobile
