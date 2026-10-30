@@ -36,6 +36,7 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
       { nameKey: 'itemLeadQual', href: '/#' },
       { nameKey: 'itemRevenueOps', href: '/#' },
       { nameKey: 'itemCustomerSuccess', href: '/#' },
+      { nameKey: 'itemMcp', href: '/mcp', badgeKey: 'badgeNew' },
       { nameKey: 'itemAllAgents', href: '/#' },
     ],
   },

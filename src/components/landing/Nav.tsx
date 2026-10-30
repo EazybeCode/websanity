@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import { INSTALL_REDIRECT_URL } from '@/utils/openChromeExtensionStore'
 import { useTrialModal } from '@/providers/TrialModalProvider'
+import { McpLaunchBanner } from './McpLaunchBanner'
 
 // Prefix internal href paths with the active locale (e.g. "/hubspot-..." → "/br/hubspot-...").
 // External URLs, hash links, and the root "/#" stay untouched.
@@ -316,6 +317,7 @@ export function Nav() {
 
   return (
     <>
+    <McpLaunchBanner />
     <nav className="nav">
       <a href={lh('/')} className="nav-logo" aria-label={t('logoAria')} onClick={closeMenu}>
         <img
@@ -438,6 +440,8 @@ export function Nav() {
             </a>
           </div>
         </div>
+
+        <div className="nav-item"><a href={lh('/mcp')}><span>{t('mcp')}</span></a></div>
 
         <div className="nav-item"><a href={lh('/pricing')}><span>{t('pricing')}</span></a></div>
 
@@ -646,6 +650,10 @@ export function Nav() {
                   </a>
                 </li>
               </ul>
+            </div>
+
+            <div className="nav-drawer-link">
+              <a href={lh('/mcp')} onClick={closeMenu}>{t('mcp')}</a>
             </div>
 
             <div className="nav-drawer-link">

@@ -2774,6 +2774,7 @@
       "pricing": "Pricing"
     },
     "nav": {
+      "mcp": "MCP",
       "agents": "Agents",
       "integrations": "Integrations",
       "agentBuilder": "Agent Builder",
@@ -2896,6 +2897,7 @@
       "step4": "Done — every new post arrives automatically"
     },
     "footer": {
+      "itemMcp": "WhatsApp MCP",
       "tagline": "WhatsApp AI agents for CRM teams. Built for the way sales actually happens.",
       "connectLabel": "Connect with us:",
       "securityTitle": "We take security seriously.",
@@ -3011,5 +3013,307 @@
       "p5b": "Eazybe is one of the top WhatsApp AI Agent platforms doing exactly that. It installs as a Chrome extension, runs alongside the WhatsApp Web your reps already use, and starts working without a migration. If you're losing deals to slow replies or thread amnesia, another chatbot won't help. An AI agent for WhatsApp that reads the chat and writes to the CRM might.",
       "ctaText": "Get a Free Demo"
     }
+  },
+  "mcpBanner": {
+    "text": "Eazybe MCP is live: connect your WhatsApp to Claude and Codex.",
+    "cta": "See how",
+    "close": "Dismiss announcement"
+  },
+  "mcpPage": {
+    "heroTitle": "WhatsApp MCP server for",
+    "heroTitleEm": "Claude and Codex",
+    "heroLede": "Connect your team's WhatsApp, calls and CRM to Claude or Codex. Read chats, reply, follow up and update deals straight from your prompts.",
+    "copyLink": "Copy link",
+    "copyCommand": "Copy command",
+    "copied": "Copied ✓",
+    "linkCopied": "Link copied ✓",
+    "urlHint": "Your MCP server link. Paste it into Claude or Codex.",
+    "pill": "Connect WhatsApp to your AI agent",
+    "startFree": "Start free",
+    "bookDemo": "Book a demo",
+    "fine": "Included in all paid plans · ★ 4.6 on HubSpot Marketplace",
+    "samplePrompt": "Who on my team hasn't replied to a hot lead today?",
+    "setup": {
+      "claude": [
+        {
+          "title": "Open Claude settings",
+          "desc": "Go to Settings, then Connectors, then Add custom connector. Use this link:"
+        },
+        {
+          "title": "Connect and sign in",
+          "desc": "Name it Eazybe, paste the link, click Connect and sign in with Eazybe."
+        },
+        {
+          "title": "Start prompting",
+          "desc": "Turn on Eazybe in a chat and ask:"
+        }
+      ],
+      "code": [
+        {
+          "title": "Add the server",
+          "desc": "Run this in your terminal, from any folder:"
+        },
+        {
+          "title": "Sign in",
+          "desc": "Start Claude Code, type /mcp, pick eazybe and choose Authenticate. Sign in with Eazybe."
+        },
+        {
+          "title": "Start prompting",
+          "desc": "Ask Claude Code:"
+        }
+      ],
+      "codex": [
+        {
+          "title": "Add the server",
+          "desc": "Run this in your terminal:"
+        },
+        {
+          "title": "Sign in",
+          "desc": "Run the login command and sign in with Eazybe in the browser tab that opens."
+        },
+        {
+          "title": "Start prompting",
+          "desc": "Start Codex and ask:"
+        }
+      ]
+    },
+    "setupFoot": "Sign in with Eazybe. No API key.",
+    "linkGuide": "Read the full MCP guide",
+    "linkTools": "Every tool, explained",
+    "linkPrivacy": "Privacy and data",
+    "storiesEyebrow": "Customer stories",
+    "storiesTitle": "Sales teams in 40+ countries already run WhatsApp on Eazybe",
+    "storiesSub": "The MCP server works on the same workspace your team uses every day. Same chats, same permissions, same CRM.",
+    "stats": [
+      [
+        "2,000+",
+        "sales teams"
+      ],
+      [
+        "4.6★",
+        "HubSpot Marketplace"
+      ],
+      [
+        "40+",
+        "countries"
+      ],
+      [
+        "Minutes",
+        "to set up"
+      ]
+    ],
+    "academyEyebrow": "MCP Academy",
+    "academyTitle": "Learn the questions that make MCP worth using every day",
+    "academySub": "Short lessons built on a real sales workspace. Free to read, no sign-up.",
+    "academyCta": "Browse the Academy",
+    "lessons": [
+      {
+        "title": "Connect in 5 minutes",
+        "meta": "Claude or Codex, one sign-in · 5 min"
+      },
+      {
+        "title": "What needs me today",
+        "meta": "A two-minute morning briefing · 5 min"
+      },
+      {
+        "title": "More lessons coming",
+        "meta": "Follow-ups, labels and weekly reports"
+      }
+    ],
+    "askEyebrow": "What you can ask",
+    "askTitle": "Ask Claude or Codex to take real actions in your WhatsApp inbox. No dashboard, just a prompt.",
+    "copyPrompt": "Copy prompt",
+    "promptGroups": [
+      {
+        "name": "Triage and routing",
+        "cards": [
+          {
+            "title": "Morning inbox triage",
+            "prompt": "Group my unread chats by rep and tell me who has waited longest.",
+            "results": [
+              "Ana · 6 waiting · longest 2h",
+              "Rahul · 3 waiting · 48m",
+              "Unassigned · 4 waiting · 22m"
+            ]
+          },
+          {
+            "title": "Bulk reassignment",
+            "prompt": "Move last night's unassigned chats to whoever is online now.",
+            "results": [
+              "14 chats found",
+              "Ana gets 5 · Rahul gets 5 · Priya gets 4",
+              "Waiting for your OK"
+            ]
+          },
+          {
+            "title": "Hot lead alert",
+            "prompt": "Which hot leads haven't had a reply in the last hour?",
+            "results": [
+              "Neha Kapoor · 2h · “Is the 6-month plan on offer?”",
+              "Marina Silva · 48m · “Yes, send the quote”"
+            ]
+          },
+          {
+            "title": "Group tickets",
+            "prompt": "Show open tickets from my WhatsApp groups.",
+            "results": [
+              "Fleet buyers · Pune · price list",
+              "Dealers South · delivery delay",
+              "2 open · 1 overdue"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Replying",
+        "cards": [
+          {
+            "title": "Draft the reply",
+            "prompt": "Read my chat with Neha and draft a reply that answers her pricing question.",
+            "results": [
+              "Draft ready · 3 lines",
+              "Uses your saved pricing reply",
+              "Waiting for your OK to send"
+            ]
+          },
+          {
+            "title": "Catch up on a chat",
+            "prompt": "Summarise what Marina and I agreed so far and what's still open.",
+            "results": [
+              "Agreed · 20 seats, annual",
+              "Open · onboarding date",
+              "Last message · 48m ago"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Outbound",
+        "cards": [
+          {
+            "title": "Follow-up sweep",
+            "prompt": "Find leads who went quiet after a quote and send them a follow-up template.",
+            "results": [
+              "9 leads found",
+              "Template · quote_follow_up",
+              "Waiting for your OK"
+            ]
+          },
+          {
+            "title": "Targeted broadcast",
+            "prompt": "Send the webinar invite to every contact labelled Demo booked this month.",
+            "results": [
+              "63 contacts in segment",
+              "Estimated cost shown before send",
+              "Waiting for your OK"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Analytics and reporting",
+        "cards": [
+          {
+            "title": "Response time check",
+            "prompt": "Compare my reps' first response time this week against last week.",
+            "results": [
+              "Team avg · 14m (was 21m)",
+              "Fastest · Priya · 6m",
+              "Slowest · Rahul · 32m"
+            ]
+          },
+          {
+            "title": "Weekly pipeline recap",
+            "prompt": "Which deals moved stage this week after a WhatsApp conversation?",
+            "results": [
+              "7 deals moved",
+              "3 to Proposal · 2 to Won",
+              "2 stuck over 14 days"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Team and admin",
+        "cards": [
+          {
+            "title": "Working hours",
+            "prompt": "Set our working hours to 9 to 7, Monday to Saturday.",
+            "results": [
+              "Preview ready",
+              "Away message on outside hours",
+              "Waiting for your OK"
+            ]
+          },
+          {
+            "title": "Label cleanup",
+            "prompt": "List labels nobody used in 30 days and how many chats each has.",
+            "results": [
+              "6 unused labels",
+              "Biggest · Old leads · 41 chats",
+              "Nothing deleted yet"
+            ]
+          }
+        ]
+      }
+    ],
+    "stripTitle": "Connect your WhatsApp inbox to your AI",
+    "stripSub": "Scan a QR code, add the connector and start prompting. No WhatsApp API, no developer, no API keys.",
+    "faqEyebrow": "Questions",
+    "faqTitle": "What to know before you connect",
+    "faqs": [
+      {
+        "q": "What is MCP, exactly?",
+        "a": "MCP (Model Context Protocol) is an open standard that lets AI assistants like Claude and Codex use tools from other apps. The Eazybe MCP server gives your assistant safe access to your WhatsApp inbox, calls, labels and connected CRM, so it can read, reply and update records when you ask."
+      },
+      {
+        "q": "Do I need an API key?",
+        "a": "No. You paste one link and sign in with your Eazybe account. Access follows the same permissions your workspace already uses, and you can disconnect at any time."
+      },
+      {
+        "q": "Which AI tools can connect?",
+        "a": "Claude (web, desktop and mobile), Claude Code and Codex work today. Any AI client that supports remote MCP servers with sign-in can connect with the same link."
+      },
+      {
+        "q": "Can the AI send messages to my customers?",
+        "a": "Only when you ask it to, and only with your approval. Sends, broadcasts and bulk changes show you a preview first and wait for your OK."
+      },
+      {
+        "q": "Does using MCP cost extra?",
+        "a": "No. The MCP server is included at no extra cost in all paid Eazybe plans: Starter, Scaler, Basic AI and Custom AI. It is not part of the free trial. WhatsApp template and broadcast charges work the same as they do inside Eazybe."
+      },
+      {
+        "q": "Do I need the WhatsApp Business API?",
+        "a": "No. Eazybe works with the WhatsApp and WhatsApp Business apps your team already uses. Scan a QR code and your chats are available to your AI."
+      },
+      {
+        "q": "What do I need before the setup steps work?",
+        "a": "A paid Eazybe plan with at least one WhatsApp number connected, and an AI tool that supports custom connectors. On Claude that is Settings, then Connectors."
+      }
+    ],
+    "ctaTitle": "Ready to connect WhatsApp to your AI?",
+    "ctaSub": "Included in all paid plans. Set up in minutes.",
+    "ctaSmall": "Works with Claude and Codex",
+    "guidesEyebrow": "Deep dives",
+    "guidesTitle": "WhatsApp + AI guides",
+    "guidesSub": "Longer reads on WhatsApp, AI assistants and picking the right connection.",
+    "readGuide": "Read guide",
+    "guides": [
+      {
+        "tag": "Technical guide · 10 min",
+        "title": "Eazybe MCP: connect WhatsApp to any AI agent",
+        "desc": "Setup for each assistant, common snags and your first 15 minutes."
+      },
+      {
+        "tag": "Reference · 8 min",
+        "title": "Every Eazybe MCP tool, explained",
+        "desc": "160+ actions across inbox, CRM, broadcasts, agents and team."
+      },
+      {
+        "tag": "Compare · 6 min",
+        "title": "Personal WhatsApp vs Business app vs API",
+        "desc": "Which one to connect, and what your AI can do with each."
+      }
+    ]
   }
 }

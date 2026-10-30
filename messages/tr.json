@@ -2912,6 +2912,7 @@
       "pricing": "Fiyatlar"
     },
     "nav": {
+      "mcp": "MCP",
       "agents": "Agent'lar",
       "integrations": "Entegrasyonlar",
       "agentBuilder": "Agent Builder",
@@ -3034,6 +3035,7 @@
       "step4": "Tamam — her yeni yazı otomatik olarak gelir"
     },
     "footer": {
+      "itemMcp": "WhatsApp MCP",
       "tagline": "CRM ekipleri için WhatsApp AI agent'ları. Satışın gerçekte nasıl yapıldığına göre tasarlandı.",
       "connectLabel": "Bizi takip edin:",
       "securityTitle": "Güvenliği ciddiye alıyoruz.",
@@ -3149,5 +3151,307 @@
       "p5b": "Eazybe, tam olarak bunu yapan önde gelen WhatsApp AI Agent platformlarından biridir. Chrome eklentisi olarak yüklenir, temsilcilerinizin halihazırda kullandığı WhatsApp Web'in yanında çalışır ve göç yapmadan iş görmeye başlar. Yavaş yanıtlar veya thread amnezisi yüzünden deal kaybediyorsanız, başka bir chatbot işe yaramaz. Sohbeti okuyup CRM'e yazan bir WhatsApp AI Agent yarayabilir.",
       "ctaText": "Ücretsiz Demo Planla"
     }
+  },
+  "mcpBanner": {
+    "text": "Eazybe MCP yayında: WhatsApp'ınızı Claude ve Codex'e bağlayın.",
+    "cta": "Nasıl çalışır",
+    "close": "Duyuruyu kapat"
+  },
+  "mcpPage": {
+    "heroTitle": "WhatsApp MCP sunucusu:",
+    "heroTitleEm": "Claude ve Codex için",
+    "heroLede": "Ekibinizin WhatsApp'ını, aramalarını ve CRM'ini Claude veya Codex'e bağlayın. Sohbetleri okuyun, yanıtlayın, takip edin ve fırsatları doğrudan istemlerinizden güncelleyin.",
+    "copyLink": "Bağlantıyı kopyala",
+    "copyCommand": "Komutu kopyala",
+    "copied": "Kopyalandı ✓",
+    "linkCopied": "Bağlantı kopyalandı ✓",
+    "urlHint": "MCP sunucu bağlantınız. Claude veya Codex'e yapıştırın.",
+    "pill": "WhatsApp'ı yapay zeka ajanınıza bağlayın",
+    "startFree": "Ücretsiz başla",
+    "bookDemo": "Demo planla",
+    "fine": "Tüm ücretli planlara dahil · HubSpot Marketplace'te ★ 4,6",
+    "samplePrompt": "Ekibimde bugün sıcak bir müşteri adayına yanıt vermeyen kim var?",
+    "setup": {
+      "claude": [
+        {
+          "title": "Claude ayarlarını açın",
+          "desc": "Ayarlar, ardından Bağlayıcılar, ardından Özel bağlayıcı ekle'ye gidin. Bu bağlantıyı kullanın:"
+        },
+        {
+          "title": "Bağlanın ve oturum açın",
+          "desc": "Adını Eazybe koyun, bağlantıyı yapıştırın, Bağlan'a tıklayın ve Eazybe ile oturum açın."
+        },
+        {
+          "title": "Sormaya başlayın",
+          "desc": "Bir sohbette Eazybe'yi açın ve sorun:"
+        }
+      ],
+      "code": [
+        {
+          "title": "Sunucuyu ekleyin",
+          "desc": "Bunu terminalinizde, herhangi bir klasörde çalıştırın:"
+        },
+        {
+          "title": "Oturum açın",
+          "desc": "Claude Code'u başlatın, /mcp yazın, eazybe'yi seçin ve Authenticate'i seçin. Eazybe ile oturum açın."
+        },
+        {
+          "title": "Sormaya başlayın",
+          "desc": "Claude Code'a sorun:"
+        }
+      ],
+      "codex": [
+        {
+          "title": "Sunucuyu ekleyin",
+          "desc": "Bunu terminalinizde çalıştırın:"
+        },
+        {
+          "title": "Oturum açın",
+          "desc": "Giriş komutunu çalıştırın ve açılan tarayıcı sekmesinde Eazybe ile oturum açın."
+        },
+        {
+          "title": "Sormaya başlayın",
+          "desc": "Codex'i başlatın ve sorun:"
+        }
+      ]
+    },
+    "setupFoot": "Eazybe ile oturum açın. API anahtarı gerekmez.",
+    "linkGuide": "MCP rehberinin tamamını okuyun",
+    "linkTools": "Tüm araçlar, açıklamalarıyla",
+    "linkPrivacy": "Gizlilik ve veriler",
+    "storiesEyebrow": "Müşteri hikayeleri",
+    "storiesTitle": "40'tan fazla ülkede satış ekipleri WhatsApp'ı zaten Eazybe ile yönetiyor",
+    "storiesSub": "MCP sunucusu, ekibinizin her gün kullandığı aynı çalışma alanında çalışır. Aynı sohbetler, aynı izinler, aynı CRM.",
+    "stats": [
+      [
+        "2.000+",
+        "satış ekibi"
+      ],
+      [
+        "4,6★",
+        "HubSpot Marketplace"
+      ],
+      [
+        "40+",
+        "ülke"
+      ],
+      [
+        "Dakikalar",
+        "içinde kurulum"
+      ]
+    ],
+    "academyEyebrow": "MCP Academy",
+    "academyTitle": "MCP'yi her gün kullanmaya değer kılan soruları öğrenin",
+    "academySub": "Gerçek bir satış çalışma alanı üzerine kurulmuş kısa dersler. Ücretsiz, kayıt gerekmez.",
+    "academyCta": "Academy'ye göz atın",
+    "lessons": [
+      {
+        "title": "5 dakikada bağlanın",
+        "meta": "Claude veya Codex, tek oturum açma · 5 dk"
+      },
+      {
+        "title": "Bugün beni ne bekliyor",
+        "meta": "İki dakikalık sabah özeti · 5 dk"
+      },
+      {
+        "title": "Yeni dersler yolda",
+        "meta": "Takipler, etiketler ve haftalık raporlar"
+      }
+    ],
+    "askEyebrow": "Neler sorabilirsiniz",
+    "askTitle": "Claude veya Codex'ten WhatsApp gelen kutunuzda gerçek işlemler yapmasını isteyin. Panel yok, sadece bir istem.",
+    "copyPrompt": "İstemi kopyala",
+    "promptGroups": [
+      {
+        "name": "Önceliklendirme ve atama",
+        "cards": [
+          {
+            "title": "Sabah gelen kutusu taraması",
+            "prompt": "Okunmamış sohbetlerimi temsilciye göre grupla ve en uzun kimin beklediğini söyle.",
+            "results": [
+              "Ana · 6 bekleyen · en uzun 2 sa",
+              "Rahul · 3 bekleyen · 48 dk",
+              "Atanmamış · 4 bekleyen · 22 dk"
+            ]
+          },
+          {
+            "title": "Toplu yeniden atama",
+            "prompt": "Dün geceki atanmamış sohbetleri şu an çevrimiçi olanlara dağıt.",
+            "results": [
+              "14 sohbet bulundu",
+              "Ana'ya 5 · Rahul'a 5 · Priya'ya 4",
+              "Onayınız bekleniyor"
+            ]
+          },
+          {
+            "title": "Sıcak aday uyarısı",
+            "prompt": "Hangi sıcak adaylar son bir saattir yanıt almadı?",
+            "results": [
+              "Neha Kapoor · 2 sa · “6 aylık plan kampanyada mı?”",
+              "Marina Silva · 48 dk · “Evet, teklifi gönderin”"
+            ]
+          },
+          {
+            "title": "Grup talepleri",
+            "prompt": "WhatsApp gruplarımdaki açık talepleri göster.",
+            "results": [
+              "Filo alıcıları · Pune · fiyat listesi",
+              "Güney bayileri · teslimat gecikmesi",
+              "2 açık · 1 gecikmiş"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Yanıtlama",
+        "cards": [
+          {
+            "title": "Yanıt taslağı",
+            "prompt": "Neha ile sohbetimi oku ve fiyat sorusunu yanıtlayan bir taslak yaz.",
+            "results": [
+              "Taslak hazır · 3 satır",
+              "Kayıtlı fiyat yanıtınızı kullanır",
+              "Göndermek için onayınız bekleniyor"
+            ]
+          },
+          {
+            "title": "Sohbeti özetle",
+            "prompt": "Marina ile şu ana kadar neler üzerinde anlaştığımızı ve neyin açık kaldığını özetle.",
+            "results": [
+              "Anlaşılan · 20 kullanıcı, yıllık",
+              "Açık · kurulum tarihi",
+              "Son mesaj · 48 dk önce"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Giden mesajlar",
+        "cards": [
+          {
+            "title": "Takip turu",
+            "prompt": "Tekliften sonra sessizleşen adayları bul ve onlara bir takip şablonu gönder.",
+            "results": [
+              "9 aday bulundu",
+              "Şablon · quote_follow_up",
+              "Onayınız bekleniyor"
+            ]
+          },
+          {
+            "title": "Hedefli toplu mesaj",
+            "prompt": "Webinar davetini bu ay Demo planlandı etiketli tüm kişilere gönder.",
+            "results": [
+              "Segmentte 63 kişi",
+              "Göndermeden önce tahmini maliyet gösterilir",
+              "Onayınız bekleniyor"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Analiz ve raporlama",
+        "cards": [
+          {
+            "title": "Yanıt süresi kontrolü",
+            "prompt": "Temsilcilerimin bu haftaki ilk yanıt süresini geçen haftayla karşılaştır.",
+            "results": [
+              "Ekip ortalaması · 14 dk (önce 21 dk)",
+              "En hızlı · Priya · 6 dk",
+              "En yavaş · Rahul · 32 dk"
+            ]
+          },
+          {
+            "title": "Haftalık satış hattı özeti",
+            "prompt": "Bu hafta bir WhatsApp görüşmesinden sonra hangi fırsatlar aşama değiştirdi?",
+            "results": [
+              "7 fırsat ilerledi",
+              "3'ü Teklif · 2'si Kazanıldı aşamasına",
+              "2'si 14 günden fazladır takılı"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Ekip ve yönetim",
+        "cards": [
+          {
+            "title": "Çalışma saatleri",
+            "prompt": "Çalışma saatlerimizi pazartesiden cumartesiye 9-19 olarak ayarla.",
+            "results": [
+              "Önizleme hazır",
+              "Mesai dışında otomatik yanıt",
+              "Onayınız bekleniyor"
+            ]
+          },
+          {
+            "title": "Etiket temizliği",
+            "prompt": "30 gündür kimsenin kullanmadığı etiketleri ve her birinde kaç sohbet olduğunu listele.",
+            "results": [
+              "6 kullanılmayan etiket",
+              "En büyüğü · Eski adaylar · 41 sohbet",
+              "Henüz hiçbir şey silinmedi"
+            ]
+          }
+        ]
+      }
+    ],
+    "stripTitle": "WhatsApp gelen kutunuzu yapay zekanıza bağlayın",
+    "stripSub": "Bir QR kodu okutun, bağlayıcıyı ekleyin ve sormaya başlayın. WhatsApp API'si, geliştirici veya API anahtarı gerekmez.",
+    "faqEyebrow": "Sorular",
+    "faqTitle": "Bağlanmadan önce bilmeniz gerekenler",
+    "faqs": [
+      {
+        "q": "MCP tam olarak nedir?",
+        "a": "MCP (Model Context Protocol), Claude ve Codex gibi yapay zeka asistanlarının diğer uygulamaların araçlarını kullanmasını sağlayan açık bir standarttır. Eazybe MCP sunucusu, asistanınıza WhatsApp gelen kutunuza, aramalarınıza, etiketlerinize ve bağlı CRM'inize güvenli erişim verir; böylece siz istediğinizde kayıtları okuyabilir, yanıtlayabilir ve güncelleyebilir."
+      },
+      {
+        "q": "API anahtarına ihtiyacım var mı?",
+        "a": "Hayır. Tek bir bağlantı yapıştırıp Eazybe hesabınızla oturum açarsınız. Erişim, çalışma alanınızın zaten kullandığı izinleri izler ve istediğiniz zaman bağlantıyı kesebilirsiniz."
+      },
+      {
+        "q": "Hangi yapay zeka araçları bağlanabilir?",
+        "a": "Claude (web, masaüstü ve mobil), Claude Code ve Codex bugün çalışıyor. Oturum açmalı uzak MCP sunucularını destekleyen her yapay zeka istemcisi aynı bağlantıyla bağlanabilir."
+      },
+      {
+        "q": "Yapay zeka müşterilerime mesaj gönderebilir mi?",
+        "a": "Yalnızca siz istediğinizde ve yalnızca onayınızla. Gönderimler, toplu mesajlar ve toplu değişiklikler önce size bir önizleme gösterir ve onayınızı bekler."
+      },
+      {
+        "q": "MCP kullanmanın ek bir ücreti var mı?",
+        "a": "Hayır. MCP sunucusu tüm ücretli Eazybe planlarına (Starter, Scaler, Basic AI ve Custom AI) ek ücret olmadan dahildir. Ücretsiz denemeye dahil değildir. WhatsApp şablon ve toplu mesaj ücretleri Eazybe içinde olduğu gibi işler."
+      },
+      {
+        "q": "WhatsApp Business API'ye ihtiyacım var mı?",
+        "a": "Hayır. Eazybe, ekibinizin zaten kullandığı WhatsApp ve WhatsApp Business uygulamalarıyla çalışır. Bir QR kodu okutun, sohbetleriniz yapay zekanız için hazır olsun."
+      },
+      {
+        "q": "Kurulum adımlarından önce neye ihtiyacım var?",
+        "a": "En az bir WhatsApp numarası bağlı, ücretli bir Eazybe planı ve özel bağlayıcıları destekleyen bir yapay zeka aracı. Claude'da bu, Ayarlar, ardından Bağlayıcılar altındadır."
+      }
+    ],
+    "ctaTitle": "WhatsApp'ı yapay zekanıza bağlamaya hazır mısınız?",
+    "ctaSub": "Tüm ücretli planlara dahil. Dakikalar içinde kurun.",
+    "ctaSmall": "Claude ve Codex ile çalışır",
+    "guidesEyebrow": "Derinlemesine",
+    "guidesTitle": "WhatsApp + yapay zeka rehberleri",
+    "guidesSub": "WhatsApp, yapay zeka asistanları ve doğru bağlantıyı seçmek üzerine daha uzun yazılar.",
+    "readGuide": "Rehberi oku",
+    "guides": [
+      {
+        "tag": "Teknik rehber · 10 dk",
+        "title": "Eazybe MCP: WhatsApp'ı herhangi bir yapay zeka ajanına bağlayın",
+        "desc": "Her asistan için kurulum, sık karşılaşılan sorunlar ve ilk 15 dakikanız."
+      },
+      {
+        "tag": "Başvuru · 8 dk",
+        "title": "Tüm Eazybe MCP araçları, açıklamalarıyla",
+        "desc": "Gelen kutusu, CRM, toplu mesajlar, ajanlar ve ekip genelinde 160'tan fazla işlem."
+      },
+      {
+        "tag": "Karşılaştırma · 6 dk",
+        "title": "Kişisel WhatsApp, Business uygulaması ve API karşılaştırması",
+        "desc": "Hangisini bağlamalı ve yapay zekanız her biriyle neler yapabilir."
+      }
+    ]
   }
 }

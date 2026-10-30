@@ -94,6 +94,7 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'WhatsApp chat backup', included: true },
       { text: 'HubSpot, Zoho, Bitrix, Google Sheets', included: true, highlight: true },
       { text: 'Send messages from CRM', included: true },
+      { text: 'WhatsApp MCP for Claude & Codex', included: true, highlight: true },
       { text: 'Salesforce integration', included: false },
       { text: 'Revenue Inbox', included: false },
     ],
@@ -170,6 +171,7 @@ const defaultComparisonFeatures: ComparisonFeatureRow[] = [
   { feature: 'WhatsApp API', starter: false, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
   { feature: 'Dedicated APIs', starter: false, scaler: true, basicAi: true, proAi: true, category: 'CRM Integrations' },
   { feature: 'Send messages from CRM', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
+  { feature: 'WhatsApp MCP for Claude & Codex', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
   { feature: 'CRM property-to-WhatsApp labeling', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
   { feature: 'Custom objects in mini CRM view', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
   { feature: 'AI unreplied chats agent', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Intelligence & AI' },
@@ -349,6 +351,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Unlimited scheduled messages': 'Mensajes programados ilimitados',
       'WhatsApp chat backup': 'Copia de seguridad de chats de WhatsApp',
       'Send messages from CRM': 'Enviar mensajes desde el CRM',
+      'WhatsApp MCP for Claude & Codex': 'WhatsApp MCP para Claude y Codex',
       'Salesforce integration': 'Integración con Salesforce',
       'Revenue Inbox': 'Bandeja de ingresos',
       'Everything in Starter': 'Todo lo del plan Inicial',
@@ -468,6 +471,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Unlimited scheduled messages': 'Mensagens agendadas ilimitadas',
       'WhatsApp chat backup': 'Backup de conversas do WhatsApp',
       'Send messages from CRM': 'Enviar mensagens do CRM',
+      'WhatsApp MCP for Claude & Codex': 'WhatsApp MCP para Claude e Codex',
       'Salesforce integration': 'Integração com Salesforce',
       'Revenue Inbox': 'Caixa de entrada de receita',
       'Everything in Starter': 'Tudo do plano Inicial',
@@ -587,6 +591,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Unlimited scheduled messages': 'Sınırsız planlanmış mesaj',
       'WhatsApp chat backup': 'WhatsApp sohbet yedeği',
       'Send messages from CRM': "CRM'den mesaj gönderme",
+      'WhatsApp MCP for Claude & Codex': 'Claude ve Codex için WhatsApp MCP',
       'Salesforce integration': 'Salesforce entegrasyonu',
       'Revenue Inbox': 'Gelir Gelen Kutusu',
       'Everything in Starter': 'Başlangıç planındaki her şey',
@@ -1357,7 +1362,15 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
       // "1 number · N users included" show on Scaler / Basic AI even
       // though those plans are Sanity-managed.
       priceNote: codePlan?.priceNote,
-      features: [...sanityFeatures, ...missingFromSanity],
+      features: (() => {
+        // Included code-side features go above the first excluded (struck-through)
+        // row so a new feature doesn't land below "not included" items.
+        const firstExcluded = sanityFeatures.findIndex((f) => !f.included)
+        const at = firstExcluded === -1 ? sanityFeatures.length : firstExcluded
+        const missingIncluded = missingFromSanity.filter((f) => f.included)
+        const missingExcluded = missingFromSanity.filter((f) => !f.included)
+        return [...sanityFeatures.slice(0, at), ...missingIncluded, ...sanityFeatures.slice(at), ...missingExcluded]
+      })(),
       cta: plan.cta,
     }
   }) || localizedDefaultPlans
@@ -1393,6 +1406,9 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   const injectedCoreRows: ComparisonFeatureRow[] = defaultComparisonFeatures.filter(
     (row) => row.category === 'Core Features' && row.feature === 'WhatsApp API number',
   )
+  const injectedCategoryRows: ComparisonFeatureRow[] = defaultComparisonFeatures.filter(
+    (row) => row.feature === 'WhatsApp MCP for Claude & Codex',
+  )
   const comparisonFeatures: ComparisonFeatureRow[] = pricingData?.comparisonSection?.features
     ? (() => {
         const sanityRows = pricingData.comparisonSection.features
@@ -1411,8 +1427,17 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
           })
         const sanityFeatureNames = new Set(sanityRows.map((r) => r.feature))
         const missingInjected = injectedCoreRows.filter((r) => !sanityFeatureNames.has(r.feature))
+        // Code-side rows Sanity doesn't have yet go at the end of their own
+        // category, so the category order of the table doesn't change.
+        const rows = [...sanityRows]
+        for (const extra of injectedCategoryRows) {
+          if (sanityFeatureNames.has(extra.feature)) continue
+          let last = -1
+          rows.forEach((r, i) => { if (r.category === extra.category) last = i })
+          rows.splice(last === -1 ? rows.length : last + 1, 0, extra)
+        }
         // Prepend injected Core rows so they show first in that category.
-        return [...missingInjected, ...sanityRows, ...aiComparisonFeatures]
+        return [...missingInjected, ...rows, ...aiComparisonFeatures]
       })()
     : defaultComparisonFeatures
 
