@@ -148,6 +148,7 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
 
   const tLimited = t('table.limited')
   const tSevenDays = t('table.sevenDays')
+  const tFourDays = t('table.fourDays')
 
   // Eazybe starting price is shown in local currency on the BR, ES and TR sites
   const eazybeStartingPrice =
@@ -260,7 +261,7 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
         },
         {
           name: t('table.features.freeTrial'),
-          values: { eazybe: tSevenDays, wati: tSevenDays, interakt: tSevenDays, quickreply: tSevenDays, cooby: tSevenDays, timelines: tSevenDays, rasayel: tSevenDays }
+          values: { eazybe: tFourDays, wati: tSevenDays, interakt: tSevenDays, quickreply: tSevenDays, cooby: tSevenDays, timelines: tSevenDays, rasayel: tSevenDays }
         },
         {
           name: t('table.features.freePlanAvailable'),
