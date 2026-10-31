@@ -85,7 +85,7 @@ const defaultPricingPlans: PricingPlan[] = [
   {
     name: 'Starter', planKey: 'starter',
     description: 'Perfect for individuals and small teams getting started with WhatsApp CRM integration.',
-    monthlyPrice: 13, annualPrice: 10, currency: '$', icon: 'starter',
+    monthlyPrice: 29, annualPrice: 19, currency: '$', icon: 'starter',
     features: [
       { text: 'Team Inbox', included: true, highlight: true },
       { text: 'Unlimited labels & funnels', included: true },
@@ -103,7 +103,7 @@ const defaultPricingPlans: PricingPlan[] = [
   {
     name: 'Scaler', planKey: 'scaler',
     description: 'For growing teams that need advanced integrations and AI-powered automation.',
-    monthlyPrice: 19, annualPrice: 15, currency: '$', icon: 'growth', popular: true,
+    monthlyPrice: 49, annualPrice: 39, currency: '$', icon: 'growth', popular: true,
     priceNote: '3 users included',
     features: [
       { text: 'Everything in Starter', included: true },
@@ -153,6 +153,16 @@ const defaultPricingPlans: PricingPlan[] = [
     cta: { label: 'Talk to our AI Agent', url: '/contact?plan=pro-ai' },
   },
 ]
+
+// USD list prices from the billing API (planList ids 10/11, 4/5; AI plans from
+// AI_PLAN_FALLBACKS). These are what the server renders, so crawlers and the
+// first paint show real prices; geo-pricing swaps in local currency after load.
+// Sanity's monthlyPrice/annualPrice are stale and deliberately not used.
+const USD_LIST_PRICES: Record<string, { monthly: number; annual: number }> = {
+  starter: { monthly: 29, annual: 19 },
+  scaler: { monthly: 49, annual: 39 },
+  'basic-ai': { monthly: 79, annual: 59 },
+}
 
 const defaultComparisonFeatures: ComparisonFeatureRow[] = [
   { feature: 'WhatsApp API number', starter: false, scaler: '1 · 3 users included', basicAi: '1 · 5 users included', proAi: '1 · 5 users included', category: 'Core Features' },
@@ -893,21 +903,23 @@ function PricingCard({
           </div>
         ) : (
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-            {!pricingLoading && currencyLabel && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{currencyLabel}</span>}
-            {!pricingLoading && priceSymbol && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{priceSymbol}</span>}
+            {currencyLabel && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{currencyLabel}</span>}
+            {priceSymbol && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{priceSymbol}</span>}
+            {/* Always a real number: USD list price on the server render and
+                until geo-pricing resolves, then the local-currency price. */}
             <span
-              className={pricingLoading ? 'eazybe-price-skel' : undefined}
               style={{
                 fontFamily: 'var(--f-display)',
                 fontSize: 56,
                 fontWeight: 400,
-                color: pricingLoading ? 'transparent' : 'var(--ink)',
+                color: 'var(--ink)',
                 letterSpacing: '-0.025em',
                 lineHeight: 1,
-                minWidth: pricingLoading ? 100 : undefined,
+                opacity: pricingLoading ? 0.55 : 1,
+                transition: 'opacity .2s',
               }}
             >
-              {pricingLoading ? '000' : price}
+              {price}
             </span>
             <span style={{ fontSize: 14, color: 'var(--ink-4)' }}>{priceUnit}</span>
           </div>
@@ -1486,23 +1498,6 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
           </div>
         </div>
       )}
-      {/* Global shimmer keyframes for the price-number skeletons in
-          PricingCard. Rendered once at the page root so multiple cards
-          share the same animation cycle. */}
-      <style>{`
-        @keyframes eazybe-price-shimmer {
-          0%   { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
-        .eazybe-price-skel {
-          display: inline-block;
-          border-radius: 8px;
-          background: linear-gradient(90deg, #ECEFF7 0%, #DDE2ED 40%, #ECEFF7 80%);
-          background-size: 200% 100%;
-          animation: eazybe-price-shimmer 1.2s ease-in-out infinite;
-          color: transparent;
-        }
-      `}</style>
       {/* Hero */}
       <section className="page-hero" data-tone="dark">
         <div className="container">
@@ -1529,7 +1524,8 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
         <div className="container">
           <div className="card-grid pricing-plan-grid">
             {pricingPlans.map((plan, idx) => {
-              const dp = getDynamicPrice(plan.planKey, plan.monthlyPrice, plan.annualPrice)
+              const usd = USD_LIST_PRICES[plan.planKey]
+              const dp = getDynamicPrice(plan.planKey, usd?.monthly ?? plan.monthlyPrice, usd?.annual ?? plan.annualPrice)
               // AI plans are per-seat priced themselves — no "extra seat"
               // addon note. Starter/Scaler still show the addon note from
               // the billing-API's addon_price.
