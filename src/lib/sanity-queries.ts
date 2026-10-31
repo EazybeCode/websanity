@@ -348,6 +348,31 @@ export async function getBlogPosts(locale: string = 'en', limit?: number) {
 
 // Translation-group ids of the English posts matching the given slugs — used to
 // tag the same posts across every locale (slugs differ per language, tgids don't).
+// The locale's versions of the English posts with these slugs (matched through
+// translationGroupId), in the same order as `enSlugs`. Posts without a
+// translation in this locale are skipped.
+export async function getPostsByEnSlugs(enSlugs: string[], locale: string = 'en') {
+  const language = toSanityLang(locale)
+  const query = `*[_type == "post" && language == "en" && slug.current in $enSlugs && defined(translationGroupId)]{
+    "enSlug": slug.current,
+    "post": *[_type == "post" && language == $language && translationGroupId == ^.translationGroupId][0]{
+      title,
+      "slug": slug.current,
+      excerpt,
+      "image": coalesce(featuredImage.asset->url, *[_type == "post" && language == "en" && translationGroupId == ^.translationGroupId][0].featuredImage.asset->url),
+      "imageAlt": featuredImage.alt,
+      "date": coalesce(publishedAt, _createdAt)
+    }
+  }`
+  const rows: { enSlug: string; post: { title: string; slug: string; excerpt?: string; image?: string; imageAlt?: string; date?: string } | null }[] | null =
+    await sanityClient.fetch(query, { enSlugs, language })
+  const bySlug = new Map((rows ?? []).map((r) => [r.enSlug, r.post]))
+  return enSlugs.flatMap((s) => {
+    const post = bySlug.get(s)
+    return post?.slug && post.title ? [post] : []
+  })
+}
+
 export async function getTranslationGroupIdsBySlugs(slugs: string[]) {
   const query = `*[_type == "post" && language == "en" && slug.current in $slugs && defined(translationGroupId)].translationGroupId`
   return sanityClient.fetch(query, { slugs })

@@ -14,6 +14,7 @@ const ROUTES = {
   '/': `${APP}/page.tsx`,
   '/pricing': `${APP}/(site)/pricing/page.tsx`,
   '/features': `${APP}/(site)/features/page.tsx`,
+  '/whatsapp-ai-agent': `${APP}/(site)/whatsapp-ai-agent/page.tsx`,
   '/whatsapp-api': `${APP}/(site)/whatsapp-api/page.tsx`,
   '/whatsapp-api/coexistence': `${APP}/(site)/whatsapp-api/coexistence/page.tsx`,
   '/integrations': `${APP}/(site)/integrations/page.tsx`,

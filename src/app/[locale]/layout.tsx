@@ -69,6 +69,13 @@ export default async function LocaleLayout({
   const clientMessages = Object.fromEntries(
     Object.entries(messages).filter(([ns]) => !SERVER_ONLY_NAMESPACES.has(ns))
   )
+  // landingV3.readMore (~7KB) is no longer rendered by any client component;
+  // /whatsapp-ai-agent reads it server-side via getTranslations. Drop it from
+  // the browser payload.
+  if (clientMessages.landingV3 && typeof clientMessages.landingV3 === 'object') {
+    const { readMore: _unusedReadMore, ...landingV3 } = clientMessages.landingV3 as Record<string, unknown>
+    clientMessages.landingV3 = landingV3 as typeof clientMessages.landingV3
+  }
 
   return (
     <html lang={htmlLangMap[locale] || 'en'} className="dark" suppressHydrationWarning>

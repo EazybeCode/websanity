@@ -32,12 +32,12 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
   {
     titleKey: 'colAgents',
     items: [
-      { nameKey: 'itemCrmSync', href: '/#' },
-      { nameKey: 'itemLeadQual', href: '/#' },
-      { nameKey: 'itemRevenueOps', href: '/#' },
-      { nameKey: 'itemCustomerSuccess', href: '/#' },
+      { nameKey: 'itemCrmSync', href: '/whatsapp-ai-agent#crm-sync' },
+      { nameKey: 'itemLeadQual', href: '/whatsapp-ai-agent#lead-qualification' },
+      { nameKey: 'itemRevenueOps', href: '/whatsapp-ai-agent#revenue' },
+      { nameKey: 'itemCustomerSuccess', href: '/whatsapp-ai-agent#customer-success' },
       { nameKey: 'itemMcp', href: '/mcp', badgeKey: 'badgeNew' },
-      { nameKey: 'itemAllAgents', href: '/#' },
+      { nameKey: 'itemAllAgents', href: '/whatsapp-ai-agent' },
     ],
   },
   {

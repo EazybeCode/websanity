@@ -1,13 +1,14 @@
 {
   "/": "2026-10-30",
-  "/pricing": "2026-10-30",
+  "/pricing": "2026-10-31",
   "/features": "2026-08-19",
+  "/whatsapp-ai-agent": "2026-10-30",
   "/whatsapp-api": "2026-08-19",
   "/whatsapp-api/coexistence": "2026-10-30",
   "/integrations": "2026-08-19",
   "/blog": "2026-10-29",
   "/features/team-inbox": "2026-10-30",
-  "/comparison": "2026-10-30",
+  "/comparison": "2026-10-31",
   "/about-us": "2026-08-19",
   "/whatsapp-qr-code-generator": "2026-10-30",
   "/whatsapp-chat-link-generator": "2026-10-30",
@@ -18,6 +19,6 @@
   "/case-studies/lokmaxltda": "2026-09-07",
   "/become-our-partner": "2026-09-07",
   "/whatsapp-pricing-calculator": "2026-08-25",
-  "/integration-page": "2026-10-30",
+  "/integration-page": "2026-10-31",
   "/product-page": "2026-10-30"
 }

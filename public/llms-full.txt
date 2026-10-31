@@ -41,7 +41,7 @@ Reply-time alerts keep hot deals from slipping: if nobody replies to a customer 
 
 ## AI Agents
 
-The agents share the same context engine and CRM record, so a deal that starts in qualification never loses its history when it moves to close. They work with every WhatsApp number — Personal, Business, and API.
+The agents share the same context engine and CRM record, so a deal that starts in qualification never loses its history when it moves to close. They work with every WhatsApp number — Personal, Business, and API. Overview page: [WhatsApp AI Agents](https://eazybe.com/whatsapp-ai-agent).
 
 ### WhatsApp AI Agent
 Answers leads on WhatsApp when the team can't, 24/7 and in the customer's language. It reads past chats and deal details in the CRM, asks what the lead needs and books a call with a rep. When the lead is ready to talk, it passes the chat to the right person on the team.

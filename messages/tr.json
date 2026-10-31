@@ -2654,7 +2654,7 @@
         { "q": "Eazybe kodsuz bir WhatsApp AI Agent platformu mu?", "a": "Evet. Teknik olmayan operasyon liderleri, sürükle-bırak Agent Builder ile özel agent'ları tasarlayıp dağıtabilir — script yok, kod yok, mühendislik talebi yok." },
         { "q": "WhatsApp ve CRM verilerim Eazybe ile güvende mi?", "a": "Evet. Aktarımda ve depolamada uçtan uca şifreleme. Meta Business Partner. KVKK/GDPR uyumlu. SOC 2 Type II sertifikalı. WhatsApp kimlik bilgilerinizi sunucularımızda asla saklamayız." },
         { "q": "WhatsApp AI Agent, Gong veya Chorus'tan nasıl farklı?", "a": "Gong ve Chorus, planlı çağrıları kaydeder. WhatsApp AI Agent ise WhatsApp-öncelikli bölgelerde anlaşmaların çoğunlukla ilerlediği sürekli sohbet konuşmaları üzerinde çalışır — yalnız toplantılarda değil, 7/24." },
-        { "q": "Satış ekipleri için en iyi WhatsApp AI Agent hangisidir?", "a": "Eazybe, satış ekipleri için önde gelen WhatsApp AI Agent platformlarından biridir. HubSpot'ta 4,3 puana sahiptir, 40+ ülkede 30.000+ kullanıcıya hizmet verir ve ekibinizin halihazırda kullandığı WhatsApp Web üzerinde Chrome eklentisi olarak çalışır. Sonsuza dek ücretsiz plan mevcuttur." }
+        { "q": "Satış ekipleri için en iyi WhatsApp AI Agent hangisidir?", "a": "Eazybe, satış ekipleri için önde gelen WhatsApp Yapay Zeka ajanı platformlarından biridir. HubSpot'ta 4,3 puana sahiptir, 40+ ülkede 30.000+ kullanıcıya hizmet verir ve ekibinizin halihazırda kullandığı WhatsApp Web üzerinde Chrome eklentisi olarak çalışır. Sonsuza dek ücretsiz plan mevcuttur." }
       ]
     },
     "beaForm": {
@@ -2907,7 +2907,7 @@
     "mobileBottomNav": {
       "home": "Ana Sayfa",
       "whatsapp": "WhatsApp",
-      "agents": "Agent'lar",
+      "agents": "Ajanlar",
       "demo": "Demo",
       "pricing": "Fiyatlar"
     },
@@ -2920,7 +2920,7 @@
       "intMondayDesc": "Panolarla sohbet senkronu",
       "mcpWorksWith": "Uyumlu araçlar",
       "mcpCta": "Eazybe MCP'yi bağlayın",
-      "agents": "Agent'lar",
+      "agents": "Ajanlar",
       "integrations": "Entegrasyonlar",
       "agentBuilder": "Agent Builder",
       "pricing": "Fiyatlar",
@@ -2935,7 +2935,7 @@
       "openMenu": "Menüyü aç",
       "closeMenu": "Menüyü kapat",
       "logoAria": "Eazybe — Ana Sayfa",
-      "sectionAiAgents": "AI Agent'lar",
+      "sectionAiAgents": "Yapay Zeka Ajanları",
       "sectionBuildYourOwn": "Kendini Oluştur",
       "sectionCrms": "CRM'ler",
       "sectionLearn": "Öğren",
@@ -3060,7 +3060,7 @@
       "weAccept": "Kabul ediyoruz",
       "moreCount": "+2 daha",
       "disclaimer": "Sorumluluk Reddi: Eazybe bağımsız bir üründür; WhatsApp LLC veya Meta Platforms, Inc. ile bağlantılı, onlar tarafından onaylanmış veya sponsor edilmiş değildir. WhatsApp, ABD ve diğer ülkelerde WhatsApp LLC'nin tescilli markasıdır. HubSpot, Salesforce, Zoho, Pipedrive ve bu sitede atıfta bulunulan diğer tüm üçüncü taraf markalar ve logolar ilgili sahiplerinin markalarıdır. Eazybe kullanımı WhatsApp Ticari Politikasına ve bağlantılı her hizmetin koşullarına tabidir. Kullanıcılar; mesajlaşma uygulamalarının kendi ülkelerindeki yürürlükteki yasalara, anti-spam düzenlemelerine ve platform politikalarına uygun olmasını sağlamaktan yalnız başlarına sorumludur.",
-      "colAgents": "Agent'lar",
+      "colAgents": "Ajanlar",
       "colIntegrations": "Entegrasyonlar",
       "colFeatures": "Özellikler",
       "colWhatsappApi": "WhatsApp API",
@@ -3112,22 +3112,22 @@
       "itemAbout": "WhatsApp AI satış agent'ları, CRM entegrasyonu, satış otomasyonu",
       "h0": "WhatsApp AI Agent nedir?",
       "p0a": "WhatsApp AI Agent, bir işletme adına WhatsApp mesajlarını okuyan, anlayan ve yanıtlayan otonom bir AI programıdır. Sabit senaryolar üzerine kurulu kural tabanlı chatbot'lardan farklı olarak, lead'leri nitelendirmek, destek sorularını yanıtlamak, konuşmaları CRM'inize senkronize etmek ve satış akışlarını gerçek zamanlı tetiklemek için büyük dil modelleri kullanır.",
-      "p0b": "Eazybe; en iyi temsilcilerinizin gerçek konuşmalarıyla eğitilmiş, kodsuz WhatsApp AI agent'ları kurar. Chrome eklentisi olarak 2 dakikada devreye girer, ekibinizin halihazırda kullandığı WhatsApp Web'in yanında çalışır ve her etkileşimi HubSpot, Salesforce, Zoho, Pipedrive ve 5+ CRM'e geri yazar.",
-      "h1": "WhatsApp AI Agent'lar geleneksel chatbot ve CRM'leri neden geçer?",
-      "p1a": "Satış temsilcileri araçtan üç şey ister: hız, bağlam ve daha önce ne söylendiğinin hafızası. WhatsApp chatbot'larının çoğu bunlardan ikisini kaçırır; CRM'lerin çoğu üçünü birden kaçırır çünkü konuşmanın içinde değildirler. Eazybe gibi bir WhatsApp AI Agent ortada durur: her sohbeti anlık okur, CRM'inize yazar ve gece 3'te de gündüz 3'te olduğu gibi yanıtlar.",
-      "p1b": "Bu kulağa geldiğinden çok daha önemli. Gece 23'te yazan bir lead, ertesi sabaha kadar beklemek yerine bir dakika içinde gerçek bir yanıt aldığında yaklaşık iki kat daha yüksek dönüşüm olasılığına sahiptir. AI agent'ınız gece vardiyasını üstlenir; temsilci ertesi gün, konuşmanın tamamı HubSpot veya Salesforce'a kaydedilmiş şekilde devralır.",
+      "p0b": "Eazybe; en iyi temsilcilerinizin gerçek konuşmalarıyla eğitilmiş, kodsuz WhatsApp Yapay Zeka ajanları kurar. Chrome eklentisi olarak 2 dakikada devreye girer, ekibinizin halihazırda kullandığı WhatsApp Web'in yanında çalışır ve her etkileşimi HubSpot, Salesforce, Zoho, Pipedrive ve 5+ CRM'e geri yazar.",
+      "h1": "WhatsApp Yapay Zeka ajanları geleneksel chatbot ve CRM'leri neden geçer?",
+      "p1a": "Satış temsilcileri araçtan üç şey ister: hız, bağlam ve daha önce ne söylendiğinin hafızası. WhatsApp chatbot'larının çoğu bunlardan ikisini kaçırır; CRM'lerin çoğu üçünü birden kaçırır çünkü konuşmanın içinde değildirler. Eazybe gibi bir WhatsApp Yapay Zeka ajanı ortada durur: her sohbeti anlık okur, CRM'inize yazar ve gece 3'te de gündüz 3'te olduğu gibi yanıtlar.",
+      "p1b": "Lead'ler beklemez. Gece 23'te yazıp bir dakika içinde gerçek bir yanıt alan kişi sabah genellikle hâlâ ilgilidir; hiç yanıt alamayan çoğu zaman değildir. Yapay Zeka ajanınız gece vardiyasındaki konuşmayı üstlenir, temsilci de ertesi gün konuşmanın tamamı HubSpot veya Salesforce'a kaydedilmiş hâlde devralır.",
       "p1c": "Farklı agent'lar farklı aşamalara bakar. Lead Qualification, gelen lead'leri eler. Revenue Ops, sessizleşmiş deal'ları izler. Customer Success, destek ve yenilemeyi üstlenir. Agent Builder, özel her şey için kaçış yoludur (yenileme dürtmesi, demo sonrası özet, NPS). Aynı bağlamı paylaşırlar, böylece kalifikasyondan kapanışa geçen bir deal geçmişini kaybetmez.",
       "p1d": "Net sonuç: daha az manuel veri girişi, durup dururken ölen daha az thread ve sohbette gerçekten olanı yansıtan pipeline'lar.",
-      "h2": "En iyi WhatsApp AI Agent'ın temel özellikleri",
-      "p2a": "WhatsApp araçlarının çoğu iki kampa düşer. Senaryolu chatbot'lar, müşteri senaryonun öngörmediği bir şey söylediği an tıkanır. CRM eklentileri, mesajları anlamadan yansıtır. En iyi WhatsApp AI Agent platformları üçüncü bir kategoride durur: konuşulanı okuyan ve doğru kayda geri yazan agent'lar.",
+      "h2": "En iyi WhatsApp Yapay Zeka ajanının temel özellikleri",
+      "p2a": "WhatsApp araçlarının çoğu iki kampa düşer. Senaryolu chatbot'lar, müşteri senaryonun öngörmediği bir şey söylediği an tıkanır. CRM eklentileri, mesajları anlamadan yansıtır. En iyi WhatsApp Yapay Zeka ajanı platformları üçüncü bir kategoride durur: konuşulanı okuyan ve doğru kayda geri yazan ajanlar.",
       "p2b": "Satış ve destek ekipleri Eazybe'yi günlük olarak ne için kullanıyor:",
       "list2": [
         "HubSpot, Salesforce, Zoho, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets ile çift yönlü CRM senkronizasyonu; geri kalanı için webhook.",
         "Ekibinizin halihazırda kullandığı BANT, MEDDIC veya başka bir framework ile 7/24 inbound niteleme.",
         "Yarıda kalmış deal uyarıları. 48 saatte hareket etmeyen bir deal için Revenue Agent bayrak çeker ve temsilcinin tonunda bir takip mesajı taslağı hazırlar.",
-        "En iyi temsilcilerinizin gerçek konuşmaları üzerinde yanıt eğitimi; AI sonunda chatbot gibi değil, ekibiniz gibi konuşur.",
+        "En iyi temsilcilerinizin gerçek konuşmaları üzerinde yanıt eğitimi; Yapay Zeka sonunda chatbot gibi değil, ekibiniz gibi konuşur.",
         "Hız sınırı ve temposu olan broadcast aracı; WhatsApp numaranız Meta tarafından işaretlenmesin diye.",
-        "Mühendislik talebi açmadan WhatsApp için özel AI agent'lar yayınlamak isteyen ops liderleri için kodsuz Agent Builder.",
+        "Mühendislik talebi açmadan WhatsApp için özel Yapay Zeka ajanları yayınlamak isteyen ops liderleri için kodsuz Agent Builder.",
         "Kişisel WhatsApp, Business App ve Cloud API'nin aynı anda birlikte çalışması. Kimsenin numara değiştirmesi gerekmez.",
         "İletim sırasında ve depoda uçtan uca şifreleme. Meta Business Partner, KVKK/GDPR ve SOC 2 Type II."
       ],
@@ -3144,8 +3144,8 @@
         ["Özel agent akışları", "Mühendislik talebi", "Sürükle-bırak Agent Builder"],
         ["Fiyatlama modeli", "Kullanıcı başı + mesaj başı ek ücret", "Sabit planlar, sonsuza dek ücretsiz katman"]
       ],
-      "h4": "WhatsApp AI Agent kimler için?",
-      "p4a": "Eazybe'nin WhatsApp AI Agent'ı, halihazırda WhatsApp'ta yaşayan ama CRM'i geride kalan ekipler için yapıldı. Daha somut olarak:",
+      "h4": "WhatsApp Yapay Zeka ajanı kimler için?",
+      "p4a": "Eazybe'nin WhatsApp Yapay Zeka ajanı, halihazırda WhatsApp'ta yaşayan ama CRM'i geride kalan ekipler için yapıldı. Daha somut olarak:",
       "list4": [
         "D2C, gayrimenkul, eğitim ve seyahat alanlarındaki yüksek hacimli inbound ekipleri. Günde yüzlerce WhatsApp mesajı; manuel kayıt gerçekçi değil.",
         "E-posta yerine WhatsApp üzerinden cadence yürüten outbound SDR'lar — yine de her şeyin HubSpot veya Salesforce'a yazılması gerekiyor.",
@@ -3154,9 +3154,9 @@
         "Hindistan, Brezilya, MENA, LATAM ve Güneydoğu Asya'daki satış organizasyonları — WhatsApp'ın asıl satış kanalı olduğu yerler.",
         "Hangi deal'ların canlı, hangilerinin takılı kaldığını ve hangi temsilcinin gerçekten sattığını gösteren tek bir dashboard isteyen RevOps ve yöneticiler."
       ],
-      "h5": "Doğru WhatsApp AI Agent sağlayıcısını seçmek",
-      "p5a": "Bugün dünyanın büyük bir kısmı için satış kanalı WhatsApp ve CRM'lerin çoğu bu doğru olmadan önce inşa edildi. Boşluk gerçek. Chatbot'larla veya gün sonu export'larla bunu kapatmaya çalışan araçlar aslında kapatmıyor. Doğru WhatsApp AI Agent sağlayıcısı, sohbeti okuyup aynı anda CRM'e yazarak bu boşluğu kapatır.",
-      "p5b": "Eazybe, tam olarak bunu yapan önde gelen WhatsApp AI Agent platformlarından biridir. Chrome eklentisi olarak yüklenir, temsilcilerinizin halihazırda kullandığı WhatsApp Web'in yanında çalışır ve göç yapmadan iş görmeye başlar. Yavaş yanıtlar veya thread amnezisi yüzünden deal kaybediyorsanız, başka bir chatbot işe yaramaz. Sohbeti okuyup CRM'e yazan bir WhatsApp AI Agent yarayabilir.",
+      "h5": "Doğru WhatsApp Yapay Zeka ajanı sağlayıcısını seçmek",
+      "p5a": "Bugün dünyanın büyük bir kısmı için satış kanalı WhatsApp ve CRM'lerin çoğu bu doğru olmadan önce inşa edildi. Boşluk gerçek. Chatbot'larla veya gün sonu export'larla bunu kapatmaya çalışan araçlar aslında kapatmıyor. Doğru WhatsApp Yapay Zeka ajanı sağlayıcısı, sohbeti okuyup aynı anda CRM'e yazarak bu boşluğu kapatır.",
+      "p5b": "Eazybe, tam olarak bunu yapan önde gelen WhatsApp Yapay Zeka ajanı platformlarından biridir. Chrome eklentisi olarak yüklenir, temsilcilerinizin halihazırda kullandığı WhatsApp Web'in yanında çalışır ve göç yapmadan iş görmeye başlar. Yavaş yanıtlar veya thread amnezisi yüzünden deal kaybediyorsanız, başka bir chatbot işe yaramaz. Sohbeti okuyup CRM'e yazan bir WhatsApp Yapay Zeka ajanı işe yarayabilir.",
       "ctaText": "Ücretsiz Demo Planla"
     }
   },

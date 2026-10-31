@@ -1,25 +1,11 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getBlogPosts, getBlogIndex, getComparisonPosts, getTranslationGroupIdsBySlugs } from '@/lib/sanity-queries'
-
-// English slugs of the AI-agent posts; their translationGroupIds tag the same
-// posts in every locale under the "AI Agents" category tab. Most of these have
-// an empty category in Sanity, so this is listing-only labeling, not a CMS edit.
-const AI_AGENT_EN_SLUGS = [
-  'ai-sales-agent',
-  'ai-voice-agent',
-  'ai-agent-vs-chatbot',
-  'ai-agents-for-banking',
-  'ai-agents-for-insurance',
-  'ai-agent-for-healthcare',
-  'ai-agents-for-ecommerce',
-  'ai-agents-for-real-estate',
-  'ai-agents-in-education',
-  'ai-for-travel-agents',
-  'best-ai-agents-for-customer-support',
-  'meta-business-agent-vs-whatsapp-crm',
-  'whatsapp-lead-qualification',
-]
+// English slugs of the AI-agent posts (shared with /whatsapp-ai-agent); their
+// translationGroupIds tag the same posts in every locale under the "AI Agents"
+// category tab. Most of these have an empty category in Sanity, so this is
+// listing-only labeling, not a CMS edit.
+import { AI_AGENT_EN_SLUGS } from '@/data/ai-agent-posts'
 
 // English slugs of CRM-integration posts, grouped the same way. On English the
 // label matches the existing Sanity "CRM Integrations" tab value exactly, so the

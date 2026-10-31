@@ -135,35 +135,35 @@ const AGENTS = [
   {
     name: 'CRM Sync Agent',
     desc: 'Auto-log every WhatsApp chat to your CRM',
-    href: '/#',
+    href: '/whatsapp-ai-agent#crm-sync',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H9a5 5 0 00-5 5"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h12a5 5 0 005-5"/></svg>',
   },
   {
     name: 'Lead Qualification Agent',
     desc: 'Qualify leads 24/7 like your best rep',
-    href: '/#',
+    href: '/whatsapp-ai-agent#lead-qualification',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>',
   },
   {
     name: 'Revenue Agent',
     desc: 'Spot ghosted deals before they die',
-    href: '/#',
+    href: '/whatsapp-ai-agent#revenue',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
   },
   {
     name: 'Customer Success Agent',
     desc: 'Answer support 24/7 with your KB',
-    href: '/#',
+    href: '/whatsapp-ai-agent#customer-success',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>',
   },
   {
     name: 'Agent Builder',
     desc: 'Custom agents for your use case',
-    href: '/#',
+    href: '/whatsapp-ai-agent#agent-builder',
     bg: '#F0EBF8',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg>',
   },
@@ -418,10 +418,10 @@ export function Nav() {
 
       <div className="nav-links">
         <div className="nav-item">
-          <button type="button" className="nav-trigger" aria-haspopup="menu"><span>{t('agents')}</span> <span className="nav-caret">▾</span></button>
+          <a href={lh('/whatsapp-ai-agent')} className="nav-trigger" aria-haspopup="menu"><span>{t('agents')}</span> <span className="nav-caret">▾</span></a>
           <div className="nav-dropdown">
             <div className="nav-dd-section">{t('sectionAiAgents')}</div>
-            <a href="/#" className="nav-dd-item">
+            <a href={lh('/whatsapp-ai-agent#crm-sync')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H9a5 5 0 00-5 5"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h12a5 5 0 005-5"/></svg>
               </span>
@@ -430,7 +430,7 @@ export function Nav() {
                 <div className="nav-dd-desc">{t('agentCrmDesc')}</div>
               </span>
             </a>
-            <a href="/#" className="nav-dd-item">
+            <a href={lh('/whatsapp-ai-agent#lead-qualification')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
               </span>
@@ -439,7 +439,7 @@ export function Nav() {
                 <div className="nav-dd-desc">{t('agentLeadDesc')}</div>
               </span>
             </a>
-            <a href="/#" className="nav-dd-item">
+            <a href={lh('/whatsapp-ai-agent#revenue')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
               </span>
@@ -448,7 +448,7 @@ export function Nav() {
                 <div className="nav-dd-desc">{t('agentRevenueDesc')}</div>
               </span>
             </a>
-            <a href="/#" className="nav-dd-item">
+            <a href={lh('/whatsapp-ai-agent#customer-success')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
               </span>
@@ -459,7 +459,7 @@ export function Nav() {
             </a>
             <div className="nav-dd-divider" />
             <div className="nav-dd-section">{t('sectionBuildYourOwn')}</div>
-            <a href="/#" className="nav-dd-item">
+            <a href={lh('/whatsapp-ai-agent#agent-builder')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#F0EBF8' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" strokeWidth="2" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg>
               </span>

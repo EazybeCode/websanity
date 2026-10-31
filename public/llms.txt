@@ -130,6 +130,7 @@ Insurance, real estate, banking and financial services, B2B sales, education, tr
 ## Key Pages
 
 - [Homepage](https://eazybe.com): Powering sales conversations across WhatsApp and calls.
+- [WhatsApp AI Agents](https://eazybe.com/whatsapp-ai-agent): The five ready-made WhatsApp AI agents (CRM Sync, Lead Qualification, Revenue, Customer Success, CTWA) plus Agent Builder; AI agent vs chatbot; pricing from $59/number/month billed yearly.
 - [Pricing](https://eazybe.com/pricing): Plans, localized prices and voice numbers.
 - [Features](https://eazybe.com/features): [WhatsApp CRM](https://eazybe.com/features/whatsapp-crm), [Team Inbox](https://eazybe.com/features/team-inbox), [Revenue Inbox](https://eazybe.com/features/revenue-inbox), [Rep Radar](https://eazybe.com/features/rep-radar), [WhatsApp Copilot](https://eazybe.com/features/whatsapp-copilot), [Cloud Backup](https://eazybe.com/features/cloud-backup), [Quick Reply](https://eazybe.com/features/quick-reply), [Scheduler](https://eazybe.com/features/scheduler).
 - [WhatsApp API](https://eazybe.com/whatsapp-api): [Coexistence](https://eazybe.com/whatsapp-api/coexistence), [Templates](https://eazybe.com/whatsapp-api/templates), [Broadcast](https://eazybe.com/whatsapp-api/broadcast).
