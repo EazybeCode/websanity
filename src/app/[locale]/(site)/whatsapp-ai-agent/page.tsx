@@ -515,27 +515,6 @@ export default async function WhatsappAiAgentPage({
           { '@type': 'Offer', name: 'Basic AI, billed monthly', price: '79', priceCurrency: 'USD', url: `${SITE_URL}${prefix}/pricing` },
         ],
       },
-      // The two product clips on the page (both added 2026-08-11).
-      {
-        '@type': 'VideoObject',
-        '@id': `${pageUrl}#video-crm-sync`,
-        name: HERO_VIDEO_LABEL[locale] ?? HERO_VIDEO_LABEL.en,
-        description: t.agents.cards[0].desc,
-        thumbnailUrl: `${SITE_URL}/whatsapp-crm/product-poster.jpg`,
-        contentUrl: `${SITE_URL}/whatsapp-crm/product.mp4`,
-        uploadDate: '2026-08-11',
-        inLanguage: lang,
-      },
-      {
-        '@type': 'VideoObject',
-        '@id': `${pageUrl}#video-revenue-agent`,
-        name: t.demo.radar.title,
-        description: t.demo.radar.videoLabel,
-        thumbnailUrl: `${SITE_URL}/whatsapp-crm/${locale === 'br' ? 'bea-radar-pt-poster' : 'bea-radar-poster'}.jpg`,
-        contentUrl: `${SITE_URL}/whatsapp-crm/${locale === 'br' ? 'bea-radar-pt' : 'bea-radar'}.mp4`,
-        uploadDate: '2026-08-11',
-        inLanguage: lang,
-      },
     ],
   }
 
