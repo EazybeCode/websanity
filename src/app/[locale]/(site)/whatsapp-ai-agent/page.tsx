@@ -840,10 +840,11 @@ export default async function WhatsappAiAgentPage({
       </section>
 
       {/* Highlight strip — quick facts drifting right to left */}
-      <div className="aia-strip" aria-label={t.strip.join(' · ')}>
-        <div className="aia-strip-track" aria-hidden="true">
+      <div className="aia-strip">
+        <div className="aia-strip-track">
+          {/* The second copy only makes the loop seamless, so it is hidden from assistive tech. */}
           {[0, 1].map((copy) => (
-            <ul key={copy}>
+            <ul key={copy} aria-hidden={copy === 1 || undefined}>
               {t.strip.map((item) => <li key={item}>{item}</li>)}
             </ul>
           ))}
