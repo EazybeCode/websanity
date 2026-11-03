@@ -1,0 +1,1604 @@
+{
+ "ui": {
+  "common": {
+   "startTrial": "Comece o Teste Grátis de 4 Dias",
+   "bookDemo": "Agendar Demo",
+   "seePricing": "Ver Preços",
+   "pricingLabel": "Preços",
+   "faqEyebrow": "FAQ",
+   "faqH2": "Perguntas Frequentes",
+   "readMore": "Ler mais",
+   "showLess": "Mostrar menos",
+   "illustrative": "Exemplo ilustrativo",
+   "ctaH2": "Coloque Suas Ligações e Conversas",
+   "ctaH2Em": "em um Único Registro",
+   "ctaSub": "Teste o Eazybe grátis por 4 dias ou agende uma demo para revisarmos juntos a sua configuração de ligações.",
+   "ctaFacts": [
+    "Teste grátis de 4 dias",
+    "Cerca de 2 minutos para configurar",
+    "30.000+ usuários"
+   ],
+   "productsEyebrow": "Produtos de ligações",
+   "relatedH2": "Páginas Relacionadas sobre Ligações",
+   "relatedBefore": "Veja ",
+   "relatedLink": "tudo o que o Eazybe oferece em Ligações",
+   "relatedAfter": ", ou vá direto a um tema relacionado.",
+   "crumbHome": "Início",
+   "crumbCalling": "Ligações",
+   "proofAria": "O Eazybe em números e clientes",
+   "tabsAria": "Seções de ligações",
+   "factorHeader": "Critério"
+  },
+  "stats": [
+   {
+    "value": "4,3",
+    "label": "HubSpot Marketplace, 77 avaliações"
+   },
+   {
+    "value": "30.000+",
+    "label": "Usuários na Chrome Web Store"
+   },
+   {
+    "value": "40+",
+    "label": "Países"
+   },
+   {
+    "value": "4 dias",
+    "label": "Teste grátis, cerca de 2 minutos para configurar"
+   }
+  ],
+  "products": {
+   "sim-based-calling": {
+    "name": "Ligações por SIM",
+    "desc": "Acompanhe no CRM as ligações feitas pelos celulares Android dos vendedores."
+   },
+   "virtual-phone-number": {
+    "name": "Números de Telefone Virtuais",
+    "desc": "Uma linha comercial para ligações, SMS e WhatsApp."
+   },
+   "auto-dialer": {
+    "name": "Discador Automático",
+    "desc": "Suba uma lista e ligue para um contato por vez."
+   },
+   "call-tracking": {
+    "name": "Rastreamento de Ligações",
+    "desc": "Veja ligações recebidas, feitas e perdidas por vendedor e número."
+   },
+   "call-recording": {
+    "name": "Gravação de Ligações",
+    "desc": "Ouça as gravações direto no histórico de ligações."
+   },
+   "sim-vs-cloud-calling": {
+    "name": "SIM vs Ligações na Nuvem",
+    "desc": "Compare custo, configuração e propriedade do número antes de escolher."
+   }
+  },
+  "tabs": [
+   "Ligações por SIM",
+   "Ligações Virtuais",
+   "Discador Automático",
+   "Rastreamento e Gravação"
+  ],
+  "hub": {
+   "heroTag": "Funciona com HubSpot, Salesforce, Zoho e outros",
+   "h1Lead": "Software para Equipes de Vendas com",
+   "h1Em": "Ligações por SIM e Virtuais",
+   "lede": "Seus vendedores vendem por telefone e pelo WhatsApp, mas a maioria das ferramentas só enxerga um dos dois. O Eazybe registra as ligações por SIM e virtuais ao lado das conversas de WhatsApp de cada cliente, e a negociação inteira fica em um só lugar.",
+   "introEyebrow": "O que é um software de ligações para vendas?",
+   "introH2": "Cada Ligação e Conversa.",
+   "introH2Em": "Um Único Registro por Cliente.",
+   "sim": {
+    "title": "As Ligações por SIM dos Vendedores.",
+    "em": "No Seu CRM.",
+    "body": "Os vendedores continuam ligando dos próprios celulares Android. O Eazybe registra cada ligação e a coloca ao lado das conversas de WhatsApp daquele cliente, então nenhuma ligação fica perdida no celular de uma pessoa só.",
+    "points": [
+     "Mantenha os celulares e chips que a equipe já usa",
+     "Os clientes veem um número de celular comum",
+     "Os detalhes das ligações chegam ao CRM sem anotações manuais"
+    ],
+    "label": "Conheça as Ligações por SIM"
+   },
+   "virtual": {
+    "title": "Um Número Comercial.",
+    "em": "Ligações, SMS e WhatsApp.",
+    "body": "Compre um número de voz no Eazybe e use uma única linha para ligações, SMS, o app WhatsApp Business e a API do WhatsApp. O número é da empresa, não do vendedor.",
+    "points": [
+     "Números nos EUA, Canadá e Porto Rico",
+     "O Eazybe cuida da verificação do número",
+     "O número e o histórico ficam quando um vendedor sai"
+    ],
+    "label": "Conheça os Números de Telefone Virtuais",
+    "alt": "Tela de números de telefone do Eazybe com números comerciais por país e datas de renovação",
+    "note": "Tela real do Eazybe. Os números de telefone e nomes das linhas são exemplos."
+   },
+   "dialer": {
+    "title": "Suba uma Lista.",
+    "em": "Clique em Iniciar.",
+    "body": "Envie um arquivo Excel ou CSV, revise os contatos, escolha de qual número ligar e defina o intervalo entre as ligações. Depois, o Eazybe percorre a lista na ordem.",
+    "points": [
+     "Até 1.000 contatos por planilha",
+     "As ligações são feitas uma por vez, na ordem da lista",
+     "Pause, pare ou pule uma ligação a qualquer momento"
+    ],
+    "label": "Conheça o Discador Automático",
+    "alt": "Tela do discador automático do Eazybe com upload de lista de contatos e configurações da sessão de ligações",
+    "note": "Tela real do Eazybe. Números e nomes das linhas são exemplos; o card flutuante é ilustrativo."
+   },
+   "tracking": {
+    "title": "Veja Todas as Ligações.",
+    "em": "Ouça de Novo as que Importam.",
+    "body": "O histórico mostra as ligações recebidas, feitas e perdidas de toda a equipe. Filtre por vendedor ou número e ouça a gravação sem precisar pedir para alguém procurar.",
+    "points": [
+     "Filtre por usuário, número e tipo de ligação",
+     "Identifique ligações perdidas que precisam de retorno",
+     "Use ligações reais para treinar novos vendedores"
+    ],
+    "label": "Conheça o Rastreamento de Ligações",
+    "alt": "Histórico de ligações do Eazybe com ligações recebidas, feitas e perdidas, gravações e filtros",
+    "note": "Tela real do Eazybe. Os números de telefone e nomes são exemplos."
+   },
+   "compareH2": "Ligações por SIM ou",
+   "compareH2Em": "Ligações Virtuais?",
+   "compareSubSim": "Rede móvel",
+   "compareSubVirtual": "Linha de internet",
+   "productsSub": "Comece com um ou use todos. Cada produto tem a própria página, com o passo a passo da configuração e respostas para as dúvidas mais comuns."
+  },
+  "demo": {
+   "simCall": "Ligação SIM · 04:12",
+   "crmRecord": "REGISTRO NO CRM",
+   "logged": "Ligação registrada automaticamente",
+   "rowCallType": "Tipo de ligação",
+   "rowCallTypeValue": "SIM, Android",
+   "rowTime": "Horário",
+   "rowTimeValue": "Hoje, 11:04",
+   "rowLength": "Duração",
+   "rowLengthValue": "4 min 12 s",
+   "rowWhatsapp": "WhatsApp",
+   "rowWhatsappValue": "Orçamento enviado",
+   "lineHead": "Uma linha comercial",
+   "lineVoice": "Ligações de voz",
+   "lineSms": "SMS",
+   "lineWhatsapp": "WhatsApp",
+   "dialHead": "Sessão de ligações",
+   "dialSub": "uma por vez",
+   "dialQueued": "Na fila",
+   "dialCalling": "Ligando",
+   "dialSaved": "Salvo",
+   "playerHead": "Gravação da ligação"
+  },
+  "visual": {
+   "businessCall": "Ligação comercial · 02:14",
+   "smsAsk": "O orçamento ainda está valendo?",
+   "smsReply": "Sim, até sexta.",
+   "smsThanks": "Ótimo, obrigado.",
+   "waAsk": "Podemos conversar sobre o orçamento?",
+   "waReply": "Te ligando agora",
+   "apiHead": "API do WhatsApp",
+   "verified": "Número verificado",
+   "ownerSub": "Fica com a sua empresa",
+   "uploadSub": "Até 1.000 contatos por planilha",
+   "rowCallBack": "Retornar às 17h",
+   "rowQuoteSent": "Orçamento enviado",
+   "rowNextUp": "Próximo",
+   "outcomeMeeting": "Reunião agendada",
+   "outcomeCallBack": "Retornar ligação",
+   "outcomeQuote": "Orçamento enviado",
+   "compareSim": "Ligações por SIM",
+   "compareSimSub": "Rede móvel",
+   "compareCloud": "Ligações na nuvem",
+   "compareCloudSub": "Linha de internet",
+   "numberSub": "Número de celular"
+  },
+  "price": {
+   "yearly": "Planos a partir de, cobrança anual",
+   "monthly": "Planos a partir de, cobrança mensal",
+   "perUser": "por usuário / mês",
+   "voice": "Número de voz",
+   "addOn": "Adicional",
+   "varies": "o preço varia por país"
+  }
+ },
+ "pages": {
+  "": {
+   "navLabel": "Todas as Ligações",
+   "navDesc": "Ligações por SIM e virtuais em um só lugar",
+   "meta": {
+    "title": "Software de Ligações para Vendas: SIM e WhatsApp | Eazybe",
+    "description": "Software de ligações para vendas que registra ligações por SIM e virtuais no CRM, junto ao WhatsApp. Com discador e gravação. Teste grátis por 4 dias.",
+    "og": {
+     "title": "Software de Ligações para Vendas: SIM e Virtual | Eazybe",
+     "description": "Software de ligações para vendas com SIM e número virtual. Cada ligação fica no CRM, junto ao WhatsApp. Teste grátis por 4 dias."
+    },
+    "twitter": {
+     "title": "Software de Ligações para Vendas com WhatsApp e CRM | Eazybe",
+     "description": "Registre ligações por SIM e virtuais no CRM junto ao WhatsApp, com discador automático e gravações. Teste grátis por 4 dias."
+    }
+   },
+   "hero": {
+    "tag": "Ligações Eazybe",
+    "h1Lead": "Software de Ligações para Vendas que Une",
+    "h1Em": "Ligações e WhatsApp",
+    "subtitle": "Seus vendedores vendem por telefone e pelo WhatsApp, mas a maioria das ferramentas só enxerga um dos dois. O Eazybe registra ligações por SIM e virtuais ao lado das conversas do cliente e envia o resultado para o seu CRM.",
+    "chips": [
+     "Ligações por SIM no Android",
+     "Ligações virtuais",
+     "Discador automático",
+     "Registro no CRM"
+    ]
+   },
+   "mock": {
+    "title": "Histórico do cliente",
+    "rows": [
+     {
+      "name": "Conversa no WhatsApp",
+      "detail": "Pediu um orçamento",
+      "status": "Respondido"
+     },
+     {
+      "name": "Ligação por SIM",
+      "detail": "4 min 12 s",
+      "status": "Interessado"
+     },
+     {
+      "name": "Ligação virtual",
+      "detail": "2 min 40 s",
+      "status": "Reunião marcada"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "O Que É um Software de Ligações para Vendas?",
+    "paragraphs": [
+     "Um software de ligações para vendas ajuda a equipe a fazer ligações, registrar o que aconteceu em cada uma e acompanhar os resultados. O Eazybe faz isso com dois tipos de ligação: por SIM, feitas do celular Android do vendedor, e virtuais, feitas pela internet com um número da empresa.",
+     "O que a maioria das ferramentas de ligação deixa de fora é o WhatsApp. Se o cliente pede o preço no WhatsApp e fecha numa ligação, uma ferramenta só de ligações mostra metade da história. O Eazybe salva cada ligação junto às conversas de WhatsApp daquele cliente, para que a próxima pessoa na conta veja tudo."
+    ]
+   },
+   "how": {
+    "h2": "Como Funcionam as Ligações no Eazybe",
+    "subtitle": "A configuração muda conforme o tipo de ligação que você escolhe, mas o registro final é o mesmo.",
+    "steps": [
+     {
+      "title": "Escolha Como Ligar",
+      "desc": "Rastreie ligações por SIM em celulares Android, use ligações virtuais ou combine as duas na equipe."
+     },
+     {
+      "title": "Conecte Seu CRM",
+      "desc": "As ligações são registradas no HubSpot, Salesforce, Zoho, Eazybe CRM ou no seu Workspace."
+     },
+     {
+      "title": "Comece a Ligar",
+      "desc": "Ligue para um cliente por vez ou inicie uma lista de ligações com o discador automático."
+     },
+     {
+      "title": "Confira o Registro",
+      "desc": "Horário, duração e resultado ficam ao lado das conversas de WhatsApp do cliente."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Tudo Incluído nas",
+    "h2Em": "Ligações Eazybe",
+    "subtitle": "Cada página abaixo detalha uma parte do produto.",
+    "cards": []
+   },
+   "table": {
+    "h2": "Ligações por SIM ou Ligações Virtuais?",
+    "subtitle": "Muitas equipes usam as duas. Este é o resumo das diferenças.",
+    "head": [
+     "",
+     "Ligações por SIM",
+     "Ligações virtuais"
+    ],
+    "rows": [
+     [
+      "O que usa",
+      "O SIM (chip) no celular Android do vendedor",
+      "Um número da empresa pela internet"
+     ],
+     [
+      "O que o cliente vê",
+      "O número de celular do vendedor",
+      "O número da sua empresa"
+     ],
+     [
+      "Se o vendedor sair",
+      "Veja de quem é o SIM antes da saída",
+      "O número e o histórico ficam com a empresa"
+     ],
+     [
+      "Ideal para",
+      "Vendedores que já vendem pelo celular",
+      "Equipes que precisam de uma linha compartilhada"
+     ]
+    ]
+   },
+   "useCases": {
+    "h2": "Quem Usa o Eazybe para Ligações",
+    "subtitle": "As ligações ajudam mais quando a negociação passa do telefone para o WhatsApp.",
+    "cards": [
+     {
+      "title": "Vendas Internas",
+      "desc": "Percorra uma lista de ligações, registre cada resultado e envie o orçamento pelo WhatsApp no mesmo registro."
+     },
+     {
+      "title": "Vendas Externas",
+      "desc": "Os vendedores ligam do celular Android durante o dia, e os gestores acompanham a atividade sem pedir relatório."
+     },
+     {
+      "title": "Gestores de Vendas",
+      "desc": "Veja para quem ligaram, por quanto tempo e o que aconteceu, e leia a conversa antes de entrar na negociação."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Um Só Registro para Ligações e Conversas",
+    "body": "O Eazybe mantém as ligações no mesmo registro das conversas de WhatsApp do cliente. Um discador isolado não enxerga essas conversas, e essa é a principal diferença.",
+    "points": [
+     "Conversas de WhatsApp e ligações ficam no mesmo registro do cliente",
+     "Horário, duração e resultado da ligação são registrados no seu CRM",
+     "O gestor pode ler toda a conversa antes de entrar"
+    ]
+   },
+   "pricing": {
+    "h2": "Quanto Custam as Ligações no Eazybe?",
+    "body": "Você paga o seu plano Eazybe e só adiciona um número de voz se quiser. A necessidade de ligações varia conforme o tamanho da equipe e o país, então pergunte numa demo qual plano faz sentido para você."
+   },
+   "faqIntro": "O que as equipes costumam perguntar ao comparar ferramentas de ligação. Cada página de produto traz mais detalhes.",
+   "faq": [
+    {
+     "q": "Qual é a diferença entre ligações por SIM e ligações virtuais?",
+     "a": "As ligações por SIM usam o chip do celular do vendedor, então o cliente vê esse número de celular. As ligações virtuais funcionam pela internet com um número que pertence à empresa. O Eazybe rastreia as duas."
+    },
+    {
+     "q": "Posso usar ligações por SIM e virtuais na mesma equipe?",
+     "a": "Sim. O rastreamento de ligações do Eazybe funciona com ligações por SIM no Android e com ligações virtuais, e cada ligação fica salva ao lado das conversas de WhatsApp do cliente."
+    },
+    {
+     "q": "Em quais CRMs o Eazybe registra as ligações?",
+     "a": "O Eazybe registra horário, duração e resultado da ligação no seu CRM. Funciona com HubSpot, Salesforce e Zoho, além do Eazybe CRM."
+    },
+    {
+     "q": "O Eazybe substitui meu sistema de telefonia?",
+     "a": "Depende do que você usa hoje. O Eazybe cuida do rastreamento de ligações, da discagem e dos números de voz junto com o WhatsApp e o seu CRM. Se a sua equipe depende de roteamento de call center, pergunte sobre isso numa demo antes de trocar."
+    },
+    {
+     "q": "Em quais países posso ter um número de voz?",
+     "a": "Os números de voz estão disponíveis nos EUA, no Canadá e em Porto Rico. O Eazybe cuida da verificação do número."
+    },
+    {
+     "q": "Como funciona o discador automático?",
+     "a": "Envie um arquivo Excel ou CSV com até 1.000 contatos por planilha e revise a lista. Depois escolha o número de origem, defina o intervalo entre as ligações e clique em iniciar. O Eazybe liga para um contato por vez, na ordem da lista, e você pode pausar, parar ou pular quando precisar."
+    },
+    {
+     "q": "Os vendedores podem ligar pelo navegador?",
+     "a": "Sim. O telefone no navegador do Eazybe faz ligações a partir de uma janela do navegador. O vendedor precisa permitir o acesso ao microfone e manter a página aberta durante a sessão do discador. Recomendamos usar um headset."
+    },
+    {
+     "q": "Posso ouvir as gravações das ligações?",
+     "a": "Sim. Quando a ligação tem gravação, você pode ouvi-la no histórico. Ligações muito curtas ou não atendidas podem não ter gravação. As leis sobre gravação variam de país para país, então confira as regras onde você e seus clientes estão."
+    },
+    {
+     "q": "O que os gestores conseguem ver?",
+     "a": "O histórico mostra ligações recebidas, feitas e perdidas, com filtros por usuário, número ou tipo de ligação. A análise de ligações adiciona taxa de atendimento, tempo de conversa e duração média, por número ou por vendedor."
+    },
+    {
+     "q": "Tem teste grátis?",
+     "a": "Sim. O Eazybe tem teste grátis de 4 dias. A configuração da extensão para Chrome leva cerca de 2 minutos."
+    }
+   ]
+  },
+  "auto-dialer": {
+   "navLabel": "Discador Automático",
+   "navDesc": "Ligue para uma lista sem discar à mão",
+   "meta": {
+    "title": "Discador Automático para Vendas: Importe e Ligue | Eazybe",
+    "description": "Discador automático que liga para sua lista em Excel ou CSV, um contato por vez. Escolha o número, defina o intervalo e salve cada gravação. Teste grátis.",
+    "og": {
+     "title": "Discador Automático: Importe a Lista e Aperte Iniciar",
+     "description": "Importe até 1.000 contatos por planilha e ligue para eles em ordem. Cada gravação volta para o contato. Teste grátis de 4 dias."
+    },
+    "twitter": {
+     "title": "Chega de Discar à Mão: Discador Automático | Eazybe",
+     "description": "Defina o intervalo entre ligações, aperte iniciar e siga pela lista. O Eazybe salva cada gravação no contato."
+    }
+   },
+   "hero": {
+    "tag": "Discador Automático",
+    "h1Lead": "Discador Automático que",
+    "h1Em": "Salva Cada Ligação",
+    "subtitle": "Importe uma lista de contatos e aperte iniciar. O Eazybe liga para um contato por vez, com o intervalo que você definir, e salva a gravação e o resultado no contato.",
+    "chips": [
+     "Importação de Excel e CSV",
+     "Até 1.000 contatos",
+     "Intervalo ajustável",
+     "Gravações salvas"
+    ]
+   },
+   "mock": {
+    "title": "Discador automático",
+    "rows": [
+     {
+      "name": "Ahmed Khan",
+      "detail": "Em ligação, 0:42",
+      "status": "Ligando"
+     },
+     {
+      "name": "Carolina Mendes",
+      "detail": "Orçamento enviado no WhatsApp",
+      "status": "Ligação salva"
+     },
+     {
+      "name": "Priya Nair",
+      "detail": "Retornar às 17h",
+      "status": "Próximo"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "O que É um Discador Automático?",
+    "paragraphs": [
+     "Um discador automático percorre a lista de ligações por você, e o vendedor para de digitar números entre uma conversa e outra. Os minutos economizados ajudam, mas o ganho maior vem depois da ligação, quando ninguém precisa lembrar o que registrar no CRM.",
+     "No Eazybe, você importa a lista em Excel ou CSV, revisa os dados e escolhe de qual número vai ligar. Cada gravação e resultado volta para o contato, e o próximo passo fica definido ali mesmo."
+    ]
+   },
+   "how": {
+    "h2": "Como Funciona o Discador Automático do Eazybe",
+    "subtitle": "Da lista à primeira ligação em quatro passos.",
+    "steps": [
+     {
+      "title": "Importe uma Lista",
+      "desc": "Adicione um arquivo Excel ou CSV com até 1.000 contatos por planilha e confira os números."
+     },
+     {
+      "title": "Aperte Iniciar",
+      "desc": "Escolha o número de origem e o intervalo entre ligações. A primeira ligação começa na hora."
+     },
+     {
+      "title": "Fale com o Cliente",
+      "desc": "Passado o intervalo definido, o próximo número toca sozinho."
+     },
+     {
+      "title": "Veja o que Ficou Salvo",
+      "desc": "Gravação, resultado e próximo passo ficam no contato."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Feito para",
+    "h2Em": "Prospecção Ativa",
+    "subtitle": "Os recursos do discador que os vendedores usam todos os dias.",
+    "cards": [
+     {
+      "title": "Importe uma Planilha",
+      "desc": "Use um arquivo Excel ou CSV com até 1.000 contatos por planilha. Os arquivos de exemplo mostram as colunas necessárias."
+     },
+     {
+      "title": "Ligações Registradas no CRM",
+      "desc": "O Eazybe registra suas ligações no HubSpot, Salesforce, Zoho ou Eazybe CRM."
+     },
+     {
+      "title": "Intervalo entre Ligações",
+      "desc": "Defina quanto tempo esperar até o próximo número tocar, para o vendedor ter tempo de fechar a anterior."
+     },
+     {
+      "title": "Escolha seu Número",
+      "desc": "Selecione de qual dos seus números Eazybe a sessão vai ligar."
+     },
+     {
+      "title": "Gravação e Resultado Salvos",
+      "desc": "Os dois voltam para o contato, e o vendedor já parte para a próxima ligação."
+     },
+     {
+      "title": "Próximo Passo Definido",
+      "desc": "O contato mostra o que vem a seguir, como uma reunião ou um retorno."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Quando um Discador Automático Ajuda",
+    "subtitle": "O discador compensa quando os vendedores têm listas longas e poucas horas para ligar.",
+    "cards": [
+     {
+      "title": "Retorno a Leads Novos",
+      "desc": "Importe seus leads mais recentes e ligue no mesmo dia, enquanto eles ainda lembram que pediram contato."
+     },
+     {
+      "title": "Reativação de Leads Parados",
+      "desc": "Ligue para quem parou de responder e retome a conversa no WhatsApp."
+     },
+     {
+      "title": "Follow-up de Campanhas",
+      "desc": "Importe a lista de um evento ou campanha e deixe o discador trabalhar."
+     }
+    ]
+   },
+   "record": {
+    "h2": "O que Acontece Depois da Ligação",
+    "body": "O Eazybe guarda a ligação no mesmo registro das conversas de WhatsApp do cliente, então o vendedor envia o orçamento prometido sem perder o fio da conversa.",
+    "points": [
+     "Cada gravação volta para o contato",
+     "O próximo passo fica no mesmo registro",
+     "O vendedor pode enviar o orçamento prometido no WhatsApp logo após a ligação"
+    ]
+   },
+   "pricing": {
+    "h2": "Quanto Custa o Discador Automático?",
+    "body": "Você paga pelo seu plano Eazybe e, se precisar, por um número de voz para fazer as ligações. Pergunte na demo qual plano combina com o tamanho das suas listas."
+   },
+   "screenshot": {
+    "h2": "A Tela do Discador Automático",
+    "alt": "Tela do discador automático do Eazybe com importação de lista de contatos e configurações da sessão de ligações",
+    "caption": "O discador automático no app do Eazybe. Números de telefone e nomes de linha são exemplos."
+   },
+   "faqIntro": "O que as equipes de vendas costumam perguntar antes de carregar a primeira lista no discador do Eazybe.",
+   "faq": [
+    {
+     "q": "O que é um discador automático?",
+     "a": "É um software que liga para uma lista de números por você. Quando uma ligação termina, ele passa para o próximo número, e os vendedores gastam o tempo conversando em vez de discando."
+    },
+    {
+     "q": "De onde pode vir minha lista de ligações?",
+     "a": "De uma planilha que você importa, em Excel ou CSV. Se seus contatos estão em um CRM ou no Google Sheets, exporte para um arquivo antes."
+    },
+    {
+     "q": "As ligações são gravadas?",
+     "a": "Sim. Cada gravação e resultado fica salvo no contato. As regras de gravação mudam de país para país, então confira o que a lei local exige antes de começar."
+    },
+    {
+     "q": "Qual número aparece para o cliente?",
+     "a": "O número Eazybe que você escolher em Ligar de, definido antes de iniciar a sessão."
+    },
+    {
+     "q": "Usar discador automático é legal?",
+     "a": "Depende de onde você e seus clientes estão. Nos EUA, por exemplo, a TCPA limita ligações automáticas para celulares sem consentimento. Ligue só para quem você tem permissão de contatar e consulte um advogado sobre o seu mercado."
+    },
+    {
+     "q": "Quantos contatos posso importar?",
+     "a": "Até 1.000 por planilha, em Excel (.xlsx ou .xls) ou CSV. Coloque nome, código do país e número em colunas separadas, ou deixe o código junto do número. O app tem arquivos de exemplo para baixar e copiar."
+    },
+    {
+     "q": "Posso definir um intervalo entre ligações?",
+     "a": "Sim. Defina o tempo entre ligações antes de iniciar a sessão. A primeira ligação começa na hora, e o intervalo vale a partir daí."
+    },
+    {
+     "q": "Posso pausar uma sessão de ligações?",
+     "a": "Sim. Pausar deixa a ligação atual terminar e segura a sessão. Parar encerra a ligação atual e mantém o resto da fila. Pular encerra só aquela ligação e passa para o próximo contato."
+    },
+    {
+     "q": "Do que o vendedor precisa para começar?",
+     "a": "Um navegador com acesso ao microfone e um número de voz para ligar. Mantenha a página aberta durante a sessão. Recomendamos um headset, já que o vendedor pode passar bastante tempo em ligação."
+    },
+    {
+     "q": "É um power dialer ou um discador preditivo?",
+     "a": "Ele liga para um contato por vez, na ordem da lista, com o intervalo que você definir. Isso se aproxima mais de um power dialer. Ele não chama várias pessoas ao mesmo tempo, então o cliente nunca atende e encontra a linha muda."
+    }
+   ]
+  },
+  "virtual-phone-number": {
+   "navLabel": "Números de Telefone Virtuais",
+   "navDesc": "Uma linha comercial para ligações, SMS e WhatsApp",
+   "meta": {
+    "title": "Número Virtual para Empresas com WhatsApp e SMS | Eazybe",
+    "description": "Tenha um número virtual para empresas nos EUA, Canadá ou Porto Rico. Use em ligações, SMS e WhatsApp e mantenha o número se um vendedor sair. Veja como.",
+    "og": {
+     "title": "Um Número Comercial para Ligações, SMS e WhatsApp",
+     "description": "Um número virtual nos EUA, Canadá ou Porto Rico. A Eazybe cuida da verificação, e o número fica com a sua empresa."
+    },
+    "twitter": {
+     "title": "Um Número Virtual Comercial que Fica Quando o Vendedor Sai",
+     "description": "Ligações de voz, SMS, o app WhatsApp Business e a API, tudo em uma linha só. EUA, Canadá e Porto Rico."
+    }
+   },
+   "hero": {
+    "tag": "Ligações Virtuais",
+    "h1Lead": "Um Número de Telefone Virtual para Empresas",
+    "h1Em": "Ligações, SMS e WhatsApp",
+    "subtitle": "Compre um número de voz da Eazybe e use uma única linha comercial para ligações de voz, SMS, o app WhatsApp Business e a API do WhatsApp. A Eazybe cuida da verificação.",
+    "chips": [
+     "EUA",
+     "Canadá",
+     "Porto Rico",
+     "Adicional opcional"
+    ]
+   },
+   "mock": {
+    "title": "Uma linha comercial",
+    "rows": [
+     {
+      "name": "Ligações de voz",
+      "detail": "Mesmo número",
+      "status": "Ativo"
+     },
+     {
+      "name": "SMS",
+      "detail": "Mesmo número",
+      "status": "Ativo"
+     },
+     {
+      "name": "WhatsApp",
+      "detail": "App Business e API",
+      "status": "Verificado"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "O Que É um Número de Telefone Virtual?",
+    "paragraphs": [
+     "Um número de telefone virtual funciona como qualquer outro número. A diferença é que as ligações passam pela internet e o número pertence a uma conta, e não a um aparelho específico. Assim, a empresa liga e manda mensagens para clientes sem expor o celular pessoal do vendedor.",
+     "Um número de voz da Eazybe vai além das ligações. O mesmo número serve para ligações de voz, SMS, o app WhatsApp Business e a API do WhatsApp, então o cliente só precisa lembrar de um número. Ele pertence à empresa e continua com ela quando um vendedor sai, junto com todo o histórico do cliente."
+    ]
+   },
+   "how": {
+    "h2": "Como Conseguir um Número Virtual com a Eazybe",
+    "subtitle": "Os números de voz são configurados com a equipe da Eazybe, que também cuida da verificação do número.",
+    "steps": [
+     {
+      "title": "Escolha um país",
+      "desc": "Há números disponíveis nos EUA, Canadá e Porto Rico."
+     },
+     {
+      "title": "Inclua no seu plano",
+      "desc": "O número de voz é um adicional opcional em todos os planos da Eazybe."
+     },
+     {
+      "title": "Deixe a Eazybe verificar",
+      "desc": "A Eazybe cuida da verificação do número para você."
+     },
+     {
+      "title": "Use uma linha para tudo",
+      "desc": "Ligue, mande SMS e use o WhatsApp pelo mesmo número comercial."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Um Número,",
+    "h2Em": "Todos os Canais",
+    "subtitle": "O que você ganha quando o número da sua empresa vem da Eazybe.",
+    "cards": [
+     {
+      "title": "Ligações de voz",
+      "desc": "Use o número nas ligações comerciais, com cada ligação salva junto às conversas do cliente."
+     },
+     {
+      "title": "SMS",
+      "desc": "Envie mensagens pelo mesmo número que o cliente já conhece."
+     },
+     {
+      "title": "App WhatsApp Business",
+      "desc": "Use o número no app WhatsApp Business."
+     },
+     {
+      "title": "API do WhatsApp",
+      "desc": "Use o mesmo número na API do WhatsApp quando sua equipe precisar."
+     },
+     {
+      "title": "Verificação Inclusa",
+      "desc": "A Eazybe cuida da verificação do número."
+     },
+     {
+      "title": "Da Empresa",
+      "desc": "O número e o histórico do cliente ficam com você quando um vendedor sai."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Quem Precisa de um Número Virtual Comercial",
+    "subtitle": "O número de voz faz mais diferença para equipes que querem uma linha em que o cliente confie.",
+    "cards": [
+     {
+      "title": "Equipes que Vendem para a América do Norte",
+      "desc": "Use um número dos EUA, Canadá ou Porto Rico para atender clientes nesses mercados."
+     },
+     {
+      "title": "Equipes com Rotatividade",
+      "desc": "O cliente continua ligando para o mesmo número, mesmo depois que o vendedor que o atendeu saiu."
+     },
+     {
+      "title": "Equipes Deixando Números Pessoais",
+      "desc": "Dê à equipe uma linha comercial e tire as conversas de vendas dos celulares pessoais."
+     }
+    ]
+   },
+   "record": {
+    "h2": "O Número se Conecta ao Cadastro do Cliente",
+    "body": "Sozinho, um número só completa a ligação. Com a Eazybe, as ligações desse número ficam salvas junto às conversas de WhatsApp do cliente e registradas no seu CRM.",
+    "points": [
+     "As ligações do número ficam ao lado das conversas de WhatsApp",
+     "Um novo vendedor consegue ler todo o histórico",
+     "Esse histórico fica quando alguém sai"
+    ]
+   },
+   "pricing": {
+    "h2": "Quanto Custa um Número de Telefone Virtual?",
+    "body": "O número de voz é um adicional opcional em todos os planos da Eazybe, e o preço varia conforme o país. Inclua um pela página de preços ou agende uma demo para receber um orçamento."
+   },
+   "screenshot": {
+    "h2": "Seus Números em um Só Lugar",
+    "alt": "Tela de números de telefone da Eazybe listando números comerciais por país com datas de renovação",
+    "caption": "A tela de números de telefone no app da Eazybe. Os números e os nomes das linhas são exemplos."
+   },
+   "faqIntro": "Respostas para as dúvidas mais comuns antes de contratar um número virtual para a sua empresa.",
+   "faq": [
+    {
+     "q": "O que é um número de telefone virtual?",
+     "a": "O cliente liga e manda mensagem para ele como para qualquer outro número. A diferença está do seu lado: ele fica na conta da sua empresa e as ligações passam pela internet."
+    },
+    {
+     "q": "Qual a diferença para um número comum?",
+     "a": "Um número de celular comum fica em um único SIM, em um único aparelho. Um número virtual pertence à conta da empresa, então não vai embora com o vendedor nem depende de um só dispositivo."
+    },
+    {
+     "q": "Quais países estão disponíveis?",
+     "a": "Os números de voz da Eazybe estão disponíveis nos EUA, Canadá e Porto Rico."
+    },
+    {
+     "q": "Posso usar o número no WhatsApp?",
+     "a": "Sim. Um único número de voz da Eazybe funciona para ligações de voz, SMS, o app WhatsApp Business e a API do WhatsApp. A Eazybe cuida da verificação do número."
+    },
+    {
+     "q": "O que acontece com o número quando um vendedor sai?",
+     "a": "O número e o histórico do cliente continuam com a empresa."
+    },
+    {
+     "q": "Posso ligar pelo navegador?",
+     "a": "Sim. Ative o telefone no navegador da Eazybe, permita o acesso ao microfone e já dá para ligar por aquela janela. Um headset deixa as ligações mais longas mais confortáveis."
+    },
+    {
+     "q": "Onde vejo os SMS enviados para o número?",
+     "a": "A tela de SMS lista as mensagens com o remetente, o número que recebeu, o status e o horário. Se você tiver mais de um número, dá para filtrar por número."
+    },
+    {
+     "q": "Vem um número virtual grátis?",
+     "a": "Não. O número de voz é um adicional pago e o preço varia conforme o país. Os planos da Eazybe têm teste grátis de 4 dias."
+    },
+    {
+     "q": "Posso manter meu número atual?",
+     "a": "Pergunte em uma demo. A equipe pode avaliar seu número atual e explicar as opções para o seu país."
+    },
+    {
+     "q": "Números de telefone virtuais são legais para empresas?",
+     "a": "Sim, nos países em que são oferecidos, mas as regras sobre ligações e mensagens variam. Siga as regras de consentimento do mercado que você contata e consulte um advogado se tiver dúvidas."
+    }
+   ]
+  },
+  "call-tracking": {
+   "navLabel": "Rastreamento de Ligações",
+   "navDesc": "Veja cada ligação dos vendedores no CRM",
+   "meta": {
+    "title": "Rastreamento de Chamadas de Vendas para Equipes | Eazybe",
+    "description": "Rastreamento de chamadas de vendas para ligações por SIM e virtuais. Veja quem ligou, duração e resultado no seu CRM. Teste grátis por 4 dias.",
+    "og": {
+     "title": "Veja Cada Ligação dos Vendedores sem Pedir Relatório",
+     "description": "Histórico e análise de ligações por vendedor e número, com cada ligação ao lado das conversas no WhatsApp. Grátis por 4 dias."
+    },
+    "twitter": {
+     "title": "Rastreamento de Ligações de Vendas ao Lado do WhatsApp | Eazybe",
+     "description": "Acompanhe ligações recebidas, feitas e perdidas, além da taxa de atendimento e tempo de conversa de toda a equipe de vendas."
+    }
+   },
+   "hero": {
+    "tag": "Rastreamento de Ligações",
+    "h1Lead": "Software de Rastreamento de Ligações de Vendas",
+    "h1Em": "para Ligações por SIM e Virtuais",
+    "subtitle": "O Eazybe registra o horário, a duração e o resultado de cada ligação no seu CRM e salva tudo ao lado das conversas do cliente no WhatsApp. Seus vendedores não precisam mais anotar ligações à mão.",
+    "chips": [
+     "Horário",
+     "Duração",
+     "Resultado",
+     "Registro no CRM"
+    ]
+   },
+   "mock": {
+    "title": "Ligações do vendedor",
+    "rows": [
+     {
+      "name": "Ligação por SIM",
+      "detail": "Hoje, 11:04, 6 min",
+      "status": "Retornar"
+     },
+     {
+      "name": "Ligação virtual",
+      "detail": "Hoje, 11:32, 2 min",
+      "status": "Não atendeu"
+     },
+     {
+      "name": "Ligação por SIM",
+      "detail": "Hoje, 12:15, 9 min",
+      "status": "Fechado"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "O Que É Rastreamento de Ligações de Vendas?",
+    "paragraphs": [
+     "O rastreamento de ligações de vendas dá ao gestor um registro das ligações feitas pelos vendedores, com o horário, a duração e o resultado de cada uma. Ninguém precisa preencher planilha para mostrar o que fez no dia.",
+     "Isso é diferente do rastreamento de ligações de marketing, que usa números específicos para mostrar qual anúncio gerou uma ligação. O Eazybe foi feito para o lado comercial. Ele registra as ligações no cadastro do cliente no seu CRM e as coloca ao lado das conversas desse cliente no WhatsApp."
+    ]
+   },
+   "how": {
+    "h2": "Como o Eazybe Rastreia as Ligações de Vendas",
+    "subtitle": "Os vendedores continuam ligando do jeito de sempre. O registro acontece em segundo plano.",
+    "steps": [
+     {
+      "title": "Conecte sua equipe",
+      "desc": "Configure vendedores que ligam pelo chip do Android, por números virtuais ou pelos dois."
+     },
+     {
+      "title": "Vendedores ligam",
+      "desc": "Cada ligação é captada com horário e duração."
+     },
+     {
+      "title": "Resultados registrados",
+      "desc": "O resultado da ligação fica salvo no cadastro do cliente."
+     },
+     {
+      "title": "Gestores revisam",
+      "desc": "Acompanhe as ligações no CRM, ao lado das conversas do cliente."
+     }
+    ]
+   },
+   "features": {
+    "h2": "O Que É",
+    "h2Em": "Rastreado",
+    "subtitle": "Os detalhes que um gestor de vendas precisa para orientar a equipe e fazer o acompanhamento.",
+    "cards": [
+     {
+      "title": "Horário de cada ligação",
+      "desc": "Veja quando cada cliente foi contatado e há quanto tempo."
+     },
+     {
+      "title": "Duração da ligação",
+      "desc": "Uma ligação de 20 segundos e uma de 20 minutos são bem diferentes. O registro mostra qual é qual."
+     },
+     {
+      "title": "Resultado da ligação",
+      "desc": "Cada ligação termina com um resultado no cadastro do cliente."
+     },
+     {
+      "title": "Ligações por SIM e virtuais",
+      "desc": "Os dois tipos vão para o mesmo lugar, incluindo ligações por SIM no Android."
+     },
+     {
+      "title": "Registro no CRM",
+      "desc": "As ligações ficam registradas no seu CRM, e os vendedores têm menos para atualizar à mão."
+     },
+     {
+      "title": "Contexto do WhatsApp",
+      "desc": "As ligações ficam ao lado das conversas no WhatsApp, com a visão completa do negócio."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Quem Usa o Rastreamento de Ligações",
+    "subtitle": "Ajuda quem precisa saber o que aconteceu numa ligação sem ter participado dela.",
+    "cards": [
+     {
+      "title": "Gestores de vendas",
+      "desc": "Veja quem está ligando, quanto duram as conversas e quais clientes sumiram."
+     },
+     {
+      "title": "Equipes remotas e de campo",
+      "desc": "Acompanhe a atividade mesmo com vendedores em lugares diferentes, usando o próprio celular."
+     },
+     {
+      "title": "Vendedores assumindo contas",
+      "desc": "Leia o histórico de ligações e conversas antes de ligar para um cliente que era de outra pessoa."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Rastreamento de Ligações com o WhatsApp Incluído",
+    "body": "Só o registro de ligações pode fazer um vendedor parecer parado quando o negócio está andando pelo WhatsApp. O Eazybe mostra ligações e conversas juntas, para você avaliar o negócio por inteiro.",
+    "points": [
+     "Poucas ligações nem sempre significam vendedor parado",
+     "As conversas mostram o que aconteceu entre uma ligação e outra",
+     "Gestores avaliam o negócio vendo os dois lados"
+    ]
+   },
+   "pricing": {
+    "h2": "Quanto Custa o Rastreamento de Ligações?",
+    "body": "O valor depende do plano do Eazybe que sua equipe precisa. Números de voz são cobrados à parte, e só se você usar. Uma demo é o jeito mais rápido de confirmar o plano certo."
+   },
+   "screenshot": {
+    "h2": "Todas as Ligações em um Só Histórico",
+    "alt": "Histórico de ligações do Eazybe com ligações recebidas, feitas e perdidas, com duração e filtros",
+    "caption": "Histórico de ligações no app do Eazybe. Números e nomes são exemplos."
+   },
+   "faqIntro": "Perguntas que líderes de vendas costumam fazer sobre o que é rastreado, em quais celulares e para onde vão os dados.",
+   "faq": [
+    {
+     "q": "O que o rastreamento de ligações do Eazybe registra?",
+     "a": "O horário, a duração e o resultado de cada ligação, no seu CRM. A ligação também fica salva ao lado das conversas do cliente no WhatsApp."
+    },
+    {
+     "q": "Funciona com ligações por SIM?",
+     "a": "Sim. O rastreamento funciona com ligações por SIM no Android e com ligações virtuais."
+    },
+    {
+     "q": "Funciona no iPhone?",
+     "a": "O rastreamento de ligações por SIM funciona no Android. Se sua equipe usa iPhone, pergunte numa demo qual configuração faz sentido. As ligações virtuais não dependem do SIM do celular."
+    },
+    {
+     "q": "O que o histórico mostra de cada ligação?",
+     "a": "O contato, se a ligação foi recebida ou feita, o número e o usuário envolvidos, o horário e a duração. Ligações atendidas também podem ter uma gravação para ouvir."
+    },
+    {
+     "q": "Consigo ver as ligações de um só vendedor?",
+     "a": "Sim. Filtre o histórico por usuário, por número ou por tipo de ligação. Use Redefinir para voltar à equipe toda."
+    },
+    {
+     "q": "Como encontro as ligações perdidas?",
+     "a": "O histórico mostra no topo uma contagem separada das ligações perdidas, e o filtro por tipo deixa só elas na lista, para você ver quem ainda precisa de retorno."
+    },
+    {
+     "q": "Quais relatórios estão incluídos?",
+     "a": "A análise de ligações mostra total de ligações, taxa de atendimento, tempo de conversa e duração média no período que você escolher. Dá para separar os números por telefone ou por usuário."
+    },
+    {
+     "q": "É o mesmo que rastreamento de ligações de marketing?",
+     "a": "Não. O rastreamento de marketing mostra qual anúncio ou palavra-chave gerou uma ligação. O Eazybe rastreia as ligações que sua equipe de vendas faz e as conecta ao cadastro do cliente."
+    },
+    {
+     "q": "Em quais CRMs posso registrar as ligações?",
+     "a": "O Eazybe funciona com CRMs como HubSpot, Salesforce e Zoho, além do Eazybe CRM."
+    },
+    {
+     "q": "Os gestores também veem as mensagens do WhatsApp?",
+     "a": "As ligações ficam salvas ao lado das conversas do cliente no WhatsApp. Você também escolhe quais conversas e grupos de clientes se conectam ao CRM, então as conversas privadas continuam privadas."
+    }
+   ]
+  },
+  "sim-based-calling": {
+   "navLabel": "Ligações por SIM",
+   "navDesc": "Rastreie ligações feitas no Android dos vendedores",
+   "meta": {
+    "title": "Software de Ligações por SIM para Equipes de Vendas | Eazybe",
+    "description": "Software de ligações por SIM para Android: cada ligação dos seus vendedores cai no CRM, ao lado das conversas de WhatsApp do cliente. Agende uma demo.",
+    "og": {
+     "title": "Mantenha Seus Chips e Tenha Cada Ligação no CRM",
+     "description": "Ligações por SIM para equipes de vendas Android. O vendedor liga como sempre e cada ligação fica junto das conversas do cliente."
+    },
+    "twitter": {
+     "title": "Ligações por SIM com Registro no CRM para Equipes Android | Eazybe",
+     "description": "Os vendedores mantêm celulares e números. O Eazybe rastreia as ligações que eles já fazem e as guarda na ficha do cliente."
+    }
+   },
+   "hero": {
+    "tag": "Ligações por SIM",
+    "h1Lead": "Software de Ligações por SIM para",
+    "h1Em": "Equipes de Vendas no Celular",
+    "subtitle": "Seus vendedores continuam ligando do próprio Android. O Eazybe registra no CRM o horário, a duração e o resultado de cada ligação por SIM, ao lado das conversas de WhatsApp do cliente.",
+    "chips": [
+     "Android",
+     "SIM do Vendedor",
+     "Registro no CRM",
+     "Contexto do WhatsApp"
+    ]
+   },
+   "mock": {
+    "title": "Registro de Ligações SIM",
+    "rows": [
+     {
+      "name": "Ligação Feita",
+      "detail": "SIM Android, 5 min",
+      "status": "Registrada"
+     },
+     {
+      "name": "Ligação Feita",
+      "detail": "SIM Android, 3 min",
+      "status": "Registrada"
+     },
+     {
+      "name": "Atualização no CRM",
+      "detail": "Resultado salvo",
+      "status": "Sincronizado"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "O Que São Ligações por SIM?",
+    "paragraphs": [
+     "Nas ligações por SIM, o vendedor liga para o cliente pela rede móvel comum, usando o SIM (o chip) do celular, enquanto um software registra a atividade. Não é preciso configurar linha telefônica pela internet, e o cliente vê um número de celular normal.",
+     "O problema de sempre com ligações por SIM é que elas ficam presas no celular, longe dos olhos do gestor e do CRM. O Eazybe resolve isso no Android: horário, duração e resultado de cada ligação vão para o CRM e ficam ao lado das conversas de WhatsApp do cliente."
+    ]
+   },
+   "how": {
+    "h2": "Como Funcionam as Ligações por SIM no Eazybe",
+    "subtitle": "O vendedor não precisa mudar o jeito de ligar, por isso muitas equipes começam por aqui.",
+    "steps": [
+     {
+      "title": "Configure o Celular",
+      "desc": "Conecte o Android do vendedor ao Eazybe."
+     },
+     {
+      "title": "Ligue Normalmente",
+      "desc": "O vendedor liga pelo SIM do celular, como sempre fez."
+     },
+     {
+      "title": "O Eazybe Registra",
+      "desc": "Horário, duração e resultado ficam vinculados ao cliente."
+     },
+     {
+      "title": "Veja no CRM",
+      "desc": "A ligação aparece no CRM, junto das conversas do cliente."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Por Que as Equipes Escolhem",
+    "h2Em": "Ligações por SIM",
+    "subtitle": "Ligações por SIM fazem sentido para quem já vende pelo celular. Veja o que o Eazybe oferece.",
+    "cards": [
+     {
+      "title": "Mantenha os Celulares Atuais",
+      "desc": "O vendedor usa o próprio Android e o SIM que já tem."
+     },
+     {
+      "title": "Um Número Conhecido",
+      "desc": "O cliente vê um número de celular normal, talvez o mesmo que o vendedor já usa com ele."
+     },
+     {
+      "title": "Ligações Registradas no CRM",
+      "desc": "Horário, duração e resultado são registrados sem o vendedor digitar nada."
+     },
+     {
+      "title": "WhatsApp no Mesmo Lugar",
+      "desc": "As ligações por SIM aparecem ao lado das conversas de WhatsApp do cliente."
+     },
+     {
+      "title": "Use Seu Plano Atual",
+      "desc": "As ligações passam pela rede móvel, então o plano da operadora continua valendo."
+     },
+     {
+      "title": "Adicione Ligações Virtuais Depois",
+      "desc": "O Eazybe também rastreia ligações virtuais, então dá para combinar as duas na equipe."
+     }
+    ]
+   },
+   "table": {
+    "h2": "Antes e Depois do Eazybe",
+    "subtitle": "O que muda para uma equipe que já vende por ligações via SIM.",
+    "head": [
+     "",
+     "Com Eazybe",
+     "Sem Rastreamento de Ligações"
+    ],
+    "rows": [
+     [
+      "Atividade de ligações",
+      "Registrada com horário, duração e resultado",
+      "Só no celular de cada vendedor"
+     ],
+     [
+      "Ficha no CRM",
+      "Atualizada com a ligação",
+      "Depende da memória do vendedor"
+     ],
+     [
+      "Contexto do WhatsApp",
+      "Ao lado da ligação, na ficha do cliente",
+      "Em outro aplicativo"
+     ],
+     [
+      "Assumir uma conta",
+      "Ligações e conversas estão na ficha",
+      "Perguntar ao vendedor anterior"
+     ]
+    ]
+   },
+   "useCases": {
+    "h2": "Para Quem São as Ligações por SIM",
+    "subtitle": "Funcionam melhor onde o vendedor já faz as vendas pelo celular.",
+    "cards": [
+     {
+      "title": "Equipes de Vendas Externas",
+      "desc": "Quem está na rua visitando clientes liga do celular do bolso e a atividade continua registrada."
+     },
+     {
+      "title": "Equipes de Telemarketing",
+      "desc": "Quem liga o dia todo pelo Android leva a atividade para o CRM sem montar telefone de mesa."
+     },
+     {
+      "title": "Pequenas Equipes de Vendas",
+      "desc": "Comece a rastrear as ligações que você já faz antes de decidir se precisa de números comerciais."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Ligações por SIM e WhatsApp, Juntos",
+    "body": "Muitas negociações alternam entre ligação e conversa no WhatsApp. O Eazybe registra as duas no mesmo cliente, e o histórico deixa de depender do celular de um vendedor.",
+    "points": [
+     "Ligações por SIM saem de um celular só",
+     "Detalhes das ligações do Android chegam ao CRM",
+     "Conversas e ligações ficam no mesmo cliente"
+    ]
+   },
+   "pricing": {
+    "h2": "Quanto Custam as Ligações por SIM?",
+    "body": "As ligações passam pela rede móvel, então o plano da sua operadora continua cobrindo a ligação em si. Agende uma demo para confirmar o plano do Eazybe ideal para sua equipe."
+   },
+   "faqIntro": "O que as equipes costumam perguntar antes de conectar os celulares dos vendedores ao Eazybe.",
+   "faq": [
+    {
+     "q": "O que são ligações por SIM?",
+     "a": "São ligações feitas pela rede móvel comum, usando o SIM do celular, enquanto um software registra a atividade. O cliente vê um número de celular normal."
+    },
+    {
+     "q": "Em quais celulares funciona?",
+     "a": "O rastreamento de ligações por SIM do Eazybe funciona no Android. Se alguns vendedores usam iPhone, pergunte em uma demo qual configuração serve para eles."
+    },
+    {
+     "q": "Preciso de um número novo?",
+     "a": "Não. O vendedor pode continuar ligando pelo SIM do Android. Se quiser uma linha comercial compartilhada, o Eazybe também oferece números de voz."
+    },
+    {
+     "q": "As ligações por SIM são gravadas?",
+     "a": "O Eazybe registra horário, duração e resultado de cada ligação por SIM. Pergunte em uma demo sobre gravação de áudio de ligações por SIM nos seus aparelhos e confira antes as leis locais sobre gravação."
+    },
+    {
+     "q": "E as ligações pessoais no mesmo celular?",
+     "a": "Se o vendedor usa um só celular para trabalho e uso pessoal, combinem uma política clara antes de começar. Pergunte em uma demo quais controles servem para o seu caso."
+    },
+    {
+     "q": "Qual número o cliente vai ver?",
+     "a": "O número do SIM do vendedor, o mesmo que o cliente já vê quando esse vendedor liga hoje."
+    },
+    {
+     "q": "Quem paga pelas ligações?",
+     "a": "A operadora cobra as ligações por SIM normalmente, então seu plano atual continua valendo. O plano do Eazybe é um custo à parte."
+    },
+    {
+     "q": "O que acontece quando um vendedor sai?",
+     "a": "O número vai junto com o SIM, então definam de quem ele é antes que alguém saia. Se quiser um número que fique sempre com a empresa, use um número de voz do Eazybe."
+    },
+    {
+     "q": "Consigo ver as conversas de WhatsApp junto das ligações por SIM?",
+     "a": "Sim. O Eazybe salva cada ligação por SIM ao lado das conversas de WhatsApp do cliente, para você ler a conversa e ver as ligações no mesmo lugar."
+    },
+    {
+     "q": "Ligações por SIM são melhores que ligações na nuvem?",
+     "a": "Depende da equipe. Ligações por SIM são simples para quem já vende pelo celular. Ligações virtuais servem para equipes que querem uma linha comercial compartilhada. Nosso guia SIM vs Ligações na Nuvem explica as diferenças."
+    }
+   ]
+  },
+  "call-recording": {
+   "navLabel": "Gravação de Ligações",
+   "navDesc": "Gravações salvas no próprio contato",
+   "meta": {
+    "title": "Gravação de Chamadas de Vendas para Coaching | Eazybe",
+    "description": "Software de gravação de chamadas de vendas que salva cada gravação no contato. Ouça no histórico, treine vendedores e confirme o combinado. Teste grátis.",
+    "og": {
+     "title": "Ouça Qualquer Ligação de Vendas no Seu Histórico",
+     "description": "Encontre a ligação, aperte play e ouça o que foi prometido. As gravações ficam junto com o resto da negociação."
+    },
+    "twitter": {
+     "title": "Gravação de Ligações para Treinar Vendedores | Eazybe",
+     "description": "Treine vendedores novos com ligações reais e confira o que foi combinado. As leis de gravação variam, verifique as suas."
+    }
+   },
+   "hero": {
+    "tag": "Gravação de Ligações",
+    "h1Lead": "Software de Gravação de Chamadas de Vendas",
+    "h1Em": "Vinculado ao Cliente",
+    "subtitle": "Quando o vendedor liga pelo discador automático da Eazybe, a gravação e o resultado voltam para o contato. Encontre qualquer ligação no cadastro do cliente, ao lado das conversas de WhatsApp.",
+    "chips": [
+     "Salvo no contato",
+     "Com o resultado",
+     "Para treinamento",
+     "Próximo passo definido"
+    ]
+   },
+   "mock": {
+    "title": "Gravações de ligações",
+    "rows": [
+     {
+      "name": "Carolina Mendes",
+      "detail": "Gravação, 7 min",
+      "status": "Pediu orçamento"
+     },
+     {
+      "name": "Ahmed Khan",
+      "detail": "Gravação, 3 min",
+      "status": "Retornar ligação"
+     },
+     {
+      "name": "Priya Nair",
+      "detail": "Gravação, 11 min",
+      "status": "Reunião marcada"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "O Que É um Software de Gravação de Chamadas de Vendas?",
+    "paragraphs": [
+     "Um software de gravação de chamadas de vendas salva o áudio da ligação para que alguém possa ouvir depois. As equipes usam para tirar dúvidas sobre o que foi combinado, treinar vendedores novos e passar contas adiante sem perder detalhes.",
+     "Uma gravação só ajuda se alguém consegue encontrá-la. Na Eazybe, as gravações do discador automático ficam salvas no contato junto com o resultado da ligação. Você parte do cliente, em vez de procurar numa pasta cheia de arquivos de áudio."
+    ]
+   },
+   "how": {
+    "h2": "Como Funciona a Gravação de Ligações na Eazybe",
+    "subtitle": "A gravação faz parte do fluxo do discador automático, então ninguém precisa arquivar nada depois da ligação.",
+    "steps": [
+     {
+      "title": "Inicie uma Lista",
+      "desc": "Escolha uma lista e clique em iniciar no discador automático."
+     },
+     {
+      "title": "Converse com o Cliente",
+      "desc": "Avise sobre a gravação quando a lei local exigir."
+     },
+     {
+      "title": "A Gravação é Salva",
+      "desc": "A gravação e o resultado voltam para o contato."
+     },
+     {
+      "title": "Revise Depois",
+      "desc": "Abra o cadastro do cliente para encontrar a ligação."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Por Que Guardar",
+    "h2Em": "Gravações de Ligações",
+    "subtitle": "Uma gravação vinculada ao cliente continua útil muito tempo depois que a ligação termina.",
+    "cards": [
+     {
+      "title": "Salva no Contato",
+      "desc": "As gravações ficam no cadastro do cliente, e qualquer pessoa com acesso consegue encontrá-las."
+     },
+     {
+      "title": "Resultado ao Lado",
+      "desc": "Cada gravação vem com o que aconteceu na ligação."
+     },
+     {
+      "title": "Próximo Passo Definido",
+      "desc": "O contato mostra o que deve acontecer em seguida."
+     },
+     {
+      "title": "WhatsApp à Vista",
+      "desc": "Veja as ligações ao lado das conversas, incluindo o que foi enviado depois."
+     },
+     {
+      "title": "Útil para Treinamento",
+      "desc": "Gestores podem escolher ligações reais para revisar com o vendedor."
+     },
+     {
+      "title": "Útil na Troca de Contas",
+      "desc": "Um vendedor novo pode ouvir a última ligação antes de assumir a conta."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Como as Equipes Usam as Gravações",
+    "subtitle": "A mesma gravação serve para o vendedor, para o gestor e para quem assumir a conta depois.",
+    "cards": [
+     {
+      "title": "Treinar Vendedores Novos",
+      "desc": "Ouçam ligações reais juntos. Funciona melhor que simulação, porque as objeções do cliente são de verdade."
+     },
+     {
+      "title": "Conferir o Combinado",
+      "desc": "Volte à ligação quando cliente e vendedor lembram o preço de forma diferente."
+     },
+     {
+      "title": "Passar Contas Adiante",
+      "desc": "Entregue ao próximo vendedor a conversa real, junto com as anotações."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Gravações Junto com o Resto da Negociação",
+    "body": "A gravação mostra o que foi dito naquela ligação. A Eazybe mantém a conversa de WhatsApp ao lado, para você ver o que o vendedor prometeu e se ele cumpriu.",
+    "points": [
+     "As gravações ficam com o resto da negociação",
+     "Dá para conferir uma promessa na conversa de WhatsApp",
+     "O próximo vendedor recebe a conversa real"
+    ]
+   },
+   "pricing": {
+    "h2": "Quanto Custa a Gravação de Ligações?",
+    "body": "O valor depende do seu plano Eazybe e de você incluir ou não um número de voz. Se a gravação é o principal motivo da compra, pergunte em uma demo qual plano escolher."
+   },
+   "screenshot": {
+    "h2": "Ouça Gravações no Histórico de Ligações",
+    "alt": "Histórico de ligações da Eazybe com um botão Reproduzir gravação ao lado de cada ligação atendida",
+    "caption": "Gravações no histórico de ligações da Eazybe. Números e nomes são exemplos."
+   },
+   "faqIntro": "Gravar ligações levanta dúvidas práticas e legais. Aqui estão respostas diretas para as mais comuns.",
+   "faq": [
+    {
+     "q": "Quais ligações a Eazybe grava?",
+     "a": "Ligações nos números de voz da Eazybe podem ter gravação, tanto recebidas quanto feitas, e você ouve pelo histórico de ligações. Nas ligações do discador automático, a gravação é salva no contato. Pergunte em uma demo sobre a gravação de ligações por SIM."
+    },
+    {
+     "q": "Onde encontro uma gravação?",
+     "a": "Abra o histórico de ligações e clique em Reproduzir gravação na ligação desejada. Se forem muitas ligações, filtre antes por usuário ou número."
+    },
+    {
+     "q": "Por que uma ligação está sem gravação?",
+     "a": "O histórico mostra Não disponível quando não há nada para ouvir. Isso costuma aparecer em ligações com duração 00:00, porque ninguém atendeu."
+    },
+    {
+     "q": "Gestores podem ouvir as ligações da equipe?",
+     "a": "Sim. O histórico reúne as ligações de toda a organização, então o gestor pode filtrar por vendedor e ouvir as gravações por ali."
+    },
+    {
+     "q": "Como usar as gravações no treinamento?",
+     "a": "Escolha duas ou três ligações reais por semana e revise com o vendedor. Uma ligação boa e uma que deu errado costumam ensinar mais do que revisar tudo."
+    },
+    {
+     "q": "Os dois lados da ligação são gravados?",
+     "a": "Pergunte em uma demo sobre a sua configuração e seus aparelhos. O suporte à gravação pode variar conforme o celular e o tipo de ligação, então teste com sua equipe antes de depender dele."
+    },
+    {
+     "q": "Gravar ligações é legal?",
+     "a": "Depende do país e, às vezes, do estado. Em alguns lugares basta o consentimento de uma das partes, em outros todos na ligação precisam concordar. Na UE, o GDPR também se aplica às gravações. Verifique as regras para você e seus clientes. Esta é uma informação geral, não uma orientação jurídica."
+    },
+    {
+     "q": "Devo avisar o cliente que a ligação é gravada?",
+     "a": "Avisar é o hábito mais seguro, e em alguns lugares é obrigatório. Uma frase curta no início da ligação costuma bastar, mas confirme o que o seu mercado exige."
+    },
+    {
+     "q": "Consigo encontrar uma gravação depois?",
+     "a": "Sim. As gravações voltam para o contato, então comece pelo cadastro do cliente."
+    },
+    {
+     "q": "Dá para gravar ligações do WhatsApp?",
+     "a": "Hoje não oferecemos gravação de ligações do WhatsApp como recurso. Pergunte em uma demo se isso for importante para sua equipe."
+    }
+   ]
+  },
+  "sim-vs-cloud-calling": {
+   "navLabel": "SIM vs Ligações na Nuvem",
+   "navDesc": "Qual serve para sua equipe de vendas",
+   "meta": {
+    "title": "SIM vs Telefonia em Nuvem: Qual Serve para Vendas? | Eazybe",
+    "description": "SIM vs telefonia em nuvem comparados em custo, configuração, posse do número e compliance. Veja qual serve para sua equipe de vendas. Compare agora.",
+    "og": {
+     "title": "SIM ou Ligações na Nuvem? Resposta Direta para Vendas",
+     "description": "Compare custo, configuração, posse do número e compliance, e veja qual opção serve a vendedores de campo e equipes internas."
+    },
+    "twitter": {
+     "title": "SIM vs Ligações na Nuvem: Qual Sua Equipe Deve Usar?",
+     "description": "Oferecemos os dois. Veja uma comparação direta de custo, configuração e quem fica com o número quando o vendedor sai."
+    }
+   },
+   "hero": {
+    "tag": "Guia de Compra",
+    "h1Lead": "SIM vs Telefonia em Nuvem:",
+    "h1Em": "Qual Combina com Sua Equipe?",
+    "subtitle": "Ligar pelo SIM é simples de começar, e a ligação na nuvem dá a você uma linha comercial sob seu controle. O Eazybe oferece as duas opções, então este guia não tem motivo para puxar você para nenhum lado.",
+    "chips": [
+     "Custo",
+     "Configuração",
+     "Posse do Número",
+     "Compliance"
+    ]
+   },
+   "mock": {
+    "title": "Comparação Rápida",
+    "rows": [
+     {
+      "name": "Ligações por SIM",
+      "detail": "Celular do vendedor",
+      "status": "Início rápido"
+     },
+     {
+      "name": "Ligações na nuvem",
+      "detail": "Número comercial",
+      "status": "Da empresa"
+     },
+     {
+      "name": "Os dois",
+      "detail": "Mesmo registro do cliente",
+      "status": "Eazybe"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "Qual a Diferença entre Ligações por SIM e na Nuvem?",
+    "paragraphs": [
+     "A ligação por SIM usa a rede móvel e o SIM (o chip) que está no celular. A ligação na nuvem, também chamada de telefonia em nuvem ou VoIP, funciona pela internet com um número virtual. Na prática, a grande diferença é quem controla o número: no SIM ele costuma ficar com o vendedor, e na nuvem fica com a empresa.",
+     "Nenhuma das duas é melhor para todo mundo. Uma equipe de campo que liga do celular pode perder tempo migrando para uma linha na nuvem, enquanto uma equipe que vende para outros países pode superar o SIM rapidinho. Muitas equipes acabam usando as duas, e por isso faz diferença acompanhar tudo em um só lugar."
+    ]
+   },
+   "how": {
+    "h2": "Como Escolher em Quatro Perguntas",
+    "subtitle": "Responda junto com o líder de vendas. As respostas costumam apontar para uma opção.",
+    "steps": [
+     {
+      "title": "Onde os Vendedores Trabalham?",
+      "desc": "Em campo, o caminho é o SIM. Em uma mesa com boa internet, qualquer uma funciona."
+     },
+     {
+      "title": "Quem Deve Ser Dono do Número?",
+      "desc": "Se o número precisa ficar com a empresa, escolha a ligação na nuvem."
+     },
+     {
+      "title": "Onde Estão Seus Clientes?",
+      "desc": "Vender para outros países costuma favorecer números virtuais locais."
+     },
+     {
+      "title": "Qual o Seu Volume de Ligações?",
+      "desc": "Compare o plano da operadora com o preço da nuvem por número e por minuto."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Onde Cada Uma",
+    "h2Em": "Se Destaca",
+    "subtitle": "Cada opção tem vantagens reais, então combine com o jeito que sua equipe vende.",
+    "cards": [
+     {
+      "title": "SIM: Rápido de Começar",
+      "desc": "Os vendedores já têm os celulares e os SIMs, então não há linha para configurar."
+     },
+     {
+      "title": "SIM: Funciona na Rede Móvel",
+      "desc": "As ligações não dependem de uma boa conexão de internet, o que ajuda em campo."
+     },
+     {
+      "title": "SIM: Número Conhecido",
+      "desc": "O cliente vê um número de celular comum, que os contatos atuais talvez já conheçam."
+     },
+     {
+      "title": "Nuvem: Número da Empresa",
+      "desc": "O número continua com a empresa quando um vendedor sai."
+     },
+     {
+      "title": "Nuvem: Linha Compartilhada",
+      "desc": "Um número comercial pode atender a equipe toda, e o número virtual não fica preso a um aparelho."
+     },
+     {
+      "title": "Nuvem: Presença Local",
+      "desc": "Números virtuais podem dar a você um número local em mercados onde você não tem escritório."
+     }
+    ]
+   },
+   "table": {
+    "h2": "SIM vs Ligações na Nuvem: Comparativo",
+    "subtitle": "Os fatores que normalmente decidem. Os custos variam muito por país e fornecedor, então peça orçamentos reais.",
+    "head": [
+     "Fator",
+     "Ligações por SIM",
+     "Ligações na nuvem"
+    ],
+    "rows": [
+     [
+      "Conexão",
+      "Rede móvel",
+      "Internet"
+     ],
+     [
+      "Configuração",
+      "Usa celulares e SIMs que você já tem",
+      "Comprar um número e criar uma conta"
+     ],
+     [
+      "Modelo de custo",
+      "Plano da sua operadora",
+      "Geralmente por número, por usuário ou por minuto"
+     ],
+     [
+      "Número exibido",
+      "Celular do vendedor",
+      "Número comercial ou virtual local"
+     ],
+     [
+      "Posse do número",
+      "Geralmente de quem é dono do SIM",
+      "Fica com a empresa"
+     ],
+     [
+      "Qualidade depende de",
+      "Sinal da rede móvel",
+      "Conexão de internet"
+     ],
+     [
+      "Vendas no exterior",
+      "Podem valer tarifas internacionais",
+      "Pode haver números locais"
+     ],
+     [
+      "Compliance",
+      "Valem as leis de ligação e gravação",
+      "Valem as leis de ligação e gravação"
+     ],
+     [
+      "No Eazybe",
+      "Rastreadas no Android",
+      "Rastreadas, com números de voz nos EUA, Canadá e Porto Rico"
+     ]
+    ],
+    "verdict": [
+     {
+      "title": "Escolha o SIM se",
+      "desc": "seus vendedores já vendem por celulares Android, trabalham em campo e ligam principalmente para clientes do próprio país."
+     },
+     {
+      "title": "Escolha a Nuvem se",
+      "desc": "você precisa de um número da empresa, uma linha comercial compartilhada ou presença em outro mercado."
+     },
+     {
+      "title": "Use os Dois se",
+      "desc": "você tem vendedores de campo e uma equipe interna. Acompanhe tudo em um só lugar para o registro do cliente ficar completo."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Escolhas Comuns por Equipe",
+    "subtitle": "São pontos de partida. Seu mercado e as tarifas da operadora podem mudar a resposta.",
+    "cards": [
+     {
+      "title": "Vendas de Campo",
+      "desc": "Geralmente SIM, porque os vendedores estão sempre na rua e já andam com o celular."
+     },
+     {
+      "title": "Inside Sales Internacional",
+      "desc": "Geralmente nuvem, porque números locais e uma linha compartilhada pesam mais."
+     },
+     {
+      "title": "Equipes Mistas",
+      "desc": "Muitas vezes os dois, com um registro por cliente para o gestor não ter que olhar dois sistemas."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Seja Qual For a Escolha, Mantenha um Só Registro",
+    "body": "A linha telefônica importa menos do que conseguir ver o que aconteceu depois. O Eazybe registra ligações por SIM e virtuais ao lado das conversas no WhatsApp, então você pode mudar a combinação depois sem perder o histórico do cliente.",
+    "points": [
+     "Você pode combinar ou trocar de linha depois",
+     "Ligações por SIM e virtuais caem no mesmo registro",
+     "O histórico fica com o cliente"
+    ]
+   },
+   "pricing": {
+    "h2": "Quanto Custa Cada Opção?",
+    "body": "Ligações por SIM usam o plano da sua operadora. Números na nuvem costumam ter cobrança própria: no Eazybe, o número de voz é um adicional opcional, com preço que varia por país."
+   },
+   "faqIntro": "Respostas rápidas para equipes que estão decidindo entre ligações por SIM e telefonia em nuvem. O Eazybe vende as duas opções, então avalie isso junto com seus próprios orçamentos.",
+   "faq": [
+    {
+     "q": "Ligar pelo SIM é mais barato que telefonia em nuvem?",
+     "a": "Depende do plano da operadora, do volume de ligações e do país. Se os vendedores já têm ligações locais ilimitadas, o SIM pode custar pouco a mais. Compare com um orçamento real de nuvem que inclua números, usuários e minutos."
+    },
+    {
+     "q": "O cliente atende mais ligações feitas pelo SIM?",
+     "a": "Fornecedores de SIM costumam dizer que sim, mas não vimos dados independentes que comprovem isso em vários mercados. Teste nas suas próprias listas comparando a taxa de atendimento por algumas semanas."
+    },
+    {
+     "q": "O que é telefonia em nuvem?",
+     "a": "Telefonia em nuvem faz as ligações da empresa pela internet, em vez de usar uma linha física ou um SIM. Os números e os dados das ligações são gerenciados em uma conta online."
+    },
+    {
+     "q": "Posso usar SIM e nuvem ao mesmo tempo?",
+     "a": "Sim. O Eazybe rastreia ligações por SIM no Android e ligações virtuais, e salva as duas ao lado das conversas do cliente no WhatsApp."
+    },
+    {
+     "q": "Quem fica com o número se o vendedor sair?",
+     "a": "Com SIM, depende de quem é o dono do SIM. Com um número de voz do Eazybe, o número e o histórico do cliente ficam com a empresa."
+    },
+    {
+     "q": "Qual tem melhor qualidade de ligação?",
+     "a": "Depende da conexão. Ligações por SIM dependem do sinal móvel, e as da nuvem dependem da sua internet. Um vendedor com internet fraca no escritório pode se sair melhor no SIM, e um vendedor numa área com pouco sinal pode se sair melhor na nuvem."
+    },
+    {
+     "q": "Qual é melhor para vender no exterior?",
+     "a": "Geralmente a nuvem, porque um número virtual pode dar presença local naquele mercado, enquanto o SIM pode cobrar tarifas internacionais. Nossos números de voz atendem EUA, Canadá e Porto Rico."
+    },
+    {
+     "q": "As leis de ligação e gravação mudam entre os dois?",
+     "a": "Não. As regras seguem o país para onde você liga e a forma como você contata as pessoas, não o tipo de linha. As regras mudam, então busque orientação para o seu mercado."
+    },
+    {
+     "q": "Posso começar no SIM e adicionar a nuvem depois?",
+     "a": "Sim. O Eazybe rastreia os dois, e o número de voz é um adicional opcional em todos os planos, então você pode incluir um quando a equipe precisar de uma linha compartilhada."
+    },
+    {
+     "q": "Qual é melhor para vendas de campo?",
+     "a": "Geralmente o SIM, já que funciona pela rede móvel e o vendedor já anda com o celular. A ligação na nuvem precisa de uma conexão de internet confiável."
+    }
+   ]
+  }
+ }
+}

@@ -169,6 +169,25 @@ const AGENTS = [
   },
 ]
 
+const callingIcon = (paths: string) =>
+  `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B59FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`
+const PHONE_PATH = '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>'
+const CALLING_PRODUCTS = [
+  // Keypad
+  { nameKey: 'callingAutoName', descKey: 'callingAutoDesc', href: '/calling/auto-dialer', icon: callingIcon('<path d="M5 4h.01M12 4h.01M19 4h.01M5 11h.01M12 11h.01M19 11h.01M5 18h.01M12 18h.01M19 18h.01" stroke-width="3.4"/>') },
+  // Handset with a signal arc: a line that runs over the internet
+  { nameKey: 'callingVirtualName', descKey: 'callingVirtualDesc', href: '/calling/virtual-phone-number', icon: callingIcon(`${PHONE_PATH}<path d="M15 2a7 7 0 0 1 7 7"/><path d="M15 6a3 3 0 0 1 3 3"/>`) },
+  // Rising activity bars
+  { nameKey: 'callingTrackName', descKey: 'callingTrackDesc', href: '/calling/call-tracking', icon: callingIcon('<path d="M3 3v18h18"/><path d="M8 17v-4M13 17V8M18 17v-7"/>') },
+  // SIM card with chip
+  { nameKey: 'callingSimName', descKey: 'callingSimDesc', href: '/calling/sim-based-calling', icon: callingIcon('<path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><rect x="8" y="11" width="8" height="7" rx="1"/><path d="M12 11v7M8 14.5h8"/>') },
+  // Microphone
+  { nameKey: 'callingRecName', descKey: 'callingRecDesc', href: '/calling/call-recording', icon: callingIcon('<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v4M8 22h8"/>') },
+]
+// Balance scale
+const CALLING_COMPARE = { nameKey: 'callingVsName', descKey: 'callingVsDesc', href: '/calling/sim-vs-cloud-calling', icon: callingIcon('<path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0L5 7zM19 7l-3 7a3 3 0 0 0 6 0l-3-7z"/>') }
+const CALLING_ALL = { nameKey: 'callingAllName', descKey: 'callingAllDesc', href: '/calling', icon: callingIcon(PHONE_PATH) }
+
 const INTEGRATIONS = [
   { name: 'HubSpot', desc: 'Bi-directional sync', href: "/hubspot-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/hubspot.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
   { name: 'Salesforce', desc: 'Deals, contacts, activities', href: "/salesforce-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/salesforce.webp" width="20" height="20" alt="" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
@@ -471,6 +490,33 @@ export function Nav() {
           </div>
         </div>
 
+        {(
+          <div className="nav-item">
+            <a href={lh('/calling')} className="nav-trigger" aria-haspopup="menu"><span>{t('calling')}</span> <span className="nav-caret">▾</span></a>
+            <div className="nav-dropdown">
+              <div className="nav-dd-section">{t('callingProducts')}</div>
+              {CALLING_PRODUCTS.map((c) => (
+                <a key={c.href} href={lh(c.href)} className="nav-dd-item">
+                  <span className="nav-dd-icon" style={{ background: '#EEF2FF' }} dangerouslySetInnerHTML={{ __html: c.icon }} />
+                  <span className="nav-dd-content">
+                    <div className="nav-dd-name">{t(c.nameKey)}</div>
+                    <div className="nav-dd-desc">{t(c.descKey)}</div>
+                  </span>
+                </a>
+              ))}
+              <div className="nav-dd-divider" />
+              <div className="nav-dd-section">{t('callingCompare')}</div>
+              <a href={lh(CALLING_COMPARE.href)} className="nav-dd-item">
+                <span className="nav-dd-icon" style={{ background: '#EEF2FF' }} dangerouslySetInnerHTML={{ __html: CALLING_COMPARE.icon }} />
+                <span className="nav-dd-content">
+                  <div className="nav-dd-name">{t(CALLING_COMPARE.nameKey)}</div>
+                  <div className="nav-dd-desc">{t(CALLING_COMPARE.descKey)}</div>
+                </span>
+              </a>
+            </div>
+          </div>
+        )}
+
         <div className="nav-item" onMouseEnter={clampDropdown} onFocus={clampDropdown}>
           <a href={lh('/integrations')} className="nav-trigger" aria-haspopup="menu"><span>{t('integrations')}</span> <span className="nav-caret">▾</span></a>
           <div className="nav-dropdown nav-dropdown-clamp" style={{ display: 'flex', gap: 6, padding: 14 }}>
@@ -695,6 +741,33 @@ export function Nav() {
                 })}
               </ul>
             </div>
+
+            {(
+              <div className={`nav-drawer-section${openSections.has('calling') ? ' open' : ''}`}>
+                <button type="button" onClick={() => toggleSection('calling')} aria-expanded={openSections.has('calling')}>
+                  <span>{t('calling')}</span>
+                  <span className="nav-drawer-chev">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </span>
+                </button>
+                <ul>
+                  {[...CALLING_PRODUCTS, CALLING_COMPARE, CALLING_ALL].map((c) => (
+                    <li key={c.href}>
+                      <a href={lh(c.href)} onClick={closeMenu}>
+                        <span className="nav-drawer-item-icon" style={{ background: '#EEF2FF' }} dangerouslySetInnerHTML={{ __html: c.icon }} />
+                        <span className="nav-drawer-item-body">
+                          <span className="nav-drawer-item-name">{t(c.nameKey)}</span>
+                          <span className="nav-drawer-item-desc">{t(c.descKey)}</span>
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className={`nav-drawer-section${openSections.has('integrations') ? ' open' : ''}`}>
               <button type="button" onClick={() => toggleSection('integrations')} aria-expanded={openSections.has('integrations')}>

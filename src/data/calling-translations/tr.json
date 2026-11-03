@@ -1,0 +1,1604 @@
+{
+ "ui": {
+  "common": {
+   "startTrial": "4 Günlük Ücretsiz Denemeyi Başlat",
+   "bookDemo": "Demo Planla",
+   "seePricing": "Fiyatları Gör",
+   "pricingLabel": "Fiyatlandırma",
+   "faqEyebrow": "SSS",
+   "faqH2": "Sıkça Sorulan Sorular",
+   "readMore": "Devamını oku",
+   "showLess": "Daha az göster",
+   "illustrative": "Temsili örnek",
+   "ctaH2": "Aramalarınızı ve Sohbetlerinizi",
+   "ctaH2Em": "Tek Kayıtta Toplayın",
+   "ctaSub": "Eazybe'yi 4 gün ücretsiz deneyin ya da bir demo planlayın, arama altyapınızı sizinle birlikte inceleyelim.",
+   "ctaFacts": [
+    "4 günlük ücretsiz deneme",
+    "Kurulum yaklaşık 2 dakika",
+    "30.000+ kullanıcı"
+   ],
+   "productsEyebrow": "Arama ürünleri",
+   "relatedH2": "İlgili Arama Sayfaları",
+   "relatedBefore": "Dilerseniz ",
+   "relatedLink": "Eazybe Aramalar'daki tüm özelliklere",
+   "relatedAfter": " göz atın ya da doğrudan ilgili bir konuya geçin.",
+   "crumbHome": "Ana Sayfa",
+   "crumbCalling": "Aramalar",
+   "proofAria": "Rakamlarla Eazybe ve müşterileri",
+   "tabsAria": "Arama bölümleri",
+   "factorHeader": "Kriter"
+  },
+  "stats": [
+   {
+    "value": "4,3",
+    "label": "HubSpot Marketplace, 77 değerlendirme"
+   },
+   {
+    "value": "30.000+",
+    "label": "Chrome Web Store'daki kullanıcı sayısı"
+   },
+   {
+    "value": "40+",
+    "label": "Ülke"
+   },
+   {
+    "value": "4 gün",
+    "label": "Ücretsiz deneme, kurulum yaklaşık 2 dakika"
+   }
+  ],
+  "products": {
+   "sim-based-calling": {
+    "name": "SIM Tabanlı Arama",
+    "desc": "Temsilcilerin kendi Android telefonlarından yaptığı aramaları CRM'inizde takip edin."
+   },
+   "virtual-phone-number": {
+    "name": "Sanal Telefon Numaraları",
+    "desc": "Aramalar, SMS ve WhatsApp için tek bir iş hattı."
+   },
+   "auto-dialer": {
+    "name": "Otomatik Arayıcı",
+    "desc": "Bir liste yükleyin, kişileri sırayla tek tek arayın."
+   },
+   "call-tracking": {
+    "name": "Çağrı Takibi",
+    "desc": "Gelen, giden ve cevapsız aramaları temsilciye ve numaraya göre görün."
+   },
+   "call-recording": {
+    "name": "Çağrı Kaydı",
+    "desc": "Kayıtları arama geçmişinizden dinleyin."
+   },
+   "sim-vs-cloud-calling": {
+    "name": "SIM ve Bulut Santral",
+    "desc": "Seçim yapmadan önce maliyeti, kurulumu ve numara sahipliğini karşılaştırın."
+   }
+  },
+  "tabs": [
+   "SIM arama",
+   "Sanal arama",
+   "Otomatik arayıcı",
+   "Takip ve kayıt"
+  ],
+  "hub": {
+   "heroTag": "HubSpot, Salesforce, Zoho ve daha fazlasıyla çalışır",
+   "h1Lead": "Satış Arama Yazılımı:",
+   "h1Em": "SIM ve Sanal Aramalar",
+   "lede": "Temsilcileriniz hem telefonda hem WhatsApp'ta satış yapıyor, ama çoğu araç bunlardan yalnızca birini görüyor. Eazybe, SIM ve sanal aramaları her müşterinin WhatsApp sohbetlerinin yanına kaydeder. Böylece satış sürecinin tamamı tek yerde durur.",
+   "introEyebrow": "Satış arama yazılımı nedir?",
+   "introH2": "Her Arama ve Sohbet.",
+   "introH2Em": "Tek Müşteri Kaydında.",
+   "sim": {
+    "title": "Temsilcilerinizin SIM Aramaları.",
+    "em": "CRM'inizde.",
+    "body": "Temsilciler kendi Android telefonlarından aramaya devam eder. Eazybe her aramayı kaydeder ve ilgili müşterinin WhatsApp sohbetlerinin yanına yerleştirir. Aramalar artık tek bir kişinin telefonunda kaybolmaz.",
+    "points": [
+     "Ekibinizin zaten kullandığı telefonlar ve SIM kartlar aynen kalır",
+     "Müşteriler normal bir cep telefonu numarası görür",
+     "Arama detayları manuel not gerekmeden CRM'inize ulaşır"
+    ],
+    "label": "SIM tabanlı aramayı keşfedin"
+   },
+   "virtual": {
+    "title": "Tek İş Numarası.",
+    "em": "Aramalar, SMS ve WhatsApp.",
+    "body": "Eazybe'den bir ses numarası alın; aramalar, SMS, WhatsApp Business uygulaması ve WhatsApp API için tek bir hat kullanın. Numara temsilciye değil, şirkete aittir.",
+    "points": [
+     "ABD, Kanada ve Porto Riko'da numaralar",
+     "Numara doğrulamasını Eazybe üstlenir",
+     "Bir temsilci ayrıldığında numara ve geçmiş şirkette kalır"
+    ],
+    "label": "Sanal telefon numaralarını keşfedin",
+    "alt": "İş numaralarını ülkeye göre ve yenileme tarihleriyle listeleyen Eazybe telefon numaraları ekranı",
+    "note": "Gerçek Eazybe ekranı. Telefon numaraları ve hat adları örnektir."
+   },
+   "dialer": {
+    "title": "Listeyi Yükleyin.",
+    "em": "Başlat'a Basın.",
+    "body": "Bir Excel veya CSV dosyası yükleyin, kişileri kontrol edin, hangi numaradan arama yapılacağını seçin ve aramalar arasındaki süreyi ayarlayın. Ardından Eazybe listeyi sırayla arar.",
+    "points": [
+     "Sayfa başına en fazla 1.000 kişi",
+     "Aramalar liste sırasına göre tek tek yapılır",
+     "İstediğiniz an duraklatın, durdurun veya bir aramayı atlayın"
+    ],
+    "label": "Otomatik arayıcıyı keşfedin",
+    "alt": "Kişi listesi yükleme alanı ve arama oturumu ayarlarını gösteren Eazybe otomatik arayıcı ekranı",
+    "note": "Gerçek Eazybe ekranı. Numaralar ve hat adları örnektir; üstteki kart temsilidir."
+   },
+   "tracking": {
+    "title": "Her Aramayı Görün.",
+    "em": "Önemli Olanları Tekrar Dinleyin.",
+    "body": "Arama geçmişi, ekibinizdeki gelen, giden ve cevapsız aramaları gösterir. Temsilciye veya numaraya göre filtreleyin, ardından kimseden aramasını istemeden kaydı dinleyin.",
+    "points": [
+     "Kullanıcı, numara ve arama türüne göre filtreleyin",
+     "Geri dönüş gerektiren cevapsız aramaları fark edin",
+     "Yeni temsilcileri gerçek aramalarla eğitin"
+    ],
+    "label": "Çağrı takibini keşfedin",
+    "alt": "Gelen, giden ve cevapsız aramaları kayıtlar ve filtrelerle gösteren Eazybe arama geçmişi",
+    "note": "Gerçek Eazybe ekranı. Telefon numaraları ve isimler örnektir."
+   },
+   "compareH2": "SIM Arama mı,",
+   "compareH2Em": "Sanal Arama mı?",
+   "compareSubSim": "Mobil şebeke",
+   "compareSubVirtual": "İnternet hattı",
+   "productsSub": "Biriyle başlayın ya da hepsini kullanın. Her birinin kurulum adımlarını ve sık sorulan soruların yanıtlarını içeren ayrı bir sayfası var."
+  },
+  "demo": {
+   "simCall": "SIM arama · 04:12",
+   "crmRecord": "CRM KAYDI",
+   "logged": "Arama otomatik kaydedildi",
+   "rowCallType": "Arama türü",
+   "rowCallTypeValue": "SIM, Android",
+   "rowTime": "Saat",
+   "rowTimeValue": "Bugün, 11:04",
+   "rowLength": "Süre",
+   "rowLengthValue": "4 dk 12 sn",
+   "rowWhatsapp": "WhatsApp",
+   "rowWhatsappValue": "Teklif gönderildi",
+   "lineHead": "Tek iş hattı",
+   "lineVoice": "Sesli aramalar",
+   "lineSms": "SMS",
+   "lineWhatsapp": "WhatsApp",
+   "dialHead": "Arama oturumu",
+   "dialSub": "tek tek",
+   "dialQueued": "Sırada",
+   "dialCalling": "Aranıyor",
+   "dialSaved": "Kaydedildi",
+   "playerHead": "Çağrı kaydı"
+  },
+  "visual": {
+   "businessCall": "İş araması · 02:14",
+   "smsAsk": "Teklif hâlâ geçerli mi?",
+   "smsReply": "Evet, cumaya kadar.",
+   "smsThanks": "Harika, teşekkürler.",
+   "waAsk": "Teklifi konuşabilir miyiz?",
+   "waReply": "Sizi hemen arıyorum",
+   "apiHead": "WhatsApp API",
+   "verified": "Numara doğrulandı",
+   "ownerSub": "Şirketinizde kalır",
+   "uploadSub": "Sayfa başına en fazla 1.000 kişi",
+   "rowCallBack": "17:00'de geri ara",
+   "rowQuoteSent": "Teklif gönderildi",
+   "rowNextUp": "Sıradaki",
+   "outcomeMeeting": "Toplantı ayarlandı",
+   "outcomeCallBack": "Geri ara",
+   "outcomeQuote": "Teklif gönderildi",
+   "compareSim": "SIM arama",
+   "compareSimSub": "Mobil şebeke",
+   "compareCloud": "Bulut santral",
+   "compareCloudSub": "İnternet hattı",
+   "numberSub": "Cep numarası"
+  },
+  "price": {
+   "yearly": "Yıllık faturalandırmada başlangıç fiyatı",
+   "monthly": "Aylık faturalandırmada başlangıç fiyatı",
+   "perUser": "kullanıcı / ay",
+   "voice": "Ses numarası",
+   "addOn": "Eklenti",
+   "varies": "fiyat ülkeye göre değişir"
+  }
+ },
+ "pages": {
+  "": {
+   "navLabel": "Tüm Aramalar",
+   "navDesc": "SIM ve sanal aramalar tek yerde",
+   "meta": {
+    "title": "Satış Arama Yazılımı: SIM, Sanal ve WhatsApp | Eazybe",
+    "description": "Satış arama yazılımı: SIM ve sanal aramaları WhatsApp sohbetinin yanında CRM'e kaydedin. Otomatik arayıcı ve çağrı kaydı ekleyin. 4 gün ücretsiz deneyin.",
+    "og": {
+     "title": "SIM ve Sanal Aramalar İçin Satış Arama Yazılımı | Eazybe",
+     "description": "SIM ve sanal aramalar için satış arama yazılımı. Her aramayı WhatsApp sohbetinin yanında CRM'e kaydedin. 4 gün ücretsiz deneyin."
+    },
+    "twitter": {
+     "title": "WhatsApp ve CRM ile Çalışan Satış Arama Yazılımı | Eazybe",
+     "description": "SIM ve sanal aramaları WhatsApp sohbetinin yanında CRM'e kaydedin. Otomatik arayıcı ve kayıt dahil. 4 gün ücretsiz deneyin."
+    }
+   },
+   "hero": {
+    "tag": "Eazybe Aramalar",
+    "h1Lead": "Aramalarla WhatsApp'ı Bir Arada Tutan",
+    "h1Em": "Satış Arama Yazılımı",
+    "subtitle": "Temsilcileriniz hem telefonda hem WhatsApp'ta satış yapıyor, ama çoğu araç bunlardan yalnızca birini görüyor. Eazybe, SIM ve sanal aramaları müşterinin sohbetlerinin yanına kaydeder, ardından sonucu CRM'inize gönderir.",
+    "chips": [
+     "Android'de SIM aramaları",
+     "Sanal aramalar",
+     "Otomatik arayıcı",
+     "CRM'e kayıt"
+    ]
+   },
+   "mock": {
+    "title": "Müşteri zaman çizelgesi",
+    "rows": [
+     {
+      "name": "WhatsApp sohbeti",
+      "detail": "Fiyat teklifi istedi",
+      "status": "Yanıtlandı"
+     },
+     {
+      "name": "SIM araması",
+      "detail": "4 dk 12 sn",
+      "status": "İlgileniyor"
+     },
+     {
+      "name": "Sanal arama",
+      "detail": "2 dk 40 sn",
+      "status": "Toplantı ayarlandı"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "Satış Arama Yazılımı Nedir?",
+    "paragraphs": [
+     "Satış arama yazılımı, bir ekibin arama yapmasına, her görüşmede ne olduğunu kaydetmesine ve sonuçları raporlamasına yardımcı olur. Eazybe bunu iki tür arama için yapar: temsilcinin Android telefonundan yapılan SIM aramaları ve işletme numarasıyla internet üzerinden yapılan sanal aramalar.",
+     "Çoğu arama aracının atladığı kısım WhatsApp'tır. Müşteri fiyatı WhatsApp'ta sorup bir aramada onay veriyorsa, yalnızca aramaları gören bir araç hikâyenin yarısını gösterir. Eazybe her aramayı o müşterinin WhatsApp sohbetlerinin yanına kaydeder, böylece hesabı devralan kişi ikisini de görebilir."
+    ]
+   },
+   "how": {
+    "h2": "Eazybe Aramalar Nasıl Çalışır?",
+    "subtitle": "Kurulum seçtiğiniz arama türüne göre değişir, ama sonunda oluşan kayıt aynıdır.",
+    "steps": [
+     {
+      "title": "Arama Yönteminizi Seçin",
+      "desc": "Android telefonlardaki SIM aramalarını takip edin, sanal aramaları kullanın ya da ekipte ikisini birlikte çalıştırın."
+     },
+     {
+      "title": "CRM'inizi Bağlayın",
+      "desc": "Aramalar HubSpot, Salesforce, Zoho, Eazybe CRM veya Workspace'inize kaydedilir."
+     },
+     {
+      "title": "Aramaya Başlayın",
+      "desc": "Müşterileri tek tek arayın ya da otomatik arayıcıyla bir arama listesini başlatın."
+     },
+     {
+      "title": "Kaydı İnceleyin",
+      "desc": "Saat, süre ve sonuç, müşterinin WhatsApp sohbetlerinin hemen yanında durur."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Tüm Özellikleriyle",
+    "h2Em": "Eazybe Aramalar",
+    "subtitle": "Aşağıdaki her sayfa, ürünün bir bölümünü daha ayrıntılı anlatır.",
+    "cards": []
+   },
+   "table": {
+    "h2": "SIM Tabanlı Arama mı, Sanal Arama mı?",
+    "subtitle": "Birçok ekip ikisini birlikte kullanır. Farkların kısa özeti şöyle.",
+    "head": [
+     "",
+     "SIM tabanlı arama",
+     "Sanal arama"
+    ],
+    "rows": [
+     [
+      "Neyi kullanır",
+      "Temsilcinin Android telefonundaki SIM",
+      "İnternet üzerinden bir işletme numarası"
+     ],
+     [
+      "Müşteri ne görür",
+      "Temsilcinin cep numarasını",
+      "İşletme numaranızı"
+     ],
+     [
+      "Temsilci ayrılırsa",
+      "Ayrılmadan önce SIM'in kime ait olduğunu kontrol edin",
+      "Numara ve geçmiş şirkette kalır"
+     ],
+     [
+      "En uygun olduğu durum",
+      "Zaten cep telefonundan satış yapan temsilciler",
+      "Ortak bir işletme hattına ihtiyaç duyan ekipler"
+     ]
+    ]
+   },
+   "useCases": {
+    "h2": "Eazybe'yi Arama İçin Kimler Kullanıyor?",
+    "subtitle": "Anlaşmalar telefon ile WhatsApp arasında ilerlediğinde aramalar en çok işe yarar.",
+    "cards": [
+     {
+      "title": "İç Satış",
+      "desc": "Arama listesini sırayla tamamlayın, her sonucu kaydedin ve teklifi aynı kayıttan WhatsApp'ta gönderin."
+     },
+     {
+      "title": "Saha Satışı",
+      "desc": "Temsilciler gün içinde Android telefonlarından arar, yöneticiler de rapor istemeden aktiviteyi görür."
+     },
+     {
+      "title": "Satış Yöneticileri",
+      "desc": "Kimin, ne kadar süre arandığını ve sonucun ne olduğunu görün, bir anlaşmaya dahil olmadan önce sohbeti okuyun."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Aramalar ve Sohbetler İçin Tek Kayıt",
+    "body": "Eazybe, aramaları müşterinin WhatsApp konuşmalarıyla aynı kayıtta tutar. Tek başına çalışan bir arayıcı bu sohbetleri göremez. Temel fark da budur.",
+    "points": [
+     "WhatsApp sohbetleri ve aramalar aynı müşteri kaydında durur",
+     "Arama saati, süresi ve sonucu CRM'inize kaydedilir",
+     "Yönetici devreye girmeden önce konuşmanın tamamını okuyabilir"
+    ]
+   },
+   "pricing": {
+    "h2": "Eazybe Aramalar'ın Fiyatı Nedir?",
+    "body": "Eazybe planınızın ücretini ödersiniz, ses numarasını ise yalnızca isterseniz eklersiniz. Arama ihtiyaçları ekip büyüklüğüne ve ülkeye göre değişir. Size hangi planın uygun olduğunu bir demoda sorun."
+   },
+   "faqIntro": "Ekiplerin arama araçlarını karşılaştırırken en sık sorduğu sorular. Her ürün sayfasında daha fazla ayrıntı bulabilirsiniz.",
+   "faq": [
+    {
+     "q": "SIM tabanlı arama ile sanal arama arasındaki fark nedir?",
+     "a": "SIM tabanlı arama, temsilcinin telefonundaki mobil SIM'i kullanır, bu yüzden müşteri o cep numarasını görür. Sanal arama ise şirkete ait bir işletme numarasıyla internet üzerinden yapılır. Eazybe ikisini de takip eder."
+    },
+    {
+     "q": "Aynı ekipte SIM tabanlı ve sanal aramayı birlikte kullanabilir miyim?",
+     "a": "Evet. Eazybe çağrı takibi hem Android'deki SIM aramalarıyla hem de sanal aramalarla çalışır. Her arama, müşterinin WhatsApp sohbetlerinin yanına kaydedilir."
+    },
+    {
+     "q": "Eazybe aramaları hangi CRM'lere kaydeder?",
+     "a": "Eazybe arama saatini, süresini ve sonucunu CRM'inize kaydeder. HubSpot, Salesforce ve Zoho'nun yanı sıra Eazybe CRM ile de çalışır."
+    },
+    {
+     "q": "Eazybe mevcut telefon sistemimin yerini alır mı?",
+     "a": "Bu, bugün ne kullandığınıza bağlı. Eazybe çağrı takibini, aramayı ve ses numaralarını WhatsApp ve CRM'inizle birlikte yönetir. Ekibiniz çağrı merkezi yönlendirmesine bağlıysa, geçiş yapmadan önce bunu bir demoda sorun."
+    },
+    {
+     "q": "Hangi ülkelerde ses numarası alabilirim?",
+     "a": "Ses numaraları ABD, Kanada ve Porto Riko'da kullanılabilir. Numara doğrulamasını Eazybe yapar."
+    },
+    {
+     "q": "Otomatik arayıcı nasıl çalışır?",
+     "a": "Sayfa başına en fazla 1.000 kişi içeren bir Excel veya CSV dosyası yükleyin ve listeyi kontrol edin. Ardından arama yapılacak numarayı seçin, aramalar arasındaki süreyi belirleyin ve başlatın. Eazybe kişileri liste sırasıyla tek tek arar. İstediğiniz an duraklatabilir, durdurabilir veya atlayabilirsiniz."
+    },
+    {
+     "q": "Temsilciler tarayıcıdan arama yapabilir mi?",
+     "a": "Evet. Eazybe tarayıcı telefonu, aramaları bir tarayıcı penceresinden yapar. Temsilcilerin mikrofon erişimine izin vermesi ve arayıcı oturumu boyunca sayfayı açık tutması gerekir. Kulaklık kullanmanızı öneririz."
+    },
+    {
+     "q": "Çağrı kayıtlarını dinleyebilir miyim?",
+     "a": "Evet. Bir aramanın kaydı varsa, arama geçmişinden oynatabilirsiniz. Çok kısa veya yanıtlanmamış aramaların kaydı olmayabilir. Kayıtla ilgili yasalar ülkeden ülkeye değişir, bu yüzden sizin ve müşterilerinizin bulunduğu yerdeki kuralları kontrol edin."
+    },
+    {
+     "q": "Yöneticiler neleri görebilir?",
+     "a": "Arama geçmişi gelen, giden ve cevapsız aramaları listeler. Listeyi kullanıcıya, numaraya veya arama türüne göre filtreleyebilirsiniz. Arama analitiği ise yanıtlanma oranını, konuşma süresini ve ortalama arama süresini numaraya veya temsilciye göre gösterir."
+    },
+    {
+     "q": "Ücretsiz deneme var mı?",
+     "a": "Evet. Eazybe 4 günlük ücretsiz deneme sunar. Chrome eklentisinin kurulumu yaklaşık 2 dakika sürer."
+    }
+   ]
+  },
+  "auto-dialer": {
+   "navLabel": "Otomatik Arayıcı",
+   "navDesc": "Numara çevirmeden listenizi arayın",
+   "meta": {
+    "title": "Otomatik Arama Yazılımı: Liste Yükleyin, Arayın | Eazybe",
+    "description": "Otomatik arama yazılımı Excel veya CSV listenizi sırayla arar. Numaranızı seçin, aramalar arası süreyi ayarlayın, her kaydı saklayın. Ücretsiz başlayın.",
+    "og": {
+     "title": "Satış Ekipleri İçin Otomatik Arama: Yükleyin ve Başlatın",
+     "description": "Sayfa başına 1.000 kişiye kadar yükleyin ve sırayla arayın. Her kayıt ilgili kişiye eklenir. 4 günlük ücretsiz deneme."
+    },
+    "twitter": {
+     "title": "Elle Numara Çevirmeye Son: Otomatik Arama Yazılımı | Eazybe",
+     "description": "Aramalar arası süreyi ayarlayın, başlatın ve listenizde ilerleyin. Eazybe her kaydı ilgili kişiye kaydeder."
+    }
+   },
+   "hero": {
+    "tag": "Otomatik Arayıcı",
+    "h1Lead": "Otomatik Arayıcı Yazılımı:",
+    "h1Em": "Her Arama Kayıt Altında",
+    "subtitle": "Kişi listenizi yükleyin ve başlatın. Eazybe, belirlediğiniz aralıkla kişileri tek tek arar; kaydı ve sonucu ilgili kişiye kaydeder.",
+    "chips": [
+     "Excel ve CSV yükleme",
+     "1.000 kişiye kadar",
+     "Arama aralığını ayarlayın",
+     "Kayıtlar saklanır"
+    ]
+   },
+   "mock": {
+    "title": "Otomatik Arayıcı",
+    "rows": [
+     {
+      "name": "Ahmed Khan",
+      "detail": "Görüşmede, 0:42",
+      "status": "Aranıyor"
+     },
+     {
+      "name": "Carolina Mendes",
+      "detail": "Teklif WhatsApp'tan gönderildi",
+      "status": "Arama kaydedildi"
+     },
+     {
+      "name": "Priya Nair",
+      "detail": "17.00'de geri aranacak",
+      "status": "Sıradaki"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "Otomatik Arayıcı Yazılımı Nedir?",
+    "paragraphs": [
+     "Otomatik arayıcı, arama listesini sizin yerinize sırayla arar. Böylece temsilci görüşmeler arasında numara tuşlamakla uğraşmaz. Kazanılan dakikalar işe yarar ama asıl fark aramadan sonra ortaya çıkar: CRM'e ne yazılacağını kimsenin hatırlaması gerekmez.",
+     "Eazybe'de listeyi Excel veya CSV dosyası olarak yükler, kontrol eder ve hangi numaradan arayacağınızı seçersiniz. Her kayıt ve sonuç ilgili kişiye eklenir, sonraki adım da aynı yerde belirlenir."
+    ]
+   },
+   "how": {
+    "h2": "Eazybe Otomatik Arayıcı Nasıl Çalışır?",
+    "subtitle": "Temsilci, listeden ilk aramaya dört adımda geçer.",
+    "steps": [
+     {
+      "title": "Listeyi Yükleyin",
+      "desc": "Sayfa başına 1.000 kişiye kadar Excel veya CSV dosyası ekleyin, ardından numaraları kontrol edin."
+     },
+     {
+      "title": "Başlatın",
+      "desc": "Arayacağınız numarayı ve aramalar arası süreyi seçin. İlk arama hemen başlar."
+     },
+     {
+      "title": "Müşteriyle Konuşun",
+      "desc": "Belirlediğiniz süre dolunca sıradaki numara kendiliğinden çalar."
+     },
+     {
+      "title": "Kaydedilenleri Kontrol Edin",
+      "desc": "Kayıt, sonuç ve sonraki adım kişinin kaydında yer alır."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Giden Satış İçin",
+    "h2Em": "Tasarlandı",
+    "subtitle": "Temsilcilerin her gün kullandığı arayıcı özellikleri.",
+    "cards": [
+     {
+      "title": "Tablo Yükleme",
+      "desc": "Sayfa başına 1.000 kişiye kadar Excel veya CSV dosyası kullanın. Örnek dosyalar hangi sütunların gerektiğini gösterir."
+     },
+     {
+      "title": "Aramalar CRM'inizde",
+      "desc": "Eazybe aramalarınızı HubSpot, Salesforce, Zoho veya Eazybe CRM'e kaydeder."
+     },
+     {
+      "title": "Aramalar Arası Süre",
+      "desc": "Sıradaki numara çalmadan önce ne kadar bekleneceğini seçin, temsilci işini toparlasın."
+     },
+     {
+      "title": "Numaranızı Seçin",
+      "desc": "Oturumun hangi Eazybe numaranızdan arayacağını belirleyin."
+     },
+     {
+      "title": "Kayıt ve Sonuç Saklanır",
+      "desc": "İkisi de kişiye eklenir, temsilci hemen sıradaki aramaya geçebilir."
+     },
+     {
+      "title": "Sonraki Adım Belirlenir",
+      "desc": "Kişi kaydı, toplantı ya da geri arama gibi sıradaki adımı gösterir."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Otomatik Arayıcı Ne Zaman İşe Yarar?",
+    "subtitle": "Listeler uzun, arama saatleri kısıtlıysa arayıcı kendini kısa sürede amorti eder.",
+    "cards": [
+     {
+      "title": "Yeni Adaylara Dönüş",
+      "desc": "En yeni adaylarınızı yükleyin ve talepleri henüz akıllarındayken aynı gün arayın."
+     },
+     {
+      "title": "Sessiz Adayları Canlandırma",
+      "desc": "Yanıt vermeyi bırakanları arayın, ardından konuşmaya WhatsApp'ta devam edin."
+     },
+     {
+      "title": "Kampanya Takibi",
+      "desc": "Etkinlik veya kampanya listesini yükleyin, arayıcı listeyi sırayla arasın."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Aramadan Sonra Ne Olur?",
+    "body": "Eazybe aramayı, müşterinin WhatsApp yazışmalarıyla aynı kayıtta tutar. Temsilci söz verdiği teklifi konunun akışını kaybetmeden gönderebilir.",
+    "points": [
+     "Her kayıt ilgili kişiye eklenir",
+     "Sonraki adım aynı kayıtta yer alır",
+     "Temsilci söz verilen teklifi aramanın hemen ardından WhatsApp'tan gönderebilir"
+    ]
+   },
+   "pricing": {
+    "h2": "Otomatik Arayıcının Ücreti Nedir?",
+    "body": "Eazybe planınız için ödeme yaparsınız; gerekirse arama yapacağınız bir ses numarası da eklenir. Liste büyüklüğünüze hangi planın uyduğunu demoda sorun."
+   },
+   "screenshot": {
+    "h2": "Otomatik Arayıcı Ekranı",
+    "alt": "Kişi listesi yükleme ve arama oturumu ayarlarını gösteren Eazybe otomatik arayıcı ekranı",
+    "caption": "Eazybe uygulamasındaki otomatik arayıcı. Telefon numaraları ve hat adları örnektir."
+   },
+   "faqIntro": "Satış ekiplerinin ilk arama listesini Eazybe arayıcısına yüklemeden önce en sık sorduğu sorular.",
+   "faq": [
+    {
+     "q": "Otomatik arayıcı nedir?",
+     "a": "Otomatik arayıcı, bir telefon numarası listesini sizin yerinize arayan yazılımdır. Bir arama bitince sıradaki numaraya geçer; temsilciler zamanını numara çevirmeye değil konuşmaya ayırır."
+    },
+    {
+     "q": "Arama listem nereden gelebilir?",
+     "a": "Excel veya CSV formatında yüklediğiniz bir tablodan. Kişileriniz bir CRM'de ya da Google Sheets'te duruyorsa önce bir dosyaya aktarın."
+    },
+    {
+     "q": "Aramalar kaydediliyor mu?",
+     "a": "Evet. Her kayıt ve sonuç ilgili kişiye kaydedilir. Kayıt kuralları ülkeden ülkeye değişir; başlamadan önce yerel mevzuatın ne gerektirdiğini kontrol edin."
+    },
+    {
+     "q": "Müşteri hangi numarayı görür?",
+     "a": "Oturum başlamadan önce Arayan numara alanında seçtiğiniz Eazybe numarasını."
+    },
+    {
+     "q": "Otomatik arayıcı kullanmak yasal mı?",
+     "a": "Bu, sizin ve müşterilerinizin bulunduğu yere bağlıdır. Örneğin ABD'de TCPA, izin alınmadan cep telefonlarına yapılan otomatik aramaları sınırlar. Yalnızca iletişim kurmanıza izin verilen kişileri arayın ve pazarınız için bir avukata danışın."
+    },
+    {
+     "q": "Kaç kişi yükleyebilirim?",
+     "a": "Excel (.xlsx veya .xls) ya da CSV dosyası olarak sayfa başına 1.000 kişiye kadar. Ad, ülke kodu ve telefon numarasını ayrı sütunlara yazın ya da kodu numaranın içinde bırakın. Uygulamada indirip kopyalayabileceğiniz örnek dosyalar var."
+    },
+    {
+     "q": "Aramalar arasına süre koyabilir miyim?",
+     "a": "Evet. Oturumu başlatmadan önce aramalar arası süreyi ayarlayın. İlk arama hemen başlar, süre sonrakiler için geçerlidir."
+    },
+    {
+     "q": "Arama oturumunu duraklatabilir miyim?",
+     "a": "Evet. Duraklat, mevcut aramanın bitmesine izin verir ve ardından oturumu bekletir. Durdur, mevcut aramayı sonlandırır ve kuyruğun kalanını korur. Atla, yalnızca o aramayı bitirip sıradaki kişiye geçer."
+    },
+    {
+     "q": "Temsilcinin başlamak için nelere ihtiyacı var?",
+     "a": "Mikrofon erişimi olan bir tarayıcı ve arama yapılacak bir ses numarası. Oturum boyunca sayfayı açık tutun. Temsilciler uzun süre görüşmede kalabileceği için kulaklık öneririz."
+    },
+    {
+     "q": "Bu bir power dialer mı, predictive dialer mı?",
+     "a": "Kişileri liste sırasıyla, belirlediğiniz aralıkla tek tek arar. Bu, power dialer'a en yakın yöntemdir. Aynı anda birden fazla kişiyi aramaz; böylece müşteri telefonu açtığında karşısında kimseyi bulamama durumu yaşanmaz."
+    }
+   ]
+  },
+  "virtual-phone-number": {
+   "navLabel": "Sanal Telefon Numaraları",
+   "navDesc": "Aramalar, SMS ve WhatsApp için tek iş hattı",
+   "meta": {
+    "title": "Şirketler İçin Sanal Numara ve WhatsApp Hattı | Eazybe",
+    "description": "Şirketler için sanal numara: ABD, Kanada veya Porto Riko'da aramalar, SMS ve WhatsApp için tek hat. Temsilci ayrılsa da numara sizde kalır. İnceleyin.",
+    "og": {
+     "title": "Aramalar, SMS ve WhatsApp İçin Tek İş Numarası",
+     "description": "ABD, Kanada veya Porto Riko'da sanal numara. Doğrulamayı Eazybe yapar, numara da şirketinizde kalır."
+    },
+    "twitter": {
+     "title": "Temsilci Ayrılsa da Şirketinizde Kalan Sanal İş Numarası",
+     "description": "Sesli aramalar, SMS, WhatsApp Business uygulaması ve API tek hatta. ABD, Kanada ve Porto Riko'da."
+    }
+   },
+   "hero": {
+    "tag": "Sanal Arama",
+    "h1Lead": "Şirketler İçin Sanal Telefon Numarası",
+    "h1Em": "Aramalar, SMS ve WhatsApp",
+    "subtitle": "Eazybe'den bir ses numarası alın; sesli aramalar, SMS, WhatsApp Business uygulaması ve WhatsApp API için tek bir iş hattı kullanın. Doğrulama işlemlerini Eazybe üstlenir.",
+    "chips": [
+     "ABD",
+     "Kanada",
+     "Porto Riko",
+     "İsteğe Bağlı Eklenti"
+    ]
+   },
+   "mock": {
+    "title": "Tek İş Hattı",
+    "rows": [
+     {
+      "name": "Sesli aramalar",
+      "detail": "Aynı numara",
+      "status": "Aktif"
+     },
+     {
+      "name": "SMS",
+      "detail": "Aynı numara",
+      "status": "Aktif"
+     },
+     {
+      "name": "WhatsApp",
+      "detail": "Business uygulaması ve API",
+      "status": "Doğrulandı"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "Sanal Telefon Numarası Nedir?",
+    "paragraphs": [
+     "Sanal telefon numarası diğer numaralar gibi çalışır. Farkı şudur: aramalar internet üzerinden yapılır ve numara tek bir telefona değil, bir hesaba bağlıdır. Böylece işletmeniz, temsilcinin kişisel cep numarasını paylaşmadan müşterileri arayabilir ve onlara mesaj gönderebilir.",
+     "Eazybe ses numarası aramanın ötesine geçer. Aynı numara sesli aramalar, SMS, WhatsApp Business uygulaması ve WhatsApp API için çalışır, böylece müşterilerinizin aklında tutması gereken tek bir numara olur. Numara şirketinize aittir ve bir temsilci ayrıldığında müşteri geçmişiyle birlikte şirketinizde kalır."
+    ]
+   },
+   "how": {
+    "h2": "Eazybe'den Sanal Numara Nasıl Alınır?",
+    "subtitle": "Ses numaraları Eazybe ekibiyle birlikte kurulur. Numara doğrulamasını da ekip halleder.",
+    "steps": [
+     {
+      "title": "Ülke Seçin",
+      "desc": "Numaralar ABD, Kanada ve Porto Riko'da sunulmaktadır."
+     },
+     {
+      "title": "Planınıza Ekleyin",
+      "desc": "Ses numarası, tüm Eazybe planlarında isteğe bağlı bir eklentidir."
+     },
+     {
+      "title": "Doğrulamayı Eazybe'ye Bırakın",
+      "desc": "Numara doğrulamasını sizin yerinize Eazybe yapar."
+     },
+     {
+      "title": "Her Yerde Tek Hat Kullanın",
+      "desc": "Aynı iş numarasıyla arayın, SMS gönderin ve WhatsApp'ı kullanın."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Tek Numara,",
+    "h2Em": "Tüm Kanallar",
+    "subtitle": "İş numaranızı Eazybe'den aldığınızda elde ettikleriniz.",
+    "cards": [
+     {
+      "title": "Sesli Aramalar",
+      "desc": "Numarayı iş aramalarında kullanın. Her arama, müşterinin sohbetlerinin yanına kaydedilir."
+     },
+     {
+      "title": "SMS",
+      "desc": "Müşterilerinize zaten tanıdıkları numaradan SMS gönderin."
+     },
+     {
+      "title": "WhatsApp Business Uygulaması",
+      "desc": "Numarayı WhatsApp Business uygulamasında kullanın."
+     },
+     {
+      "title": "WhatsApp API",
+      "desc": "Ekibiniz ihtiyaç duyduğunda aynı numarayı WhatsApp API'de de kullanın."
+     },
+     {
+      "title": "Doğrulama Eazybe'den",
+      "desc": "Numara doğrulamasıyla Eazybe ilgilenir."
+     },
+     {
+      "title": "Numara Şirketinizin",
+      "desc": "Bir temsilci ayrıldığında numara ve müşteri geçmişi sizde kalır."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Sanal İş Numarasına Kimler İhtiyaç Duyar?",
+    "subtitle": "Ses numarası en çok, müşterilerin güvenebileceği tek bir hat isteyen ekiplere yarar.",
+    "cards": [
+     {
+      "title": "Kuzey Amerika'ya Satış Yapan Ekipler",
+      "desc": "Bu pazarlardaki müşterileriniz için ABD, Kanada veya Porto Riko numarası kullanın."
+     },
+     {
+      "title": "Çalışan Değişimi Yaşayan Ekipler",
+      "desc": "Onlarla ilk konuşan temsilci ayrılsa bile müşteriler aynı numarayı aramaya devam eder."
+     },
+     {
+      "title": "Kişisel Numaralardan Vazgeçen Ekipler",
+      "desc": "Ekibinize bir iş hattı verin, satış görüşmelerini kişisel cep telefonlarından uzak tutun."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Numara Müşteri Kaydına Bağlanır",
+    "body": "Tek başına bir numara yalnızca aramayı bağlar. Eazybe ile bu numaradan yapılan aramalar müşterinin WhatsApp sohbetlerinin yanına kaydedilir ve CRM'inize işlenir.",
+    "points": [
+     "Numaradaki aramalar WhatsApp sohbetlerinin yanında durur",
+     "Yeni bir temsilci tüm geçmişi okuyabilir",
+     "Biri ayrıldığında bu geçmiş yerinde kalır"
+    ]
+   },
+   "pricing": {
+    "h2": "Sanal Telefon Numarası Ne Kadar?",
+    "body": "Ses numarası, tüm Eazybe planlarında isteğe bağlı bir eklentidir ve fiyatı ülkeye göre değişir. Fiyatlandırma sayfasından ekleyebilir ya da fiyat teklifi için demo planlayabilirsiniz."
+   },
+   "screenshot": {
+    "h2": "Tüm Numaralarınız Tek Yerde",
+    "alt": "İş numaralarını ülkeye göre ve yenileme tarihleriyle listeleyen Eazybe telefon numaraları ekranı",
+    "caption": "Eazybe uygulamasındaki telefon numaraları ekranı. Telefon numaraları ve hat adları örnektir."
+   },
+   "faqIntro": "İşletmeleri için sanal numara almadan önce en çok sorulan soruların yanıtları.",
+   "faq": [
+    {
+     "q": "Sanal telefon numarası nedir?",
+     "a": "Müşteriler bu numarayı diğer numaralar gibi arar ve mesaj gönderir. Fark sizin tarafınızdadır: numara iş hesabınızda durur ve aramalar internet üzerinden yapılır."
+    },
+    {
+     "q": "Normal bir numaradan farkı nedir?",
+     "a": "Normal bir cep numarası tek bir telefondaki tek bir SIM'e bağlıdır. Sanal numara ise iş hesabına aittir; bu yüzden temsilciyle birlikte gitmez ve tek bir cihaza bağlı kalmaz."
+    },
+    {
+     "q": "Hangi ülkelerde kullanılabilir?",
+     "a": "Eazybe ses numaraları ABD, Kanada ve Porto Riko'da sunulmaktadır."
+    },
+    {
+     "q": "Numarayı WhatsApp'ta kullanabilir miyim?",
+     "a": "Evet. Tek bir Eazybe ses numarası sesli aramalar, SMS, WhatsApp Business uygulaması ve WhatsApp API için çalışır. Numara doğrulamasını Eazybe yapar."
+    },
+    {
+     "q": "Temsilci ayrıldığında numaraya ne olur?",
+     "a": "Numara ve müşteri geçmişi şirkette kalır."
+    },
+    {
+     "q": "Tarayıcıdan arama yapabilir miyim?",
+     "a": "Evet. Eazybe tarayıcı telefonunu açın, mikrofon erişimine izin verin ve o pencereden arama yapın. Uzun aramalarda kulaklık işinizi kolaylaştırır."
+    },
+    {
+     "q": "Numaraya gelen mesajları nerede görürüm?",
+     "a": "SMS ekranı mesajları gönderen, mesajı alan numara, durum ve saat bilgisiyle listeler. Birden fazla numaranız varsa numaraya göre filtreleyebilirsiniz."
+    },
+    {
+     "q": "Ücretsiz sanal numara dahil mi?",
+     "a": "Hayır. Ses numarası ücretli bir eklentidir ve fiyatı ülkeye göre değişir. Eazybe planlarında 4 günlük ücretsiz deneme vardır."
+    },
+    {
+     "q": "Mevcut numaramı koruyabilir miyim?",
+     "a": "Bunu demoda sorun. Ekip mevcut numaranızı inceleyip ülkenizdeki seçenekleri size anlatabilir."
+    },
+    {
+     "q": "Sanal telefon numaraları iş için yasal mı?",
+     "a": "Sunuldukları ülkelerde evet, ancak arama ve mesajlaşma kuralları ülkeden ülkeye değişir. İletişime geçtiğiniz pazarın onay kurallarına uyun, emin değilseniz bir avukata danışın."
+    }
+   ]
+  },
+  "call-tracking": {
+   "navLabel": "Çağrı Takibi",
+   "navDesc": "Temsilcilerin tüm aramalarını CRM'inizde görün",
+   "meta": {
+    "title": "Çağrı Takip Yazılımı: Temsilci ve Yöneticiler için | Eazybe",
+    "description": "Çağrı takip yazılımı: temsilcilerin kimi aradığını, ne kadar konuştuğunu ve sonucu görün. SIM ve sanal aramalar CRM'inize işlenir. 4 gün ücretsiz deneyin.",
+    "og": {
+     "title": "Rapor İstemeden Her Temsilci Aramasını Görün",
+     "description": "Temsilci ve numaraya göre arama geçmişi ve analizler, her arama müşterinin WhatsApp sohbetlerinin yanında. 4 gün ücretsiz."
+    },
+    "twitter": {
+     "title": "WhatsApp Sohbetlerinin Yanında Satış Çağrı Takibi | Eazybe",
+     "description": "Tüm satış ekibiniz için gelen, giden ve cevapsız aramaları, cevaplanma oranını ve konuşma süresini takip edin."
+    }
+   },
+   "hero": {
+    "tag": "Çağrı Takibi",
+    "h1Lead": "Satış Çağrı Takip Yazılımı",
+    "h1Em": "SIM ve Sanal Aramalar için",
+    "subtitle": "Eazybe her aramanın saatini, süresini ve sonucunu CRM'inize kaydeder, aramayı da müşterinin WhatsApp sohbetlerinin yanında saklar. Temsilcileriniz elle arama notu tutmak zorunda kalmaz.",
+    "chips": [
+     "Arama saati",
+     "Arama süresi",
+     "Arama sonucu",
+     "CRM kaydı"
+    ]
+   },
+   "mock": {
+    "title": "Temsilci arama aktivitesi",
+    "rows": [
+     {
+      "name": "SIM araması",
+      "detail": "Bugün, 11:04, 6 dk",
+      "status": "Takip et"
+     },
+     {
+      "name": "Sanal arama",
+      "detail": "Bugün, 11:32, 2 dk",
+      "status": "Cevap yok"
+     },
+     {
+      "name": "SIM araması",
+      "detail": "Bugün, 12:15, 9 dk",
+      "status": "Kazanıldı"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "Satış Çağrı Takibi Nedir?",
+    "paragraphs": [
+     "Satış çağrı takibi, yöneticiye temsilcilerin yaptığı aramaların kaydını sunar: her aramanın saati, süresi ve sonucu. Kimse gün içinde ne yaptığını göstermek için tablo doldurmak zorunda kalmaz.",
+     "Bu, hangi reklamın telefon araması getirdiğini özel numaralarla ölçen pazarlama çağrı takibinden farklıdır. Eazybe satış tarafı için tasarlandı. Aramaları CRM'inizde ilgili müşteriye kaydeder ve o müşterinin WhatsApp sohbetlerinin yanına yerleştirir."
+    ]
+   },
+   "how": {
+    "h2": "Eazybe ile Satış Aramaları Nasıl Takip Edilir",
+    "subtitle": "Temsilciler bugün nasıl arıyorsa öyle aramaya devam eder. Kayıt işlemi arka planda yürür.",
+    "steps": [
+     {
+      "title": "Ekibinizi Bağlayın",
+      "desc": "Android SIM, sanal numara ya da ikisiyle birden arayan temsilcileri tanımlayın."
+     },
+     {
+      "title": "Temsilciler Arar",
+      "desc": "Her arama saati ve süresiyle birlikte yakalanır."
+     },
+     {
+      "title": "Sonuçlar Kaydedilir",
+      "desc": "Aramanın sonucu ilgili müşteriye işlenir."
+     },
+     {
+      "title": "Yöneticiler İnceler",
+      "desc": "Arama aktivitesini CRM'de, müşterinin sohbetlerinin yanında görün."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Neler",
+    "h2Em": "Takip Edilir",
+    "subtitle": "Bir satış yöneticisinin koçluk ve takip için ihtiyaç duyduğu ayrıntılar.",
+    "cards": [
+     {
+      "title": "Her Aramanın Saati",
+      "desc": "Her müşteriye ne zaman ulaşıldığını ve üzerinden ne kadar geçtiğini görün."
+     },
+     {
+      "title": "Arama Süresi",
+      "desc": "20 saniyelik bir aramayla 20 dakikalık bir arama aynı şey değil. Kayıt hangisine baktığınızı gösterir."
+     },
+     {
+      "title": "Arama Sonucu",
+      "desc": "Her arama, müşteri kaydında bir sonuçla kapanır."
+     },
+     {
+      "title": "SIM ve Sanal Aramalar",
+      "desc": "Android'deki SIM aramaları dahil, iki arama türü de aynı yerde toplanır."
+     },
+     {
+      "title": "CRM Kaydı",
+      "desc": "Aramalar CRM'inize işlenir, böylece temsilcilerin elle güncelleyeceği şey azalır."
+     },
+     {
+      "title": "WhatsApp Bağlamı",
+      "desc": "Aramalar müşterinin WhatsApp sohbetlerinin yanında durur, fırsatın tamamını görürsünüz."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Çağrı Takibini Kimler Kullanır",
+    "subtitle": "Bir aramada ne olduğunu, o aramada bulunmadan bilmesi gereken herkesin işine yarar.",
+    "cards": [
+     {
+      "title": "Satış Yöneticileri",
+      "desc": "Kimin aradığını, görüşmelerin ne kadar sürdüğünü ve hangi müşterilerin sessizleştiğini görün."
+     },
+     {
+      "title": "Uzaktan ve Saha Ekipleri",
+      "desc": "Temsilciler farklı yerlerden kendi telefonlarıyla çalışsa da aktiviteyi gözden kaçırmayın."
+     },
+     {
+      "title": "Hesap Devralan Temsilciler",
+      "desc": "Başka birinin ilgilendiği müşteriyi aramadan önce arama geçmişini ve sohbetleri okuyun."
+     }
+    ]
+   },
+   "record": {
+    "h2": "WhatsApp Tarafıyla Birlikte Çağrı Takibi",
+    "body": "Sadece arama kaydına bakınca, fırsat WhatsApp'ta ilerlerken sessiz bir temsilci boşta görünebilir. Eazybe aramaları ve sohbetleri bir arada gösterir, fırsatı bütünüyle değerlendirirsiniz.",
+    "points": [
+     "Sessiz bir arama kaydı her zaman sessiz bir temsilci demek değildir",
+     "Sohbetler aramalar arasında ne olduğunu gösterir",
+     "Yöneticiler iki tarafı birden görerek fırsatı değerlendirebilir"
+    ]
+   },
+   "pricing": {
+    "h2": "Çağrı Takibi Ne Kadar Tutar?",
+    "body": "Maliyetiniz, ekibinizin ihtiyaç duyduğu Eazybe planına bağlıdır. Ses numaraları ek ücretlidir ve yalnızca kullanırsanız ödenir. Doğru planı netleştirmenin en hızlı yolu bir demo."
+   },
+   "screenshot": {
+    "h2": "Tüm Aramalar Tek Geçmişte",
+    "alt": "Gelen, giden ve cevapsız aramaları süre ve filtrelerle gösteren Eazybe arama geçmişi",
+    "caption": "Eazybe uygulamasında arama geçmişi. Telefon numaraları ve isimler örnektir."
+   },
+   "faqIntro": "Satış yöneticilerinin neyin takip edildiği, hangi telefonlarda çalıştığı ve verilerin nereye gittiği hakkında sık sorduğu sorular.",
+   "faq": [
+    {
+     "q": "Eazybe çağrı takibi neleri kaydeder?",
+     "a": "Her aramanın saatini, süresini ve sonucunu CRM'inize kaydeder. Arama ayrıca müşterinin WhatsApp sohbetlerinin yanında saklanır."
+    },
+    {
+     "q": "SIM aramalarıyla çalışır mı?",
+     "a": "Evet. Çağrı takibi Android'deki SIM aramalarıyla ve sanal aramalarla çalışır."
+    },
+    {
+     "q": "iPhone'da çalışır mı?",
+     "a": "SIM çağrı takibi Android'de çalışır. Ekibiniz iPhone kullanıyorsa hangi kurulumun uygun olduğunu demoda sorun. Sanal arama, telefonun SIM'ine bağlı değildir."
+    },
+    {
+     "q": "Arama geçmişi her arama için neyi gösterir?",
+     "a": "Kişiyi, aramanın gelen mi giden mi olduğunu, ilgili numara ve kullanıcıyı, saati ve süreyi. Cevaplanan aramalarda dinleyebileceğiniz bir kayıt da olabilir."
+    },
+    {
+     "q": "Tek bir temsilcinin aramalarını görebilir miyim?",
+     "a": "Evet. Arama geçmişini kullanıcıya, numaraya ya da arama türüne göre filtreleyin. Tüm ekibe dönmek için Sıfırla'yı kullanın."
+    },
+    {
+     "q": "Cevapsız aramaları nasıl bulurum?",
+     "a": "Arama geçmişinin üst kısmında cevapsız aramaların ayrı bir sayacı bulunur. Arama türü filtresi listeyi bunlara daraltır, böylece kimin hâlâ geri aranması gerektiğini görürsünüz."
+    },
+    {
+     "q": "Hangi raporlar dahil?",
+     "a": "Arama analizleri, seçtiğiniz dönem için toplam aramayı, cevaplanma oranını, konuşma süresini ve ortalama arama süresini gösterir. Rakamları telefon numarasına ya da kullanıcıya göre ayırabilirsiniz."
+    },
+    {
+     "q": "Bu, pazarlama çağrı takibiyle aynı şey mi?",
+     "a": "Hayır. Pazarlama çağrı takibi, hangi reklamın ya da anahtar kelimenin telefon araması getirdiğini gösterir. Eazybe ise satış ekibinizin yaptığı aramaları takip eder ve müşteri kaydına bağlar."
+    },
+    {
+     "q": "Aramaları hangi CRM'lere kaydedebilirim?",
+     "a": "Eazybe; HubSpot, Salesforce ve Zoho gibi CRM'lerle ve Eazybe CRM ile çalışır."
+    },
+    {
+     "q": "Yöneticiler WhatsApp mesajlarını da görebilir mi?",
+     "a": "Aramalar müşterinin WhatsApp sohbetlerinin yanında saklanır. Hangi müşteri sohbetlerinin ve grupların CRM'inize bağlanacağını da siz seçersiniz, böylece özel konuşmalar özel kalır."
+    }
+   ]
+  },
+  "sim-based-calling": {
+   "navLabel": "SIM Tabanlı Arama",
+   "navDesc": "Temsilcilerin kendi Android telefonlarındaki aramaları takip edin",
+   "meta": {
+    "title": "SIM Tabanlı Arama Yazılımı: Satış Ekipleri İçin | Eazybe",
+    "description": "SIM tabanlı arama yazılımıyla temsilcilerin Android aramalarını takip edin. Her arama, CRM'inizde WhatsApp sohbetlerinin yanına düşer. Demo planlayın.",
+    "og": {
+     "title": "SIM'leriniz Kalsın, Her Arama CRM'inize Gelsin",
+     "description": "Android satış ekipleri için SIM tabanlı arama. Temsilciler her zamanki gibi arar, aramalar müşterinin sohbetlerinin yanına düşer."
+    },
+    "twitter": {
+     "title": "Android Ekipleri İçin SIM Arama ve CRM Kaydı | Eazybe",
+     "description": "Temsilciler telefonlarını ve numaralarını korur. Eazybe zaten yaptıkları aramaları takip eder ve müşteri kaydına işler."
+    }
+   },
+   "hero": {
+    "tag": "SIM Tabanlı Arama",
+    "h1Lead": "SIM Tabanlı Arama Yazılımı:",
+    "h1Em": "Mobil Satış Ekipleri İçin",
+    "subtitle": "Temsilcileriniz kendi Android telefonlarından aramaya devam eder. Eazybe her SIM aramasının saatini, süresini ve sonucunu CRM'inize, müşterinin WhatsApp sohbetlerinin hemen yanına kaydeder.",
+    "chips": [
+     "Android",
+     "Temsilcinin kendi SIM'i",
+     "CRM kaydı",
+     "WhatsApp bağlamı"
+    ]
+   },
+   "mock": {
+    "title": "SIM arama geçmişi",
+    "rows": [
+     {
+      "name": "Giden arama",
+      "detail": "Android SIM, 5 dk",
+      "status": "Kaydedildi"
+     },
+     {
+      "name": "Giden arama",
+      "detail": "Android SIM, 3 dk",
+      "status": "Kaydedildi"
+     },
+     {
+      "name": "CRM güncellemesi",
+      "detail": "Sonuç kaydedildi",
+      "status": "Senkronize"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "SIM Tabanlı Arama Nedir?",
+    "paragraphs": [
+     "SIM tabanlı aramada temsilciler müşterileri telefonlarındaki SIM kartla, normal mobil şebeke üzerinden arar. Bu sırada bir yazılım arama hareketlerini kaydeder. Kurulacak bir internet hattı yoktur ve müşteri sıradan bir cep numarası görür.",
+     "SIM aramalarının bilinen sorunu, telefonda kalıp ne yöneticiye ne de CRM'e ulaşmamasıdır. Eazybe bunu Android için çözer: her aramanın saati, süresi ve sonucu CRM'inize aktarılır ve müşterinin WhatsApp sohbetlerinin yanında durur."
+    ]
+   },
+   "how": {
+    "h2": "Eazybe'de SIM Tabanlı Arama Nasıl Çalışır?",
+    "subtitle": "Temsilcilerin arama alışkanlıklarını değiştirmesi gerekmez. Bu yüzden birçok ekip için kolay bir ilk adımdır.",
+    "steps": [
+     {
+      "title": "Telefonu Bağlayın",
+      "desc": "Temsilcinin Android telefonunu Eazybe'ye bağlayın."
+     },
+     {
+      "title": "Her Zamanki Gibi Arayın",
+      "desc": "Temsilci, telefonundaki SIM ile eskisi gibi arama yapar."
+     },
+     {
+      "title": "Eazybe Aramayı Kaydeder",
+      "desc": "Saat, süre ve sonuç ilgili müşteriye işlenir."
+     },
+     {
+      "title": "CRM'de Görün",
+      "desc": "Arama, CRM'inizde müşterinin sohbetlerinin yanında görünür."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Ekipler Neden",
+    "h2Em": "SIM Aramayı Tercih Ediyor",
+    "subtitle": "SIM ile arama, satışı zaten cep telefonundan yapan ekiplere uygundur. Eazybe ile elde ettikleriniz şunlar.",
+    "cards": [
+     {
+      "title": "Mevcut Telefonlar Kalsın",
+      "desc": "Temsilciler kendi Android telefonlarını ve mevcut SIM'lerini kullanır."
+     },
+     {
+      "title": "Tanıdık Bir Cep Numarası",
+      "desc": "Müşteri normal bir cep numarası görür, belki de temsilcinin onunla zaten kullandığı numarayı."
+     },
+     {
+      "title": "Aramalar CRM'inize Kaydedilir",
+      "desc": "Saat, süre ve sonuç, temsilci elle girmeden kaydedilir."
+     },
+     {
+      "title": "WhatsApp da Aynı Yerde",
+      "desc": "SIM aramaları, müşterinin WhatsApp sohbetlerinin yanında görünür."
+     },
+     {
+      "title": "Mevcut Tarifenizle Çalışır",
+      "desc": "Aramalar mobil şebeke üzerinden yapılır, operatör tarifeniz geçerli olmaya devam eder."
+     },
+     {
+      "title": "Sanal Aramayı Sonra Ekleyin",
+      "desc": "Eazybe sanal aramaları da takip eder, böylece ekipte ikisini birlikte kullanabilirsiniz."
+     }
+    ]
+   },
+   "table": {
+    "h2": "Eazybe Öncesi ve Sonrası",
+    "subtitle": "Satışı zaten SIM aramalarıyla yapan bir ekip için neler değişir?",
+    "head": [
+     "",
+     "Eazybe ile",
+     "Çağrı takibi olmadan"
+    ],
+    "rows": [
+     [
+      "Arama hareketleri",
+      "Saat, süre ve sonuçla birlikte kaydedilir",
+      "Sadece her temsilcinin telefonunda"
+     ],
+     [
+      "CRM kaydı",
+      "Aramayla birlikte güncellenir",
+      "Temsilcinin hatırlamasına bağlı"
+     ],
+     [
+      "WhatsApp bağlamı",
+      "Müşteri kaydında aramanın yanında",
+      "Ayrı bir uygulamada"
+     ],
+     [
+      "Hesabı devralmak",
+      "Arama ve sohbet geçmişi kayıtta",
+      "Önceki temsilciye ne olduğunu sormak gerekir"
+     ]
+    ]
+   },
+   "useCases": {
+    "h2": "SIM Tabanlı Arama Kimlere Uygun?",
+    "subtitle": "En iyi sonucu genellikle temsilcilerin satışı zaten cep telefonundan yaptığı ekiplerde verir.",
+    "cards": [
+     {
+      "title": "Saha Satış Ekipleri",
+      "desc": "Müşteri ziyaretindeki temsilciler cebindeki telefondan arar, hareketler yine de kaydedilir."
+     },
+     {
+      "title": "Tele Satış Ekipleri",
+      "desc": "Gün boyu Android telefondan arayan ekipler, masa telefonu kurmadan aramalarını CRM'e aktarır."
+     },
+     {
+      "title": "Küçük Satış Ekipleri",
+      "desc": "İş numarasına ihtiyacınız olup olmadığına karar vermeden önce mevcut aramalarınızı takip etmeye başlayın."
+     }
+    ]
+   },
+   "record": {
+    "h2": "SIM Aramaları ve WhatsApp Bir Arada",
+    "body": "Birçok satış, telefon görüşmesi ile WhatsApp sohbeti arasında ilerler. Eazybe ikisini de aynı müşteriye kaydeder, böylece geçmiş tek bir temsilcinin telefonuna bağlı kalmaz.",
+    "points": [
+     "SIM aramaları tek bir telefonda kalmaz",
+     "Android arama detayları CRM'inize ulaşır",
+     "Sohbetler ve aramalar aynı müşteride durur"
+    ]
+   },
+   "pricing": {
+    "h2": "SIM Tabanlı Arama Ne Kadar Tutar?",
+    "body": "Aramalar mobil şebekeniz üzerinden yapıldığı için görüşme ücreti operatör tarifenize dahildir. Ekibinize uygun Eazybe planını netleştirmek için bir demo planlayın."
+   },
+   "faqIntro": "Ekiplerin, temsilcilerinin telefonlarını Eazybe'ye bağlamadan önce genellikle sorduğu sorular.",
+   "faq": [
+    {
+     "q": "SIM tabanlı arama nedir?",
+     "a": "Telefondaki SIM kartla, normal mobil şebeke üzerinden arama yapılması ve bu sırada arama hareketlerinin bir yazılım tarafından kaydedilmesidir. Müşteri normal bir cep numarası görür."
+    },
+    {
+     "q": "Hangi telefonlarda çalışır?",
+     "a": "Eazybe SIM çağrı takibi Android'de çalışır. Bazı temsilcileriniz iPhone kullanıyorsa, onlara hangi kurulumun uygun olduğunu demoda sorun."
+    },
+    {
+     "q": "Yeni bir telefon numarası gerekir mi?",
+     "a": "Hayır. Temsilciler Android telefonlarındaki SIM ile aramaya devam edebilir. Ortak bir iş hattı isterseniz Eazybe ses numaraları da sunar."
+    },
+    {
+     "q": "SIM aramalarını kaydediyor mu?",
+     "a": "Eazybe her SIM aramasının saatini, süresini ve sonucunu kaydeder. Cihazlarınızda SIM aramalarının ses kaydını demoda sorun ve önce yerel kayıt mevzuatınızı kontrol edin."
+    },
+    {
+     "q": "Aynı telefondaki kişisel aramalar ne olacak?",
+     "a": "Temsilciler iş ve kişisel aramalar için tek telefon kullanıyorsa, başlamadan önce net bir politika belirleyin. Kurulumunuza hangi kontrollerin uyduğunu demoda sorun."
+    },
+    {
+     "q": "Müşteri hangi numarayı görür?",
+     "a": "Temsilcinin SIM'indeki cep numarasını, yani o temsilci bugün aradığında gördüğü numaranın aynısını."
+    },
+    {
+     "q": "Arama ücretlerini kim öder?",
+     "a": "SIM aramalarını mobil operatörünüz her zamanki gibi ücretlendirir, yani mevcut tarifeniz geçerlidir. Eazybe planı ayrı bir maliyettir."
+    },
+    {
+     "q": "Bir temsilci ayrılırsa ne olur?",
+     "a": "Numara SIM'le birlikte gider, bu yüzden kimin sahibi olduğunu biri ayrılmadan önce netleştirin. Her zaman şirkette kalacak bir numara istiyorsanız Eazybe ses numarası kullanın."
+    },
+    {
+     "q": "WhatsApp sohbetlerini SIM aramalarının yanında görebilir miyim?",
+     "a": "Evet. Eazybe her SIM aramasını o müşterinin WhatsApp sohbetlerinin yanına kaydeder, böylece yazışmayı okuyup aramaları tek yerde görebilirsiniz."
+    },
+    {
+     "q": "SIM ile arama bulut santralden daha mı iyi?",
+     "a": "Bu ekibe bağlı. SIM ile arama, satışı zaten cep telefonundan yapan temsilciler için basittir. Sanal numarayla arama ise ortak bir iş hattı isteyen ekiplere uyar. SIM ve Bulut Santral rehberimiz farkları tek tek anlatıyor."
+    }
+   ]
+  },
+  "call-recording": {
+   "navLabel": "Çağrı Kaydı",
+   "navDesc": "Kayıtlar ilgili kişiye geri kaydedilir",
+   "meta": {
+    "title": "Çağrı Kayıt Yazılımı: Satış Koçluğu ve İnceleme | Eazybe",
+    "description": "Her kaydı müşteriye bağlayan çağrı kayıt yazılımı. Aramaları geçmişten dinleyin, yeni temsilcileri eğitin, anlaşılanı netleştirin. Ücretsiz deneyin.",
+    "og": {
+     "title": "Satış Aramalarını Çağrı Geçmişinden Tekrar Dinleyin",
+     "description": "Aramayı bulun, Oynat'a basın ve ne söz verildiğini duyun. Kayıtlar, anlaşmanın geri kalanıyla yan yana durur."
+    },
+    "twitter": {
+     "title": "Satış Koçluğu İçin Çağrı Kayıt Yazılımı | Eazybe",
+     "description": "Yeni temsilcileri gerçek aramalarla eğitin, anlaşılanı sonradan doğrulayın. Kayıt yasaları değişir, önce kontrol edin."
+    }
+   },
+   "hero": {
+    "tag": "Çağrı Kaydı",
+    "h1Lead": "Satış Çağrı Kayıt Yazılımı",
+    "h1Em": "Müşteriye Bağlı",
+    "subtitle": "Temsilci Eazybe otomatik arayıcı ile aradığında, kayıt ve arama sonucu ilgili kişiye geri kaydedilir. Her aramayı müşteri kaydından, WhatsApp sohbetlerinin hemen yanında bulursunuz.",
+    "chips": [
+     "Kişiye kaydedilir",
+     "Sonuç dahil",
+     "Koçluk için",
+     "Sonraki adım belirli"
+    ]
+   },
+   "mock": {
+    "title": "Çağrı kayıtları",
+    "rows": [
+     {
+      "name": "Carolina Mendes",
+      "detail": "Kayıt, 7 dk",
+      "status": "Teklif istendi"
+     },
+     {
+      "name": "Ahmed Khan",
+      "detail": "Kayıt, 3 dk",
+      "status": "Geri aranacak"
+     },
+     {
+      "name": "Priya Nair",
+      "detail": "Kayıt, 11 dk",
+      "status": "Toplantı ayarlandı"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "Satış Çağrı Kayıt Yazılımı Nedir?",
+    "paragraphs": [
+     "Satış çağrı kayıt yazılımı, bir satış görüşmesinin sesini kaydeder ve daha sonra dinlenebilmesini sağlar. Ekipler bunu, neyin konuşulduğunu netleştirmek, yeni temsilcileri eğitmek ve hesapları ayrıntı kaybetmeden devretmek için kullanır.",
+     "Bir kayıt ancak bulunabildiğinde işe yarar. Eazybe'de otomatik arayıcıdan gelen kayıtlar, arama sonucuyla birlikte ilgili kişiye geri kaydedilir. Böylece ses dosyalarıyla dolu bir klasörü taramak yerine doğrudan müşteriden başlarsınız."
+    ]
+   },
+   "how": {
+    "h2": "Eazybe'de Çağrı Kaydı Nasıl Çalışır?",
+    "subtitle": "Kayıt, otomatik arayıcı akışının bir parçasıdır. Aramadan sonra kimsenin bir şey dosyalaması gerekmez.",
+    "steps": [
+     {
+      "title": "Arama listesini başlatın",
+      "desc": "Bir liste seçin ve otomatik arayıcıda başlat'a basın."
+     },
+     {
+      "title": "Görüşmeyi yapın",
+      "desc": "Yerel yasanız gerektiriyorsa müşteriye kayıt yapıldığını söyleyin."
+     },
+     {
+      "title": "Kayıt saklanır",
+      "desc": "Kayıt ve sonuç ilgili kişiye geri kaydedilir."
+     },
+     {
+      "title": "Sonra inceleyin",
+      "desc": "Aramayı bulmak için müşteri kaydını açın."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Neden",
+    "h2Em": "Çağrı Kayıtlarını Saklamalısınız",
+    "subtitle": "Müşteriye bağlı bir kayıt, arama bittikten çok sonra bile işinize yarar.",
+    "cards": [
+     {
+      "title": "Kişiye kaydedilir",
+      "desc": "Kayıtlar müşteri kaydında durur, erişimi olan herkes bulabilir."
+     },
+     {
+      "title": "Sonuç yanında",
+      "desc": "Her kayıt, aramada ne olduğu bilgisiyle birlikte gelir."
+     },
+     {
+      "title": "Sonraki adım belirli",
+      "desc": "Kişi kaydı, bundan sonra ne yapılması gerektiğini gösterir."
+     },
+     {
+      "title": "WhatsApp görünür",
+      "desc": "Aramaları, aramadan sonra gönderilenler dahil sohbetlerin yanında görün."
+     },
+     {
+      "title": "Koçluk için faydalı",
+      "desc": "Yöneticiler, temsilciyle incelemek için gerçek aramalar seçebilir."
+     },
+     {
+      "title": "Devir için faydalı",
+      "desc": "Yeni temsilci, hesabı devralmadan önce son aramayı dinleyebilir."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Ekipler Çağrı Kayıtlarını Nasıl Kullanıyor?",
+    "subtitle": "Aynı kayıt temsilcinin, yöneticinin ve hesabı sonra devralacak kişinin işine yarar.",
+    "cards": [
+     {
+      "title": "Yeni temsilcilere koçluk",
+      "desc": "Gerçek aramaları birlikte dinleyin. Müşterinin itirazları gerçek olduğu için rol yapmaktan daha etkilidir."
+     },
+     {
+      "title": "Anlaşılanı kontrol etme",
+      "desc": "Müşteri ve temsilci fiyatı farklı hatırladığında aramaya geri dönün."
+     },
+     {
+      "title": "Hesap devretme",
+      "desc": "Sonraki temsilciye notlarla birlikte gerçek görüşmeyi de verin."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Kayıtlar Anlaşmanın Geri Kalanıyla Bir Arada",
+    "body": "Çağrı kaydı, o aramada ne söylendiğini gösterir. Eazybe WhatsApp sohbetini de yanında tutar. Böylece temsilcinin ne söz verdiğini ve sözünü tutup tutmadığını görebilirsiniz.",
+    "points": [
+     "Kayıtlar anlaşmanın geri kalanıyla birlikte durur",
+     "Bir sözü WhatsApp sohbetiyle karşılaştırabilirsiniz",
+     "Sonraki temsilci gerçek görüşmeye ulaşır"
+    ]
+   },
+   "pricing": {
+    "h2": "Çağrı Kaydının Maliyeti Nedir?",
+    "body": "Maliyet, Eazybe planınıza ve ses numarası ekleyip eklemediğinize bağlıdır. Satın alma nedeniniz öncelikle kayıtsa, hangi planı seçmeniz gerektiğini demoda sorun."
+   },
+   "screenshot": {
+    "h2": "Kayıtları Çağrı Geçmişinden Dinleyin",
+    "alt": "Yanıtlanan her aramanın yanında Kaydı oynat düğmesi bulunan Eazybe çağrı geçmişi",
+    "caption": "Eazybe çağrı geçmişindeki kayıtlar. Telefon numaraları ve isimler örnektir."
+   },
+   "faqIntro": "Kayıt hem pratik hem de yasal sorular doğurur. En sık sorulanlara net yanıtlar burada.",
+   "faq": [
+    {
+     "q": "Eazybe hangi aramaları kaydeder?",
+     "a": "Eazybe ses numaralarındaki gelen ve giden aramalar kaydedilebilir ve bunları çağrı geçmişinden dinlersiniz. Otomatik arayıcı aramalarında kayıt ilgili kişiye geri kaydedilir. SIM aramalarının kaydı için demoda sorun."
+    },
+    {
+     "q": "Bir kaydı nerede bulurum?",
+     "a": "Çağrı geçmişini açın ve ilgili aramada Kaydı oynat'a basın. Çok sayıda aramanız varsa önce kullanıcıya veya numaraya göre filtreleyin."
+    },
+    {
+     "q": "Bir aramanın kaydı neden yok?",
+     "a": "Dinlenecek bir şey olmadığında çağrı geçmişinde Mevcut değil yazar. Bunu genellikle kimse yanıt vermediği için 00:00 süren aramalarda görürsünüz."
+    },
+    {
+     "q": "Yöneticiler ekiplerinin aramalarını dinleyebilir mi?",
+     "a": "Evet. Çağrı geçmişi kuruluşunuzdaki tüm aramaları kapsar, yönetici temsilciye göre filtreleyip kayıtları oradan dinleyebilir."
+    },
+    {
+     "q": "Kayıtları koçluk için nasıl kullanmalıyım?",
+     "a": "Haftada iki üç gerçek arama seçin ve temsilciyle birlikte üzerinden geçin. İyi giden bir arama ile kötü giden bir arama, genellikle her şeyin uzun bir incelemesinden daha öğreticidir."
+    },
+    {
+     "q": "Aramanın iki tarafı da kaydedilir mi?",
+     "a": "Kurulumunuz ve cihazlarınız için demoda sorun. Kayıt desteği telefona ve arama türüne göre değişebilir, bu yüzden güvenmeden önce kendi ekibinizle test edin."
+    },
+    {
+     "q": "Çağrı kaydı yasal mı?",
+     "a": "Bu ülkeye, bazen de eyalete göre değişir. Bazı yerlerde tek tarafın onayı yeterlidir, bazılarında ise görüşmedeki herkesin onay vermesi gerekir. AB'de kayıtlar için GDPR de geçerlidir. Hem kendiniz hem de müşterileriniz için kuralları kontrol edin. Bu genel bilgidir, hukuki tavsiye değildir."
+    },
+    {
+     "q": "Müşterilere aramanın kaydedildiğini söylemeli miyim?",
+     "a": "Söylemek en güvenli alışkanlıktır ve bazı yerlerde zorunludur. Aramanın başında kısa bir cümle genellikle yeterlidir, ancak pazarınızın neyi gerektirdiğini teyit edin."
+    },
+    {
+     "q": "Bir kaydı sonradan bulabilir miyim?",
+     "a": "Evet. Kayıtlar ilgili kişiye geri kaydedilir, bu yüzden müşteri kaydından başlayın."
+    },
+    {
+     "q": "WhatsApp aramalarını kaydedebilir miyim?",
+     "a": "WhatsApp arama kaydını bugün bir özellik olarak sunmuyoruz. Ekibiniz için önemliyse demoda sorun."
+    }
+   ]
+  },
+  "sim-vs-cloud-calling": {
+   "navLabel": "SIM ve Bulut Santral",
+   "navDesc": "Satış ekibinize hangisi uyar",
+   "meta": {
+    "title": "SIM ve Bulut Santral Karşılaştırması: Hangisi? | Eazybe",
+    "description": "SIM ve bulut santral karşılaştırması: maliyet, kurulum, numara sahipliği ve uyumluluk açısından farklar. Satış ekibinize hangisinin uyduğunu görün.",
+    "og": {
+     "title": "SIM mi, Bulut Santral mi? Satış Ekipleri İçin Net Cevap",
+     "description": "Maliyet, kurulum, numara sahipliği ve uyumluluğu karşılaştırın, saha temsilcileri ve ofis ekipleri için doğru seçeneği görün."
+    },
+    "twitter": {
+     "title": "SIM ve Bulut Santral: Ekibiniz Hangisini Kullanmalı?",
+     "description": "İkisini de sunuyoruz. Maliyet, kurulum ve temsilci ayrılınca numaranın kimde kaldığına dair sade bir karşılaştırma."
+    }
+   },
+   "hero": {
+    "tag": "Satın Alma Rehberi",
+    "h1Lead": "SIM ve Bulut Santral:",
+    "h1Em": "Ekibinize Hangisi Uyar?",
+    "subtitle": "SIM tabanlı arama hızlıca başlar, bulut santral ise kontrolü sizde olan bir iş hattı sunar. Eazybe ikisini de desteklediği için bu rehberin sizi birine yönlendirmek için bir nedeni yok.",
+    "chips": [
+     "Maliyet",
+     "Kurulum",
+     "Numara sahipliği",
+     "Uyumluluk"
+    ]
+   },
+   "mock": {
+    "title": "Hızlı karşılaştırma",
+    "rows": [
+     {
+      "name": "SIM tabanlı arama",
+      "detail": "Temsilcinin cep numarası",
+      "status": "Hızlı başlangıç"
+     },
+     {
+      "name": "Bulut santral",
+      "detail": "İş numarası",
+      "status": "Şirkete ait"
+     },
+     {
+      "name": "İkisi birden",
+      "detail": "Aynı müşteri kaydı",
+      "status": "Eazybe"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "SIM ve Bulut Santral Arasındaki Fark Nedir?",
+    "paragraphs": [
+     "SIM tabanlı arama, mobil şebekeyi ve telefondaki SIM kartı kullanır. VoIP olarak da bilinen bulut santral ise sanal bir numara üzerinden internetle çalışır. Pratikteki asıl fark, numaranın kimin kontrolünde olduğudur: SIM tabanlı aramada numara genellikle temsilcide kalır, bulut santralde ise şirkette.",
+     "Hiçbiri her ekip için daha iyi değil. Cep telefonundan arama yapan bir saha ekibi bulut hatta geçerken zaman kaybedebilir. Yurt dışına satış yapan bir ekip ise SIM tabanlı aramanın sınırlarına hızla ulaşabilir. Pek çok ekip sonunda ikisini birlikte kullanır, bu yüzden hepsini tek yerden takip etmek önemlidir."
+    ]
+   },
+   "how": {
+    "h2": "Dört Soruda Doğru Seçim",
+    "subtitle": "Bu soruları satış yöneticinizle birlikte cevaplayın. Yanıtlar çoğu zaman tek bir seçeneği işaret eder.",
+    "steps": [
+     {
+      "title": "Temsilciler Nerede Çalışıyor?",
+      "desc": "Sahada çalışıyorlarsa SIM öne çıkar. İnterneti iyi bir masa başında ikisi de iş görür."
+     },
+     {
+      "title": "Numara Kimde Kalmalı?",
+      "desc": "Numaranın şirkette kalması gerekiyorsa bulut santrali seçin."
+     },
+     {
+      "title": "Müşterileriniz Nerede?",
+      "desc": "Başka ülkelere satış yapıyorsanız yerel sanal numaralar genellikle daha avantajlıdır."
+     },
+     {
+      "title": "Arama Hacminiz Ne Kadar?",
+      "desc": "Operatör tarifenizi, bulut santralin numara ve dakika başı fiyatlarıyla karşılaştırın."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Her Seçeneğin",
+    "h2Em": "Güçlü Yanları",
+    "subtitle": "İki seçeneğin de gerçek avantajları var. Bunları ekibinizin satış yapma biçimine göre eşleştirin.",
+    "cards": [
+     {
+      "title": "SIM: Hızlı Başlangıç",
+      "desc": "Temsilcilerin telefonları ve SIM kartları zaten hazır, kurulacak yeni bir hat yok."
+     },
+     {
+      "title": "SIM: Mobil Şebekede Çalışır",
+      "desc": "Aramalar iyi bir internet bağlantısına bağlı değildir, bu da sahada işinizi kolaylaştırır."
+     },
+     {
+      "title": "SIM: Tanıdık Numara",
+      "desc": "Müşteriler normal bir cep numarası görür, mevcut kişiler bu numarayı zaten tanıyor olabilir."
+     },
+     {
+      "title": "Bulut: Şirkete Ait Numara",
+      "desc": "Temsilci ayrıldığında numara şirkette kalır."
+     },
+     {
+      "title": "Bulut: Ortak Hat",
+      "desc": "Tek bir iş numarası tüm ekibe hizmet verebilir, sanal numara da tek bir telefona bağlı değildir."
+     },
+     {
+      "title": "Bulut: Yerel Varlık",
+      "desc": "Sanal numaralarla ofisinizin olmadığı bir pazarda yerel numara edinebilirsiniz."
+     }
+    ]
+   },
+   "table": {
+    "h2": "SIM ve Bulut Santral Karşılaştırması",
+    "subtitle": "Kararı genellikle belirleyen etkenler. Maliyetler ülkeye ve sağlayıcıya göre çok değişir, bu yüzden gerçek teklif alın.",
+    "head": [
+     "Etken",
+     "SIM tabanlı arama",
+     "Bulut santral"
+    ],
+    "rows": [
+     [
+      "Bağlantı",
+      "Mobil şebeke",
+      "İnternet"
+     ],
+     [
+      "Kurulum",
+      "Mevcut telefon ve SIM'ler kullanılır",
+      "Numara alınır ve hesap kurulur"
+     ],
+     [
+      "Maliyet modeli",
+      "Mobil operatör tarifeniz",
+      "Genellikle numara, kullanıcı ya da dakika başı"
+     ],
+     [
+      "Görünen numara",
+      "Temsilcinin cep numarası",
+      "İş numarası ya da yerel sanal numara"
+     ],
+     [
+      "Numara sahipliği",
+      "Genellikle SIM sahibine bağlı",
+      "Şirkette kalır"
+     ],
+     [
+      "Arama kalitesi neye bağlı",
+      "Mobil sinyal",
+      "İnternet bağlantısı"
+     ],
+     [
+      "Yurt dışına satış",
+      "Uluslararası operatör ücretleri uygulanabilir",
+      "Yerel numaralar mevcut olabilir"
+     ],
+     [
+      "Uyumluluk",
+      "Arama ve kayıt yasalarına tabidir",
+      "Arama ve kayıt yasalarına tabidir"
+     ],
+     [
+      "Eazybe'de",
+      "Android'de takip edilir",
+      "Takip edilir; ABD, Kanada ve Porto Riko'da ses numaraları sunulur"
+     ]
+    ],
+    "verdict": [
+     {
+      "title": "SIM Tabanlı Aramayı Seçin",
+      "desc": "temsilcileriniz zaten Android telefonlardan satış yapıyor, sahada çalışıyor ve çoğunlukla kendi ülkelerindeki müşterileri arıyorsa."
+     },
+     {
+      "title": "Bulut Santrali Seçin",
+      "desc": "şirkete ait bir numaraya, ortak bir iş hattına ya da başka bir pazarda varlık göstermeye ihtiyacınız varsa."
+     },
+     {
+      "title": "İkisini Birlikte Kullanın",
+      "desc": "hem saha temsilcileriniz hem de ofis ekibiniz varsa. Müşteri kaydının eksiksiz kalması için ikisini tek yerden takip edin."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Ekiplere Göre Yaygın Tercihler",
+    "subtitle": "Bunlar yalnızca başlangıç noktası. Kendi pazarınız ve operatör ücretleriniz sonucu değiştirebilir.",
+    "cards": [
+     {
+      "title": "Saha Satışı",
+      "desc": "Genellikle SIM tabanlı arama, çünkü temsilciler sürekli hareket halinde ve telefonları zaten yanlarında."
+     },
+     {
+      "title": "Yurt Dışına Ofis İçi Satış",
+      "desc": "Genellikle bulut santral, çünkü yerel numaralar ve ortak hat daha fazla önem taşır."
+     },
+     {
+      "title": "Karma Ekipler",
+      "desc": "Çoğu zaman ikisi birden. Müşteri başına tek kayıt olur, yöneticiler iki ayrı sistemi kontrol etmek zorunda kalmaz."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Hangisini Seçerseniz Seçin, Tek Kayıt Tutun",
+    "body": "Hangi hattı kullandığınız, sonrasında ne olduğunu görebilmenizden daha az önemlidir. Eazybe, SIM ve sanal numara aramalarını WhatsApp sohbetlerinin yanına kaydeder. Böylece ileride hat tercihinizi değiştirseniz de müşteri geçmişi korunur.",
+    "points": [
+     "Hatları sonradan birlikte kullanabilir ya da değiştirebilirsiniz",
+     "SIM ve sanal aramalar tek kayıtta toplanır",
+     "Geçmiş, müşteriyle birlikte kalır"
+    ]
+   },
+   "pricing": {
+    "h2": "Hangi Seçenek Ne Kadara Mal Olur?",
+    "body": "SIM aramaları operatör tarifeniz üzerinden yapılır. Bulut numaraların ise genellikle ayrı bir ücreti vardır: Eazybe'de ses numarası, fiyatı ülkeye göre değişen isteğe bağlı bir eklentidir."
+   },
+   "faqIntro": "SIM tabanlı arama ile bulut santral arasında karar veren ekipler için kısa yanıtlar. Eazybe iki seçeneği de sattığı için bu bilgileri kendi aldığınız tekliflerle birlikte değerlendirin.",
+   "faq": [
+    {
+     "q": "SIM tabanlı arama bulut santralden daha ucuz mu?",
+     "a": "Operatör tarifenize, arama hacminize ve ülkenize bağlı. Temsilcilerin sınırsız yurt içi konuşma paketi varsa SIM tabanlı arama çok az ek maliyet getirebilir. Bunu numara, kullanıcı ve dakikaları içeren gerçek bir bulut santral teklifiyle karşılaştırın."
+    },
+    {
+     "q": "Müşteriler SIM aramalarını daha sık mı yanıtlıyor?",
+     "a": "SIM sağlayıcıları genellikle böyle söyler, ancak bunu farklı pazarlarda kanıtlayan bağımsız bir veri görmedik. Birkaç hafta boyunca yanıt oranlarını karşılaştırarak kendi listelerinizde test edin."
+    },
+    {
+     "q": "Bulut santral nedir?",
+     "a": "Bulut santral, iş aramalarını fiziksel bir telefon hattı ya da SIM yerine internet üzerinden yürütür. Numaralar ve arama verileri çevrimiçi bir hesap üzerinden yönetilir."
+    },
+    {
+     "q": "SIM tabanlı arama ve bulut santrali birlikte kullanabilir miyim?",
+     "a": "Evet. Eazybe, Android'deki SIM aramalarını ve sanal aramaları takip eder, ikisini de müşterinin WhatsApp sohbetlerinin yanına kaydeder."
+    },
+    {
+     "q": "Temsilci ayrılırsa numara kimde kalır?",
+     "a": "SIM'de bu, SIM'in kime ait olduğuna bağlıdır. Eazybe ses numarasında ise numara ve müşteri geçmişi şirkette kalır."
+    },
+    {
+     "q": "Hangisinin arama kalitesi daha iyi?",
+     "a": "Bağlantıya göre değişir. SIM aramaları mobil sinyale, bulut aramaları ise internetinize dayanır. Ofisteki bağlantısı zayıf olan bir temsilci SIM ile, sinyalin zayıf olduğu bir bölgedeki temsilci ise bulut santralle daha iyi sonuç alabilir."
+    },
+    {
+     "q": "Yurt dışına satış için hangisi daha iyi?",
+     "a": "Genellikle bulut santral. Sanal numara size o pazarda yerel bir varlık sağlayabilir, SIM ise uluslararası ücretler yansıtabilir. Ses numaralarımız ABD, Kanada ve Porto Riko'yu kapsar."
+    },
+    {
+     "q": "Arama ve kayıt yasaları ikisi arasında farklı mı?",
+     "a": "Hayır. Kurallar hat türüne değil, aradığınız ülkeye ve kişilerle nasıl iletişim kurduğunuza göre belirlenir. Kurallar değiştiği için kendi pazarınıza yönelik danışmanlık alın."
+    },
+    {
+     "q": "SIM ile başlayıp bulut santrali sonradan ekleyebilir miyim?",
+     "a": "Evet. Eazybe ikisini de takip eder ve ses numarası her planda isteğe bağlı bir eklentidir. Ekibinizin ortak bir hatta ihtiyacı olduğunda ekleyebilirsiniz."
+    },
+    {
+     "q": "Saha satışı için hangisi daha iyi?",
+     "a": "Genellikle SIM tabanlı arama, çünkü mobil şebeke üzerinden çalışır ve temsilciler telefonu zaten yanlarında taşır. Bulut santral güvenilir bir internet bağlantısı gerektirir."
+    }
+   ]
+  }
+ }
+}

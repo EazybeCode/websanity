@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server'
 import { sanityClient } from '@/lib/sanity'
 // Git date each code-built page last changed (regenerate: node scripts/sitemap-lastmod.mjs)
 import CODE_LASTMOD from '@/data/sitemap-lastmod.json'
+import { CALLING_SLUGS } from '@/data/calling-content'
 
 const SITE_URL = 'https://eazybe.com'
 const LOCALES = ['en', 'br', 'es', 'tr']
@@ -192,6 +193,18 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
       priority,
       lastmod: newest(codeDate(page.path), STATIC_SANITY[page.path]?.()),
       alternates: allLocaleAlternates(page.path),
+    })
+  }
+
+  // ── Calling section ─────────────────────────────────────────────────────
+  for (const path of ['/calling', ...CALLING_SLUGS.map((s) => `/calling/${s}`)]) {
+    const base = path === '/calling' ? 0.9 : 0.8
+    entries.push({
+      loc: localeUrl(lang, path),
+      changefreq: 'monthly',
+      priority: isDefault ? base : Math.round((base - 0.1) * 10) / 10,
+      lastmod: codeDate(path),
+      alternates: allLocaleAlternates(path),
     })
   }
 

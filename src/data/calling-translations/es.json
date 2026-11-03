@@ -1,0 +1,1604 @@
+{
+ "ui": {
+  "common": {
+   "startTrial": "Empezar Prueba Gratis de 4 Días",
+   "bookDemo": "Reservar Demo",
+   "seePricing": "Ver Precios",
+   "pricingLabel": "Precios",
+   "faqEyebrow": "Preguntas",
+   "faqH2": "Preguntas Frecuentes",
+   "readMore": "Leer más",
+   "showLess": "Ver menos",
+   "illustrative": "Ejemplo ilustrativo",
+   "ctaH2": "Reúne tus Llamadas y Chats",
+   "ctaH2Em": "en un Solo Registro",
+   "ctaSub": "Prueba Eazybe gratis durante 4 días o reserva una demo y revisamos contigo cómo configurar tus llamadas.",
+   "ctaFacts": [
+    "Prueba gratis de 4 días",
+    "Unos 2 minutos de configuración",
+    "30,000+ usuarios"
+   ],
+   "productsEyebrow": "Productos de llamadas",
+   "relatedH2": "Páginas Relacionadas de Llamadas",
+   "relatedBefore": "Consulta ",
+   "relatedLink": "todo lo que incluye Eazybe en Llamadas",
+   "relatedAfter": ", o ve directo a un tema relacionado.",
+   "crumbHome": "Inicio",
+   "crumbCalling": "Llamadas",
+   "proofAria": "Eazybe en cifras y clientes",
+   "tabsAria": "Secciones de llamadas",
+   "factorHeader": "Criterio"
+  },
+  "stats": [
+   {
+    "value": "4.3",
+    "label": "HubSpot Marketplace, 77 reseñas"
+   },
+   {
+    "value": "30,000+",
+    "label": "Usuarios en Chrome Web Store"
+   },
+   {
+    "value": "40+",
+    "label": "Países"
+   },
+   {
+    "value": "4 días",
+    "label": "Prueba gratis, unos 2 minutos de configuración"
+   }
+  ],
+  "products": {
+   "sim-based-calling": {
+    "name": "Llamadas con SIM",
+    "desc": "Haz seguimiento en tu CRM de las llamadas desde los Android de tus vendedores."
+   },
+   "virtual-phone-number": {
+    "name": "Números de Teléfono Virtuales",
+    "desc": "Una línea de empresa para llamadas, SMS y WhatsApp."
+   },
+   "auto-dialer": {
+    "name": "Marcador Automático",
+    "desc": "Sube una lista y llama a cada contacto, uno por uno."
+   },
+   "call-tracking": {
+    "name": "Seguimiento de Llamadas",
+    "desc": "Ve las llamadas entrantes, salientes y perdidas por vendedor y número."
+   },
+   "call-recording": {
+    "name": "Grabación de Llamadas",
+    "desc": "Escucha las grabaciones desde tu historial de llamadas."
+   },
+   "sim-vs-cloud-calling": {
+    "name": "SIM vs Llamadas en la Nube",
+    "desc": "Compara costos, configuración y propiedad del número antes de elegir."
+   }
+  },
+  "tabs": [
+   "Llamadas con SIM",
+   "Llamadas Virtuales",
+   "Marcador Automático",
+   "Seguimiento y Grabación"
+  ],
+  "hub": {
+   "heroTag": "Funciona con HubSpot, Salesforce, Zoho y más",
+   "h1Lead": "Software de Llamadas de Ventas para",
+   "h1Em": "Llamadas con SIM y Virtuales",
+   "lede": "Tus vendedores venden por teléfono y por WhatsApp, pero la mayoría de las herramientas solo ve uno de los dos canales. Eazybe registra las llamadas con SIM y virtuales junto a los chats de WhatsApp de cada cliente, así toda la venta queda en un mismo lugar.",
+   "introEyebrow": "¿Qué es un software de llamadas de ventas?",
+   "introH2": "Cada Llamada y Cada Chat.",
+   "introH2Em": "Un Solo Registro por Cliente.",
+   "sim": {
+    "title": "Las Llamadas con SIM de tu Equipo.",
+    "em": "En tu CRM.",
+    "body": "Tus vendedores siguen llamando desde sus propios teléfonos Android. Eazybe registra cada llamada y la coloca junto a los chats de WhatsApp de ese cliente, para que ninguna llamada se quede perdida en el teléfono de una sola persona.",
+    "points": [
+     "Conserva los teléfonos y SIM que tu equipo ya usa",
+     "Tus clientes ven un número móvil normal",
+     "Los datos de cada llamada llegan a tu CRM sin notas manuales"
+    ],
+    "label": "Descubre las llamadas con SIM"
+   },
+   "virtual": {
+    "title": "Un Número de Empresa.",
+    "em": "Llamadas, SMS y WhatsApp.",
+    "body": "Compra un número de voz en Eazybe y usa una sola línea para llamadas, SMS, la app WhatsApp Business y la API de WhatsApp. El número pertenece a la empresa, no al vendedor.",
+    "points": [
+     "Números en EE. UU., Canadá y Puerto Rico",
+     "Eazybe se encarga de verificar el número",
+     "El número y su historial se quedan cuando un vendedor se va"
+    ],
+    "label": "Descubre los números virtuales",
+    "alt": "Pantalla de números de teléfono de Eazybe con números de empresa por país y fechas de renovación",
+    "note": "Pantalla real de Eazybe. Los números de teléfono y los nombres de línea son de ejemplo."
+   },
+   "dialer": {
+    "title": "Sube una Lista.",
+    "em": "Pulsa Iniciar.",
+    "body": "Sube un archivo Excel o CSV, revisa los contactos, elige desde qué número llamar y define el tiempo entre llamadas. Después, Eazybe recorre la lista en orden.",
+    "points": [
+     "Hasta 1,000 contactos por hoja",
+     "Una llamada a la vez, en el orden de la lista",
+     "Pausa, detén u omite una llamada cuando quieras"
+    ],
+    "label": "Descubre el marcador automático",
+    "alt": "Pantalla del marcador automático de Eazybe con carga de una lista de contactos y ajustes de la sesión de llamadas",
+    "note": "Pantalla real de Eazybe. Números y nombres de línea de ejemplo; la tarjeta flotante es ilustrativa."
+   },
+   "tracking": {
+    "title": "Ve Cada Llamada.",
+    "em": "Vuelve a Escuchar las que Importan.",
+    "body": "El historial muestra las llamadas entrantes, salientes y perdidas de todo tu equipo. Filtra por vendedor o número y reproduce una grabación sin pedirle a nadie que la busque.",
+    "points": [
+     "Filtra por usuario, número y tipo de llamada",
+     "Detecta llamadas perdidas que requieren seguimiento",
+     "Usa llamadas reales para formar a vendedores nuevos"
+    ],
+    "label": "Descubre el seguimiento de llamadas",
+    "alt": "Historial de llamadas de Eazybe con llamadas entrantes, salientes y perdidas, grabaciones y filtros",
+    "note": "Pantalla real de Eazybe. Los números de teléfono y los nombres son de ejemplo."
+   },
+   "compareH2": "¿Llamadas con SIM o",
+   "compareH2Em": "Llamadas Virtuales?",
+   "compareSubSim": "Red móvil",
+   "compareSubVirtual": "Línea de internet",
+   "productsSub": "Empieza con uno o úsalos todos. Cada uno tiene su propia página con los pasos de configuración y respuestas a las dudas más comunes."
+  },
+  "demo": {
+   "simCall": "Llamada con SIM · 04:12",
+   "crmRecord": "REGISTRO CRM",
+   "logged": "Llamada registrada automáticamente",
+   "rowCallType": "Tipo de llamada",
+   "rowCallTypeValue": "SIM, Android",
+   "rowTime": "Hora",
+   "rowTimeValue": "Hoy, 11:04",
+   "rowLength": "Duración",
+   "rowLengthValue": "4 min 12 s",
+   "rowWhatsapp": "WhatsApp",
+   "rowWhatsappValue": "Cotización enviada",
+   "lineHead": "Una línea de empresa",
+   "lineVoice": "Llamadas de voz",
+   "lineSms": "SMS",
+   "lineWhatsapp": "WhatsApp",
+   "dialHead": "Sesión de llamadas",
+   "dialSub": "una a la vez",
+   "dialQueued": "En cola",
+   "dialCalling": "Llamando",
+   "dialSaved": "Guardado",
+   "playerHead": "Grabación de llamada"
+  },
+  "visual": {
+   "businessCall": "Llamada de empresa · 02:14",
+   "smsAsk": "¿Sigue vigente la cotización?",
+   "smsReply": "Sí, hasta el viernes.",
+   "smsThanks": "Perfecto, gracias.",
+   "waAsk": "¿Podemos repasar la cotización?",
+   "waReply": "Te llamo ahora",
+   "apiHead": "API de WhatsApp",
+   "verified": "Número verificado",
+   "ownerSub": "Se queda en tu empresa",
+   "uploadSub": "Hasta 1,000 contactos por hoja",
+   "rowCallBack": "Volver a llamar a las 5 pm",
+   "rowQuoteSent": "Cotización enviada",
+   "rowNextUp": "Siguiente",
+   "outcomeMeeting": "Reunión agendada",
+   "outcomeCallBack": "Volver a llamar",
+   "outcomeQuote": "Cotización enviada",
+   "compareSim": "Llamadas con SIM",
+   "compareSimSub": "Red móvil",
+   "compareCloud": "Llamadas en la nube",
+   "compareCloudSub": "Línea de internet",
+   "numberSub": "Número móvil"
+  },
+  "price": {
+   "yearly": "Planes desde, facturación anual",
+   "monthly": "Planes desde, facturación mensual",
+   "perUser": "por usuario / mes",
+   "voice": "Número de voz",
+   "addOn": "Complemento",
+   "varies": "el precio varía según el país"
+  }
+ },
+ "pages": {
+  "": {
+   "navLabel": "Todas las Llamadas",
+   "navDesc": "Llamadas con SIM y virtuales en un solo lugar",
+   "meta": {
+    "title": "Software de Llamadas para Ventas: SIM y WhatsApp | Eazybe",
+    "description": "Software de llamadas para ventas: guarda en tu CRM llamadas con SIM y virtuales junto a WhatsApp. Marcador automático y grabación. Prueba gratis 4 días.",
+    "og": {
+     "title": "Software de Llamadas para Ventas: SIM y Virtuales | Eazybe",
+     "description": "Software de llamadas para ventas con SIM y virtuales. Registra todo en tu CRM junto a WhatsApp. Prueba Eazybe 4 días gratis."
+    },
+    "twitter": {
+     "title": "Software de Llamadas para Ventas con WhatsApp y CRM | Eazybe",
+     "description": "Registra llamadas con SIM y virtuales en tu CRM junto a WhatsApp. Marcador automático y grabación. Pruébalo 4 días gratis."
+    }
+   },
+   "hero": {
+    "tag": "Llamadas Eazybe",
+    "h1Lead": "Software de Llamadas para Ventas que Une",
+    "h1Em": "Llamadas y WhatsApp",
+    "subtitle": "Tus vendedores venden por teléfono y por WhatsApp, pero la mayoría de las herramientas solo ve uno de los dos canales. Eazybe registra las llamadas con SIM y virtuales junto a los chats del cliente y envía el resultado a tu CRM.",
+    "chips": [
+     "Llamadas con SIM en Android",
+     "Llamadas virtuales",
+     "Marcador automático",
+     "Registro en el CRM"
+    ]
+   },
+   "mock": {
+    "title": "Historial del cliente",
+    "rows": [
+     {
+      "name": "Chat de WhatsApp",
+      "detail": "Pidió un presupuesto",
+      "status": "Respondido"
+     },
+     {
+      "name": "Llamada con SIM",
+      "detail": "4 min 12 s",
+      "status": "Interesado"
+     },
+     {
+      "name": "Llamada virtual",
+      "detail": "2 min 40 s",
+      "status": "Reunión agendada"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "¿Qué Es un Software de Llamadas para Ventas?",
+    "paragraphs": [
+     "Un software de llamadas para ventas ayuda a un equipo a hacer llamadas, registrar lo que pasó en cada una y medir los resultados. Eazybe lo hace con dos tipos de llamada: las llamadas con SIM desde el teléfono Android del vendedor y las llamadas virtuales por internet con un número de empresa.",
+     "Lo que casi todas las herramientas de llamadas dejan fuera es WhatsApp. Si un cliente pide un precio por WhatsApp y lo acepta en una llamada, una herramienta que solo ve llamadas cuenta la mitad de la historia. Eazybe guarda cada llamada junto a los chats de WhatsApp de ese cliente, así quien lleve la cuenta después puede ver ambas cosas."
+    ]
+   },
+   "how": {
+    "h2": "Cómo Funcionan las Llamadas en Eazybe",
+    "subtitle": "La configuración cambia según el tipo de llamada que elijas, pero el registro final es el mismo.",
+    "steps": [
+     {
+      "title": "Elige Cómo Llamar",
+      "desc": "Haz seguimiento de llamadas con SIM desde Android, usa llamadas virtuales o combina ambas en el equipo."
+     },
+     {
+      "title": "Conecta tu CRM",
+      "desc": "Las llamadas se registran en HubSpot, Salesforce, Zoho, Eazybe CRM o tu Workspace."
+     },
+     {
+      "title": "Empieza a Llamar",
+      "desc": "Llama a un cliente cada vez o inicia una lista de llamadas con el marcador automático."
+     },
+     {
+      "title": "Revisa el Registro",
+      "desc": "La hora, la duración y el resultado aparecen junto a los chats de WhatsApp del cliente."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Todo lo que Incluye",
+    "h2Em": "Eazybe para Llamadas",
+    "subtitle": "Cada página de abajo profundiza en una parte del producto.",
+    "cards": []
+   },
+   "table": {
+    "h2": "¿Llamadas con SIM o Llamadas Virtuales?",
+    "subtitle": "Muchos equipos usan las dos. Este es el resumen de en qué se diferencian.",
+    "head": [
+     "",
+     "Llamadas con SIM",
+     "Llamadas virtuales"
+    ],
+    "rows": [
+     [
+      "Qué usa",
+      "La SIM del teléfono Android del vendedor",
+      "Un número de empresa por internet"
+     ],
+     [
+      "Qué ve el cliente",
+      "El número móvil del vendedor",
+      "El número de tu empresa"
+     ],
+     [
+      "Si un vendedor se va",
+      "Comprueba de quién es la SIM antes de que se vaya",
+      "El número y el historial se quedan en la empresa"
+     ],
+     [
+      "Ideal para",
+      "Vendedores que ya venden desde el móvil",
+      "Equipos que necesitan una línea compartida"
+     ]
+    ]
+   },
+   "useCases": {
+    "h2": "Quién Usa Eazybe para Llamar",
+    "subtitle": "Las llamadas aportan más cuando las ventas pasan del teléfono a WhatsApp y viceversa.",
+    "cards": [
+     {
+      "title": "Ventas Internas",
+      "desc": "Avanza por una lista de llamadas, registra cada resultado y envía el presupuesto por WhatsApp desde el mismo registro."
+     },
+     {
+      "title": "Ventas de Campo",
+      "desc": "Los vendedores llaman desde su Android durante el día y los gerentes ven la actividad sin pedir un informe."
+     },
+     {
+      "title": "Gerentes de Ventas",
+      "desc": "Mira a quién se llamó, cuánto duró y qué pasó, y lee el chat antes de entrar en una venta."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Un Solo Registro para Llamadas y Chats",
+    "body": "Eazybe guarda las llamadas en el mismo registro que las conversaciones de WhatsApp del cliente. Un marcador independiente no ve esos chats, y esa es la gran diferencia.",
+    "points": [
+     "Los chats de WhatsApp y las llamadas están en el mismo registro del cliente",
+     "La hora, la duración y el resultado de cada llamada quedan en tu CRM",
+     "Un gerente puede leer toda la conversación antes de intervenir"
+    ]
+   },
+   "pricing": {
+    "h2": "¿Cuánto Cuestan las Llamadas de Eazybe?",
+    "body": "Pagas tu plan de Eazybe y añades un número de voz solo si lo necesitas. Cada equipo tiene necesidades distintas según su tamaño y país, así que pregunta en una demo qué plan te conviene."
+   },
+   "faqIntro": "Lo que suelen preguntar los equipos al comparar herramientas de llamadas. Cada página de producto lo explica con más detalle.",
+   "faq": [
+    {
+     "q": "¿Qué diferencia hay entre las llamadas con SIM y las llamadas virtuales?",
+     "a": "Las llamadas con SIM usan la SIM del teléfono del vendedor, así que el cliente ve ese número móvil. Las llamadas virtuales van por internet con un número de empresa que pertenece a la compañía. Eazybe hace seguimiento de ambas."
+    },
+    {
+     "q": "¿Puedo usar llamadas con SIM y virtuales en el mismo equipo?",
+     "a": "Sí. El seguimiento de llamadas de Eazybe funciona con llamadas con SIM en Android y con llamadas virtuales, y cada llamada se guarda junto a los chats de WhatsApp del cliente."
+    },
+    {
+     "q": "¿En qué CRM registra Eazybe las llamadas?",
+     "a": "Eazybe registra la hora, la duración y el resultado de cada llamada en tu CRM. Funciona con HubSpot, Salesforce y Zoho, además de Eazybe CRM."
+    },
+    {
+     "q": "¿Eazybe reemplaza mi sistema telefónico?",
+     "a": "Depende de lo que uses hoy. Eazybe se encarga del seguimiento de llamadas, la marcación y los números de voz junto a WhatsApp y tu CRM. Si tu equipo depende del enrutamiento de un call center, pregunta en una demo antes de cambiar."
+    },
+    {
+     "q": "¿En qué países puedo conseguir un número de voz?",
+     "a": "Los números de voz están disponibles en EE. UU., Canadá y Puerto Rico. Eazybe se encarga de verificar el número."
+    },
+    {
+     "q": "¿Cómo funciona el marcador automático?",
+     "a": "Sube un archivo Excel o CSV con hasta 1,000 contactos por hoja y revisa la lista. Luego elige el número desde el que llamar, define el tiempo entre llamadas y pulsa iniciar. Eazybe llama a un contacto cada vez, en el orden de la lista, y puedes pausar, detener u omitir cuando lo necesites."
+    },
+    {
+     "q": "¿Los vendedores pueden llamar desde el navegador?",
+     "a": "Sí. El teléfono de navegador de Eazybe hace llamadas desde una ventana del navegador. Los vendedores deben permitir el acceso al micrófono y mantener la página abierta durante una sesión del marcador. Te recomendamos usar auriculares."
+    },
+    {
+     "q": "¿Puedo escuchar las grabaciones de llamadas?",
+     "a": "Sí. Cuando una llamada tiene grabación, puedes reproducirla desde el historial de llamadas. Las llamadas muy cortas o sin respuesta pueden no tenerla. Las leyes sobre grabación cambian según el país, así que revisa las normas donde estéis tú y tus clientes."
+    },
+    {
+     "q": "¿Qué pueden ver los gerentes?",
+     "a": "El historial muestra las llamadas entrantes, salientes y perdidas, y puedes filtrarlo por usuario, número o tipo de llamada. La analítica de llamadas añade la tasa de respuesta, el tiempo en llamada y la duración media, desglosados por número o por vendedor."
+    },
+    {
+     "q": "¿Hay prueba gratis?",
+     "a": "Sí. Eazybe ofrece una prueba gratis de 4 días. Instalar la extensión de Chrome lleva unos 2 minutos."
+    }
+   ]
+  },
+  "auto-dialer": {
+   "navLabel": "Marcador Automático",
+   "navDesc": "Llama a toda una lista sin marcar a mano",
+   "meta": {
+    "title": "Marcador Automático para Ventas: Sube y Llama | Eazybe",
+    "description": "Marcador automático que recorre tu lista de Excel o CSV contacto a contacto. Elige tu número, fija la pausa y guarda cada grabación. Pruébalo gratis.",
+    "og": {
+     "title": "Marcador Automático: Sube una Lista y Pulsa Iniciar",
+     "description": "Sube hasta 1000 contactos por hoja y llámalos en orden. Cada grabación vuelve al contacto. Prueba gratis de 4 días."
+    },
+    "twitter": {
+     "title": "Deja de Marcar a Mano: Marcador Automático | Eazybe",
+     "description": "Fija la pausa entre llamadas, pulsa iniciar y avanza por tu lista. Eazybe guarda cada grabación en el contacto."
+    }
+   },
+   "hero": {
+    "tag": "Marcador Automático",
+    "h1Lead": "Un Marcador Automático que",
+    "h1Em": "Guarda Cada Llamada",
+    "subtitle": "Sube una lista de contactos y pulsa iniciar. Eazybe llama a un contacto cada vez, con la pausa que tú definas entre llamadas, y guarda la grabación y el resultado en el contacto.",
+    "chips": [
+     "Carga de Excel y CSV",
+     "Hasta 1000 contactos",
+     "Define la pausa",
+     "Grabaciones guardadas"
+    ]
+   },
+   "mock": {
+    "title": "Marcador automático",
+    "rows": [
+     {
+      "name": "Ahmed Khan",
+      "detail": "En llamada, 0:42",
+      "status": "Llamando"
+     },
+     {
+      "name": "Carolina Mendes",
+      "detail": "Presupuesto enviado por WhatsApp",
+      "status": "Llamada guardada"
+     },
+     {
+      "name": "Priya Nair",
+      "detail": "Volver a llamar a las 17:00",
+      "status": "Siguiente"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "¿Qué Es un Marcador Automático?",
+    "paragraphs": [
+     "Un marcador automático recorre la lista de llamadas por ti, así el vendedor deja de teclear números entre una conversación y otra. Ahorras minutos, sí, pero la gran ventaja llega después de la llamada: nadie tiene que acordarse de qué apuntar en el CRM.",
+     "En Eazybe subes la lista en un archivo Excel o CSV, la revisas y eliges desde qué número llamar. Cada grabación y cada resultado vuelven al contacto, y ahí mismo queda fijado el siguiente paso."
+    ]
+   },
+   "how": {
+    "h2": "Cómo Funciona el Marcador Automático de Eazybe",
+    "subtitle": "Un vendedor pasa de la lista a la primera llamada en cuatro pasos.",
+    "steps": [
+     {
+      "title": "Sube una lista",
+      "desc": "Añade un archivo Excel o CSV con hasta 1000 contactos por hoja y revisa los números."
+     },
+     {
+      "title": "Pulsa iniciar",
+      "desc": "Elige el número desde el que llamar y la pausa entre llamadas. La primera empieza al momento."
+     },
+     {
+      "title": "Habla con el cliente",
+      "desc": "Cuando pasa la pausa que definiste, el siguiente número suena solo."
+     },
+     {
+      "title": "Revisa lo guardado",
+      "desc": "La grabación, el resultado y el siguiente paso quedan en el contacto."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Pensado para",
+    "h2Em": "Ventas Salientes",
+    "subtitle": "Estas son las funciones del marcador que los vendedores usan a diario.",
+    "cards": [
+     {
+      "title": "Sube una hoja de cálculo",
+      "desc": "Usa un archivo Excel o CSV con hasta 1000 contactos por hoja. Los archivos de ejemplo muestran qué columnas necesitas."
+     },
+     {
+      "title": "Llamadas registradas en tu CRM",
+      "desc": "Eazybe registra tus llamadas en HubSpot, Salesforce, Zoho o Eazybe CRM."
+     },
+     {
+      "title": "Define la pausa entre llamadas",
+      "desc": "Elige cuánto esperar antes de que suene el siguiente número, para que el vendedor tenga tiempo de cerrar."
+     },
+     {
+      "title": "Elige tu número",
+      "desc": "Selecciona desde cuál de tus números de Eazybe llama la sesión."
+     },
+     {
+      "title": "Grabación y resultado guardados",
+      "desc": "Ambos vuelven al contacto, así el vendedor pasa a la siguiente llamada sin esperar."
+     },
+     {
+      "title": "Siguiente paso definido",
+      "desc": "El contacto muestra qué viene después, como una reunión o una nueva llamada."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Cuándo Ayuda un Marcador Automático",
+    "subtitle": "Un marcador compensa cuando los vendedores tienen listas largas y pocas horas para llamar.",
+    "cards": [
+     {
+      "title": "Seguimiento de leads nuevos",
+      "desc": "Sube tus leads más recientes y llámalos el mismo día, mientras aún recuerdan que pidieron información."
+     },
+     {
+      "title": "Reactivar leads inactivos",
+      "desc": "Llama a quienes dejaron de responder y retoma la conversación por WhatsApp."
+     },
+     {
+      "title": "Seguimiento de campañas",
+      "desc": "Sube la lista de un evento o campaña y deja que el marcador la recorra."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Qué Pasa Después de la Llamada",
+    "body": "Eazybe guarda la llamada en el mismo registro que los chats de WhatsApp del cliente, así el vendedor puede enviar el presupuesto prometido sin perder el hilo.",
+    "points": [
+     "Cada grabación vuelve al contacto",
+     "El siguiente paso queda en el mismo registro",
+     "El vendedor puede enviar por WhatsApp el presupuesto prometido justo después de la llamada"
+    ]
+   },
+   "pricing": {
+    "h2": "¿Cuánto Cuesta el Marcador Automático?",
+    "body": "Pagas tu plan de Eazybe y, si lo necesitas, un número de voz desde el que llamar. Pregunta en una demo qué plan encaja con el tamaño de tus listas."
+   },
+   "screenshot": {
+    "h2": "La Pantalla del Marcador Automático",
+    "alt": "Pantalla del marcador automático de Eazybe con la carga de una lista de contactos y los ajustes de la sesión de llamadas",
+    "caption": "El marcador automático en la app de Eazybe. Los números de teléfono y los nombres de línea son de ejemplo."
+   },
+   "faqIntro": "Lo que suelen preguntar los equipos de ventas antes de cargar su primera lista de llamadas en el marcador de Eazybe.",
+   "faq": [
+    {
+     "q": "¿Qué es un marcador automático?",
+     "a": "Es un software que llama por ti a una lista de números de teléfono. Cuando termina una llamada, pasa al siguiente número, así los vendedores dedican su tiempo a hablar y no a marcar."
+    },
+    {
+     "q": "¿De dónde puede salir mi lista de llamadas?",
+     "a": "De una hoja de cálculo que subes en formato Excel o CSV. Si tus contactos están en un CRM o en Google Sheets, expórtalos primero a un archivo."
+    },
+    {
+     "q": "¿Se graban las llamadas?",
+     "a": "Sí. Cada grabación y su resultado se guardan en el contacto. Las normas sobre grabación cambian según el país, así que revisa lo que exige tu ley local antes de empezar."
+    },
+    {
+     "q": "¿Qué número ve el cliente?",
+     "a": "El número de Eazybe que eliges en Llamar desde, que defines antes de iniciar la sesión."
+    },
+    {
+     "q": "¿Es legal usar un marcador automático?",
+     "a": "Depende de dónde estéis tú y tus clientes. En EE. UU., por ejemplo, la TCPA limita las llamadas automatizadas a móviles sin consentimiento. Llama solo a personas a las que puedas contactar y consulta con un abogado para tu mercado."
+    },
+    {
+     "q": "¿Cuántos contactos puedo subir?",
+     "a": "Hasta 1000 por hoja, en un archivo Excel (.xlsx o .xls) o CSV. Pon el nombre, el prefijo del país y el número en columnas separadas, o deja el prefijo dentro del número. La app tiene archivos de ejemplo que puedes descargar y copiar."
+    },
+    {
+     "q": "¿Puedo fijar una pausa entre llamadas?",
+     "a": "Sí. Define el tiempo entre llamadas antes de iniciar la sesión. La primera llamada empieza al momento y la pausa se aplica a partir de ahí."
+    },
+    {
+     "q": "¿Puedo pausar una sesión de llamadas?",
+     "a": "Sí. Pausar deja que termine la llamada en curso y luego detiene la sesión. Detener corta la llamada actual y conserva el resto de la cola. Omitir termina esa llamada y pasa al siguiente contacto."
+    },
+    {
+     "q": "¿Qué necesita un vendedor para empezar?",
+     "a": "Un navegador con acceso al micrófono y un número de voz desde el que llamar. Mantén la página abierta durante la sesión. Recomendamos usar auriculares, porque los vendedores pueden pasar mucho rato en llamadas."
+    },
+    {
+     "q": "¿Es un power dialer o un marcador predictivo?",
+     "a": "Llama a un contacto cada vez, en el orden de la lista, con la pausa que tú defines. Eso se parece más a un power dialer. No llama a varias personas a la vez, así que un cliente nunca contesta para encontrarse con que no hay nadie al otro lado."
+    }
+   ]
+  },
+  "virtual-phone-number": {
+   "navLabel": "Números de Teléfono Virtuales",
+   "navDesc": "Una línea de empresa para llamadas, SMS y WhatsApp",
+   "meta": {
+    "title": "Número Virtual para Empresas con WhatsApp y SMS | Eazybe",
+    "description": "Consigue un número virtual para empresas en EE. UU., Canadá o Puerto Rico para llamadas, SMS y WhatsApp. Se queda contigo si un vendedor se va. Ver cómo.",
+    "og": {
+     "title": "Un Solo Número de Empresa para Llamadas, SMS y WhatsApp",
+     "description": "Un número virtual en EE. UU., Canadá o Puerto Rico. Eazybe se encarga de la verificación y el número sigue siendo de tu empresa."
+    },
+    "twitter": {
+     "title": "Un Número Virtual de Empresa que se Queda Cuando el Vendedor se Va",
+     "description": "Llamadas de voz, SMS, la app WhatsApp Business y la API, todo en una sola línea. EE. UU., Canadá y Puerto Rico."
+    }
+   },
+   "hero": {
+    "tag": "Llamadas Virtuales",
+    "h1Lead": "Un Número Virtual para Empresas",
+    "h1Em": "Llamadas, SMS y WhatsApp",
+    "subtitle": "Compra un número de voz en Eazybe y usa una sola línea de empresa para llamadas, SMS, la app WhatsApp Business y la API de WhatsApp. Eazybe se encarga de la verificación.",
+    "chips": [
+     "EE. UU.",
+     "Canadá",
+     "Puerto Rico",
+     "Complemento opcional"
+    ]
+   },
+   "mock": {
+    "title": "Una Línea de Empresa",
+    "rows": [
+     {
+      "name": "Llamadas de voz",
+      "detail": "Mismo número",
+      "status": "Activo"
+     },
+     {
+      "name": "SMS",
+      "detail": "Mismo número",
+      "status": "Activo"
+     },
+     {
+      "name": "WhatsApp",
+      "detail": "App Business y API",
+      "status": "Verificado"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "¿Qué Es un Número de Teléfono Virtual?",
+    "paragraphs": [
+     "Un número de teléfono virtual funciona como cualquier otro, pero las llamadas viajan por internet y el número pertenece a una cuenta, no a un teléfono concreto. Así, una empresa puede llamar y escribir a sus clientes sin dar el móvil personal de un vendedor.",
+     "Un número de voz de Eazybe sirve para mucho más que llamar. El mismo número funciona para llamadas, SMS, la app WhatsApp Business y la API de WhatsApp, y tus clientes solo tienen que recordar uno. Es de la empresa, y cuando un vendedor se va, el número se queda, junto con todo el historial del cliente."
+    ]
+   },
+   "how": {
+    "h2": "Cómo Conseguir un Número Virtual con Eazybe",
+    "subtitle": "Los números de voz se configuran con el equipo de Eazybe, que también se ocupa de verificarlos.",
+    "steps": [
+     {
+      "title": "Elige un País",
+      "desc": "Hay números disponibles en EE. UU., Canadá y Puerto Rico."
+     },
+     {
+      "title": "Añádelo a tu Plan",
+      "desc": "El número de voz es un complemento opcional en todos los planes de Eazybe."
+     },
+     {
+      "title": "Deja que Eazybe lo Verifique",
+      "desc": "Eazybe se encarga de la verificación del número por ti."
+     },
+     {
+      "title": "Usa una Línea para Todo",
+      "desc": "Llama, envía SMS y usa WhatsApp desde el mismo número de empresa."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Un Número,",
+    "h2Em": "Todos los Canales",
+    "subtitle": "Lo que obtienes cuando el número de tu empresa viene de Eazybe.",
+    "cards": [
+     {
+      "title": "Llamadas de Voz",
+      "desc": "Usa el número para llamadas de trabajo. Cada llamada queda guardada junto a los chats del cliente."
+     },
+     {
+      "title": "SMS",
+      "desc": "Escribe a tus clientes desde el mismo número que ya conocen."
+     },
+     {
+      "title": "App WhatsApp Business",
+      "desc": "Usa el número en la app WhatsApp Business."
+     },
+     {
+      "title": "API de WhatsApp",
+      "desc": "Usa el mismo número en la API de WhatsApp cuando tu equipo lo necesite."
+     },
+     {
+      "title": "Verificación Incluida",
+      "desc": "Eazybe se ocupa de verificar el número."
+     },
+     {
+      "title": "Propiedad de la Empresa",
+      "desc": "El número y el historial del cliente se quedan contigo cuando un vendedor se va."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Quién Necesita un Número Virtual de Empresa",
+    "subtitle": "Un número de voz es más útil para equipos que quieren una línea en la que sus clientes confíen.",
+    "cards": [
+     {
+      "title": "Equipos que Venden en Norteamérica",
+      "desc": "Usa un número de EE. UU., Canadá o Puerto Rico para clientes de esos mercados."
+     },
+     {
+      "title": "Equipos con Rotación de Personal",
+      "desc": "Los clientes siguen llamando al mismo número, aunque el vendedor que los atendió primero ya no esté."
+     },
+     {
+      "title": "Equipos que Dejan los Números Personales",
+      "desc": "Dale al equipo una línea de empresa y saca las conversaciones de venta de los móviles personales."
+     }
+    ]
+   },
+   "record": {
+    "h2": "El Número se Conecta con la Ficha del Cliente",
+    "body": "Un número por sí solo solo conecta la llamada. Con Eazybe, las llamadas de ese número se guardan junto a los chats de WhatsApp del cliente y se registran en tu CRM.",
+    "points": [
+     "Las llamadas del número aparecen junto a los chats de WhatsApp",
+     "Un vendedor nuevo puede leer todo el historial",
+     "Ese historial se queda cuando alguien se va"
+    ]
+   },
+   "pricing": {
+    "h2": "¿Cuánto Cuesta un Número de Teléfono Virtual?",
+    "body": "El número de voz es un complemento opcional en todos los planes de Eazybe y su precio depende del país. Añádelo desde la página de precios o reserva una demo para pedir presupuesto."
+   },
+   "screenshot": {
+    "h2": "Todos tus Números en un Solo Lugar",
+    "alt": "Pantalla de números de teléfono de Eazybe con los números de empresa por país y sus fechas de renovación",
+    "caption": "La pantalla de números de teléfono en la app de Eazybe. Los números y nombres de línea son de ejemplo."
+   },
+   "faqIntro": "Respuestas a las preguntas más habituales antes de comprar un número virtual para tu empresa.",
+   "faq": [
+    {
+     "q": "¿Qué es un número de teléfono virtual?",
+     "a": "Tus clientes lo llaman y le escriben como a cualquier otro número. La diferencia está de tu lado: vive en tu cuenta de empresa y las llamadas van por internet."
+    },
+    {
+     "q": "¿En qué se diferencia de un número normal?",
+     "a": "Un número móvil normal está en una SIM dentro de un teléfono. Un número virtual pertenece a la cuenta de la empresa, así que no se va con un vendedor ni depende de un dispositivo."
+    },
+    {
+     "q": "¿En qué países está disponible?",
+     "a": "Los números de voz de Eazybe están disponibles en EE. UU., Canadá y Puerto Rico."
+    },
+    {
+     "q": "¿Puedo usar el número en WhatsApp?",
+     "a": "Sí. Un número de voz de Eazybe sirve para llamadas, SMS, la app WhatsApp Business y la API de WhatsApp. Eazybe se encarga de la verificación."
+    },
+    {
+     "q": "¿Qué pasa con el número cuando un vendedor se va?",
+     "a": "El número y el historial del cliente se quedan en la empresa."
+    },
+    {
+     "q": "¿Puedo llamar desde el navegador?",
+     "a": "Sí. Activa el teléfono en el navegador de Eazybe, permite el acceso al micrófono y podrás llamar desde esa ventana. Con unos auriculares, las llamadas largas son más cómodas."
+    },
+    {
+     "q": "¿Dónde veo los SMS que recibe el número?",
+     "a": "La pantalla de SMS muestra cada mensaje con el remitente, el número que lo recibió, el estado y la hora. Si tienes varios números, puedes filtrar por número."
+    },
+    {
+     "q": "¿Incluye un número virtual gratis?",
+     "a": "No. El número de voz es un complemento de pago y su precio depende del país. Los planes de Eazybe tienen una prueba gratis de 4 días."
+    },
+    {
+     "q": "¿Puedo conservar mi número actual?",
+     "a": "Pregúntalo en una demo. El equipo puede revisar tu número actual y explicarte las opciones para tu país."
+    },
+    {
+     "q": "¿Es legal usar números virtuales en una empresa?",
+     "a": "Sí, en los países donde se ofrecen, aunque las normas sobre llamadas y mensajes cambian según el lugar. Respeta las reglas de consentimiento del mercado al que contactas y consulta a un abogado si tienes dudas."
+    }
+   ]
+  },
+  "call-tracking": {
+   "navLabel": "Seguimiento de Llamadas",
+   "navDesc": "Ve cada llamada de tus vendedores en tu CRM",
+   "meta": {
+    "title": "Seguimiento de Llamadas de Ventas para Equipos | Eazybe",
+    "description": "Seguimiento de llamadas de ventas con SIM y número virtual: a quién llamó cada vendedor, cuánto duró y qué pasó, todo en tu CRM. Pruébalo 4 días gratis.",
+    "og": {
+     "title": "Ve Cada Llamada de tus Vendedores sin Pedir Informes",
+     "description": "Historial y analítica de llamadas por vendedor y número, junto a los chats de WhatsApp del cliente. Gratis durante 4 días."
+    },
+    "twitter": {
+     "title": "Seguimiento de Llamadas de Ventas junto a WhatsApp | Eazybe",
+     "description": "Registra llamadas entrantes, salientes y perdidas, tasa de respuesta y tiempo de conversación de todo tu equipo de ventas."
+    }
+   },
+   "hero": {
+    "tag": "Seguimiento de Llamadas",
+    "h1Lead": "Software de Seguimiento de Llamadas de Ventas",
+    "h1Em": "para Llamadas con SIM y Virtuales",
+    "subtitle": "Eazybe registra en tu CRM la hora, la duración y el resultado de cada llamada, y la guarda junto a los chats de WhatsApp del cliente. Tus vendedores se olvidan de tomar notas a mano.",
+    "chips": [
+     "Hora",
+     "Duración",
+     "Resultado",
+     "Registro en CRM"
+    ]
+   },
+   "mock": {
+    "title": "Llamadas del vendedor",
+    "rows": [
+     {
+      "name": "Llamada con SIM",
+      "detail": "Hoy, 11:04, 6 min",
+      "status": "Seguimiento"
+     },
+     {
+      "name": "Llamada virtual",
+      "detail": "Hoy, 11:32, 2 min",
+      "status": "Sin respuesta"
+     },
+     {
+      "name": "Llamada con SIM",
+      "detail": "Hoy, 12:15, 9 min",
+      "status": "Ganada"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "¿Qué Es el Seguimiento de Llamadas de Ventas?",
+    "paragraphs": [
+     "El seguimiento de llamadas de ventas le da al responsable un registro de las llamadas de su equipo, con la hora, la duración y el resultado de cada una. Nadie tiene que rellenar una hoja de cálculo para demostrar lo que hizo en el día.",
+     "No es lo mismo que el seguimiento de llamadas de marketing, que usa números especiales para saber qué anuncio generó una llamada. Eazybe está pensado para ventas. Registra las llamadas en la ficha del cliente en tu CRM y las coloca junto a sus chats de WhatsApp."
+    ]
+   },
+   "how": {
+    "h2": "Cómo Registra Eazybe las Llamadas de Ventas",
+    "subtitle": "Tus vendedores siguen llamando como siempre. El registro se hace solo, en segundo plano.",
+    "steps": [
+     {
+      "title": "Conecta a tu Equipo",
+      "desc": "Configura a los vendedores que llaman con SIM en Android, con números virtuales o con ambos."
+     },
+     {
+      "title": "El Equipo Llama",
+      "desc": "Cada llamada se capta con su hora y su duración."
+     },
+     {
+      "title": "Se Guarda el Resultado",
+      "desc": "El resultado de la llamada queda en la ficha del cliente."
+     },
+     {
+      "title": "El Responsable Revisa",
+      "desc": "Consulta la actividad en el CRM, junto a los chats del cliente."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Lo Que",
+    "h2Em": "Queda Registrado",
+    "subtitle": "Los datos que un responsable de ventas necesita para orientar al equipo y hacer seguimiento.",
+    "cards": [
+     {
+      "title": "Hora de Cada Llamada",
+      "desc": "Ve cuándo se contactó a cada cliente y hace cuánto tiempo."
+     },
+     {
+      "title": "Duración",
+      "desc": "Una llamada de 20 segundos no es una de 20 minutos. El registro te dice cuál estás mirando."
+     },
+     {
+      "title": "Resultado",
+      "desc": "Cada llamada termina con un resultado en la ficha del cliente."
+     },
+     {
+      "title": "Llamadas con SIM y Virtuales",
+      "desc": "Los dos tipos de llamada van al mismo sitio, incluidas las llamadas con SIM en Android."
+     },
+     {
+      "title": "Registro en el CRM",
+      "desc": "Las llamadas se registran en tu CRM, así el equipo tiene menos que actualizar a mano."
+     },
+     {
+      "title": "Contexto de WhatsApp",
+      "desc": "Las llamadas aparecen junto a los chats de WhatsApp del cliente para ver la operación completa."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Quién Usa el Seguimiento de Llamadas",
+    "subtitle": "Sirve a cualquiera que necesite saber qué pasó en una llamada sin haber estado en ella.",
+    "cards": [
+     {
+      "title": "Responsables de Ventas",
+      "desc": "Ve quién llama, cuánto duran las conversaciones y qué clientes se han quedado en silencio."
+     },
+     {
+      "title": "Equipos Remotos y de Campo",
+      "desc": "No pierdas de vista la actividad cuando cada vendedor trabaja desde un lugar distinto con su propio móvil."
+     },
+     {
+      "title": "Vendedores que Heredan Cuentas",
+      "desc": "Lee el historial de llamadas y los chats antes de llamar a un cliente que llevaba otra persona."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Seguimiento de Llamadas con WhatsApp Incluido",
+    "body": "Un registro de llamadas por sí solo puede hacer que un vendedor parezca inactivo cuando la operación avanza por WhatsApp. Eazybe muestra llamadas y chats juntos, para que valores la operación con toda la información.",
+    "points": [
+     "Pocas llamadas no siempre significan poca actividad",
+     "Los chats muestran lo que pasó entre llamadas",
+     "El responsable valora la operación viendo ambos lados"
+    ]
+   },
+   "pricing": {
+    "h2": "¿Cuánto Cuesta el Seguimiento de Llamadas?",
+    "body": "El precio depende del plan de Eazybe que necesite tu equipo. Los números de voz se pagan aparte, y solo si los usas. Una demo es la forma más rápida de confirmar el plan adecuado."
+   },
+   "screenshot": {
+    "h2": "Todas las Llamadas en un Solo Historial",
+    "alt": "Historial de llamadas de Eazybe con llamadas entrantes, salientes y perdidas, su duración y filtros",
+    "caption": "Historial de llamadas en la app de Eazybe. Los números y nombres son de ejemplo."
+   },
+   "faqIntro": "Preguntas habituales de los responsables de ventas sobre qué se registra, en qué teléfonos y dónde acaban los datos.",
+   "faq": [
+    {
+     "q": "¿Qué registra el seguimiento de llamadas de Eazybe?",
+     "a": "La hora, la duración y el resultado de cada llamada, en tu CRM. La llamada también se guarda junto a los chats de WhatsApp del cliente."
+    },
+    {
+     "q": "¿Funciona con llamadas con SIM?",
+     "a": "Sí. El seguimiento funciona con llamadas con SIM en Android y con llamadas virtuales."
+    },
+    {
+     "q": "¿Funciona en iPhone?",
+     "a": "El seguimiento de llamadas con SIM funciona en Android. Si tu equipo usa iPhone, pregunta en una demo qué configuración encaja mejor. Las llamadas virtuales no dependen de la SIM del teléfono."
+    },
+    {
+     "q": "¿Qué muestra el historial de cada llamada?",
+     "a": "El contacto, si la llamada fue entrante o saliente, el número y el usuario que intervinieron, la hora y la duración. Las llamadas contestadas también pueden tener una grabación que puedes reproducir."
+    },
+    {
+     "q": "¿Puedo ver las llamadas de un solo vendedor?",
+     "a": "Sí. Filtra el historial por usuario, por número o por tipo de llamada. Pulsa Restablecer para volver a ver a todo el equipo."
+    },
+    {
+     "q": "¿Cómo encuentro las llamadas perdidas?",
+     "a": "El historial muestra arriba un recuento aparte de llamadas perdidas, y el filtro por tipo reduce la lista a ellas, así ves a quién falta devolverle la llamada."
+    },
+    {
+     "q": "¿Qué informes incluye?",
+     "a": "La analítica de llamadas muestra el total de llamadas, la tasa de respuesta, el tiempo de conversación y la duración media en el periodo que elijas. Puedes desglosar las cifras por número de teléfono o por usuario."
+    },
+    {
+     "q": "¿Es lo mismo que el seguimiento de llamadas de marketing?",
+     "a": "No. El seguimiento de marketing muestra qué anuncio o palabra clave generó una llamada. Eazybe registra las llamadas que hace tu equipo de ventas y las vincula a la ficha del cliente."
+    },
+    {
+     "q": "¿En qué CRM puedo registrar las llamadas?",
+     "a": "Eazybe funciona con CRM como HubSpot, Salesforce y Zoho, además de Eazybe CRM."
+    },
+    {
+     "q": "¿El responsable también puede ver los mensajes de WhatsApp?",
+     "a": "Las llamadas se guardan junto a los chats de WhatsApp del cliente. También puedes elegir qué chats y grupos de clientes se conectan a tu CRM, para que las conversaciones privadas sigan siendo privadas."
+    }
+   ]
+  },
+  "sim-based-calling": {
+   "navLabel": "Llamadas con SIM",
+   "navDesc": "Registra las llamadas desde el Android de cada vendedor",
+   "meta": {
+    "title": "Software de Llamadas con SIM para Equipos de Ventas | Eazybe",
+    "description": "Software de llamadas con SIM para Android: cada llamada de tus vendedores llega a tu CRM junto a los chats de WhatsApp del cliente. Reserva una demo.",
+    "og": {
+     "title": "Conserva tus SIM y Lleva Cada Llamada a tu CRM",
+     "description": "Llamadas con SIM para equipos de ventas con Android. Tus vendedores llaman como siempre y cada llamada queda junto a los chats."
+    },
+    "twitter": {
+     "title": "Llamadas con SIM y Registro en tu CRM para Equipos Android | Eazybe",
+     "description": "Tus vendedores conservan su móvil y número. Eazybe registra las llamadas que ya hacen y las guarda en la ficha del cliente."
+    }
+   },
+   "hero": {
+    "tag": "Llamadas con SIM",
+    "h1Lead": "Software de Llamadas con SIM para",
+    "h1Em": "Equipos de Ventas Móviles",
+    "subtitle": "Tus vendedores siguen llamando desde su propio Android. Eazybe registra la hora, la duración y el resultado de cada llamada con SIM en tu CRM, junto a los chats de WhatsApp del cliente.",
+    "chips": [
+     "Android",
+     "SIM del vendedor",
+     "Registro en CRM",
+     "Contexto de WhatsApp"
+    ]
+   },
+   "mock": {
+    "title": "Registro de llamadas SIM",
+    "rows": [
+     {
+      "name": "Llamada saliente",
+      "detail": "SIM Android, 5 min",
+      "status": "Registrada"
+     },
+     {
+      "name": "Llamada saliente",
+      "detail": "SIM Android, 3 min",
+      "status": "Registrada"
+     },
+     {
+      "name": "Actualización CRM",
+      "detail": "Resultado guardado",
+      "status": "Sincronizado"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "¿Qué Son las Llamadas con SIM?",
+    "paragraphs": [
+     "Con las llamadas con SIM, tus vendedores llaman a los clientes por la red móvil de siempre, con la SIM de su teléfono, mientras un software registra la actividad. No hay que configurar ninguna línea por internet y el cliente ve un número móvil normal.",
+     "El problema habitual es que esas llamadas se quedan en el teléfono, donde ni el responsable ni el CRM las ven. Eazybe lo resuelve en Android: la hora, la duración y el resultado de cada llamada pasan a tu CRM, junto a los chats de WhatsApp del cliente."
+    ]
+   },
+   "how": {
+    "h2": "Cómo Funcionan las Llamadas con SIM en Eazybe",
+    "subtitle": "Tus vendedores no tienen que cambiar su forma de llamar, por eso para muchos equipos es un primer paso sencillo.",
+    "steps": [
+     {
+      "title": "Configura el teléfono",
+      "desc": "Conecta el Android del vendedor a Eazybe."
+     },
+     {
+      "title": "Llama como siempre",
+      "desc": "El vendedor llama con la SIM del teléfono, igual que antes."
+     },
+     {
+      "title": "Eazybe registra la llamada",
+      "desc": "Hora, duración y resultado quedan asociados al cliente."
+     },
+     {
+      "title": "Consúltala en el CRM",
+      "desc": "La llamada aparece en tu CRM, junto a los chats del cliente."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Por Qué los Equipos Eligen",
+    "h2Em": "las Llamadas con SIM",
+    "subtitle": "Las llamadas con SIM encajan con equipos que ya venden desde el móvil. Esto es lo que te ofrece Eazybe.",
+    "cards": [
+     {
+      "title": "Los mismos teléfonos",
+      "desc": "Tus vendedores usan su Android y la SIM que ya tienen."
+     },
+     {
+      "title": "Un número móvil conocido",
+      "desc": "El cliente ve un número móvil normal, quizá el mismo que el vendedor ya usa con él."
+     },
+     {
+      "title": "Llamadas registradas en tu CRM",
+      "desc": "Hora, duración y resultado se registran sin que el vendedor tenga que escribirlos."
+     },
+     {
+      "title": "WhatsApp en el mismo sitio",
+      "desc": "Las llamadas con SIM aparecen junto a los chats de WhatsApp del cliente."
+     },
+     {
+      "title": "Con tu plan de llamadas actual",
+      "desc": "Las llamadas van por la red móvil, así que tu plan con el operador sigue vigente."
+     },
+     {
+      "title": "Suma llamadas virtuales después",
+      "desc": "Eazybe también registra llamadas virtuales, así que puedes combinar ambas en el equipo."
+     }
+    ]
+   },
+   "table": {
+    "h2": "Antes y Después de Eazybe",
+    "subtitle": "Qué cambia para un equipo que ya vende con llamadas con SIM.",
+    "head": [
+     "",
+     "Con Eazybe",
+     "Sin seguimiento de llamadas"
+    ],
+    "rows": [
+     [
+      "Actividad de llamadas",
+      "Registrada con hora, duración y resultado",
+      "Solo en el teléfono de cada vendedor"
+     ],
+     [
+      "Ficha en el CRM",
+      "Actualizada con la llamada",
+      "Depende de que el vendedor se acuerde"
+     ],
+     [
+      "Contexto de WhatsApp",
+      "Junto a la llamada en la ficha del cliente",
+      "En otra app"
+     ],
+     [
+      "Heredar una cuenta",
+      "Historial de llamadas y chats en la ficha",
+      "Preguntar al vendedor anterior qué pasó"
+     ]
+    ]
+   },
+   "useCases": {
+    "h2": "Para Quién Son las Llamadas con SIM",
+    "subtitle": "Suelen funcionar mejor donde los vendedores ya venden desde el móvil.",
+    "cards": [
+     {
+      "title": "Equipos de ventas de campo",
+      "desc": "Quien visita clientes llama desde el móvil que lleva en el bolsillo y la actividad queda registrada igual."
+     },
+     {
+      "title": "Equipos de telemarketing",
+      "desc": "Los equipos que llaman todo el día desde Android llevan su actividad al CRM sin montar teléfonos fijos."
+     },
+     {
+      "title": "Equipos de ventas pequeños",
+      "desc": "Empieza a registrar las llamadas que ya haces antes de decidir si necesitas números de empresa."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Llamadas con SIM y WhatsApp, Juntos",
+    "body": "Muchas ventas avanzan entre una llamada y un chat de WhatsApp. Eazybe registra ambos en un mismo cliente, para que el historial no dependa del teléfono de un vendedor.",
+    "points": [
+     "Las llamadas con SIM dejan de vivir en un solo teléfono",
+     "Los datos de llamadas de Android llegan a tu CRM",
+     "Chats y llamadas en un mismo cliente"
+    ]
+   },
+   "pricing": {
+    "h2": "¿Cuánto Cuestan las Llamadas con SIM?",
+    "body": "Las llamadas van por tu red móvil, así que tu plan con el operador sigue cubriendo la llamada en sí. Reserva una demo para confirmar el plan de Eazybe adecuado para tu equipo."
+   },
+   "faqIntro": "Lo que los equipos suelen preguntar antes de conectar los teléfonos de sus vendedores a Eazybe.",
+   "faq": [
+    {
+     "q": "¿Qué son las llamadas con SIM?",
+     "a": "Son llamadas por la red móvil de siempre, con la SIM del teléfono, mientras un software registra la actividad. El cliente ve un número móvil normal."
+    },
+    {
+     "q": "¿En qué teléfonos funciona?",
+     "a": "El seguimiento de llamadas con SIM de Eazybe funciona en Android. Si algunos de tus vendedores usan iPhone, pregunta en una demo qué configuración les conviene."
+    },
+    {
+     "q": "¿Necesito un número nuevo?",
+     "a": "No. Tus vendedores pueden seguir llamando con la SIM de su Android. Si quieres una línea de empresa compartida, Eazybe también ofrece números de voz."
+    },
+    {
+     "q": "¿Graba las llamadas con SIM?",
+     "a": "Eazybe registra la hora, la duración y el resultado de cada llamada con SIM. Pregunta en una demo por la grabación de audio de llamadas con SIM en tus dispositivos y revisa antes la normativa local sobre grabaciones."
+    },
+    {
+     "q": "¿Y las llamadas personales desde el mismo teléfono?",
+     "a": "Si tus vendedores usan un mismo teléfono para trabajo y para uso personal, acordad una política clara antes de empezar. Pregunta en una demo qué controles encajan con tu configuración."
+    },
+    {
+     "q": "¿Qué número verá el cliente?",
+     "a": "El número móvil de la SIM del vendedor, el mismo que ve hoy cuando ese vendedor le llama."
+    },
+    {
+     "q": "¿Quién paga las llamadas?",
+     "a": "Tu operador móvil cobra las llamadas con SIM como siempre, así que se aplica tu plan actual. El plan de Eazybe es un coste aparte."
+    },
+    {
+     "q": "¿Qué pasa cuando un vendedor se va?",
+     "a": "El número va donde vaya la SIM, así que deja claro de quién es antes de que alguien se marche. Si quieres un número que siempre se quede en la empresa, usa un número de voz de Eazybe."
+    },
+    {
+     "q": "¿Puedo ver los chats de WhatsApp junto a las llamadas con SIM?",
+     "a": "Sí. Eazybe guarda cada llamada con SIM junto a los chats de WhatsApp de ese cliente, así lees la conversación y ves las llamadas en un mismo lugar."
+    },
+    {
+     "q": "¿Son mejores las llamadas con SIM que las llamadas en la nube?",
+     "a": "Depende del equipo. Las llamadas con SIM son sencillas para vendedores que ya venden desde el móvil. Las llamadas virtuales encajan con equipos que quieren una línea de empresa compartida. Nuestra guía SIM vs Llamadas en la Nube explica las diferencias."
+    }
+   ]
+  },
+  "call-recording": {
+   "navLabel": "Grabación de Llamadas",
+   "navDesc": "Grabaciones guardadas en el contacto",
+   "meta": {
+    "title": "Grabación de Llamadas de Ventas para Coaching | Eazybe",
+    "description": "Grabación de llamadas de ventas que guarda cada audio con el cliente. Escucha llamadas, forma a vendedores y revisa lo acordado. Pruébalo gratis.",
+    "og": {
+     "title": "Escucha Cualquier Llamada de Ventas desde el Historial",
+     "description": "Busca la llamada, pulsa reproducir y escucha lo que se prometió. Las grabaciones están junto al resto de la venta."
+    },
+    "twitter": {
+     "title": "Grabación de Llamadas de Ventas para Formar a Tu Equipo | Eazybe",
+     "description": "Forma a vendedores nuevos con llamadas reales y revisa lo acordado. Las leyes de grabación varían: consulta las tuyas antes."
+    }
+   },
+   "hero": {
+    "tag": "Grabación de Llamadas",
+    "h1Lead": "Grabación de Llamadas de Ventas",
+    "h1Em": "Vinculada al Cliente",
+    "subtitle": "Cuando un vendedor llama con el marcador automático de Eazybe, la grabación y el resultado se guardan en el contacto. Encuentra cualquier llamada en la ficha del cliente, junto a sus chats de WhatsApp.",
+    "chips": [
+     "Guardada en el contacto",
+     "Con el resultado",
+     "Para coaching",
+     "Próximo paso definido"
+    ]
+   },
+   "mock": {
+    "title": "Grabaciones de llamadas",
+    "rows": [
+     {
+      "name": "Carolina Mendes",
+      "detail": "Grabación, 7 min",
+      "status": "Pidió presupuesto"
+     },
+     {
+      "name": "Ahmed Khan",
+      "detail": "Grabación, 3 min",
+      "status": "Volver a llamar"
+     },
+     {
+      "name": "Priya Nair",
+      "detail": "Grabación, 11 min",
+      "status": "Reunión agendada"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "¿Qué Es un Software de Grabación de Llamadas de Ventas?",
+    "paragraphs": [
+     "Un software de grabación de llamadas de ventas guarda el audio de cada llamada para poder escucharla más tarde. Los equipos lo usan para aclarar lo acordado, formar a vendedores nuevos y traspasar cuentas sin perder detalles.",
+     "Una grabación solo sirve si alguien la encuentra. En Eazybe, las grabaciones del marcador automático se guardan en el contacto junto con el resultado de la llamada. Así empiezas por el cliente, no por una carpeta llena de audios."
+    ]
+   },
+   "how": {
+    "h2": "Cómo Funciona la Grabación de Llamadas en Eazybe",
+    "subtitle": "La grabación forma parte del flujo del marcador automático, así que nadie tiene que archivar nada después de la llamada.",
+    "steps": [
+     {
+      "title": "Inicia una Lista",
+      "desc": "Elige una lista y pulsa iniciar en el marcador automático."
+     },
+     {
+      "title": "Habla con el Cliente",
+      "desc": "Avisa de la grabación cuando la ley local lo exija."
+     },
+     {
+      "title": "Se Guarda la Grabación",
+      "desc": "La grabación y el resultado se guardan en el contacto."
+     },
+     {
+      "title": "Revísala Después",
+      "desc": "Abre la ficha del cliente para encontrar la llamada."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Por Qué Guardar",
+    "h2Em": "las Grabaciones de Llamadas",
+    "subtitle": "Una grabación vinculada al cliente sigue siendo útil mucho después de colgar.",
+    "cards": [
+     {
+      "title": "Guardada en el Contacto",
+      "desc": "Las grabaciones están en la ficha del cliente, así que cualquiera con acceso puede encontrarlas."
+     },
+     {
+      "title": "Con el Resultado",
+      "desc": "Cada grabación incluye lo que pasó en la llamada."
+     },
+     {
+      "title": "Próximo Paso Definido",
+      "desc": "El contacto muestra qué debe pasar a continuación."
+     },
+     {
+      "title": "WhatsApp a la Vista",
+      "desc": "Ve las llamadas junto a los chats, incluido lo que se envió después de la llamada."
+     },
+     {
+      "title": "Útil para Coaching",
+      "desc": "Los managers pueden elegir llamadas reales para revisarlas con un vendedor."
+     },
+     {
+      "title": "Útil para Traspasos",
+      "desc": "Un vendedor nuevo puede escuchar la última llamada antes de hacerse cargo de una cuenta."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Cómo Usan los Equipos las Grabaciones",
+    "subtitle": "La misma grabación le sirve al vendedor, al manager y a quien se quede después con la cuenta.",
+    "cards": [
+     {
+      "title": "Formar a Vendedores Nuevos",
+      "desc": "Escuchad juntos llamadas reales. Funciona mejor que un role play, porque las objeciones del cliente son de verdad."
+     },
+     {
+      "title": "Comprobar lo Acordado",
+      "desc": "Vuelve a la llamada cuando el cliente y el vendedor recuerdan un precio distinto."
+     },
+     {
+      "title": "Traspasar Cuentas",
+      "desc": "Dale al siguiente vendedor la conversación real, además de las notas."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Grabaciones Junto al Resto de la Venta",
+    "body": "Una grabación te dice qué se habló en esa llamada. Eazybe guarda al lado la conversación de WhatsApp, para que veas qué prometió el vendedor y si luego lo cumplió.",
+    "points": [
+     "Las grabaciones están junto al resto de la venta",
+     "Puedes contrastar una promesa con el chat de WhatsApp",
+     "El siguiente vendedor recibe la conversación real"
+    ]
+   },
+   "pricing": {
+    "h2": "¿Cuánto Cuesta la Grabación de Llamadas?",
+    "body": "El coste depende de tu plan de Eazybe y de si añades un número de voz. Si la grabación es el motivo principal de tu compra, pregunta en una demo qué plan te conviene."
+   },
+   "screenshot": {
+    "h2": "Reproduce Grabaciones desde el Historial de Llamadas",
+    "alt": "Historial de llamadas de Eazybe con un botón Reproducir grabación junto a cada llamada contestada",
+    "caption": "Grabaciones en el historial de llamadas de Eazybe. Los números y nombres son de ejemplo."
+   },
+   "faqIntro": "Grabar llamadas plantea dudas prácticas y legales. Aquí tienes respuestas claras a las más habituales.",
+   "faq": [
+    {
+     "q": "¿Qué llamadas graba Eazybe?",
+     "a": "Las llamadas con números de voz de Eazybe pueden tener grabación, tanto entrantes como salientes, y se reproducen desde el historial de llamadas. Las llamadas del marcador automático guardan la grabación en el contacto. Pregunta en una demo por la grabación de llamadas con SIM."
+    },
+    {
+     "q": "¿Dónde encuentro una grabación?",
+     "a": "Abre el historial de llamadas y pulsa Reproducir grabación en esa llamada. Si tienes muchas, filtra primero por usuario o por número."
+    },
+    {
+     "q": "¿Por qué una llamada no tiene grabación?",
+     "a": "El historial muestra No disponible cuando no hay nada que reproducir. Es lo normal en llamadas de 00:00, porque nadie contestó."
+    },
+    {
+     "q": "¿Los managers pueden escuchar las llamadas de su equipo?",
+     "a": "Sí. El historial de llamadas incluye las llamadas de toda tu organización, así que un manager puede filtrar por vendedor y reproducir las grabaciones desde ahí."
+    },
+    {
+     "q": "¿Cómo uso las grabaciones para hacer coaching?",
+     "a": "Elige dos o tres llamadas reales a la semana y revísalas con el vendedor. Una llamada buena y otra que salió mal suelen enseñar más que repasarlo todo."
+    },
+    {
+     "q": "¿Se graban las dos partes de la llamada?",
+     "a": "Pregunta en una demo según tu configuración y tus dispositivos. La compatibilidad puede variar según el teléfono y el tipo de llamada, así que pruébalo con tu equipo antes de depender de ello."
+    },
+    {
+     "q": "¿Es legal grabar llamadas?",
+     "a": "Depende del país y, a veces, del estado. En algunos lugares basta con el consentimiento de una parte y en otros todos los participantes deben aceptar. En la UE, el GDPR también se aplica a las grabaciones. Revisa las normas que te afectan a ti y a tus clientes. Esto es información general, no asesoramiento legal."
+    },
+    {
+     "q": "¿Debo avisar a los clientes de que la llamada se graba?",
+     "a": "Avisar es lo más seguro y en algunos lugares es obligatorio. Suele bastar con una frase breve al inicio de la llamada, pero confirma lo que exige tu mercado."
+    },
+    {
+     "q": "¿Puedo encontrar una grabación más adelante?",
+     "a": "Sí. Las grabaciones se guardan en el contacto, así que empieza por la ficha del cliente."
+    },
+    {
+     "q": "¿Puedo grabar llamadas de WhatsApp?",
+     "a": "Hoy no ofrecemos la grabación de llamadas de WhatsApp como función. Pregunta en una demo si es importante para tu equipo."
+    }
+   ]
+  },
+  "sim-vs-cloud-calling": {
+   "navLabel": "SIM vs Llamadas en la Nube",
+   "navDesc": "Cuál le sirve a tu equipo de ventas",
+   "meta": {
+    "title": "SIM vs Telefonía en la Nube: Guía para Ventas | Eazybe",
+    "description": "SIM vs telefonía en la nube: comparamos costo, configuración, propiedad del número y cumplimiento. Descubre cuál le sirve a tu equipo de ventas.",
+    "og": {
+     "title": "¿SIM o Llamadas en la Nube? Respuesta Clara para Ventas",
+     "description": "Compara costo, configuración, propiedad del número y cumplimiento, y mira qué opción va mejor con vendedores de campo o internos."
+    },
+    "twitter": {
+     "title": "SIM vs Llamadas en la Nube: ¿Cuál Debería Usar Tu Equipo?",
+     "description": "Ofrecemos ambas: aquí va una comparación clara de costo, configuración y quién se queda el número si un vendedor se va."
+    }
+   },
+   "hero": {
+    "tag": "Guía de Compra",
+    "h1Lead": "SIM vs Telefonía en la Nube:",
+    "h1Em": "¿Cuál Va con Tu Equipo?",
+    "subtitle": "Las llamadas con SIM son fáciles de empezar y las llamadas en la nube te dan una línea de empresa que tú controlas. Eazybe admite ambas, así que esta guía no tiene motivos para empujarte hacia ninguna.",
+    "chips": [
+     "Costo",
+     "Configuración",
+     "Propiedad del Número",
+     "Cumplimiento"
+    ]
+   },
+   "mock": {
+    "title": "Comparación rápida",
+    "rows": [
+     {
+      "name": "Llamadas con SIM",
+      "detail": "Móvil del vendedor",
+      "status": "Arranque rápido"
+     },
+     {
+      "name": "Llamadas en la nube",
+      "detail": "Número de empresa",
+      "status": "De la empresa"
+     },
+     {
+      "name": "Ambas",
+      "detail": "Mismo registro de cliente",
+      "status": "Eazybe"
+     }
+    ]
+   },
+   "answer": {
+    "h2": "¿Qué Diferencia Hay entre las Llamadas con SIM y en la Nube?",
+    "paragraphs": [
+     "Las llamadas con SIM usan la red móvil y la SIM del teléfono. Las llamadas en la nube, también llamadas telefonía en la nube o VoIP, funcionan por internet con un número virtual. En la práctica, la gran diferencia es quién controla el número: con SIM suele quedarse con el vendedor y en la nube, con la empresa.",
+     "Ninguna es mejor para todos los equipos. Un equipo de campo que llama desde el móvil puede perder tiempo al pasarse a una línea en la nube, mientras que un equipo que vende a otros países puede quedarse corto con la SIM muy pronto. Muchos equipos acaban usando las dos, y por eso importa tenerlas registradas en un solo lugar."
+    ]
+   },
+   "how": {
+    "h2": "Cómo Elegir con Cuatro Preguntas",
+    "subtitle": "Respóndelas con tu responsable de ventas. Lo normal es que las respuestas apunten a una opción.",
+    "steps": [
+     {
+      "title": "¿Dónde Trabajan Tus Vendedores?",
+      "desc": "Si están en la calle, la SIM tiene ventaja. En una oficina con buen internet, cualquiera sirve."
+     },
+     {
+      "title": "¿Quién Debe Ser Dueño del Número?",
+      "desc": "Si el número tiene que quedarse en la empresa, elige llamadas en la nube."
+     },
+     {
+      "title": "¿Dónde Están Tus Clientes?",
+      "desc": "Si vendes a otros países, los números virtuales locales suelen salir ganando."
+     },
+     {
+      "title": "¿Cuántas Llamadas Haces?",
+      "desc": "Compara tu plan del operador con el precio por número y por minuto en la nube."
+     }
+    ]
+   },
+   "features": {
+    "h2": "Dónde Destaca",
+    "h2Em": "Cada Una",
+    "subtitle": "Las dos tienen ventajas reales, así que elige según cómo vende tu equipo.",
+    "cards": [
+     {
+      "title": "SIM: Arranque Rápido",
+      "desc": "Tus vendedores ya tienen teléfonos y SIM, así que no hay que contratar ninguna línea."
+     },
+     {
+      "title": "SIM: Usa la Red Móvil",
+      "desc": "Las llamadas no dependen de una buena conexión a internet, algo útil en la calle."
+     },
+     {
+      "title": "SIM: Número Conocido",
+      "desc": "El cliente ve un móvil normal y puede que tus contactos actuales ya lo tengan guardado."
+     },
+     {
+      "title": "Nube: Número de la Empresa",
+      "desc": "El número sigue en la empresa cuando un vendedor se va."
+     },
+     {
+      "title": "Nube: Línea Compartida",
+      "desc": "Un solo número de empresa puede servir a todo un equipo, y un número virtual no depende de un teléfono."
+     },
+     {
+      "title": "Nube: Presencia Local",
+      "desc": "Con números virtuales puedes tener un número local en un mercado donde no tienes oficina."
+     }
+    ]
+   },
+   "table": {
+    "h2": "SIM vs Llamadas en la Nube: Comparativa",
+    "subtitle": "Los factores que suelen decidir. Los costos cambian mucho según el país y el proveedor, así que pide presupuestos reales.",
+    "head": [
+     "Factor",
+     "Llamadas con SIM",
+     "Llamadas en la nube"
+    ],
+    "rows": [
+     [
+      "Conexión",
+      "Red móvil",
+      "Internet"
+     ],
+     [
+      "Configuración",
+      "Usas los teléfonos y SIM que ya tienes",
+      "Compras un número y creas una cuenta"
+     ],
+     [
+      "Modelo de costo",
+      "Tu plan del operador móvil",
+      "Suele ser por número, usuario o minuto"
+     ],
+     [
+      "Número que se muestra",
+      "Móvil del vendedor",
+      "Número virtual de empresa o local"
+     ],
+     [
+      "Propiedad del número",
+      "Suele ir ligado al titular de la SIM",
+      "Se queda en la empresa"
+     ],
+     [
+      "La calidad depende de",
+      "Señal móvil",
+      "Conexión a internet"
+     ],
+     [
+      "Vender en el extranjero",
+      "Pueden aplicarse tarifas internacionales",
+      "Puede haber números locales disponibles"
+     ],
+     [
+      "Cumplimiento",
+      "Aplican las leyes de llamadas y grabación",
+      "Aplican las leyes de llamadas y grabación"
+     ],
+     [
+      "En Eazybe",
+      "Seguimiento en Android",
+      "Seguimiento, con números de voz en EE. UU., Canadá y Puerto Rico"
+     ]
+    ],
+    "verdict": [
+     {
+      "title": "Elige Llamadas con SIM si",
+      "desc": "tus vendedores ya venden desde teléfonos Android, trabajan en la calle y llaman sobre todo a clientes de su propio país."
+     },
+     {
+      "title": "Elige Llamadas en la Nube si",
+      "desc": "necesitas un número de la empresa, una línea compartida o presencia en otro mercado."
+     },
+     {
+      "title": "Usa Ambas si",
+      "desc": "tienes vendedores de campo y un equipo interno. Registra las dos en un solo lugar para que el historial del cliente quede completo."
+     }
+    ]
+   },
+   "useCases": {
+    "h2": "Opciones Habituales según el Equipo",
+    "subtitle": "Son puntos de partida. Tu mercado y las tarifas de tu operador pueden cambiar la respuesta.",
+    "cards": [
+     {
+      "title": "Ventas de Campo",
+      "desc": "Normalmente llamadas con SIM, porque los vendedores se mueven y ya llevan el teléfono encima."
+     },
+     {
+      "title": "Ventas Internas Internacionales",
+      "desc": "Normalmente llamadas en la nube, porque pesan más los números locales y una línea compartida."
+     },
+     {
+      "title": "Equipos Mixtos",
+      "desc": "A menudo ambas, con un registro por cliente para que los managers no revisen dos sistemas."
+     }
+    ]
+   },
+   "record": {
+    "h2": "Elijas lo que Elijas, Ten un Solo Registro",
+    "body": "Importa menos qué línea eliges que poder ver qué pasó después. Eazybe registra las llamadas con SIM y virtuales junto a los chats de WhatsApp, así que puedes cambiar tu combinación más adelante sin perder el historial del cliente.",
+    "points": [
+     "Puedes combinar o cambiar de línea más adelante",
+     "Las llamadas con SIM y virtuales van a un solo registro",
+     "El historial se queda con el cliente"
+    ]
+   },
+   "pricing": {
+    "h2": "¿Cuánto Cuesta Cada Opción?",
+    "body": "Las llamadas con SIM van con tu plan del operador. Los números en la nube suelen tener su propio cargo: en Eazybe, el número de voz es un complemento opcional cuyo precio cambia según el país."
+   },
+   "faqIntro": "Respuestas rápidas para equipos que dudan entre llamadas con SIM y telefonía en la nube. Eazybe vende ambas opciones, así que compáralo con tus propios presupuestos.",
+   "faq": [
+    {
+     "q": "¿Las llamadas con SIM son más baratas que la telefonía en la nube?",
+     "a": "Depende de tu plan, tu volumen de llamadas y tu país. Si tus vendedores ya tienen llamadas locales ilimitadas, la SIM puede costar poco más. Compáralo con un presupuesto real en la nube que incluya números, usuarios y minutos."
+    },
+    {
+     "q": "¿Los clientes contestan más las llamadas con SIM?",
+     "a": "Los proveedores de SIM suelen decirlo, pero no hemos visto datos independientes que lo prueben en todos los mercados. Pruébalo con tus propias listas comparando la tasa de respuesta durante unas semanas."
+    },
+    {
+     "q": "¿Qué es la telefonía en la nube?",
+     "a": "La telefonía en la nube gestiona las llamadas de empresa por internet en lugar de una línea física o una SIM. Los números y los datos de llamadas se administran desde una cuenta online."
+    },
+    {
+     "q": "¿Puedo usar llamadas con SIM y en la nube a la vez?",
+     "a": "Sí. Eazybe hace seguimiento de las llamadas con SIM en Android y de las llamadas virtuales, y guarda ambas junto a los chats de WhatsApp del cliente."
+    },
+    {
+     "q": "¿Quién se queda el número si un vendedor se va?",
+     "a": "Con una SIM, depende de quién sea el titular. Con un número de voz de Eazybe, el número y el historial del cliente se quedan en la empresa."
+    },
+    {
+     "q": "¿Cuál tiene mejor calidad de llamada?",
+     "a": "Depende de la conexión. Las llamadas con SIM dependen de la señal móvil y las de la nube, de tu internet. Un vendedor con mala conexión en la oficina puede ir mejor con SIM, y uno en una zona con poca señal, mejor en la nube."
+    },
+    {
+     "q": "¿Cuál es mejor para vender en el extranjero?",
+     "a": "Normalmente las llamadas en la nube, porque un número virtual te da presencia local en ese mercado, mientras que una SIM puede cobrar tarifas internacionales. Nuestros números de voz cubren EE. UU., Canadá y Puerto Rico."
+    },
+    {
+     "q": "¿Cambian las leyes de llamadas y grabación entre una y otra?",
+     "a": "No. Las normas dependen del país al que llamas y de cómo contactas a la gente, no del tipo de línea. Las normas cambian, así que busca asesoría para tu mercado."
+    },
+    {
+     "q": "¿Puedo empezar con SIM y añadir llamadas en la nube después?",
+     "a": "Sí. Eazybe hace seguimiento de ambas y el número de voz es un complemento opcional en todos los planes, así que puedes añadirlo cuando tu equipo necesite una línea compartida."
+    },
+    {
+     "q": "¿Cuál es mejor para ventas de campo?",
+     "a": "Normalmente las llamadas con SIM, porque funcionan con la red móvil y el vendedor ya lleva el teléfono. Las llamadas en la nube necesitan una conexión a internet estable."
+    }
+   ]
+  }
+ }
+}

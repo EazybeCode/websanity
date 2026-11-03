@@ -177,6 +177,8 @@ Build your own no-code WhatsApp AI agent for any use case. Drag-and-drop convers
 
 ### 10. Call Tracking, Auto Dialer and Voice Numbers
 
+Pages: [Calling](https://eazybe.com/calling), [Auto Dialer](https://eazybe.com/calling/auto-dialer), [Virtual Phone Numbers](https://eazybe.com/calling/virtual-phone-number), [Call Tracking](https://eazybe.com/calling/call-tracking), [SIM-Based Calling](https://eazybe.com/calling/sim-based-calling), [Call Recording](https://eazybe.com/calling/call-recording), [SIM vs Cloud Calling](https://eazybe.com/calling/sim-vs-cloud-calling).
+
 **Call tracking:** Logs every call's time, length and outcome in the CRM. Works with SIM calls on Android and virtual calls; every call is saved beside the customer's WhatsApp chats.
 
 **Auto dialer:** Pick a call list from WhatsApp Web, Google Sheets, your CRM (HubSpot, Salesforce, Zoho, Eazybe CRM or your Workspace) or the public API and press start. Eazybe calls your customers, rings the next number as soon as a call ends, shows customers a local number from their own country, and saves each recording and outcome back to the contact with the next step set.
