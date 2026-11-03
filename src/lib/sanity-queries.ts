@@ -1,4 +1,8 @@
+import { cache } from 'react'
 import { sanityClient, sanityDraftClient } from './sanity'
+import { getCallingPage } from '@/data/calling-i18n'
+import { docToCallingPage, type CallingPageDoc } from '@/data/calling-doc'
+import type { CallingPageContent } from '@/data/calling-content'
 import {
   CRM_ORDER,
   REGION_ORDER,
@@ -1485,3 +1489,19 @@ export async function getPartners(locale: string = 'en'): Promise<PartnerRecord[
   if (rows === null) return null
   return rows.map(toPartnerRecord)
 }
+
+/**
+ * A /calling page's copy: the published "Calling Pages" document when there is
+ * one, otherwise the copy in the code. Also the fallback when the CMS is
+ * unreachable, so these pages never depend on Sanity being up. Cached per request
+ * because metadata and the page both ask for it.
+ */
+export const getCallingPageContent = cache(async (slug: string, locale: string): Promise<CallingPageContent | undefined> => {
+  const base = getCallingPage(slug, locale)
+  if (!base) return undefined
+  const doc = await sanityClient.fetch<CallingPageDoc | null>(
+    `*[_type == "callingPage" && !(_id in path("drafts.**")) && slug.current == $slug && language == $language][0]`,
+    { slug: slug || 'hub', language: toSanityLang(locale) },
+  )
+  return doc ? docToCallingPage(doc, base) : base
+})

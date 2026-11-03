@@ -2020,6 +2020,8 @@ export default defineConfig({
     types: [blogPost, comparisonPost, feature, integration, page, categoryIndexPage, redirect, productPage, ...customSchemaTypes],
   },
   document: {
+    // A new callingPage would feed no URL: the 28 documents are one per page per language.
+    newDocumentOptions: (prev) => prev.filter((item) => item.templateId !== 'callingPage'),
     actions: (prev, context) => {
       if (context.schemaType === 'post') {
         return [...prev, GenerateSeoAction, CreateTranslationsAction, OpenPreviewAction]
@@ -2282,6 +2284,57 @@ export default defineConfig({
                         S.documentTypeList('productPage')
                           .title('Portuguese Product Pages')
                           .filter('_type == "productPage" && language == "pt-BR"')
+                      ),
+                  ])
+              ),
+            S.listItem()
+              .title('Calling Pages')
+              .icon(() => '📞')
+              .child(
+                S.list()
+                  .title('Calling Pages')
+                  .items([
+                    S.listItem()
+                      .title('All Calling Pages')
+                      .icon(() => '📋')
+                      .child(
+                        S.documentTypeList('callingPage')
+                          .title('Calling Pages (/calling/*)')
+                          .filter('_type == "callingPage"')
+                          .initialValueTemplates([])
+                      ),
+                    S.divider(),
+                    S.listItem()
+                      .title('🇬🇧 English')
+                      .child(
+                        S.documentTypeList('callingPage')
+                          .title('English Calling Pages')
+                          .filter('_type == "callingPage" && language == "en"')
+                          .initialValueTemplates([])
+                      ),
+                    S.listItem()
+                      .title('🇪🇸 Spanish')
+                      .child(
+                        S.documentTypeList('callingPage')
+                          .title('Spanish Calling Pages')
+                          .filter('_type == "callingPage" && language == "es"')
+                          .initialValueTemplates([])
+                      ),
+                    S.listItem()
+                      .title('🇹🇷 Turkish')
+                      .child(
+                        S.documentTypeList('callingPage')
+                          .title('Turkish Calling Pages')
+                          .filter('_type == "callingPage" && language == "tr"')
+                          .initialValueTemplates([])
+                      ),
+                    S.listItem()
+                      .title('🇧🇷 Portuguese')
+                      .child(
+                        S.documentTypeList('callingPage')
+                          .title('Portuguese Calling Pages')
+                          .filter('_type == "callingPage" && language == "pt-BR"')
+                          .initialValueTemplates([])
                       ),
                   ])
               ),

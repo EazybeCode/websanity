@@ -18,6 +18,7 @@ import author from './author.js'
 import blogCategory from './blogCategory.js'
 import partner from './partner.js'
 import caseStudy from './caseStudy.js'
+import callingPage from './callingPage.js'
 
 export default [
   // Document types
@@ -25,6 +26,7 @@ export default [
   blogCategory,
   partner,
   caseStudy,
+  callingPage,
   // Object types (used within arrays/fields)
   table,
   accordion,
