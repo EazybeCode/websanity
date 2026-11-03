@@ -131,7 +131,7 @@ const PAGE_CSS = `
 
   /* Customer logos */
   .landing .v16-brand .aia-logos-sec { padding: 40px 0 8px; }
-  .landing .v16-brand .aia-logos-label { margin: 0 0 18px; text-align: center; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-4); }
+  .landing .v16-brand .aia-logos-label { margin: 0 0 18px; text-align: center; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
   .landing .v16-brand .aia-logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
   .landing .v16-brand .aia-logos-track { display: flex; width: max-content; animation: aia-marquee 40s linear infinite; }
   .landing .v16-brand .aia-logos:hover .aia-logos-track { animation-play-state: paused; }
@@ -170,8 +170,8 @@ const PAGE_CSS = `
   .landing .v16-brand .aia-bubble-agent { background: #d9fdd3; justify-self: end; border-top-right-radius: 2px; }
   .landing .v16-brand .aia-mock-score { padding: 16px; border-radius: 10px; background: #fff; border: 1px solid rgba(43, 89, 255, 0.35); }
   .landing .v16-brand .aia-mock-score-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .landing .v16-brand .aia-mock-score-head span { font-family: var(--f-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-4); }
-  .landing .v16-brand .aia-mock-score-head strong { padding: 4px 10px; border-radius: 6px; font-size: 13px; color: #fff; background: #ff5b4d; }
+  .landing .v16-brand .aia-mock-score-head span { font-family: var(--f-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  .landing .v16-brand .aia-mock-score-head strong { padding: 4px 10px; border-radius: 6px; font-size: 13px; color: #fff; background: #c4281c; }
   .landing .v16-brand .aia-mock-score ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
   .landing .v16-brand .aia-mock-score li { padding: 6px 8px; border-radius: 6px; font-size: 12.5px; color: var(--ink-2); background: var(--bg-2); }
   .landing .v16-brand .aia-mock-score li.is-ok::before { content: '✓ '; color: #2ec27e; font-weight: 700; }
@@ -183,7 +183,7 @@ const PAGE_CSS = `
   .landing .v16-brand .aia-case { padding: clamp(24px, 3.5vw, 36px); display: flex; flex-direction: column; gap: 22px; }
   .landing .v16-brand .aia-case:hover { transform: none; }
   .landing .v16-brand .aia-case-head strong { display: block; font-size: 26px; font-weight: 700; letter-spacing: -0.03em; color: var(--ink); }
-  .landing .v16-brand .aia-case-head span { font-family: var(--f-mono); font-size: 12px; color: var(--ink-4); }
+  .landing .v16-brand .aia-case-head span { font-family: var(--f-mono); font-size: 12px; color: var(--ink-3); }
   .landing .v16-brand .aia-case-metrics { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
   @media (max-width: 640px) { .landing .v16-brand .aia-case-metrics { grid-template-columns: 1fr; } }
   .landing .v16-brand .aia-case-metrics div { padding: 16px; border-radius: 10px; background: var(--bg-2); display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 6px; }
@@ -292,7 +292,7 @@ const PAGE_CSS = `
   .landing .v16-brand .aia-table-wrap:hover { transform: none; }
   .landing .v16-brand .aia-table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14.5px; line-height: 1.55; }
   .landing .v16-brand .aia-table th, .landing .v16-brand .aia-table td { padding: 16px 20px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
-  .landing .v16-brand .aia-table thead th { font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-4); }
+  .landing .v16-brand .aia-table thead th { font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
   .landing .v16-brand .aia-table thead th:nth-child(2) { color: #2b59ff; }
   .landing .v16-brand .aia-table tbody th { font-weight: 600; color: var(--ink); width: 24%; }
   .landing .v16-brand .aia-table td { color: var(--ink-3); }
@@ -347,7 +347,7 @@ const PAGE_CSS = `
   .landing .v16-brand .aia-price-plan .aia-plan-name { font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #2b59ff; }
   .landing .v16-brand .aia-price-plan .aia-price-num { display: block; margin-top: 6px; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: var(--ink); }
   .landing .v16-brand .aia-price ul { margin: 14px 0 0; padding-left: 18px; list-style: disc; font-size: 15px; line-height: 1.8; color: var(--ink-2); }
-  .landing .v16-brand .aia-price-note { margin: 14px 0 0; font-size: 13px; color: var(--ink-4); }
+  .landing .v16-brand .aia-price-note { margin: 14px 0 0; font-size: 13px; color: var(--ink-3); }
 
   /* FAQ — hairline rows, 10px corners */
   /* Section intros are 40-60 words: a wider measure keeps them to 3-4 lines. */
@@ -416,7 +416,7 @@ const PAGE_CSS = `
     height: 100%; display: flex; flex-direction: column; gap: 8px; padding: 20px 22px;
     background: var(--paper); border: 1px solid var(--line); border-radius: 10px; color: var(--ink); transition: border-color .2s;
   }
-  .landing .v16-brand .aia-related-date { display: block; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .04em; color: var(--ink-4); }
+  .landing .v16-brand .aia-related-date { display: block; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .04em; color: var(--ink-3); }
   /* Post titles are spans, not headings, so 15 cards don't crowd the page's heading outline. */
   .landing .v16-brand .aia-related-title { display: block; margin: 0; font-size: 15.5px; font-weight: 700; line-height: 1.4; letter-spacing: -0.01em; color: var(--ink); }
   .landing .v16-brand .aia-related p {
