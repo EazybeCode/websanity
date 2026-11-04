@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { ORG_ID, SOFTWARE_ID } from '@/data/global-schemas'
 import { CALLING_UPDATED, callingPath, type CallingPageContent } from '@/data/calling-content'
 import { getCallingUi, localePrefix } from '@/data/calling-i18n'
 import type { CallingUi } from '@/data/calling-ui'
@@ -229,9 +228,21 @@ export function callingCrumbs(page: CallingPageContent, locale: string) {
   ]
 }
 
+// The comparison page describes two ways of calling, not one Eazybe service.
+const NO_SERVICE_SLUGS = ['sim-vs-cloud-calling']
+// Voice numbers are sold in these countries (the page's hero chips say the same).
+const VOICE_NUMBER_COUNTRIES = ['United States', 'Canada', 'Puerto Rico']
+// The user wants each schema on its own validator row, and the validator nests any node
+// another node links to by @id. So these nodes don't link to each other: the company is
+// named in place, with no @id pointing at the global Organization block.
+const EAZYBE_ORG_NAME_ONLY = { '@type': 'Organization', name: 'Eazybe', url: `${SITE_URL}/` }
+
 export function callingSchema(page: CallingPageContent, locale: string) {
-  const pageUrl = `${SITE_URL}${localePrefix(locale)}${callingPath(page.slug)}`
+  const prefix = localePrefix(locale)
+  const pageUrl = `${SITE_URL}${prefix}${callingPath(page.slug)}`
   const crumbs = callingCrumbs(page, locale)
+  const serviceId = `${pageUrl}#service`
+  const hasService = !NO_SERVICE_SLUGS.includes(page.slug)
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -243,9 +254,7 @@ export function callingSchema(page: CallingPageContent, locale: string) {
         description: page.meta.description,
         inLanguage: LANG[locale] ?? 'en-US',
         dateModified: CALLING_UPDATED,
-        about: { '@id': SOFTWARE_ID },
-        publisher: { '@id': ORG_ID },
-        breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
+        publisher: EAZYBE_ORG_NAME_ONLY,
       },
       {
         '@type': 'BreadcrumbList',
@@ -261,17 +270,29 @@ export function callingSchema(page: CallingPageContent, locale: string) {
           acceptedAnswer: { '@type': 'Answer', text: f.a },
         })),
       },
-      // Same @id and wording as the homepage node, so WebPage.about resolves here.
-      // No AggregateRating or offers: calling plan pricing is not confirmed yet.
-      {
-        '@type': 'SoftwareApplication',
-        '@id': SOFTWARE_ID,
-        name: 'Eazybe',
-        applicationCategory: 'BusinessApplication',
-        operatingSystem: 'Web, Chrome Extension, Android',
-        url: SITE_URL,
-        publisher: { '@id': ORG_ID },
-      },
+      // Service rather than SoftwareApplication: Google lists a price as required for
+      // software, and calling has no fixed price. The offer repeats the page's own pricing
+      // text and carries no price on purpose, so never add a number or 0 here.
+      ...(hasService
+        ? [
+            {
+              '@type': 'Service',
+              '@id': serviceId,
+              name: page.slug ? page.navLabel : crumbs[crumbs.length - 1].name,
+              description: page.meta.description,
+              url: pageUrl,
+              provider: EAZYBE_ORG_NAME_ONLY,
+              ...(page.slug === 'virtual-phone-number'
+                ? { areaServed: VOICE_NUMBER_COUNTRIES.map((name) => ({ '@type': 'Country', name })) }
+                : {}),
+              offers: {
+                '@type': 'Offer',
+                description: page.pricing.body,
+                url: `${SITE_URL}${prefix}/pricing`,
+              },
+            },
+          ]
+        : []),
     ],
   }
 }
