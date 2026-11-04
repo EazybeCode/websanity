@@ -317,10 +317,11 @@ const SOFTWARE_COPY: Record<OrgLocale, {
   },
 }
 
-function buildSoftwareApplication(locale: OrgLocale): object {
+// A plan's yearly-billed and monthly-billed offers, in the language's name and currency.
+function buildPlanOffers(locale: OrgLocale, [plan, prices]: [name: string, prices: PlanPrices]): object[] {
   const copy = SOFTWARE_COPY[locale]
   const prefix = locale === 'en' ? '' : `/${locale}`
-  const offer = (plan: string, billing: string, price: number) => ({
+  const offer = (billing: string, price: number) => ({
     "@type": "Offer",
     "name": `${plan}, ${billing}`,
     "price": price,
@@ -329,6 +330,19 @@ function buildSoftwareApplication(locale: OrgLocale): object {
     "url": `${BASE_URL}${prefix}/pricing`,
     "availability": "https://schema.org/InStock"
   })
+  return [offer(copy.billedYearly, prices.yearly), offer(copy.billedMonthly, prices.monthly)]
+}
+
+// Basic AI is the last priced plan in each language's list: the plan with AI agents.
+export function getBasicAiOffers(locale: string): object[] {
+  const key: OrgLocale = locale in SOFTWARE_COPY ? (locale as OrgLocale) : 'en'
+  const plans = SOFTWARE_COPY[key].plans
+  return buildPlanOffers(key, plans[plans.length - 1])
+}
+
+function buildSoftwareApplication(locale: OrgLocale): object {
+  const copy = SOFTWARE_COPY[locale]
+  const prefix = locale === 'en' ? '' : `/${locale}`
   return {
     "@context": "https://schema.org/",
     "@type": "SoftwareApplication",
@@ -347,10 +361,7 @@ function buildSoftwareApplication(locale: OrgLocale): object {
     "softwareHelp": { "@type": "CreativeWork", "url": HELP_CENTER_URL },
     "screenshot": SCREENSHOT_URL,
     "sameAs": [CHROME_STORE_LISTING_URL, CHROME_STORE_RATED_LISTING_URL, PLAY_STORE_URL],
-    "offers": copy.plans.flatMap(([plan, prices]) => [
-      offer(plan, copy.billedYearly, prices.yearly),
-      offer(plan, copy.billedMonthly, prices.monthly)
-    ]),
+    "offers": copy.plans.flatMap((plan) => buildPlanOffers(locale, plan)),
     // From the Eazybe Chrome Web Store listing with 1.1K ratings (CHROME_STORE_RATED_LISTING_URL).
     "aggregateRating": {
       "@type": "AggregateRating",

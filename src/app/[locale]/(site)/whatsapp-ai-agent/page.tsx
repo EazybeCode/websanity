@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getAlternates } from '@/lib/seo-helpers'
-import { ORG_ID, SOFTWARE_ID } from '@/data/global-schemas'
+import { ORG_ID, SOFTWARE_ID, getBasicAiOffers } from '@/data/global-schemas'
 import { getAiAgentPageContent } from '@/data/whatsapp-ai-agent-content'
 import { AI_AGENT_EN_SLUGS } from '@/data/ai-agent-posts'
 import { getPostsByEnSlugs } from '@/lib/sanity-queries'
@@ -510,10 +510,7 @@ export default async function WhatsappAiAgentPage({
         operatingSystem: 'Web, Chrome Extension, Android', // same wording as the homepage #software node
         url: SITE_URL,
         publisher: { '@id': ORG_ID },
-        offers: [
-          { '@type': 'Offer', name: 'Basic AI, billed yearly', price: '59', priceCurrency: 'USD', url: `${SITE_URL}${prefix}/pricing` },
-          { '@type': 'Offer', name: 'Basic AI, billed monthly', price: '79', priceCurrency: 'USD', url: `${SITE_URL}${prefix}/pricing` },
-        ],
+        offers: getBasicAiOffers(locale),
       },
     ],
   }
