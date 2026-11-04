@@ -202,6 +202,14 @@ const defaultComparisonFeatures: ComparisonFeatureRow[] = [
   { feature: 'Priority support', starter: false, scaler: true, basicAi: true, proAi: true, category: 'Support' },
 ]
 
+const CHROME_RATINGS_URL = 'https://chromewebstore.google.com/detail/eazybe-crm-sync-ai-assist/clgficggccelgifppbcaepjdkklfcefd/reviews'
+const RATING_LINE: Record<string, string> = {
+  en: '4.2★ from 1.1K ratings on the Chrome Web Store',
+  es: '4,2★ de 1.100 valoraciones en Chrome Web Store',
+  br: '4,2★ de 1.100 avaliações na Chrome Web Store',
+  tr: "Chrome Web Store'da 1.100 değerlendirmeden 4,2★",
+}
+
 const defaultFaqItems: FAQItem[] = [
   { question: 'Can I try Eazybe for free?', answer: 'Yes! We offer a 4-day free trial on Starter and Scaler plans. No credit card required.' },
   { question: 'How does per-user pricing work?', answer: 'You pay for each team member who actively uses Eazybe. A user is anyone who syncs their WhatsApp conversations to your CRM.' },
@@ -1572,6 +1580,15 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
                 <Icon size={16} style={{ color: 'var(--accent-ink)' }} /> {text}
               </div>
             ))}
+            {/* Keeps the rating in the page's schema visible to readers. */}
+            <a
+              href={CHROME_RATINGS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: 3 }}
+            >
+              {RATING_LINE[locale] || RATING_LINE.en}
+            </a>
           </div>
         </div>
       </section>

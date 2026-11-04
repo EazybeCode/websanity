@@ -196,8 +196,8 @@ function buildOrganization(locale: OrgLocale): object {
 }
 
 // Plan prices per month, worked out the way the /pricing page does it (useDynamicPricing).
-// Checked 2026-11-04. BRL is a set multiple of USD; EUR and TRY move with the exchange
-// rate, so recheck them when prices change. Custom AI has no listed price, so it isn't here.
+// Checked 2026-11-04. BRL is a set multiple of USD; TRY moves with the exchange rate, so
+// recheck it when prices change. Custom AI has no listed price, so it isn't here.
 type PlanPrices = { yearly: number; monthly: number }
 const SOFTWARE_COPY: Record<OrgLocale, {
   inLanguage: string
@@ -241,9 +241,10 @@ const SOFTWARE_COPY: Record<OrgLocale, {
     subCategory: "Integración de WhatsApp con CRM, Inteligencia de ventas, Agentes de IA, Software de llamadas",
     operatingSystem: "Web, Extensión de Chrome, Android",
     description: "Eazybe impulsa las conversaciones de venta en WhatsApp y llamadas. Conecta a tu CRM (HubSpot, Salesforce, Zoho, Pipedrive y más) los números personales de WhatsApp de tu equipo, los grupos de WhatsApp y las llamadas, y deja que la IA se encargue de calificar y dar seguimiento.",
-    // Prices shown to visitors in Spain; other countries see their own currency on /es/pricing.
-    currency: "EUR",
-    plans: [["Inicial", { yearly: 17, monthly: 26 }], ["Escala", { yearly: 35, monthly: 44 }], ["IA Básica", { yearly: 53, monthly: 71 }]],
+    // USD, the list price: /es/pricing has no fixed currency (it follows the visitor's
+    // country) and its server HTML shows USD, so EUR here wouldn't match what crawlers see.
+    currency: "USD",
+    plans: [["Inicial", { yearly: 19, monthly: 29 }], ["Escala", { yearly: 39, monthly: 49 }], ["IA Básica", { yearly: 59, monthly: 79 }]],
     billedYearly: "facturación anual",
     billedMonthly: "facturación mensual",
     featureList: [
