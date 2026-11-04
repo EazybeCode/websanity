@@ -3009,7 +3009,7 @@
       "comparison": "Karşılaştırma",
       "aboutUs": "Hakkımızda",
       "integrations": "Entegrasyonlar",
-      "integrationSuffix": "WhatsApp Entegrasyonu",
+      "integrationName": "{name} WhatsApp Entegrasyonu",
       "whatsappApi": "WhatsApp API",
       "whatsappApiOverview": "WhatsApp API'ye Genel Bakış",
       "coexistence": "Birlikte Çalışma",

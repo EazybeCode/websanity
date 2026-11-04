@@ -3083,7 +3083,7 @@
       "comparison": "Comparação",
       "aboutUs": "Sobre nós",
       "integrations": "Integrações",
-      "integrationSuffix": "Integração WhatsApp",
+      "integrationName": "Integração do WhatsApp com {name}",
       "whatsappApi": "WhatsApp API",
       "whatsappApiOverview": "Visão geral da WhatsApp API",
       "coexistence": "Coexistência",

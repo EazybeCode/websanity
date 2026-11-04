@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getHomepageMetadata, getHomepageJsonLd } from '@/data/homepage-seo'
+import { getSiteNavigationJsonLd } from '@/data/site-navigation'
 import { HomepageV16 } from '@/components/homepage-v16/HomepageV16'
 import { routing } from '@/i18n/routing'
 
@@ -31,7 +32,7 @@ export default async function HomePage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const jsonLdSchemas = getHomepageJsonLd(locale)
+  const jsonLdSchemas = [...getHomepageJsonLd(locale), await getSiteNavigationJsonLd(locale)]
 
   return (
     <>

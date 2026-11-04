@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getAlternates } from '@/lib/seo-helpers'
-import { WA_PRICING_PATH_BY_LOCALE } from '@/data/whatsapp-pricing-content'
+import { getSitemapTree, isBranch, type SitemapNode } from '@/data/site-navigation'
 
 export const dynamic = 'force-static'
 
@@ -27,52 +27,10 @@ export async function generateMetadata({
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-// Tree types
-// ────────────────────────────────────────────────────────────────────────────
-
-type Leaf = { label: string; href: string }
-type Branch = { label: string; href?: string; children: Array<Leaf | Branch> }
-type Node = Leaf | Branch
-
-const isBranch = (n: Node): n is Branch => Array.isArray((n as Branch).children)
-
-const FEATURES: Array<{ key: string; slug: string }> = [
-  { key: 'featureTeamInbox', slug: 'team-inbox' },
-  { key: 'featureWhatsappCrm', slug: 'whatsapp-crm' },
-  { key: 'featureCloudBackup', slug: 'cloud-backup' },
-  { key: 'featureQuickReply', slug: 'quick-reply' },
-  { key: 'featureScheduler', slug: 'scheduler' },
-  { key: 'featureRevenueInbox', slug: 'revenue-inbox' },
-  { key: 'featureRepRadar', slug: 'rep-radar' },
-  { key: 'featureWhatsappCopilot', slug: 'whatsapp-copilot' },
-]
-
-const INTEGRATIONS: Array<{ name: string; slug: string }> = [
-  { name: 'HubSpot', slug: 'hubspot' },
-  { name: 'Salesforce', slug: 'salesforce' },
-  { name: 'Zoho', slug: 'zoho' },
-  { name: 'Bitrix24', slug: 'bitrix24' },
-  { name: 'LeadSquared', slug: 'leadsquared' },
-  { name: 'Freshdesk', slug: 'freshdesk' },
-  { name: 'Pipedrive', slug: 'pipedrive' },
-  { name: 'Monday', slug: 'monday' },
-  { name: 'Google Sheets', slug: 'google-sheets' },
-  { name: 'Google Calendar', slug: 'google-calendar' },
-  { name: 'Webhooks', slug: 'webhooks' },
-]
-
-const LOCALE_NAMES: Record<string, string> = {
-  en: 'English',
-  br: 'Português (Brasil)',
-  es: 'Español',
-  tr: 'Türkçe',
-}
-
-// ────────────────────────────────────────────────────────────────────────────
 // Renderers
 // ────────────────────────────────────────────────────────────────────────────
 
-function TreeNode({ node }: { node: Node }) {
+function TreeNode({ node }: { node: SitemapNode }) {
   if (isBranch(node)) {
     return (
       <li className="sitemap-node sitemap-branch">
@@ -121,89 +79,7 @@ export default async function SitemapPage({
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations('landingV3.sitemap')
-
-  const prefix = locale === 'en' ? '' : `/${locale}`
-  const url = (path: string) => `${prefix}${path}`
-  const integrationSuffix = t('integrationSuffix')
-
-  const tree: Node[] = [
-    { label: t('home'), href: url('/') || '/' },
-    {
-      label: t('product'),
-      href: url('/features'),
-      children: [
-        {
-          label: t('features'),
-          href: url('/features'),
-          children: [
-            { label: t('allFeatures'), href: url('/features') },
-            ...FEATURES.map((f) => ({
-              label: t(f.key as any),
-              href: url(`/features/${f.slug}`),
-            })),
-          ],
-        },
-        { label: t('pricing'), href: url('/pricing') },
-        { label: t('comparison'), href: url('/comparison') },
-        { label: t('aboutUs'), href: url('/about-us') },
-      ],
-    },
-    {
-      label: t('integrations'),
-      href: url('/integrations'),
-      children: INTEGRATIONS.map((i) => ({
-        label: `${i.name} ${integrationSuffix}`,
-        href: url(`/${i.slug}-whatsapp-integration`),
-      })),
-    },
-    {
-      label: t('whatsappApi'),
-      href: url('/whatsapp-api'),
-      children: [
-        { label: t('coexistence'), href: url('/whatsapp-api/coexistence') },
-        { label: t('templates'), href: url('/whatsapp-api/templates') },
-        { label: t('broadcast'), href: url('/whatsapp-api/broadcast') },
-      ],
-    },
-    {
-      label: t('resources'),
-      href: url('/blog'),
-      children: [
-        { label: t('blog'), href: url('/blog') },
-        { label: t('authors'), href: url('/blog/authors') },
-        { label: t('caseStudies'), href: url('/case-studies') },
-        { label: t('helpCenter'), href: 'https://help.eazybe.com/introduction' },
-        { label: t('becomePartner'), href: url('/become-our-partner') },
-      ],
-    },
-    {
-      label: t('freeTools'),
-      href: url('/tools'),
-      children: [
-        { label: t('allTools'), href: url('/tools') },
-        { label: t('toolPricingCalc'), href: WA_PRICING_PATH_BY_LOCALE[locale] ?? WA_PRICING_PATH_BY_LOCALE.en },
-        { label: t('toolRoiCalc'), href: url('/marketing-roi-calculator') },
-        { label: t('toolQr'), href: url('/whatsapp-qr-code-generator') },
-        { label: t('toolChatLink'), href: url('/whatsapp-chat-link-generator') },
-        { label: t('toolChatWidget'), href: url('/whatsapp-chat-widget') },
-      ],
-    },
-    {
-      label: t('legal'),
-      children: [
-        { label: t('terms'), href: url('/terms') },
-        { label: t('privacy'), href: url('/privacy') },
-        { label: t('msa'), href: url('/msa') },
-      ],
-    },
-    {
-      label: t('languages'),
-      children: routing.locales.map((l) => ({
-        label: LOCALE_NAMES[l] || l,
-        href: l === 'en' ? '/sitemap' : `/${l}/sitemap`,
-      })),
-    },
-  ]
+  const tree = await getSitemapTree(locale)
 
   return (
     <section className="section" style={{ paddingTop: 120, paddingBottom: 80 }}>

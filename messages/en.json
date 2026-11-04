@@ -2871,7 +2871,7 @@
       "comparison": "Comparison",
       "aboutUs": "About Us",
       "integrations": "Integrations",
-      "integrationSuffix": "WhatsApp Integration",
+      "integrationName": "{name} WhatsApp Integration",
       "whatsappApi": "WhatsApp API",
       "whatsappApiOverview": "WhatsApp API Overview",
       "coexistence": "Coexistence",
