@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { getV16Faq } from '@/components/homepage-v16/localize-v16'
-import { ORG_ID, SOFTWARE_ID, getGlobalSchemas } from '@/data/global-schemas'
+import { ORG_ID, SOFTWARE_ID, getGlobalSchemas, getWebSiteId, getWebSiteJsonLd } from '@/data/global-schemas'
 
 const BASE_URL = 'https://eazybe.com'
 
@@ -323,6 +323,7 @@ function getHomepageWebPageJsonLd(locale: string): object {
     "name": String(meta.title),
     "description": meta.description,
     "inLanguage": LANGUAGE_TAGS[locale] ?? LANGUAGE_TAGS.en,
+    "isPartOf": { "@id": getWebSiteId(locale) },
     "publisher": { "@id": ORG_ID },
     "about": { "@id": SOFTWARE_ID },
     "mainEntity": { "@id": `${pageUrl(locale)}#faq` },
@@ -373,25 +374,6 @@ export function getHomepageJsonLd(locale: string): object[] {
           }
         ]
       },
-      // WebSite Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "@id": "https://eazybe.com/br/#website",
-        "url": "https://eazybe.com/br",
-        "name": "Eazybe",
-        "description": "Integra\u00e7\u00e3o CRM com WhatsApp | Eazybe - Plataforma de Vendas. Integra\u00e7\u00e3o com HubSpot, Zoho, Salesforce, Google Sheets e mais.",
-        "publisher": { "@id": ORG_ID },
-        "inLanguage": "pt-BR",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://eazybe.com/br/search?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
-        }
-      },
       // No LocalBusiness/ProfessionalService: Eazybe has no office in Brazil. The market
       // and support coverage live on the Organization (areaServed, contactPoint).
     ],
@@ -414,24 +396,6 @@ export function getHomepageJsonLd(locale: string): object[] {
             "item": "https://eazybe.com/es"
           }
         ]
-      },
-      // WebSite Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": "https://eazybe.com/es",
-        "name": "Eazybe",
-        "description": "Integraci\u00f3n CRM con WhatsApp | Eazybe - Plataforma de ventas. Integraci\u00f3n con HubSpot, Zoho, Salesforce, Google Sheets y m\u00e1s.",
-        "publisher": { "@id": ORG_ID },
-        "inLanguage": "es-ES",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://eazybe.com/es/search?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
-        }
       },
       // No LocalBusiness/ProfessionalService: Eazybe has no office in Spain or LATAM.
       // The market and support coverage live on the Organization (areaServed, contactPoint).
@@ -456,24 +420,6 @@ export function getHomepageJsonLd(locale: string): object[] {
           }
         ]
       },
-      // WebSite Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": "https://eazybe.com/tr",
-        "name": "Eazybe",
-        "description": "WhatsApp ile CRM entegrasyonu | Eazybe - Sat\u0131\u015f Platformu. HubSpot, Zoho, Salesforce, Google Sheets ve daha fazlas\u0131 ile entegrasyon.",
-        "publisher": { "@id": ORG_ID },
-        "inLanguage": "tr-TR",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://eazybe.com/tr/search?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
-        }
-      },
     ],
   }
 
@@ -484,6 +430,7 @@ export function getHomepageJsonLd(locale: string): object[] {
     getGlobalSchemas(locale).softwareApplication,
     getHomepageFaqJsonLd(key),
     ...schemas[key],
+    getWebSiteJsonLd(key),
     getHomepageWebPageJsonLd(key),
   ]
 }

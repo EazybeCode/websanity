@@ -1,5 +1,5 @@
 /**
- * Global JSON-LD schemas for SoftwareApplication and Organization
+ * Global JSON-LD schemas for SoftwareApplication, Organization and WebSite
  * Localized for all supported locales (en, br, es, tr)
  * Used across all pages via the locale layout
  */
@@ -10,9 +10,11 @@ export interface GlobalSchemas {
 }
 
 const BASE_URL = 'https://eazybe.com'
-const CHROME_STORE_URL = 'https://chrome.google.com/webstore/detail/aihpfgoknheimieofcfjiobnmddldjeb'
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.eazybe.workspace'
 const CHROME_STORE_LISTING_URL = 'https://chromewebstore.google.com/detail/eazybe-whatsapp-web-crm-b/aihpfgoknheimieofcfjiobnmddldjeb'
+// The older listing, which holds the 1.1K ratings behind aggregateRating.
+const CHROME_STORE_RATED_LISTING_URL = 'https://chromewebstore.google.com/detail/eazybe-crm-sync-ai-assist/clgficggccelgifppbcaepjdkklfcefd'
+const HELP_CENTER_URL = 'https://help.eazybe.com/introduction'
 // Real product screen from the homepage CRM section
 const SCREENSHOT_URL = `${BASE_URL}/homepage/refined-crm/hubspot.webp`
 // Stable node ids so page-level schemas (WebPage, FAQPage) can reference these
@@ -193,189 +195,208 @@ function buildOrganization(locale: OrgLocale): object {
   }
 }
 
-export function getGlobalSchemas(locale: string): GlobalSchemas {
-  const schemas: Record<string, GlobalSchemas> = {
-    en: {
-      softwareApplication: {
-        "@context": "https://schema.org/",
-        "@type": "SoftwareApplication",
-        "@id": SOFTWARE_ID,
-        "publisher": { "@id": ORG_ID },
-        "name": "Eazybe",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "WhatsApp CRM Integration, Sales Intelligence, AI Agents for WhatsApp and Calls",
-        "operatingSystem": "Web, Chrome Extension, Android",
-        "url": `${BASE_URL}/`,
-        "image": `${BASE_URL}/logo.png`,
-        "description": "Eazybe powers sales conversations across WhatsApp and calls. It connects your team's personal WhatsApp numbers, WhatsApp groups and calls to your CRM (HubSpot, Salesforce, Zoho, Pipedrive and more), and lets AI handle qualification and follow-ups.",
-        "downloadUrl": CHROME_STORE_URL,
-        "installUrl": PLAY_STORE_URL,
-        "screenshot": SCREENSHOT_URL,
-        // Live pricing page (US): Starter annual $19 → Basic AI monthly $79; 3 priced plans (Custom AI = contact sales)
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": `${BASE_URL}/pricing`,
-          "priceCurrency": "USD",
-          "lowPrice": 19,
-          "highPrice": 79,
-          "offerCount": 3,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.2,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 1100
-        },
-        "featureList": [
-          "WhatsApp CRM sync",
-          "WhatsApp groups in the CRM",
-          "Call tracking and auto dialer",
-          "Broadcast from WhatsApp Web, Google Sheets, CRM or API",
-          "Sales intelligence (AI-filled CRM fields)",
-          "WhatsApp, Voice and Website AI agents",
-          "Privacy controls for business chats"
-        ]
-      },
-      organization: buildOrganization('en')
-    },
-    br: {
-      softwareApplication: {
-        "@context": "https://schema.org/",
-        "@type": "SoftwareApplication",
-        "@id": SOFTWARE_ID,
-        "publisher": { "@id": ORG_ID },
-        "name": "Eazybe",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Integração do WhatsApp com CRM, Inteligência de vendas, Agentes de IA para WhatsApp e ligações",
-        "operatingSystem": "Web, Extensão Chrome, Android",
-        "url": `${BASE_URL}/br`,
-        "image": `${BASE_URL}/logo.png`,
-        "description": "O Eazybe impulsiona conversas de vendas no WhatsApp e em ligações. Conecta os números pessoais de WhatsApp da sua equipe, os grupos de WhatsApp e as ligações ao seu CRM (HubSpot, Salesforce, Zoho, Pipedrive e mais) e deixa a IA cuidar da qualificação e dos follow-ups.",
-        "downloadUrl": CHROME_STORE_URL,
-        "installUrl": PLAY_STORE_URL,
-        "screenshot": SCREENSHOT_URL,
-        // Live /br/pricing (BRL): Inicial anual R$63 → IA Básica mensal R$261
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": `${BASE_URL}/br/pricing`,
-          "priceCurrency": "BRL",
-          "lowPrice": 63,
-          "highPrice": 261,
-          "offerCount": 3,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.2,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 1100
-        },
-        "featureList": [
-          "Sincronização do WhatsApp com o CRM",
-          "Grupos de WhatsApp no CRM",
-          "Rastreamento de ligações e discador automático",
-          "Disparos a partir do WhatsApp Web, Google Sheets, CRM ou API",
-          "Inteligência de vendas (campos do CRM preenchidos pela IA)",
-          "Agentes de IA para WhatsApp, voz e site",
-          "Controles de privacidade para conversas de negócios"
-        ]
-      },
-      organization: buildOrganization('br')
-    },
-    es: {
-      softwareApplication: {
-        "@context": "https://schema.org/",
-        "@type": "SoftwareApplication",
-        "@id": SOFTWARE_ID,
-        "publisher": { "@id": ORG_ID },
-        "name": "Eazybe",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Integración de WhatsApp con CRM, Inteligencia de ventas, Agentes de IA para WhatsApp y llamadas",
-        "operatingSystem": "Web, Extensión de Chrome, Android",
-        "url": `${BASE_URL}/es`,
-        "image": `${BASE_URL}/logo.png`,
-        "description": "Eazybe impulsa las conversaciones de venta en WhatsApp y llamadas. Conecta a tu CRM (HubSpot, Salesforce, Zoho, Pipedrive y más) los números personales de WhatsApp de tu equipo, los grupos de WhatsApp y las llamadas, y deja que la IA se encargue de calificar y dar seguimiento.",
-        "downloadUrl": CHROME_STORE_URL,
-        "installUrl": PLAY_STORE_URL,
-        "screenshot": SCREENSHOT_URL,
-        // Live /es/pricing for Spain (EUR): Inicial anual €17 → IA Básica mensual €71
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": `${BASE_URL}/es/pricing`,
-          "priceCurrency": "EUR",
-          "lowPrice": 17,
-          "highPrice": 71,
-          "offerCount": 3,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.2,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 1100
-        },
-        "featureList": [
-          "Sincronización de WhatsApp con el CRM",
-          "Grupos de WhatsApp en el CRM",
-          "Seguimiento de llamadas y marcador automático",
-          "Difusiones desde WhatsApp Web, Google Sheets, CRM o API",
-          "Inteligencia de ventas (campos del CRM completados por IA)",
-          "Agentes de IA para WhatsApp, voz y sitio web",
-          "Controles de privacidad para chats de negocio"
-        ]
-      },
-      organization: buildOrganization('es')
-    },
-    tr: {
-      softwareApplication: {
-        "@context": "https://schema.org/",
-        "@type": "SoftwareApplication",
-        "@id": SOFTWARE_ID,
-        "publisher": { "@id": ORG_ID },
-        "name": "Eazybe",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "WhatsApp CRM Entegrasyonu, Satış Zekası, WhatsApp ve Aramalar için Yapay Zeka Ajanları",
-        "operatingSystem": "Web, Chrome Uzantısı, Android",
-        "url": `${BASE_URL}/tr`,
-        "image": `${BASE_URL}/logo.png`,
-        "description": "Eazybe, WhatsApp'ta ve aramalarda satış konuşmalarınıza güç verir. Ekibinizin kişisel WhatsApp numaralarını, WhatsApp gruplarını ve aramalarını CRM'inize (HubSpot, Salesforce, Zoho, Pipedrive ve daha fazlası) bağlar; nitelendirme ve takipleri Yapay Zeka'ya bırakır.",
-        "downloadUrl": CHROME_STORE_URL,
-        "installUrl": PLAY_STORE_URL,
-        "screenshot": SCREENSHOT_URL,
-        // Live /tr/pricing (TRY): Başlangıç yıllık ₺947 → Temel Yapay Zeka aylık ₺3939 (moves with the exchange rate)
-        "offers": {
-          "@type": "AggregateOffer",
-          "url": `${BASE_URL}/tr/pricing`,
-          "priceCurrency": "TRY",
-          "lowPrice": 947,
-          "highPrice": 3939,
-          "offerCount": 3,
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 4.2,
-          "bestRating": 5,
-          "worstRating": 1,
-          "ratingCount": 1100
-        },
-        "featureList": [
-          "WhatsApp CRM senkronizasyonu",
-          "CRM'de WhatsApp grupları",
-          "Arama takibi ve otomatik arayıcı",
-          "WhatsApp Web, Google Sheets, CRM veya API'den toplu mesaj",
-          "Satış zekası (Yapay Zeka ile doldurulan CRM alanları)",
-          "WhatsApp, sesli arama ve web sitesi için Yapay Zeka ajanları",
-          "İş sohbetleri için gizlilik kontrolleri"
-        ]
-      },
-      organization: buildOrganization('tr')
-    }
-  }
+// Plan prices per month, worked out the way the /pricing page does it (useDynamicPricing).
+// Checked 2026-11-04. BRL is a set multiple of USD; EUR and TRY move with the exchange
+// rate, so recheck them when prices change. Custom AI has no listed price, so it isn't here.
+type PlanPrices = { yearly: number; monthly: number }
+const SOFTWARE_COPY: Record<OrgLocale, {
+  inLanguage: string
+  subCategory: string
+  operatingSystem: string
+  description: string
+  currency: string
+  plans: Array<[name: string, prices: PlanPrices]>
+  billedYearly: string
+  billedMonthly: string
+  featureList: string[]
+}> = {
+  en: {
+    inLanguage: "en-US",
+    subCategory: "WhatsApp CRM Integration, Sales Intelligence, AI Agents, Calling Software",
+    operatingSystem: "Web, Chrome Extension, Android",
+    description: "Eazybe powers sales conversations across WhatsApp and calls. It connects your team's personal WhatsApp numbers, WhatsApp groups and calls to your CRM (HubSpot, Salesforce, Zoho, Pipedrive and more), and lets AI handle qualification and follow-ups.",
+    currency: "USD",
+    plans: [["Starter", { yearly: 19, monthly: 29 }], ["Scaler", { yearly: 39, monthly: 49 }], ["Basic AI", { yearly: 59, monthly: 79 }]],
+    billedYearly: "billed yearly",
+    billedMonthly: "billed monthly",
+    featureList: [
+      "WhatsApp CRM sync",
+      "WhatsApp groups in the CRM",
+      "Team Inbox and Revenue Inbox",
+      "WhatsApp, Voice and Website AI agents",
+      "Agent Builder for custom AI agents",
+      "Sales intelligence (AI-filled CRM fields)",
+      "Auto dialer and call tracking",
+      "Virtual phone numbers",
+      "SIM-based calling and call recording",
+      "Broadcast from WhatsApp Web, Google Sheets, CRM or API",
+      "Message scheduler and quick replies",
+      "WhatsApp cloud backup",
+      "Eazybe MCP for Claude and Codex",
+      "Privacy controls for business chats"
+    ],
+  },
+  es: {
+    inLanguage: "es-ES",
+    subCategory: "Integración de WhatsApp con CRM, Inteligencia de ventas, Agentes de IA, Software de llamadas",
+    operatingSystem: "Web, Extensión de Chrome, Android",
+    description: "Eazybe impulsa las conversaciones de venta en WhatsApp y llamadas. Conecta a tu CRM (HubSpot, Salesforce, Zoho, Pipedrive y más) los números personales de WhatsApp de tu equipo, los grupos de WhatsApp y las llamadas, y deja que la IA se encargue de calificar y dar seguimiento.",
+    // Prices shown to visitors in Spain; other countries see their own currency on /es/pricing.
+    currency: "EUR",
+    plans: [["Inicial", { yearly: 17, monthly: 26 }], ["Escala", { yearly: 35, monthly: 44 }], ["IA Básica", { yearly: 53, monthly: 71 }]],
+    billedYearly: "facturación anual",
+    billedMonthly: "facturación mensual",
+    featureList: [
+      "Sincronización de WhatsApp con el CRM",
+      "Grupos de WhatsApp en el CRM",
+      "Bandeja de Equipo y Bandeja de Ingresos",
+      "Agentes de IA para WhatsApp, voz y sitio web",
+      "Agent Builder para crear agentes de IA a medida",
+      "Inteligencia de ventas (campos del CRM completados por IA)",
+      "Marcador automático y seguimiento de llamadas",
+      "Números de teléfono virtuales",
+      "Llamadas con SIM y grabación de llamadas",
+      "Difusiones desde WhatsApp Web, Google Sheets, CRM o API",
+      "Programador de mensajes y respuestas rápidas",
+      "Backup de WhatsApp en la nube",
+      "Eazybe MCP para Claude y Codex",
+      "Controles de privacidad para chats de negocio"
+    ],
+  },
+  br: {
+    inLanguage: "pt-BR",
+    subCategory: "Integração do WhatsApp com CRM, Inteligência de vendas, Agentes de IA, Software de ligações",
+    operatingSystem: "Web, Extensão Chrome, Android",
+    description: "O Eazybe impulsiona conversas de vendas no WhatsApp e em ligações. Conecta os números pessoais de WhatsApp da sua equipe, os grupos de WhatsApp e as ligações ao seu CRM (HubSpot, Salesforce, Zoho, Pipedrive e mais) e deixa a IA cuidar da qualificação e dos follow-ups.",
+    currency: "BRL",
+    plans: [["Inicial", { yearly: 63, monthly: 96 }], ["Escala", { yearly: 129, monthly: 162 }], ["IA Básica", { yearly: 195, monthly: 261 }]],
+    billedYearly: "faturamento anual",
+    billedMonthly: "faturamento mensal",
+    featureList: [
+      "Sincronização do WhatsApp com o CRM",
+      "Grupos de WhatsApp no CRM",
+      "Caixa de Entrada da Equipe e Caixa de Receita",
+      "Agentes de IA para WhatsApp, voz e site",
+      "Agent Builder para criar agentes de IA personalizados",
+      "Inteligência de vendas (campos do CRM preenchidos pela IA)",
+      "Discador automático e rastreamento de ligações",
+      "Números de telefone virtuais",
+      "Ligações por SIM e gravação de ligações",
+      "Disparos a partir do WhatsApp Web, Google Sheets, CRM ou API",
+      "Agendador de mensagens e respostas rápidas",
+      "Backup do WhatsApp na nuvem",
+      "Eazybe MCP para Claude e Codex",
+      "Controles de privacidade para conversas de negócios"
+    ],
+  },
+  tr: {
+    inLanguage: "tr-TR",
+    subCategory: "WhatsApp CRM Entegrasyonu, Satış Zekası, Yapay Zeka Ajanları, Arama Yazılımı",
+    operatingSystem: "Web, Chrome Uzantısı, Android",
+    description: "Eazybe, WhatsApp'ta ve aramalarda satış konuşmalarınıza güç verir. Ekibinizin kişisel WhatsApp numaralarını, WhatsApp gruplarını ve aramalarını CRM'inize (HubSpot, Salesforce, Zoho, Pipedrive ve daha fazlası) bağlar; nitelendirme ve takipleri Yapay Zeka'ya bırakır.",
+    currency: "TRY",
+    plans: [["Başlangıç", { yearly: 950, monthly: 1450 }], ["Büyüme", { yearly: 1951, monthly: 2451 }], ["Temel Yapay Zeka", { yearly: 2951, monthly: 3951 }]],
+    billedYearly: "yıllık faturalandırma",
+    billedMonthly: "aylık faturalandırma",
+    featureList: [
+      "WhatsApp CRM senkronizasyonu",
+      "CRM'de WhatsApp grupları",
+      "Takım Gelen Kutusu ve Gelir Gelen Kutusu",
+      "WhatsApp, sesli arama ve web sitesi için Yapay Zeka ajanları",
+      "Özel Yapay Zeka ajanları için Agent Builder",
+      "Satış zekası (Yapay Zeka ile doldurulan CRM alanları)",
+      "Otomatik arayıcı ve çağrı takibi",
+      "Sanal telefon numaraları",
+      "SIM tabanlı arama ve çağrı kaydı",
+      "WhatsApp Web, Google Sheets, CRM veya API'den toplu mesaj",
+      "Mesaj planlayıcı ve hızlı yanıtlar",
+      "WhatsApp bulut yedekleme",
+      "Claude ve Codex için Eazybe MCP",
+      "İş sohbetleri için gizlilik kontrolleri"
+    ],
+  },
+}
 
-  return schemas[locale] || schemas.en
+function buildSoftwareApplication(locale: OrgLocale): object {
+  const copy = SOFTWARE_COPY[locale]
+  const prefix = locale === 'en' ? '' : `/${locale}`
+  const offer = (plan: string, billing: string, price: number) => ({
+    "@type": "Offer",
+    "name": `${plan}, ${billing}`,
+    "price": price,
+    "priceCurrency": copy.currency,
+    "priceSpecification": { "@type": "UnitPriceSpecification", "price": price, "priceCurrency": copy.currency, "unitCode": "MON" },
+    "url": `${BASE_URL}${prefix}/pricing`,
+    "availability": "https://schema.org/InStock"
+  })
+  return {
+    "@context": "https://schema.org/",
+    "@type": "SoftwareApplication",
+    "@id": SOFTWARE_ID,
+    "publisher": { "@id": ORG_ID },
+    "name": "Eazybe",
+    "applicationCategory": "BusinessApplication",
+    "applicationSubCategory": copy.subCategory,
+    "operatingSystem": copy.operatingSystem,
+    "url": `${BASE_URL}${prefix || '/'}`,
+    "inLanguage": copy.inLanguage,
+    "image": `${BASE_URL}/logo.png`,
+    "description": copy.description,
+    "downloadUrl": CHROME_STORE_LISTING_URL,
+    "installUrl": PLAY_STORE_URL,
+    "softwareHelp": { "@type": "CreativeWork", "url": HELP_CENTER_URL },
+    "screenshot": SCREENSHOT_URL,
+    "sameAs": [CHROME_STORE_LISTING_URL, CHROME_STORE_RATED_LISTING_URL, PLAY_STORE_URL],
+    "offers": copy.plans.flatMap(([plan, prices]) => [
+      offer(plan, copy.billedYearly, prices.yearly),
+      offer(plan, copy.billedMonthly, prices.monthly)
+    ]),
+    // From the Eazybe Chrome Web Store listing with 1.1K ratings (CHROME_STORE_RATED_LISTING_URL).
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.2,
+      "bestRating": 5,
+      "worstRating": 1,
+      "ratingCount": 1100
+    },
+    "featureList": copy.featureList
+  }
+}
+
+const WEBSITE_COPY: Record<OrgLocale, { inLanguage: string; description: string }> = {
+  en: { inLanguage: "en-US", description: "The website of Eazybe, the sales conversation platform for WhatsApp and calls: AI agents, CRM integrations, calling, pricing and guides." },
+  es: { inLanguage: "es-ES", description: "El sitio de Eazybe, la plataforma de conversaciones de venta en WhatsApp y llamadas: agentes de IA, integraciones con CRM, llamadas, precios y guías." },
+  br: { inLanguage: "pt-BR", description: "O site da Eazybe, a plataforma de conversas de vendas no WhatsApp e em ligações: agentes de IA, integrações com CRM, ligações, preços e guias." },
+  tr: { inLanguage: "tr-TR", description: "WhatsApp ve aramalar için satış konuşmaları platformu Eazybe'nin sitesi: Yapay Zeka ajanları, CRM entegrasyonları, aramalar, fiyatlar ve rehberler." },
+}
+
+const isOrgLocale = (locale: string): locale is OrgLocale => locale in WEBSITE_COPY
+
+// One WebSite per language home page. Google reads the site name from the domain-level
+// home page (https://eazybe.com/), so the English block is the one that sets it. No
+// SearchAction: the site has no search results URL, only an on-page filter on /blog.
+export function getWebSiteId(locale: string): string {
+  return locale === 'en' || !isOrgLocale(locale) ? `${BASE_URL}/#website` : `${BASE_URL}/${locale}/#website`
+}
+
+export function getWebSiteJsonLd(locale: string): object {
+  const key: OrgLocale = isOrgLocale(locale) ? locale : 'en'
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": getWebSiteId(key),
+    "url": key === 'en' ? `${BASE_URL}/` : `${BASE_URL}/${key}`,
+    "name": "Eazybe",
+    "description": WEBSITE_COPY[key].description,
+    "publisher": { "@id": ORG_ID },
+    "inLanguage": WEBSITE_COPY[key].inLanguage
+  }
+}
+
+export function getGlobalSchemas(locale: string): GlobalSchemas {
+  const key: OrgLocale = isOrgLocale(locale) ? locale : 'en'
+  return {
+    softwareApplication: buildSoftwareApplication(key),
+    organization: buildOrganization(key)
+  }
 }
