@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
 import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
 
 export const viewport: Viewport = {
   themeColor: '#020617',
@@ -97,6 +98,7 @@ export default async function WhatsAppApiIndexPage({
 
   return (
     <>
+      <SoftwareRatingSchema locale={locale} />
       {faqSchema && (
         <script
           type="application/ld+json"

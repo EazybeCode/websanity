@@ -9,6 +9,7 @@ import { BlogPostClient } from '@/components/pages/BlogPostClient'
 import { routing } from '@/i18n/routing'
 import { parseMetadataFromHtml, parseJsonLdSchemas } from '@/lib/parseMetadata'
 import { buildArticleSchema } from '@/lib/article-schema'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
 
 // 60s ISR window: raises the cache hit rate (TTFB was ~636ms on misses paying
 // full SSR + Sanity fetches); Sanity edits appear within a minute.
@@ -375,6 +376,7 @@ export default async function BlogPostPage({
 
   return (
     <>
+      <SoftwareRatingSchema locale={locale} />
       {isPreview && (
         <div className="fixed top-0 left-0 right-0 z-[9999] bg-yellow-500 text-black text-center py-2 text-sm font-bold">
           Preview Mode —{' '}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { CALLING_UPDATED, callingPath, type CallingPageContent } from '@/data/calling-content'
 import { getCallingUi, localePrefix } from '@/data/calling-i18n'
+import { getRatedSoftwareJsonLd } from '@/data/global-schemas'
 import type { CallingUi } from '@/data/calling-ui'
 import { getAlternates } from '@/lib/seo-helpers'
 import { SetupSteps, FitsTabs } from '@/components/pages/WhatsappAiAgentInteractive'
@@ -270,8 +271,9 @@ export function callingSchema(page: CallingPageContent, locale: string) {
           acceptedAnswer: { '@type': 'Answer', text: f.a },
         })),
       },
-      // Service rather than SoftwareApplication: Google lists a price as required for
-      // software, and calling has no fixed price. The offer repeats the page's own pricing
+      // Eazybe itself, with its plan prices and the Chrome Web Store rating.
+      getRatedSoftwareJsonLd(locale),
+      // The calling service has no fixed price. The offer repeats the page's own pricing
       // text and carries no price on purpose, so never add a number or 0 here.
       ...(hasService
         ? [

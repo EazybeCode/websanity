@@ -4,6 +4,7 @@ import { PartnerPageClient } from '@/components/pages/PartnerPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
 import { getPartners } from '@/lib/sanity-queries'
 import { PARTNERS, type PartnerRecord } from '@/data/partner-directory'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
 
 // Partner directory content is managed in Sanity ("Current Partners at
 // Eazybe") — re-render at most once a minute so CMS edits go live on
@@ -100,6 +101,7 @@ export default async function PartnerPage({
 
   return (
     <>
+      <SoftwareRatingSchema locale={locale} />
       {schemas.map((schema, index) => (
         <script
           key={index}

@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getPricing } from '@/lib/sanity-queries'
 import { PricingPageClient } from '@/components/pages/PricingPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
 
 // ISR: refresh Sanity pricing content every 30 seconds.
 export const revalidate = 30
@@ -121,6 +122,7 @@ export default async function PricingPage({
 
   return (
     <>
+      <SoftwareRatingSchema locale={locale} />
       {/* Preconnect the pricing APIs the client-side useDynamicPricing hook
           calls, so DNS + TLS complete while the HTML is still streaming.
           Saves ~200-300 ms on the visible price rendering. */}

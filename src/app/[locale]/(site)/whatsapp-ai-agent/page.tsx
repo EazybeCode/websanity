@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getAlternates } from '@/lib/seo-helpers'
-import { ORG_ID, SOFTWARE_ID, getBasicAiOffers } from '@/data/global-schemas'
+import { ORG_ID, SOFTWARE_ID, SOFTWARE_RATING, getBasicAiOffers } from '@/data/global-schemas'
 import { getAiAgentPageContent } from '@/data/whatsapp-ai-agent-content'
 import { AI_AGENT_EN_SLUGS } from '@/data/ai-agent-posts'
 import { getPostsByEnSlugs } from '@/lib/sanity-queries'
@@ -498,10 +498,9 @@ export default async function WhatsappAiAgentPage({
           acceptedAnswer: { '@type': 'Answer', text: f.a },
         })),
       },
-      // The product this page is about. Defined here too (same @id as the
-      // homepage) so WebPage.about resolves on this page. No AggregateRating on
-      // purpose: one rating block per entity per page avoids the GSC "multiple
-      // aggregate ratings" error.
+      // The product this page is about. Defined here too (same @id as the homepage) so
+      // WebPage.about resolves on this page. This is the page's only rating: a second
+      // one would raise the GSC "multiple aggregate ratings" error.
       {
         '@type': 'SoftwareApplication',
         '@id': SOFTWARE_ID,
@@ -511,6 +510,7 @@ export default async function WhatsappAiAgentPage({
         url: SITE_URL,
         publisher: { '@id': ORG_ID },
         offers: getBasicAiOffers(locale),
+        aggregateRating: SOFTWARE_RATING,
       },
     ],
   }

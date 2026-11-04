@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { AboutUsClient } from '@/components/pages/AboutUsClient'
 import { getAlternates } from '@/lib/seo-helpers'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
 
 export async function generateMetadata({
   params,
@@ -325,6 +326,7 @@ export default async function AboutUsPage({
 
   return (
     <>
+      <SoftwareRatingSchema locale={locale} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

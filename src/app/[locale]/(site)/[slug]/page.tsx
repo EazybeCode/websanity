@@ -28,6 +28,7 @@ import { FreshdeskStructuredDataBr } from '@/components/seo/FreshdeskStructuredD
 import { WebhooksStructuredData } from '@/components/seo/WebhooksStructuredData'
 import { WebhooksStructuredDataBr } from '@/components/seo/WebhooksStructuredDataBr'
 import { Fragment } from 'react'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
 
 // ─── Integration slug mapping ────────────────────────────────────────────────
 
@@ -2112,6 +2113,7 @@ export default async function IntegrationPage({
 
   return (
     <>
+      {crmSlug && (locale === 'es' || locale === 'tr') && <SoftwareRatingSchema locale={locale} />}
       {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
       {crmSlug === 'hubspot' && locale === 'br' && <HubSpotStructuredDataBr />}
       {esHubSpotFaqSchema && (

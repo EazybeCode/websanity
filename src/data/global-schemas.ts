@@ -317,6 +317,15 @@ const SOFTWARE_COPY: Record<OrgLocale, {
   },
 }
 
+// From the Eazybe Chrome Web Store listing with 1.1K ratings (CHROME_STORE_RATED_LISTING_URL).
+export const SOFTWARE_RATING = {
+  "@type": "AggregateRating",
+  "ratingValue": 4.2,
+  "bestRating": 5,
+  "worstRating": 1,
+  "ratingCount": 1100
+}
+
 // A plan's yearly-billed and monthly-billed offers, in the language's name and currency.
 function buildPlanOffers(locale: OrgLocale, [plan, prices]: [name: string, prices: PlanPrices]): object[] {
   const copy = SOFTWARE_COPY[locale]
@@ -362,15 +371,18 @@ function buildSoftwareApplication(locale: OrgLocale): object {
     "screenshot": SCREENSHOT_URL,
     "sameAs": [CHROME_STORE_LISTING_URL, CHROME_STORE_RATED_LISTING_URL, PLAY_STORE_URL],
     "offers": copy.plans.flatMap((plan) => buildPlanOffers(locale, plan)),
-    // From the Eazybe Chrome Web Store listing with 1.1K ratings (CHROME_STORE_RATED_LISTING_URL).
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": 4.2,
-      "bestRating": 5,
-      "worstRating": 1,
-      "ratingCount": 1100
-    },
+    "aggregateRating": SOFTWARE_RATING,
     "featureList": copy.featureList
+  }
+}
+
+// The rated product for pages beyond the homepage. Each page must carry one rating only.
+// The company is named in place so the validator keeps Organization on its own row.
+export function getRatedSoftwareJsonLd(locale: string): object {
+  const key: OrgLocale = locale in SOFTWARE_COPY ? (locale as OrgLocale) : 'en'
+  return {
+    ...buildSoftwareApplication(key),
+    "publisher": { "@type": "Organization", "name": "Eazybe", "url": `${BASE_URL}/` }
   }
 }
 

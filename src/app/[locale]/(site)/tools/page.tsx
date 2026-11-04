@@ -4,6 +4,7 @@ import { routing } from '@/i18n/routing'
 import { getAlternates } from '@/lib/seo-helpers'
 import { getToolsPageContent } from '@/data/tools-content'
 import { ToolsGridClient } from '@/components/pages/ToolsGridClient'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
 
 export const dynamic = 'force-static'
 
@@ -88,6 +89,7 @@ export default async function ToolsPage({
 
   return (
     <>
+      <SoftwareRatingSchema locale={locale} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
 

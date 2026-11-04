@@ -4,6 +4,7 @@ import { routing } from '@/i18n/routing'
 import { getAlternates } from '@/lib/seo-helpers'
 import { getCaseStudiesPageContent } from '@/data/case-studies-content'
 import { getCaseStudyCardOverrides } from '@/lib/sanity-queries'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
 
 export const dynamic = 'force-static'
 // Re-render every minute so logos uploaded in Sanity show up.
@@ -70,6 +71,7 @@ export default async function CaseStudiesPage({
 
   return (
     <>
+      <SoftwareRatingSchema locale={locale} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
 

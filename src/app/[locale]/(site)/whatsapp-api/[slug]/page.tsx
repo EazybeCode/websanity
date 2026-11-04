@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getFeature } from '@/lib/sanity-queries'
 import FeaturePageClient from '@/components/pages/FeaturePageClient'
 import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
@@ -104,6 +105,7 @@ export default async function WhatsAppApiFeaturePage({
   // feature can be null — FeaturePageClient will use translation JSON fallback
   return (
     <>
+      <SoftwareRatingSchema locale={locale} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getCoexistence } from '@/lib/sanity-queries'
 import { CoexistencePageClient } from '@/components/pages/CoexistencePageClient'
 import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
 
 const breadcrumbLabels: Record<string, { home: string; whatsappApi: string; coexistence: string }> = {
   en: { home: 'Home', whatsappApi: 'WhatsApp API', coexistence: 'Coexistence' },
@@ -69,6 +70,7 @@ export default async function CoexistencePage({
 
   return (
     <>
+      <SoftwareRatingSchema locale={locale} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
