@@ -4068,7 +4068,7 @@
 .landing .blog-content a,
 .landing .blog-content a *,
 .landing [data-blog-content] a,
-.landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]) {
+.landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]):not(.ch-related-link) {
   text-decoration: none !important;
   border-bottom: none !important;
   cursor: pointer;
