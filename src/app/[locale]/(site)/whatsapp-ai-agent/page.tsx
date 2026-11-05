@@ -566,7 +566,7 @@ export default async function WhatsappAiAgentPage({
                 <ul key={String(copy)} className="aia-logos-list" aria-hidden={copy || undefined}>
                   {CUSTOMER_LOGOS.map((l) => (
                     <li key={l.name}>
-                      <img src={l.src} alt={copy ? '' : l.name} width={l.w} height={l.h} loading="lazy" decoding="async" />
+                      <img src={l.src} alt={l.name} width={l.w} height={l.h} loading="lazy" decoding="async" />
                       {l.showName && <span>{l.name}</span>}
                     </li>
                   ))}
@@ -895,7 +895,7 @@ export default async function WhatsappAiAgentPage({
                           <img
                             className="aia-related-img"
                             src={`${p.image}?w=640&h=360&fit=crop&auto=format&q=70`}
-                            alt={copy ? '' : (p.imageAlt || p.title.trim())}
+                            alt={p.imageAlt || p.title.trim()}
                             width={640}
                             height={360}
                             loading="lazy"

@@ -136,7 +136,7 @@ function renderBlocks(body: PtBlock[]): ReactNode[] {
       out.push(
         <figure key={b._key} className="lka-cms-figure">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={urlFor(b).width(1440).url()} alt={b.alt ?? ''} loading="lazy" />
+          <img src={urlFor(b).width(1440).url()} alt={b.alt || b.caption || 'Eazybe case study'} loading="lazy" />
           {b.caption && <figcaption>{b.caption}</figcaption>}
         </figure>,
       )

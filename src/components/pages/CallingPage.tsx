@@ -347,7 +347,7 @@ export function CallingPage({ page, locale }: { page: CallingPageContent; locale
               {page.hero.chips.map((c, i) => (
                 <li key={c}>
                   {page.slug === 'virtual-phone-number' && COUNTRY_FLAGS[i] ? (
-                    <img className="ch-flag" src={COUNTRY_FLAGS[i]} alt="" width={20} height={15} />
+                    <img className="ch-flag" src={COUNTRY_FLAGS[i]} alt={c} width={20} height={15} />
                   ) : (
                     <i aria-hidden="true">{CHECK}</i>
                   )}

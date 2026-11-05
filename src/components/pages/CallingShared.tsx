@@ -319,7 +319,7 @@ export function CallingProof({ ui }: { ui: CallingUi }) {
             <ul key={String(copy)} aria-hidden={copy || undefined}>
               {LOGOS.map((l) => (
                 <li key={l.name}>
-                  <img src={l.src} alt={copy ? '' : l.name} width={l.w} height={l.h} loading="lazy" decoding="async" />
+                  <img src={l.src} alt={l.name} width={l.w} height={l.h} loading="lazy" decoding="async" />
                   {l.showName && <span>{l.name}</span>}
                 </li>
               ))}
@@ -335,7 +335,7 @@ export function SimDemo({ ui }: { ui: CallingUi }) {
   return (
     <div className="ch-sim" aria-hidden="true">
       <div className="ch-phone">
-        <div className="ch-avatar"><img src="/homepage-v16/avatars/carolina-mendes.webp" alt="" width={74} height={74} loading="lazy" decoding="async" /></div>
+        <div className="ch-avatar"><img src="/homepage-v16/avatars/carolina-mendes.webp" alt="Carolina Mendes" width={74} height={74} loading="lazy" decoding="async" /></div>
         <strong>Carolina Mendes</strong>
         <small>{ui.demo.simCall}</small>
         <Wave />
@@ -346,9 +346,9 @@ export function SimDemo({ ui }: { ui: CallingUi }) {
         <div className="ch-crm-head">
           <span>{ui.demo.crmRecord}</span>
           <span className="ch-crm-logos">
-            <img src="/homepage/crm-logos/hubspot.webp" alt="" width={18} height={18} loading="lazy" />
-            <img src="/homepage/crm-logos/salesforce.webp" alt="" width={18} height={18} loading="lazy" />
-            <img src="/homepage/crm-logos/zoho.webp" alt="" width={18} height={18} loading="lazy" />
+            <img src="/homepage/crm-logos/hubspot.webp" alt="HubSpot" width={18} height={18} loading="lazy" />
+            <img src="/homepage/crm-logos/salesforce.webp" alt="Salesforce" width={18} height={18} loading="lazy" />
+            <img src="/homepage/crm-logos/zoho.webp" alt="Zoho" width={18} height={18} loading="lazy" />
           </span>
         </div>
         <strong>Carolina Mendes</strong>

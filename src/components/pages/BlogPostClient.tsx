@@ -284,7 +284,8 @@ const CodeBlockWithCopy: React.FC<{ value: any }> = ({ value }) => {
 }
 
 const createPortableTextComponents = (
-  content: PortableTextBlock[]
+  content: PortableTextBlock[],
+  fallbackAlt = ''
 ): PortableTextComponents => {
   const headingIds = new Map<string, string>()
   const headingLevels = computeHeadingLevels(content)
@@ -392,7 +393,7 @@ const createPortableTextComponents = (
                   src={value.url}
                   srcSet={sanitySrcSet(value.url, intrinsicW)}
                   sizes={SANITY_BODY_SIZES}
-                  alt={value.alt || ''}
+                  alt={value.alt || fallbackAlt}
                   width={intrinsicW}
                   height={intrinsicH}
                   className="md:hidden w-full h-auto"
@@ -404,7 +405,7 @@ const createPortableTextComponents = (
                   src={value.url}
                   srcSet={sanitySrcSet(value.url, intrinsicW)}
                   sizes={SANITY_BODY_SIZES}
-                  alt={value.alt || ''}
+                  alt={value.alt || fallbackAlt}
                   width={intrinsicW}
                   height={intrinsicH}
                   className="hidden md:block w-full h-auto"
@@ -417,7 +418,7 @@ const createPortableTextComponents = (
                 src={value.url}
                 srcSet={sanitySrcSet(value.url, intrinsicW)}
                 sizes={SANITY_BODY_SIZES}
-                alt={value.alt || ''}
+                alt={value.alt || fallbackAlt}
                 width={intrinsicW}
                 height={intrinsicH}
                 className="w-full h-auto rounded-2xl"
@@ -459,7 +460,7 @@ const createPortableTextComponents = (
                 <div key={i} className="aspect-square overflow-hidden rounded-xl">
                   <img
                     src={img.url}
-                    alt={img.alt || ''}
+                    alt={img.alt || fallbackAlt}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />
@@ -513,7 +514,7 @@ const createPortableTextComponents = (
                         }`}
                       >
                         {col.icon && (
-                          <img src={col.icon} alt="" className="w-8 h-8 mx-auto mb-2" loading="lazy" />
+                          <img src={col.icon} alt={col.name || fallbackAlt} className="w-8 h-8 mx-auto mb-2" loading="lazy" />
                         )}
                         {col.name}
                       </th>
@@ -842,9 +843,9 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({
   // Create portable text components with heading IDs
   const portableTextComponents = useMemo(() => {
     if (!post?.content || !Array.isArray(post.content))
-      return createPortableTextComponents([])
-    return createPortableTextComponents(post.content)
-  }, [post?.content])
+      return createPortableTextComponents([], post?.title)
+    return createPortableTextComponents(post.content, post.title)
+  }, [post?.content, post?.title])
 
   return (
     <BlogTranslationsProvider translations={translations} currentSlug={slug}>

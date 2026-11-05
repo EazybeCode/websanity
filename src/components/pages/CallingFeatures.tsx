@@ -155,9 +155,11 @@ const SAMPLE_ROWS = [
   { name: 'Priya Rao', img: 'priya-rao', note: 'rowNextUp' },
 ]
 
-const avatar = (name: string) => <img className="cv-avatar" src={`/homepage-v16/avatars/${name}.webp`} alt="" width={40} height={40} loading="lazy" decoding="async" />
-const logo = (src: string, d = '0s') => (
-  <span className="cv-logo" style={{ ['--d' as string]: d }}><img src={src} alt="" width={28} height={28} loading="lazy" decoding="async" /></span>
+// The file name is the sample person's name: 'ahmed-khan' becomes 'Ahmed Khan'.
+const personName = (file: string) => file.split('-').map((part) => part[0].toUpperCase() + part.slice(1)).join(' ')
+const avatar = (name: string) => <img className="cv-avatar" src={`/homepage-v16/avatars/${name}.webp`} alt={personName(name)} width={40} height={40} loading="lazy" decoding="async" />
+const logo = (src: string, alt: string, d = '0s') => (
+  <span className="cv-logo" style={{ ['--d' as string]: d }}><img src={src} alt={alt} width={28} height={28} loading="lazy" decoding="async" /></span>
 )
 const WHATSAPP_LOGO = '/homepage-v16/img/6a67410485ac.webp'
 const SHEETS_LOGO = '/homepage-v16/img/c617aff437b0.webp'
@@ -184,7 +186,7 @@ function Visual({ kind, ui }: { kind: Kind; ui: CallingUi }): ReactNode {
     case 'whatsapp':
       return (
         <div className="cv-stack">
-          <div className="cv-logos">{logo(WHATSAPP_LOGO)}<div className="cv-bubble" style={{ ['--d' as string]: '0s' }}>{v.waAsk}</div></div>
+          <div className="cv-logos">{logo(WHATSAPP_LOGO, 'WhatsApp')}<div className="cv-bubble" style={{ ['--d' as string]: '0s' }}>{v.waAsk}</div></div>
           <div className="cv-bubble cv-bubble-wa" style={{ ['--d' as string]: '.8s' }}>{v.waReply}<span className="cv-ticks">✓✓</span></div>
         </div>
       )
@@ -216,7 +218,7 @@ function Visual({ kind, ui }: { kind: Kind; ui: CallingUi }): ReactNode {
     case 'upload':
       return (
         <div className="cv-pill">
-          {logo(SHEETS_LOGO)}
+          {logo(SHEETS_LOGO, 'Google Sheets')}
           <div><strong>contacts.csv</strong><small>{v.uploadSub}</small></div>
           <span className="cv-dot" />
         </div>
@@ -226,8 +228,8 @@ function Visual({ kind, ui }: { kind: Kind; ui: CallingUi }): ReactNode {
         <div className="cv-logos">
           <span className="cv-tile">{svg(PHONE)}</span>
           <span className="cv-link" />
-          {logo('/homepage/crm-logos/hubspot.webp')}
-          {logo('/homepage/crm-logos/zoho.webp', '.6s')}
+          {logo('/homepage/crm-logos/hubspot.webp', 'HubSpot')}
+          {logo('/homepage/crm-logos/zoho.webp', 'Zoho', '.6s')}
         </div>
       )
     case 'queue':

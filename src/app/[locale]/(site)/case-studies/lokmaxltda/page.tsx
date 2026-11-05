@@ -415,11 +415,10 @@ export default async function LokmaxCaseStudyPage({
             {/* Right: visual panel on a soft blob */}
             <div className="lka-visual-wrap">
               <div className="lka-visual">
-                {/* Logo alt derives from the company name; the blurred glow
-                    copy stays decorative. */}
+                {/* Logo alt derives from the company name, on the blurred glow copy too. */}
                 {logoUrl ? (
                   <span className="lka-visual-mark has-logo">
-                    <img className="lka-mark-glow" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt="" aria-hidden="true" loading="lazy" />
+                    <img className="lka-mark-glow" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt={`${company} logo`} aria-hidden="true" loading="lazy" />
                     <img className="lka-mark-img" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt={`${company} logo`} loading="lazy" />
                   </span>
                 ) : (
