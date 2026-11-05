@@ -206,8 +206,6 @@ const SOFTWARE_COPY: Record<OrgLocale, {
   description: string
   currency: string
   plans: Array<[name: string, prices: PlanPrices]>
-  billedYearly: string
-  billedMonthly: string
   featureList: string[]
 }> = {
   en: {
@@ -217,8 +215,6 @@ const SOFTWARE_COPY: Record<OrgLocale, {
     description: "Eazybe powers sales conversations across WhatsApp and calls. It connects your team's personal WhatsApp numbers, WhatsApp groups and calls to your CRM (HubSpot, Salesforce, Zoho, Pipedrive and more), and lets AI handle qualification and follow-ups.",
     currency: "USD",
     plans: [["Starter", { yearly: 19, monthly: 29 }], ["Scaler", { yearly: 39, monthly: 49 }], ["Basic AI", { yearly: 59, monthly: 79 }]],
-    billedYearly: "billed yearly",
-    billedMonthly: "billed monthly",
     featureList: [
       "WhatsApp CRM sync",
       "WhatsApp groups in the CRM",
@@ -245,8 +241,6 @@ const SOFTWARE_COPY: Record<OrgLocale, {
     // country) and its server HTML shows USD, so EUR here wouldn't match what crawlers see.
     currency: "USD",
     plans: [["Inicial", { yearly: 19, monthly: 29 }], ["Escala", { yearly: 39, monthly: 49 }], ["IA Básica", { yearly: 59, monthly: 79 }]],
-    billedYearly: "facturación anual",
-    billedMonthly: "facturación mensual",
     featureList: [
       "Sincronización de WhatsApp con el CRM",
       "Grupos de WhatsApp en el CRM",
@@ -271,8 +265,6 @@ const SOFTWARE_COPY: Record<OrgLocale, {
     description: "O Eazybe impulsiona conversas de vendas no WhatsApp e em ligações. Conecta os números pessoais de WhatsApp da sua equipe, os grupos de WhatsApp e as ligações ao seu CRM (HubSpot, Salesforce, Zoho, Pipedrive e mais) e deixa a IA cuidar da qualificação e dos follow-ups.",
     currency: "BRL",
     plans: [["Inicial", { yearly: 63, monthly: 96 }], ["Escala", { yearly: 129, monthly: 162 }], ["IA Básica", { yearly: 195, monthly: 261 }]],
-    billedYearly: "faturamento anual",
-    billedMonthly: "faturamento mensal",
     featureList: [
       "Sincronização do WhatsApp com o CRM",
       "Grupos de WhatsApp no CRM",
@@ -297,8 +289,6 @@ const SOFTWARE_COPY: Record<OrgLocale, {
     description: "Eazybe, WhatsApp'ta ve aramalarda satış konuşmalarınıza güç verir. Ekibinizin kişisel WhatsApp numaralarını, WhatsApp gruplarını ve aramalarını CRM'inize (HubSpot, Salesforce, Zoho, Pipedrive ve daha fazlası) bağlar; nitelendirme ve takipleri Yapay Zeka'ya bırakır.",
     currency: "TRY",
     plans: [["Başlangıç", { yearly: 950, monthly: 1450 }], ["Büyüme", { yearly: 1951, monthly: 2451 }], ["Temel Yapay Zeka", { yearly: 2951, monthly: 3951 }]],
-    billedYearly: "yıllık faturalandırma",
-    billedMonthly: "aylık faturalandırma",
     featureList: [
       "WhatsApp CRM senkronizasyonu",
       "CRM'de WhatsApp grupları",
@@ -327,27 +317,29 @@ export const SOFTWARE_RATING = {
   "ratingCount": 1100
 }
 
-// A plan's yearly-billed and monthly-billed offers, in the language's name and currency.
-function buildPlanOffers(locale: OrgLocale, [plan, prices]: [name: string, prices: PlanPrices]): object[] {
+// A price range for the given plans, in the language's currency. A range rather than one
+// Offer per plan: search results showed "$19.00" with this format and no price with a list.
+// Google's docs list offers.price as required, so check the Rich Results Test after changes.
+function buildOfferRange(locale: OrgLocale, plans: PlanPrices[]): object {
   const copy = SOFTWARE_COPY[locale]
   const prefix = locale === 'en' ? '' : `/${locale}`
-  const offer = (billing: string, price: number) => ({
-    "@type": "Offer",
-    "name": `${plan}, ${billing}`,
-    "price": price,
-    "priceCurrency": copy.currency,
-    "priceSpecification": { "@type": "UnitPriceSpecification", "price": price, "priceCurrency": copy.currency, "unitCode": "MON" },
+  const prices = plans.flatMap((plan) => [plan.yearly, plan.monthly])
+  return {
+    "@type": "AggregateOffer",
     "url": `${BASE_URL}${prefix}/pricing`,
+    "priceCurrency": copy.currency,
+    "lowPrice": Math.min(...prices),
+    "highPrice": Math.max(...prices),
+    "offerCount": prices.length,
     "availability": "https://schema.org/InStock"
-  })
-  return [offer(copy.billedYearly, prices.yearly), offer(copy.billedMonthly, prices.monthly)]
+  }
 }
 
 // Basic AI is the last priced plan in each language's list: the plan with AI agents.
-export function getBasicAiOffers(locale: string): object[] {
+export function getBasicAiOffers(locale: string): object {
   const key: OrgLocale = locale in SOFTWARE_COPY ? (locale as OrgLocale) : 'en'
   const plans = SOFTWARE_COPY[key].plans
-  return buildPlanOffers(key, plans[plans.length - 1])
+  return buildOfferRange(key, [plans[plans.length - 1][1]])
 }
 
 function buildSoftwareApplication(locale: OrgLocale): object {
@@ -371,7 +363,7 @@ function buildSoftwareApplication(locale: OrgLocale): object {
     "softwareHelp": { "@type": "CreativeWork", "url": HELP_CENTER_URL },
     "screenshot": SCREENSHOT_URL,
     "sameAs": [CHROME_STORE_LISTING_URL, CHROME_STORE_RATED_LISTING_URL, PLAY_STORE_URL],
-    "offers": copy.plans.flatMap((plan) => buildPlanOffers(locale, plan)),
+    "offers": buildOfferRange(locale, copy.plans.map(([, prices]) => prices)),
     "aggregateRating": SOFTWARE_RATING,
     "featureList": copy.featureList
   }
