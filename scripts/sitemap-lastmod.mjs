@@ -15,6 +15,7 @@ const ROUTES = {
   '/pricing': `${APP}/(site)/pricing/page.tsx`,
   '/features': `${APP}/(site)/features/page.tsx`,
   '/whatsapp-ai-agent': `${APP}/(site)/whatsapp-ai-agent/page.tsx`,
+  '/mcp': `${APP}/(site)/mcp/page.tsx`,
   '/calling': `${APP}/(site)/calling/page.tsx`,
   '/calling/auto-dialer': `${APP}/(site)/calling/[slug]/page.tsx`,
   '/calling/virtual-phone-number': `${APP}/(site)/calling/[slug]/page.tsx`,

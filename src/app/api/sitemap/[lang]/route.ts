@@ -165,6 +165,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     { path: '/pricing', changefreq: 'monthly', priority: 0.8 },
     { path: '/features', changefreq: 'monthly', priority: 0.8 },
     { path: '/whatsapp-ai-agent', changefreq: 'monthly', priority: 0.9 },
+    { path: '/mcp', changefreq: 'monthly', priority: 0.8 },
     { path: '/whatsapp-api', changefreq: 'monthly', priority: 0.8 },
     { path: '/whatsapp-api/coexistence', changefreq: 'monthly', priority: 0.8 },
     { path: '/integrations', changefreq: 'monthly', priority: 0.8 },

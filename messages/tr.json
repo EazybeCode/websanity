@@ -3187,12 +3187,12 @@
   "mcpPage": {
     "heroTitle": "WhatsApp MCP sunucusu:",
     "heroTitleEm": "Claude ve Codex için",
-    "heroLede": "Ekibinizin WhatsApp'ını, aramalarını ve CRM'ini Claude veya Codex'e bağlayın. Sohbetleri okuyun, yanıtlayın, takip edin ve fırsatları doğrudan istemlerinizden güncelleyin.",
+    "heroLede": "Eazybe MCP sunucusu, ekibinizin WhatsApp'ını, aramalarını ve CRM'ini Claude veya Codex'e bağlar. Ne istediğinizi yazın; sohbetleri okusun, yanıt hazırlasın, takipleri yapsın ve fırsatları güncellesin.",
     "copyLink": "Bağlantıyı kopyala",
     "copyCommand": "Komutu kopyala",
     "copied": "Kopyalandı ✓",
     "linkCopied": "Bağlantı kopyalandı ✓",
-    "urlHint": "MCP sunucu bağlantınız. Claude veya Codex'e yapıştırın.",
+    "urlHint": "Bu, MCP sunucu bağlantınız. Claude veya Codex'e yapıştırın.",
     "pill": "WhatsApp'ı yapay zeka ajanınıza bağlayın",
     "startFree": "Ücretsiz başla",
     "bookDemo": "Demo planla",
@@ -3209,7 +3209,7 @@
           "desc": "Adını Eazybe koyun, bağlantıyı yapıştırın, Bağlan'a tıklayın ve Eazybe ile oturum açın."
         },
         {
-          "title": "Sormaya başlayın",
+          "title": "İlk sorunuzu sorun",
           "desc": "Bir sohbette Eazybe'yi açın ve sorun:"
         }
       ],
@@ -3223,7 +3223,7 @@
           "desc": "Claude Code'u başlatın, /mcp yazın, eazybe'yi seçin ve Authenticate'i seçin. Eazybe ile oturum açın."
         },
         {
-          "title": "Sormaya başlayın",
+          "title": "İlk sorunuzu sorun",
           "desc": "Claude Code'a sorun:"
         }
       ],
@@ -3237,18 +3237,18 @@
           "desc": "Giriş komutunu çalıştırın ve açılan tarayıcı sekmesinde Eazybe ile oturum açın."
         },
         {
-          "title": "Sormaya başlayın",
+          "title": "İlk sorunuzu sorun",
           "desc": "Codex'i başlatın ve sorun:"
         }
       ]
     },
-    "setupFoot": "Eazybe ile oturum açın. API anahtarı gerekmez.",
-    "linkGuide": "MCP rehberinin tamamını okuyun",
-    "linkTools": "Tüm araçlar, açıklamalarıyla",
+    "setupFoot": "Eazybe hesabınızla oturum açtığınız için API anahtarına ihtiyacınız yok.",
+    "linkGuide": "MCP rehberini okuyun",
+    "linkTools": "Araç listesini görün",
     "linkPrivacy": "Gizlilik ve veriler",
-    "storiesEyebrow": "Müşteri hikayeleri",
-    "storiesTitle": "40'tan fazla ülkede satış ekipleri WhatsApp'ı zaten Eazybe ile yönetiyor",
-    "storiesSub": "MCP sunucusu, ekibinizin her gün kullandığı aynı çalışma alanında çalışır. Aynı sohbetler, aynı izinler, aynı CRM.",
+    "storiesEyebrow": "Eazybe'yi kimler kullanıyor",
+    "storiesTitle": "40'tan fazla ülkeden satış ekipleri WhatsApp'larını Eazybe ile yönetiyor",
+    "storiesSub": "MCP, ekibinizin hâlihazırda kullandığı çalışma alanına bağlanır. Yapay zeka da oradaki sohbetler, izinler ve CRM ile çalışır.",
     "stats": [
       [
         "30.000+",
@@ -3263,14 +3263,14 @@
         "ülke"
       ],
       [
-        "Dakikalar",
-        "içinde kurulum"
+        "5 dk",
+        "bağlantı süresi"
       ]
     ],
     "academyEyebrow": "MCP Academy",
-    "academyTitle": "MCP'yi her gün kullanmaya değer kılan soruları öğrenin",
-    "academySub": "Gerçek bir satış çalışma alanı üzerine kurulmuş kısa dersler. Ücretsiz, kayıt gerekmez.",
-    "academyCta": "Academy'ye göz atın",
+    "academyTitle": "Yapay zekanızdan ne isteyeceğinizi ders ders öğrenin",
+    "academySub": "Tüm dersleri kayıt olmadan okuyabilirsiniz.",
+    "academyCta": "Derslere göz atın",
     "lessons": [
       {
         "title": "5 dakikada bağlanın",
@@ -3286,7 +3286,7 @@
       }
     ],
     "askEyebrow": "Neler sorabilirsiniz",
-    "askTitle": "Claude veya Codex'ten WhatsApp gelen kutunuzda gerçek işlemler yapmasını isteyin. Panel yok, sadece bir istem.",
+    "askTitle": "İsteğinizi Claude veya Codex'e yazın, WhatsApp gelen kutunuzda işi o halletsin. Gönderilecek her şey önce onayınızı bekler.",
     "copyPrompt": "İstemi kopyala",
     "promptGroups": [
       {
@@ -3423,62 +3423,64 @@
       }
     ],
     "stripTitle": "WhatsApp gelen kutunuzu yapay zekanıza bağlayın",
-    "stripSub": "Bir QR kodu okutun, bağlayıcıyı ekleyin ve sormaya başlayın. WhatsApp API'si, geliştirici veya API anahtarı gerekmez.",
+    "stripSub": "Bir QR kodu okutun, bağlayıcıyı ekleyin ve ilk sorunuzu sorun. WhatsApp API'sine, geliştiriciye veya API anahtarına ihtiyacınız yok.",
     "faqEyebrow": "Sorular",
-    "faqTitle": "Bağlanmadan önce bilmeniz gerekenler",
+    "faqTitle": "Bağlanmadan önce",
     "faqs": [
       {
-        "q": "MCP tam olarak nedir?",
-        "a": "MCP (Model Context Protocol), Claude ve Codex gibi yapay zeka asistanlarının diğer uygulamaların araçlarını kullanmasını sağlayan açık bir standarttır. Eazybe MCP sunucusu, asistanınıza WhatsApp gelen kutunuza, aramalarınıza, etiketlerinize ve bağlı CRM'inize güvenli erişim verir; böylece siz istediğinizde kayıtları okuyabilir, yanıtlayabilir ve güncelleyebilir."
+        "q": "MCP nedir?",
+        "a": "MCP (Model Context Protocol), Claude ve Codex gibi yapay zeka asistanlarının diğer uygulamaların araçlarını kullanmasını sağlayan açık bir standarttır. Asistanınız, Eazybe MCP sunucusu sayesinde WhatsApp gelen kutunuza, aramalarınıza, etiketlerinize ve bağlı CRM'inize ulaşır. Siz istediğinizde sohbetleri okur, yanıtlar ve kayıtları günceller."
       },
       {
         "q": "API anahtarına ihtiyacım var mı?",
-        "a": "Hayır. Tek bir bağlantı yapıştırıp Eazybe hesabınızla oturum açarsınız. Erişim, çalışma alanınızın zaten kullandığı izinleri izler ve istediğiniz zaman bağlantıyı kesebilirsiniz."
+        "a": "Hayır. Bağlantıyı yapıştırıp Eazybe hesabınızla oturum açmanız yeterli. Yapay zeka, çalışma alanınızda zaten geçerli olan izinlerle çalışır ve bağlantıyı istediğiniz zaman kesebilirsiniz."
       },
       {
         "q": "Hangi yapay zeka araçları bağlanabilir?",
-        "a": "Claude (web, masaüstü ve mobil), Claude Code ve Codex bugün çalışıyor. Oturum açmalı uzak MCP sunucularını destekleyen her yapay zeka istemcisi aynı bağlantıyla bağlanabilir."
+        "a": "Web, masaüstü ve mobilde Claude, ayrıca Claude Code ve Codex bugün çalışıyor. Oturum açmalı uzak MCP sunucularını destekleyen diğer yapay zeka istemcileri de aynı bağlantıyı kullanabilir."
       },
       {
         "q": "Yapay zeka müşterilerime mesaj gönderebilir mi?",
-        "a": "Yalnızca siz istediğinizde ve yalnızca onayınızla. Gönderimler, toplu mesajlar ve toplu değişiklikler önce size bir önizleme gösterir ve onayınızı bekler."
+        "a": "Evet, ama yalnızca siz istediğinizde ve onayladıktan sonra. Gönderimlerde, toplu mesajlarda ve toplu değişikliklerde önce bir önizleme görürsünüz; siz onay vermeden hiçbir şey yapılmaz."
       },
       {
         "q": "MCP kullanmanın ek bir ücreti var mı?",
-        "a": "Hayır. MCP sunucusu tüm ücretli Eazybe planlarına (Starter, Scaler, Basic AI ve Custom AI) ek ücret olmadan dahildir. Ücretsiz denemeye dahil değildir. WhatsApp şablon ve toplu mesaj ücretleri Eazybe içinde olduğu gibi işler."
+        "a": "Hayır. MCP, tüm ücretli Eazybe planlarına dahildir: Starter, Scaler, Basic AI ve Custom AI. Ücretsiz deneme buna dahil değildir. WhatsApp şablon ve toplu mesaj ücretleri Eazybe içindekiyle aynıdır."
       },
       {
         "q": "WhatsApp Business API'ye ihtiyacım var mı?",
-        "a": "Hayır. Eazybe, ekibinizin zaten kullandığı WhatsApp ve WhatsApp Business uygulamalarıyla çalışır. Bir QR kodu okutun, sohbetleriniz yapay zekanız için hazır olsun."
+        "a": "Hayır. Eazybe, ekibinizin zaten kullandığı WhatsApp ve WhatsApp Business uygulamalarıyla çalışır. Bir QR kodu okutun, yapay zekanız sohbetlerinize ulaşabilsin."
       },
       {
-        "q": "Kurulum adımlarından önce neye ihtiyacım var?",
-        "a": "En az bir WhatsApp numarası bağlı, ücretli bir Eazybe planı ve özel bağlayıcıları destekleyen bir yapay zeka aracı. Claude'da bu, Ayarlar, ardından Bağlayıcılar altındadır."
+        "q": "Başlamadan önce neye ihtiyacım var?",
+        "a": "En az bir WhatsApp numarası bağlı, ücretli bir Eazybe planı ve özel bağlayıcıları destekleyen bir yapay zeka aracı. Claude'da bunlar Ayarlar, ardından Bağlayıcılar altındadır."
       }
     ],
-    "ctaTitle": "WhatsApp'ı yapay zekanıza bağlamaya hazır mısınız?",
-    "ctaSub": "Tüm ücretli planlara dahil. Dakikalar içinde kurun.",
+    "ctaTitle": "WhatsApp'ı bugün Claude veya Codex'e bağlayın",
+    "ctaSub": "MCP tüm ücretli planlara dahildir, kurulumu yaklaşık 5 dakika sürer.",
     "ctaSmall": "Claude ve Codex ile çalışır",
-    "guidesEyebrow": "Derinlemesine",
-    "guidesTitle": "WhatsApp + yapay zeka rehberleri",
-    "guidesSub": "WhatsApp, yapay zeka asistanları ve doğru bağlantıyı seçmek üzerine daha uzun yazılar.",
+    "guidesEyebrow": "Rehberler",
+    "guidesTitle": "WhatsApp ve yapay zeka hakkında daha fazlası",
+    "guidesSub": "Kurulum yardımı, araç listesi ve üç WhatsApp bağlantı türünün karşılaştırması.",
     "readGuide": "Rehberi oku",
     "guides": [
       {
         "tag": "Teknik rehber · 10 dk",
         "title": "Eazybe MCP: WhatsApp'ı herhangi bir yapay zeka ajanına bağlayın",
-        "desc": "Her asistan için kurulum, sık karşılaşılan sorunlar ve ilk 15 dakikanız."
+        "desc": "Her asistanda nasıl kurulur, genelde nerede sorun çıkar ve önce ne denenmeli."
       },
       {
         "tag": "Başvuru · 8 dk",
         "title": "Tüm Eazybe MCP araçları, açıklamalarıyla",
-        "desc": "Gelen kutusu, CRM, toplu mesajlar, ajanlar ve ekip genelinde 160'tan fazla işlem."
+        "desc": "Gelen kutusu, CRM, toplu mesajlar, ajanlar ve ekip için 160'tan fazla işlem."
       },
       {
         "tag": "Karşılaştırma · 6 dk",
         "title": "Kişisel WhatsApp, Business uygulaması ve API karşılaştırması",
         "desc": "Hangisini bağlamalı ve yapay zekanız her biriyle neler yapabilir."
       }
-    ]
+    ],
+    "metaTitle": "Claude ve Codex için WhatsApp MCP Sunucusu | Eazybe",
+    "metaDescription": "WhatsApp'ı, aramaları ve CRM'inizi tek bağlantıyla Claude veya Codex'e bağlayın. Sohbetleri okuyun, yanıt hazırlayın, fırsatları güncelleyin. Ücretli planlara dahil."
   }
 }

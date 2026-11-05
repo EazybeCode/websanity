@@ -334,7 +334,8 @@ export function McpPageClient() {
                   {f.q}
                   <span aria-hidden>+</span>
                 </button>
-                {openFaq === i && <p>{f.a}</p>}
+                {/* Always in the HTML so crawlers can read the answer; hidden until opened. */}
+                <p hidden={openFaq !== i}>{f.a}</p>
               </div>
             ))}
           </div>

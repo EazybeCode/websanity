@@ -3261,12 +3261,12 @@
   "mcpPage": {
     "heroTitle": "Servidor MCP de WhatsApp para",
     "heroTitleEm": "Claude e Codex",
-    "heroLede": "Conecte o WhatsApp, as ligações e o CRM da sua equipe ao Claude ou ao Codex. Leia conversas, responda, faça follow-up e atualize negócios direto dos seus prompts.",
+    "heroLede": "O servidor MCP do Eazybe conecta o WhatsApp, as ligações e o CRM da sua equipe ao Claude ou ao Codex. Escreva o que você precisa e ele lê conversas, prepara respostas, faz follow-up e atualiza negócios.",
     "copyLink": "Copiar link",
     "copyCommand": "Copiar comando",
     "copied": "Copiado ✓",
     "linkCopied": "Link copiado ✓",
-    "urlHint": "O link do seu servidor MCP. Cole no Claude ou no Codex.",
+    "urlHint": "Este é o link do seu servidor MCP. Cole no Claude ou no Codex.",
     "pill": "Conecte o WhatsApp ao seu agente de IA",
     "startFree": "Comece grátis",
     "bookDemo": "Agende uma demo",
@@ -3283,7 +3283,7 @@
           "desc": "Dê o nome Eazybe, cole o link, clique em Conectar e entre com sua conta Eazybe."
         },
         {
-          "title": "Comece a perguntar",
+          "title": "Faça sua primeira pergunta",
           "desc": "Ative o Eazybe em uma conversa e pergunte:"
         }
       ],
@@ -3297,7 +3297,7 @@
           "desc": "Abra o Claude Code, digite /mcp, escolha eazybe e selecione Authenticate. Entre com sua conta Eazybe."
         },
         {
-          "title": "Comece a perguntar",
+          "title": "Faça sua primeira pergunta",
           "desc": "Pergunte ao Claude Code:"
         }
       ],
@@ -3311,18 +3311,18 @@
           "desc": "Rode o comando de login e entre com sua conta Eazybe na aba do navegador que abrir."
         },
         {
-          "title": "Comece a perguntar",
+          "title": "Faça sua primeira pergunta",
           "desc": "Abra o Codex e pergunte:"
         }
       ]
     },
-    "setupFoot": "Entre com o Eazybe. Sem chave de API.",
-    "linkGuide": "Leia o guia completo do MCP",
-    "linkTools": "Todas as ferramentas, explicadas",
+    "setupFoot": "Você entra com a sua conta Eazybe, então não precisa de chave de API.",
+    "linkGuide": "Leia o guia do MCP",
+    "linkTools": "Veja a lista de ferramentas",
     "linkPrivacy": "Privacidade e dados",
-    "storiesEyebrow": "Histórias de clientes",
-    "storiesTitle": "Equipes de vendas em mais de 40 países já usam o WhatsApp com o Eazybe",
-    "storiesSub": "O servidor MCP funciona no mesmo workspace que sua equipe usa todo dia. Mesmas conversas, mesmas permissões, mesmo CRM.",
+    "storiesEyebrow": "Quem usa o Eazybe",
+    "storiesTitle": "Equipes de vendas de mais de 40 países usam o WhatsApp com o Eazybe",
+    "storiesSub": "O MCP se conecta ao workspace que sua equipe já tem, então a IA trabalha com as conversas, as permissões e o CRM que já estão lá.",
     "stats": [
       [
         "30.000+",
@@ -3337,14 +3337,14 @@
         "países"
       ],
       [
-        "Minutos",
-        "para configurar"
+        "5 min",
+        "para conectar"
       ]
     ],
     "academyEyebrow": "MCP Academy",
-    "academyTitle": "Aprenda as perguntas que fazem o MCP valer a pena todo dia",
-    "academySub": "Aulas curtas feitas em um workspace de vendas real. Leitura grátis, sem cadastro.",
-    "academyCta": "Ver a Academy",
+    "academyTitle": "Aprenda o que pedir à sua IA, uma aula de cada vez",
+    "academySub": "Você pode ler todas as aulas sem se cadastrar.",
+    "academyCta": "Ver as aulas",
     "lessons": [
       {
         "title": "Conecte em 5 minutos",
@@ -3360,7 +3360,7 @@
       }
     ],
     "askEyebrow": "O que você pode pedir",
-    "askTitle": "Peça ao Claude ou ao Codex para agir de verdade na sua caixa de entrada do WhatsApp. Sem painel, só um prompt.",
+    "askTitle": "Escreva o pedido no Claude ou no Codex e ele resolve na sua caixa de entrada do WhatsApp. Tudo o que for enviado espera o seu OK.",
     "copyPrompt": "Copiar prompt",
     "promptGroups": [
       {
@@ -3497,62 +3497,64 @@
       }
     ],
     "stripTitle": "Conecte sua caixa de entrada do WhatsApp à sua IA",
-    "stripSub": "Escaneie um QR code, adicione o conector e comece a perguntar. Sem API do WhatsApp, sem desenvolvedor, sem chaves de API.",
+    "stripSub": "Escaneie um QR code, adicione o conector e faça sua primeira pergunta. Você não precisa da API do WhatsApp, de desenvolvedor nem de chave de API.",
     "faqEyebrow": "Perguntas",
-    "faqTitle": "O que saber antes de conectar",
+    "faqTitle": "Antes de conectar",
     "faqs": [
       {
-        "q": "O que é MCP, exatamente?",
-        "a": "MCP (Model Context Protocol) é um padrão aberto que permite que assistentes de IA como Claude e Codex usem ferramentas de outros apps. O servidor MCP do Eazybe dá ao seu assistente acesso seguro à sua caixa de entrada do WhatsApp, ligações, etiquetas e CRM conectado, para ler, responder e atualizar registros quando você pedir."
+        "q": "O que é MCP?",
+        "a": "MCP (Model Context Protocol) é um padrão aberto que permite que assistentes de IA como Claude e Codex usem ferramentas de outros apps. Com o servidor MCP do Eazybe, seu assistente chega à sua caixa de entrada do WhatsApp, às ligações, às etiquetas e ao CRM conectado. Ele lê conversas, responde e atualiza registros quando você pede."
       },
       {
         "q": "Preciso de uma chave de API?",
-        "a": "Não. Você cola um link e entra com sua conta Eazybe. O acesso segue as mesmas permissões que seu workspace já usa, e você pode desconectar a qualquer momento."
+        "a": "Não. Cole o link e entre com a sua conta Eazybe. A IA tem as mesmas permissões que seu workspace já usa, e você pode desconectar quando quiser."
       },
       {
         "q": "Quais ferramentas de IA podem se conectar?",
-        "a": "Claude (web, desktop e celular), Claude Code e Codex já funcionam. Qualquer cliente de IA compatível com servidores MCP remotos com login pode se conectar com o mesmo link."
+        "a": "Claude na web, no desktop e no celular, Claude Code e Codex já funcionam. Qualquer outro cliente de IA compatível com servidores MCP remotos com login pode usar o mesmo link."
       },
       {
         "q": "A IA pode enviar mensagens para meus clientes?",
-        "a": "Só quando você pedir e só com a sua aprovação. Envios, disparos e alterações em massa mostram uma prévia antes e aguardam seu OK."
+        "a": "Sim, mas só quando você pede e depois que você aprova. Em envios, disparos e alterações em massa você vê uma prévia antes, e nada acontece até você dar o OK."
       },
       {
         "q": "Usar o MCP tem custo extra?",
-        "a": "Não. O servidor MCP está incluído sem custo extra em todos os planos pagos do Eazybe: Starter, Scaler, Basic AI e Custom AI. Ele não faz parte do teste grátis. As cobranças de templates e disparos do WhatsApp funcionam do mesmo jeito que dentro do Eazybe."
+        "a": "Não. Ele vem incluído em todos os planos pagos do Eazybe: Starter, Scaler, Basic AI e Custom AI. O teste grátis não inclui o MCP. As cobranças de templates e disparos do WhatsApp são as mesmas de dentro do Eazybe."
       },
       {
         "q": "Preciso da API do WhatsApp Business?",
-        "a": "Não. O Eazybe funciona com o WhatsApp e o WhatsApp Business que sua equipe já usa. Escaneie um QR code e suas conversas ficam disponíveis para a sua IA."
+        "a": "Não. O Eazybe funciona com os apps WhatsApp e WhatsApp Business que sua equipe já tem. Escaneie um QR code e sua IA passa a acessar suas conversas."
       },
       {
-        "q": "Do que preciso antes de seguir os passos?",
-        "a": "Um plano pago do Eazybe com pelo menos um número de WhatsApp conectado e uma ferramenta de IA que aceite conectores personalizados. No Claude, fica em Configurações, depois Conectores."
+        "q": "Do que preciso antes de começar?",
+        "a": "Um plano pago do Eazybe com pelo menos um número de WhatsApp conectado e uma ferramenta de IA que aceite conectores personalizados. No Claude, eles ficam em Configurações, depois Conectores."
       }
     ],
-    "ctaTitle": "Pronto para conectar o WhatsApp à sua IA?",
-    "ctaSub": "Incluído em todos os planos pagos. Configure em minutos.",
+    "ctaTitle": "Conecte o WhatsApp ao Claude ou ao Codex hoje",
+    "ctaSub": "O MCP vem em todos os planos pagos e a configuração leva uns 5 minutos.",
     "ctaSmall": "Funciona com Claude e Codex",
-    "guidesEyebrow": "Aprofunde-se",
-    "guidesTitle": "Guias de WhatsApp + IA",
-    "guidesSub": "Leituras mais longas sobre WhatsApp, assistentes de IA e como escolher a conexão certa.",
+    "guidesEyebrow": "Guias",
+    "guidesTitle": "Mais sobre WhatsApp e IA",
+    "guidesSub": "Ajuda na configuração, a lista de ferramentas e um comparativo dos três tipos de conexão do WhatsApp.",
     "readGuide": "Ler guia",
     "guides": [
       {
         "tag": "Guia técnico · 10 min",
         "title": "Eazybe MCP: conecte o WhatsApp a qualquer agente de IA",
-        "desc": "Configuração para cada assistente, problemas comuns e seus primeiros 15 minutos."
+        "desc": "Como configurar em cada assistente, o que costuma dar errado e o que testar primeiro."
       },
       {
         "tag": "Referência · 8 min",
         "title": "Todas as ferramentas do Eazybe MCP, explicadas",
-        "desc": "Mais de 160 ações em caixa de entrada, CRM, disparos, agentes e equipe."
+        "desc": "Mais de 160 ações para caixa de entrada, CRM, disparos, agentes e equipe."
       },
       {
         "tag": "Comparativo · 6 min",
         "title": "WhatsApp pessoal vs app Business vs API",
         "desc": "Qual conectar e o que sua IA consegue fazer com cada um."
       }
-    ]
+    ],
+    "metaTitle": "Servidor MCP de WhatsApp para Claude e Codex | Eazybe",
+    "metaDescription": "Conecte WhatsApp, ligações e CRM ao Claude ou ao Codex com um único link. Leia conversas, prepare respostas e atualize negócios. Incluído nos planos pagos."
   }
 }

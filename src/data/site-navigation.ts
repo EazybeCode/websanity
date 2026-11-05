@@ -131,6 +131,7 @@ export async function getSitemapTree(locale: string): Promise<SitemapNode[]> {
         href: url(`/${i.slug}-whatsapp-integration`),
       })),
     },
+    { label: tNav('mcpFeaturedLead'), href: url('/mcp') },
     {
       label: t('whatsappApi'),
       href: url('/whatsapp-api'),
@@ -191,8 +192,7 @@ export async function getSitemapTree(locale: string): Promise<SitemapNode[]> {
   ]
 }
 
-// The main sections listed in the navigation schema, in order. /mcp is noindex for now
-// and is listed on request, ahead of being opened to indexing.
+// The main sections listed in the navigation schema, in order.
 const MAIN_NAV_PATHS = [
   '',
   '/whatsapp-ai-agent',
@@ -216,7 +216,6 @@ export async function getSiteNavigationJsonLd(locale: string): Promise<object> {
   const tree = await getSitemapTree(locale)
   const elements = new Map<string, string>()
   const prefix = locale === 'en' ? '' : `/${locale}`
-  const tNav = await getTranslations({ locale, namespace: 'landingV3.nav' })
 
   const add =(label: string, href?: string) => {
     if (!href || !href.startsWith('/') || href.includes('#')) return
@@ -234,8 +233,6 @@ export async function getSiteNavigationJsonLd(locale: string): Promise<object> {
     }
   }
   walk(tree)
-  // Not in the sitemap tree while the page is noindex.
-  add(tNav('mcpFeaturedLead'), `${prefix}/mcp`)
 
   return {
     '@context': 'https://schema.org',
