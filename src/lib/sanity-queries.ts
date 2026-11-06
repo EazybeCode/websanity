@@ -1131,6 +1131,12 @@ export async function getAuthorBySlug(slug: string, locale: string = 'en') {
   return sanityClient.fetch(query, { slug, sanityLanguage })
 }
 
+/** Sanity languages that have an author document for this slug. */
+export async function getAuthorLanguages(slug: string): Promise<string[]> {
+  const query = `array::unique(*[_type == "author" && slug.current == $slug && defined(language)].language)`
+  return (await sanityClient.fetch(query, { slug })) ?? []
+}
+
 export async function getAllAuthorSlugs() {
   const query = `*[_type == "author" && defined(slug.current)]{ "slug": slug.current }`
   return sanityClient.fetch(query)

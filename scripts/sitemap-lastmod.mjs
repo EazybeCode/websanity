@@ -27,6 +27,8 @@ const ROUTES = {
   '/whatsapp-api/coexistence': `${APP}/(site)/whatsapp-api/coexistence/page.tsx`,
   '/integrations': `${APP}/(site)/integrations/page.tsx`,
   '/blog': `${APP}/(site)/blog/page.tsx`,
+  '/blog/authors': `${APP}/(site)/blog/authors/page.tsx`,
+  '/blog/authors/[slug]': `${APP}/(site)/blog/authors/[slug]/page.tsx`,
   '/features/team-inbox': `${APP}/features/[slug]/page.tsx`,
   '/comparison': `${APP}/(site)/comparison/page.tsx`,
   '/about-us': `${APP}/(site)/about-us/page.tsx`,

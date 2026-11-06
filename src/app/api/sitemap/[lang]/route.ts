@@ -181,6 +181,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     { path: '/case-studies', changefreq: 'weekly', priority: 0.7 },
     { path: '/case-studies/lokmaxltda', changefreq: 'monthly', priority: 0.7 },
     { path: '/become-our-partner', changefreq: 'monthly', priority: 0.7 },
+    { path: '/blog/authors', changefreq: 'monthly', priority: 0.6 },
     // /msa, /privacy and /terms are noindex, so they stay out of the sitemap
     // (listing them gives "Submitted URL marked noindex" in Search Console).
   ]
@@ -351,6 +352,41 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     })
   } catch (error) {
     console.warn('Sitemap: Could not fetch comparison posts:', error)
+  }
+
+  // ── Author profile pages from Sanity ────────────────────────────────────
+  // An author page exists only in the languages that have an author document
+  // for that slug (eazybe-team is English only), so list and link only those.
+  try {
+    const authors: Array<{ slug: string; language: string; _updatedAt: string }> = await sanityClient.fetch(
+      `*[_type == "author" && defined(slug.current) && defined(language) && !(_id in path("drafts.**"))]{
+        "slug": slug.current,
+        language,
+        _updatedAt
+      }`
+    ) ?? []
+
+    for (const author of authors.filter((a) => toLocale(a.language) === lang)) {
+      const path = `/blog/authors/${author.slug}`
+      const locales = [...new Set(
+        authors.filter((a) => a.slug === author.slug).map((a) => toLocale(a.language))
+      )].filter((l) => LOCALES.includes(l))
+
+      entries.push({
+        loc: localeUrl(lang, path),
+        changefreq: 'monthly',
+        priority: 0.5,
+        lastmod: newest(codeDate('/blog/authors/[slug]'), author._updatedAt),
+        alternates: locales.length > 1
+          ? [
+              { lang: 'x-default', url: localeUrl(locales.includes('en') ? 'en' : lang, path) },
+              ...locales.map((l) => ({ lang: toHreflang(l), url: localeUrl(l, path) })),
+            ]
+          : undefined,
+      })
+    }
+  } catch (error) {
+    console.warn('Sitemap: Could not fetch authors:', error)
   }
 
   // ── Feature / WhatsApp API pages from Sanity ────────────────────────────

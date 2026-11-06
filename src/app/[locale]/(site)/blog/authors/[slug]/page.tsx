@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
-import { getAuthorBySlug, getAllAuthorSlugs } from '@/lib/sanity-queries'
-import { getAlternates } from '@/lib/seo-helpers'
+import { getAuthorBySlug, getAllAuthorSlugs, getAuthorLanguages } from '@/lib/sanity-queries'
+import { getCanonicalUrl, getCanonicalOnly, getHrefLangs } from '@/lib/seo-helpers'
 import { AuthorProfileClient } from '@/components/pages/AuthorProfileClient'
 
 // ISR: revalidate so author edits in Sanity (bio, social links, etc.) appear
@@ -23,11 +23,21 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>
 }): Promise<Metadata> {
   const { locale, slug } = await params
-  const author = await getAuthorBySlug(slug, locale)
+  const [author, languages] = await Promise.all([getAuthorBySlug(slug, locale), getAuthorLanguages(slug)])
 
   if (!author) {
     return { title: 'Author Not Found | Eazybe' }
   }
+
+  // hreflang only for the languages this author page exists in (others 404).
+  const path = `/blog/authors/${slug}`
+  const urlLocales = [...new Set(languages.map((l) => (l === 'pt-BR' || l === 'pt' ? 'br' : l)))]
+  const hrefLangs = getHrefLangs(locale, path)
+  const languageLinks = Object.fromEntries(
+    Object.entries(hrefLangs).filter(([code]) =>
+      code === 'x-default' ? urlLocales.includes('en') : urlLocales.includes(code === 'pt-BR' ? 'br' : code)
+    )
+  )
 
   return {
     title: `${author.name} - Author | Eazybe Blog`,
@@ -37,7 +47,9 @@ export async function generateMetadata({
       description: author.bio || `Read articles by ${author.name} on the Eazybe blog.`,
       images: author.image ? [{ url: author.image }] : undefined,
     },
-    alternates: getAlternates(locale, `/blog/authors/${slug}`),
+    alternates: urlLocales.length > 1
+      ? { canonical: getCanonicalUrl(locale, path), languages: languageLinks }
+      : getCanonicalOnly(locale, path),
   }
 }
 
