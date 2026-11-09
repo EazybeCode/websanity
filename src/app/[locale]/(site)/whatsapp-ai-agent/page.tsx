@@ -7,6 +7,7 @@ import { getAiAgentPageContent } from '@/data/whatsapp-ai-agent-content'
 import { AI_AGENT_EN_SLUGS } from '@/data/ai-agent-posts'
 import { getPostsByEnSlugs } from '@/lib/sanity-queries'
 import { SetupSteps, FitsTabs, ReadMoreFade, LazyVideo, MobileMore } from '@/components/pages/WhatsappAiAgentInteractive'
+import { pageDates, withPageDates } from '@/lib/page-dates'
 
 export const dynamic = 'force-static'
 // Re-render hourly so newly published AI-agent posts show up in the related list.
@@ -22,8 +23,8 @@ const SITE_URL = 'https://eazybe.com'
 const CHROME_STORE_URL =
   'https://chromewebstore.google.com/detail/whatsapp-ai-agents-with-c/aihpfgoknheimieofcfjiobnmddldjeb?utm_medium=Organic&utm_source=website&utm_campaign=eazybe%20workspace'
 const DEMO_URL = 'https://eazybe.info/demono'
-// Bump when the page copy changes: used as the schema dateModified.
-const UPDATED = '2026-10-31'
+// Same dates as the article:published_time / article:modified_time meta tags.
+const PAGE_DATES = pageDates({ page: '/whatsapp-ai-agent' })
 const LANG: Record<string, string> = { en: 'en-US', es: 'es', br: 'pt-BR', tr: 'tr' }
 const OG_LOCALE: Record<string, string> = { en: 'en_US', es: 'es_ES', br: 'pt_BR', tr: 'tr_TR' }
 
@@ -53,7 +54,7 @@ const MORE_LABELS: Record<string, [string, string]> = {
   tr: ['Devamını oku', 'Daha az göster'],
 }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -65,6 +66,7 @@ export async function generateMetadata({
   return {
     title: t.meta.title,
     description: t.meta.description,
+    authors: [{ name: 'Eazybe', url: `https://eazybe.com${prefixFor(locale)}/about-us` }],
     alternates: getAlternates(locale, '/whatsapp-ai-agent'),
     robots: { index: true, follow: true },
     openGraph: {
@@ -462,8 +464,9 @@ export default async function WhatsappAiAgentPage({
         name: t.meta.title,
         description: t.meta.description,
         inLanguage: lang,
-        dateModified: UPDATED,
+        ...(PAGE_DATES ? { datePublished: PAGE_DATES.published, dateModified: PAGE_DATES.modified } : {}),
         about: { '@id': SOFTWARE_ID },
+        author: { '@id': ORG_ID },
         publisher: { '@id': ORG_ID },
         breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
         mainEntity: { '@id': `${pageUrl}#agents` },
@@ -517,7 +520,9 @@ export default async function WhatsappAiAgentPage({
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      {/* WebPage in its own block, so tools that skip @graph still read its dates and author. */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': schema['@context'], ...schema['@graph'][0] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': schema['@context'], '@graph': schema['@graph'].slice(1) }) }} />
       <style dangerouslySetInnerHTML={{ __html: PAGE_CSS }} />
 
       {/* Hero — brand dark hero (ink, dot grid, one blue light). No reveal: h1/p are the LCP. */}
@@ -627,11 +632,11 @@ export default async function WhatsappAiAgentPage({
           </div>
           <div className="aia-grid">
             {t.agents.cards.map((card, i) => (
-              <article key={card.id} id={card.id} className="card aia-card">
+              <div key={card.id} id={card.id} className="card aia-card">
                 <div className="card-icon" aria-hidden="true">{AGENT_ICONS[i]}</div>
                 <h3>{card.name}</h3>
                 <p>{card.desc}</p>
-              </article>
+              </div>
             ))}
           </div>
         </div>
@@ -785,7 +790,7 @@ export default async function WhatsappAiAgentPage({
             <p>{t.proof.subtitle}</p>
           </div>
           <div className="aia-proof">
-            <article className="card aia-case">
+            <div className="card aia-case">
               <div className="aia-case-head">
                 <strong>Lokmax</strong>
                 <span>{t.proof.caseMeta}</span>
@@ -799,7 +804,7 @@ export default async function WhatsappAiAgentPage({
                 ))}
               </dl>
               <a href={`${prefix}/case-studies/lokmaxltda`} className="btn btn-primary btn-lg">{t.proof.caseCta}</a>
-            </article>
+            </div>
             <div className="aia-ratings">
               {t.proof.ratings.map((r) => (
                 <a key={r.value + r.source} href={r.href} target="_blank" rel="noopener noreferrer" className="aia-rating">
@@ -937,4 +942,9 @@ export default async function WhatsappAiAgentPage({
       </section>
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/whatsapp-ai-agent' }))
 }
