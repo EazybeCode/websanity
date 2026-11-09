@@ -37,7 +37,7 @@ const LOCALE_TAG: Record<string, string> = {
  *  ("1,234,567"), and a single occurrence followed by exactly three digits is
  *  also read as thousands ("10,000" is ten thousand, not ten). Anything else is
  *  a decimal point ("10,5"). Returns null for input that isn't a usable number. */
-function parseAmount(raw: string): number | null {
+export function parseAmount(raw: string): number | null {
   const s = raw.trim()
   if (!s) return null
   const cleaned = s.replace(/[^0-9.,-]/g, '')

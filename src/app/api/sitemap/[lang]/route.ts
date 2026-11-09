@@ -177,6 +177,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     { path: '/whatsapp-chat-link-generator', changefreq: 'monthly', priority: 0.7 },
     { path: '/whatsapp-chat-widget', changefreq: 'monthly', priority: 0.7 },
     { path: '/marketing-roi-calculator', changefreq: 'monthly', priority: 0.7 },
+    { path: '/call-center-roi-calculator', changefreq: 'monthly', priority: 0.7 },
     { path: '/tools', changefreq: 'monthly', priority: 0.7 },
     { path: '/case-studies', changefreq: 'weekly', priority: 0.7 },
     { path: '/case-studies/lokmaxltda', changefreq: 'monthly', priority: 0.7 },

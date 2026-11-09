@@ -148,6 +148,7 @@ Insurance, real estate, banking and financial services, B2B sales, education, tr
 - [All Tools](https://eazybe.com/tools): Directory of free WhatsApp tools.
 - [WhatsApp Pricing Calculator](https://eazybe.com/whatsapp-pricing-calculator): Estimate WhatsApp Business API conversation costs by market and volume.
 - [Marketing ROI Calculator](https://eazybe.com/marketing-roi-calculator): ROI, ROAS, CPL, CAC, and breakeven calculator.
+- [Call Center ROI Calculator](https://eazybe.com/call-center-roi-calculator): First-year ROI, payback, cost per call and break-even for call center software.
 - [WhatsApp QR Code Generator](https://eazybe.com/whatsapp-qr-code-generator): Generate a scannable QR that opens a WhatsApp chat.
 - [WhatsApp Chat Link Generator](https://eazybe.com/whatsapp-chat-link-generator): Create wa.me click-to-chat links.
 - [WhatsApp Chat Widget](https://eazybe.com/whatsapp-chat-widget): Free website chat widget for WhatsApp.

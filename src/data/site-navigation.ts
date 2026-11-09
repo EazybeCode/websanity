@@ -164,6 +164,7 @@ export async function getSitemapTree(locale: string): Promise<SitemapNode[]> {
         { label: t('allTools'), href: url('/tools') },
         { label: t('toolPricingCalc'), href: WA_PRICING_PATH_BY_LOCALE[locale] ?? WA_PRICING_PATH_BY_LOCALE.en },
         { label: t('toolRoiCalc'), href: url('/marketing-roi-calculator') },
+        { label: t('toolCallCenterRoi'), href: url('/call-center-roi-calculator') },
         { label: t('toolQr'), href: url('/whatsapp-qr-code-generator') },
         { label: t('toolChatLink'), href: url('/whatsapp-chat-link-generator') },
         { label: t('toolChatWidget'), href: url('/whatsapp-chat-widget') },

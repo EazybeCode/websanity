@@ -38,6 +38,7 @@ const HREFS = {
   widget: '/whatsapp-chat-widget',
   roi: '/marketing-roi-calculator',
   waPricing: '/whatsapp-pricing-calculator',
+  ccRoi: '/call-center-roi-calculator',
 } as const
 
 const en: ToolsPageContent = {
@@ -60,7 +61,7 @@ const en: ToolsPageContent = {
   },
   grid: {
     h2: 'Pick A Tool',
-    subtitle: 'Five tools, each one free and ready to use right now.',
+    subtitle: 'Six tools, each one free and ready to use right now.',
     tryIt: 'Try it free',
     freeBadge: 'Free',
   },
@@ -99,6 +100,13 @@ const en: ToolsPageContent = {
       name: 'WhatsApp Pricing Calculator',
       tagline: 'Estimate your monthly WhatsApp API bill from your message volumes, with editable per-country rates.',
       category: 'Measurement',
+      icon: 'calculator',
+    },
+    {
+      href: HREFS.ccRoi,
+      name: "Call Center ROI Calculator",
+      tagline: "See if new call center software pays for itself, with first-year ROI, payback and cost per call.",
+      category: "Measurement",
       icon: 'calculator',
     },
   ],
@@ -141,7 +149,7 @@ const br: ToolsPageContent = {
   },
   grid: {
     h2: 'Escolha Uma Ferramenta',
-    subtitle: 'Cinco ferramentas, todas gratuitas e prontas para usar agora.',
+    subtitle: 'Seis ferramentas, todas gratuitas e prontas para usar agora.',
     tryIt: 'Usar grátis',
     freeBadge: 'Grátis',
   },
@@ -181,6 +189,13 @@ const br: ToolsPageContent = {
       name: 'Calculadora de Preços do WhatsApp',
       tagline: 'Estime sua fatura mensal da API do WhatsApp a partir dos volumes de mensagens, com taxas editáveis por país.',
       category: 'Medição',
+      icon: 'calculator',
+    },
+    {
+      href: HREFS.ccRoi,
+      name: "Calculadora de ROI para Call Center",
+      tagline: "Veja se um novo software de call center se paga, com ROI do primeiro ano, payback e custo por chamada.",
+      category: "Medição",
       icon: 'calculator',
     },
   ],
@@ -223,7 +238,7 @@ const es: ToolsPageContent = {
   },
   grid: {
     h2: 'Elige Una Herramienta',
-    subtitle: 'Cinco herramientas, todas gratuitas y listas para usar ahora.',
+    subtitle: 'Seis herramientas, todas gratuitas y listas para usar ahora.',
     tryIt: 'Usar gratis',
     freeBadge: 'Gratis',
   },
@@ -263,6 +278,13 @@ const es: ToolsPageContent = {
       name: 'Calculadora de Precios de WhatsApp',
       tagline: 'Estima tu factura mensual de la API de WhatsApp a partir de tus volúmenes de mensajes, con tarifas editables por país.',
       category: 'Medición',
+      icon: 'calculator',
+    },
+    {
+      href: HREFS.ccRoi,
+      name: "Calculadora de ROI para Call Center",
+      tagline: "Comprueba si un nuevo software de call center se paga solo, con ROI del primer año, amortización y coste por llamada.",
+      category: "Medición",
       icon: 'calculator',
     },
   ],
@@ -305,7 +327,7 @@ const tr: ToolsPageContent = {
   },
   grid: {
     h2: 'Bir Araç Seçin',
-    subtitle: 'Beş araç, hepsi ücretsiz ve şimdi kullanıma hazır.',
+    subtitle: 'Altı araç, hepsi ücretsiz ve şimdi kullanıma hazır.',
     tryIt: 'Ücretsiz dene',
     freeBadge: 'Ücretsiz',
   },
@@ -345,6 +367,13 @@ const tr: ToolsPageContent = {
       name: 'WhatsApp Fiyat Hesaplayıcı',
       tagline: 'Aylık WhatsApp API faturanızı mesaj hacimlerinizden tahmin edin; ülke bazlı tarifeler düzenlenebilir.',
       category: 'Ölçüm',
+      icon: 'calculator',
+    },
+    {
+      href: HREFS.ccRoi,
+      name: "Çağrı Merkezi ROI Hesaplayıcı",
+      tagline: "Yeni çağrı merkezi yazılımının kendini amorti edip etmediğini ilk yıl ROI, geri ödeme ve çağrı başına maliyetle görün.",
+      category: "Ölçüm",
       icon: 'calculator',
     },
   ],

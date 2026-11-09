@@ -41,6 +41,7 @@ const ROUTES = {
   '/whatsapp-chat-link-generator': `${APP}/(site)/whatsapp-chat-link-generator/page.tsx`,
   '/whatsapp-chat-widget': `${APP}/(site)/whatsapp-chat-widget/page.tsx`,
   '/marketing-roi-calculator': `${APP}/(site)/marketing-roi-calculator/page.tsx`,
+  '/call-center-roi-calculator': `${APP}/(site)/call-center-roi-calculator/page.tsx`,
   '/tools': `${APP}/(site)/tools/page.tsx`,
   '/case-studies': `${APP}/(site)/case-studies/page.tsx`,
   '/case-studies/lokmaxltda': `${APP}/(site)/case-studies/lokmaxltda/page.tsx`,
