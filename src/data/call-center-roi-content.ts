@@ -156,7 +156,7 @@ const es: CallCenterRoiContent = {
   meta: {
     title: "Calculadora de ROI para Call Center Gratis | Eazybe",
     description:
-      "Calculadora gratis de ROI para call center. Introduce agentes, tiempos de llamada y coste del software y verás ROI, ahorro mensual, coste por llamada y amortización.",
+      "Calculadora gratis de ROI para call center. Introduce agentes, tiempos y coste del software y verás ROI, ahorro mensual, coste por llamada y amortización.",
     ogTitle: "Calculadora de ROI para Call Center",
     ogDescription: "Calcula el ROI del primer año, la amortización y el coste por llamada de tu call center. Puedes editar cada supuesto.",
   },
@@ -446,7 +446,7 @@ const tr: CallCenterRoiContent = {
   meta: {
     title: "Çağrı Merkezi ROI Hesaplayıcı (Ücretsiz) | Eazybe",
     description:
-      "Ücretsiz çağrı merkezi ROI hesaplayıcı. Temsilci sayısını, çağrı sürelerini ve yazılım maliyetini girin; ROI, aylık tasarruf, çağrı başına maliyet ve geri ödeme süresini görün.",
+      "Ücretsiz çağrı merkezi ROI hesaplayıcı. Temsilci, süre ve yazılım maliyetini girin; ROI, aylık tasarruf, çağrı başına maliyet ve geri ödemeyi görün.",
     ogTitle: "Çağrı Merkezi ROI Hesaplayıcı",
     ogDescription: "Çağrı merkeziniz için ilk yıl ROI, geri ödeme süresi ve çağrı başına maliyeti hesaplayın. Her varsayımı değiştirebilirsiniz.",
   },

@@ -1,7 +1,7 @@
 {
   "/": {
     "published": "2026-03-14T12:16:03Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/pricing": {
     "published": "2026-03-17T09:28:23Z",
@@ -21,31 +21,31 @@
   },
   "/calling": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/calling/auto-dialer": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/calling/virtual-phone-number": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/calling/call-tracking": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/calling/sim-based-calling": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/calling/call-recording": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/calling/sim-vs-cloud-calling": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/whatsapp-api": {
     "published": "2026-03-17T09:28:23Z",
@@ -97,15 +97,15 @@
   },
   "/marketing-roi-calculator": {
     "published": "2026-08-17T10:23:29Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/call-center-roi-calculator": {
-    "published": "2026-11-09T17:54:47Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "published": "2026-11-09T17:55:05Z",
+    "modified": "2026-11-09T18:09:27Z"
   },
   "/tools": {
     "published": "2026-08-17T18:12:32Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/case-studies": {
     "published": "2026-08-29T18:20:17Z",
@@ -149,7 +149,7 @@
   },
   "/sitemap": {
     "published": "2026-06-10T08:21:49Z",
-    "modified": "2026-11-09T17:54:47Z"
+    "modified": "2026-11-09T17:55:05Z"
   },
   "/msa": {
     "published": "2026-03-17T09:28:23Z",
