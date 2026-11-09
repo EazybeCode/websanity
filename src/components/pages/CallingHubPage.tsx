@@ -1,8 +1,9 @@
 import { callingPath, type CallingPageContent } from '@/data/calling-content'
 import { getCallingUi, localePrefix } from '@/data/calling-i18n'
-import { CALLING_CSS, CallingPricingCard, callingSchema } from '@/components/pages/CallingPage'
+import { CALLING_CSS, CallingPricingCard, callingJsonLdBlocks } from '@/components/pages/CallingPage'
 import { CallingHubTabs } from '@/components/pages/CallingHubTabs'
 import { CALLING_FEATURES_CSS, ProductBento } from '@/components/pages/CallingFeatures'
+import type { PageDateInfo } from '@/lib/page-dates'
 import {
   CALLING_DESIGN_CSS,
   COMPARE_ICONS,
@@ -34,7 +35,7 @@ function Copy({ title, em, body, points, href, label }: { title: string; em: str
   )
 }
 
-export function CallingHubPage({ page, locale }: { page: CallingPageContent; locale: string }) {
+export function CallingHubPage({ page, locale, dates }: { page: CallingPageContent; locale: string; dates?: PageDateInfo | null }) {
   const ui = getCallingUi(locale)
   const hub = ui.hub
   const prefix = localePrefix(locale)
@@ -43,7 +44,9 @@ export function CallingHubPage({ page, locale }: { page: CallingPageContent; loc
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(callingSchema(page, locale)) }} />
+      {callingJsonLdBlocks(page, locale, dates).map((block, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }} />
+      ))}
       <style dangerouslySetInnerHTML={{ __html: CALLING_CSS + CALLING_DESIGN_CSS + CALLING_FEATURES_CSS }} />
 
       {/* No entrance animation here: the h1 and lede are the LCP. */}

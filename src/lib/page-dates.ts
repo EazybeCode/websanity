@@ -77,3 +77,30 @@ export async function getSanityDocDates(type: string, locale: string, slug?: str
     return null
   }
 }
+
+const SITE_URL = 'https://eazybe.com'
+const localePrefix = (locale: string) => (locale === 'en' ? '' : `/${locale}`)
+
+/** Eazybe as the page author in schema, for pages with no named writer. */
+export const PAGE_AUTHOR = { '@type': 'Organization', name: 'Eazybe', url: `${SITE_URL}/` }
+
+/** <meta name="author"> plus <link rel="author"> pointing at the About page. */
+export function withPageAuthor(metadata: Metadata, locale: string): Metadata {
+  return { ...metadata, authors: [{ name: 'Eazybe', url: `${SITE_URL}${localePrefix(locale)}/about-us` }] }
+}
+
+/** Standalone WebPage node for pages that have none: title, dates and author. */
+export function webPageJsonLd(locale: string, path: string, metadata: Metadata, dates: PageDateInfo | null) {
+  const url = `${SITE_URL}${localePrefix(locale)}${path}`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${url}#webpage`,
+    url,
+    ...(typeof metadata.title === 'string' ? { name: metadata.title } : {}),
+    ...(metadata.description ? { description: metadata.description } : {}),
+    inLanguage: SANITY_LANG[locale] ?? locale,
+    ...(dates ? { datePublished: dates.published, dateModified: dates.modified } : {}),
+    author: PAGE_AUTHOR,
+  }
+}

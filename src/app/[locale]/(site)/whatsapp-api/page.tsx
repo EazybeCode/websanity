@@ -4,6 +4,7 @@ import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
 import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
 import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
+import { pageDates, getSanityDocDates, withPageDates } from '@/lib/page-dates'
 
 export const viewport: Viewport = {
   themeColor: '#020617',
@@ -13,7 +14,7 @@ export const viewport: Viewport = {
 
 const sanityLangMap: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -108,4 +109,10 @@ export default async function WhatsAppApiIndexPage({
       <CategoryIndexClient data={data} category="whatsapp-api" />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await props.params
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/whatsapp-api', doc: await getSanityDocDates('categoryIndexPage', locale, 'whatsapp-api') }))
 }

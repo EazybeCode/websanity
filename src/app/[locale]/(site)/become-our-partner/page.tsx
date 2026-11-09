@@ -5,13 +5,14 @@ import { getAlternates } from '@/lib/seo-helpers'
 import { getPartners } from '@/lib/sanity-queries'
 import { PARTNERS, type PartnerRecord } from '@/data/partner-directory'
 import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
+import { pageDates, withPageDates } from '@/lib/page-dates'
 
 // Partner directory content is managed in Sanity ("Current Partners at
 // Eazybe") — re-render at most once a minute so CMS edits go live on
 // their own without a redeploy.
 export const revalidate = 60
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -112,4 +113,9 @@ export default async function PartnerPage({
       <PartnerPageClient partners={partners} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/become-our-partner' }))
 }

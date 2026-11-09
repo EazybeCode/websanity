@@ -4,6 +4,7 @@ import { getHomepageMetadata, getHomepageJsonLd } from '@/data/homepage-seo'
 import { getSiteNavigationJsonLd } from '@/data/site-navigation'
 import { HomepageV16 } from '@/components/homepage-v16/HomepageV16'
 import { routing } from '@/i18n/routing'
+import { pageDates, withPageAuthor, withPageDates } from '@/lib/page-dates'
 
 // Pure SSG: the page is fully prerendered for every locale at build time
 // and served from CDN cache thereafter. There's no runtime data on this
@@ -15,7 +16,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -48,4 +49,10 @@ export default async function HomePage({
       <HomepageV16 locale={locale} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await props.params
+  return withPageAuthor(withPageDates(await baseMetadata(props), pageDates({ page: '/' })), locale)
 }

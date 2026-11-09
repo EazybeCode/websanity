@@ -5,6 +5,7 @@ import { getAlternates } from '@/lib/seo-helpers'
 import { getCaseStudiesPageContent } from '@/data/case-studies-content'
 import { getCaseStudyCardOverrides } from '@/lib/sanity-queries'
 import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
+import { pageDates, withPageDates } from '@/lib/page-dates'
 
 export const dynamic = 'force-static'
 // Re-render every minute so logos uploaded in Sanity show up.
@@ -14,7 +15,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -238,4 +239,9 @@ export default async function CaseStudiesPage({
       </section>
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/case-studies' }))
 }

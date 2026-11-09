@@ -1,9 +1,10 @@
+import type { PageDateInfo } from '@/lib/page-dates'
 /**
  * JSON-LD structured data for Google Calendar WhatsApp Integration page (Portuguese/Brazil)
  * Includes: FAQPage, BreadcrumbList, WebPage, Product, HowTo
  */
 
-export function GoogleCalendarStructuredDataBr() {
+export function GoogleCalendarStructuredDataBr({ dates }: { dates?: PageDateInfo | null }) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -81,8 +82,8 @@ export function GoogleCalendarStructuredDataBr() {
     name: 'Integração Google Calendar com WhatsApp: Conecte WhatsApp',
     description: 'Conecte o Google Calendar ao WhatsApp com o Eazybe. Sincronize chats automaticamente, atualize compromissos e gerencie conversas com clientes.',
     inLanguage: 'pt-BR',
-    datePublished: '2026-02-03T08:00:00+00:00',
-    dateModified: '2026-04-02T10:30:00+00:00'
+    author: { '@type': 'Organization', name: 'Eazybe', url: 'https://eazybe.com/' },
+    ...(dates ? { datePublished: dates.published, dateModified: dates.modified } : {}),
   }
 
   const productSchema = {

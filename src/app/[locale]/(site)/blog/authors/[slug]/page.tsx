@@ -4,6 +4,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getAuthorBySlug, getAllAuthorSlugs, getAuthorLanguages } from '@/lib/sanity-queries'
 import { getCanonicalUrl, getCanonicalOnly, getHrefLangs } from '@/lib/seo-helpers'
 import { AuthorProfileClient } from '@/components/pages/AuthorProfileClient'
+import { pageDates, getSanityDocDates, withPageDates } from '@/lib/page-dates'
 
 // ISR: revalidate so author edits in Sanity (bio, social links, etc.) appear
 // on live without a full redeploy — matching the blog pages' behaviour.
@@ -17,7 +18,7 @@ export async function generateStaticParams() {
     .map((a: { slug: string }) => ({ slug: a.slug }))
 }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string; slug: string }>
@@ -108,4 +109,10 @@ export default async function AuthorPage({
       <AuthorProfileClient author={author} locale={locale} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
+  const { locale, slug } = await props.params
+  return withPageDates(await baseMetadata(props), pageDates({ template: '/blog/authors/[slug]', doc: await getSanityDocDates('author', locale, slug) }))
 }

@@ -7,11 +7,12 @@ export const viewport: Viewport = {
 import { ComparisonPageClient } from '@/components/pages/ComparisonPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
 import { getComparisonPosts } from '@/lib/sanity-queries'
+import { pageDates, getSanityDocDates, withPageDates } from '@/lib/page-dates'
 
 // ISR: revalidate every 10s to pick up Sanity changes
 export const revalidate = 10
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -159,4 +160,10 @@ export default async function ComparisonPage({
       <ComparisonPageClient comparisonPosts={comparisonPosts} locale={locale} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await props.params
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/comparison', doc: await getSanityDocDates('comparisonPage', locale) }))
 }

@@ -3,11 +3,12 @@ import { setRequestLocale } from 'next-intl/server'
 import { getAuthors } from '@/lib/sanity-queries'
 import { getAlternates } from '@/lib/seo-helpers'
 import { AuthorsListClient } from '@/components/pages/AuthorsListClient'
+import { pageDates, withPageDates } from '@/lib/page-dates'
 
 // ISR: keep the authors list fresh with Sanity edits without a full redeploy.
 export const revalidate = 10
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -341,4 +342,9 @@ export default async function AuthorsPage({
       <AuthorsListClient authors={authors || []} locale={locale} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/blog/authors' }))
 }

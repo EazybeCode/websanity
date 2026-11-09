@@ -47,7 +47,6 @@ export interface CallingPageContent {
   related: string[]
 }
 
-export const CALLING_UPDATED = '2026-11-03'
 
 const RECORD_POINTS = [
   'WhatsApp chats and calls sit on the same customer record',

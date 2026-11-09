@@ -69,11 +69,12 @@ const HOW_TO_EN_SLUGS = [
 ]
 import { BlogListingClient } from '@/components/pages/BlogListingClient'
 import { BlogJsonLd } from '@/components/BlogJsonLd'
+import { pageDates, getSanityDocDates, withPageDates } from '@/lib/page-dates'
 
 // ISR: Revalidate every 10 seconds to pick up Sanity CMS changes immediately
 export const revalidate = 10
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -621,4 +622,10 @@ export default async function BlogListingPage({
       locale={locale}
     />
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await props.params
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/blog', doc: await getSanityDocDates('blogIndex', locale) }))
 }

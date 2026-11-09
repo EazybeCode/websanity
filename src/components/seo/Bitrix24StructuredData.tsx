@@ -1,9 +1,10 @@
+import type { PageDateInfo } from '@/lib/page-dates'
 /**
  * JSON-LD structured data for Bitrix24 WhatsApp Integration page
  * Includes: FAQPage, BreadcrumbList, WebPage, Product, HowTo
  */
 
-export function Bitrix24StructuredData() {
+export function Bitrix24StructuredData({ dates }: { dates?: PageDateInfo | null }) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -81,8 +82,8 @@ export function Bitrix24StructuredData() {
     name: 'Bitrix24 WhatsApp Integration | Connect WhatsApp To Bitrix24',
     description: 'Connect WhatsApp with Bitrix24 CRM. Sync chats automatically, use AI agents, track deals, and manage sales conversations directly inside Bitrix24.',
     inLanguage: 'en',
-    datePublished: '2026-02-03T08:00:00+00:00',
-    dateModified: '2026-04-01T10:30:00+00:00'
+    author: { '@type': 'Organization', name: 'Eazybe', url: 'https://eazybe.com/' },
+    ...(dates ? { datePublished: dates.published, dateModified: dates.modified } : {}),
   }
 
   const productSchema = {

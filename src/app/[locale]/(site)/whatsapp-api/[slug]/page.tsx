@@ -5,6 +5,7 @@ import { getFeature } from '@/lib/sanity-queries'
 import FeaturePageClient from '@/components/pages/FeaturePageClient'
 import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
 import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
+import { pageDates, getSanityDocDates, withPageDates } from '@/lib/page-dates'
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
@@ -29,7 +30,7 @@ const SITE_URL = 'https://eazybe.com'
 const titleCase = (s: string) =>
   s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string; slug: string }>
@@ -119,4 +120,10 @@ export default async function WhatsAppApiFeaturePage({
       <FeaturePageClient feature={feature} slug={slug} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
+  const { locale, slug } = await props.params
+  return withPageDates(await baseMetadata(props), pageDates({ template: '/whatsapp-api/[slug]', doc: await getSanityDocDates('productPage', locale, slug) }))
 }

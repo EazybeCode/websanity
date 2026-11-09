@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { getV16Faq } from '@/components/homepage-v16/localize-v16'
 import { ORG_ID, SOFTWARE_ID, getGlobalSchemas, getWebSiteId, getWebSiteJsonLd } from '@/data/global-schemas'
+import { pageDates } from '@/lib/page-dates'
+
+const HOME_DATES = pageDates({ page: '/' })
 
 const BASE_URL = 'https://eazybe.com'
 
@@ -324,12 +327,12 @@ function getHomepageWebPageJsonLd(locale: string): object {
     "description": meta.description,
     "inLanguage": LANGUAGE_TAGS[locale] ?? LANGUAGE_TAGS.en,
     "isPartOf": { "@id": getWebSiteId(locale) },
+    "author": { "@id": ORG_ID },
     "publisher": { "@id": ORG_ID },
     "about": { "@id": SOFTWARE_ID },
     "mainEntity": { "@id": `${pageUrl(locale)}#faq` },
-    "datePublished": "2026-02-03T08:00:00+00:00",
-    // Static page: this is the build/deploy time, i.e. when the content last changed.
-    "dateModified": new Date().toISOString(),
+    // Same dates as the article:published_time / article:modified_time meta tags.
+    ...(HOME_DATES ? { "datePublished": HOME_DATES.published, "dateModified": HOME_DATES.modified } : {}),
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": ["#ezv16 h1", "#ezv16 h1 + p"]

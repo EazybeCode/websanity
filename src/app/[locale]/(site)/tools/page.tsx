@@ -5,6 +5,7 @@ import { getAlternates } from '@/lib/seo-helpers'
 import { getToolsPageContent } from '@/data/tools-content'
 import { ToolsGridClient } from '@/components/pages/ToolsGridClient'
 import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
+import { pageDates, withPageDates } from '@/lib/page-dates'
 
 export const dynamic = 'force-static'
 
@@ -12,7 +13,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -191,4 +192,9 @@ export default async function ToolsPage({
       </section>
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/tools' }))
 }

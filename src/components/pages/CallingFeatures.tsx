@@ -372,13 +372,13 @@ export function FeatureGrid({ slug, cards, ui }: { slug: string; cards: CallingC
   return (
     <div className="cv-grid">
       {cards.map((c, i) => (
-        <article key={c.title} className="cv-card ch-rise">
+        <div key={c.title} className="cv-card ch-rise">
           <div className="cv-stage" aria-hidden="true"><Visual kind={kinds[i] ?? 'ring'} ui={ui} /></div>
           <div className="cv-body">
             <h3>{c.title}</h3>
             <p>{c.desc}</p>
           </div>
-        </article>
+        </div>
       ))}
     </div>
   )

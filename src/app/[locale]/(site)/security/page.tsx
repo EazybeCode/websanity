@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { Shield } from 'lucide-react'
 import { getCanonicalOnly } from '@/lib/seo-helpers'
+import { pageDates, withPageDates } from '@/lib/page-dates'
 
 // Security & compliance overview for IT and legal reviewers. Restates the claims made
 // elsewhere on the site (homepage badges, pricing trust row) and says how to request
@@ -111,7 +112,7 @@ const COPY: Record<string, Copy> = {
   },
 }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -190,4 +191,9 @@ export default async function SecurityPage({
       </section>
     </div>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/security' }))
 }

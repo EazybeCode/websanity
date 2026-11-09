@@ -4,6 +4,7 @@ import { getCoexistence } from '@/lib/sanity-queries'
 import { CoexistencePageClient } from '@/components/pages/CoexistencePageClient'
 import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
 import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
+import { pageDates, getSanityDocDates, withPageDates } from '@/lib/page-dates'
 
 const breadcrumbLabels: Record<string, { home: string; whatsappApi: string; coexistence: string }> = {
   en: { home: 'Home', whatsappApi: 'WhatsApp API', coexistence: 'Coexistence' },
@@ -14,7 +15,7 @@ const breadcrumbLabels: Record<string, { home: string; whatsappApi: string; coex
 
 const SITE_URL = 'https://eazybe.com'
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -84,4 +85,10 @@ export default async function CoexistencePage({
       <CoexistencePageClient data={data} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await props.params
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/whatsapp-api/coexistence', doc: await getSanityDocDates('productPage', locale, 'coexistence') }))
 }

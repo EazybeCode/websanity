@@ -1,9 +1,10 @@
+import type { PageDateInfo } from '@/lib/page-dates'
 /**
  * JSON-LD structured data for Webhooks WhatsApp Integration page (Portuguese/Brazil)
  * Includes: FAQPage, BreadcrumbList, WebPage, Product, HowTo
  */
 
-export function WebhooksStructuredDataBr() {
+export function WebhooksStructuredDataBr({ dates }: { dates?: PageDateInfo | null }) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -81,8 +82,8 @@ export function WebhooksStructuredDataBr() {
     name: 'Integração Webhooks WhatsApp: Conecte WhatsApp com Webhooks',
     description: 'Conecte o WhatsApp com Webhooks. Sincronize conversas, use agentes de IA, acompanhe eventos e automatize fluxos sem sair do seu sistema.',
     inLanguage: 'pt-BR',
-    datePublished: '2026-02-03T08:00:00+00:00',
-    dateModified: '2026-04-02T10:30:00+00:00'
+    author: { '@type': 'Organization', name: 'Eazybe', url: 'https://eazybe.com/' },
+    ...(dates ? { datePublished: dates.published, dateModified: dates.modified } : {}),
   }
 
   const productSchema = {

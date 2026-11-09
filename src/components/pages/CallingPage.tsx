@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { CALLING_UPDATED, callingPath, type CallingPageContent } from '@/data/calling-content'
+import { callingPath, type CallingPageContent } from '@/data/calling-content'
 import { getCallingUi, localePrefix } from '@/data/calling-i18n'
 import { getRatedSoftwareJsonLd } from '@/data/global-schemas'
 import type { CallingUi } from '@/data/calling-ui'
@@ -17,6 +17,7 @@ import {
 } from '@/components/pages/CallingShared'
 import { CallingPricePanel } from '@/components/pages/CallingPricePanel'
 import { CALLING_FEATURES_CSS, FeatureGrid, RelatedGrid } from '@/components/pages/CallingFeatures'
+import type { PageDateInfo } from '@/lib/page-dates'
 
 const SITE_URL = 'https://eazybe.com'
 const CHROME_STORE_URL =
@@ -238,7 +239,13 @@ const VOICE_NUMBER_COUNTRIES = ['United States', 'Canada', 'Puerto Rico']
 // named in place, with no @id pointing at the global Organization block.
 const EAZYBE_ORG_NAME_ONLY = { '@type': 'Organization', name: 'Eazybe', url: `${SITE_URL}/` }
 
-export function callingSchema(page: CallingPageContent, locale: string) {
+/** WebPage in its own block, so tools that skip @graph still read its dates and author. */
+export function callingJsonLdBlocks(page: CallingPageContent, locale: string, dates?: PageDateInfo | null) {
+  const { '@context': context, '@graph': graph } = callingSchema(page, locale, dates)
+  return [{ '@context': context, ...graph[0] }, { '@context': context, '@graph': graph.slice(1) }]
+}
+
+export function callingSchema(page: CallingPageContent, locale: string, dates?: PageDateInfo | null) {
   const prefix = localePrefix(locale)
   const pageUrl = `${SITE_URL}${prefix}${callingPath(page.slug)}`
   const crumbs = callingCrumbs(page, locale)
@@ -254,7 +261,9 @@ export function callingSchema(page: CallingPageContent, locale: string) {
         name: page.meta.title,
         description: page.meta.description,
         inLanguage: LANG[locale] ?? 'en-US',
-        dateModified: CALLING_UPDATED,
+        // Same dates as the article:published_time / article:modified_time meta tags.
+        ...(dates ? { datePublished: dates.published, dateModified: dates.modified } : {}),
+        author: EAZYBE_ORG_NAME_ONLY,
         publisher: EAZYBE_ORG_NAME_ONLY,
       },
       {
@@ -327,13 +336,15 @@ function HeroDemo({ page, ui }: { page: CallingPageContent; ui: CallingUi }) {
   )
 }
 
-export function CallingPage({ page, locale }: { page: CallingPageContent; locale: string }) {
+export function CallingPage({ page, locale, dates }: { page: CallingPageContent; locale: string; dates?: PageDateInfo | null }) {
   const ui = getCallingUi(locale)
   const prefix = localePrefix(locale)
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(callingSchema(page, locale)) }} />
+      {callingJsonLdBlocks(page, locale, dates).map((block, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }} />
+      ))}
       <style dangerouslySetInnerHTML={{ __html: CALLING_CSS + CALLING_DESIGN_CSS + CALLING_FEATURES_CSS }} />
 
       {/* Left-aligned split hero. No entrance animation on the copy: h1 and lede are the LCP. */}
@@ -419,7 +430,7 @@ export function CallingPage({ page, locale }: { page: CallingPageContent; locale
             {page.table.verdict && (
               <div className="ch-verdicts">
                 {page.table.verdict.map((v) => (
-                  <article key={v.title} className="ch-verdict ch-rise"><h3>{v.title}</h3><p>{v.desc}</p></article>
+                  <div key={v.title} className="ch-verdict ch-rise"><h3>{v.title}</h3><p>{v.desc}</p></div>
                 ))}
               </div>
             )}

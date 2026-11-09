@@ -1,9 +1,10 @@
+import type { PageDateInfo } from '@/lib/page-dates'
 /**
  * JSON-LD structured data for Freshdesk WhatsApp Integration page
  * Includes: FAQPage, BreadcrumbList, WebPage, Product, HowTo
  */
 
-export function FreshdeskStructuredData() {
+export function FreshdeskStructuredData({ dates }: { dates?: PageDateInfo | null }) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -81,8 +82,8 @@ export function FreshdeskStructuredData() {
     name: 'Freshdesk WhatsApp Integration | Sync WhatsApp + Freshdesk',
     description: 'Connect WhatsApp with Freshdesk CRM. Sync chats automatically, use AI agents, track deals, and manage sales conversations directly inside Freshdesk.',
     inLanguage: 'en',
-    datePublished: '2026-02-03T08:00:00+00:00',
-    dateModified: '2026-04-01T10:30:00+00:00'
+    author: { '@type': 'Organization', name: 'Eazybe', url: 'https://eazybe.com/' },
+    ...(dates ? { datePublished: dates.published, dateModified: dates.modified } : {}),
   }
 
   const productSchema = {

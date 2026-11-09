@@ -1,9 +1,10 @@
+import type { PageDateInfo } from '@/lib/page-dates'
 /**
  * JSON-LD structured data for Zoho WhatsApp Integration page
  * Includes: FAQPage, BreadcrumbList, WebPage, Product, HowTo
  */
 
-export function ZohoStructuredData() {
+export function ZohoStructuredData({ dates }: { dates?: PageDateInfo | null }) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -81,8 +82,8 @@ export function ZohoStructuredData() {
     name: 'Zoho WhatsApp Integration: Sync WhatsApp With AI Agents',
     description: 'Connect WhatsApp with Zoho CRM. Sync chats automatically, use AI agents, track deals, and manage sales conversations directly inside Zoho.',
     inLanguage: 'en',
-    datePublished: '2026-02-03T08:00:00+00:00',
-    dateModified: '2026-04-02T10:30:00+00:00'
+    author: { '@type': 'Organization', name: 'Eazybe', url: 'https://eazybe.com/' },
+    ...(dates ? { datePublished: dates.published, dateModified: dates.modified } : {}),
   }
 
   const productSchema = {

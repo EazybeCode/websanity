@@ -4,6 +4,7 @@ import { getCategoryIndex } from '@/lib/sanity-queries'
 import CategoryIndexClient from '@/components/pages/CategoryIndexClient'
 import { getAlternates, buildFaqPageSchema } from '@/lib/seo-helpers'
 import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
+import { pageDates, getSanityDocDates, withPageAuthor, withPageDates, webPageJsonLd } from '@/lib/page-dates'
 
 export const viewport: Viewport = {
   themeColor: '#020617',
@@ -13,7 +14,7 @@ export const viewport: Viewport = {
 
 const sanityLangMap: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -195,7 +196,17 @@ export default async function IntegrationsIndexPage({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd(locale, '/integrations', await baseMetadata({ params }), pageDates({ page: '/integrations', doc: await getSanityDocDates('categoryIndexPage', locale, 'integrations') }))) }}
+      />
       <CategoryIndexClient data={data} category="integration" />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await props.params
+  return withPageAuthor(withPageDates(await baseMetadata(props), pageDates({ page: '/integrations', doc: await getSanityDocDates('categoryIndexPage', locale, 'integrations') })), locale)
 }

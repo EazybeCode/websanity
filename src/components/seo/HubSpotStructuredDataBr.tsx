@@ -1,9 +1,10 @@
+import type { PageDateInfo } from '@/lib/page-dates'
 /**
  * JSON-LD structured data for HubSpot WhatsApp Integration page (Portuguese/Brazil)
  * Includes: FAQPage, BreadcrumbList, WebPage, Product, HowTo
  */
 
-export function HubSpotStructuredDataBr() {
+export function HubSpotStructuredDataBr({ dates }: { dates?: PageDateInfo | null }) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -81,8 +82,8 @@ export function HubSpotStructuredDataBr() {
     name: 'HubSpot WhatsApp Integration | Sincronize CRM do WhatsApp',
     description: 'Conecte WhatsApp ao HubSpot CRM. Sincronize conversas, use agentes de IA, acompanhe negócios e gerencie vendas sem sair do HubSpot.',
     inLanguage: 'pt-BR',
-    datePublished: '2026-02-03T08:00:00+00:00',
-    dateModified: '2026-02-03T10:30:00+00:00'
+    author: { '@type': 'Organization', name: 'Eazybe', url: 'https://eazybe.com/' },
+    ...(dates ? { datePublished: dates.published, dateModified: dates.modified } : {}),
   }
 
   const productSchema = {

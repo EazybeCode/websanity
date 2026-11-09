@@ -4,6 +4,7 @@ import { getPricing } from '@/lib/sanity-queries'
 import { PricingPageClient } from '@/components/pages/PricingPageClient'
 import { getAlternates } from '@/lib/seo-helpers'
 import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
+import { pageDates, getSanityDocDates, withPageDates } from '@/lib/page-dates'
 
 // ISR: refresh Sanity pricing content every 30 seconds.
 export const revalidate = 30
@@ -30,7 +31,7 @@ const breadcrumbLabels: Record<string, string> = { en: 'Pricing', es: 'Precios',
 const languageTags: Record<string, string> = { en: 'en-US', es: 'es-ES', br: 'pt-BR', tr: 'tr-TR' }
 const SITE_URL = 'https://eazybe.com'
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -106,4 +107,10 @@ export default async function PricingPage({
       <PricingPageClient pricingData={pricingData} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await props.params
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/pricing', doc: await getSanityDocDates('pricingPage', locale) }))
 }
