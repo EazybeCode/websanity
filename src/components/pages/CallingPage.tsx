@@ -18,6 +18,7 @@ import {
 import { CallingPricePanel } from '@/components/pages/CallingPricePanel'
 import { CALLING_FEATURES_CSS, FeatureGrid, RelatedGrid } from '@/components/pages/CallingFeatures'
 import type { PageDateInfo } from '@/lib/page-dates'
+import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
 
 const SITE_URL = 'https://eazybe.com'
 const CHROME_STORE_URL =
@@ -98,6 +99,12 @@ export const CALLING_CSS = `
   .landing .v16-brand .ch-price-list dd small { margin-left: 4px; font-size: 14px; font-weight: 500; letter-spacing: 0; color: #d6d6da; }
   @media (max-width: 820px) { .landing .v16-brand .ch-price { grid-template-columns: minmax(0, 1fr); } .landing .v16-brand .ch-price-panel { border-radius: 0 0 15px 15px; } }
 
+  .landing .v16-brand .ch-video-sec { padding: 28px 0 84px; text-align: center; }
+  .landing .v16-brand .ch-video-sec h2 { margin: 0 auto 28px; max-width: 28ch; font-size: clamp(24px, 2.8vw, 32px); line-height: 1.15; letter-spacing: -.02em; color: var(--ink); }
+  .landing .v16-brand .ch-video { max-width: 960px; margin: 0 auto; }
+  .landing .v16-brand .ch-video > figure { margin: 0; }
+  .landing .v16-brand .ch-video > figure > div { box-shadow: 0 24px 60px -30px rgba(43, 89, 255, 0.35); border: 1px solid var(--line); }
+  .landing .v16-brand .ch-video figcaption { font-size: 13px; color: var(--ink-3); }
   .landing .v16-brand .cal-shot { max-width: 1100px; margin: 0 auto; }
   .landing .v16-brand .cal-shot img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 24px 60px -30px rgba(43, 89, 255, 0.35); }
   .landing .v16-brand .cal-shot figcaption { margin-top: 12px; text-align: center; font-size: 13px; color: var(--ink-3); }
@@ -304,7 +311,40 @@ export function callingSchema(page: CallingPageContent, locale: string, dates?: 
             },
           ]
         : []),
+      ...(page.slug === 'virtual-phone-number' ? [videoJsonLd()] : []),
     ],
+  }
+}
+
+// Eazybe's own YouTube walkthrough, shown on the virtual number page. The video is in English in every locale.
+const VIRTUAL_NUMBER_VIDEO = {
+  id: 'gWVcOTnegpA',
+  name: 'Virtual Number for WhatsApp API + Calling | Buy a Virtual Business Number for Calls & WhatsApp',
+  description: 'How to buy an Eazybe Voice Number, make browser calls and connect the same number to the WhatsApp Business App or WhatsApp API, where supported.',
+  uploadDate: '2026-11-03T03:30:12-08:00',
+  duration: 'PT2M10S',
+}
+const VIDEO_H2: Record<string, string> = {
+  en: 'Watch How a Virtual Number Works for Calls and WhatsApp',
+  es: 'Mira cómo funciona un número virtual para llamadas y WhatsApp',
+  br: 'Veja como funciona um número virtual para ligações e WhatsApp',
+  tr: 'Sanal numaranın aramalar ve WhatsApp için nasıl çalıştığını izleyin',
+}
+
+function videoJsonLd() {
+  const v = VIRTUAL_NUMBER_VIDEO
+  return {
+    '@type': 'VideoObject',
+    name: v.name,
+    description: v.description,
+    thumbnailUrl: `https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`,
+    uploadDate: v.uploadDate,
+    duration: v.duration,
+    // contentUrl is for the media file itself, which YouTube doesn't expose, so only the embed URL.
+    embedUrl: `https://www.youtube.com/embed/${v.id}`,
+    // The video is in English on every locale's page.
+    inLanguage: 'en',
+    publisher: EAZYBE_ORG_NAME_ONLY,
   }
 }
 
@@ -384,6 +424,17 @@ export function CallingPage({ page, locale, dates }: { page: CallingPageContent;
           {page.answer.paragraphs.map((p) => <p key={p}>{p}</p>)}
         </div>
       </section>
+
+      {page.slug === 'virtual-phone-number' && (
+        <section className="ch-video-sec">
+          <div className="container">
+            <h2>{VIDEO_H2[locale] ?? VIDEO_H2.en}</h2>
+            <div className="ch-video">
+              <VideoEmbedBlock data={{ platform: 'youtube', videoId: VIRTUAL_NUMBER_VIDEO.id, title: VIRTUAL_NUMBER_VIDEO.name }} />
+            </div>
+          </div>
+        </section>
+      )}
 
       {page.screenshot && (
         <section className="ch-shot-sec" data-tone="dark">
