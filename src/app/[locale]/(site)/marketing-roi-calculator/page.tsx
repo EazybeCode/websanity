@@ -145,110 +145,25 @@ export default async function MarketingRoiCalculatorPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .roi-formula-row {
-              display: grid;
-              grid-template-columns: minmax(170px, 1fr) minmax(190px, 1.1fr) minmax(190px, 1.4fr);
-              gap: 16px;
-              align-items: baseline;
-              padding: 16px 20px;
-              background: #fff;
-              border: 1px solid var(--line);
-              border-radius: 12px;
-            }
-            .roi-formula-code {
-              font-family: var(--f-mono);
-              font-size: 13px;
-              color: var(--accent-ink);
-              background: color-mix(in oklab, var(--accent-a) 12%, transparent);
-              padding: 4px 8px;
-              border-radius: 6px;
-              justify-self: start;
-              overflow-wrap: anywhere;
-            }
-            /* Final CTA heading spans the full container instead of wrapping into
-               a narrow column; the body copy keeps a readable measure. */
-            .roi-cta-head h2 { max-width: none; }
-            .roi-cta-head p { max-width: 720px; }
-            /* .landing a { color: inherit } outranks a bare class, so scope it. */
-            .landing .roi-brand-link {
-              color: var(--accent-ink); font-weight: 600;
-              border-bottom: 1px solid color-mix(in oklab, var(--accent-ink) 35%, transparent);
-              transition: color .16s ease, border-color .16s ease;
-            }
-            .landing .roi-brand-link:hover { color: var(--ink); border-color: var(--ink); }
-            .landing .roi-brand-link:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
-            /* Filled accent secondary CTA. #5b4bae is the same violet the shared
-               button styles already use for hover, so this stays on-palette.
-               Selectors are prefixed with .landing because the shared rule
-               ".landing a { color: inherit }" scores (0,1,1) and would otherwise
-               outrank a bare class, pulling the label back to ink. */
-            .landing .roi-cta-demo { background: #5b4bae; color: #ffffff; }
-            .landing .roi-cta-demo:hover { background: #4c3f95; color: #ffffff; }
-            .landing .roi-cta-demo > * { color: #ffffff; }
-            .landing .roi-cta-demo:focus-visible { outline: 2px solid #5b4bae; outline-offset: 3px; }
-            .roi-step { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
-            .roi-benefit { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px;
-              transition: border-color .16s ease, transform .16s ease; }
-            .roi-benefit:hover { border-color: color-mix(in oklab, var(--accent-a) 40%, var(--line)); }
-            @media (max-width: 760px) {
-              .roi-formula-row { grid-template-columns: 1fr; gap: 8px; padding: 16px; }
-            }
-            @media (prefers-reduced-motion: reduce) {
-              .roi-benefit { transition: none; }
-            }
-          `,
-        }}
-      />
+      <style dangerouslySetInnerHTML={{ __html: PAGE_CSS }} />
 
-      {/* Hero */}
-      <section className="section" style={{ paddingTop: 'clamp(96px, 12vw, 132px)', paddingBottom: 48, background: '#ffffff' }}>
-        <div className="container" style={{ maxWidth: 820, textAlign: 'center' }}>
+      {/* Hero: brand dark page-hero, one blue phrase */}
+      <section className="page-hero mr-hero" data-tone="dark">
+        <div className="container">
           <span className="sec-tag">{t.hero.tag}</span>
-          <h1
-            style={{
-              fontFamily: 'var(--f-display)',
-              fontWeight: 400,
-              fontSize: 'clamp(34px, 5.2vw, 56px)',
-              lineHeight: 1.08,
-              letterSpacing: '-0.025em',
-              color: 'var(--ink)',
-              margin: '10px 0 0',
-              paddingBottom: '0.05em',
-            }}
-          >
-            {t.hero.h1Lead}{' '}
-            <span
-              style={{
-                display: 'inline-block',
-                backgroundImage:
-                  'linear-gradient(transparent 62%, color-mix(in oklab, var(--accent-ink) 25%, transparent) 62%)',
-                paddingBottom: 2,
-              }}
-            >
-              {t.hero.h1Highlight}
-            </span>
-          </h1>
-          <p style={{ margin: '22px auto 0', maxWidth: 640, fontSize: 17, lineHeight: 1.6, color: 'var(--ink-2)' }}>
-            {t.hero.subtitle}
-          </p>
-          <div style={{ marginTop: 28 }}>
+          <h1>{t.hero.h1Lead} <em>{t.hero.h1Highlight}</em></h1>
+          <p className="lede">{t.hero.subtitle}</p>
+          <div className="mr-hero-cta">
             <a href="#roi-calculator" className="btn btn-primary btn-lg">{t.hero.cta}</a>
           </div>
-          <p style={{ marginTop: 18, fontSize: 13, color: 'var(--ink-3)' }}>{t.hero.footnote}</p>
+          <p className="mr-foot">{t.hero.footnote}</p>
         </div>
       </section>
 
       {/* Calculator */}
-      <section
-        id="roi-calculator"
-        className="section"
-        style={{ paddingTop: 40, paddingBottom: 80, scrollMarginTop: 80, background: 'linear-gradient(180deg, #ECEFF7 0%, #ffffff 100%)' }}
-      >
-        <div className="container" style={{ maxWidth: 1100 }}>
-          <div className="sec-head centered" style={{ marginBottom: 32 }}>
+      <section id="roi-calculator" className="mr-sec">
+        <div className="container mr-wide">
+          <div className="sec-head centered mr-head">
             <h2>{t.calculator.h2}</h2>
             <p>{t.calculator.subtitle}</p>
           </div>
@@ -257,31 +172,18 @@ export default async function MarketingRoiCalculatorPage({
       </section>
 
       {/* How to calculate */}
-      <section className="section" style={{ paddingTop: 70, paddingBottom: 70, background: '#F5F7FC' }}>
-        <div className="container" style={{ maxWidth: 1100 }}>
-          <div className="sec-head centered" style={{ marginBottom: 44 }}>
+      <section className="mr-sec mr-alt">
+        <div className="container mr-wide">
+          <div className="sec-head centered mr-head">
             <h2>{t.howTo.h2}</h2>
             <p>{t.howTo.subtitle}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
+          <div className="mr-grid3">
             {steps.map((s, i) => (
-              <div
-                key={s.title}
-                className="roi-step"
-              >
-                <div
-                  style={{
-                    fontFamily: 'var(--f-mono)',
-                    fontSize: 12,
-                    fontWeight: 600,
-                    color: 'var(--accent-ink)',
-                    letterSpacing: '0.08em',
-                  }}
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </div>
-                <h3 style={{ margin: '10px 0 8px', fontSize: 18, fontWeight: 700, color: 'var(--ink)' }}>{s.title}</h3>
-                <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.6, color: 'var(--ink-2)' }}>{s.body}</p>
+              <div key={s.title} className="mr-card">
+                <span className="mr-step">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
               </div>
             ))}
           </div>
@@ -289,18 +191,18 @@ export default async function MarketingRoiCalculatorPage({
       </section>
 
       {/* Formulas */}
-      <section className="section" style={{ paddingTop: 70, paddingBottom: 70 }}>
-        <div className="container" style={{ maxWidth: 960 }}>
-          <div className="sec-head centered" style={{ marginBottom: 40 }}>
+      <section className="mr-sec">
+        <div className="container mr-wide">
+          <div className="sec-head centered mr-head">
             <h2>{t.formulas.h2}</h2>
             <p>{t.formulas.subtitle}</p>
           </div>
-          <div style={{ display: 'grid', gap: 12 }}>
+          <div className="mr-formulas">
             {t.formulas.items.map((f) => (
-              <div key={f.name} className="roi-formula-row">
-                <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>{f.name}</div>
-                <code className="roi-formula-code">{f.formula}</code>
-                <div style={{ fontSize: 13.5, lineHeight: 1.55, color: 'var(--ink-3)' }}>{f.note}</div>
+              <div key={f.name} className="mr-formula">
+                <b>{f.name}</b>
+                <code>{f.formula}</code>
+                <span>{f.note}</span>
               </div>
             ))}
           </div>
@@ -308,18 +210,18 @@ export default async function MarketingRoiCalculatorPage({
       </section>
 
       {/* Why use this */}
-      <section className="section" style={{ paddingTop: 70, paddingBottom: 70, background: '#F5F7FC' }}>
-        <div className="container" style={{ maxWidth: 1180 }}>
-          <div className="sec-head centered" style={{ marginBottom: 44 }}>
+      <section className="mr-sec mr-alt">
+        <div className="container mr-wide">
+          <div className="sec-head centered mr-head">
             <h2>{t.whyUse.h2}</h2>
             <p>{t.whyUse.subtitle}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 24 }}>
+          <div className="mr-grid4">
             {benefits.map((b) => (
-              <div key={b.title} className="roi-benefit">
-                <div style={{ color: 'var(--accent-ink)' }}>{b.icon}</div>
-                <h3 style={{ margin: '12px 0 8px', fontSize: 17, fontWeight: 700, color: 'var(--ink)' }}>{b.title}</h3>
-                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: 'var(--ink-2)' }}>{b.body}</p>
+              <div key={b.title} className="mr-card">
+                <span className="mr-ic" aria-hidden="true">{b.icon}</span>
+                <h3>{b.title}</h3>
+                <p>{b.body}</p>
               </div>
             ))}
           </div>
@@ -327,19 +229,17 @@ export default async function MarketingRoiCalculatorPage({
       </section>
 
       {/* Attribution / product tie-in */}
-      <section className="section" data-tone="dark" style={{ paddingTop: 80, paddingBottom: 80 }}>
-        <div className="container" style={{ maxWidth: 860 }}>
-          <div className="sec-head centered" style={{ marginBottom: 28 }}>
+      <section className="mr-sec" data-tone="dark">
+        <div className="container mr-narrow">
+          <div className="sec-head centered mr-head">
             <h2>{t.attribution.h2}</h2>
+            <p>{t.attribution.body}</p>
           </div>
-          <p style={{ margin: '0 auto 24px', maxWidth: 680, fontSize: 16, lineHeight: 1.7, color: 'var(--ink-2)', textAlign: 'center' }}>
-            {t.attribution.body}
-          </p>
-          <ul style={{ listStyle: 'none', padding: 0, margin: '0 auto 30px', maxWidth: 620, display: 'grid', gap: 10 }}>
+          <ul className="mr-points">
             {attributionPoints.map((p) => (
-              <li key={p} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 15, lineHeight: 1.6, color: 'var(--ink-2)' }}>
-                <span style={{ color: 'var(--accent-ink)', flexShrink: 0, marginTop: 3 }} aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+              <li key={p}>
+                <span className="mr-tick" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 13l4 4L19 7" />
                   </svg>
                 </span>
@@ -347,8 +247,8 @@ export default async function MarketingRoiCalculatorPage({
               </li>
             ))}
           </ul>
-          <div style={{ textAlign: 'center' }}>
-            <a href={locale === 'en' ? '/integrations' : `/${locale}/integrations`} className="btn btn-primary">
+          <div className="mr-center">
+            <a href={locale === 'en' ? '/integrations' : `/${locale}/integrations`} className="btn btn-primary btn-lg">
               {t.attribution.cta}
             </a>
           </div>
@@ -356,16 +256,16 @@ export default async function MarketingRoiCalculatorPage({
       </section>
 
       {/* FAQ */}
-      <section className="section faq-ink" style={{ paddingTop: 70, paddingBottom: 70 }}>
-        <div className="container" style={{ maxWidth: 1100 }}>
-          <div className="sec-head centered" style={{ marginBottom: 40 }}>
+      <section className="mr-sec">
+        <div className="container mr-wide">
+          <div className="sec-head centered mr-head">
             <h2>{t.faq.h2}</h2>
             <p>{t.faq.subtitle}</p>
           </div>
-          <div className="faq-grid">
+          <div className="mr-faq">
             {[t.faq.items.slice(0, Math.ceil(t.faq.items.length / 2)), t.faq.items.slice(Math.ceil(t.faq.items.length / 2))].map(
               (column, colIdx) => (
-                <div key={colIdx} className={`faq-col${colIdx === 1 ? ' faq-col-rest' : ''}`}>
+                <div key={colIdx} className="mr-faq-col">
                   {column.map((item) => (
                     <details key={item.q} className="faq-pill">
                       <summary className="faq-pill-q">
@@ -388,18 +288,16 @@ export default async function MarketingRoiCalculatorPage({
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="section" style={{ paddingTop: 70, paddingBottom: 90, background: '#F5F7FC' }}>
-        <div className="container" style={{ maxWidth: 1100, textAlign: 'center' }}>
-          <div className="sec-head centered roi-cta-head" style={{ marginBottom: 28 }}>
-            <h2>{t.finalCta.h2}</h2>
-            <p>{linkBrand(t.finalCta.body)}</p>
-          </div>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+      {/* Final CTA: the site's brand final-cta block */}
+      <section className="final-cta" data-tone="dark">
+        <div className="container">
+          <h2>{t.finalCta.h2}</h2>
+          <p className="sub">{linkBrand(t.finalCta.body)}</p>
+          <div className="ctas">
             <a href={locale === 'en' ? '/pricing' : `/${locale}/pricing`} className="btn btn-primary btn-lg">
               {t.finalCta.primary}
             </a>
-            <a href={locale === 'en' ? '/become-our-partner' : `/${locale}/become-our-partner`} className="btn btn-lg roi-cta-demo">
+            <a href={locale === 'en' ? '/become-our-partner' : `/${locale}/become-our-partner`} className="btn btn-outline btn-lg">
               {t.finalCta.secondary}
             </a>
           </div>
@@ -408,6 +306,54 @@ export default async function MarketingRoiCalculatorPage({
     </>
   )
 }
+
+// Brand guidelines v1.2 (components/pages/brand-pages.css): dark page-hero, flat
+// white / #f4f4f5 sections, one blue phrase per heading, 10/16px corners, hairlines.
+const PAGE_CSS = `
+  .landing .v16-brand .mr-hero { padding: 180px 0 84px; text-align: center; }
+  .landing .v16-brand .mr-hero h1 { margin-inline: auto; max-width: 20ch; }
+  .landing .v16-brand .mr-hero .lede { margin: 20px auto 0; max-width: 640px; }
+  .mr-hero-cta { margin-top: 28px; }
+  .mr-foot { margin: 16px 0 0; font-size: 13px; color: var(--ink-3); }
+  .landing .v16-brand .mr-sec { padding: 88px 0; scroll-margin-top: 72px; background: var(--bg); }
+  .landing .v16-brand .mr-alt { background: var(--bg-2); }
+  .mr-wide { max-width: 1140px; }
+  .mr-narrow { max-width: 820px; }
+  .landing .v16-brand .mr-head { margin-bottom: 40px; }
+  .landing .v16-brand .mr-head p { max-width: 680px; margin-inline: auto; }
+  .mr-grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .mr-grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .mr-card { display: flex; flex-direction: column; gap: 10px; padding: 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; }
+  .landing .v16-brand .mr-card h3 { margin: 4px 0 0; font-size: 18px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
+  .mr-card p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+  .mr-step { font-family: var(--f-mono); font-size: 12px; font-weight: 600; letter-spacing: .08em; color: var(--accent-ink); }
+  .mr-ic { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px;
+    color: var(--accent-ink); background: color-mix(in oklab, var(--accent-ink) 10%, var(--paper)); border: 1px solid color-mix(in oklab, var(--accent-ink) 24%, var(--line)); }
+  .mr-ic svg { width: 22px; height: 22px; }
+  .mr-formulas { border-top: 1px solid var(--line); max-width: 1000px; margin-inline: auto; }
+  .mr-formula { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.3fr) minmax(0, 1.4fr); gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .mr-formula b { font-size: 15px; color: var(--ink); }
+  .mr-formula code { font-family: var(--f-mono); font-size: 13px; line-height: 1.5; color: var(--accent-ink); overflow-wrap: anywhere; }
+  .mr-formula span { font-size: 14px; line-height: 1.5; color: var(--ink-3); }
+  .mr-points { list-style: none; padding: 0; margin: 0 auto 32px; max-width: 620px; display: grid; gap: 12px; }
+  .mr-points li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+  .mr-tick { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; background: var(--ok); color: #0b0b0c; }
+  .mr-center { text-align: center; }
+  .mr-faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; align-items: start; max-width: 1040px; margin-inline: auto; }
+  .mr-faq-col { display: grid; gap: 12px; }
+  /* .landing a { color: inherit } outranks a bare class, so scope it. */
+  .landing .roi-brand-link { color: var(--accent-ink); font-weight: 600; border-bottom: 1px solid color-mix(in oklab, var(--accent-ink) 35%, transparent); }
+  .landing .roi-brand-link:hover { color: var(--ink); border-color: var(--ink); }
+  .landing .roi-brand-link:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+  @media (max-width: 1000px) { .mr-grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 860px) {
+    .landing .v16-brand .mr-hero { padding: 140px 0 64px; }
+    .landing .v16-brand .mr-sec { padding: 64px 0; }
+    .mr-grid3, .mr-faq { grid-template-columns: minmax(0, 1fr); }
+    .mr-formula { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  }
+  @media (max-width: 560px) { .mr-grid4 { grid-template-columns: minmax(0, 1fr); } }
+`
 
 // Published / last-modified dates as meta tags (article:published_time / article:modified_time).
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {

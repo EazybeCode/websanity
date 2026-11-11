@@ -93,62 +93,26 @@ export default async function ToolsPage({
       <SoftwareRatingSchema locale={locale} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
+      <style dangerouslySetInnerHTML={{ __html: PAGE_CSS }} />
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .why-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
-          `,
-        }}
-      />
-
-      {/* Hero */}
-      <section className="section" style={{ paddingTop: 'clamp(96px, 12vw, 132px)', paddingBottom: 48, background: '#ffffff' }}>
-        <div className="container" style={{ maxWidth: 860, textAlign: 'center' }}>
+      {/* Hero: brand dark page-hero, Geist Bold with one blue phrase */}
+      <section className="page-hero tl-hero" data-tone="dark">
+        <div className="container">
           <span className="sec-tag">{t.hero.tag}</span>
-          <h1
-            style={{
-              fontFamily: 'var(--f-display)',
-              fontWeight: 400,
-              fontSize: 'clamp(34px, 5.2vw, 56px)',
-              lineHeight: 1.08,
-              letterSpacing: '-0.025em',
-              color: 'var(--ink)',
-              margin: '10px 0 0',
-              paddingBottom: '0.05em',
-            }}
-          >
-            {t.hero.h1Lead}{' '}
-            <span
-              style={{
-                display: 'inline-block',
-                backgroundImage:
-                  'linear-gradient(transparent 62%, color-mix(in oklab, var(--accent-ink) 25%, transparent) 62%)',
-                paddingBottom: 2,
-              }}
-            >
-              {t.hero.h1Highlight}
-            </span>
-          </h1>
-          <p style={{ margin: '22px auto 0', maxWidth: 660, fontSize: 17, lineHeight: 1.6, color: 'var(--ink-2)' }}>
-            {t.hero.subtitle}
-          </p>
-          <div style={{ marginTop: 28 }}>
+          <h1>{withEm(t.hero.h1)}</h1>
+          <p className="lede">{t.hero.subtitle}</p>
+          <div className="tl-hero-cta">
             <a href="#tools" className="btn btn-primary btn-lg">{t.hero.cta}</a>
           </div>
-          <p style={{ marginTop: 18, fontSize: 13, color: 'var(--ink-3)' }}>{t.hero.footnote}</p>
+          <p className="tl-foot">{t.hero.footnote}</p>
         </div>
       </section>
 
-      {/* Tool grid — every card links to the tool's own top-level URL */}
-      <section
-        id="tools"
-        className="section"
-        style={{ paddingTop: 40, paddingBottom: 80, scrollMarginTop: 80, background: 'linear-gradient(180deg, #ECEFF7 0%, #ffffff 100%)' }}
-      >
-        <div className="container" style={{ maxWidth: 1140 }}>
-          <div className="sec-head centered" style={{ marginBottom: 36 }}>
-            <h2>{t.grid.h2}</h2>
+      {/* Tool grid: every card links to the tool's own top-level URL */}
+      <section id="tools" className="tl-sec">
+        <div className="container tl-wide">
+          <div className="sec-head centered tl-head">
+            <h2>{withEm(t.grid.h2)}</h2>
             <p>{t.grid.subtitle}</p>
           </div>
           <ToolsGridClient tools={t.tools} labels={{ ...t.grid, ...t.filter }} locale={locale} />
@@ -156,31 +120,29 @@ export default async function ToolsPage({
       </section>
 
       {/* Why free */}
-      <section className="section" style={{ paddingTop: 70, paddingBottom: 70, background: '#F5F7FC' }}>
-        <div className="container" style={{ maxWidth: 1100 }}>
-          <div className="sec-head centered" style={{ marginBottom: 40 }}>
-            <h2>{t.why.h2}</h2>
+      <section className="tl-sec tl-alt">
+        <div className="container tl-wide">
+          <div className="sec-head centered tl-head">
+            <h2>{withEm(t.why.h2)}</h2>
             <p>{t.why.subtitle}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22 }}>
+          <div className="tl-why">
             {reasons.map((r) => (
-              <div key={r.title} className="why-card">
-                <h3 style={{ margin: '0 0 8px', fontSize: 17, fontWeight: 700, color: 'var(--ink)' }}>{r.title}</h3>
-                <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.6, color: 'var(--ink-2)' }}>{r.body}</p>
+              <div key={r.title} className="card tl-why-card">
+                <h3>{r.title}</h3>
+                <p>{r.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="section" data-tone="dark" style={{ paddingTop: 80, paddingBottom: 80 }}>
-        <div className="container" style={{ maxWidth: 1000, textAlign: 'center' }}>
-          <div className="sec-head centered" style={{ marginBottom: 28 }}>
-            <h2>{t.finalCta.h2}</h2>
-            <p>{t.finalCta.body}</p>
-          </div>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+      {/* Final CTA: the site's brand final-cta block */}
+      <section className="final-cta" data-tone="dark">
+        <div className="container">
+          <h2>{withEm(t.finalCta.h2)}</h2>
+          <p className="sub">{t.finalCta.body}</p>
+          <div className="ctas">
             <a href={locale === 'en' ? '/pricing' : `/${locale}/pricing`} className="btn btn-primary btn-lg">
               {t.finalCta.primary}
             </a>
@@ -193,6 +155,33 @@ export default async function ToolsPage({
     </>
   )
 }
+
+/** Renders the heading's *marked* phrase as <em> (the brand's one blue phrase). */
+function withEm(text: string) {
+  return text.split(/\*([^*]+)\*/).map((part, i) => (i % 2 === 1 ? <em key={i}>{part}</em> : part))
+}
+
+const PAGE_CSS = `
+  .landing .v16-brand .tl-hero { padding: 180px 0 84px; text-align: center; }
+  .landing .v16-brand .tl-hero h1 { margin-inline: auto; max-width: 22ch; }
+  .landing .v16-brand .tl-hero .lede { margin: 20px auto 0; max-width: 640px; }
+  .tl-hero-cta { margin-top: 28px; }
+  .tl-foot { margin: 16px 0 0; font-size: 13px; color: var(--ink-3); }
+  .landing .v16-brand .tl-sec { padding: 88px 0; scroll-margin-top: 72px; background: var(--bg); }
+  .landing .v16-brand .tl-alt { background: var(--bg-2); }
+  .tl-wide { max-width: 1140px; }
+  .landing .v16-brand .tl-head { margin-bottom: 40px; }
+  .landing .v16-brand .tl-head p { max-width: 640px; margin-inline: auto; }
+  .tl-why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .landing .v16-brand .tl-why-card { padding: 28px; border-radius: 16px; background: #fff; }
+  .tl-why-card h3 { margin: 0 0 8px; font-size: 18px; color: var(--ink); }
+  .tl-why-card p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+  @media (max-width: 900px) {
+    .landing .v16-brand .tl-hero { padding: 140px 0 64px; }
+    .landing .v16-brand .tl-sec { padding: 64px 0; }
+    .tl-why { grid-template-columns: minmax(0, 1fr); }
+  }
+`
 
 // Published / last-modified dates as meta tags (article:published_time / article:modified_time).
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {

@@ -89,7 +89,7 @@ const STYLES = `
 }
 .tool-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .tool-icon {
-  width: 46px; height: 46px; flex-shrink: 0; border-radius: 12px;
+  width: 46px; height: 46px; flex-shrink: 0; border-radius: 10px;
   display: inline-flex; align-items: center; justify-content: center;
   background: color-mix(in oklab, var(--accent-a) 16%, #fff);
   color: var(--accent-ink);
@@ -98,13 +98,14 @@ const STYLES = `
 .tool-badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 .tool-tag {
   font-family: var(--f-mono); font-size: 10px; letter-spacing: .07em;
-  text-transform: uppercase; padding: 4px 9px; border-radius: 100px;
+  text-transform: uppercase; padding: 4px 8px; border-radius: 6px;
   color: var(--ink-3); background: var(--bg-2); border: 1px solid var(--line);
   white-space: nowrap;
 }
-.tool-tag.is-free { color: #0E7A46; border-color: color-mix(in oklab, #0E7A46 28%, var(--line));
-  background: color-mix(in oklab, #0E7A46 8%, #fff); }
-.tool-name { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
+/* Brand "ok" green, darkened for 4.5:1 text contrast on its light tint. */
+.tool-tag.is-free { color: #157347; border-color: color-mix(in oklab, #2ec27e 40%, var(--line));
+  background: color-mix(in oklab, #2ec27e 10%, #fff); }
+.tool-name { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
 .tool-tagline { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); flex: 1; }
 .landing .tool-cta {
   margin-top: 4px; align-self: flex-start;

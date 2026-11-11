@@ -5,6 +5,9 @@
  * IMPORTANT: `href` values point at each tool's existing top-level route
  * (/whatsapp-qr-code-generator, ...). This page is a directory only — there are
  * deliberately no /tools/<slug> routes, so tool URLs never change.
+ *
+ * Headings (hero.h1, grid.h2, why.h2, finalCta.h2) mark their one brand-blue
+ * phrase with *asterisks*; the page renders it as <em>.
  */
 
 export interface ToolCard {
@@ -18,7 +21,7 @@ export interface ToolCard {
 export interface ToolsPageContent {
   meta: { title: string; description: string; ogDescription: string }
   breadcrumb: { home: string; current: string }
-  hero: { tag: string; h1Lead: string; h1Highlight: string; subtitle: string; cta: string; footnote: string }
+  hero: { tag: string; h1: string; subtitle: string; cta: string; footnote: string }
   grid: { h2: string; subtitle: string; tryIt: string; freeBadge: string }
   filter: { title: string; category: string }
   tools: ToolCard[]
@@ -45,23 +48,22 @@ const en: ToolsPageContent = {
   meta: {
     title: 'Free WhatsApp & Sales Tools | Eazybe',
     description:
-      'Free tools for teams selling on WhatsApp. Generate QR codes, chat links and website chat widgets, and work out your marketing ROI. No signup required.',
+      'Free tools for teams that sell on WhatsApp: QR codes, chat links, a website chat widget, and calculators for WhatsApp API pricing and ROI. No signup.',
     ogDescription:
-      'Free WhatsApp QR codes, chat links, website chat widgets and a marketing ROI calculator. No signup, nothing to install.',
+      'WhatsApp QR codes, chat links, a website chat widget and three calculators. All free, no signup, nothing to install.',
   },
   breadcrumb: { home: 'Home', current: 'Free Tools' },
   hero: {
     tag: 'Free Tools',
-    h1Lead: 'Free Tools For Teams Selling On',
-    h1Highlight: 'WhatsApp',
+    h1: 'Free Tools For Teams Selling On *WhatsApp*',
     subtitle:
-      'Small tools that do one job properly. Each runs in your browser without an account, so you can use it and get on with your day.',
+      'Six small tools, each built for one job. They run in your browser, and none of them asks you to sign up.',
     cta: 'Browse the tools',
-    footnote: 'No signup and nothing to install.',
+    footnote: 'Free to use. Nothing to install.',
   },
   grid: {
-    h2: 'Pick A Tool',
-    subtitle: 'Six tools, each one free and ready to use right now.',
+    h2: 'Pick A *Tool*',
+    subtitle: 'Three for WhatsApp and your website, and three calculators for budgets and ROI.',
     tryIt: 'Try it free',
     freeBadge: 'Free',
   },
@@ -104,26 +106,27 @@ const en: ToolsPageContent = {
     },
     {
       href: HREFS.ccRoi,
-      name: "Call Center ROI Calculator",
-      tagline: "See if new call center software pays for itself, with first-year ROI, payback and cost per call.",
-      category: "Measurement",
+      name: 'Call Center ROI Calculator',
+      tagline: 'See if new call center software pays for itself, with first-year ROI, payback and cost per call.',
+      category: 'Measurement',
       icon: 'calculator',
     },
   ],
   why: {
-    h2: 'Why These Are Free',
-    subtitle: 'They bring people to Eazybe. That is the whole business model, so the tools themselves have no catch.',
-    freeTitle: 'Genuinely free',
-    freeBody: 'No trial that expires and no feature held back until you pay. The tool you open is the whole tool.',
-    noSignupTitle: 'No account needed',
-    noSignupBody: 'Nothing asks for your email before it works. Open the page, use it, close the tab.',
+    h2: 'Why These Are *Free*',
+    subtitle:
+      "Honest answer: some people who use them go on to try Eazybe. That's the only reason they exist, so there's no catch hidden in the tools.",
+    freeTitle: 'Nothing locked',
+    freeBody: "There's no trial that runs out and no feature held back until you pay. What you open is the full tool.",
+    noSignupTitle: 'No account',
+    noSignupBody: 'None of them asks for your email first. Open the page, use it, close the tab.',
     browserTitle: 'Runs in your browser',
-    browserBody: 'The work happens on your machine, so whatever you type into these tools never reaches us.',
+    browserBody: "The numbers and messages you enter stay on your device. We don't send them to our servers.",
   },
   finalCta: {
-    h2: 'When A Tool Is Not Enough',
+    h2: 'When A Tool Is *Not Enough*',
     body:
-      'These handle one task each. Eazybe syncs whole WhatsApp conversations into HubSpot, Salesforce, Zoho, Pipedrive and more, so the deals your team closes in chat land in the CRM on their own.',
+      "Each tool here handles one task. Eazybe itself syncs your team's WhatsApp chats into HubSpot, Salesforce, Zoho, Pipedrive and other CRMs, so deals closed in chat show up in the CRM without anyone copying them over.",
     primary: 'Start free',
     secondary: 'See how it works',
   },
@@ -133,23 +136,22 @@ const br: ToolsPageContent = {
   meta: {
     title: 'Ferramentas Gratuitas de WhatsApp e Vendas | Eazybe',
     description:
-      'Ferramentas gratuitas para times que vendem pelo WhatsApp. Gere QR codes, links de conversa e widgets de chat, e calcule o ROI do seu marketing. Sem cadastro.',
+      'Ferramentas gratuitas para times que vendem pelo WhatsApp: QR codes, links de conversa, um widget para o site e calculadoras de preço da API e de ROI. Sem cadastro.',
     ogDescription:
-      'QR codes, links de conversa, widgets de chat para o site e uma calculadora de ROI. Tudo grátis, sem cadastro e sem instalar nada.',
+      'QR codes, links de conversa, um widget de WhatsApp para o site e três calculadoras. Grátis, sem cadastro e sem instalar nada.',
   },
   breadcrumb: { home: 'Início', current: 'Ferramentas Gratuitas' },
   hero: {
     tag: 'Ferramentas Gratuitas',
-    h1Lead: 'Ferramentas Gratuitas Para Quem Vende No',
-    h1Highlight: 'WhatsApp',
+    h1: 'Ferramentas Gratuitas Para Quem Vende No *WhatsApp*',
     subtitle:
-      'Ferramentas pequenas que fazem bem uma coisa só. Cada uma roda no seu navegador sem pedir conta, então é só usar e seguir o dia.',
+      'Seis ferramentas pequenas, cada uma feita para uma tarefa só. Elas rodam no seu navegador e nenhuma pede cadastro.',
     cta: 'Ver as ferramentas',
-    footnote: 'Sem cadastro e nada para instalar.',
+    footnote: 'Grátis. Nada para instalar.',
   },
   grid: {
-    h2: 'Escolha Uma Ferramenta',
-    subtitle: 'Seis ferramentas, todas gratuitas e prontas para usar agora.',
+    h2: 'Escolha Uma *Ferramenta*',
+    subtitle: 'Três para o WhatsApp e o seu site, e três calculadoras para orçamento e ROI.',
     tryIt: 'Usar grátis',
     freeBadge: 'Grátis',
   },
@@ -193,26 +195,27 @@ const br: ToolsPageContent = {
     },
     {
       href: HREFS.ccRoi,
-      name: "Calculadora de ROI para Call Center",
-      tagline: "Veja se um novo software de call center se paga, com ROI do primeiro ano, payback e custo por chamada.",
-      category: "Medição",
+      name: 'Calculadora de ROI para Call Center',
+      tagline: 'Veja se um novo software de call center se paga, com ROI do primeiro ano, payback e custo por chamada.',
+      category: 'Medição',
       icon: 'calculator',
     },
   ],
   why: {
-    h2: 'Por Que São Gratuitas',
-    subtitle: 'Elas trazem gente para a Eazybe. Esse é o modelo de negócio inteiro, então as ferramentas em si não têm pegadinha.',
-    freeTitle: 'Gratuitas de verdade',
-    freeBody: 'Sem teste que expira e sem recurso guardado até você pagar. A ferramenta que você abre é a ferramenta inteira.',
-    noSignupTitle: 'Sem precisar de conta',
-    noSignupBody: 'Nada pede seu e-mail antes de funcionar. Abra a página, use e feche a aba.',
+    h2: 'Por Que São *Gratuitas*',
+    subtitle:
+      'Sendo bem sinceros: algumas pessoas que usam acabam testando a Eazybe. Elas só existem por isso, então não tem pegadinha escondida.',
+    freeTitle: 'Nada bloqueado',
+    freeBody: 'Não tem teste que expira nem recurso travado até você pagar. O que você abre é a ferramenta completa.',
+    noSignupTitle: 'Sem conta',
+    noSignupBody: 'Nenhuma pede seu e-mail antes de funcionar. Abra a página, use e feche a aba.',
     browserTitle: 'Roda no seu navegador',
-    browserBody: 'O trabalho acontece na sua máquina, então o que você digita nessas ferramentas nunca chega até nós.',
+    browserBody: 'Os números e as mensagens que você digita ficam no seu dispositivo. Não enviamos nada para os nossos servidores.',
   },
   finalCta: {
-    h2: 'Quando Uma Ferramenta Não Basta',
+    h2: 'Quando Uma Ferramenta *Não Basta*',
     body:
-      'Cada uma resolve uma tarefa. A Eazybe sincroniza conversas inteiras do WhatsApp com HubSpot, Salesforce, Zoho, Pipedrive e outros, para os negócios fechados no chat caírem sozinhos no CRM.',
+      'Cada ferramenta resolve uma tarefa. Já a Eazybe sincroniza as conversas de WhatsApp do seu time com HubSpot, Salesforce, Zoho, Pipedrive e outros CRMs, e os negócios fechados no chat aparecem no CRM sem ninguém copiar à mão.',
     primary: 'Começar grátis',
     secondary: 'Ver como funciona',
   },
@@ -222,23 +225,22 @@ const es: ToolsPageContent = {
   meta: {
     title: 'Herramientas Gratuitas de WhatsApp y Ventas | Eazybe',
     description:
-      'Herramientas gratuitas para equipos que venden por WhatsApp. Genera códigos QR, enlaces de chat y widgets para tu web, y calcula el ROI de tu marketing. Sin registro.',
+      'Herramientas gratuitas para equipos que venden por WhatsApp: códigos QR, enlaces de chat, un widget para tu web y calculadoras de precios de la API y de ROI. Sin registro.',
     ogDescription:
-      'Códigos QR, enlaces de chat, widgets para tu web y una calculadora de ROI. Todo gratis, sin registro y sin instalar nada.',
+      'Códigos QR, enlaces de chat, un widget de WhatsApp para tu web y tres calculadoras. Gratis, sin registro y sin instalar nada.',
   },
   breadcrumb: { home: 'Inicio', current: 'Herramientas Gratuitas' },
   hero: {
     tag: 'Herramientas Gratuitas',
-    h1Lead: 'Herramientas Gratuitas Para Equipos Que Venden Por',
-    h1Highlight: 'WhatsApp',
+    h1: 'Herramientas Gratuitas Para Equipos Que Venden Por *WhatsApp*',
     subtitle:
-      'Herramientas pequeñas que hacen bien una sola cosa. Cada una funciona en tu navegador sin pedir cuenta, así que la usas y sigues con tu día.',
+      'Seis herramientas pequeñas, cada una hecha para una sola tarea. Funcionan en tu navegador y ninguna te pide registrarte.',
     cta: 'Ver las herramientas',
-    footnote: 'Sin registro y nada que instalar.',
+    footnote: 'Gratis. Nada que instalar.',
   },
   grid: {
-    h2: 'Elige Una Herramienta',
-    subtitle: 'Seis herramientas, todas gratuitas y listas para usar ahora.',
+    h2: 'Elige Una *Herramienta*',
+    subtitle: 'Tres para WhatsApp y tu web, y tres calculadoras para presupuestos y ROI.',
     tryIt: 'Usar gratis',
     freeBadge: 'Gratis',
   },
@@ -282,26 +284,27 @@ const es: ToolsPageContent = {
     },
     {
       href: HREFS.ccRoi,
-      name: "Calculadora de ROI para Call Center",
-      tagline: "Comprueba si un nuevo software de call center se paga solo, con ROI del primer año, amortización y coste por llamada.",
-      category: "Medición",
+      name: 'Calculadora de ROI para Call Center',
+      tagline: 'Comprueba si un nuevo software de call center se paga solo, con ROI del primer año, amortización y coste por llamada.',
+      category: 'Medición',
       icon: 'calculator',
     },
   ],
   why: {
-    h2: 'Por Qué Son Gratuitas',
-    subtitle: 'Traen gente a Eazybe. Ese es todo el modelo de negocio, así que las herramientas en sí no tienen trampa.',
-    freeTitle: 'Gratuitas de verdad',
-    freeBody: 'Sin prueba que caduca y sin funciones guardadas hasta que pagues. La herramienta que abres es la herramienta entera.',
-    noSignupTitle: 'Sin necesidad de cuenta',
-    noSignupBody: 'Nada te pide el correo antes de funcionar. Abre la página, úsala y cierra la pestaña.',
+    h2: 'Por Qué Son *Gratuitas*',
+    subtitle:
+      'Siendo sinceros: algunas personas que las usan acaban probando Eazybe. Solo existen por eso, así que no esconden ninguna trampa.',
+    freeTitle: 'Nada bloqueado',
+    freeBody: 'No hay prueba que caduque ni funciones bloqueadas hasta que pagues. Lo que abres es la herramienta completa.',
+    noSignupTitle: 'Sin cuenta',
+    noSignupBody: 'Ninguna te pide el correo antes de funcionar. Abre la página, úsala y cierra la pestaña.',
     browserTitle: 'Funciona en tu navegador',
-    browserBody: 'El trabajo ocurre en tu equipo, así que lo que escribes en estas herramientas nunca llega hasta nosotros.',
+    browserBody: 'Los números y mensajes que escribes se quedan en tu dispositivo. No los enviamos a nuestros servidores.',
   },
   finalCta: {
-    h2: 'Cuando Una Herramienta No Basta',
+    h2: 'Cuando Una Herramienta *No Basta*',
     body:
-      'Cada una resuelve una tarea. Eazybe sincroniza conversaciones enteras de WhatsApp con HubSpot, Salesforce, Zoho, Pipedrive y más, para que las ventas cerradas en el chat lleguen solas al CRM.',
+      'Cada herramienta resuelve una tarea. Eazybe, en cambio, sincroniza los chats de WhatsApp de tu equipo con HubSpot, Salesforce, Zoho, Pipedrive y otros CRM, así las ventas cerradas en el chat aparecen en el CRM sin que nadie las copie a mano.',
     primary: 'Empezar gratis',
     secondary: 'Ver cómo funciona',
   },
@@ -311,23 +314,22 @@ const tr: ToolsPageContent = {
   meta: {
     title: 'Ücretsiz WhatsApp ve Satış Araçları | Eazybe',
     description:
-      "WhatsApp üzerinden satış yapan ekipler için ücretsiz araçlar. QR kod, sohbet bağlantısı ve site sohbet widget'ı oluşturun, pazarlama ROI'nizi hesaplayın. Kayıt gerekmez.",
+      "WhatsApp'ta satış yapan ekipler için ücretsiz araçlar: QR kod, sohbet bağlantısı, site sohbet widget'ı, WhatsApp API fiyat ve ROI hesaplayıcıları. Kayıt gerekmez.",
     ogDescription:
-      "Ücretsiz WhatsApp QR kodları, sohbet bağlantıları, site widget'ları ve bir pazarlama ROI hesaplayıcı. Kayıt yok, kurulum yok.",
+      "WhatsApp QR kodları, sohbet bağlantıları, site sohbet widget'ı ve üç hesaplayıcı. Ücretsiz, kayıt yok, kurulum yok.",
   },
   breadcrumb: { home: 'Ana Sayfa', current: 'Ücretsiz Araçlar' },
   hero: {
     tag: 'Ücretsiz Araçlar',
-    h1Lead: 'Satışını Şurada Yapan Ekipler İçin Ücretsiz Araçlar:',
-    h1Highlight: 'WhatsApp',
+    h1: "*WhatsApp'ta* Satış Yapan Ekipler İçin Ücretsiz Araçlar",
     subtitle:
-      'Tek bir işi düzgün yapan küçük araçlar. Her biri tarayıcınızda, hesap istemeden çalışır; kullanın ve gününüze devam edin.',
+      'Her biri tek bir iş için yapılmış altı küçük araç. Tarayıcınızda çalışırlar ve hiçbiri kayıt istemez.',
     cta: 'Araçlara göz atın',
-    footnote: 'Kayıt yok, kurulacak bir şey de yok.',
+    footnote: 'Ücretsiz. Kurulacak bir şey yok.',
   },
   grid: {
-    h2: 'Bir Araç Seçin',
-    subtitle: 'Altı araç, hepsi ücretsiz ve şimdi kullanıma hazır.',
+    h2: 'Bir *Araç* Seçin',
+    subtitle: 'Üçü WhatsApp ve siteniz için, üçü bütçe ve ROI hesabı için.',
     tryIt: 'Ücretsiz dene',
     freeBadge: 'Ücretsiz',
   },
@@ -349,7 +351,7 @@ const tr: ToolsPageContent = {
     },
     {
       href: HREFS.widget,
-      name: 'WhatsApp Sohbet Widget’ı',
+      name: "WhatsApp Sohbet Widget'ı",
       tagline: "Siteniz için, kimsenin doldurmadığı bir form yerine WhatsApp'ı açan bir sohbet butonu oluşturun.",
       category: 'Web sitesi',
       icon: 'widget',
@@ -371,26 +373,27 @@ const tr: ToolsPageContent = {
     },
     {
       href: HREFS.ccRoi,
-      name: "Çağrı Merkezi ROI Hesaplayıcı",
-      tagline: "Yeni çağrı merkezi yazılımının kendini amorti edip etmediğini ilk yıl ROI, geri ödeme ve çağrı başına maliyetle görün.",
-      category: "Ölçüm",
+      name: 'Çağrı Merkezi ROI Hesaplayıcı',
+      tagline: 'Yeni çağrı merkezi yazılımının kendini amorti edip etmediğini ilk yıl ROI, geri ödeme ve çağrı başına maliyetle görün.',
+      category: 'Ölçüm',
       icon: 'calculator',
     },
   ],
   why: {
-    h2: 'Neden Ücretsiz',
-    subtitle: "Bu araçlar insanları Eazybe'ye getiriyor. İş modelinin tamamı bu; araçların kendisinde bir bit yeniği yok.",
-    freeTitle: 'Gerçekten ücretsiz',
-    freeBody: 'Süresi dolan bir deneme ya da ödeyene kadar saklanan bir özellik yok. Açtığınız araç, aracın tamamı.',
-    noSignupTitle: 'Hesap gerekmiyor',
-    noSignupBody: 'Hiçbiri çalışmadan önce e-postanızı istemiyor. Sayfayı açın, kullanın, sekmeyi kapatın.',
+    h2: 'Neden *Ücretsiz*',
+    subtitle:
+      "Açık konuşalım: bu araçları kullananların bir kısmı sonradan Eazybe'yi deniyor. Araçların var olma sebebi bu, yani içlerinde bir bit yeniği yok.",
+    freeTitle: 'Kilitli bir şey yok',
+    freeBody: 'Süresi dolan bir deneme ya da ödeyene kadar kilitli bir özellik yok. Açtığınız araç, aracın tamamı.',
+    noSignupTitle: 'Hesap gerekmez',
+    noSignupBody: 'Hiçbiri çalışmadan önce e-postanızı istemez. Sayfayı açın, kullanın, sekmeyi kapatın.',
     browserTitle: 'Tarayıcınızda çalışır',
-    browserBody: 'İşlem sizin makinenizde olur; bu araçlara yazdıklarınız bize hiçbir zaman ulaşmaz.',
+    browserBody: 'Girdiğiniz rakamlar ve mesajlar cihazınızda kalır. Bunları sunucularımıza göndermiyoruz.',
   },
   finalCta: {
-    h2: 'Bir Araç Yetmediğinde',
+    h2: 'Bir Araç *Yetmediğinde*',
     body:
-      "Bunların her biri tek bir işi görür. Eazybe ise WhatsApp konuşmalarının tamamını HubSpot, Salesforce, Zoho, Pipedrive ve diğerlerine senkronlar; böylece sohbette kapanan satışlar CRM'e kendiliğinden düşer.",
+      "Buradaki her araç tek bir işi görür. Eazybe ise ekibinizin WhatsApp sohbetlerini HubSpot, Salesforce, Zoho, Pipedrive ve diğer CRM'lere senkronlar; sohbette kapanan satışlar kimse elle kopyalamadan CRM'de görünür.",
     primary: 'Ücretsiz başla',
     secondary: 'Nasıl çalıştığını görün',
   },

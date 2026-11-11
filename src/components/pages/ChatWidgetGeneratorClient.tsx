@@ -179,17 +179,17 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
       <div
         style={{
           background: '#ffffff',
-          border: '1px solid #E4E8F1',
-          borderRadius: 18,
+          border: '1px solid var(--line)',
+          borderRadius: 16,
           padding: 'clamp(20px, 3vw, 32px)',
           boxShadow: '0 1px 0 rgba(15,17,21,0.04), 0 14px 32px -16px rgba(15,17,21,0.12)',
         }}
       >
-        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: '#0F1115' }}>
+        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: 'var(--ink)' }}>
           {L.formTitle}
         </h2>
 
-        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#2A2E38', marginBottom: 6 }}>
+        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--ink-2)', marginBottom: 6 }}>
           {L.numberLabel}
         </label>
         <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
@@ -199,10 +199,10 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
             aria-label={L.countryAria}
             style={{
               padding: '12px 10px',
-              border: '1px solid #E4E8F1',
+              border: '1px solid var(--line)',
               borderRadius: 10,
-              background: '#F8FAFC',
-              color: '#0F1115',
+              background: 'var(--bg-2)',
+              color: 'var(--ink)',
               fontSize: 14,
               minWidth: 112,
             }}
@@ -223,17 +223,17 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
             style={{
               flex: 1,
               padding: '12px 14px',
-              border: '1px solid #E4E8F1',
+              border: '1px solid var(--line)',
               borderRadius: 10,
-              background: '#F8FAFC',
-              color: '#0F1115',
+              background: 'var(--bg-2)',
+              color: 'var(--ink)',
               fontSize: 14,
             }}
           />
         </div>
 
-        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#2A2E38', marginBottom: 6 }}>
-          {L.messageLabel} <span style={{ color: '#5A6070', fontWeight: 400 }}>{L.messageOptional}</span>
+        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--ink-2)', marginBottom: 6 }}>
+          {L.messageLabel} <span style={{ color: 'var(--ink-3)', fontWeight: 400 }}>{L.messageOptional}</span>
         </label>
         <textarea
           value={message}
@@ -244,21 +244,21 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
           style={{
             width: '100%',
             padding: '12px 14px',
-            border: '1px solid #E4E8F1',
+            border: '1px solid var(--line)',
             borderRadius: 10,
-            background: '#F8FAFC',
-            color: '#0F1115',
+            background: 'var(--bg-2)',
+            color: 'var(--ink)',
             fontSize: 14,
             resize: 'vertical',
             fontFamily: 'inherit',
             marginBottom: 8,
           }}
         />
-        <div style={{ fontSize: 12, color: '#5A6070', marginBottom: 16 }}>
+        <div style={{ fontSize: 12, color: 'var(--ink-3)', marginBottom: 16 }}>
           {L.messageCounter.replace('{count}', String(message.length))}
         </div>
 
-        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#2A2E38', marginBottom: 6 }}>
+        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--ink-2)', marginBottom: 6 }}>
           {L.buttonLabelLabel}
         </label>
         <input
@@ -270,16 +270,16 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
           style={{
             width: '100%',
             padding: '12px 14px',
-            border: '1px solid #E4E8F1',
+            border: '1px solid var(--line)',
             borderRadius: 10,
-            background: '#F8FAFC',
-            color: '#0F1115',
+            background: 'var(--bg-2)',
+            color: 'var(--ink)',
             fontSize: 14,
             marginBottom: 16,
           }}
         />
 
-        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#2A2E38', marginBottom: 6 }}>
+        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--ink-2)', marginBottom: 6 }}>
           {L.positionLabel}
         </label>
         <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
@@ -290,10 +290,10 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
             style={{
               flex: 1,
               padding: '10px 12px',
-              border: position === 'bottom-right' ? '2px solid #5B4BAE' : '1px solid #E4E8F1',
+              border: position === 'bottom-right' ? '2px solid #2b59ff' : '1px solid var(--line)',
               borderRadius: 10,
-              background: position === 'bottom-right' ? 'rgba(91,75,174,0.08)' : '#F8FAFC',
-              color: '#0F1115',
+              background: position === 'bottom-right' ? 'rgba(43,89,255,0.08)' : 'var(--bg-2)',
+              color: 'var(--ink)',
               fontSize: 13,
               fontWeight: 600,
               cursor: 'pointer',
@@ -308,10 +308,10 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
             style={{
               flex: 1,
               padding: '10px 12px',
-              border: position === 'bottom-left' ? '2px solid #5B4BAE' : '1px solid #E4E8F1',
+              border: position === 'bottom-left' ? '2px solid #2b59ff' : '1px solid var(--line)',
               borderRadius: 10,
-              background: position === 'bottom-left' ? 'rgba(91,75,174,0.08)' : '#F8FAFC',
-              color: '#0F1115',
+              background: position === 'bottom-left' ? 'rgba(43,89,255,0.08)' : 'var(--bg-2)',
+              color: 'var(--ink)',
               fontSize: 13,
               fontWeight: 600,
               cursor: 'pointer',
@@ -321,7 +321,7 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
           </button>
         </div>
 
-        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#2A2E38', marginBottom: 6 }}>
+        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--ink-2)', marginBottom: 6 }}>
           {L.colorLabel}
         </label>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 16 }}>
@@ -334,9 +334,9 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
               width: 56,
               height: 44,
               padding: 4,
-              border: '1px solid #E4E8F1',
+              border: '1px solid var(--line)',
               borderRadius: 10,
-              background: '#F8FAFC',
+              background: 'var(--bg-2)',
               cursor: 'pointer',
             }}
           />
@@ -347,10 +347,10 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
             style={{
               flex: 1,
               padding: '12px 14px',
-              border: '1px solid #E4E8F1',
+              border: '1px solid var(--line)',
               borderRadius: 10,
-              background: '#F8FAFC',
-              color: '#0F1115',
+              background: 'var(--bg-2)',
+              color: 'var(--ink)',
               fontSize: 14,
               fontFamily: 'var(--f-mono, ui-monospace, monospace)',
             }}
@@ -385,8 +385,8 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
       <div
         style={{
           background: '#ffffff',
-          border: '1px solid #E4E8F1',
-          borderRadius: 18,
+          border: '1px solid var(--line)',
+          borderRadius: 16,
           padding: 'clamp(20px, 3vw, 32px)',
           boxShadow: '0 1px 0 rgba(15,17,21,0.04), 0 14px 32px -16px rgba(15,17,21,0.12)',
         }}
@@ -394,19 +394,19 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
         tabIndex={-1}
         aria-live="polite"
       >
-        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: '#0F1115' }}>
+        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: 'var(--ink)' }}>
           {L.outputTitle}
         </h2>
 
         {/* Preview */}
-        <div style={{ fontSize: 12, fontWeight: 600, color: '#5A6070', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink-3)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
           {L.previewTitle}
         </div>
         <div
           style={{
             position: 'relative',
             background: 'linear-gradient(180deg, #F1F4F9 0%, #ECEFF7 100%)',
-            border: '1px solid #E4E8F1',
+            border: '1px solid var(--line)',
             borderRadius: 12,
             height: 220,
             overflow: 'hidden',
@@ -414,7 +414,7 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
           }}
         >
           {/* Fake site chrome */}
-          <div style={{ height: 24, background: '#ffffff', borderBottom: '1px solid #E4E8F1', display: 'flex', alignItems: 'center', gap: 5, padding: '0 10px' }}>
+          <div style={{ height: 24, background: '#ffffff', borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', gap: 5, padding: '0 10px' }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#FF5F57' }} />
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#FEBC2E' }} />
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#28C840' }} />
@@ -422,9 +422,9 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
           {/* Fake content lines */}
           <div style={{ padding: 18 }}>
             <div style={{ height: 8, background: '#D6DCE6', borderRadius: 4, width: '40%', marginBottom: 10 }} />
-            <div style={{ height: 6, background: '#E4E8F1', borderRadius: 4, width: '85%', marginBottom: 6 }} />
-            <div style={{ height: 6, background: '#E4E8F1', borderRadius: 4, width: '70%', marginBottom: 6 }} />
-            <div style={{ height: 6, background: '#E4E8F1', borderRadius: 4, width: '78%' }} />
+            <div style={{ height: 6, background: 'var(--line)', borderRadius: 4, width: '85%', marginBottom: 6 }} />
+            <div style={{ height: 6, background: 'var(--line)', borderRadius: 4, width: '70%', marginBottom: 6 }} />
+            <div style={{ height: 6, background: 'var(--line)', borderRadius: 4, width: '78%' }} />
           </div>
           {/* Floating widget preview */}
           <div
@@ -460,11 +460,11 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
         {!waUrl ? (
           <div
             style={{
-              background: '#ECEFF7',
-              border: '1px solid #E4E8F1',
+              background: 'var(--bg-2)',
+              border: '1px solid var(--line)',
               borderRadius: 10,
               padding: 18,
-              color: '#5A6070',
+              color: 'var(--ink-3)',
               fontSize: 14,
               textAlign: 'center',
             }}
@@ -473,16 +473,16 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
           </div>
         ) : (
           <>
-            <div style={{ fontSize: 12, fontWeight: 600, color: '#5A6070', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink-3)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               {L.snippetLabel}
             </div>
             <pre
               style={{
                 fontFamily: 'var(--f-mono, ui-monospace, monospace)',
                 fontSize: 12,
-                color: '#0F1115',
-                background: '#0F1115',
-                border: '1px solid #E4E8F1',
+                color: 'var(--ink)',
+                background: 'var(--ink)',
+                border: '1px solid var(--line)',
                 borderRadius: 10,
                 padding: '14px 16px',
                 marginBottom: 14,
@@ -492,7 +492,7 @@ export function ChatWidgetGeneratorClient({ labels }: { labels?: ChatWidgetGener
                 wordBreak: 'break-all',
               }}
             >
-              <code style={{ color: '#E4E8F1', fontSize: 12 }}>{snippet}</code>
+              <code style={{ color: 'var(--line)', fontSize: 12 }}>{snippet}</code>
             </pre>
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
               <button type="button" onClick={onCopy} className="btn btn-primary">
