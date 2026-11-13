@@ -105,7 +105,7 @@ export default async function LocaleLayout({
         <Script
           id="eazybe-website-agent"
           src="https://dev-app.eazybe.com/widget.js"
-          data-agent-id="6aaa473968b8e813a33217fc"
+          data-agent-id="6a79bf329b3ee737598d5783"
           strategy="afterInteractive"
           async
         />
