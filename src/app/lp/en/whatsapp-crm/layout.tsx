@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono, Hedvig_Letters_Serif } from 'next/font/google'
 import { content } from '@/data/whatsapp-crm-content'
 import '../../../globals.css'
+import '../../../geist-fonts.css'
+import '../../../self-hosted-fonts.css'
 
 /**
  * Standalone shell for the paid-search landing page.
@@ -10,37 +11,6 @@ import '../../../globals.css'
  * mega-menu or Footer. On a paid LP every outbound link is a leak, and the
  * shared layout supplies about forty of them.
  */
-// Geist / Geist Mono — matching doubletick.io's stack. Their system tops out
-// at 600, so weight is deliberately capped here too: hierarchy comes from
-// size and spacing rather than from heavier and heavier type.
-// Self-hosted by next/font, so no CDN request and no invisible-text flash.
-const geist = Geist({
-  // Variable font — next/font v16+ refuses a `weight` array for these and
-  // crashes build with "TypeError: Cannot read properties of null (reading
-  // '1')". Omit weight to pull the variable axis instead; CSS still gets
-  // 400/500/600 at use sites via font-weight utility classes.
-  subsets: ['latin'],
-  variable: '--font-inter', // reuses the token the Tailwind sans stack reads
-  display: 'swap',
-})
-
-// The display face. doubletick ships it at 400 and only 400 — the size does
-// the work, so there is no bold cut to reach for. Headings only; body copy in
-// a serif at this scale gets tiring fast.
-const hedvig = Hedvig_Letters_Serif({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-wc-display',
-  display: 'swap',
-})
-
-const geistMono = Geist_Mono({
-  // Variable font — see note on `geist` above.
-  subsets: ['latin'],
-  variable: '--font-wc-mono',
-  display: 'swap',
-})
-
 const SITE = 'https://eazybe.com'
 const PATH = '/lp/en/whatsapp-crm'
 
@@ -77,7 +47,7 @@ export default function WhatsAppCrmLayout({ children }: { children: React.ReactN
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-K4C7HNNN'
 
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${hedvig.variable}`}>
+    <html lang="en" className="font-var-geist-as-inter font-var-wc-mono font-var-wc-display">
       <head>
         <style
           // globals.css force-capitalises every h1/h2 site-wide, which would

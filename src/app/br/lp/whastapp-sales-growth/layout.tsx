@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
 import '../../../globals.css'
+import '../../../self-hosted-fonts.css'
 
 /**
  * Portuguese (BR) cut of the paid LP shell — same standalone pattern as the
@@ -8,13 +8,6 @@ import '../../../globals.css'
  * tags, no nav/footer). Lives under the literal /br segment, which beats
  * [locale] (same as /br/lp/whatsapp-crm).
  */
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
 const SITE = 'https://eazybe.com'
 const PATH = '/br/lp/whastapp-sales-growth'
 
@@ -42,7 +35,7 @@ export default function SalesGrowthLpLayoutBr({ children }: { children: React.Re
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-K4C7HNNN'
 
   return (
-    <html lang="pt-BR" className={inter.variable}>
+    <html lang="pt-BR" className="font-var-inter">
       <head>
         {gtmId && (
           <script

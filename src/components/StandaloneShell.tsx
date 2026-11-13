@@ -1,5 +1,5 @@
-import { Inter, JetBrains_Mono } from 'next/font/google'
 import type { ReactNode } from 'react'
+import '@/app/self-hosted-fonts.css'
 
 /**
  * Shared <html>/<body> shell for pages that live outside `[locale]/` — the
@@ -8,18 +8,6 @@ import type { ReactNode } from 'react'
  * each response still ships with a valid `lang` attribute, Tailwind styles,
  * and the same fonts as the main app.
  */
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-})
-
 export function StandaloneShell({
   lang = 'en',
   children,
@@ -30,7 +18,7 @@ export function StandaloneShell({
   return (
     <html lang={lang} className="dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        className="font-var-inter font-var-jetbrains-mono font-sans antialiased"
       >
         {children}
       </body>

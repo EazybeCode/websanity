@@ -1,35 +1,13 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import { Inter, JetBrains_Mono } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
 import { GlobalStructuredData } from '@/components/seo/GlobalStructuredData'
 import Script from 'next/script'
 import '../geist-fonts.css'
-
-// display: 'optional' — if the font isn't ready within ~100ms the page keeps
-// the size-adjusted fallback for that visit instead of swapping later. The
-// late swap was the whole CLS budget on blog posts (0.143: text above the
-// featured image reflows and shoves it down). Repeat visits get the cached
-// font immediately.
-// preload: false — every page now renders in Geist (geist-fonts.css); Inter is
-// only a fallback in the font stacks and JetBrains Mono styles a single label,
-// so preloading them spent first-load bandwidth on files no text paints with.
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'optional',
-  preload: false,
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-  display: 'optional',
-  preload: false,
-})
+import '../self-hosted-fonts.css'
 
 // Map next-intl URL locale codes to canonical HTML `lang` values.
 // `en` is mapped to `en-US` so search engines and AI systems know the
@@ -80,8 +58,8 @@ export default async function LocaleLayout({
   return (
     <html lang={htmlLangMap[locale] || 'en'} className="dark" suppressHydrationWarning>
       <head>
-        {/* No Google Fonts preconnects: next/font self-hosts Inter/JetBrains
-            Mono from /_next/static/media, so the page never contacts the
+        {/* No Google Fonts preconnects: Inter/JetBrains Mono are self-hosted
+            from /fonts (self-hosted-fonts.css), so the page never contacts the
             Google Fonts CDN — the handshakes were pure waste (Lighthouse
             flagged them as unused preconnects). */}
         {/* Pre-handshake the Sanity image CDN — blog featured images (the LCP
@@ -114,7 +92,7 @@ export default async function LocaleLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        className="font-var-inter font-var-jetbrains-mono font-sans antialiased"
         suppressHydrationWarning
       >
         <NextIntlClientProvider messages={clientMessages}>

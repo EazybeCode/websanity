@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
 import '../../globals.css'
+import '../../self-hosted-fonts.css'
 
 /**
  * Standalone shell for the paid landing page (same pattern as
@@ -9,13 +9,6 @@ import '../../globals.css'
  * therefore must render its own <html>/<body> plus its own GTM / Google Ads
  * tags (the site's Analytics component lives in the locale layout).
  */
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
 const SITE = 'https://eazybe.com'
 const PATH = '/lp/whastapp-sales-growth'
 
@@ -46,7 +39,7 @@ export default function SalesGrowthLpLayout({ children }: { children: React.Reac
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-K4C7HNNN'
 
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className="font-var-inter">
       <head>
         {gtmId && (
           <script
