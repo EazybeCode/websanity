@@ -1,0 +1,156 @@
+/* Dial-code picker for the lead form (usePhoneCountrySelect). Brand v16 tokens:
+   white surface, #e6e6e3 hairlines, Eazybe Blue #2b59ff for focus/selection,
+   Geist / Geist Mono. Selectors are doubled up because the Bea corner form styles
+   every `input` inside it with !important (landing-v3.css, brand-chrome.css). */
+
+/* Trigger: flag + dial code, sits at the left of the phone row. */
+.pcs-trigger.pcs-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  align-self: stretch; /* fill the phone row, fixed-height (Bea) or auto (modals) */
+  height: auto;
+  min-height: 100%;
+  padding: 0 10px 0 12px;
+  border: 0;
+  border-right: 1px solid #e6e6e3;
+  background: transparent;
+  color: #0b0b0c;
+  font-family: 'Geist', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px 0 0 6px;
+}
+.pcs-trigger.pcs-trigger:hover:not(:disabled),
+.pcs-trigger.pcs-trigger[aria-expanded='true'] {
+  background: #f6f6f5;
+}
+.pcs-trigger.pcs-trigger:focus-visible {
+  outline: 2px solid #2b59ff;
+  outline-offset: -2px;
+}
+.pcs-trigger.pcs-trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pcs-flag {
+  font-size: 16px;
+  line-height: 1;
+}
+.pcs-dial {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 500;
+}
+.pcs-caret {
+  width: 7px;
+  height: 7px;
+  margin-left: 2px;
+  border-right: 1.5px solid #8a8c93;
+  border-bottom: 1.5px solid #8a8c93;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.15s ease;
+}
+.pcs-trigger[aria-expanded='true'] .pcs-caret {
+  transform: translateY(1px) rotate(225deg);
+}
+
+/* Panel: in-flow under the phone row. */
+.pcs-panel {
+  margin-top: 6px;
+  background: #fff;
+  border: 1px solid #e6e6e3;
+  border-radius: 8px;
+  box-shadow: 0 12px 28px -12px rgba(11, 11, 12, 0.18);
+  overflow: hidden;
+  font-family: 'Geist', sans-serif;
+  animation: pcs-in 0.14s ease;
+}
+@keyframes pcs-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pcs-panel { animation: none; }
+}
+
+.pcs-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border-bottom: 1px solid #e6e6e3;
+  color: #8a8c93;
+}
+.pcs-panel.pcs-panel .pcs-search input.pcs-search-input.pcs-search-input,
+.pcs-panel.pcs-panel .pcs-search input.pcs-search-input.pcs-search-input:hover,
+.pcs-panel.pcs-panel .pcs-search input.pcs-search-input.pcs-search-input:focus,
+.pcs-panel.pcs-panel .pcs-search input.pcs-search-input.pcs-search-input:focus-visible {
+  flex: 1;
+  min-width: 0;
+  height: 40px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #0b0b0c !important;
+  font-family: 'Geist', sans-serif !important;
+  font-size: 14px !important;
+}
+.pcs-panel .pcs-search input.pcs-search-input::placeholder {
+  color: #8a8c93;
+}
+.pcs-search:focus-within {
+  color: #2b59ff;
+}
+
+.pcs-list {
+  max-height: 216px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+}
+.pcs-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: #0b0b0c;
+  font-size: 14px;
+  line-height: 1.25;
+  cursor: pointer;
+}
+.pcs-opt.is-active {
+  background: #f4f6ff;
+}
+.pcs-opt.is-selected {
+  color: #2b59ff;
+  font-weight: 600;
+}
+.pcs-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pcs-opt-dial {
+  flex: none;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+  color: #5a5c64;
+}
+.pcs-opt.is-selected .pcs-opt-dial {
+  color: #2b59ff;
+}
+.pcs-empty {
+  padding: 12px 10px;
+  color: #5a5c64;
+  font-size: 13px;
+}

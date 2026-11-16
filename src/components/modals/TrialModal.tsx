@@ -10,6 +10,7 @@ import {
   getHubSpotAttributionFields,
   withIncomingTrackingParams,
 } from '@/utils/openChromeExtensionStore'
+import { usePhoneCountrySelect, dialOf, isKnownCountry } from '@/components/lead/PhoneCountrySelect'
 
 // Where the "Let's Get You Started" (trial) form sends people after submit.
 // Dedicated Rebrandly shortlink per marketing — separate from the Chrome
@@ -37,54 +38,6 @@ const HUBSPOT_TRIAL_FORM_GUID_BY_LOCALE: Record<string, string> = {
 const DEFAULT_HUBSPOT_TRIAL_FORM_GUID = HUBSPOT_TRIAL_FORM_GUID_BY_LOCALE.en
 
 // Map ISO country codes to phone codes
-const COUNTRY_TO_PHONE: Record<string, string> = {
-  US: '+1', CA: '+1', MX: '+52',
-  GB: '+44', DE: '+49', FR: '+33', ES: '+34', IT: '+39', NL: '+31', BE: '+32', CH: '+41', AT: '+43',
-  DK: '+45', SE: '+46', NO: '+47', PL: '+48', PT: '+351', IE: '+353', IS: '+354', FI: '+358',
-  GR: '+30', CZ: '+420', HU: '+36', RO: '+40', UA: '+380', RU: '+7', TR: '+90',
-  BR: '+55', AR: '+54', CL: '+56', CO: '+57', PE: '+51', VE: '+58', EC: '+593',
-  IN: '+91', CN: '+86', JP: '+81', KR: '+82', HK: '+852', TW: '+886', SG: '+65', MY: '+60',
-  ID: '+62', PH: '+63', TH: '+66', VN: '+84', BD: '+880', PK: '+92', LK: '+94', NP: '+977',
-  AE: '+971', SA: '+966', QA: '+974', BH: '+973', OM: '+968', KW: '+965', IL: '+972', JO: '+962', LB: '+961', IR: '+98', IQ: '+964',
-  AU: '+61', NZ: '+64',
-  ZA: '+27', NG: '+234', KE: '+254', EG: '+20', MA: '+212', DZ: '+213', TN: '+216', GH: '+233', UG: '+256', TZ: '+255', ET: '+251',
-}
-
-const COUNTRY_CODES = [
-  { code: '+1', label: 'US/CA', icon: '\u{1F1FA}\u{1F1F8}' },
-  { code: '+52', label: 'MX', icon: '\u{1F1F2}\u{1F1FD}' },
-  { code: '+44', label: 'UK', icon: '\u{1F1EC}\u{1F1E7}' },
-  { code: '+49', label: 'DE', icon: '\u{1F1E9}\u{1F1EA}' },
-  { code: '+33', label: 'FR', icon: '\u{1F1EB}\u{1F1F7}' },
-  { code: '+34', label: 'ES', icon: '\u{1F1EA}\u{1F1F8}' },
-  { code: '+39', label: 'IT', icon: '\u{1F1EE}\u{1F1F9}' },
-  { code: '+31', label: 'NL', icon: '\u{1F1F3}\u{1F1F1}' },
-  { code: '+32', label: 'BE', icon: '\u{1F1E7}\u{1F1EA}' },
-  { code: '+41', label: 'CH', icon: '\u{1F1E8}\u{1F1ED}' },
-  { code: '+43', label: 'AT', icon: '\u{1F1E6}\u{1F1F9}' },
-  { code: '+55', label: 'BR', icon: '\u{1F1E7}\u{1F1F7}' },
-  { code: '+54', label: 'AR', icon: '\u{1F1E6}\u{1F1F7}' },
-  { code: '+91', label: 'IN', icon: '\u{1F1EE}\u{1F1F3}' },
-  { code: '+86', label: 'CN', icon: '\u{1F1E8}\u{1F1F3}' },
-  { code: '+81', label: 'JP', icon: '\u{1F1EF}\u{1F1F5}' },
-  { code: '+82', label: 'KR', icon: '\u{1F1F0}\u{1F1F7}' },
-  { code: '+65', label: 'SG', icon: '\u{1F1F8}\u{1F1EC}' },
-  { code: '+60', label: 'MY', icon: '\u{1F1F2}\u{1F1FE}' },
-  { code: '+62', label: 'ID', icon: '\u{1F1EE}\u{1F1E9}' },
-  { code: '+63', label: 'PH', icon: '\u{1F1F5}\u{1F1ED}' },
-  { code: '+66', label: 'TH', icon: '\u{1F1F9}\u{1F1ED}' },
-  { code: '+84', label: 'VN', icon: '\u{1F1FB}\u{1F1F3}' },
-  { code: '+971', label: 'UAE', icon: '\u{1F1E6}\u{1F1EA}' },
-  { code: '+966', label: 'SA', icon: '\u{1F1F8}\u{1F1E6}' },
-  { code: '+90', label: 'TR', icon: '\u{1F1F9}\u{1F1F7}' },
-  { code: '+61', label: 'AU', icon: '\u{1F1E6}\u{1F1FA}' },
-  { code: '+64', label: 'NZ', icon: '\u{1F1F3}\u{1F1FF}' },
-  { code: '+27', label: 'ZA', icon: '\u{1F1FF}\u{1F1E6}' },
-  { code: '+234', label: 'NG', icon: '\u{1F1F3}\u{1F1EC}' },
-  { code: '+254', label: 'KE', icon: '\u{1F1F0}\u{1F1EA}' },
-  { code: '+20', label: 'EG', icon: '\u{1F1EA}\u{1F1EC}' },
-]
-
 const PERSONAL_EMAIL_DOMAINS = [
   'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com',
   'icloud.com', 'aol.com', 'mail.com', 'protonmail.com', 'zoho.com',
@@ -95,7 +48,13 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose, r
   const t = useTranslations()
   const locale = useLocale()
   const trialRedirectUrl = redirectUrl || TRIAL_SUBMIT_REDIRECT_URL
-  const [selectedCountry, setSelectedCountry] = useState(COUNTRY_CODES[0].code)
+  const [selectedIso, setSelectedIso] = useState('US')
+  const selectedCountry = dialOf(selectedIso)
+  const countryPicker = usePhoneCountrySelect({
+    value: selectedIso,
+    onChange: setSelectedIso,
+    ariaLabel: t('trialModal.phoneLabel'),
+  })
   const [phoneValue, setPhoneValue] = useState('')
   const [formData, setFormData] = useState<TrialFormData>({
     workEmail: '',
@@ -113,16 +72,16 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose, r
       try {
         const response = await fetch('https://api.country.is/')
         const data = await response.json()
-        if (data.country && COUNTRY_TO_PHONE[data.country]) {
-          setSelectedCountry(COUNTRY_TO_PHONE[data.country])
+        if (data.country && isKnownCountry(data.country)) {
+          setSelectedIso(data.country)
         }
       } catch {
         try {
           const browserLocale = navigator.language || (navigator as any).userLanguage
           if (browserLocale && browserLocale.includes('-')) {
             const countryCode = browserLocale.split('-')[1]?.toUpperCase()
-            if (countryCode && COUNTRY_TO_PHONE[countryCode]) {
-              setSelectedCountry(COUNTRY_TO_PHONE[countryCode])
+            if (countryCode && isKnownCountry(countryCode)) {
+              setSelectedIso(countryCode)
             }
           }
         } catch {
@@ -407,29 +366,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose, r
                   overflow: 'hidden',
                   transition: 'border-color .15s, box-shadow .15s',
                 }}>
-                  <select
-                    value={selectedCountry}
-                    onChange={(e) => setSelectedCountry(e.target.value)}
-                    style={{
-                      minWidth: 96,
-                      padding: '12px 10px',
-                      fontSize: 13,
-                      fontFamily: sans,
-                      color: C.ink2,
-                      background: 'transparent',
-                      border: 'none',
-                      borderRight: `1px solid ${C.line}`,
-                      outline: 'none',
-                      appearance: 'none',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    {COUNTRY_CODES.map((c) => (
-                      <option key={`${c.code}-${c.label}`} value={c.code}>
-                        {c.icon} {c.code}
-                      </option>
-                    ))}
-                  </select>
+                  {countryPicker.trigger}
                   <input
                     required
                     type="tel"
@@ -448,6 +385,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({ isOpen, mode, onClose, r
                     }}
                   />
                 </div>
+                {countryPicker.panel}
               </div>
 
               {/* CRM */}
