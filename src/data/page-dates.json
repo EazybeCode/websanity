@@ -21,31 +21,31 @@
   },
   "/calling": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-10T15:20:15Z"
   },
   "/calling/auto-dialer": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-10T15:20:15Z"
   },
   "/calling/virtual-phone-number": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-10T15:20:15Z"
   },
   "/calling/call-tracking": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-10T15:20:15Z"
   },
   "/calling/sim-based-calling": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-10T15:20:15Z"
   },
   "/calling/call-recording": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-10T15:20:15Z"
   },
   "/calling/sim-vs-cloud-calling": {
     "published": "2026-11-03T18:10:39Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-10T15:20:15Z"
   },
   "/whatsapp-api": {
     "published": "2026-03-17T09:28:23Z",
@@ -68,7 +68,7 @@
     "modified": "2026-11-09T10:12:23Z"
   },
   "/blog/authors/[slug]": {
-    "published": "2026-05-12T08:01:06Z",
+    "published": "2026-04-08T13:21:34Z",
     "modified": "2026-11-09T10:12:23Z"
   },
   "/features/team-inbox": {
@@ -85,27 +85,27 @@
   },
   "/whatsapp-qr-code-generator": {
     "published": "2026-06-10T17:45:47Z",
-    "modified": "2026-11-09T10:12:23Z"
+    "modified": "2026-11-11T10:55:18Z"
   },
   "/whatsapp-chat-link-generator": {
     "published": "2026-06-15T12:24:39Z",
-    "modified": "2026-11-09T10:12:23Z"
+    "modified": "2026-11-11T10:55:18Z"
   },
   "/whatsapp-chat-widget": {
     "published": "2026-06-15T12:24:39Z",
-    "modified": "2026-11-09T10:12:23Z"
+    "modified": "2026-11-11T10:55:18Z"
   },
   "/marketing-roi-calculator": {
     "published": "2026-08-17T10:23:29Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-11T10:55:18Z"
   },
   "/call-center-roi-calculator": {
     "published": "2026-11-09T17:55:05Z",
-    "modified": "2026-11-09T18:09:27Z"
+    "modified": "2026-11-09T18:09:43Z"
   },
   "/tools": {
     "published": "2026-08-17T18:12:32Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-11T10:55:18Z"
   },
   "/case-studies": {
     "published": "2026-08-29T18:20:17Z",
@@ -121,10 +121,10 @@
   },
   "/whatsapp-pricing-calculator": {
     "published": "2026-08-25T10:21:34Z",
-    "modified": "2026-11-09T10:12:23Z"
+    "modified": "2026-11-11T10:55:18Z"
   },
   "/integration-page": {
-    "published": "2026-05-12T08:01:06Z",
+    "published": "2026-03-17T09:28:23Z",
     "modified": "2026-11-09T10:12:23Z"
   },
   "/product-page": {
@@ -132,15 +132,15 @@
     "modified": "2026-11-09T10:12:23Z"
   },
   "/whatsapp-api/[slug]": {
-    "published": "2026-05-12T08:01:06Z",
+    "published": "2026-03-17T09:28:23Z",
     "modified": "2026-11-09T10:12:23Z"
   },
   "/blog/[slug]": {
-    "published": "2026-05-12T08:01:06Z",
+    "published": "2026-03-17T09:28:23Z",
     "modified": "2026-11-05T09:59:53Z"
   },
   "/comparison/[slug]": {
-    "published": "2026-05-12T08:01:06Z",
+    "published": "2026-04-15T10:06:15Z",
     "modified": "2026-11-05T09:59:53Z"
   },
   "/feeds": {
@@ -169,18 +169,18 @@
   },
   "/integrate-hubspot-crm": {
     "published": "2026-03-19T06:57:04Z",
-    "modified": "2026-10-01T05:19:29Z"
+    "modified": "2026-11-13T08:04:30Z"
   },
   "/integrate-salesforce-crm": {
     "published": "2026-03-19T06:57:04Z",
-    "modified": "2026-08-24T07:54:25Z"
+    "modified": "2026-11-13T08:04:30Z"
   },
   "/integrate-zoho-crm": {
     "published": "2026-03-19T06:57:04Z",
-    "modified": "2026-08-24T10:34:17Z"
+    "modified": "2026-11-13T08:04:30Z"
   },
   "/integrate-bitrix-crm": {
     "published": "2026-03-19T06:57:04Z",
-    "modified": "2026-09-04T11:35:10Z"
+    "modified": "2026-11-13T08:04:30Z"
   }
 }
