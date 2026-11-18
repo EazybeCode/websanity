@@ -1,72 +1,53 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { LeadGenerationForm } from '@/components/lead/LeadGenerationForm'
 import { useTrialModal } from '@/providers/TrialModalProvider'
-import { useAgentWidget } from './useAgentWidget'
-import './bea-live.css'
 
-// 8s muted loop of Bea's face-cam, cut from the onboarding tutorial video.
-const CAM_SRC = '/images/bea/bea-cam.mp4'
-const FACE_SRC = '/images/bea/bea-cam-poster.jpg'
-const NUDGE_KEY = 'eazybe:bea-nudge-dismissed'
-const FORM_AFTER_CHAT_KEY = 'eazybe:bea-form-after-chat'
-// After this many answered visitor messages, hand over to the lead form (once per session).
-const FORM_AFTER_TURNS = 4
-
-/**
- * Bea: the site's one assistant. A round face-cam video bubble in the
- * bottom-right corner that nudges the visitor to talk. Clicking it opens the AI agent chat
- * ("Chat with us" widget, whose own launcher is hidden by useAgentWidget); the
- * lead form (free WhatsApp scan) opens from page CTAs and after
- * 4 answered chat messages, and shares Bea's face so it reads as the same person.
- */
 export function BeaBot() {
   const t = useTranslations('landingV3.beaForm')
   const { isOpen: isModalOpen } = useTrialModal()
-  // Starting closed avoids an SSR/CSR hydration mismatch; the desktop
-  // auto-open happens client-side after mount.
+  // Open by default on desktop (≥1024px) — mobile users start with the form
+  // collapsed and tap Bea to open it. Starting closed avoids an SSR/CSR
+  // hydration mismatch; the desktop auto-open happens client-side after mount.
   const [open, setOpen] = useState(false)
-  const camRef = useRef<HTMLVideoElement>(null)
 
-  // Respect reduced motion: keep the poster frame instead of the looping video.
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) camRef.current?.pause()
-  }, [])
   const [pulse, setPulse] = useState(false)
-  const { available: chatAvailable, chatOpen, answeredTurns, openChat, closeChat } = useAgentWidget(FACE_SRC)
-
-  // Nudge bubble: typing dots, then the message. Hidden for the session once dismissed.
-  const [nudge, setNudge] = useState<'off' | 'typing' | 'shown'>('off')
-  // Read on the client only; the nudge itself renders after a timer, so the
-  // first client render matches the server markup either way.
-  const [nudgeDismissed, setNudgeDismissed] = useState(() => {
-    try {
-      return typeof window !== 'undefined' && sessionStorage.getItem(NUDGE_KEY) === '1'
-    } catch {
-      return false
-    }
-  })
 
   useEffect(() => {
-    const a = window.setTimeout(() => setNudge('typing'), 1500)
-    const b = window.setTimeout(() => setNudge('shown'), 2900)
+    if (typeof window === 'undefined') return
+    // Paid-ads landings (LinkedIn campaigns via eazybe.info short links) must not
+    // get the auto-opened form — the visitor should see the page they clicked the
+    // ad for. Bea stays available via her corner button and the CTA events.
+    if (new URLSearchParams(window.location.search).get('utm_source') === 'linkedin-ads') return
+    // Auto-open the lead form 5s after load on desktop. On mobile (<1024px) the
+    // 5s clock starts at the visitor's first scroll instead: a form covering the
+    // hero before they've engaged hurt Speed Index and the first impression.
+    // Initial state stays false so SSR/CSR markup matches; the open happens
+    // client-side after mount, so there's no hydration mismatch.
+    let id: number | undefined
+    const start = () => {
+      window.removeEventListener('scroll', start)
+      id = window.setTimeout(() => setOpen(true), 5000)
+    }
+    if (window.matchMedia('(max-width: 1023px)').matches) {
+      window.addEventListener('scroll', start, { passive: true })
+    } else {
+      start()
+    }
     return () => {
-      window.clearTimeout(a)
-      window.clearTimeout(b)
+      window.removeEventListener('scroll', start)
+      window.clearTimeout(id)
     }
   }, [])
 
-  // No timed auto-open of the lead form: Bea invites the visitor to talk first.
-  // The form opens from page CTAs or after a few chat messages (below).
-
-  // Other CTAs (FinalCTA, MidCTA, FAQ footnote, Nav "Contact Sales") dispatch
-  // this event to open the lead form — the form is the lead-capture gate.
+  // Other CTAs (FinalCTA, MidCTA, FAQ footnote, Nav "Contact Sales", mobile
+  // bottom nav) dispatch this event to open the lead form instead of jumping
+  // straight to WhatsApp — the form is the lead-capture gate.
   useEffect(() => {
     const handler = () => {
-      closeChat()
       setOpen(true)
       setPulse(true)
       window.setTimeout(() => setPulse(false), 1200)
@@ -76,134 +57,107 @@ export function BeaBot() {
     }
     window.addEventListener('eazybe:open-bea-form', handler)
     return () => window.removeEventListener('eazybe:open-bea-form', handler)
-  }, [closeChat])
+  }, [])
 
-  // Engaged chatters get the lead form: once the agent has answered the visitor's
-  // 4th message, give them a moment to read it, then swap the chat for the form.
+  // Collapse Bea whenever the trial / demo modal opens from anywhere. The
+  // corner form and a centered modal on-screen at the same time is visual
+  // noise — the visitor's focus is on the modal they just triggered.
   useEffect(() => {
-    if (!chatOpen || answeredTurns < FORM_AFTER_TURNS) return
-    try {
-      if (sessionStorage.getItem(FORM_AFTER_CHAT_KEY) === '1') return
-    } catch {}
-    const id = window.setTimeout(() => {
-      try {
-        sessionStorage.setItem(FORM_AFTER_CHAT_KEY, '1')
-      } catch {}
-      window.dispatchEvent(new Event('eazybe:open-bea-form'))
-    }, 2500)
-    return () => window.clearTimeout(id)
-  }, [chatOpen, answeredTurns])
-
-  // Collapse Bea whenever the trial / demo modal opens from anywhere.
-  useEffect(() => {
-    if (isModalOpen) {
-      setOpen(false)
-      closeChat()
-    }
-  }, [isModalOpen, closeChat])
-
-  const startChat = () => {
-    setOpen(false)
-    // Widget blocked or not loaded: fall back to the lead form.
-    if (!openChat()) setOpen(true)
-  }
-  const dismissNudge = () => {
-    setNudgeDismissed(true)
-    try {
-      sessionStorage.setItem(NUDGE_KEY, '1')
-    } catch {}
-  }
-
-  const active = open || chatOpen
-  // The tile always means "talk to me": it opens the chat (closing the form),
-  // and only turns into a close button while the chat itself is open.
-  const onTile = () => {
-    if (chatOpen) closeChat()
-    else startChat()
-  }
-
-  const showNudge = !active && !nudgeDismissed && nudge !== 'off' && !isModalOpen
+    if (isModalOpen) setOpen(false)
+  }, [isModalOpen])
 
   return (
     <>
-      <div className={`bea-live${chatOpen ? ' is-active is-chatting' : ''}`}>
-        {showNudge && (
-          <div className="bea-nudge" role="status">
-            <button type="button" className="bea-nudge-x" aria-label={t('close')} onClick={dismissNudge}>
-              <X size={13} />
-            </button>
-            {nudge === 'typing' ? (
-              <span className="bea-typing" aria-label="…">
-                <i />
-                <i />
-                <i />
-              </span>
-            ) : (
-              <>
-                <p className="bea-nudge-title">{t('nudgeTitle')}</p>
-                <p className="bea-nudge-text">{t('nudgeText')}</p>
-                <div className="bea-nudge-actions">
-                  <button type="button" className="bea-nudge-primary" onClick={startChat}>
-                    {t('talkToMe')} <span aria-hidden="true">→</span>
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
-        )}
+      <button
+        type="button"
+        className={`bea-wrap${open ? ' is-active' : ''}`}
+        aria-label="Talk to Bea — open lead form"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <div className="bea-tooltip" aria-hidden={open}>
+          <div className="bea-tooltip-name">Hi, I&apos;m <em>Bea</em></div>
+          <div className="bea-tooltip-msg">Tell me what your agent should do — I&apos;ll build it on WhatsApp in minutes.</div>
+          <div className="bea-tooltip-cta">Build an agent <span>→</span></div>
+        </div>
+        <div className="bea-bot">
+          <span className="bea-ring" />
+          <span className="bea-ring r2" />
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <defs>
+              <linearGradient id="beaBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#F5F7FC" />
+                <stop offset="60%" stopColor="#D8DEF0" />
+                <stop offset="100%" stopColor="#A8B3CC" />
+              </linearGradient>
+              <linearGradient id="beaScreenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#1A1D27" />
+                <stop offset="100%" stopColor="#0A0C10" />
+              </linearGradient>
+              <radialGradient id="beaWingGrad" cx="50%" cy="40%" r="60%">
+                <stop offset="0%" stopColor="#A8E3C5" stopOpacity="0.95" />
+                <stop offset="60%" stopColor="#7FD6B0" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#7FD6B0" stopOpacity="0.4" />
+              </radialGradient>
+            </defs>
 
-        <button
-          type="button"
-          className="bea-tile"
-          aria-label={chatOpen ? t('close') : t('talkToMe')}
-          aria-expanded={chatOpen}
-          onClick={onTile}
-        >
-          <span className="bea-tile-media">
-            <video
-              ref={camRef}
-              src={CAM_SRC}
-              poster={FACE_SRC}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-hidden="true"
-              tabIndex={-1}
-            />
-          </span>
-          <span className="bea-tile-status" aria-hidden="true" title={t('online')} />
-          <span className="bea-tile-close" aria-hidden="true">
-            <X size={14} />
-          </span>
-        </button>
-      </div>
+            <ellipse className="bea-shadow" cx="50" cy="94" rx="22" ry="3" fill="#000" opacity="0.18" />
+
+            <g className="bea-wing left">
+              <ellipse cx="22" cy="36" rx="14" ry="20" fill="url(#beaWingGrad)" transform="rotate(-22 22 36)" />
+              <ellipse cx="22" cy="34" rx="6" ry="14" fill="#fff" opacity="0.35" transform="rotate(-22 22 34)" />
+            </g>
+            <g className="bea-wing right">
+              <ellipse cx="78" cy="36" rx="14" ry="20" fill="url(#beaWingGrad)" transform="rotate(22 78 36)" />
+              <ellipse cx="78" cy="34" rx="6" ry="14" fill="#fff" opacity="0.35" transform="rotate(22 78 34)" />
+            </g>
+
+            <g className="bea-antenna">
+              <path d="M 50 18 Q 50 10 50 6" stroke="#3C4658" strokeWidth="2" strokeLinecap="round" fill="none" />
+              <circle cx="50" cy="5" r="4" fill="#F5F7FC" stroke="#3C4658" strokeWidth="1" />
+              <circle cx="50" cy="5" r="2" fill="#7FD6B0">
+                <animate attributeName="opacity" values="1;0.4;1" dur="1.6s" repeatCount="indefinite" />
+              </circle>
+            </g>
+
+            <g className="bea-body">
+              <ellipse cx="50" cy="52" rx="32" ry="34" fill="url(#beaBodyGrad)" stroke="#A8B3CC" strokeWidth="0.5" />
+              <ellipse cx="40" cy="34" rx="14" ry="8" fill="#fff" opacity="0.55" />
+              <ellipse cx="50" cy="54" rx="22" ry="20" fill="url(#beaScreenGrad)" />
+              <ellipse cx="42" cy="42" rx="6" ry="3" fill="#fff" opacity="0.18" />
+
+              <g className="bea-eye" fill="none" stroke="#7FD6B0" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M 39 54 L 43 49 L 47 54" />
+                <path d="M 53 54 L 57 49 L 61 54" />
+              </g>
+
+              <g fill="#7FD6B0">
+                <circle className="bea-dot d1" cx="45" cy="62" r="1.4" />
+                <circle className="bea-dot d2" cx="50" cy="62" r="1.4" />
+                <circle className="bea-dot d3" cx="55" cy="62" r="1.4" />
+              </g>
+
+              <circle cx="20" cy="58" r="3" fill="#A8B3CC" />
+              <circle cx="80" cy="58" r="3" fill="#A8B3CC" />
+            </g>
+          </svg>
+        </div>
+      </button>
 
       {open && (
-        <div className={`bea-corner-form bea-at-right${pulse ? ' is-pulsing' : ''}`} role="dialog" aria-label="Talk to Bea">
-          <button type="button" className="bea-corner-close" onClick={() => setOpen(false)} aria-label="Minimize">
+        <div className={`bea-corner-form${pulse ? ' is-pulsing' : ''}`} role="dialog" aria-label="Talk to Bea">
+          <button
+            type="button"
+            className="bea-corner-close"
+            onClick={() => setOpen(false)}
+            aria-label="Minimize"
+          >
             <X size={16} />
           </button>
-          <div className="bea-form-head bea-form-head-live">
-            <span className="bea-head-face" aria-hidden="true">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={FACE_SRC} alt="" width={160} height={160} />
-              <i />
-            </span>
-            <div>
-              <h3>
-                {t('headTitle')} <em>{t('headTitleEm')}</em>
-              </h3>
-              <p>{t('headSubtitle')}</p>
-            </div>
+          <div className="bea-form-head">
+            <h3>{t('headTitle')} <em>{t('headTitleEm')}</em></h3>
+            <p>{t('headSubtitle')}</p>
           </div>
           <LeadGenerationForm />
-          {chatAvailable && (
-            <button type="button" className="bea-prefer-chat" onClick={startChat}>
-              {t('preferChat')} <span aria-hidden="true">→</span>
-            </button>
-          )}
         </div>
       )}
     </>

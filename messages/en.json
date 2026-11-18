@@ -2522,13 +2522,7 @@
     "beaForm": {
       "headTitle": "Hi, I'm",
       "headTitleEm": "Bea",
-      "headSubtitle": "See how many leads you're losing on WhatsApp — in 60 seconds, free.",
-      "online": "Online",
-      "talkToMe": "Talk to me",
-      "nudgeTitle": "Hey 👋 I'm Bea",
-      "nudgeText": "Got a question about Eazybe? Ask me anything, I reply right away.",
-      "preferChat": "Prefer to just chat? Talk to me",
-      "close": "Close"
+      "headSubtitle": "See how many leads you're losing on WhatsApp — in 60 seconds, free."
     },
     "finalCta": {
       "headline": "Your WhatsApp Team",

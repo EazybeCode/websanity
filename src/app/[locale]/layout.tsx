@@ -5,7 +5,6 @@ import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
 import { GlobalStructuredData } from '@/components/seo/GlobalStructuredData'
-import Script from 'next/script'
 import '../geist-fonts.css'
 import '../self-hosted-fonts.css'
 
@@ -102,6 +101,9 @@ export default async function LocaleLayout({
           </Providers>
           <Analytics />
         </NextIntlClientProvider>
+        {/* "Chat with us" website agent, paused for now (Bea's lead form is the
+            only assistant). To bring it back, restore this and
+            `import Script from 'next/script'`:
         <Script
           id="eazybe-website-agent"
           src="https://app.eazybe.com/widget.js"
@@ -109,6 +111,7 @@ export default async function LocaleLayout({
           strategy="afterInteractive"
           async
         />
+        */}
       </body>
     </html>
   )
