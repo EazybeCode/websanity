@@ -1,0 +1,306 @@
+/* Bea, the single on-page assistant: a live-looking video tile (bottom-right)
+   that opens the AI agent chat, plus the lead form re-anchored above it.
+   Brand v16 tokens: ink #0b0b0c, Eazybe Blue #2b59ff, hairline #e6e6e3, Geist. */
+
+:root:has(.bea-live) {
+  --bea-tile-w: 92px;
+  --bea-tile-h: 92px;
+  --bea-edge: 24px;
+}
+@media (max-width: 600px) {
+  :root:has(.bea-live) {
+    --bea-tile-w: 74px;
+    --bea-tile-h: 74px;
+    --bea-edge: 16px;
+  }
+}
+
+.bea-live {
+  position: fixed;
+  right: var(--bea-edge);
+  bottom: var(--bea-edge);
+  z-index: 9300;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  font-family: 'Geist', system-ui, sans-serif;
+}
+
+/* ---------- Face-cam bubble ---------- */
+.bea-tile {
+  position: relative;
+  width: var(--bea-tile-w);
+  height: var(--bea-tile-h);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #dcdcd8;
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 0 4px rgba(43, 89, 255, 0.35),
+    0 16px 36px -12px rgba(11, 11, 12, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  isolation: isolate;
+}
+.bea-tile:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 0 5px rgba(43, 89, 255, 0.6),
+    0 20px 42px -12px rgba(11, 11, 12, 0.5);
+}
+.bea-tile:focus-visible {
+  outline: 3px solid #2b59ff;
+  outline-offset: 5px;
+}
+/* Attention ring, like an incoming call. Stops while the chat is open. */
+.bea-tile::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(43, 89, 255, 0.5);
+  animation: bea-call 2.4s ease-out infinite;
+  pointer-events: none;
+}
+.bea-live.is-active .bea-tile::after {
+  animation: none;
+}
+
+.bea-tile-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.bea-tile-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* Online dot on the bubble's edge. */
+.bea-tile-status {
+  position: absolute;
+  right: 4%;
+  bottom: 4%;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 3px solid #fff;
+  animation: bea-dot 1.8s ease-out infinite;
+}
+
+/* Open state: the tile becomes the close control. */
+.bea-tile-close {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: none;
+  place-items: center;
+  background: #0b0b0c;
+  color: #fff;
+  box-shadow: 0 0 0 2px #fff;
+}
+.bea-live.is-active .bea-tile-close { display: grid; }
+.bea-live.is-active .bea-tile-status { opacity: 0; }
+
+/* ---------- Nudge bubble ---------- */
+.bea-nudge {
+  position: relative;
+  width: 248px;
+  max-width: calc(100vw - var(--bea-tile-w) - var(--bea-edge) * 2 - 12px);
+  margin-bottom: 10px;
+  padding: 14px 16px 14px;
+  border-radius: 16px 16px 4px 16px;
+  background: #fff;
+  border: 1px solid #e6e6e3;
+  box-shadow: 0 18px 40px -16px rgba(11, 11, 12, 0.3), 0 10px 30px rgba(43, 89, 255, 0.08);
+  color: #0b0b0c;
+  animation: bea-pop 0.28s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.bea-nudge-x {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #8a8c93;
+  cursor: pointer;
+}
+.bea-nudge-x:hover { background: #f4f4f2; color: #0b0b0c; }
+.bea-live .bea-nudge-title {
+  margin: 0 18px 4px 0;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.bea-live .bea-nudge-text {
+  margin: 0 0 12px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #5a5c64;
+}
+.bea-nudge-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.bea-live .bea-nudge .bea-nudge-actions button {
+  display: inline-flex !important;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  height: 32px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 12px !important;
+  border-radius: 8px !important;
+  font-family: 'Geist', system-ui, sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.bea-live .bea-nudge .bea-nudge-actions .bea-nudge-primary {
+  border: 1px solid #2b59ff !important;
+  background: #2b59ff !important;
+  color: #fff !important;
+}
+.bea-live .bea-nudge .bea-nudge-actions .bea-nudge-primary:hover { background: #1f47e0 !important; border-color: #1f47e0 !important; }
+.bea-live .bea-nudge .bea-nudge-actions .bea-nudge-ghost {
+  border: 1px solid #e6e6e3 !important;
+  background: #fff !important;
+  color: #0b0b0c !important;
+}
+.bea-live .bea-nudge .bea-nudge-actions .bea-nudge-ghost:hover { border-color: #2b59ff !important; color: #2b59ff !important; }
+
+.bea-typing {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px 2px;
+}
+.bea-typing i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8a8c93;
+  animation: bea-typing 1s ease-in-out infinite;
+}
+.bea-typing i:nth-child(2) { animation-delay: 0.15s; }
+.bea-typing i:nth-child(3) { animation-delay: 0.3s; }
+
+@media (max-width: 600px) {
+  .bea-nudge { padding: 12px 14px; }
+  .bea-nudge-text { margin-bottom: 10px; }
+  .bea-live .bea-nudge .bea-nudge-actions button { height: 30px !important; padding: 0 10px !important; font-size: 12px !important; }
+}
+
+/* ---------- Lead form: anchored above the tile on the right ---------- */
+body .bea-corner-form.bea-at-right {
+  left: auto !important;
+  right: var(--bea-edge) !important;
+  bottom: calc(var(--bea-edge) + var(--bea-tile-h) + 14px) !important;
+  max-height: calc(100dvh - var(--bea-tile-h) - var(--bea-edge) - 90px) !important;
+}
+@media (max-width: 600px) {
+  body .bea-corner-form.bea-at-right {
+    left: var(--bea-edge) !important;
+    width: auto !important;
+  }
+}
+
+.bea-corner-form .bea-form-head.bea-form-head-live {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-right: 26px;
+}
+.bea-head-face {
+  position: relative;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  margin-top: 2px;
+}
+.bea-head-face img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px rgba(43, 89, 255, 0.35);
+}
+.bea-head-face i {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 2px solid #fff;
+}
+
+.bea-corner-form .bea-prefer-chat {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 6px 0 0;
+  border: 0;
+  background: transparent;
+  color: #2b59ff;
+  font-family: 'Geist', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+.bea-corner-form .bea-prefer-chat:hover { text-decoration: underline; }
+
+/* ---------- Motion ---------- */
+@keyframes bea-dot {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  100% { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+}
+@keyframes bea-call {
+  0% { box-shadow: 0 0 0 0 rgba(43, 89, 255, 0.5); }
+  70%, 100% { box-shadow: 0 0 0 12px rgba(43, 89, 255, 0); }
+}
+@keyframes bea-pop {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes bea-typing {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bea-tile-status,
+  .bea-tile::after,
+  .bea-nudge,
+  .bea-typing i { animation: none !important; }
+}
+
+.bea-live .bea-tile-close svg {
+  width: 14px;
+  height: 14px;
+  stroke: #fff !important;
+  color: #fff;
+}

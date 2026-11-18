@@ -2660,7 +2660,13 @@
     "beaForm": {
       "headTitle": "Merhaba, ben",
       "headTitleEm": "Bea",
-      "headSubtitle": "WhatsApp'ta kaç lead kaybettiğinizi görün — 60 saniyede, ücretsiz."
+      "headSubtitle": "WhatsApp'ta kaç lead kaybettiğinizi görün — 60 saniyede, ücretsiz.",
+      "online": "Çevrimiçi",
+      "talkToMe": "Benimle konuş",
+      "nudgeTitle": "Merhaba 👋 ben Bea",
+      "nudgeText": "Eazybe hakkında sorun mu var? Ne istersen sor, hemen yanıtlarım.",
+      "preferChat": "Sadece sohbet mi? Benimle konuş",
+      "close": "Kapat"
     },
     "finalCta": {
       "headline": "WhatsApp ekibiniz,",
