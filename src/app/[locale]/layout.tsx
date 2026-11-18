@@ -99,8 +99,8 @@ export default async function LocaleLayout({
         </NextIntlClientProvider>
         <Script
           id="eazybe-website-agent"
-          src="https://dev-app.eazybe.com/widget.js"
-          data-agent-id="6aaa473968b8e813a33217fc"
+          src="https://app.eazybe.com/widget.js"
+          data-agent-id="6acf15d781a011218497a0f2"
           strategy="afterInteractive"
           async
         />
