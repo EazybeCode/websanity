@@ -31,9 +31,10 @@ document.querySelectorAll('#companies .company-logo img').forEach(img => { const
     const observer = new IntersectionObserver(entries => { for (const entry of entries)
         if (entry.isIntersecting)
             reveal(entry.target); }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
-    for (const el of boxes) {
-        if (el.getBoundingClientRect().top < innerHeight)
-            continue;
+    // Measure every box before touching any class: interleaving the reads with
+    // classList writes forced a full layout per box (Lighthouse "forced reflow").
+    const below = boxes.filter(el => el.getBoundingClientRect().top >= innerHeight);
+    for (const el of below) {
         el.classList.add('b220-ready');
         observer.observe(el);
     }
@@ -50,7 +51,7 @@ document.querySelectorAll('#companies .company-logo img').forEach(img => { const
     a.setAttribute('aria-current', 'true');
 else
     a.removeAttribute('aria-current'); }); } let pending = false; addEventListener('scroll', () => { if (pending)
-    return; pending = true; requestAnimationFrame(() => { sync(); pending = false; }); }, { passive: true }); sync(); })();
+    return; pending = true; requestAnimationFrame(() => { sync(); pending = false; }); }, { passive: true }); requestAnimationFrame(sync); })();
 (() => { const section = document.getElementById('integrations'), buttons = [...section.querySelectorAll('.c209-brands>button')]; function lum(hex) { const c = hex.slice(1).match(/../g).map(x => parseInt(x, 16) / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4); return c[0] * .2126 + c[1] * .7152 + c[2] * .0722; } function select(b) { const l = lum(b.dataset.crmBg), dark = lum('#080d16'), ink = (l + .05) / (dark + .05) > 1.05 / (l + .05) ? '#080d16' : '#ffffff'; section.style.setProperty('--crm-bg', b.dataset.crmBg); section.style.setProperty('--crm-accent', b.dataset.crmAccent); section.style.setProperty('--crm-ink', ink); buttons.forEach(x => x.setAttribute('aria-pressed', String(x === b))); const img = section.querySelector('.crm-real258 img'); img.src = b.dataset.crmScreen; img.alt = b.dataset.crmName + ': ' + b.dataset.crmView; section.querySelector('.crm-real258').href = b.dataset.crmScreen; section.querySelector('.c209-foot a').href = b.dataset.crmScreen; section.querySelector('.c209-foot span').textContent = b.dataset.crmName + ' · ' + b.dataset.crmView; } buttons.forEach(b => listen(b, 'click', () => select(b))); select(buttons[0]); })();
 (() => { const stories = [...document.querySelectorAll('#insights .sales-story299')], panels = [...document.querySelectorAll('#insights .sales-live299')]; function select(index) { stories.forEach((el, i) => { el.classList.toggle('is-active', i === index); el.querySelector('button').setAttribute('aria-current', i === index ? 'step' : 'false'); panels[i].hidden = i !== index; }); } function sync() { if (innerWidth <= 540)
     return; let active = 0; stories.forEach((el, i) => { if (el.getBoundingClientRect().top < innerHeight * .5)
@@ -58,7 +59,7 @@ else
     el.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); })); let pending = false; addEventListener('scroll', () => { if (!pending) {
     pending = true;
     requestAnimationFrame(() => { pending = false; sync(); });
-} }, { passive: true }); addEventListener('resize', sync); sync(); })();
+} }, { passive: true }); addEventListener('resize', sync); requestAnimationFrame(sync); })();
 (() => { if (matchMedia('(prefers-reduced-motion: reduce)').matches)
     return; const seen = new WeakSet(); function show(el, delay = 0) { if (seen.has(el))
     return; seen.add(el); el.style.setProperty('--first-delay306', delay + 'ms'); el.classList.add('first-box306'); } if ('IntersectionObserver' in window) {

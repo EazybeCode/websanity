@@ -1,0 +1,39 @@
+/* Site-wide "MCP is live" announcement bar, rendered by Nav above the floating nav. */
+.mcp-launch-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 101;
+  height: 40px; padding: 0 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(90deg, #1E3BC9 0%, #2B59FF 50%, #4B6BFF 100%);
+  color: #fff;
+  font-family: 'Geist', -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13.5px; line-height: 1;
+}
+.mcp-launch-bar .mcp-launch-link {
+  display: flex; align-items: center; gap: 10px; min-width: 0;
+  color: #fff; text-decoration: none;
+}
+.mcp-launch-bar .mcp-launch-tag {
+  flex: none; padding: 4px 7px; border-radius: 5px;
+  background: rgba(255, 255, 255, .2);
+  font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600; letter-spacing: .04em;
+}
+.mcp-launch-bar .mcp-launch-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mcp-launch-bar .mcp-launch-cta { flex: none; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.mcp-launch-bar .mcp-launch-close {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  display: grid; place-items: center; width: 28px; height: 28px; border-radius: 6px;
+  border: 0; background: transparent; color: rgba(255, 255, 255, .85); cursor: pointer;
+}
+.mcp-launch-bar .mcp-launch-close:hover { background: rgba(255, 255, 255, .15); color: #fff; }
+
+/* While the bar is showing: make room for it above the page and push the fixed nav
+   below it. Specificity is raised to beat the full-width nav overrides in
+   brand-pages.css and site-integration.css, which pin the nav to top: 0. */
+body:has(.mcp-launch-bar) { padding-top: 40px; }
+body:has(.mcp-launch-bar) .landing .nav.nav.nav.nav { top: 54px; }
+body:has(.mcp-launch-bar) :is(.landing:has(> main .v16-brand), .approved-site-nav) .nav.nav.nav.nav { top: 40px; }
+
+@media (max-width: 640px) {
+  .mcp-launch-bar { padding: 0 40px 0 12px; justify-content: flex-start; font-size: 12.5px; }
+  .mcp-launch-bar .mcp-launch-tag { display: none; }
+}

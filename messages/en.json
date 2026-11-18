@@ -131,7 +131,7 @@
   "footerCta": {
     "headline": "Ready To Automate",
     "headlineHighlight": "Your WhatsApp Sales?",
-    "subheadline": "Join 2,000+ teams using Eazybe to capture leads, automate follow-ups, and sync every conversation with their CRM."
+    "subheadline": "Join 30,000+ users who rely on Eazybe to capture leads, automate follow-ups, and sync every conversation with their CRM."
   },
   "language": {
     "select": "Language",
@@ -175,7 +175,7 @@
     "free": "Free",
     "trustSignals": {
       "gdprCompliant": "GDPR Compliant",
-      "setupTime": "Setup in 5 minutes",
+      "setupTime": "Setup in 2 minutes",
       "freeTrial": "4-day free trial",
       "noCreditCard": "No credit card required"
     },
@@ -301,7 +301,7 @@
       },
       {
         "question": "Which CRMs do you integrate with?",
-        "answer": "Starter integrates with HubSpot, Zoho CRM, Bitrix24, and Google Sheets. Scaler adds Salesforce and webhook integrations for custom CRMs. Omnis includes dedicated APIs and sync to deals/tickets."
+        "answer": "Starter integrates with HubSpot, Zoho CRM, Bitrix24, and Google Sheets. Scaler adds Salesforce and webhook integrations for custom CRMs."
       },
       {
         "question": "Can I switch plans later?",
@@ -1486,7 +1486,7 @@
           },
           {
             "question": "How long does setup take?",
-            "answer": "Most teams are up and running in under 5 minutes. Just scan a QR code and you're ready."
+            "answer": "Most teams are up and running in about 2 minutes. Just scan a QR code and you're ready."
           },
           {
             "question": "Is my data secure?",
@@ -1790,9 +1790,13 @@
     "sidebar": {
       "badge": "Free Trial",
       "headline": "Transform Your WhatsApp Sales",
-      "description": "Join 1,000+ businesses using Eazybe to manage conversations.",
+      "description": "Join 30,000+ users who manage their conversations with Eazybe.",
       "buttonText": "Install for Free",
-      "footnote": "No credit card required"
+      "footnote": "No credit card required",
+      "appTitle": "Scan to download the mobile app",
+      "appGetItOn": "GET IT ON",
+      "appBadgeAria": "Get Eazybe on Google Play",
+      "appQrAlt": "QR code to download the Eazybe app on Google Play"
     },
     "newsletter": {
       "headline": "Enjoyed this article?",
@@ -1819,7 +1823,7 @@
       "feature1": "Real-time sync for 1-on-1 and Group Chats.",
       "feature2": "Automatic association with open Deals and Tickets.",
       "feature3": "Complete conversation history retained when reps leave.",
-      "startTrial": "Start 7-Day Free Trial",
+      "startTrial": "Start 4-Day Free Trial",
       "bookDemo": "Book a Demo",
       "metaPartner": "Business Partner",
       "appPartner": "App Partner"
@@ -2125,7 +2129,7 @@
     "redirecting": "Redirecting to Chrome Web Store..."
   },
   "partner": {
-    "heroBadge": "Join 30,000+ Successful Partners Worldwide",
+    "heroBadge": "Partner With a Product Used by 30,000+ Users",
     "heroHeadline": "Earn Upto 30% Commission As An",
     "heroHighlight": "EazyBe Partner",
     "heroSubheadline": "Earn up to 30% commission for every customer you refer successfully. Free to join and only takes 5 minutes to apply.",
@@ -2333,7 +2337,7 @@
     ],
     "finalCtaTitle": "Ready to grow with us?",
     "finalCtaDesc": "Start Earning with Eazybe Today",
-    "finalCtaSubtext": "Join 30,000+ partners worldwide who are earning up to 50% revenue share while helping businesses transform their WhatsApp communication.",
+    "finalCtaSubtext": "Partner with Eazybe, used by 30,000+ users worldwide, and earn up to 50% revenue share while helping businesses transform their WhatsApp communication.",
     "talkToTeam": "Talk to Partnership Team"
   },
   "notFound": {
@@ -2357,7 +2361,7 @@
       "titleHighlight": "#1 Choice",
       "titleSuffix": "for Whatsapp CRM",
       "subtitle": "See how Eazybe compares to 20+ leading WhatsApp CRM platforms. More features, better integrations, and unbeatable pricing - all in one powerful platform.",
-      "ctaPrimary": "Start 7-Day Free Trial",
+      "ctaPrimary": "Start 4-Day Free Trial",
       "ctaSecondary": "Compare Features",
       "stats": {
         "activeUsers": "Active Users",
@@ -2375,6 +2379,7 @@
       "recommended": "RECOMMENDED",
       "installFree": "Install for Free",
       "limited": "Limited",
+      "fourDays": "4 Days",
       "sevenDays": "7 Days",
       "categories": {
         "core": "Core Features",
@@ -2428,7 +2433,7 @@
       "securityTitle": "Enterprise Security",
       "securityDesc": "GDPR compliant, Meta Business Partner verified, with bank-grade encryption and data protection.",
       "setupTitle": "Fastest Setup",
-      "setupDesc": "Get started in under 5 minutes. No setup fees or credit card required for trial.",
+      "setupDesc": "Get started in 2 minutes. No setup fees or credit card required for trial.",
       "userBaseTitle": "Largest User Base",
       "userBaseDesc": "Trusted by 30,000+ businesses worldwide - more users than all other WhatsApp CRMs combined."
     },
@@ -2437,7 +2442,7 @@
       "subtitle": "Join 30,000+ businesses already using Eazybe to close more deals, provide better support, and scale their operations.",
       "primary": "Start Your Free Trial",
       "secondary": "Book a Demo",
-      "footnote": "No credit card required - 7-day free trial - Cancel anytime"
+      "footnote": "No credit card required - 4-day free trial - Cancel anytime"
     },
     "faq": {
       "badge": "FAQ",
@@ -2450,15 +2455,15 @@
       "q3": "What exclusive features does Eazybe offer?",
       "a3": "Eazybe offers exclusive features you won't find anywhere else: WhatsApp Chat Backup, Salesforce Integration, WhatsApp Web Copilot, Revenue Inbox, RevOps Agent, AI Unreplied Chats Agent, and Bitrix24 Integration. These features are not available on Wati, Interakt, QuickReply, Cooby, Timelines, or Rasayel.",
       "q4": "Is Eazybe suitable for enterprise teams?",
-      "a4": "Absolutely! Eazybe serves businesses of all sizes. Our Omnis plan includes dedicated APIs, unlimited message sync, Revenue Inbox, RevOps Agent, and a dedicated account manager for enterprise teams. We scale with your business needs.",
+      "a4": "Absolutely! Eazybe serves businesses of all sizes. We scale with your business needs.",
       "q5": "Can I migrate from another platform?",
       "a5": "Yes! We make migration easy from any WhatsApp CRM platform. Import your existing contacts, messages, and workflows. Our team provides free migration support for annual plans to ensure a smooth transition from Wati, Interakt, QuickReply, Cooby, or any other platform.",
       "q6": "What integrations does Eazybe support?",
       "a6": "Eazybe integrates with 10+ platforms including HubSpot, Salesforce, Zoho CRM, Bitrix24, Google Sheets, Pipedrive, Monday.com, LeadSquared, Freshdesk, Google Calendar, and custom webhooks for any other platform. More integrations than any other WhatsApp CRM.",
       "q7": "Is there a free trial?",
-      "a7": "Yes! We offer a 7-day free trial on all plans with no credit card required. You can explore all features, test integrations, and see how Eazybe fits your workflow before committing.",
+      "a7": "Yes! We offer a 4-day free trial on all plans with no credit card required. You can explore all features, test integrations, and see how Eazybe fits your workflow before committing.",
       "q8": "How quickly can I get Eazybe up and running?",
-      "a8": "Most teams are live in under 15 minutes. Install the Chrome extension, connect your CRM with one click, and WhatsApp conversations start syncing in real time — no developers, no IT tickets, no week-long onboarding like with API-only competitors."
+      "a8": "Most teams are live in 2 minutes. Install the Chrome extension, connect your CRM with one click, and WhatsApp conversations start syncing in real time — no developers, no IT tickets, no week-long onboarding like with API-only competitors."
     },
     "articles": {
       "badge": "Comparison Articles",
@@ -2485,8 +2490,8 @@
       "ctaStartFree": "Start Free →",
       "ctaBookDemo": "Book A Demo",
       "ctaFootnote": "Free forever plan · No credit card required",
-      "trustHubspot": "4.6 on HubSpot",
-      "trustTeams": "2,000+ sales teams",
+      "trustHubspot": "4.3 on HubSpot",
+      "trustTeams": "30,000+ users",
       "trustCountries": "40+ countries",
       "trustMeta": "Meta Business Partner"
     },
@@ -2500,18 +2505,18 @@
       "footnote": "Didn't find your answer?",
       "footnoteLink": "Let's connect with us!",
       "items": [
-        { "q": "What is Eazybe?", "a": "Eazybe is a Chrome extension that turns the WhatsApp Web your team already uses into a sales tool. It syncs every chat into HubSpot, Salesforce, Zoho or whichever CRM you run, and adds AI agents that qualify leads and keep records updated while reps keep their own numbers. Over 2,000 sales teams use it, and there is a free tier to start on." },
+        { "q": "What is Eazybe?", "a": "Eazybe is a Chrome extension that turns the WhatsApp Web your team already uses into a sales tool. It syncs every chat into HubSpot, Salesforce, Zoho or whichever CRM you run, and adds AI agents that qualify leads and keep records updated while reps keep their own numbers. It has over 30,000 users, and there is a free tier to start on." },
         { "q": "How does Eazybe work?", "a": "You install the extension, open WhatsApp Web and connect your CRM with one click, which takes about ten minutes in total. From then on chats, contacts and attachments log themselves to the right record. The AI agents spend two or three days learning from your conversation history, then start qualifying leads and drafting replies on their own." },
-        { "q": "What is a WhatsApp AI Agent and how does it work?", "a": "A WhatsApp AI Agent is an autonomous AI program that reads, understands and replies to WhatsApp messages on behalf of a business. It uses large language models to qualify leads, answer support tickets, sync chats to your CRM and trigger workflows in real time. Eazybe installs as a Chrome extension on WhatsApp Web and works in 10 minutes with no code required." },
+        { "q": "What is a WhatsApp AI Agent and how does it work?", "a": "A WhatsApp AI Agent is an autonomous AI program that reads, understands and replies to WhatsApp messages on behalf of a business. It uses large language models to qualify leads, answer support tickets, sync chats to your CRM and trigger workflows in real time. Eazybe installs as a Chrome extension on WhatsApp Web and works in 2 minutes with no code required." },
         { "q": "How is a WhatsApp AI Agent different from a chatbot like WATI or Gallabox?", "a": "Chatbots follow scripts and break the moment a customer says something off-script. A WhatsApp AI Agent uses generative AI to read full conversation context, your CRM history and your top reps' style then writes a reply that sounds human and updates your pipeline at the same time." },
         { "q": "Do I need the WhatsApp Business API to use an AI agent?", "a": "No, Eazybe works with Personal WhatsApp and the WhatsApp Business App and the WhatsApp Cloud API simultaneously. No number switching, no migration, no IT project." },
         { "q": "Can I try the WhatsApp AI Agent before committing?", "a": "Yes, Click Talk to our Agent on WhatsApp anywhere on this page. Our live Lead Qualification Agent will qualify you in under 60 seconds exactly the experience your own leads would have." },
         { "q": "Which CRMs does the Eazybe WhatsApp AI Agent integrate with?", "a": "HubSpot, Salesforce, Zoho CRM, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheet and any other system via webhooks or REST API. One-click OAuth, bi-directional sync, no manual data entry." },
-        { "q": "How long does it take to deploy a WhatsApp AI Agent?", "a": "CRM Sync goes live in 10 minutes. AI agents take 2 to 3 days to train on your conversation history and reach production quality. After that, the agent runs 24/7 without supervision." },
+        { "q": "How long does it take to deploy a WhatsApp AI Agent?", "a": "CRM Sync goes live in 2 minutes. AI agents take 2 to 3 days to train on your conversation history and reach production quality. After that, the agent runs 24/7 without supervision." },
         { "q": "Is Eazybe a no-code WhatsApp AI Agent platform?", "a": "Yes, Non-technical ops leads can design and deploy custom agents with drag-and-drop Agent Builder no scripts, no code, no engineering tickets." },
         { "q": "Is my WhatsApp and CRM data secure with Eazybe?", "a": "Yes. End-to-end encryption in transit and at rest. Meta Business Partner. GDPR compliant. SOC 2 Type II certified. We never store WhatsApp credentials on our servers." },
         { "q": "How is a WhatsApp AI Agent different from Gong or Chorus?", "a": "Gong and Chorus record scheduled calls. A WhatsApp AI Agent works on the ongoing chat conversations where most deals in WhatsApp-first regions actually move 24/7, not just during meetings." },
-        { "q": "What is the best WhatsApp AI Agent for sales teams?", "a": "Eazybe is one of the top WhatsApp AI Agent platforms for sales teams. It scores 4.6 on HubSpot, serves 2,000+ revenue teams across 40+ countries, and runs as a Chrome extension over the WhatsApp Web reps already use. Free forever tier available." }
+        { "q": "What is the best WhatsApp AI Agent for sales teams?", "a": "Eazybe is one of the top WhatsApp AI Agent platforms for sales teams. It scores 4.3 on HubSpot, has 30,000+ users across 40+ countries, and runs as a Chrome extension over the WhatsApp Web reps already use. Free forever tier available." }
       ]
     },
     "beaForm": {
@@ -2525,8 +2530,8 @@
       "subtitle": "WhatsApp Agents that know your CRM, read your chats and sell like your best reps 24/7.",
       "talkToAgent": "Talk to our Agent on WhatsApp →",
       "bookDemo": "Book a Demo",
-      "trustHubspot": "4.6 on HubSpot",
-      "trustTeams": "2,000+ sales teams",
+      "trustHubspot": "4.3 on HubSpot",
+      "trustTeams": "30,000+ users",
       "trustCountries": "40+ countries",
       "trustMeta": "Meta Business Partner",
       "trustCompliance": "GDPR · SOC 2 Type II",
@@ -2550,7 +2555,7 @@
     "bannerCta": {
       "eyebrow": "NEW · CUSTOM AGENT BUILDER",
       "headline": "Get No-Code WhatsApp AI Agents Trained On Your Best Reps.",
-      "subtitle": "Live in 10 minutes. No code, no migration, no IT team.",
+      "subtitle": "Live in 2 minutes. No code, no migration, no IT team.",
       "button": "🤖 Build Mine"
     },
     "midCta": {
@@ -2560,8 +2565,8 @@
       "subtitle": "Our Lead Qualification Agent is online. Send it a message that will qualify you in 60 seconds, exactly the way your own leads would experience it.",
       "primaryCta": "Talk to our WhatsApp AI Agent",
       "secondaryCta": "Book a Free Demo",
-      "trustHubspot": "4.6 on HubSpot",
-      "trustTeams": "2,000+ sales teams",
+      "trustHubspot": "4.3 on HubSpot",
+      "trustTeams": "30,000+ users",
       "trustCountries": "40+ countries"
     },
     "problem": {
@@ -2712,7 +2717,7 @@
       "deployBtn": "Deploy Agent"
     },
     "logoBar": {
-      "trustedBy": "— Trusted by 2,000+ revenue teams worldwide —"
+      "trustedBy": "— Trusted by 30,000+ users worldwide —"
     },
     "howItWorks": {
       "tag": "Get Started",
@@ -2769,6 +2774,31 @@
       "pricing": "Pricing"
     },
     "nav": {
+      "mcp": "MCP",
+      "featured": "Featured",
+      "mcpFeaturedLead": "Eazybe MCP",
+      "mcpFeaturedText": "connects your WhatsApp, calls and CRM to Claude and Codex.",
+      "intMonday": "monday.com WhatsApp",
+      "intMondayDesc": "Sync chats to your boards",
+      "calling": "Calling",
+      "callingProducts": "Calling Products",
+      "callingCompare": "Compare",
+      "callingAutoName": "Auto Dialer",
+      "callingAutoDesc": "Call through a list without dialing by hand",
+      "callingVirtualName": "Virtual Phone Numbers",
+      "callingVirtualDesc": "One business line for calls, SMS and WhatsApp",
+      "callingTrackName": "Call Tracking",
+      "callingTrackDesc": "See every rep call inside your CRM",
+      "callingSimName": "SIM-Based Calling",
+      "callingSimDesc": "Track calls from reps' own Android phones",
+      "callingRecName": "Call Recording",
+      "callingRecDesc": "Recordings saved back to the contact",
+      "callingVsName": "SIM vs Cloud Calling",
+      "callingVsDesc": "Which one fits your sales team",
+      "callingAllName": "All Calling",
+      "callingAllDesc": "SIM and virtual calling in one place",
+      "mcpWorksWith": "Works with",
+      "mcpCta": "Connect Eazybe MCP",
       "agents": "Agents",
       "integrations": "Integrations",
       "agentBuilder": "Agent Builder",
@@ -2841,7 +2871,7 @@
       "comparison": "Comparison",
       "aboutUs": "About Us",
       "integrations": "Integrations",
-      "integrationSuffix": "WhatsApp Integration",
+      "integrationName": "{name} WhatsApp Integration",
       "whatsappApi": "WhatsApp API",
       "whatsappApiOverview": "WhatsApp API Overview",
       "coexistence": "Coexistence",
@@ -2857,6 +2887,7 @@
       "allTools": "All Tools",
       "toolPricingCalc": "WhatsApp Pricing Calculator",
       "toolRoiCalc": "Marketing ROI Calculator",
+      "toolCallCenterRoi": "Call Center ROI Calculator",
       "toolQr": "WhatsApp QR Code Generator",
       "toolChatLink": "WhatsApp Chat Link Generator",
       "toolChatWidget": "WhatsApp Chat Widget",
@@ -2891,6 +2922,7 @@
       "step4": "Done — every new post arrives automatically"
     },
     "footer": {
+      "itemMcp": "WhatsApp MCP",
       "tagline": "WhatsApp AI agents for CRM teams. Built for the way sales actually happens.",
       "connectLabel": "Connect with us:",
       "securityTitle": "We take security seriously.",
@@ -2904,9 +2936,12 @@
       "msa": "MSA",
       "sitemap": "Sitemap",
       "rss": "RSS Feed",
+      "security": "Security",
       "weAccept": "We accept",
       "moreCount": "+2 more",
       "disclaimer": "Disclaimer: Eazybe is an independent product and is not affiliated with, endorsed by, or sponsored by WhatsApp LLC or Meta Platforms, Inc. WhatsApp is a trademark of WhatsApp LLC, registered in the U.S. and other countries. HubSpot, Salesforce, Zoho, Pipedrive, and all other third-party brands and logos referenced on this site are trademarks of their respective owners. Use of Eazybe is subject to WhatsApp's Business Policy and the terms of each connected service. Users are solely responsible for ensuring their messaging practices comply with applicable laws, anti-spam regulations, and platform policies in their jurisdiction.",
+      "colCalling": "Calling",
+      "itemCallingAll": "All Calling →",
       "colAgents": "Agents",
       "colIntegrations": "Integrations",
       "colFeatures": "Features",
@@ -2959,24 +2994,24 @@
       "itemAbout": "WhatsApp AI sales agents, CRM integration, sales automation",
       "h0": "What Is A WhatsApp AI Agent?",
       "p0a": "A WhatsApp AI Agent is an autonomous AI program that reads and understands and responds to WhatsApp messages on behalf of a business. Unlike a rule based chatbot that follows fixed scripts a WhatsApp AI Agent uses large language models to qualify leads and answer support questions and sync conversations to your CRM and trigger sales workflows in real time.",
-      "p0b": "Eazybe builds no-code WhatsApp AI agents trained on your top reps' real conversations. They install in 10 minutes as a Chrome extension run alongside the WhatsApp Web your team already uses and write every interaction back into HubSpot, Salesforce, Zoho, Pipedrive, and 5+ other CRMs.",
+      "p0b": "Eazybe builds no-code WhatsApp AI agents trained on your top reps' real conversations. They install in 2 minutes as a Chrome extension, run alongside the WhatsApp Web your team already uses and write every interaction back into HubSpot, Salesforce, Zoho, Pipedrive, and 5+ other CRMs.",
       "h1": "Why Do WhatsApp AI Agents Outperform Traditional Chatbots And CRMs?",
-      "p1a": "Sales reps want three things from their tooling speed, context and memory of what was already said. Most WhatsApp chatbots miss two of those, and most CRMs miss all three because they aren't in the conversation in the first place. A WhatsApp AI Agent like Eazybe sits between. It reads each chat as it happens, writes back to your CRM, and answers leads at 3am the same way it does at 3pm.",
-      "p1b": "That part matters more than it sounds. A lead who messages at 11pm is roughly twice as likely to convert if they get a real reply in a minute versus waiting until the next morning. Your WhatsApp AI Agent handles the night-shift conversation. The rep picks it up the next day with the full thread already logged in HubSpot or Salesforce.",
+      "p1a": "Sales reps want three things from their tooling: speed, context and memory of what was already said. Most WhatsApp chatbots miss two of those, and most CRMs miss all three because they aren't in the conversation in the first place. A WhatsApp AI Agent like Eazybe sits between. It reads each chat as it happens, writes back to your CRM, and answers leads at 3am the same way it does at 3pm.",
+      "p1b": "Leads don't wait politely. Someone who messages at 11pm and gets a real answer within a minute is usually still interested in the morning; someone who hears nothing often isn't. Your WhatsApp AI Agent takes the night-shift conversation, and the rep picks it up the next day with the full thread already logged in HubSpot or Salesforce.",
       "p1c": "Different agents handle different stages. Lead Qualification screens inbound. Revenue Ops watches deals that have gone quiet. Customer Success picks up support and renewals. Agent Builder is the escape hatch for anything custom (renewal nudges, post-demo recaps, NPS pings). They share the same context, so a deal that starts in qualification doesn't lose its history when it moves to closing.",
       "p1d": "Net effect: less manual data entry, fewer threads that die out of nowhere, and pipelines that match what's actually happening in chat.",
       "h2": "Key Features Of The Best WhatsApp AI Agent",
-      "p2a": "Most WhatsApp tools fall into two camps. Scripted chatbots break the moment a customer say something the script did not anticipate. CRM plugins mirror messages without understanding them. The best WhatsApp AI Agent platforms sit in a third category: agents that read what's being said and write back to the right record.",
+      "p2a": "Most WhatsApp tools fall into two camps. Scripted chatbots break the moment a customer says something the script did not anticipate. CRM plugins mirror messages without understanding them. The best WhatsApp AI Agent platforms sit in a third category: agents that read what's being said and write back to the right record.",
       "p2b": "What sales and support teams use Eazybe for day to day",
       "list2": [
-        "Two-way CRM sync into HubSpot, Salesforce Zoho, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets plus webhooks for anything else.",
+        "Two-way CRM sync into HubSpot, Salesforce, Zoho, Pipedrive, Bitrix24, LeadSquared, Freshworks, Google Sheets, plus webhooks for anything else.",
         "24/7 inbound qualification using BANT, MEDDIC, or whatever framework your team already runs.",
         "Ghosted-deal alerts. If a deal has not moved in 48 hours the Revenue Agent flags it and drafts a follow-up in the rep's voice.",
         "Reply training from your top reps' real conversations, so the AI ends up sounding like your team and not a chatbot.",
         "Broadcast tooling with rate-limiting and pacing so your WhatsApp number doesn't get flagged by Meta.",
         "No-code Agent Builder for ops leads who want to ship custom AI agents for WhatsApp without filing an engineering ticket.",
         "Coexistence with Personal WhatsApp, the Business App, and the Cloud API at the same time. No one has to switch numbers.",
-        "End-to-end encryption in transit and at rest. Meta Business Partner, GDPR SOC 2 Type II."
+        "End-to-end encryption in transit and at rest. Meta Business Partner, GDPR, SOC 2 Type II."
       ],
       "h3": "WhatsApp AI Agent vs. Traditional Chatbots And CRMs",
       "p3a": "The usual stack is a WhatsApp Business App and a CRM and a chatbot of some kind and a meeting-notes tool. Each owns a slice of the customer relationship and none of them talk to each other. Eazybe handles the live conversation itself and writes it back to the CRM you already pay for, so the rest of the stack doesn't have to translate.",
@@ -2994,11 +3029,11 @@
       "h4": "Who Should Use A WhatsApp AI Agent?",
       "p4a": "Eazybe's WhatsApp AI Agent is built for teams already living in WhatsApp whose CRM is the part that lags. More specifically:",
       "list4": [
-        "High-volume inbound teams in D2C, real estate education and travel. Hundreds of WhatsApp messages a day with no realistic way to log them manually.",
+        "High-volume inbound teams in D2C, real estate, education and travel. Hundreds of WhatsApp messages a day with no realistic way to log them manually.",
         "Outbound SDRs running cadences on WhatsApp instead of email who still need everything written back to HubSpot or Salesforce.",
-        "Founder led startups where the founder is the top closer and the rest of the team is trying to clone that style as the company grows.",
+        "Founder-led startups where the founder is the top closer and the rest of the team is trying to clone that style as the company grows.",
         "Customer success teams handling support and renewals over WhatsApp who'd rather use a knowledge-base-aware agent than a brittle FAQ bot.",
-        "Sales orgs across India Brazil MENA LATAM and Southeast Asia where WhatsApp is the primary sales channel and not an afterthought.",
+        "Sales orgs across India, Brazil, MENA, LATAM and Southeast Asia where WhatsApp is the primary sales channel and not an afterthought.",
         "RevOps and managers who want one dashboard that shows which deals are alive, which are stalled and which reps are actually selling."
       ],
       "h5": "Choosing The Right WhatsApp AI Agent Provider",
@@ -3006,5 +3041,309 @@
       "p5b": "Eazybe is one of the top WhatsApp AI Agent platforms doing exactly that. It installs as a Chrome extension, runs alongside the WhatsApp Web your reps already use, and starts working without a migration. If you're losing deals to slow replies or thread amnesia, another chatbot won't help. An AI agent for WhatsApp that reads the chat and writes to the CRM might.",
       "ctaText": "Get a Free Demo"
     }
+  },
+  "mcpBanner": {
+    "text": "Eazybe MCP is live: connect your WhatsApp to Claude and Codex.",
+    "cta": "See how",
+    "close": "Dismiss announcement"
+  },
+  "mcpPage": {
+    "heroTitle": "WhatsApp MCP server for",
+    "heroTitleEm": "Claude and Codex",
+    "heroLede": "The Eazybe MCP server connects your team's WhatsApp, calls and CRM to Claude or Codex. Type what you need and it reads chats, drafts replies, chases follow-ups and updates deals.",
+    "copyLink": "Copy link",
+    "copyCommand": "Copy command",
+    "copied": "Copied ✓",
+    "linkCopied": "Link copied ✓",
+    "urlHint": "This is your MCP server link. Paste it into Claude or Codex.",
+    "pill": "Connect WhatsApp to your AI agent",
+    "startFree": "Start free",
+    "bookDemo": "Book a demo",
+    "fine": "Included in all paid plans · ★ 4.3 on HubSpot Marketplace",
+    "samplePrompt": "Who on my team hasn't replied to a hot lead today?",
+    "setup": {
+      "claude": [
+        {
+          "title": "Open Claude settings",
+          "desc": "Go to Settings, then Connectors, then Add custom connector. Use this link:"
+        },
+        {
+          "title": "Connect and sign in",
+          "desc": "Name it Eazybe, paste the link, click Connect and sign in with Eazybe."
+        },
+        {
+          "title": "Ask your first question",
+          "desc": "Turn on Eazybe in a chat and ask:"
+        }
+      ],
+      "code": [
+        {
+          "title": "Add the server",
+          "desc": "Run this in your terminal, from any folder:"
+        },
+        {
+          "title": "Sign in",
+          "desc": "Start Claude Code, type /mcp, pick eazybe and choose Authenticate. Sign in with Eazybe."
+        },
+        {
+          "title": "Ask your first question",
+          "desc": "Ask Claude Code:"
+        }
+      ],
+      "codex": [
+        {
+          "title": "Add the server",
+          "desc": "Run this in your terminal:"
+        },
+        {
+          "title": "Sign in",
+          "desc": "Run the login command and sign in with Eazybe in the browser tab that opens."
+        },
+        {
+          "title": "Ask your first question",
+          "desc": "Start Codex and ask:"
+        }
+      ]
+    },
+    "setupFoot": "You sign in with your Eazybe account, so you don't need an API key.",
+    "linkGuide": "Read the MCP guide",
+    "linkTools": "See the full tool list",
+    "linkPrivacy": "Privacy and data",
+    "storiesEyebrow": "Who uses Eazybe",
+    "storiesTitle": "Sales teams in 40+ countries run their WhatsApp on Eazybe",
+    "storiesSub": "MCP plugs into the workspace your team already has, so the AI works with the chats, permissions and CRM you set up there.",
+    "stats": [
+      [
+        "30,000+",
+        "users"
+      ],
+      [
+        "4.3★",
+        "HubSpot Marketplace"
+      ],
+      [
+        "40+",
+        "countries"
+      ],
+      [
+        "5 min",
+        "to connect"
+      ]
+    ],
+    "academyEyebrow": "MCP Academy",
+    "academyTitle": "Learn what to ask your AI, one short lesson at a time",
+    "academySub": "You can read every lesson without signing up.",
+    "academyCta": "Browse the lessons",
+    "lessons": [
+      {
+        "title": "Connect in 5 minutes",
+        "meta": "Claude or Codex, one sign-in · 5 min"
+      },
+      {
+        "title": "What needs me today",
+        "meta": "A two-minute morning briefing · 5 min"
+      },
+      {
+        "title": "More lessons coming",
+        "meta": "Follow-ups, labels and weekly reports"
+      }
+    ],
+    "askEyebrow": "What you can ask",
+    "askTitle": "Type a request in Claude or Codex and it works in your WhatsApp inbox. Anything it sends waits for your OK.",
+    "copyPrompt": "Copy prompt",
+    "promptGroups": [
+      {
+        "name": "Triage and routing",
+        "cards": [
+          {
+            "title": "Morning inbox triage",
+            "prompt": "Group my unread chats by rep and tell me who has waited longest.",
+            "results": [
+              "Ana · 6 waiting · longest 2h",
+              "Rahul · 3 waiting · 48m",
+              "Unassigned · 4 waiting · 22m"
+            ]
+          },
+          {
+            "title": "Bulk reassignment",
+            "prompt": "Move last night's unassigned chats to whoever is online now.",
+            "results": [
+              "14 chats found",
+              "Ana gets 5 · Rahul gets 5 · Priya gets 4",
+              "Waiting for your OK"
+            ]
+          },
+          {
+            "title": "Hot lead alert",
+            "prompt": "Which hot leads haven't had a reply in the last hour?",
+            "results": [
+              "Neha Kapoor · 2h · “Is the 6-month plan on offer?”",
+              "Marina Silva · 48m · “Yes, send the quote”"
+            ]
+          },
+          {
+            "title": "Group tickets",
+            "prompt": "Show open tickets from my WhatsApp groups.",
+            "results": [
+              "Fleet buyers · Pune · price list",
+              "Dealers South · delivery delay",
+              "2 open · 1 overdue"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Replying",
+        "cards": [
+          {
+            "title": "Draft the reply",
+            "prompt": "Read my chat with Neha and draft a reply that answers her pricing question.",
+            "results": [
+              "Draft ready · 3 lines",
+              "Uses your saved pricing reply",
+              "Waiting for your OK to send"
+            ]
+          },
+          {
+            "title": "Catch up on a chat",
+            "prompt": "Summarise what Marina and I agreed so far and what's still open.",
+            "results": [
+              "Agreed · 20 seats, annual",
+              "Open · onboarding date",
+              "Last message · 48m ago"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Outbound",
+        "cards": [
+          {
+            "title": "Follow-up sweep",
+            "prompt": "Find leads who went quiet after a quote and send them a follow-up template.",
+            "results": [
+              "9 leads found",
+              "Template · quote_follow_up",
+              "Waiting for your OK"
+            ]
+          },
+          {
+            "title": "Targeted broadcast",
+            "prompt": "Send the webinar invite to every contact labelled Demo booked this month.",
+            "results": [
+              "63 contacts in segment",
+              "Estimated cost shown before send",
+              "Waiting for your OK"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Analytics and reporting",
+        "cards": [
+          {
+            "title": "Response time check",
+            "prompt": "Compare my reps' first response time this week against last week.",
+            "results": [
+              "Team avg · 14m (was 21m)",
+              "Fastest · Priya · 6m",
+              "Slowest · Rahul · 32m"
+            ]
+          },
+          {
+            "title": "Weekly pipeline recap",
+            "prompt": "Which deals moved stage this week after a WhatsApp conversation?",
+            "results": [
+              "7 deals moved",
+              "3 to Proposal · 2 to Won",
+              "2 stuck over 14 days"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Team and admin",
+        "cards": [
+          {
+            "title": "Working hours",
+            "prompt": "Set our working hours to 9 to 7, Monday to Saturday.",
+            "results": [
+              "Preview ready",
+              "Away message on outside hours",
+              "Waiting for your OK"
+            ]
+          },
+          {
+            "title": "Label cleanup",
+            "prompt": "List labels nobody used in 30 days and how many chats each has.",
+            "results": [
+              "6 unused labels",
+              "Biggest · Old leads · 41 chats",
+              "Nothing deleted yet"
+            ]
+          }
+        ]
+      }
+    ],
+    "stripTitle": "Connect your WhatsApp inbox to your AI",
+    "stripSub": "Scan a QR code, add the connector and ask your first question. You don't need the WhatsApp API, a developer or an API key.",
+    "faqEyebrow": "Questions",
+    "faqTitle": "Before you connect",
+    "faqs": [
+      {
+        "q": "What is MCP?",
+        "a": "MCP (Model Context Protocol) is an open standard that lets AI assistants such as Claude and Codex use tools from other apps. The Eazybe MCP server is how your assistant reaches your WhatsApp inbox, calls, labels and connected CRM. It reads chats, replies and updates records when you ask."
+      },
+      {
+        "q": "Do I need an API key?",
+        "a": "No. Paste the link and sign in with your Eazybe account. The AI gets the same permissions your workspace already uses, and you can disconnect whenever you like."
+      },
+      {
+        "q": "Which AI tools can connect?",
+        "a": "Claude on web, desktop and mobile, Claude Code and Codex all work today. Any other AI client that supports remote MCP servers with sign-in can use the same link."
+      },
+      {
+        "q": "Can the AI send messages to my customers?",
+        "a": "Yes, but only when you ask and after you approve. For sends, broadcasts and bulk changes you see a preview first, and nothing happens until you say OK."
+      },
+      {
+        "q": "Does using MCP cost extra?",
+        "a": "No. All paid Eazybe plans include it: Starter, Scaler, Basic AI and Custom AI. The free trial doesn't. WhatsApp template and broadcast charges stay the same as inside Eazybe."
+      },
+      {
+        "q": "Do I need the WhatsApp Business API?",
+        "a": "No. Eazybe works with the WhatsApp and WhatsApp Business apps your team already has. Scan a QR code and your AI can reach your chats."
+      },
+      {
+        "q": "What do I need before I start?",
+        "a": "A paid Eazybe plan with at least one WhatsApp number connected, plus an AI tool that supports custom connectors. In Claude, you'll find those under Settings, then Connectors."
+      }
+    ],
+    "ctaTitle": "Connect WhatsApp to Claude or Codex today",
+    "ctaSub": "MCP comes with every paid plan, and setup takes about 5 minutes.",
+    "ctaSmall": "Works with Claude and Codex",
+    "guidesEyebrow": "Guides",
+    "guidesTitle": "Read more about WhatsApp and AI",
+    "guidesSub": "Setup help, the tool list and a comparison of the three WhatsApp connection types.",
+    "readGuide": "Read guide",
+    "guides": [
+      {
+        "tag": "Technical guide · 10 min",
+        "title": "Eazybe MCP: connect WhatsApp to any AI agent",
+        "desc": "How to set it up in each assistant, what usually goes wrong and what to try first."
+      },
+      {
+        "tag": "Reference · 8 min",
+        "title": "Every Eazybe MCP tool, explained",
+        "desc": "160+ actions for the inbox, CRM, broadcasts, agents and team management."
+      },
+      {
+        "tag": "Compare · 6 min",
+        "title": "Personal WhatsApp vs Business app vs API",
+        "desc": "Which one to connect, and what your AI can do with each."
+      }
+    ],
+    "metaTitle": "WhatsApp MCP Server for Claude and Codex | Eazybe",
+    "metaDescription": "Connect WhatsApp, calls and your CRM to Claude or Codex with one link. Read chats, draft replies and update deals from a prompt. Included in paid Eazybe plans."
   }
 }

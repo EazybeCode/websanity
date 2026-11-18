@@ -148,6 +148,7 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
 
   const tLimited = t('table.limited')
   const tSevenDays = t('table.sevenDays')
+  const tFourDays = t('table.fourDays')
 
   // Eazybe starting price is shown in local currency on the BR, ES and TR sites
   const eazybeStartingPrice =
@@ -260,7 +261,7 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
         },
         {
           name: t('table.features.freeTrial'),
-          values: { eazybe: tSevenDays, wati: tSevenDays, interakt: tSevenDays, quickreply: tSevenDays, cooby: tSevenDays, timelines: tSevenDays, rasayel: tSevenDays }
+          values: { eazybe: tFourDays, wati: tSevenDays, interakt: tSevenDays, quickreply: tSevenDays, cooby: tSevenDays, timelines: tSevenDays, rasayel: tSevenDays }
         },
         {
           name: t('table.features.freePlanAvailable'),
@@ -388,8 +389,8 @@ export function ComparisonPageClient({ comparisonPosts = [], locale = 'en' }: Co
             <div className="mt-16 flex justify-center">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 max-w-3xl">
                 {[
-                  { value: '50K+', label: t('hero.stats.activeUsers') },
-                  { value: '4.8/5', label: t('hero.stats.chromeRating') },
+                  { value: '30K+', label: t('hero.stats.activeUsers') },
+                  { value: '4.2/5', label: t('hero.stats.chromeRating') },
                   { value: '70%', label: t('hero.stats.costSavings') },
                   { value: '20+', label: t('hero.stats.platformsCompared') }
                 ].map((stat, index) => (

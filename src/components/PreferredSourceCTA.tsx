@@ -84,7 +84,7 @@ export default function PreferredSourceCTA({ locale }: { locale: string }) {
           <h3 className="text-lg font-bold tracking-tight text-slate-900 md:text-xl">
             {copy.heading}
           </h3>
-          <p className="mt-1 max-w-xl text-sm leading-relaxed text-slate-500 md:text-[15px]">
+          <p className="psc-body mt-1 max-w-xl text-sm leading-relaxed text-slate-500 md:text-[15px]">
             {copy.body}
           </p>
         </div>
@@ -93,7 +93,7 @@ export default function PreferredSourceCTA({ locale }: { locale: string }) {
           href={PREFERRED_SOURCE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-brand-blue to-brand-cyan px-6 py-3.5 font-semibold text-white shadow-md shadow-brand-blue/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-blue/30"
+          className="psc-btn inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-brand-blue to-brand-cyan px-6 py-3.5 font-semibold text-white shadow-md shadow-brand-blue/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-blue/30"
         >
           <Star size={17} className="fill-current" />
           {copy.button}

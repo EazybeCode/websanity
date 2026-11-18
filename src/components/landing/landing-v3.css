@@ -446,6 +446,17 @@
   border-top: 1px solid rgba(255, 255, 255, 0.14);
   transform: translateX(-50%) rotate(45deg);
 }
+/* Wide Integrations dropdown: centred under its trigger like the others, but shifted by
+   --dd-shift (set in Nav.tsx on hover) when centring would push it past the viewport
+   edge. The arrow moves back by the same amount so it still points at the trigger. */
+.landing .nav-dropdown.nav-dropdown-clamp { transform: translateX(calc(-50% + var(--dd-shift, 0px))) translateY(-6px); }
+.landing .nav-item:hover .nav-dropdown.nav-dropdown-clamp,
+.landing .nav-item:focus-within .nav-dropdown.nav-dropdown-clamp { transform: translateX(calc(-50% + var(--dd-shift, 0px))) translateY(0); }
+.landing .nav-dropdown.nav-dropdown-clamp::before { left: calc(50% - var(--dd-shift, 0px)); }
+/* Its "Featured" (Eazybe MCP) panel needs the extra width, so it only shows from 1200px. */
+@media (max-width: 1199px) {
+  .landing .nav-dd-featured { display: none !important; }
+}
 @keyframes nav-glass-sheen-dd {
   0%   { background-position: 135% 0, 0 0, 0 0; }
   55%  { background-position: -45% 0, 0 0, 0 0; }
@@ -4057,7 +4068,7 @@
 .landing .blog-content a,
 .landing .blog-content a *,
 .landing [data-blog-content] a,
-.landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]) {
+.landing main a:not(.btn):not([class*="rounded-full"]):not([class*="border"]):not(.ch-related-link) {
   text-decoration: none !important;
   border-bottom: none !important;
   cursor: pointer;
@@ -4444,6 +4455,9 @@
 /* on dark duotone sections the pane stays light glass (inner UI is light-
    themed) but the ring flips so the edge still reads against near-black */
 .landing [data-tone="dark"] .fp-visual > div[class] {
+  /* 72% white over near-black reads as muddy grey; keep the glass edge but
+     make the pane nearly opaque so the light UI inside keeps its contrast */
+  background: rgba(252, 253, 254, 0.96) !important;
   border-color: rgba(255, 255, 255, 0.35) !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.85),

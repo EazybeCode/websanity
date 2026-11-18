@@ -1,9 +1,10 @@
+import type { PageDateInfo } from '@/lib/page-dates'
 /**
  * JSON-LD structured data for LeadSquared WhatsApp Integration page
  * Includes: FAQPage, BreadcrumbList, WebPage, Product, HowTo
  */
 
-export function LeadSquaredStructuredData() {
+export function LeadSquaredStructuredData({ dates }: { dates?: PageDateInfo | null }) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -81,8 +82,8 @@ export function LeadSquaredStructuredData() {
     name: 'LeadSquared WhatsApp Integration | WhatsApp + LeadSquared',
     description: 'Connect WhatsApp with LeadSquared CRM. Sync chats automatically, use AI agents, track deals, and manage sales conversations directly inside LeadSquared.',
     inLanguage: 'en',
-    datePublished: '2026-02-03T08:00:00+00:00',
-    dateModified: '2026-04-01T10:30:00+00:00'
+    author: { '@type': 'Organization', name: 'Eazybe', url: 'https://eazybe.com/' },
+    ...(dates ? { datePublished: dates.published, dateModified: dates.modified } : {}),
   }
 
   const productSchema = {
@@ -117,10 +118,10 @@ export function LeadSquaredStructuredData() {
     },
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: 4.9,
+      ratingValue: 4.2,
       bestRating: 5,
       worstRating: 1,
-      ratingCount: 30597
+      ratingCount: 1100
     }
   }
 

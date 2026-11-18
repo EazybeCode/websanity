@@ -1,0 +1,6 @@
+#!/bin/sh
+# Keeps page dates current: pages whose source files are in this commit get the
+# commit time as their last-modified date (article:modified_time meta tag and
+# sitemap <lastmod>). See scripts/sitemap-lastmod.mjs.
+node scripts/sitemap-lastmod.mjs --staged || exit 1
+git add src/data/sitemap-lastmod.json src/data/page-dates.json

@@ -1,3 +1,4 @@
+import path from "node:path"
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
 import { redirectRules } from "./src/lib/redirects"
@@ -20,6 +21,19 @@ const nextConfig: NextConfig = {
     // Next requires this to be an absolute path; the relative `.` triggers a
     // boot-time warning even though Next would otherwise resolve it the same way.
     root: process.cwd(),
+  },
+  // Next always ships its polyfill-module (Array.prototype.at/flat, Object.hasOwn,
+  // trimStart…) regardless of browserslist. Every browser in our browserslist has
+  // these natively, so drop the ~12 KiB from the client bundle.
+  webpack(config, { isServer }) {
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        [path.join(process.cwd(), "node_modules/next/dist/build/polyfills/polyfill-module.js")]: false,
+        "next/dist/build/polyfills/polyfill-module": false,
+      }
+    }
+    return config
   },
   images: {
     remotePatterns: [
@@ -44,8 +58,26 @@ const nextConfig: NextConfig = {
           { key: "X-XSS-Protection", value: "1; mode=block" },
           { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
-          { key: "Content-Security-Policy", value: "default-src 'self'; script-src 'self' https://dev-app.eazybe.com 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://*.google.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://dev-app.eazybe.com https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://*.google.com https://*.google.co.in https://googleads.g.doubleclick.net https://www.googleadservices.com https://stats.g.doubleclick.net https://ad.doubleclick.net https://analytics.google.com https://connect.facebook.net https://www.facebook.com https://*.clarity.ms https://sc.lfeeder.com https://cdn.leadinfo.net https://*.leadinfo.net https://api.leadinfo.com https://app.factors.ai https://api.factors.ai https://snap.licdn.com https://px.ads.linkedin.com https://js.hs-scripts.com https://api.hubspot.com https://api.hsforms.com https://api.hubapi.com https://forms.hscollectedforms.net https://static.hsappstatic.net https://*.sanity.io https://cdn.sanity.io https://api.eazybe.com https://eazybe.com https://cerberus.eazybe.com https://api.ipwho.org https://api.country.is https://calendly.com https://*.calendly.com; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.linkedin.com https://twitter.com https://platform.twitter.com https://x.com https://www.instagram.com https://instagram.com https://www.tiktok.com https://open.spotify.com https://www.facebook.com https://www.loom.com https://calendly.com https://*.calendly.com; script-src-elem 'self' https://dev-app.eazybe.com 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://*.google.com https://googleads.g.doubleclick.net https://cdn.jsdelivr.net https://assets.calendly.com https://connect.facebook.net https://snap.licdn.com https://www.clarity.ms https://scripts.clarity.ms https://sc.lfeeder.com https://cdn.leadinfo.net https://app.factors.ai https://js.hs-scripts.com https://js.hs-analytics.net https://js.hsadspixel.net https://js.hscollectedforms.net https://js.hs-banner.com; object-src 'none'; base-uri 'self'; form-action 'self'" },
+          { key: "Permissions-Policy", value: 'camera=(), microphone=(self "https://dev-app.eazybe.com"), geolocation=(), interest-cohort=()' },
+          { key: "Content-Security-Policy", value: "default-src 'self'; script-src 'self' https://dev-app.eazybe.com 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://*.google.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' wss://voice.eazybe.com https://voice.eazybe.com https://*.lusha.com https://*.openai.com https://dev-app.eazybe.com https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://*.google.com https://*.google.co.in https://googleads.g.doubleclick.net https://www.googleadservices.com https://stats.g.doubleclick.net https://ad.doubleclick.net https://analytics.google.com https://connect.facebook.net https://www.facebook.com https://*.clarity.ms https://sc.lfeeder.com https://cdn.leadinfo.net https://*.leadinfo.net https://api.leadinfo.com https://app.factors.ai https://api.factors.ai https://snap.licdn.com https://px.ads.linkedin.com https://js.hs-scripts.com https://api.hubspot.com https://api.hsforms.com https://api.hubapi.com https://forms.hscollectedforms.net https://static.hsappstatic.net https://*.sanity.io https://cdn.sanity.io https://api.eazybe.com https://eazybe.com https://cerberus.eazybe.com https://api.ipwho.org https://api.country.is https://calendly.com https://*.calendly.com; frame-src 'self' https://dev-app.eazybe.com https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.linkedin.com https://twitter.com https://platform.twitter.com https://x.com https://www.instagram.com https://instagram.com https://www.tiktok.com https://open.spotify.com https://www.facebook.com https://www.loom.com https://calendly.com https://*.calendly.com; script-src-elem 'self' https://dev-app.eazybe.com https://bzrcdn.openai.com https://static-packages-prod.lusha.com 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://*.google.com https://googleads.g.doubleclick.net https://cdn.jsdelivr.net https://assets.calendly.com https://connect.facebook.net https://snap.licdn.com https://www.clarity.ms https://scripts.clarity.ms https://sc.lfeeder.com https://cdn.leadinfo.net https://app.factors.ai https://js.hs-scripts.com https://js.hs-analytics.net https://js.hsadspixel.net https://js.hscollectedforms.net https://js.hs-banner.com; object-src 'none'; base-uri 'self'; form-action 'self' https://www.facebook.com" },
+        ],
+      },
+      // Homepage render-blocking stylesheet: its <link> sits ~400KB into the HTML
+      // (after the inlined styles), so without this header the browser discovers it
+      // ~1.5s late (measured on production). The preload starts the fetch at first
+      // byte, in parallel with the HTML download.
+      {
+        source: "/:locale(es|br|tr)?",
+        headers: [
+          { key: "Link", value: "</homepage-v16/home-v16.css>; rel=preload; as=style" },
+        ],
+      },
+      // Homepage stylesheets are unhashed (regenerated in place), so cache briefly
+      // with revalidation rather than immutable.
+      {
+        source: "/:dir(homepage|homepage-v16)/(.*\\.css)",
+        headers: [
+          { key: "Cache-Control", value: isDev ? "no-store, must-revalidate" : "public, max-age=3600, stale-while-revalidate=86400" },
         ],
       },
       // Immutable cache for hashed static assets (fonts, JS, CSS)

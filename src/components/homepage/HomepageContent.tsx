@@ -1,12 +1,15 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useTrialModal } from '@/providers/TrialModalProvider'
 import { initializeHomepage } from './initialize-homepage'
 
 export function HomepageContent({ markup, dictionary }: { markup: string; dictionary: Record<string, string> }) {
   const ref = useRef<HTMLDivElement>(null)
   const { openModal } = useTrialModal()
+  // Stable object so opening a modal (a context re-render) doesn't make React 19
+  // re-apply innerHTML and rebuild the page.
+  const html = useMemo(() => ({ __html: markup }), [markup])
 
   useEffect(() => {
     const root = ref.current
@@ -27,7 +30,7 @@ export function HomepageContent({ markup, dictionary }: { markup: string; dictio
         event.preventDefault()
         openModal(mode)
       }}
-      dangerouslySetInnerHTML={{ __html: markup }}
+      dangerouslySetInnerHTML={html}
     />
   )
 }

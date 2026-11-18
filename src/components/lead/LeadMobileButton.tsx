@@ -45,7 +45,7 @@ export const LeadMobileButton: React.FC = () => {
       {!isExpanded && (
         <button
           onClick={handleToggle}
-          className="fixed left-0 top-1/2 -translate-y-1/2 z-40 block lg:hidden bg-brand-blue hover:bg-blue-700 text-white px-2.5 py-4 rounded-r-xl shadow-glow-blue transition-colors duration-200"
+          className="lead-tab-glass left-0 top-1/2 -translate-y-1/2 z-40 block lg:hidden px-2.5 py-4 rounded-r-xl"
           style={{ writingMode: 'vertical-rl' }}
           aria-label="Open lead form"
         >

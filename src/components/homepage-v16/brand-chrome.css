@@ -1,0 +1,629 @@
+/*
+ * Brand guidelines (v1.2, dark mode · Brand v3) applied to the site's native Nav and
+ * Footer on the v16 homepage and on the CRM + pricing pages (whose layout wrapper is
+ * matched with :has(.v16-brand), so no client-side class toggling / flash). Styling only: content, links and layout are the
+ * shared components' own. Everything is scoped under .v16-chrome (set by HomepageV16)
+ * and repeats the class to outrank site-integration.css's stacked selectors.
+ *
+ * Tokens: Ink #0B0B0C · Surface #111114 · Surface 2 #17171B · hairline white 8% ·
+ * Eazybe Blue #2B59FF · Blue glow #7C98FF · body on dark #B4B4BC · Geist / Geist Mono.
+ * Shape: 1px hairlines, corners 6px (chips) / 8px (buttons) / 12px (panels).
+ */
+
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) {
+  --v16-ink: #0b0b0c;
+  --v16-surface: #111114;
+  --v16-surface-2: #17171b;
+  --v16-line: rgba(255, 255, 255, 0.08);
+  --v16-blue: #2b59ff;
+  --v16-blue-hover: #2149e0;
+  --v16-glow: #7c98ff;
+  --v16-muted: #b4b4bc;
+  --v16-mono: 'Geist Mono', ui-monospace, monospace;
+}
+
+/* ---------- Nav ---------- */
+
+:is(.v16-chrome.v16-chrome.v16-chrome, .landing.landing:has(> main .v16-brand)) .nav.nav.nav {
+  background: rgba(11, 11, 12, 0.97) !important;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--v16-line) !important;
+  box-shadow: none !important;
+}
+
+/* Links: grey #B4B4BC, white on hover (replaces the old purple #6C5CC1 hover). */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-trigger,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-trigger span,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-trigger .nav-caret,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-item > a,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-item > a span {
+  color: var(--v16-muted) !important;
+  transition: color 0.2s ease;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-item > a:hover,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-item > a:hover span,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-item:hover .nav-trigger,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-item:hover .nav-trigger span,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-item:hover .nav-trigger .nav-caret,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-trigger:focus-visible,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-trigger:focus-visible span {
+  color: #fff !important;
+}
+
+/* Dropdown panels: solid dark surface, hairline edge, 12px corners (no glass, never bubbly). */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dropdown {
+  background: var(--v16-surface) !important;
+  background-image: none !important;
+  border: 1px solid var(--v16-line) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.6) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dropdown::before,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dropdown::after {
+  display: none !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dd-item {
+  border-radius: 8px !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dd-item:hover {
+  background: var(--v16-surface-2) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-dd-item .nav-dd-name,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-dd-item:hover .nav-dd-name,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-dd-item:hover span {
+  color: #fff !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-dd-item .nav-dd-desc,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-links .nav-dd-item:hover .nav-dd-desc {
+  color: var(--v16-muted) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dd-section {
+  font-family: var(--v16-mono) !important;
+  color: #8a8c93 !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dd-divider {
+  background: var(--v16-line) !important;
+}
+
+/* Buttons: page CTA in Eazybe Blue, secondary as a hairline outline; 8px corners. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .btn-ghost {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 8px !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .btn-primary {
+  background: var(--v16-blue) !important;
+  border: 1px solid var(--v16-blue) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .btn-primary:hover,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-ctas .btn-primary:hover {
+  background: var(--v16-blue-hover) !important;
+  border-color: var(--v16-blue-hover) !important;
+}
+
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-lang-btn:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav-lang-menu {
+  background: var(--v16-surface) !important;
+  border: 1px solid var(--v16-line) !important;
+  border-radius: 12px !important;
+}
+
+/* Mobile drawer */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav-drawer-panel {
+  background: var(--v16-ink) !important;
+  border-left: 1px solid var(--v16-line) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav-drawer-link,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav-drawer-section {
+  border-color: var(--v16-line) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav-drawer-item-desc {
+  color: var(--v16-muted) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav-drawer-panel .nav-drawer-ctas .btn-primary {
+  background: var(--v16-blue) !important;
+  border: 1px solid var(--v16-blue) !important;
+  border-radius: 8px !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav-drawer-panel .nav-drawer-ctas .btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 8px !important;
+}
+
+/* ---------- Footer ---------- */
+
+/* Ink with the brand's faint dot grid, fading in from the top. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer {
+  background-color: var(--v16-ink) !important;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px) !important;
+  background-size: 22px 22px !important;
+  border-top: 1px solid var(--v16-line);
+  color: #fff !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 160px;
+  background: linear-gradient(180deg, var(--v16-ink), rgba(11, 11, 12, 0));
+  pointer-events: none;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer > .container {
+  position: relative;
+}
+
+/* Column heading accent bar: Eazybe Blue instead of the old purple. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-col h3::before {
+  background: var(--v16-blue) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-col-toggle,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-col h4,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-col h3 {
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-col a,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-brand p,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-baseline-line {
+  color: var(--v16-muted) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-col a:hover {
+  color: #fff !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-socials-label,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-baseline-links a,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-baseline-sep,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-payments-label,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-payments-more {
+  color: #8a8c93 !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-baseline-links a:hover {
+  color: #fff !important;
+}
+
+/* "NEW" / "We're hiring" chips: mono, blue glow tint, 6px corners. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-col-badge {
+  font-family: var(--v16-mono) !important;
+  background: rgba(43, 89, 255, 0.16) !important;
+  color: var(--v16-glow) !important;
+  border: 1px solid rgba(124, 152, 255, 0.3) !important;
+  border-radius: 6px !important;
+}
+
+/* Hairline dividers at white 8%. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-watermark,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-col,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-baseline {
+  border-color: var(--v16-line) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-watermark {
+  position: relative;
+}
+/* EAZYBE watermark: faint white letters with a blue light sweeping through them
+   (the brand shimmer), lifted by a soft blue glow that breathes behind the word. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-watermark::before {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  letter-spacing: -0.04em !important;
+  font-weight: 700 !important;
+  color: transparent !important;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.06) 32%,
+    rgba(43, 89, 255, 0.45) 42%,
+    rgba(124, 152, 255, 0.8) 48%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(124, 152, 255, 0.8) 52%,
+    rgba(43, 89, 255, 0.45) 58%,
+    rgba(255, 255, 255, 0.06) 68%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: v16-wm-sweep 7s linear infinite;
+  filter: drop-shadow(0 0 22px rgba(43, 89, 255, 0.28));
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-watermark::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(70%, 900px);
+  height: 60%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(43, 89, 255, 0.28), rgba(43, 89, 255, 0));
+  pointer-events: none;
+  animation: v16-wm-breathe 7s ease-in-out infinite;
+}
+/* One slow pass of light left -> right (~4.5s), then a short rest. */
+@keyframes v16-wm-sweep {
+  /* 220% wide gradient, band at 32-68%: it's fully off-word at 128% / -28%. */
+  0% { background-position: 128% 0; }
+  65%, 100% { background-position: -28% 0; }
+}
+@keyframes v16-wm-breathe {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-watermark::before,
+  :is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-watermark::after {
+    animation: none;
+  }
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .footer .footer-disclaimer {
+  color: #8a8c93 !important;
+}
+
+/* ---------- Nav dropdown details ---------- */
+
+/* Icon chips: plain white boxes (no pastel tints) so every logo keeps its contrast. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dd-icon,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav-drawer-item-icon {
+  background: #fff !important;
+  border-radius: 8px !important;
+}
+/* "All integrations →" footer row: blue tint instead of lavender. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dropdown a.nav-dd-item[style*='grid-column'] {
+  background: rgba(43, 89, 255, 0.12) !important;
+  border: 1px solid rgba(124, 152, 255, 0.25) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dropdown a.nav-dd-item[style*='grid-column']:hover {
+  background: rgba(43, 89, 255, 0.2) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .nav .nav-dropdown a.nav-dd-item[style*='grid-column'] > div {
+  font-family: var(--v16-mono) !important;
+  color: var(--v16-glow) !important;
+}
+
+/* ---------- Bea lead form (corner box) ---------- */
+
+/* Light box with a corner-lit blue edge; 16px corners; calm entrance (no bounce). */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form {
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(140deg, rgba(43, 89, 255, 0.8), #e6e6e3 35%, #e6e6e3 65%, rgba(43, 89, 255, 0.35)) border-box !important;
+  border: 1px solid transparent !important;
+  border-radius: 16px !important;
+  box-shadow: 0 24px 60px -20px rgba(11, 11, 12, 0.28), 0 18px 50px rgba(43, 89, 255, 0.1) !important;
+  font-family: 'Geist', sans-serif;
+  animation: v16-bea-in 0.25s ease !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form.is-pulsing {
+  animation: v16-bea-pulse 1.2s ease-out !important;
+}
+@keyframes v16-bea-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes v16-bea-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(43, 89, 255, 0.45), 0 24px 60px -20px rgba(11, 11, 12, 0.28); }
+  100% { box-shadow: 0 0 0 14px rgba(43, 89, 255, 0), 0 24px 60px -20px rgba(11, 11, 12, 0.28); }
+}
+
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .bea-form-head h3 {
+  font-family: 'Geist', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--v16-ink) !important;
+}
+/* "Bea" gets the blue shimmer (AI moment), not italic purple. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .bea-form-head h3 em {
+  font-style: normal !important;
+  background: linear-gradient(90deg, #2b59ff 0%, #2b59ff 38%, #9fb4ff 50%, #2b59ff 62%, #2b59ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  animation: v16-bea-shim 3.5s linear infinite;
+}
+@keyframes v16-bea-shim {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form,
+  :is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .bea-form-head h3 em { animation: none !important; }
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .bea-form-head p {
+  color: #5a5c64 !important;
+}
+
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form label {
+  color: var(--v16-ink) !important;
+  letter-spacing: 0 !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form label .text-red-500 {
+  color: #8a8c93 !important;
+}
+
+/* Inputs: 6px corners, 1px hairline, blue focus. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form input,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form select,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .flex.items-center.gap-0 {
+  border-color: #e6e6e3 !important;
+  border-radius: 6px !important;
+  color: var(--v16-ink) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .flex.items-center.gap-0 input,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .flex.items-center.gap-0 select {
+  border-radius: 0 !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .flex.items-center.gap-0 select {
+  border-right-color: #e6e6e3 !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form input:hover,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form select:hover,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .flex.items-center.gap-0:hover {
+  border-color: #c9c9c4 !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form input:focus,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form select:focus,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form input:focus-visible,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form select:focus-visible,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .flex.items-center.gap-0:focus-within {
+  border-color: var(--v16-blue) !important;
+  box-shadow: 0 0 0 3px rgba(43, 89, 255, 0.15) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .flex.items-center.gap-0 input:focus,
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form .flex.items-center.gap-0 select:focus {
+  box-shadow: none !important;
+}
+
+/* Submit = page CTA: Eazybe Blue, 8px corners, no gradient/glow. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form button[type='submit'] {
+  background: var(--v16-blue) !important;
+  background-image: none !important;
+  color: #fff !important;
+  border: 1px solid var(--v16-blue) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 600 !important;
+  transform: none !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form button[type='submit']:hover:not(:disabled) {
+  background: var(--v16-blue-hover) !important;
+  border-color: var(--v16-blue-hover) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-form button[type='submit'] span {
+  color: #fff !important;
+}
+
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-close {
+  border-radius: 8px !important;
+  color: #5a5c64 !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .bea-corner-close:hover {
+  background: #f4f4f5 !important;
+  color: var(--v16-ink) !important;
+}
+
+/* ---------- Bottom "talk to a sales expert" banner ---------- */
+
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb {
+  background: rgba(11, 11, 12, 0.97) !important;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--v16-line) !important;
+  box-shadow: 0 -18px 50px -20px rgba(43, 89, 255, 0.25) !important;
+  font-family: 'Geist', sans-serif;
+}
+/* Glowing top edge, lit at the corners. */
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb::before {
+  content: '';
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(43, 89, 255, 0.9), rgba(255, 255, 255, 0.06) 30%, rgba(255, 255, 255, 0.06) 70%, rgba(43, 89, 255, 0.5));
+  pointer-events: none;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb-icon {
+  background: rgba(43, 89, 255, 0.16) !important;
+  border: 1px solid rgba(124, 152, 255, 0.3);
+  color: var(--v16-glow);
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb-msg {
+  color: var(--v16-muted);
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb-strong {
+  color: #fff;
+  text-decoration-color: var(--v16-blue) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb-pill {
+  background: var(--v16-surface-2) !important;
+  border: 1px solid var(--v16-line) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb-dot {
+  background: #ffd43b !important;
+  box-shadow: 0 0 0 3px rgba(255, 212, 59, 0.2), 0 0 10px rgba(255, 212, 59, 0.6) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb-cta {
+  background: var(--v16-blue) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  transition: background 0.2s ease;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb-cta:hover {
+  background: var(--v16-blue-hover) !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb-close {
+  color: var(--v16-muted) !important;
+  opacity: 1 !important;
+  border-radius: 8px !important;
+}
+:is(.v16-chrome.v16-chrome, .landing:has(> main .v16-brand)) .seb-close:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* ======================================================================
+ * Bea mascot + conversion popups (Book a demo / Start free) on every page
+ * that carries the brand (homepage .v16-chrome, site pages .v16-brand).
+ * The popups and Bea can render outside those wrappers, so scope by body:has().
+ * ====================================================================== */
+
+/* ---------- Bea (flying assistant): blue glow instead of mint ---------- */
+
+:is(body:has(.v16-chrome), body:has(.v16-brand)) #beaWingGrad stop:nth-child(1) { stop-color: #c9d5ff; }
+:is(body:has(.v16-chrome), body:has(.v16-brand)) #beaWingGrad stop:nth-child(2) { stop-color: #7c98ff; }
+:is(body:has(.v16-chrome), body:has(.v16-brand)) #beaWingGrad stop:nth-child(3) { stop-color: #2b59ff; }
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .bea-eye {
+  stroke: #7c98ff;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .bea-dot {
+  fill: #7c98ff;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .bea-antenna circle:last-of-type {
+  fill: #2b59ff;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .bea-ring {
+  border-color: #7c98ff !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .bea-bot::before {
+  background: radial-gradient(closest-side, rgba(43, 89, 255, 0.35), rgba(124, 152, 255, 0.14) 50%, transparent 80%) !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) :is(.bea-tooltip, .bea-tooltip::after) {
+  background: #111114 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .bea-tooltip {
+  border-radius: 12px !important;
+  font-family: 'Geist', sans-serif;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) :is(.bea-tooltip-name em, .bea-tooltip-cta) {
+  color: #7c98ff !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .bea-tooltip-name {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 600 !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .bea-tooltip-cta {
+  font-family: 'Geist Mono', monospace !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---------- Conversion popups ---------- */
+
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal {
+  --conversion-accent: #2b59ff;
+  --conversion-soft: #e6ecfc;
+  --conversion-selected: #2b59ff;
+  color: #0b0b0c;
+  font-family: 'Geist', sans-serif;
+  background: rgba(11, 11, 12, 0.6) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+/* The card: white box, 16px corners, corner-lit blue edge. */
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal > div {
+  border-radius: 16px !important;
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(140deg, rgba(43, 89, 255, 0.8), #e6e6e3 35%, #e6e6e3 65%, rgba(43, 89, 255, 0.35)) border-box !important;
+  box-shadow: 0 32px 80px -24px rgba(11, 11, 12, 0.5), 0 18px 50px rgba(43, 89, 255, 0.12) !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal h2 {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 700 !important;
+  color: #0b0b0c !important;
+  letter-spacing: -0.035em !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal h2 em {
+  font-style: normal !important;
+  background: linear-gradient(90deg, #2b59ff 0%, #2b59ff 38%, #9fb4ff 50%, #2b59ff 62%, #2b59ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  animation: v16-modal-shim 3.5s linear infinite;
+}
+@keyframes v16-modal-shim {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal h2 em { animation: none; }
+}
+/* Fields: 6px corners, hairline, blue focus. The phone row is one combined field. */
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal :is(input, select) {
+  border-radius: 6px !important;
+  border-color: #e6e6e3 !important;
+  color: #0b0b0c;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal div:has(> select):has(> input) {
+  border-radius: 6px !important;
+  border-color: #e6e6e3 !important;
+  overflow: hidden;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal div:has(> select):has(> input) > :is(input, select) {
+  border-radius: 0 !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal :is(input, select):focus-visible {
+  outline: 2px solid #2b59ff !important;
+  outline-offset: 1px;
+}
+/* Buttons: 8px; submit = Eazybe Blue page CTA. */
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal button {
+  border-radius: 8px !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal button[type='submit'] {
+  background: #2b59ff !important;
+  border: 1px solid #2b59ff !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal button[type='submit']:hover:not(:disabled) {
+  background: #2149e0 !important;
+  border-color: #2149e0 !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal button[type='submit']:disabled {
+  background: #f4f4f5 !important;
+  border-color: #e6e6e3 !important;
+  color: #8a8c93 !important;
+}
+/* Step number chip ("1  YOUR DETAILS"): 6px corners. */
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal span[style*='background'] {
+  border-radius: 6px !important;
+}
+/* Close button: 8px, hairline. */
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal.conversion-modal button[aria-label*='lose' i] {
+  border-color: #e6e6e3 !important;
+  color: #5a5c64 !important;
+}
+/* Leftover mint / purple tints inside the popups -> blue. */
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal [style*='127,214,176'] {
+  background: rgba(43, 89, 255, 0.1) !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal [style*='#5b4bae' i] {
+  border-color: rgba(43, 89, 255, 0.35) !important;
+}
+/* Time-slot step (DemoModal + CalendlySlotPicker): selected cells and accent gradients
+   written as inline purple. Client-rendered, so inline colours serialise as rgb(). */
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal :is([style*='background: rgb(91, 75, 174)'], [style*='background-color: rgb(91, 75, 174)']) {
+  background: #2b59ff !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal [style*='linear-gradient']:is([style*='rgb(91, 75, 174)'], [style*='rgb(123, 101, 240)'], [style*='rgb(110, 92, 224)']) {
+  background: linear-gradient(135deg, #2b59ff 0%, #7c98ff 100%) !important;
+}
+:is(body:has(.v16-chrome), body:has(.v16-brand)) .conversion-modal :is([style*='border-color: rgb(91, 75, 174)'], [style*='solid rgb(91, 75, 174)']) {
+  border-color: #2b59ff !important;
+}

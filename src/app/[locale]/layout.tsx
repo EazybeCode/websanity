@@ -1,29 +1,13 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import { Inter, JetBrains_Mono } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
 import { GlobalStructuredData } from '@/components/seo/GlobalStructuredData'
 import Script from 'next/script'
-
-// display: 'optional' — if the font isn't ready within ~100ms the page keeps
-// the size-adjusted fallback for that visit instead of swapping later. The
-// late swap was the whole CLS budget on blog posts (0.143: text above the
-// featured image reflows and shoves it down). Repeat visits get the cached
-// font immediately.
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'optional',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-  display: 'optional',
-})
+import '../geist-fonts.css'
+import '../self-hosted-fonts.css'
 
 // Map next-intl URL locale codes to canonical HTML `lang` values.
 // `en` is mapped to `en-US` so search engines and AI systems know the
@@ -52,15 +36,32 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale)
   const messages = await getMessages()
+  // These namespaces are consumed exclusively by server components (legal pages,
+  // static content rendered with getTranslations), so they never need to reach the
+  // browser. Filtering them out of the client provider trims ~45KB of raw messages
+  // from every page's hydration payload. Server-side translation is unaffected —
+  // it reads from the request config, not this provider.
+  const SERVER_ONLY_NAMESPACES = new Set([
+    'msa', 'privacy', 'terms', 'categoryIndex', 'pricing', 'coexistencePage',
+  ])
+  const clientMessages = Object.fromEntries(
+    Object.entries(messages).filter(([ns]) => !SERVER_ONLY_NAMESPACES.has(ns))
+  )
+  // landingV3.readMore (~7KB) is no longer rendered by any client component;
+  // /whatsapp-ai-agent reads it server-side via getTranslations. Drop it from
+  // the browser payload.
+  if (clientMessages.landingV3 && typeof clientMessages.landingV3 === 'object') {
+    const { readMore: _unusedReadMore, ...landingV3 } = clientMessages.landingV3 as Record<string, unknown>
+    clientMessages.landingV3 = landingV3 as typeof clientMessages.landingV3
+  }
 
   return (
     <html lang={htmlLangMap[locale] || 'en'} className="dark" suppressHydrationWarning>
       <head>
-        {/* Pre-handshake the Google Fonts CDN so font CSS + WOFF2 fetches
-            kick off in parallel with HTML parsing, cutting ~200-300ms off
-            LCP for the H1 (which uses Inter). */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* No Google Fonts preconnects: Inter/JetBrains Mono are self-hosted
+            from /fonts (self-hosted-fonts.css), so the page never contacts the
+            Google Fonts CDN — the handshakes were pure waste (Lighthouse
+            flagged them as unused preconnects). */}
         {/* Pre-handshake the Sanity image CDN — blog featured images (the LCP
             element on post pages) load from here, so DNS+TLS setup runs in
             parallel with HTML parsing instead of delaying the image request. */}
@@ -69,6 +70,10 @@ export default async function LocaleLayout({
             hero reveals late it is the measured LCP element) — preload it at
             high priority so it paints with the first frame. 3.2KB PNG. */}
         <link rel="preload" as="image" href="/logo-small.png" fetchPriority="high" />
+        {/* Brand type (self-hosted Geist, see geist-fonts.css): preload the latin
+            files so they arrive with the first paint instead of after CSS parse. */}
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/geist/geist-latin.woff2" crossOrigin="" />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/geist/geist-mono-latin.woff2" crossOrigin="" />
         {/* RSS feed discovery — feed readers / browsers auto-detect this. */}
         <link
           rel="alternate"
@@ -87,10 +92,10 @@ export default async function LocaleLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        className="font-var-inter font-var-jetbrains-mono font-sans antialiased"
         suppressHydrationWarning
       >
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={clientMessages}>
           <Providers>
             <GlobalStructuredData locale={locale} />
             {children}

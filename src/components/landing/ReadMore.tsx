@@ -16,7 +16,7 @@ const FAQ_JSONLD = {
       acceptedAnswer: {
         '@type': 'Answer',
         text:
-          "A WhatsApp AI Agent is an autonomous AI program that reads, understands, and responds to WhatsApp messages on behalf of a business. Unlike a rule-based chatbot that follows fixed scripts, a WhatsApp AI Agent uses large language models to qualify leads, answer support questions, sync conversations to your CRM, and trigger sales workflows in real time. Eazybe builds no-code WhatsApp AI agents that install in 10 minutes and work alongside the WhatsApp Web your team already uses.",
+          "A WhatsApp AI Agent is an autonomous AI program that reads, understands, and responds to WhatsApp messages on behalf of a business. Unlike a rule-based chatbot that follows fixed scripts, a WhatsApp AI Agent uses large language models to qualify leads, answer support questions, sync conversations to your CRM, and trigger sales workflows in real time. Eazybe builds no-code WhatsApp AI agents that install in 2 minutes and work alongside the WhatsApp Web your team already uses.",
       },
     },
     {
@@ -43,7 +43,7 @@ const FAQ_JSONLD = {
       acceptedAnswer: {
         '@type': 'Answer',
         text:
-          "Yes. Eazybe is a fully no-code WhatsApp AI Agent platform. Non-technical ops leads can build and deploy custom AI agents (renewal nudges, NPS follow-ups, post-demo recaps, qualification flows) using a drag-and-drop Agent Builder. No engineering tickets, no migrations, no scripts. Setup takes under 10 minutes via a Chrome extension that runs alongside the WhatsApp Web your reps already use.",
+          "Yes. Eazybe is a fully no-code WhatsApp AI Agent platform. Non-technical ops leads can build and deploy custom AI agents (renewal nudges, NPS follow-ups, post-demo recaps, qualification flows) using a drag-and-drop Agent Builder. No engineering tickets, no migrations, no scripts. Setup takes about 2 minutes via a Chrome extension that runs alongside the WhatsApp Web your reps already use.",
       },
     },
     {
@@ -61,7 +61,7 @@ const FAQ_JSONLD = {
       acceptedAnswer: {
         '@type': 'Answer',
         text:
-          "A traditional sales stack uses WhatsApp Business App + CRM + chatbot + meeting-notes tool, each owning a slice of the relationship and none talking to each other. A WhatsApp AI Agent like Eazybe handles the live conversation and writes back to your existing CRM. CRM sync moves from manual end-of-day copy-paste to real-time bi-directional updates. After-hours leads get qualified in 60 seconds instead of going cold. Setup drops from a 4-8 week IT project to a 10-minute Chrome extension install.",
+          "A traditional sales stack uses WhatsApp Business App + CRM + chatbot + meeting-notes tool, each owning a slice of the relationship and none talking to each other. A WhatsApp AI Agent like Eazybe handles the live conversation and writes back to your existing CRM. CRM sync moves from manual end-of-day copy-paste to real-time bi-directional updates. After-hours leads get qualified in 60 seconds instead of going cold. Setup drops from a 4-8 week IT project to a 2-minute Chrome extension install.",
       },
     },
     {

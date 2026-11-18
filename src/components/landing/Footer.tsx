@@ -17,6 +17,8 @@ function withLocale(href: string, locale: string): string {
 // don't translate, so this is the same across locales.
 const intLabel = (brand: string) => `${brand} WhatsApp`
 
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.eazybe.workspace'
+
 // Mobile-only suffix word: desktop shows "HubSpot WhatsApp", mobile shows
 // "HubSpot WhatsApp Integration" (localized). Shown/hidden via .footer-int-word.
 const INT_WORD: Record<string, string> = {
@@ -28,15 +30,16 @@ const INT_WORD: Record<string, string> = {
 // stays static. `literalName` shortcircuits the translation (used for brand
 // names that don't change across locales). `brand` renders as the
 // "<brand> WhatsApp" label.
-const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string; brand?: string; href: string; badgeKey?: string }[] }[] = [
+const COLS: { titleKey: string; items: { nameKey?: string; navKey?: string; literalName?: string; brand?: string; href: string; badgeKey?: string }[] }[] = [
   {
     titleKey: 'colAgents',
     items: [
-      { nameKey: 'itemCrmSync', href: '/#' },
-      { nameKey: 'itemLeadQual', href: '/#' },
-      { nameKey: 'itemRevenueOps', href: '/#' },
-      { nameKey: 'itemCustomerSuccess', href: '/#' },
-      { nameKey: 'itemAllAgents', href: '/#' },
+      { nameKey: 'itemCrmSync', href: '/whatsapp-ai-agent#crm-sync' },
+      { nameKey: 'itemLeadQual', href: '/whatsapp-ai-agent#lead-qualification' },
+      { nameKey: 'itemRevenueOps', href: '/whatsapp-ai-agent#revenue' },
+      { nameKey: 'itemCustomerSuccess', href: '/whatsapp-ai-agent#customer-success' },
+      { nameKey: 'itemMcp', href: '/mcp', badgeKey: 'badgeNew' },
+      { nameKey: 'itemAllAgents', href: '/whatsapp-ai-agent' },
     ],
   },
   {
@@ -80,6 +83,18 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
     ],
   },
   {
+    titleKey: 'colCalling',
+    items: [
+      { navKey: 'callingAutoName', href: '/calling/auto-dialer' },
+      { navKey: 'callingVirtualName', href: '/calling/virtual-phone-number' },
+      { navKey: 'callingTrackName', href: '/calling/call-tracking' },
+      { navKey: 'callingSimName', href: '/calling/sim-based-calling' },
+      { navKey: 'callingRecName', href: '/calling/call-recording' },
+      { navKey: 'callingVsName', href: '/calling/sim-vs-cloud-calling' },
+      { nameKey: 'itemCallingAll', href: '/calling' },
+    ],
+  },
+  {
     titleKey: 'colTools',
     items: [
       { nameKey: 'itemLiveChatWidget', href: '/whatsapp-chat-widget', badgeKey: 'badgeNew' },
@@ -110,8 +125,32 @@ const COLS: { titleKey: string; items: { nameKey?: string; literalName?: string;
 
 export function Footer() {
   const t = useTranslations('landingV3.footer')
+  const tRoot = useTranslations()
+  const tNav = useTranslations('landingV3.nav')
   const locale = useLocale()
   const lh = (href: string) => withLocale(href, locale)
+  const cols = COLS
+  const playBadge = (
+    <a
+      href={PLAY_STORE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={tRoot('blog.sidebar.appBadgeAria')}
+      className="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 transition-opacity hover:opacity-85"
+      style={{ background: '#000', color: '#fff', border: '1px solid #A6A6A6' }}
+    >
+      <svg width="20" height="22" viewBox="0 0 24 26" aria-hidden="true">
+        <path fill="#00D7FE" d="M1.1.6C.8.9.6 1.4.6 2v22c0 .6.2 1.1.5 1.4l.1.1L13.5 13.1v-.3L1.2.5z" />
+        <path fill="#FFCE00" d="M17.6 17.3l-4.1-4.2v-.3l4.1-4.1.1.1 4.9 2.8c1.4.8 1.4 2.1 0 2.9l-4.9 2.8z" />
+        <path fill="#FF3A44" d="M17.7 17.2L13.5 13 1.1 25.4c.5.5 1.2.5 2.1.1l14.5-8.3" />
+        <path fill="#00F076" d="M17.7 8.8L3.2.5C2.3 0 1.6.1 1.1.6L13.5 13z" />
+      </svg>
+      <span className="flex flex-col items-start text-left leading-none">
+        <span style={{ fontSize: 9, letterSpacing: '0.04em' }}>{tRoot('blog.sidebar.appGetItOn')}</span>
+        <span style={{ fontSize: 15, fontWeight: 600, marginTop: 2 }}>Google Play</span>
+      </span>
+    </a>
+  )
   const [openCols, setOpenCols] = useState<Set<number>>(new Set())
   const toggleCol = (i: number) => {
     setOpenCols((prev) => {
@@ -142,7 +181,7 @@ export function Footer() {
         </button>
         <ul id={`footer-col-${idx}`}>
           {c.items.map((i, j) => {
-            const label = i.brand ? intLabel(i.brand) : (i.literalName ?? (i.nameKey ? t(i.nameKey) : ''))
+            const label = i.brand ? intLabel(i.brand) : i.navKey ? tNav(i.navKey) : (i.literalName ?? (i.nameKey ? t(i.nameKey) : ''))
             return (
               <li key={`${idx}-${j}-${label}`}>
                 <a
@@ -175,6 +214,8 @@ export function Footer() {
                 alt="Eazybe Logo"
                 width={137}
                 height={32}
+                loading="lazy"
+                decoding="async"
                 style={{ height: 32, width: 'auto', objectFit: 'contain' }}
               />
             </a>
@@ -203,7 +244,13 @@ export function Footer() {
                 <a href="https://www.tiktok.com/@eazybe_" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
                 </a>
+                <a href="https://play.google.com/store/apps/details?id=com.eazybe.workspace" aria-label="Get Eazybe on Google Play" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+                </a>
               </div>
+
+              {/* Phones can't scan their own screen, so they get the Play badge only, right under the social icons. */}
+              <div className="mt-4 min-[821px]:hidden">{playBadge}</div>
 
               {/* Clutch award badges */}
               <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -221,6 +268,7 @@ export function Footer() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/trust-badges/meta-businedd-partner.webp" width={885} height={417} alt="Meta Business Partner" loading="lazy" className="h-12 w-auto rounded-md md:h-14" />
             </div>
+
           </div>
 
           {/* Awards & recognition (mobile only) — on the ≤820px single-column stack
@@ -237,13 +285,14 @@ export function Footer() {
           </div>
 
           {/* Row 1 columns: Agents, Integrations, Features, Resources */}
-          {COLS.slice(0, 4).map((c, idx) => renderCol(c, idx))}
+          {cols.slice(0, 4).map((c, idx) => renderCol(c, idx))}
 
           {/* Awards & recognition (desktop/tablet) — placed at the start of row 2 (the
               former Tools + WhatsApp API position, under the brand), spanning two columns
               on the wide 5-column grid (>=1140px). Hidden on the ≤820px stack where the
               mobile copy above renders it before the Agents section instead. */}
-          <div className="min-w-0 flex items-start max-[820px]:hidden min-[1140px]:col-span-2">
+          {/* Row 2 has four columns (Calling included), so the badge takes one. */}
+          <div className="min-w-0 flex flex-col items-start gap-6 max-[820px]:hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/trust-badges/awards.webp" width={1897} height={829}
@@ -251,10 +300,21 @@ export function Footer() {
               loading="lazy"
               className="block h-auto w-full max-w-[520px]"
             />
+            {/* Mobile app: same QR, badge and copy as the blog's AppDownloadCard, side by side so it stays short. */}
+            <div className="flex items-center gap-4">
+              <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="block shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/blog/eazybe-app-qr.svg" width={96} height={96} alt={tRoot('blog.sidebar.appQrAlt')} loading="lazy" className="block h-24 w-24 rounded-lg" />
+              </a>
+              <div>
+                <p className="mb-3 text-sm font-semibold" style={{ color: '#fff' }}>{tRoot('blog.sidebar.appTitle')}</p>
+                {playBadge}
+              </div>
+            </div>
           </div>
 
           {/* Row 2 columns: Tools, WhatsApp API, Company (shifted right of the awards badge) */}
-          {COLS.slice(4).map((c, i) => renderCol(c, i + 4))}
+          {cols.slice(4).map((c, i) => renderCol(c, i + 4))}
         </div>
 
         <div className="footer-watermark" aria-hidden="true" />{/* "EAZYBE" rendered via CSS ::before to keep it out of the a11y tree and contrast audits */}
@@ -291,6 +351,8 @@ export function Footer() {
             <a href={lh('/sitemap')}>{t('sitemap')}</a>
             <span className="footer-baseline-sep">|</span>
             <a href={lh('/feeds')}>{t('rss')}</a>
+            <span className="footer-baseline-sep">|</span>
+            <a href={lh('/security')}>{t('security')}</a>
           </nav>
 
           <div className="footer-payments" role="group" aria-label="Accepted payment methods">

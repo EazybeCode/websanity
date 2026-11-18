@@ -186,7 +186,7 @@ export function SalesGrowthLpClient({ locale = 'en' }: { locale?: LpLocale }) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/lp/sales-growth-bg.jpg"
-        alt=""
+        alt="Eazybe HubSpot WhatsApp integration page"
         aria-hidden="true"
         style={{
           position: 'fixed', inset: 0, width: '100%', height: '100%',

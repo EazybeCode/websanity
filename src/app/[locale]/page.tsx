@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getHomepageMetadata, getHomepageJsonLd } from '@/data/homepage-seo'
-import { ApprovedHomepage } from '@/components/homepage/ApprovedHomepage'
+import { getSiteNavigationJsonLd } from '@/data/site-navigation'
+import { HomepageV16 } from '@/components/homepage-v16/HomepageV16'
 import { routing } from '@/i18n/routing'
+import { pageDates, withPageAuthor, withPageDates } from '@/lib/page-dates'
 
 // Pure SSG: the page is fully prerendered for every locale at build time
 // and served from CDN cache thereafter. There's no runtime data on this
@@ -14,7 +16,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -31,7 +33,7 @@ export default async function HomePage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const jsonLdSchemas = getHomepageJsonLd(locale)
+  const jsonLdSchemas = [...getHomepageJsonLd(locale), await getSiteNavigationJsonLd(locale)]
 
   return (
     <>
@@ -43,7 +45,14 @@ export default async function HomePage({
         />
       ))}
 
-      <ApprovedHomepage locale={locale} />
+      {/* v16 design in every locale (copy translated via homepage-v16/translations.json). */}
+      <HomepageV16 locale={locale} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await props.params
+  return withPageAuthor(withPageDates(await baseMetadata(props), pageDates({ page: '/' })), locale)
 }

@@ -168,13 +168,13 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
       <div
         style={{
           background: '#ffffff',
-          border: '1px solid #E4E8F1',
-          borderRadius: 18,
+          border: '1px solid var(--line)',
+          borderRadius: 16,
           padding: 'clamp(20px, 3vw, 32px)',
           boxShadow: '0 1px 0 rgba(15,17,21,0.04), 0 14px 32px -16px rgba(15,17,21,0.12)',
         }}
       >
-        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: '#0F1115' }}>
+        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: 'var(--ink)' }}>
           {L.formTitle}
         </h2>
 
@@ -183,7 +183,7 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
             display: 'block',
             fontSize: 13,
             fontWeight: 600,
-            color: '#2A2E38',
+            color: 'var(--ink-2)',
             marginBottom: 6,
           }}
         >
@@ -196,10 +196,10 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
             aria-label={L.countryAria}
             style={{
               padding: '12px 10px',
-              border: '1px solid #E4E8F1',
+              border: '1px solid var(--line)',
               borderRadius: 10,
-              background: '#F8FAFC',
-              color: '#0F1115',
+              background: 'var(--bg-2)',
+              color: 'var(--ink)',
               fontSize: 14,
               minWidth: 112,
             }}
@@ -220,10 +220,10 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
             style={{
               flex: 1,
               padding: '12px 14px',
-              border: '1px solid #E4E8F1',
+              border: '1px solid var(--line)',
               borderRadius: 10,
-              background: '#F8FAFC',
-              color: '#0F1115',
+              background: 'var(--bg-2)',
+              color: 'var(--ink)',
               fontSize: 14,
             }}
           />
@@ -234,11 +234,11 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
             display: 'block',
             fontSize: 13,
             fontWeight: 600,
-            color: '#2A2E38',
+            color: 'var(--ink-2)',
             marginBottom: 6,
           }}
         >
-          {L.messageLabel} <span style={{ color: '#5A6070', fontWeight: 400 }}>{L.messageOptional}</span>
+          {L.messageLabel} <span style={{ color: 'var(--ink-3)', fontWeight: 400 }}>{L.messageOptional}</span>
         </label>
         <textarea
           value={message}
@@ -249,17 +249,17 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
           style={{
             width: '100%',
             padding: '12px 14px',
-            border: '1px solid #E4E8F1',
+            border: '1px solid var(--line)',
             borderRadius: 10,
-            background: '#F8FAFC',
-            color: '#0F1115',
+            background: 'var(--bg-2)',
+            color: 'var(--ink)',
             fontSize: 14,
             resize: 'vertical',
             fontFamily: 'inherit',
             marginBottom: 8,
           }}
         />
-        <div style={{ fontSize: 12, color: '#5A6070', marginBottom: 16 }}>
+        <div style={{ fontSize: 12, color: 'var(--ink-3)', marginBottom: 16 }}>
           {L.messageCounter.replace('{count}', String(message.length))}
         </div>
 
@@ -295,8 +295,8 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
       <div
         style={{
           background: '#ffffff',
-          border: '1px solid #E4E8F1',
-          borderRadius: 18,
+          border: '1px solid var(--line)',
+          borderRadius: 16,
           padding: 'clamp(20px, 3vw, 32px)',
           boxShadow: '0 1px 0 rgba(15,17,21,0.04), 0 14px 32px -16px rgba(15,17,21,0.12)',
           textAlign: 'center',
@@ -305,13 +305,13 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
         tabIndex={-1}
         aria-live="polite"
       >
-        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: '#0F1115' }}>
+        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: 'var(--ink)' }}>
           {L.outputTitle}
         </h2>
         <div
           style={{
-            background: '#ECEFF7',
-            border: '1px solid #E4E8F1',
+            background: 'var(--bg-2)',
+            border: '1px solid var(--line)',
             borderRadius: 14,
             padding: 24,
             display: 'flex',
@@ -330,7 +330,7 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
               style={{ width: 280, height: 280, display: 'block' }}
             />
           ) : (
-            <div style={{ color: '#5A6070', fontSize: 14, maxWidth: 220 }}>
+            <div style={{ color: 'var(--ink-3)', fontSize: 14, maxWidth: 220 }}>
               {L.emptyState}
             </div>
           )}
@@ -342,9 +342,9 @@ export function QrGeneratorClient({ labels }: { labels?: QrGeneratorLabels } = {
               style={{
                 fontFamily: 'var(--f-mono)',
                 fontSize: 12,
-                color: '#2A2E38',
-                background: '#ECEFF7',
-                border: '1px solid #E4E8F1',
+                color: 'var(--ink-2)',
+                background: 'var(--bg-2)',
+                border: '1px solid var(--line)',
                 borderRadius: 8,
                 padding: '8px 10px',
                 wordBreak: 'break-all',

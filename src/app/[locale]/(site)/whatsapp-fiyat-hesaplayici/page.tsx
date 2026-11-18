@@ -4,6 +4,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { WA_PRICING_PATH_BY_LOCALE } from '@/data/whatsapp-pricing-content'
 import { WhatsappPricingPage, buildWaPricingMetadata } from '@/components/pages/WhatsappPricingPage'
+import { pageDates, withPageDates } from '@/lib/page-dates'
 
 // Turkish slug of the WhatsApp pricing calculator. Each locale has its own
 // translated slug (WA_PRICING_PATH_BY_LOCALE); requesting this slug under any
@@ -16,7 +17,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -33,4 +34,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   }
   setRequestLocale(locale)
   return <WhatsappPricingPage locale={PAGE_LOCALE} />
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/whatsapp-pricing-calculator' }))
 }

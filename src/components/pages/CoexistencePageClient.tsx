@@ -31,8 +31,8 @@ const COEX_TX: Record<string, any> = {
       vals: { yes: 'Yes', protected: 'Protected', minutes: 'Minutes' },
       risky: 'Risky', instant: 'Instant', weeks: 'Days/Weeks',
     },
-    cta: { headline: 'That whole right-hand column comes with the trial', body: 'Every “Yes” in the table works on your own number during the 14-day trial. Connect it and see for yourself in about 30 minutes.', primary: 'Start Free Trial' },
-    footnote: '14-day free trial • No credit card required',
+    cta: { headline: 'That whole right-hand column comes with the trial', body: 'Every “Yes” in the table works on your own number during the 4-day trial. Connect it and see for yourself in about 30 minutes.', primary: 'Start Free Trial' },
+    footnote: '4-day free trial • No credit card required',
   },
   es: {
     sync: { connected: 'Conectado', appSub: 'Chats, llamadas, multimedia', apiSub: 'Difusiones masivas a escala', active: 'Activo', caption: 'Un número, ambos canales en vivo' },
@@ -45,8 +45,8 @@ const COEX_TX: Record<string, any> = {
       vals: { yes: 'Sí', protected: 'Protegido', minutes: 'Minutos' },
       risky: 'Riesgoso', instant: 'Instantáneo', weeks: 'Días/Semanas',
     },
-    cta: { headline: 'Toda la columna de la derecha viene con la prueba', body: 'Cada «Sí» de la tabla funciona con tu propio número durante la prueba de 14 días. Conéctalo y compruébalo en unos 30 minutos.', primary: 'Comenzar prueba gratis' },
-    footnote: 'Prueba gratis de 14 días • Sin tarjeta de crédito',
+    cta: { headline: 'Toda la columna de la derecha viene con la prueba', body: 'Cada «Sí» de la tabla funciona con tu propio número durante la prueba de 4 días. Conéctalo y compruébalo en unos 30 minutos.', primary: 'Comenzar prueba gratis' },
+    footnote: 'Prueba gratis de 4 días • Sin tarjeta de crédito',
   },
   br: {
     sync: { connected: 'Conectado', appSub: 'Chats, chamadas, mídia', apiSub: 'Transmissões em massa em escala', active: 'Ativo', caption: 'Um número, os dois canais no ar' },
@@ -59,8 +59,8 @@ const COEX_TX: Record<string, any> = {
       vals: { yes: 'Sim', protected: 'Protegido', minutes: 'Minutos' },
       risky: 'Arriscado', instant: 'Instantâneo', weeks: 'Dias/Semanas',
     },
-    cta: { headline: 'Toda a coluna da direita vem com o teste', body: 'Cada “Sim” da tabela funciona no seu próprio número durante o teste de 14 dias. Conecte e veja com seus olhos em uns 30 minutos.', primary: 'Começar teste grátis' },
-    footnote: 'Teste grátis de 14 dias • Sem cartão de crédito',
+    cta: { headline: 'Toda a coluna da direita vem com o teste', body: 'Cada “Sim” da tabela funciona no seu próprio número durante o teste de 4 dias. Conecte e veja com seus olhos em uns 30 minutos.', primary: 'Começar teste grátis' },
+    footnote: 'Teste grátis de 4 dias • Sem cartão de crédito',
   },
   tr: {
     sync: { connected: 'Bağlı', appSub: 'Sohbetler, aramalar, medya', apiSub: 'Ölçekli toplu gönderim', active: 'Aktif', caption: 'Bir numara, iki kanal yayında' },
@@ -73,8 +73,8 @@ const COEX_TX: Record<string, any> = {
       vals: { yes: 'Evet', protected: 'Korumalı', minutes: 'Dakikalar' },
       risky: 'Riskli', instant: 'Anında', weeks: 'Günler/Haftalar',
     },
-    cta: { headline: 'Sağdaki sütunun tamamı denemeyle birlikte gelir', body: 'Tablodaki her «Evet», 14 günlük deneme boyunca kendi numaranızda çalışır. Bağlayın, yaklaşık 30 dakikada kendiniz görün.', primary: 'Ücretsiz denemeyi başlat' },
-    footnote: '14 gün ücretsiz deneme • Kredi kartı gerekmez',
+    cta: { headline: 'Sağdaki sütunun tamamı denemeyle birlikte gelir', body: 'Tablodaki her «Evet», 4 günlük deneme boyunca kendi numaranızda çalışır. Bağlayın, yaklaşık 30 dakikada kendiniz görün.', primary: 'Ücretsiz denemeyi başlat' },
+    footnote: '4 gün ücretsiz deneme • Kredi kartı gerekmez',
   },
 }
 // Shared landing-style sections from the whatsapp-api feature pages

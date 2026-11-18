@@ -1,0 +1,519 @@
+/*
+ * v16 homepage — tablet & phone layout. The design export (home-v16.css + inline
+ * styles in markup.json) was drawn for 1440px only; these overrides adapt it.
+ * Everything is scoped under #ezv16 and only applies below 900px. Inline styles
+ * are matched in their CSSOM form ("prop: value"), which is how markup.json stores
+ * them. Wide product mockups are additionally zoomed to fit by initialize-v16.ts.
+ */
+
+/* Conversation management: the chat -> CRM card mockup is ~670px wide next to a
+   380px text column, which only fits from ~1360px. Below that, stack the row with
+   the copy first so the mockup never runs under the heading. */
+@media (max-width: 1360px) {
+  #ezv16 #cm :is(
+    [style*='grid-template-columns: minmax(0px, 1fr) 380px'],
+    [style*='grid-template-columns: 380px minmax(0px, 1fr)']
+  ) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px !important;
+  }
+  #ezv16 #cm [style*='grid-template-columns: minmax(0px, 1fr) 380px'] > :last-child {
+    order: -1;
+  }
+  /* Stacked, the connector would stretch edge to edge; keep the pair compact. */
+  #ezv16 #cm [style*='display: flex; align-items: center; gap: 0px; min-width: 0px; width: 100%'] {
+    max-width: 720px;
+  }
+}
+
+/* Sales intelligence panels on phones: the 44px/48px desktop padding left the CRM
+   card ~180px wide, and its value slots (fixed 120px, values absolutely placed)
+   spilled past the card edge. Tighten the panels and let the slots flex. */
+@media (max-width: 600px) {
+  #ezv16 #intel [style*='padding: 44px 48px'] {
+    padding: 24px 18px !important;
+  }
+  #ezv16 #intel [style*='position: relative; min-width: 120px; height: 20px'] {
+    min-width: 0 !important;
+    flex: 1 1 auto;
+    margin-left: 12px;
+  }
+  #ezv16 #intel [style*='display: flex; justify-content: space-between; align-items: center; padding: 12px 0px'] > span:first-child {
+    white-space: nowrap;
+  }
+  #ezv16 #intel [style*='padding: 4px 20px; background: rgb(23, 23, 27)'] {
+    padding: 4px 16px !important;
+  }
+  #ezv16 #intel [style*='font-size: 17px; line-height: 1.8'] {
+    font-size: 16px !important;
+    line-height: 1.75 !important;
+  }
+}
+
+/* Outreach sub-headings ("Broadcast from anywhere", "Auto dialer"): 28px on desktop, 24px on phones. */
+@media (max-width: 600px) {
+  #ezv16 #outreach h4[style*='font-size: 28px'] {
+    font-size: 24px !important;
+  }
+}
+
+/* Phones: zooming the side-by-side pair made it unreadable (~48%). Stack the chat
+   card over the CRM card at full size with a vertical connector instead. */
+@media (max-width: 600px) {
+  #ezv16 #cm [style*='display: flex; align-items: center; gap: 0px; min-width: 0px; width: 100%'] {
+    flex-direction: column;
+    max-width: none;
+  }
+  #ezv16 #cm [style*='display: flex; align-items: center; gap: 0px; min-width: 0px; width: 100%'] > :is([style*='width: 320px'], [style*='width: 300px']) {
+    width: 100% !important;
+    max-width: 340px;
+  }
+  #ezv16 #cm [style*='flex: 1 1 60px; min-width: 50px'] {
+    flex: none !important;
+    width: 2px !important;
+    min-width: 0 !important;
+    height: 40px !important;
+    background: linear-gradient(180deg, rgba(124, 152, 255, 0.15), rgba(124, 152, 255, 0.9)) !important;
+  }
+  #ezv16 #cm [style*='flex: 1 1 60px; min-width: 50px'] > span {
+    top: auto !important;
+    bottom: -6px !important;
+    right: -5px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  /* ---------- Shared ---------- */
+
+  /* Multi-column layouts stack. */
+  #ezv16 :is(
+    [style*='grid-template-columns: minmax(0px, 1.1fr) minmax(0px, 1fr)'],
+    [style*='grid-template-columns: minmax(0px, 1fr) minmax(0px, 1.1fr)'],
+    [style*='grid-template-columns: minmax(0px, 1.2fr) minmax(0px, 1fr)'],
+    [style*='grid-template-columns: 380px minmax(0px, 1fr)'],
+    [style*='grid-template-columns: minmax(0px, 1fr) 380px'],
+    [style*='grid-template-columns: minmax(0px, 1fr) 120px minmax(0px, 1fr)'],
+    [style*='grid-template-columns: minmax(0px, 1fr) 320px minmax(0px, 1fr)']
+  ) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+  /* Four-up card rows -> two-up. */
+  #ezv16 :is([style*='grid-template-columns: repeat(4, 1fr)'], [style*='grid-template-columns: repeat(4, minmax(0px, 1fr))']) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  /* Side-by-side flex sections wrap instead of squeezing. */
+  #ezv16 [style*='flex: 1 1 400px'],
+  #ezv16 [style*='flex: 1.2 1 520px'] {
+    flex-basis: 100% !important;
+    min-width: 0 !important;
+  }
+  /* Section paddings. */
+  #ezv16 [style*='padding: 112px 32px'] {
+    padding: 72px 20px !important;
+  }
+  #ezv16 [style*='padding: 128px 0px 96px'] {
+    padding: 80px 0 64px !important;
+  }
+
+  /* Headlines. */
+  #ezv16 h1 {
+    font-size: clamp(34px, 9vw, 52px) !important;
+    line-height: 1.08 !important;
+    max-width: 100% !important;
+  }
+  #ezv16 h2 {
+    font-size: clamp(28px, 7.4vw, 40px) !important;
+    line-height: 1.12 !important;
+  }
+  #ezv16 .v16-s2 .st .ttl {
+    font-size: clamp(26px, 6.8vw, 36px) !important;
+  }
+  #ezv16 .v16-s2 .st .txt {
+    font-size: 16px !important;
+  }
+
+  /* ---------- How Eazybe works (StoryFlow) ---------- */
+
+  /* Step tabs: one swipeable row instead of three wrapped rows. */
+  #ezv16 .snav > div {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    gap: 24px !important;
+    padding: 12px 20px 8px !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  #ezv16 .snav > div::-webkit-scrollbar {
+    display: none;
+  }
+  #ezv16 .snav > div > a {
+    flex: none;
+    white-space: nowrap;
+  }
+
+  /* Timeline rail moves to the left edge; content gets the width back. */
+  #ezv16 .v16-s2 .st .rail {
+    left: 19px !important;
+  }
+  #ezv16 .v16-s2 .st .dot {
+    left: 4px !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 14px !important;
+    top: 72px !important;
+  }
+  #ezv16 .v16-s2 [style*='padding: 136px 72px 150px 176px'] {
+    padding: 76px 20px 88px 48px !important;
+  }
+  /* CTA pairs inside each step wrap. */
+  #ezv16 .v16-s2 .cta {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 560px) {
+  /* Four-up rows -> single column on phones. */
+  #ezv16 :is([style*='grid-template-columns: repeat(4, 1fr)'], [style*='grid-template-columns: repeat(4, minmax(0px, 1fr))']) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  /* CRM picker: three columns of logos get cramped -> two. */
+  #ezv16 [role='tablist'][style*='repeat(3, minmax(0px, 1fr))'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ======================================================================
+   Full responsive pass (audit at 320–1920px). Desktop >1300px unchanged.
+   ====================================================================== */
+
+/* AI agents: cards | 320px phone | cards. Between tablet and ~1300px the side
+   columns collapsed to ~90px (one word per line). Phone on top, cards in two
+   columns underneath. Placed after the <=900px block so it wins there too. */
+@media (min-width: 601px) and (max-width: 1300px) {
+  #ezv16 .agv {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 28px 24px !important;
+    align-items: start !important;
+  }
+  #ezv16 .agv > :nth-child(2) {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+}
+
+/* Sales intelligence CRM card: value slots were a fixed 120px, so labels such as
+   "Fleet size" wrapped (and values overflowed on phones) whenever the card was narrow. */
+@media (max-width: 1300px) {
+  #ezv16 #intel [style*='position: relative; min-width: 120px; height: 20px'] {
+    min-width: 0 !important;
+    flex: 1 1 auto;
+    margin-left: 12px;
+  }
+  #ezv16 #intel [style*='display: flex; justify-content: space-between; align-items: center; padding: 12px 0px'] > span:first-child {
+    white-space: nowrap;
+  }
+}
+
+/* Conversation management sync diagram: a 1040x360 absolute canvas that the fit
+   script shrank to ~75% on small laptops and ~30% on phones (3-8px text). Re-flow
+   it: three columns (sources | Eazybe hub | destinations) up to 1200px, a single
+   readable list on phones. */
+@media (max-width: 1200px) {
+  #ezv16 .bp-cm > .mk[style*='width: 1040px'] {
+    width: auto !important;
+    height: auto !important;
+    margin: 16px 0 0 !important;
+  }
+  #ezv16 .bp-cm > .mk > svg {
+    display: none;
+  }
+  #ezv16 .bp-cm > .mk > div {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+  }
+  #ezv16 .bp-cm > .mk > .dx {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 80px;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx)::before,
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx)::after {
+    content: '';
+    position: absolute;
+    background: rgba(124, 152, 255, 0.6);
+  }
+}
+@media (min-width: 901px) and (max-width: 1200px) {
+  #ezv16 .bp-cm > .mk[style*='width: 1040px'] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 128px minmax(0, 1fr);
+    column-gap: 40px;
+    row-gap: 16px;
+    align-items: center;
+  }
+  #ezv16 .bp-cm > .mk > .sx0 { grid-area: 1 / 1; }
+  #ezv16 .bp-cm > .mk > .sx1 { grid-area: 2 / 1; }
+  #ezv16 .bp-cm > .mk > .sx2 { grid-area: 3 / 1; }
+  #ezv16 .bp-cm > .mk > .dx0 { grid-area: 1 / 3; }
+  #ezv16 .bp-cm > .mk > .dx1 { grid-area: 2 / 3; }
+  #ezv16 .bp-cm > .mk > .dx2 { grid-area: 3 / 3; }
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx) {
+    grid-area: 1 / 2 / 4 / 3;
+    align-self: center;
+  }
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx)::before,
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx)::after {
+    top: 50%;
+    width: 32px;
+    height: 2px;
+  }
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx)::before { left: -36px; }
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx)::after { right: -36px; }
+  #ezv16 .bp-cm .sic {
+    width: 60px !important;
+    height: 60px !important;
+    flex: 0 0 auto;
+  }
+  #ezv16 .bp-cm .dx > span[style*='width: 44px; height: 44px'] {
+    flex: 0 0 auto;
+  }
+}
+@media (max-width: 900px) {
+  #ezv16 .bp-cm > .mk[style*='width: 1040px'] {
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx) {
+    margin: 18px auto;
+  }
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx)::before,
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx)::after {
+    left: 50%;
+    width: 2px;
+    height: 18px;
+  }
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx)::before { top: -20px; }
+  #ezv16 .bp-cm > .mk > div:not(.sx):not(.dx)::after { bottom: -20px; }
+  /* Icons sized for the list layout: 72px source tiles dwarfed the labels on a
+     phone; match them to the 44px destination icons' scale. */
+  #ezv16 .bp-cm .sx {
+    gap: 14px !important;
+  }
+  #ezv16 .bp-cm .sic {
+    width: 48px !important;
+    height: 48px !important;
+    flex: 0 0 auto;
+  }
+  #ezv16 .bp-cm .sic svg {
+    width: 24px;
+    height: 24px;
+  }
+  #ezv16 .bp-cm .sx strong {
+    font-size: 16px !important;
+  }
+  #ezv16 .bp-cm .dx > span[style*='width: 44px; height: 44px'] {
+    width: 40px !important;
+    height: 40px !important;
+    flex: 0 0 auto;
+  }
+  #ezv16 .bp-cm .dx > span[style*='width: 44px; height: 44px'] :is(svg, img) {
+    width: 20px;
+    height: 20px;
+  }
+  #ezv16 .bp-cm .dx strong {
+    font-size: 15px !important;
+    line-height: 1.3;
+  }
+  /* subtitle inherited a ~2x line-height: tighten so cards stay compact */
+  #ezv16 .bp-cm .dx span[style*='font-size: 13px'] {
+    display: inline-block;
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  #ezv16 .bp-cm .dx > span[style*='flex: 1 1 0%'] {
+    line-height: 1.3;
+    min-width: 0;
+  }
+  #ezv16 .bp-cm .dx .okc {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Outreach broadcast + auto dialer panels: side-by-side mockups were zoomed to
+     ~40%. Stack them at full size instead. */
+  #ezv16 .bp-out > div {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  #ezv16 .bp-out > div > [style*='width: 250px'] {
+    width: 100% !important;
+    max-width: 340px;
+  }
+  #ezv16 .bp-out [style*='grid-template-columns: repeat(5, 90px)'] {
+    grid-template-columns: repeat(3, 84px) !important;
+    gap: 10px !important;
+  }
+  #ezv16 .bp-out [style*='grid-template-columns: repeat(5, 90px)'] > :nth-child(n + 4) {
+    display: none !important;
+  }
+  #ezv16 .bp-out [style*='position: relative; width: 84px; height: 2px'] {
+    width: 2px !important;
+    height: 36px !important;
+  }
+}
+
+/* Social-proof stats: 40px nowrap figures with 32px side padding overflowed a
+   320px screen by 12px. */
+@media (max-width: 420px) {
+  #ezv16 .tmi {
+    padding: 4px 12px !important;
+  }
+  #ezv16 .tmi > strong {
+    font-size: 32px !important;
+  }
+}
+
+/* Outreach tiles keep 40px/44px desktop padding, leaving ~220px for the mockups
+   on phones (they were zoomed to 60-70%). */
+@media (max-width: 600px) {
+  #ezv16 .otile {
+    padding: 28px 18px 32px !important;
+    gap: 28px !important;
+  }
+  /* Auto dialer: the three call screens (~396px) forced the fit script to shrink
+     the whole panel, call-list card included. Scale only the call screens. */
+  #ezv16 .bp-out > div > :last-child > [style*='display: flex; gap: 16px; align-items: center'] {
+    zoom: 0.8;
+  }
+  /* status pills under the mockups wrap instead of setting the column width */
+  #ezv16 .bp-out > div > :last-child {
+    max-width: 100%;
+  }
+  #ezv16 .bp-out > div > :last-child > span[style*='border-radius: 999px'] {
+    max-width: 100%;
+    white-space: normal !important;
+    text-align: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 430px) {
+  #ezv16 .bp-out > div > :last-child > [style*='display: flex; gap: 16px; align-items: center'] {
+    zoom: 0.68;
+  }
+}
+@media (max-width: 360px) {
+  #ezv16 .bp-out > div > :last-child > [style*='display: flex; gap: 16px; align-items: center'] {
+    zoom: 0.52;
+  }
+}
+
+/* AI agents on phones: the panel kept 44px/52px desktop padding, so the cards got
+   ~180-250px and the 320px phone/browser mockup ran off the screen edge (all three
+   tabs). Drop the side padding and let the mockup fit the column. */
+@media (max-width: 600px) {
+  #ezv16 .mk[style*='padding: 44px 52px 60px']:has(.agv) {
+    padding: 28px 0 36px !important;
+    gap: 32px !important;
+  }
+  #ezv16 .agv > :nth-child(2) {
+    width: 100% !important;
+    max-width: 320px;
+    box-sizing: border-box;
+  }
+  /* WhatsApp chat and website-widget phones: 640px left a tall empty stretch
+     once the phone narrowed. Their middle area flexes, so a shorter shell works. */
+  #ezv16 .agv > [style*='height: 640px'] {
+    height: 500px !important;
+  }
+  /* The chat's five messages + input bar need more than 500px: size to content. */
+  #ezv16 .agv > [style*='height: 640px'][style*='border-radius: 38px'] {
+    height: auto !important;
+  }
+  /* Voice-agent call screen: fixed 640px + space-between left big empty gaps once
+     the column narrowed, so the phone ran past a full screen. Size it to content. */
+  #ezv16 .agv > [style*='justify-content: space-between'][style*='height: 640px'] {
+    height: auto !important;
+    justify-content: flex-start !important;
+    gap: 14px !important;
+    padding: 12px 16px 20px !important;
+    border-radius: 32px !important;
+  }
+}
+
+/* Phones: every h3 section title (step titles + the Conversation management row
+   headings, which stayed at their 36px desktop size) at one size: 26px. FAQ
+   questions (also h3) keep their own size. */
+@media (max-width: 600px) {
+  #ezv16 h3:not(.fq-q),
+  #ezv16 .v16-s2 .st h3.ttl {
+    font-size: 26px !important;
+    line-height: 1.15 !important;
+  }
+}
+
+/* Hero "Works with HubSpot, Salesforce, Zoho and more" badge: at 13px it needs
+   ~334px (Turkish ~354px), but the hero kept 32px side padding, so it broke onto
+   two lines under the icon on every phone. Tighter hero padding + a smaller,
+   single-line badge in every locale down to 320px. */
+@media (max-width: 600px) {
+  #ezv16 section[style*='padding: 88px 32px 96px'] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  #ezv16 section[style*='padding: 88px 32px 96px'] > div:has(> img[src*='6a67410485ac']) {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+    gap: 6px !important;
+    white-space: nowrap;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  #ezv16 section[style*='padding: 88px 32px 96px'] > div:has(> img[src*='6a67410485ac']) > img {
+    flex: 0 0 auto;
+  }
+}
+@media (max-width: 380px) {
+  #ezv16 section[style*='padding: 88px 32px 96px'] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  /* still one line: text scales with the screen (10.4px at 320px, 12px at ~370px) */
+  #ezv16 section[style*='padding: 88px 32px 96px'] > div:has(> img[src*='6a67410485ac']) {
+    font-size: clamp(10px, 3.25vw, 12px) !important;
+    padding: 6px 8px !important;
+  }
+}
+
+/* Customer logo marquee on phones: logos a little smaller (80%), tiles shrunk to
+   match so spacing stays even. The scroll is percentage-based, so it still loops. */
+@media (max-width: 600px) {
+  #ezv16 :is(.pmq, .pmq2) [style*='width: 236px; height: 72px'] {
+    width: 180px !important;
+    height: 56px !important;
+  }
+  #ezv16 :is(.pmq, .pmq2) [style*='width: 236px; height: 72px'] img {
+    transform: scale(0.8);
+  }
+}
+
+/* Perf (all widths): skip style/layout/paint for the long below-fold blocks until
+   they near the viewport (same technique as landing-v3.css's section rule). The
+   "How Eazybe works" section alone is ~13,000px / ~900 elements on a phone, and its
+   looping mockup animations kept re-running style work while off screen. `auto`
+   remembers each block's real height once rendered; the px values are phone-width
+   placeholders so the scrollbar doesn't jump before then. */
+#ezv16 #cm { content-visibility: auto; contain-intrinsic-size: auto 3600px; }
+#ezv16 #outreach { content-visibility: auto; contain-intrinsic-size: auto 4200px; }
+#ezv16 #intel { content-visibility: auto; contain-intrinsic-size: auto 1900px; }
+#ezv16 #agents { content-visibility: auto; contain-intrinsic-size: auto 2450px; }
+#ezv16 > .v16-s3 { content-visibility: auto; contain-intrinsic-size: auto 1500px; }
+#ezv16 > .v16-s4 { content-visibility: auto; contain-intrinsic-size: auto 1000px; }
+#ezv16 > .v16-s5 { content-visibility: auto; contain-intrinsic-size: auto 800px; }

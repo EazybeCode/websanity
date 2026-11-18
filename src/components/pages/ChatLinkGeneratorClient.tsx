@@ -154,13 +154,13 @@ export function ChatLinkGeneratorClient({ labels }: { labels?: ChatLinkGenerator
       <div
         style={{
           background: '#ffffff',
-          border: '1px solid #E4E8F1',
-          borderRadius: 18,
+          border: '1px solid var(--line)',
+          borderRadius: 16,
           padding: 'clamp(20px, 3vw, 32px)',
           boxShadow: '0 1px 0 rgba(15,17,21,0.04), 0 14px 32px -16px rgba(15,17,21,0.12)',
         }}
       >
-        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: '#0F1115' }}>
+        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: 'var(--ink)' }}>
           {L.formTitle}
         </h2>
 
@@ -169,7 +169,7 @@ export function ChatLinkGeneratorClient({ labels }: { labels?: ChatLinkGenerator
             display: 'block',
             fontSize: 13,
             fontWeight: 600,
-            color: '#2A2E38',
+            color: 'var(--ink-2)',
             marginBottom: 6,
           }}
         >
@@ -182,10 +182,10 @@ export function ChatLinkGeneratorClient({ labels }: { labels?: ChatLinkGenerator
             aria-label={L.countryAria}
             style={{
               padding: '12px 10px',
-              border: '1px solid #E4E8F1',
+              border: '1px solid var(--line)',
               borderRadius: 10,
-              background: '#F8FAFC',
-              color: '#0F1115',
+              background: 'var(--bg-2)',
+              color: 'var(--ink)',
               fontSize: 14,
               minWidth: 112,
             }}
@@ -206,10 +206,10 @@ export function ChatLinkGeneratorClient({ labels }: { labels?: ChatLinkGenerator
             style={{
               flex: 1,
               padding: '12px 14px',
-              border: '1px solid #E4E8F1',
+              border: '1px solid var(--line)',
               borderRadius: 10,
-              background: '#F8FAFC',
-              color: '#0F1115',
+              background: 'var(--bg-2)',
+              color: 'var(--ink)',
               fontSize: 14,
             }}
           />
@@ -220,11 +220,11 @@ export function ChatLinkGeneratorClient({ labels }: { labels?: ChatLinkGenerator
             display: 'block',
             fontSize: 13,
             fontWeight: 600,
-            color: '#2A2E38',
+            color: 'var(--ink-2)',
             marginBottom: 6,
           }}
         >
-          {L.messageLabel} <span style={{ color: '#5A6070', fontWeight: 400 }}>{L.messageOptional}</span>
+          {L.messageLabel} <span style={{ color: 'var(--ink-3)', fontWeight: 400 }}>{L.messageOptional}</span>
         </label>
         <textarea
           value={message}
@@ -235,17 +235,17 @@ export function ChatLinkGeneratorClient({ labels }: { labels?: ChatLinkGenerator
           style={{
             width: '100%',
             padding: '12px 14px',
-            border: '1px solid #E4E8F1',
+            border: '1px solid var(--line)',
             borderRadius: 10,
-            background: '#F8FAFC',
-            color: '#0F1115',
+            background: 'var(--bg-2)',
+            color: 'var(--ink)',
             fontSize: 14,
             resize: 'vertical',
             fontFamily: 'inherit',
             marginBottom: 8,
           }}
         />
-        <div style={{ fontSize: 12, color: '#5A6070', marginBottom: 16 }}>
+        <div style={{ fontSize: 12, color: 'var(--ink-3)', marginBottom: 16 }}>
           {L.messageCounter.replace('{count}', String(message.length))}
         </div>
 
@@ -277,8 +277,8 @@ export function ChatLinkGeneratorClient({ labels }: { labels?: ChatLinkGenerator
       <div
         style={{
           background: '#ffffff',
-          border: '1px solid #E4E8F1',
-          borderRadius: 18,
+          border: '1px solid var(--line)',
+          borderRadius: 16,
           padding: 'clamp(20px, 3vw, 32px)',
           boxShadow: '0 1px 0 rgba(15,17,21,0.04), 0 14px 32px -16px rgba(15,17,21,0.12)',
         }}
@@ -286,22 +286,22 @@ export function ChatLinkGeneratorClient({ labels }: { labels?: ChatLinkGenerator
         tabIndex={-1}
         aria-live="polite"
       >
-        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: '#0F1115' }}>
+        <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 18px', color: 'var(--ink)' }}>
           {L.outputTitle}
         </h2>
 
         {!waUrl ? (
           <div
             style={{
-              background: '#ECEFF7',
-              border: '1px solid #E4E8F1',
+              background: 'var(--bg-2)',
+              border: '1px solid var(--line)',
               borderRadius: 14,
               padding: 32,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               minHeight: 200,
-              color: '#5A6070',
+              color: 'var(--ink-3)',
               fontSize: 14,
               textAlign: 'center',
             }}
@@ -310,16 +310,16 @@ export function ChatLinkGeneratorClient({ labels }: { labels?: ChatLinkGenerator
           </div>
         ) : (
           <>
-            <div style={{ fontSize: 12, fontWeight: 600, color: '#5A6070', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink-3)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               {L.linkLabel}
             </div>
             <div
               style={{
                 fontFamily: 'var(--f-mono, ui-monospace, monospace)',
                 fontSize: 13,
-                color: '#0F1115',
-                background: '#ECEFF7',
-                border: '1px solid #E4E8F1',
+                color: 'var(--ink)',
+                background: 'var(--bg-2)',
+                border: '1px solid var(--line)',
                 borderRadius: 10,
                 padding: '12px 14px',
                 wordBreak: 'break-all',
@@ -338,16 +338,16 @@ export function ChatLinkGeneratorClient({ labels }: { labels?: ChatLinkGenerator
               </button>
             </div>
 
-            <div style={{ fontSize: 12, fontWeight: 600, color: '#5A6070', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink-3)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               {L.htmlLabel}
             </div>
             <div
               style={{
                 fontFamily: 'var(--f-mono, ui-monospace, monospace)',
                 fontSize: 12,
-                color: '#2A2E38',
-                background: '#ECEFF7',
-                border: '1px solid #E4E8F1',
+                color: 'var(--ink-2)',
+                background: 'var(--bg-2)',
+                border: '1px solid var(--line)',
                 borderRadius: 10,
                 padding: '12px 14px',
                 wordBreak: 'break-all',

@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { ScrollText } from 'lucide-react'
 import { getCanonicalOnly } from '@/lib/seo-helpers'
+import { pageDates, withPageDates } from '@/lib/page-dates'
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -114,4 +115,9 @@ export default async function TermsPage({
       </section>
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/terms' }))
 }

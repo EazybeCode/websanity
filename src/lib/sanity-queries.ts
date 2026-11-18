@@ -1,4 +1,8 @@
+import { cache } from 'react'
 import { sanityClient, sanityDraftClient } from './sanity'
+import { getCallingPage } from '@/data/calling-i18n'
+import { docToCallingPage, type CallingPageDoc } from '@/data/calling-doc'
+import type { CallingPageContent } from '@/data/calling-content'
 import {
   CRM_ORDER,
   REGION_ORDER,
@@ -293,8 +297,11 @@ export async function getProduct(slug: string, locale: string = 'en') {
   const cacheKey = `${slug}-${language}`
   let translatedEnglish = productTranslateCache.get(cacheKey)
   if (!translatedEnglish) {
-    translatedEnglish = await deepTranslate(englishData, language)
-    productTranslateCache.set(cacheKey, translatedEnglish)
+    const ctx = { failed: 0 }
+    translatedEnglish = await deepTranslate(englishData, language, undefined, ctx)
+    // Only memoize a fully translated payload — otherwise strings that hit
+    // a rate-limit would stay English until the server restarts.
+    if (ctx.failed === 0) productTranslateCache.set(cacheKey, translatedEnglish)
   }
 
   if (!localeData) return translatedEnglish
@@ -332,6 +339,7 @@ export async function getBlogPosts(locale: string = 'en', limit?: number) {
     excerpt,
     category,
     language,
+    translationGroupId,
     "featuredImage": featuredImage.asset->url,
     publishedAt,
     readTime,
@@ -340,6 +348,38 @@ export async function getBlogPosts(locale: string = 'en', limit?: number) {
     }
   }`
   return sanityClient.fetch(query, { language })
+}
+
+// Translation-group ids of the English posts matching the given slugs — used to
+// tag the same posts across every locale (slugs differ per language, tgids don't).
+// The locale's versions of the English posts with these slugs (matched through
+// translationGroupId), in the same order as `enSlugs`. Posts without a
+// translation in this locale are skipped.
+export async function getPostsByEnSlugs(enSlugs: string[], locale: string = 'en') {
+  const language = toSanityLang(locale)
+  const query = `*[_type == "post" && language == "en" && slug.current in $enSlugs && defined(translationGroupId)]{
+    "enSlug": slug.current,
+    "post": *[_type == "post" && language == $language && translationGroupId == ^.translationGroupId][0]{
+      title,
+      "slug": slug.current,
+      excerpt,
+      "image": coalesce(featuredImage.asset->url, *[_type == "post" && language == "en" && translationGroupId == ^.translationGroupId][0].featuredImage.asset->url),
+      "imageAlt": featuredImage.alt,
+      "date": coalesce(publishedAt, _createdAt)
+    }
+  }`
+  const rows: { enSlug: string; post: { title: string; slug: string; excerpt?: string; image?: string; imageAlt?: string; date?: string } | null }[] | null =
+    await sanityClient.fetch(query, { enSlugs, language })
+  const bySlug = new Map((rows ?? []).map((r) => [r.enSlug, r.post]))
+  return enSlugs.flatMap((s) => {
+    const post = bySlug.get(s)
+    return post?.slug && post.title ? [post] : []
+  })
+}
+
+export async function getTranslationGroupIdsBySlugs(slugs: string[]) {
+  const query = `*[_type == "post" && language == "en" && slug.current in $slugs && defined(translationGroupId)].translationGroupId`
+  return sanityClient.fetch(query, { slugs })
 }
 
 // ─── Blog Post (single) ────────────────────────────────────────────────────
@@ -698,20 +738,34 @@ const categoryTranslateCache = new Map<string, any>()
 
 // Google's free Translate endpoint — same one used by scripts/bulk-translate.mjs.
 // Best-effort: returns the original on failure so the page keeps rendering.
-async function gTranslate(text: string, targetLang: string): Promise<string> {
+async function gTranslate(
+  text: string,
+  targetLang: string,
+  ctx?: { failed: number },
+): Promise<string> {
   if (!text || !text.trim()) return text
   const map: Record<string, string> = { es: 'es', tr: 'tr', 'pt-BR': 'pt', en: 'en' }
   const tl = map[targetLang] || targetLang
   if (tl === 'en') return text
-  try {
-    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`
-    const res = await fetch(url)
-    const data = await res.json()
-    if (data && data[0]) return data[0].map((s: any) => s[0]).join('')
-    return text
-  } catch {
-    return text
+  // The free endpoint rate-limits bursts (deepTranslate fires many calls in
+  // parallel), so retry a couple of times before giving up.
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`
+      const res = await fetch(url)
+      if (res.ok) {
+        const data = await res.json()
+        if (data && data[0]) return data[0].map((s: any) => s[0]).join('')
+      }
+    } catch {
+      /* retry */
+    }
+    await new Promise((r) => setTimeout(r, 400 * (attempt + 1)))
   }
+  // Still failing: return English so the page renders, but flag it so the
+  // caller doesn't cache a half-translated payload forever.
+  if (ctx) ctx.failed++
+  return text
 }
 
 // Recursively translate every string in a category-index payload, skipping
@@ -734,18 +788,23 @@ const NON_TRANSLATABLE_KEYS = new Set([
   'type',
 ])
 
-async function deepTranslate(value: any, targetLang: string, parentKey?: string): Promise<any> {
+async function deepTranslate(
+  value: any,
+  targetLang: string,
+  parentKey?: string,
+  ctx?: { failed: number },
+): Promise<any> {
   if (value == null) return value
   if (parentKey && NON_TRANSLATABLE_KEYS.has(parentKey)) return value
-  if (typeof value === 'string') return gTranslate(value, targetLang)
+  if (typeof value === 'string') return gTranslate(value, targetLang, ctx)
   if (Array.isArray(value)) {
-    return Promise.all(value.map((item) => deepTranslate(item, targetLang, parentKey)))
+    return Promise.all(value.map((item) => deepTranslate(item, targetLang, parentKey, ctx)))
   }
   if (typeof value === 'object') {
     const out: Record<string, any> = {}
     await Promise.all(
       Object.entries(value).map(async ([k, v]) => {
-        out[k] = NON_TRANSLATABLE_KEYS.has(k) ? v : await deepTranslate(v, targetLang, k)
+        out[k] = NON_TRANSLATABLE_KEYS.has(k) ? v : await deepTranslate(v, targetLang, k, ctx)
       }),
     )
     return out
@@ -1072,6 +1131,12 @@ export async function getAuthorBySlug(slug: string, locale: string = 'en') {
   return sanityClient.fetch(query, { slug, sanityLanguage })
 }
 
+/** Sanity languages that have an author document for this slug. */
+export async function getAuthorLanguages(slug: string): Promise<string[]> {
+  const query = `array::unique(*[_type == "author" && slug.current == $slug && defined(language)].language)`
+  return (await sanityClient.fetch(query, { slug })) ?? []
+}
+
 export async function getAllAuthorSlugs() {
   const query = `*[_type == "author" && defined(slug.current)]{ "slug": slug.current }`
   return sanityClient.fetch(query)
@@ -1354,10 +1419,11 @@ function toPartnerRecord(row: SanityPartnerRow): PartnerRecord {
         .slice(0, 2)
         .map((w) => w[0]!.toUpperCase())
         .join('') || 'P',
-    tier: row.partnerTier?.trim() || 'Partner',
+    tier: row.partnerTier?.trim() || '',
     crm,
-    crmLabel:
-      crm === 'other'
+    crmLabel: !row.crmPlatform
+      ? ''
+      : crm === 'other'
         ? row.crmOtherLabel?.trim() || PARTNER_CRM_LABELS.other
         : PARTNER_CRM_LABELS[crm],
     country: row.country?.trim() || '',
@@ -1368,10 +1434,14 @@ function toPartnerRecord(row: SanityPartnerRow): PartnerRecord {
     detail: detail || undefined,
     summaryRich: blocks.length ? partnerBlockSpans(blocks[0]) : undefined,
     detailRich: detail ? partnerBlocksSpans(blocks.slice(1)) : undefined,
-    specialties: (row.specialties ?? []).flatMap((s) => {
-      const v = s?.trim()
-      return v ? [v] : []
-    }),
+    specialties: [
+      ...new Set(
+        (row.specialties ?? []).flatMap((s) => {
+          const v = s?.trim()
+          return v ? [v] : []
+        }),
+      ),
+    ],
   }
 }
 
@@ -1412,10 +1482,10 @@ export async function getPartners(locale: string = 'en'): Promise<PartnerRecord[
       description.en
     ),
     "specialties": select(
-      $locale == "en" => specialties.en,
-      specialties[$mode] == "inherit" => specialties.en,
+      $locale == "en" => [...coalesce(specialties.en, []), ...coalesce(specialties.enOther, [])],
+      specialties[$mode] == "inherit" => [...coalesce(specialties.en, []), ...coalesce(specialties.enOther, [])],
       count(specialties[$locale]) > 0 => specialties[$locale],
-      specialties.en
+      [...coalesce(specialties.en, []), ...coalesce(specialties.enOther, [])]
     )
   }`
   const rows: SanityPartnerRow[] | null = await sanityClient.fetch(query, {
@@ -1425,3 +1495,19 @@ export async function getPartners(locale: string = 'en'): Promise<PartnerRecord[
   if (rows === null) return null
   return rows.map(toPartnerRecord)
 }
+
+/**
+ * A /calling page's copy: the published "Calling Pages" document when there is
+ * one, otherwise the copy in the code. Also the fallback when the CMS is
+ * unreachable, so these pages never depend on Sanity being up. Cached per request
+ * because metadata and the page both ask for it.
+ */
+export const getCallingPageContent = cache(async (slug: string, locale: string): Promise<CallingPageContent | undefined> => {
+  const base = getCallingPage(slug, locale)
+  if (!base) return undefined
+  const doc = await sanityClient.fetch<CallingPageDoc | null>(
+    `*[_type == "callingPage" && !(_id in path("drafts.**")) && slug.current == $slug && language == $language][0]`,
+    { slug: slug || 'hub', language: toSanityLang(locale) },
+  )
+  return doc ? docToCallingPage(doc, base) : base
+})

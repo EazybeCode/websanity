@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import { INSTALL_REDIRECT_URL } from '@/utils/openChromeExtensionStore'
 import { useTrialModal } from '@/providers/TrialModalProvider'
+import { McpLaunchBanner } from './McpLaunchBanner'
 
 // Prefix internal href paths with the active locale (e.g. "/hubspot-..." → "/br/hubspot-...").
 // External URLs, hash links, and the root "/#" stay untouched.
@@ -134,49 +135,69 @@ const AGENTS = [
   {
     name: 'CRM Sync Agent',
     desc: 'Auto-log every WhatsApp chat to your CRM',
-    href: '/#',
+    href: '/whatsapp-ai-agent#crm-sync',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H9a5 5 0 00-5 5"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h12a5 5 0 005-5"/></svg>',
   },
   {
     name: 'Lead Qualification Agent',
     desc: 'Qualify leads 24/7 like your best rep',
-    href: '/#',
+    href: '/whatsapp-ai-agent#lead-qualification',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>',
   },
   {
     name: 'Revenue Agent',
     desc: 'Spot ghosted deals before they die',
-    href: '/#',
+    href: '/whatsapp-ai-agent#revenue',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
   },
   {
     name: 'Customer Success Agent',
     desc: 'Answer support 24/7 with your KB',
-    href: '/#',
+    href: '/whatsapp-ai-agent#customer-success',
     bg: '#E4F5EC',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>',
   },
   {
     name: 'Agent Builder',
     desc: 'Custom agents for your use case',
-    href: '/#',
+    href: '/whatsapp-ai-agent#agent-builder',
     bg: '#F0EBF8',
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg>',
   },
 ]
 
+const callingIcon = (paths: string) =>
+  `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B59FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`
+const PHONE_PATH = '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>'
+const CALLING_PRODUCTS = [
+  // Keypad
+  { nameKey: 'callingAutoName', descKey: 'callingAutoDesc', href: '/calling/auto-dialer', icon: callingIcon('<path d="M5 4h.01M12 4h.01M19 4h.01M5 11h.01M12 11h.01M19 11h.01M5 18h.01M12 18h.01M19 18h.01" stroke-width="3.4"/>') },
+  // Handset with a signal arc: a line that runs over the internet
+  { nameKey: 'callingVirtualName', descKey: 'callingVirtualDesc', href: '/calling/virtual-phone-number', icon: callingIcon(`${PHONE_PATH}<path d="M15 2a7 7 0 0 1 7 7"/><path d="M15 6a3 3 0 0 1 3 3"/>`) },
+  // Rising activity bars
+  { nameKey: 'callingTrackName', descKey: 'callingTrackDesc', href: '/calling/call-tracking', icon: callingIcon('<path d="M3 3v18h18"/><path d="M8 17v-4M13 17V8M18 17v-7"/>') },
+  // SIM card with chip
+  { nameKey: 'callingSimName', descKey: 'callingSimDesc', href: '/calling/sim-based-calling', icon: callingIcon('<path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><rect x="8" y="11" width="8" height="7" rx="1"/><path d="M12 11v7M8 14.5h8"/>') },
+  // Microphone
+  { nameKey: 'callingRecName', descKey: 'callingRecDesc', href: '/calling/call-recording', icon: callingIcon('<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v4M8 22h8"/>') },
+]
+// Balance scale
+const CALLING_COMPARE = { nameKey: 'callingVsName', descKey: 'callingVsDesc', href: '/calling/sim-vs-cloud-calling', icon: callingIcon('<path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0L5 7zM19 7l-3 7a3 3 0 0 0 6 0l-3-7z"/>') }
+const CALLING_ALL = { nameKey: 'callingAllName', descKey: 'callingAllDesc', href: '/calling', icon: callingIcon(PHONE_PATH) }
+
 const INTEGRATIONS = [
-  { name: 'HubSpot', desc: 'Bi-directional sync', href: "/hubspot-whatsapp-integration", bg: '#FFEBE3', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="#FF7A59"><path d="M18.164 7.93V5.084a2.198 2.198 0 001.267-1.984 2.21 2.21 0 00-4.42 0c0 .873.52 1.626 1.263 1.976v2.868a5.1 5.1 0 00-2.348 1.028l-6.293-4.9a2.06 2.06 0 00.054-.453 2.1 2.1 0 10-.86 1.7l6.073 4.73a6.4 6.4 0 1 0 7.6-3z"/></svg>' },
-  { name: 'Salesforce', desc: 'Deals, contacts, activities', href: "/salesforce-whatsapp-integration", bg: '#E0F4FB', icon: '<svg width="20" height="14" viewBox="0 0 48 34" fill="#00A1E0"><path d="M19.5 6.8c1.5-1.6 3.7-2.6 6-2.6 3.1 0 5.9 1.8 7.3 4.5 1.2-.5 2.4-.8 3.8-.8 5.3 0 9.6 4.3 9.6 9.6s-4.3 9.6-9.6 9.6c-.6 0-1.3-.1-1.9-.2-1.2 2.1-3.5 3.6-6.1 3.6-1.1 0-2.1-.3-3-.7-1.2 2.8-4 4.7-7.2 4.7-3.4 0-6.3-2-7.6-4.9-.7.1-1.3.2-2 .2C4 30 .3 26.3.3 21.7c0-3.1 1.7-5.8 4.2-7.2-.5-1.2-.8-2.5-.8-3.8C3.7 5.2 8 1 13.2 1c3 0 5.6 1.4 7.3 3.6z"/></svg>' },
-  { name: 'Zoho CRM', desc: 'Native Zoho sync', href: "/zoho-whatsapp-integration", bg: '#FCE7E8', icon: '<svg width="18" height="18" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#E42527"/><text x="12" y="17" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Z</text></svg>' },
-  { name: 'Pipedrive', desc: 'Pipeline auto-sync', href: "/pipedrive-whatsapp-integration", bg: '#E4F0E8', icon: '<svg width="18" height="18" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#1A6B3A"/><circle cx="12" cy="12" r="5" fill="#fff"/></svg>' },
-  { name: 'Bitrix24', desc: 'CRM + tasks + chat', href: "/bitrix24-whatsapp-integration", bg: '#E1F0F8', icon: '<svg width="18" height="18" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#1F8AC0"/><text x="12" y="16" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">B24</text></svg>' },
-  { name: 'LeadSquared', desc: 'Lead capture + nurture', href: "/leadsquared-whatsapp-integration", bg: '#EFE6FA', icon: '<svg width="18" height="18" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#7C3AED"/><text x="12" y="16" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">LSQ</text></svg>' },
-  { name: 'Freshworks', desc: 'Freshsales + Freshdesk', href: "/freshdesk-whatsapp-integration", bg: '#E4F7E8', icon: '<svg width="18" height="18" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#fff" stroke="#E4E8F1" stroke-width="0.5"/><path d="M5 13.5L8 10l2 2 4-5 5 6.5" stroke="#3FBA50" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
-  { name: 'Google Sheets', desc: 'Spreadsheet-as-CRM', href: "/google-sheets-whatsapp-integration", bg: '#E4F4EA', icon: '<svg width="18" height="18" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1.5" fill="#0F9D58"/><rect x="6" y="7" width="12" height="12" fill="#fff"/><path d="M6 11h12M6 15h12M10 7v12M14 7v12" stroke="#0F9D58" stroke-width="0.8"/></svg>' },
+  { name: 'HubSpot', desc: 'Bi-directional sync', href: "/hubspot-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/hubspot.webp" width="20" height="20" alt="HubSpot" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Salesforce', desc: 'Deals, contacts, activities', href: "/salesforce-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/salesforce.webp" width="20" height="20" alt="Salesforce" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Zoho CRM', desc: 'Native Zoho sync', href: "/zoho-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/zoho.webp" width="20" height="20" alt="Zoho CRM" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Pipedrive', desc: 'Pipeline auto-sync', href: "/pipedrive-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/pipedrive.webp" width="20" height="20" alt="Pipedrive" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Bitrix24', desc: 'CRM + tasks + chat', href: "/bitrix24-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/bitrix24.webp" width="20" height="20" alt="Bitrix24" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'LeadSquared', desc: 'Lead capture + nurture', href: "/leadsquared-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/leadsquared.webp" width="20" height="20" alt="LeadSquared" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Freshworks', desc: 'Freshsales + Freshdesk', href: "/freshdesk-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/freshdesk.webp" width="20" height="20" alt="Freshworks" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'Google Sheets', desc: 'Spreadsheet-as-CRM', href: "/google-sheets-whatsapp-integration", bg: '#FFFFFF', icon: '<img src="/homepage/crm-logos/google-sheets.webp" width="20" height="20" alt="Google Sheets" loading="lazy" decoding="async" style="display:block;width:20px;height:20px;object-fit:contain">' },
+  { name: 'monday.com', desc: 'Sync chats to your boards', href: "/monday-whatsapp-integration", bg: '#FFFFFF', icon: '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8" width="4.4" height="10.5" rx="2.2" transform="rotate(-24 4.7 13.25)" fill="#F62B54"/><rect x="9.8" y="8" width="4.4" height="10.5" rx="2.2" transform="rotate(-24 12 13.25)" fill="#FFCC00"/><circle cx="19.2" cy="16.3" r="2.4" fill="#00CA72"/></svg>' },
   { name: 'Custom API', desc: 'Webhooks + REST API', href: "/webhooks-whatsapp-integration", bg: '#F0EBF8', icon: '<svg width="18" height="18" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#0F1115"/><path d="M9 9l-3 3 3 3M15 9l3 3-3 3" stroke="#A78BFA" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
 ]
 
@@ -225,8 +246,104 @@ const INT_WORD: Record<string, string> = {
   en: 'Integration', es: 'Integración', br: 'Integração', tr: 'Entegrasyonu',
 }
 
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.eazybe.workspace'
+
+// "Get it on Google Play" badge. <div>s, not <span>s: `.nav-links a span` forces
+// color:#fff !important and turns purple on hover.
+function PlayBadge({ label, aria }: { label: string; aria: string }) {
+  return (
+    <a
+      href={PLAY_STORE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={aria}
+      style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 12px', borderRadius: 8, background: '#000', color: '#fff', border: '1px solid #A6A6A6' }}
+    >
+      <svg width="20" height="22" viewBox="0 0 24 26" aria-hidden="true">
+        <path fill="#00D7FE" d="M1.1.6C.8.9.6 1.4.6 2v22c0 .6.2 1.1.5 1.4l.1.1L13.5 13.1v-.3L1.2.5z" />
+        <path fill="#FFCE00" d="M17.6 17.3l-4.1-4.2v-.3l4.1-4.1.1.1 4.9 2.8c1.4.8 1.4 2.1 0 2.9l-4.9 2.8z" />
+        <path fill="#FF3A44" d="M17.7 17.2L13.5 13 1.1 25.4c.5.5 1.2.5 2.1.1l14.5-8.3" />
+        <path fill="#00F076" d="M17.7 8.8L3.2.5C2.3 0 1.6.1 1.1.6L13.5 13z" />
+      </svg>
+      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1, color: '#fff', textAlign: 'left' }}>
+        <div style={{ fontSize: 9, letterSpacing: '0.04em' }}>{label}</div>
+        <div style={{ fontSize: 15, fontWeight: 600, marginTop: 2 }}>Google Play</div>
+      </div>
+    </a>
+  )
+}
+
+// Keeps a wide, centred dropdown inside the viewport: measures it centred and sets
+// --dd-shift to the smallest nudge that clears both edges (0 when it already fits).
+function clampDropdown(event: React.SyntheticEvent<HTMLElement>) {
+  const dd = event.currentTarget.querySelector<HTMLElement>('.nav-dropdown-clamp')
+  if (!dd) return
+  dd.style.setProperty('--dd-shift', '0px')
+  const { left, right } = dd.getBoundingClientRect()
+  const margin = 16
+  const shift = left < margin ? margin - left : right > window.innerWidth - margin ? window.innerWidth - margin - right : 0
+  dd.style.setProperty('--dd-shift', `${Math.round(shift)}px`)
+}
+
+// Tiles orbiting the Eazybe MCP card: the AI clients it works with today, plus Eazybe.
+const MCP_ORBIT = [
+  { label: 'Claude', pos: { left: '6%', top: '52%' }, bg: '#D97757', svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg>' },
+  { label: 'Claude Code', pos: { left: '24%', top: '14%' }, bg: '#6E5BD8', svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l4 4-4 4M12 17h7"/></svg>' },
+  { label: 'Codex', pos: { left: '58%', top: '14%' }, bg: '#1B1C1F', svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M12 2.5l8.5 4.9v9.2L12 21.5l-8.5-4.9V7.4z"/><path d="M12 12l8.5-4.6M12 12L3.5 7.4M12 12v9.5"/></svg>' },
+  { label: 'Eazybe', pos: { left: '76%', top: '52%' }, bg: '#2B59FF', svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l2-4.9A8.4 8.4 0 0 1 21 11.5z"/></svg>' },
+]
+
+// "Featured" side panel of the Integrations dropdown, promoting the Eazybe MCP page.
+// <div>s, not <span>s, inside the link: `.nav-links a span` forces color:#fff.
+function McpFeatured({ href, label, lead, text, worksWith, cta }: { href: string; label: string; lead: string; text: string; worksWith: string; cta: string }) {
+  return (
+    <a
+      href={href}
+      className="nav-dd-featured"
+      style={{ width: 250, flex: '0 0 auto', display: 'flex', flexDirection: 'column', gap: 12, padding: '4px 4px 4px 18px', borderLeft: '1px solid rgba(255,255,255,0.12)', textDecoration: 'none' }}
+    >
+      <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>
+        {label}
+      </div>
+      <div aria-hidden style={{ position: 'relative', height: 150, borderRadius: 14, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', left: '50%', top: '30%', width: 190, height: 190, marginLeft: -95, borderRadius: '50%', border: '1.5px dashed rgba(255,255,255,0.22)' }} />
+        {MCP_ORBIT.map((o) => (
+          <div
+            key={o.label}
+            title={o.label}
+            style={{ position: 'absolute', ...o.pos, width: 44, height: 44, borderRadius: 12, background: '#fff', boxShadow: '0 6px 16px -6px rgba(0,0,0,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <div style={{ width: 28, height: 28, borderRadius: 8, background: o.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }} dangerouslySetInnerHTML={{ __html: o.svg }} />
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+        <div style={{ fontSize: 13.5, lineHeight: 1.45, color: 'rgba(255,255,255,0.7)' }}>
+          <strong style={{ color: '#fff', fontWeight: 600 }}>{lead}</strong> {text}
+        </div>
+        <div aria-hidden style={{ color: 'rgba(255,255,255,0.55)', fontSize: 15, lineHeight: 1 }}>↗</div>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6 }}>
+        <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10.5, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginRight: 2 }}>
+          {worksWith}
+        </div>
+        {MCP_ORBIT.filter((o) => o.label !== 'Eazybe').map((o) => (
+          <div key={o.label} style={{ fontSize: 11.5, fontWeight: 600, color: '#fff', padding: '3px 9px', borderRadius: 99, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
+            {o.label}
+          </div>
+        ))}
+      </div>
+      {/* Bottom-aligned with "All integrations" in the left column. */}
+      <div style={{ marginTop: 'auto', padding: '10px 12px', borderRadius: 12, background: 'rgba(167, 139, 250, 0.16)', textAlign: 'center', fontFamily: 'var(--f-mono)', fontSize: 11.5, fontWeight: 600, letterSpacing: '0.04em', color: '#cfc3fa' }}>
+        {cta} →
+      </div>
+    </a>
+  )
+}
+
 export function Nav() {
   const t = useTranslations('landingV3.nav')
+  const tApp = useTranslations('blog.sidebar')
   const { openModal } = useTrialModal()
   const locale = useLocale()
   const lh = (href: string) => withLocale(href, locale)
@@ -251,6 +368,7 @@ export function Nav() {
       'LeadSquared':              { nameKey: 'intLeadSquared', descKey: 'intLeadSquaredDesc' },
       'Freshworks':               { nameKey: 'intFreshworks', descKey: 'intFreshworksDesc' },
       'Google Sheets':            { nameKey: 'intGoogleSheets', descKey: 'intGoogleSheetsDesc' },
+      'monday.com':               { nameKey: 'intMonday', descKey: 'intMondayDesc' },
       'Custom API':               { nameKey: 'intCustom', descKey: 'intCustomDesc' },
       'Blog':                     { nameKey: 'resBlog', descKey: 'resBlogDesc' },
       'Help Center':              { nameKey: 'resHelpCenter', descKey: 'resHelpCenterDesc' },
@@ -288,6 +406,7 @@ export function Nav() {
 
   return (
     <>
+    <McpLaunchBanner />
     <nav className="nav">
       <a href={lh('/')} className="nav-logo" aria-label={t('logoAria')} onClick={closeMenu}>
         <img
@@ -318,10 +437,10 @@ export function Nav() {
 
       <div className="nav-links">
         <div className="nav-item">
-          <button type="button" className="nav-trigger" aria-haspopup="menu"><span>{t('agents')}</span> <span className="nav-caret">▾</span></button>
+          <a href={lh('/whatsapp-ai-agent')} className="nav-trigger" aria-haspopup="menu"><span>{t('agents')}</span> <span className="nav-caret">▾</span></a>
           <div className="nav-dropdown">
             <div className="nav-dd-section">{t('sectionAiAgents')}</div>
-            <a href="/#" className="nav-dd-item">
+            <a href={lh('/whatsapp-ai-agent#crm-sync')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H9a5 5 0 00-5 5"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h12a5 5 0 005-5"/></svg>
               </span>
@@ -330,7 +449,7 @@ export function Nav() {
                 <div className="nav-dd-desc">{t('agentCrmDesc')}</div>
               </span>
             </a>
-            <a href="/#" className="nav-dd-item">
+            <a href={lh('/whatsapp-ai-agent#lead-qualification')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
               </span>
@@ -339,7 +458,7 @@ export function Nav() {
                 <div className="nav-dd-desc">{t('agentLeadDesc')}</div>
               </span>
             </a>
-            <a href="/#" className="nav-dd-item">
+            <a href={lh('/whatsapp-ai-agent#revenue')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
               </span>
@@ -348,7 +467,7 @@ export function Nav() {
                 <div className="nav-dd-desc">{t('agentRevenueDesc')}</div>
               </span>
             </a>
-            <a href="/#" className="nav-dd-item">
+            <a href={lh('/whatsapp-ai-agent#customer-success')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9E73" strokeWidth="2" strokeLinecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
               </span>
@@ -359,7 +478,7 @@ export function Nav() {
             </a>
             <div className="nav-dd-divider" />
             <div className="nav-dd-section">{t('sectionBuildYourOwn')}</div>
-            <a href="/#" className="nav-dd-item">
+            <a href={lh('/whatsapp-ai-agent#agent-builder')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#F0EBF8' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4BAE" strokeWidth="2" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg>
               </span>
@@ -371,12 +490,37 @@ export function Nav() {
           </div>
         </div>
 
-        <div className="nav-item">
+        {(
+          <div className="nav-item">
+            <a href={lh('/calling')} className="nav-trigger" aria-haspopup="menu"><span>{t('calling')}</span> <span className="nav-caret">▾</span></a>
+            <div className="nav-dropdown">
+              <div className="nav-dd-section">{t('callingProducts')}</div>
+              {CALLING_PRODUCTS.map((c) => (
+                <a key={c.href} href={lh(c.href)} className="nav-dd-item">
+                  <span className="nav-dd-icon" style={{ background: '#EEF2FF' }} dangerouslySetInnerHTML={{ __html: c.icon }} />
+                  <span className="nav-dd-content">
+                    <div className="nav-dd-name">{t(c.nameKey)}</div>
+                    <div className="nav-dd-desc">{t(c.descKey)}</div>
+                  </span>
+                </a>
+              ))}
+              <div className="nav-dd-divider" />
+              <div className="nav-dd-section">{t('callingCompare')}</div>
+              <a href={lh(CALLING_COMPARE.href)} className="nav-dd-item">
+                <span className="nav-dd-icon" style={{ background: '#EEF2FF' }} dangerouslySetInnerHTML={{ __html: CALLING_COMPARE.icon }} />
+                <span className="nav-dd-content">
+                  <div className="nav-dd-name">{t(CALLING_COMPARE.nameKey)}</div>
+                  <div className="nav-dd-desc">{t(CALLING_COMPARE.descKey)}</div>
+                </span>
+              </a>
+            </div>
+          </div>
+        )}
+
+        <div className="nav-item" onMouseEnter={clampDropdown} onFocus={clampDropdown}>
           <a href={lh('/integrations')} className="nav-trigger" aria-haspopup="menu"><span>{t('integrations')}</span> <span className="nav-caret">▾</span></a>
-          <div
-            className="nav-dropdown"
-            style={{ minWidth: 560, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, padding: 14 }}
-          >
+          <div className="nav-dropdown nav-dropdown-clamp" style={{ display: 'flex', gap: 6, padding: 14 }}>
+          <div style={{ minWidth: 560, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, alignContent: 'start' }}>
             <div style={{ gridColumn: '1 / -1' }} className="nav-dd-section">{t('sectionCrms')}</div>
             {INTEGRATIONS.map((item) => {
               const tr = itemLabel(item.name)
@@ -409,13 +553,25 @@ export function Nav() {
               </div>
             </a>
           </div>
+          <McpFeatured
+            href={lh('/mcp')}
+            label={t('featured')}
+            lead={t('mcpFeaturedLead')}
+            text={t('mcpFeaturedText')}
+            worksWith={t('mcpWorksWith')}
+            cta={t('mcpCta')}
+          />
+          </div>
         </div>
+
+        <div className="nav-item"><a href={lh('/mcp')}><span>{t('mcp')}</span></a></div>
 
         <div className="nav-item"><a href={lh('/pricing')}><span>{t('pricing')}</span></a></div>
 
         <div className="nav-item">
           <button type="button" className="nav-trigger" aria-haspopup="menu"><span>{t('resources')}</span> <span className="nav-caret">▾</span></button>
-          <div className="nav-dropdown">
+          <div className="nav-dropdown" style={{ display: 'flex', gap: 6 }}>
+            <div style={{ minWidth: 280 }}>
             <div className="nav-dd-section">{t('sectionLearn')}</div>
             <a href={lh('/blog')} className="nav-dd-item">
               <span className="nav-dd-icon" style={{ background: '#E4F5EC' }}>
@@ -463,6 +619,23 @@ export function Nav() {
                 <div className="nav-dd-desc">{t('resContactSalesDesc')}</div>
               </span>
             </a>
+            </div>
+            {/* Mobile app: QR to scan with a phone + Play badge */}
+            <div
+              style={{
+                width: 184, flex: '0 0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center',
+                justifyContent: 'center', gap: 12, padding: '14px 12px', borderLeft: '1px solid rgba(255,255,255,0.12)',
+              }}
+            >
+              <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35, textAlign: 'center', color: '#fff' }}>
+                {tApp('appTitle')}
+              </div>
+              <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ display: 'block', borderRadius: 10, overflow: 'hidden' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/blog/eazybe-app-qr.svg" width={144} height={144} alt={tApp('appQrAlt')} loading="lazy" style={{ display: 'block' }} />
+              </a>
+              <PlayBadge label={tApp('appGetItOn')} aria={tApp('appBadgeAria')} />
+            </div>
           </div>
         </div>
 
@@ -523,6 +696,8 @@ export function Nav() {
                 alt="Eazybe Logo"
                 width={120}
                 height={28}
+                loading="lazy"
+                decoding="async"
                 style={{ height: 28, width: 'auto', objectFit: 'contain' }}
               />
             </a>
@@ -567,6 +742,33 @@ export function Nav() {
               </ul>
             </div>
 
+            {(
+              <div className={`nav-drawer-section${openSections.has('calling') ? ' open' : ''}`}>
+                <button type="button" onClick={() => toggleSection('calling')} aria-expanded={openSections.has('calling')}>
+                  <span>{t('calling')}</span>
+                  <span className="nav-drawer-chev">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </span>
+                </button>
+                <ul>
+                  {[...CALLING_PRODUCTS, CALLING_COMPARE, CALLING_ALL].map((c) => (
+                    <li key={c.href}>
+                      <a href={lh(c.href)} onClick={closeMenu}>
+                        <span className="nav-drawer-item-icon" style={{ background: '#EEF2FF' }} dangerouslySetInnerHTML={{ __html: c.icon }} />
+                        <span className="nav-drawer-item-body">
+                          <span className="nav-drawer-item-name">{t(c.nameKey)}</span>
+                          <span className="nav-drawer-item-desc">{t(c.descKey)}</span>
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div className={`nav-drawer-section${openSections.has('integrations') ? ' open' : ''}`}>
               <button type="button" onClick={() => toggleSection('integrations')} aria-expanded={openSections.has('integrations')}>
                 <span>{t('integrations')}</span>
@@ -598,6 +800,10 @@ export function Nav() {
                   </a>
                 </li>
               </ul>
+            </div>
+
+            <div className="nav-drawer-link">
+              <a href={lh('/mcp')} onClick={closeMenu}>{t('mcp')}</a>
             </div>
 
             <div className="nav-drawer-link">
@@ -640,6 +846,10 @@ export function Nav() {
                     </li>
                   )
                 })}
+                {/* On a phone there's nothing to scan: link the Play listing directly. */}
+                <li style={{ padding: '8px 0 4px' }}>
+                  <PlayBadge label={tApp('appGetItOn')} aria={tApp('appBadgeAria')} />
+                </li>
               </ul>
             </div>
 

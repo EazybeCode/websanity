@@ -226,119 +226,11 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .wpc-formula-row {
-              display: grid;
-              grid-template-columns: minmax(170px, 1fr) minmax(190px, 1.1fr) minmax(190px, 1.4fr);
-              gap: 16px;
-              align-items: baseline;
-              padding: 16px 20px;
-              background: #fff;
-              border: 1px solid var(--line);
-              border-radius: 12px;
-            }
-            .wpc-formula-code {
-              font-family: var(--f-mono);
-              font-size: 13px;
-              color: var(--accent-ink);
-              background: color-mix(in oklab, var(--accent-a) 12%, transparent);
-              padding: 4px 8px;
-              border-radius: 6px;
-              justify-self: start;
-              overflow-wrap: anywhere;
-            }
-            /* Final CTA heading spans the full container instead of wrapping into
-               a narrow column; the body copy keeps a readable measure. */
-            .wpc-cta-head h2 { max-width: none; }
-            .wpc-cta-head p { max-width: 720px; }
-            /* .landing a { color: inherit } outranks a bare class, so scope it. */
-            .landing .wpc-brand-link {
-              color: var(--accent-ink); font-weight: 600;
-              border-bottom: 1px solid color-mix(in oklab, var(--accent-ink) 35%, transparent);
-              transition: color .16s ease, border-color .16s ease;
-            }
-            .landing .wpc-brand-link:hover { color: var(--ink); border-color: var(--ink); }
-            .landing .wpc-brand-link:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
-            /* Inside dark sections the violet accent fails contrast on the
-               near-black background, so the brand link switches to the mint
-               accent the dark tone already uses. */
-            .landing [data-tone="dark"] .wpc-brand-link {
-              color: var(--accent-a);
-              border-color: color-mix(in oklab, var(--accent-a) 45%, transparent);
-            }
-            .landing [data-tone="dark"] .wpc-brand-link:hover { color: var(--ink); border-color: var(--ink); }
-            .landing [data-tone="dark"] .wpc-brand-link:focus-visible { outline-color: var(--accent-a); }
-            /* Filled accent secondary CTA, same violet as the shared button
-               hover so it stays on-palette. Scoped with .landing because the
-               shared ".landing a { color: inherit }" rule outranks a bare class. */
-            .landing .wpc-cta-demo { background: #5b4bae; color: #ffffff; }
-            .landing .wpc-cta-demo:hover { background: #4c3f95; color: #ffffff; }
-            .landing .wpc-cta-demo > * { color: #ffffff; }
-            .landing .wpc-cta-demo:focus-visible { outline: 2px solid #5b4bae; outline-offset: 3px; }
-            /* Breadcrumb above the hero tag. */
-            .wpc-crumbs { margin-bottom: 18px; font-size: 13px; color: var(--ink-3); }
-            .wpc-crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
-            .wpc-crumbs li + li::before { content: '›'; margin-right: 6px; color: var(--ink-4); }
-            .landing .wpc-crumbs a { color: var(--ink-3); transition: color .16s ease; }
-            .landing .wpc-crumbs a:hover { color: var(--accent-ink); }
-            .landing .wpc-crumbs a:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
-            /* Links inside the dark FAQ pills — the violet accent fails
-               contrast there, so they use the mint accent instead. */
-            .landing .wpc-faq-link {
-              color: var(--accent-a); font-weight: 600;
-              border-bottom: 1px solid color-mix(in oklab, var(--accent-a) 45%, transparent);
-            }
-            .landing .wpc-faq-link:hover { color: #fff; border-color: #fff; }
-            .landing .wpc-faq-link:focus-visible { outline: 2px solid var(--accent-a); outline-offset: 2px; }
-            /* "More free tools" strip — same card language as the benefit
-               cards: accent icon tile, equal heights, hover lift, and a
-               "Try it free" line pinned to the bottom as the click affordance. */
-            .wpc-tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-            .landing .wpc-tool-card {
-              display: flex; flex-direction: column; align-items: flex-start;
-              background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 24px;
-              transition: border-color .16s ease, transform .16s ease, box-shadow .16s ease;
-            }
-            .landing .wpc-tool-card:hover {
-              border-color: color-mix(in oklab, var(--accent-a) 50%, var(--line));
-              transform: translateY(-2px);
-              box-shadow: 0 12px 26px -18px rgba(15, 17, 21, 0.35);
-            }
-            .landing .wpc-tool-card:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
-            .wpc-tool-icon {
-              width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0;
-              display: inline-flex; align-items: center; justify-content: center;
-              background: color-mix(in oklab, var(--accent-a) 14%, #fff);
-              border: 1px solid color-mix(in oklab, var(--accent-a) 32%, var(--line));
-              color: var(--accent-ink);
-            }
-            .wpc-tool-name { margin-top: 14px; font-size: 16px; font-weight: 700; line-height: 1.35; color: var(--ink); }
-            .wpc-tool-tag { margin-top: 6px; font-size: 13.5px; line-height: 1.55; color: var(--ink-3); flex: 1; }
-            .wpc-tool-cta { margin-top: 16px; font-size: 13.5px; font-weight: 600; color: var(--accent-ink); }
-            .wpc-tool-card:hover .wpc-tool-cta { text-decoration: underline; text-underline-offset: 3px; }
-            @media (prefers-reduced-motion: reduce) {
-              .landing .wpc-tool-card { transition: none; }
-              .landing .wpc-tool-card:hover { transform: none; }
-            }
-            .wpc-step { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
-            .wpc-benefit { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px;
-              transition: border-color .16s ease; }
-            .wpc-benefit:hover { border-color: color-mix(in oklab, var(--accent-a) 40%, var(--line)); }
-            @media (max-width: 760px) {
-              .wpc-formula-row { grid-template-columns: 1fr; gap: 8px; padding: 16px; }
-            }
-            @media (prefers-reduced-motion: reduce) {
-              .wpc-benefit { transition: none; }
-            }
-          `,
-        }}
-      />
+      <style dangerouslySetInnerHTML={{ __html: WPC_CSS }} />
 
-      {/* Hero */}
-      <section className="section" style={{ paddingTop: 'clamp(96px, 12vw, 132px)', paddingBottom: 48, background: '#ffffff' }}>
-        <div className="container" style={{ maxWidth: 820, textAlign: 'center' }}>
+      {/* Hero: brand dark page-hero, one blue phrase */}
+      <section className="page-hero wpc-hero" data-tone="dark">
+        <div className="container">
           <nav className="wpc-crumbs" aria-label="Breadcrumb">
             <ol>
               <li><a href={homePath}>{t.breadcrumb.home}</a></li>
@@ -347,48 +239,19 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
             </ol>
           </nav>
           <span className="sec-tag">{t.hero.tag}</span>
-          <h1
-            style={{
-              fontFamily: 'var(--f-display)',
-              fontWeight: 400,
-              fontSize: 'clamp(34px, 5.2vw, 56px)',
-              lineHeight: 1.08,
-              letterSpacing: '-0.025em',
-              color: 'var(--ink)',
-              margin: '10px 0 0',
-              paddingBottom: '0.05em',
-            }}
-          >
-            {t.hero.h1Lead}{' '}
-            <span
-              style={{
-                display: 'inline-block',
-                backgroundImage:
-                  'linear-gradient(transparent 62%, color-mix(in oklab, var(--accent-ink) 25%, transparent) 62%)',
-                paddingBottom: 2,
-              }}
-            >
-              {t.hero.h1Highlight}
-            </span>
-          </h1>
-          <p style={{ margin: '22px auto 0', maxWidth: 640, fontSize: 17, lineHeight: 1.6, color: 'var(--ink-2)' }}>
-            {t.hero.subtitle}
-          </p>
-          <div style={{ marginTop: 28 }}>
+          <h1>{t.hero.h1Lead} <em>{t.hero.h1Highlight}</em></h1>
+          <p className="lede">{t.hero.subtitle}</p>
+          <div className="wpc-hero-cta">
             <a href="#pricing-calculator" className="btn btn-primary btn-lg">{t.hero.cta}</a>
           </div>
-          <p style={{ marginTop: 18, fontSize: 13, color: 'var(--ink-3)' }}>{t.hero.footnote}</p>
+          <p className="wpc-foot">{t.hero.footnote}</p>
         </div>
       </section>
 
       {/* Calculator */}
-      <section
-        id="pricing-calculator"
-        className="section"
-        style={{ paddingTop: 40, paddingBottom: 80, scrollMarginTop: 80, background: 'linear-gradient(180deg, #ECEFF7 0%, #ffffff 100%)' }}
-      >
-        <div className="container" style={{ maxWidth: 1100 }}>
-          <div className="sec-head centered" style={{ marginBottom: 32 }}>
+      <section id="pricing-calculator" className="wpc-sec">
+        <div className="container wpc-wide">
+          <div className="sec-head centered wpc-head">
             <h2>{t.calculator.h2}</h2>
             <p>{t.calculator.subtitle}</p>
           </div>
@@ -397,28 +260,18 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
       </section>
 
       {/* How pricing works */}
-      <section className="section" style={{ paddingTop: 70, paddingBottom: 70, background: '#F5F7FC' }}>
-        <div className="container" style={{ maxWidth: 1100 }}>
-          <div className="sec-head centered" style={{ marginBottom: 44 }}>
+      <section className="wpc-sec wpc-alt">
+        <div className="container wpc-wide">
+          <div className="sec-head centered wpc-head">
             <h2>{t.howTo.h2}</h2>
             <p>{t.howTo.subtitle}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
+          <div className="wpc-grid3">
             {steps.map((s, i) => (
-              <div key={s.title} className="wpc-step">
-                <div
-                  style={{
-                    fontFamily: 'var(--f-mono)',
-                    fontSize: 12,
-                    fontWeight: 600,
-                    color: 'var(--accent-ink)',
-                    letterSpacing: '0.08em',
-                  }}
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </div>
-                <h3 style={{ margin: '10px 0 8px', fontSize: 18, fontWeight: 700, color: 'var(--ink)' }}>{s.title}</h3>
-                <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.6, color: 'var(--ink-2)' }}>{s.body}</p>
+              <div key={s.title} className="wpc-card">
+                <span className="wpc-step">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
               </div>
             ))}
           </div>
@@ -426,18 +279,18 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
       </section>
 
       {/* Formulas */}
-      <section className="section" style={{ paddingTop: 70, paddingBottom: 70 }}>
-        <div className="container" style={{ maxWidth: 960 }}>
-          <div className="sec-head centered" style={{ marginBottom: 40 }}>
+      <section className="wpc-sec">
+        <div className="container wpc-wide">
+          <div className="sec-head centered wpc-head">
             <h2>{t.formulas.h2}</h2>
             <p>{t.formulas.subtitle}</p>
           </div>
-          <div style={{ display: 'grid', gap: 12 }}>
+          <div className="wpc-formulas">
             {t.formulas.items.map((f) => (
-              <div key={f.name} className="wpc-formula-row">
-                <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>{f.name}</div>
-                <code className="wpc-formula-code">{f.formula}</code>
-                <div style={{ fontSize: 13.5, lineHeight: 1.55, color: 'var(--ink-3)' }}>{f.note}</div>
+              <div key={f.name} className="wpc-formula">
+                <b>{f.name}</b>
+                <code>{f.formula}</code>
+                <span>{f.note}</span>
               </div>
             ))}
           </div>
@@ -445,18 +298,18 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
       </section>
 
       {/* Why use this */}
-      <section className="section" style={{ paddingTop: 70, paddingBottom: 70, background: '#F5F7FC' }}>
-        <div className="container" style={{ maxWidth: 1180 }}>
-          <div className="sec-head centered" style={{ marginBottom: 44 }}>
+      <section className="wpc-sec wpc-alt">
+        <div className="container wpc-wide">
+          <div className="sec-head centered wpc-head">
             <h2>{t.whyUse.h2}</h2>
             <p>{t.whyUse.subtitle}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 24 }}>
+          <div className="wpc-grid4">
             {benefits.map((b) => (
-              <div key={b.title} className="wpc-benefit">
-                <div style={{ color: 'var(--accent-ink)' }}>{b.icon}</div>
-                <h3 style={{ margin: '12px 0 8px', fontSize: 17, fontWeight: 700, color: 'var(--ink)' }}>{b.title}</h3>
-                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: 'var(--ink-2)' }}>{b.body}</p>
+              <div key={b.title} className="wpc-card">
+                <span className="wpc-ic" aria-hidden="true">{b.icon}</span>
+                <h3>{b.title}</h3>
+                <p>{b.body}</p>
               </div>
             ))}
           </div>
@@ -464,19 +317,17 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
       </section>
 
       {/* Product tie-in */}
-      <section className="section" data-tone="dark" style={{ paddingTop: 80, paddingBottom: 80 }}>
-        <div className="container" style={{ maxWidth: 860 }}>
-          <div className="sec-head centered" style={{ marginBottom: 28 }}>
+      <section className="wpc-sec" data-tone="dark">
+        <div className="container wpc-narrow">
+          <div className="sec-head centered wpc-head">
             <h2>{t.attribution.h2}</h2>
+            <p>{t.attribution.body}</p>
           </div>
-          <p style={{ margin: '0 auto 24px', maxWidth: 680, fontSize: 16, lineHeight: 1.7, color: 'var(--ink-2)', textAlign: 'center' }}>
-            {t.attribution.body}
-          </p>
-          <ul style={{ listStyle: 'none', padding: 0, margin: '0 auto 30px', maxWidth: 620, display: 'grid', gap: 10 }}>
+          <ul className="wpc-points">
             {attributionPoints.map((p) => (
-              <li key={p} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 15, lineHeight: 1.6, color: 'var(--ink-2)' }}>
-                <span style={{ color: 'var(--accent-ink)', flexShrink: 0, marginTop: 3 }} aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+              <li key={p}>
+                <span className="wpc-tick" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 13l4 4L19 7" />
                   </svg>
                 </span>
@@ -485,8 +336,8 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
               </li>
             ))}
           </ul>
-          <div style={{ textAlign: 'center' }}>
-            <a href={locale === 'en' ? '/integrations' : `/${locale}/integrations`} className="btn btn-primary">
+          <div className="wpc-center">
+            <a href={locale === 'en' ? '/integrations' : `/${locale}/integrations`} className="btn btn-primary btn-lg">
               {t.attribution.cta}
             </a>
           </div>
@@ -494,16 +345,16 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
       </section>
 
       {/* FAQ */}
-      <section className="section faq-ink" style={{ paddingTop: 70, paddingBottom: 70 }}>
-        <div className="container" style={{ maxWidth: 1100 }}>
-          <div className="sec-head centered" style={{ marginBottom: 40 }}>
+      <section className="wpc-sec">
+        <div className="container wpc-wide">
+          <div className="sec-head centered wpc-head">
             <h2>{t.faq.h2}</h2>
             <p>{t.faq.subtitle}</p>
           </div>
-          <div className="faq-grid">
+          <div className="wpc-faq">
             {[t.faq.items.slice(0, Math.ceil(t.faq.items.length / 2)), t.faq.items.slice(Math.ceil(t.faq.items.length / 2))].map(
               (column, colIdx) => (
-                <div key={colIdx} className={`faq-col${colIdx === 1 ? ' faq-col-rest' : ''}`}>
+                <div key={colIdx} className="wpc-faq-col">
                   {column.map((item) => (
                     <details key={item.q} className="faq-pill">
                       <summary className="faq-pill-q">
@@ -527,9 +378,9 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
       </section>
 
       {/* More free tools */}
-      <section className="section" style={{ paddingTop: 70, paddingBottom: 70 }}>
-        <div className="container" style={{ maxWidth: 1100 }}>
-          <div className="sec-head centered" style={{ marginBottom: 36 }}>
+      <section className="wpc-sec wpc-alt">
+        <div className="container wpc-wide">
+          <div className="sec-head centered wpc-head">
             <h2>{t.moreTools.h2}</h2>
           </div>
           <div className="wpc-tools-grid">
@@ -542,24 +393,22 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
               </a>
             ))}
           </div>
-          <div style={{ textAlign: 'center', marginTop: 32 }}>
+          <div className="wpc-center wpc-all">
             <a className="btn btn-outline" href={toolsPath}>{t.moreTools.allTools}</a>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="section" style={{ paddingTop: 70, paddingBottom: 90, background: '#F5F7FC' }}>
-        <div className="container" style={{ maxWidth: 1100, textAlign: 'center' }}>
-          <div className="sec-head centered wpc-cta-head" style={{ marginBottom: 28 }}>
-            <h2>{t.finalCta.h2}</h2>
-            <p>{linkTerms(t.finalCta.body, finalCtaLinks)}</p>
-          </div>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+      {/* Final CTA: the site's brand final-cta block */}
+      <section className="final-cta" data-tone="dark">
+        <div className="container">
+          <h2>{t.finalCta.h2}</h2>
+          <p className="sub">{linkTerms(t.finalCta.body, finalCtaLinks)}</p>
+          <div className="ctas">
             <a href={locale === 'en' ? '/pricing' : `/${locale}/pricing`} className="btn btn-primary btn-lg">
               {t.finalCta.primary}
             </a>
-            <a href="https://eazybe.info/demono" className="btn btn-lg wpc-cta-demo">
+            <a href="https://eazybe.info/demono" className="btn btn-outline btn-lg">
               {t.finalCta.secondary}
             </a>
           </div>
@@ -568,3 +417,82 @@ export function WhatsappPricingPage({ locale }: { locale: string }) {
     </>
   )
 }
+
+// Brand guidelines v1.2 (components/pages/brand-pages.css): dark page-hero, flat
+// white / #f4f4f5 sections, one blue phrase per heading, 10/16px corners, hairlines.
+const WPC_CSS = `
+  .landing .v16-brand .wpc-hero { padding: 160px 0 84px; text-align: center; }
+  .landing .v16-brand .wpc-hero h1 { margin-inline: auto; max-width: 20ch; }
+  .landing .v16-brand .wpc-hero .lede { margin: 20px auto 0; max-width: 640px; }
+  .wpc-hero-cta { margin-top: 28px; }
+  .wpc-foot { margin: 16px 0 0; font-size: 13px; color: var(--ink-3); }
+  .wpc-crumbs { margin-bottom: 18px; font-size: 13px; color: var(--ink-3); }
+  .wpc-crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .wpc-crumbs li + li::before { content: '›'; margin-right: 6px; color: var(--ink-4); }
+  .landing .wpc-crumbs a { color: var(--ink-3); transition: color .16s ease; }
+  .landing .wpc-crumbs a:hover { color: var(--ink); }
+  .landing .wpc-crumbs a:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+  .landing .v16-brand .wpc-sec { padding: 88px 0; scroll-margin-top: 72px; background: var(--bg); }
+  .landing .v16-brand .wpc-alt { background: var(--bg-2); }
+  .wpc-wide { max-width: 1140px; }
+  .wpc-narrow { max-width: 820px; }
+  .landing .v16-brand .wpc-head { margin-bottom: 40px; }
+  .landing .v16-brand .wpc-head p { max-width: 680px; margin-inline: auto; }
+  .wpc-grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .wpc-grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .wpc-card { display: flex; flex-direction: column; gap: 10px; padding: 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; }
+  .landing .v16-brand .wpc-card h3 { margin: 4px 0 0; font-size: 18px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
+  .wpc-card p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+  .wpc-step { font-family: var(--f-mono); font-size: 12px; font-weight: 600; letter-spacing: .08em; color: var(--accent-ink); }
+  .wpc-ic, .wpc-tool-icon { width: 44px; height: 44px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px;
+    color: var(--accent-ink); background: color-mix(in oklab, var(--accent-ink) 10%, var(--paper)); border: 1px solid color-mix(in oklab, var(--accent-ink) 24%, var(--line)); }
+  .wpc-ic svg { width: 22px; height: 22px; }
+  .wpc-formulas { border-top: 1px solid var(--line); max-width: 1000px; margin-inline: auto; }
+  .wpc-formula { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.3fr) minmax(0, 1.4fr); gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .wpc-formula b { font-size: 15px; color: var(--ink); }
+  .wpc-formula code { font-family: var(--f-mono); font-size: 13px; line-height: 1.5; color: var(--accent-ink); overflow-wrap: anywhere; }
+  .wpc-formula span { font-size: 14px; line-height: 1.5; color: var(--ink-3); }
+  .wpc-points { list-style: none; padding: 0; margin: 0 auto 32px; max-width: 620px; display: grid; gap: 12px; }
+  .wpc-points li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+  .wpc-tick { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; background: var(--ok); color: #0b0b0c; }
+  .wpc-center { text-align: center; }
+  .wpc-all { margin-top: 32px; }
+  .wpc-faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; align-items: start; max-width: 1040px; margin-inline: auto; }
+  .wpc-faq-col { display: grid; gap: 12px; }
+  /* .landing a { color: inherit } outranks a bare class, so scope the link rules. */
+  .landing .wpc-brand-link, .landing .wpc-faq-link {
+    color: var(--accent-ink); font-weight: 600;
+    border-bottom: 1px solid color-mix(in oklab, var(--accent-ink) 35%, transparent);
+    transition: color .16s ease, border-color .16s ease;
+  }
+  .landing .wpc-brand-link:hover, .landing .wpc-faq-link:hover { color: var(--ink); border-color: var(--ink); }
+  .landing .wpc-brand-link:focus-visible, .landing .wpc-faq-link:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+  /* The final-cta block isn't a [data-tone] child token scope for links, so pin the dark-ground link colour. */
+  .landing .v16-brand .final-cta .wpc-brand-link { color: #7c98ff; border-color: rgba(124, 152, 255, .45); }
+  .landing .v16-brand .final-cta .wpc-brand-link:hover { color: #fff; border-color: #fff; }
+  /* "More free tools" strip */
+  .wpc-tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .landing .wpc-tool-card {
+    display: flex; flex-direction: column; align-items: flex-start;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 24px;
+    transition: border-color .16s ease, transform .16s ease;
+  }
+  .landing .wpc-tool-card:hover { border-color: color-mix(in oklab, var(--accent-ink) 45%, var(--line)); transform: translateY(-2px); }
+  .landing .wpc-tool-card:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+  .wpc-tool-name { margin-top: 14px; font-size: 16px; font-weight: 700; line-height: 1.35; letter-spacing: -.01em; color: var(--ink); }
+  .wpc-tool-tag { margin-top: 6px; font-size: 14px; line-height: 1.55; color: var(--ink-3); flex: 1; }
+  .wpc-tool-cta { margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--accent-ink); }
+  .wpc-tool-card:hover .wpc-tool-cta { text-decoration: underline; text-underline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    .landing .wpc-tool-card { transition: none; }
+    .landing .wpc-tool-card:hover { transform: none; }
+  }
+  @media (max-width: 1000px) { .wpc-grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 860px) {
+    .landing .v16-brand .wpc-hero { padding: 130px 0 64px; }
+    .landing .v16-brand .wpc-sec { padding: 64px 0; }
+    .wpc-grid3, .wpc-faq { grid-template-columns: minmax(0, 1fr); }
+    .wpc-formula { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  }
+  @media (max-width: 560px) { .wpc-grid4 { grid-template-columns: minmax(0, 1fr); } }
+`

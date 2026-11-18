@@ -28,6 +28,8 @@ import { FreshdeskStructuredDataBr } from '@/components/seo/FreshdeskStructuredD
 import { WebhooksStructuredData } from '@/components/seo/WebhooksStructuredData'
 import { WebhooksStructuredDataBr } from '@/components/seo/WebhooksStructuredDataBr'
 import { Fragment } from 'react'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
+import { pageDates, getSanityDocDates, withPageAuthor, withPageDates, webPageJsonLd } from '@/lib/page-dates'
 
 // ─── Integration slug mapping ────────────────────────────────────────────────
 
@@ -72,7 +74,7 @@ export function generateStaticParams() {
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string; slug: string }>
@@ -148,7 +150,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'HubSpot WhatsApp CRM Integration by Eazybe',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -212,7 +214,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração WhatsApp HubSpot CRM da Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como-fazer, informações-do-produto, comparação-de-recursos',
@@ -415,7 +417,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Zoho WhatsApp CRM Integration by Eazybe',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -479,7 +481,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração WhatsApp Zoho CRM da Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como-fazer, informações-do-produto, comparação-de-recursos',
@@ -543,7 +545,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Bitrix24 WhatsApp CRM Integration by Eazybe',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -607,7 +609,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração CRM Bitrix24 WhatsApp da Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como fazer, informações do produto, comparação de recursos',
@@ -671,7 +673,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Google Sheets WhatsApp Integration',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -735,7 +737,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração WhatsApp Google Sheets da Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como fazer, informações do produto, comparação de recursos',
@@ -799,7 +801,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Google Calendar WhatsApp Integration by Eazybe',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -863,7 +865,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração Google Calendar WhatsApp da Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como fazer, informações do produto, automação',
@@ -927,7 +929,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'LeadSquared WhatsApp CRM Integration by Eazybe',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -991,7 +993,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração CRM WhatsApp LeadSquared da Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como fazer, informações do produto, comparação de recursos',
@@ -1055,7 +1057,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Freshdesk WhatsApp CRM Integration by Eazybe',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -1119,7 +1121,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração WhatsApp Freshdesk CRM da Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como-fazer, informações-do-produto, comparação-de-recursos',
@@ -1183,7 +1185,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Webhooks WhatsApp CRM Integration by Eazybe',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -1247,7 +1249,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração WhatsApp Webhooks da Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como fazer, integração, automação',
@@ -1311,7 +1313,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Monday WhatsApp CRM Integration by Eazybe',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -1375,7 +1377,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração WhatsApp Monday.com pela Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como-fazer, informações-do-produto, comparação-de-recursos',
@@ -1439,7 +1441,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Pipedrive WhatsApp CRM Integration by Eazybe',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -1503,7 +1505,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração WhatsApp Pipedrive CRM da Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como-fazer, informações-do-produto, comparação-de-recursos',
@@ -1567,7 +1569,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Salesforce WhatsApp CRM Integration by Eazybe',
         'twitter:label1': 'Rating',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Price',
         'twitter:data2': 'Free',
         'answer-type': 'how-to, product-information, feature-comparison',
@@ -1631,7 +1633,7 @@ export async function generateMetadata({
         'bingbot': 'index, follow',
         'twitter:image:alt': 'Integração CRM Salesforce WhatsApp da Eazybe',
         'twitter:label1': 'Avaliação',
-        'twitter:data1': '4.7/5',
+        'twitter:data1': '4.2/5',
         'twitter:label2': 'Preço',
         'twitter:data2': 'Grátis',
         'answer-type': 'como fazer, informações do produto, comparação de recursos',
@@ -1669,6 +1671,8 @@ export default async function IntegrationPage({
   }
 
   const product = await getProduct(slug, locale)
+  // Same dates as the article:published_time / article:modified_time meta tags.
+  const dates = pageDates({ template: '/integration-page', doc: await getSanityDocDates('productPage', locale, slug) })
 
   // Spanish HubSpot integration page: en/br have hand-tuned structured data
   // components; this Spanish equivalent is generated dynamically from the
@@ -2112,8 +2116,15 @@ export default async function IntegrationPage({
 
   return (
     <>
-      {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData />}
-      {crmSlug === 'hubspot' && locale === 'br' && <HubSpotStructuredDataBr />}
+      {crmSlug && (locale === 'es' || locale === 'tr') && <SoftwareRatingSchema locale={locale} />}
+      {(locale === 'es' || locale === 'tr') && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd(locale, `/${slug}`, await baseMetadata({ params }), dates)) }}
+        />
+      )}
+      {crmSlug === 'hubspot' && locale === 'en' && <HubSpotStructuredData dates={dates} />}
+      {crmSlug === 'hubspot' && locale === 'br' && <HubSpotStructuredDataBr dates={dates} />}
       {esHubSpotFaqSchema && (
         <script
           type="application/ld+json"
@@ -2270,27 +2281,33 @@ export default async function IntegrationPage({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(esGoogleCalendarBreadcrumbSchema) }}
         />
       )}
-      {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData />}
-      {crmSlug === 'zoho' && locale === 'br' && <ZohoStructuredDataBr />}
-      {crmSlug === 'bitrix24' && locale === 'en' && <Bitrix24StructuredData />}
-      {crmSlug === 'bitrix24' && locale === 'br' && <Bitrix24StructuredDataBr />}
-      {crmSlug === 'google-sheets' && locale === 'en' && <GoogleSheetsStructuredData />}
-      {crmSlug === 'google-sheets' && locale === 'br' && <GoogleSheetsStructuredDataBr />}
-      {crmSlug === 'google-calendar' && locale === 'en' && <GoogleCalendarStructuredData />}
-      {crmSlug === 'google-calendar' && locale === 'br' && <GoogleCalendarStructuredDataBr />}
-      {crmSlug === 'monday' && locale === 'en' && <MondayStructuredData />}
-      {crmSlug === 'monday' && locale === 'br' && <MondayStructuredDataBr />}
-      {crmSlug === 'pipedrive' && locale === 'en' && <PipedriveStructuredData />}
-      {crmSlug === 'pipedrive' && locale === 'br' && <PipedriveStructuredDataBr />}
-      {crmSlug === 'salesforce' && locale === 'en' && <SalesforceStructuredData />}
-      {crmSlug === 'salesforce' && locale === 'br' && <SalesforceStructuredDataBr />}
-      {crmSlug === 'leadsquared' && locale === 'en' && <LeadSquaredStructuredData />}
-      {crmSlug === 'leadsquared' && locale === 'br' && <LeadSquaredStructuredDataBr />}
-      {crmSlug === 'freshdesk' && locale === 'en' && <FreshdeskStructuredData />}
-      {crmSlug === 'freshdesk' && locale === 'br' && <FreshdeskStructuredDataBr />}
-      {crmSlug === 'webhooks' && locale === 'en' && <WebhooksStructuredData />}
-      {crmSlug === 'webhooks' && locale === 'br' && <WebhooksStructuredDataBr />}
+      {crmSlug === 'zoho' && locale === 'en' && <ZohoStructuredData dates={dates} />}
+      {crmSlug === 'zoho' && locale === 'br' && <ZohoStructuredDataBr dates={dates} />}
+      {crmSlug === 'bitrix24' && locale === 'en' && <Bitrix24StructuredData dates={dates} />}
+      {crmSlug === 'bitrix24' && locale === 'br' && <Bitrix24StructuredDataBr dates={dates} />}
+      {crmSlug === 'google-sheets' && locale === 'en' && <GoogleSheetsStructuredData dates={dates} />}
+      {crmSlug === 'google-sheets' && locale === 'br' && <GoogleSheetsStructuredDataBr dates={dates} />}
+      {crmSlug === 'google-calendar' && locale === 'en' && <GoogleCalendarStructuredData dates={dates} />}
+      {crmSlug === 'google-calendar' && locale === 'br' && <GoogleCalendarStructuredDataBr dates={dates} />}
+      {crmSlug === 'monday' && locale === 'en' && <MondayStructuredData dates={dates} />}
+      {crmSlug === 'monday' && locale === 'br' && <MondayStructuredDataBr dates={dates} />}
+      {crmSlug === 'pipedrive' && locale === 'en' && <PipedriveStructuredData dates={dates} />}
+      {crmSlug === 'pipedrive' && locale === 'br' && <PipedriveStructuredDataBr dates={dates} />}
+      {crmSlug === 'salesforce' && locale === 'en' && <SalesforceStructuredData dates={dates} />}
+      {crmSlug === 'salesforce' && locale === 'br' && <SalesforceStructuredDataBr dates={dates} />}
+      {crmSlug === 'leadsquared' && locale === 'en' && <LeadSquaredStructuredData dates={dates} />}
+      {crmSlug === 'leadsquared' && locale === 'br' && <LeadSquaredStructuredDataBr dates={dates} />}
+      {crmSlug === 'freshdesk' && locale === 'en' && <FreshdeskStructuredData dates={dates} />}
+      {crmSlug === 'freshdesk' && locale === 'br' && <FreshdeskStructuredDataBr dates={dates} />}
+      {crmSlug === 'webhooks' && locale === 'en' && <WebhooksStructuredData dates={dates} />}
+      {crmSlug === 'webhooks' && locale === 'br' && <WebhooksStructuredDataBr dates={dates} />}
       <ProductPageClient product={product} crmSlug={crmSlug} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
+  const { locale, slug } = await props.params
+  return withPageAuthor(withPageDates(await baseMetadata(props), pageDates({ template: '/integration-page', doc: await getSanityDocDates('productPage', locale, slug) })), locale)
 }

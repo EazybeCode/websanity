@@ -184,7 +184,7 @@
 
           <div class="feed-header">
             <xsl:if test="/rss/channel/image/url">
-              <img class="feed-logo" alt="">
+              <img class="feed-logo" alt="Eazybe">
                 <xsl:attribute name="src"><xsl:value-of select="/rss/channel/image/url"/></xsl:attribute>
               </img>
             </xsl:if>

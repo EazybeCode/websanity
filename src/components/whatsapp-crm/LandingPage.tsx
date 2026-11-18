@@ -123,7 +123,7 @@ export default async function WhatsAppCrmPage({
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/integrations/whatsapp.svg"
-                    alt=""
+                    alt="WhatsApp"
                     width={40}
                     height={40}
                     className="ml-[0.3em] inline-block size-[1.02em] align-[-0.18em]"
@@ -212,7 +212,7 @@ export default async function WhatsAppCrmPage({
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={l.src}
-                          alt={copy === 1 ? '' : l.alt}
+                          alt={l.alt}
                           className="max-h-9 w-auto max-w-full object-contain opacity-75 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0"
                           loading="lazy"
                         />
@@ -656,7 +656,7 @@ export default async function WhatsAppCrmPage({
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <img
                         src={t.photo}
-                        alt=""
+                        alt={t.name}
                         width={40}
                         height={40}
                         loading="lazy"

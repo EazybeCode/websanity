@@ -5,6 +5,7 @@ import { getAlternates } from '@/lib/seo-helpers'
 import { getLokmaxContent } from '@/data/case-study-lokmax'
 import { getCaseStudy } from '@/lib/sanity-queries'
 import { CaseStudyBody, type PtBlock } from '@/components/pages/CaseStudyBody'
+import { pageDates, getSanityDocDates, withPageDates } from '@/lib/page-dates'
 
 // Content is managed in Sanity ("Case Studies" section). A PUBLISHED caseStudy
 // doc with this slug takes over the article; the static content below is the
@@ -16,7 +17,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -415,11 +416,10 @@ export default async function LokmaxCaseStudyPage({
             {/* Right: visual panel on a soft blob */}
             <div className="lka-visual-wrap">
               <div className="lka-visual">
-                {/* Logo alt derives from the company name; the blurred glow
-                    copy stays decorative. */}
+                {/* Logo alt derives from the company name, on the blurred glow copy too. */}
                 {logoUrl ? (
                   <span className="lka-visual-mark has-logo">
-                    <img className="lka-mark-glow" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt="" aria-hidden="true" loading="lazy" />
+                    <img className="lka-mark-glow" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt={`${company} logo`} aria-hidden="true" loading="lazy" />
                     <img className="lka-mark-img" src={`${logoUrl}?w=148&h=148&fit=max&auto=format`} alt={`${company} logo`} loading="lazy" />
                   </span>
                 ) : (
@@ -592,4 +592,10 @@ export default async function LokmaxCaseStudyPage({
       </section>
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await props.params
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/case-studies/lokmaxltda', doc: await getSanityDocDates('caseStudy', locale, 'lokmaxltda') }))
 }

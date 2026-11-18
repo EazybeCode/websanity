@@ -10,10 +10,11 @@ import {
   getHubSpotAttributionFields,
 } from '@/utils/openChromeExtensionStore'
 import { CalendlySlotPicker } from '@/components/booking/CalendlySlotPicker'
+import { usePhoneCountrySelect, dialOf } from './PhoneCountrySelect'
 
 interface FormData {
   email: string
-  countryCode: string
+  countryIso: string
   phone: string
   crm: string
 }
@@ -26,41 +27,6 @@ const PERSONAL_EMAIL_DOMAINS = [
   // Placeholder / reserved domains — no real business uses these.
   'company.com', 'example.com', 'example.org', 'example.net',
   'test.com', 'domain.com', 'mydomain.com',
-]
-
-const COUNTRY_CODES = [
-  { code: '+1', country: 'US/CA', flag: '\u{1F1FA}\u{1F1F8}' },
-  { code: '+52', country: 'MX', flag: '\u{1F1F2}\u{1F1FD}' },
-  { code: '+44', country: 'UK', flag: '\u{1F1EC}\u{1F1E7}' },
-  { code: '+49', country: 'DE', flag: '\u{1F1E9}\u{1F1EA}' },
-  { code: '+33', country: 'FR', flag: '\u{1F1EB}\u{1F1F7}' },
-  { code: '+34', country: 'ES', flag: '\u{1F1EA}\u{1F1F8}' },
-  { code: '+39', country: 'IT', flag: '\u{1F1EE}\u{1F1F9}' },
-  { code: '+31', country: 'NL', flag: '\u{1F1F3}\u{1F1F1}' },
-  { code: '+32', country: 'BE', flag: '\u{1F1E7}\u{1F1EA}' },
-  { code: '+41', country: 'CH', flag: '\u{1F1E8}\u{1F1ED}' },
-  { code: '+43', country: 'AT', flag: '\u{1F1E6}\u{1F1F9}' },
-  { code: '+55', country: 'BR', flag: '\u{1F1E7}\u{1F1F7}' },
-  { code: '+54', country: 'AR', flag: '\u{1F1E6}\u{1F1F7}' },
-  { code: '+91', country: 'IN', flag: '\u{1F1EE}\u{1F1F3}' },
-  { code: '+86', country: 'CN', flag: '\u{1F1E8}\u{1F1F3}' },
-  { code: '+81', country: 'JP', flag: '\u{1F1EF}\u{1F1F5}' },
-  { code: '+82', country: 'KR', flag: '\u{1F1F0}\u{1F1F7}' },
-  { code: '+65', country: 'SG', flag: '\u{1F1F8}\u{1F1EC}' },
-  { code: '+60', country: 'MY', flag: '\u{1F1F2}\u{1F1FE}' },
-  { code: '+62', country: 'ID', flag: '\u{1F1EE}\u{1F1E9}' },
-  { code: '+63', country: 'PH', flag: '\u{1F1F5}\u{1F1ED}' },
-  { code: '+66', country: 'TH', flag: '\u{1F1F9}\u{1F1ED}' },
-  { code: '+84', country: 'VN', flag: '\u{1F1FB}\u{1F1F3}' },
-  { code: '+971', country: 'UAE', flag: '\u{1F1E6}\u{1F1EA}' },
-  { code: '+966', country: 'SA', flag: '\u{1F1F8}\u{1F1E6}' },
-  { code: '+90', country: 'TR', flag: '\u{1F1F9}\u{1F1F7}' },
-  { code: '+61', country: 'AU', flag: '\u{1F1E6}\u{1F1FA}' },
-  { code: '+64', country: 'NZ', flag: '\u{1F1F3}\u{1F1FF}' },
-  { code: '+27', country: 'ZA', flag: '\u{1F1FF}\u{1F1E6}' },
-  { code: '+234', country: 'NG', flag: '\u{1F1F3}\u{1F1EC}' },
-  { code: '+254', country: 'KE', flag: '\u{1F1F0}\u{1F1EA}' },
-  { code: '+20', country: 'EG', flag: '\u{1F1EA}\u{1F1EC}' },
 ]
 
 interface FormErrors {
@@ -78,7 +44,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
   const locale = useLocale()
   const [formData, setFormData] = useState<FormData>({
     email: '',
-    countryCode: '+91',
+    countryIso: 'IN',
     phone: '',
     crm: '',
   })
@@ -170,7 +136,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
 
       fields.push(...getHubSpotAttributionFields(CHROME_STORE_WEBSITE_FORM_URL))
 
-      const formattedPhone = formData.countryCode + formatPhoneNumber(formData.phone)
+      const formattedPhone = dialOf(formData.countryIso) + formatPhoneNumber(formData.phone)
       fields.push({ name: "phone", value: formattedPhone })
 
       const hutk = document.cookie.split(';').find(c => c.trim().startsWith('hubspotutk='))?.split('=')[1]
@@ -208,6 +174,13 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
     }
   }
 
+  const countryPicker = usePhoneCountrySelect({
+    value: formData.countryIso,
+    onChange: (iso) => setFormData((prev) => ({ ...prev, countryIso: iso })),
+    disabled: isSubmitting,
+    ariaLabel: t('leadForm.countryCodeLabel'),
+  })
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
@@ -241,7 +214,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
               variant="dark"
               name={formData.email.split('@')[0]}
               email={formData.email}
-              phone={formData.countryCode + formData.phone.replace(/\D/g, '')}
+              phone={dialOf(formData.countryIso) + formData.phone.replace(/\D/g, '')}
             />
           </motion.div>
         ) : !showForm ? (
@@ -289,21 +262,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                     ? 'border-2 border-red-500 focus-within:border-red-600 focus-within:ring-2 focus-within:ring-red-500/20'
                     : 'border border-slate-700 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20'
                 }`}>
-                  <select
-                    id="countryCode"
-                    name="countryCode"
-                    aria-label={t('leadForm.countryCodeLabel')}
-                    value={formData.countryCode}
-                    onChange={handleChange}
-                    disabled={isSubmitting}
-                    className="w-[100px] shrink-0 font-sans text-sm h-full bg-brand-card text-white px-3 border-r border-slate-700 rounded-l-btn focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-                  >
-                    {COUNTRY_CODES.map((cc) => (
-                      <option key={`${cc.code}-${cc.country}`} value={cc.code} style={{ backgroundColor: '#fff', color: '#0F1115' }}>
-                        {cc.country} {cc.code}
-                      </option>
-                    ))}
-                  </select>
+                  {countryPicker.trigger}
                   <input
                     id="phone"
                     type="tel"
@@ -315,6 +274,7 @@ export const LeadGenerationForm: React.FC<LeadGenerationFormProps> = ({ onCalend
                     className="flex-1 font-sans text-sm h-full bg-transparent text-white px-4 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
+                {countryPicker.panel}
                 {errors.phone && (
                   <p className="mt-1.5 text-sm text-red-500 flex items-center gap-1">
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">

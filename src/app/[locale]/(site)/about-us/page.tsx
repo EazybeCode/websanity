@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { AboutUsClient } from '@/components/pages/AboutUsClient'
 import { getAlternates } from '@/lib/seo-helpers'
+import { SoftwareRatingSchema } from '@/components/seo/SoftwareRatingSchema'
+import { pageDates, withPageDates } from '@/lib/page-dates'
 
-export async function generateMetadata({
+async function baseMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>
@@ -325,6 +327,7 @@ export default async function AboutUsPage({
 
   return (
     <>
+      <SoftwareRatingSchema locale={locale} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -332,4 +335,9 @@ export default async function AboutUsPage({
       <AboutUsClient locale={locale} />
     </>
   )
+}
+
+// Published / last-modified dates as meta tags (article:published_time / article:modified_time).
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  return withPageDates(await baseMetadata(props), pageDates({ page: '/about-us' }))
 }
