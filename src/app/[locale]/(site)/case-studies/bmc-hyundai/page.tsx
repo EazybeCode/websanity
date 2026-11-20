@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getAlternates } from '@/lib/seo-helpers'
-import { getBmcContent } from '@/data/case-study-bmc-hyundai'
+import { getBmcContent, bmcHeadline } from '@/data/case-study-bmc-hyundai'
 import { pageDates, withPageDates } from '@/lib/page-dates'
 
 export const dynamic = 'force-static'
@@ -356,7 +356,7 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
   const homeUrl = `${SITE_URL}${locale === 'en' ? '/' : `/${locale}`}`
   const hubUrl = `${SITE_URL}${prefix}/case-studies`
   const pageUrl = `${SITE_URL}${prefix}${SLUG}`
-  const headline = `${t.hero.h1Lead} ${t.hero.h1Highlight} ${t.hero.h1Tail}`
+  const headline = bmcHeadline(t)
   const pricingHref = `${prefix}/pricing`
   const demoHref = 'https://eazybe.info/demono'
 
@@ -405,9 +405,9 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
           </div>
           <div className="bmc-hero-eyebrow">{t.hero.eyebrow}</div>
           <h1>
-            <span className="bmc-h1-a"><span className="lt">How</span> BMC Hyundai</span>
+            <span className="bmc-h1-a">{t.hero.h1Pre && <><span className="lt">{t.hero.h1Pre}</span>{' '}</>}{t.hero.h1Company}</span>
             <span className="bmc-h1-b">{t.hero.h1Highlight}</span>
-            <span className="bmc-h1-c"><span className="it">to WhatsApp leads</span> <span className="lt">with</span> Eazybe AI Agents</span>
+            <span className="bmc-h1-c"><span className="it">{t.hero.h1Italic}</span>{' '}{t.hero.h1With && <><span className="lt">{t.hero.h1With}</span>{' '}</>}{t.hero.h1Bold}</span>
           </h1>
           <p className="bmc-lede">{t.hero.subtitle}</p>
           <div className="bmc-hero-stats">
@@ -416,7 +416,7 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
                 <div className="v">{s.value}</div>
                 <div className="l">
                   {s.label}
-                  {s.note && <> · <span className="bmc-goal">{s.note}</span></>}
+                  {s.goal && <> · <span className="bmc-goal">{s.goal}</span></>}
                 </div>
               </div>
             ))}
@@ -431,12 +431,9 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
             <div>
               <div className="bmc-tag">{t.about.tag}</div>
               <h2 className="bmc-h2">
-                Hyundai machines, <span className="bmc-hl">built and served in Brazil.</span>
+                {t.about.h2Lead} <span className="bmc-hl">{t.about.h2Highlight}</span>
               </h2>
-              <p>
-                BMC Hyundai brought the first Hyundai machine to Brazil in 2003. Today it sells{' '}
-                <b>excavators, wheel loaders, forklifts and parts</b> to farms, mines, builders and rental fleets across the country.
-              </p>
+              <p>{t.about.bodyPre} <b>{t.about.bodyBold}</b> {t.about.bodyPost}</p>
               <div className="bmc-src">{t.about.source}</div>
             </div>
             <div className="bmc-grid-2">
@@ -457,12 +454,12 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
         <div className="container">
           <div className="bmc-center">
             <div className="bmc-tag">{t.history.tag}</div>
-            <h2 className="bmc-h2">From one forklift <span className="bmc-hl">to 10,000 machines.</span></h2>
+            <h2 className="bmc-h2">{t.history.h2Lead} <span className="bmc-hl">{t.history.h2Highlight}</span></h2>
           </div>
           <div className="bmc-history">
             <div className="bmc-hist-visual">
               <div className="big">2003<br /><span>→</span> 2026</div>
-              <span className="bmc-chip">Hyundai HX series · 2025</span>
+              <span className="bmc-chip">{t.history.chip}</span>
             </div>
             <div>
               <div className="bmc-grid-3">
@@ -475,7 +472,7 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
                 ))}
               </div>
               <div className="bmc-card bmc-timeline">
-                <div className="bmc-k">Milestones</div>
+                <div className="bmc-k">{t.history.milestonesLabel}</div>
                 <div className="bmc-tl">
                   {t.history.milestones.map((m, i) => (
                     <div key={m.year} className={`bmc-tl-i${i === t.history.milestones.length - 1 ? ' now' : ''}`}>
@@ -508,7 +505,7 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
                   <circle cx="110" cy="110" r={R} fill="none" stroke="#F0533F" strokeWidth="18" strokeLinecap="round"
                     strokeDasharray={`${C * 0.86} ${C}`} />
                 </svg>
-                <div className="bmc-ring-c"><b>{t.challenge.replyTime.value}</b><span>MINUTES</span></div>
+                <div className="bmc-ring-c"><b>{t.challenge.replyTime.value}</b><span>{t.challenge.minutes.toUpperCase()}</span></div>
               </div>
               <div className="bmc-n">{t.challenge.replyTime.note}</div>
             </div>
@@ -569,16 +566,16 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
                 <div className="bmc-phone-top">
                   <span className="av">BH</span>
                   <span>
-                    <div className="nm">Seller · BMC Hyundai</div>
-                    <div className="st">Same number</div>
+                    <div className="nm">{t.rule.phone.seller}</div>
+                    <div className="st">{t.rule.phone.sameNumber}</div>
                   </span>
-                  <span className="bmc-toggle">AI on <i /></span>
+                  <span className="bmc-toggle">{t.rule.phone.aiOn} <i /></span>
                 </div>
                 <div className="bmc-msgs">
                   <div className="bmc-msg in">Olá! Preciso de um filtro para minha escavadeira HX220.<small>09:41</small></div>
-                  <div className="bmc-msg out"><span className="ai">AI agent</span><br />Claro! Pode me passar o CNPJ e o número de série da máquina?<small>09:41 ✓✓</small></div>
+                  <div className="bmc-msg out"><span className="ai">{t.rule.phone.aiAgent}</span><br />Claro! Pode me passar o CNPJ e o número de série da máquina?<small>09:41 ✓✓</small></div>
                   <div className="bmc-msg in">CNPJ 12.345.678/0001-90, série HX220-0458.<small>09:42</small></div>
-                  <div className="bmc-msg out"><span className="ai">AI agent</span><br />Perfeito. Já passei para o seu vendedor com todos os detalhes.<small>09:42 ✓✓</small></div>
+                  <div className="bmc-msg out"><span className="ai">{t.rule.phone.aiAgent}</span><br />Perfeito. Já passei para o seu vendedor com todos os detalhes.<small>09:42 ✓✓</small></div>
                 </div>
               </div>
             </div>
@@ -621,13 +618,13 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
             <div className="bmc-agent-chat" aria-hidden="true">
               <div className="bmc-msgs">
                 <div className="bmc-msg in">Bom dia, vocês têm a carregadeira HL960 para pronta entrega?<small>12:03</small></div>
-                <div className="bmc-msg out"><span className="ai">AI agent</span><br />Bom dia! Sim, temos. Para qual cidade seria a entrega, e qual o CNPJ da empresa?<small>12:03 ✓✓</small></div>
-                <span className="bmc-replied">⚡ Replied in 8 sec</span>
+                <div className="bmc-msg out"><span className="ai">{t.rule.phone.aiAgent}</span><br />Bom dia! Sim, temos. Para qual cidade seria a entrega, e qual o CNPJ da empresa?<small>12:03 ✓✓</small></div>
+                <span className="bmc-replied">⚡ {t.agent.replied}</span>
               </div>
             </div>
             <div>
               <div className="bmc-card">
-                <div className="bmc-k">How a lead moves</div>
+                <div className="bmc-k">{t.agent.flowLabel}</div>
                 <div className="bmc-flow">
                   {t.agent.flow.map((f, i) => (
                     <span key={f} style={{ display: 'contents' }}>
@@ -664,16 +661,14 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
                 <div className="bmc-crm-vis" aria-hidden="true">
                   {i === 0 ? (
                     <div className="bmc-check">
-                      <b>Lead details</b>
+                      <b>{t.crm.leadDetails}</b>
                       {c.checklist?.map((x) => <div key={x}>{x}</div>)}
                     </div>
                   ) : (
                     <div className="bmc-crm-rec">
-                      <div className="hd"><i /><b>HubSpot contact</b></div>
-                      <div className="row">WhatsApp message · “Preciso de um filtro para HX220”</div>
-                      <div className="row">AI fields · CNPJ, part, machine</div>
-                      <div className="row">Handed to seller · full history</div>
-                      <span className="bmc-crm-sync">⟳ Saved to CRM</span>
+                      <div className="hd"><i /><b>{t.crm.contact}</b></div>
+                      {t.crm.rows.map((r) => <div key={r} className="row">{r}</div>)}
+                      <span className="bmc-crm-sync">⟳ {t.crm.saved}</span>
                     </div>
                   )}
                 </div>
@@ -701,8 +696,8 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
             <div>
               <div className="bmc-sla-vis" aria-hidden="true">
                 <div className="bmc-alert">
-                  <div className="t">🔔 Chat waiting 10 min</div>
-                  <span className="b">AI took over</span>
+                  <div className="t">🔔 {t.sla.alertText}</div>
+                  <span className="b">{t.sla.alertAction}</span>
                 </div>
               </div>
               <p className="bmc-sla-cap"><b>{t.sla.cards[0].title}</b> {t.sla.cards[0].body}</p>
@@ -710,7 +705,7 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
             <div>
               <div className="bmc-sla-vis" aria-hidden="true">
                 <div className="bmc-replybars">
-                  <b>Reply time</b>
+                  <b>{t.sla.replyTime}</b>
                   <i style={{ width: '38%', background: '#22B45A' }} />
                   <i style={{ width: '46%', background: '#22B45A' }} />
                   <i style={{ width: '70%', background: '#F6C52B' }} />
@@ -739,8 +734,8 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
             <div className="bmc-hand-vis" aria-hidden="true">
               <div className="bmc-hand-card">
                 <div className="bmc-hand-icons"><span>🤖</span>→<span className="p">👤</span></div>
-                <p>Handed to you</p>
-                <b>Join chat</b>
+                <p>{t.handover.handed}</p>
+                <b>{t.handover.join}</b>
               </div>
             </div>
             <div>
@@ -781,7 +776,7 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
               <table className="bmc-ba-table">
                 <thead>
                   <tr>
-                    <th scope="col"><span style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>Aspect</span></th>
+                    <th scope="col"><span style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>{t.beforeAfter.aspectLabel}</span></th>
                     <th scope="col">{t.beforeAfter.beforeLabel}</th>
                     <th scope="col">{t.beforeAfter.afterLabel}</th>
                   </tr>
@@ -807,7 +802,7 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
           <div className="bmc-results-hero">
             <div className="bmc-tag">{t.results.tag}</div>
             <div style={{ marginTop: 20 }}>
-              <div className="bmc-results-big"><b>4x</b><span>faster<br />replies ↗</span></div>
+              <div className="bmc-results-big"><b>4x</b><span>{t.results.bigLine1}<br />{t.results.bigLine2}</span></div>
             </div>
             <p className="bmc-results-h">{t.results.h2}</p>
           </div>
@@ -817,9 +812,7 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
                 <div className="bmc-k">{s.label}</div>
                 <div className={`bmc-v${i === 0 ? ' blue' : i === 1 ? ' green' : ''}`}>{s.value}</div>
                 <div className="bmc-n">
-                  {s.note?.includes('pilot goal') ? (
-                    <>{s.note.replace(' · pilot goal', '')} · <span className="bmc-goal">pilot goal</span></>
-                  ) : s.note}
+                  {s.note}{s.goal && <> · <span className="bmc-goal">{s.goal}</span></>}
                 </div>
               </div>
             ))}

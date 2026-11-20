@@ -120,6 +120,15 @@ const br: CaseStudiesPageContent = {
         'A especialista brasileira em locação de máquinas compactas unificou WhatsApp e HubSpot: cotações caíram de 24–48 horas para menos de 3, e as extensões de contrato deixaram de depender da memória do vendedor.',
       href: '/case-studies/lokmaxltda',
     },
+    {
+      initials: 'BH',
+      company: 'BMC Hyundai',
+      industry: 'Máquinas pesadas',
+      headline: 'Respondendo leads do WhatsApp 4x mais rápido com agentes de IA',
+      summary:
+        'A parceira da Hyundai em máquinas no Brasil colocou agentes de IA da Eazybe nos números de WhatsApp dos próprios vendedores: os leads recebem resposta em segundos, os dados vão para o HubSpot e nenhum cliente precisou aprender um número novo.',
+      href: '/case-studies/bmc-hyundai',
+    },
   ],
   finalCta: {
     h2: 'Seu time pode ser a próxima história',
@@ -163,6 +172,15 @@ const es: CaseStudiesPageContent = {
         'El especialista brasileño en alquiler de maquinaria compacta unificó WhatsApp y HubSpot: las cotizaciones pasaron de 24–48 horas a menos de 3, y las extensiones de contrato dejaron de depender de la memoria del vendedor.',
       href: '/case-studies/lokmaxltda',
     },
+    {
+      initials: 'BH',
+      company: 'BMC Hyundai',
+      industry: 'Maquinaria pesada',
+      headline: 'Respondiendo 4x más rápido a los leads de WhatsApp con agentes de IA',
+      summary:
+        'El socio de Hyundai en maquinaria en Brasil puso agentes de IA de Eazybe en los números de WhatsApp de sus propios vendedores: los leads reciben respuesta en segundos, los datos llegan a HubSpot y ningún cliente tuvo que aprender un número nuevo.',
+      href: '/case-studies/bmc-hyundai',
+    },
   ],
   finalCta: {
     h2: 'Tu equipo puede ser la próxima historia',
@@ -205,6 +223,15 @@ const tr: CaseStudiesPageContent = {
       summary:
         "Brezilya'nın kompakt makine kiralama uzmanı WhatsApp ile HubSpot'u birleştirdi: teklif süresi 24–48 saatten 3 saatin altına indi, sözleşme uzatmaları temsilci hafızasına bağlı olmaktan çıktı.",
       href: '/case-studies/lokmaxltda',
+    },
+    {
+      initials: 'BH',
+      company: 'BMC Hyundai',
+      industry: 'İş makineleri',
+      headline: "Yapay Zeka ajanlarıyla WhatsApp lead'lerine 4 kat daha hızlı yanıt",
+      summary:
+        "Hyundai'nin Brezilya'daki makine ortağı, Eazybe Yapay Zeka ajanlarını temsilcilerin kendi WhatsApp numaralarına yerleştirdi: lead'ler saniyeler içinde yanıt alıyor, bilgiler HubSpot'a düşüyor ve hiçbir müşteri yeni bir numara öğrenmek zorunda kalmadı.",
+      href: '/case-studies/bmc-hyundai',
     },
   ],
   finalCta: {
