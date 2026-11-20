@@ -96,41 +96,43 @@ const CSS = `
    blue light at the top, Geist type, mono labels and numbers. */
 .landing .v16-brand .bmc-hero {
   padding: clamp(140px, 14vw, 180px) 0 clamp(64px, 8vw, 96px); text-align: center;
+  /* Brand dark hero: ink page, faint dot grid, one soft blue light above the headline. */
   background:
-    radial-gradient(ellipse 55% 42% at 50% 0%, rgba(43, 89, 255, 0.13), rgba(43, 89, 255, 0) 72%),
-    radial-gradient(rgba(11, 11, 12, 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
-    #ffffff;
+    radial-gradient(ellipse 60% 50% at 50% -8%, rgba(43, 89, 255, 0.38), rgba(43, 89, 255, 0) 70%),
+    radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+    #0b0b0c;
 }
 .bmc-lockup { display: inline-flex; align-items: center; gap: 18px; font-family: 'Geist', sans-serif; }
-.bmc-lockup-e { display: inline-flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 700; letter-spacing: -0.03em; color: #0b0b0c; }
+.bmc-lockup-e { display: inline-flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 700; letter-spacing: -0.03em; color: #ffffff; }
 .bmc-lockup-e i { width: 44px; height: 44px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
-  background: linear-gradient(145deg, #4d72ff, #2b59ff); box-shadow: 0 6px 16px -6px rgba(43, 89, 255, 0.6); }
+  background: linear-gradient(145deg, #4d72ff, #2b59ff); box-shadow: 0 6px 18px -6px rgba(43, 89, 255, 0.8); }
 .bmc-lockup .x { color: #8a8c93; font-size: 16px; }
-.bmc-lockup .bmc-brand { font-size: 26px; font-weight: 800; letter-spacing: 0; color: #12307a; }
-.bmc-lockup .bmc-brand i { font-style: normal; font-weight: 300; color: #9aa3c0; margin: 0 8px; }
-.bmc-hero-eyebrow { margin-top: clamp(48px, 7vw, 92px); font-family: 'Geist Mono', ui-monospace, monospace; font-size: clamp(13px, 1.2vw, 16px);
-  font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: #2b59ff; }
-.landing .v16-brand .bmc-hero h1 { margin: 22px auto 0; color: #0b0b0c; line-height: 1; letter-spacing: -0.035em !important; }
+.bmc-lockup .bmc-brand { font-size: 26px; font-weight: 800; letter-spacing: 0; color: #ffffff; }
+.bmc-lockup .bmc-brand i { font-style: normal; font-weight: 300; color: #8a8c93; margin: 0 8px; }
+.bmc-hero-eyebrow { margin-top: clamp(44px, 6vw, 80px); font-family: 'Geist Mono', ui-monospace, monospace; font-size: clamp(13px, 1.2vw, 16px);
+  font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: #7c98ff; }
+.landing .v16-brand .bmc-hero h1 { margin: 22px auto 0; color: #ffffff; line-height: 1; letter-spacing: -0.035em !important; }
 .landing .v16-brand .bmc-hero h1 > span { display: block; }
 .landing .v16-brand .bmc-hero .lt { font-weight: 300; }
 .landing .v16-brand .bmc-hero .it { font-weight: 300; font-style: italic; }
-.landing .v16-brand .bmc-hero .bmc-h1-a { font-size: clamp(34px, 4.6vw, 62px); font-weight: 700; }
-.landing .v16-brand .bmc-hero .bmc-h1-b { margin: 6px 0 4px; font-size: clamp(54px, 10vw, 160px); font-weight: 700; line-height: .98; letter-spacing: -0.045em; color: #2b59ff; }
-.landing .v16-brand .bmc-hero .bmc-h1-c { font-size: clamp(28px, 4vw, 54px); font-weight: 700; letter-spacing: -0.03em; }
-.landing .v16-brand .bmc-hero .bmc-lede { margin: 28px auto 0; max-width: 820px; font-size: clamp(17px, 1.7vw, 22px); line-height: 1.5; color: #5a5c64; }
+.landing .v16-brand .bmc-hero .bmc-h1-a { font-size: clamp(32px, 4.2vw, 56px); font-weight: 700; }
+.landing .v16-brand .bmc-hero .bmc-h1-b { margin: 8px 0 6px; font-size: clamp(46px, 7.6vw, 116px); font-weight: 700; line-height: 1; letter-spacing: -0.045em;
+  color: #5b7cff; text-shadow: 0 0 40px rgba(43, 89, 255, 0.45); }
+.landing .v16-brand .bmc-hero .bmc-h1-c { font-size: clamp(26px, 3.6vw, 48px); font-weight: 700; letter-spacing: -0.03em; }
+.landing .v16-brand .bmc-hero .bmc-lede { margin: 28px auto 0; max-width: 820px; font-size: clamp(17px, 1.7vw, 21px); line-height: 1.5; color: #b4b4bc; }
 .bmc-hero-stats { margin: 48px auto 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
-.bmc-hero-stat { min-width: 220px; padding: 22px 28px; border-radius: 16px; text-align: center; background: #fff; border: 1px solid #e6e6e3;
-  box-shadow: 0 10px 30px -24px rgba(11, 11, 12, 0.35); }
-.bmc-hero-stat .v { font-family: 'Geist Mono', ui-monospace, monospace; font-size: clamp(30px, 3vw, 40px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #0b0b0c; }
-.bmc-hero-stat:first-child .v { color: #2b59ff; }
+.bmc-hero-stat { min-width: 220px; padding: 22px 28px; border-radius: 16px; text-align: center; background: #111114; border: 1px solid rgba(255, 255, 255, 0.08); }
+.bmc-hero-stat:first-child { border-color: rgba(43, 89, 255, 0.55); box-shadow: 0 0 30px -12px rgba(43, 89, 255, 0.6); }
+.bmc-hero-stat .v { font-family: 'Geist Mono', ui-monospace, monospace; font-size: clamp(30px, 3vw, 40px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #ffffff; }
+.bmc-hero-stat:first-child .v { color: #7c98ff; }
 .bmc-hero-stat:last-child .v { color: #2ec27e; }
-.bmc-hero-stat .l { margin-top: 10px; font-size: 16px; line-height: 1.45; color: #5a5c64; }
-.bmc-goal { color: #b08a00; font-weight: 500; }
+.bmc-hero-stat .l { margin-top: 10px; font-size: 16px; line-height: 1.45; color: #b4b4bc; }
+.bmc-goal { color: #ffd43b; font-weight: 500; }
 .bmc-share { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 32px; }
 .bmc-share-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #8a8c93; }
 .landing .bmc-share a { width: 34px; height: 34px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center;
-  color: #26262b; background: #fff; border: 1px solid #e6e6e3; transition: color .16s ease, border-color .16s ease; }
-.landing .bmc-share a:hover { color: #2b59ff; border-color: #2b59ff; }
+  color: #e6e6e8; background: #111114; border: 1px solid rgba(255, 255, 255, 0.08); transition: color .16s ease, border-color .16s ease; }
+.landing .bmc-share a:hover { color: #7c98ff; border-color: rgba(124, 152, 255, 0.55); }
 @media (max-width: 640px) {
   .bmc-lockup { gap: 10px; }
   .bmc-lockup-e, .bmc-lockup .bmc-brand { font-size: 19px; }
