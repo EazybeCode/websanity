@@ -105,7 +105,7 @@ const CSS = `
 .landing .v16-brand .bmc-hero .lt { font-weight: 300; }
 .landing .v16-brand .bmc-hero .it { font-weight: 300; font-style: italic; }
 .landing .v16-brand .bmc-hero .bmc-h1-a { font-size: clamp(32px, 4.2vw, 56px); font-weight: 700; }
-.landing .v16-brand .bmc-hero .bmc-h1-b { margin: 8px 0 6px; font-size: clamp(46px, 7.6vw, 116px); font-weight: 700; line-height: 1; letter-spacing: -0.045em;
+.landing .v16-brand .bmc-hero .bmc-h1-b { margin: 8px 0 6px; font-size: clamp(42px, 6.6vw, 96px); font-weight: 700; line-height: 1; letter-spacing: -0.045em;
   color: #5b7cff; text-shadow: 0 0 40px rgba(43, 89, 255, 0.45); }
 .landing .v16-brand .bmc-hero .bmc-h1-c { font-size: clamp(26px, 3.6vw, 48px); font-weight: 700; letter-spacing: -0.03em; }
 .landing .v16-brand .bmc-hero .bmc-lede { margin: 28px auto 0; max-width: 820px; font-size: clamp(17px, 1.7vw, 21px); line-height: 1.5; color: #b4b4bc; }
