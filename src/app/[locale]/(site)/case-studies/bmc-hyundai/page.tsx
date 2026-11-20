@@ -35,24 +35,6 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   return withPageDates(await baseMetadata(props), pageDates({ page: SLUG }))
 }
 
-const ShareIcons = {
-  linkedin: (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05a3.75 3.75 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45z" />
-    </svg>
-  ),
-  x: (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.48 3.24H4.3l13.31 17.41z" />
-    </svg>
-  ),
-  whatsapp: (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.15 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.68 1.45c6.55 0 11.89-5.34 11.89-11.9C23.93 5.34 18.6 0 12.05 0zm0 21.8a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.83 9.83 0 0 1-1.51-5.26c0-5.44 4.43-9.86 9.89-9.86 5.44 0 9.88 4.42 9.88 9.86 0 5.44-4.44 9.89-9.89 9.89zm5.42-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.57-.35z" />
-    </svg>
-  ),
-}
-
 const CSS = `
 .bmc { --bmc-blue: #2B59FF; --bmc-blue-soft: #EAF0FF; --bmc-red: #F0533F; --bmc-red-soft: #FFE3DF;
   --bmc-yellow: #F6C52B; --bmc-yellow-soft: #FFF4D1; --bmc-green: #1E9E62; --bmc-green-soft: #E6F5EC;
@@ -135,11 +117,6 @@ const CSS = `
 .landing .v16-brand .bmc-hero .bmc-hero-stat:last-child .v { color: #2ec27e; }
 .landing .v16-brand .bmc-hero .bmc-hero-stat .l { margin-top: 10px; font-size: 16px; line-height: 1.45; color: #b4b4bc; }
 .landing .v16-brand .bmc-hero .bmc-goal { color: #ffd43b; font-weight: 500; }
-.landing .v16-brand .bmc-hero .bmc-share { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 32px; }
-.landing .v16-brand .bmc-hero .bmc-share-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #8a8c93; }
-.landing .bmc-share a { width: 34px; height: 34px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center;
-  color: #e6e6e8; background: #111114; border: 1px solid rgba(255, 255, 255, 0.08); transition: color .16s ease, border-color .16s ease; }
-.landing .bmc-share a:hover { color: #7c98ff; border-color: rgba(124, 152, 255, 0.55); }
 @media (max-width: 640px) {
   .bmc-lockup { gap: 10px; }
   .bmc-lockup-e, .bmc-lockup .bmc-brand { font-size: 19px; }
@@ -367,7 +344,6 @@ const CSS = `
   .bmc-crm-vis { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .landing .bmc-share a { transition: none; }
 }
 `
 
@@ -403,11 +379,6 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
     about: { '@type': 'Organization', name: 'BMC Hyundai', url: 'https://bmchyundai.com.br' },
   }
 
-  const share = [
-    { label: 'LinkedIn', icon: ShareIcons.linkedin, href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}` },
-    { label: 'X', icon: ShareIcons.x, href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(headline)}` },
-    { label: 'WhatsApp', icon: ShareIcons.whatsapp, href: `https://wa.me/?text=${encodeURIComponent(`${headline} ${pageUrl}`)}` },
-  ]
 
   const aboutTones = ['blue', 'dark glow', 'dark', 'yellow', 'green', '']
   const aboutValueTones = ['blue', '', 'yellow', '', 'green', '']
@@ -448,12 +419,6 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
                   {s.note && <> · <span className="bmc-goal">{s.note}</span></>}
                 </div>
               </div>
-            ))}
-          </div>
-          <div className="bmc-share">
-            <span className="bmc-share-label">{t.shareLabel}</span>
-            {share.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>{s.icon}</a>
             ))}
           </div>
         </div>
