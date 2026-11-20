@@ -3,9 +3,14 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getAlternates } from '@/lib/seo-helpers'
 import { getBmcContent, bmcHeadline } from '@/data/case-study-bmc-hyundai'
-import { pageDates, withPageDates } from '@/lib/page-dates'
+import { pageDates, withPageDates, getSanityDocDates } from '@/lib/page-dates'
+import { getCaseStudy } from '@/lib/sanity-queries'
 
-export const dynamic = 'force-static'
+// The page design and copy live in code (src/data/case-study-bmc-hyundai.ts).
+// A PUBLISHED caseStudy doc with this slug (Sanity "Case Studies") supplies the
+// SEO fields and the /case-studies hub card; re-render at most once a minute
+// so Studio publishes go live on their own.
+export const revalidate = 60
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -17,22 +22,28 @@ const SITE_URL = 'https://eazybe.com'
 async function baseMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   const t = getBmcContent(locale)
+  const doc = await getCaseStudy('bmc-hyundai', locale).catch(() => null)
+  const title: string = doc?.metaTitle || t.meta.title
   return {
-    title: t.meta.title,
-    description: t.meta.description,
+    title,
+    description: doc?.metaDescription || t.meta.description,
     alternates: getAlternates(locale, SLUG),
     robots: { index: true, follow: true },
     openGraph: {
       type: 'article',
-      title: t.meta.title.replace(' | Eazybe', ''),
-      description: t.meta.ogDescription,
+      title: doc?.ogTitle || title.replace(' | Eazybe', ''),
+      description: doc?.ogDescription || t.meta.ogDescription,
       siteName: 'Eazybe',
     },
   }
 }
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  return withPageDates(await baseMetadata(props), pageDates({ page: SLUG }))
+  const { locale } = await props.params
+  return withPageDates(
+    await baseMetadata(props),
+    pageDates({ page: SLUG, doc: await getSanityDocDates('caseStudy', locale, 'bmc-hyundai') })
+  )
 }
 
 const CSS = `
