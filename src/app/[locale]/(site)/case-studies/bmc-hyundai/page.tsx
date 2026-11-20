@@ -92,40 +92,51 @@ const CSS = `
 .bmc-n { margin-top: 10px; font-size: 14.5px; line-height: 1.5; color: var(--ink-3); }
 .bmc-card.dark .bmc-n, .bmc-sec.dark .bmc-n { color: #A9AFBF; }
 
-/* Hero — brand guidelines v1.2: dark page-hero (dot grid + one blue light, from
-   brand-pages.css), Geist Bold h1 with one blue phrase (<em>), mono chip,
-   blue primary + hairline outline CTAs, 16px hairline stat boxes. */
-.landing .v16-brand .bmc-hero { padding: clamp(150px, 15vw, 190px) 0 clamp(64px, 8vw, 96px); text-align: center; }
-.landing .v16-brand .bmc-hero::after { background: radial-gradient(ellipse 60% 55% at 50% -10%, rgba(43, 89, 255, 0.38), rgba(43, 89, 255, 0) 70%); }
-.landing .v16-brand .bmc-hero .container { position: relative; z-index: 1; }
-.bmc-crumbs { font-size: 13px; color: var(--ink-3); margin-bottom: 28px; }
-.bmc-crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
-.bmc-crumbs li + li::before { content: '›'; margin-right: 6px; color: var(--ink-4); }
-.landing .bmc-crumbs a { color: var(--ink-3); }
-.landing .bmc-crumbs a:hover { color: #7c98ff; }
-.bmc-lockup { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 24px; font-weight: 700; font-size: 18px; letter-spacing: -0.02em; color: var(--ink); }
-.bmc-lockup-e { display: inline-flex; align-items: center; gap: 8px; }
-.bmc-lockup-e i { width: 22px; height: 22px; border-radius: 6px; background: #2b59ff; display: inline-block; }
-.bmc-lockup .x { color: var(--ink-4); font-weight: 400; font-size: 14px; }
-.bmc-lockup .bmc-brand { color: var(--ink); letter-spacing: .02em; }
-.bmc-lockup .bmc-brand i { font-style: normal; color: var(--ink-4); font-weight: 300; margin: 0 6px; }
-.landing .v16-brand .bmc-hero h1 { margin: 22px auto 0; max-width: 17ch; font-size: clamp(40px, 5vw, 68px); line-height: 1.05; letter-spacing: -0.04em; color: var(--ink); }
-.landing .v16-brand .bmc-hero .bmc-lede { margin: 22px auto 0; max-width: 620px; font-size: 18px; line-height: 1.55; color: var(--ink-3); text-align: center; }
-.bmc-hero-ctas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
-.bmc-hero-stats { margin: 44px auto 0; max-width: 820px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.bmc-hero-stat { padding: 20px 22px; border-radius: 16px; text-align: left; background: #111114; border: 1px solid rgba(255, 255, 255, 0.08); }
-.bmc-hero-stat:first-child { border-color: rgba(43, 89, 255, 0.55); box-shadow: 0 0 30px -12px rgba(43, 89, 255, 0.6); }
-.bmc-hero-stat .v { font-family: 'Geist', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; color: #fff; }
-.bmc-hero-stat:first-child .v { color: #7c98ff; }
+/* Hero — matches the deck cover: white page with a faint dot grid and a soft
+   blue light at the top, Geist type, mono labels and numbers. */
+.landing .v16-brand .bmc-hero {
+  padding: clamp(140px, 14vw, 180px) 0 clamp(64px, 8vw, 96px); text-align: center;
+  background:
+    radial-gradient(ellipse 55% 42% at 50% 0%, rgba(43, 89, 255, 0.13), rgba(43, 89, 255, 0) 72%),
+    radial-gradient(rgba(11, 11, 12, 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+    #ffffff;
+}
+.bmc-lockup { display: inline-flex; align-items: center; gap: 18px; font-family: 'Geist', sans-serif; }
+.bmc-lockup-e { display: inline-flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 700; letter-spacing: -0.03em; color: #0b0b0c; }
+.bmc-lockup-e i { width: 44px; height: 44px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, #4d72ff, #2b59ff); box-shadow: 0 6px 16px -6px rgba(43, 89, 255, 0.6); }
+.bmc-lockup .x { color: #8a8c93; font-size: 16px; }
+.bmc-lockup .bmc-brand { font-size: 26px; font-weight: 800; letter-spacing: 0; color: #12307a; }
+.bmc-lockup .bmc-brand i { font-style: normal; font-weight: 300; color: #9aa3c0; margin: 0 8px; }
+.bmc-hero-eyebrow { margin-top: clamp(48px, 7vw, 92px); font-family: 'Geist Mono', ui-monospace, monospace; font-size: clamp(13px, 1.2vw, 16px);
+  font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: #2b59ff; }
+.landing .v16-brand .bmc-hero h1 { margin: 22px auto 0; color: #0b0b0c; line-height: 1; letter-spacing: -0.035em !important; }
+.landing .v16-brand .bmc-hero h1 > span { display: block; }
+.landing .v16-brand .bmc-hero .lt { font-weight: 300; }
+.landing .v16-brand .bmc-hero .it { font-weight: 300; font-style: italic; }
+.landing .v16-brand .bmc-hero .bmc-h1-a { font-size: clamp(34px, 4.6vw, 62px); font-weight: 700; }
+.landing .v16-brand .bmc-hero .bmc-h1-b { margin: 6px 0 4px; font-size: clamp(54px, 10vw, 160px); font-weight: 700; line-height: .98; letter-spacing: -0.045em; color: #2b59ff; }
+.landing .v16-brand .bmc-hero .bmc-h1-c { font-size: clamp(28px, 4vw, 54px); font-weight: 700; letter-spacing: -0.03em; }
+.landing .v16-brand .bmc-hero .bmc-lede { margin: 28px auto 0; max-width: 820px; font-size: clamp(17px, 1.7vw, 22px); line-height: 1.5; color: #5a5c64; }
+.bmc-hero-stats { margin: 48px auto 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+.bmc-hero-stat { min-width: 220px; padding: 22px 28px; border-radius: 16px; text-align: center; background: #fff; border: 1px solid #e6e6e3;
+  box-shadow: 0 10px 30px -24px rgba(11, 11, 12, 0.35); }
+.bmc-hero-stat .v { font-family: 'Geist Mono', ui-monospace, monospace; font-size: clamp(30px, 3vw, 40px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #0b0b0c; }
+.bmc-hero-stat:first-child .v { color: #2b59ff; }
 .bmc-hero-stat:last-child .v { color: #2ec27e; }
-.bmc-hero-stat .l { margin-top: 8px; font-size: 14px; line-height: 1.45; color: var(--ink-3); }
-.bmc-goal { color: #ffd43b; font-weight: 600; }
-.bmc-share { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 28px; }
-.bmc-share-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); }
+.bmc-hero-stat .l { margin-top: 10px; font-size: 16px; line-height: 1.45; color: #5a5c64; }
+.bmc-goal { color: #b08a00; font-weight: 500; }
+.bmc-share { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 32px; }
+.bmc-share-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #8a8c93; }
 .landing .bmc-share a { width: 34px; height: 34px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center;
-  color: var(--ink-2); background: #111114; border: 1px solid rgba(255, 255, 255, 0.08); transition: color .16s ease, border-color .16s ease; }
-.landing .bmc-share a:hover { color: #7c98ff; border-color: rgba(124, 152, 255, 0.55); }
-@media (max-width: 640px) { .bmc-hero-stats { grid-template-columns: 1fr; } }
+  color: #26262b; background: #fff; border: 1px solid #e6e6e3; transition: color .16s ease, border-color .16s ease; }
+.landing .bmc-share a:hover { color: #2b59ff; border-color: #2b59ff; }
+@media (max-width: 640px) {
+  .bmc-lockup { gap: 10px; }
+  .bmc-lockup-e, .bmc-lockup .bmc-brand { font-size: 19px; }
+  .bmc-lockup-e i { width: 34px; height: 34px; }
+  .bmc-hero-stat { min-width: 0; width: 100%; }
+}
 
 /* About */
 .bmc-about { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
@@ -403,32 +414,29 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
-      {/* 1. Hero — brand dark hero (ink, dot grid, one blue light, one blue phrase). */}
-      <section className="page-hero bmc-hero" data-tone="dark">
+      {/* 1. Hero — matches the deck cover (slide 01). */}
+      <section className="bmc-hero">
         <div className="container">
-          <nav className="bmc-crumbs" aria-label="Breadcrumb">
-            <ol>
-              <li><a href={locale === 'en' ? '/' : `/${locale}`}>{t.breadcrumb.home}</a></li>
-              <li><a href={`${prefix}/case-studies`}>{t.breadcrumb.hub}</a></li>
-              <li aria-current="page">{t.breadcrumb.current}</li>
-            </ol>
-          </nav>
           <div className="bmc-lockup" aria-label="Eazybe and BMC Hyundai">
-            <span className="bmc-lockup-e"><i aria-hidden="true" />Eazybe</span>
+            <span className="bmc-lockup-e">
+              <i aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M8 13V6.5a1.5 1.5 0 0 1 3 0V12" /><path d="M11 11.5V5a1.5 1.5 0 0 1 3 0v6.5" /><path d="M14 11.5V7a1.5 1.5 0 0 1 3 0v7a6 6 0 0 1-6 6h-.5a6 6 0 0 1-4.6-2.2L4.3 15a1.5 1.5 0 0 1 2.3-1.9L8 14.5" />
+                  <path d="M17 3.5l1-1.5M19.5 5.5l1.5-.8" />
+                </svg>
+              </i>
+              Eazybe
+            </span>
             <span className="x" aria-hidden="true">×</span>
             <span className="bmc-brand">BMC<i aria-hidden="true">|</i>HYUNDAI</span>
           </div>
-          <div>
-            <span className="hero-tag"><span className="pulse" /> {t.hero.eyebrow}</span>
-          </div>
+          <div className="bmc-hero-eyebrow">{t.hero.eyebrow}</div>
           <h1>
-            {t.hero.h1Lead} <em>{t.hero.h1Highlight}</em> {t.hero.h1Tail}
+            <span className="bmc-h1-a"><span className="lt">How</span> BMC Hyundai</span>
+            <span className="bmc-h1-b">{t.hero.h1Highlight}</span>
+            <span className="bmc-h1-c"><span className="it">to WhatsApp leads</span> <span className="lt">with</span> Eazybe AI Agents</span>
           </h1>
-          <p className="lede bmc-lede">{t.hero.subtitle}</p>
-          <div className="bmc-hero-ctas">
-            <a href={pricingHref} className="btn btn-primary btn-lg">{t.finalCta.primary}</a>
-            <a href={demoHref} className="btn btn-outline btn-lg">{t.finalCta.secondary}</a>
-          </div>
+          <p className="bmc-lede">{t.hero.subtitle}</p>
           <div className="bmc-hero-stats">
             {t.hero.stats.map((s) => (
               <div key={s.label} className="bmc-hero-stat">
