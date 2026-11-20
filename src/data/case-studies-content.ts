@@ -68,6 +68,15 @@ const en: CaseStudiesPageContent = {
         'Brazil’s compact machinery rental specialist unified WhatsApp and HubSpot: quotes went from 24–48 hours to under 3, and lease extensions stopped depending on rep memory.',
       href: '/case-studies/lokmaxltda',
     },
+    {
+      initials: 'BH',
+      company: 'BMC Hyundai',
+      industry: 'Heavy machinery',
+      headline: 'Replying 4x faster to WhatsApp leads with AI agents',
+      summary:
+        'Hyundai’s machinery partner in Brazil put Eazybe AI agents on its sellers’ own WhatsApp numbers: leads get a reply in seconds, details land in HubSpot, and no customer had to learn a new number.',
+      href: '/case-studies/bmc-hyundai',
+    },
   ],
   finalCta: {
     h2: 'Your Team Could Be The Next Story',

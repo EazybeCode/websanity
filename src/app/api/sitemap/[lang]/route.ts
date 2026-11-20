@@ -181,6 +181,7 @@ async function generateSitemapForLocale(lang: string): Promise<string> {
     { path: '/tools', changefreq: 'monthly', priority: 0.7 },
     { path: '/case-studies', changefreq: 'weekly', priority: 0.7 },
     { path: '/case-studies/lokmaxltda', changefreq: 'monthly', priority: 0.7 },
+    { path: '/case-studies/bmc-hyundai', changefreq: 'monthly', priority: 0.7 },
     { path: '/become-our-partner', changefreq: 'monthly', priority: 0.7 },
     { path: '/blog/authors', changefreq: 'monthly', priority: 0.6 },
     // /msa, /privacy and /terms are noindex, so they stay out of the sitemap

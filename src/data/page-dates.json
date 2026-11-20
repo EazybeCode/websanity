@@ -1,7 +1,7 @@
 {
   "/": {
     "published": "2026-03-14T12:16:03Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-20T10:48:58Z"
   },
   "/pricing": {
     "published": "2026-03-17T09:28:23Z",
@@ -68,7 +68,7 @@
     "modified": "2026-11-09T10:12:23Z"
   },
   "/blog/authors/[slug]": {
-    "published": "2026-04-08T13:21:34Z",
+    "published": "2026-05-12T08:01:06Z",
     "modified": "2026-11-09T10:12:23Z"
   },
   "/features/team-inbox": {
@@ -109,7 +109,7 @@
   },
   "/case-studies": {
     "published": "2026-08-29T18:20:17Z",
-    "modified": "2026-11-09T10:12:23Z"
+    "modified": "2026-11-20T10:48:58Z"
   },
   "/case-studies/lokmaxltda": {
     "published": "2026-08-29T18:20:17Z",
@@ -124,7 +124,7 @@
     "modified": "2026-11-11T10:55:18Z"
   },
   "/integration-page": {
-    "published": "2026-03-17T09:28:23Z",
+    "published": "2026-05-12T08:01:06Z",
     "modified": "2026-11-09T10:12:23Z"
   },
   "/product-page": {
@@ -132,15 +132,15 @@
     "modified": "2026-11-09T10:12:23Z"
   },
   "/whatsapp-api/[slug]": {
-    "published": "2026-03-17T09:28:23Z",
+    "published": "2026-05-12T08:01:06Z",
     "modified": "2026-11-09T10:12:23Z"
   },
   "/blog/[slug]": {
-    "published": "2026-03-17T09:28:23Z",
+    "published": "2026-05-12T08:01:06Z",
     "modified": "2026-11-05T09:59:53Z"
   },
   "/comparison/[slug]": {
-    "published": "2026-04-15T10:06:15Z",
+    "published": "2026-05-12T08:01:06Z",
     "modified": "2026-11-05T09:59:53Z"
   },
   "/feeds": {
@@ -149,7 +149,7 @@
   },
   "/sitemap": {
     "published": "2026-06-10T08:21:49Z",
-    "modified": "2026-11-09T17:55:05Z"
+    "modified": "2026-11-20T10:48:58Z"
   },
   "/msa": {
     "published": "2026-03-17T09:28:23Z",
