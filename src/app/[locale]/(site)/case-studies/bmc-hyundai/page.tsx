@@ -108,6 +108,8 @@ const CSS = `
    default is light blue with black ink, which reads as black blocks here). */
 .landing .v16-brand .bmc-hero ::selection { background: #2b59ff; color: #ffffff; }
 .landing .v16-brand .bmc-hero .bmc-lockup { display: inline-flex; align-items: center; gap: 18px; font-family: 'Geist', sans-serif; }
+.landing .v16-brand .bmc-hero .bmc-lockup-logo { display: block; height: 42px; width: auto; }
+@media (max-width: 640px) { .landing .v16-brand .bmc-hero .bmc-lockup-logo { height: 30px; } }
 .landing .v16-brand .bmc-hero .bmc-lockup-e { display: inline-flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 700; letter-spacing: -0.03em; color: #ffffff; }
 .landing .v16-brand .bmc-hero .bmc-lockup-e i { width: 44px; height: 44px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
   background: linear-gradient(145deg, #4d72ff, #2b59ff); box-shadow: 0 6px 18px -6px rgba(43, 89, 255, 0.8); }
@@ -425,15 +427,8 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
       <section className="bmc-hero">
         <div className="container">
           <div className="bmc-lockup" aria-label="Eazybe and BMC Hyundai">
-            <span className="bmc-lockup-e">
-              <i aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M8 13V6.5a1.5 1.5 0 0 1 3 0V12" /><path d="M11 11.5V5a1.5 1.5 0 0 1 3 0v6.5" /><path d="M14 11.5V7a1.5 1.5 0 0 1 3 0v7a6 6 0 0 1-6 6h-.5a6 6 0 0 1-4.6-2.2L4.3 15a1.5 1.5 0 0 1 2.3-1.9L8 14.5" />
-                  <path d="M17 3.5l1-1.5M19.5 5.5l1.5-.8" />
-                </svg>
-              </i>
-              Eazybe
-            </span>
+            {/* Official Eazybe logo (white, for dark backgrounds) — same file as the nav. */}
+            <img className="bmc-lockup-logo" src="/logo-small.png" alt="Eazybe" width={274} height={64} fetchPriority="high" />
             <span className="x" aria-hidden="true">×</span>
             <span className="bmc-brand">BMC<i aria-hidden="true">|</i>HYUNDAI</span>
           </div>
