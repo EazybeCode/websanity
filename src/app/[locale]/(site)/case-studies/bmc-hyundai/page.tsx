@@ -59,6 +59,7 @@ const CSS = `
   --bmc-dark: #111216; --bmc-dark-2: #17181D; --bmc-dark-line: #26272E; }
 .bmc-sec { padding: clamp(64px, 8vw, 104px) 0; background: #fff; }
 .bmc-sec.alt { background: #F6F8FC; }
+.landing .v16-brand .bmc-sec.dark ::selection { background: #2b59ff; color: #ffffff; }
 .bmc-sec.dark { background: radial-gradient(ellipse 70% 45% at 50% 0%, #1B2A78 0%, rgba(27,42,120,0) 70%), #0B0C0F; color: #F2F4FA; }
 .bmc-tag { font-family: var(--f-mono); font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--bmc-blue); }
 .bmc-sec.dark .bmc-tag { color: #8EA4FF; }
@@ -102,6 +103,9 @@ const CSS = `
     radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
     #0b0b0c;
 }
+/* Selected text on the dark hero: Eazybe Blue highlight with white text (the site
+   default is light blue with black ink, which reads as black blocks here). */
+.landing .v16-brand .bmc-hero ::selection { background: #2b59ff; color: #ffffff; }
 .bmc-lockup { display: inline-flex; align-items: center; gap: 18px; font-family: 'Geist', sans-serif; }
 .bmc-lockup-e { display: inline-flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 700; letter-spacing: -0.03em; color: #ffffff; }
 .bmc-lockup-e i { width: 44px; height: 44px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
