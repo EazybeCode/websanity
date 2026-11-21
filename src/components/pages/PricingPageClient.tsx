@@ -84,7 +84,7 @@ interface PricingData {
 const defaultPricingPlans: PricingPlan[] = [
   {
     name: 'Starter', planKey: 'starter',
-    description: 'Perfect for individuals and small teams getting started with WhatsApp CRM integration.',
+    description: 'For individuals and small teams starting with WhatsApp CRM.',
     monthlyPrice: 29, annualPrice: 19, currency: '$', icon: 'starter',
     features: [
       { text: 'Team Inbox', included: true, highlight: true },
@@ -102,7 +102,7 @@ const defaultPricingPlans: PricingPlan[] = [
   },
   {
     name: 'Scaler', planKey: 'scaler',
-    description: 'For growing teams that need advanced integrations and AI-powered automation.',
+    description: 'For growing teams that need advanced integrations.',
     monthlyPrice: 49, annualPrice: 39, currency: '$', icon: 'growth', popular: true,
     priceNote: '3 users included',
     features: [
@@ -129,7 +129,6 @@ const defaultPricingPlans: PricingPlan[] = [
       { text: 'AI agents', included: true, highlight: true },
       { text: 'Intelligence-Led CRM Properties', included: true, highlight: true },
       { text: 'AI-driven Chat Organization', included: true, highlight: true },
-      { text: 'BrainBe knowledge base included', included: true },
       { text: 'Voice AI calling', included: false },
       { text: '100+ integrations (Email, Teams, Slack...)', included: false },
     ],
@@ -165,7 +164,7 @@ const USD_LIST_PRICES: Record<string, { monthly: number; annual: number }> = {
 }
 
 const defaultComparisonFeatures: ComparisonFeatureRow[] = [
-  { feature: 'WhatsApp API number', starter: false, scaler: '1 · 3 users included', basicAi: '1 · 5 users included', proAi: '1 · 5 users included', category: 'Core Features' },
+  { feature: 'WhatsApp API number', starter: false, scaler: 'Per channel · 3 users included', basicAi: 'Per channel · 5 users included', proAi: 'Per channel · 5 users included', category: 'Core Features' },
   { feature: 'Team Inbox', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
   { feature: 'Unlimited labels & funnels', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
   { feature: 'Unlimited quick replies', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
@@ -253,8 +252,8 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       saveBadgeText: 'SAVE 20%',
     },
     planDescriptions: {
-      starter: 'Perfect for individuals and small teams getting started with WhatsApp CRM integration.',
-      scaler: 'For growing teams that need advanced integrations and AI-powered automation.',
+      starter: 'For individuals and small teams starting with WhatsApp CRM.',
+      scaler: 'For growing teams that need advanced integrations.',
       basicAi: 'Get started with AI agents on top of your full Scaler stack.',
       proAi: 'Advanced agents, voice, ads automation and 100+ integrations.',
     },
@@ -315,10 +314,10 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       saveBadgeText: 'AHORRA 20%',
     },
     planDescriptions: {
-      starter: 'Perfecto para individuos y equipos pequeños que comienzan con la integración de WhatsApp CRM.',
-      scaler: 'Para equipos en crecimiento que necesitan integraciones avanzadas y automatización con IA.',
+      starter: 'Para individuos y equipos pequeños que empiezan con WhatsApp CRM.',
+      scaler: 'Para equipos en crecimiento con integraciones avanzadas.',
       basicAi: 'Comienza con agentes de IA sobre tu paquete completo Escala.',
-      proAi: 'Agentes avanzados, voz, automatización de anuncios y más de 100 integraciones.',
+      proAi: 'Agentes avanzados, voz, anuncios y más de 100 integraciones.',
     },
     planNames: {
       starter: 'Inicial',
@@ -377,9 +376,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Cloud connection': 'Conexión en la nube',
       'WhatsApp API': 'API de WhatsApp',
       'WhatsApp API number': 'Número de API de WhatsApp',
-      '1 · 3 users included': '1 · 3 usuarios incluidos',
+      'Per channel · 3 users included': 'Por canal · 3 usuarios incluidos',
       'Custom': 'Contáctanos',
-      '1 · 5 users included': '1 · 5 usuarios incluidos',
+      'Per channel · 5 users included': 'Por canal · 5 usuarios incluidos',
       'Custom objects in mini CRM view': 'Objetos personalizados en mini CRM',
       'CRM property-to-WhatsApp labeling': 'Etiquetado de propiedades del CRM en WhatsApp',
       'AI unreplied chats agent': 'Agente de IA para chats sin responder',
@@ -398,6 +397,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       '5 users': '5 usuarios',
       'AI agent cost': 'Coste del agente de IA',
       'reply': 'respuesta',
+      'Varies by AI model': 'Varía según el modelo de IA',
       'Intelligence-Led CRM Properties': 'Propiedades de CRM guiadas por inteligencia',
       'AI-driven Chat Organization': 'Organización de chats por IA',
       'BrainBe knowledge base included': 'Base de conocimientos BrainBe incluida',
@@ -435,10 +435,10 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       saveBadgeText: 'ECONOMIZE 20%',
     },
     planDescriptions: {
-      starter: 'Perfeito para indivíduos e times pequenos começando com a integração WhatsApp CRM.',
-      scaler: 'Para times em crescimento que precisam de integrações avançadas e automação com IA.',
+      starter: 'Para indivíduos e times pequenos começando com WhatsApp CRM.',
+      scaler: 'Para times em crescimento com integrações avançadas.',
       basicAi: 'Comece com agentes de IA sobre seu stack completo Escala.',
-      proAi: 'Agentes avançados, voz, automação de anúncios e mais de 100 integrações.',
+      proAi: 'Agentes avançados, voz, anúncios e mais de 100 integrações.',
     },
     planNames: {
       starter: 'Inicial',
@@ -497,9 +497,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Cloud connection': 'Conexão em nuvem',
       'WhatsApp API': 'API do WhatsApp',
       'WhatsApp API number': 'Número de API do WhatsApp',
-      '1 · 3 users included': '1 · 3 usuários incluídos',
+      'Per channel · 3 users included': 'Por canal · 3 usuários incluídos',
       'Custom': 'Fale Conosco',
-      '1 · 5 users included': '1 · 5 usuários incluídos',
+      'Per channel · 5 users included': 'Por canal · 5 usuários incluídos',
       'Custom objects in mini CRM view': 'Objetos personalizados no mini CRM',
       'CRM property-to-WhatsApp labeling': 'Etiquetagem de propriedade do CRM para WhatsApp',
       'AI unreplied chats agent': 'Agente de IA para conversas sem resposta',
@@ -518,6 +518,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       '5 users': '5 usuários',
       'AI agent cost': 'Custo do agente de IA',
       'reply': 'resposta',
+      'Varies by AI model': 'Varia conforme o modelo de IA',
       'Intelligence-Led CRM Properties': 'Propriedades de CRM guiadas por inteligência',
       'AI-driven Chat Organization': 'Organização de conversas por IA',
       'BrainBe knowledge base included': 'Base de conhecimento BrainBe incluída',
@@ -555,8 +556,8 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       saveBadgeText: '%20 TASARRUF',
     },
     planDescriptions: {
-      starter: 'WhatsApp CRM entegrasyonuna yeni başlayan bireyler ve küçük ekipler için mükemmel.',
-      scaler: 'Gelişmiş entegrasyonlara ve yapay zeka destekli otomasyona ihtiyaç duyan büyüyen ekipler için.',
+      starter: "WhatsApp CRM'e yeni başlayan bireyler ve küçük ekipler için.",
+      scaler: 'Gelişmiş entegrasyonlara ihtiyaç duyan büyüyen ekipler için.',
       basicAi: 'Tam Büyüme paketinizin üzerinde Yapay Zeka ajanlarıyla başlayın.',
       proAi: 'Gelişmiş ajanlar, sesli arama, reklam otomasyonu ve 100+ entegrasyon.',
     },
@@ -617,9 +618,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Cloud connection': 'Bulut bağlantısı',
       'WhatsApp API': 'WhatsApp API',
       'WhatsApp API number': 'WhatsApp API numarası',
-      '1 · 3 users included': '1 · 3 kullanıcı dahil',
+      'Per channel · 3 users included': 'Kanal başına · 3 kullanıcı dahil',
       'Custom': 'Bize Ulaşın',
-      '1 · 5 users included': '1 · 5 kullanıcı dahil',
+      'Per channel · 5 users included': 'Kanal başına · 5 kullanıcı dahil',
       'Custom objects in mini CRM view': 'Mini CRM görünümünde özel nesneler',
       'CRM property-to-WhatsApp labeling': "CRM özelliğinden WhatsApp'a etiketleme",
       'AI unreplied chats agent': 'Yanıtsız sohbetler için AI ajanı',
@@ -638,6 +639,7 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       '5 users': '5 kullanıcı',
       'AI agent cost': 'AI ajan maliyeti',
       'reply': 'yanıt',
+      'Varies by AI model': 'AI modeline göre değişir',
       'Intelligence-Led CRM Properties': 'Zeka odaklı CRM özellikleri',
       'AI-driven Chat Organization': 'AI destekli sohbet organizasyonu',
       'BrainBe knowledge base included': 'BrainBe bilgi tabanı dahil',
@@ -818,13 +820,13 @@ function PricingCard({
   // AI plans (Basic AI / Pro AI) are now per-seat pricing, same unit as Starter/Scaler.
   const isAiPlan = plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
   // Paid plans are billed per WhatsApp number (with a bundled user count
-  // spelled out in the priceNote just below). Kept short as "/number/month"
+  // spelled out in the priceNote just below). Shown as "/channel/month"
   // — the earlier "/WhatsApp number/month" felt too heavy in the price row.
   // Starter is free (Chrome-only) so its unit rarely renders; still, use
   // "/user/month" for it so the word "seat" never surfaces on the page.
   const priceUnit =
     plan.planKey === 'scaler' || plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
-      ? '/number/month'
+      ? '/channel/month'
       : '/user/month'
   // Wallet credit: $45 (45% of Basic AI $99) and $90 (45% of Pro AI $199).
   const formatFeatureText = (text: string) => {
@@ -892,7 +894,9 @@ function PricingCard({
       <h3 style={{ marginBottom: 4 }}>{plan.name}</h3>
       <p style={{ marginBottom: 22, fontSize: 13 }}>{plan.description}</p>
 
-      <div style={{ marginBottom: 22 }}>
+      {/* Fixed-height price block so every card's CTA starts at the same line,
+          whether or not it has the users-included / extra-user notes. */}
+      <div style={{ marginBottom: 22, minHeight: 104 }}>
         {isEnterprise || !showPrice ? (
           <div
             style={{
@@ -910,7 +914,7 @@ function PricingCard({
             {isEnterprise ? featureLabels['Custom'] || 'Contact Us' : 'Contact us'}
           </div>
         ) : (
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
+          <div style={{ display: 'flex', flexWrap: 'nowrap', alignItems: 'baseline', gap: 4 }}>
             {currencyLabel && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{currencyLabel}</span>}
             {priceSymbol && <span style={{ fontSize: 16, color: 'var(--ink-4)' }}>{priceSymbol}</span>}
             {/* Always a real number: USD list price on the server render and
@@ -918,7 +922,9 @@ function PricingCard({
             <span
               style={{
                 fontFamily: 'var(--f-display)',
-                fontSize: 56,
+                // 3+ digit local prices (BRL 129, INR 3,999) step down so the
+                // unit stays on the same line as the price.
+                fontSize: String(price).length > 2 ? (String(price).length > 4 ? 38 : 46) : 56,
                 fontWeight: 400,
                 color: 'var(--ink)',
                 letterSpacing: '-0.025em',
@@ -929,7 +935,7 @@ function PricingCard({
             >
               {price}
             </span>
-            <span style={{ fontSize: 14, color: 'var(--ink-4)' }}>{priceUnit}</span>
+            <span style={{ fontSize: 13, color: 'var(--ink-4)', whiteSpace: 'nowrap', flexShrink: 0 }}>{priceUnit}</span>
           </div>
         )}
         {addonNote && (
@@ -1027,9 +1033,9 @@ function PricingCard({
       </ul>
 
       {/* Voice Number ADD-ON — one number bought from Eazybe works on all
-          channels. Optional paid add-on on every plan (price varies by country,
-          so "+ Add number" opens the demo/quote modal). */}
-      <div style={{ marginBottom: 14 }}>
+          channels. Optional paid add-on from Scaler up, not on Starter (price
+          varies by country, so "+ Add number" opens the demo/quote modal). */}
+      {plan.planKey !== 'starter' && (<div style={{ marginBottom: 14 }}>
         <div
           style={{
             fontSize: 10,
@@ -1091,7 +1097,7 @@ function PricingCard({
             Price varies by country
           </div>
         </div>
-      </div>
+      </div>)}
 
       {isAiPlan && (
         <div
@@ -1119,23 +1125,13 @@ function PricingCard({
           >
             <Sparkles size={11} /> {featureLabels['AI agent cost'] || 'AI agent cost'}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
-              <span style={{ fontSize: 12.5, color: 'var(--ink-2)', fontWeight: 500 }}>
-                {featureLabels['Lite LLM'] || 'Lite LLM'}
-              </span>
-              <span style={{ fontSize: 13, color: 'var(--ink)', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
-                $0.005<span style={{ color: 'var(--ink-4)', fontWeight: 500 }}>/{featureLabels['reply'] || 'reply'}</span>
-              </span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
-              <span style={{ fontSize: 12.5, color: 'var(--ink-2)', fontWeight: 500 }}>
-                {featureLabels['Heavy LLM'] || 'Heavy LLM'}
-              </span>
-              <span style={{ fontSize: 13, color: 'var(--ink)', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
-                $0.01<span style={{ color: 'var(--ink-4)', fontWeight: 500 }}>/{featureLabels['reply'] || 'reply'}</span>
-              </span>
-            </div>
+          {/* Range only: the per-reply price depends on the model the agent
+              runs on, from Low ($0.01) to Ultra ($0.06). */}
+          <div style={{ fontSize: 15, color: 'var(--ink)', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
+            $0.01 – $0.06<span style={{ color: 'var(--ink-4)', fontWeight: 500 }}>/{featureLabels['reply'] || 'reply'}</span>
+          </div>
+          <div style={{ marginTop: 2, fontSize: 11.5, color: 'var(--ink-3)' }}>
+            {featureLabels['Varies by AI model'] || 'Varies by AI model'}
           </div>
         </div>
       )}
@@ -1346,6 +1342,7 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
   // waiting for a content editor to remove them in Studio.
   const HIDDEN_SANITY_FEATURES = new Set<string>([
     'ai unreplied chats agent',
+    'brainbe knowledge base included',
   ])
 
   const basePricingPlans: PricingPlan[] = pricingData?.plans?.map((plan) => {
@@ -1371,7 +1368,8 @@ export function PricingPageClient({ pricingData }: PricingPageClientProps) {
         planKey === 'scaler' ? fallback.planNames.scaler :
         plan.name,
       planKey,
-      description: plan.description,
+      // Code-side copy wins so the card blurbs stay at two lines.
+      description: codePlan?.description || plan.description,
       monthlyPrice: plan.monthlyPrice,
       annualPrice: plan.annualPrice,
       currency: plan.currency,
