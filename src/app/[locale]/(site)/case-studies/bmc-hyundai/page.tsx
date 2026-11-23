@@ -5,6 +5,7 @@ import { getAlternates } from '@/lib/seo-helpers'
 import { getBmcContent, bmcHeadline } from '@/data/case-study-bmc-hyundai'
 import { pageDates, withPageDates, getSanityDocDates } from '@/lib/page-dates'
 import { getCaseStudy } from '@/lib/sanity-queries'
+import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
 
 // The page design and copy live in code (src/data/case-study-bmc-hyundai.ts).
 // A PUBLISHED caseStudy doc with this slug (Sanity "Case Studies") supplies the
@@ -18,6 +19,9 @@ export function generateStaticParams() {
 
 const SLUG = '/case-studies/bmc-hyundai'
 const SITE_URL = 'https://eazybe.com'
+// Customer story video on the Eazybe YouTube channel (English, all locales).
+const VIDEO_ID = 'Y8ipOeD6JRk'
+const VIDEO_TITLE = 'How a Brazilian Hyundai Dealer Replies 4x Faster With AI on WhatsApp | BMC x Eazybe'
 
 async function baseMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
@@ -338,6 +342,9 @@ const CSS = `
 .landing .bmc-cta-card .bmc-cta-foot { margin-top: 16px; font-family: var(--f-mono); font-size: 11.5px; color: #5A5C64; }
 .landing .bmc-back { display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 600; color: var(--bmc-blue); }
 
+.bmc-video { max-width: 880px; margin: clamp(36px, 5vw, 56px) auto 0; }
+.landing .v16-brand .bmc-hero .bmc-video figcaption { color: rgba(255,255,255,.6); }
+
 @media (max-width: 1024px) {
   .bmc-parts, .bmc-results-stats, .bmc-grid-4 { grid-template-columns: 1fr 1fr; }
   .bmc-sla { grid-template-columns: 1fr 1fr; }
@@ -392,6 +399,18 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
     publisher: { '@type': 'Organization', name: 'Eazybe', url: SITE_URL },
     about: { '@type': 'Organization', name: 'BMC Hyundai', url: 'https://bmchyundai.com.br' },
   }
+  const videoSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: VIDEO_TITLE,
+    description: t.meta.description,
+    thumbnailUrl: `https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`,
+    uploadDate: '2026-11-23T02:33:35-08:00',
+    duration: 'PT1M29S',
+    contentUrl: `https://www.youtube.com/watch?v=${VIDEO_ID}`,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${VIDEO_ID}`,
+    publisher: { '@type': 'Organization', name: 'Eazybe', url: SITE_URL },
+  }
 
 
   const aboutTones = ['blue', 'dark glow', 'dark', 'yellow', 'green', '']
@@ -406,6 +425,7 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
     <div className="bmc">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} />
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
       {/* 1. Hero — matches the deck cover (slide 01). */}
@@ -434,6 +454,9 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
                 </div>
               </div>
             ))}
+          </div>
+          <div className="bmc-video">
+            <VideoEmbedBlock data={{ platform: 'youtube', videoId: VIDEO_ID, title: VIDEO_TITLE }} />
           </div>
         </div>
       </section>
