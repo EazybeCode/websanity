@@ -326,13 +326,16 @@ const CSS = `
 .bmc-why .bmc-v { color: #fff; }
 .bmc-next { margin-top: 22px; }
 .bmc-next p { margin: 8px 0 0; font-size: 16px; color: #D6D9E3; }
-.bmc-cta-card { padding: clamp(26px, 3.4vw, 40px); border-radius: 22px; background: #fff; color: var(--ink); }
-.bmc-cta-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; color: var(--ink); }
-.bmc-cta-logo i { width: 34px; height: 34px; border-radius: 9px; background: var(--bmc-blue); display: inline-block; }
+/* White card inside a dark section: pin the light-theme ink tokens so text,
+   the secondary button and the footnote don't inherit the dark section's white. */
+.bmc-cta-card { --ink: #0B0B0C; --ink-2: #2A2C33; --ink-3: #5A5C64; --ink-4: #8A8C93; padding: clamp(26px, 3.4vw, 40px); border-radius: 22px; background: #fff; color: var(--ink); }
+.landing .bmc-cta-card .bmc-cta-logo { display: block; height: 30px; width: auto; filter: brightness(0); }
+.landing .bmc-cta-card .bmc-cta-btns .btn:not(.btn-primary) { color: #0B0B0C; background: #fff; border: 1px solid #D9DAD6; }
+.landing .bmc-cta-card .bmc-cta-btns .btn:not(.btn-primary):hover { border-color: #0B0B0C; }
 .landing .bmc-cta-card h2 { margin: 20px 0 12px; font-family: var(--f-display); font-weight: 700; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); max-width: none; }
 .bmc-cta-card p { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-3); }
 .bmc-cta-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
-.bmc-cta-foot { margin-top: 16px; font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-3); }
+.landing .bmc-cta-card .bmc-cta-foot { margin-top: 16px; font-family: var(--f-mono); font-size: 11.5px; color: #5A5C64; }
 .landing .bmc-back { display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 600; color: var(--bmc-blue); }
 
 @media (max-width: 1024px) {
@@ -853,7 +856,8 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
               </div>
             </div>
             <div className="bmc-cta-card">
-              <div className="bmc-cta-logo"><i aria-hidden="true" />Eazybe</div>
+              {/* Same official logo as the hero, darkened for the white card. */}
+              <img className="bmc-cta-logo" src="/logo-small.png" alt="Eazybe" width={274} height={64} loading="lazy" />
               <h2>{t.finalCta.h2}</h2>
               <p>{t.finalCta.body}</p>
               <div className="bmc-cta-btns">
