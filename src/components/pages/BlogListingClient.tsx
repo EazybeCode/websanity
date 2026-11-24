@@ -18,8 +18,14 @@ interface BlogPost {
   author?: { name: string }
   /** Localized tab label set by the page for curated post groups (AI Agents, CRM Integrations). */
   extraTab?: string
-  /** URL segment the post lives under; comparison posts link to /comparison/<slug>. */
-  basePath?: 'blog' | 'comparison'
+  /** URL segment the post lives under; comparison posts link to /comparison/<slug>,
+   *  case studies to /case-studies/<slug>. */
+  basePath?: 'blog' | 'comparison' | 'case-studies'
+  /** Only listed under its own tab (and in search), never on "All" or as the
+   *  featured post. Used for case studies so new ones don't take over the blog. */
+  tabOnly?: boolean
+  /** Dark brand cover with the story's headline number, used when there's no image. */
+  cover?: { value: string; label: string }
 }
 
 const postPath = (post: BlogPost, locale: string) => {
@@ -84,15 +90,47 @@ const BlogCard: React.FC<{ post: BlogPost; locale: string; minReadSuffix: string
       }}
     >
       <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden' }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={post.featuredImage || '/logo.png'}
-          alt={post.title}
-          width={800}
-          height={450}
-          loading="eager"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s' }}
-        />
+        {!post.featuredImage && post.cover ? (
+          // Case study without a photo: the hub's dark stat cover (dot grid + blue light).
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-end',
+              padding: '22px 24px',
+              background:
+                'radial-gradient(ellipse 75% 95% at 100% 0%, rgba(43,89,255,0.5), rgba(0,0,0,0) 70%), radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px) 0 0 / 18px 18px, #0b0b0c',
+            }}
+          >
+            <b
+              style={{
+                fontFamily: "'Geist', sans-serif",
+                fontWeight: 700,
+                fontSize: 48,
+                lineHeight: 1,
+                letterSpacing: '-0.04em',
+                color: '#7c98ff',
+                textShadow: '0 0 30px rgba(43,89,255,0.55)',
+              }}
+            >
+              {post.cover.value}
+            </b>
+            <span style={{ marginTop: 8, fontSize: 13.5, lineHeight: 1.4, color: '#b4b4bc' }}>{post.cover.label}</span>
+          </div>
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={post.featuredImage || '/logo.png'}
+            alt={post.title}
+            width={800}
+            height={450}
+            loading="eager"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s' }}
+          />
+        )}
         <span
           style={{
             position: 'absolute',
@@ -369,6 +407,8 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({ allPosts, 
   const filteredPosts = useMemo(() => {
     let filtered = allPosts
     if (activeCategory !== 'All') filtered = filtered.filter((p) => p.category === activeCategory)
+    // Tab-only items (case studies) stay off "All" unless the visitor searches.
+    else if (!searchQuery) filtered = filtered.filter((p) => !p.tabOnly)
     if (searchQuery) {
       const q = searchQuery.toLowerCase()
       filtered = filtered.filter(
@@ -385,7 +425,7 @@ export const BlogListingClient: React.FC<BlogListingClientProps> = ({ allPosts, 
         blogIndex.featuredSection.featuredPosts[0]
       )
     }
-    return allPosts[0] || null
+    return allPosts.find((p) => !p.tabOnly) || null
   }, [allPosts, blogIndex?.featuredSection?.featuredPosts])
 
   const regularPosts = useMemo(() => {

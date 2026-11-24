@@ -1,6 +1,13 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
-import { getBlogPosts, getBlogIndex, getComparisonPosts, getTranslationGroupIdsBySlugs } from '@/lib/sanity-queries'
+import { getBlogPosts, getBlogIndex, getComparisonPosts, getTranslationGroupIdsBySlugs, getCaseStudyCardOverrides } from '@/lib/sanity-queries'
+import { getCaseStudiesPageContent } from '@/data/case-studies-content'
+
+// Case studies with no featured image in Sanity: BMC Hyundai uses its YouTube
+// customer story thumbnail; others fall back to the dark stat cover.
+const CASE_STUDY_FALLBACK_IMAGES: Record<string, string> = {
+  'bmc-hyundai': 'https://i.ytimg.com/vi/Y8ipOeD6JRk/maxresdefault.jpg',
+}
 // English slugs of the AI-agent posts (shared with /whatsapp-ai-agent); their
 // translationGroupIds tag the same posts in every locale under the "AI Agents"
 // category tab. Most of these have an empty category in Sanity, so this is
@@ -425,7 +432,7 @@ export default async function BlogListingPage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const [blogPosts, comparisonPosts, blogIndex, aiAgentTgids, crmTgids, salesTgids, supportTgids, howToTgids] = await Promise.all([
+  const [blogPosts, comparisonPosts, blogIndex, aiAgentTgids, crmTgids, salesTgids, supportTgids, howToTgids, caseStudyCards] = await Promise.all([
     getBlogPosts(locale),
     getComparisonPosts(locale),
     getBlogIndex(locale),
@@ -434,6 +441,7 @@ export default async function BlogListingPage({
     getTranslationGroupIdsBySlugs(WHATSAPP_SALES_EN_SLUGS),
     getTranslationGroupIdsBySlugs(WHATSAPP_SUPPORT_EN_SLUGS),
     getTranslationGroupIdsBySlugs(HOW_TO_EN_SLUGS),
+    getCaseStudyCardOverrides(locale).catch(() => ({} as Awaited<ReturnType<typeof getCaseStudyCardOverrides>>)),
   ])
 
   // Label curated post groups (matched across locales by translation group) so
@@ -475,6 +483,36 @@ export default async function BlogListingPage({
   const comparisonCategoryLabel =
     { en: 'Comparison', es: 'Comparativas', br: 'Comparativos', tr: 'Karşılaştırmalar' }[locale] || 'Comparison'
   type ListingPost = { _id: string; publishedAt: string; category?: string }
+
+  // Case studies fill the existing "Case Studies" tab (the category value in
+  // Sanity's blogIndex / the client's default list). Same source as the
+  // /case-studies hub: the code card list, overridden by the published Sanity
+  // caseStudy doc (headline, summary, image, date). They are tabOnly, so they
+  // never take over "All" or the featured blog post. A new case study shows up
+  // here as soon as its hub card exists and its Sanity doc is published.
+  const hub = getCaseStudiesPageContent(locale)
+  const caseStudyPosts = hub.cards
+    .filter((c) => c.href)
+    .map((c) => {
+      const slug = c.href!.split('/').pop()!
+      const over = caseStudyCards[slug]
+      return {
+        _id: `case-study-${slug}`,
+        title: over?.headline || c.headline,
+        slug,
+        excerpt: over?.summary || c.summary,
+        category: 'Case Studies',
+        featuredImage:
+          (over?.featuredImageUrl && `${over.featuredImageUrl}?w=800&h=450&fit=crop&auto=format`) ||
+          CASE_STUDY_FALLBACK_IMAGES[slug],
+        publishedAt: over?.publishedAt || '',
+        readTime: 6,
+        basePath: 'case-studies' as const,
+        tabOnly: true,
+        cover: c.stat,
+      }
+    })
+
   const allPosts = [
     ...taggedBlogPosts,
     ...(comparisonPosts || []).map((p: ListingPost) => ({
@@ -482,6 +520,7 @@ export default async function BlogListingPage({
       category: comparisonCategoryLabel,
       basePath: 'comparison' as const,
     })),
+    ...caseStudyPosts,
   ].sort(
     (a: ListingPost, b: ListingPost) =>
       new Date(b.publishedAt || 0).getTime() - new Date(a.publishedAt || 0).getTime()
