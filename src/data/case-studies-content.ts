@@ -77,6 +77,15 @@ const en: CaseStudiesPageContent = {
         'Hyundai’s machinery partner in Brazil put Eazybe AI agents on its sellers’ own WhatsApp numbers: leads get a reply in seconds, details land in HubSpot, and no customer had to learn a new number.',
       href: '/case-studies/bmc-hyundai',
     },
+    {
+      initials: 'IT',
+      company: 'ITECSUR',
+      industry: 'Higher education',
+      headline: 'Turning WhatsApp enquiries into enrolments with AI',
+      summary:
+        'An accredited institute in Ecuador uses Eazybe AI to tag every WhatsApp applicant by enrolment stage, so 5 advisors work from one inbox, know who to call first and keep HubSpot current.',
+      href: '/case-studies/itecsur',
+    },
   ],
   finalCta: {
     h2: 'Your Team Could Be The Next Story',
