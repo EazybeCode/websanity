@@ -262,6 +262,51 @@ const CSS = `
 .its .its-prop-v.blue { background: var(--its-blue-soft); color: var(--its-blue); }
 .its-sample { padding: 10px 18px 14px; font-family: var(--f-mono); font-size: 11px; color: #9AA0AE; }
 
+/* Core idea animation. The block carries .reveal, so the site's RevealOnScroll
+   adds .show when it scrolls into view; the sequence runs once from there.
+   Before .show the whole block is hidden by .reveal, so nothing flashes. */
+.its .its-live { display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: var(--its-blue); vertical-align: 1px; }
+@keyframes its-slide-in { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+@keyframes its-fade-in { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+@keyframes its-pop-in { 0% { opacity: 0; transform: translateY(10px) scale(.96); } 100% { opacity: 1; transform: none; } }
+@keyframes its-row-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes its-badge-in { 0% { opacity: 0; transform: scale(.6); } 70% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes its-chip-flash { 0%, 100% { box-shadow: 0 0 0 0 rgba(43,89,255,0); } 30% { box-shadow: 0 0 0 6px rgba(43,89,255,.25); } }
+@keyframes its-live { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
+@keyframes its-ready-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(47,191,119,0); } 50% { box-shadow: 0 0 28px -4px rgba(47,191,119,.55); } }
+@keyframes its-sweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+.its-core.show .its-fn-box { animation: its-slide-in .6s cubic-bezier(.2,.8,.2,1) both; }
+.its-core.show .its-fn:nth-child(1) .its-fn-box { animation-delay: .15s; }
+.its-core.show .its-fn:nth-child(2) .its-fn-box { animation-delay: .35s; }
+.its-core.show .its-fn:nth-child(3) .its-fn-box { animation-delay: .55s; }
+.its-core.show .its-fn-act { animation: its-fade-in .5s ease-out both; }
+.its-core.show .its-fn:nth-child(1) .its-fn-act { animation-delay: .9s; }
+.its-core.show .its-fn:nth-child(2) .its-fn-act { animation-delay: 1.05s; }
+.its-core.show .its-fn:nth-child(3) .its-fn-act { animation-delay: 1.2s; }
+.its-core.show .its-core-note { animation: its-row-in .5s ease-out 1.4s both; }
+.its-core.show .its-msg.in { animation: its-pop-in .45s cubic-bezier(.2,.8,.2,1) .4s both; }
+.its-core.show .its-msg.out { animation: its-pop-in .45s cubic-bezier(.2,.8,.2,1) 1.1s both; }
+.its-core.show .its-ai-chip { animation: its-chip-flash 1s ease-out 1.6s both; }
+.its-core.show .its-live { animation: its-live 1.6s ease-in-out 1.6s infinite; }
+.its-core.show .its-prop { animation: its-row-in .4s ease-out both; }
+.its-core.show .its-prop-v { animation: its-badge-in .45s cubic-bezier(.2,.8,.2,1) both; }
+.its-core.show .its-prop:nth-child(1), .its-core.show .its-prop:nth-child(1) .its-prop-v { animation-delay: 1.8s; }
+.its-core.show .its-prop:nth-child(2), .its-core.show .its-prop:nth-child(2) .its-prop-v { animation-delay: 2.0s; }
+.its-core.show .its-prop:nth-child(3), .its-core.show .its-prop:nth-child(3) .its-prop-v { animation-delay: 2.2s; }
+.its-core.show .its-prop:nth-child(4), .its-core.show .its-prop:nth-child(4) .its-prop-v { animation-delay: 2.4s; }
+.its-core.show .its-prop:nth-child(5), .its-core.show .its-prop:nth-child(5) .its-prop-v { animation-delay: 2.6s; }
+/* Once the stage tag lands on "Listo", the matching funnel row lights up and keeps a soft glow. */
+.its-core.show .its-funnel .its-fn.green .its-fn-box { animation: its-slide-in .6s cubic-bezier(.2,.8,.2,1) .15s both, its-ready-glow 2.4s ease-in-out 2.1s infinite; }
+/* A light sweep across the funnel card while the AI "reads" the chat. */
+.its-core .its-funnel { position: relative; }
+.its-core .its-fn-box { position: relative; overflow: hidden; }
+.its-core.show .its-fn-box::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent); transform: translateX(-100%);
+  animation: its-sweep 1.1s ease-in-out 1.7s 1 both; }
+@media (prefers-reduced-motion: reduce) {
+  .its-core.show *, .its-core.show *::after { animation: none !important; }
+}
+
 /* A day in admissions */
 .its-day { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); grid-template-rows: 1fr 1fr; gap: 16px; margin-top: 44px; }
 .its-day .its-photo:first-child { grid-row: 1 / span 2; }
@@ -645,7 +690,7 @@ export default async function ItecsurCaseStudyPage({ params }: { params: Promise
             <div className="its-tag">{t.core.tag}</div>
             <h2 className="its-h2">{t.core.h2Lead} <span className="its-hl">{t.core.h2Highlight}</span></h2>
           </div>
-          <div className="its-core">
+          <div className="its-core reveal">
             <div className="its-card">
               <div className="its-k">{t.core.funnelLabel}</div>
               <div className="its-funnel">
@@ -663,7 +708,7 @@ export default async function ItecsurCaseStudyPage({ params }: { params: Promise
               <p className="its-core-note">{t.core.funnelNote}</p>
             </div>
             <div className="its-applicant">
-              <div className="its-applicant-top">{t.core.chatName}<span className="its-ai-chip">{t.core.chatBadge}</span></div>
+              <div className="its-applicant-top">{t.core.chatName}<span className="its-ai-chip"><span className="its-live" aria-hidden="true" />{t.core.chatBadge}</span></div>
               <div className="its-msgs">
                 <div className="its-msg in">{ITECSUR_CORE_CHAT.inText}<small>{ITECSUR_CORE_CHAT.inTime}</small></div>
                 <div className="its-msg out">{ITECSUR_CORE_CHAT.outText}<small>{ITECSUR_CORE_CHAT.outTime} ✓✓</small></div>
