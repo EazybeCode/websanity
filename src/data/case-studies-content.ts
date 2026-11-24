@@ -156,6 +156,15 @@ const br: CaseStudiesPageContent = {
         'Um instituto credenciado no Equador usa a IA da Eazybe para classificar cada candidato do WhatsApp por etapa de matrícula: 5 consultores trabalham em uma só caixa de entrada, sabem quem chamar primeiro e mantêm o HubSpot em dia.',
       href: '/case-studies/itecsur',
     },
+    {
+      initials: 'BU',
+      company: 'BlendUs',
+      industry: 'Healthtech',
+      headline: 'Salvando cada conversa de venda do WhatsApp no HubSpot',
+      summary:
+        'Uma healthtech brasileira com 140+ operadoras clientes e 3 vendedores agora salva cada conversa de venda do WhatsApp no HubSpot, um bloco limpo por dia, e o histórico não vai embora quando as pessoas saem.',
+      href: '/case-studies/blendus',
+    },
   ],
   finalCta: {
     h2: 'Seu time pode ser a próxima história',
@@ -217,6 +226,15 @@ const es: CaseStudiesPageContent = {
         'Un instituto acreditado de Ecuador usa la IA de Eazybe para clasificar a cada aspirante de WhatsApp por etapa de matrícula: 5 asesores trabajan desde una sola bandeja, saben a quién llamar primero y mantienen HubSpot al día.',
       href: '/case-studies/itecsur',
     },
+    {
+      initials: 'BU',
+      company: 'BlendUs',
+      industry: 'Healthtech',
+      headline: 'Guardando cada negociación de WhatsApp en HubSpot',
+      summary:
+        'Una healthtech brasileña con 140+ aseguradoras de salud clientes y 3 vendedores ahora guarda cada negociación de WhatsApp en HubSpot, un bloque limpio por día, y el historial no se va cuando se van las personas.',
+      href: '/case-studies/blendus',
+    },
   ],
   finalCta: {
     h2: 'Tu equipo puede ser la próxima historia',
@@ -277,6 +295,15 @@ const tr: CaseStudiesPageContent = {
       summary:
         "Ekvador'da akredite bir enstitü, Eazybe Yapay Zeka'sıyla her WhatsApp adayını kayıt aşamasına göre etiketliyor: 5 danışman tek bir gelen kutusundan çalışıyor, önce kimi arayacağını biliyor ve HubSpot hep güncel kalıyor.",
       href: '/case-studies/itecsur',
+    },
+    {
+      initials: 'BU',
+      company: 'BlendUs',
+      industry: 'Sağlık teknolojisi',
+      headline: "Her WhatsApp satış görüşmesini HubSpot'a kaydetmek",
+      summary:
+        "140+ sağlık sigortası müşterisi ve 3 satış temsilcisi olan Brezilyalı bir sağlık teknolojisi şirketi, her WhatsApp satış görüşmesini HubSpot'a günde tek temiz blok olarak kaydediyor; insanlar ayrılsa da geçmiş kalıyor.",
+      href: '/case-studies/blendus',
     },
   ],
   finalCta: {

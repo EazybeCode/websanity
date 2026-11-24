@@ -489,7 +489,7 @@ export default async function BlendusCaseStudyPage({ params }: { params: Promise
               <div className="blu-mission">
                 <div className="blu-k">{t.about.missionLabel}</div>
                 <q lang="pt-BR">{t.about.missionQuote}</q>
-                <p>{t.about.missionEn}</p>
+                {t.about.missionEn && <p>{t.about.missionEn}</p>}
               </div>
             </div>
             <div>
@@ -558,7 +558,7 @@ export default async function BlendusCaseStudyPage({ params }: { params: Promise
               <p className="blu-body">
                 {t.history.clientsPre}
                 {t.history.clients.map((c, i) => (
-                  <span key={c}>{i > 0 && (i === t.history.clients.length - 1 ? ' and ' : ', ')}<b>{c}</b></span>
+                  <span key={c}>{i > 0 && (i === t.history.clients.length - 1 ? ` ${t.history.clientsAnd} ` : ', ')}<b>{c}</b></span>
                 ))}
                 {t.history.clientsPost}
               </p>
@@ -575,7 +575,7 @@ export default async function BlendusCaseStudyPage({ params }: { params: Promise
               {t.history.quotes.map((q) => (
                 <figure key={q.by} className="blu-quote" style={{ margin: 0 }}>
                   <blockquote lang="pt-BR">{q.quote}</blockquote>
-                  <p className="en">{q.en}</p>
+                  {q.en && <p className="en">{q.en}</p>}
                   <figcaption className="by">{q.by}</figcaption>
                 </figure>
               ))}
