@@ -243,8 +243,8 @@ const en: ItecsurContent = {
   },
   about: {
     tag: 'About the customer',
-    h2Lead: 'Training Ecuador’s professionals',
-    h2Highlight: 'since 1994.',
+    h2Lead: 'Training Ecuador’s Professionals',
+    h2Highlight: 'Since 1994',
     bodyBold1: 'ITECSUR, Instituto Superior Universitario Compu Sur',
     bodyMid: ', is an accredited institute in Ecuador. It offers technical and technology degrees in health, safety, law, education and tech, registered with',
     bodyBold2: 'Senescyt',
@@ -264,8 +264,8 @@ const en: ItecsurContent = {
   },
   applicants: {
     tag: 'Who applies',
-    h2Lead: 'Future nurses, rescuers',
-    h2Highlight: 'and developers.',
+    h2Lead: 'Future Nurses, Rescuers',
+    h2Highlight: 'And Developers',
     body: 'A future nurse asks about practice hours. A future developer asks about online classes. Advisors need to see who wants what, and who is ready to enrol.',
     groups: [
       { name: 'Health', count: '5 programs', programs: 'Nursing, Physical Rehabilitation, Medical Emergencies, Integral Aesthetics, Sports Training' },
@@ -281,8 +281,8 @@ const en: ItecsurContent = {
   },
   challenge: {
     tag: 'The challenge',
-    h2Lead: 'Applicants said hola.',
-    h2Highlight: 'Then the trail went cold.',
+    h2Lead: 'Applicants Said Hola.',
+    h2Highlight: 'Then The Trail Went Cold',
     inboxTitle: 'WhatsApp · Admisiones',
     inboxBadge: '0 tagged',
     inboxNote: 'Example chats · sample data',
@@ -295,8 +295,8 @@ const en: ItecsurContent = {
   },
   rollout: {
     tag: 'The rollout',
-    h2Lead: 'From restart to',
-    h2Highlight: 'AI in two weeks.',
+    h2Lead: 'From Restart To',
+    h2Highlight: 'AI In Two Weeks',
     steps: [
       { date: '29 Oct', label: 'Restart call', state: 'done' },
       { date: '5 Nov', label: 'Basic AI on, 5 seats', state: 'done' },
@@ -313,8 +313,8 @@ const en: ItecsurContent = {
   },
   parts: {
     tag: 'How Eazybe works at ITECSUR',
-    h2Lead: 'Four parts.',
-    h2Highlight: 'One admissions flow.',
+    h2Lead: 'Four Parts.',
+    h2Highlight: 'One Admissions Flow',
     items: [
       { num: '01', status: 'live', statusLabel: 'Live', title: 'Conversation management', body: 'One inbox for all 5 advisors. Every chat and file saved in HubSpot.', foot: 'Inbox · HubSpot sync' },
       { num: '02', status: 'next', statusLabel: 'Next', title: 'Outreach', body: 'One message to every applicant who went quiet. Replies go back to their advisor.', foot: 'Broadcast · Templates' },
@@ -324,8 +324,8 @@ const en: ItecsurContent = {
   },
   core: {
     tag: 'The core idea · Sales intelligence',
-    h2Lead: 'AI sorts every applicant',
-    h2Highlight: 'by enrolment stage.',
+    h2Lead: 'AI Sorts Every Applicant',
+    h2Highlight: 'By Enrolment Stage',
     funnelLabel: 'Enrolment funnel · AI property “Etapa de matrícula”',
     funnel: [
       { badge: 'Listo', title: 'Ready to enrol', note: 'documents in progress', action: 'call today', tone: 'green' },
@@ -339,8 +339,8 @@ const en: ItecsurContent = {
   },
   day: {
     tag: 'See it at work',
-    h2Lead: 'A day in ITECSUR admissions,',
-    h2Highlight: 'with Eazybe.',
+    h2Lead: 'A Day In ITECSUR Admissions,',
+    h2Highlight: 'With Eazybe',
     scenes: [
       { label: '01 · Capture', caption: 'Cédula, program and enrolment stage, taken from the chat', alt: 'Advisor laptop with WhatsApp and an Eazybe card listing cédula, program and enrolment stage' },
       { label: '02 · Stage updates live', alt: 'Advisor at a laptop while Kevin A.’s enrolment stage changes to Ready to enrol' },
@@ -350,8 +350,8 @@ const en: ItecsurContent = {
   },
   winback: {
     tag: 'Outreach · Win-back broadcast',
-    h2Lead: 'Quiet applicants,',
-    h2Highlight: 'back in the chat.',
+    h2Lead: 'Quiet Applicants,',
+    h2Highlight: 'Back In The Chat',
     bodyPre: 'Applicants tagged',
     bodyBold: '“Sin respuesta”',
     bodyPost: 'get one friendly message from their advisor’s own number. When they reply, the chat goes back to that advisor, and HubSpot updates on its own.',
@@ -362,8 +362,8 @@ const en: ItecsurContent = {
   },
   inbox: {
     tag: 'Conversation management · Team inbox and analytics',
-    h2Lead: 'One view of the whole',
-    h2Highlight: 'admissions team.',
+    h2Lead: 'One View Of The Whole',
+    h2Highlight: 'Admissions Team',
     photoAlt: 'Admissions lead with a tablet showing “Applicant waiting 10 min · Assign advisor”',
     photoChip: 'Alert · Assign advisor',
     panelTitle: 'Team Inbox · Admisiones',
@@ -383,8 +383,8 @@ const en: ItecsurContent = {
   },
   results: {
     tag: 'Results so far',
-    h2Lead: 'From a busy inbox',
-    h2Highlight: 'to a clear funnel.',
+    h2Lead: 'From A Busy Inbox',
+    h2Highlight: 'To A Clear Funnel',
     stats: [
       { label: 'Time to go live', value: '2 weeks', note: 'from restart call (29 Oct) to training (12 Nov)' },
       { label: 'AI tags per chat', value: '6', note: 'stage, intent, urgency, mood, language, status' },
@@ -404,8 +404,8 @@ const en: ItecsurContent = {
   },
   benefits: {
     tag: 'Benefits',
-    h2Lead: 'What ITECSUR gets',
-    h2Highlight: 'with Eazybe.',
+    h2Lead: 'What ITECSUR Gets',
+    h2Highlight: 'With Eazybe',
     subtitle: 'Good for applicants, advisors, the admissions lead and the whole institute.',
     columns: [
       {
@@ -450,8 +450,8 @@ const en: ItecsurContent = {
   },
   agent: {
     tag: 'Next phase · AI agents',
-    h2Lead: 'An admissions agent',
-    h2Highlight: 'that never sleeps.',
+    h2Lead: 'An Admissions Agent',
+    h2Highlight: 'That Never Sleeps',
     subtitle: 'Many applicants write at night. The AI agent will answer them, using ITECSUR’s own course PDFs, and pass them to an advisor in the morning.',
     chatTitle: 'WhatsApp · Admisiones ITECSUR',
     chatBadge: 'AI agent · 22:47',
@@ -489,7 +489,7 @@ const en: ItecsurContent = {
     ],
   },
   finalCta: {
-    h2: 'Turn WhatsApp enquiries into enrolments.',
+    h2: 'Turn WhatsApp Enquiries Into Enrolments',
     body: 'AI that tags every applicant, a shared inbox for your admissions team, and sync to HubSpot, Salesforce, Zoho and more.',
     primary: 'Start 4-day free trial',
     secondary: 'Book a demo',

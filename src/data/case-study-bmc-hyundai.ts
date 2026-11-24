@@ -179,8 +179,8 @@ const en: BmcContent = {
   },
   about: {
     tag: 'About the customer',
-    h2Lead: 'Hyundai machines,',
-    h2Highlight: 'built and served in Brazil.',
+    h2Lead: 'Hyundai Machines,',
+    h2Highlight: 'Built And Served In Brazil',
     bodyPre: 'BMC Hyundai brought the first Hyundai machine to Brazil in 2003. Today it sells',
     bodyBold: 'excavators, wheel loaders, forklifts and parts',
     bodyPost: 'to farms, mines, builders and rental fleets across the country.',
@@ -196,8 +196,8 @@ const en: BmcContent = {
   },
   history: {
     tag: '23 years in Brazil',
-    h2Lead: 'From one forklift',
-    h2Highlight: 'to 10,000 machines.',
+    h2Lead: 'From One Forklift',
+    h2Highlight: 'To 10,000 Machines',
     chip: 'Hyundai HX series · 2025',
     stats: [
       { value: 'US$175M', label: 'Factory · Itatiaia RJ', note: 'investment, opened 2013' },
@@ -217,8 +217,8 @@ const en: BmcContent = {
   },
   challenge: {
     tag: 'The challenge',
-    h2Lead: 'Customers wrote fast.',
-    h2Highlight: 'Replies came slow.',
+    h2Lead: 'Customers Wrote Fast.',
+    h2Highlight: 'Replies Came Slow',
     replyTime: { value: '~20', label: 'Time to first reply · top sellers', note: 'BMC Hyundai’s own estimate for its busiest parts sellers' },
     minutes: 'Minutes',
     questions: { value: '3', label: 'Every new lead', note: 'questions typed by hand: tax ID, part, machine' },
@@ -232,8 +232,8 @@ const en: BmcContent = {
   },
   rule: {
     tag: 'The one rule',
-    h2Lead: 'Keep the number.',
-    h2Highlight: 'Add the AI.',
+    h2Lead: 'Keep The Number.',
+    h2Highlight: 'Add The AI',
     quote: 'Our customers are hooked on that number. If I put an AI on a different number, I lose them.',
     quoteBy: 'Alexandre de Freitas · BMC Hyundai',
     notOption: { label: 'Not an option', body: 'A new bot number customers don’t know' },
@@ -243,8 +243,8 @@ const en: BmcContent = {
   },
   parts: {
     tag: 'How Eazybe works at BMC Hyundai',
-    h2Lead: 'Four parts.',
-    h2Highlight: 'One connected flow.',
+    h2Lead: 'Four Parts.',
+    h2Highlight: 'One Connected Flow',
     subtitle: 'From first message to closed deal. BMC Hyundai started with the part where deals leaked the most.',
     items: [
       {
@@ -271,8 +271,8 @@ const en: BmcContent = {
   },
   agent: {
     tag: 'Part 4 · AI agents',
-    h2Lead: 'The AI answers',
-    h2Highlight: 'while the seller is busy.',
+    h2Lead: 'The AI Answers',
+    h2Highlight: 'While The Seller Is Busy',
     flowLabel: 'How a lead moves',
     flow: ['WhatsApp', 'AI agent', 'HubSpot'],
     replied: 'Replied in 8 sec',
@@ -285,8 +285,8 @@ const en: BmcContent = {
   },
   crm: {
     tag: 'Part 1 + 3 · Conversation management and sales intelligence',
-    h2Lead: 'From chat to CRM,',
-    h2Highlight: 'without typing a thing.',
+    h2Lead: 'From Chat To CRM,',
+    h2Highlight: 'Without Typing A Thing',
     leadDetails: 'Lead details',
     contact: 'HubSpot contact',
     rows: ['WhatsApp message · “Preciso de um filtro para HX220”', 'AI fields · tax ID, part, machine', 'Handed to seller · full history'],
@@ -298,8 +298,8 @@ const en: BmcContent = {
   },
   sla: {
     tag: 'Part 3 · Sales intelligence: SLA alerts and team view',
-    h2Lead: 'The manager',
-    h2Highlight: 'coaches instead of chasing.',
+    h2Lead: 'The Manager',
+    h2Highlight: 'Coaches Instead Of Chasing',
     alertText: 'Chat waiting 10 min',
     alertAction: 'AI took over',
     replyTime: 'Reply time',
@@ -314,16 +314,16 @@ const en: BmcContent = {
   },
   handover: {
     tag: 'Part 4 · AI agents: handover to the rep',
-    h2Lead: 'The AI starts.',
-    h2Highlight: 'The seller closes.',
+    h2Lead: 'The AI Starts.',
+    h2Highlight: 'The Seller Closes',
     handed: 'Handed to you',
     join: 'Join chat',
     steps: ['The seller is told when a lead is ready', 'One click to join, with the full chat history', 'A human stays in charge of every sale'],
   },
   beforeAfter: {
     tag: 'Before vs after',
-    h2Lead: 'Same team. Same numbers.',
-    h2Highlight: 'A different day.',
+    h2Lead: 'Same Team. Same Numbers.',
+    h2Highlight: 'A Different Day',
     barsTitle: 'Time to first reply',
     bars: [
       { label: 'Before', value: '~20 min', pct: 100, tone: 'bad' },
@@ -368,7 +368,7 @@ const en: BmcContent = {
     next: 'Automatic quotes · Lost-sale insights by part · AI for 150 field sellers',
   },
   finalCta: {
-    h2: 'Every lead answered in seconds, on your team’s own WhatsApp.',
+    h2: 'Every Lead Answered In Seconds, On Your Team’s Own WhatsApp',
     body: 'WhatsApp AI agents for CRM teams. HubSpot, Salesforce, Zoho, Pipedrive, Odoo and more.',
     primary: 'Start 4-day free trial',
     secondary: 'Book a demo',
