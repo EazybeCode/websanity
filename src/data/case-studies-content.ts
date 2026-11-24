@@ -138,6 +138,15 @@ const br: CaseStudiesPageContent = {
         'A parceira da Hyundai em máquinas no Brasil colocou agentes de IA da Eazybe nos números de WhatsApp dos próprios vendedores: os leads recebem resposta em segundos, os dados vão para o HubSpot e nenhum cliente precisou aprender um número novo.',
       href: '/case-studies/bmc-hyundai',
     },
+    {
+      initials: 'IT',
+      company: 'ITECSUR',
+      industry: 'Ensino superior',
+      headline: 'Transformando conversas no WhatsApp em matrículas com IA',
+      summary:
+        'Um instituto credenciado no Equador usa a IA da Eazybe para classificar cada candidato do WhatsApp por etapa de matrícula: 5 consultores trabalham em uma só caixa de entrada, sabem quem chamar primeiro e mantêm o HubSpot em dia.',
+      href: '/case-studies/itecsur',
+    },
   ],
   finalCta: {
     h2: 'Seu time pode ser a próxima história',
@@ -190,6 +199,15 @@ const es: CaseStudiesPageContent = {
         'El socio de Hyundai en maquinaria en Brasil puso agentes de IA de Eazybe en los números de WhatsApp de sus propios vendedores: los leads reciben respuesta en segundos, los datos llegan a HubSpot y ningún cliente tuvo que aprender un número nuevo.',
       href: '/case-studies/bmc-hyundai',
     },
+    {
+      initials: 'IT',
+      company: 'ITECSUR',
+      industry: 'Educación superior',
+      headline: 'Convirtiendo chats de WhatsApp en matrículas con IA',
+      summary:
+        'Un instituto acreditado de Ecuador usa la IA de Eazybe para clasificar a cada aspirante de WhatsApp por etapa de matrícula: 5 asesores trabajan desde una sola bandeja, saben a quién llamar primero y mantienen HubSpot al día.',
+      href: '/case-studies/itecsur',
+    },
   ],
   finalCta: {
     h2: 'Tu equipo puede ser la próxima historia',
@@ -241,6 +259,15 @@ const tr: CaseStudiesPageContent = {
       summary:
         "Hyundai'nin Brezilya'daki makine ortağı, Eazybe Yapay Zeka ajanlarını temsilcilerin kendi WhatsApp numaralarına yerleştirdi: lead'ler saniyeler içinde yanıt alıyor, bilgiler HubSpot'a düşüyor ve hiçbir müşteri yeni bir numara öğrenmek zorunda kalmadı.",
       href: '/case-studies/bmc-hyundai',
+    },
+    {
+      initials: 'IT',
+      company: 'ITECSUR',
+      industry: 'Yükseköğretim',
+      headline: 'Yapay Zeka ile WhatsApp sohbetlerini öğrenci kaydına dönüştürmek',
+      summary:
+        "Ekvador'da akredite bir enstitü, Eazybe Yapay Zeka'sıyla her WhatsApp adayını kayıt aşamasına göre etiketliyor: 5 danışman tek bir gelen kutusundan çalışıyor, önce kimi arayacağını biliyor ve HubSpot hep güncel kalıyor.",
+      href: '/case-studies/itecsur',
     },
   ],
   finalCta: {

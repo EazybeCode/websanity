@@ -711,7 +711,7 @@ export default async function ItecsurCaseStudyPage({ params }: { params: Promise
             <div>
               <div className="its-tag">{t.winback.tag}</div>
               <h2 className="its-h2">{t.winback.h2Lead}<br /><span className="its-hl">{t.winback.h2Highlight}</span></h2>
-              <p className="its-body">{t.winback.bodyPre} <b>{t.winback.bodyBold}</b> {t.winback.bodyPost}</p>
+              <p className="its-body">{t.winback.bodyPre && <>{t.winback.bodyPre} </>}<b>{t.winback.bodyBold}</b> {t.winback.bodyPost}</p>
               <div className="its-flow" aria-label={t.winback.flow.join(' → ')}>
                 {t.winback.flow.map((f, i) => (
                   <span key={f} style={{ display: 'contents' }}>
@@ -846,7 +846,7 @@ export default async function ItecsurCaseStudyPage({ params }: { params: Promise
                 {ITECSUR_AGENT_CHAT.map((m, i) => (
                   <div key={i} className={`its-msg ${m.dir}`}>
                     {m.text}
-                    <small>{m.time}{m.dir === 'out' ? ' ✓✓ · AI agent' : ''}</small>
+                    <small>{m.time}{m.dir === 'out' ? ` ✓✓ · ${t.agent.aiLabel}` : ''}</small>
                   </div>
                 ))}
               </div>
