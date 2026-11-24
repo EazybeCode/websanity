@@ -22,6 +22,9 @@ const SITE_URL = 'https://eazybe.com'
 // Customer story video on the Eazybe YouTube channel (English, all locales).
 const VIDEO_ID = 'Y8ipOeD6JRk'
 const VIDEO_TITLE = 'How a Brazilian Hyundai Dealer Replies 4x Faster With AI on WhatsApp | BMC x Eazybe'
+// 1280x720 YouTube thumbnail: Article image, VideoObject thumbnail and social share image.
+const VIDEO_THUMB = `https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`
+const HTML_LANG: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }
 
 async function baseMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
@@ -38,6 +41,13 @@ async function baseMetadata({ params }: { params: Promise<{ locale: string }> })
       title: doc?.ogTitle || title.replace(' | Eazybe', ''),
       description: doc?.ogDescription || t.meta.ogDescription,
       siteName: 'Eazybe',
+      images: [{ url: VIDEO_THUMB, width: 1280, height: 720, alt: VIDEO_TITLE }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: doc?.ogTitle || title.replace(' | Eazybe', ''),
+      description: doc?.ogDescription || t.meta.ogDescription,
+      images: [VIDEO_THUMB],
     },
   }
 }
@@ -390,26 +400,40 @@ export default async function BmcHyundaiCaseStudyPage({ params }: { params: Prom
       { '@type': 'ListItem', position: 3, name: t.breadcrumb.current, item: pageUrl },
     ],
   }
+  // Same dates as the article:published_time / modified_time meta tags.
+  const dates = pageDates({ page: SLUG, doc: await getSanityDocDates('caseStudy', locale, 'bmc-hyundai') })
+  // The site-wide Organization block (layout) carries this @id; point at it
+  // instead of repeating a bare publisher.
+  const eazybeOrg = { '@id': `${SITE_URL}/#organization` }
+  const videoId = `${pageUrl}#video`
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${pageUrl}#article`,
     headline,
     description: t.meta.description,
     url: pageUrl,
-    publisher: { '@type': 'Organization', name: 'Eazybe', url: SITE_URL },
+    mainEntityOfPage: pageUrl,
+    inLanguage: HTML_LANG[locale] ?? locale,
+    image: [VIDEO_THUMB],
+    ...(dates && { datePublished: dates.published, dateModified: dates.modified }),
+    author: eazybeOrg,
+    publisher: eazybeOrg,
     about: { '@type': 'Organization', name: 'BMC Hyundai', url: 'https://bmchyundai.com.br' },
+    video: { '@id': videoId },
   }
   const videoSchema = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
+    '@id': videoId,
     name: VIDEO_TITLE,
     description: t.meta.description,
-    thumbnailUrl: `https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`,
+    thumbnailUrl: [VIDEO_THUMB, `https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`],
     uploadDate: '2026-11-23T02:33:35-08:00',
     duration: 'PT1M29S',
-    contentUrl: `https://www.youtube.com/watch?v=${VIDEO_ID}`,
-    embedUrl: `https://www.youtube-nocookie.com/embed/${VIDEO_ID}`,
-    publisher: { '@type': 'Organization', name: 'Eazybe', url: SITE_URL },
+    // A YouTube watch page is not a media file, so no contentUrl; embedUrl is the player.
+    embedUrl: `https://www.youtube.com/embed/${VIDEO_ID}`,
+    publisher: eazybeOrg,
   }
 
 
