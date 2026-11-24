@@ -1,7 +1,7 @@
 {
   "/": {
     "published": "2026-03-14T12:16:03Z",
-    "modified": "2026-11-24T07:16:20Z"
+    "modified": "2026-11-24T09:58:35Z"
   },
   "/pricing": {
     "published": "2026-03-17T09:28:23Z",
@@ -109,7 +109,7 @@
   },
   "/case-studies": {
     "published": "2026-08-29T18:20:17Z",
-    "modified": "2026-11-24T07:49:42Z"
+    "modified": "2026-11-24T09:58:35Z"
   },
   "/case-studies/lokmaxltda": {
     "published": "2026-08-29T18:20:17Z",
@@ -122,6 +122,10 @@
   "/case-studies/itecsur": {
     "published": "2026-11-24T07:16:20Z",
     "modified": "2026-11-24T08:14:59Z"
+  },
+  "/case-studies/blendus": {
+    "published": "2026-11-24T09:58:35Z",
+    "modified": "2026-11-24T09:58:35Z"
   },
   "/become-our-partner": {
     "published": "2026-03-17T09:28:23Z",
@@ -157,7 +161,7 @@
   },
   "/sitemap": {
     "published": "2026-06-10T08:21:49Z",
-    "modified": "2026-11-24T07:16:20Z"
+    "modified": "2026-11-24T09:58:35Z"
   },
   "/msa": {
     "published": "2026-03-17T09:28:23Z",

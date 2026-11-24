@@ -86,6 +86,15 @@ const en: CaseStudiesPageContent = {
         'An accredited institute in Ecuador uses Eazybe AI to tag every WhatsApp applicant by enrolment stage, so 5 advisors work from one inbox, know who to call first and keep HubSpot current.',
       href: '/case-studies/itecsur',
     },
+    {
+      initials: 'BU',
+      company: 'BlendUs',
+      industry: 'Health tech',
+      headline: 'Saving every WhatsApp deal talk in HubSpot',
+      summary:
+        'A Brazilian health tech with 140+ health plan clients and 3 sellers now saves every WhatsApp deal talk in HubSpot, one clean block per day, so no history leaves when people do.',
+      href: '/case-studies/blendus',
+    },
   ],
   finalCta: {
     h2: 'Your Team Could Be The Next Story',

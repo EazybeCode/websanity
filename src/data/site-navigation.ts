@@ -155,6 +155,7 @@ export async function getSitemapTree(locale: string): Promise<SitemapNode[]> {
             { label: 'Lokmax', href: url('/case-studies/lokmaxltda') },
             { label: 'BMC Hyundai', href: url('/case-studies/bmc-hyundai') },
             { label: 'ITECSUR', href: url('/case-studies/itecsur') },
+            { label: 'BlendUs', href: url('/case-studies/blendus') },
           ],
         },
         { label: t('helpCenter'), href: 'https://help.eazybe.com/introduction' },
