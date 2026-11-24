@@ -73,33 +73,63 @@ const CSS = `
 .landing .v16-brand .cs-stories { padding: clamp(72px, 8vw, 104px) 0; background: #fff; scroll-margin-top: 80px; }
 .landing .v16-brand .cs-stories .container { max-width: 1180px; }
 .landing .v16-brand .cs-stories-head { margin-bottom: 44px; }
-/* Cards keep a sane width and center when there are only a few. */
-.cs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 380px)); gap: 20px; align-items: stretch; justify-content: center; }
+/* Two cards per row on desktop (4 stories = a clean 2x2), one on phones. */
+.cs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 1040px; margin: 0 auto; align-items: stretch; }
+@media (max-width: 760px) { .cs-grid { grid-template-columns: 1fr; } }
 .landing .v16-brand .cs-card {
-  position: relative; display: flex; flex-direction: column; align-items: flex-start; padding: 28px; border-radius: 16px;
+  --tone: #7c98ff; --tone-glow: rgba(43, 89, 255, 0.45);
+  position: relative; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden;
   border: 1px solid transparent;
   background:
     linear-gradient(#ffffff, #ffffff) padding-box,
     linear-gradient(140deg, rgba(43, 89, 255, 0.7), #e6e6e3 30%, #e6e6e3 70%, rgba(43, 89, 255, 0.35)) border-box;
   box-shadow: 0 14px 34px rgba(43, 89, 255, 0.08);
-  transition: transform .18s ease, box-shadow .18s ease;
+  /* opacity/transform also carry the scroll reveal (.reveal -> .show). */
+  transition: opacity .6s cubic-bezier(0.2, 0.8, 0.2, 1), transform .45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .25s ease;
 }
-.landing .v16-brand .cs-card:hover { transform: translateY(-3px); box-shadow: 0 22px 44px -10px rgba(43, 89, 255, 0.22); }
-.landing .v16-brand .cs-card-head { display: flex; align-items: center; gap: 14px; }
+.landing .v16-brand .cs-card.tone-1 { --tone: #f6c52b; --tone-glow: rgba(246, 197, 43, 0.4); }
+.landing .v16-brand .cs-card.tone-2 { --tone: #3dd68c; --tone-glow: rgba(47, 191, 119, 0.42); }
+.landing .v16-brand .cs-card:hover { transform: translateY(-5px); box-shadow: 0 28px 50px -14px rgba(43, 89, 255, 0.28); }
+
+/* Cover */
+.landing .v16-brand .cs-cover {
+  position: relative; padding: 24px 26px 46px; min-height: 170px; color: #fff; isolation: isolate;
+  background:
+    radial-gradient(ellipse 75% 95% at 100% 0%, var(--tone-glow), rgba(0, 0, 0, 0) 70%),
+    radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px) 0 0 / 18px 18px,
+    #0b0b0c;
+}
+.landing .v16-brand .cs-cover::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .3s ease;
+  background: radial-gradient(ellipse 90% 120% at 100% 0%, var(--tone-glow), rgba(0, 0, 0, 0) 75%); }
+.landing .v16-brand .cs-card:hover .cs-cover::after { opacity: 1; }
+.landing .v16-brand .cs-country { position: absolute; top: 18px; right: 18px; display: inline-flex; align-items: center; gap: 7px; padding: 4px 9px; border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(17, 17, 20, 0.8);
+  font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #d6d9e3; }
+.landing .v16-brand .cs-country::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #2ec27e; }
+.landing .v16-brand .cs-stat { font-family: 'Geist', sans-serif; font-weight: 700; font-size: clamp(42px, 4.4vw, 56px); line-height: 1; letter-spacing: -0.04em;
+  color: var(--tone); text-shadow: 0 0 30px var(--tone-glow); font-variant-numeric: tabular-nums; }
+.landing .v16-brand .cs-stat-l { margin-top: 8px; max-width: 75%; font-size: 14px; line-height: 1.45; color: #b4b4bc; }
 .landing .v16-brand .cs-avatar {
-  width: 52px; height: 52px; flex-shrink: 0; border-radius: 10px; overflow: hidden;
+  position: absolute; left: 26px; bottom: -30px; z-index: 1;
+  width: 64px; height: 64px; border-radius: 12px; overflow: hidden;
   display: inline-flex; align-items: center; justify-content: center;
-  background: #fff; border: 1px solid #e6e6e3;
-  font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600; color: #2b59ff;
+  background: #fff; border: 1px solid #e6e6e3; box-shadow: 0 10px 24px -10px rgba(11, 11, 12, 0.45);
+  font-family: 'Geist Mono', ui-monospace, monospace; font-size: 16px; font-weight: 600; color: #2b59ff;
 }
-.landing .v16-brand .cs-avatar img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
-.landing .v16-brand .cs-company { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; color: #0b0b0c; }
-.landing .v16-brand .cs-industry { display: inline-block; margin-top: 5px; padding: 3px 8px; border-radius: 6px; background: #eef2ff;
+.landing .v16-brand .cs-avatar img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+
+/* Body */
+.landing .v16-brand .cs-body { display: flex; flex-direction: column; flex: 1; padding: 44px 26px 24px; }
+.landing .v16-brand .cs-card-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; }
+.landing .v16-brand .cs-company { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #0b0b0c; }
+.landing .v16-brand .cs-industry { display: inline-block; padding: 3px 8px; border-radius: 6px; background: #eef2ff;
   font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #2b59ff; }
-.landing .v16-brand .cs-headline { margin: 22px 0 10px; font-size: 20px; font-weight: 700; line-height: 1.3; letter-spacing: -0.02em; color: #0b0b0c; }
+.landing .v16-brand .cs-headline { margin: 16px 0 10px; font-size: 21px; font-weight: 700; line-height: 1.3; letter-spacing: -0.02em; color: #0b0b0c; }
 .landing .v16-brand .cs-summary { margin: 0; font-size: 15px; line-height: 1.65; color: #5a5c64; flex: 1; }
+/* !important: landing-v3.css recolours every main link on hover (the faded green). */
+.landing .v16-brand .cs-link, .landing .v16-brand .cs-link:hover { color: #2b59ff !important; text-decoration: none !important; }
 .landing .v16-brand .cs-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 22px; padding-top: 18px; width: 100%;
-  border-top: 1px solid #e6e6e3; font-size: 14.5px; font-weight: 600; color: #2b59ff; }
+  border-top: 1px solid #e6e6e3; font-size: 14.5px; font-weight: 600; }
 /* Whole card is clickable through the link's overlay. */
 .landing .v16-brand .cs-link::after { content: ''; position: absolute; inset: 0; border-radius: 16px; }
 .landing .v16-brand .cs-link span { transition: transform .18s ease; }
@@ -201,32 +231,43 @@ export default async function CaseStudiesPage({
             <p>{t.grid.subtitle}</p>
           </div>
           <div className="cs-grid">
-            {t.cards.map((c) => {
+            {t.cards.map((c, i) => {
               const slug = c.href?.split('/').pop()
               const over = slug ? cms[slug] : undefined
               return (
-              <article key={c.company} className="cs-card">
-                <div className="cs-card-head">
+              // .reveal: fades up when scrolled into view (site RevealOnScroll), staggered per card.
+              <article key={c.company} className={`cs-card reveal tone-${i % 3}`} style={{ transitionDelay: `${(i % 2) * 120}ms` }}>
+                {/* Dark cover: the story's headline number, like the case study heroes. */}
+                <div className="cs-cover">
+                  {c.country && <span className="cs-country">{c.country}</span>}
+                  {c.stat && (
+                    <>
+                      <div className="cs-stat">{c.stat.value}</div>
+                      <div className="cs-stat-l">{c.stat.label}</div>
+                    </>
+                  )}
                   {/* Alt text derives from the company name — no Studio field needed. */}
                   {over?.logoUrl ? (
                     <span className="cs-avatar">
-                      <img src={`${over.logoUrl}?w=88&h=88&fit=max&auto=format`} alt={`${over?.company || c.company} logo`} loading="lazy" />
+                      <img src={`${over.logoUrl}?w=128&h=128&fit=max&auto=format`} alt={`${over?.company || c.company} logo`} loading="lazy" />
                     </span>
                   ) : (
                     <span className="cs-avatar" aria-hidden="true">{c.initials}</span>
                   )}
-                  <div>
+                </div>
+                <div className="cs-body">
+                  <div className="cs-card-head">
                     <div className="cs-company">{over?.company || c.company}</div>
                     <span className="cs-industry">{over?.industry || c.industry}</span>
                   </div>
+                  <h3 className="cs-headline">{over?.headline || c.headline}</h3>
+                  <p className="cs-summary">{over?.summary || c.summary}</p>
+                  {c.href && (
+                    <a className="cs-link" href={locale === 'en' ? c.href : `/${locale}${c.href}`}>
+                      {t.grid.readStory} <span aria-hidden="true">→</span>
+                    </a>
+                  )}
                 </div>
-                <h3 className="cs-headline">{over?.headline || c.headline}</h3>
-                <p className="cs-summary">{over?.summary || c.summary}</p>
-                {c.href && (
-                  <a className="cs-link" href={locale === 'en' ? c.href : `/${locale}${c.href}`}>
-                    {t.grid.readStory} <span aria-hidden="true">→</span>
-                  </a>
-                )}
               </article>
               )
             })}

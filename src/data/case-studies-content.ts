@@ -16,6 +16,10 @@ export interface CaseStudyCard {
   summary: string
   /** Link to the full write-up. Omit while it doesn't exist yet. */
   href?: string
+  /** Shown as a chip on the card cover. */
+  country?: string
+  /** The story's headline number, shown large on the card cover. */
+  stat?: { value: string; label: string }
 }
 
 export interface CaseStudiesPageContent {
@@ -67,6 +71,8 @@ const en: CaseStudiesPageContent = {
       summary:
         'Brazil’s compact machinery rental specialist unified WhatsApp and HubSpot: quotes went from 24–48 hours to under 3, and lease extensions stopped depending on rep memory.',
       href: '/case-studies/lokmaxltda',
+      country: 'Brazil',
+      stat: { value: '<3h', label: 'quote turnaround, down from 24–48h' },
     },
     {
       initials: 'BH',
@@ -76,6 +82,8 @@ const en: CaseStudiesPageContent = {
       summary:
         'Hyundai’s machinery partner in Brazil put Eazybe AI agents on its sellers’ own WhatsApp numbers: leads get a reply in seconds, details land in HubSpot, and no customer had to learn a new number.',
       href: '/case-studies/bmc-hyundai',
+      country: 'Brazil',
+      stat: { value: '4x', label: 'faster replies · pilot goal' },
     },
     {
       initials: 'IT',
@@ -85,6 +93,8 @@ const en: CaseStudiesPageContent = {
       summary:
         'An accredited institute in Ecuador uses Eazybe AI to tag every WhatsApp applicant by enrolment stage, so 5 advisors work from one inbox, know who to call first and keep HubSpot current.',
       href: '/case-studies/itecsur',
+      country: 'Ecuador',
+      stat: { value: '5 → 1', label: 'advisors, one shared inbox' },
     },
     {
       initials: 'BU',
@@ -94,6 +104,8 @@ const en: CaseStudiesPageContent = {
       summary:
         'A Brazilian health tech with 140+ health plan clients and 3 sellers now saves every WhatsApp deal talk in HubSpot, one clean block per day, so no history leaves when people do.',
       href: '/case-studies/blendus',
+      country: 'Brazil',
+      stat: { value: '140+', label: 'health plan clients, every chat in HubSpot' },
     },
   ],
   finalCta: {
@@ -137,6 +149,8 @@ const br: CaseStudiesPageContent = {
       summary:
         'A especialista brasileira em locação de máquinas compactas unificou WhatsApp e HubSpot: cotações caíram de 24–48 horas para menos de 3, e as extensões de contrato deixaram de depender da memória do vendedor.',
       href: '/case-studies/lokmaxltda',
+      country: 'Brasil',
+      stat: { value: '<3h', label: 'para cotar, antes 24–48h' },
     },
     {
       initials: 'BH',
@@ -146,6 +160,8 @@ const br: CaseStudiesPageContent = {
       summary:
         'A parceira da Hyundai em máquinas no Brasil colocou agentes de IA da Eazybe nos números de WhatsApp dos próprios vendedores: os leads recebem resposta em segundos, os dados vão para o HubSpot e nenhum cliente precisou aprender um número novo.',
       href: '/case-studies/bmc-hyundai',
+      country: 'Brasil',
+      stat: { value: '4x', label: 'respostas mais rápidas · meta do piloto' },
     },
     {
       initials: 'IT',
@@ -155,6 +171,8 @@ const br: CaseStudiesPageContent = {
       summary:
         'Um instituto credenciado no Equador usa a IA da Eazybe para classificar cada candidato do WhatsApp por etapa de matrícula: 5 consultores trabalham em uma só caixa de entrada, sabem quem chamar primeiro e mantêm o HubSpot em dia.',
       href: '/case-studies/itecsur',
+      country: 'Equador',
+      stat: { value: '5 → 1', label: 'consultores, uma caixa compartilhada' },
     },
     {
       initials: 'BU',
@@ -164,6 +182,8 @@ const br: CaseStudiesPageContent = {
       summary:
         'Uma healthtech brasileira com 140+ operadoras clientes e 3 vendedores agora salva cada conversa de venda do WhatsApp no HubSpot, um bloco limpo por dia, e o histórico não vai embora quando as pessoas saem.',
       href: '/case-studies/blendus',
+      country: 'Brasil',
+      stat: { value: '140+', label: 'operadoras clientes, cada conversa no HubSpot' },
     },
   ],
   finalCta: {
@@ -207,6 +227,8 @@ const es: CaseStudiesPageContent = {
       summary:
         'El especialista brasileño en alquiler de maquinaria compacta unificó WhatsApp y HubSpot: las cotizaciones pasaron de 24–48 horas a menos de 3, y las extensiones de contrato dejaron de depender de la memoria del vendedor.',
       href: '/case-studies/lokmaxltda',
+      country: 'Brasil',
+      stat: { value: '<3h', label: 'para cotizar, antes 24–48h' },
     },
     {
       initials: 'BH',
@@ -216,6 +238,8 @@ const es: CaseStudiesPageContent = {
       summary:
         'El socio de Hyundai en maquinaria en Brasil puso agentes de IA de Eazybe en los números de WhatsApp de sus propios vendedores: los leads reciben respuesta en segundos, los datos llegan a HubSpot y ningún cliente tuvo que aprender un número nuevo.',
       href: '/case-studies/bmc-hyundai',
+      country: 'Brasil',
+      stat: { value: '4x', label: 'respuestas más rápidas · meta del piloto' },
     },
     {
       initials: 'IT',
@@ -225,6 +249,8 @@ const es: CaseStudiesPageContent = {
       summary:
         'Un instituto acreditado de Ecuador usa la IA de Eazybe para clasificar a cada aspirante de WhatsApp por etapa de matrícula: 5 asesores trabajan desde una sola bandeja, saben a quién llamar primero y mantienen HubSpot al día.',
       href: '/case-studies/itecsur',
+      country: 'Ecuador',
+      stat: { value: '5 → 1', label: 'asesores, una bandeja compartida' },
     },
     {
       initials: 'BU',
@@ -234,6 +260,8 @@ const es: CaseStudiesPageContent = {
       summary:
         'Una healthtech brasileña con 140+ aseguradoras de salud clientes y 3 vendedores ahora guarda cada negociación de WhatsApp en HubSpot, un bloque limpio por día, y el historial no se va cuando se van las personas.',
       href: '/case-studies/blendus',
+      country: 'Brasil',
+      stat: { value: '140+', label: 'aseguradoras clientes, cada chat en HubSpot' },
     },
   ],
   finalCta: {
@@ -277,6 +305,8 @@ const tr: CaseStudiesPageContent = {
       summary:
         "Brezilya'nın kompakt makine kiralama uzmanı WhatsApp ile HubSpot'u birleştirdi: teklif süresi 24–48 saatten 3 saatin altına indi, sözleşme uzatmaları temsilci hafızasına bağlı olmaktan çıktı.",
       href: '/case-studies/lokmaxltda',
+      country: 'Brezilya',
+      stat: { value: '<3sa', label: 'teklif süresi, önceden 24–48 saat' },
     },
     {
       initials: 'BH',
@@ -286,6 +316,8 @@ const tr: CaseStudiesPageContent = {
       summary:
         "Hyundai'nin Brezilya'daki makine ortağı, Eazybe Yapay Zeka ajanlarını temsilcilerin kendi WhatsApp numaralarına yerleştirdi: lead'ler saniyeler içinde yanıt alıyor, bilgiler HubSpot'a düşüyor ve hiçbir müşteri yeni bir numara öğrenmek zorunda kalmadı.",
       href: '/case-studies/bmc-hyundai',
+      country: 'Brezilya',
+      stat: { value: '4x', label: 'daha hızlı yanıt · pilot hedefi' },
     },
     {
       initials: 'IT',
@@ -295,6 +327,8 @@ const tr: CaseStudiesPageContent = {
       summary:
         "Ekvador'da akredite bir enstitü, Eazybe Yapay Zeka'sıyla her WhatsApp adayını kayıt aşamasına göre etiketliyor: 5 danışman tek bir gelen kutusundan çalışıyor, önce kimi arayacağını biliyor ve HubSpot hep güncel kalıyor.",
       href: '/case-studies/itecsur',
+      country: 'Ekvador',
+      stat: { value: '5 → 1', label: 'danışman, tek ortak gelen kutusu' },
     },
     {
       initials: 'BU',
@@ -304,6 +338,8 @@ const tr: CaseStudiesPageContent = {
       summary:
         "140+ sağlık sigortası müşterisi ve 3 satış temsilcisi olan Brezilyalı bir sağlık teknolojisi şirketi, her WhatsApp satış görüşmesini HubSpot'a günde tek temiz blok olarak kaydediyor; insanlar ayrılsa da geçmiş kalıyor.",
       href: '/case-studies/blendus',
+      country: 'Brezilya',
+      stat: { value: '140+', label: "sağlık sigortası müşterisi, her sohbet HubSpot'ta" },
     },
   ],
   finalCta: {
