@@ -33,6 +33,8 @@ export interface CaseStudiesPageContent {
     cta: string
     footnote: string
   }
+  /** The newest published story, shown large above the grid. */
+  featured: { tag: string; badge: string; cta: string }
   grid: { h2: string; subtitle: string; readStory: string }
   cards: CaseStudyCard[]
   finalCta: { h2: string; body: string; primary: string; secondary: string }
@@ -56,6 +58,7 @@ const en: CaseStudiesPageContent = {
     cta: 'Read the stories',
     footnote: 'Eazybe works on the WhatsApp your reps already use, so there is nothing to migrate and no new number to adopt.',
   },
+  featured: { tag: 'Featured story', badge: 'New', cta: 'Read the story' },
   grid: {
     h2: 'Pick A Story',
     subtitle: 'Different industries, same problem: revenue living in chats nobody could see.',
@@ -135,6 +138,7 @@ const br: CaseStudiesPageContent = {
     cta: 'Ler as histórias',
     footnote: 'A Eazybe funciona no WhatsApp que seus vendedores já usam, sem precisar migrar nada nem adotar um número novo.',
   },
+  featured: { tag: 'História em destaque', badge: 'Novo', cta: 'Ler a história' },
   grid: {
     h2: 'Escolha uma história',
     subtitle: 'Setores diferentes, mesmo problema: receita vivendo em conversas que ninguém enxergava.',
@@ -213,6 +217,7 @@ const es: CaseStudiesPageContent = {
     cta: 'Leer las historias',
     footnote: 'Eazybe funciona en el WhatsApp que tus reps ya usan, sin tener que migrar nada ni estrenar número.',
   },
+  featured: { tag: 'Historia destacada', badge: 'Nuevo', cta: 'Leer la historia' },
   grid: {
     h2: 'Elige una historia',
     subtitle: 'Sectores distintos, mismo problema: ingresos viviendo en chats que nadie podía ver.',
@@ -291,6 +296,7 @@ const tr: CaseStudiesPageContent = {
     cta: 'Hikayeleri okuyun',
     footnote: 'Eazybe, temsilcilerinizin zaten kullandığı WhatsApp üzerinde çalışır; herhangi bir taşıma da yeni bir numara da gerekmez.',
   },
+  featured: { tag: 'Öne çıkan hikaye', badge: 'Yeni', cta: 'Hikayeyi okuyun' },
   grid: {
     h2: 'Bir hikaye seçin',
     subtitle: 'Farklı sektörler, aynı sorun: kimsenin göremediği sohbetlerde yaşayan gelir.',

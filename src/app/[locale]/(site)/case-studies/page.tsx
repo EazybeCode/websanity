@@ -73,9 +73,62 @@ const CSS = `
 .landing .v16-brand .cs-stories { padding: clamp(72px, 8vw, 104px) 0; background: #fff; scroll-margin-top: 80px; }
 .landing .v16-brand .cs-stories .container { max-width: 1180px; }
 .landing .v16-brand .cs-stories-head { margin-bottom: 44px; }
+/* Featured story: wide corner-lit card, media left (photo or dark cover), copy right. */
+.landing .v16-brand .cs-feat {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); max-width: 1040px; margin: 0 auto clamp(72px, 8vw, 104px);
+  border-radius: 16px; overflow: hidden; border: 1px solid transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(140deg, #2b59ff, #c9d5ff 35%, #e6e6e3 65%, rgba(43, 89, 255, 0.6)) border-box;
+  box-shadow: 0 30px 70px -30px rgba(43, 89, 255, 0.45);
+  transition: opacity .6s cubic-bezier(0.2, 0.8, 0.2, 1), transform .6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .25s ease;
+}
+.landing .v16-brand .cs-feat:hover { box-shadow: 0 36px 80px -28px rgba(43, 89, 255, 0.6); }
+.landing .v16-brand .cs-feat-media {
+  position: relative; display: block; min-height: 420px; overflow: hidden; color: #fff; text-decoration: none !important;
+  background:
+    radial-gradient(ellipse 80% 90% at 100% 0%, rgba(43, 89, 255, 0.5), rgba(0, 0, 0, 0) 70%),
+    radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px) 0 0 / 18px 18px,
+    #0b0b0c;
+}
+.landing .v16-brand .cs-feat-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.landing .v16-brand .cs-feat:hover .cs-feat-media img { transform: scale(1.04); }
+.landing .v16-brand .cs-feat-media::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(11, 11, 12, 0) 35%, rgba(11, 11, 12, 0.88) 100%); }
+.landing .v16-brand .cs-feat-media .cs-country { z-index: 2; left: 20px; right: auto; top: 20px; }
+.landing .v16-brand .cs-feat-stat { position: absolute; left: 26px; right: 26px; bottom: 24px; z-index: 2; display: block; }
+.landing .v16-brand .cs-feat-stat b { display: block; font-family: 'Geist', sans-serif; font-weight: 700; font-size: clamp(52px, 6vw, 76px); line-height: 1; letter-spacing: -0.045em;
+  color: #7c98ff; text-shadow: 0 0 36px rgba(43, 89, 255, 0.6); }
+.landing .v16-brand .cs-feat-stat span { display: block; margin-top: 8px; max-width: 360px; font-size: 15px; line-height: 1.45; color: #e6e6e8; }
+.landing .v16-brand .cs-feat-body { display: flex; flex-direction: column; justify-content: center; padding: clamp(28px, 4vw, 48px); }
+.landing .v16-brand .cs-feat-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+  font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #2b59ff; }
+.landing .v16-brand .cs-feat-live { width: 8px; height: 8px; border-radius: 50%; background: #2ec27e; box-shadow: 0 0 0 0 rgba(46, 194, 126, .6); animation: cs-live 1.8s ease-out infinite; }
+@keyframes cs-live { 0% { box-shadow: 0 0 0 0 rgba(46, 194, 126, .6); } 100% { box-shadow: 0 0 0 9px rgba(46, 194, 126, 0); } }
+.landing .v16-brand .cs-new { margin-left: 4px; padding: 3px 8px; border-radius: 6px; background: #2b59ff; color: #fff; letter-spacing: .08em; }
+.landing .v16-brand .cs-feat-co { display: flex; align-items: center; gap: 14px; margin-top: 22px; }
+.landing .v16-brand .cs-feat-logo { width: 56px; height: 56px; flex-shrink: 0; border-radius: 12px; overflow: hidden; display: inline-flex; align-items: center; justify-content: center;
+  background: #fff; border: 1px solid #e6e6e3; font-family: 'Geist Mono', ui-monospace, monospace; font-weight: 600; color: #2b59ff; }
+.landing .v16-brand .cs-feat-logo img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+.landing .v16-brand .cs-feat-co .cs-industry { margin-top: 5px; }
+.landing .v16-brand .cs-feat-h { margin: 22px 0 12px; font-size: clamp(24px, 2.6vw, 32px); font-weight: 700; line-height: 1.2; letter-spacing: -0.03em; color: #0b0b0c; }
+.landing .v16-brand .cs-feat-p { margin: 0 0 28px; font-size: 16px; line-height: 1.65; color: #5a5c64; }
+.landing .v16-brand .cs-feat-cta span { display: inline-block; transition: transform .18s ease; }
+.landing .v16-brand .cs-feat:hover .cs-feat-cta span { transform: translateX(4px); }
+@media (max-width: 860px) {
+  .landing .v16-brand .cs-feat { grid-template-columns: 1fr; }
+  .landing .v16-brand .cs-feat-media { min-height: 280px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing .v16-brand .cs-feat-live { animation: none; }
+  .landing .v16-brand .cs-feat-media img, .landing .v16-brand .cs-feat-cta span { transition: none; }
+}
+
 /* Two cards per row on desktop (4 stories = a clean 2x2), one on phones. */
 .cs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 1040px; margin: 0 auto; align-items: stretch; }
-@media (max-width: 760px) { .cs-grid { grid-template-columns: 1fr; } }
+.cs-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1180px; }
+@media (max-width: 1080px) { .cs-grid.cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .cs-grid, .cs-grid.cols-3 { grid-template-columns: 1fr; } }
 .landing .v16-brand .cs-card {
   --tone: #7c98ff; --tone-glow: rgba(43, 89, 255, 0.45);
   position: relative; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden;
@@ -165,6 +218,17 @@ export default async function CaseStudiesPage({
   const t = getCaseStudiesPageContent(locale)
   const cms = await getCaseStudyCardOverrides(locale)
 
+  // Featured story: the newest PUBLISHED case study by Sanity "Published at".
+  // Publishing a new story in Studio moves it here on its own (revalidate 60s).
+  // If Sanity is unreachable, the last card in the code list (newest added) wins.
+  const slugOf = (c: { href?: string }) => c.href?.split('/').pop() ?? ''
+  const linked = t.cards.filter((c) => c.href)
+  const byDate = linked
+    .filter((c) => cms[slugOf(c)]?.publishedAt)
+    .sort((a, b) => Date.parse(cms[slugOf(b)]!.publishedAt!) - Date.parse(cms[slugOf(a)]!.publishedAt!))
+  const featured = byDate[0] ?? linked[linked.length - 1]
+  const rest = t.cards.filter((c) => c !== featured)
+
   const localePath = locale === 'en' ? '' : `/${locale}`
   const homeUrl = `${SITE_URL}${locale === 'en' ? '/' : `/${locale}`}`
   const pageUrl = `${SITE_URL}${localePath}/case-studies`
@@ -226,17 +290,69 @@ export default async function CaseStudiesPage({
       {/* Stories */}
       <section id="stories" className="cs-stories">
         <div className="container">
+          {/* Featured: the newest published story (Sanity "Published at"), large. */}
+          {featured && (() => {
+            const c = featured
+            const over = cms[slugOf(c)]
+            const href = locale === 'en' ? c.href! : `/${locale}${c.href}`
+            const company = over?.company || c.company
+            return (
+              <article className="cs-feat reveal" aria-labelledby="cs-feat-title">
+                <a className="cs-feat-media" href={href} tabIndex={-1} aria-hidden="true">
+                  {over?.featuredImageUrl && (
+                    <img src={`${over.featuredImageUrl}?w=1200&h=860&fit=crop&auto=format`} alt="" width={1200} height={860} />
+                  )}
+                  {c.country && <span className="cs-country">{c.country}</span>}
+                  {c.stat && (
+                    <span className="cs-feat-stat">
+                      <b>{c.stat.value}</b>
+                      <span>{c.stat.label}</span>
+                    </span>
+                  )}
+                </a>
+                <div className="cs-feat-body">
+                  <div className="cs-feat-tag">
+                    <span className="cs-feat-live" aria-hidden="true" />
+                    {t.featured.tag}
+                    <span className="cs-new">{t.featured.badge}</span>
+                  </div>
+                  <div className="cs-feat-co">
+                    {over?.logoUrl ? (
+                      <span className="cs-feat-logo">
+                        <img src={`${over.logoUrl}?w=128&h=128&fit=max&auto=format`} alt={`${company} logo`} loading="lazy" />
+                      </span>
+                    ) : (
+                      <span className="cs-feat-logo" aria-hidden="true">{c.initials}</span>
+                    )}
+                    <div>
+                      <div className="cs-company">{company}</div>
+                      <span className="cs-industry">{over?.industry || c.industry}</span>
+                    </div>
+                  </div>
+                  <h3 id="cs-feat-title" className="cs-feat-h">{over?.headline || c.headline}</h3>
+                  <p className="cs-feat-p">{over?.summary || c.summary}</p>
+                  <div>
+                    <a className="btn btn-primary btn-lg cs-feat-cta" href={href}>
+                      {t.featured.cta} <span aria-hidden="true">→</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            )
+          })()}
+
           <div className="sec-head centered cs-stories-head">
             <h2>{t.grid.h2}</h2>
             <p>{t.grid.subtitle}</p>
           </div>
-          <div className="cs-grid">
-            {t.cards.map((c, i) => {
+          {/* 2 or 4 cards: 2 per row; 3, 5, 6…: 3 per row, so no card sits alone. */}
+          <div className={`cs-grid${rest.length === 2 || rest.length === 4 ? '' : ' cols-3'}`}>
+            {rest.map((c, i) => {
               const slug = c.href?.split('/').pop()
               const over = slug ? cms[slug] : undefined
               return (
               // .reveal: fades up when scrolled into view (site RevealOnScroll), staggered per card.
-              <article key={c.company} className={`cs-card reveal tone-${i % 3}`} style={{ transitionDelay: `${(i % 2) * 120}ms` }}>
+              <article key={c.company} className={`cs-card reveal tone-${i % 3}`} style={{ transitionDelay: `${(i % 3) * 120}ms` }}>
                 {/* Dark cover: the story's headline number, like the case study heroes. */}
                 <div className="cs-cover">
                   {c.country && <span className="cs-country">{c.country}</span>}

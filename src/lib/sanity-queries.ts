@@ -1275,6 +1275,10 @@ export interface CaseStudyCardOverride {
   headline?: string
   summary?: string
   logoUrl?: string
+  /** Studio "Published at"; the newest published story is featured on the hub. */
+  publishedAt?: string
+  featuredImageUrl?: string
+  featuredImageAlt?: string
 }
 
 /**
@@ -1294,11 +1298,16 @@ export async function getCaseStudyCardOverrides(locale: string): Promise<Record<
     title: string | null
     excerpt: string | null
     logoUrl: string | null
+    publishedAt: string | null
+    featuredImageUrl: string | null
+    featuredImageAlt: string | null
   }> | null>(
     `*[_type == "caseStudy" && language in [$sanityLanguage, "en"]]{
       "slug": slug.current, language, company, industry,
-      cardHeadline, title, excerpt,
-      "logoUrl": logo.asset->url
+      cardHeadline, title, excerpt, publishedAt,
+      "logoUrl": logo.asset->url,
+      "featuredImageUrl": featuredImage.asset->url,
+      "featuredImageAlt": featuredImage.alt
     }`,
     { sanityLanguage }
   )
@@ -1313,6 +1322,9 @@ export async function getCaseStudyCardOverrides(locale: string): Promise<Record<
       headline: row.cardHeadline || row.title || undefined,
       summary: row.excerpt ?? undefined,
       logoUrl: row.logoUrl ?? undefined,
+      publishedAt: row.publishedAt ?? undefined,
+      featuredImageUrl: row.featuredImageUrl ?? undefined,
+      featuredImageAlt: row.featuredImageAlt ?? undefined,
     }
   }
   return map
