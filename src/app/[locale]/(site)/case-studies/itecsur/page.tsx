@@ -11,6 +11,7 @@ import {
 } from '@/data/case-study-itecsur'
 import { pageDates, withPageDates, getSanityDocDates } from '@/lib/page-dates'
 import { getCaseStudy } from '@/lib/sanity-queries'
+import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
 
 // The page design and copy live in code (src/data/case-study-itecsur.ts).
 // A PUBLISHED caseStudy doc with this slug (Sanity "Case Studies") supplies the
@@ -29,6 +30,10 @@ const IMG = '/case-studies/itecsur'
 // Share image + Article image: the win-back graphic from the deck (1280x720).
 const SHARE_IMG = `${SITE_URL}${IMG}/winback-hola-to-matriculado.webp`
 const HTML_LANG: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }
+// Customer story video on the Eazybe YouTube channel (same video on all locales).
+const VIDEO_ID = 'nU0trylOpqU'
+const VIDEO_TITLE = 'How an Ecuadorian College Runs WhatsApp Admissions With AI + HubSpot | Itecsur x Eazybe'
+const VIDEO_THUMB = `https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`
 
 async function baseMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
@@ -419,6 +424,9 @@ const CSS = `
 .landing .its-cta-card .its-cta-foot { margin-top: 16px; font-family: var(--f-mono); font-size: 11.5px; color: #5A5C64; }
 .landing .its-back { display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 600; color: var(--its-blue); }
 
+.its-video { max-width: 880px; margin: clamp(36px, 5vw, 56px) auto 0; }
+.landing .v16-brand .its-hero .its-video figcaption { color: rgba(255,255,255,.6); }
+
 @media (max-width: 1024px) {
   .its-parts, .its-ben, .its-grid-4 { grid-template-columns: 1fr 1fr; }
 }
@@ -490,6 +498,20 @@ export default async function ItecsurCaseStudyPage({ params }: { params: Promise
       foundingDate: '1994',
       address: { '@type': 'PostalAddress', addressLocality: 'Quito', addressCountry: 'EC' },
     },
+    video: { '@id': `${pageUrl}#video` },
+  }
+  const videoSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    '@id': `${pageUrl}#video`,
+    name: VIDEO_TITLE,
+    description: t.meta.description,
+    thumbnailUrl: [VIDEO_THUMB, `https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`],
+    uploadDate: '2026-11-23T23:52:23-08:00',
+    duration: 'PT1M27S',
+    // A YouTube watch page is not a media file, so no contentUrl; embedUrl is the player.
+    embedUrl: `https://www.youtube.com/embed/${VIDEO_ID}`,
+    publisher: eazybeOrg,
   }
 
   const partTones = ['green', 'yellow', 'dark glow', '']
@@ -504,6 +526,7 @@ export default async function ItecsurCaseStudyPage({ params }: { params: Promise
     <div className="its">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} />
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
       {/* 1. Hero — deck cover (slide 01) on the brand dark hero. */}
@@ -531,6 +554,9 @@ export default async function ItecsurCaseStudyPage({ params }: { params: Promise
                 </div>
               </div>
             ))}
+          </div>
+          <div className="its-video">
+            <VideoEmbedBlock data={{ platform: 'youtube', videoId: VIDEO_ID, title: VIDEO_TITLE }} />
           </div>
         </div>
       </section>
