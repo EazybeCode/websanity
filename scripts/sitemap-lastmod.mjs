@@ -45,6 +45,8 @@ const ROUTES = {
   '/tools': `${APP}/(site)/tools/page.tsx`,
   '/case-studies': `${APP}/(site)/case-studies/page.tsx`,
   '/case-studies/lokmaxltda': `${APP}/(site)/case-studies/lokmaxltda/page.tsx`,
+  '/case-studies/bmc-hyundai': `${APP}/(site)/case-studies/bmc-hyundai/page.tsx`,
+  '/case-studies/itecsur': `${APP}/(site)/case-studies/itecsur/page.tsx`,
   '/become-our-partner': `${APP}/(site)/become-our-partner/page.tsx`,
   '/whatsapp-pricing-calculator': `${APP}/(site)/whatsapp-pricing-calculator/page.tsx`,
   '/integration-page': `${APP}/(site)/[slug]/page.tsx`,
