@@ -164,7 +164,7 @@ const USD_LIST_PRICES: Record<string, { monthly: number; annual: number }> = {
 }
 
 const defaultComparisonFeatures: ComparisonFeatureRow[] = [
-  { feature: 'WhatsApp API number', starter: false, scaler: 'Per channel · 3 users included', basicAi: 'Per channel · 5 users included', proAi: 'Per channel · 5 users included', category: 'Core Features' },
+  { feature: 'WhatsApp API number', starter: false, scaler: 'Per number · 3 users included', basicAi: 'Per number · 5 users included', proAi: 'Per number · 5 users included', category: 'Core Features' },
   { feature: 'Team Inbox', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
   { feature: 'Unlimited labels & funnels', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
   { feature: 'Unlimited quick replies', starter: true, scaler: true, basicAi: true, proAi: true, category: 'Core Features' },
@@ -376,9 +376,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Cloud connection': 'Conexión en la nube',
       'WhatsApp API': 'API de WhatsApp',
       'WhatsApp API number': 'Número de API de WhatsApp',
-      'Per channel · 3 users included': 'Por canal · 3 usuarios incluidos',
+      'Per number · 3 users included': 'Por número · 3 usuarios incluidos',
       'Custom': 'Contáctanos',
-      'Per channel · 5 users included': 'Por canal · 5 usuarios incluidos',
+      'Per number · 5 users included': 'Por número · 5 usuarios incluidos',
       'Custom objects in mini CRM view': 'Objetos personalizados en mini CRM',
       'CRM property-to-WhatsApp labeling': 'Etiquetado de propiedades del CRM en WhatsApp',
       'AI unreplied chats agent': 'Agente de IA para chats sin responder',
@@ -497,9 +497,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Cloud connection': 'Conexão em nuvem',
       'WhatsApp API': 'API do WhatsApp',
       'WhatsApp API number': 'Número de API do WhatsApp',
-      'Per channel · 3 users included': 'Por canal · 3 usuários incluídos',
+      'Per number · 3 users included': 'Por número · 3 usuários incluídos',
       'Custom': 'Fale Conosco',
-      'Per channel · 5 users included': 'Por canal · 5 usuários incluídos',
+      'Per number · 5 users included': 'Por número · 5 usuários incluídos',
       'Custom objects in mini CRM view': 'Objetos personalizados no mini CRM',
       'CRM property-to-WhatsApp labeling': 'Etiquetagem de propriedade do CRM para WhatsApp',
       'AI unreplied chats agent': 'Agente de IA para conversas sem resposta',
@@ -618,9 +618,9 @@ const FALLBACK_BY_LOCALE: Record<string, LocaleFallback> = {
       'Cloud connection': 'Bulut bağlantısı',
       'WhatsApp API': 'WhatsApp API',
       'WhatsApp API number': 'WhatsApp API numarası',
-      'Per channel · 3 users included': 'Kanal başına · 3 kullanıcı dahil',
+      'Per number · 3 users included': 'Numara başına · 3 kullanıcı dahil',
       'Custom': 'Bize Ulaşın',
-      'Per channel · 5 users included': 'Kanal başına · 5 kullanıcı dahil',
+      'Per number · 5 users included': 'Numara başına · 5 kullanıcı dahil',
       'Custom objects in mini CRM view': 'Mini CRM görünümünde özel nesneler',
       'CRM property-to-WhatsApp labeling': "CRM özelliğinden WhatsApp'a etiketleme",
       'AI unreplied chats agent': 'Yanıtsız sohbetler için AI ajanı',
@@ -820,13 +820,13 @@ function PricingCard({
   // AI plans (Basic AI / Pro AI) are now per-seat pricing, same unit as Starter/Scaler.
   const isAiPlan = plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
   // Paid plans are billed per WhatsApp number (with a bundled user count
-  // spelled out in the priceNote just below). Shown as "/channel/month"
+  // spelled out in the priceNote just below). Shown as "/number/month"
   // — the earlier "/WhatsApp number/month" felt too heavy in the price row.
   // Starter is free (Chrome-only) so its unit rarely renders; still, use
   // "/user/month" for it so the word "seat" never surfaces on the page.
   const priceUnit =
     plan.planKey === 'scaler' || plan.planKey === 'basic-ai' || plan.planKey === 'pro-ai'
-      ? '/channel/month'
+      ? '/number/month'
       : '/user/month'
   // Wallet credit: $45 (45% of Basic AI $99) and $90 (45% of Pro AI $199).
   const formatFeatureText = (text: string) => {
