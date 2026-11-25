@@ -2065,7 +2065,7 @@
   },
   "msa": {
     "title": "Acuerdo de Servicio Maestro",
-    "lastRevised": "Última revisión: 12 de junio de 2024",
+    "lastRevised": "Última revisión: 25 de noviembre de 2026",
     "contact": "Si tiene alguna pregunta, contáctenos en hey@eazybe.com",
     "intro": "Este Acuerdo de Suscripción Maestro de Eazybe (\"MSA\") entra en vigor a partir de la fecha efectiva de un formulario de pedido firmado aplicable (dicho formulario un \"Formulario de Pedido\" y dicha fecha la \"Fecha Efectiva\") y se celebra entre Eazybe Inc 8, The Green STE B Dover, Delaware -19901, y el cliente establecido en el Formulario de Pedido (\"Cliente\") (cada uno una \"Parte\" y juntos las \"Partes\"). En caso de cualquier inconsistencia o conflicto entre los términos del MSA y los términos de cualquier Formulario de Pedido, los términos del Formulario de Pedido prevalecen.",
     "section1": {
@@ -2093,7 +2093,7 @@
     "section5": {
       "title": "PLAZO Y TERMINACIÓN",
       "p1": "Sujeto a terminación anticipada como se establece a continuación, este Acuerdo es por el Plazo de Servicio Inicial como se especifica en el Formulario de Pedido, y se renovará automáticamente por períodos adicionales de la misma duración que el Plazo de Servicio Inicial (colectivamente, el \"Plazo\"), a menos que cualquiera de las partes solicite la terminación con al menos treinta (30) días de anticipación al final del plazo entonces vigente.",
-      "p2": "Además de cualquier otro recurso que pueda tener, cualquiera de las partes también puede terminar este Acuerdo mediante aviso de treinta (30) días (o sin aviso en caso de falta de pago), si la otra parte incumple materialmente cualquiera de los términos o condiciones de este Acuerdo. El Cliente pagará en su totalidad por los Servicios hasta e incluyendo el último día en que se presten los Servicios. Tras cualquier terminación, la Empresa pondrá a disposición del Cliente todos los Datos del Cliente para recuperación electrónica por un período de treinta (30) días, pero después de eso la Empresa puede, pero no está obligada a, eliminar los Datos del Cliente almacenados. Todas las secciones de este Acuerdo que por su naturaleza deban sobrevivir a la terminación sobrevivirán a la terminación, incluyendo, sin limitación, derechos acumulados al pago, obligaciones de confidencialidad, renuncias de garantía y limitaciones de responsabilidad."
+      "p2": "Además de cualquier otro recurso que pueda tener, cualquiera de las partes también puede terminar este Acuerdo mediante aviso de treinta (30) días (o sin aviso en caso de falta de pago), si la otra parte incumple materialmente cualquiera de los términos o condiciones de este Acuerdo. El Cliente pagará en su totalidad por los Servicios hasta e incluyendo el último día en que se presten los Servicios. Tras cualquier terminación, la Empresa pondrá a disposición del Cliente todos los Datos del Cliente para recuperación electrónica por un período de treinta (30) días, después de lo cual la Empresa eliminará todos los Datos del Cliente almacenados en sus sistemas. Los Datos del Cliente que el Cliente haya sincronizado con su propio CRM u otros sistemas de terceros permanecen en dichos sistemas bajo el control del Cliente y no se ven afectados por esta eliminación. Todas las secciones de este Acuerdo que por su naturaleza deban sobrevivir a la terminación sobrevivirán a la terminación, incluyendo, sin limitación, derechos acumulados al pago, obligaciones de confidencialidad, renuncias de garantía y limitaciones de responsabilidad."
     },
     "section6": {
       "title": "GARANTÍA Y RENUNCIA",
@@ -2115,7 +2115,7 @@
     "exhibitA": {
       "title": "Anexo A",
       "subtitle": "Términos de Soporte",
-      "p1": "La Empresa proporcionará Soporte Técnico al Cliente vía teléfono y correo electrónico en días hábiles durante las horas de 10:00 am a 7:00 pm Hora de India (GMT+8), con exclusión de los Días Festivos Públicos de India (\"Horas de Soporte\").",
+      "p1": "La Empresa proporcionará Soporte Técnico al Cliente vía teléfono y correo electrónico en días hábiles durante las horas de 10:00 am a 7:00 pm Hora Estándar de India (IST, GMT+5:30), con exclusión de los Días Festivos Públicos de India (\"Horas de Soporte\").",
       "p2": "El Cliente puede iniciar un ticket de helpdesk durante las horas de soporte enviando un correo electrónico a hey@eazybe.com",
       "p3": "La Empresa utilizará esfuerzos comercialmente razonables para responder a todos los tickets de Helpdesk dentro de un (1) día hábil."
     },

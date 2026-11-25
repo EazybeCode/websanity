@@ -2065,7 +2065,7 @@
   },
   "msa": {
     "title": "Contrato de Serviço Mestre",
-    "lastRevised": "Última revisão: 12 de junho de 2024",
+    "lastRevised": "Última revisão: 25 de novembro de 2026",
     "contact": "Se você tiver alguma dúvida, entre em contato com hey@eazybe.com",
     "intro": "Este Contrato de Assinatura Mestre da Eazybe (\"MSA\") entra em vigor a partir da data efetiva de um formulário de pedido assinado aplicável (tal formulário um \"Formulário de Pedido\" e tal data a \"Data Efetiva\") e é celebrado entre Eazybe Inc 8, The Green STE B Dover, Delaware -19901, e o cliente indicado no Formulário de Pedido (\"Cliente\") (cada um uma \"Parte\" e juntos as \"Partes\"). Em caso de qualquer inconsistência ou conflito entre os termos do MSA e os termos de qualquer Formulário de Pedido, os termos do Formulário de Pedido prevalecem.",
     "section1": {
@@ -2093,7 +2093,7 @@
     "section5": {
       "title": "PRAZO E RESCISÃO",
       "p1": "Sujeito a rescisão antecipada conforme previsto abaixo, este Acordo é para o Prazo de Serviço Inicial conforme especificado no Formulário de Pedido, e será automaticamente renovado por períodos adicionais da mesma duração que o Prazo de Serviço Inicial (coletivamente, o \"Prazo\"), a menos que qualquer das partes solicite a rescisão com pelo menos trinta (30) dias de antecedência do final do prazo então vigente.",
-      "p2": "Além de quaisquer outros recursos que possa ter, qualquer das partes também pode rescindir este Acordo mediante aviso de trinta (30) dias (ou sem aviso em caso de falta de pagamento), se a outra parte violar materialmente qualquer um dos termos ou condições deste Acordo. O Cliente pagará integralmente pelos Serviços até e incluindo o último dia em que os Serviços forem prestados. Após qualquer rescisão, a Empresa disponibilizará todos os Dados do Cliente ao Cliente para recuperação eletrônica por um período de trinta (30) dias, mas depois disso a Empresa pode, mas não é obrigada a, excluir os Dados do Cliente armazenados. Todas as seções deste Acordo que por sua natureza devem sobreviver à rescisão sobreviverão à rescisão, incluindo, sem limitação, direitos acumulados ao pagamento, obrigações de confidencialidade, isenções de garantia e limitações de responsabilidade."
+      "p2": "Além de quaisquer outros recursos que possa ter, qualquer das partes também pode rescindir este Acordo mediante aviso de trinta (30) dias (ou sem aviso em caso de falta de pagamento), se a outra parte violar materialmente qualquer um dos termos ou condições deste Acordo. O Cliente pagará integralmente pelos Serviços até e incluindo o último dia em que os Serviços forem prestados. Após qualquer rescisão, a Empresa disponibilizará todos os Dados do Cliente ao Cliente para recuperação eletrônica por um período de trinta (30) dias, após o qual a Empresa excluirá todos os Dados do Cliente armazenados em seus sistemas. Os Dados do Cliente que o Cliente sincronizou com seu próprio CRM ou outros sistemas de terceiros permanecem nesses sistemas sob o controle do Cliente e não são afetados por essa exclusão. Todas as seções deste Acordo que por sua natureza devem sobreviver à rescisão sobreviverão à rescisão, incluindo, sem limitação, direitos acumulados ao pagamento, obrigações de confidencialidade, isenções de garantia e limitações de responsabilidade."
     },
     "section6": {
       "title": "GARANTIA E ISENÇÃO",
@@ -2115,7 +2115,7 @@
     "exhibitA": {
       "title": "Anexo A",
       "subtitle": "Termos de Suporte",
-      "p1": "A Empresa fornecerá Suporte Técnico ao Cliente via telefone e correio eletrônico em dias úteis durante o horário das 10:00 às 19:00 Horário da Índia (GMT+8), com exceção dos Feriados Públicos da Índia (\"Horário de Suporte\").",
+      "p1": "A Empresa fornecerá Suporte Técnico ao Cliente via telefone e correio eletrônico em dias úteis durante o horário das 10:00 às 19:00 Horário Padrão da Índia (IST, GMT+5:30), com exceção dos Feriados Públicos da Índia (\"Horário de Suporte\").",
       "p2": "O Cliente pode iniciar um ticket de helpdesk durante o horário de suporte enviando um e-mail para hey@eazybe.com",
       "p3": "A Empresa envidará esforços comercialmente razoáveis para responder a todos os tickets de Helpdesk dentro de um (1) dia útil."
     },

@@ -1991,7 +1991,7 @@
   },
   "msa": {
     "title": "Ana Hizmet Sözleşmesi",
-    "lastRevised": "Son güncelleme: 12 Haziran 2024",
+    "lastRevised": "Son güncelleme: 25 Kasım 2026",
     "contact": "Sorularınız için hey@eazybe.com adresinden bize ulaşabilirsiniz",
     "intro": "Bu Eazybe Ana Abonelik Sözleşmesi (\"MSA\"), geçerli bir imzalanmış sipariş formu (bu form bir \"Sipariş Formu\" ve bu tarih \"Yürürlük Tarihi\") yürürlük tarihinden itibaren geçerlidir ve Eazybe Inc 8, The Green STE B Dover, Delaware -19901 ile Sipariş Formunda belirtilen müşteri (\"Müşteri\") arasında yapılmıştır (her biri bir \"Taraf\" ve birlikte \"Taraflar\"). MSA şartları ile herhangi bir Sipariş Formu şartları arasında herhangi bir tutarsızlık veya çelişki olması durumunda, Sipariş Formu şartları geçerlidir.",
     "section1": {
@@ -2019,7 +2019,7 @@
     "section5": {
       "title": "SÜRE VE FESİH",
       "p1": "Aşağıda belirtildiği gibi daha erken feshe tabi olarak, bu Sözleşme Sipariş Formunda belirtilen İlk Hizmet Süresi içindir ve taraflardan biri o zaman geçerli sürenin bitiminden en az otuz (30) gün önce fesih talep etmedikçe, İlk Hizmet Süresiyle aynı sürede ek süreler için otomatik olarak yenilenecektir (toplu olarak \"Süre\").",
-      "p2": "Sahip olabileceği diğer çözüm yollarına ek olarak, taraflardan biri, diğer taraf bu Sözleşmenin şartlarından veya koşullarından herhangi birini önemli ölçüde ihlal ederse, otuz (30) gün önceden bildirimde bulunarak (veya ödeme yapılmaması durumunda bildirim olmaksızın) bu Sözleşmeyi feshedebilir. Müşteri, Hizmetlerin sağlandığı son gün dahil olmak üzere Hizmetler için tam ödeme yapacaktır. Herhangi bir fesih üzerine, Şirket tüm Müşteri Verilerini otuz (30) günlük bir süre için elektronik olarak alınmak üzere Müşteriye sunacaktır, ancak bundan sonra Şirket saklanan Müşteri Verilerini silebilir, ancak bunu yapmak zorunda değildir. Bu Sözleşmenin doğası gereği fesihten sonra da geçerli olması gereken tüm bölümleri, sınırlama olmaksızın ödemeye ilişkin tahakkuk eden haklar, gizlilik yükümlülükleri, garanti feragatnameleri ve sorumluluk sınırlamaları dahil olmak üzere fesihten sonra da geçerli olacaktır."
+      "p2": "Sahip olabileceği diğer çözüm yollarına ek olarak, taraflardan biri, diğer taraf bu Sözleşmenin şartlarından veya koşullarından herhangi birini önemli ölçüde ihlal ederse, otuz (30) gün önceden bildirimde bulunarak (veya ödeme yapılmaması durumunda bildirim olmaksızın) bu Sözleşmeyi feshedebilir. Müşteri, Hizmetlerin sağlandığı son gün dahil olmak üzere Hizmetler için tam ödeme yapacaktır. Herhangi bir fesih üzerine, Şirket tüm Müşteri Verilerini otuz (30) günlük bir süre için elektronik olarak alınmak üzere Müşteriye sunacak ve bu sürenin sonunda saklanan tüm Müşteri Verilerini sistemlerinden silecektir. Müşterinin kendi CRM'ine veya diğer üçüncü taraf sistemlere senkronize ettiği Müşteri Verileri, Müşterinin kontrolünde bu sistemlerde kalmaya devam eder ve bu silme işleminden etkilenmez. Bu Sözleşmenin doğası gereği fesihten sonra da geçerli olması gereken tüm bölümleri, sınırlama olmaksızın ödemeye ilişkin tahakkuk eden haklar, gizlilik yükümlülükleri, garanti feragatnameleri ve sorumluluk sınırlamaları dahil olmak üzere fesihten sonra da geçerli olacaktır."
     },
     "section6": {
       "title": "GARANTİ VE FERAGATNAME",
@@ -2041,7 +2041,7 @@
     "exhibitA": {
       "title": "Ek A",
       "subtitle": "Destek Şartları",
-      "p1": "Şirket, Hindistan Resmi Tatilleri hariç olmak üzere hafta içi günlerde 10:00 - 19:00 Hindistan Saati (GMT+8) arasında (\"Destek Saatleri\") hem telefon hem de elektronik posta yoluyla Müşteriye Teknik Destek sağlayacaktır.",
+      "p1": "Şirket, Hindistan Resmi Tatilleri hariç olmak üzere hafta içi günlerde 10:00 - 19:00 Hindistan Standart Saati (IST, GMT+5:30) arasında (\"Destek Saatleri\") hem telefon hem de elektronik posta yoluyla Müşteriye Teknik Destek sağlayacaktır.",
       "p2": "Müşteri, destek saatleri içinde hey@eazybe.com adresine e-posta göndererek bir yardım masası bileti başlatabilir",
       "p3": "Şirket, tüm Yardım Masası biletlerine bir (1) iş günü içinde yanıt vermek için ticari olarak makul çabaları kullanacaktır."
     },

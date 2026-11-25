@@ -1,0 +1,875 @@
+{
+ "title": "Eazybe Inc. Customer EU and UK Personal Data Processing Addendum",
+ "blocks": [
+  {
+   "t": "p",
+   "x": "This EU and UK Data Processing Addendum (“DPA”) supplements the Eazybe Inc. Master Subscription Agreement (the “Agreement”) entered into by and between the customer signing this DPA (“Customer”) and Eazybe Inc. (“Company”). By executing the DPA in accordance with Section 11 herein, Customer enters into this DPA on behalf of itself and, to the extent required under applicable Data Protection Laws (defined below), in the name and on behalf of its Affiliates (defined below), if any. This DPA incorporates the terms of the Agreement, and any terms not defined in this DPA shall have the meaning set forth in the Agreement."
+  },
+  {
+   "t": "h2",
+   "x": "1. Definitions"
+  },
+  {
+   "t": "p",
+   "x": "1.1 Affiliate means (i) an entity of which a party directly or indirectly owns fifty percent (50%) or more of the stock or other equity interest, (ii) an entity that owns at least fifty percent (50%) or more of the stock or other equity interest of a party, or (iii) an entity which is under common control with a party by having at least fifty percent (50%) or more of the stock or other equity interest of such entity and a party owned by the same person, but such entity shall only be deemed to be an Affiliate so long as such ownership exists."
+  },
+  {
+   "t": "p",
+   "x": "1.2 Authorized Sub-Processor means a third-party who has a need to know or otherwise access Customer’s Personal Data to enable Company to perform its obligations under this DPA or the Agreement, and who (1) can be furnished on request as mentioned in Section 4.2 of this DPA or (2) subsequently authorized under Section 4.2 of this DPA."
+  },
+  {
+   "t": "p",
+   "x": "1.3 Company Account Data means personal data that relates to Company’s relationship with Customer, including the names or contact information of individuals authorized by Customer to access Customer’s account and billing information of individuals that Customer has associated with its account. Company Account Data also includes any data Company may need to collect for the purpose of managing its relationship with Customer, identity verification, or as otherwise required by applicable laws and regulations."
+  },
+  {
+   "t": "p",
+   "x": "1.4 Company Usage Data means Service usage data collected and processed by Company in connection with the provision of the Services, including without limitation data used to identify the source and destination of a communication, activity logs, and data used to optimize and maintain performance of the Services, and to investigate and prevent system abuse."
+  },
+  {
+   "t": "p",
+   "x": "1.5 Data Exporter means Customer."
+  },
+  {
+   "t": "p",
+   "x": "1.6 Data Importer means Company."
+  },
+  {
+   "t": "p",
+   "x": "1.7 Data Protection Laws means any applicable laws and regulations in any relevant jurisdiction relating to the use or processing of Personal Data including: (i) the General Data Protection Regulation (Regulation (EU) 2016/679) (“EU GDPR”) and the EU GDPR as it forms part of the law of England and Wales by virtue of section 3 of the European Union (Withdrawal) Act 2018 (the “UK GDPR”) (together, collectively, the “GDPR”), (ii) the Swiss Federal Act on Data Protection; (iii) the UK Data Protection Act 2018; and (iv) the Privacy and Electronic Communications (EC Directive) Regulations 2003; in each case, as updated, amended or replaced from time to time. The terms “Data Subject,” “Personal Data,” “Personal Data Breach,” “processing,” “processor,” “controller,” and “supervisory authority” shall have the meanings set forth in the GDPR."
+  },
+  {
+   "t": "p",
+   "x": "1.8 EU SCCs means the standard contractual clauses approved by the European Commission in Commission Decision 2021/914 dated 4 June 2021, for transfers of personal data to countries not otherwise recognized as offering an adequate level of protection for personal data by the European Commission (as amended and updated from time to time), as modified by Section 6.2 of this DPA."
+  },
+  {
+   "t": "p",
+   "x": "1.9 ex-EEA Transfer means the transfer of Personal Data, which is processed in accordance with the GDPR, from the Data Exporter to the Data Importer (or its premises) outside the European Economic Area (the “EEA”), and such transfer is not governed by an adequacy decision made by the European Commission in accordance with the relevant provisions of the GDPR."
+  },
+  {
+   "t": "p",
+   "x": "1.10 ex-UK Transfer means the transfer of Personal Data covered by Chapter V of the UK GDPR, which is processed in accordance with the UK GDPR and the Data Protection Act 2018, from the Data Exporter to the Data Importer (or its premises) outside the United Kingdom (the “UK”), and such transfer is not governed by an adequacy decision made by the Secretary of State in accordance with the relevant provisions of the UK GDPR and the Data Protection Act 2018."
+  },
+  {
+   "t": "p",
+   "x": "1.11 Services shall have the meaning set forth in the Agreement."
+  },
+  {
+   "t": "p",
+   "x": "1.12 Standard Contractual Clauses means the EU SCCs and the UK SCCs."
+  },
+  {
+   "t": "p",
+   "x": "1.13 UK SCCs means the EU SCCs, as amended by the UK Addendum."
+  },
+  {
+   "t": "h2",
+   "x": "2. Relationship of the Parties; Processing of Data"
+  },
+  {
+   "t": "p",
+   "x": "2.1 The parties acknowledge and agree that with regard to the processing of Personal Data, Customer may act either as a controller or processor and, except as expressly set forth in this DPA or the Agreement, Company is a processor. Customer shall, in its use of the Services, at all times process Personal Data, and provide instructions for the processing of Personal Data, in compliance with Data Protection Laws. Customer shall ensure that the processing of Personal Data in accordance with Customer’s instructions will not cause Company to be in breach of the Data Protection Laws. Customer is solely responsible for the accuracy, quality, and legality of (i) the Personal Data provided to Company by or on behalf of Customer, (ii) the means by which Customer acquired any such Personal Data, and (iii) the instructions it provides to Company regarding the processing of such Personal Data. Customer shall not provide or make available to Company any Personal Data in violation of the Agreement or otherwise inappropriate for the nature of the Services, and shall indemnify Company from all claims and losses in connection therewith."
+  },
+  {
+   "t": "p",
+   "x": "2.2 Company shall not process Personal Data (i) for purposes other than those set forth in the Agreement and/or Exhibit A, (ii) in a manner inconsistent with the terms and conditions set forth in this DPA or any other documented instructions provided by Customer, including with regard to transfers of personal data to a third country or an international organization, unless required to do so by Supervisory Authority to which the Company is subject; in such a case, the Company shall inform the Customer of that legal requirement before processing, unless that law prohibits such information on important grounds of public interest, or (iii) in violation of Data Protection Laws. Customer hereby instructs Company to process Personal Data in accordance with the foregoing and as part of any processing initiated by Customer in its use of the Services."
+  },
+  {
+   "t": "p",
+   "x": "2.3 Following termination or expiry of the Agreement, Company will make Customer’s Personal Data available to Customer for electronic retrieval for a period of thirty (30) days, after which Company will delete such Personal Data from its systems, unless further storage of such Personal Data is required by applicable law. Personal Data that Customer has synced to its own CRM or other third-party systems through the Services remains in those systems under Customer’s control and is not affected by such deletion. If deletion is impracticable or prohibited by law, rule, or regulation, Company shall take measures to block such Personal Data from any further processing (except to the extent necessary for its continued hosting or processing required by law, rule, or regulation) and shall continue to appropriately protect the Personal Data remaining in its possession, custody, or control. If Customer and Company have entered into Standard Contractual Clauses as described in Section 6 (Transfers of Personal Data), the parties agree that the certification of deletion of Personal Data that is described in Clause 8.1(d) and Clause 8.5 of the EU SCCs (as applicable) shall be provided by Company to Customer upon Customer’s request."
+  },
+  {
+   "t": "h2",
+   "x": "3. Confidentiality"
+  },
+  {
+   "t": "p",
+   "x": "3.1 Company shall ensure that any person it authorizes to process Personal Data has agreed to protect Personal Data in accordance with Company’s confidentiality obligations in the Agreement. Customer agrees that Company may disclose Personal Data to its advisers, auditors, or other third parties as reasonably required in connection with the performance of its obligations under this DPA, the Agreement, or the provision of Services to Customer."
+  },
+  {
+   "t": "h2",
+   "x": "4. Authorized Sub-Processors"
+  },
+  {
+   "t": "p",
+   "x": "4.1 Customer acknowledges and agrees that Company may (1) engage its Affiliates as well as the Authorized Sub-Processors on the List (defined below) to access and process Personal Data in connection with the Services and (2) from time to time engage additional third parties for the purpose of providing the Services, including without limitation the processing of Personal Data. By way of this DPA, Customer provides general written authorization to Company to engage sub-processors as necessary to perform the Services."
+  },
+  {
+   "t": "p",
+   "x": "4.2 A list of Company’s current Authorized Sub-Processors (the “List”) is available to Customer upon request. Such List may be updated by Company from time to time. Company will provide a mechanism to subscribe to notifications (which may include but are not limited to email notifications) of new Authorized Sub-Processors and Customer, if it wishes, will subscribe to such notifications where available. If Customer does not subscribe to such notifications, Customer waives any right it may have to receive prior notice of changes to Authorized Sub-Processors. At least ten (10) days before enabling any third party other than existing Authorized Sub-Processors to access or participate in the processing of Personal Data, Company will add such third party to the List and notify subscribers, including Customer, via the aforementioned notifications. Customer may object to such an engagement by informing Company in writing within ten (10) days of receipt of the aforementioned notice by Customer, provided such objection is in writing and based on reasonable grounds relating to data protection. Customer acknowledges that certain sub-processors are essential to providing the Services and that objecting to the use of a sub-processor may prevent Company from offering the Services to Customer."
+  },
+  {
+   "t": "p",
+   "x": "4.3 If Customer reasonably objects to an engagement in accordance with Section 4.2, and Company cannot provide a commercially reasonable alternative within a reasonable period of time, Customer may discontinue the use of the affected Service by providing written notice to Company. Discontinuation shall not relieve Customer of any fees owed to Company under the Agreement."
+  },
+  {
+   "t": "p",
+   "x": "4.4 If Customer does not object to the engagement of a third party in accordance with Section 4.2 within ten (10) days of notice by Company, that third party will be deemed an Authorized Sub-Processor for the purposes of this DPA."
+  },
+  {
+   "t": "p",
+   "x": "4.5 Company will enter into a written agreement with the Authorized Sub-Processor imposing on the Authorized Sub-Processor data protection obligations comparable to those imposed on Company under this DPA with respect to the protection of Personal Data. In case an Authorized Sub-Processor fails to fulfill its data protection obligations under such written agreement with Company, Company will remain liable to Customer for the performance of the Authorized Sub-Processor’s obligations under such agreement."
+  },
+  {
+   "t": "p",
+   "x": "4.6 If Customer and Company have entered into Standard Contractual Clauses as described in Section 6 (Transfers of Personal Data), (i) the above authorizations will constitute Customer’s prior written consent to the subcontracting by Company of the processing of Personal Data if such consent is required under the Standard Contractual Clauses, and (ii) the parties agree that the copies of the agreements with Authorized Sub-Processors that must be provided by Company to Customer pursuant to Clause 9(c) of the EU SCCs may have commercial information, or information unrelated to the Standard Contractual Clauses or their equivalent, removed by the Company beforehand, and that such copies will be provided by the Company only upon request by Customer."
+  },
+  {
+   "t": "h2",
+   "x": "5. Security of Personal Data"
+  },
+  {
+   "t": "p",
+   "x": "5.1 Taking into account the state of the art, the costs of implementation, and the nature, scope, context, and purposes of processing as well as the risk of varying likelihood and severity for the rights and freedoms of natural persons, Company shall maintain appropriate technical and organizational measures to ensure a level of security appropriate to the risk of processing Personal Data. Company’s security measures are detailed in Exhibit C."
+  },
+  {
+   "t": "h2",
+   "x": "6. Transfers of Personal Data"
+  },
+  {
+   "t": "p",
+   "x": "6.1 The parties agree that the Company may transfer Personal Data processed under this DPA outside the EEA, the UK, or Switzerland as necessary to provide the Services. Customer acknowledges that Company’s primary processing operations take place in the United States, and that the transfer of Customer’s Personal Data to the United States is necessary for the provision of the Services to Customer. If Company transfers Personal Data protected under this DPA to a jurisdiction for which the European Commission has not issued an adequacy decision, Company will ensure that appropriate safeguards have been implemented for the transfer of Personal Data in accordance with Data Protection Laws."
+  },
+  {
+   "t": "p",
+   "x": "6.2 Ex-EEA Transfers. The parties agree that ex-EEA Transfers are made pursuant to the EU SCCs, which are deemed entered into (and incorporated into this DPA by this reference) and completed as follows:"
+  },
+  {
+   "t": "li",
+   "x": "Module One (Controller to Controller) of the EU SCCs applies when Company is processing Personal Data as a controller pursuant to Section 9 of this DPA."
+  },
+  {
+   "t": "li",
+   "x": "Module Two (Controller to Processor) of the EU SCCs applies when Customer is a controller and Company is processing Personal Data for Customer as a processor pursuant to Section 2 of this DPA."
+  },
+  {
+   "t": "li",
+   "x": "Module Three (Processor to Sub-Processor) of the EU SCCs applies when Customer is a processor and Company is processing Personal Data on behalf of Customer as a sub-processor."
+  },
+  {
+   "t": "p",
+   "x": "6.3 For each module, where applicable, the following applies:"
+  },
+  {
+   "t": "li",
+   "x": "The optional docking clause in Clause 7 does not apply."
+  },
+  {
+   "t": "li",
+   "x": "In Clause 9, Option 2 (general written authorization) applies, and the minimum time period for prior notice of sub-processor changes shall be as set forth in Section 4.2 of this DPA."
+  },
+  {
+   "t": "li",
+   "x": "In Clause 11, the optional language does not apply."
+  },
+  {
+   "t": "li",
+   "x": "All square brackets in Clause 13 are hereby removed."
+  },
+  {
+   "t": "li",
+   "x": "In Clause 17 (Option 1), the EU SCCs will be governed by Irish law."
+  },
+  {
+   "t": "li",
+   "x": "In Clause 18(b), disputes will be resolved before the courts of Ireland."
+  },
+  {
+   "t": "li",
+   "x": "Exhibit B to this DPA contains the information required in Annex I and Annex III of the EU SCCs."
+  },
+  {
+   "t": "li",
+   "x": "Exhibit C to this DPA contains the information required in Annex II of the EU SCCs."
+  },
+  {
+   "t": "li",
+   "x": "By entering into this DPA, the parties are deemed to have signed the EU SCCs incorporated herein, including their Annexes."
+  },
+  {
+   "t": "p",
+   "x": "6.4 Ex-UK Transfers. The parties agree that ex-UK Transfers are made pursuant to the UK SCCs, which are deemed entered into and incorporated into this DPA by reference, and amended and completed in accordance with the UK Addendum, which is incorporated herein as Exhibit D of this DPA."
+  },
+  {
+   "t": "p",
+   "x": "6.5 Transfers from Switzerland. The parties agree that transfers from Switzerland are made pursuant to the EU SCCs with the following modifications:"
+  },
+  {
+   "t": "li",
+   "x": "The terms “General Data Protection Regulation” or “Regulation (EU) 2016/679” as utilized in the EU SCCs shall be interpreted to include the Federal Act on Data Protection of 19 June 1992 (the “FADP,” and as revised as of 25 September 2020, the “Revised FADP”) with respect to data transfers subject to the FADP."
+  },
+  {
+   "t": "li",
+   "x": "The terms of the EU SCCs shall be interpreted to protect the data of legal entities until the effective date of the Revised FADP."
+  },
+  {
+   "t": "li",
+   "x": "Clause 13 of the EU SCCs is modified to provide that the Federal Data Protection and Information Commissioner (“FDPIC”) of Switzerland shall have authority over data transfers governed by the FADP and the appropriate EU supervisory authority shall have authority over data transfers governed by the GDPR. Subject to the foregoing, all other requirements of Section 13 shall be observed."
+  },
+  {
+   "t": "li",
+   "x": "The term “EU Member State” as utilized in the EU SCCs shall not be interpreted in such a way as to exclude Data Subjects in Switzerland from exercising their rights in their place of habitual residence in accordance with Clause 18(c) of the EU SCCs."
+  },
+  {
+   "t": "h2",
+   "x": "7. Rights of Data Subjects"
+  },
+  {
+   "t": "p",
+   "x": "7.1 Company shall, to the extent permitted by law, notify Customer upon receipt of a request by a Data Subject to exercise the Data Subject’s rights of access, rectification, erasure, data portability, restriction or cessation of processing, withdrawal of consent to processing, and/or objection to being subject to processing that constitutes automated decision-making (such requests individually and collectively “Data Subject Request(s)”). If Company receives a Data Subject Request in relation to Customer’s data, Company will advise the Data Subject to submit their request to Customer and Customer will be responsible for responding to such request, including, where necessary, by using the functionality of the Services. Customer is solely responsible for ensuring that Data Subject Requests for erasure, restriction or cessation of processing, or withdrawal of consent to processing of any Personal Data are communicated to Company, and, if applicable, for ensuring that a record of consent to processing is maintained with respect to each Data Subject."
+  },
+  {
+   "t": "p",
+   "x": "7.2 Company shall, at the request of the Customer, and taking into account the nature of the processing applicable to any Data Subject Request, apply appropriate technical and organizational measures to assist Customer in complying with Customer’s obligation to respond to such Data Subject Request and/or in demonstrating such compliance, where possible, provided that (i) Customer is itself unable to respond without Company’s assistance and (ii) Company is able to do so in accordance with all applicable laws, rules, and regulations. Customer shall be responsible to the extent legally permitted for any costs and expenses arising from any such assistance by Company."
+  },
+  {
+   "t": "h2",
+   "x": "8. Actions and Access Requests; Audits"
+  },
+  {
+   "t": "p",
+   "x": "8.1 Company shall, taking into account the nature of the processing and the information available to Company, provide Customer with reasonable cooperation and assistance where necessary for Customer to comply with its obligations under the GDPR to conduct a data protection impact assessment and/or to demonstrate such compliance, provided that Customer does not otherwise have access to the relevant information. Customer shall be responsible to the extent legally permitted for any costs and expenses arising from any such assistance by Company."
+  },
+  {
+   "t": "p",
+   "x": "8.2 Company shall, taking into account the nature of the processing and the information available to Company, provide Customer with reasonable cooperation and assistance with respect to Customer’s cooperation and/or prior consultation with any Supervisory Authority, where necessary and where required by the GDPR. Customer shall be responsible to the extent legally permitted for any costs and expenses arising from any such assistance by Company."
+  },
+  {
+   "t": "p",
+   "x": "8.3 Company shall maintain records sufficient to demonstrate its compliance with its obligations under this DPA, and retain such records for a period of three (3) years after the termination of the Agreement. Customer shall, with reasonable notice to Company, have the right to review, audit, and copy such records at Company’s offices during regular business hours."
+  },
+  {
+   "t": "p",
+   "x": "8.4 Upon Customer’s written request at reasonable intervals, and subject to reasonable confidentiality controls, Company shall, either (i) make available for Customer’s review copies of certifications or reports demonstrating Company’s compliance with prevailing data security standards applicable to the processing of Customer’s Personal Data, or (ii) if the provision of reports or certifications pursuant to (i) is not reasonably sufficient under Data Protection Laws, allow Customer’s independent third party representative to conduct an audit or inspection of Company’s data security infrastructure and procedures that is sufficient to demonstrate Company’s compliance with its obligations under Data Protection Laws, provided that (a) Customer provides reasonable prior written notice of any such request for an audit and such inspection shall not be unreasonably disruptive to Company’s business; (b) such audit shall only be performed during business hours and occur no more than once per calendar year; and (c) such audit shall be restricted to data relevant to Customer. Customer shall be responsible for the costs of any such audits or inspections, including without limitation a reimbursement to Company for any time expended for on-site audits. If Customer and Company have entered into Standard Contractual Clauses as described in Section 6 (Transfers of Personal Data), the parties agree that the audits described in Clause 8.9 of the EU SCCs shall be carried out in accordance with this Section 8.4."
+  },
+  {
+   "t": "p",
+   "x": "8.5 Company shall immediately notify Customer if an instruction, in the Company’s opinion, infringes the Data Protection Laws or Supervisory Authority."
+  },
+  {
+   "t": "p",
+   "x": "8.6 In the event of a Personal Data Breach, Company shall, without undue delay, inform Customer of the Personal Data Breach and take such steps as Company in its sole discretion deems necessary and reasonable to remediate such violation (to the extent that remediation is within Company’s reasonable control)."
+  },
+  {
+   "t": "p",
+   "x": "8.7 In the event of a Personal Data Breach, Company shall, taking into account the nature of the processing and the information available to Company, provide Customer with reasonable cooperation and assistance necessary for Customer to comply with its obligations under the GDPR with respect to notifying (i) the relevant Supervisory Authority and (ii) Data Subjects affected by such Personal Data Breach without undue delay."
+  },
+  {
+   "t": "p",
+   "x": "8.8 The obligations described in Sections 8.6 and 8.7 shall not apply in the event that a Personal Data Breach results from the actions or omissions of Customer. Company’s obligation to report or respond to a Personal Data Breach under Sections 8.6 and 8.7 will not be construed as an acknowledgment by Company of any fault or liability with respect to the Personal Data Breach."
+  },
+  {
+   "t": "h2",
+   "x": "9. Company’s Role as a Controller"
+  },
+  {
+   "t": "p",
+   "x": "The parties acknowledge and agree that with respect to Company Account Data and Company Usage Data, Company is an independent controller, not a joint controller with Customer. Company will process Company Account Data and Company Usage Data as a controller (i) to manage the relationship with Customer; (ii) to carry out Company’s core business operations, such as accounting, audits, tax preparation and filing, and compliance purposes; (iii) to monitor, investigate, prevent and detect fraud, security incidents, and other misuse of the Services, and to prevent harm to Customer; (iv) for identity verification purposes; (v) to comply with legal or regulatory obligations applicable to the processing and retention of Personal Data to which Company is subject; and (vi) as otherwise permitted under Data Protection Laws and in accordance with this DPA and the Agreement. Company may also process Company Usage Data as a controller to provide, optimize, and maintain the Services, to the extent permitted by Data Protection Laws. Any processing by the Company as a controller shall be in accordance with the Company’s privacy policy."
+  },
+  {
+   "t": "h2",
+   "x": "10. Conflict"
+  },
+  {
+   "t": "p",
+   "x": "In the event of any conflict or inconsistency among the following documents, the order of precedence will be: (1) the applicable terms in the Standard Contractual Clauses; (2) the terms of this DPA; (3) the Agreement; and (4) the Company’s privacy policy. Any claims brought in connection with this DPA will be subject to the terms and conditions, including, but not limited to, the exclusions and limitations set forth in the Agreement."
+  },
+  {
+   "t": "h2",
+   "x": "11. Execution of this DPA"
+  },
+  {
+   "t": "p",
+   "x": "Company has pre-signed this DPA, in the signature block below and in each of the main body, and Exhibit B (as the “data importer”). To complete this DPA, Customer must: (i) complete the information requested in the signature block below and sign there, (ii) complete the information requested of the “data exporter” on Exhibits B, and (iii) send the completed and signed Addendum to Company by email to hey@eazybe.com. Upon receipt of the validly completed Addendum by Company, this DPA will become legally binding."
+  },
+  {
+   "t": "sign",
+   "x": null
+  },
+  {
+   "t": "h2",
+   "x": "Exhibit A"
+  },
+  {
+   "t": "h3",
+   "x": "Details of Processing"
+  },
+  {
+   "t": "h4",
+   "x": "Nature and Purpose of Processing"
+  },
+  {
+   "t": "p",
+   "x": "Company will process Customer’s Personal Data as necessary to provide the Services under the Agreement, for the purposes specified in the Agreement and this DPA, and in accordance with Customer’s instructions as set forth in this DPA. The nature of processing includes, without limitation:"
+  },
+  {
+   "t": "li",
+   "x": "Receiving data, including collection, accessing, retrieval, recording, and data entry"
+  },
+  {
+   "t": "li",
+   "x": "Protecting data, including restricting, encrypting, and security testing"
+  },
+  {
+   "t": "li",
+   "x": "Holding data, including storage, organization, and structuring"
+  },
+  {
+   "t": "li",
+   "x": "Erasing data, including destruction and deletion"
+  },
+  {
+   "t": "li",
+   "x": "Analyzing data, including product usage assessment"
+  },
+  {
+   "t": "li",
+   "x": "Sharing data, including disclosure to sub-processors as permitted in this DPA"
+  },
+  {
+   "t": "h4",
+   "x": "Duration of Processing and Retention"
+  },
+  {
+   "t": "p",
+   "x": "Company will process Customer’s Personal Data for the term of the Agreement. Following termination or expiry of the Agreement, Customer’s Personal Data is available for retrieval for thirty (30) days and is then deleted from Company’s systems, unless further retention is required by applicable law or regulation. Personal Data that Customer has synced to its own CRM remains in Customer’s CRM under Customer’s control. Company Account Data and Company Usage Data will be processed and stored as set forth in Company’s privacy policy."
+  },
+  {
+   "t": "h4",
+   "x": "Categories of Data Subjects"
+  },
+  {
+   "t": "p",
+   "x": "Customer’s employees, consultants, contractors, and/or agents."
+  },
+  {
+   "t": "h4",
+   "x": "Categories of Personal Data"
+  },
+  {
+   "t": "p",
+   "x": "Company processes Personal Data contained in Company Account Data, Company Usage Data, and any Personal Data provided by Customer (including any Personal Data Customer collects from its end users and processes through its use of the Services) or collected by Company in order to provide the Services or as otherwise set forth in the Agreement or this DPA. Categories of Personal Data include, but are not limited to, names, phone numbers, emails, job titles, usernames, company device identifiers (e.g., serial numbers), IP addresses of company devices, and applications installed on company devices. Additionally, message information synced through our service, including, but not limited to, message content, multimedia files, contact names, and contact phone numbers, will also be collected."
+  },
+  {
+   "t": "h4",
+   "x": "Sensitive Data or Special Categories of Data"
+  },
+  {
+   "t": "p",
+   "x": "Customers are prohibited from providing sensitive personal data or special categories of data to Company, including without limitation, any data that discloses criminal history."
+  },
+  {
+   "t": "h2",
+   "x": "Exhibit B"
+  },
+  {
+   "t": "p",
+   "x": "The following includes the information required by Annex I and Annex III of the EU SCCs, and Table 1, Annex 1A, and Annex 1B of the UK Addendum."
+  },
+  {
+   "t": "h3",
+   "x": "1. The Parties"
+  },
+  {
+   "t": "p",
+   "x": "Data exporter(s):"
+  },
+  {
+   "t": "li",
+   "label": "Name:",
+   "x": ""
+  },
+  {
+   "t": "li",
+   "label": "Trading Name (if different):",
+   "x": ""
+  },
+  {
+   "t": "li",
+   "label": "Address:",
+   "x": ""
+  },
+  {
+   "t": "li",
+   "label": "Official Registration Number (if any) (company number or similar identifier):",
+   "x": ""
+  },
+  {
+   "t": "li",
+   "label": "Contact person’s name, position, and contact details:",
+   "x": ""
+  },
+  {
+   "t": "li",
+   "label": "Activities relevant to the data transferred under these Clauses:",
+   "x": "As described in Section 2 of the DPA."
+  },
+  {
+   "t": "li",
+   "label": "Signature and date:",
+   "x": ""
+  },
+  {
+   "t": "li",
+   "label": "Role (controller/processor):",
+   "x": "Controller"
+  },
+  {
+   "t": "p",
+   "x": "Data importer(s):"
+  },
+  {
+   "t": "li",
+   "label": "Name:",
+   "x": "Eazybe Inc."
+  },
+  {
+   "t": "li",
+   "label": "Trading Name (if different):",
+   "x": "Eazybe"
+  },
+  {
+   "t": "li",
+   "label": "Address and contact information:",
+   "x": "8, The Green, STE B, Dover, Delaware, United States-19901"
+  },
+  {
+   "t": "li",
+   "label": "Official Registration Number:",
+   "x": "EIN: 320691892"
+  },
+  {
+   "t": "li",
+   "label": "Activities relevant to the data transferred under these Clauses:",
+   "x": "As described in Section 2 of the DPA."
+  },
+  {
+   "t": "li",
+   "label": "Signature and date:",
+   "x": ""
+  },
+  {
+   "t": "li",
+   "label": "Role (controller/processor):",
+   "x": "As described in Section 2 of the DPA."
+  },
+  {
+   "t": "h3",
+   "x": "2. Description of the Transfer"
+  },
+  {
+   "t": "li",
+   "label": "Data Subjects:",
+   "x": "As described in Exhibit A of the DPA."
+  },
+  {
+   "t": "li",
+   "label": "Categories of Personal Data:",
+   "x": "As described in Exhibit A of the DPA."
+  },
+  {
+   "t": "li",
+   "label": "Special Category Personal Data (if applicable):",
+   "x": "As described in Exhibit A of the DPA."
+  },
+  {
+   "t": "li",
+   "label": "Nature of the Processing:",
+   "x": "As described in Exhibit A of the DPA."
+  },
+  {
+   "t": "li",
+   "label": "Purposes of Processing:",
+   "x": "As described in Exhibit A of the DPA."
+  },
+  {
+   "t": "li",
+   "label": "Duration of Processing and Retention (or the criteria to determine such period):",
+   "x": "As described in Exhibit A of the DPA."
+  },
+  {
+   "t": "li",
+   "label": "Frequency of the transfer:",
+   "x": "As necessary to perform all obligations and rights with respect to Personal Data as provided in the Agreement or DPA."
+  },
+  {
+   "t": "li",
+   "label": "Recipients of Personal Data Transferred to the Data Importer:",
+   "x": "Company will maintain a list of Authorized Sub-Processors available upon request."
+  },
+  {
+   "t": "h3",
+   "x": "3. Competent Supervisory Authority"
+  },
+  {
+   "t": "p",
+   "x": "The supervisory authority shall be the supervisory authority of the Data Exporter, as determined in accordance with Clause 13 of the EU SCCs. The supervisory authority for the purposes of the UK Addendum shall be the UK Information Commissioner’s Office."
+  },
+  {
+   "t": "h2",
+   "x": "Exhibit C"
+  },
+  {
+   "t": "h3",
+   "x": "Description of the Technical and Organizational Security Measures Implemented by the Data Importer"
+  },
+  {
+   "t": "p",
+   "x": "The following includes the information required by Annex II of the EU SCCs and Annex II of the UK Addendum:"
+  },
+  {
+   "t": "li",
+   "label": "Measures of pseudonymization and encryption of personal data:",
+   "x": "Company has deployed secure methods and protocols for the transmission of confidential or sensitive information over public networks. Databases housing sensitive customer data are encrypted at rest. Company uses only recommended secure cipher suites and protocols to encrypt all traffic in transit, and Customer Data is securely encrypted with strong ciphers and configurations when at rest."
+  },
+  {
+   "t": "li",
+   "label": "Measures for ensuring ongoing confidentiality, integrity, availability, and resilience of processing systems and services:",
+   "x": "Company’s customer agreements contain strict confidentiality obligations. Additionally, Company requires every downstream sub-processor to sign confidentiality provisions that are substantially similar to those contained in Company’s customer agreements."
+  },
+  {
+   "t": "li",
+   "label": "Measures for ensuring the ability to restore the availability and access to personal data in a timely manner in the event of a physical or technical incident:",
+   "x": "Daily, weekly, and monthly backups of production datastores are taken. Backups are periodically tested in accordance with information security and data management policies."
+  },
+  {
+   "t": "li",
+   "label": "Processes for regularly testing, assessing, and evaluating the effectiveness of technical and organizational measures to ensure the security of processing:",
+   "x": "Company is undergoing a SOC 2 Type 2 audit that includes the Security and Processing Integrity Trust Service Criteria."
+  },
+  {
+   "t": "li",
+   "label": "Measures for user identification and authorization:",
+   "x": "Company uses secure access protocols and processes and follows industry best-practices for authentication, including Multi Factor Authentication and Single Sign On (SSO). All production access requires the use of two-factor authentication, and network infrastructure is securely configured to vendor and industry best practices to block all unnecessary ports, services, and unauthorized network traffic."
+  },
+  {
+   "t": "li",
+   "label": "Measures for the protection of data during transmission:",
+   "x": "Company has deployed secure methods and protocols for the transmission of confidential or sensitive information over public networks. Company uses only recommended secure cipher suites and protocols to encrypt all traffic in transit (i.e., TLS 1.2)."
+  },
+  {
+   "t": "li",
+   "label": "Measures for the protection of data during storage:",
+   "x": "Encryption-at-rest is automated using AWS’s transparent disk encryption, which uses industry-standard AES-256 encryption to secure all volume (disk) data. All keys are fully managed by AWS."
+  },
+  {
+   "t": "li",
+   "label": "Measures for ensuring physical security of locations at which personal data are processed:",
+   "x": "All Company processing occurs in physical data centers that are managed by AWS as well as Heroku databases."
+  },
+  {
+   "t": "li",
+   "label": "Measures for ensuring event logging:",
+   "x": "Company monitors access to applications, tools, and resources that process or store Customer Data, including cloud services. Monitoring of security logs is managed by the security and engineering teams. Log activities are investigated when necessary and escalated appropriately."
+  },
+  {
+   "t": "li",
+   "label": "Measures for ensuring system configuration, including default configuration:",
+   "x": "Company adheres to a change management process to administer changes to the production environment for the Services, including changes to its underlying software, applications, and systems. All production changes are automated through CI/CD tools to ensure consistent configurations."
+  },
+  {
+   "t": "li",
+   "label": "Measures for internal IT and IT security governance and management:",
+   "x": "The Company’s security program includes administrative, organizational, technical, and physical safeguards reasonably designed to protect the Services and confidentiality, integrity, and availability of Customer Data."
+  },
+  {
+   "t": "li",
+   "label": "Measures for certification/assurance of processes and products:",
+   "x": "Company is preparing for annual SOC 2 Type II audits and ISO audits."
+  },
+  {
+   "t": "li",
+   "label": "Measures for ensuring data minimization:",
+   "x": "Company’s Customers unilaterally determine what data they route through the Services. As such, Company operates on a shared responsibility model. Company gives Customers control over exactly what data enters the platform."
+  },
+  {
+   "t": "li",
+   "label": "Measures for ensuring data quality:",
+   "x": "Company has a multi-tiered approach for ensuring data quality, including unit testing to ensure quality of logic used to process API calls, database schema validation rules, and schema-first API design to enforce a strict contract between official clients and API resolvers."
+  },
+  {
+   "t": "li",
+   "label": "Measures for ensuring limited data retention:",
+   "x": "Customers unilaterally determine what data they route through the Services. As such, Company operates on a shared responsibility model. If a Customer is unable to delete Personal Data via the self-services functionality of the Services, then the Company deletes such Personal Data upon the Customer's written request, within the timeframe specified in this DPA and in accordance with Applicable Data Protection Law. All Personal Data is deleted from the Services within thirty (30) days after service termination. Personal Data that Customer has synced to its own CRM remains in Customer’s CRM under Customer’s control."
+  },
+  {
+   "t": "li",
+   "label": "Measures for ensuring accountability:",
+   "x": "Company has adopted measures for ensuring accountability, such as implementing data protection and information security policies across the business, recording and reporting Personal Data Breaches, and formally assigning roles and responsibilities for information security and data privacy functions. Additionally, the Company conducts regular third-party audits to ensure compliance with our privacy and security standards."
+  },
+  {
+   "t": "li",
+   "label": "Measures for allowing data portability and ensuring erasure:",
+   "x": "Personal Data submitted to the Services by Customer may be deleted by the Customer or at the Customer’s request. Company will respond to all requests for data porting in order to address Customer needs."
+  },
+  {
+   "t": "li",
+   "label": "Technical and organizational measures of sub-processors:",
+   "x": "The Company enters into Data Processing Agreements with its Authorized Sub-Processors with data protection obligations substantially similar to those in this DPA."
+  },
+  {
+   "t": "h2",
+   "x": "Exhibit D"
+  },
+  {
+   "t": "h3",
+   "x": "UK Addendum to the EU Commission Standard Contractual Clauses"
+  },
+  {
+   "t": "p",
+   "x": "This UK Addendum is entered into by and between the parties to this Data Processing Addendum (\"DPA\") and is incorporated into the DPA. This UK Addendum is based on the International Data Transfer Addendum to the EU Commission Standard Contractual Clauses issued by the Information Commissioner’s Office (“ICO”) in the United Kingdom."
+  },
+  {
+   "t": "h3",
+   "x": "Part 1: Tables"
+  },
+  {
+   "t": "h4",
+   "x": "Table 1: Parties"
+  },
+  {
+   "t": "li",
+   "label": "Start Date:",
+   "x": "This UK Addendum shall have the same effective date as the DPA."
+  },
+  {
+   "t": "li",
+   "x": "The Parties:"
+  },
+  {
+   "t": "p",
+   "x": "Exporter:"
+  },
+  {
+   "t": "li",
+   "label": "Name:",
+   "x": "Customer"
+  },
+  {
+   "t": "li",
+   "label": "Key Contact:",
+   "x": "See Exhibit B of this DPA"
+  },
+  {
+   "t": "p",
+   "x": "Importer:"
+  },
+  {
+   "t": "li",
+   "label": "Name:",
+   "x": "Eazybe Inc."
+  },
+  {
+   "t": "li",
+   "label": "Key Contact:",
+   "x": "See Exhibit B of this DPA"
+  },
+  {
+   "t": "h4",
+   "x": "Table 2: Selected SCCs, Modules and Selected Clauses"
+  },
+  {
+   "t": "li",
+   "x": "The version of the Approved EU SCCs which this UK Addendum is appended to as defined in the DPA and completed by Section 6.2 and 6.3 of the DPA."
+  },
+  {
+   "t": "h4",
+   "x": "Table 3: Appendix Information"
+  },
+  {
+   "t": "p",
+   "x": "“Appendix Information” means the information which must be provided for the selected modules as set out in the Appendix of the Approved EU SCCs (other than the Parties), and which for this UK Addendum is set out in:"
+  },
+  {
+   "t": "li",
+   "label": "Annex 1A:",
+   "x": "List of Parties: As per Table 1 above"
+  },
+  {
+   "t": "li",
+   "label": "Annex 2B:",
+   "x": "Description of Transfer: See Exhibit B of this DPA"
+  },
+  {
+   "t": "li",
+   "label": "Annex II:",
+   "x": "Technical and organisational measures, including technical and organisational measures to ensure the security of the data: See Exhibit C of this DPA"
+  },
+  {
+   "t": "li",
+   "label": "Annex III:",
+   "x": "List of Sub-processors (Modules 2 and 3 only): See Exhibit B of this DPA"
+  },
+  {
+   "t": "h4",
+   "x": "Table 4: Ending this UK Addendum when the Approved UK Addendum Changes"
+  },
+  {
+   "t": "li",
+   "x": "Importer"
+  },
+  {
+   "t": "li",
+   "x": "Exporter"
+  },
+  {
+   "t": "li",
+   "x": "Neither Party"
+  },
+  {
+   "t": "h3",
+   "x": "Part 2: Mandatory Clauses"
+  },
+  {
+   "t": "h4",
+   "x": "Entering into this UK Addendum"
+  },
+  {
+   "t": "p",
+   "x": "1. Each party agrees to be bound by the terms and conditions set out in this UK Addendum, in exchange for the other party also agreeing to be bound by this UK Addendum."
+  },
+  {
+   "t": "p",
+   "x": "2. Although Annex 1A and Clause 7 of the Approved EU SCCs require signature by the Parties, for the purpose of making ex-UK Transfers, the Parties may enter into this UK Addendum in any way that makes them legally binding on the Parties and allows data subjects to enforce their rights as set out in this UK Addendum. Entering into this UK Addendum will have the same effect as signing the Approved EU SCCs and any part of the Approved EU SCCs."
+  },
+  {
+   "t": "h4",
+   "x": "Interpretation of this UK Addendum"
+  },
+  {
+   "t": "p",
+   "x": "1. Where this UK Addendum uses terms that are defined in the Approved EU SCCs, those terms shall have the same meaning as in the Approved EU SCCs. In addition, the following terms have the following meanings:"
+  },
+  {
+   "t": "li",
+   "x": "UK Addendum means this International Data Transfer Addendum incorporating the EU SCCs, attached to the DPA as Exhibit D."
+  },
+  {
+   "t": "li",
+   "x": "EU SCCs means the version(s) of the Approved EU SCCs which this UK Addendum is appended to, as set out in Table 2, including the Appendix Information."
+  },
+  {
+   "t": "li",
+   "x": "Appendix Information shall be as set out in Table 3."
+  },
+  {
+   "t": "li",
+   "x": "Appropriate Safeguards means the standard of protection over the personal data and of data subjects’ rights, which is required by UK Data Protection Laws when you are making an ex-UK Transfer relying on standard data protection clauses under Article 46(2)(d) UK GDPR."
+  },
+  {
+   "t": "li",
+   "x": "Approved UK Addendum means the template Addendum issued by the ICO and laid before Parliament in accordance with s119A of the Data Protection Act 2018 on 2 February 2022, as may be revised under Section 18 of the UK Addendum."
+  },
+  {
+   "t": "li",
+   "x": "Approved EU SCCs means the standard contractual clauses approved by the European Commission in Commission Decision 2021/914 dated 4 June 2021, for transfers of personal data to countries not otherwise recognized as offering an adequate level of protection for personal data by the European Commission (as amended and updated from time to time)."
+  },
+  {
+   "t": "li",
+   "x": "ICO means the Information Commissioner of the United Kingdom."
+  },
+  {
+   "t": "li",
+   "x": "ex-UK Transfer shall have the same definition as set forth in the DPA."
+  },
+  {
+   "t": "li",
+   "x": "UK means the United Kingdom of Great Britain and Northern Ireland."
+  },
+  {
+   "t": "li",
+   "x": "UK Data Protection Laws means all laws relating to data protection, the processing of personal data, privacy and/or electronic communications in force from time to time in the UK, including the UK GDPR and the Data Protection Act 2018."
+  },
+  {
+   "t": "li",
+   "x": "UK GDPR shall have the definition set forth in the DPA."
+  },
+  {
+   "t": "p",
+   "x": "2. The UK Addendum must always be interpreted in a manner that is consistent with UK Data Protection Laws and so that it fulfills the Parties’ obligation to provide the Appropriate Safeguards."
+  },
+  {
+   "t": "p",
+   "x": "3. If the provisions included in the UK Addendum amend the Approved EU SCCs in any way which is not permitted under the Approved EU SCCs or the Approved UK Addendum, such amendment(s) will not be incorporated into the UK Addendum and the equivalent provision of the Approved EU SCCs will take their place."
+  },
+  {
+   "t": "p",
+   "x": "4. If there is any inconsistency or conflict between UK Data Protection Laws and the UK Addendum, UK Data Protection Laws will apply."
+  },
+  {
+   "t": "p",
+   "x": "5. If the meaning of the UK Addendum is unclear or there is more than one meaning, the meaning which most closely aligns with UK Data Protection Laws applies."
+  },
+  {
+   "t": "p",
+   "x": "6. Any references to legislation (or specific provisions of legislation) mean that legislation (or specific provision) as it may change over time. This includes where that legislation (or specific provision) has been consolidated, re-enacted, and/or replaced after the UK Addendum has been entered into."
+  },
+  {
+   "t": "h4",
+   "x": "Hierarchy"
+  },
+  {
+   "t": "p",
+   "x": "1. Although Clause 5 of the Approved EU SCCs sets out that the Approved EU SCCs prevail over all related agreements between the parties, the parties agree that, for ex-UK Transfers, the hierarchy in Section 10 below will prevail."
+  },
+  {
+   "t": "p",
+   "x": "2. Where there is any inconsistency or conflict between the Approved UK Addendum and the EU SCCs (as applicable), the Approved UK Addendum overrides the EU SCCs, except where (and in so far as) the inconsistent or conflicting terms of the EU SCCs provide greater protection for data subjects, in which case those terms will override the Approved UK Addendum."
+  },
+  {
+   "t": "p",
+   "x": "3. Where this UK Addendum incorporates EU SCCs that have been entered into to protect ex-EU Transfers subject to the GDPR, then the parties acknowledge that nothing in the UK Addendum impacts those EU SCCs."
+  },
+  {
+   "t": "h4",
+   "x": "Incorporation and Changes to the EU SCCs"
+  },
+  {
+   "t": "p",
+   "x": "1. This UK Addendum incorporates the EU SCCs which are amended to the extent necessary so that:"
+  },
+  {
+   "t": "li",
+   "x": "Together, they operate for data transfers made by the data exporter to the data importer, to the extent that UK Data Protection Laws apply to the data exporter’s processing when making that data transfer, and they provide Appropriate Safeguards for those data transfers."
+  },
+  {
+   "t": "li",
+   "x": "Sections 9 to 11 above override Clause 5 (Hierarchy) of the EU SCCs."
+  },
+  {
+   "t": "li",
+   "x": "The UK Addendum (including the EU SCCs incorporated into it) is (1) governed by the laws of England and Wales and (2) any dispute arising from it is resolved by the courts of England and Wales."
+  },
+  {
+   "t": "p",
+   "x": "2. Unless the parties have agreed alternative amendments which meet the requirements of Section 12 of this UK Addendum, the provisions of Section 15 of this UK Addendum will apply."
+  },
+  {
+   "t": "p",
+   "x": "3. No amendments to the Approved EU SCCs other than to meet the requirements of Section 12 of this UK Addendum may be made."
+  },
+  {
+   "t": "p",
+   "x": "4. The following amendments to the EU SCCs (for the purpose of Section 12 of this UK Addendum) are made:"
+  },
+  {
+   "t": "li",
+   "x": "References to the “Clauses” means this UK Addendum, incorporating the EU SCCs."
+  },
+  {
+   "t": "li",
+   "x": "In Clause 2, delete the words: “and, with respect to data transfers from controllers to processors and/or processors to processors, standard contractual clauses pursuant to Article 28(7) of Regulation (EU) 2016/679”."
+  },
+  {
+   "t": "li",
+   "x": "Clause 6 (Description of the transfer(s)) is replaced with: “The details of the transfers(s) and in particular the categories of personal data that are transferred and the purpose(s) for which they are transferred) are those specified in Annex I.B where UK Data Protection Laws apply to the data exporter’s processing when making that transfer.”"
+  },
+  {
+   "t": "li",
+   "x": "Clause 8.7(i) of Module 1 is replaced with: “it is to a country benefitting from adequacy regulations pursuant to Section 17A of the UK GDPR that covers the onward transfer.”"
+  },
+  {
+   "t": "li",
+   "x": "Clause 8.8(i) of Modules 2 and 3 is replaced with: “the onward transfer is to a country benefitting from adequacy regulations pursuant to Section 17A of the UK GDPR that covers the onward transfer.”"
+  }
+ ]
+}
