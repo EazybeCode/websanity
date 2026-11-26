@@ -5,6 +5,7 @@ import { getAlternates } from '@/lib/seo-helpers'
 import { getBlendusContent, blendusHeadline, BLENDUS_DAY_CHAT, BLENDUS_DAY_BLOCK } from '@/data/case-study-blendus'
 import { pageDates, withPageDates, getSanityDocDates } from '@/lib/page-dates'
 import { getCaseStudy } from '@/lib/sanity-queries'
+import { VideoEmbedBlock } from '@/components/blog/VideoEmbedBlock'
 
 // The page design and copy live in code (src/data/case-study-blendus.ts).
 // A PUBLISHED caseStudy doc with this slug (Sanity "Case Studies") supplies the
@@ -22,6 +23,10 @@ const SITE_URL = 'https://eazybe.com'
 const IMG = '/case-studies/blendus'
 const SHARE_IMG = `${SITE_URL}${IMG}/scene-manager.webp`
 const HTML_LANG: Record<string, string> = { en: 'en', br: 'pt-BR', es: 'es', tr: 'tr' }
+// Customer story video on the Eazybe YouTube channel (same video on all locales).
+const VIDEO_ID = 'cvVuYxm74r8'
+const VIDEO_TITLE = 'How a Brazilian Company Keeps Every WhatsApp Deal in HubSpot | BlendUs x Eazybe'
+const VIDEO_THUMB = `https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`
 
 async function baseMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
@@ -146,6 +151,8 @@ const CSS = `
 .landing .v16-brand .blu-hero .blu-hero-stat:first-child .v { color: #7c98ff; }
 .landing .v16-brand .blu-hero .blu-hero-stat:last-child .v { color: #2ec27e; }
 .landing .v16-brand .blu-hero .blu-hero-stat .l { margin-top: 10px; font-size: 16px; line-height: 1.45; color: #b4b4bc; }
+.landing .v16-brand .blu-hero .blu-video { max-width: 880px; margin: clamp(36px, 5vw, 56px) auto 0; }
+.landing .v16-brand .blu-hero .blu-video figcaption { color: rgba(255,255,255,.6); }
 
 /* About */
 .blu .blu-about { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
@@ -430,6 +437,20 @@ export default async function BlendusCaseStudyPage({ params }: { params: Promise
       url: 'https://blendus.com.br',
       address: { '@type': 'PostalAddress', addressLocality: 'Florianópolis', addressCountry: 'BR' },
     },
+    video: { '@id': `${pageUrl}#video` },
+  }
+  const videoSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    '@id': `${pageUrl}#video`,
+    name: VIDEO_TITLE,
+    description: t.meta.description,
+    thumbnailUrl: [VIDEO_THUMB, `https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`],
+    uploadDate: '2026-11-26T00:32:23-08:00',
+    duration: 'PT1M27S',
+    // A YouTube watch page is not a media file, so no contentUrl; embedUrl is the player.
+    embedUrl: `https://www.youtube.com/embed/${VIDEO_ID}`,
+    publisher: eazybeOrg,
   }
 
   const aboutTones = ['dark', 'yellow', 'green', '']
@@ -448,6 +469,7 @@ export default async function BlendusCaseStudyPage({ params }: { params: Promise
     <div className="blu">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} />
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
       {/* 1. Hero — deck cover (slide 01) on the brand dark hero. */}
@@ -472,6 +494,9 @@ export default async function BlendusCaseStudyPage({ params }: { params: Promise
                 <div className="l">{s.label}</div>
               </div>
             ))}
+          </div>
+          <div className="blu-video">
+            <VideoEmbedBlock data={{ platform: 'youtube', videoId: VIDEO_ID, title: VIDEO_TITLE }} />
           </div>
         </div>
       </section>
