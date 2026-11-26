@@ -1,6 +1,7 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import Script from 'next/script'
 import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import { Analytics } from '@/components/Analytics'
@@ -101,17 +102,13 @@ export default async function LocaleLayout({
           </Providers>
           <Analytics />
         </NextIntlClientProvider>
-        {/* "Chat with us" website agent, paused for now (Bea's lead form is the
-            only assistant). To bring it back, restore this and
-            `import Script from 'next/script'`:
         <Script
           id="eazybe-website-agent"
           src="https://app.eazybe.com/widget.js"
-          data-agent-id="6acf15d781a011218497a0f2"
+          data-agent-id="6b0419b7775fa04a9585ed3f"
           strategy="afterInteractive"
           async
         />
-        */}
       </body>
     </html>
   )
